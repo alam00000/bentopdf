@@ -1,0 +1,358 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #111827;
+    /* bg-gray-900 */
+    color: #d1d5db;
+    /* text-gray-300 */
+}
+
+.tool-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #374151;
+    /* border-gray-700 */
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    border-color: #4f46e5;
+    /* indigo-600 */
+}
+
+.btn {
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Custom file input */
+input[type="file"]::file-selector-button {
+    @apply bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer hover:bg-indigo-700 transition-colors duration-200 mr-4;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1f2937;
+    /* bg-gray-800 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+    /* indigo-600 */
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4338ca;
+    /* indigo-700 */
+}
+
+/* Style for drag-and-drop placeholder */
+.sortable-ghost {
+    opacity: 0.4;
+    border: 2px dashed #4f46e5;
+}
+
+#embed-pdf-container>div {
+    width: 100%;
+    height: 100%;
+}
+
+#tool-interface {
+  color: #39A0ED;
+}
+
+.page-thumbnail,
+#file-list > li {
+  cursor: grab;
+}
+
+.sortable-chosen {
+  cursor: grabbing;
+}
+
+.compare-viewer-wrapper.overlay-mode {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    overflow: auto;
+    border: 2px solid #374151;
+    border-radius: 0.5rem;
+    background-color: #1f2937;
+}
+
+/* This rule now ONLY applies to canvases in overlay mode */
+.compare-viewer-wrapper.overlay-mode canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: auto;
+}
+
+.compare-viewer-wrapper.side-by-side-mode {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.pdf-panel {
+    flex: 1;
+    min-width: 0;
+    overflow: auto;
+    height: 75vh;
+    border: 2px solid #374151;
+    border-radius: 0.5rem;
+    background-color: #1f2937;
+}
+
+/* This rule ensures canvases in side-by-side panels display at their natural rendered size. */
+.pdf-panel canvas {
+    display: block;
+    margin: 0 auto;
+}
+
+footer a {
+    transition: color 0.2s ease-in-out;
+}
+
+.marker {
+    position: relative;
+    display: inline-block;
+}
+
+.marker::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    /* height: 30px; */
+    background-color: orange; /* Yellow marker color */
+    z-index: -1;
+    transform: skew(-20deg);
+}
+
+.pill {
+    background-color: #374151; /* bg-gray-700 */
+    color: #d1d5db; /* text-gray-300 */
+    padding: 8px 16px;
+    border-radius: 9999px; /* rounded-full */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cta-button {
+    background-color: #4f46e5; /* indigo-600 */
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px; /* rounded-lg */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #4338ca; /* indigo-700 */
+}
+.marker-text {
+    background-color: rgba(255, 255, 0, 0.5); /* Yellow marker color */
+    padding: 0 5px;
+}
+.feature-card {
+    background-color: #1f2937; /* bg-gray-800 */
+    padding: 24px;
+    border-radius: 8px; /* rounded-lg */
+    text-align: center;
+}
+
+.nav-link {
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors;
+}
+
+.mobile-nav-link {
+    @apply text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors;
+}
+
+.marker-slanted {
+    position: relative;
+    display: inline-block;
+}
+
+.marker-slanted::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 6px;
+    background: linear-gradient(120deg, #6366f1, #8b5cf6);
+    z-index: -1;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #4f46e5, transparent); /* Fades from transparent to indigo and back */
+    margin: 2rem auto; /* my-16 */
+    max-width: 42rem; /* max-w-xl */
+    opacity: 0.5;
+}
+
+.btn-gradient {
+    display: inline-block;
+    padding: 0.75rem 2rem; /* py-3 px-8 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-image: linear-gradient(to bottom, #6366f1, #4f46e5); /* from-indigo-500 to-indigo-600 */
+    color: #ffffff; /* text-white */
+    font-weight: 600; /* font-semibold */
+    transition-property: all;
+    transition-duration: 200ms;
+    transform: translateY(0);
+}
+
+.btn-gradient:hover {
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -4px rgba(79, 70, 229, 0.3); /* hover:shadow-xl hover:shadow-indigo-500/30 */
+    transform: translateY(-0.25rem); /* hover:-translate-y-1 */
+}
+
+.btn-gradient:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #111827, 0 0 0 4px #818cf8; /* focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 */
+}
+
+.btn-gradient:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.solid-spinner {
+    width: 64px; /* w-16 */
+    height: 64px; /* h-16 */
+    border: 5px solid #374151; /* border-gray-700 */
+    border-bottom-color: #4f46e5; /* border-indigo-600 */
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#signature-ghost {
+    position: absolute;
+    z-index: 100;
+    pointer-events: none; /* Allows clicks to pass through to the canvas */
+    opacity: 0.6;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Highlight for selected signature in the saved list */
+.saved-signature.selected {
+    border-color: #4f46e5; /* indigo-600 */
+    box-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+}
+
+/* Cursor change when hovering over a placed signature */
+#canvas-sign.movable {
+    cursor: move;
+}
+
+#canvas-sign.resize-ns { cursor: ns-resize; }
+#canvas-sign.resize-ew { cursor: ew-resize; }
+#canvas-sign.resize-nesw { cursor: nesw-resize; }
+#canvas-sign.resize-nwse { cursor: nwse-resize; }
+
+.faq-item.open .faq-question {
+    color: #818cf8; /* indigo-400 */
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(180deg);
+}
+
+/* Testimonial Card Styles */
+.testimonial-card {
+    background-color: #1f2937; /* bg-gray-800 */
+    padding: 24px;
+    border-radius: 0.75rem; /* rounded-xl */
+    border: 1px solid #374151; /* border-gray-700 */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Find the existing .pill rule: */
+.pill {
+    background-color: #374151; /* bg-gray-700 */
+    color: #d1d5db; /* text-gray-300 */
+    padding: 8px 16px;
+    border-radius: 9999px; /* rounded-full */
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* And REPLACE it with this: */
+.pill {
+    background-color: #374151; /* bg-gray-700 */
+    color: #d1d5db; /* text-gray-300 */
+    /* Smaller padding and font size by default for mobile */
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 9999px; /* rounded-full */
+    font-weight: 500;
+}
+
+/* On small screens (640px) and up, revert to the larger size */
+@media (min-width: 640px) {
+    .pill {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Ensure form-field-group contents don't overflow on small screens */
+.form-field-group .capitalize {
+    word-break: break-all;
+}
+
+@media (max-width: 1023px) {
+    #form-fields-container {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    .form-field-group {
+        display: inline-block;
+        width: 90%; /* Adjust as needed */
+        margin-right: 1rem;
+    }
+}
+
+
+
+#page-merge-preview {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
