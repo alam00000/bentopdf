@@ -2,9 +2,8 @@ import { categories } from './config/tools.js';
 import { dom, switchView, hideAlert } from './ui.js';
 import { setupToolInterface } from './handlers/toolSelectionHandler.js';
 import { createIcons, icons } from 'lucide';
-
 import * as pdfjsLib from 'pdfjs-dist';
-
+import "../css/styles.css";
 
 const init = () => {
     pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
