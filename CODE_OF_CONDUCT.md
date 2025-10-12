@@ -40,7 +40,7 @@ Maintainers have the right and responsibility to remove, edit, or reject comment
 
 If you are subject to or witness unacceptable behavior, or have any other concerns, please report it by contacting the project team at:
 
-**Email:** `abdus@example.com`  
+**Email:** `contact@bentopdf.com`  
 
 All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
 

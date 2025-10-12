@@ -23,7 +23,7 @@ You can contribute in several ways:
 
 1.  **Fork the Repository**
     ```bash
-    git clone [https://github.com/your-username/bento-pdf.git](https://github.com/your-username/bento-pdf.git)
+    git clone https://github.com/alam00000/bentopdf.git
     cd bento-pdf
     npm install
     ```
@@ -78,7 +78,7 @@ You can contribute in several ways:
 
 If you discover a security vulnerability, please **do not** open a public issue. Instead, contact the project maintainer directly at:
 
-**Email:** [abdus@example.com](mailto:abdus@example.com)
+**Email:** [contact@bentopdf.com](mailto:contact@bentopdf.com)
 
 ---
 
