@@ -40,7 +40,8 @@ export async function addBlankPage() {
         }
 
         const newPdfBytes = await newPdf.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'page-added.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'page-added.pdf');
+        
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Could not add a blank page.');

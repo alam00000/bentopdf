@@ -38,7 +38,7 @@ export async function webpToPdf() {
             });
         }
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_webp.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_webp.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to convert WebP to PDF. Ensure all files are valid WebP images.');

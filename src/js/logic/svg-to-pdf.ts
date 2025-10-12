@@ -45,7 +45,7 @@ export async function svgToPdf() {
             page.drawImage(pngImage, { x: 0, y: 0, width: pngImage.width, height: pngImage.height });
         }
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_svgs.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_svgs.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to convert SVG to PDF. One of the files may be invalid.');

@@ -244,7 +244,7 @@ export async function merge() {
         }
 
         const mergedPdfBytes = await newPdfDoc.save();
-        downloadFile(new Blob([mergedPdfBytes], { type: 'application/pdf' }), 'merged.pdf');
+        downloadFile(new Blob([new Uint8Array(mergedPdfBytes)], { type: 'application/pdf' }), 'merged.pdf');
         showAlert('Success', 'PDFs merged successfully!');
 
     } catch (e) {

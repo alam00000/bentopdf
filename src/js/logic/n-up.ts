@@ -101,7 +101,7 @@ export async function nUpTool() {
         }
 
         const newPdfBytes = await newDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), `n-up_${n}.pdf`);
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), `n-up_${n}.pdf`);
     } catch (e) {
         console.error(e);
         showAlert('Error', 'An error occurred while creating the N-Up PDF.');

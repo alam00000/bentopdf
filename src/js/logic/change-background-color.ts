@@ -43,7 +43,7 @@ export async function changeBackgroundColor() {
         }
 
         const newPdfBytes = await newPdfDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'background-changed.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'background-changed.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Could not change the background color.');

@@ -42,7 +42,7 @@ export async function splitInHalf() {
         }
 
         const newPdfBytes = await newPdfDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'split-half.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'split-half.pdf');
 
     } catch (e) {
         console.error(e);

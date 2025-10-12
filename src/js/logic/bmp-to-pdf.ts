@@ -45,7 +45,7 @@ export async function bmpToPdf() {
             page.drawImage(pngImage, { x: 0, y: 0, width: pngImage.width, height: pngImage.height });
         }
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_bmps.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_bmps.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to convert BMP to PDF. One of the files may be invalid.');

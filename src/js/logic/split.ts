@@ -198,7 +198,7 @@ export async function split() {
             const copiedPages = await newPdf.copyPages(state.pdfDoc, uniqueIndices as number[]);
             copiedPages.forEach((page: any) => newPdf.addPage(page));
             const pdfBytes = await newPdf.save();
-            downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'split-document.pdf');
+            downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'split-document.pdf');
         }
         
         if (splitMode === 'visual') {

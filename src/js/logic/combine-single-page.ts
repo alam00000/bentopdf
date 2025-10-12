@@ -66,7 +66,7 @@ export async function combineToSinglePage() {
         }
 
         const newPdfBytes = await newDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'combined-page.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'combined-page.pdf');
 
     } catch (e) {
         console.error(e);

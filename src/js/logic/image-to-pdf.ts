@@ -123,7 +123,7 @@ export async function imageToPdf() {
         }
 
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from-images.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from-images.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', e.message || 'Failed to create PDF from images.');

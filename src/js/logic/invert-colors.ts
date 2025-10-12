@@ -42,7 +42,7 @@ export async function invertColors() {
             newPage.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
         }
         const newPdfBytes = await newPdfDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'inverted.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'inverted.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Could not invert PDF colors.');

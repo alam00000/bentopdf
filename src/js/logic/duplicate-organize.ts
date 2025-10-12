@@ -154,7 +154,7 @@ export async function processAndSave() {
         copiedPages.forEach((page: any) => newPdfDoc.addPage(page));
 
         const newPdfBytes = await newPdfDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'organized.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'organized.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to save the new PDF.');

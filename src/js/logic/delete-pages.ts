@@ -47,7 +47,7 @@ export async function deletePages() {
         copiedPages.forEach((page: any) => newPdf.addPage(page));
 
         const newPdfBytes = await newPdf.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'deleted-pages.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'deleted-pages.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Could not delete pages.');

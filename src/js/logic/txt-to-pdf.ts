@@ -64,7 +64,7 @@ export async function txtToPdf() {
         }
 
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'text-document.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'text-document.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to create PDF from text.');

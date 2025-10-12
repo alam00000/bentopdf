@@ -83,7 +83,7 @@ export async function jpgToPdf() {
     }
 
     const pdfBytes = await pdfDoc.save();
-    downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_jpgs.pdf');
+    downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_jpgs.pdf');
   } catch (e) {
     console.error(e);
     showAlert('Conversion Error', e.message);

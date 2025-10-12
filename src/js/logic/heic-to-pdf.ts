@@ -26,7 +26,7 @@ export async function heicToPdf() {
             page.drawImage(pngImage, { x: 0, y: 0, width: pngImage.width, height: pngImage.height });
         }
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_heic.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_heic.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to convert HEIC to PDF. One of the files may be invalid or unsupported.');

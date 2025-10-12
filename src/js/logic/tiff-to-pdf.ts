@@ -72,7 +72,7 @@ export async function tiffToPdf() {
             }
         }
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_tiff.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_tiff.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to convert TIFF to PDF. One of the files may be invalid or corrupted.');

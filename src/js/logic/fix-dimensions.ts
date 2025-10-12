@@ -77,7 +77,7 @@ export async function fixDimensions() {
         }
 
         const newPdfBytes = await newDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'standardized.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'standardized.pdf');
 
     } catch (e) {
         console.error(e);

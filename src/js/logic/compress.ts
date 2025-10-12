@@ -88,7 +88,7 @@ async function performSmartCompression(arrayBuffer: any, settings: any) {
                     canvas.height = Math.floor(newHeight);
 
                     const img = new Image();
-                    const imageUrl = URL.createObjectURL(new Blob([imageBytes]));
+                    const imageUrl = URL.createObjectURL(new Blob([new Uint8Array(imageBytes)]));
 
                     await new Promise((resolve, reject) => {
                         img.onload = resolve;

@@ -25,7 +25,7 @@ export async function pngToPdf() {
             });
         }
         const pdfBytes = await pdfDoc.save();
-        downloadFile(new Blob([pdfBytes], { type: 'application/pdf' }), 'from_pngs.pdf');
+        downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_pngs.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Failed to create PDF from PNG images. Ensure all files are valid PNGs.');

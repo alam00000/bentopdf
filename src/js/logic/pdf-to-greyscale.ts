@@ -48,7 +48,7 @@ export async function pdfToGreyscale() {
             newPage.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
         }
         const newPdfBytes = await newPdfDoc.save();
-        downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'greyscale.pdf');
+        downloadFile(new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }), 'greyscale.pdf');
     } catch (e) {
         console.error(e);
         showAlert('Error', 'Could not convert to greyscale.');

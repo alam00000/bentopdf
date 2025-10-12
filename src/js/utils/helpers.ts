@@ -111,3 +111,4 @@ export function parsePageRanges(rangeString: any, totalPages: any) {
     // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
     return Array.from(indices).sort((a, b) => a - b);
 }
+

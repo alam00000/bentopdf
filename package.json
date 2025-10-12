@@ -13,7 +13,8 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "build:docker": "vite build"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
