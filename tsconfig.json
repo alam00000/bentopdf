@@ -30,7 +30,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["vite/client"],
+    "types": ["vite/client", "vitest/globals"],  // Added vitest/globals
 
     /* Easier module handling for Vite */
     "moduleResolution": "bundler",
@@ -53,9 +53,14 @@
     /* Quality-of-life options */
     "isolatedModules": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    
+    /* Path aliases (optional but helpful) */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/**/*.ts"],  // Updated to include all TS files
   "exclude": ["node_modules", "dist"]
 }
-

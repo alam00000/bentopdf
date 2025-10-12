@@ -7,22 +7,18 @@ html {
 body {
     font-family: 'DM Sans', sans-serif;
     background-color: #111827;
-    /* bg-gray-900 */
     color: #d1d5db;
-    /* text-gray-300 */
 }
 
 .tool-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     border: 1px solid #374151;
-    /* border-gray-700 */
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
     border-color: #4f46e5;
-    /* indigo-600 */
 }
 
 .btn {
@@ -45,12 +41,10 @@ input[type="file"]::file-selector-button {
 
 ::-webkit-scrollbar-track {
     background: #1f2937;
-    /* bg-gray-800 */
 }
 
 ::-webkit-scrollbar-thumb {
     background: #4f46e5;
-    /* indigo-600 */
     border-radius: 4px;
 }
 
@@ -302,7 +296,6 @@ footer a {
     flex-direction: column;
 }
 
-/* Find the existing .pill rule: */
 .pill {
     background-color: #374151; /* bg-gray-700 */
     color: #d1d5db; /* text-gray-300 */
@@ -312,7 +305,6 @@ footer a {
     font-weight: 500;
 }
 
-/* And REPLACE it with this: */
 .pill {
     background-color: #374151; /* bg-gray-700 */
     color: #d1d5db; /* text-gray-300 */
@@ -347,8 +339,6 @@ footer a {
         margin-right: 1rem;
     }
 }
-
-
 
 #page-merge-preview {
     display: grid;

@@ -12,5 +12,6 @@ export function resetState() {
     state.files = [];
     state.pdfDoc = null;
     state.pdfPages = [];
+    state.currentPdfUrl = null;
     document.getElementById('tool-content').innerHTML = '';
 }

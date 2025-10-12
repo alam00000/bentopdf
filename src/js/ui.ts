@@ -1,4 +1,3 @@
-// FILE: js/ui.js
 import { resetState } from './state.js';
 import { formatBytes } from './utils/helpers.js';
 import { tesseractLanguages } from './config/tesseract-languages.js';

@@ -169,8 +169,6 @@ async function performMetadataCrop(pdfToModify: any, cropData: any) {
     }
 }
 
-// FILE: js/logic/cropper.js
-
 /**
  * Performs a destructive crop by flattening the selected area to an image.
  */
@@ -179,8 +177,6 @@ async function performFlatteningCrop(cropData: any) {
     
     // Load the original PDF with pdf-lib to copy un-cropped pages from
     const sourcePdfDocForCopying = await PDFLibDocument.load(cropperState.originalPdfBytes);
-
-    // CORRECTED: Use .numPages from the pdf.js document object
     const totalPages = cropperState.pdfDoc.numPages;
 
     for (let i = 0; i < totalPages; i++) {
@@ -217,7 +213,6 @@ async function performFlatteningCrop(cropData: any) {
             const newPage = newPdfDoc.addPage([finalWidth, finalHeight]);
             newPage.drawImage(embeddedImage, { x: 0, y: 0, width: finalWidth, height: finalHeight });
         } else {
-            // Correctly copy the page from the source pdf-lib document
             const [copiedPage] = await newPdfDoc.copyPages(sourcePdfDocForCopying, [i]);
             newPdfDoc.addPage(copiedPage);
         }
@@ -225,9 +220,7 @@ async function performFlatteningCrop(cropData: any) {
     return newPdfDoc;
 }
 
-/**
- * Main function to set up the Cropper tool.
- */
+
 export async function setupCropperTool() {
     if (state.files.length === 0) return;
 
@@ -237,16 +230,12 @@ export async function setupCropperTool() {
     const arrayBuffer = await readFileAsArrayBuffer(state.files[0]);
     cropperState.originalPdfBytes = arrayBuffer;
     const arrayBufferForPdfJs = (arrayBuffer as ArrayBuffer).slice(0);
-
-
-    // pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js`;
     pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
         'pdfjs-dist/build/pdf.worker.min.mjs',
         import.meta.url
     ).toString();
 
     try {
-        // const loadingTask = pdfjsLib.getDocument({ data: cropperState.originalPdfBytes });
         const loadingTask = pdfjsLib.getDocument({ data: arrayBufferForPdfJs }); 
 
         cropperState.pdfDoc = await loadingTask.promise;

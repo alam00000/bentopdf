@@ -7,7 +7,6 @@ import blobStream from 'blob-stream';
 import * as pdfjsLib from "pdfjs-dist";
 
 export async function changePermissions() {
-    // --- 1. GATHER INPUTS FROM THE NEW UI ---
     const currentPassword = (document.getElementById('current-password') as HTMLInputElement).value;
     const newUserPassword = (document.getElementById('new-user-password') as HTMLInputElement).value;
     const newOwnerPassword = (document.getElementById('new-owner-password') as HTMLInputElement).value;
@@ -24,7 +23,6 @@ export async function changePermissions() {
         const file = state.files[0];
         const pdfData = await readFileAsArrayBuffer(file);
         
-        // --- 2. UNLOCK PDF WITH CURRENT PASSWORD ---
         let pdf;
         try {
             pdf = await pdfjsLib.getDocument({ 
@@ -38,10 +36,9 @@ export async function changePermissions() {
                 showAlert('Incorrect Password', 'The current password you entered is incorrect.');
                 return;
             }
-            throw e; // Re-throw other errors
+            throw e; 
         }
         
-        // --- 3. RASTERIZE PAGES (UNCHANGED LOGIC) ---
         const numPages = pdf.numPages;
         const pageImages = [];
 
@@ -63,7 +60,6 @@ export async function changePermissions() {
 
         document.getElementById('loader-text').textContent = 'Applying new permissions...';
         
-        // --- 4. GATHER ALL PERMISSION CHECKBOX VALUES ---
         const allowPrinting = (document.getElementById('allow-printing') as HTMLInputElement).checked;
         const allowCopying = (document.getElementById('allow-copying') as HTMLInputElement).checked;
         const allowModifying = (document.getElementById('allow-modifying') as HTMLInputElement).checked;
@@ -72,10 +68,10 @@ export async function changePermissions() {
         const allowContentAccessibility = (document.getElementById('allow-content-accessibility') as HTMLInputElement).checked;
         const allowDocumentAssembly = (document.getElementById('allow-document-assembly') as HTMLInputElement).checked;
 
-        // --- 5. CREATE NEW PDF WITH PDFKIT USING ALL NEW SETTINGS ---
+
         const doc = new PDFDocument({
             size: [pageImages[0].width, pageImages[0].height],
-            pdfVersion: '1.7ext3', // Use 256-bit AES encryption
+            pdfVersion: '1.7ext3', // Uses 256-bit AES encryption
             
             // Apply the new, separate user and owner passwords
             userPassword: newUserPassword,
@@ -104,8 +100,6 @@ export async function changePermissions() {
         }
         
         doc.end();
-
-        // --- 6. FINALIZE AND DOWNLOAD (UNCHANGED LOGIC) ---
         stream.on('finish', function () {
             const blob = stream.toBlob('application/pdf');
             downloadFile(blob, `permissions-changed-${file.name}`);
