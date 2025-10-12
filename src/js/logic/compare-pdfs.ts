@@ -6,7 +6,7 @@ const state = {
     pdfDoc1: null,
     pdfDoc2: null,
     currentPage: 1,
-    viewMode: 'overlay', 
+    viewMode: 'overlay',
     isSyncScroll: true,
 };
 
@@ -19,7 +19,7 @@ const state = {
  */
 async function renderPage(pdfDoc: any, pageNum: any, canvas: any, container: any) {
     const page = await pdfDoc.getPage(pageNum);
-    
+
     // Calculate scale to fit the container width.
     const containerWidth = container.clientWidth - 2; // Subtract border width
     const viewport = page.getViewport({ scale: 1.0 });
@@ -38,15 +38,15 @@ async function renderPage(pdfDoc: any, pageNum: any, canvas: any, container: any
 
 async function renderBothPages() {
     if (!state.pdfDoc1 || !state.pdfDoc2) return;
-    
+
     showLoader(`Loading page ${state.currentPage}...`);
-    
+
     const canvas1 = document.getElementById('canvas-compare-1');
     const canvas2 = document.getElementById('canvas-compare-2');
     const panel1 = document.getElementById('panel-1');
     const panel2 = document.getElementById('panel-2');
     const wrapper = document.getElementById('compare-viewer-wrapper');
-    
+
     // Determine the correct container based on the view mode
     const container1 = state.viewMode === 'overlay' ? wrapper : panel1;
     const container2 = state.viewMode === 'overlay' ? wrapper : panel2;
@@ -55,7 +55,7 @@ async function renderBothPages() {
         renderPage(state.pdfDoc1, Math.min(state.currentPage, state.pdfDoc1.numPages), canvas1, container1),
         renderPage(state.pdfDoc2, Math.min(state.currentPage, state.pdfDoc2.numPages), canvas2, container2)
     ]);
-    
+
     updateNavControls();
     hideLoader();
 }
@@ -78,11 +78,26 @@ async function setupFileInput(inputId: any, docKey: any, displayId: any) {
 
     const handleFile = async (file: any) => {
         if (!file || file.type !== 'application/pdf') return showAlert('Invalid File', 'Please select a valid PDF file.');
-        
+
         const displayDiv = document.getElementById(displayId);
-        displayDiv.innerHTML = `<i data-lucide="check-circle" class="w-10 h-10 mb-3 text-green-500"></i><p class="text-sm text-gray-300 truncate">${file.name}</p>`;
-        createIcons({icons});
-        
+        displayDiv.textContent = '';
+
+        // 2. Create the icon element
+        const icon = document.createElement('i');
+        icon.setAttribute('data-lucide', 'check-circle');
+        icon.className = 'w-10 h-10 mb-3 text-green-500';
+
+        // 3. Create the paragraph element for the file name
+        const p = document.createElement('p');
+        p.className = 'text-sm text-gray-300 truncate';
+
+        // 4. Set the file name safely using textContent
+        p.textContent = file.name;
+
+        // 5. Append the safe elements to the container
+        displayDiv.append(icon, p);
+        createIcons({ icons });
+
         try {
             showLoader(`Loading ${file.name}...`);
             const pdfBytes = await readFileAsArrayBuffer(file);
@@ -174,7 +189,7 @@ export function setupCompareTool() {
     const syncToggle = document.getElementById('sync-scroll-toggle');
     // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message
     syncToggle.addEventListener('change', () => { state.isSyncScroll = syncToggle.checked; });
-    
+
     let scrollingPanel: any = null;
     panel1.addEventListener('scroll', () => {
         if (state.isSyncScroll && scrollingPanel !== panel2) {

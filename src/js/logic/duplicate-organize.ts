@@ -82,7 +82,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
     const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
 
-    grid.innerHTML = '';
+    grid.textContent = '';
 
     for (let i = 1; i <= pdfjsDoc.numPages; i++) {
         const page = await pdfjsDoc.getPage(i);
@@ -97,20 +97,39 @@ export async function renderDuplicateOrganizeThumbnails() {
         // @ts-expect-error TS(2322) FIXME: Type 'number' is not assignable to type 'string'.
         wrapper.dataset.originalPageIndex = i - 1;
 
-        wrapper.innerHTML = `
-    <div class="w-full h-36 bg-gray-900 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-600">
-        <img src="${canvas.toDataURL()}" class="max-w-full max-h-full object-contain">
-    </div>
-    <span class="page-number absolute top-1 left-1 bg-gray-900 bg-opacity-75 text-white text-xs rounded-full px-2 py-1">${i}</span>
-    <div class="flex items-center justify-center gap-4">
-        <button class="duplicate-btn bg-green-600 hover:bg-green-700 text-white rounded-full w-8 h-8 flex items-center justify-center" title="Duplicate Page">
-            <i data-lucide="copy-plus" class="w-5 h-5"></i>
-        </button>
-        <button class="delete-btn bg-red-600 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center" title="Delete Page">
-            <i data-lucide="x-circle" class="w-5 h-5"></i>
-        </button>
-    </div>
-`;
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'w-full h-36 bg-gray-900 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-600';
+
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL();
+        img.className = 'max-w-full max-h-full object-contain';
+        imgContainer.appendChild(img);
+
+        const pageNumberSpan = document.createElement('span');
+        pageNumberSpan.className = 'page-number absolute top-1 left-1 bg-gray-900 bg-opacity-75 text-white text-xs rounded-full px-2 py-1';
+        pageNumberSpan.textContent = i.toString();
+
+        const controlsDiv = document.createElement('div');
+        controlsDiv.className = 'flex items-center justify-center gap-4';
+
+        const duplicateBtn = document.createElement('button');
+        duplicateBtn.className = 'duplicate-btn bg-green-600 hover:bg-green-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
+        duplicateBtn.title = 'Duplicate Page';
+        const duplicateIcon = document.createElement('i');
+        duplicateIcon.setAttribute('data-lucide', 'copy-plus');
+        duplicateIcon.className = 'w-5 h-5';
+        duplicateBtn.appendChild(duplicateIcon);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn bg-red-600 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
+        deleteBtn.title = 'Delete Page';
+        const deleteIcon = document.createElement('i');
+        deleteIcon.setAttribute('data-lucide', 'x-circle');
+        deleteIcon.className = 'w-5 h-5';
+        deleteBtn.appendChild(deleteIcon);
+
+        controlsDiv.append(duplicateBtn, deleteBtn);
+        wrapper.append(imgContainer, pageNumberSpan, controlsDiv);
         grid.appendChild(wrapper);
         attachEventListeners(wrapper);
     }

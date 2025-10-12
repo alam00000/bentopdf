@@ -1,5 +1,3 @@
-// FILE: js/handlers/fileHandler.js
-
 import { state } from '../state.js';
 import { showLoader, hideLoader, showAlert, renderPageThumbnails, renderFileDisplay, switchView } from '../ui.js';
 import { readFileAsArrayBuffer } from '../utils/helpers.js';
@@ -9,12 +7,14 @@ import { renderDuplicateOrganizeThumbnails } from '../logic/duplicate-organize.j
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
 import Sortable from 'sortablejs';
+import { multiFileTools, simpleTools, singlePdfLoadTools } from '../config/pdf-tools.js';
+import * as pdfjsLib from 'pdfjs-dist';
 
-async function handleSinglePdfUpload(toolId: any, file: any) {
+async function handleSinglePdfUpload(toolId, file) {
     showLoader('Loading PDF...');
     try {
         const pdfBytes = await readFileAsArrayBuffer(file);
-            state.pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
+        state.pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
             ignoreEncryption: true
         });
         hideLoader();
@@ -30,8 +30,7 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
 
         const processBtn = document.getElementById('process-btn');
         if (processBtn) {
-            // @ts-expect-error TS(2339) FIXME: Property 'disabled' does not exist on type 'HTMLEl... Remove this comment to see the full error message
-            processBtn.disabled = false;
+            (processBtn as HTMLButtonElement).disabled = false;
             processBtn.classList.remove('hidden');
             const logic = toolLogic[toolId];
             if (logic) {
@@ -41,7 +40,7 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
         }
 
         if (['split', 'delete-pages', 'add-blank-page', 'extract-pages', 'add-header-footer'].includes(toolId)) {
-            document.getElementById('total-pages').textContent = state.pdfDoc.getPageCount();
+            document.getElementById('total-pages').textContent = state.pdfDoc.getPageCount().toString();
         }
 
         if (toolId === 'organize' || toolId === 'rotate') {
@@ -52,32 +51,23 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
                 const rotateAllLeftBtn = document.getElementById('rotate-all-left-btn');
                 const rotateAllRightBtn = document.getElementById('rotate-all-right-btn');
 
-                // Show the buttons
                 rotateAllControls.classList.remove('hidden');
-                createIcons({icons}); // Render the new icons
+                createIcons({ icons });
 
-                const rotateAll = (direction: any) => {
+                const rotateAll = (direction) => {
                     document.querySelectorAll('.page-rotator-item').forEach(item => {
-                        // @ts-expect-error TS(2339) FIXME: Property 'dataset' does not exist on type 'Element... Remove this comment to see the full error message
-                        const currentRotation = parseInt(item.dataset.rotation || '0');
-                        // Calculate new rotation, ensuring it wraps around 0-270 degrees
+                        const currentRotation = parseInt((item as HTMLElement).dataset.rotation || '0');
                         const newRotation = (currentRotation + (direction * 90) + 360) % 360;
-
-                        // @ts-expect-error TS(2339) FIXME: Property 'dataset' does not exist on type 'Element... Remove this comment to see the full error message
-                        item.dataset.rotation = newRotation;
-
+                        (item as HTMLElement).dataset.rotation = newRotation.toString();
                         const thumbnail = item.querySelector('canvas, img');
                         if (thumbnail) {
-                            // @ts-expect-error TS(2339) FIXME: Property 'style' does not exist on type 'Element'.
-                            thumbnail.style.transform = `rotate(${newRotation}deg)`;
+                            (thumbnail as HTMLElement).style.transform = `rotate(${newRotation}deg)`;
                         }
                     });
                 };
-
-                rotateAllLeftBtn.onclick = () => rotateAll(-1); // -1 for counter-clockwise
-                rotateAllRightBtn.onclick = () => rotateAll(1);  //  1 for clockwise
+                rotateAllLeftBtn.onclick = () => rotateAll(-1);
+                rotateAllRightBtn.onclick = () => rotateAll(1);
             }
-
         }
 
         if (toolId === 'duplicate-organize') {
@@ -93,9 +83,7 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
 
             try {
                 const pdfBytes = await readFileAsArrayBuffer(state.files[0]);
-                // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-                const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
-
+                const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfBytes as ArrayBuffer }).promise;
                 const [metadata, fieldObjects] = await Promise.all([
                     pdfjsDoc.getMetadata(),
                     pdfjsDoc.getFieldObjects()
@@ -103,7 +91,34 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
 
                 const { info, metadata: rawXmpString } = metadata;
 
-                const parsePdfDate = (pdfDate: any) => {
+                resultsDiv.textContent = ''; // Clear safely
+
+                const createSection = (title) => {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'mb-4';
+                    const h3 = document.createElement('h3');
+                    h3.className = 'text-lg font-semibold text-white mb-2';
+                    h3.textContent = title;
+                    const ul = document.createElement('ul');
+                    ul.className = 'space-y-3 text-sm bg-gray-900 p-4 rounded-lg border border-gray-700';
+                    wrapper.append(h3, ul);
+                    return { wrapper, ul };
+                };
+
+                const createListItem = (key, value) => {
+                    const li = document.createElement('li');
+                    li.className = 'flex flex-col sm:flex-row';
+                    const strong = document.createElement('strong');
+                    strong.className = 'w-40 flex-shrink-0 text-gray-400';
+                    strong.textContent = key;
+                    const div = document.createElement('div');
+                    div.className = 'flex-grow text-white break-all';
+                    div.textContent = value;
+                    li.append(strong, div);
+                    return li;
+                };
+
+                const parsePdfDate = (pdfDate) => {
                     if (!pdfDate || typeof pdfDate !== 'string' || !pdfDate.startsWith('D:')) return pdfDate;
                     try {
                         const year = pdfDate.substring(2, 6);
@@ -113,91 +128,49 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
                         const minute = pdfDate.substring(12, 14);
                         const second = pdfDate.substring(14, 16);
                         return new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}Z`).toLocaleString();
-                    } catch {
-                        return pdfDate;
-                    }
+                    } catch { return pdfDate; }
                 };
 
-                let htmlContent = '';
-
-                htmlContent += `
-            <div class="mb-4">
-                <h3 class="text-lg font-semibold text-white mb-2">Info Dictionary</h3>
-                <ul class="space-y-3 text-sm bg-gray-900 p-4 rounded-lg border border-gray-700">`;
-
+                const infoSection = createSection('Info Dictionary');
                 if (info && Object.keys(info).length > 0) {
                     for (const key in info) {
-                        let value = info[key];
-                        let displayValue;
-
-                        if (value === null || value === undefined || String(value).trim() === '') {
-                            displayValue = `<span class="text-gray-500 italic">- Not Set -</span>`;
-                        } else if ((key === 'CreationDate' || key === 'ModDate') && typeof value === 'string') {
-                            displayValue = `<span class="text-white break-all">${parsePdfDate(value)}</span>`;
-                        } else if (typeof value === 'object' && !Array.isArray(value)) {
-                            try {
-                                let nestedList = '<ul class="mt-2 space-y-1 pl-4 border-l border-gray-600">';
-                                for (const [nestedKey, nestedValue] of Object.entries(value)) {
-                                    nestedList += `<li class="flex"><strong class="w-32 flex-shrink-0 text-gray-500">${nestedKey}:</strong> <span class="text-white break-all">${nestedValue}</span></li>`;
-                                }
-                                nestedList += '</ul>';
-                                displayValue = nestedList;
-                            } catch (e) {
-                                displayValue = `<span class="text-white break-all">[Unserializable Object]</span>`;
-                            }
-                        } else {
-                            // Fallback for simple values (strings, numbers, arrays)
-                            displayValue = `<span class="text-white break-all">${String(value)}</span>`;
+                        let value = info[key] || '- Not Set -';
+                        if ((key === 'CreationDate' || key === 'ModDate') && typeof value === 'string') {
+                            value = parsePdfDate(value);
                         }
-                        htmlContent += `<li class="flex flex-col sm:flex-row"><strong class="w-40 flex-shrink-0 text-gray-400">${key}</strong><div class="flex-grow">${displayValue}</div></li>`;
+                        infoSection.ul.appendChild(createListItem(key, String(value)));
                     }
                 } else {
-                    htmlContent += `<li><span class="text-gray-500 italic">- No Info Dictionary data found -</span></li>`;
+                    infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No Info Dictionary data found -</span></li>`;
                 }
-                htmlContent += `</ul></div>`;
+                resultsDiv.appendChild(infoSection.wrapper);
 
-                htmlContent += `
-            <div class="mb-4">
-                <h3 class="text-lg font-semibold text-white mb-2">Interactive Form Fields</h3>
-                <ul class="space-y-3 text-sm bg-gray-900 p-4 rounded-lg border border-gray-700">`;
-
+                const fieldsSection = createSection('Interactive Form Fields');
                 if (fieldObjects && Object.keys(fieldObjects).length > 0) {
-                    const getFriendlyFieldType = (type: any) => {
-                        switch (type) {
-                            case 'Tx': return 'Text'; case 'Btn': return 'Button/Checkbox';
-                            case 'Ch': return 'Choice/Dropdown'; case 'Sig': return 'Signature';
-                            default: return type || 'Unknown';
-                        }
-                    };
                     for (const fieldName in fieldObjects) {
                         const field = fieldObjects[fieldName][0];
-                        const fieldType = getFriendlyFieldType(field.fieldType);
-                        const fieldValue = field.fieldValue ? `<span class="text-white break-all">${field.fieldValue}</span>` : `<span class="text-gray-500 italic">- Not Set -</span>`;
-                        htmlContent += `
-                    <li class="flex flex-col sm:flex-row">
-                        <strong class="w-40 flex-shrink-0 text-gray-400 font-semibold">${fieldName}</strong>
-                        <div><span class="text-gray-300 mr-2">[${fieldType}]</span>${fieldValue}</div>
-                    </li>`;
+                        const value = (field as any).fieldValue || '- Not Set -';
+                        fieldsSection.ul.appendChild(createListItem(fieldName, String(value)));
                     }
                 } else {
-                    htmlContent += `<li><span class="text-gray-500 italic">- No interactive form fields found -</span></li>`;
+                    fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No interactive form fields found -</span></li>`;
                 }
-                htmlContent += `</ul></div>`;
+                resultsDiv.appendChild(fieldsSection.wrapper);
 
-                htmlContent += `
-            <div>
-                <h3 class="text-lg font-semibold text-white mb-2">XMP Metadata (Raw XML)</h3>
-                <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">`;
-
+                const xmpSection = createSection('XMP Metadata (Raw XML)');
+                const xmpContainer = document.createElement('div');
+                xmpContainer.className = 'bg-gray-900 p-4 rounded-lg border border-gray-700';
                 if (rawXmpString) {
-                    const escapedXml = rawXmpString.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    htmlContent += `<pre class="text-xs text-gray-300 whitespace-pre-wrap break-all">${escapedXml}</pre>`;
+                    const pre = document.createElement('pre');
+                    pre.className = 'text-xs text-gray-300 whitespace-pre-wrap break-all';
+                    pre.textContent = String(rawXmpString);
+                    xmpContainer.appendChild(pre);
                 } else {
-                    htmlContent += `<p class="text-gray-500 italic">- No XMP metadata found -</p>`;
+                    xmpContainer.innerHTML = `<p class="text-gray-500 italic">- No XMP metadata found -</p>`;
                 }
-                htmlContent += `</div></div>`;
+                xmpSection.wrapper.appendChild(xmpContainer);
+                resultsDiv.appendChild(xmpSection.wrapper);
 
-                resultsDiv.innerHTML = htmlContent;
                 resultsDiv.classList.remove('hidden');
 
             } catch (e) {
@@ -210,207 +183,51 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
 
         if (toolId === 'edit-metadata') {
             const form = document.getElementById('metadata-form');
-            const formatDateForInput = (date: any) => {
-                if (!date) return '';
-                const pad = (num: any) => num.toString().padStart(2, '0');
-                return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
-            };
-
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-title').value = state.pdfDoc.getTitle() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-author').value = state.pdfDoc.getAuthor() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-subject').value = state.pdfDoc.getSubject() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-keywords').value = state.pdfDoc.getKeywords() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-creator').value = state.pdfDoc.getCreator() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-producer').value = state.pdfDoc.getProducer() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-creation-date').value = formatDateForInput(state.pdfDoc.getCreationDate());
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-mod-date').value = formatDateForInput(state.pdfDoc.getModificationDate());
-
-            form.classList.remove('hidden');
-
-            const addBtn = document.getElementById('add-custom-meta-btn');
-            const container = document.getElementById('custom-metadata-container');
-
-            addBtn.onclick = () => {
-                const newFieldId = `custom-field-${Date.now()}`;
-                const fieldWrapper = document.createElement('div');
-                fieldWrapper.id = newFieldId;
-                fieldWrapper.className = 'flex items-center gap-2';
-                fieldWrapper.innerHTML = `
-                    <input type="text" placeholder="Key (e.g., Department)" class="custom-meta-key w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2">
-                    <input type="text" placeholder="Value (e.g., Marketing)" class="custom-meta-value flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2">
-                    <button type="button" class="btn p-2 text-red-500 hover:bg-gray-700 rounded-full" onclick="document.getElementById('${newFieldId}').remove()">
-                        <i data-lucide="trash-2"></i>
-                    </button>
-                `;
-                container.appendChild(fieldWrapper);
-
-                createIcons({icons}); // Re-render icons
-            };
-
-            createIcons({icons});
-        }
-        if (toolId === 'edit-metadata') {
-            const form = document.getElementById('metadata-form');
             const container = document.getElementById('custom-metadata-container');
             const addBtn = document.getElementById('add-custom-meta-btn');
 
-            // Helper to format Date objects
-            const formatDateForInput = (date: any) => {
+            const formatDateForInput = (date) => {
                 if (!date) return '';
-                const pad = (num: any) => num.toString().padStart(2, '0');
+                const pad = (num) => num.toString().padStart(2, '0');
                 return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
             };
 
-            
-
-            // Comprehensive decoder for PDF values
-            const decodePDFValue = (valueNode: any) => {
-                if (!valueNode) return '';
-
-                // @ts-expect-error TS(2339) FIXME: Property 'PDFLib' does not exist on type 'Window &... Remove this comment to see the full error message
-                const { PDFHexString, PDFString, PDFName, PDFNumber } = window.PDFLib;
-
-                try {
-                    // Handle PDFHexString
-                    if (valueNode instanceof PDFHexString) {
-                        // Try the built-in decoder first
-                        try {
-                            return valueNode.decodeText();
-                        } catch (e) {
-                            console.warn('Built-in decodeText failed for PDFHexString, trying manual decode');
-                            // Manual hex decoding
-                            const hexStr = valueNode.toString();
-                            return decodeHexStringManual(hexStr);
-                        }
-                    }
-
-                    // Handle PDFString
-                    if (valueNode instanceof PDFString) {
-                        try {
-                            return valueNode.decodeText();
-                        } catch (e) {
-                            console.warn('Built-in decodeText failed for PDFString, using toString');
-                            return valueNode.toString();
-                        }
-                    }
-
-                    // Handle other types
-                    if (valueNode instanceof PDFName) {
-                        return valueNode.decodeText ? valueNode.decodeText() : valueNode.toString();
-                    }
-
-                    if (valueNode instanceof PDFNumber) {
-                        return valueNode.toString();
-                    }
-
-                    // Fallback - check if the toString() result needs hex decoding
-                    const strValue = valueNode.toString();
-
-                    // Check for various hex encoding patterns
-                    if (strValue.includes('#')) {
-                        // Pattern like "helllo#20h"
-                        return strValue.replace(/#([0-9A-Fa-f]{2})/g, (match: any, hex: any) => {
-                            return String.fromCharCode(parseInt(hex, 16));
-                        });
-                    }
-
-                    // Check if it's a hex string in angle brackets like <48656C6C6C6F20>
-                    if (strValue.match(/^<[0-9A-Fa-f\s]+>$/)) {
-                        return decodeHexStringManual(strValue);
-                    }
-
-                    // Check if it's a parentheses-wrapped string
-                    if (strValue.match(/^\([^)]*\)$/)) {
-                        return strValue.slice(1, -1); // Remove parentheses
-                    }
-
-                    return strValue;
-
-                } catch (error) {
-                    console.error('Error decoding PDF value:', error);
-                    return valueNode.toString();
-                }
-            };
-
-            // Manual hex string decoder
-            const decodeHexStringManual = (hexStr: any) => {
-                try {
-                    // Remove angle brackets if present
-                    let cleanHex = hexStr.replace(/^<|>$/g, '');
-                    // Remove any whitespace
-                    cleanHex = cleanHex.replace(/\s/g, '');
-
-                    let result = '';
-                    for (let i = 0; i < cleanHex.length; i += 2) {
-                        const hexPair = cleanHex.substr(i, 2);
-                        if (hexPair.length === 2 && /^[0-9A-Fa-f]{2}$/.test(hexPair)) {
-                            const charCode = parseInt(hexPair, 16);
-                            // Only add printable characters or common whitespace
-                            if (charCode >= 32 && charCode <= 126) {
-                                result += String.fromCharCode(charCode);
-                            } else if (charCode === 10 || charCode === 13 || charCode === 9) {
-                                result += String.fromCharCode(charCode);
-                            } else {
-                                // For non-printable characters, you might want to skip or use a placeholder
-                                result += String.fromCharCode(charCode);
-                            }
-                        }
-                    }
-                    return result;
-                } catch (error) {
-                    console.error('Manual hex decode failed:', error);
-                    return hexStr;
-                }
-            };
-
-            // --- 1. Pre-fill Standard Fields ---
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-title').value = state.pdfDoc.getTitle() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-author').value = state.pdfDoc.getAuthor() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-subject').value = state.pdfDoc.getSubject() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-keywords').value = state.pdfDoc.getKeywords() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-creator').value = state.pdfDoc.getCreator() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-producer').value = state.pdfDoc.getProducer() || '';
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-creation-date').value = formatDateForInput(state.pdfDoc.getCreationDate());
-            // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-            document.getElementById('meta-mod-date').value = formatDateForInput(state.pdfDoc.getModificationDate());
-
-            container.querySelectorAll('.custom-field-wrapper').forEach(el => el.remove());
+            (document.getElementById('meta-title') as HTMLInputElement).value = state.pdfDoc.getTitle() || '';
+            (document.getElementById('meta-author') as HTMLInputElement).value = state.pdfDoc.getAuthor() || '';
+            (document.getElementById('meta-subject') as HTMLInputElement).value = state.pdfDoc.getSubject() || '';
+            (document.getElementById('meta-keywords') as HTMLInputElement).value = state.pdfDoc.getKeywords() || '';
+            (document.getElementById('meta-creator') as HTMLInputElement).value = state.pdfDoc.getCreator() || '';
+            (document.getElementById('meta-producer') as HTMLInputElement).value = state.pdfDoc.getProducer() || '';
+            (document.getElementById('meta-creation-date') as HTMLInputElement).value = formatDateForInput(state.pdfDoc.getCreationDate());
+            (document.getElementById('meta-mod-date') as HTMLInputElement).value = formatDateForInput(state.pdfDoc.getModificationDate());
 
             addBtn.onclick = () => {
-                const newFieldId = `custom-field-${Date.now()}`;
                 const fieldWrapper = document.createElement('div');
-                fieldWrapper.id = newFieldId;
                 fieldWrapper.className = 'flex items-center gap-2 custom-field-wrapper';
-                fieldWrapper.innerHTML = `
-            <input type="text" placeholder="Key (e.g., Department)" class="custom-meta-key w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2">
-            <input type="text" placeholder="Value (e.g., Marketing)" class="custom-meta-value flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2">
-            <button type="button" class="btn p-2 text-red-500 hover:bg-gray-700 rounded-full" onclick="document.getElementById('${newFieldId}').remove()">
-                <i data-lucide="trash-2"></i>
-            </button>
-        `;
-                container.appendChild(fieldWrapper);
 
-                createIcons({icons});
+                const keyInput = document.createElement('input');
+                keyInput.type = 'text';
+                keyInput.placeholder = 'Key (e.g., Department)';
+                keyInput.className = 'custom-meta-key w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
+
+                const valueInput = document.createElement('input');
+                valueInput.type = 'text';
+                valueInput.placeholder = 'Value (e.g., Marketing)';
+                valueInput.className = 'custom-meta-value flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
+
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'btn p-2 text-red-500 hover:bg-gray-700 rounded-full';
+                removeBtn.innerHTML = '<i data-lucide="trash-2"></i>';
+                removeBtn.addEventListener('click', () => fieldWrapper.remove());
+
+                fieldWrapper.append(keyInput, valueInput, removeBtn);
+                container.appendChild(fieldWrapper);
+                createIcons({ icons });
             };
 
             form.classList.remove('hidden');
-
-            createIcons({icons}); // Render all icons after dynamic changes
+            createIcons({ icons });
         }
 
         if (toolId === 'cropper') {
@@ -431,11 +248,10 @@ async function handleSinglePdfUpload(toolId: any, file: any) {
     }
 }
 
-function handleMultiFileUpload(toolId: any) {
+function handleMultiFileUpload(toolId) {
     const processBtn = document.getElementById('process-btn');
     if (processBtn) {
-        // @ts-expect-error TS(2339) FIXME: Property 'disabled' does not exist on type 'HTMLEl... Remove this comment to see the full error message
-        processBtn.disabled = false;
+        (processBtn as HTMLButtonElement).disabled = false;
         const logic = toolLogic[toolId];
         if (logic) {
             const func = typeof logic.process === 'function' ? logic.process : logic;
@@ -447,15 +263,23 @@ function handleMultiFileUpload(toolId: any) {
         toolLogic.merge.setup();
     } else if (toolId === 'image-to-pdf') {
         const imageList = document.getElementById('image-list');
-
-        imageList.innerHTML = '';
+        imageList.textContent = ''; // Clear safely
 
         state.files.forEach(file => {
             const url = URL.createObjectURL(file);
             const li = document.createElement('li');
             li.className = "relative group cursor-move";
             li.dataset.fileName = file.name;
-            li.innerHTML = `<img src="${url}" class="w-full h-full object-cover rounded-md border-2 border-gray-600"><p class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs text-center truncate p-1">${file.name}</p>`;
+
+            const img = document.createElement('img');
+            img.src = url;
+            img.className = "w-full h-full object-cover rounded-md border-2 border-gray-600";
+
+            const p = document.createElement('p');
+            p.className = "absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs text-center truncate p-1";
+            p.textContent = file.name; // Safe insertion
+
+            li.append(img, p);
             imageList.appendChild(li);
         });
 
@@ -463,14 +287,12 @@ function handleMultiFileUpload(toolId: any) {
     }
 }
 
-
-export function setupFileInputHandler(toolId: any) {
+export function setupFileInputHandler(toolId) {
     const fileInput = document.getElementById('file-input');
-    const multiFileTools = ['merge', 'pdf-to-zip', 'jpg-to-pdf', 'png-to-pdf', 'webp-to-pdf', 'image-to-pdf', 'svg-to-pdf', 'bmp-to-pdf', 'heic-to-pdf', 'tiff-to-pdf'];
     const isMultiFileTool = multiFileTools.includes(toolId);
     let isFirstUpload = true;
 
-    const processFiles = async (newFiles: any) => {
+    const processFiles = async (newFiles) => {
         if (newFiles.length === 0) return;
 
         if (!isMultiFileTool || isFirstUpload) {
@@ -478,7 +300,7 @@ export function setupFileInputHandler(toolId: any) {
         } else {
             state.files = [...state.files, ...newFiles];
         }
-        isFirstUpload = false; 
+        isFirstUpload = false;
 
         const fileDisplayArea = document.getElementById('file-display-area');
         if (fileDisplayArea) {
@@ -488,19 +310,8 @@ export function setupFileInputHandler(toolId: any) {
         const fileControls = document.getElementById('file-controls');
         if (fileControls) {
             fileControls.classList.remove('hidden');
-
-            createIcons({icons});
+            createIcons({ icons });
         }
-
-        const singlePdfLoadTools = ['split', 'organize', 'rotate', 'add-page-numbers',
-            'pdf-to-jpg', 'pdf-to-png', 'pdf-to-webp', 'compress', 'pdf-to-greyscale',
-            'edit-metadata', 'remove-metadata', 'flatten', 'delete-pages', 'add-blank-page',
-            'extract-pages', 'add-watermark', 'add-header-footer', 'invert-colors', 'view-metadata',
-            'reverse-pages', 'crop', 'redact', 'pdf-to-bmp', 'pdf-to-tiff', 'split-in-half',
-            'page-dimensions', 'n-up', 'duplicate-organize', 'combine-single-page', 'fix-dimensions', 'change-background-color',
-            'change-text-color', 'ocr-pdf', 'sign-pdf', 'remove-annotations', 'cropper', 'form-filler',
-        ];
-        const simpleTools = ['encrypt', 'decrypt', 'change-permissions', 'pdf-to-markdown', 'word-to-pdf'];
 
         if (isMultiFileTool) {
             handleMultiFileUpload(toolId);
@@ -512,8 +323,7 @@ export function setupFileInputHandler(toolId: any) {
             if (optionsDiv) optionsDiv.classList.remove('hidden');
             const processBtn = document.getElementById('process-btn');
             if (processBtn) {
-                // @ts-expect-error TS(2339) FIXME: Property 'disabled' does not exist on type 'HTMLEl... Remove this comment to see the full error message
-                processBtn.disabled = false;
+                (processBtn as HTMLButtonElement).disabled = false;
                 processBtn.onclick = () => {
                     const logic = toolLogic[toolId];
                     if (logic) {
@@ -522,29 +332,25 @@ export function setupFileInputHandler(toolId: any) {
                     }
                 };
             }
-        }
-        else if (toolId === 'edit') {
+        } else if (toolId === 'edit') {
             const file = state.files[0];
             if (!file) return;
 
             const pdfWrapper = document.getElementById('embed-pdf-wrapper');
             const pdfContainer = document.getElementById('embed-pdf-container');
 
-            pdfContainer.innerHTML = '';
+            pdfContainer.textContent = ''; // Clear safely
 
             if (state.currentPdfUrl) {
                 URL.revokeObjectURL(state.currentPdfUrl);
             }
-
             pdfWrapper.classList.remove('hidden');
-
             const fileURL = URL.createObjectURL(file);
-
             state.currentPdfUrl = fileURL;
 
             const script = document.createElement('script');
             script.type = 'module';
-            script.innerHTML = `
+            script.textContent = `
                 import EmbedPDF from 'https://snippet.embedpdf.com/embedpdf.js';
                 EmbedPDF.init({
                     type: 'container',
@@ -558,22 +364,19 @@ export function setupFileInputHandler(toolId: any) {
             const backBtn = document.getElementById('back-to-grid');
             const urlRevoker = () => {
                 URL.revokeObjectURL(fileURL);
-                state.currentPdfUrl = null; // Clear from state as well
+                state.currentPdfUrl = null;
                 backBtn.removeEventListener('click', urlRevoker);
             };
             backBtn.addEventListener('click', urlRevoker);
         }
     };
 
-    // @ts-expect-error TS(2339) FIXME: Property 'files' does not exist on type 'EventTarg... Remove this comment to see the full error message
-    fileInput.addEventListener('change', (e) => processFiles(Array.from(e.target.files)));
+    fileInput.addEventListener('change', (e) => processFiles(Array.from((e.target as HTMLInputElement).files || [])));
 
     const setupAddMoreButton = () => {
         const addMoreBtn = document.getElementById('add-more-btn');
         if (addMoreBtn) {
-            addMoreBtn.addEventListener('click', () => {
-                fileInput.click(); 
-            });
+            addMoreBtn.addEventListener('click', () => fileInput.click());
         }
     };
 
@@ -583,29 +386,26 @@ export function setupFileInputHandler(toolId: any) {
             clearBtn.addEventListener('click', () => {
                 state.files = [];
                 isFirstUpload = true;
-                // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-                fileInput.value = '';
-                
+                (fileInput as HTMLInputElement).value = '';
+
                 const fileDisplayArea = document.getElementById('file-display-area');
-                if (fileDisplayArea) fileDisplayArea.innerHTML = '';
-                
+                if (fileDisplayArea) fileDisplayArea.textContent = '';
+
                 const fileControls = document.getElementById('file-controls');
                 if (fileControls) fileControls.classList.add('hidden');
-                
-                // Clear tool-specific UI
+
                 const toolSpecificUI = ['file-list', 'page-merge-preview', 'image-list'];
                 toolSpecificUI.forEach(id => {
                     const el = document.getElementById(id);
-                    if (el) el.innerHTML = '';
+                    if (el) el.textContent = '';
                 });
-                
+
                 const processBtn = document.getElementById('process-btn');
-                // @ts-expect-error TS(2339) FIXME: Property 'disabled' does not exist on type 'HTMLEl... Remove this comment to see the full error message
-                if (processBtn) processBtn.disabled = true;
+                if (processBtn) (processBtn as HTMLButtonElement).disabled = true;
             });
         }
     };
-    
+
     setTimeout(() => {
         setupAddMoreButton();
         setupClearButton();

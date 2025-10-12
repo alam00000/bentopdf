@@ -115,5 +115,4 @@ const init = () => {
     console.log('Please share our tool and share the love!');
 };
 
-// --- START THE APP ---
 document.addEventListener('DOMContentLoaded', init);

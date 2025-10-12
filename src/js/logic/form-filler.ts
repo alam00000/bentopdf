@@ -1,15 +1,15 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
-import { 
-    PDFDocument as PDFLibDocument, 
-    PDFTextField, 
-    PDFCheckBox, 
-    PDFRadioGroup, 
-    PDFDropdown, 
-    PDFButton, 
-    PDFSignature, 
-    PDFOptionList 
+import {
+    PDFDocument as PDFLibDocument,
+    PDFTextField,
+    PDFCheckBox,
+    PDFRadioGroup,
+    PDFDropdown,
+    PDFButton,
+    PDFSignature,
+    PDFOptionList
 } from 'pdf-lib';
 
 import * as pdfjsLib from 'pdfjs-dist';
@@ -22,7 +22,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 let pdfJsDoc: any = null;
 let currentPageNum = 1;
 let pdfRendering = false;
-let renderTimeout: any = null; 
+let renderTimeout: any = null;
 const formState = {
     scale: 2,
     fields: [],
@@ -41,14 +41,14 @@ async function renderPage() {
 
     const canvas = document.getElementById('pdf-canvas') as HTMLCanvasElement;
     const context = canvas.getContext('2d');
-    
+
     if (!context) {
         console.error('Could not get canvas context');
         pdfRendering = false;
         hideLoader();
         return;
     }
-    
+
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
@@ -75,9 +75,8 @@ async function renderPage() {
             } else if (field instanceof PDFDropdown) {
                 field.select(fieldValues[fieldName]);
             } else if (field instanceof PDFOptionList) {
-                // Handle multi-select list box
                 if (Array.isArray(fieldValues[fieldName])) {
-                    fieldValues[fieldName].forEach((option: any) => field.select(option));
+                    (fieldValues[fieldName] as any[]).forEach(option => field.select(option));
                 }
             }
         } catch (e) {
@@ -89,7 +88,6 @@ async function renderPage() {
     const tempPdfJsDoc = await pdfjsLib.getDocument({ data: tempPdfBytes }).promise;
     const tempPage = await tempPdfJsDoc.getPage(currentPageNum);
 
-    // Use the newer PDF.js render API
     await tempPage.render({
         canvasContext: context,
         viewport: viewport
@@ -104,15 +102,11 @@ async function renderPage() {
     if (totalPagesDisplay) totalPagesDisplay.textContent = String(pdfJsDoc.numPages);
     if (prevPageBtn) prevPageBtn.disabled = currentPageNum <= 1;
     if (nextPageBtn) nextPageBtn.disabled = currentPageNum >= pdfJsDoc.numPages;
-    
+
     pdfRendering = false;
     hideLoader();
 }
 
-/**
- * Navigates to the next or previous page.
- * @param {number} offset 1 for next, -1 for previous.
- */
 async function changePage(offset: number) {
     const newPageNum = currentPageNum + offset;
     if (newPageNum > 0 && newPageNum <= pdfJsDoc.numPages) {
@@ -121,10 +115,6 @@ async function changePage(offset: number) {
     }
 }
 
-/**
- * Sets the zoom level of the PDF viewer.
- * @param {number} factor The zoom factor.
- */
 async function setZoom(factor: number) {
     formState.scale = factor;
     await renderPage();
@@ -134,82 +124,137 @@ function handleFormChange(event: Event) {
     const input = event.target as HTMLInputElement | HTMLSelectElement;
     const name = input.name;
     let value: any;
-    
+
     if (input instanceof HTMLInputElement && input.type === 'checkbox') {
         value = input.checked ? 'on' : 'off';
     } else if (input instanceof HTMLSelectElement && input.multiple) {
-        // Handle multi-select list box
         value = Array.from(input.options)
-                     .filter(option => option.selected)
-                     .map(option => option.value);
+            .filter(option => option.selected)
+            .map(option => option.value);
     } else {
         value = input.value;
     }
-    
+
     fieldValues[name] = value;
-    
+
     clearTimeout(renderTimeout);
     renderTimeout = setTimeout(() => {
         renderPage();
     }, 350);
 }
 
-function createFormFieldHtml(field: any) {
+function createFormFieldHtml(field: any): HTMLElement {
     const name = field.getName();
     const isRequired = field.isRequired();
-    
-    const labelText = name.replace(/[_-]/g, ' '); 
-    const labelHtml = `<label for="field-${name}" class="block text-sm font-medium text-gray-300 capitalize mb-1">${labelText} ${isRequired ? '<span class="text-red-500">*</span>' : ''}</label>`;
+    const labelText = name.replace(/[_-]/g, ' ');
 
-    let inputHtml = '';
-    
+    const wrapper = document.createElement('div');
+    wrapper.className = 'form-field-group p-4 bg-gray-800 rounded-lg border border-gray-700';
+
+    const label = document.createElement('label');
+    label.htmlFor = `field-${name}`;
+    label.className = 'block text-sm font-medium text-gray-300 capitalize mb-1';
+    label.textContent = labelText;
+
+    if (isRequired) {
+        const requiredSpan = document.createElement('span');
+        requiredSpan.className = 'text-red-500';
+        requiredSpan.textContent = ' *';
+        label.appendChild(requiredSpan);
+    }
+
+    wrapper.appendChild(label);
+
+    let inputElement: HTMLElement | DocumentFragment;
+
     if (field instanceof PDFTextField) {
         fieldValues[name] = field.getText() || '';
-        inputHtml = `<input type="text" id="field-${name}" name="${name}" value="${fieldValues[name]}" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">`;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.id = `field-${name}`;
+        input.name = name;
+        input.value = fieldValues[name];
+        input.className = 'w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5';
+        inputElement = input;
     } else if (field instanceof PDFCheckBox) {
         fieldValues[name] = field.isChecked() ? 'on' : 'off';
-        inputHtml = `<input type="checkbox" id="field-${name}" name="${name}" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500" ${field.isChecked() ? 'checked' : ''}>`;
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.id = `field-${name}`;
+        input.name = name;
+        input.className = 'w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500';
+        input.checked = field.isChecked();
+        inputElement = input;
     } else if (field instanceof PDFRadioGroup) {
         fieldValues[name] = field.getSelected();
         const options = field.getOptions();
-        inputHtml = options.map((opt: any) => `
-            <label class="flex items-center gap-2">
-                <input type="radio" name="${name}" value="${opt}" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500" ${opt === field.getSelected() ? 'checked' : ''}>
-                <span class="text-gray-300 text-sm">${opt}</span>
-            </label>
-        `).join('');
-    } else if (field instanceof PDFDropdown) {
-        fieldValues[name] = field.getSelected();
-        const dropdownOptions = field.getOptions();
-        inputHtml = `<select id="field-${name}" name="${name}" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-            ${dropdownOptions.map((opt: any) => `<option value="${opt}" ${opt === field.getSelected() ? 'selected' : ''}>${opt}</option>`).join('')}
-        </select>`;
-    } else if (field instanceof PDFOptionList) {
+        const fragment = document.createDocumentFragment();
+        options.forEach((opt: string) => {
+            const optionLabel = document.createElement('label');
+            optionLabel.className = 'flex items-center gap-2';
+
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = name;
+            radio.value = opt;
+            radio.className = 'w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500';
+            if (opt === field.getSelected()) radio.checked = true;
+
+            const span = document.createElement('span');
+            span.className = 'text-gray-300 text-sm';
+            span.textContent = opt;
+
+            optionLabel.append(radio, span);
+            fragment.appendChild(optionLabel);
+        });
+        inputElement = fragment;
+    } else if (field instanceof PDFDropdown || field instanceof PDFOptionList) {
         const selectedValues = field.getSelected();
         fieldValues[name] = selectedValues;
-        const listOptions = field.getOptions();
-        inputHtml = `<select id="field-${name}" name="${name}" multiple size="${Math.min(10, listOptions.length)}" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 h-auto">
-            ${listOptions.map((opt: any) => `<option value="${opt}" ${selectedValues.includes(opt) ? 'selected' : ''}>${opt}</option>`).join('')}
-        </select>`;
-    } else if (field instanceof PDFSignature) {
-        inputHtml = `<div class="p-4 bg-gray-800 rounded-lg border border-gray-700"><p class="text-sm text-gray-400">Signature field: Not supported for direct editing.</p></div>`;
-    } else if (field instanceof PDFButton) {
-        inputHtml = `<button type="button" id="field-${name}" class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg">Button: ${labelText}</button>`;
+        const options = field.getOptions();
+
+        const select = document.createElement('select');
+        select.id = `field-${name}`;
+        select.name = name;
+        select.className = 'w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5';
+
+        if (field instanceof PDFOptionList) {
+            select.multiple = true;
+            select.size = Math.min(10, options.length);
+            select.classList.add('h-auto');
+        }
+
+        options.forEach((opt: string) => {
+            const option = document.createElement('option');
+            option.value = opt;
+            option.textContent = opt;
+            if (selectedValues.includes(opt)) option.selected = true;
+            select.appendChild(option);
+        });
+        inputElement = select;
     } else {
-        return `<div class="p-4 bg-gray-800 rounded-lg border border-gray-700"><p class="text-sm text-gray-500">Unsupported field type: ${field.constructor.name}</p></div>`;
+        const unsupportedDiv = document.createElement('div');
+        unsupportedDiv.className = 'p-4 bg-gray-800 rounded-lg border border-gray-700';
+        const p = document.createElement('p');
+        p.className = 'text-sm text-gray-400';
+        if (field instanceof PDFSignature) {
+            p.textContent = 'Signature field: Not supported for direct editing.';
+        } else if (field instanceof PDFButton) {
+            p.textContent = `Button: ${labelText}`;
+        } else {
+            p.textContent = `Unsupported field type: ${field.constructor.name}`;
+        }
+        unsupportedDiv.appendChild(p);
+        return unsupportedDiv;
     }
 
-    return `
-        <div class="form-field-group p-4 bg-gray-800 rounded-lg border border-gray-700">
-            ${labelHtml}
-            ${inputHtml}
-        </div>
-    `;
+    wrapper.appendChild(inputElement);
+    return wrapper;
 }
 
 export async function setupFormFiller() {
     if (!state.pdfDoc) return;
-    
+
     showLoader('Analyzing form fields...');
     const formContainer = document.getElementById('form-fields-container');
     const processBtn = document.getElementById('process-btn');
@@ -225,28 +270,37 @@ export async function setupFormFiller() {
         const fields = form.getFields();
         formState.fields = fields;
 
+        formContainer.textContent = ''; 
+
         if (fields.length === 0) {
-            formContainer.innerHTML = '<p class="text-center text-gray-400">This PDF contains no form fields.</p>';
+            formContainer.innerHTML = '<p class="text-center text-gray-400">This PDF contains no form fields.</p>'; 
             processBtn.classList.add('hidden');
         } else {
-            let formHtml = '';
-            
             fields.forEach((field: any) => {
                 try {
-                    formHtml += createFormFieldHtml(field);
+                    const fieldElement = createFormFieldHtml(field);
+                    formContainer.appendChild(fieldElement);
                 } catch (e: any) {
                     console.error(`Error processing field "${field.getName()}":`, e);
-                    formHtml += `<div class="p-4 bg-gray-800 rounded-lg border border-gray-700"><p class="text-sm text-gray-500">Unsupported field: ${field.getName()}</p><p class="text-xs text-gray-500">${e.message}</p></div>`;
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'p-4 bg-gray-800 rounded-lg border border-gray-700';
+                    // Sanitize error message display
+                    const p1 = document.createElement('p');
+                    p1.className = 'text-sm text-gray-500';
+                    p1.textContent = `Unsupported field: ${field.getName()}`;
+                    const p2 = document.createElement('p');
+                    p2.className = 'text-xs text-gray-500';
+                    p2.textContent = e.message;
+                    errorDiv.append(p1, p2);
+                    formContainer.appendChild(errorDiv);
                 }
             });
 
-            formContainer.innerHTML = formHtml;
             processBtn.classList.remove('hidden');
-
             formContainer.addEventListener('change', handleFormChange);
             formContainer.addEventListener('input', handleFormChange);
         }
-        
+
         const pdfBytes = await state.pdfDoc.save();
         pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
         currentPageNum = 1;
@@ -257,13 +311,13 @@ export async function setupFormFiller() {
         const prevPageBtn = document.getElementById('prev-page');
         const nextPageBtn = document.getElementById('next-page');
 
-        if (zoomInBtn) zoomInBtn.onclick = () => setZoom(formState.scale + 0.25);
-        if (zoomOutBtn) zoomOutBtn.onclick = () => setZoom(Math.max(0.25, formState.scale - 0.25));
-        if (prevPageBtn) prevPageBtn.onclick = () => changePage(-1);
-        if (nextPageBtn) nextPageBtn.onclick = () => changePage(1);
-        
+        if (zoomInBtn) zoomInBtn.addEventListener('click', () => setZoom(formState.scale + 0.25));
+        if (zoomOutBtn) zoomOutBtn.addEventListener('click', () => setZoom(Math.max(1, formState.scale - 0.25)));
+        if (prevPageBtn) prevPageBtn.addEventListener('click', () => changePage(-1));
+        if (nextPageBtn) nextPageBtn.addEventListener('click', () => changePage(1));
+
         hideLoader();
-        
+
         const formFillerOptions = document.getElementById('form-filler-options');
         if (formFillerOptions) formFillerOptions.classList.remove('hidden');
 
@@ -278,7 +332,7 @@ export async function processAndDownloadForm() {
     showLoader('Applying form data...');
     try {
         const form = state.pdfDoc.getForm();
-        
+
         Object.keys(fieldValues).forEach(fieldName => {
             try {
                 const field = form.getField(fieldName);
@@ -297,7 +351,6 @@ export async function processAndDownloadForm() {
                 } else if (field instanceof PDFDropdown) {
                     field.select(value);
                 } else if (field instanceof PDFOptionList) {
-                    // Handle multi-select list box
                     if (Array.isArray(value)) {
                         value.forEach(option => field.select(option));
                     }
@@ -306,10 +359,10 @@ export async function processAndDownloadForm() {
                 console.error(`Error processing field "${fieldName}" during download:`, e);
             }
         });
-        
+
         const newPdfBytes = await state.pdfDoc.save();
         downloadFile(new Blob([newPdfBytes], { type: 'application/pdf' }), 'filled-form.pdf');
-        
+
         showAlert('Success', 'Form has been filled and downloaded.');
 
     } catch (e) {
