@@ -128,16 +128,19 @@ export async function posterize() {
                     const scaleX = targetWidth / tileWidth;
                     const scaleY = targetHeight / tileHeight;
                     const scale = scalingMode === 'fit' ? Math.min(scaleX, scaleY) : Math.max(scaleX, scaleY);
-                    
+
                     const scaledTileWidth = tileWidth * scale;
                     const scaledTileHeight = tileHeight * scale;
 
                     const offsetX = (targetWidth - scaledTileWidth) / 2;
                     const offsetY = (targetHeight - scaledTileHeight) / 2;
-                    
+
+                    const tileRowIndexFromBottom = rows - 1 - r;
+                    const overlapOffset = tileRowIndexFromBottom * overlapInPoints;
+
                     newPage.drawPage(embeddedPage, {
                         x: -c * scaledTileWidth + offsetX - (c * overlapInPoints),
-                        y: r * scaledTileHeight + offsetY - ((rows - 1 - r) * overlapInPoints),
+                        y: -tileRowIndexFromBottom * scaledTileHeight + offsetY + overlapOffset,
                         width: sourceWidth * scale,
                         height: sourceHeight * scale,
                     });
