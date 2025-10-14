@@ -1694,4 +1694,98 @@ cropper: () => `
     </div>
 `,
 
+posterize: () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Posterize PDF</h2>
+    <p class="mb-6 text-gray-400">Split a single page into multiple smaller pages to print as a poster. Specify a page range or leave it blank to process all pages.</p>
+    ${createFileInputHTML()}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+    <div id="posterize-options" class="hidden mt-6 space-y-6">
+
+        <div id="posterize-preview-container" class="relative w-full max-w-xl mx-auto bg-gray-900 rounded-lg border-2 border-gray-600">
+            <canvas id="posterize-preview-canvas" class="w-full h-auto"></canvas>
+        </div>
+
+        <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
+            <h3 class="text-lg font-semibold text-white mb-3">Grid Layout</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="posterize-rows" class="block mb-2 text-sm font-medium text-gray-300">Rows</label>
+                    <input type="number" id="posterize-rows" value="1" min="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                </div>
+                <div>
+                    <label for="posterize-cols" class="block mb-2 text-sm font-medium text-gray-300">Columns</label>
+                    <input type="number" id="posterize-cols" value="2" min="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
+            <h3 class="text-lg font-semibold text-white mb-3">Output Page Settings</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label for="output-page-size" class="block mb-2 text-sm font-medium text-gray-300">Page Size</label>
+                    <select id="output-page-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                        <option value="A4" selected>A4</option>
+                        <option value="Letter">Letter</option>
+                        <option value="Legal">Legal</option>
+                        <option value="A3">A3</option>
+                        <option value="A5">A5</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="output-orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                    <select id="output-orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                        <option value="portrait" selected>Portrait</option>
+                        <option value="landscape">Landscape</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
+            <h3 class="text-lg font-semibold text-white mb-3">Advanced Options</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-300">Content Scaling</label>
+                    <div class="flex gap-4 p-2 rounded-lg bg-gray-800">
+                        <label class="flex-1 flex items-center gap-2 p-3 rounded-md hover:bg-gray-700 cursor-pointer has-[:checked]:bg-indigo-600">
+                            <input type="radio" name="scaling-mode" value="fit" checked class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                            <div>
+                                <span class="font-semibold text-white">Fit</span>
+                                <p class="text-xs text-gray-400">Preserves all content, may add margins.</p>
+                            </div>
+                        </label>
+                        <label class="flex-1 flex items-center gap-2 p-3 rounded-md hover:bg-gray-700 cursor-pointer has-[:checked]:bg-indigo-600">
+                            <input type="radio" name="scaling-mode" value="fill" class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                             <div>
+                                <span class="font-semibold text-white">Fill (Crop)</span>
+                                <p class="text-xs text-gray-400">Fills the page, may crop content.</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                 <div>
+                    <label for="overlap" class="block mb-2 text-sm font-medium text-gray-300">Overlap (for assembly)</label>
+                    <div class="flex items-center gap-2">
+                        <input type="number" id="overlap" value="0" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                        <select id="overlap-units" class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                            <option value="pt">Points</option>
+                            <option value="in">Inches</option>
+                            <option value="mm">mm</option>
+                        </select>
+                    </div>
+                </div>
+                 <div>
+                    <label for="page-range" class="block mb-2 text-sm font-medium text-gray-300">Page Range (optional)</label>
+                    <input type="text" id="page-range" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5" placeholder="e.g., 1-3, 5">
+                    <p class="text-xs text-gray-400 mt-1">Total pages: <span id="total-pages">0</span></p>
+                </div>
+            </div>
+        </div>
+
+        <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Posterize PDF</button>
+    </div>
+`,
+
 };

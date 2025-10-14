@@ -81,6 +81,7 @@ export const categories = [
             { id: 'edit-metadata', name: 'Edit Metadata', icon: 'file-cog', subtitle: 'Change the author, title, and other properties.' },
             { id: 'pdf-to-zip', name: 'PDFs to ZIP', icon: 'stretch-horizontal', subtitle: 'Package multiple PDF files into a ZIP archive.' },
             { id: 'compare-pdfs', name: 'Compare PDFs', icon: 'git-compare', subtitle: 'Compare two PDFs side by side.' },
+            { id: 'posterize', name: 'Posterize PDF', icon: 'layout-grid', subtitle: 'Split a large page into multiple smaller pages.' },
         ]
     },
     {
