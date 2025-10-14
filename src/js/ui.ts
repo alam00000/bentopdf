@@ -1696,14 +1696,19 @@ cropper: () => `
 
 posterize: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Posterize PDF</h2>
-    <p class="mb-6 text-gray-400">Split a single page into multiple smaller pages to print as a poster. Specify a page range or leave it blank to process all pages.</p>
+    <p class="mb-6 text-gray-400">Split pages into multiple smaller sheets to print as a poster. Navigate the preview and see the grid update based on your settings.</p>
     ${createFileInputHTML()}
     <div id="file-display-area" class="mt-4 space-y-2"></div>
 
     <div id="posterize-options" class="hidden mt-6 space-y-6">
 
-        <div id="posterize-preview-container" class="relative w-full max-w-xl mx-auto bg-gray-900 rounded-lg border-2 border-gray-600">
-            <canvas id="posterize-preview-canvas" class="w-full h-auto"></canvas>
+        <div class="space-y-2">
+             <label class="block text-sm font-medium text-gray-300">Page Preview (<span id="current-preview-page">1</span> / <span id="total-preview-pages">1</span>)</label>
+            <div id="posterize-preview-container" class="relative w-full max-w-xl mx-auto bg-gray-900 rounded-lg border-2 border-gray-600 flex items-center justify-center">
+                <button id="prev-preview-page" class="absolute left-2 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 bg-opacity-50 rounded-full p-2 hover:bg-gray-700 disabled:opacity-50 z-10"><i data-lucide="chevron-left"></i></button>
+                <canvas id="posterize-preview-canvas" class="w-full h-auto rounded-md"></canvas>
+                <button id="next-preview-page" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 bg-opacity-50 rounded-full p-2 hover:bg-gray-700 disabled:opacity-50 z-10"><i data-lucide="chevron-right"></i></button>
+            </div>
         </div>
 
         <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
@@ -1736,7 +1741,8 @@ posterize: () => `
                 <div>
                     <label for="output-orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
                     <select id="output-orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                        <option value="portrait" selected>Portrait</option>
+                        <option value="auto" selected>Automatic (Recommended)</option>
+                        <option value="portrait">Portrait</option>
                         <option value="landscape">Landscape</option>
                     </select>
                 </div>
