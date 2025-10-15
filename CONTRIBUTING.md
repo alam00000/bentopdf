@@ -19,6 +19,33 @@ You can contribute in several ways:
 
 ---
 
+### Issue Template
+
+When reporting bugs, requesting features, or asking questions, please use our [issue template](.github/ISSUE_TEMPLATE/bug_feature_question.md). The template will automatically appear when you create a new issue.
+
+**Our issue template helps you provide:**
+- Clear categorization (Bug, Feature Request, or Question)
+- Steps to reproduce (for bugs)
+- Expected vs actual behavior
+- Environment details
+- Screenshots or logs
+
+**Title Format Examples:**
+- `(Bug) Text alignment incorrect on multi-line paragraphs`
+- `(Feature) Add support for custom PDF metadata`
+- `(Question) How to embed custom fonts?`
+
+### Pull Request Template
+
+When submitting code contributions, please use our [pull request template](.github/pull_request_template.md). The template will automatically appear when you create a new PR.
+
+**Key requirements:**
+- Link to the related issue (e.g., `Fixes #123`)
+- Describe the type of change (bug fix, feature, breaking change)
+- Explain how you tested your changes
+- Complete the checklist before submitting
+
+
 ## 2. Getting Started with Code Contributions
 
 1.  **Fork the Repository**
