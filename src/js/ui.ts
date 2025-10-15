@@ -1794,4 +1794,29 @@ posterize: () => `
     </div>
 `,
 
+'remove-blank-pages': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Remove Blank Pages</h2>
+    <p class="mb-6 text-gray-400">Automatically detect and remove blank or nearly blank pages from your PDF. Adjust the sensitivity to control what is considered "blank".</p>
+    ${createFileInputHTML()}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+    <div id="remove-blank-options" class="hidden mt-6 space-y-4">
+        <div>
+            <label for="sensitivity-slider" class="block mb-2 text-sm font-medium text-gray-300">
+                Sensitivity (<span id="sensitivity-value">99</span>%)
+            </label>
+            <input type="range" id="sensitivity-slider" min="80" max="100" value="99" class="w-full">
+            <p class="text-xs text-gray-400 mt-1">Higher sensitivity requires pages to be more "blank" to be removed.</p>
+        </div>
+        
+        <div id="analysis-preview" class="hidden p-4 bg-gray-900 border border-gray-700 rounded-lg">
+             <h3 class="text-lg font-semibold text-white mb-2">Analysis Results</h3>
+             <p id="analysis-text" class="text-gray-300"></p>
+             <div id="removed-pages-thumbnails" class="mt-4 grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2"></div>
+        </div>
+
+        <button id="process-btn" class="btn-gradient w-full mt-6">Remove Blank Pages & Download</button>
+    </div>
+`,
+
 };

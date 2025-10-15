@@ -53,6 +53,7 @@ import { removeAnnotations, setupRemoveAnnotationsTool } from './remove-annotati
 import { setupCropperTool } from './cropper.js';
 import { processAndDownloadForm, setupFormFiller } from './form-filler.js';
 import { posterize, setupPosterizeTool } from './posterize.js';
+import { removeBlankPages, setupRemoveBlankPagesTool } from './remove-blank-pages.js';
 
 export const toolLogic = {
     merge: { process: merge, setup: setupMergeTool },
@@ -109,4 +110,5 @@ export const toolLogic = {
     'cropper': { setup: setupCropperTool },
     'form-filler': { process: processAndDownloadForm, setup: setupFormFiller},
     'posterize': { process: posterize, setup: setupPosterizeTool },
+    'remove-blank-pages': { process: removeBlankPages, setup: setupRemoveBlankPagesTool },
 };
