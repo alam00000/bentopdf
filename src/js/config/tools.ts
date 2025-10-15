@@ -30,6 +30,7 @@ export const categories = [
             { id: 'remove-annotations', name: 'Remove Annotations', icon: 'eraser', subtitle: 'Strip comments, highlights, and links.' },
             { id: 'cropper', name: 'Crop PDF', icon: 'crop', subtitle: 'Trim the margins of every page in your PDF.' },
             { id: 'form-filler', name: 'PDF Form Filler', icon: 'square-pen', subtitle: 'Fill in forms directly in the browser.' },
+            { id: 'remove-blank-pages', name: 'Remove Blank Pages', icon: 'file-minus-2', subtitle: 'Automatically detect and delete blank pages.' },
         ]
     },
     {
