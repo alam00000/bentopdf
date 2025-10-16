@@ -261,6 +261,8 @@ function handleMultiFileUpload(toolId) {
 
     if (toolId === 'merge') {
         toolLogic.merge.setup();
+    } else if (toolId === 'alternate-merge') {
+        toolLogic['alternate-merge'].setup();
     } else if (toolId === 'image-to-pdf') {
         const imageList = document.getElementById('image-list');
         imageList.textContent = ''; // Clear safely
@@ -394,7 +396,7 @@ export function setupFileInputHandler(toolId) {
                 const fileControls = document.getElementById('file-controls');
                 if (fileControls) fileControls.classList.add('hidden');
 
-                const toolSpecificUI = ['file-list', 'page-merge-preview', 'image-list'];
+                const toolSpecificUI = ['file-list', 'page-merge-preview', 'image-list', 'alternate-file-list'];
                 toolSpecificUI.forEach(id => {
                     const el = document.getElementById(id);
                     if (el) el.textContent = '';
