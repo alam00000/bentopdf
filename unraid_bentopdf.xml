@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>bentopdf</Name>
+  <Repository>bentopdf/bentopdf</Repository>
+  <Registry>https://hub.docker.com/r/bentopdf/bentopdf/</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/alam00000/bentopdf</Support>
+  <Project>https://www.bentopdf.com/</Project>
+  <Overview>Uploaded on behalf of creator: alam00000&#13;
+BentoPDF is a privacy first PDF Toolkit&#13;
+&#13;
+https://hub.docker.com/r/bentopdf/bentopdf/</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:80]/</WebUI>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/alam00000/bentopdf/refs/heads/main/public/images/favicon.svg</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1760606276</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Container Port 1" Target="3000" Default="80" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">80</Config>
+  <TailscaleStateDir/>
+</Container>
+
