@@ -1819,4 +1819,22 @@ posterize: () => `
     </div>
 `,
 
+'alternate-merge': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Alternate & Mix Pages</h2>
+    <p class="mb-6 text-gray-400">Combine pages from 2 or more documents, alternating between them. Drag the files to set the mixing order (e.g., Page 1 from Doc A, Page 1 from Doc B, Page 2 from Doc A, Page 2 from Doc B, etc.).</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
+    
+    <div id="alternate-merge-options" class="hidden mt-6">
+        <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+            <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+            <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+                <li>The tool will take one page from each document in the order you specify below, then repeat for the next page until all pages are used.</li>
+                <li>If a document runs out of pages, it will be skipped, and the tool will continue alternating with the remaining documents.</li>
+            </ul>
+        </div>
+        <ul id="alternate-file-list" class="space-y-2"></ul>
+        <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Alternate & Mix PDFs</button>
+    </div>
+`,
+
 };

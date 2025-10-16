@@ -14,4 +14,5 @@ export const simpleTools = [
 
 export const multiFileTools = [
   'merge', 'pdf-to-zip', 'jpg-to-pdf', 'png-to-pdf', 'webp-to-pdf', 'image-to-pdf', 'svg-to-pdf', 'bmp-to-pdf', 'heic-to-pdf', 'tiff-to-pdf',
+  'alternate-merge'
 ];
