@@ -67,6 +67,7 @@ export const categories = [
         tools: [
             { id: 'ocr-pdf', name: 'OCR PDF', icon: 'scan-text', subtitle: 'Make a PDF searchable and copyable.' },
             { id: 'merge', name: 'Merge PDF', icon: 'combine', subtitle: 'Combine multiple PDFs into one file.' },
+            { id: 'alternate-merge', name: 'Alternate & Mix Pages', icon: 'shuffle', subtitle: 'Combine PDFs by alternating pages from each.' },
             { id: 'organize', name: 'Organize PDF', icon: 'grip', subtitle: 'Reorder pages by dragging and dropping.' },
             { id: 'duplicate-organize', name: 'Duplicate & Organize', icon: 'files', subtitle: 'Duplicate, reorder, and delete pages.' },
             { id: 'split', name: 'Split PDF', icon: 'scissors', subtitle: 'Extract a range of pages into a new PDF.' },
