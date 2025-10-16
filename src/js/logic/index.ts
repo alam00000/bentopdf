@@ -54,6 +54,7 @@ import { setupCropperTool } from './cropper.js';
 import { processAndDownloadForm, setupFormFiller } from './form-filler.js';
 import { posterize, setupPosterizeTool } from './posterize.js';
 import { removeBlankPages, setupRemoveBlankPagesTool } from './remove-blank-pages.js';
+import { alternateMerge, setupAlternateMergeTool } from './alternate-merge.js';
 
 export const toolLogic = {
     merge: { process: merge, setup: setupMergeTool },
@@ -111,4 +112,5 @@ export const toolLogic = {
     'form-filler': { process: processAndDownloadForm, setup: setupFormFiller},
     'posterize': { process: posterize, setup: setupPosterizeTool },
     'remove-blank-pages': { process: removeBlankPages, setup: setupRemoveBlankPagesTool },
+    'alternate-merge': { process: alternateMerge, setup: setupAlternateMergeTool },
 };
