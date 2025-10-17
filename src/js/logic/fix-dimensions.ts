@@ -9,27 +9,29 @@ export function setupFixDimensionsUI() {
   const customSizeWrapper = document.getElementById('custom-size-wrapper');
   if (targetSizeSelect && customSizeWrapper) {
     targetSizeSelect.addEventListener('change', () => {
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
       customSizeWrapper.classList.toggle(
         'hidden',
-        targetSizeSelect.value !== 'Custom'
+        (targetSizeSelect as HTMLSelectElement).value !== 'Custom'
       );
     });
   }
 }
 
 export async function fixDimensions() {
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  const targetSizeKey = document.getElementById('target-size').value;
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  const orientation = document.getElementById('orientation').value;
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'Element'.
-  const scalingMode = document.querySelector(
-    'input[name="scaling-mode"]:checked'
+  const targetSizeKey = (
+    document.getElementById('target-size') as HTMLSelectElement
   ).value;
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+  const orientation = (
+    document.getElementById('orientation') as HTMLSelectElement
+  ).value;
+
+  const scalingMode = (
+    document.querySelector(
+      'input[name="scaling-mode"]:checked'
+    ) as HTMLInputElement
+  ).value;
   const backgroundColor = hexToRgb(
-    document.getElementById('background-color').value
+    (document.getElementById('background-color') as HTMLInputElement).value
   );
 
   showLoader('Standardizing pages...');

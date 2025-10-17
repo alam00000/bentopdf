@@ -82,6 +82,7 @@ When submitting code contributions, please use our [pull request template](.gith
     ```
 
 6.  **Push and Submit a Pull Request**
+
     ```bash
     git push origin feature/my-new-feature
     ```

@@ -34,17 +34,16 @@ async function updateTextColorPreview() {
     textColorCanvas.height = viewport.height;
 
     await page.render({ canvasContext: context, viewport }).promise;
-
-    // @ts-expect-error TS(2339) FIXME: Property 'width' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
     const imageData = context.getImageData(
       0,
       0,
-      textColorCanvas.width,
-      textColorCanvas.height
+      (textColorCanvas as HTMLCanvasElement).width,
+      (textColorCanvas as HTMLCanvasElement).height
     );
     const data = imageData.data;
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    const colorHex = document.getElementById('text-color-input').value;
+    const colorHex = (
+      document.getElementById('text-color-input') as HTMLInputElement
+    ).value;
     const { r, g, b } = hexToRgb(colorHex);
     const darknessThreshold = 120;
 
@@ -91,9 +90,8 @@ export async function setupTextColorTool() {
   // @ts-expect-error TS(2339) FIXME: Property 'height' does not exist on type 'HTMLElem... Remove this comment to see the full error message
   originalCanvas.height = viewport.height;
 
-  // @ts-expect-error TS(2339) FIXME: Property 'getContext' does not exist on type 'HTML... Remove this comment to see the full error message
   await page.render({
-    canvasContext: originalCanvas.getContext('2d'),
+    canvasContext: (originalCanvas as HTMLCanvasElement).getContext('2d'),
     viewport,
   }).promise;
   await updateTextColorPreview();

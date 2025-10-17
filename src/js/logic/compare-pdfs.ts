@@ -223,9 +223,8 @@ export function setupCompareTool() {
   const panel1 = document.getElementById('panel-1');
   const panel2 = document.getElementById('panel-2');
   const syncToggle = document.getElementById('sync-scroll-toggle');
-  // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message
-  syncToggle.addEventListener('change', () => {
-    state.isSyncScroll = syncToggle.checked;
+  (syncToggle as HTMLInputElement).addEventListener('change', () => {
+    state.isSyncScroll = (syncToggle as HTMLInputElement).checked;
   });
 
   let scrollingPanel: any = null;

@@ -297,12 +297,7 @@ export async function compress() {
         resultBytes = vectorResultBytes;
         usedMethod = 'Vector (Automatic)';
       } else {
-        // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
-        showAlert(
-          'Vector failed to reduce size. Trying Photon...',
-          'info',
-          3000
-        );
+        showAlert('Vector failed to reduce size. Trying Photon...', 'info');
         showLoader('Running Automatic (Photon fallback)...');
         resultBytes = await performLegacyCompression(
           arrayBuffer,
@@ -339,12 +334,9 @@ export async function compress() {
       'compressed-final.pdf'
     );
   } catch (e) {
-    console.error(e);
-    // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
     showAlert(
       'Error',
-      `An error occurred during compression. Error: ${e.message}`,
-      'error'
+      `An error occurred during compression. Error: ${e.message}`
     );
   } finally {
     hideLoader();

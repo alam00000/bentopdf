@@ -16,8 +16,7 @@ export async function decrypt() {
 
   try {
     showLoader('Preparing to process...');
-    const pdfData = await readFileAsArrayBuffer(file);
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
+    const pdfData = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
     const pdf = await pdfjsLib.getDocument({
       data: pdfData,
       password: password,

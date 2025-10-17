@@ -34,9 +34,10 @@ export async function removeAnnotations() {
     const totalPages = state.pdfDoc.getPageCount();
     let targetPageIndices = [];
 
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'Element'.
-    const pageScope = document.querySelector(
-      'input[name="page-scope"]:checked'
+    const pageScope = (
+      document.querySelector(
+        'input[name="page-scope"]:checked'
+      ) as HTMLInputElement
     ).value;
     if (pageScope === 'all') {
       targetPageIndices = Array.from({ length: totalPages }, (_, i) => i);
@@ -71,9 +72,8 @@ export async function removeAnnotations() {
       throw new Error('No valid pages were selected.');
 
     const typesToRemove = new Set(
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'Element'.
       Array.from(document.querySelectorAll('.annot-checkbox:checked')).map(
-        (cb) => cb.value
+        (cb) => (cb as HTMLInputElement).value
       )
     );
 

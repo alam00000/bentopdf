@@ -126,9 +126,9 @@ export function setupSplitTool() {
 export async function split() {
   // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   const splitMode = document.getElementById('split-mode').value;
-  // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message
   const downloadAsZip =
-    document.getElementById('download-as-zip')?.checked || false;
+    (document.getElementById('download-as-zip') as HTMLInputElement)?.checked ||
+    false;
 
   showLoader('Splitting PDF...');
 
