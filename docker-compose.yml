@@ -7,5 +7,5 @@ services:
       dockerfile: Dockerfile
     container_name: bentopdf
     ports:
-      - "3000:80"
+      - '3000:80'
     restart: unless-stopped

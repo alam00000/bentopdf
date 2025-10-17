@@ -6,36 +6,39 @@ import { state } from '../state.js';
 const { rgb } = window.PDFLib;
 
 export async function redact(redactions: any, canvasScale: any) {
-    showLoader('Applying redactions...');
-    try {
-        const pdfPages = state.pdfDoc.getPages();
-        const conversionScale = 1 / canvasScale;
+  showLoader('Applying redactions...');
+  try {
+    const pdfPages = state.pdfDoc.getPages();
+    const conversionScale = 1 / canvasScale;
 
-        redactions.forEach((r: any) => {
-            const page = pdfPages[r.pageIndex];
-            const { height: pageHeight } = page.getSize();
+    redactions.forEach((r: any) => {
+      const page = pdfPages[r.pageIndex];
+      const { height: pageHeight } = page.getSize();
 
-            // Convert canvas coordinates back to PDF coordinates
-            const pdfX = r.canvasX * conversionScale;
-            const pdfWidth = r.canvasWidth * conversionScale;
-            const pdfHeight = r.canvasHeight * conversionScale;
-            const pdfY = pageHeight - (r.canvasY * conversionScale) - pdfHeight;
+      // Convert canvas coordinates back to PDF coordinates
+      const pdfX = r.canvasX * conversionScale;
+      const pdfWidth = r.canvasWidth * conversionScale;
+      const pdfHeight = r.canvasHeight * conversionScale;
+      const pdfY = pageHeight - r.canvasY * conversionScale - pdfHeight;
 
-            page.drawRectangle({
-                x: pdfX,
-                y: pdfY,
-                width: pdfWidth,
-                height: pdfHeight,
-                color: rgb(0, 0, 0),
-            });
-        });
+      page.drawRectangle({
+        x: pdfX,
+        y: pdfY,
+        width: pdfWidth,
+        height: pdfHeight,
+        color: rgb(0, 0, 0),
+      });
+    });
 
-        const redactedBytes = await state.pdfDoc.save();
-        downloadFile(new Blob([redactedBytes], { type: 'application/pdf' }), 'redacted.pdf');
-    } catch (e) {
-        console.error(e);
-        showAlert('Error', 'Failed to apply redactions.');
-    } finally {
-        hideLoader();
-    }
+    const redactedBytes = await state.pdfDoc.save();
+    downloadFile(
+      new Blob([redactedBytes], { type: 'application/pdf' }),
+      'redacted.pdf'
+    );
+  } catch (e) {
+    console.error(e);
+    showAlert('Error', 'Failed to apply redactions.');
+  } finally {
+    hideLoader();
+  }
 }

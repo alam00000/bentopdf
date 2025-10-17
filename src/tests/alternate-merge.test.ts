@@ -4,7 +4,10 @@ import { PDFDocument } from 'pdf-lib';
 import Sortable from 'sortablejs';
 import * as helpers from '@/js/utils/helpers';
 import * as ui from '@/js/ui';
-import { setupAlternateMergeTool, alternateMerge } from '@/js/logic/alternate-merge';
+import {
+  setupAlternateMergeTool,
+  alternateMerge,
+} from '@/js/logic/alternate-merge';
 
 vi.mock('pdf-lib', () => ({
   PDFDocument: {
@@ -47,7 +50,9 @@ describe('Alternate Merge Tool', () => {
     mockPdfDoc1 = { getPageCount: vi.fn(() => 2) };
     mockPdfDoc2 = { getPageCount: vi.fn(() => 3) };
 
-    vi.mocked(helpers.readFileAsArrayBuffer).mockResolvedValue(new ArrayBuffer(8));
+    vi.mocked(helpers.readFileAsArrayBuffer).mockResolvedValue(
+      new ArrayBuffer(8)
+    );
     vi.mocked(PDFDocument.load)
       .mockResolvedValueOnce(mockPdfDoc1)
       .mockResolvedValueOnce(mockPdfDoc2);
@@ -66,16 +71,18 @@ describe('Alternate Merge Tool', () => {
       expect(ui.showLoader).toHaveBeenCalledWith('Loading PDF documents...');
       expect(ui.hideLoader).toHaveBeenCalled();
       expect(PDFDocument.load).toHaveBeenCalledTimes(2);
-      expect(document.querySelectorAll('#alternate-file-list li').length).toBe(2);
+      expect(document.querySelectorAll('#alternate-file-list li').length).toBe(
+        2
+      );
       expect(Sortable.create).toHaveBeenCalled();
     });
 
     it('should show alert on load failure', async () => {
       vi.mocked(PDFDocument.load).mockReset();
       vi.mocked(PDFDocument.load).mockRejectedValueOnce(new Error('bad pdf'));
-      
+
       await setupAlternateMergeTool();
-      
+
       expect(ui.showAlert).toHaveBeenCalledWith(
         'Error',
         expect.stringContaining('Failed to load one or more PDF files')
@@ -90,12 +97,12 @@ describe('Alternate Merge Tool', () => {
       state.files = [new File(['dummy1'], 'file1.pdf')];
       vi.mocked(PDFDocument.load).mockReset();
       vi.mocked(PDFDocument.load).mockResolvedValueOnce(mockPdfDoc1);
-      
+
       await setupAlternateMergeTool();
       vi.clearAllMocks(); // Clear the setup calls
-      
+
       await alternateMerge();
-      
+
       expect(ui.showAlert).toHaveBeenCalledWith(
         'Not Enough Files',
         expect.stringContaining('Please upload at least two PDF files')
@@ -106,7 +113,7 @@ describe('Alternate Merge Tool', () => {
       // First setup the tool to populate internal state
       await setupAlternateMergeTool();
       vi.clearAllMocks(); // Clear setup calls
-      
+
       const mockCopyPages = vi.fn(() =>
         Promise.resolve([{ page: 'mockPage' }] as any)
       );
@@ -129,12 +136,17 @@ describe('Alternate Merge Tool', () => {
 
       await alternateMerge();
 
-      expect(ui.showLoader).toHaveBeenCalledWith(expect.stringContaining('Alternating'));
+      expect(ui.showLoader).toHaveBeenCalledWith(
+        expect.stringContaining('Alternating')
+      );
       expect(mockCopyPages).toHaveBeenCalled();
       expect(mockAddPage).toHaveBeenCalled();
       expect(mockSave).toHaveBeenCalled();
       expect(helpers.downloadFile).toHaveBeenCalled();
-      expect(ui.showAlert).toHaveBeenCalledWith('Success', expect.stringContaining('mixed successfully'));
+      expect(ui.showAlert).toHaveBeenCalledWith(
+        'Success',
+        expect.stringContaining('mixed successfully')
+      );
       expect(ui.hideLoader).toHaveBeenCalled();
     });
 
@@ -142,7 +154,7 @@ describe('Alternate Merge Tool', () => {
       // Setup the tool first to populate internal state with 2 PDFs
       await setupAlternateMergeTool();
       vi.clearAllMocks(); // Clear setup calls
-      
+
       // Mock PDFDocument.create to reject
       vi.mocked(PDFDocument.create).mockRejectedValue(new Error('broken'));
 
