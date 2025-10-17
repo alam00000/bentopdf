@@ -1,199 +1,290 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Bentopdf - Fast, Private, and Free PDF Tools</title>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/png" href="images/favicon.svg">
-    <link href="/src/css/styles.css" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="images/favicon.svg" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+  </head>
 
-<body class="antialiased bg-gray-900 text-gray-300">
+  <body class="antialiased bg-gray-900 text-gray-300">
     <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                    <img src="images/favicon.svg" alt="Bentopdf Logo" class="h-8 w-8 mr-2">
-                    <span class="text-white font-bold text-xl">BentoPDF</span>
-                </a>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="./about.html" class="nav-link">About</a>
-                    <a href="./contact.html" class="nav-link">Contact</a>
-                    <a href="index.html#tools-header" class="nav-link">All Tools</a>
-                </div>
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <a
+            href="index.html"
+            class="flex-shrink-0 flex items-center cursor-pointer"
+            id="home-logo"
+          >
+            <img
+              src="images/favicon.svg"
+              alt="Bentopdf Logo"
+              class="h-8 w-8 mr-2"
+            />
+            <span class="text-white font-bold text-xl">BentoPDF</span>
+          </a>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="./about.html" class="nav-link">About</a>
+            <a href="./contact.html" class="nav-link">Contact</a>
+            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+          </div>
 
-            <div class="md:hidden flex items-center gap-4">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#tools-header" class="nav-link">All Tools</a>
-            </div>
-            </div>
+          <div class="md:hidden flex items-center gap-4">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+          </div>
         </div>
+      </div>
     </nav>
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
+      <section id="about-hero" class="text-center py-16 md:py-24">
+        <h1 class="text-3xl md:text-6xl font-bold text-white mb-4">
+          We believe PDF tools should be
+          <span class="marker-slanted">fast, private, and free.</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400">No compromises.</p>
+      </section>
 
-        <section id="about-hero" class="text-center py-16 md:py-24">
-            <h1 class="text-3xl md:text-6xl font-bold text-white mb-4">
-                We believe PDF tools should be <span class="marker-slanted">fast, private, and free.</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-400">
-                No compromises.
-            </p>
-        </section>
+      <div class="section-divider"></div>
 
-        <div class="section-divider"></div>
-
-        <section id="mission-section" class="py-16 max-w-4xl mx-auto">
-            <div class="text-center">
-                <i data-lucide="rocket" class="w-16 h-16 text-indigo-400 mx-auto mb-6"></i>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our Mission</h2>
-                <p class="text-lg text-gray-400 leading-relaxed">
-                    To provide the most comprehensive PDF toolbox that respects your privacy and never asks for payment.
-                    We believe essential document tools should be accessible to everyone, everywhere, without barriers.
-                </p>
-            </div>
-        </section>
-
-        <div class="bg-gray-800 rounded-xl p-8 md:p-12 my-16 border border-gray-700">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left">
-                    <span class="text-indigo-400 font-bold uppercase">Our Core Philosophy</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Privacy First. Always.</h2>
-                    <p class="text-gray-400 leading-relaxed">
-                        In an era where data is a commodity, we take a different approach. All processing for Bentopdf
-                        tools happens locally in your browser. This means your files never touch our servers, we never
-                        see your documents, and we don't track what you do. Your documents remain completely and
-                        unequivocally private. It's not just a feature; it's our foundation.
-                    </p>
-                </div>
-                <div class="flex justify-center">
-                    <div class="relative w-48 h-48">
-                        <div class="absolute inset-0 bg-indigo-500 rounded-full opacity-20 animate-pulse"></div>
-                        <div class="absolute inset-4 bg-indigo-500 rounded-full opacity-30 animate-pulse delay-500">
-                        </div>
-                        <i data-lucide="shield-check" class="w-48 h-48 text-indigo-400"></i>
-                    </div>
-                </div>
-            </div>
+      <section id="mission-section" class="py-16 max-w-4xl mx-auto">
+        <div class="text-center">
+          <i
+            data-lucide="rocket"
+            class="w-16 h-16 text-indigo-400 mx-auto mb-6"
+          ></i>
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            Our Mission
+          </h2>
+          <p class="text-lg text-gray-400 leading-relaxed">
+            To provide the most comprehensive PDF toolbox that respects your
+            privacy and never asks for payment. We believe essential document
+            tools should be accessible to everyone, everywhere, without
+            barriers.
+          </p>
         </div>
+      </section>
 
-        <section id="why-Bentopdf" class="py-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
-                Why <span class="marker-slanted">Bentopdf?</span>
+      <div
+        class="bg-gray-800 rounded-xl p-8 md:p-12 my-16 border border-gray-700"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="text-center md:text-left">
+            <span class="text-indigo-400 font-bold uppercase"
+              >Our Core Philosophy</span
+            >
+            <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              Privacy First. Always.
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
-                    <i data-lucide="zap" class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"></i>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Built for Speed</h3>
-                        <p class="text-gray-400 mt-2">No waiting for uploads or downloads to a server. By processing
-                            files directly in your browser using modern web technologies like WebAssembly, we offer
-                            unparalleled speed for all our tools.</p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
-                    <i data-lucide="badge-dollar-sign" class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"></i>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Completely Free</h3>
-                        <p class="text-gray-400 mt-2">No trials, no subscriptions, no hidden fees, and no "premium"
-                            features held hostage. We believe powerful PDF tools should be a public utility, not a
-                            profit center.</p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
-                    <i data-lucide="user-plus" class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"></i>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">No Account Required</h3>
-                        <p class="text-gray-400 mt-2">Start using any tool immediately. We don't need your email, a
-                            password, or any personal information. Your workflow should be frictionless and anonymous.
-                        </p>
-                    </div>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
-                    <i data-lucide="code-2" class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"></i>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">Open Source Spirit</h3>
-                        <p class="text-gray-400 mt-2">Built with transparency in mind. We leverage incredible
-                            open-source libraries like PDF-lib and PDF.js, and believe in the community-driven effort to
-                            make powerful tools accessible to everyone.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <section id="cta-section" class="text-center py-16">
-            <h2 class="text-3xl font-bold text-white mb-4">Ready to get started?</h2>
-            <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-                Join thousands of users who trust Bentopdf for their daily document needs. Experience the difference
-                that privacy and performance can make.
+            <p class="text-gray-400 leading-relaxed">
+              In an era where data is a commodity, we take a different approach.
+              All processing for Bentopdf tools happens locally in your browser.
+              This means your files never touch our servers, we never see your
+              documents, and we don't track what you do. Your documents remain
+              completely and unequivocally private. It's not just a feature;
+              it's our foundation.
             </p>
-            <a href="index.html#tools-header"
-                class="inline-block px-8 py-3 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1">
-                Explore All Tools
-            </a>
-        </section>
+          </div>
+          <div class="flex justify-center">
+            <div class="relative w-48 h-48">
+              <div
+                class="absolute inset-0 bg-indigo-500 rounded-full opacity-20 animate-pulse"
+              ></div>
+              <div
+                class="absolute inset-4 bg-indigo-500 rounded-full opacity-30 animate-pulse delay-500"
+              ></div>
+              <i
+                data-lucide="shield-check"
+                class="w-48 h-48 text-indigo-400"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <section id="why-Bentopdf" class="py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+          Why <span class="marker-slanted">Bentopdf?</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="zap"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">Built for Speed</h3>
+              <p class="text-gray-400 mt-2">
+                No waiting for uploads or downloads to a server. By processing
+                files directly in your browser using modern web technologies
+                like WebAssembly, we offer unparalleled speed for all our tools.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="badge-dollar-sign"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">Completely Free</h3>
+              <p class="text-gray-400 mt-2">
+                No trials, no subscriptions, no hidden fees, and no "premium"
+                features held hostage. We believe powerful PDF tools should be a
+                public utility, not a profit center.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="user-plus"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">No Account Required</h3>
+              <p class="text-gray-400 mt-2">
+                Start using any tool immediately. We don't need your email, a
+                password, or any personal information. Your workflow should be
+                frictionless and anonymous.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="code-2"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">Open Source Spirit</h3>
+              <p class="text-gray-400 mt-2">
+                Built with transparency in mind. We leverage incredible
+                open-source libraries like PDF-lib and PDF.js, and believe in
+                the community-driven effort to make powerful tools accessible to
+                everyone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <section id="cta-section" class="text-center py-16">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Ready to get started?
+        </h2>
+        <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+          Join thousands of users who trust Bentopdf for their daily document
+          needs. Experience the difference that privacy and performance can
+          make.
+        </p>
+        <a
+          href="index.html#tools-header"
+          class="inline-block px-8 py-3 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1"
+        >
+          Explore All Tools
+        </a>
+      </section>
     </div>
 
     <footer class="mt-16 border-t-2 border-gray-700 py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start mb-4">
-                        <img src="images/favicon.svg" alt="Bentopdf Logo" class="h-10 w-10 mr-3">
-                        <span class="text-xl font-bold text-white">BentoPDF</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">&copy; 2025 BentoPDF. All rights reserved.</p>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Company</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="./about.html" class="hover:text-indigo-400">About Us</a></li>
-                        <li><a href="./faq.html" class="hover:text-indigo-400">FAQ</a></li>
-                        <li><a href="./contact.html" class="hover:text-indigo-400">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Legal</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="./terms.html" class="hover:text-indigo-400">Terms and Conditions</a></li>
-                        <li><a href="./privacy.html" class="hover:text-indigo-400">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Follow Us</h3>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="https://www.instagram.com/thebentopdf/" class="text-gray-400 hover:text-indigo-400">
-                            <i data-lucide="instagram"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/bentopdf/" class="text-gray-400 hover:text-indigo-400">
-                            <i data-lucide="linkedin"></i>
-                        </a>
-                        <a href="https://x.com/BentoPDF" class="text-gray-400 hover:text-indigo-400">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left"
+        >
+          <div class="mb-8 md:mb-0">
+            <div class="flex items-center justify-center md:justify-start mb-4">
+              <img
+                src="images/favicon.svg"
+                alt="Bentopdf Logo"
+                class="h-10 w-10 mr-3"
+              />
+              <span class="text-xl font-bold text-white">BentoPDF</span>
             </div>
+            <p class="text-gray-400 text-sm">
+              &copy; 2025 BentoPDF. All rights reserved.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white mb-4">Company</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="./about.html" class="hover:text-indigo-400"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="./faq.html" class="hover:text-indigo-400">FAQ</a>
+              </li>
+              <li>
+                <a href="./contact.html" class="hover:text-indigo-400"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white mb-4">Legal</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="./terms.html" class="hover:text-indigo-400"
+                  >Terms and Conditions</a
+                >
+              </li>
+              <li>
+                <a href="./privacy.html" class="hover:text-indigo-400"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white mb-4">Follow Us</h3>
+            <div class="flex justify-center md:justify-start space-x-4">
+              <a
+                href="https://www.instagram.com/thebentopdf/"
+                class="text-gray-400 hover:text-indigo-400"
+              >
+                <i data-lucide="instagram"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/company/bentopdf/"
+                class="text-gray-400 hover:text-indigo-400"
+              >
+                <i data-lucide="linkedin"></i>
+              </a>
+              <a
+                href="https://x.com/BentoPDF"
+                class="text-gray-400 hover:text-indigo-400"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script>
-        lucide.createIcons();
+      lucide.createIcons();
     </script>
-</body>
-
+  </body>
 </html>

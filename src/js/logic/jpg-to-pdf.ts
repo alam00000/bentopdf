@@ -5,7 +5,7 @@ import { state } from '../state.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 /**
- * Takes any image byte array and uses the browser's canvas to convert it 
+ * Takes any image byte array and uses the browser's canvas to convert it
  * into a standard, web-friendly (baseline, sRGB) JPEG byte array.
  * @param {Uint8Array} imageBytes The raw bytes of the image file.
  * @returns {Promise<Uint8Array>} A promise that resolves with the sanitized JPEG bytes.
@@ -39,7 +39,11 @@ function sanitizeImageAsJpeg(imageBytes: any) {
 
     img.onerror = () => {
       URL.revokeObjectURL(imageUrl);
-      reject(new Error('The provided file could not be loaded as an image. It may be corrupted.'));
+      reject(
+        new Error(
+          'The provided file could not be loaded as an image. It may be corrupted.'
+        )
+      );
     };
 
     img.src = imageUrl;
@@ -63,13 +67,20 @@ export async function jpgToPdf() {
         jpgImage = await pdfDoc.embedJpg(originalBytes as Uint8Array);
       } catch (e) {
         // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 1.
-        showAlert(`Direct JPG embedding failed for ${file.name}, attempting to sanitize...`);
+        showAlert(
+          `Direct JPG embedding failed for ${file.name}, attempting to sanitize...`
+        );
         try {
           const sanitizedBytes = await sanitizeImageAsJpeg(originalBytes);
           jpgImage = await pdfDoc.embedJpg(sanitizedBytes as Uint8Array);
         } catch (fallbackError) {
-          console.error(`Failed to process ${file.name} after sanitization:`, fallbackError);
-          throw new Error(`Could not process "${file.name}". The file may be corrupted.`);
+          console.error(
+            `Failed to process ${file.name} after sanitization:`,
+            fallbackError
+          );
+          throw new Error(
+            `Could not process "${file.name}". The file may be corrupted.`
+          );
         }
       }
 
@@ -83,7 +94,10 @@ export async function jpgToPdf() {
     }
 
     const pdfBytes = await pdfDoc.save();
-    downloadFile(new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }), 'from_jpgs.pdf');
+    downloadFile(
+      new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
+      'from_jpgs.pdf'
+    );
   } catch (e) {
     console.error(e);
     showAlert('Conversion Error', e.message);
