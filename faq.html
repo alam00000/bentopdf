@@ -1,211 +1,343 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frequently Asked Questions - BentoPDF</title>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/png" href="images/favicon.svg">
-    <link href="/src/css/styles.css" rel="stylesheet">
-</head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="images/favicon.svg" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+  </head>
 
-<body class="antialiased bg-gray-900 text-gray-300">
+  <body class="antialiased bg-gray-900 text-gray-300">
     <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                    <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
-                    <span class="text-white font-bold text-xl">BentoPDF</span>
-                </a>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="./about.html" class="nav-link">About</a>
-                    <a href="./contact.html" class="nav-link">Contact</a>
-                    <a href="index.html#tools-header" class="nav-link">All Tools</a>
-                </div>
+      <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+          <a
+            href="index.html"
+            class="flex-shrink-0 flex items-center cursor-pointer"
+            id="home-logo"
+          >
+            <img
+              src="images/favicon.svg"
+              alt="Bento PDF Logo"
+              class="h-8 w-8 mr-2"
+            />
+            <span class="text-white font-bold text-xl">BentoPDF</span>
+          </a>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="./about.html" class="nav-link">About</a>
+            <a href="./contact.html" class="nav-link">Contact</a>
+            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+          </div>
 
-                <div class="md:hidden flex items-center gap-4">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#tools-header" class="nav-link">All Tools</a>
-                </div>
-            </div>
+          <div class="md:hidden flex items-center gap-4">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+          </div>
         </div>
+      </div>
     </nav>
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
+      <section id="faq-hero" class="text-center py-16 md:py-24">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Frequently Asked Questions
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+          Have questions? We've got answers. Here are some of the most common
+          things people ask about BentoPDF.
+        </p>
+      </section>
 
-        <section id="faq-hero" class="text-center py-16 md:py-24">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                Frequently Asked Questions
-            </h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
-                Have questions? We've got answers. Here are some of the most common things people ask about BentoPDF.
+      <div class="max-w-4xl mx-auto space-y-4">
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              Are my files safe and private?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>
+              <strong>Absolutely.</strong> This is the most important feature of
+              BentoPDF. All processing happens 100% locally in your web browser.
+              Your files are never uploaded to any server, which means we—or
+              anyone else—can never see them. Your privacy is guaranteed.
             </p>
-        </section>
+          </div>
+        </details>
 
-        <div class="max-w-4xl mx-auto space-y-4">
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">Are my files safe and private?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p><strong>Absolutely.</strong> This is the most important feature of BentoPDF. All processing
-                        happens 100% locally in your web browser. Your files are never uploaded to any server, which
-                        means we—or anyone else—can never see them. Your privacy is guaranteed.</p>
-                </div>
-            </details>
-
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">Is BentoPDF really free? What's the catch?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p>Yes, it's completely free, and there's no catch. There are no hidden fees, no subscription plans,
-                        no usage limits, and no premium-only features. We believe essential tools should be accessible
-                        to everyone.</p>
-                </div>
-            </details>
-
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">Do I need an internet connection to use the tools?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p>After you load the website for the first time, most tools will work completely offline! Because
-                        all the processing libraries are loaded into your browser, you can disconnect from the internet
-                        and continue to merge, split, compress, and edit your PDFs securely. Some niche tools that
-                        require external data (like Markdown to PDF with web images) may need a connection.</p>
-                </div>
-            </details>
-
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">Are there any file size or usage limitations?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p>No, we do not impose any artificial limits on file size, the number of files, or how many times
-                        you can use a tool. The only practical limitation is the processing power and memory of your own
-                        computer, as very large or complex files may take longer to process.</p>
-                </div>
-            </details>
-
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">Why did my PDF fail to process?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p>Failures are rare but can happen for a few reasons:</p>
-                    <ul class="list-disc list-inside mt-2 space-y-1">
-                        <li>The PDF might be corrupted or not compliant with standard specifications.</li>
-                        <li>The file could be encrypted with a password you don't have. Please use our Decrypt tool
-                            first.</li>
-                        <li>The file might be a special "XFA" or dynamic form-based PDF, which some of our tools cannot
-                            process.</li>
-                    </ul>
-                </div>
-            </details>
-
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">Do you track my activity on BentoPDF?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p>We care about your privacy. BentoPDF does not track personal information. We use <a
-                            href="https://simpleanalytics.com" class="text-indigo-400 hover:underline" target="_blank"
-                            rel="noopener noreferrer">Simple Analytics</a> solely to see anonymous visit counts. This
-                        means we can know how many users visit our site, but <strong>we never know who you are</strong>.
-                        Simple Analytics is fully GDPR-compliant and respects your privacy.</p>
-                </div>
-            </details>
-
-            <details class="bg-gray-800 border border-gray-700 rounded-lg p-5 group">
-                <summary class="flex items-center justify-between cursor-pointer">
-                    <h3 class="font-semibold text-white text-lg">What technology does BentoPDF use?</h3>
-                    <i data-lucide="plus" class="w-6 h-6 text-indigo-400 icon flex-shrink-0"></i>
-                </summary>
-                <div class="mt-4 text-gray-400">
-                    <p>BentoPDF is built on the power of modern web technologies. We primarily use JavaScript libraries
-                        like <strong>PDF-lib.js</strong> and <strong>PDFKit.js</strong> that are compiled to run
-                        efficiently in your browser via WebAssembly. This allows for powerful, server-like processing
-                        without your data ever leaving your machine.</p>
-                </div>
-            </details>
-        </div>
-
-        <div class="section-divider mt-16"></div>
-
-        <section id="contact-section" class="text-center py-16">
-            <h2 class="text-3xl font-bold text-white mb-4">Still have questions?</h2>
-            <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-                If you can't find the answer you're looking for, feel free to reach out to our support team. We're
-                always Bento to help.
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              Is BentoPDF really free? What's the catch?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>
+              Yes, it's completely free, and there's no catch. There are no
+              hidden fees, no subscription plans, no usage limits, and no
+              premium-only features. We believe essential tools should be
+              accessible to everyone.
             </p>
-            <a href="contact.html"
-                class="inline-block px-8 py-3 rounded-full bg-gray-700 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:bg-gray-600 transition-colors duration-200">
-                Contact Us
-            </a>
-        </section>
+          </div>
+        </details>
 
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              Do I need an internet connection to use the tools?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>
+              After you load the website for the first time, most tools will
+              work completely offline! Because all the processing libraries are
+              loaded into your browser, you can disconnect from the internet and
+              continue to merge, split, compress, and edit your PDFs securely.
+              Some niche tools that require external data (like Markdown to PDF
+              with web images) may need a connection.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              Are there any file size or usage limitations?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>
+              No, we do not impose any artificial limits on file size, the
+              number of files, or how many times you can use a tool. The only
+              practical limitation is the processing power and memory of your
+              own computer, as very large or complex files may take longer to
+              process.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              Why did my PDF fail to process?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>Failures are rare but can happen for a few reasons:</p>
+            <ul class="list-disc list-inside mt-2 space-y-1">
+              <li>
+                The PDF might be corrupted or not compliant with standard
+                specifications.
+              </li>
+              <li>
+                The file could be encrypted with a password you don't have.
+                Please use our Decrypt tool first.
+              </li>
+              <li>
+                The file might be a special "XFA" or dynamic form-based PDF,
+                which some of our tools cannot process.
+              </li>
+            </ul>
+          </div>
+        </details>
+
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              Do you track my activity on BentoPDF?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>
+              We care about your privacy. BentoPDF does not track personal
+              information. We use
+              <a
+                href="https://simpleanalytics.com"
+                class="text-indigo-400 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Simple Analytics</a
+              >
+              solely to see anonymous visit counts. This means we can know how
+              many users visit our site, but
+              <strong>we never know who you are</strong>. Simple Analytics is
+              fully GDPR-compliant and respects your privacy.
+            </p>
+          </div>
+        </details>
+
+        <details
+          class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
+        >
+          <summary class="flex items-center justify-between cursor-pointer">
+            <h3 class="font-semibold text-white text-lg">
+              What technology does BentoPDF use?
+            </h3>
+            <i
+              data-lucide="plus"
+              class="w-6 h-6 text-indigo-400 icon flex-shrink-0"
+            ></i>
+          </summary>
+          <div class="mt-4 text-gray-400">
+            <p>
+              BentoPDF is built on the power of modern web technologies. We
+              primarily use JavaScript libraries like
+              <strong>PDF-lib.js</strong> and <strong>PDFKit.js</strong> that
+              are compiled to run efficiently in your browser via WebAssembly.
+              This allows for powerful, server-like processing without your data
+              ever leaving your machine.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <div class="section-divider mt-16"></div>
+
+      <section id="contact-section" class="text-center py-16">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Still have questions?
+        </h2>
+        <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+          If you can't find the answer you're looking for, feel free to reach
+          out to our support team. We're always Bento to help.
+        </p>
+        <a
+          href="contact.html"
+          class="inline-block px-8 py-3 rounded-full bg-gray-700 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:bg-gray-600 transition-colors duration-200"
+        >
+          Contact Us
+        </a>
+      </section>
     </div>
 
     <footer class="mt-16 border-t-2 border-gray-700 py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start mb-4">
-                        <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3">
-                        <span class="text-xl font-bold text-white">Bento PDF</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">&copy; 2025 Bento PDF. All rights reserved.</p>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Company</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="about.html" class="hover:text-indigo-400">About Us</a></li>
-                        <li><a href="faq.html" class="hover:text-indigo-400">FAQ</a></li>
-                        <li><a href="contact.html" class="hover:text-indigo-400">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Legal</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="./terms.html" class="hover:text-indigo-400">Terms and Conditions</a></li>
-                        <li><a href="./privacy.html" class="hover:text-indigo-400">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Follow Us</h3>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="https://www.instagram.com/thebentopdf/" class="text-gray-400 hover:text-indigo-400"><i data-lucide="instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/bentopdf/" class="text-gray-400 hover:text-indigo-400"><i data-lucide="linkedin"></i></a>
-                                                    <a href="https://x.com/BentoPDF" class="text-gray-400 hover:text-indigo-400">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path
-                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                                </svg>
-                            </a>
-                    </div>
-                </div>
+      <div class="container mx-auto px-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left"
+        >
+          <div class="mb-8 md:mb-0">
+            <div class="flex items-center justify-center md:justify-start mb-4">
+              <img
+                src="images/favicon.svg"
+                alt="Bento PDF Logo"
+                class="h-10 w-10 mr-3"
+              />
+              <span class="text-xl font-bold text-white">Bento PDF</span>
             </div>
+            <p class="text-gray-400 text-sm">
+              &copy; 2025 Bento PDF. All rights reserved.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white mb-4">Company</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="about.html" class="hover:text-indigo-400">About Us</a>
+              </li>
+              <li><a href="faq.html" class="hover:text-indigo-400">FAQ</a></li>
+              <li>
+                <a href="contact.html" class="hover:text-indigo-400"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white mb-4">Legal</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="./terms.html" class="hover:text-indigo-400"
+                  >Terms and Conditions</a
+                >
+              </li>
+              <li>
+                <a href="./privacy.html" class="hover:text-indigo-400"
+                  >Privacy Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white mb-4">Follow Us</h3>
+            <div class="flex justify-center md:justify-start space-x-4">
+              <a
+                href="https://www.instagram.com/thebentopdf/"
+                class="text-gray-400 hover:text-indigo-400"
+                ><i data-lucide="instagram"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/company/bentopdf/"
+                class="text-gray-400 hover:text-indigo-400"
+                ><i data-lucide="linkedin"></i
+              ></a>
+              <a
+                href="https://x.com/BentoPDF"
+                class="text-gray-400 hover:text-indigo-400"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script>
-        lucide.createIcons();
+      lucide.createIcons();
     </script>
-</body>
-
+  </body>
 </html>

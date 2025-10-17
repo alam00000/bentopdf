@@ -1,107 +1,104 @@
 import { resetState } from './state.js';
 import { formatBytes } from './utils/helpers.js';
 import { tesseractLanguages } from './config/tesseract-languages.js';
-import { icons, createIcons } from "lucide";
+import { icons, createIcons } from 'lucide';
 import Sortable from 'sortablejs';
 
 // Centralizing DOM element selection
 export const dom = {
-    gridView: document.getElementById('grid-view'),
-    toolGrid: document.getElementById('tool-grid'),
-    toolInterface: document.getElementById('tool-interface'),
-    toolContent: document.getElementById('tool-content'),
-    backToGridBtn: document.getElementById('back-to-grid'),
-    loaderModal: document.getElementById('loader-modal'),
-    loaderText: document.getElementById('loader-text'),
-    alertModal: document.getElementById('alert-modal'),
-    alertTitle: document.getElementById('alert-title'),
-    alertMessage: document.getElementById('alert-message'),
-    alertOkBtn: document.getElementById('alert-ok'),
-    heroSection: document.getElementById('hero-section'),
-    featuresSection: document.getElementById('features-section'),
-    toolsHeader: document.getElementById('tools-header'),
-    dividers: document.querySelectorAll('.section-divider'),
-    hideSections: document.querySelectorAll('.hide-section'),
+  gridView: document.getElementById('grid-view'),
+  toolGrid: document.getElementById('tool-grid'),
+  toolInterface: document.getElementById('tool-interface'),
+  toolContent: document.getElementById('tool-content'),
+  backToGridBtn: document.getElementById('back-to-grid'),
+  loaderModal: document.getElementById('loader-modal'),
+  loaderText: document.getElementById('loader-text'),
+  alertModal: document.getElementById('alert-modal'),
+  alertTitle: document.getElementById('alert-title'),
+  alertMessage: document.getElementById('alert-message'),
+  alertOkBtn: document.getElementById('alert-ok'),
+  heroSection: document.getElementById('hero-section'),
+  featuresSection: document.getElementById('features-section'),
+  toolsHeader: document.getElementById('tools-header'),
+  dividers: document.querySelectorAll('.section-divider'),
+  hideSections: document.querySelectorAll('.hide-section'),
 };
 
 export const showLoader = (text = 'Processing...') => {
-    dom.loaderText.textContent = text;
-    dom.loaderModal.classList.remove('hidden');
+  dom.loaderText.textContent = text;
+  dom.loaderModal.classList.remove('hidden');
 };
 
 export const hideLoader = () => dom.loaderModal.classList.add('hidden');
 
 export const showAlert = (title: any, message: any) => {
-    dom.alertTitle.textContent = title;
-    dom.alertMessage.textContent = message;
-    dom.alertModal.classList.remove('hidden');
+  dom.alertTitle.textContent = title;
+  dom.alertMessage.textContent = message;
+  dom.alertModal.classList.remove('hidden');
 };
 
 export const hideAlert = () => dom.alertModal.classList.add('hidden');
 
 export const switchView = (view: any) => {
-    if (view === 'grid') {
-        dom.gridView.classList.remove('hidden');
-        dom.toolInterface.classList.add('hidden');
-        // show hero and features and header
-        dom.heroSection.classList.remove('hidden');
-        dom.featuresSection.classList.remove('hidden');
-        dom.toolsHeader.classList.remove('hidden');
-        // show dividers
-        dom.dividers.forEach(divider => {
-            divider.classList.remove('hidden');
-        });
-        // show hideSections
-        dom.hideSections.forEach(section => {
-            section.classList.remove('hidden');
-        });
+  if (view === 'grid') {
+    dom.gridView.classList.remove('hidden');
+    dom.toolInterface.classList.add('hidden');
+    // show hero and features and header
+    dom.heroSection.classList.remove('hidden');
+    dom.featuresSection.classList.remove('hidden');
+    dom.toolsHeader.classList.remove('hidden');
+    // show dividers
+    dom.dividers.forEach((divider) => {
+      divider.classList.remove('hidden');
+    });
+    // show hideSections
+    dom.hideSections.forEach((section) => {
+      section.classList.remove('hidden');
+    });
 
-        resetState();
-    } else {
-        dom.gridView.classList.add('hidden');
-        dom.toolInterface.classList.remove('hidden');
-        dom.featuresSection.classList.add('hidden');
-        dom.heroSection.classList.add('hidden');
-        dom.toolsHeader.classList.add('hidden');
-        dom.dividers.forEach(divider => {
-            divider.classList.add('hidden');
-        });
-        dom.hideSections.forEach(section => {
-            section.classList.add('hidden');
-        });
-
-    }
+    resetState();
+  } else {
+    dom.gridView.classList.add('hidden');
+    dom.toolInterface.classList.remove('hidden');
+    dom.featuresSection.classList.add('hidden');
+    dom.heroSection.classList.add('hidden');
+    dom.toolsHeader.classList.add('hidden');
+    dom.dividers.forEach((divider) => {
+      divider.classList.add('hidden');
+    });
+    dom.hideSections.forEach((section) => {
+      section.classList.add('hidden');
+    });
+  }
 };
 
 const thumbnailState = {
-    sortableInstances: {}
+  sortableInstances: {},
 };
 
-
 function initializeOrganizeSortable(containerId: any) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    
-    if (thumbnailState.sortableInstances[containerId]) {
-        thumbnailState.sortableInstances[containerId].destroy();
-    }
-    
-    thumbnailState.sortableInstances[containerId] = Sortable.create(container, {
-        animation: 150,
-        ghostClass: 'sortable-ghost',
-        chosenClass: 'sortable-chosen',
-        dragClass: 'sortable-drag',
-        filter: '.delete-page-btn', 
-        preventOnFilter: true,
-        onStart: function(evt: any) {
-            evt.item.style.opacity = '0.5';
-        },
-        onEnd: function(evt: any) {
-            evt.item.style.opacity = '1';
-        }
-    });
-}
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
+  if (thumbnailState.sortableInstances[containerId]) {
+    thumbnailState.sortableInstances[containerId].destroy();
+  }
+
+  thumbnailState.sortableInstances[containerId] = Sortable.create(container, {
+    animation: 150,
+    ghostClass: 'sortable-ghost',
+    chosenClass: 'sortable-chosen',
+    dragClass: 'sortable-drag',
+    filter: '.delete-page-btn',
+    preventOnFilter: true,
+    onStart: function (evt: any) {
+      evt.item.style.opacity = '0.5';
+    },
+    onEnd: function (evt: any) {
+      evt.item.style.opacity = '1';
+    },
+  });
+}
 
 /**
  * Renders page thumbnails for tools like 'Organize' and 'Rotate'.
@@ -109,97 +106,103 @@ function initializeOrganizeSortable(containerId: any) {
  * @param {object} pdfDoc The loaded pdf-lib document instance.
  */
 export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
-    const containerId = toolId === 'organize' ? 'page-organizer' : 'page-rotator';
-    const container = document.getElementById(containerId);
-    if (!container) return;
+  const containerId = toolId === 'organize' ? 'page-organizer' : 'page-rotator';
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-    container.innerHTML = '';
-    showLoader('Rendering page previews...');
+  container.innerHTML = '';
+  showLoader('Rendering page previews...');
 
-    const pdfData = await pdfDoc.save();
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+  const pdfData = await pdfDoc.save();
+  // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
+  const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
 
-    for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 0.5 });
-        const canvas = document.createElement('canvas');
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        const context = canvas.getContext('2d');
-        await page.render({ canvasContext: context, viewport: viewport }).promise;
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 0.5 });
+    const canvas = document.createElement('canvas');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    const context = canvas.getContext('2d');
+    await page.render({ canvasContext: context, viewport: viewport }).promise;
 
-        const wrapper = document.createElement('div');
-        wrapper.className = 'page-thumbnail relative group';
-        // @ts-expect-error TS(2322) FIXME: Type 'number' is not assignable to type 'string'.
-        wrapper.dataset.pageIndex = i - 1;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'page-thumbnail relative group';
+    // @ts-expect-error TS(2322) FIXME: Type 'number' is not assignable to type 'string'.
+    wrapper.dataset.pageIndex = i - 1;
 
-        const imgContainer = document.createElement('div');
-        imgContainer.className = 'w-full h-36 bg-gray-900 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-600';
+    const imgContainer = document.createElement('div');
+    imgContainer.className =
+      'w-full h-36 bg-gray-900 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-600';
 
-        const img = document.createElement('img');
-        img.src = canvas.toDataURL();
-        img.className = 'max-w-full max-h-full object-contain';
+    const img = document.createElement('img');
+    img.src = canvas.toDataURL();
+    img.className = 'max-w-full max-h-full object-contain';
 
-        imgContainer.appendChild(img);
+    imgContainer.appendChild(img);
 
-        if (toolId === 'organize') {
-            wrapper.className = 'page-thumbnail relative group';
-            wrapper.appendChild(imgContainer);
-
-            const pageNumSpan = document.createElement('span');
-            pageNumSpan.className = 'absolute top-1 left-1 bg-gray-900 bg-opacity-75 text-white text-xs rounded-full px-2 py-1';
-            pageNumSpan.textContent = i.toString();
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.className = 'delete-page-btn absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center';
-            deleteBtn.innerHTML = '&times;'; 
-            deleteBtn.addEventListener('click', (e) => {
-                (e.currentTarget as HTMLElement).parentElement.remove();
-                initializeOrganizeSortable(containerId);
-            });
-
-            wrapper.append(pageNumSpan, deleteBtn);
-        } else if (toolId === 'rotate') {
-            wrapper.className = 'page-rotator-item flex flex-col items-center gap-2';
-            wrapper.dataset.rotation = '0';
-            img.classList.add('transition-transform', 'duration-300');
-            wrapper.appendChild(imgContainer);
-
-            const controlsDiv = document.createElement('div');
-            controlsDiv.className = 'flex items-center justify-center gap-3 w-full';
-
-            const pageNumSpan = document.createElement('span');
-            pageNumSpan.className = 'font-medium text-sm text-white';
-            pageNumSpan.textContent = i.toString();
-
-            const rotateBtn = document.createElement('button');
-            rotateBtn.className = 'rotate-btn btn bg-gray-700 hover:bg-gray-600 p-2 rounded-full';
-            rotateBtn.title = 'Rotate 90°';
-            rotateBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-5 h-5"></i>';
-            rotateBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const card = (e.currentTarget as HTMLElement).closest('.page-rotator-item') as HTMLElement;
-                const imgEl = card.querySelector('img');
-                let currentRotation = parseInt(card.dataset.rotation);
-                currentRotation = (currentRotation + 90) % 360;
-                card.dataset.rotation = currentRotation.toString();
-                imgEl.style.transform = `rotate(${currentRotation}deg)`;
-            });
-
-            controlsDiv.append(pageNumSpan, rotateBtn);
-            wrapper.appendChild(controlsDiv);
-        }
-
-        container.appendChild(wrapper);
-        createIcons({icons});
-    }
-    
     if (toolId === 'organize') {
+      wrapper.className = 'page-thumbnail relative group';
+      wrapper.appendChild(imgContainer);
+
+      const pageNumSpan = document.createElement('span');
+      pageNumSpan.className =
+        'absolute top-1 left-1 bg-gray-900 bg-opacity-75 text-white text-xs rounded-full px-2 py-1';
+      pageNumSpan.textContent = i.toString();
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className =
+        'delete-page-btn absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center';
+      deleteBtn.innerHTML = '&times;';
+      deleteBtn.addEventListener('click', (e) => {
+        (e.currentTarget as HTMLElement).parentElement.remove();
         initializeOrganizeSortable(containerId);
+      });
+
+      wrapper.append(pageNumSpan, deleteBtn);
+    } else if (toolId === 'rotate') {
+      wrapper.className = 'page-rotator-item flex flex-col items-center gap-2';
+      wrapper.dataset.rotation = '0';
+      img.classList.add('transition-transform', 'duration-300');
+      wrapper.appendChild(imgContainer);
+
+      const controlsDiv = document.createElement('div');
+      controlsDiv.className = 'flex items-center justify-center gap-3 w-full';
+
+      const pageNumSpan = document.createElement('span');
+      pageNumSpan.className = 'font-medium text-sm text-white';
+      pageNumSpan.textContent = i.toString();
+
+      const rotateBtn = document.createElement('button');
+      rotateBtn.className =
+        'rotate-btn btn bg-gray-700 hover:bg-gray-600 p-2 rounded-full';
+      rotateBtn.title = 'Rotate 90°';
+      rotateBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-5 h-5"></i>';
+      rotateBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = (e.currentTarget as HTMLElement).closest(
+          '.page-rotator-item'
+        ) as HTMLElement;
+        const imgEl = card.querySelector('img');
+        let currentRotation = parseInt(card.dataset.rotation);
+        currentRotation = (currentRotation + 90) % 360;
+        card.dataset.rotation = currentRotation.toString();
+        imgEl.style.transform = `rotate(${currentRotation}deg)`;
+      });
+
+      controlsDiv.append(pageNumSpan, rotateBtn);
+      wrapper.appendChild(controlsDiv);
     }
-    
-    hideLoader();
+
+    container.appendChild(wrapper);
+    createIcons({ icons });
+  }
+
+  if (toolId === 'organize') {
+    initializeOrganizeSortable(containerId);
+  }
+
+  hideLoader();
 };
 
 /**
@@ -208,35 +211,36 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
  * @param {File[]} files The array of file objects.
  */
 export const renderFileDisplay = (container: any, files: any) => {
-    container.textContent = '';
-    if (files.length > 0) {
-        files.forEach((file: any) => {
-            const fileDiv = document.createElement('div');
-            fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+  container.textContent = '';
+  if (files.length > 0) {
+    files.forEach((file: any) => {
+      const fileDiv = document.createElement('div');
+      fileDiv.className =
+        'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
 
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'truncate font-medium text-gray-200';
-            nameSpan.textContent = file.name; 
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'truncate font-medium text-gray-200';
+      nameSpan.textContent = file.name;
 
-            const sizeSpan = document.createElement('span');
-            sizeSpan.className = 'flex-shrink-0 ml-4 text-gray-400';
-            sizeSpan.textContent = formatBytes(file.size); 
+      const sizeSpan = document.createElement('span');
+      sizeSpan.className = 'flex-shrink-0 ml-4 text-gray-400';
+      sizeSpan.textContent = formatBytes(file.size);
 
-            fileDiv.append(nameSpan, sizeSpan);
-            container.appendChild(fileDiv);
-        });
-    }
+      fileDiv.append(nameSpan, sizeSpan);
+      container.appendChild(fileDiv);
+    });
+  }
 };
 
 const createFileInputHTML = (options = {}) => {
-    // @ts-expect-error TS(2339) FIXME: Property 'multiple' does not exist on type '{}'.
-    const multiple = options.multiple ? 'multiple' : '';
-    // @ts-expect-error TS(2339) FIXME: Property 'accept' does not exist on type '{}'.
-    const acceptedFiles = options.accept || 'application/pdf';
-    // @ts-expect-error TS(2339) FIXME: Property 'showControls' does not exist on type '{}... Remove this comment to see the full error message
-    const showControls = options.showControls || false; // NEW: Add this parameter
+  // @ts-expect-error TS(2339) FIXME: Property 'multiple' does not exist on type '{}'.
+  const multiple = options.multiple ? 'multiple' : '';
+  // @ts-expect-error TS(2339) FIXME: Property 'accept' does not exist on type '{}'.
+  const acceptedFiles = options.accept || 'application/pdf';
+  // @ts-expect-error TS(2339) FIXME: Property 'showControls' does not exist on type '{}... Remove this comment to see the full error message
+  const showControls = options.showControls || false; // NEW: Add this parameter
 
-    return `
+  return `
         <div id="drop-zone" class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                 <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
@@ -247,7 +251,9 @@ const createFileInputHTML = (options = {}) => {
             <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" ${multiple} accept="${acceptedFiles}">
         </div>
         
-        ${showControls ? `
+        ${
+          showControls
+            ? `
             <!-- NEW: Add control buttons for multi-file uploads -->
             <div id="file-controls" class="hidden mt-4 flex gap-3">
                 <button id="add-more-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
@@ -257,12 +263,14 @@ const createFileInputHTML = (options = {}) => {
                     <i data-lucide="x"></i> Clear All
                 </button>
             </div>
-        ` : ''}
+        `
+            : ''
+        }
     `;
 };
 
 export const toolTemplates = {
-    merge: () => `
+  merge: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Merge PDFs</h2>
     <p class="mb-6 text-gray-400">Combine whole files, or select specific pages to merge into a new document.</p>
     ${createFileInputHTML({ multiple: true, showControls: true })} 
@@ -300,7 +308,7 @@ export const toolTemplates = {
     </div>
 `,
 
-    split: () => `
+  split: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Split PDF</h2>
     <p class="mb-6 text-gray-400">Extract pages from a PDF using various methods.</p>
     ${createFileInputHTML()}
@@ -370,7 +378,7 @@ export const toolTemplates = {
 
     </div>
 `,
-    encrypt: () => `
+  encrypt: () => `
         <h2 class="text-2xl font-bold text-white mb-4">Encrypt PDF</h2>
         <p class="mb-6 text-gray-400">Upload a PDF to create a new, password-protected version.</p>
         ${createFileInputHTML()}
@@ -388,7 +396,7 @@ export const toolTemplates = {
         </div>
         <canvas id="pdf-canvas" class="hidden"></canvas>
     `,
-    decrypt: () => `
+  decrypt: () => `
         <h2 class="text-2xl font-bold text-white mb-4">Decrypt PDF</h2>
         <p class="mb-6 text-gray-400">Upload an encrypted PDF and provide its password to create an unlocked version.</p>
         ${createFileInputHTML()}
@@ -402,7 +410,7 @@ export const toolTemplates = {
         </div>
         <canvas id="pdf-canvas" class="hidden"></canvas>
     `,
-    organize: () => `
+  organize: () => `
         <h2 class="text-2xl font-bold text-white mb-4">Organize PDF</h2>
         <p class="mb-6 text-gray-400">Reorder, rotate, or delete pages. Drag and drop pages to reorder them.</p>
         ${createFileInputHTML()}
@@ -411,7 +419,7 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6">Save Changes</button>
     `,
 
-    rotate: () => `
+  rotate: () => `
         <h2 class="text-2xl font-bold text-white mb-4">Rotate PDF</h2>
         <p class="mb-6 text-gray-400">Rotate all or specific pages in a PDF document.</p>
         ${createFileInputHTML()}
@@ -436,7 +444,7 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6">Save Rotations</button>
     `,
 
-    'add-page-numbers': () => `
+  'add-page-numbers': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Add Page Numbers</h2>
         <p class="mb-6 text-gray-400">Add customizable page numbers to your PDF file.</p>
         ${createFileInputHTML()}
@@ -471,7 +479,7 @@ export const toolTemplates = {
         </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Add Page Numbers</button>
     `,
-    'pdf-to-jpg': () => `
+  'pdf-to-jpg': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to JPG</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality JPG image.</p>
         ${createFileInputHTML()}
@@ -481,14 +489,14 @@ export const toolTemplates = {
             <button id="process-btn" class="btn-gradient w-full mt-6">Download All as ZIP</button>
         </div>
     `,
-    'jpg-to-pdf': () => `
+  'jpg-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">JPG to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more JPG images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/jpeg', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    'scan-to-pdf': () => `
+  'scan-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Scan to PDF</h2>
         <p class="mb-6 text-gray-400">Use your device's camera to scan documents and save them as a PDF. On desktop, this will open a file picker.</p>
         ${createFileInputHTML({ accept: 'image/*' })}
@@ -496,7 +504,7 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF from Scans</button>
     `,
 
-    crop: () => `
+  crop: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Crop PDF</h2>
     <p class="mb-6 text-gray-400">Click and drag to select a crop area on any page. You can set different crop areas for each page.</p>
     ${createFileInputHTML()}
@@ -521,7 +529,7 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6">Apply Crop & Save PDF</button>
     </div>
 `,
-compress: () => `
+  compress: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Compress PDF</h2>
     <p class="mb-6 text-gray-400">Reduce file size by choosing the compression method that best suits your document.</p>
     ${createFileInputHTML()}
@@ -551,14 +559,14 @@ compress: () => `
         <button id="process-btn" class="btn-gradient w-full mt-4" disabled>Compress PDF</button>
     </div>
 `,
-    'pdf-to-greyscale': () => `
+  'pdf-to-greyscale': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to Greyscale</h2>
         <p class="mb-6 text-gray-400">Convert all pages of a PDF to greyscale. This is done by rendering each page, applying a filter, and rebuilding the PDF.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to Greyscale</button>
     `,
-    'pdf-to-zip': () => `
+  'pdf-to-zip': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Combine PDFs into ZIP</h2>
         <p class="mb-6 text-gray-400">Select multiple PDF files to download them together in a single ZIP archive.</p>
         ${createFileInputHTML({ multiple: true, showControls: true })}
@@ -566,7 +574,7 @@ compress: () => `
         <button id="process-btn" class="btn-gradient w-full mt-6">Create ZIP File</button>
     `,
 
-'edit-metadata': () => `
+  'edit-metadata': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Edit PDF Metadata</h2>
     <p class="mb-6 text-gray-400">Modify the core metadata fields of your PDF. Leave a field blank to clear it.</p>
     
@@ -629,21 +637,21 @@ compress: () => `
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Update Metadata & Download</button>
 `,
 
-    'remove-metadata': () => `
+  'remove-metadata': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Remove PDF Metadata</h2>
         <p class="mb-6 text-gray-400">Completely remove identifying metadata from your PDF.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Remove Metadata & Download</button>
     `,
-    flatten: () => `
+  flatten: () => `
         <h2 class="text-2xl font-bold text-white mb-4">Flatten PDF</h2>
         <p class="mb-6 text-gray-400">Make PDF forms and annotations non-editable by flattening them.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Flatten PDF</button>
     `,
-    'pdf-to-png': () => `
+  'pdf-to-png': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to PNG</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality PNG image.</p>
         ${createFileInputHTML()}
@@ -653,14 +661,14 @@ compress: () => `
             <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
         </div>
     `,
-    'png-to-pdf': () => `
+  'png-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PNG to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more PNG images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/png', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    'pdf-to-webp': () => `
+  'pdf-to-webp': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to WebP</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a modern WebP image.</p>
         ${createFileInputHTML()}
@@ -670,14 +678,14 @@ compress: () => `
             <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
         </div>
     `,
-    'webp-to-pdf': () => `
+  'webp-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">WebP to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more WebP images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/webp', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    edit: () => `
+  edit: () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF Studio</h2>
         <p class="mb-6 text-gray-400">An all-in-one PDF workspace where you can annotate, draw, highlight, redact, add comments and shapes, take screenshots, and view PDFs.</p>
         ${createFileInputHTML()}
@@ -686,7 +694,7 @@ compress: () => `
             <div id="embed-pdf-container" class="w-full h-full"></div>
         </div>
     `,
-    'delete-pages': () => `
+  'delete-pages': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Delete Pages</h2>
         <p class="mb-6 text-gray-400">Remove specific pages or ranges of pages from your PDF file.</p>
         ${createFileInputHTML()}
@@ -698,7 +706,7 @@ compress: () => `
             <button id="process-btn" class="btn-gradient w-full">Delete Pages & Download</button>
         </div>
     `,
-    'add-blank-page': () => `
+  'add-blank-page': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Add Blank Page</h2>
         <p class="mb-6 text-gray-400">Insert a new blank page at a specific position in your document.</p>
         ${createFileInputHTML()}
@@ -710,7 +718,7 @@ compress: () => `
             <button id="process-btn" class="btn-gradient w-full">Add Page & Download</button>
         </div>
     `,
-    'extract-pages': () => `
+  'extract-pages': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Extract Pages</h2>
         <p class="mb-6 text-gray-400">Extract specific pages from a PDF into separate files. Your files will download in a ZIP archive.</p>
         ${createFileInputHTML()}
@@ -723,7 +731,7 @@ compress: () => `
         </div>
     `,
 
-'add-watermark': () => `
+  'add-watermark': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Add Watermark</h2>
     <p class="mb-6 text-gray-400">Apply a text or image watermark to every page of your PDF document.</p>
     ${createFileInputHTML()}
@@ -787,8 +795,7 @@ compress: () => `
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Add Watermark & Download</button>
 `,
 
-
-'add-header-footer': () => `
+  'add-header-footer': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Add Header & Footer</h2>
     <p class="mb-6 text-gray-400">Add custom text to the top and bottom margins of every page.</p>
     ${createFileInputHTML()}
@@ -846,8 +853,7 @@ compress: () => `
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Apply Header & Footer</button>
 `,
 
-
-    'image-to-pdf': () => `
+  'image-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Image to PDF Converter</h2>
         <p class="mb-6 text-gray-400">Combine multiple images into a single PDF. Drag and drop to reorder.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/jpeg,image/png,image/webp', showControls: true })}
@@ -855,7 +861,7 @@ compress: () => `
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
 
-'change-permissions': () => `
+  'change-permissions': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Change PDF Permissions</h2>
     <p class="mb-6 text-gray-400">Unlock a PDF and re-save it with new passwords and permissions.</p>
     ${createFileInputHTML()}
@@ -903,8 +909,7 @@ compress: () => `
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Save New Permissions</button>
 `,
 
-
-    'pdf-to-markdown': () => `
+  'pdf-to-markdown': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to Markdown</h2>
         <p class="mb-6 text-gray-400">Convert a PDF's text content into a structured Markdown file.</p>
         ${createFileInputHTML({ accept: '.pdf' })}
@@ -914,7 +919,7 @@ compress: () => `
         </div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Convert to Markdown</button>
     `,
-    'txt-to-pdf': () => `
+  'txt-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Text to PDF</h2>
         <p class="mb-6 text-gray-400">Type or paste your text below and convert it to a PDF with custom formatting.</p>
         <textarea id="text-input" rows="12" class="w-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-2.5 font-sans" placeholder="Start typing here..."></textarea>
@@ -945,28 +950,28 @@ compress: () => `
         </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF</button>
     `,
-    'invert-colors': () => `
+  'invert-colors': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Invert PDF Colors</h2>
         <p class="mb-6 text-gray-400">Convert your PDF to a "dark mode" by inverting its colors. This works best on simple text and image documents.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Invert Colors & Download</button>
     `,
-    'view-metadata': () => `
+  'view-metadata': () => `
         <h2 class="text-2xl font-bold text-white mb-4">View PDF Metadata</h2>
         <p class="mb-6 text-gray-400">Upload a PDF to view its internal properties, such as Title, Author, and Creation Date.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="metadata-results" class="hidden mt-6 p-4 bg-gray-900 border border-gray-700 rounded-lg"></div>
     `,
-    'reverse-pages': () => `
+  'reverse-pages': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Reverse PDF Pages</h2>
         <p class="mb-6 text-gray-400">Flip the order of all pages in your document, making the last page the first.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Reverse & Download</button>
     `,
-    'md-to-pdf': () => `
+  'md-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Markdown to PDF</h2>
         <p class="mb-6 text-gray-400">Write in Markdown, select your formatting options, and get a high-quality, multi-page PDF. <br><strong class="text-gray-300">Note:</strong> Images linked from the web (e.g., https://...) require an internet connection to be rendered.</p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -999,42 +1004,42 @@ compress: () => `
         </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF from Markdown</button>
     `,
-    'svg-to-pdf': () => `
+  'svg-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">SVG to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more SVG vector images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/svg+xml', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    'bmp-to-pdf': () => `
+  'bmp-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">BMP to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more BMP images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/bmp', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    'heic-to-pdf': () => `
+  'heic-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">HEIC to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more HEIC (High Efficiency) images from your iPhone or camera into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: '.heic,.heif', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    'tiff-to-pdf': () => `
+  'tiff-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">TIFF to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more single or multi-page TIFF images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/tiff', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
-    'pdf-to-bmp': () => `
+  'pdf-to-bmp': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to BMP</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a BMP image. Your files will be downloaded in a ZIP archive.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to BMP & Download ZIP</button>
     `,
-    'pdf-to-tiff': () => `
+  'pdf-to-tiff': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to TIFF</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality TIFF image. Your files will be downloaded in a ZIP archive.</p>
         ${createFileInputHTML()}
@@ -1042,7 +1047,7 @@ compress: () => `
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to TIFF & Download ZIP</button>
     `,
 
-    'split-in-half': () => `
+  'split-in-half': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Split Pages in Half</h2>
         <p class="mb-6 text-gray-400">Choose a method to divide every page of your document into two separate pages.</p>
         ${createFileInputHTML()}
@@ -1058,7 +1063,7 @@ compress: () => `
             <button id="process-btn" class="btn-gradient w-full mt-6">Split PDF</button>
         </div>
     `,
-    'page-dimensions': () => `
+  'page-dimensions': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Analyze Page Dimensions</h2>
         <p class="mb-6 text-gray-400">Upload a PDF to see the precise dimensions, standard size, and orientation of every page.</p>
         ${createFileInputHTML()}
@@ -1091,7 +1096,7 @@ compress: () => `
         </div>
     `,
 
-    'n-up': () => `
+  'n-up': () => `
         <h2 class="text-2xl font-bold text-white mb-4">N-Up Page Arrangement</h2>
         <p class="mb-6 text-gray-400">Combine multiple pages from your PDF onto a single sheet. This is great for creating booklets or proof sheets.</p>
         ${createFileInputHTML()}
@@ -1154,7 +1159,7 @@ compress: () => `
         </div>
     `,
 
-    'duplicate-organize': () => `
+  'duplicate-organize': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Page Manager</h2>
         <p class="mb-6 text-gray-400">Drag pages to reorder them. Use the <i data-lucide="copy-plus" class="inline-block w-4 h-4 text-green-400"></i> icon to duplicate a page or the <i data-lucide="x-circle" class="inline-block w-4 h-4 text-red-400"></i> icon to delete it.</p>
         ${createFileInputHTML()}
@@ -1167,7 +1172,7 @@ compress: () => `
         </div>
     `,
 
-    'combine-single-page': () => `
+  'combine-single-page': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Combine to a Single Page</h2>
         <p class="mb-6 text-gray-400">Stitch all pages of your PDF together vertically to create one continuous, scrollable page.</p>
         ${createFileInputHTML()}
@@ -1194,7 +1199,7 @@ compress: () => `
         </div>
     `,
 
-    'fix-dimensions': () => `
+  'fix-dimensions': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Standardize Page Dimensions</h2>
         <p class="mb-6 text-gray-400">Convert all pages in your PDF to a uniform size. Choose a standard format or define a custom dimension.</p>
         ${createFileInputHTML()}
@@ -1270,7 +1275,7 @@ compress: () => `
         </div>
     `,
 
-    'change-background-color': () => `
+  'change-background-color': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Change Background Color</h2>
         <p class="mb-6 text-gray-400">Select a new background color for every page of your PDF.</p>
         ${createFileInputHTML()}
@@ -1282,7 +1287,7 @@ compress: () => `
         </div>
     `,
 
-    'change-text-color': () => `
+  'change-text-color': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Change Text Color</h2>
         <p class="mb-6 text-gray-400">Change the color of dark text in your PDF. This process converts pages to images, so text will not be selectable in the final file.</p>
         ${createFileInputHTML()}
@@ -1306,7 +1311,7 @@ compress: () => `
         </div>
     `,
 
-    'compare-pdfs': () => `
+  'compare-pdfs': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Compare PDFs</h2>
         <p class="mb-6 text-gray-400">Upload two files to visually compare them using either an overlay or a side-by-side view.</p>
         
@@ -1357,7 +1362,7 @@ compress: () => `
         </div>
     `,
 
-    'ocr-pdf': () => `
+  'ocr-pdf': () => `
     <h2 class="text-2xl font-bold text-white mb-4">OCR PDF</h2>
     <p class="mb-6 text-gray-400">Convert scanned PDFs into searchable documents. Select one or more languages present in your file for the best results.</p>
     ${createFileInputHTML()}
@@ -1369,12 +1374,16 @@ compress: () => `
             <div class="relative">
                 <input type="text" id="lang-search" class="w-full bg-gray-900 border border-gray-600 text-white rounded-lg p-2.5 mb-2" placeholder="Search for languages...">
                 <div id="lang-list" class="max-h-48 overflow-y-auto border border-gray-600 rounded-lg p-2 bg-gray-900">
-                    ${Object.entries(tesseractLanguages).map(([code, name]) => `
+                    ${Object.entries(tesseractLanguages)
+                      .map(
+                        ([code, name]) => `
                         <label class="flex items-center gap-2 p-2 rounded-md hover:bg-gray-700 cursor-pointer">
                             <input type="checkbox" value="${code}" class="lang-checkbox w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
                             ${name}
                         </label>
-                    `).join('')}
+                    `
+                      )
+                      .join('')}
                 </div>
             </div>
              <p class="text-xs text-gray-500 mt-1">Selected: <span id="selected-langs-display" class="font-semibold">None</span></p>
@@ -1433,7 +1442,7 @@ compress: () => `
     </div>
 `,
 
-    'word-to-pdf': () => `
+  'word-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Word to PDF Converter</h2>
         <p class="mb-6 text-gray-400">Upload a .docx file to convert it into a high-quality PDF with selectable text. Complex layouts may not be perfectly preserved.</p>
         
@@ -1452,7 +1461,7 @@ compress: () => `
         <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Preview & Convert</button>
     `,
 
-    'sign-pdf': () => `
+  'sign-pdf': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Sign PDF</h2>
     <p class="mb-6 text-gray-400">Create your signature, select it, then click on the document to place. You can drag to move placed signatures.</p>
     ${createFileInputHTML()}
@@ -1543,7 +1552,7 @@ compress: () => `
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Apply Signatures & Download PDF</button>
 `,
 
-    'remove-annotations': () => `
+  'remove-annotations': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Remove Annotations</h2>
     <p class="mb-6 text-gray-400">Select the types of annotations to remove from all pages or a specific range.</p>
     ${createFileInputHTML()}
@@ -1602,8 +1611,7 @@ compress: () => `
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Remove Selected Annotations</button>
 `,
 
-
-cropper: () => `
+  cropper: () => `
     <h2 class="text-2xl font-bold text-white mb-4">PDF Cropper</h2>
     <p class="mb-6 text-gray-400">Upload a PDF to visually crop one or more pages. This tool offers a live preview and two distinct cropping modes.</p>
     
@@ -1647,7 +1655,7 @@ cropper: () => `
     </div>
 `,
 
-'form-filler': () => `
+  'form-filler': () => `
     <h2 class="text-2xl font-bold text-white mb-4">PDF Form Filler</h2>
     <p class="mb-6 text-gray-400">Upload a PDF to fill in existing form fields. The PDF view on the right will update as you type.</p>
     ${createFileInputHTML()}
@@ -1694,7 +1702,7 @@ cropper: () => `
     </div>
 `,
 
-posterize: () => `
+  posterize: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Posterize PDF</h2>
     <p class="mb-6 text-gray-400">Split pages into multiple smaller sheets to print as a poster. Navigate the preview and see the grid update based on your settings.</p>
     ${createFileInputHTML()}
@@ -1794,7 +1802,7 @@ posterize: () => `
     </div>
 `,
 
-'remove-blank-pages': () => `
+  'remove-blank-pages': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Remove Blank Pages</h2>
     <p class="mb-6 text-gray-400">Automatically detect and remove blank or nearly blank pages from your PDF. Adjust the sensitivity to control what is considered "blank".</p>
     ${createFileInputHTML()}
@@ -1819,7 +1827,7 @@ posterize: () => `
     </div>
 `,
 
-'alternate-merge': () => `
+  'alternate-merge': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Alternate & Mix Pages</h2>
     <p class="mb-6 text-gray-400">Combine pages from 2 or more documents, alternating between them. Drag the files to set the mixing order (e.g., Page 1 from Doc A, Page 1 from Doc B, Page 2 from Doc A, Page 2 from Doc B, etc.).</p>
     ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
@@ -1836,5 +1844,4 @@ posterize: () => `
         <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Alternate & Mix PDFs</button>
     </div>
 `,
-
 };

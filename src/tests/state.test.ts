@@ -2,7 +2,6 @@ import { state, resetState } from '@/js/state';
 import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('State Management', () => {
-
   // Test the initial state on import
   describe('Initial State', () => {
     it('should have the correct initial values', () => {
@@ -16,7 +15,6 @@ describe('State Management', () => {
 
   // Test the resetState function
   describe('resetState function', () => {
-    
     // Before each test in this block, we'll "dirty" the state
     // to ensure the reset function is actually doing something.
     beforeEach(() => {
@@ -29,7 +27,8 @@ describe('State Management', () => {
 
       // 2. Create the DOM element that the function interacts with
       //    The setup.ts file will clean this up automatically after each test.
-      document.body.innerHTML = '<div id="tool-content">Some old tool content</div>';
+      document.body.innerHTML =
+        '<div id="tool-content">Some old tool content</div>';
     });
 
     it('should reset all state properties to their initial values', () => {
