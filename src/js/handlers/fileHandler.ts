@@ -323,7 +323,53 @@ async function handleSinglePdfUpload(toolId, file) {
   }
 }
 
-function handleMultiFileUpload(toolId) {
+async function handleMultiFileUpload(toolId) {
+  if (toolId == 'merge' || toolId == 'alternate-merge') {
+    const pdfFilesUnloaded: File[] = [];
+
+    state.files.forEach((file) => {
+      if (file.type == 'application/pdf') {
+        pdfFilesUnloaded.push(file);
+      }
+    });
+
+    const pdfFilesLoaded: {
+      file: File;
+      pdfDoc: PDFLibDocument;
+    }[] = [];
+
+    for (const file of pdfFilesUnloaded) {
+      const pdfBytes = await readFileAsArrayBuffer(file);
+      const pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
+        ignoreEncryption: true,
+      });
+
+      pdfFilesLoaded.push({
+        file,
+        pdfDoc,
+      });
+    }
+
+    const foundEncryptedPdfs = pdfFilesLoaded.filter(
+      (pdf) => pdf.pdfDoc.isEncrypted
+    );
+
+    if (foundEncryptedPdfs.length > 0) {
+      const encryptedPDFTitles = [];
+      foundEncryptedPdfs.forEach((encPdf) => {
+        encryptedPDFTitles.push(encPdf.file.name);
+      });
+
+      const errorMessage = `PDFs found that are password-protected\nPlease use the Decrypt or Change Permissions tool first.\n\n${encryptedPDFTitles.join('\n')}`;
+
+      showAlert('Protected PDFs', errorMessage);
+
+      switchView('grid');
+
+      return;
+    }
+  }
+
   const processBtn = document.getElementById('process-btn');
   if (processBtn) {
     (processBtn as HTMLButtonElement).disabled = false;
@@ -393,7 +439,7 @@ export function setupFileInputHandler(toolId) {
     }
 
     if (isMultiFileTool) {
-      handleMultiFileUpload(toolId);
+      await handleMultiFileUpload(toolId);
     } else if (singlePdfLoadTools.includes(toolId)) {
       await handleSinglePdfUpload(toolId, state.files[0]);
     } else if (simpleTools.includes(toolId)) {
