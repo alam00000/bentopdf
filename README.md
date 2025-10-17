@@ -1,9 +1,11 @@
 # BentoPDF
-
-![Docker Pulls](https://img.shields.io/docker/pulls/bentopdf/bentopdf)
-[![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio0)
-
 **BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
+
+![Docker Pulls](https://img.shields.io/docker/pulls/bentopdf/bentopdf) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio0) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
+
+## ⭐ Stargazers over time
+
+[![Star History Chart](https://api.star-history.com/svg?repos=alam00000/bentopdf&type=Date)](https://star-history.com/#alam00000/bentopdf&Date)
 
 ---
 
@@ -91,64 +93,89 @@ You can run BentoPDF locally for development or personal use.
 - [npm](https://www.npmjs.com/) (or yarn/pnpm)
 - [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/install/) (for containerized setup)
 
-### 🚀 Run BentoPDF with Docker (Quick Start)
+### 🚀 Quick Start with Docker
 
 You can run BentoPDF directly from Docker Hub without cloning the repository:
 
 ```bash
-docker pull bentopdf/bentopdf:latest
 docker run -p 3000:80 bentopdf/bentopdf:latest
 ```
 
-Open your browser at: http://localhost:3000.
+Open your browser at: http://localhost:3000
+
 This is the fastest way to try BentoPDF without setting up a development environment.
 
-### 🚀 Installation with npm
+### 🚀 Run with Docker Compose (Recommended)
 
-1.  **Clone the Repository**:
+For a more robust setup with auto-restart capabilities:
 
-    ```bash
-    git clone https://github.com/alam00000/bentopdf.git
-    cd bentopdf
-    ```
+1. **Create a `docker-compose.yml` file or use the one given in repo**:
 
-2.  **Install Dependencies**:
+```yaml
+services:
+  bentopdf:
+    image: bentopdf/bentopdf:latest
+    container_name: bentopdf
+    ports:
+      - '3000:80'
+    restart: unless-stopped
+```
 
-    ```bash
-    npm install
-    ```
+2. **Start the application**:
 
-3.  **Run the Development Server**:
-    ```bash
-    npm run dev
-    ```
-    The application will be available at `http://localhost:5173`.
+```bash
+docker-compose up -d
+```
 
-### 🚀 Running with Docker Compose Locally
+The application will be available at `http://localhost:3000`.
 
-1.  **Clone the Repository**:
+### 🚀 Development Setup
 
-    ```bash
-    git clone https://github.com/alam00000/bentopdf.git
-    cd bentopdf
-    ```
+#### Option 1: Run with npm
 
-2.  **Run with Docker Compose**:
-    Create a `docker-compose.yml` file with the content provided in the repository or use the existing one. Then, run:
+1. **Clone the Repository**:
 
-    ```bash
-    docker-compose up -d
-    ```
+   ```bash
+   git clone https://github.com/alam00000/bentopdf.git
+   cd bentopdf
+   ```
 
-    The application will be available at `http://localhost:3000`.
+2. **Install Dependencies**:
 
-    > **Note:** After making any local changes to the code, it’s recommended to rebuild the Docker image using:
+   ```bash
+   npm install
+   ```
 
-    ```bash
-    docker-compose up --build -d
-    ```
+3. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:5173`.
 
-    This ensures your latest changes are applied inside the container
+#### Option 2: Build and Run with Docker Compose
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/alam00000/bentopdf.git
+   cd bentopdf
+   ```
+
+2. **Run with Docker Compose**:
+
+   ```bash
+   docker-compose -f docker-compose.dev.yml up -d
+   ```
+
+   The application will be available at `http://localhost:3000`.
+
+   > **Note:** After making any local changes to the code, rebuild the Docker image using:
+
+   ```bash
+   docker-compose -f docker-compose.dev.yml up --build -d
+   ```
+
+   This ensures your latest changes are applied inside the container.
 
 ---
 
@@ -174,6 +201,8 @@ BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript*
 - **Convert to PDF/A**: Convert PDFs to the PDF/A archival format.
 - **Edit PDF Content**: Directly edit text and other content within your PDF.
 - **Linearize PDF**: Optimize PDFs for fast web viewing.
+- **PDF to Office**: Converts PDF files into editable Word, Excel, and PowerPoint formats.
+- **Office to PDF**: Converts Word, Excel, and PowerPoint documents into optimized PDFs.
 
 Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/q42xWQmJ).
 
@@ -181,7 +210,7 @@ Contributions and discussions on the roadmap are welcome! Join the conversation 
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here’s how you can get started:
+We welcome contributions from the community! Here's how you can get started:
 
 1.  **Fork the repository** and create your branch from `main`.
 2.  Follow the **Getting Started** steps to set up your local environment.
@@ -194,7 +223,7 @@ Have an idea for a new tool or an improvement? [Open an issue](https://github.co
 
 ## Special Thanks
 
-BentoPDF wouldn’t be possible without the amazing open-source tools and libraries that power it. We’d like to extend our heartfelt thanks to the creators and maintainers of:
+BentoPDF wouldn't be possible without the amazing open-source tools and libraries that power it. We'd like to extend our heartfelt thanks to the creators and maintainers of:
 
 - **[PDFLib.js](https://pdf-lib.js.org/)** – For enabling powerful client-side PDF manipulation.
 - **[PDF.js](https://mozilla.github.io/pdf.js/)** – For the robust PDF rendering engine in the browser.

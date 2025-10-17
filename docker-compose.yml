@@ -1,11 +1,7 @@
-version: '3.8'
-
 services:
   bentopdf:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: bentopdf/bentopdf:latest
     container_name: bentopdf
-    ports:
-      - '3000:80'
     restart: unless-stopped
+    ports:
+      - "3000:80"
