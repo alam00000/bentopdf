@@ -9,9 +9,8 @@ export async function organize() {
   try {
     const newPdf = await PDFLibDocument.create();
     const pageContainer = document.getElementById('page-organizer');
-    // @ts-expect-error TS(2339) FIXME: Property 'dataset' does not exist on type 'Element... Remove this comment to see the full error message
     const pageIndices = Array.from(pageContainer.children).map((child) =>
-      parseInt(child.dataset.pageIndex)
+      parseInt((child as HTMLElement).dataset.pageIndex)
     );
 
     const copiedPages = await newPdf.copyPages(state.pdfDoc, pageIndices);

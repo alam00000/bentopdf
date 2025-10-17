@@ -81,10 +81,9 @@ function updateProgress(status: any, progress: any) {
 }
 
 async function runOCR() {
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'Element'.
   const selectedLangs = Array.from(
     document.querySelectorAll('.lang-checkbox:checked')
-  ).map((cb) => cb.value);
+  ).map((cb) => (cb as HTMLInputElement).value);
   // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   const scale = parseFloat(document.getElementById('ocr-resolution').value);
   // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message

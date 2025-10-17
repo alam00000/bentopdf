@@ -38,15 +38,18 @@ export function setupWatermarkUI() {
   const angleSliderText = document.getElementById('angle-text');
   const angleValueText = document.getElementById('angle-value-text');
 
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   opacitySliderText.addEventListener(
     'input',
-    () => (opacityValueText.textContent = opacitySliderText.value)
+    () =>
+      (opacityValueText.textContent = (
+        opacitySliderText as HTMLInputElement
+      ).value)
   );
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+
   angleSliderText.addEventListener(
     'input',
-    () => (angleValueText.textContent = angleSliderText.value)
+    () =>
+      (angleValueText.textContent = (angleSliderText as HTMLInputElement).value)
   );
 
   const opacitySliderImage = document.getElementById('opacity-image');
@@ -54,22 +57,28 @@ export function setupWatermarkUI() {
   const angleSliderImage = document.getElementById('angle-image');
   const angleValueImage = document.getElementById('angle-value-image');
 
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   opacitySliderImage.addEventListener(
     'input',
-    () => (opacityValueImage.textContent = opacitySliderImage.value)
+    () =>
+      (opacityValueImage.textContent = (
+        opacitySliderImage as HTMLInputElement
+      ).value)
   );
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+
   angleSliderImage.addEventListener(
     'input',
-    () => (angleValueImage.textContent = angleSliderImage.value)
+    () =>
+      (angleValueImage.textContent = (
+        angleSliderImage as HTMLInputElement
+      ).value)
   );
 }
 
 export async function addWatermark() {
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'Element'.
-  const watermarkType = document.querySelector(
-    'input[name="watermark-type"]:checked'
+  const watermarkType = (
+    document.querySelector(
+      'input[name="watermark-type"]:checked'
+    ) as HTMLInputElement
   ).value;
 
   showLoader('Adding watermark...');
@@ -82,9 +91,9 @@ export async function addWatermark() {
       watermarkAsset = await state.pdfDoc.embedFont(StandardFonts.Helvetica);
     } else {
       // 'image'
-      // @ts-expect-error TS(2339) FIXME: Property 'files' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-      const imageFile = document.getElementById('image-watermark-input')
-        .files[0];
+      const imageFile = (
+        document.getElementById('image-watermark-input') as HTMLInputElement
+      ).files?.[0];
       if (!imageFile)
         throw new Error('Please select an image file for the watermark.');
 
@@ -109,17 +118,21 @@ export async function addWatermark() {
         if (!text.trim())
           throw new Error('Please enter text for the watermark.');
 
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
         const fontSize =
-          parseInt(document.getElementById('font-size').value) || 72;
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+          parseInt(
+            (document.getElementById('font-size') as HTMLInputElement).value
+          ) || 72;
         const angle =
-          parseInt(document.getElementById('angle-text').value) || 0;
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+          parseInt(
+            (document.getElementById('angle-text') as HTMLInputElement).value
+          ) || 0;
         const opacity =
-          parseFloat(document.getElementById('opacity-text').value) || 0.3;
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-        const colorHex = document.getElementById('text-color').value;
+          parseFloat(
+            (document.getElementById('opacity-text') as HTMLInputElement).value
+          ) || 0.3;
+        const colorHex = (
+          document.getElementById('text-color') as HTMLInputElement
+        ).value;
         const textColor = hexToRgb(colorHex);
         const textWidth = watermarkAsset.widthOfTextAtSize(text, fontSize);
 
@@ -133,12 +146,14 @@ export async function addWatermark() {
           rotate: degrees(angle),
         });
       } else {
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
         const angle =
-          parseInt(document.getElementById('angle-image').value) || 0;
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+          parseInt(
+            (document.getElementById('angle-image') as HTMLInputElement).value
+          ) || 0;
         const opacity =
-          parseFloat(document.getElementById('opacity-image').value) || 0.3;
+          parseFloat(
+            (document.getElementById('opacity-image') as HTMLInputElement).value
+          ) || 0.3;
 
         const scale = 0.5;
         const imgWidth = watermarkAsset.width * scale;

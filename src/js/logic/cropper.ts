@@ -273,13 +273,11 @@ export async function setupCropperTool() {
         // Get the last known crop from the active page before processing
         saveCurrentCrop();
 
-        // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message
-        const isDestructive = document.getElementById(
-          'destructive-crop-toggle'
+        const isDestructive = (
+          document.getElementById('destructive-crop-toggle') as HTMLInputElement
         ).checked;
-        // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message
-        const isApplyToAll = document.getElementById(
-          'apply-to-all-toggle'
+        const isApplyToAll = (
+          document.getElementById('apply-to-all-toggle') as HTMLInputElement
         ).checked;
 
         let finalCropData = {};

@@ -156,9 +156,8 @@ export async function processAndSave() {
     const grid = document.getElementById('page-grid');
     const finalPageElements = grid.querySelectorAll('.page-thumbnail');
 
-    // @ts-expect-error TS(2339) FIXME: Property 'dataset' does not exist on type 'Element... Remove this comment to see the full error message
     const finalIndices = Array.from(finalPageElements).map((el) =>
-      parseInt(el.dataset.originalPageIndex)
+      parseInt((el as HTMLElement).dataset.originalPageIndex)
     );
 
     const newPdfDoc = await PDFLibDocument.create();

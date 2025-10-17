@@ -110,11 +110,12 @@ function setupDrawingCanvas() {
   signState.drawContext.lineWidth = 2;
 
   const colorPicker = document.getElementById('signature-color');
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
+
   colorPicker.oninput = () =>
-    (signState.drawContext.strokeStyle = colorPicker.value);
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  signState.drawContext.strokeStyle = colorPicker.value;
+    (signState.drawContext.strokeStyle = (
+      colorPicker as HTMLInputElement
+    ).value);
+  signState.drawContext.strokeStyle = (colorPicker as HTMLInputElement).value;
 
   const start = (e: any) => {
     signState.isDrawing = true;
