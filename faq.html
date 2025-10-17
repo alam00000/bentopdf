@@ -33,11 +33,17 @@
             <a href="./about.html" class="nav-link">About</a>
             <a href="./contact.html" class="nav-link">Contact</a>
             <a href="index.html#tools-header" class="nav-link">All Tools</a>
+            <button id="theme-toggle" class="ml-4 p-2 rounded-md border border-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+              <span id="theme-icon">🌙</span>
+            </button>
           </div>
 
-          <div class="md:hidden flex items-center gap-4">
+          <div class="md:hidden flex items-center gap-2">
             <a href="index.html" class="nav-link">Home</a>
             <a href="index.html#tools-header" class="nav-link">All Tools</a>
+            <button id="theme-toggle-mobile" class="p-2 rounded-md border border-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+              <span id="theme-icon-mobile">🌙</span>
+            </button>
           </div>
         </div>
       </div>
@@ -337,7 +343,71 @@
     </footer>
 
     <script>
-      lucide.createIcons();
+      // Enhanced theme management
+      class ThemeManager {
+        constructor() {
+          this.toggleButton = document.getElementById('theme-toggle');
+          this.toggleButtonMobile = document.getElementById('theme-toggle-mobile');
+          this.icon = document.getElementById('theme-icon');
+          this.iconMobile = document.getElementById('theme-icon-mobile');
+          this.html = document.documentElement;
+          this.init();
+        }
+
+        init() {
+          // Check for saved theme preference or default to system preference
+          const savedTheme = localStorage.getItem('theme');
+          const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          
+          if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            this.setTheme('dark');
+          } else {
+            this.setTheme('light');
+          }
+
+          // Listen for system theme changes
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+              this.setTheme(e.matches ? 'dark' : 'light');
+            }
+          });
+
+          // Add click event listeners for both buttons
+          if (this.toggleButton) {
+            this.toggleButton.addEventListener('click', () => {
+              const currentTheme = this.html.classList.contains('dark') ? 'dark' : 'light';
+              this.setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+          }
+
+          if (this.toggleButtonMobile) {
+            this.toggleButtonMobile.addEventListener('click', () => {
+              const currentTheme = this.html.classList.contains('dark') ? 'dark' : 'light';
+              this.setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+          }
+        }
+
+        setTheme(theme) {
+          if (theme === 'dark') {
+            this.html.classList.add('dark');
+            if (this.icon) this.icon.textContent = '☀️';
+            if (this.iconMobile) this.iconMobile.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+          } else {
+            this.html.classList.remove('dark');
+            if (this.icon) this.icon.textContent = '🌙';
+            if (this.iconMobile) this.iconMobile.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+          }
+        }
+      }
+
+      // Initialize theme manager and icons when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+        new ThemeManager();
+        lucide.createIcons();
+      });
     </script>
   </body>
 </html>
