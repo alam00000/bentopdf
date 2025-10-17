@@ -24,9 +24,11 @@ Please describe **how you tested your changes** so that maintainers can verify t
 - [ ] Wrote Vite Test Case (if applicable)
 
 **Expected Results:**
+
 - What the tests should produce (e.g., correct PDF rendering, no errors).
 
 **Actual Results:**
+
 - What you observed when running the tests.
 
 ### Checklist:

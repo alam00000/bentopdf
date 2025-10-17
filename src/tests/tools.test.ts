@@ -4,7 +4,6 @@ import { categories } from '@/js/config/tools';
 import { describe, it, expect } from 'vitest';
 
 describe('Tool Categories Configuration', () => {
-
   // 1. Basic Structure and Type Checking
   it('should be an array of category objects', () => {
     expect(Array.isArray(categories)).toBe(true);
@@ -13,7 +12,6 @@ describe('Tool Categories Configuration', () => {
 
   // 2. Loop through each category to perform specific checks
   describe.each(categories)('Category: "$name"', (category) => {
-    
     // Check that the category object itself is well-formed
     it('should have a non-empty "name" string and a non-empty "tools" array', () => {
       expect(typeof category.name).toBe('string');
@@ -24,7 +22,7 @@ describe('Tool Categories Configuration', () => {
 
     // **KEY CHANGE**: This test now ensures IDs are unique only WITHIN this specific category.
     it('should not contain any duplicate tool IDs within its own list', () => {
-      const toolIds = category.tools.map(tool => tool.id);
+      const toolIds = category.tools.map((tool) => tool.id);
       const uniqueToolIds = new Set(toolIds);
 
       // This assertion checks for duplicates inside THIS category only.

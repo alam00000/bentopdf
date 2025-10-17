@@ -1,8 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { singlePdfLoadTools, simpleTools, multiFileTools } from '@/js/config/pdf-tools';
+import {
+  singlePdfLoadTools,
+  simpleTools,
+  multiFileTools,
+} from '@/js/config/pdf-tools';
 
 describe('Tool Configuration Arrays', () => {
-
   // --- Tests for singlePdfLoadTools ---
   describe('singlePdfLoadTools', () => {
     it('should be an array of non-empty strings', () => {
@@ -30,7 +33,7 @@ describe('Tool Configuration Arrays', () => {
     it('should be an array of non-empty strings', () => {
       expect(Array.isArray(simpleTools)).toBe(true);
       expect(simpleTools.length).toBeGreaterThan(0);
-      simpleTools.forEach(tool => {
+      simpleTools.forEach((tool) => {
         expect(typeof tool).toBe('string');
         expect(tool.length).toBeGreaterThan(0);
       });
@@ -51,7 +54,7 @@ describe('Tool Configuration Arrays', () => {
     it('should be an array of non-empty strings', () => {
       expect(Array.isArray(multiFileTools)).toBe(true);
       expect(multiFileTools.length).toBeGreaterThan(0);
-      multiFileTools.forEach(tool => {
+      multiFileTools.forEach((tool) => {
         expect(typeof tool).toBe('string');
         expect(tool.length).toBeGreaterThan(0);
       });
@@ -82,5 +85,4 @@ describe('Tool Configuration Arrays', () => {
       expect(uniqueTools.size).toBe(allTools.length);
     });
   });
-
 });
