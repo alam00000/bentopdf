@@ -30,7 +30,7 @@
             <a href="./contact.html" class="nav-link">Contact</a>
             <a href="index.html#tools-header" class="nav-link">All Tools</a>
             <button id="theme-toggle" class="ml-4 p-2 rounded-md border border-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-              <span id="theme-icon">🌙</span>
+              <i id="theme-icon" data-lucide="moon"></i>
             </button>
           </div>
 
@@ -38,7 +38,7 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="index.html#tools-header" class="nav-link">All Tools</a>
             <button id="theme-toggle-mobile" class="p-2 rounded-md border border-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-              <span id="theme-icon-mobile">🌙</span>
+              <i id="theme-icon-mobile" data-lucide="moon"></i>
             </button>
           </div>
         </div>
@@ -201,13 +201,25 @@
         setTheme(theme) {
           if (theme === 'dark') {
             this.html.classList.add('dark');
-            if (this.icon) this.icon.textContent = '☀️';
-            if (this.iconMobile) this.iconMobile.textContent = '☀️';
+            if (this.icon) {
+              this.icon.setAttribute('data-lucide', 'sun');
+              lucide.createIcons();
+            }
+            if (this.iconMobile) {
+              this.iconMobile.setAttribute('data-lucide', 'sun');
+              lucide.createIcons();
+            }
             localStorage.setItem('theme', 'dark');
           } else {
             this.html.classList.remove('dark');
-            if (this.icon) this.icon.textContent = '🌙';
-            if (this.iconMobile) this.iconMobile.textContent = '🌙';
+            if (this.icon) {
+              this.icon.setAttribute('data-lucide', 'moon');
+              lucide.createIcons();
+            }
+            if (this.iconMobile) {
+              this.iconMobile.setAttribute('data-lucide', 'moon');
+              lucide.createIcons();
+            }
             localStorage.setItem('theme', 'light');
           }
         }

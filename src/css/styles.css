@@ -48,6 +48,21 @@ body {
   min-height: 100vh;
 }
 
+/* 🎨 Force dark mode body styling */
+.dark body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* 🌙 Force dark background for dark mode */
+.dark {
+  background-color: var(--bg-primary) !important;
+}
+
+.dark #app {
+  background-color: var(--bg-primary) !important;
+}
+
 /* 🧭 Navbar */
 nav {
   background-color: var(--bg-secondary);
@@ -211,6 +226,31 @@ body {
 
 .border-gray-600 {
   border-color: var(--border-secondary) !important;
+}
+
+/* 🌙 Dark mode specific overrides */
+.dark .bg-gray-800 {
+  background-color: var(--bg-secondary) !important;
+}
+
+.dark .bg-gray-700 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+.dark .bg-gray-900 {
+  background-color: var(--bg-primary) !important;
+}
+
+.dark .text-white {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-gray-400 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .text-gray-300 {
+  color: var(--text-tertiary) !important;
 }
 
 /* 🎯 Specific component overrides */
@@ -407,7 +447,107 @@ body {
   content: '.';
   color: var(--accent-primary);
   font-weight: bold;
-  margin-left: 0.1em;
+  margin-left: 0.01em;
+}
+
+/* 📏 Marker slanted styling */
+.marker-slanted {
+  position: relative;
+  display: inline-block;
+}
+
+.marker-slanted::before {
+  content: '';
+  position: absolute;
+  bottom: 0.01em;
+  left: 0;
+  right: 0;
+  height: 0.1em;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  transform: skew(-15deg);
+  z-index: 0.1;
+}
+
+/* 🌙 Dark mode */
+.dark .marker-slanted::before {
+  background: linear-gradient(135deg, #818cf8, #a5b4fc);
+}
+
+
+/* 🔄 Sortable drag states */
+.sortable-ghost {
+  opacity: 0.4 !important;
+  background-color: var(--bg-tertiary) !important;
+  border: 2px dashed var(--accent-primary) !important;
+}
+
+.sortable-chosen {
+  opacity: 0.8 !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 4px 12px var(--shadow) !important;
+}
+
+.sortable-drag {
+  opacity: 0.9 !important;
+  transform: rotate(5deg) !important;
+  box-shadow: 0 8px 20px var(--shadow) !important;
+  border: 2px solid var(--accent-primary) !important;
+}
+
+/* 🔒 Security compliance section fixes */
+#security-compliance-section .text-white {
+  color: var(--text-primary) !important;
+}
+
+#security-compliance-section .text-indigo-300 {
+  color: white !important;
+}
+
+#security-compliance-section .bg-indigo-900 {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+}
+
+#security-compliance-section .border-indigo-400 {
+  border-color: var(--accent-primary) !important;
+}
+
+#security-compliance-section .text-indigo-400 {
+  color: var(--accent-primary) !important;
+}
+
+/* 📋 FAQ section improvements for light mode */
+.faq-item {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-primary) !important;
+}
+
+.faq-question {
+  color: white !important;
+}
+
+.faq-question span {
+  color: white !important;
+}
+
+.faq-answer p {
+  color: var(--text-secondary) !important;
+}
+
+/* 🔄 File Mode and Pages Mode buttons */
+#file-mode-btn {
+  background-color: var(--accent-primary) !important;
+  color: white !important;
+}
+
+#page-mode-btn {
+  color: white !important;
+  background-color: transparent !important;
+  border: 1px solid var(--border-primary) !important;
+}
+
+#page-mode-btn:hover {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
 }
 
 /* 🌟 Hero section badges and CTA button */
@@ -437,19 +577,20 @@ body {
   color: white !important;
   border: 1px solid var(--accent-primary) !important;
   backdrop-filter: blur(8px) !important;
-}
-
-.inline-block.px-8.py-3.rounded-full {
-  background: linear-gradient(to bottom, var(--accent-primary), var(--accent-hover)) !important;
-  color: white !important;
-  border: none !important;
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
 }
 
-.inline-block.px-8.py-3.rounded-full:hover {
-  background: linear-gradient(to bottom, var(--accent-hover), var(--accent-primary)) !important;
-  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4) !important;
+.inline-flex.items-center.gap-2.px-4.py-2.rounded-lg:hover {
   transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4) !important;
+}
+
+.inline-flex.items-center.gap-2.px-4.py-2.rounded-lg * {
+  color: white !important;
+}
+
+.inline-flex.items-center.gap-2.px-4.py-2.rounded-lg i {
+  color: white !important;
 }
 
 /* 🎯 Specific text color overrides for hero elements */
@@ -481,10 +622,15 @@ body {
   color: white !important;
 }
 
-/* 🎯 CTA Button specific styling */
+/* 🎯 CTA Button styling to match image */
 .bg-gradient-to-b.from-indigo-500.to-indigo-600 {
   background: linear-gradient(to bottom, var(--accent-primary), var(--accent-hover)) !important;
   color: white !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3) !important;
+  font-weight: 600 !important;
+  padding: 12px 32px !important;
+  border-radius: 8px !important;
 }
 
 .bg-gradient-to-b.from-indigo-500.to-indigo-600:hover {
