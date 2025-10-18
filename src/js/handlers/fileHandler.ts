@@ -324,43 +324,40 @@ async function handleSinglePdfUpload(toolId, file) {
 }
 
 async function handleMultiFileUpload(toolId) {
-  if (toolId == 'merge' || toolId == 'alternate-merge') {
+  if (toolId === 'merge' || toolId === 'alternate-merge') {
     const pdfFilesUnloaded: File[] = [];
 
     state.files.forEach((file) => {
-      if (file.type == 'application/pdf') {
+      if (file.type === 'application/pdf') {
         pdfFilesUnloaded.push(file);
       }
     });
 
-    const pdfFilesLoaded: {
-      file: File;
-      pdfDoc: PDFLibDocument;
-    }[] = [];
+    const pdfFilesLoaded = await Promise.all(
+      pdfFilesUnloaded.map(async (file) => {
+        const pdfBytes = await readFileAsArrayBuffer(file);
+        const pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
+          ignoreEncryption: true,
+        });
 
-    for (const file of pdfFilesUnloaded) {
-      const pdfBytes = await readFileAsArrayBuffer(file);
-      const pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
-        ignoreEncryption: true,
-      });
+        return {
+          file,
+          pdfDoc,
+        };
+      })
+    );
 
-      pdfFilesLoaded.push({
-        file,
-        pdfDoc,
-      });
-    }
-
-    const foundEncryptedPdfs = pdfFilesLoaded.filter(
+    const foundEncryptedPDFs = pdfFilesLoaded.filter(
       (pdf) => pdf.pdfDoc.isEncrypted
     );
 
-    if (foundEncryptedPdfs.length > 0) {
-      const encryptedPDFTitles = [];
-      foundEncryptedPdfs.forEach((encPdf) => {
-        encryptedPDFTitles.push(encPdf.file.name);
+    if (foundEncryptedPDFs.length > 0) {
+      const encryptedPDFFileNames = [];
+      foundEncryptedPDFs.forEach((encryptedPDF) => {
+        encryptedPDFFileNames.push(encryptedPDF.file.name);
       });
 
-      const errorMessage = `PDFs found that are password-protected\nPlease use the Decrypt or Change Permissions tool first.\n\n${encryptedPDFTitles.join('\n')}`;
+      const errorMessage = `PDFs found that are password-protected\n\nPlease use the Decrypt or Change Permissions tool on these files first:\n\n${encryptedPDFFileNames.join('\n')}`;
 
       showAlert('Protected PDFs', errorMessage);
 
