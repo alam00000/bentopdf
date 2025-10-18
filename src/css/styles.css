@@ -463,6 +463,58 @@ details > summary .icon {
   transition: transform 0.2s ease-in-out;
 }
 
+details[open]>summary .icon {
+    transform: rotate(45deg);
+}
+
+/* Mobile Menu Animations */
+#mobile-menu {
+    transition: all 0.3s ease-in-out;
+    max-height: 0;
+    overflow: hidden;
+}
+
+#mobile-menu:not(.hidden) {
+    max-height: 500px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile menu button hover effects */
+#mobile-menu-button {
+    transition: all 0.2s ease-in-out;
+}
+
+#mobile-menu-button:active {
+    transform: scale(0.95);
+}
+
+/* Smooth icon transitions */
+#menu-icon,
+#close-icon {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Enhanced mobile nav link styles */
+.mobile-nav-link {
+    transition: all 0.2s ease-in-out;
+    border-left: 3px solid transparent;
+}
+
+.mobile-nav-link:hover {
+    border-left-color: #4f46e5;
+    padding-left: 1rem;
+}
 details[open] > summary .icon {
   transform: rotate(45deg);
 }
