@@ -276,10 +276,24 @@ export const toolTemplates = {
     ${createFileInputHTML({ multiple: true, showControls: true })} 
 
     <div id="merge-options" class="hidden mt-6">
-        <div class="flex gap-2 p-1 rounded-lg bg-gray-900 border border-gray-700 mb-4">
-            <button id="file-mode-btn" class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md">File Mode</button>
-            <button id="page-mode-btn" class="flex-1 btn text-gray-300 font-semibold py-2 rounded-md">Page Mode</button>
-        </div>
+  <div class="flex gap-2 p-1 rounded-lg bg-transparent dark:bg-gray-900 border border-gray-300 dark:border-gray-700 mb-4">
+    <!-- File Mode -->
+    <button
+      id="file-mode-btn"
+      class="flex-1 bg-indigo-600 text-white font-semibold py-2 rounded-md hover:bg-indigo-700 transition"
+    >
+      File Mode
+    </button>
+
+    <!-- Page Mode -->
+    <button
+      id="page-mode-btn"
+      class="flex-1 bg-white dark:bg-gray-800 text-black dark:text-gray-300 font-semibold py-2 rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+    >
+      Page Mode
+    </button>
+  </div>
+</div>
 
         <div id="file-mode-panel">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
