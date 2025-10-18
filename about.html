@@ -12,7 +12,7 @@
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
 
-<body class="antialiased bg-gray-900 text-gray-300">
+  <body class="antialiased bg-gray-900 text-gray-300">
     <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
@@ -61,6 +61,7 @@
                 <a href="index.html#tools-header" class="mobile-nav-link">All Tools</a>
             </div>
         </div>
+      </div>
     </nav>
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
@@ -115,10 +116,18 @@
                 </div>
             </div>
         </div>
+      </section>
 
-        <section id="why-Bentopdf" class="py-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
-                Why <span class="marker-slanted">Bentopdf?</span>
+      <div
+        class="bg-gray-800 rounded-xl p-8 md:p-12 my-16 border border-gray-700"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="text-center md:text-left">
+            <span class="text-indigo-400 font-bold uppercase"
+              >Our Core Philosophy</span
+            >
+            <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              Privacy First. Always.
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
@@ -167,9 +176,74 @@
                     </div>
                 </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
 
-        <div class="section-divider"></div>
+      <section id="why-Bentopdf" class="py-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+          Why <span class="marker-slanted">Bentopdf?</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="zap"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">Built for Speed</h3>
+              <p class="text-gray-400 mt-2">
+                No waiting for uploads or downloads to a server. By processing
+                files directly in your browser using modern web technologies
+                like WebAssembly, we offer unparalleled speed for all our tools.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="badge-dollar-sign"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">Completely Free</h3>
+              <p class="text-gray-400 mt-2">
+                No trials, no subscriptions, no hidden fees, and no "premium"
+                features held hostage. We believe powerful PDF tools should be a
+                public utility, not a profit center.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="user-plus"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">No Account Required</h3>
+              <p class="text-gray-400 mt-2">
+                Start using any tool immediately. We don't need your email, a
+                password, or any personal information. Your workflow should be
+                frictionless and anonymous.
+              </p>
+            </div>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg flex items-start gap-4">
+            <i
+              data-lucide="code-2"
+              class="w-10 h-10 text-indigo-400 flex-shrink-0 mt-1"
+            ></i>
+            <div>
+              <h3 class="text-xl font-bold text-white">Open Source Spirit</h3>
+              <p class="text-gray-400 mt-2">
+                Built with transparency in mind. We leverage incredible
+                open-source libraries like PDF-lib and PDF.js, and believe in
+                the community-driven effort to make powerful tools accessible to
+                everyone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
         <section id="cta-section" class="text-center py-16">
             <h2 class="text-3xl font-bold text-white mb-4">
@@ -246,11 +320,13 @@
                     </div>
                 </div>
             </div>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script>
-        lucide.createIcons();
+      lucide.createIcons();
     </script>
     <script type="module" src="/src/js/mobile-menu.ts"></script>
 </body>

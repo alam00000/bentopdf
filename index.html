@@ -67,6 +67,7 @@
                 <a href="index.html#tools-header" class="mobile-nav-link">All Tools</a>
             </div>
         </div>
+      </div>
     </nav>
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
         <section id="hero-section" class="text-center py-20">
@@ -204,8 +205,17 @@
                         placeholder="Search for a tool (e.g., 'split', 'organize'...)" />
                 </div>
             </div>
-
-            <div id="tool-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+            <p class="text-gray-400 pl-14">
+              All tools, no trials, no paywalls.
+            </p>
+          </div>
+          <div class="bg-gray-800 p-6 rounded-lg">
+            <div class="flex items-center gap-4 mb-3">
+              <i
+                data-lucide="infinity"
+                class="w-10 h-10 text-indigo-400 flex-shrink-0"
+              ></i>
+              <h3 class="text-xl font-bold text-white">No Limits</h3>
             </div>
         </div>
 
@@ -227,6 +237,10 @@
                     Processing...
                 </p>
             </div>
+            <p class="text-gray-400 pl-14">
+              Process PDFs instantly, without waiting or delays.
+            </p>
+          </div>
         </div>
 
         <div id="alert-modal"
@@ -263,33 +277,89 @@
                 </div>
                 <div id="preview-content" class="p-8 overflow-y-auto flex-grow"></div>
             </div>
+          </div>
+          <div id="preview-content" class="p-8 overflow-y-auto flex-grow"></div>
+        </div>
+      </div>
+
+      <div class="section-divider hide-section mb-20 mt-10"></div>
+
+      <!-- COMPLIANCE SECTION START -->
+      <section id="security-compliance-section" class="py-20 hide-section">
+        <div class="mb-8 text-center">
+          <h2
+            class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-balance"
+          >
+            Your data never leaves your device
+            <span class="inline-flex items-center gap-2">
+              <i
+                data-lucide="shield"
+                class="w-8 h-8 md:w-10 md:h-10 text-indigo-400 bg-indigo-900 rounded-lg p-1.5"
+              ></i>
+              We keep
+            </span>
+            <br class="hidden sm:block" />
+            <span
+              class="inline-block border-2 border-indigo-400 bg-indigo-900 text-indigo-300 px-4 py-2 rounded-full mx-2 text-2xl md:text-3xl lg:text-4xl font-bold"
+            >
+              your information safe
+            </span>
+            by following global security standards.
+          </h2>
+        </div>
+        <div class="mb-16 text-center">
+          <span
+            class="inline-flex items-center gap-2 text-indigo-400 text-lg font-medium transition-colors"
+          >
+            All the processing happens locally on your device.
+          </span>
         </div>
 
-        <div class="section-divider hide-section mb-20 mt-10"></div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4"
+        >
+          <!-- GDPR Compliance -->
+          <div class="flex flex-col items-center text-center">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-600 flex items-center justify-center mb-4"
+            >
+              <img
+                src="https://mkt-cf.pdffiller.com/mrk/350/images/_global/logos/security-badges/logo-gdpr.svg"
+                alt="GDPR compliance"
+                class="w-full h-full"
+              />
+            </div>
+            <h3 class="text-lg md:text-xl font-bold text-white mb-3">
+              GDPR compliance
+            </h3>
+            <p
+              class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
+            >
+              Protects the personal data and privacy of individuals within the
+              European Union.
+            </p>
+          </div>
 
-        <!-- COMPLIANCE SECTION START -->
-        <section id="security-compliance-section" class="py-20 hide-section">
-            <div class="mb-8 text-center">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-balance">
-                    Your data never leaves your device
-                    <span class="inline-flex items-center gap-2">
-                        <i data-lucide="shield"
-                            class="w-8 h-8 md:w-10 md:h-10 text-indigo-400 bg-indigo-900 rounded-lg p-1.5"></i>
-                        We keep
-                    </span>
-                    <br class="hidden sm:block" />
-                    <span
-                        class="inline-block border-2 border-indigo-400 bg-indigo-900 text-indigo-300 px-4 py-2 rounded-full mx-2 text-2xl md:text-3xl lg:text-4xl font-bold">
-                        your information safe
-                    </span>
-                    by following global security standards.
-                </h2>
+          <div class="flex flex-col items-center text-center">
+            <div
+              class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-600 flex items-center justify-center mb-4"
+            >
+              <img
+                src="https://mkt-cf.pdffiller.com/mrk/350/images/_global/logos/security-badges/logo-ccpa.svg"
+                alt="CCPA compliance"
+                class="w-full h-full"
+              />
             </div>
-            <div class="mb-16 text-center">
-                <span class="inline-flex items-center gap-2 text-indigo-400 text-lg font-medium transition-colors">
-                    All the processing happens locally on your device.
-                </span>
-            </div>
+            <h3 class="text-lg md:text-xl font-bold text-white mb-3">
+              CCPA compliance
+            </h3>
+            <p
+              class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
+            >
+              Gives California residents rights over how their personal
+              information is collected, used, and shared.
+            </p>
+          </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
                 <!-- GDPR Compliance -->
