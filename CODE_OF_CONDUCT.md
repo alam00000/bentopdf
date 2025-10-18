@@ -12,19 +12,19 @@ We pledge to act and interact in ways that contribute to an open, welcoming, div
 
 Examples of behavior that contributes to a positive environment for our community include:
 
-- Using welcoming and inclusive language  
-- Being respectful of differing viewpoints and experiences  
-- Gracefully accepting constructive criticism  
-- Focusing on what is best for the community  
-- Showing empathy toward other community members  
+- Using welcoming and inclusive language
+- Being respectful of differing viewpoints and experiences
+- Gracefully accepting constructive criticism
+- Focusing on what is best for the community
+- Showing empathy toward other community members
 
 Examples of unacceptable behavior include:
 
-- The use of sexualized language or imagery and unwelcome sexual attention or advances  
-- Trolling, insulting or derogatory comments, and personal or political attacks  
-- Public or private harassment  
-- Publishing others’ private information, such as a physical or electronic address, without explicit permission  
-- Other conduct which could reasonably be considered inappropriate in a professional setting  
+- The use of sexualized language or imagery and unwelcome sexual attention or advances
+- Trolling, insulting or derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others’ private information, such as a physical or electronic address, without explicit permission
+- Other conduct which could reasonably be considered inappropriate in a professional setting
 
 ---
 
@@ -40,7 +40,7 @@ Maintainers have the right and responsibility to remove, edit, or reject comment
 
 If you are subject to or witness unacceptable behavior, or have any other concerns, please report it by contacting the project team at:
 
-**Email:** `contact@bentopdf.com`  
+**Email:** `contact@bentopdf.com`
 
 All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances.
 

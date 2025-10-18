@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { setupRemoveBlankPagesTool, removeBlankPages } from '@/js/logic/remove-blank-pages';
+import {
+  setupRemoveBlankPagesTool,
+  removeBlankPages,
+} from '@/js/logic/remove-blank-pages';
 import * as ui from '@/js/ui';
 import * as helpers from '@/js/utils/helpers';
 import { state } from '@/js/state';
@@ -11,7 +14,12 @@ if (typeof ImageData === 'undefined') {
     width: number;
     height: number;
     colorSpace: string;
-    constructor(data: Uint8ClampedArray, width: number, height: number, options?: { colorSpace: string }) {
+    constructor(
+      data: Uint8ClampedArray,
+      width: number,
+      height: number,
+      options?: { colorSpace: string }
+    ) {
       this.data = data;
       this.width = width;
       this.height = height;
@@ -27,11 +35,17 @@ const mockContext: CanvasRenderingContext2D = {
 } as unknown as CanvasRenderingContext2D;
 
 HTMLCanvasElement.prototype.getContext = vi.fn().mockReturnValue(mockContext);
-HTMLCanvasElement.prototype.toDataURL = vi.fn().mockReturnValue('data:image/png;base64,mock');
+HTMLCanvasElement.prototype.toDataURL = vi
+  .fn()
+  .mockReturnValue('data:image/png;base64,mock');
 
 function createMockPage(isBlank: boolean) {
   return {
-    getViewport: vi.fn(({ scale }) => ({ width: 800 * scale, height: 600 * scale, scale })),
+    getViewport: vi.fn(({ scale }) => ({
+      width: 800 * scale,
+      height: 600 * scale,
+      scale,
+    })),
     render: vi.fn(() => {
       // Return ImageData depending on blank/content
       mockContext.getImageData = vi.fn(() => {
