@@ -1846,4 +1846,12 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Alternate & Mix PDFs</button>
     </div>
 `,
+
+linearize: () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Linearize PDFs (Fast Web View)</h2>
+    <p class="mb-6 text-gray-400">Optimize multiple PDFs for faster loading over the web. Files will be downloaded in a ZIP archive.</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })} 
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Linearize PDFs & Download ZIP</button> 
+  `,
 };

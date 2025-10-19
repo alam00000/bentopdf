@@ -61,6 +61,7 @@ import {
   setupRemoveBlankPagesTool,
 } from './remove-blank-pages.js';
 import { alternateMerge, setupAlternateMergeTool } from './alternate-merge.js';
+import { linearizePdf } from './linearize.js';
 
 export const toolLogic = {
   merge: { process: merge, setup: setupMergeTool },
@@ -128,4 +129,5 @@ export const toolLogic = {
     process: alternateMerge,
     setup: setupAlternateMergeTool,
   },
+  linearize: linearizePdf,
 };

@@ -60,4 +60,5 @@ export const multiFileTools = [
   'heic-to-pdf',
   'tiff-to-pdf',
   'alternate-merge',
+  'linearize',
 ];
