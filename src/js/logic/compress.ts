@@ -272,67 +272,61 @@ export async function compress() {
   const legacySettings = settings[level].legacy;
 
   try {
-    const originalFile = state.files[0];
+    for (const originalFile of state.files) {
     const arrayBuffer = await readFileAsArrayBuffer(originalFile);
 
     let resultBytes;
     let usedMethod;
 
     if (algorithm === 'vector') {
-      showLoader('Running Vector (Smart) compression...');
-      resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
-      usedMethod = 'Vector';
+        showLoader(`Compressing ${originalFile.name} with Vector (Smart)...`);
+        resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
+        usedMethod = 'Vector';
     } else if (algorithm === 'photon') {
-      showLoader('Running Photon (Rasterize) compression...');
-      resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
-      usedMethod = 'Photon';
+        showLoader(`Compressing ${originalFile.name} with Photon (Rasterize)...`);
+        resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
+        usedMethod = 'Photon';
     } else {
-      showLoader('Running Automatic (Vector first)...');
-      const vectorResultBytes = await performSmartCompression(
-        arrayBuffer,
-        smartSettings
-      );
-
-      if (vectorResultBytes.length < originalFile.size) {
-        resultBytes = vectorResultBytes;
-        usedMethod = 'Vector (Automatic)';
-      } else {
-        showAlert('Vector failed to reduce size. Trying Photon...', 'info');
-        showLoader('Running Automatic (Photon fallback)...');
-        resultBytes = await performLegacyCompression(
-          arrayBuffer,
-          legacySettings
-        );
-        usedMethod = 'Photon (Automatic)';
-      }
+        showLoader(`Compressing ${originalFile.name} automatically...`);
+        const vectorResultBytes = await performSmartCompression(arrayBuffer, smartSettings);
+        if (vectorResultBytes.length < originalFile.size) {
+            resultBytes = vectorResultBytes;
+            usedMethod = 'Vector (Automatic)';
+        } else {
+            showAlert(`Vector failed for ${originalFile.name}. Trying Photon...`, 'info');
+            showLoader(`Compressing ${originalFile.name} with Photon fallback...`);
+            resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
+            usedMethod = 'Photon (Automatic)';
+        }
     }
 
+    // Show final info per file
     const originalSize = formatBytes(originalFile.size);
     const compressedSize = formatBytes(resultBytes.length);
     const savings = originalFile.size - resultBytes.length;
-    const savingsPercent =
-      savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
+    const savingsPercent = savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
 
     if (savings > 0) {
-      showAlert(
-        'Compression Complete',
-        `Method: **${usedMethod}**. ` +
-          `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
-      );
+        showAlert(
+            `Compression Complete for ${originalFile.name}`,
+            `Method: **${usedMethod}**. ` +
+            `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
+        );
     } else {
-      showAlert(
-        'Compression Finished',
-        `Method: **${usedMethod}**. ` +
-          `Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
-        // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
-        'warning'
-      );
+        showAlert(
+            `Compression Finished for ${originalFile.name}`,
+            `Method: **${usedMethod}**. Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
+            'warning'
+        );
     }
 
     downloadFile(
-      new Blob([resultBytes], { type: 'application/pdf' }),
-      'compressed-final.pdf'
+        new Blob([resultBytes], { type: 'application/pdf' }),
+        `${originalFile.name.replace('.pdf', '')}-compressed.pdf`
     );
+}
+
+    
   } catch (e) {
     showAlert(
       'Error',
