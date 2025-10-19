@@ -109,7 +109,7 @@ This is the fastest way to try BentoPDF without setting up a development environ
 
 For a more robust setup with auto-restart capabilities:
 
-1. **Create a `docker-compose.yml` file or use the one given in repo**:
+1. **Download the repo and create a `docker-compose.yml` file or use the one given in repo**:
 
 ```yaml
 services:
