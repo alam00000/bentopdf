@@ -181,7 +181,10 @@ describe('Add Blank Page Tool', () => {
       expect(mockNewDoc.copyPages).toHaveBeenCalledWith(state.pdfDoc, [0, 1]);
       // Should add 1 blank page + 5 existing pages = 6 total calls
       expect(mockNewDoc.addPage).toHaveBeenCalledTimes(6);
-      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(state.pdfDoc, [2, 3, 4]);
+      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(
+        state.pdfDoc,
+        [2, 3, 4]
+      );
       expect(helpers.downloadFile).toHaveBeenCalledWith(
         expect.any(Blob),
         'blank-page-added.pdf'
@@ -196,7 +199,10 @@ describe('Add Blank Page Tool', () => {
 
       await addBlankPage();
 
-      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(state.pdfDoc, [0, 1, 2, 3, 4]);
+      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(
+        state.pdfDoc,
+        [0, 1, 2, 3, 4]
+      );
       // Should add 1 blank page + 5 existing pages = 6 total calls
       expect(mockNewDoc.addPage).toHaveBeenCalledTimes(6);
       // When adding at the end, there are no pages after, so copyPages is not called for indicesAfter
@@ -239,7 +245,10 @@ describe('Add Blank Page Tool', () => {
       expect(mockNewDoc.copyPages).toHaveBeenCalledWith(state.pdfDoc, [0, 1]);
       // Should add 5 blank pages + 5 existing pages = 10 total calls
       expect(mockNewDoc.addPage).toHaveBeenCalledTimes(10);
-      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(state.pdfDoc, [2, 3, 4]);
+      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(
+        state.pdfDoc,
+        [2, 3, 4]
+      );
       expect(helpers.downloadFile).toHaveBeenCalledWith(
         expect.any(Blob),
         'blank-pages-added.pdf'
@@ -255,7 +264,10 @@ describe('Add Blank Page Tool', () => {
       await addBlankPage();
 
       expect(ui.showLoader).toHaveBeenCalledWith('Adding 2 blank pages...');
-      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(state.pdfDoc, [0, 1, 2, 3, 4]);
+      expect(mockNewDoc.copyPages).toHaveBeenCalledWith(
+        state.pdfDoc,
+        [0, 1, 2, 3, 4]
+      );
       // Should add 2 blank pages + 5 existing pages = 7 total calls
       expect(mockNewDoc.addPage).toHaveBeenCalledTimes(7);
       expect(helpers.downloadFile).toHaveBeenCalledWith(
@@ -268,7 +280,9 @@ describe('Add Blank Page Tool', () => {
   // -------------------- Error Handling Tests --------------------
   describe('Error Handling', () => {
     it('should handle PDF creation errors', async () => {
-      vi.mocked(PDFLibDocument.create).mockRejectedValue(new Error('PDF creation failed'));
+      vi.mocked(PDFLibDocument.create).mockRejectedValue(
+        new Error('PDF creation failed')
+      );
 
       document.body.innerHTML = `
         <input id="page-number" value="2" />
@@ -277,7 +291,10 @@ describe('Add Blank Page Tool', () => {
 
       await addBlankPage();
 
-      expect(ui.showAlert).toHaveBeenCalledWith('Error', 'Could not add blank page.');
+      expect(ui.showAlert).toHaveBeenCalledWith(
+        'Error',
+        'Could not add blank page.'
+      );
       expect(ui.hideLoader).toHaveBeenCalled();
     });
 
@@ -291,7 +308,10 @@ describe('Add Blank Page Tool', () => {
 
       await addBlankPage();
 
-      expect(ui.showAlert).toHaveBeenCalledWith('Error', 'Could not add blank page.');
+      expect(ui.showAlert).toHaveBeenCalledWith(
+        'Error',
+        'Could not add blank page.'
+      );
       expect(ui.hideLoader).toHaveBeenCalled();
     });
 
@@ -305,7 +325,10 @@ describe('Add Blank Page Tool', () => {
 
       await addBlankPage();
 
-      expect(ui.showAlert).toHaveBeenCalledWith('Error', 'Could not add blank page.');
+      expect(ui.showAlert).toHaveBeenCalledWith(
+        'Error',
+        'Could not add blank page.'
+      );
       expect(ui.hideLoader).toHaveBeenCalled();
     });
   });

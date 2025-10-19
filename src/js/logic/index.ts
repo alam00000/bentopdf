@@ -62,6 +62,7 @@ import {
 } from './remove-blank-pages.js';
 import { alternateMerge, setupAlternateMergeTool } from './alternate-merge.js';
 import { linearizePdf } from './linearize.js';
+import { addAttachments, setupAddAttachmentsTool } from './add-attachments.js';
 
 export const toolLogic = {
   merge: { process: merge, setup: setupMergeTool },
@@ -130,4 +131,8 @@ export const toolLogic = {
     setup: setupAlternateMergeTool,
   },
   linearize: linearizePdf,
+  'add-attachments': {
+    process: addAttachments,
+    setup: setupAddAttachmentsTool,
+  },
 };

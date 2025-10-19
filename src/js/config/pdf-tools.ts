@@ -38,6 +38,7 @@ export const singlePdfLoadTools = [
   'form-filler',
   'posterize',
   'remove-blank-pages',
+  'add-attachments',
 ];
 
 export const simpleTools = [
