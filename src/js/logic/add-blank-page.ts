@@ -8,7 +8,7 @@ export async function addBlankPage() {
   const pageNumberInput = document.getElementById('page-number').value;
   // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   const pageCountInput = document.getElementById('page-count').value;
-  
+
   if (pageNumberInput.trim() === '') {
     showAlert('Invalid Input', 'Please enter a page number.');
     return;
@@ -31,7 +31,10 @@ export async function addBlankPage() {
   }
 
   if (isNaN(pageCount) || pageCount < 1) {
-    showAlert('Invalid Input', 'Please enter a valid number of pages (1 or more).');
+    showAlert(
+      'Invalid Input',
+      'Please enter a valid number of pages (1 or more).'
+    );
     return;
   }
 
