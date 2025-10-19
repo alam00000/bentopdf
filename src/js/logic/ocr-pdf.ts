@@ -192,7 +192,7 @@ async function runOCR() {
               font,
               size: fontSize,
               color: rgb(0, 0, 0),
-              opacity: 0.1,
+              opacity: 0,
             });
           } catch (error) {
             // If drawing fails despite sanitization, log and skip this word
