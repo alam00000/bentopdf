@@ -129,6 +129,28 @@ docker-compose up -d
 
 The application will be available at `http://localhost:3000`.
 
+### 📦 Version Management
+
+BentoPDF supports semantic versioning with multiple Docker tags:
+
+- **Latest**: `bentopdf/bentopdf:latest`
+- **Specific Version**: `bentopdf/bentopdf:1.0.0`
+- **Version with Prefix**: `bentopdf/bentopdf:v1.0.0`
+
+#### Quick Release
+
+```bash
+# Release a patch version (0.0.1 → 0.0.2)
+npm run release
+
+# Release a minor version (0.0.1 → 0.1.0)
+npm run release:minor
+
+# Release a major version (0.0.1 → 1.0.0)
+npm run release:major
+```
+```
+For detailed release instructions, see [RELEASE.md](RELEASE.md).
 ### 🚀 Development Setup
 
 #### Option 1: Run with npm
