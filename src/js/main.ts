@@ -83,6 +83,29 @@ const init = () => {
     });
   });
 
+  window.addEventListener('keydown', function (e) {
+    const key = e.key.toLowerCase();
+    const isMac = navigator.userAgent.toUpperCase().includes('MAC');
+    const isCtrlK = e.ctrlKey && key === 'k';
+    const isCmdK = isMac && e.metaKey && key === 'k';
+
+    if (isCtrlK || isCmdK) {
+      e.preventDefault();
+      searchBar.focus();
+    }
+  });
+
+  const shortcutK = document.getElementById('shortcut');
+  const isIosOrAndroid = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isIosOrAndroid) {
+    shortcutK.style.display = 'none';
+  } else {
+    shortcutK.textContent = navigator.userAgent.toUpperCase().includes('MAC')
+      ? '⌘ + K'
+      : 'Ctrl + K';
+  }
+
   dom.toolGrid.addEventListener('click', (e) => {
     // @ts-expect-error TS(2339) FIXME: Property 'closest' does not exist on type 'EventTa... Remove this comment to see the full error message
     const card = e.target.closest('.tool-card');
