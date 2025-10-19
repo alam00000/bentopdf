@@ -144,7 +144,7 @@ async function runOCR() {
         binarizeCanvas(context);
       }
 
-      const result = await worker.recognize(canvas);
+      const result = await worker.recognize(canvas, {}, { text: true, hocr: true });
       const data = result.data;
       const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
       const pngImageBytes = await new Promise((resolve) =>
@@ -192,7 +192,7 @@ async function runOCR() {
               font,
               size: fontSize,
               color: rgb(0, 0, 0),
-              opacity: 0,
+              opacity: 0.1,
             });
           } catch (error) {
             // If drawing fails despite sanitization, log and skip this word
