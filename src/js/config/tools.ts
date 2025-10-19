@@ -383,6 +383,12 @@ export const categories = [
         icon: 'ruler-dimension-line',
         subtitle: 'Standardize all pages to a uniform size.',
       },
+      { 
+        id: 'linearize',
+        name: 'Linearize PDF',
+        icon: 'zap',
+        subtitle: 'Optimize PDF for fast web viewing.',
+      },
       {
         id: 'page-dimensions',
         name: 'Page Dimensions',
