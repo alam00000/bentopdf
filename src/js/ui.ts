@@ -712,15 +712,17 @@ export const toolTemplates = {
         </div>
     `,
   'add-blank-page': () => `
-        <h2 class="text-2xl font-bold text-white mb-4">Add Blank Page</h2>
-        <p class="mb-6 text-gray-400">Insert a new blank page at a specific position in your document.</p>
+        <h2 class="text-2xl font-bold text-white mb-4">Add Blank Pages</h2>
+        <p class="mb-6 text-gray-400">Insert one or more blank pages at a specific position in your document.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="blank-page-options" class="hidden mt-6">
             <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
-            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank page after page number:</label>
-            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter 0 to add to the beginning">
-            <button id="process-btn" class="btn-gradient w-full">Add Page & Download</button>
+            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank pages after page number:</label>
+            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter 0 to add to the beginning">
+            <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert:</label>
+            <input type="number" id="page-count" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter number of pages">
+            <button id="process-btn" class="btn-gradient w-full">Add Pages & Download</button>
         </div>
     `,
   'extract-pages': () => `

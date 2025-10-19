@@ -38,6 +38,7 @@ export const singlePdfLoadTools = [
   'form-filler',
   'posterize',
   'remove-blank-pages',
+  'add-attachments',
 ];
 
 export const simpleTools = [
@@ -60,4 +61,5 @@ export const multiFileTools = [
   'heic-to-pdf',
   'tiff-to-pdf',
   'alternate-merge',
+  'linearize',
 ];
