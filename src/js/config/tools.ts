@@ -283,6 +283,12 @@ export const categories = [
         subtitle: 'Duplicate, reorder, and delete pages.',
       },
       {
+        id: 'add-attachments',
+        name: 'Add Attachments',
+        icon: 'paperclip',
+        subtitle: 'Embed one or more files into your PDF.',
+      },
+      {
         id: 'split',
         name: 'Split PDF',
         icon: 'scissors',
@@ -383,7 +389,7 @@ export const categories = [
         icon: 'ruler-dimension-line',
         subtitle: 'Standardize all pages to a uniform size.',
       },
-      { 
+      {
         id: 'linearize',
         name: 'Linearize PDF',
         icon: 'zap',
