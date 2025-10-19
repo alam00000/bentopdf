@@ -114,20 +114,65 @@ For a more robust setup with auto-restart capabilities:
 ```yaml
 services:
   bentopdf:
-    image: bentopdf/bentopdf:latest
+    image: bentopdf/bentopdf:${BENTOPDF_VERSION:-latest}
     container_name: bentopdf
     ports:
       - '3000:80'
     restart: unless-stopped
+    env_file:
+      - docker.env
 ```
 
 2. **Start the application**:
 
 ```bash
+# Use latest version
 docker-compose up -d
+
+# Use specific version
+BENTOPDF_VERSION=1.0.0 docker-compose up -d
 ```
 
 The application will be available at `http://localhost:3000`.
+
+### 📦 Version Management
+
+BentoPDF now supports semantic versioning with multiple Docker tags:
+
+- **Latest**: `bentopdf/bentopdf:latest`
+- **Specific Version**: `bentopdf/bentopdf:1.0.0`
+- **Version with Prefix**: `bentopdf/bentopdf:v1.0.0`
+
+#### Quick Setup
+
+```bash
+# Set up version management
+./scripts/setup-versioning.sh
+
+# Check current version
+npm run version:current
+
+# Create a new release
+npm run version:release
+
+# Build Docker image
+npm run docker:build
+```
+
+#### Using Specific Versions
+
+```bash
+# Production - use specific version
+BENTOPDF_VERSION=1.0.0 docker-compose up -d
+
+# Development - use latest
+BENTOPDF_VERSION=latest docker-compose up -d
+
+# Custom version
+BENTOPDF_VERSION=v1.2.3 docker-compose up -d
+```
+
+For detailed version management instructions, see [VERSIONING.md](VERSIONING.md).
 
 ### 🚀 Development Setup
 

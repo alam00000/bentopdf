@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - VERSION=${BENTOPDF_VERSION:-dev}
+    image: bentopdf/bentopdf:${BENTOPDF_VERSION:-dev}
     container_name: bentopdf
     ports:
       - '3000:80'

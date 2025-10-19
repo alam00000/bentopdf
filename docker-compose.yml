@@ -1,7 +1,9 @@
 services:
   bentopdf:
-    image: bentopdf/bentopdf:latest
+    image: bentopdf/bentopdf:${BENTOPDF_VERSION:-latest}
     container_name: bentopdf
     restart: unless-stopped
     ports:
       - "3000:80"
+    env_file:
+      - docker.env

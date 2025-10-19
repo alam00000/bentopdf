@@ -15,7 +15,14 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
     "build:docker": "vite build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "version": "node scripts/version.js",
+    "version:current": "node scripts/version.js current",
+    "version:increment": "node scripts/version.js increment",
+    "version:release": "node scripts/version.js release",
+    "docker:build": "node scripts/version.js docker:build",
+    "docker:push": "node scripts/version.js docker:build --push",
+    "docker:tags": "node scripts/version.js docker:tags"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
