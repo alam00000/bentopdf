@@ -18,7 +18,6 @@ export const singlePdfLoadTools = [
   'add-header-footer',
   'invert-colors',
   'view-metadata',
-  'reverse-pages',
   'crop',
   'redact',
   'pdf-to-bmp',
