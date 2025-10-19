@@ -21,7 +21,8 @@ export function setupToolInterface(toolId: any) {
   const fileInput = document.getElementById('file-input');
   const processBtn = document.getElementById('process-btn');
 
-  if (!fileInput && processBtn) {
+  // Set up process button for tools that don't require file input OR for specific tools
+  if (processBtn) {
     const logic = toolLogic[toolId];
     if (logic) {
       const func = typeof logic.process === 'function' ? logic.process : logic;

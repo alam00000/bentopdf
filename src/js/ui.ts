@@ -31,10 +31,15 @@ export const showLoader = (text = 'Processing...') => {
 
 export const hideLoader = () => dom.loaderModal.classList.add('hidden');
 
-export const showAlert = (title: any, message: any) => {
+export const showAlert = (title: any, message: any, onConfirm?: () => void) => {
   dom.alertTitle.textContent = title;
   dom.alertMessage.textContent = message;
   dom.alertModal.classList.remove('hidden');
+  
+  // Store callback for when user clicks OK
+  if (onConfirm) {
+    (dom.alertModal as any).onConfirmCallback = onConfirm;
+  }
 };
 
 export const hideAlert = () => dom.alertModal.classList.add('hidden');
@@ -971,39 +976,6 @@ export const toolTemplates = {
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Reverse & Download</button>
     `,
-  'md-to-pdf': () => `
-        <h2 class="text-2xl font-bold text-white mb-4">Markdown to PDF</h2>
-        <p class="mb-6 text-gray-400">Write in Markdown, select your formatting options, and get a high-quality, multi-page PDF. <br><strong class="text-gray-300">Note:</strong> Images linked from the web (e.g., https://...) require an internet connection to be rendered.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div>
-                <label for="page-format" class="block mb-2 text-sm font-medium text-gray-300">Page Format</label>
-                <select id="page-format" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="a4">A4</option>
-                    <option value="letter">Letter</option>
-                </select>
-            </div>
-            <div>
-                <label for="orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
-                <select id="orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="portrait">Portrait</option>
-                    <option value="landscape">Landscape</option>
-                </select>
-            </div>
-            <div>
-                <label for="margin-size" class="block mb-2 text-sm font-medium text-gray-300">Margin Size</label>
-                <select id="margin-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="normal">Normal</option>
-                    <option value="narrow">Narrow</option>
-                    <option value="wide">Wide</option>
-                </select>
-            </div>
-        </div>
-        <div class="h-[50vh]">
-            <label for="md-input" class="block mb-2 text-sm font-medium text-gray-300">Markdown Editor</label>
-            <textarea id="md-input" class="w-full h-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-3 font-mono resize-none" placeholder="# Welcome to Markdown..."></textarea>
-        </div>
-        <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF from Markdown</button>
-    `,
   'svg-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">SVG to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more SVG vector images into a single PDF file.</p>
@@ -1844,4 +1816,119 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Alternate & Mix PDFs</button>
     </div>
 `,
+
+  'md-to-pdf': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Markdown to PDF</h2>
+    <p class="mb-6 text-gray-400">Convert Markdown documents to PDF with support for GitHub Flavored Markdown, CommonMark, and Pandoc Markdown. Edit on the left, preview on the right.</p>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Left Panel: Markdown Editor -->
+      <div class="space-y-4">
+        <div>
+          <label for="file-input" class="block mb-2 text-sm font-medium text-gray-300">Upload .md file (optional)</label>
+          <input type="file" id="file-input" accept=".md,text/markdown" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+        </div>
+        
+        <div>
+          <label for="markdown-flavor" class="block mb-2 text-sm font-medium text-gray-300">Markdown Flavor</label>
+          <select id="markdown-flavor" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+            <option value="github">GitHub Flavored Markdown</option>
+            <option value="commonmark">CommonMark</option>
+            <option value="pandoc">Pandoc Markdown</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="md-input" class="block mb-2 text-sm font-medium text-gray-300">Markdown Content</label>
+          <textarea 
+            id="md-input" 
+            rows="20" 
+            class="w-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-3 font-mono text-sm" 
+            placeholder="# Your Markdown Content Here
+
+## Features Supported
+- **Bold** and *italic* text
+- Lists (ordered and unordered)
+- [Links](https://example.com)
+- \`inline code\` and code blocks
+- Tables
+- > Blockquotes
+- Horizontal rules
+- Images
+
+### Code Block Example
+\`\`\`javascript
+function hello() {
+  console.log('Hello, World!');
+}
+\`\`\`
+
+### Table Example
+| Feature | Support |
+|---------|---------|
+| Headers | ✅ |
+| Lists | ✅ |
+| Links | ✅ |
+| Code | ✅ |"
+          ></textarea>
+        </div>
+      </div>
+      
+      <!-- Right Panel: Preview -->
+      <div class="space-y-4">
+        <div>
+          <label class="block mb-2 text-sm font-medium text-gray-300">Live Preview</label>
+          <div 
+            id="markdown-preview" 
+            class="w-full h-96 bg-white border border-gray-600 rounded-lg p-4 overflow-auto text-gray-900"
+            style="min-height: 500px;"
+          >
+            <p class="text-gray-500 italic">Preview will appear here...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PDF Options -->
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <label for="page-format" class="block mb-2 text-sm font-medium text-gray-300">Page Format</label>
+        <select id="page-format" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="a4">A4</option>
+          <option value="letter">Letter</option>
+          <option value="legal">Legal</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+        <select id="orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="margin-size" class="block mb-2 text-sm font-medium text-gray-300">Margins</label>
+        <select id="margin-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="narrow">Narrow</option>
+          <option value="normal" selected>Normal</option>
+          <option value="wide">Wide</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="image-quality" class="block mb-2 text-sm font-medium text-gray-300">Image Quality</label>
+        <select id="image-quality" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="high" selected>High Quality (Best Results)</option>
+          <option value="medium">Medium Quality (Balanced)</option>
+          <option value="low">Low Quality (Smaller Files)</option>
+        </select>
+      </div>
+      
+      <div class="flex items-end">
+        <button id="process-btn" class="btn-gradient w-full">Convert to PDF</button>
+      </div>
+    </div>
+  `,
 };
