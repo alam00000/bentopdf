@@ -62,4 +62,5 @@ export const multiFileTools = [
   'tiff-to-pdf',
   'alternate-merge',
   'linearize',
+  'reverse-pages',
 ];
