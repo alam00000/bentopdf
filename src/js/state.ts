@@ -35,8 +35,33 @@ export function resetStateAfterProcess() {
     ) as HTMLInputElement | null;
     if (fileInput) fileInput.value = '';
 
-    const imageInput = document.getElementById('image-watermark-input') as HTMLInputElement | null;
+    const watermarkText = document.getElementById(
+      'watermark-text'
+    ) as HTMLInputElement;
+    if (watermarkText) watermarkText.value = '';
+    const fontSize = document.getElementById('font-size') as HTMLInputElement;
+    if (fontSize) fontSize.value = '72';
+    const textColor = document.getElementById('text-color') as HTMLInputElement;
+    if (textColor) textColor.value = '#000000';
+    const opacityText = document.getElementById(
+      'opacity-text'
+    ) as HTMLInputElement;
+    if (opacityText) opacityText.value = '0.3';
+    const angleText = document.getElementById('angle-text') as HTMLInputElement;
+    if (angleText) angleText.value = '0';
+
+    const imageInput = document.getElementById(
+      'image-watermark-input'
+    ) as HTMLInputElement;
     if (imageInput) imageInput.value = '';
+    const opacityImage = document.getElementById(
+      'opacity-image'
+    ) as HTMLInputElement;
+    if (opacityImage) opacityImage.value = '0.3';
+    const angleImage = document.getElementById(
+      'angle-image'
+    ) as HTMLInputElement;
+    if (angleImage) angleImage.value = '0';
 
     const fileDisplayArea = document.getElementById('file-display-area');
     if (fileDisplayArea) fileDisplayArea.textContent = '';
