@@ -532,7 +532,7 @@ export const toolTemplates = {
   compress: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Compress PDF</h2>
     <p class="mb-6 text-gray-400">Reduce file size by choosing the compression method that best suits your document.</p>
-    ${createFileInputHTML()}
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
     <div id="file-display-area" class="mt-4 space-y-2"></div>
     <div id="compress-options" class="hidden mt-6 space-y-6">
         <div>
