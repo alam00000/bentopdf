@@ -15,7 +15,10 @@
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest watch",
     "build:docker": "vite build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "release": "node scripts/release.js patch",
+    "release:minor": "node scripts/release.js minor",
+    "release:major": "node scripts/release.js major"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
