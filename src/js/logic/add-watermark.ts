@@ -4,7 +4,7 @@ import {
   readFileAsArrayBuffer,
   hexToRgb,
 } from '../utils/helpers.js';
-import { state } from '../state.js';
+import { state ,resetStateAfterProcess} from '../state.js';
 
 import {
   PDFDocument as PDFLibDocument,
@@ -175,6 +175,7 @@ export async function addWatermark() {
       new Blob([newPdfBytes], { type: 'application/pdf' }),
       'watermarked.pdf'
     );
+    resetStateAfterProcess();
   } catch (e) {
     console.error(e);
     showAlert(
