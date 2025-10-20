@@ -144,7 +144,7 @@ async function runOCR() {
         binarizeCanvas(context);
       }
 
-      const result = await worker.recognize(canvas);
+      const result = await worker.recognize(canvas, {}, { text: true, hocr: true });
       const data = result.data;
       const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
       const pngImageBytes = await new Promise((resolve) =>
