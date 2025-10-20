@@ -6,7 +6,9 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import JSZip from 'jszip';
 
 export async function reversePages() {
-  const pdfDocs = state.files.filter((file: File) => file.type === 'application/pdf');
+  const pdfDocs = state.files.filter(
+    (file: File) => file.type === 'application/pdf'
+  );
   if (!pdfDocs.length) {
     showAlert('Error', 'PDF not loaded.');
     return;
@@ -16,7 +18,7 @@ export async function reversePages() {
     const zip = new JSZip();
     for (let j = 0; j < pdfDocs.length; j++) {
       const file = pdfDocs[j];
-      const arrayBuffer = await file.arrayBuffer(); 
+      const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFLibDocument.load(arrayBuffer);
       const newPdf = await PDFLibDocument.create();
       const pageCount = pdfDoc.getPageCount();

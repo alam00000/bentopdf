@@ -25,8 +25,8 @@ async function handleSinglePdfUpload(toolId, file) {
   showLoader('Loading PDF...');
   try {
     const pdfBytes = await readFileAsArrayBuffer(file);
-    state.pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, { 
-      ignoreEncryption: true 
+    state.pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
+      ignoreEncryption: true,
     });
     hideLoader();
 
