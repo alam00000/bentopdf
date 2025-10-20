@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { resolve } from 'path';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     tailwindcss(),
     nodePolyfills({
@@ -15,6 +15,9 @@ export default defineConfig({
       },
     }),
   ],
+  define: {
+    __SIMPLE_MODE__: JSON.stringify(process.env.SIMPLE_MODE === 'true'),
+  },
   resolve: {
     alias: {
       stream: 'stream-browserify',
@@ -52,4 +55,4 @@ export default defineConfig({
       ],
     },
   },
-});
+}));
