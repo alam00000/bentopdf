@@ -969,7 +969,7 @@ export const toolTemplates = {
   'reverse-pages': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Reverse PDF Pages</h2>
         <p class="mb-6 text-gray-400">Flip the order of all pages in your document, making the last page the first.</p>
-        ${createFileInputHTML()}
+        ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Reverse & Download</button>
     `,
