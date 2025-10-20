@@ -130,6 +130,18 @@ docker-compose up -d
 
 The application will be available at `http://localhost:3000`.
 
+### 🏢 Simple Mode for Internal Use
+
+For organizations that want a clean, distraction-free interface focused solely on PDF tools, BentoPDF supports a **Simple Mode** that hides all branding and marketing content.
+
+**What Simple Mode does:**
+- Hides navigation, hero section, features, FAQ, testimonials, and footer
+- Shows only the essential PDF tools
+- Updates page title to "PDF Tools"
+- Perfect for internal company tools and educational institutions
+
+For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
+
 ### 📦 Version Management
 
 BentoPDF supports semantic versioning with multiple Docker tags:
