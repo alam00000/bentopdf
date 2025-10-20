@@ -707,15 +707,17 @@ export const toolTemplates = {
         </div>
     `,
   'add-blank-page': () => `
-        <h2 class="text-2xl font-bold text-white mb-4">Add Blank Page</h2>
-        <p class="mb-6 text-gray-400">Insert a new blank page at a specific position in your document.</p>
+        <h2 class="text-2xl font-bold text-white mb-4">Add Blank Pages</h2>
+        <p class="mb-6 text-gray-400">Insert one or more blank pages at a specific position in your document.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="blank-page-options" class="hidden mt-6">
             <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
-            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank page after page number:</label>
-            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter 0 to add to the beginning">
-            <button id="process-btn" class="btn-gradient w-full">Add Page & Download</button>
+            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank pages after page number:</label>
+            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter 0 to add to the beginning">
+            <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert:</label>
+            <input type="number" id="page-count" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter number of pages">
+            <button id="process-btn" class="btn-gradient w-full">Add Pages & Download</button>
         </div>
     `,
   'extract-pages': () => `
@@ -1844,4 +1846,36 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Alternate & Mix PDFs</button>
     </div>
 `,
+
+  linearize: () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Linearize PDFs (Fast Web View)</h2>
+    <p class="mb-6 text-gray-400">Optimize multiple PDFs for faster loading over the web. Files will be downloaded in a ZIP archive.</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })} 
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Linearize PDFs & Download ZIP</button> 
+  `,
+  'add-attachments': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Add Attachments to PDF</h2>
+    <p class="mb-6 text-gray-400">First, upload the PDF document you want to add files to.</p>
+    ${createFileInputHTML({ accept: 'application/pdf' })}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+    <div id="attachment-options" class="hidden mt-8">
+      <h3 class="text-lg font-semibold text-white mb-3">Upload Files to Attach</h3>
+      <p class="mb-4 text-gray-400">Select one or more files to embed within the PDF. You can attach any file type (images, documents, spreadsheets, etc.).</p>
+      
+      <label for="attachment-files-input" class="w-full flex justify-center items-center px-6 py-10 bg-gray-900 text-gray-400 rounded-lg border-2 border-dashed border-gray-600 hover:bg-gray-800 hover:border-gray-500 cursor-pointer transition-colors">
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="mt-2 block text-sm font-medium">Click to upload files</span>
+          <span class="mt-1 block text-xs">Any file type, multiple files allowed</span>
+        </div>
+        <input id="attachment-files-input" name="attachment-files" type="file" class="sr-only" multiple>
+      </label>
+
+      <div id="attachment-file-list" class="mt-4 space-y-2"></div>
+
+      <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
+    </div>
+  `,
 };

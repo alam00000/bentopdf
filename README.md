@@ -1,4 +1,5 @@
 # BentoPDF
+
 **BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/bentopdf/bentopdf) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio0) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
@@ -109,7 +110,7 @@ This is the fastest way to try BentoPDF without setting up a development environ
 
 For a more robust setup with auto-restart capabilities:
 
-1. **Create a `docker-compose.yml` file or use the one given in repo**:
+1. **Download the repo and create a `docker-compose.yml` file or use the one given in repo**:
 
 ```yaml
 services:
