@@ -5,11 +5,84 @@ import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 
+const hideBrandingSections = () => {
+  const nav = document.querySelector('nav');
+  if (nav) {
+    nav.style.display = 'none';
+  }
+
+  const heroSection = document.getElementById('hero-section');
+  if (heroSection) {
+    heroSection.style.display = 'none';
+  }
+
+  const featuresSection = document.getElementById('features-section');
+  if (featuresSection) {
+    featuresSection.style.display = 'none';
+  }
+
+  const securitySection = document.getElementById('security-compliance-section');
+  if (securitySection) {
+    securitySection.style.display = 'none';
+  }
+
+  const faqSection = document.getElementById('faq-accordion');
+  if (faqSection) {
+    faqSection.style.display = 'none';
+  }
+
+  const testimonialsSection = document.getElementById('testimonials-section');
+  if (testimonialsSection) {
+    testimonialsSection.style.display = 'none';
+  }
+
+  const supportSection = document.getElementById('support-section');
+  if (supportSection) {
+    supportSection.style.display = 'none';
+  }
+
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.style.display = 'none';
+  }
+
+  const sectionDividers = document.querySelectorAll('.section-divider');
+  sectionDividers.forEach(divider => {
+    (divider as HTMLElement).style.display = 'none';
+  });
+
+  document.title = 'PDF Tools';
+
+  const toolsHeader = document.getElementById('tools-header');
+  if (toolsHeader) {
+    const title = toolsHeader.querySelector('h2');
+    const subtitle = toolsHeader.querySelector('p');
+    if (title) {
+      title.textContent = 'PDF Tools';
+      title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
+    }
+    if (subtitle) {
+      subtitle.textContent = 'Select a tool to get started';
+      subtitle.className = 'text-lg text-gray-400';
+    }
+  }
+
+  const app = document.getElementById('app');
+  if (app) {
+    app.style.paddingTop = '2rem';
+  }
+};
+
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url
   ).toString();
+
+  // Handle simple mode - hide branding sections
+  if (__SIMPLE_MODE__) {
+    hideBrandingSections();
+  }
 
   dom.toolGrid.textContent = '';
 

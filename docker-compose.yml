@@ -5,3 +5,5 @@ services:
     restart: unless-stopped
     ports:
       - '3000:80'
+    environment:
+      - SIMPLE_MODE=${SIMPLE_MODE:-false}
