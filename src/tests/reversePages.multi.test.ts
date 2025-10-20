@@ -6,7 +6,6 @@ import * as helpers from '../js/utils/helpers';
 import * as ui from '../js/ui';
 import JSZip from 'jszip';
 
-// -------------------- Mock Modules --------------------
 vi.mock('../js/ui', () => ({
   showLoader: vi.fn(),
   hideLoader: vi.fn(),
@@ -20,18 +19,21 @@ vi.mock('../js/utils/helpers', () => ({
 vi.mock('pdf-lib', () => ({
   PDFDocument: {
     create: vi.fn(),
+    load: vi.fn().mockResolvedValue({
+      getPageCount: vi.fn(() => 2),
+      copyPages: vi.fn((_, indices) =>
+        Promise.resolve(indices.map((i) => ({ page: `page-${i}` })))
+      ),
+    }),
   },
 }));
 
-// -------------------- Test Suite --------------------
 describe('reversePages - multi PDF support', () => {
   let mockNewDoc: any;
 
   beforeEach(() => {
-    // Reset state
-    state.pdfDocs = [];
+    state.files = []; // ✅ now using files, not pdfDocs
 
-    // Mock PDFDocument.create
     mockNewDoc = {
       copyPages: vi.fn((doc: any, indices: number[]) =>
         Promise.resolve(indices.map((i: number) => ({ page: `page-${i}` })))
@@ -41,7 +43,6 @@ describe('reversePages - multi PDF support', () => {
     };
     vi.mocked(PDFLibDocument.create).mockResolvedValue(mockNewDoc);
 
-    // Mock helpers
     vi.mocked(helpers.downloadFile).mockImplementation(() => {});
     vi.mocked(ui.showLoader).mockImplementation(() => {});
     vi.mocked(ui.hideLoader).mockImplementation(() => {});
@@ -53,35 +54,33 @@ describe('reversePages - multi PDF support', () => {
   });
 
   it('should reverse pages for multiple PDFs and create a zip', async () => {
-    // Mock 2 PDFs
-    const pdf1 = { getPageCount: () => 2 };
-    const pdf2 = { getPageCount: () => 3 };
-    state.pdfDocs = [pdf1, pdf2];
+    const mockFile = (name: string) => ({
+      name,
+      type: 'application/pdf',
+      arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)),
+    });
+
+    state.files = [mockFile('a.pdf'), mockFile('b.pdf')]; // ✅ now matches function
 
     await reversePages();
 
-    // downloadFile called
     expect(helpers.downloadFile).toHaveBeenCalledWith(expect.any(Blob), 'reversed_pdfs.zip');
-
-    // copyPages called for each PDF
     expect(mockNewDoc.copyPages).toHaveBeenCalledTimes(2);
-
-    // addPage called correct number of times
     expect(mockNewDoc.addPage).toHaveBeenCalled();
-
-    // save called for each PDF
     expect(mockNewDoc.save).toHaveBeenCalledTimes(2);
   });
 
   it('should handle empty PDF list gracefully', async () => {
-    state.pdfDocs = [];
+    state.files = [];
     await reversePages();
     expect(ui.showAlert).toHaveBeenCalledWith('Error', 'PDF not loaded.');
   });
 
   it('should handle PDF creation errors', async () => {
     vi.mocked(PDFLibDocument.create).mockRejectedValue(new Error('Create failed'));
-    state.pdfDocs = [{ getPageCount: () => 2 }];
+    state.files = [
+      { name: 'x.pdf', type: 'application/pdf', arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)) },
+    ];
 
     await reversePages();
 
@@ -91,7 +90,9 @@ describe('reversePages - multi PDF support', () => {
 
   it('should handle PDF processing errors', async () => {
     mockNewDoc.copyPages.mockRejectedValue(new Error('Copy failed'));
-    state.pdfDocs = [{ getPageCount: () => 2 }];
+    state.files = [
+      { name: 'y.pdf', type: 'application/pdf', arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)) },
+    ];
 
     await reversePages();
 
@@ -101,7 +102,9 @@ describe('reversePages - multi PDF support', () => {
 
   it('should handle save errors', async () => {
     mockNewDoc.save.mockRejectedValue(new Error('Save failed'));
-    state.pdfDocs = [{ getPageCount: () => 2 }];
+    state.files = [
+      { name: 'z.pdf', type: 'application/pdf', arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)) },
+    ];
 
     await reversePages();
 
