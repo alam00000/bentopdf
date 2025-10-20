@@ -46,7 +46,7 @@ export async function addAttachments() {
     showAlert('Error', `Failed to attach files: ${error.message}`);
   } finally {
     hideLoader();
-    clearAttachments(); 
+    clearAttachments();
   }
 }
 
@@ -103,7 +103,7 @@ export function setupAddAttachmentsTool() {
 
         const nameSpan = document.createElement('span');
         nameSpan.className = 'truncate text-sm';
-        nameSpan.textContent = file.name; 
+        nameSpan.textContent = file.name;
 
         const sizeSpan = document.createElement('span');
         sizeSpan.className = 'text-xs text-gray-400';

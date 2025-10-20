@@ -21,7 +21,9 @@ const hideBrandingSections = () => {
     featuresSection.style.display = 'none';
   }
 
-  const securitySection = document.getElementById('security-compliance-section');
+  const securitySection = document.getElementById(
+    'security-compliance-section'
+  );
   if (securitySection) {
     securitySection.style.display = 'none';
   }
@@ -47,7 +49,7 @@ const hideBrandingSections = () => {
   }
 
   const sectionDividers = document.querySelectorAll('.section-divider');
-  sectionDividers.forEach(divider => {
+  sectionDividers.forEach((divider) => {
     (divider as HTMLElement).style.display = 'none';
   });
 

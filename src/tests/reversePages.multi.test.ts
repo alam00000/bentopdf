@@ -64,7 +64,10 @@ describe('reversePages - multi PDF support', () => {
 
     await reversePages();
 
-    expect(helpers.downloadFile).toHaveBeenCalledWith(expect.any(Blob), 'reversed_pdfs.zip');
+    expect(helpers.downloadFile).toHaveBeenCalledWith(
+      expect.any(Blob),
+      'reversed_pdfs.zip'
+    );
     expect(mockNewDoc.copyPages).toHaveBeenCalledTimes(2);
     expect(mockNewDoc.addPage).toHaveBeenCalled();
     expect(mockNewDoc.save).toHaveBeenCalledTimes(2);
@@ -77,38 +80,61 @@ describe('reversePages - multi PDF support', () => {
   });
 
   it('should handle PDF creation errors', async () => {
-    vi.mocked(PDFLibDocument.create).mockRejectedValue(new Error('Create failed'));
+    vi.mocked(PDFLibDocument.create).mockRejectedValue(
+      new Error('Create failed')
+    );
     state.files = [
-      { name: 'x.pdf', type: 'application/pdf', arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)) },
+      {
+        name: 'x.pdf',
+        type: 'application/pdf',
+        arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)),
+      },
     ];
 
     await reversePages();
 
-    expect(ui.showAlert).toHaveBeenCalledWith('Error', 'Could not reverse the PDF pages.');
+    expect(ui.showAlert).toHaveBeenCalledWith(
+      'Error',
+      'Could not reverse the PDF pages.'
+    );
     expect(ui.hideLoader).toHaveBeenCalled();
   });
 
   it('should handle PDF processing errors', async () => {
     mockNewDoc.copyPages.mockRejectedValue(new Error('Copy failed'));
     state.files = [
-      { name: 'y.pdf', type: 'application/pdf', arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)) },
+      {
+        name: 'y.pdf',
+        type: 'application/pdf',
+        arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)),
+      },
     ];
 
     await reversePages();
 
-    expect(ui.showAlert).toHaveBeenCalledWith('Error', 'Could not reverse the PDF pages.');
+    expect(ui.showAlert).toHaveBeenCalledWith(
+      'Error',
+      'Could not reverse the PDF pages.'
+    );
     expect(ui.hideLoader).toHaveBeenCalled();
   });
 
   it('should handle save errors', async () => {
     mockNewDoc.save.mockRejectedValue(new Error('Save failed'));
     state.files = [
-      { name: 'z.pdf', type: 'application/pdf', arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)) },
+      {
+        name: 'z.pdf',
+        type: 'application/pdf',
+        arrayBuffer: vi.fn().mockResolvedValue(new ArrayBuffer(8)),
+      },
     ];
 
     await reversePages();
 
-    expect(ui.showAlert).toHaveBeenCalledWith('Error', 'Could not reverse the PDF pages.');
+    expect(ui.showAlert).toHaveBeenCalledWith(
+      'Error',
+      'Could not reverse the PDF pages.'
+    );
     expect(ui.hideLoader).toHaveBeenCalled();
   });
 });

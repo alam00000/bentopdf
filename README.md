@@ -135,6 +135,7 @@ The application will be available at `http://localhost:3000`.
 For organizations that want a clean, distraction-free interface focused solely on PDF tools, BentoPDF supports a **Simple Mode** that hides all branding and marketing content.
 
 **What Simple Mode does:**
+
 - Hides navigation, hero section, features, FAQ, testimonials, and footer
 - Shows only the essential PDF tools
 - Updates page title to "PDF Tools"
@@ -162,7 +163,8 @@ npm run release:minor
 # Release a major version (0.0.1 → 1.0.0)
 npm run release:major
 ```
-```
+
+````
 For detailed release instructions, see [RELEASE.md](RELEASE.md).
 ### 🚀 Development Setup
 
@@ -173,7 +175,7 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
    ```bash
    git clone https://github.com/alam00000/bentopdf.git
    cd bentopdf
-   ```
+````
 
 2. **Install Dependencies**:
 
