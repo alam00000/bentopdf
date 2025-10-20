@@ -1,7 +1,6 @@
 export const state = {
   activeTool: null,
   files: [],
-  pdfDocs: [],
   pdfDoc: null,
   pdfPages: [],
   currentPdfUrl: null,
@@ -11,7 +10,6 @@ export const state = {
 export function resetState() {
   state.activeTool = null;
   state.files = [];
-  state.pdfDocs = [];
   state.pdfDoc = null;
   state.pdfPages = [];
   state.currentPdfUrl = null;

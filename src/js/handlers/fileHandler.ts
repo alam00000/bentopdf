@@ -25,9 +25,9 @@ async function handleSinglePdfUpload(toolId, file) {
   showLoader('Loading PDF...');
   try {
     const pdfBytes = await readFileAsArrayBuffer(file);
-    const pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, { ignoreEncryption: true });
-    state.pdfDocs = [pdfDoc];
-    state.pdfDoc = pdfDoc;
+    state.pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, { 
+      ignoreEncryption: true 
+    });
     hideLoader();
 
     if (
@@ -324,7 +324,6 @@ async function handleSinglePdfUpload(toolId, file) {
 }
 
 async function handleMultiFileUpload(toolId) {
-  console.log(toolId);
   if (toolId === 'merge' || toolId === 'alternate-merge' || toolId === 'reverse-pages') {
     const pdfFilesUnloaded: File[] = [];
 
@@ -347,7 +346,7 @@ async function handleMultiFileUpload(toolId) {
         };
       })
     );
-    state.pdfDocs = pdfFilesLoaded.map(p => p.pdfDoc);
+
     const foundEncryptedPDFs = pdfFilesLoaded.filter(
       (pdf) => pdf.pdfDoc.isEncrypted
     );
