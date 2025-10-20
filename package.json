@@ -44,6 +44,7 @@
     "javascript-obfuscator": "^4.1.1",
     "jspdf": "^3.0.3",
     "jszip": "^3.10.1",
+    "katex": "^0.16.25",
     "lucide": "^0.545.0",
     "marked": "^16.4.1",
     "pdf-lib": "^1.17.1",

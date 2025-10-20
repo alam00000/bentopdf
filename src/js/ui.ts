@@ -1857,6 +1857,15 @@ export const toolTemplates = {
 - > Blockquotes
 - Horizontal rules
 - Images
+- Mathematical expressions
+
+### Mathematical Expressions
+Inline math: $E = mc^2$
+
+Block math:
+$$
+\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}
+$$
 
 ### Code Block Example
 \`\`\`javascript
@@ -1871,7 +1880,8 @@ function hello() {
 | Headers | ✅ |
 | Lists | ✅ |
 | Links | ✅ |
-| Code | ✅ |"
+| Code | ✅ |
+| Math | ✅ |"
           ></textarea>
         </div>
       </div>

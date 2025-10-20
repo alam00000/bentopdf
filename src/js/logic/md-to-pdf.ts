@@ -16,6 +16,8 @@ import { downloadFile } from '../utils/helpers.js';
 import { marked } from 'marked';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
 
 // Configure marked for different markdown flavors
 const configureMarked = (flavor: string) => {
@@ -47,6 +49,44 @@ const configureMarked = (flavor: string) => {
   }
 };
 
+// Function to preprocess markdown content to handle math expressions
+function preprocessMathContent(content: string): string {
+  // Handle inline math: $...$
+  content = content.replace(/\$([^$]+)\$/g, '<span class="math-inline">$1</span>');
+  
+  // Handle block math: $$...$$
+  content = content.replace(/\$\$([\s\S]*?)\$\$/g, '<div class="math-block">$1</div>');
+  
+  return content;
+}
+
+// Function to render KaTeX mathematical expressions using local installation
+function renderMathExpressions(container: HTMLElement) {
+  try {
+    // Render math expressions using local KaTeX
+    const mathElements = container.querySelectorAll('.math-inline, .math-block');
+    mathElements.forEach((element) => {
+      try {
+        const mathText = element.textContent || '';
+        if (mathText.trim()) {
+          const rendered = katex.renderToString(mathText, {
+            throwOnError: false,
+            displayMode: element.classList.contains('math-block'),
+            strict: false
+          });
+          element.innerHTML = rendered;
+          element.classList.add('katex-rendered');
+        }
+      } catch (error) {
+        console.warn('Failed to render math expression:', error);
+        // Keep the original text as fallback
+      }
+    });
+  } catch (error) {
+    console.warn('Failed to render math expressions:', error);
+  }
+}
+
 export async function mdToPdf() {
   const markdownContent = (document.getElementById('md-input') as HTMLTextAreaElement)?.value?.trim();
   
@@ -67,8 +107,11 @@ export async function mdToPdf() {
     // Configure marked based on flavor
     configureMarked(flavor);
     
+    // Preprocess content to handle math expressions
+    const processedContent = preprocessMathContent(markdownContent);
+    
     // Parse markdown to HTML
-    const htmlContent = await marked.parse(markdownContent);
+    const htmlContent = await marked.parse(processedContent);
 
     // Create temporary container for rendering
     const tempContainer = document.createElement('div');
@@ -86,6 +129,35 @@ export async function mdToPdf() {
     // Add comprehensive styling for markdown elements
     const styleSheet = document.createElement('style');
     styleSheet.textContent = `
+      /* KaTeX Math Rendering Styles */
+      .math-inline, .math-block {
+        font-size: 1.1em;
+        line-height: 1.2;
+      }
+      
+      .math-block {
+        text-align: center;
+        margin: 16px 0;
+        padding: 8px 0;
+      }
+      
+      /* Fallback for math rendering when KaTeX is not loaded */
+      .math-inline:not(.katex-rendered),
+      .math-block:not(.katex-rendered) {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 4px;
+        padding: 2px 6px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+      }
+      
+      .math-block:not(.katex-rendered) {
+        display: block;
+        text-align: center;
+        margin: 16px 0;
+        padding: 8px;
+      }
       body { 
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
         line-height: 1.6; 
@@ -146,17 +218,34 @@ export async function mdToPdf() {
         border-collapse: collapse; 
         border-spacing: 0;
         margin: 0 0 16px 0;
+        display: table;
+        border: 1px solid #dfe2e5;
       }
       
       th, td { 
-        padding: 6px 13px; 
+        padding: 8px 12px; 
         border: 1px solid #dfe2e5; 
         text-align: left;
+        vertical-align: top;
+        display: table-cell;
       }
       
       th {
         font-weight: 600;
         background-color: #f6f8fa;
+        border-bottom: 2px solid #dfe2e5;
+      }
+      
+      tr {
+        display: table-row;
+      }
+      
+      thead {
+        display: table-header-group;
+      }
+      
+      tbody {
+        display: table-row-group;
       }
       
       img { 
@@ -175,11 +264,14 @@ export async function mdToPdf() {
       }
       
       hr {
-        height: 0.25em;
+        height: 2px;
         padding: 0;
         margin: 24px 0;
         background-color: #e1e4e8;
         border: 0;
+        border-top: 2px solid #e1e4e8;
+        display: block;
+        width: 100%;
       }
       
       a {
@@ -203,6 +295,9 @@ export async function mdToPdf() {
     tempContainer.appendChild(styleSheet);
     tempContainer.innerHTML += htmlContent;
     document.body.appendChild(tempContainer);
+
+    // Render KaTeX mathematical expressions using local installation
+    renderMathExpressions(tempContainer);
 
     // Configure quality settings based on user selection
     const renderSettings = {
@@ -344,8 +439,12 @@ export function setupMarkdownTool() {
       
       if (content.trim()) {
         configureMarked(flavor);
-        const htmlContent = await marked.parse(content);
+        const processedContent = preprocessMathContent(content);
+        const htmlContent = await marked.parse(processedContent);
         preview.innerHTML = htmlContent;
+        
+        // Render math expressions in preview
+        renderMathExpressions(preview);
       } else {
         preview.innerHTML = '<p class="text-gray-500 italic">Preview will appear here...</p>';
       }
