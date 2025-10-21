@@ -324,7 +324,11 @@ async function handleSinglePdfUpload(toolId, file) {
 }
 
 async function handleMultiFileUpload(toolId) {
-  if (toolId === 'merge' || toolId === 'alternate-merge') {
+  if (
+    toolId === 'merge' ||
+    toolId === 'alternate-merge' ||
+    toolId === 'reverse-pages'
+  ) {
     const pdfFilesUnloaded: File[] = [];
 
     state.files.forEach((file) => {
