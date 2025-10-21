@@ -1910,4 +1910,30 @@ export const toolTemplates = {
       <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
     </div>
   `,
+  'add-form': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Add Form Fields</h2>
+    <p class="mb-6 text-gray-400">Add fillable form fields to your PDF.</p>
+    ${createFileInputHTML()}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <div id="form-options" class="hidden mt-6">
+      <div class="p-4 bg-gray-800 rounded-lg">
+        <h3 class="text-lg font-bold text-white mb-4">Add Form Fields</h3>
+        <div class="flex flex-col gap-4">
+          <button id="add-text-field" class="btn bg-indigo-600 text-white">Add Text Field</button>
+          <button id="add-checkbox" class="btn bg-indigo-600 text-white">Add Checkbox</button>
+          <button id="add-radio-group" class="btn bg-indigo-600 text-white">Add Radio Group</button>
+        </div>
+        <div class="flex items-center justify-center my-4">
+          <button id="prev-page" class="btn bg-gray-600 text-white">Previous</button>
+          <span id="page-num" class="mx-4 text-white"></span>
+          <button id="next-page" class="btn bg-gray-600 text-white">Next</button>
+        </div>
+        <canvas id="pdf-canvas" class="mt-4 border border-gray-600 rounded-lg"></canvas>
+        <div class="flex gap-4 mt-4">
+          <button id="delete-field" class="btn bg-red-600 text-white">Delete Selected Field</button>
+          <button id="download-pdf" class="btn bg-blue-600 text-white">Download PDF</button>
+        </div>
+      </div>
+    </div>
+  `,
 };

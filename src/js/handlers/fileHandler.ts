@@ -429,6 +429,11 @@ async function handleSinglePdfUpload(toolId, file) {
     if (toolLogic[toolId] && typeof toolLogic[toolId].setup === 'function') {
       toolLogic[toolId].setup();
     }
+
+    if (toolId === 'add-form') {
+      const formOptions = document.getElementById('form-options');
+      formOptions.classList.remove('hidden');
+    }
   } catch (e) {
     hideLoader();
     showAlert(

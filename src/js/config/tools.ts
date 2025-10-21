@@ -143,6 +143,12 @@ export const categories = [
         icon: 'file-minus-2',
         subtitle: 'Automatically detect and delete blank pages.',
       },
+      {
+        id: 'add-form',
+        name: 'Add Form',
+        icon: 'file-plus-2',
+        subtitle: 'Add form fields to the PDF.',
+      }
     ],
   },
   {
