@@ -26,3 +26,4 @@ dist-ssr
 coverage/
 *.lcov
 
+/public/static/
