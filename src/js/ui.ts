@@ -1910,4 +1910,40 @@ export const toolTemplates = {
       <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
     </div>
   `,
+  'create-form': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Create Form</h2>
+    <p class="mb-6 text-gray-400">Add fillable form fields to your PDF.</p>
+    <div class="flex items-center gap-4">
+      ${createFileInputHTML()}
+      <button id="start-blank-page-btn" class="btn btn-secondary">Start with a blank page</button>
+    </div>
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <div id="create-form-editor" class="hidden mt-6">
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <button id="add-text-field" class="btn bg-indigo-600 text-white">Add Text Field</button>
+          <button id="add-checkbox" class="btn bg-indigo-600 text-white ml-2">Add Checkbox</button>
+          <button id="add-radio-group" class="btn bg-indigo-600 text-white ml-2">Add Radio Group</button>
+          <button id="delete-field" class="btn bg-red-600 text-white ml-2">Delete Selected Field</button>
+        </div>
+        <div class="flex items-center">
+          <button id="prev-page" class="btn bg-gray-600 text-white">Previous</button>
+          <span id="page-num" class="mx-4 text-white"></span>
+          <button id="next-page" class="btn bg-gray-600 text-white">Next</button>
+        </div>
+        <button id="download-pdf" class="btn bg-blue-600 text-white">Download PDF</button>
+      </div>
+      <canvas id="pdf-canvas" class="w-full border border-gray-600 rounded-lg"></canvas>
+    </div>
+    <div id="radio-group-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div class="bg-gray-800 p-8 rounded-lg">
+        <h3 class="text-white text-lg mb-4">Enter Radio Group Name</h3>
+        <input type="text" id="radio-group-name" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4">
+        <div class="flex justify-end">
+          <button id="cancel-radio-group" class="btn bg-gray-600 text-white mr-2">Cancel</button>
+          <button id="confirm-radio-group" class="btn bg-indigo-600 text-white">Confirm</button>
+        </div>
+      </div>
+    </div>
+  `,
 };

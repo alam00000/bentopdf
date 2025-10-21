@@ -138,6 +138,12 @@ export const categories = [
         subtitle: 'Fill in forms directly in the browser.',
       },
       {
+        id: 'create-form',
+        name: 'Create Form',
+        icon: 'file-plus-2',
+        subtitle: 'Add fillable form fields to your PDF.',
+      },
+      {
         id: 'remove-blank-pages',
         name: 'Remove Blank Pages',
         icon: 'file-minus-2',
