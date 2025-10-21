@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@neslinesli93/qpdf-wasm": "^0.3.0",
+    "@playwright/test": "^1.56.1",
     "@tailwindcss/vite": "^4.1.15",
     "blob-stream": "^0.1.3",
     "cropperjs": "^1.6.1",
