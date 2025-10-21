@@ -47,7 +47,7 @@ import { changeBackgroundColor } from './change-background-color.js';
 import { changeTextColor, setupTextColorTool } from './change-text-color.js';
 import { setupCompareTool } from './compare-pdfs.js';
 import { setupOcrTool } from './ocr-pdf.js';
-import { wordToPdf } from './word-to-pdf.js';
+import { setupWordToPdfTool } from './word-to-pdf.js';
 import { applyAndSaveSignatures, setupSignTool } from './sign-pdf.js';
 import {
   removeAnnotations,
@@ -113,7 +113,7 @@ export const toolLogic = {
   'change-text-color': { process: changeTextColor, setup: setupTextColorTool },
   'compare-pdfs': { setup: setupCompareTool },
   'ocr-pdf': { setup: setupOcrTool },
-  'word-to-pdf': wordToPdf,
+  'word-to-pdf': { setup: setupWordToPdfTool },
   'sign-pdf': { process: applyAndSaveSignatures, setup: setupSignTool },
   'remove-annotations': {
     process: removeAnnotations,

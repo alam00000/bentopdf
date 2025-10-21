@@ -1477,23 +1477,27 @@ export const toolTemplates = {
 `,
 
   'word-to-pdf': () => `
-        <h2 class="text-2xl font-bold text-white mb-4">Word to PDF Converter</h2>
-        <p class="mb-6 text-gray-400">Upload a .docx file to convert it into a high-quality PDF with selectable text. Complex layouts may not be perfectly preserved.</p>
-        
-        <div id="file-input-wrapper">
-             <div class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <i data-lucide="file-text" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select a file</span> or drag and drop</p>
-                    <p class="text-xs text-gray-500">A single .docx file</p>
-                </div>
-                <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+<div id="word-to-pdf-output" >
+    <canvas id="qtcanvas" class="hidden"></canvas>
+    <iframe id="frame" class="w-full h-[600px] mt-4 border border-gray-600 rounded-lg"></iframe>
+    <input type="checkbox" id="download" class="hidden" checked /> <!-- optional -->
+    
+    <div id="file-input-wrapper">
+         <div class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <i data-lucide="file-text" class="w-10 h-10 mb-3 text-gray-400"></i>
+                <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select a file</span> or drag and drop</p>
+                <p class="text-xs text-gray-500">A single .docx file</p>
             </div>
+            <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
         </div>
-        
-        <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Preview & Convert</button>
-    `,
+    </div>
+    
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Preview & Convert</button>
+</div>
+`
+,
 
   'sign-pdf': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Sign PDF</h2>
