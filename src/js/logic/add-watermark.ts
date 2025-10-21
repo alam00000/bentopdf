@@ -175,10 +175,11 @@ export async function addWatermark() {
       new Blob([newPdfBytes], { type: 'application/pdf' }),
       'watermarked.pdf'
     );
-
+   
+    const toolid=state.activeTool
     resetState();
-    if (state.activeTool) {
-      const element = document.querySelector(`[data-tool-id="${state.activeTool}"]`) as HTMLElement;
+    if (toolid) {
+      const element = document.querySelector(`[data-tool-id="${toolid}"]`) as HTMLElement;
       if (element) element.click();
     }
   } catch (e) {
