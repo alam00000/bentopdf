@@ -1,6 +1,18 @@
 import { PDFDocument } from 'pdf-lib';
 import { state } from '../state';
 import * as pdfjsLib from 'pdfjs-dist';
+import { handleSinglePdfUpload } from '../handlers/pdfUploadHandler.js';
+import { showTool } from '../ui';
+
+export async function startWithBlankPDF() {
+  showTool('create-form');
+  const pdfDoc = await PDFDocument.create();
+  pdfDoc.addPage();
+  const pdfBytes = await pdfDoc.save();
+  const file = new File([pdfBytes], "blank.pdf", { type: "application/pdf" });
+  state.files = [file];
+  await handleSinglePdfUpload('create-form', file);
+}
 
 let pdfDoc;
 let pdfjsDoc;
