@@ -1,0 +1,9 @@
+<select id="ocrLanguageDropdown"></select>
+<input type="file" id="ocrFile" accept="image/*" />
+<button id="ocrProcessBtn">Extract Text</button>
+<textarea id="ocrOutput" rows="10"></textarea>
+
+<script type="module">
+  import { initOcrLanguageDropdown } from "./js/config/ocrLanguageDropdown.ts";
+  initOcrLanguageDropdown();
+</script>
