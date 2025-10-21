@@ -4,7 +4,7 @@ import { setupFileInputHandler } from './fileHandler.js';
 import { toolLogic } from '../logic/index.js';
 import { createIcons, icons } from 'lucide';
 
-const SETUP_AFTER_UPLOAD = ['sign-pdf'];
+const SETUP_AFTER_UPLOAD = ['sign-pdf', 'add-form'];
 
 export function setupToolInterface(toolId: any) {
   window.scrollTo({
