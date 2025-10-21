@@ -1,140 +1,132 @@
-// NOTE: This is a work in progress and does not work correctly as of yet
-import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { readFileAsArrayBuffer } from '../utils/helpers.js';
-import { state } from '../state.js';
+import { ZetaHelperMain } from '../../lib/zetajs/zetaHelper';
 
-export async function wordToPdf() {
-  const file = state.files[0];
-  if (!file) {
-    showAlert('No File', 'Please upload a .docx file first.');
+/**
+ * Wait until all specified DOM elements exist.
+ */
+function waitForElements(ids: string[], timeout = 5000): Promise<Record<string, HTMLElement>> {
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+
+    function check() {
+      const elements: Record<string, HTMLElement> = {};
+      let allFound = true;
+
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) allFound = false;
+        else elements[id] = el;
+      }
+
+      if (allFound) resolve(elements);
+      else if (Date.now() - start > timeout) reject('Timeout waiting for DOM elements: ' + ids.join(', '));
+      else requestAnimationFrame(check);
+    }
+
+    check();
+  });
+}
+
+/**
+ * Setup Word → PDF tool (works multiple times without reload)
+ */
+export async function setupWordToPdfTool() {
+  let elements;
+  try {
+    elements = await waitForElements([
+      'qtcanvas',
+      'file-input',
+      'download',
+      'frame',
+      'word-to-pdf-output'
+    ]);
+  } catch (err) {
+    console.error(err);
     return;
   }
 
-  showLoader('Preparing preview...');
+  const {
+    qtcanvas: canvas,
+    'file-input': input,
+    download: downloadCheckbox,
+    frame: iframe,
+    'word-to-pdf-output': wordToPdfOutput
+  } = elements;
 
-  try {
-    const mammothOptions = {
-      // @ts-expect-error TS(2304) FIXME: Cannot find name 'mammoth'.
-      convertImage: mammoth.images.inline((element: any) => {
-        return element.read('base64').then((imageBuffer: any) => {
-          return {
-            src: `data:${element.contentType};base64,${imageBuffer}`,
-          };
-        });
-      }),
-    };
-    const arrayBuffer = await readFileAsArrayBuffer(file);
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'mammoth'.
-    const { value: html } = await mammoth.convertToHtml(
-      { arrayBuffer },
-      mammothOptions
-    );
+  // ✅ Handle file uploads repeatedly
+  input.onchange = async () => {
+    if (!input.files || input.files.length === 0) {
+      console.error('No file selected.');
+      return;
+    }
 
-    // Get references to our modal elements from index.html
-    const previewModal = document.getElementById('preview-modal');
-    const previewContent = document.getElementById('preview-content');
-    const downloadBtn = document.getElementById('preview-download-btn');
-    const closeBtn = document.getElementById('preview-close-btn');
+    input.disabled = true;
 
-    const styledHtml = `
-            <style>
-                #preview-content { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
-                #preview-content table { border-collapse: collapse; width: 100%; }
-                #preview-content td, #preview-content th { border: 1px solid #dddddd; text-align: left; padding: 8px; }
-                #preview-content img { max-width: 100%; height: auto; }
-                #preview-content a { color: #0000ee; text-decoration: underline; }
-            </style>
-            ${html}
-        `;
-    previewContent.innerHTML = styledHtml;
-
-    const marginDiv = document.createElement('div');
-    marginDiv.style.height = '100px';
-    previewContent.appendChild(marginDiv);
-
-    const images = previewContent.querySelectorAll('img');
-    const imagePromises = Array.from(images).map((img) => {
-      return new Promise((resolve) => {
-        // @ts-expect-error TS(2794) FIXME: Expected 1 arguments, but got 0. Did you forget to... Remove this comment to see the full error message
-        if (img.complete) resolve();
-        else img.onload = resolve;
-      });
+    // 🧩 Create a *fresh* ZetaHelper for each file
+    const zHM = new ZetaHelperMain('/static/office_thread.js', {
+      threadJsType: 'module',
+      wasmPkg: 'url:/static/'
     });
-    await Promise.all(imagePromises);
 
-    previewModal.classList.remove('hidden');
-    hideLoader();
+    const file = input.files[0];
+    let name = file.name;
+    let from = '/tmp/input';
+    const n = name.lastIndexOf('.');
+    if (n > 0) {
+      from += name.substring(n);
+      name = name.substring(0, n);
+    }
 
-    const downloadHandler = async () => {
-      showLoader('Generating High-Quality PDF...');
+    // Start ZetaHelper thread
+    zHM.start(() => {
+      file.arrayBuffer().then(data => {
+        try {
+          window.FS.writeFile(from, new Uint8Array(data));
+        } catch (e) {
+          console.error('Error writing file to FS:', e);
+          input.disabled = false;
+          return;
+        }
 
-      // @ts-expect-error TS(2339) FIXME: Property 'jspdf' does not exist on type 'Window & ... Remove this comment to see the full error message
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({
-        orientation: 'p',
-        unit: 'pt',
-        format: 'letter',
+        // Send conversion command
+        zHM.thrPort.postMessage({ cmd: 'convert', name, from, to: '/tmp/output' });
       });
 
-      await doc.html(previewContent, {
-        callback: function (doc: any) {
-          const links = previewContent.querySelectorAll('a');
-          const pageHeight = doc.internal.pageSize.getHeight();
-          const containerRect = previewContent.getBoundingClientRect(); // Get container's position
+      // Handle messages from worker
+      zHM.thrPort.onmessage = (e) => {
+        switch (e.data.cmd) {
+          case 'converted':
+            try { window.FS.unlink(e.data.from); } catch {}
+            const data = window.FS.readFile(e.data.to);
+            const blob = new Blob([data], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
 
-          links.forEach((link) => {
-            if (!link.href) return;
+            // Show PDF
+            iframe.src = url;
+            wordToPdfOutput.classList.remove('hidden');
 
-            const linkRect = link.getBoundingClientRect();
-
-            // Calculate position relative to the preview container's top-left
-            const relativeX = linkRect.left - containerRect.left;
-            const relativeY = linkRect.top - containerRect.top;
-
-            const pageNum = Math.floor(relativeY / pageHeight) + 1;
-            const yOnPage = relativeY % pageHeight;
-
-            doc.setPage(pageNum);
-            try {
-              doc.link(
-                relativeX + 45,
-                yOnPage + 45,
-                linkRect.width,
-                linkRect.height,
-                { url: link.href }
-              );
-            } catch (e) {
-              console.warn('Could not add link:', link.href, e);
+            // Optional download
+            if (downloadCheckbox.checked) {
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `${e.data.name || 'output'}.pdf`;
+              a.click();
             }
-          });
 
-          const outputFileName = `${file.name.replace(/\.[^/.]+$/, '')}.pdf`;
-          doc.save(outputFileName);
-          hideLoader();
-        },
-        autoPaging: 'slice',
-        x: 45,
-        y: 45,
-        width: 522,
-        windowWidth: previewContent.scrollWidth,
-      });
-    };
+            try { window.FS.unlink(e.data.to); } catch {}
+            input.disabled = false;
 
-    const closeHandler = () => {
-      previewModal.classList.add('hidden');
-      previewContent.innerHTML = '';
-      downloadBtn.removeEventListener('click', downloadHandler);
-      closeBtn.removeEventListener('click', closeHandler);
-    };
+            // 🧹 Clean up worker
+            zHM.terminate();
+            break;
 
-    downloadBtn.addEventListener('click', downloadHandler);
-    closeBtn.addEventListener('click', closeHandler);
-  } catch (e) {
-    console.error(e);
-    hideLoader();
-    showAlert(
-      'Preview Error',
-      `Could not generate a preview. The file may be corrupt or contain unsupported features. Error: ${e.message}`
-    );
-  }
+          case 'start':
+            input.disabled = false;
+            break;
+
+          default:
+            console.error('Unknown command:', e.data.cmd);
+        }
+      };
+    });
+  };
 }
