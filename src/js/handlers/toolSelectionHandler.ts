@@ -1,10 +1,10 @@
 import { state } from '../state.js';
-import { dom, switchView, toolTemplates } from '../ui.js';
+import { dom, switchView, toolTemplates, showTool } from '../ui.js';
 import { setupFileInputHandler } from './fileHandler.js';
 import { toolLogic } from '../logic/index.js';
 import { createIcons, icons } from 'lucide';
 
-const SETUP_AFTER_UPLOAD = ['sign-pdf', 'add-form'];
+const SETUP_AFTER_UPLOAD = ['sign-pdf'];
 
 export function setupToolInterface(toolId: any) {
   window.scrollTo({
@@ -37,5 +37,15 @@ export function setupToolInterface(toolId: any) {
 
   if (fileInput) {
     setupFileInputHandler(toolId);
+  }
+
+  if (toolId === 'create-form') {
+    const startBlankBtn = document.getElementById('start-blank-page-btn');
+    if (startBlankBtn) {
+      startBlankBtn.addEventListener('click', () => {
+        showTool('create-form');
+        startWithBlankPDF();
+      });
+    }
   }
 }

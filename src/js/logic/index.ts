@@ -136,5 +136,5 @@ export const toolLogic = {
     process: addAttachments,
     setup: setupAddAttachmentsTool,
   },
-  'add-form': formLogic,
+  'create-form': formLogic,
 };
