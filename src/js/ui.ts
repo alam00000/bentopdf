@@ -1914,4 +1914,72 @@ export const toolTemplates = {
       <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
     </div>
   `,
+
+  'sanitize-pdf': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Sanitize PDF</h2>
+    <p class="mb-6 text-gray-400">Remove potentially sensitive or unnecessary information from your PDF before sharing. Select the items you want to remove.</p>
+    ${createFileInputHTML()}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+    <div id="sanitize-pdf-options" class="hidden mt-6 space-y-4 p-4 bg-gray-900 border border-gray-700 rounded-lg">
+        <h3 class="text-lg font-semibold text-white mb-3">Sanitization Options</h3>
+    <div>
+            <strong class="font-semibold text-yellow-200">Note:</strong>
+            Removing <code class="bg-gray-700 px-1 rounded text-white">Embedded Fonts</code> may break text rendering! Text may not display correctly or at all. Only use if you're sure the PDF viewer has substitute fonts.
+    </div>
+        <div class="mb-4">
+            <h4 class="text-sm font-semibold text-gray-400 mb-2">Essential Security</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="flatten-forms" name="sanitizeOption" value="flatten-forms" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Flatten Form Fields</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-metadata" name="sanitizeOption" value="metadata" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove All Metadata</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-annotations" name="sanitizeOption" value="annotations" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove Annotations</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-javascript" name="sanitizeOption" value="javascript" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove JavaScript</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-embedded-files" name="sanitizeOption" value="embeddedFiles" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove Embedded Files</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-layers" name="sanitizeOption" value="layers" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove Layers (OCG)</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-links" name="sanitizeOption" value="links" checked class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove External Links</span>
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="text-sm font-semibold text-gray-400 mb-2">Additional Options</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-structure-tree" name="sanitizeOption" value="structure" class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove Structure Tree</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-markinfo" name="sanitizeOption" value="markinfo" class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white">Remove Tagging Info</span>
+                </label>
+                <label class="flex items-center space-x-2 p-3 rounded-md bg-gray-800 hover:bg-gray-700 cursor-pointer">
+                    <input type="checkbox" id="remove-fonts" name="sanitizeOption" value="fonts" class="w-5 h-5 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
+                    <span class="text-white text-sm">Remove Embedded Fonts</span>
+                </label>
+            </div>
+        </div>
+
+        <button id="process-btn" class="btn-gradient w-full mt-6">Sanitize PDF & Download</button>
+    </div>
+`,
 };

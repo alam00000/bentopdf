@@ -19,40 +19,89 @@ When enabled, Simple Mode will:
 
 ## How to Enable Simple Mode
 
-### Using Docker Compose
+### Method 1: Using Pre-built Simple Mode Image (Recommended)
 
-1. Create a `.env` file in your project root:
-
-```bash
-SIMPLE_MODE=true
-```
-
-2. Run with docker-compose:
+Use the pre-built Simple Mode image directly:
 
 ```bash
-docker-compose up -d
+docker run -p 3000:80 bentopdf/bentopdf-simple:latest
 ```
 
-### Using Docker Build
+Or with Docker Compose:
 
-Build the image with the SIMPLE_MODE environment variable:
+```yaml
+services:
+  bentopdf:
+    image: bentopdf/bentopdf-simple:latest
+    container_name: bentopdf
+    restart: unless-stopped
+    ports:
+      - '3000:80'
+```
+
+### Method 2: Using Docker Compose with Build
+
+Build the image locally with Simple Mode enabled:
+
+```bash
+docker compose -f docker-compose.dev.yml build --build-arg SIMPLE_MODE=true
+docker compose -f docker-compose.dev.yml up -d
+```
+
+### Method 3: Using Docker Build
+
+Build the image with the SIMPLE_MODE build argument:
 
 ```bash
 docker build --build-arg SIMPLE_MODE=true -t bentopdf-simple .
+docker run -p 3000:80 bentopdf-simple
 ```
 
-### Using Environment Variables
+### Method 4: Using npm Script (Easiest for Local Development)
+
+Use the built-in npm script that handles everything:
+
+```bash
+npm run serve:simple
+```
+
+This command automatically:
+
+- Sets `SIMPLE_MODE=true`
+- Builds the project with Simple Mode enabled
+- Serves the built files on `http://localhost:3000`
+
+### Method 5: Using Environment Variables
 
 Set the environment variable before building:
 
 ```bash
 export SIMPLE_MODE=true
 npm run build
+npx serve dist -p 3000
 ```
 
 ## 🧪 Testing Simple Mode Locally
 
-After building with Simple Mode enabled, you need to serve the built files locally.
+### Method 1: Using npm Script (Easiest for Development)
+
+```bash
+npm run serve:simple
+```
+
+This automatically builds and serves Simple Mode on `http://localhost:3000`.
+
+### Method 2: Using Pre-built Image (Easiest for Production)
+
+```bash
+# Pull and run the Simple Mode image
+docker pull bentopdf/bentopdf-simple:latest
+docker run -p 3000:80 bentopdf/bentopdf-simple:latest
+```
+
+Open `http://localhost:3000` in your browser.
+
+### Method 3: Build and Test Locally
 
 ```bash
 # Build with simple mode
@@ -62,7 +111,20 @@ SIMPLE_MODE=true npm run build
 npx serve dist -p 3000
 ```
 
-Then open `http://localhost:3000` in your browser.
+Open `http://localhost:3000` in your browser.
+
+### Method 4: Compare Both Modes
+
+```bash
+# Test Normal Mode
+docker run -p 3000:80 bentopdf/bentopdf:latest
+
+# Test Simple Mode
+docker run -p 3001:80 bentopdf/bentopdf-simple:latest
+```
+
+- Normal Mode: `http://localhost:3000`
+- Simple Mode: `http://localhost:3001`
 
 ## 🔍 What to Look For
 
@@ -76,16 +138,38 @@ When Simple Mode is working correctly, you should see:
 - ❌ No hero section with "The PDF Toolkit built for privacy"
 - ❌ No features, FAQ, testimonials, or footer sections
 
-## Example Docker Compose Configuration
+## 📦 Available Docker Images
+
+### Normal Mode (Full Branding)
+
+- `bentopdf/bentopdf:latest`
+- `bentopdf/bentopdf:v1.0.0` (versioned)
+
+### Simple Mode (Clean Interface)
+
+- `bentopdf/bentopdf-simple:latest`
+- `bentopdf/bentopdf-simple:v1.0.0` (versioned)
+
+## 🚀 Production Deployment Examples
+
+### Internal Company Tool
 
 ```yaml
 services:
   bentopdf:
-    image: bentopdf/bentopdf:latest
+    image: bentopdf/bentopdf-simple:latest
     container_name: bentopdf
     restart: unless-stopped
     ports:
-      - '3000:80'
+      - '80:80'
     environment:
-      - SIMPLE_MODE=true
+      - PUID=1000
+      - PGID=1000
 ```
+
+## ⚠️ Important Notes
+
+- **Pre-built images**: Use `bentopdf/bentopdf-simple:latest` for Simple Mode
+- **Environment variables**: `SIMPLE_MODE=true` only works during build, not runtime
+- **Build-time optimization**: Simple Mode uses dead code elimination for smaller bundles
+- **Same functionality**: All PDF tools work identically in both modes

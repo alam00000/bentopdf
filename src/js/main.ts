@@ -5,84 +5,120 @@ import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 
-const hideBrandingSections = () => {
-  const nav = document.querySelector('nav');
-  if (nav) {
-    nav.style.display = 'none';
-  }
-
-  const heroSection = document.getElementById('hero-section');
-  if (heroSection) {
-    heroSection.style.display = 'none';
-  }
-
-  const featuresSection = document.getElementById('features-section');
-  if (featuresSection) {
-    featuresSection.style.display = 'none';
-  }
-
-  const securitySection = document.getElementById(
-    'security-compliance-section'
-  );
-  if (securitySection) {
-    securitySection.style.display = 'none';
-  }
-
-  const faqSection = document.getElementById('faq-accordion');
-  if (faqSection) {
-    faqSection.style.display = 'none';
-  }
-
-  const testimonialsSection = document.getElementById('testimonials-section');
-  if (testimonialsSection) {
-    testimonialsSection.style.display = 'none';
-  }
-
-  const supportSection = document.getElementById('support-section');
-  if (supportSection) {
-    supportSection.style.display = 'none';
-  }
-
-  const footer = document.querySelector('footer');
-  if (footer) {
-    footer.style.display = 'none';
-  }
-
-  const sectionDividers = document.querySelectorAll('.section-divider');
-  sectionDividers.forEach((divider) => {
-    (divider as HTMLElement).style.display = 'none';
-  });
-
-  document.title = 'PDF Tools';
-
-  const toolsHeader = document.getElementById('tools-header');
-  if (toolsHeader) {
-    const title = toolsHeader.querySelector('h2');
-    const subtitle = toolsHeader.querySelector('p');
-    if (title) {
-      title.textContent = 'PDF Tools';
-      title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
-    }
-    if (subtitle) {
-      subtitle.textContent = 'Select a tool to get started';
-      subtitle.className = 'text-lg text-gray-400';
-    }
-  }
-
-  const app = document.getElementById('app');
-  if (app) {
-    app.style.paddingTop = '2rem';
-  }
-};
-
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url
   ).toString();
 
-  // Handle simple mode - hide branding sections
+  // Handle simple mode - hide branding sections but keep logo and copyright
   if (__SIMPLE_MODE__) {
+    const hideBrandingSections = () => {
+      // Hide navigation but keep logo
+      const nav = document.querySelector('nav');
+      if (nav) {
+        // Hide the entire nav but we'll create a minimal one with just logo
+        nav.style.display = 'none';
+
+        // Create a simple nav with just logo on the right
+        const simpleNav = document.createElement('nav');
+        simpleNav.className =
+          'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
+        simpleNav.innerHTML = `
+          <div class="container mx-auto px-4">
+            <div class="flex justify-start items-center h-16">
+              <div class="flex-shrink-0 flex items-center">
+                <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
+                <span class="text-white font-bold text-xl ml-2">BentoPDF</span>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.insertBefore(simpleNav, document.body.firstChild);
+      }
+
+      const heroSection = document.getElementById('hero-section');
+      if (heroSection) {
+        heroSection.style.display = 'none';
+      }
+
+      const featuresSection = document.getElementById('features-section');
+      if (featuresSection) {
+        featuresSection.style.display = 'none';
+      }
+
+      const securitySection = document.getElementById(
+        'security-compliance-section'
+      );
+      if (securitySection) {
+        securitySection.style.display = 'none';
+      }
+
+      const faqSection = document.getElementById('faq-accordion');
+      if (faqSection) {
+        faqSection.style.display = 'none';
+      }
+
+      const testimonialsSection = document.getElementById(
+        'testimonials-section'
+      );
+      if (testimonialsSection) {
+        testimonialsSection.style.display = 'none';
+      }
+
+      const supportSection = document.getElementById('support-section');
+      if (supportSection) {
+        supportSection.style.display = 'none';
+      }
+
+      // Hide footer but keep copyright
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.display = 'none';
+
+        const simpleFooter = document.createElement('footer');
+        simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
+        simpleFooter.innerHTML = `
+          <div class="container mx-auto px-4">
+            <div class="flex items-center mb-4">
+              <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
+              <span class="text-white font-bold text-lg">BentoPDF</span>
+            </div>
+            <p class="text-gray-400 text-sm">
+              &copy; 2025 BentoPDF. All rights reserved.
+            </p>
+          </div>
+        `;
+        document.body.appendChild(simpleFooter);
+      }
+
+      const sectionDividers = document.querySelectorAll('.section-divider');
+      sectionDividers.forEach((divider) => {
+        (divider as HTMLElement).style.display = 'none';
+      });
+
+      document.title = 'BentoPDF - PDF Tools';
+
+      const toolsHeader = document.getElementById('tools-header');
+      if (toolsHeader) {
+        const title = toolsHeader.querySelector('h2');
+        const subtitle = toolsHeader.querySelector('p');
+        if (title) {
+          title.textContent = 'PDF Tools';
+          title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
+        }
+        if (subtitle) {
+          subtitle.textContent = 'Select a tool to get started';
+          subtitle.className = 'text-lg text-gray-400';
+        }
+      }
+
+      const app = document.getElementById('app');
+      if (app) {
+        app.style.paddingTop = '1rem';
+      }
+    };
+
     hideBrandingSections();
   }
 
