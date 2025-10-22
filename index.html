@@ -31,6 +31,7 @@
   </head>
 
   <body class="antialiased">
+    <canvas id="qtcanvas" style="display: none;"></canvas>
     <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
       <div class="container mx-auto px-4">
         <div class="flex justify-between items-center h-16">
@@ -937,7 +938,28 @@
       </div>
     </footer>
 
+    <script>
+        window.sofficeLoaded = false;
+
+        var Module = {
+            canvas: document.getElementById('qtcanvas'),
+            uno_scripts: ["zeta.js", "office_thread.js"],
+            locateFile(path, prefix) {
+                if (path.endsWith('.wasm') || path.endsWith('.data') || path.endsWith('.js') || path.endsWith('.metadata')) {
+                    return `/public/static/${path}`;
+                }
+                return path;
+            },
+            onRuntimeInitialized() {
+                window.sofficeLoaded = true;
+                console.log("✅ LibreOffice WASM cargado y listo.");
+            },
+            arguments: ['--headless']
+        };
+    </script>
+    <script src="/public/static/soffice.js"></script>
     <script type="module" src="src/js/main.ts"></script>
     <script type="module" src="src/js/mobileMenu.ts"></script>
   </body>
+</html>
 </html>

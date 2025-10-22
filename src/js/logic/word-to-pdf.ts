@@ -1,140 +1,137 @@
-// NOTE: This is a work in progress and does not work correctly as of yet
-import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { readFileAsArrayBuffer } from '../utils/helpers.js';
-import { state } from '../state.js';
+import { ZetaHelperMain } from '../../lib/zetajs/zetaHelper';
 
-export async function wordToPdf() {
-  const file = state.files[0];
-  if (!file) {
-    showAlert('No File', 'Please upload a .docx file first.');
+async function waitForSofficeLoaded(timeout = 10000): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+    function check() {
+      if ((window as any).sofficeLoaded) {
+        resolve();
+      } else if (Date.now() - start > timeout) {
+        reject('Timeout waiting for soffice.wasm to load.');
+      } else {
+        requestAnimationFrame(check);
+      }
+    }
+    check();
+  });
+}
+
+async function waitForElements(ids: string[], timeout = 5000): Promise<Record<string, HTMLElement>> {
+  return new Promise((resolve, reject) => {
+    const start = Date.now();
+
+    function check() {
+      const elements: Record<string, HTMLElement> = {};
+      let allFound = true;
+
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) allFound = false;
+        else elements[id] = el;
+      }
+
+      if (allFound) resolve(elements);
+      else if (Date.now() - start > timeout) reject('Timeout waiting for DOM elements: ' + ids.join(', '));
+      else requestAnimationFrame(check);
+    }
+
+    check();
+  });
+}
+
+export async function setupWordToPdfTool() {
+  let elements: Record<string, HTMLElement>;
+  try {
+    await waitForSofficeLoaded();
+    elements = await waitForElements([
+      'qtcanvas',
+      'file-input',
+      'download',
+      'frame',
+      'word-to-pdf-output'
+    ]);
+  } catch (err) {
+    console.error(err);
     return;
   }
 
-  showLoader('Preparing preview...');
+  const {
+    qtcanvas: canvas,
+    'file-input': input,
+    download: downloadCheckbox,
+    frame: iframe,
+    'word-to-pdf-output': wordToPdfOutput
+  } = elements;
 
-  try {
-    const mammothOptions = {
-      // @ts-expect-error TS(2304) FIXME: Cannot find name 'mammoth'.
-      convertImage: mammoth.images.inline((element: any) => {
-        return element.read('base64').then((imageBuffer: any) => {
-          return {
-            src: `data:${element.contentType};base64,${imageBuffer}`,
-          };
-        });
-      }),
-    };
-    const arrayBuffer = await readFileAsArrayBuffer(file);
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'mammoth'.
-    const { value: html } = await mammoth.convertToHtml(
-      { arrayBuffer },
-      mammothOptions
-    );
+  const zHM = new ZetaHelperMain('/static/office_thread.js', {
+    threadJsType: 'module',
+    wasmPkg: 'url:/static/'
+  });
 
-    // Get references to our modal elements from index.html
-    const previewModal = document.getElementById('preview-modal');
-    const previewContent = document.getElementById('preview-content');
-    const downloadBtn = document.getElementById('preview-download-btn');
-    const closeBtn = document.getElementById('preview-close-btn');
+  // Assign thrPort.onmessage immediately
+  zHM.thrPort.onmessage = (e: MessageEvent) => {
+    const data = e.data;
+    switch (data.cmd) {
+      case 'converted':
+        try { (window as any).FS.unlink(data.from); } catch {}
+        const fileData = (window as any).FS.readFile(data.to);
+        const blob = new Blob([fileData], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
 
-    const styledHtml = `
-            <style>
-                #preview-content { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
-                #preview-content table { border-collapse: collapse; width: 100%; }
-                #preview-content td, #preview-content th { border: 1px solid #dddddd; text-align: left; padding: 8px; }
-                #preview-content img { max-width: 100%; height: auto; }
-                #preview-content a { color: #0000ee; text-decoration: underline; }
-            </style>
-            ${html}
-        `;
-    previewContent.innerHTML = styledHtml;
+        // Show PDF in iframe
+        (iframe as HTMLIFrameElement).src = url;
+        wordToPdfOutput.classList.remove('hidden');
 
-    const marginDiv = document.createElement('div');
-    marginDiv.style.height = '100px';
-    previewContent.appendChild(marginDiv);
+        // Download if checkbox is checked
+        if ((downloadCheckbox as HTMLInputElement).checked) {
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${data.name || 'output'}.pdf`;
+          a.click();
+        }
 
-    const images = previewContent.querySelectorAll('img');
-    const imagePromises = Array.from(images).map((img) => {
-      return new Promise((resolve) => {
-        // @ts-expect-error TS(2794) FIXME: Expected 1 arguments, but got 0. Did you forget to... Remove this comment to see the full error message
-        if (img.complete) resolve();
-        else img.onload = resolve;
-      });
-    });
-    await Promise.all(imagePromises);
+        try { (window as any).FS.unlink(data.to); } catch {}
+        (input as HTMLInputElement).disabled = false;
+        break;
 
-    previewModal.classList.remove('hidden');
-    hideLoader();
+      case 'start':
+        // Internal message, can ignore
+        break;
 
-    const downloadHandler = async () => {
-      showLoader('Generating High-Quality PDF...');
+      default:
+        console.warn('Unknown command from WASM:', data.cmd);
+    }
+  };
 
-      // @ts-expect-error TS(2339) FIXME: Property 'jspdf' does not exist on type 'Window & ... Remove this comment to see the full error message
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({
-        orientation: 'p',
-        unit: 'pt',
-        format: 'letter',
-      });
+  // Wait for ZetaHelper to initialize
+  await new Promise<void>(resolve => zHM.start(resolve));
 
-      await doc.html(previewContent, {
-        callback: function (doc: any) {
-          const links = previewContent.querySelectorAll('a');
-          const pageHeight = doc.internal.pageSize.getHeight();
-          const containerRect = previewContent.getBoundingClientRect(); // Get container's position
+  // Handle file selection
+  (input as HTMLInputElement).onchange = async () => {
+    const inputEl = input as HTMLInputElement;
+    if (!inputEl.files || inputEl.files.length === 0) {
+      console.error('No file selected.');
+      return;
+    }
 
-          links.forEach((link) => {
-            if (!link.href) return;
+    inputEl.disabled = true;
+    const file = inputEl.files[0];
+    let name = file.name;
+    let from = '/tmp/input';
+    const n = name.lastIndexOf('.');
+    if (n > 0) {
+      from += name.substring(n);
+      name = name.substring(0, n);
+    }
 
-            const linkRect = link.getBoundingClientRect();
+    const arrayBuffer = await file.arrayBuffer();
+    if (!(window as any).FS) {
+      console.error('FS not initialized yet.');
+      inputEl.disabled = false;
+      return;
+    }
 
-            // Calculate position relative to the preview container's top-left
-            const relativeX = linkRect.left - containerRect.left;
-            const relativeY = linkRect.top - containerRect.top;
-
-            const pageNum = Math.floor(relativeY / pageHeight) + 1;
-            const yOnPage = relativeY % pageHeight;
-
-            doc.setPage(pageNum);
-            try {
-              doc.link(
-                relativeX + 45,
-                yOnPage + 45,
-                linkRect.width,
-                linkRect.height,
-                { url: link.href }
-              );
-            } catch (e) {
-              console.warn('Could not add link:', link.href, e);
-            }
-          });
-
-          const outputFileName = `${file.name.replace(/\.[^/.]+$/, '')}.pdf`;
-          doc.save(outputFileName);
-          hideLoader();
-        },
-        autoPaging: 'slice',
-        x: 45,
-        y: 45,
-        width: 522,
-        windowWidth: previewContent.scrollWidth,
-      });
-    };
-
-    const closeHandler = () => {
-      previewModal.classList.add('hidden');
-      previewContent.innerHTML = '';
-      downloadBtn.removeEventListener('click', downloadHandler);
-      closeBtn.removeEventListener('click', closeHandler);
-    };
-
-    downloadBtn.addEventListener('click', downloadHandler);
-    closeBtn.addEventListener('click', closeHandler);
-  } catch (e) {
-    console.error(e);
-    hideLoader();
-    showAlert(
-      'Preview Error',
-      `Could not generate a preview. The file may be corrupt or contain unsupported features. Error: ${e.message}`
-    );
-  }
+    (window as any).FS.writeFile(from, new Uint8Array(arrayBuffer));
+    zHM.thrPort.postMessage({ cmd: 'convert', name, from, to: '/tmp/output' });
+  };
 }
