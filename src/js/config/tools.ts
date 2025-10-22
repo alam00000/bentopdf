@@ -369,7 +369,7 @@ export const categories = [
       {
         id: 'posterize',
         name: 'Posterize PDF',
-        icon: 'layout-grid',
+        icon: 'notepad-text-dashed',
         subtitle: 'Split a large page into multiple smaller pages.',
       },
     ],
@@ -392,7 +392,7 @@ export const categories = [
       {
         id: 'linearize',
         name: 'Linearize PDF',
-        icon: 'zap',
+        icon: 'gauge',
         subtitle: 'Optimize PDF for fast web viewing.',
       },
       {
@@ -411,6 +411,12 @@ export const categories = [
         name: 'Encrypt PDF',
         icon: 'lock',
         subtitle: 'Add a password to protect your PDF.',
+      },
+      {
+        id: 'sanitize-pdf',
+        name: 'Sanitize PDF',
+        icon: 'brush-cleaning',
+        subtitle: 'Remove metadata, annotations, scripts, and more.',
       },
       {
         id: 'decrypt',

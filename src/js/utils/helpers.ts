@@ -123,3 +123,26 @@ export function parsePageRanges(rangeString: any, totalPages: any) {
   // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
   return Array.from(indices).sort((a, b) => a - b);
 }
+
+/**
+ * Formats an ISO 8601 date string (e.g., "2008-02-21T17:15:56-08:00")
+ * into a localized, human-readable string.
+ * @param {string} isoDateString - The ISO 8601 date string.
+ * @returns {string} A localized date and time string, or the original string if parsing fails.
+ */
+export function formatIsoDate(isoDateString) {
+  if (!isoDateString || typeof isoDateString !== 'string') {
+    return isoDateString; // Return original value if it's not a valid string
+  }
+  try {
+    const date = new Date(isoDateString);
+    // Check if the date object is valid
+    if (isNaN(date.getTime())) {
+      return isoDateString; // Return original string if the date is invalid
+    }
+    return date.toLocaleString();
+  } catch (e) {
+    console.error('Could not parse ISO date:', e);
+    return isoDateString; // Return original string on any error
+  }
+}

@@ -3,6 +3,7 @@
 **BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/bentopdf/bentopdf) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio0) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
+[![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ff69b4)](https://github.com/sponsors/alam00000)
 
 ## ⭐ Stargazers over time
 
@@ -25,16 +26,18 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 
 ### Organize & Manage PDFs
 
-| Tool Name          | Description                                                                |
-| :----------------- | :------------------------------------------------------------------------- |
-| **Merge PDFs**     | Combine multiple PDF files into one.                                       |
-| **Split PDFs**     | Extract specific pages or divide a document into smaller files.            |
-| **Organize Pages** | Reorder, duplicate, or delete pages with a simple drag-and-drop interface. |
-| **Extract Pages**  | Save a specific range of pages as a new PDF.                               |
-| **Delete Pages**   | Remove unwanted pages from your document.                                  |
-| **Rotate PDF**     | Rotate individual or all pages in a document.                              |
-| **N-Up PDF**       | Combine multiple pages onto a single page.                                 |
-| **View PDF**       | A powerful, integrated PDF viewer.                                         |
+| Tool Name                 | Description                                                                |
+| :------------------------ | :------------------------------------------------------------------------- |
+| **Merge PDFs**            | Combine multiple PDF files into one.                                       |
+| **Split PDFs**            | Extract specific pages or divide a document into smaller files.            |
+| **Organize Pages**        | Reorder, duplicate, or delete pages with a simple drag-and-drop interface. |
+| **Extract Pages**         | Save a specific range of pages as a new PDF.                               |
+| **Delete Pages**          | Remove unwanted pages from your document.                                  |
+| **Rotate PDF**            | Rotate individual or all pages in a document.                              |
+| **N-Up PDF**              | Combine multiple pages onto a single page.                                 |
+| **View PDF**              | A powerful, integrated PDF viewer.                                         |
+| **Alternate & Mix pages** | Merge pages by alternating pages from each PDF.                            |
+| **Posterize PDF**         | Split a PDF into multiple smaller pages for print.                         |
 
 ### Edit & Modify PDFs
 
@@ -51,6 +54,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Fill Forms**         | Fill out PDF forms directly in your browser.                |
 | **Flatten PDF**        | Flatten form fields and annotations into static content.    |
 | **Remove Annotations** | Remove comments, highlights, and other annotations.         |
+| **Remove Blank Pages** | Auto detect and remove blank pages in a PDF.                |
 
 ### Convert to PDF
 
@@ -81,6 +85,8 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Redact Content**     | Permanently remove sensitive content from your PDFs.               |
 | **Edit Metadata**      | View and modify PDF metadata (author, title, keywords, etc.).      |
 | **Remove Metadata**    | Strip all metadata from your PDF for privacy.                      |
+| **Linearize PDF**      | Optimize PDF for fast web view.                                    |
+| **Sanitize PDF**       | Remove potentially unwanted or malicous files from PDF.            |
 
 ---
 
@@ -164,8 +170,8 @@ npm run release:minor
 npm run release:major
 ```
 
-````
 For detailed release instructions, see [RELEASE.md](RELEASE.md).
+
 ### 🚀 Development Setup
 
 #### Option 1: Run with npm
@@ -175,7 +181,7 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
    ```bash
    git clone https://github.com/alam00000/bentopdf.git
    cd bentopdf
-````
+   ```
 
 2. **Install Dependencies**:
 
@@ -234,14 +240,12 @@ BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript*
 
 - **HTML to PDF**: Convert HTML files or web pages into PDF documents.
 - **Markdown to PDF**: Enhanced support for converting `.md` files to PDF.
-- **Sanitize PDF**: Remove potentially malicious content like scripts from PDFs.
 - **Convert to PDF/A**: Convert PDFs to the PDF/A archival format.
 - **Edit PDF Content**: Directly edit text and other content within your PDF.
-- **Linearize PDF**: Optimize PDFs for fast web viewing.
 - **PDF to Office**: Converts PDF files into editable Word, Excel, and PowerPoint formats.
 - **Office to PDF**: Converts Word, Excel, and PowerPoint documents into optimized PDFs.
 
-Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/q42xWQmJ).
+Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/AP2Y97juZT).
 
 ---
 
@@ -265,10 +269,11 @@ BentoPDF wouldn't be possible without the amazing open-source tools and librarie
 - **[PDFLib.js](https://pdf-lib.js.org/)** – For enabling powerful client-side PDF manipulation.
 - **[PDF.js](https://mozilla.github.io/pdf.js/)** – For the robust PDF rendering engine in the browser.
 - **[PDFKit](https://pdfkit.org/)** – For creating and editing PDFs with ease.
-- **[EmbedPDF](https://github.com/embedpdf/embed-pdf-viewer)** – For seamless PDF embedding in web pages.
+- **[EmbedPDF](https://github.com/embedpdf/embed-pdf-viewer)** – For seamless PDF editing in pure JS.
 - **[Cropper.js](https://fengyuanchen.github.io/cropperjs/)** – For intuitive image cropping functionality.
 - **[Vite](https://vitejs.dev/)** – For lightning-fast development and build tooling.
 - **[Tailwind CSS](https://tailwindcss.com/)** – For rapid, flexible, and beautiful UI styling.
+- **[qpdf](https://github.com/qpdf/qpdf)** and **[qpdf-wasm](https://github.com/neslinesli93/qpdf-wasm)**– A powerful command-line tool and library for inspecting, repairing, and transforming PDF file ported to wasm
 
 Your work inspires and empowers developers everywhere. Thank you for making open-source amazing!
 
