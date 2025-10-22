@@ -1,6 +1,8 @@
 services:
   bentopdf:
-    image: bentopdf/bentopdf:latest
+    # simple mode - bentopdf/bentopdf-simple:latest
+    # default mode - bentopdf/bentopdf:latest
+    image: bentopdf/bentopdf-simple:latest
     container_name: bentopdf
     restart: unless-stopped
     ports:

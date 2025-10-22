@@ -24,7 +24,7 @@ https://hub.docker.com/r/bentopdf/bentopdf/</Overview>
   <DonateText/>
   <DonateLink/>
   <Requires/>
-  <Config Name="Container Port 1" Target="3000" Default="80" Mode="tcp" Description="" Type="Port" Display="always" Required="false" Mask="false">80</Config>
+  <Config Name="Web Port for GUI" Target="3000" Default="80" Mode="tcp" Description="Port used for BentoPDF's web GUI" Type="Port" Display="always" Required="false" Mask="false">80</Config>
   <TailscaleStateDir/>
 </Container>
 

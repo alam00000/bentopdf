@@ -1,13 +1,28 @@
-name: build docker image and push to dockerhub
+name: Build and Push Docker Images (Default + Simple Mode)
 
 on:
   push:
     branches:
       - 'main'
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   docker-build-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    strategy:
+      matrix:
+        mode:
+          - name: default
+            simple_mode: false
+            suffix: ''
+          - name: simple
+            simple_mode: true
+            suffix: '-simple'
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -18,9 +33,28 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-      - name: Build and push
+      - name: Extract version from tag
+        id: version
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+            echo "version=${VERSION}" >> $GITHUB_OUTPUT
+            echo "version_without_v=${VERSION#v}" >> $GITHUB_OUTPUT
+          else
+            echo "version=latest" >> $GITHUB_OUTPUT
+            echo "version_without_v=latest" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build and push ${{ matrix.mode.name }} image
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: bentopdf/bentopdf:latest
+          build-args: |
+            SIMPLE_MODE=${{ matrix.mode.simple_mode }}
+          tags: |
+            bentopdf/bentopdf${{ matrix.mode.suffix }}:latest
+            bentopdf/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version_without_v }}
+            bentopdf/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}
           platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

@@ -113,11 +113,9 @@ async function runOCR() {
       tessjs_create_hocr: '1',
     });
 
-    if (whitelist.trim()) {
-      await worker.setParameters({
-        tessedit_char_whitelist: whitelist.trim(),
-      });
-    }
+    await worker.setParameters({
+      tessedit_char_whitelist: whitelist,
+    });
 
     // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
     const pdf = await pdfjsLib.getDocument(
@@ -144,7 +142,11 @@ async function runOCR() {
         binarizeCanvas(context);
       }
 
-      const result = await worker.recognize(canvas);
+      const result = await worker.recognize(
+        canvas,
+        {},
+        { text: true, hocr: true }
+      );
       const data = result.data;
       const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
       const pngImageBytes = await new Promise((resolve) =>
@@ -281,9 +283,51 @@ export function setupOcrTool() {
   );
   const processBtn = document.getElementById('process-btn');
 
+  // Whitelist presets
+  const whitelistPresets: Record<string, string> = {
+    alphanumeric:
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,!?-\'"',
+    'numbers-currency': '0123456789$€£¥.,- ',
+    'letters-only': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ',
+    'numbers-only': '0123456789',
+    invoice: '0123456789$.,/-#: ',
+    forms:
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,()-_/@#:',
+  };
+
+  // Handle whitelist preset selection
+  const presetSelect = document.getElementById(
+    'whitelist-preset'
+  ) as HTMLSelectElement;
+  const whitelistInput = document.getElementById(
+    'ocr-whitelist'
+  ) as HTMLInputElement;
+
+  presetSelect?.addEventListener('change', (e) => {
+    const preset = (e.target as HTMLSelectElement).value;
+    if (preset && preset !== 'custom') {
+      whitelistInput.value = whitelistPresets[preset];
+      whitelistInput.disabled = true;
+    } else {
+      whitelistInput.disabled = false;
+      if (preset === '') {
+        whitelistInput.value = '';
+      }
+    }
+  });
+
+  // Handle details toggle icon rotation
+  document.querySelectorAll('details').forEach((details) => {
+    details.addEventListener('toggle', () => {
+      const icon = details.querySelector('.details-icon') as HTMLElement;
+      if (icon) {
+        icon.style.transform = details.open ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+    });
+  });
+
   langSearch.addEventListener('input', () => {
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    const searchTerm = langSearch.value.toLowerCase();
+    const searchTerm = (langSearch as HTMLInputElement).value.toLowerCase();
     langList.querySelectorAll('label').forEach((label) => {
       label.style.display = label.textContent.toLowerCase().includes(searchTerm)
         ? ''
@@ -291,19 +335,14 @@ export function setupOcrTool() {
     });
   });
 
-  // Update the display of selected languages
   langList.addEventListener('change', () => {
     const selected = Array.from(
       langList.querySelectorAll('.lang-checkbox:checked')
-    )
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'Element'.
-      .map((cb) => tesseractLanguages[cb.value]);
+    ).map((cb) => tesseractLanguages[(cb as HTMLInputElement).value]);
     selectedLangsDisplay.textContent =
       selected.length > 0 ? selected.join(', ') : 'None';
-    // @ts-expect-error TS(2339) FIXME: Property 'disabled' does not exist on type 'HTMLEl... Remove this comment to see the full error message
-    processBtn.disabled = selected.length === 0;
+    (processBtn as HTMLButtonElement).disabled = selected.length === 0;
   });
 
-  // Attach the main OCR function to the process button
   processBtn.addEventListener('click', runOCR);
 }

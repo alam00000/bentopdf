@@ -974,7 +974,7 @@ export const toolTemplates = {
   'reverse-pages': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Reverse PDF Pages</h2>
         <p class="mb-6 text-gray-400">Flip the order of all pages in your document, making the last page the first.</p>
-        ${createFileInputHTML()}
+        ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Reverse & Download</button>
     `,
@@ -1339,6 +1339,17 @@ export const toolTemplates = {
   'ocr-pdf': () => `
     <h2 class="text-2xl font-bold text-white mb-4">OCR PDF</h2>
     <p class="mb-6 text-gray-400">Convert scanned PDFs into searchable documents. Select one or more languages present in your file for the best results.</p>
+    
+    <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-6">
+        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+        <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+            <li><strong class="text-white">Extract Text:</strong> Uses Tesseract OCR to recognize text from scanned images or PDFs.</li>
+            <li><strong class="text-white">Searchable Output:</strong> Creates a new PDF with an invisible text layer, making your document fully searchable while preserving the original appearance.</li>
+            <li><strong class="text-white">Character Filtering:</strong> Use whitelists to filter out unwanted characters and improve accuracy for specific document types (invoices, forms, etc.).</li>
+            <li><strong class="text-white">Multi-language Support:</strong> Select multiple languages for documents containing mixed language content.</li>
+        </ul>
+    </div>
+    
     ${createFileInputHTML()}
     <div id="file-display-area" class="mt-4 space-y-2"></div>
     
@@ -1365,7 +1376,10 @@ export const toolTemplates = {
         
         <!-- Advanced settings section -->
         <details class="bg-gray-900 border border-gray-700 rounded-lg p-3">
-            <summary class="text-sm font-medium text-gray-300 cursor-pointer">Advanced Settings</summary>
+            <summary class="text-sm font-medium text-gray-300 cursor-pointer flex items-center justify-between">
+                <span>Advanced Settings (Recommended to improve accuracy)</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 transition-transform details-icon"></i>
+            </summary>
             <div class="mt-4 space-y-4">
                 <!-- Resolution Setting -->
                 <div>
@@ -1381,10 +1395,28 @@ export const toolTemplates = {
                     <input type="checkbox" id="ocr-binarize" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600">
                     Binarize Image (Enhance Contrast for Clean Scans)
                 </label>
-                <!-- Character Whitelist -->
+                
+                <!-- Character Whitelist Presets -->
+                <div>
+                    <label for="whitelist-preset" class="block mb-1 text-xs font-medium text-gray-400">Character Whitelist Preset</label>
+                    <select id="whitelist-preset" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm mb-2">
+                        <option value="">None (All characters)</option>
+                        <option value="alphanumeric">Alphanumeric + Basic Punctuation</option>
+                        <option value="numbers-currency">Numbers + Currency Symbols</option>
+                        <option value="letters-only">Letters Only (A-Z, a-z)</option>
+                        <option value="numbers-only">Numbers Only (0-9)</option>
+                        <option value="invoice">Invoice/Receipt (Numbers, $, ., -, /)</option>
+                        <option value="forms">Forms (Alphanumeric + Common Symbols)</option>
+                        <option value="custom">Custom...</option>
+                    </select>
+                    <p class="text-xs text-gray-500 mt-1">Only these characters will be recognized. Leave empty for all characters.</p>
+                </div>
+                
+                <!-- Character Whitelist Input -->
                 <div>
                     <label for="ocr-whitelist" class="block mb-1 text-xs font-medium text-gray-400">Character Whitelist (Optional)</label>
                     <input type="text" id="ocr-whitelist" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm" placeholder="e.g., abcdefghijklmnopqrstuvwxyz0123456789$.,">
+                    <p class="text-xs text-gray-500 mt-1">Only these characters will be recognized. Leave empty for all characters.</p>
                 </div>
             </div>
         </details>

@@ -15,17 +15,21 @@
     <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
       <div class="container mx-auto px-4">
         <div class="flex justify-between items-center h-16">
-          <a
-            href="index.html"
+          <div
             class="flex-shrink-0 flex items-center cursor-pointer"
+            id="home-logo"
           >
             <img
               src="images/favicon.svg"
-              alt="BentoPDF Logo"
-              class="h-8 w-8 mr-2"
+              alt="Bento PDF Logo"
+              class="h-8 w-8"
             />
-            <span class="text-white font-bold text-xl">BentoPDF</span>
-          </a>
+            <span class="text-white font-bold text-xl ml-2">
+              <a href="index.html">BentoPDF</a>
+            </span>
+          </div>
+
+          <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
             <a href="index.html" class="nav-link">Home</a>
             <a href="./about.html" class="nav-link">About</a>
@@ -33,10 +37,67 @@
             <a href="index.html#tools-header" class="nav-link">All Tools</a>
           </div>
 
-          <div class="md:hidden flex items-center gap-4">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+          <!-- Mobile Hamburger Button -->
+          <div class="md:hidden flex items-center">
+            <button
+              id="mobile-menu-button"
+              type="button"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <!-- Hamburger Icon -->
+              <svg
+                id="menu-icon"
+                class="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <!-- Close Icon -->
+              <svg
+                id="close-icon"
+                class="hidden h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-gray-800 border-t border-gray-700"
+      >
+        <div class="px-2 pt-2 pb-3 space-y-1 text-center">
+          <a href="index.html" class="mobile-nav-link">Home</a>
+          <a href="./about.html" class="mobile-nav-link">About</a>
+          <a href="./contact.html" class="mobile-nav-link">Contact</a>
+          <a href="index.html#tools-header" class="mobile-nav-link"
+            >All Tools</a
+          >
         </div>
       </div>
     </nav>
@@ -260,5 +321,6 @@
     <script>
       lucide.createIcons();
     </script>
+    <script type="module" src="src/js/mobileMenu.ts"></script>
   </body>
 </html>
