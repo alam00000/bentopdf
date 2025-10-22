@@ -4,7 +4,7 @@ import {
   readFileAsArrayBuffer,
   hexToRgb,
 } from '../utils/helpers.js';
-import { state } from '../state.js';
+import { state, resetState } from '../state.js';
 
 import {
   PDFDocument as PDFLibDocument,
@@ -175,6 +175,15 @@ export async function addWatermark() {
       new Blob([newPdfBytes], { type: 'application/pdf' }),
       'watermarked.pdf'
     );
+
+    const toolid = state.activeTool;
+    resetState();
+    if (toolid) {
+      const element = document.querySelector(
+        `[data-tool-id="${toolid}"]`
+      ) as HTMLElement;
+      if (element) element.click();
+    }
   } catch (e) {
     console.error(e);
     showAlert(

@@ -7,7 +7,7 @@ import {
   renderFileDisplay,
   switchView,
 } from '../ui.js';
-import { readFileAsArrayBuffer } from '../utils/helpers.js';
+import { formatIsoDate, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { setupCanvasEditor } from '../canvasEditor.js';
 import { toolLogic } from '../logic/index.js';
 import { renderDuplicateOrganizeThumbnails } from '../logic/duplicate-organize.js';
@@ -124,12 +124,13 @@ async function handleSinglePdfUpload(toolId, file) {
         const pdfjsDoc = await pdfjsLib.getDocument({
           data: pdfBytes as ArrayBuffer,
         }).promise;
-        const [metadata, fieldObjects] = await Promise.all([
+        const [metadataResult, fieldObjects] = await Promise.all([
           pdfjsDoc.getMetadata(),
           pdfjsDoc.getFieldObjects(),
         ]);
 
-        const { info, metadata: rawXmpString } = metadata;
+        const { info, metadata } = metadataResult;
+        const rawXmpString = metadata ? metadata.getRaw() : null;
 
         resultsDiv.textContent = ''; // Clear safely
 
@@ -184,14 +185,29 @@ async function handleSinglePdfUpload(toolId, file) {
         const infoSection = createSection('Info Dictionary');
         if (info && Object.keys(info).length > 0) {
           for (const key in info) {
-            let value = info[key] || '- Not Set -';
-            if (
+            let value = info[key];
+            let displayValue;
+
+            if (value === null || typeof value === 'undefined') {
+              displayValue = '- Not Set -';
+            } else if (typeof value === 'object' && value.name) {
+              displayValue = value.name;
+            } else if (typeof value === 'object') {
+              try {
+                displayValue = JSON.stringify(value);
+              } catch {
+                displayValue = '[object Object]';
+              }
+            } else if (
               (key === 'CreationDate' || key === 'ModDate') &&
               typeof value === 'string'
             ) {
-              value = parsePdfDate(value);
+              displayValue = parsePdfDate(value);
+            } else {
+              displayValue = String(value);
             }
-            infoSection.ul.appendChild(createListItem(key, String(value)));
+
+            infoSection.ul.appendChild(createListItem(key, displayValue));
           }
         } else {
           infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No Info Dictionary data found -</span></li>`;
@@ -212,19 +228,119 @@ async function handleSinglePdfUpload(toolId, file) {
         }
         resultsDiv.appendChild(fieldsSection.wrapper);
 
-        const xmpSection = createSection('XMP Metadata (Raw XML)');
-        const xmpContainer = document.createElement('div');
-        xmpContainer.className =
-          'bg-gray-900 p-4 rounded-lg border border-gray-700';
+        const createXmpListItem = (key, value, indent = 0) => {
+          const li = document.createElement('li');
+          li.className = 'flex flex-col sm:flex-row';
+
+          const strong = document.createElement('strong');
+          strong.className = 'w-56 flex-shrink-0 text-gray-400';
+          strong.textContent = key;
+          strong.style.paddingLeft = `${indent * 1.2}rem`;
+
+          const div = document.createElement('div');
+          div.className = 'flex-grow text-white break-all';
+          div.textContent = value;
+
+          li.append(strong, div);
+          return li;
+        };
+
+        const createXmpHeaderItem = (key, indent = 0) => {
+          const li = document.createElement('li');
+          li.className = 'flex pt-2';
+          const strong = document.createElement('strong');
+          strong.className = 'w-full flex-shrink-0 text-gray-300 font-medium';
+          strong.textContent = key;
+          strong.style.paddingLeft = `${indent * 1.2}rem`;
+          li.append(strong);
+          return li;
+        };
+
+        const appendXmpNodes = (xmlNode, ulElement, indentLevel) => {
+          const xmpDateKeys = [
+            'xap:CreateDate',
+            'xap:ModifyDate',
+            'xap:MetadataDate',
+          ];
+
+          const childNodes = Array.from(xmlNode.children);
+
+          for (const child of childNodes) {
+            if ((child as Element).nodeType !== 1) continue;
+
+            let key = (child as Element).tagName;
+            const elementChildren = Array.from((child as Element).children).filter(
+              (c) => c.nodeType === 1
+            );
+
+            if (key === 'rdf:li') {
+              appendXmpNodes(child, ulElement, indentLevel);
+              continue;
+            }
+            if (key === 'rdf:Alt') {
+              key = '(alt container)';
+            }
+
+            if (
+              (child as Element).getAttribute('rdf:parseType') === 'Resource' &&
+              elementChildren.length === 0
+            ) {
+              ulElement.appendChild(
+                createXmpListItem(key, '(Empty Resource)', indentLevel)
+              );
+              continue;
+            }
+
+            if (elementChildren.length > 0) {
+              ulElement.appendChild(createXmpHeaderItem(key, indentLevel));
+              appendXmpNodes(child, ulElement, indentLevel + 1);
+            } else {
+              let value = (child as Element).textContent.trim();
+              if (value) {
+                if (xmpDateKeys.includes(key)) {
+                  value = formatIsoDate(value);
+                }
+                ulElement.appendChild(
+                  createXmpListItem(key, value, indentLevel)
+                );
+              }
+            }
+          }
+        };
+
+        const xmpSection = createSection('XMP Metadata');
         if (rawXmpString) {
-          const pre = document.createElement('pre');
-          pre.className = 'text-xs text-gray-300 whitespace-pre-wrap break-all';
-          pre.textContent = String(rawXmpString);
-          xmpContainer.appendChild(pre);
+          try {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(
+              rawXmpString,
+              'application/xml'
+            );
+
+            const descriptions = xmlDoc.getElementsByTagName('rdf:Description');
+            if (descriptions.length > 0) {
+              for (const desc of descriptions) {
+                appendXmpNodes(desc, xmpSection.ul, 0);
+              }
+            } else {
+              appendXmpNodes(xmlDoc.documentElement, xmpSection.ul, 0);
+            }
+
+            if (xmpSection.ul.children.length === 0) {
+              xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No parseable XMP properties found -</span></li>`;
+            }
+          } catch (xmlError) {
+            console.error('Failed to parse XMP XML:', xmlError);
+            xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">- Error parsing XMP XML. Displaying raw. -</span></li>`;
+            const pre = document.createElement('pre');
+            pre.className =
+              'text-xs text-gray-300 whitespace-pre-wrap break-all';
+            pre.textContent = rawXmpString;
+            xmpSection.ul.appendChild(pre);
+          }
         } else {
-          xmpContainer.innerHTML = `<p class="text-gray-500 italic">- No XMP metadata found -</p>`;
+          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No XMP metadata found -</span></li>`;
         }
-        xmpSection.wrapper.appendChild(xmpContainer);
         resultsDiv.appendChild(xmpSection.wrapper);
 
         resultsDiv.classList.remove('hidden');
@@ -323,7 +439,54 @@ async function handleSinglePdfUpload(toolId, file) {
   }
 }
 
-function handleMultiFileUpload(toolId) {
+async function handleMultiFileUpload(toolId) {
+  if (
+    toolId === 'merge' ||
+    toolId === 'alternate-merge' ||
+    toolId === 'reverse-pages'
+  ) {
+    const pdfFilesUnloaded: File[] = [];
+
+    state.files.forEach((file) => {
+      if (file.type === 'application/pdf') {
+        pdfFilesUnloaded.push(file);
+      }
+    });
+
+    const pdfFilesLoaded = await Promise.all(
+      pdfFilesUnloaded.map(async (file) => {
+        const pdfBytes = await readFileAsArrayBuffer(file);
+        const pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
+          ignoreEncryption: true,
+        });
+
+        return {
+          file,
+          pdfDoc,
+        };
+      })
+    );
+
+    const foundEncryptedPDFs = pdfFilesLoaded.filter(
+      (pdf) => pdf.pdfDoc.isEncrypted
+    );
+
+    if (foundEncryptedPDFs.length > 0) {
+      const encryptedPDFFileNames = [];
+      foundEncryptedPDFs.forEach((encryptedPDF) => {
+        encryptedPDFFileNames.push(encryptedPDF.file.name);
+      });
+
+      const errorMessage = `PDFs found that are password-protected\n\nPlease use the Decrypt or Change Permissions tool on these files first:\n\n${encryptedPDFFileNames.join('\n')}`;
+
+      showAlert('Protected PDFs', errorMessage);
+
+      switchView('grid');
+
+      return;
+    }
+  }
+
   const processBtn = document.getElementById('process-btn');
   if (processBtn) {
     (processBtn as HTMLButtonElement).disabled = false;
@@ -393,7 +556,7 @@ export function setupFileInputHandler(toolId) {
     }
 
     if (isMultiFileTool) {
-      handleMultiFileUpload(toolId);
+      await handleMultiFileUpload(toolId);
     } else if (singlePdfLoadTools.includes(toolId)) {
       await handleSinglePdfUpload(toolId, state.files[0]);
     } else if (simpleTools.includes(toolId)) {

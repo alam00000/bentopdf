@@ -721,15 +721,17 @@ export const toolTemplates = {
         </div>
     `,
   'add-blank-page': () => `
-        <h2 class="text-2xl font-bold text-white mb-4">Add Blank Page</h2>
-        <p class="mb-6 text-gray-400">Insert a new blank page at a specific position in your document.</p>
+        <h2 class="text-2xl font-bold text-white mb-4">Add Blank Pages</h2>
+        <p class="mb-6 text-gray-400">Insert one or more blank pages at a specific position in your document.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="blank-page-options" class="hidden mt-6">
             <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
-            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank page after page number:</label>
-            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter 0 to add to the beginning">
-            <button id="process-btn" class="btn-gradient w-full">Add Page & Download</button>
+            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank pages after page number:</label>
+            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter 0 to add to the beginning">
+            <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert:</label>
+            <input type="number" id="page-count" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter number of pages">
+            <button id="process-btn" class="btn-gradient w-full">Add Pages & Download</button>
         </div>
     `,
   'extract-pages': () => `
@@ -981,7 +983,7 @@ export const toolTemplates = {
   'reverse-pages': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Reverse PDF Pages</h2>
         <p class="mb-6 text-gray-400">Flip the order of all pages in your document, making the last page the first.</p>
-        ${createFileInputHTML()}
+        ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Reverse & Download</button>
     `,
@@ -1379,6 +1381,17 @@ export const toolTemplates = {
   'ocr-pdf': () => `
     <h2 class="text-2xl font-bold text-white mb-4">OCR PDF</h2>
     <p class="mb-6 text-gray-400">Convert scanned PDFs into searchable documents. Select one or more languages present in your file for the best results.</p>
+    
+    <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-6">
+        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+        <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+            <li><strong class="text-white">Extract Text:</strong> Uses Tesseract OCR to recognize text from scanned images or PDFs.</li>
+            <li><strong class="text-white">Searchable Output:</strong> Creates a new PDF with an invisible text layer, making your document fully searchable while preserving the original appearance.</li>
+            <li><strong class="text-white">Character Filtering:</strong> Use whitelists to filter out unwanted characters and improve accuracy for specific document types (invoices, forms, etc.).</li>
+            <li><strong class="text-white">Multi-language Support:</strong> Select multiple languages for documents containing mixed language content.</li>
+        </ul>
+    </div>
+    
     ${createFileInputHTML()}
     <div id="file-display-area" class="mt-4 space-y-2"></div>
     
@@ -1405,7 +1418,10 @@ export const toolTemplates = {
         
         <!-- Advanced settings section -->
         <details class="bg-gray-900 border border-gray-700 rounded-lg p-3">
-            <summary class="text-sm font-medium text-gray-300 cursor-pointer">Advanced Settings</summary>
+            <summary class="text-sm font-medium text-gray-300 cursor-pointer flex items-center justify-between">
+                <span>Advanced Settings (Recommended to improve accuracy)</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 transition-transform details-icon"></i>
+            </summary>
             <div class="mt-4 space-y-4">
                 <!-- Resolution Setting -->
                 <div>
@@ -1421,10 +1437,28 @@ export const toolTemplates = {
                     <input type="checkbox" id="ocr-binarize" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600">
                     Binarize Image (Enhance Contrast for Clean Scans)
                 </label>
-                <!-- Character Whitelist -->
+                
+                <!-- Character Whitelist Presets -->
+                <div>
+                    <label for="whitelist-preset" class="block mb-1 text-xs font-medium text-gray-400">Character Whitelist Preset</label>
+                    <select id="whitelist-preset" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm mb-2">
+                        <option value="">None (All characters)</option>
+                        <option value="alphanumeric">Alphanumeric + Basic Punctuation</option>
+                        <option value="numbers-currency">Numbers + Currency Symbols</option>
+                        <option value="letters-only">Letters Only (A-Z, a-z)</option>
+                        <option value="numbers-only">Numbers Only (0-9)</option>
+                        <option value="invoice">Invoice/Receipt (Numbers, $, ., -, /)</option>
+                        <option value="forms">Forms (Alphanumeric + Common Symbols)</option>
+                        <option value="custom">Custom...</option>
+                    </select>
+                    <p class="text-xs text-gray-500 mt-1">Only these characters will be recognized. Leave empty for all characters.</p>
+                </div>
+                
+                <!-- Character Whitelist Input -->
                 <div>
                     <label for="ocr-whitelist" class="block mb-1 text-xs font-medium text-gray-400">Character Whitelist (Optional)</label>
                     <input type="text" id="ocr-whitelist" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm" placeholder="e.g., abcdefghijklmnopqrstuvwxyz0123456789$.,">
+                    <p class="text-xs text-gray-500 mt-1">Only these characters will be recognized. Leave empty for all characters.</p>
                 </div>
             </div>
         </details>
@@ -1858,4 +1892,36 @@ export const toolTemplates = {
         <button id="process-btn" class="btn-gradient w-full mt-6" disabled>Alternate & Mix PDFs</button>
     </div>
 `,
+
+  linearize: () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Linearize PDFs (Fast Web View)</h2>
+    <p class="mb-6 text-gray-400">Optimize multiple PDFs for faster loading over the web. Files will be downloaded in a ZIP archive.</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })} 
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Linearize PDFs & Download ZIP</button> 
+  `,
+  'add-attachments': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Add Attachments to PDF</h2>
+    <p class="mb-6 text-gray-400">First, upload the PDF document you want to add files to.</p>
+    ${createFileInputHTML({ accept: 'application/pdf' })}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+    <div id="attachment-options" class="hidden mt-8">
+      <h3 class="text-lg font-semibold text-white mb-3">Upload Files to Attach</h3>
+      <p class="mb-4 text-gray-400">Select one or more files to embed within the PDF. You can attach any file type (images, documents, spreadsheets, etc.).</p>
+      
+      <label for="attachment-files-input" class="w-full flex justify-center items-center px-6 py-10 bg-gray-900 text-gray-400 rounded-lg border-2 border-dashed border-gray-600 hover:bg-gray-800 hover:border-gray-500 cursor-pointer transition-colors">
+        <div class="text-center">
+          <svg class="mx-auto h-12 w-12" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="mt-2 block text-sm font-medium">Click to upload files</span>
+          <span class="mt-1 block text-xs">Any file type, multiple files allowed</span>
+        </div>
+        <input id="attachment-files-input" name="attachment-files" type="file" class="sr-only" multiple>
+      </label>
+
+      <div id="attachment-file-list" class="mt-4 space-y-2"></div>
+
+      <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
+    </div>
+  `,
 };

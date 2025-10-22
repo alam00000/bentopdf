@@ -61,7 +61,7 @@ describe('Tool Configuration Arrays', () => {
     });
 
     it('should have the correct number of tools', () => {
-      expect(multiFileTools).toHaveLength(11);
+      expect(multiFileTools).toHaveLength(13);
     });
 
     it('should not contain any duplicate tools', () => {

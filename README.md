@@ -1,7 +1,9 @@
 # BentoPDF
+
 **BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/bentopdf/bentopdf) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio0) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
+[![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ff69b4)](https://github.com/sponsors/alam00000)
 
 ## ⭐ Stargazers over time
 
@@ -109,7 +111,7 @@ This is the fastest way to try BentoPDF without setting up a development environ
 
 For a more robust setup with auto-restart capabilities:
 
-1. **Create a `docker-compose.yml` file or use the one given in repo**:
+1. **Download the repo and create a `docker-compose.yml` file or use the one given in repo**:
 
 ```yaml
 services:
@@ -129,6 +131,42 @@ docker-compose up -d
 
 The application will be available at `http://localhost:3000`.
 
+### 🏢 Simple Mode for Internal Use
+
+For organizations that want a clean, distraction-free interface focused solely on PDF tools, BentoPDF supports a **Simple Mode** that hides all branding and marketing content.
+
+**What Simple Mode does:**
+
+- Hides navigation, hero section, features, FAQ, testimonials, and footer
+- Shows only the essential PDF tools
+- Updates page title to "PDF Tools"
+- Perfect for internal company tools and educational institutions
+
+For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
+
+### 📦 Version Management
+
+BentoPDF supports semantic versioning with multiple Docker tags:
+
+- **Latest**: `bentopdf/bentopdf:latest`
+- **Specific Version**: `bentopdf/bentopdf:1.0.0`
+- **Version with Prefix**: `bentopdf/bentopdf:v1.0.0`
+
+#### Quick Release
+
+```bash
+# Release a patch version (0.0.1 → 0.0.2)
+npm run release
+
+# Release a minor version (0.0.1 → 0.1.0)
+npm run release:minor
+
+# Release a major version (0.0.1 → 1.0.0)
+npm run release:major
+```
+
+````
+For detailed release instructions, see [RELEASE.md](RELEASE.md).
 ### 🚀 Development Setup
 
 #### Option 1: Run with npm
@@ -138,7 +176,7 @@ The application will be available at `http://localhost:3000`.
    ```bash
    git clone https://github.com/alam00000/bentopdf.git
    cd bentopdf
-   ```
+````
 
 2. **Install Dependencies**:
 
@@ -204,7 +242,7 @@ BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript*
 - **PDF to Office**: Converts PDF files into editable Word, Excel, and PowerPoint formats.
 - **Office to PDF**: Converts Word, Excel, and PowerPoint documents into optimized PDFs.
 
-Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/q42xWQmJ).
+Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/AP2Y97juZT).
 
 ---
 

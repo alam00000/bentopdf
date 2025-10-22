@@ -18,7 +18,6 @@ export const singlePdfLoadTools = [
   'add-header-footer',
   'invert-colors',
   'view-metadata',
-  'reverse-pages',
   'crop',
   'redact',
   'pdf-to-bmp',
@@ -38,6 +37,7 @@ export const singlePdfLoadTools = [
   'form-filler',
   'posterize',
   'remove-blank-pages',
+  'add-attachments',
 ];
 
 export const simpleTools = [
@@ -60,4 +60,6 @@ export const multiFileTools = [
   'heic-to-pdf',
   'tiff-to-pdf',
   'alternate-merge',
+  'linearize',
+  'reverse-pages',
 ];
