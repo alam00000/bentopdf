@@ -6,7 +6,7 @@ import {
 } from '../utils/helpers.js';
 import { state } from '../state.js';
 import * as pdfjsLib from 'pdfjs-dist';
-
+import JSZip from 'jszip';
 import { PDFDocument, PDFName, PDFDict, PDFStream, PDFNumber } from 'pdf-lib';
 
 function dataUrlToBytes(dataUrl: any) {
@@ -270,68 +270,89 @@ export async function compress() {
 
   const smartSettings = { ...settings[level].smart, removeMetadata: true };
   const legacySettings = settings[level].legacy;
+  const pdfFiles = state.files.filter((f) => f.type === 'application/pdf');
 
+  if (!pdfFiles.length) {
+    showAlert('Error', 'No PDF files found to compress.');
+    return;
+  }
+  showLoader(`Compressing ${pdfFiles.length} PDF(s)...`);
+
+  const zip = new JSZip(); 
+  let totalOriginal = 0;
+  let totalCompressed = 0;
   try {
-    const originalFile = state.files[0];
-    const arrayBuffer = await readFileAsArrayBuffer(originalFile);
+    for (let i = 0; i < pdfFiles.length; i++) {
+      const originalFile = pdfFiles[i];
+      const arrayBuffer = await readFileAsArrayBuffer(originalFile);
 
-    let resultBytes;
-    let usedMethod;
+      let resultBytes;
+      let usedMethod;
 
-    if (algorithm === 'vector') {
-      showLoader('Running Vector (Smart) compression...');
-      resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
-      usedMethod = 'Vector';
-    } else if (algorithm === 'photon') {
-      showLoader('Running Photon (Rasterize) compression...');
-      resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
-      usedMethod = 'Photon';
-    } else {
-      showLoader('Running Automatic (Vector first)...');
-      const vectorResultBytes = await performSmartCompression(
-        arrayBuffer,
-        smartSettings
-      );
-
-      if (vectorResultBytes.length < originalFile.size) {
-        resultBytes = vectorResultBytes;
-        usedMethod = 'Vector (Automatic)';
+      if (algorithm === 'vector') {
+        showLoader('Running Vector (Smart) compression...');
+        resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
+        usedMethod = 'Vector';
+      } else if (algorithm === 'photon') {
+        showLoader('Running Photon (Rasterize) compression...');
+        resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
+        usedMethod = 'Photon';
       } else {
-        showAlert('Vector failed to reduce size. Trying Photon...', 'info');
-        showLoader('Running Automatic (Photon fallback)...');
-        resultBytes = await performLegacyCompression(
+        showLoader('Running Automatic (Vector first)...');
+        const vectorResultBytes = await performSmartCompression(
           arrayBuffer,
-          legacySettings
+          smartSettings
         );
-        usedMethod = 'Photon (Automatic)';
+
+        if (vectorResultBytes.length < originalFile.size) {
+          resultBytes = vectorResultBytes;
+          usedMethod = 'Vector (Automatic)';
+        } else {
+          showAlert('Vector failed to reduce size. Trying Photon...', 'info');
+          showLoader('Running Automatic (Photon fallback)...');
+          resultBytes = await performLegacyCompression(
+            arrayBuffer,
+            legacySettings
+          );
+          usedMethod = 'Photon (Automatic)';
+        }
       }
+
+      const originalSize = formatBytes(originalFile.size);
+      const compressedSize = formatBytes(resultBytes.length);
+      const savings = originalFile.size - resultBytes.length;
+      const savingsPercent =
+        savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
+
+      totalOriginal += originalFile.size;
+      totalCompressed += resultBytes.length;
+
+      if (savings > 0) {
+        showAlert(
+          'Compression Complete',
+          `Method: **${usedMethod}**. ` +
+            `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
+        );
+      } else {
+        showAlert(
+          'Compression Finished',
+          `Method: **${usedMethod}**. ` +
+            `Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
+          // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
+          'warning'
+        );
+      }
+      zip.file(`compressed-${originalFile.name}`, resultBytes);
     }
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    downloadFile(zipBlob, 'compressed_pdfs.zip');
 
-    const originalSize = formatBytes(originalFile.size);
-    const compressedSize = formatBytes(resultBytes.length);
-    const savings = originalFile.size - resultBytes.length;
-    const savingsPercent =
-      savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
+    const totalSavings = totalOriginal - totalCompressed;
+    const totalPercent = ((totalSavings / totalOriginal) * 100).toFixed(1);
 
-    if (savings > 0) {
-      showAlert(
-        'Compression Complete',
-        `Method: **${usedMethod}**. ` +
-          `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
-      );
-    } else {
-      showAlert(
-        'Compression Finished',
-        `Method: **${usedMethod}**. ` +
-          `Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
-        // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
-        'warning'
-      );
-    }
-
-    downloadFile(
-      new Blob([resultBytes], { type: 'application/pdf' }),
-      'compressed-final.pdf'
+    showAlert(
+      'All Files Compressed',
+      `Total saved: ${totalPercent}% (${formatBytes(totalOriginal)} → ${formatBytes(totalCompressed)})`
     );
   } catch (e) {
     showAlert(
