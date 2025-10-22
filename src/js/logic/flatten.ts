@@ -2,6 +2,11 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
 
+export function flattenFormsInDoc(pdfDoc) {
+  const form = pdfDoc.getForm();
+  form.flatten();
+}
+
 export async function flatten() {
   if (!state.pdfDoc) {
     showAlert('Error', 'PDF not loaded.');
@@ -9,8 +14,7 @@ export async function flatten() {
   }
   showLoader('Flattening PDF...');
   try {
-    const form = state.pdfDoc.getForm();
-    form.flatten();
+    flattenFormsInDoc(state.pdfDoc);
 
     const flattenedBytes = await state.pdfDoc.save();
     downloadFile(

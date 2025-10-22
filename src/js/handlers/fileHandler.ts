@@ -269,9 +269,9 @@ async function handleSinglePdfUpload(toolId, file) {
             if ((child as Element).nodeType !== 1) continue;
 
             let key = (child as Element).tagName;
-            const elementChildren = Array.from((child as Element).children).filter(
-              (c) => c.nodeType === 1
-            );
+            const elementChildren = Array.from(
+              (child as Element).children
+            ).filter((c) => c.nodeType === 1);
 
             if (key === 'rdf:li') {
               appendXmpNodes(child, ulElement, indentLevel);

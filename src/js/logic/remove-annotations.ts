@@ -28,6 +28,48 @@ export function setupRemoveAnnotationsTool() {
   });
 }
 
+export function removeAnnotationsFromDoc(
+  pdfDoc,
+  pageIndices = null,
+  annotationTypes = null
+) {
+  const pages = pdfDoc.getPages();
+  const targetPages =
+    pageIndices || Array.from({ length: pages.length }, (_, i) => i);
+
+  for (const pageIndex of targetPages) {
+    const page = pages[pageIndex];
+    const annotRefs = page.node.Annots()?.asArray() || [];
+
+    if (!annotationTypes) {
+      if (annotRefs.length > 0) {
+        page.node.delete(PDFName.of('Annots'));
+      }
+    } else {
+      const annotsToKeep = [];
+
+      for (const ref of annotRefs) {
+        const annot = pdfDoc.context.lookup(ref);
+        const subtype = annot
+          .get(PDFName.of('Subtype'))
+          ?.toString()
+          .substring(1);
+
+        if (!subtype || !annotationTypes.has(subtype)) {
+          annotsToKeep.push(ref);
+        }
+      }
+
+      if (annotsToKeep.length > 0) {
+        const newAnnotsArray = pdfDoc.context.obj(annotsToKeep);
+        page.node.set(PDFName.of('Annots'), newAnnotsArray);
+      } else {
+        page.node.delete(PDFName.of('Annots'));
+      }
+    }
+  }
+}
+
 export async function removeAnnotations() {
   showLoader('Removing annotations...');
   try {
@@ -80,34 +122,7 @@ export async function removeAnnotations() {
     if (typesToRemove.size === 0)
       throw new Error('Please select at least one annotation type to remove.');
 
-    const pages = state.pdfDoc.getPages();
-
-    for (const pageIndex of targetPageIndices) {
-      const page = pages[pageIndex];
-      const annotRefs = page.node.Annots()?.asArray() || [];
-
-      const annotsToKeep = [];
-
-      for (const ref of annotRefs) {
-        const annot = state.pdfDoc.context.lookup(ref);
-        const subtype = annot
-          .get(PDFName.of('Subtype'))
-          ?.toString()
-          .substring(1);
-
-        // If the subtype is NOT in the list to remove, add it to our new array
-        if (!subtype || !typesToRemove.has(subtype)) {
-          annotsToKeep.push(ref);
-        }
-      }
-
-      if (annotsToKeep.length > 0) {
-        const newAnnotsArray = state.pdfDoc.context.obj(annotsToKeep);
-        page.node.set(PDFName.of('Annots'), newAnnotsArray);
-      } else {
-        page.node.delete(PDFName.of('Annots'));
-      }
-    }
+    removeAnnotationsFromDoc(state.pdfDoc, targetPageIndices, typesToRemove);
 
     const newPdfBytes = await state.pdfDoc.save();
     downloadFile(
