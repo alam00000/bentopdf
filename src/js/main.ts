@@ -226,7 +226,15 @@ const init = () => {
     }
   });
   dom.backToGridBtn.addEventListener('click', () => switchView('grid'));
-  dom.alertOkBtn.addEventListener('click', hideAlert);
+  dom.alertOkBtn.addEventListener('click', () => {
+    // Execute callback if it exists
+    const callback = (dom.alertModal as any).onConfirmCallback;
+    if (callback && typeof callback === 'function') {
+      callback();
+      (dom.alertModal as any).onConfirmCallback = null; // Clear callback
+    }
+    hideAlert();
+  });
 
   const faqAccordion = document.getElementById('faq-accordion');
   if (faqAccordion) {

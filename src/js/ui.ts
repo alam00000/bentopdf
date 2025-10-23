@@ -31,10 +31,15 @@ export const showLoader = (text = 'Processing...') => {
 
 export const hideLoader = () => dom.loaderModal.classList.add('hidden');
 
-export const showAlert = (title: any, message: any) => {
+export const showAlert = (title: any, message: any, onConfirm?: () => void) => {
   dom.alertTitle.textContent = title;
   dom.alertMessage.textContent = message;
   dom.alertModal.classList.remove('hidden');
+  
+  // Store callback for when user clicks OK
+  if (onConfirm) {
+    (dom.alertModal as any).onConfirmCallback = onConfirm;
+  }
 };
 
 export const hideAlert = () => dom.alertModal.classList.add('hidden');
@@ -973,39 +978,6 @@ export const toolTemplates = {
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">Reverse & Download</button>
     `,
-  'md-to-pdf': () => `
-        <h2 class="text-2xl font-bold text-white mb-4">Markdown to PDF</h2>
-        <p class="mb-6 text-gray-400">Write in Markdown, select your formatting options, and get a high-quality, multi-page PDF. <br><strong class="text-gray-300">Note:</strong> Images linked from the web (e.g., https://...) require an internet connection to be rendered.</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div>
-                <label for="page-format" class="block mb-2 text-sm font-medium text-gray-300">Page Format</label>
-                <select id="page-format" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="a4">A4</option>
-                    <option value="letter">Letter</option>
-                </select>
-            </div>
-            <div>
-                <label for="orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
-                <select id="orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="portrait">Portrait</option>
-                    <option value="landscape">Landscape</option>
-                </select>
-            </div>
-            <div>
-                <label for="margin-size" class="block mb-2 text-sm font-medium text-gray-300">Margin Size</label>
-                <select id="margin-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="normal">Normal</option>
-                    <option value="narrow">Narrow</option>
-                    <option value="wide">Wide</option>
-                </select>
-            </div>
-        </div>
-        <div class="h-[50vh]">
-            <label for="md-input" class="block mb-2 text-sm font-medium text-gray-300">Markdown Editor</label>
-            <textarea id="md-input" class="w-full h-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-3 font-mono resize-none" placeholder="# Welcome to Markdown..."></textarea>
-        </div>
-        <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF from Markdown</button>
-    `,
   'svg-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">SVG to PDF</h2>
         <p class="mb-6 text-gray-400">Convert one or more SVG vector images into a single PDF file.</p>
@@ -1883,35 +1855,128 @@ export const toolTemplates = {
     </div>
 `,
 
-  linearize: () => `
-    <h2 class="text-2xl font-bold text-white mb-4">Linearize PDFs (Fast Web View)</h2>
-    <p class="mb-6 text-gray-400">Optimize multiple PDFs for faster loading over the web. Files will be downloaded in a ZIP archive.</p>
-    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })} 
-    <div id="file-display-area" class="mt-4 space-y-2"></div>
-    <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Linearize PDFs & Download ZIP</button> 
-  `,
-  'add-attachments': () => `
-    <h2 class="text-2xl font-bold text-white mb-4">Add Attachments to PDF</h2>
-    <p class="mb-6 text-gray-400">First, upload the PDF document you want to add files to.</p>
-    ${createFileInputHTML({ accept: 'application/pdf' })}
-    <div id="file-display-area" class="mt-4 space-y-2"></div>
-
-    <div id="attachment-options" class="hidden mt-8">
-      <h3 class="text-lg font-semibold text-white mb-3">Upload Files to Attach</h3>
-      <p class="mb-4 text-gray-400">Select one or more files to embed within the PDF. You can attach any file type (images, documents, spreadsheets, etc.).</p>
-      
-      <label for="attachment-files-input" class="w-full flex justify-center items-center px-6 py-10 bg-gray-900 text-gray-400 rounded-lg border-2 border-dashed border-gray-600 hover:bg-gray-800 hover:border-gray-500 cursor-pointer transition-colors">
-        <div class="text-center">
-          <svg class="mx-auto h-12 w-12" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true"><path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          <span class="mt-2 block text-sm font-medium">Click to upload files</span>
-          <span class="mt-1 block text-xs">Any file type, multiple files allowed</span>
+  'md-to-pdf': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Markdown to PDF</h2>
+    <p class="mb-6 text-gray-400">Convert Markdown documents to PDF with support for GitHub Flavored Markdown, CommonMark, and Pandoc Markdown. Edit on the left, preview on the right.</p>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Left Panel: Markdown Editor -->
+      <div class="space-y-4">
+        <div>
+          <label for="file-input" class="block mb-2 text-sm font-medium text-gray-300">Upload .md file (optional)</label>
+          <input type="file" id="file-input" accept=".md,text/markdown" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
         </div>
-        <input id="attachment-files-input" name="attachment-files" type="file" class="sr-only" multiple>
-      </label>
+        
+        <div>
+          <label for="markdown-flavor" class="block mb-2 text-sm font-medium text-gray-300">Markdown Flavor</label>
+          <select id="markdown-flavor" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+            <option value="github">GitHub Flavored Markdown</option>
+            <option value="commonmark">CommonMark</option>
+            <option value="pandoc">Pandoc Markdown</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="md-input" class="block mb-2 text-sm font-medium text-gray-300">Markdown Content</label>
+          <textarea 
+            id="md-input" 
+            rows="20" 
+            class="w-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-3 font-mono text-sm" 
+            placeholder="# Your Markdown Content Here
 
-      <div id="attachment-file-list" class="mt-4 space-y-2"></div>
+## Features Supported
+- **Bold** and *italic* text
+- Lists (ordered and unordered)
+- [Links](https://example.com)
+- \`inline code\` and code blocks
+- Tables
+- > Blockquotes
+- Horizontal rules
+- Images
+- Mathematical expressions
 
-      <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
+### Mathematical Expressions
+Inline math: $E = mc^2$
+
+Block math:
+$$
+\\int_{-\\infty}^{\\infty} e^{-x^2} dx = \\sqrt{\\pi}
+$$
+
+### Code Block Example
+\`\`\`javascript
+function hello() {
+  console.log('Hello, World!');
+}
+\`\`\`
+
+### Table Example
+| Feature | Support |
+|---------|---------|
+| Headers | ✅ |
+| Lists | ✅ |
+| Links | ✅ |
+| Code | ✅ |
+| Math | ✅ |"
+          ></textarea>
+        </div>
+      </div>
+      
+      <!-- Right Panel: Preview -->
+      <div class="space-y-4">
+        <div>
+          <label class="block mb-2 text-sm font-medium text-gray-300">Live Preview</label>
+          <div 
+            id="markdown-preview" 
+            class="w-full h-96 bg-white border border-gray-600 rounded-lg p-4 overflow-auto text-gray-900"
+            style="min-height: 500px;"
+          >
+            <p class="text-gray-500 italic">Preview will appear here...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PDF Options -->
+    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <label for="page-format" class="block mb-2 text-sm font-medium text-gray-300">Page Format</label>
+        <select id="page-format" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="a4">A4</option>
+          <option value="letter">Letter</option>
+          <option value="legal">Legal</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+        <select id="orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="portrait">Portrait</option>
+          <option value="landscape">Landscape</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="margin-size" class="block mb-2 text-sm font-medium text-gray-300">Margins</label>
+        <select id="margin-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="narrow">Narrow</option>
+          <option value="normal" selected>Normal</option>
+          <option value="wide">Wide</option>
+        </select>
+      </div>
+      
+      <div>
+        <label for="image-quality" class="block mb-2 text-sm font-medium text-gray-300">Image Quality</label>
+        <select id="image-quality" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+          <option value="high" selected>High Quality (Best Results)</option>
+          <option value="medium">Medium Quality (Balanced)</option>
+          <option value="low">Low Quality (Smaller Files)</option>
+        </select>
+      </div>
+      
+      <div class="flex items-end">
+        <button id="process-btn" class="btn-gradient w-full">Convert to PDF</button>
+      </div>
     </div>
   `,
 
