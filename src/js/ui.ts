@@ -282,6 +282,7 @@ export const renderFileDisplay = (container: any, files: any) => {
       fileDiv.append(leftSection, deleteButton);
       container.appendChild(fileDiv);
     });
+    createIcons({ icons });
   }
 };
 
