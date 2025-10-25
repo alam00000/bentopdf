@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.ts';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.ts';
 import { state } from '../state.ts';
+import { icons, createIcons } from 'lucide';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -19,6 +20,44 @@ const mergeState = {
   cachedThumbnails: null,
   lastFileHash: null,
 };
+
+function clearMergeSelectionUI() {
+  const fileDisplayArea = document.getElementById('file-display-area');
+  if (fileDisplayArea) fileDisplayArea.textContent = '';
+
+  const fileControls = document.getElementById('file-controls');
+  if (fileControls) fileControls.classList.add('hidden');
+
+  const mergeOptions = document.getElementById('merge-options');
+  if (mergeOptions) mergeOptions.classList.add('hidden');
+
+  const processBtn = document.getElementById('process-btn') as HTMLButtonElement | null;
+  if (processBtn) {
+    processBtn.disabled = true;
+  }
+}
+
+function removeMergeFile(fileName: string) {
+  const updatedFiles = (state.files as File[]).filter((file) => file.name !== fileName);
+  state.files = updatedFiles;
+
+  delete mergeState.pdfDocs[fileName];
+  mergeState.cachedThumbnails = null;
+  mergeState.lastFileHash = null;
+
+  if (updatedFiles.length === 0) {
+    const clearBtn = document.getElementById('clear-files-btn');
+    if (clearBtn) {
+      clearBtn.dispatchEvent(new Event('click'));
+    } else {
+      clearMergeSelectionUI();
+    }
+    mergeState.activeMode = 'file';
+    return;
+  }
+
+  void setupMergeTool();
+}
 
 function parsePageRanges(rangeString: any, totalPages: any) {
   const indices = new Set();
@@ -331,12 +370,26 @@ export async function setupMergeTool() {
     nameSpan.title = f.name;
     nameSpan.textContent = f.name;
 
+    const actionGroup = document.createElement('div');
+    actionGroup.className = 'flex items-center gap-2';
+
     const dragHandle = document.createElement('div');
     dragHandle.className =
       'drag-handle cursor-move text-gray-400 hover:text-white p-1 rounded transition-colors';
     dragHandle.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/></svg>`; // Safe: static content
 
-    mainDiv.append(nameSpan, dragHandle);
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.className = 'text-red-400 hover:text-red-300 p-1 rounded transition-colors';
+    deleteBtn.innerHTML = '<i data-lucide="trash-2"></i>';
+    deleteBtn.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      removeMergeFile(f.name);
+    });
+
+    actionGroup.append(dragHandle, deleteBtn);
+    mainDiv.append(nameSpan, actionGroup);
 
     const rangeDiv = document.createElement('div');
     rangeDiv.className = 'mt-2';
@@ -357,6 +410,8 @@ export async function setupMergeTool() {
     li.append(mainDiv, rangeDiv);
     fileList.appendChild(li);
   });
+
+  createIcons({ icons });
 
   initializeFileListSortable();
 
