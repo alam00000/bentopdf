@@ -2,6 +2,7 @@ import { resetState } from './state.js';
 import { formatBytes } from './utils/helpers.js';
 import { tesseractLanguages } from './config/tesseract-languages.js';
 import { icons, createIcons } from 'lucide';
+import { state } from './state.js';
 import Sortable from 'sortablejs';
 
 // Centralizing DOM element selection
@@ -213,10 +214,14 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
 export const renderFileDisplay = (container: any, files: any) => {
   container.textContent = '';
   if (files.length > 0) {
-    files.forEach((file: any) => {
+    files.forEach((file: any, index: number) => {
       const fileDiv = document.createElement('div');
       fileDiv.className =
         'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+      fileDiv.dataset.fileIndex = index.toString();
+
+      const leftSection = document.createElement('div');
+      leftSection.className = 'flex-grow flex items-center min-w-0';
 
       const nameSpan = document.createElement('span');
       nameSpan.className = 'truncate font-medium text-gray-200';
@@ -226,7 +231,55 @@ export const renderFileDisplay = (container: any, files: any) => {
       sizeSpan.className = 'flex-shrink-0 ml-4 text-gray-400';
       sizeSpan.textContent = formatBytes(file.size);
 
-      fileDiv.append(nameSpan, sizeSpan);
+      leftSection.append(nameSpan, sizeSpan);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'ml-4 text-red-400 hover:text-red-300 focus:outline-none';
+            deleteButton.innerHTML = '<i data-lucide="trash-2"></i>';
+            deleteButton.onclick = () => {
+                const filesArray = Array.from(files);
+                filesArray.splice(index, 1);
+                state.files = filesArray;
+
+                if (filesArray.length === 0) {
+                    container.textContent = '';
+
+                    const fileControls = document.getElementById('file-controls');
+                    if (fileControls) {
+                        fileControls.classList.add('hidden');
+                    }
+
+                    const processBtn = document.getElementById('process-btn') as HTMLButtonElement | null;
+                    if (processBtn) {
+                        processBtn.disabled = true;
+                    }
+
+                    const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+                    if (fileInput) {
+                        fileInput.value = '';
+                    }
+
+                    const supplementalLists = [
+                        'file-list',
+                        'page-merge-preview',
+                        'image-list',
+                        'alternate-file-list',
+                    ];
+                    supplementalLists.forEach((id) => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.textContent = '';
+                        }
+                    });
+
+                    return;
+                }
+
+                renderFileDisplay(container, filesArray);
+                createIcons({ icons });
+            };
+
+      fileDiv.append(leftSection, deleteButton);
       container.appendChild(fileDiv);
     });
   }
