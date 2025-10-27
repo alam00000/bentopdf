@@ -156,7 +156,7 @@ For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
 
 BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:
 
-- **Non-Root Execution**: Container runs with minimal privileges using nginx-unprivileged
+- **Non-Root Execution**: Container runs with minimal privileges using nginx-unprivileged and allows for an arbitrary user (UID)
 - **Port 8080**: Uses high port number to avoid requiring root privileges
 - **Security Best Practices**: Follows Principle of Least Privilege
 
