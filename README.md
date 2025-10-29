@@ -102,6 +102,8 @@ You can run BentoPDF locally for development or personal use.
 
 ### 🚀 Quick Start with Docker
 
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/LWO8I0?referralCode=LokiSalmonNeko)
+
 You can run BentoPDF directly from Docker Hub or GitHub Container Registry without cloning the repository:
 
 You can also watch the video on how to set it up 👉
