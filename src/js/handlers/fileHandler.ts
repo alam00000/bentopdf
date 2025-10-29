@@ -5,6 +5,7 @@ import {
   showAlert,
   renderPageThumbnails,
   renderFileDisplay,
+  resetToolPanels,
   switchView,
 } from '../ui.js';
 import { formatIsoDate, readFileAsArrayBuffer } from '../utils/helpers.js';
@@ -51,13 +52,19 @@ async function handleSinglePdfUpload(toolId, file) {
 
     const processBtn = document.getElementById('process-btn');
     if (processBtn) {
-      (processBtn as HTMLButtonElement).disabled = false;
-      processBtn.classList.remove('hidden');
+      const processButton = processBtn as HTMLButtonElement;
+      if (!processButton.dataset.initiallyHidden) {
+        processButton.dataset.initiallyHidden = processButton.classList.contains('hidden')
+          ? 'true'
+          : 'false';
+      }
+      processButton.disabled = false;
+      processButton.classList.remove('hidden');
       const logic = toolLogic[toolId];
       if (logic) {
         const func =
           typeof logic.process === 'function' ? logic.process : logic;
-        processBtn.onclick = func;
+        processButton.onclick = func;
       }
     }
 
@@ -490,11 +497,18 @@ async function handleMultiFileUpload(toolId) {
 
   const processBtn = document.getElementById('process-btn');
   if (processBtn) {
-    (processBtn as HTMLButtonElement).disabled = false;
+    const processButton = processBtn as HTMLButtonElement;
+    if (!processButton.dataset.initiallyHidden) {
+      processButton.dataset.initiallyHidden = processButton.classList.contains('hidden')
+        ? 'true'
+        : 'false';
+    }
+    processButton.disabled = false;
+    processButton.classList.remove('hidden');
     const logic = toolLogic[toolId];
     if (logic) {
       const func = typeof logic.process === 'function' ? logic.process : logic;
-      processBtn.onclick = func;
+      processButton.onclick = func;
     }
   }
 
@@ -569,8 +583,15 @@ export function setupFileInputHandler(toolId) {
       if (optionsDiv) optionsDiv.classList.remove('hidden');
       const processBtn = document.getElementById('process-btn');
       if (processBtn) {
-        (processBtn as HTMLButtonElement).disabled = false;
-        processBtn.onclick = () => {
+        const processButton = processBtn as HTMLButtonElement;
+        if (!processButton.dataset.initiallyHidden) {
+          processButton.dataset.initiallyHidden = processButton.classList.contains('hidden')
+            ? 'true'
+            : 'false';
+        }
+        processButton.disabled = false;
+        processButton.classList.remove('hidden');
+        processButton.onclick = () => {
           const logic = toolLogic[toolId];
           if (logic) {
             const func =
@@ -640,9 +661,6 @@ export function setupFileInputHandler(toolId) {
         const fileDisplayArea = document.getElementById('file-display-area');
         if (fileDisplayArea) fileDisplayArea.textContent = '';
 
-        const fileControls = document.getElementById('file-controls');
-        if (fileControls) fileControls.classList.add('hidden');
-
         const toolSpecificUI = [
           'file-list',
           'page-merge-preview',
@@ -654,8 +672,7 @@ export function setupFileInputHandler(toolId) {
           if (el) el.textContent = '';
         });
 
-        const processBtn = document.getElementById('process-btn');
-        if (processBtn) (processBtn as HTMLButtonElement).disabled = true;
+        resetToolPanels();
       });
     }
   };

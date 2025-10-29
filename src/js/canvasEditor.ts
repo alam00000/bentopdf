@@ -3,6 +3,12 @@ import { state } from './state.js';
 import { toolLogic } from './logic/index.js';
 import { icons, createIcons } from 'lucide';
 
+declare global {
+  interface Window {
+    redrawShapes: () => void;
+  }
+}
+
 const editorState = {
   pdf: null,
   canvas: null,
@@ -92,6 +98,13 @@ function queueRenderPage(num: any) {
   } else {
     editorState.currentPageNum = num;
     renderPage(num);
+  }
+}
+
+function clearCropBox(pageNum: number) {
+  delete editorState.cropBoxes[pageNum - 1];
+  if (pageNum === editorState.currentPageNum) {
+    redrawShapes();
   }
 }
 
@@ -255,6 +268,12 @@ export async function setupCanvasEditor(toolId: any) {
   editorState.canvas.addEventListener('touchend', handleInteractionEnd);
 
   if (toolId === 'crop') {
+    // Create and append crop list container
+    const cropListContainer = document.createElement('div');
+    cropListContainer.id = 'crop-list-container';
+    cropListContainer.className = 'mt-4 space-y-2 max-h-48 overflow-y-auto';
+    document.getElementById('tool-content').appendChild(cropListContainer);
+
     document.getElementById('zoom-in-btn').onclick = () => {
       editorState.scale += 0.25;
       renderPage(editorState.currentPageNum);
@@ -274,6 +293,62 @@ export async function setupCanvasEditor(toolId: any) {
       delete editorState.cropBoxes[editorState.currentPageNum - 1];
       redrawShapes();
     };
+    // Function to update the crop list display
+    const updateCropList = () => {
+      const container = document.getElementById('crop-list-container');
+      container.innerHTML = '';
+      
+      const pages = Object.keys(editorState.cropBoxes).map(Number).sort((a, b) => a - b);
+      
+      if (pages.length === 0) {
+        const emptyMessage = document.createElement('p');
+        emptyMessage.className = 'text-gray-400 text-sm';
+        emptyMessage.textContent = 'No crop areas defined';
+        container.appendChild(emptyMessage);
+        return;
+      }
+
+      pages.forEach(pageNum => {
+        const cropBox = editorState.cropBoxes[pageNum];
+        const item = document.createElement('div');
+        item.className = 'flex items-center justify-between bg-gray-800 p-2 rounded';
+        
+        const info = document.createElement('span');
+        info.className = 'text-sm text-gray-300';
+        info.textContent = `Page ${pageNum + 1}: ${Math.round(cropBox.width)}×${Math.round(cropBox.height)}`;
+        
+        const actions = document.createElement('div');
+        actions.className = 'flex gap-2';
+        
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'text-blue-400 hover:text-blue-300 text-sm';
+        viewBtn.innerHTML = '<i data-lucide="eye"></i>';
+        viewBtn.onclick = () => {
+          queueRenderPage(pageNum + 1);
+        };
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'text-red-400 hover:text-red-300 text-sm';
+        deleteBtn.innerHTML = '<i data-lucide="trash-2"></i>';
+        deleteBtn.onclick = () => {
+          clearCropBox(pageNum + 1);
+          updateCropList();
+        };
+        
+        actions.append(viewBtn, deleteBtn);
+        item.append(info, actions);
+        container.appendChild(item);
+      });
+      createIcons({ icons });
+    };
+    
+    updateCropList();
+    const originalRedrawShapes = window.redrawShapes;
+    window.redrawShapes = function() {
+      originalRedrawShapes.call(this);
+      updateCropList();
+    };
+
     document.getElementById('clear-all-crops-btn').onclick = () => {
       editorState.cropBoxes = {};
       redrawShapes();
