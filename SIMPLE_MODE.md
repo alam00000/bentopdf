@@ -91,7 +91,21 @@ npx serve dist -p 3000
 
 ## 🧪 Testing Simple Mode Locally
 
-### Method 1: Using npm Script (Easiest for Development)
+### Method 1: Development Mode with Hot Reload (Recommended for Development)
+
+```bash
+npm run dev:simple
+```
+
+This starts the Vite development server with Simple Mode enabled on `http://localhost:5173/`. 
+
+**Benefits:**
+- Hot reload on file changes
+- Fast development iteration
+- Full debugging capabilities
+- No build step required
+
+### Method 2: Build and Serve (For Production-like Testing)
 
 ```bash
 npm run serve:simple
@@ -99,7 +113,7 @@ npm run serve:simple
 
 This automatically builds and serves Simple Mode on `http://localhost:3000`.
 
-### Method 2: Using Pre-built Image (Easiest for Production)
+### Method 3: Using Pre-built Image (Easiest for Production)
 
 ```bash
 # Pull and run the Simple Mode image
@@ -109,7 +123,7 @@ docker run -p 3000:8080 bentopdf/bentopdf-simple:latest
 
 Open `http://localhost:3000` in your browser.
 
-### Method 3: Build and Test Locally
+### Method 4: Build and Test Locally
 
 ```bash
 # Build with simple mode
@@ -121,7 +135,7 @@ npx serve dist -p 3000
 
 Open `http://localhost:3000` in your browser.
 
-### Method 4: Compare Both Modes
+### Method 5: Compare Both Modes
 
 ```bash
 # Test Normal Mode

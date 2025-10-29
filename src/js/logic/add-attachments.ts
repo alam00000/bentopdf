@@ -1,25 +1,26 @@
 import { showLoader, hideLoader, showAlert } from '../ui';
 import { readFileAsArrayBuffer, downloadFile } from '../utils/helpers';
 import { state } from '../state';
+import { t } from '../i18n/index.js';
 let attachments: File[] = [];
 
 export async function addAttachments() {
   if (!state.pdfDoc) {
-    showAlert('Error', 'Main PDF is not loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.mainPdfNotLoaded')));
     return;
   }
   if (attachments.length === 0) {
-    showAlert('No Files', 'Please select at least one file to attach.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.selectFilesToAttach')));
     return;
   }
 
-  showLoader('Embedding files into PDF...');
+  showLoader(String(t('alerts.embeddingFiles')));
   try {
     const pdfDoc = state.pdfDoc;
 
     for (let i = 0; i < attachments.length; i++) {
       const file = attachments[i];
-      showLoader(`Attaching ${file.name} (${i + 1}/${attachments.length})...`);
+      showLoader(String(t('alerts.attachingFile', { fileName: file.name, current: i + 1, total: attachments.length })));
 
       const fileBytes = await readFileAsArrayBuffer(file);
 
@@ -38,12 +39,12 @@ export async function addAttachments() {
     );
 
     showAlert(
-      'Success',
-      `${attachments.length} file(s) attached successfully.`
+      String(t('alerts.success')),
+      String(t('alerts.filesAttachedSuccessfully', { count: attachments.length }))
     );
   } catch (error: any) {
     console.error('Error attaching files:', error);
-    showAlert('Error', `Failed to attach files: ${error.message}`);
+    showAlert(String(t('alerts.error')), String(t('alerts.failedAttachFiles')) + ` ${error.message}`);
   } finally {
     hideLoader();
     clearAttachments();

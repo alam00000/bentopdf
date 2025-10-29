@@ -31,10 +31,10 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="./about.html" class="nav-link">About</a>
-            <a href="./contact.html" class="nav-link">Contact</a>
-            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+            <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+            <a href="./about.html" class="nav-link" data-i18n="nav.about">About</a>
+            <a href="./contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#tools-header" class="nav-link" data-i18n="nav.allTools">All Tools</a>
           </div>
 
           <!-- Mobile Hamburger Button -->
@@ -46,7 +46,7 @@
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
-              <span class="sr-only">Open main menu</span>
+              <span class="sr-only" data-i18n="nav.openMenu">Open main menu</span>
               <!-- Hamburger Icon -->
               <svg
                 id="menu-icon"
@@ -92,10 +92,10 @@
         class="hidden md:hidden bg-gray-800 border-t border-gray-700"
       >
         <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-          <a href="index.html" class="mobile-nav-link">Home</a>
-          <a href="./about.html" class="mobile-nav-link">About</a>
-          <a href="./contact.html" class="mobile-nav-link">Contact</a>
-          <a href="index.html#tools-header" class="mobile-nav-link"
+          <a href="index.html" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+          <a href="./about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+          <a href="./contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+          <a href="index.html#tools-header" class="mobile-nav-link" data-i18n="nav.allTools"
             >All Tools</a
           >
         </div>
@@ -104,16 +104,16 @@
 
     <div id="app" class="container mx-auto p-4 md:p-8">
       <section class="max-w-4xl mx-auto py-12">
-        <h1 class="text-4xl md:text-5xl font-bold text-center text-white mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-center text-white mb-4" data-i18n="privacy.title">
           Privacy Policy
         </h1>
-        <p class="text-center text-gray-500">
+        <p class="text-center text-gray-500" data-i18n="privacy.lastUpdated">
           Last Updated: September 14, 2025
         </p>
 
         <div class="legal-content mt-12">
-          <h2>1. Our Commitment to Privacy</h2>
-          <p>
+          <h2 data-i18n="privacy.section1.heading">1. Our Commitment to Privacy</h2>
+          <p data-i18n-html="privacy.section1.intro">
             BentoPDF ("we", "us", "our") is fundamentally a privacy-focused
             service. This Privacy Policy outlines our unwavering commitment to
             protecting your privacy. Our core principle is simple:
@@ -123,8 +123,8 @@
             (client-side).
           </p>
 
-          <h3>1.1 The Client-Side Principle</h3>
-          <p>
+          <h3 data-i18n="privacy.section1.subheading">1.1 The Client-Side Principle</h3>
+          <p data-i18n="privacy.section1.subcontent">
             Unlike other online PDF services, BentoPDF does not upload your
             files to a server for processing. The tools you use are powered by
             JavaScript and WebAssembly libraries that run directly on your
@@ -132,46 +132,46 @@
             you with the highest level of privacy and security.
           </p>
 
-          <h2>2. Information We Do Not Collect</h2>
-          <p>
+          <h2 data-i18n="privacy.section2.heading">2. Information We Do Not Collect</h2>
+          <p data-i18n="privacy.section2.intro">
             Because of our client-side architecture, we are technically
             incapable of collecting the following information:
           </p>
           <ul>
-            <li>
+            <li data-i18n="privacy.section2.item1">
               The content of your PDF files or any other documents you use with
               our tools.
             </li>
-            <li>Any personal data contained within your documents.</li>
-            <li>Filenames of your documents.</li>
-            <li>
+            <li data-i18n="privacy.section2.item2">Any personal data contained within your documents.</li>
+            <li data-i18n="privacy.section2.item3">Filenames of your documents.</li>
+            <li data-i18n="privacy.section2.item4">
               Any derived information or metadata from your files, beyond what
               is necessary for the tool to function during your active session
               (and this is immediately discarded).
             </li>
           </ul>
 
-          <h2>3. Information We May Collect (Non-Personal Data)</h2>
-          <p>
+          <h2 data-i18n="privacy.section3.heading">3. Information We May Collect (Non-Personal Data)</h2>
+          <p data-i18n="privacy.section3.intro">
             To improve our website and services, we may collect anonymous,
             non-personally identifiable information. This type of data helps us
             understand how users interact with our site, which tools are most
             popular, and how we can improve the user experience. This includes:
           </p>
           <ul>
-            <li>
+            <li data-i18n-html="privacy.section3.item1">
               <strong>Usage Analytics:</strong> Anonymized data such as which
               tools are used, how often they are used, and which features are
               accessed. This is aggregated and cannot be tied back to an
               individual user or document.
             </li>
-            <li>
+            <li data-i18n-html="privacy.section3.item2">
               <strong>Performance Data:</strong> Anonymized error reports or
               performance metrics to help us identify and fix bugs. This data
               contains no personal information or file content.
             </li>
           </ul>
-          <p>
+          <p data-i18n-html="privacy.section3.analytics">
             We use privacy-respecting analytics platforms for this purpose.
             Specifically, we use
             <a
@@ -191,8 +191,8 @@
             cross-site profiling.
           </p>
 
-          <h2>4. Third-Party Libraries</h2>
-          <p>
+          <h2 data-i18n="privacy.section4.heading">4. Third-Party Libraries</h2>
+          <p data-i18n="privacy.section4.content">
             BentoPDF is built using powerful, open-source libraries like
             PDF-lib.js and PDF.js. These libraries are trusted by developers
             worldwide and operate under the same client-side principle. While we
@@ -200,8 +200,8 @@
             respective privacy policies for your own peace of mind.
           </p>
 
-          <h2>5. Security</h2>
-          <p>
+          <h2 data-i18n="privacy.section5.heading">5. Security</h2>
+          <p data-i18n="privacy.section5.content">
             Since your files are never transmitted over the internet to our
             servers, you are protected from potential data breaches during
             transit or storage on a server. The security of your documents is in
@@ -209,8 +209,8 @@
             web browser.
           </p>
 
-          <h2>6. Children's Privacy</h2>
-          <p>
+          <h2 data-i18n="privacy.section6.heading">6. Children's Privacy</h2>
+          <p data-i18n="privacy.section6.content">
             Our services are not directed at individuals under the age of 13. We
             do not knowingly collect any personal information from children. If
             you believe a child has provided us with personal information,
@@ -218,16 +218,16 @@
             information.
           </p>
 
-          <h2>7. Changes to This Privacy Policy</h2>
-          <p>
+          <h2 data-i18n="privacy.section7.heading">7. Changes to This Privacy Policy</h2>
+          <p data-i18n="privacy.section7.content">
             We may update this Privacy Policy from time to time. We will notify
             you of any changes by posting the new policy on this page and
             updating the "Last Updated" date at the top. You are advised to
             review this Privacy Policy periodically for any changes.
           </p>
 
-          <h2>8. Contact Us</h2>
-          <p>
+          <h2 data-i18n="privacy.section8.heading">8. Contact Us</h2>
+          <p data-i18n-html="privacy.section8.content">
             If you have any questions about this Privacy Policy, please contact
             us at
             <a href="mailto:contact@bentopdf.com">contact@bentopdf.com</a>.
@@ -250,41 +250,41 @@
               />
               <span class="text-xl font-bold text-white">BentoPDF</span>
             </div>
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-400 text-sm" data-i18n="footer.copyright">
               &copy; 2025 BentoPDF. All rights reserved.
             </p>
           </div>
           <div>
-            <h3 class="font-bold text-white mb-4">Company</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.company">Company</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="about.html" class="hover:text-indigo-400">About Us</a>
+                <a href="about.html" class="hover:text-indigo-400" data-i18n="footerNav.aboutUs">About Us</a>
               </li>
-              <li><a href="faq.html" class="hover:text-indigo-400">FAQ</a></li>
+              <li><a href="faq.html" class="hover:text-indigo-400" data-i18n="footerNav.faq">FAQ</a></li>
               <li>
-                <a href="contact.html" class="hover:text-indigo-400"
+                <a href="contact.html" class="hover:text-indigo-400" data-i18n="footerNav.contactUs"
                   >Contact Us</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-white mb-4">Legal</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.legal">Legal</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="terms.html" class="hover:text-indigo-400"
+                <a href="terms.html" class="hover:text-indigo-400" data-i18n="footerNav.terms"
                   >Terms and Conditions</a
                 >
               </li>
               <li>
-                <a href="privacy.html" class="hover:text-indigo-400"
+                <a href="privacy.html" class="hover:text-indigo-400" data-i18n="footerNav.privacy"
                   >Privacy Policy</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-white mb-4">Follow Us</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.followUs">Follow Us</h3>
             <div class="flex justify-center md:justify-start space-x-4">
               <a
                 href="https://www.instagram.com/thebentopdf/"
@@ -321,6 +321,7 @@
     <script>
       lucide.createIcons();
     </script>
+    <script type="module" src="src/js/main.ts"></script>
     <script type="module" src="src/js/mobileMenu.ts"></script>
   </body>
 </html>

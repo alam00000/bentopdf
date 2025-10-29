@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
 
@@ -13,7 +14,7 @@ export async function combineToSinglePage() {
   const addSeparator = document.getElementById('add-separator').checked;
   const backgroundColor = hexToRgb(backgroundColorHex);
 
-  showLoader('Combining pages...');
+  showLoader(String(t('alerts.combiningPages')));
   try {
     const sourceDoc = state.pdfDoc;
     const newDoc = await PDFLibDocument.create();
@@ -71,7 +72,7 @@ export async function combineToSinglePage() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while combining pages.');
+    showAlert(String(t('alerts.error')), String(t('alerts.errorCombiningPages')));
   } finally {
     hideLoader();
   }

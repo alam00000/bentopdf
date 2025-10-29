@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
@@ -8,10 +9,10 @@ export async function deletePages() {
   // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   const pageInput = document.getElementById('pages-to-delete').value;
   if (!pageInput) {
-    showAlert('Invalid Input', 'Please enter page numbers to delete.');
+    showAlert(String(t('alerts.invalidInput')), String(t('alerts.enterPagesToDelete')));
     return;
   }
-  showLoader('Deleting pages...');
+  showLoader(String(t('alerts.deletingPages')));
   try {
     const totalPages = state.pdfDoc.getPageCount();
     const indicesToDelete = new Set();
@@ -38,12 +39,12 @@ export async function deletePages() {
     }
 
     if (indicesToDelete.size === 0) {
-      showAlert('Invalid Input', 'No valid pages selected for deletion.');
+      showAlert(String(t('alerts.invalidInput')), String(t('alerts.noValidPagesSelected')));
       hideLoader();
       return;
     }
     if (indicesToDelete.size >= totalPages) {
-      showAlert('Invalid Input', 'You cannot delete all pages.');
+      showAlert(String(t('alerts.invalidInput')), String(t('alerts.cannotDeleteAllPages')));
       hideLoader();
       return;
     }
@@ -63,7 +64,7 @@ export async function deletePages() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not delete pages.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotDeletePages')));
   } finally {
     hideLoader();
   }

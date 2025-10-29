@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
@@ -37,7 +38,7 @@ function saveCurrentCrop() {
  * @param {number} num The page number to render.
  */
 async function displayPageAsImage(num: any) {
-  showLoader(`Rendering Page ${num}...`);
+  showLoader(String(t('alerts.renderingPage', { pageNumber: num })));
 
   try {
     const page = await cropperState.pdfDoc.getPage(num);
@@ -84,11 +85,11 @@ async function displayPageAsImage(num: any) {
       updatePageInfo();
       enableControls();
       hideLoader();
-      showAlert('Ready', 'Please select an area to crop.');
+      showAlert(String(t('alerts.ready')), String(t('alerts.selectAreaToCrop')));
     };
   } catch (error) {
     console.error('Error rendering page:', error);
-    showAlert('Error', 'Failed to render page.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedRenderPage')));
     hideLoader();
   }
 }
@@ -185,7 +186,7 @@ async function performFlatteningCrop(cropData: any) {
 
   for (let i = 0; i < totalPages; i++) {
     const pageNum = i + 1;
-    showLoader(`Processing page ${pageNum} of ${totalPages}...`);
+    showLoader(String(t('alerts.processingPage', { current: pageNum, total: totalPages })));
 
     if (cropData[pageNum]) {
       const page = await cropperState.pdfDoc.getPage(pageNum);
@@ -285,7 +286,7 @@ export async function setupCropperTool() {
           const currentCrop =
             cropperState.pageCrops[cropperState.currentPageNum];
           if (!currentCrop) {
-            showAlert('No Crop Area', 'Please select an area to crop first.');
+            showAlert(String(t('alerts.noCropArea')), String(t('alerts.selectAreaFirst')));
             return;
           }
           // Apply the active page's crop to all pages
@@ -305,13 +306,13 @@ export async function setupCropperTool() {
 
         if (Object.keys(finalCropData).length === 0) {
           showAlert(
-            'No Crop Area',
-            'Please select an area on at least one page to crop.'
+            String(t('alerts.noCropArea')),
+            String(t('alerts.selectAreaOnePage'))
           );
           return;
         }
 
-        showLoader('Applying crop...');
+        showLoader(String(t('alerts.applyingCrop')));
 
         try {
           let finalPdfBytes;
@@ -333,16 +334,16 @@ export async function setupCropperTool() {
             new Blob([finalPdfBytes], { type: 'application/pdf' }),
             fileName
           );
-          showAlert('Success', 'Crop complete! Your download has started.');
+          showAlert(String(t('alerts.success')), String(t('alerts.cropComplete')));
         } catch (e) {
           console.error(e);
-          showAlert('Error', 'An error occurred during cropping.');
+          showAlert(String(t('alerts.error')), String(t('alerts.errorDuringCrop')));
         } finally {
           hideLoader();
         }
       });
   } catch (error) {
     console.error('Error setting up cropper tool:', error);
-    showAlert('Error', 'Failed to load PDF for cropping.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedLoadPdfCrop')));
   }
 }

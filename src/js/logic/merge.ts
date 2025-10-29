@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.ts';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.ts';
 import { state } from '../state.ts';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -148,7 +149,7 @@ async function renderPageMergeThumbnails() {
       for (let i = 1; i <= pdfjsDoc.numPages; i++) {
         currentPageNumber++;
         showLoader(
-          `Rendering page previews: ${currentPageNumber}/${totalPages}`
+          String(t('alerts.renderingPagePreviews'))
         );
         const page = await pdfjsDoc.getPage(i);
         const viewport = page.getViewport({ scale: 0.3 });
@@ -202,7 +203,7 @@ async function renderPageMergeThumbnails() {
     initializePageThumbnailsSortable();
   } catch (error) {
     console.error('Error rendering page thumbnails:', error);
-    showAlert('Error', 'Failed to render page thumbnails');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedRenderThumbnails')));
   } finally {
     hideLoader();
     mergeState.isRendering = false;
@@ -210,7 +211,7 @@ async function renderPageMergeThumbnails() {
 }
 
 export async function merge() {
-  showLoader('Merging PDFs...');
+  showLoader(String(t('alerts.mergingPdfs')));
   try {
     const newPdfDoc = await PDFLibDocument.create();
 
@@ -266,12 +267,12 @@ export async function merge() {
       new Blob([new Uint8Array(mergedPdfBytes)], { type: 'application/pdf' }),
       'merged.pdf'
     );
-    showAlert('Success', 'PDFs merged successfully!');
+    showAlert(String(t('alerts.success')), String(t('alerts.pdfsMerged')));
   } catch (e) {
     console.error('Merge error:', e);
     showAlert(
-      'Error',
-      'Failed to merge PDFs. Please check that all files are valid and not password-protected.'
+      String(t('alerts.error')),
+      String(t('alerts.failedMerge'))
     );
   } finally {
     hideLoader();
@@ -285,7 +286,7 @@ export async function setupMergeTool() {
 
   const wasInPageMode = mergeState.activeMode === 'page';
 
-  showLoader('Loading PDF documents...');
+  showLoader(String(t('alerts.loadingPdfDocuments')));
   try {
     for (const file of state.files) {
       if (!mergeState.pdfDocs[file.name]) {

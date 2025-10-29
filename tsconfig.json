@@ -49,6 +49,7 @@
 
     /* Fix for ArrayBuffer type issues */
     "noImplicitAny": false,
+    "resolveJsonModule": true,
 
     /* Quality-of-life options */
     "isolatedModules": true,

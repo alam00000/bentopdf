@@ -1,15 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function webpToPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select at least one WebP file.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.selectAtLeastOneWebp')));
     return;
   }
-  showLoader('Converting WebP to PDF...');
+  showLoader(String(t('alerts.convertingWebpToPdf')));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of state.files) {
@@ -47,8 +48,8 @@ export async function webpToPdf() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert WebP to PDF. Ensure all files are valid WebP images.'
+      String(t('alerts.error')),
+      String(t('alerts.failedConvertWebpToPdf'))
     );
   } finally {
     hideLoader();

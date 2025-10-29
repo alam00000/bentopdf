@@ -1,11 +1,12 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function organize() {
-  showLoader('Saving changes...');
+  showLoader(String(t('alerts.savingChanges')));
   try {
     const newPdf = await PDFLibDocument.create();
     const pageContainer = document.getElementById('page-organizer');
@@ -23,7 +24,7 @@ export async function organize() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not save the changes.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotSaveChanges')));
   } finally {
     hideLoader();
   }

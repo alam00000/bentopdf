@@ -4,8 +4,71 @@ import { setupToolInterface } from './handlers/toolSelectionHandler.js';
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
+import { initI18n, updatePageTranslations, t } from './i18n/index.js';
+import { initializeLanguageSwitcher, onLanguageChange } from './components/languageSwitcher.js';
 
-const init = () => {
+const renderTools = () => {
+  dom.toolGrid.textContent = '';
+
+  categories.forEach((category) => {
+    const categoryGroup = document.createElement('div');
+    categoryGroup.className = 'category-group col-span-full';
+
+    const title = document.createElement('h2');
+    title.className = 'text-xl font-bold text-indigo-400 mb-4 mt-8 first:mt-0';
+    // Translate category name
+    const categoryKey = `categories.${category.name.toLowerCase().replace(/\s+/g, '')}`;
+    const translatedCategory = t(categoryKey);
+    title.textContent = typeof translatedCategory === 'string' && translatedCategory !== categoryKey ? translatedCategory : category.name;
+
+    const toolsContainer = document.createElement('div');
+    toolsContainer.className =
+      'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6';
+
+    category.tools.forEach((tool) => {
+      const toolCard = document.createElement('div');
+      toolCard.className =
+        'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center';
+      toolCard.dataset.toolId = tool.id;
+
+      const icon = document.createElement('i');
+      icon.className = 'w-10 h-10 mb-3 text-indigo-400';
+      icon.setAttribute('data-lucide', tool.icon);
+
+      const toolName = document.createElement('h3');
+      toolName.className = 'font-semibold text-white';
+      // Translate tool name
+      const toolNameKey = `toolNames.${tool.id.replace(/-/g, '')}`;
+      const translatedName = t(toolNameKey);
+      toolName.textContent = typeof translatedName === 'string' && translatedName !== toolNameKey ? translatedName : tool.name;
+
+      toolCard.append(icon, toolName);
+
+      if (tool.subtitle) {
+        const toolSubtitle = document.createElement('p');
+        toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
+        // Translate tool subtitle
+        const toolSubtitleKey = `toolSubtitles.${tool.id.replace(/-/g, '')}`;
+        const translatedSubtitle = t(toolSubtitleKey);
+        toolSubtitle.textContent = typeof translatedSubtitle === 'string' && translatedSubtitle !== toolSubtitleKey ? translatedSubtitle : tool.subtitle;
+        toolCard.appendChild(toolSubtitle);
+      }
+
+      toolsContainer.appendChild(toolCard);
+    });
+
+    categoryGroup.append(title, toolsContainer);
+    dom.toolGrid.appendChild(categoryGroup);
+  });
+};
+
+const init = async () => {
+  // Initialize i18n first
+  await initI18n();
+  
+  // Apply translations to the page
+  updatePageTranslations();
+  
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
     import.meta.url
@@ -20,17 +83,18 @@ const init = () => {
         // Hide the entire nav but we'll create a minimal one with just logo
         nav.style.display = 'none';
 
-        // Create a simple nav with just logo on the right
+        // Create a simple nav with just logo and language switcher
         const simpleNav = document.createElement('nav');
         simpleNav.className =
           'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
         simpleNav.innerHTML = `
           <div class="container mx-auto px-4">
-            <div class="flex justify-start items-center h-16">
+            <div class="flex justify-between items-center h-16">
               <div class="flex-shrink-0 flex items-center">
                 <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
                 <span class="text-white font-bold text-xl ml-2">BentoPDF</span>
               </div>
+              <div id="simple-mode-language-switcher" class="flex items-center"></div>
             </div>
           </div>
         `;
@@ -104,11 +168,15 @@ const init = () => {
         const title = toolsHeader.querySelector('h2');
         const subtitle = toolsHeader.querySelector('p');
         if (title) {
-          title.textContent = 'PDF Tools';
+          // Remove the original data-i18n-html attribute and use data-i18n instead
+          title.removeAttribute('data-i18n-html');
+          title.setAttribute('data-i18n', 'simpleMode.title');
+          title.textContent = String(t('simpleMode.title'));
           title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
         }
         if (subtitle) {
-          subtitle.textContent = 'Select a tool to get started';
+          subtitle.setAttribute('data-i18n', 'simpleMode.subtitle');
+          subtitle.textContent = String(t('simpleMode.subtitle'));
           subtitle.className = 'text-lg text-gray-400';
         }
       }
@@ -122,49 +190,19 @@ const init = () => {
     hideBrandingSections();
   }
 
-  dom.toolGrid.textContent = '';
-
-  categories.forEach((category) => {
-    const categoryGroup = document.createElement('div');
-    categoryGroup.className = 'category-group col-span-full';
-
-    const title = document.createElement('h2');
-    title.className = 'text-xl font-bold text-indigo-400 mb-4 mt-8 first:mt-0';
-    title.textContent = category.name;
-
-    const toolsContainer = document.createElement('div');
-    toolsContainer.className =
-      'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6';
-
-    category.tools.forEach((tool) => {
-      const toolCard = document.createElement('div');
-      toolCard.className =
-        'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center';
-      toolCard.dataset.toolId = tool.id;
-
-      const icon = document.createElement('i');
-      icon.className = 'w-10 h-10 mb-3 text-indigo-400';
-      icon.setAttribute('data-lucide', tool.icon);
-
-      const toolName = document.createElement('h3');
-      toolName.className = 'font-semibold text-white';
-      toolName.textContent = tool.name;
-
-      toolCard.append(icon, toolName);
-
-      if (tool.subtitle) {
-        const toolSubtitle = document.createElement('p');
-        toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
-        toolSubtitle.textContent = tool.subtitle;
-        toolCard.appendChild(toolSubtitle);
-      }
-
-      toolsContainer.appendChild(toolCard);
+  // Initialize language switcher component (after simple mode setup if applicable)
+  initializeLanguageSwitcher();
+  
+  // Register callback for language changes (for index.html with tools grid)
+  if (dom.toolGrid) {
+    onLanguageChange(() => {
+      renderTools();
+      createIcons({ icons });
     });
+  }
 
-    categoryGroup.append(title, toolsContainer);
-    dom.toolGrid.appendChild(categoryGroup);
-  });
+  // Render tools with translations
+  renderTools();
 
   const searchBar = document.getElementById('search-bar');
   const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');

@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us - BentoPDF</title>
+    <title data-i18n="contact.title">Contact Us - BentoPDF</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" type="image/png" href="images/favicon.svg" />
     <link href="/src/css/styles.css" rel="stylesheet" />
+    <script type="module" src="/src/js/main.ts"></script>
   </head>
 
   <body class="antialiased bg-gray-900 text-gray-300">
@@ -29,10 +30,11 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="./about.html" class="nav-link">About</a>
-            <a href="./contact.html" class="nav-link">Contact</a>
-            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+            <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+            <a href="./about.html" class="nav-link" data-i18n="nav.about">About</a>
+            <a href="./contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#tools-header" class="nav-link" data-i18n="nav.allTools">All Tools</a>
+            <!-- Language Switcher will be injected here by languageSwitcher.ts -->
           </div>
 
           <!-- Mobile Hamburger Button -->
@@ -90,22 +92,23 @@
         class="hidden md:hidden bg-gray-800 border-t border-gray-700"
       >
         <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-          <a href="index.html" class="mobile-nav-link">Home</a>
-          <a href="./about.html" class="mobile-nav-link">About</a>
-          <a href="./contact.html" class="mobile-nav-link">Contact</a>
-          <a href="index.html#tools-header" class="mobile-nav-link"
+          <a href="index.html" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+          <a href="./about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+          <a href="./contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+          <a href="index.html#tools-header" class="mobile-nav-link" data-i18n="nav.allTools"
             >All Tools</a
           >
+          <!-- Mobile Language Switcher will be injected here by languageSwitcher.ts -->
         </div>
       </div>
     </nav>
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
       <section id="contact-hero" class="text-center py-16 md:py-24">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="contact.heading">
           Get in Touch
         </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto" data-i18n="contact.description">
           We'd love to hear from you. Whether you have a question, feedback, or
           a feature request, please don't hesitate to reach out.
         </p>
@@ -113,10 +116,11 @@
 
       <div class="max-w-2xl mx-auto text-center py-8">
         <p class="text-lg text-gray-400">
-          You can reach us directly by email at:
+          <span data-i18n="contact.emailText">You can reach us directly by email at:</span>
           <a
             href="mailto:contact@bentopdf.com"
             class="text-indigo-400 underline hover:text-indigo-300"
+            data-i18n="contact.email"
             >contact@bentopdf.com</a
           >
         </p>
@@ -142,29 +146,29 @@
             </p>
           </div>
           <div>
-            <h3 class="font-bold text-white mb-4">Company</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.company">Company</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="about.html" class="hover:text-indigo-400">About Us</a>
+                <a href="about.html" class="hover:text-indigo-400" data-i18n="footerNav.aboutUs">About Us</a>
               </li>
-              <li><a href="faq.html" class="hover:text-indigo-400">FAQ</a></li>
+              <li><a href="faq.html" class="hover:text-indigo-400" data-i18n="footerNav.faq">FAQ</a></li>
               <li>
-                <a href="contact.html" class="hover:text-indigo-400"
+                <a href="contact.html" class="hover:text-indigo-400" data-i18n="footerNav.contactUs"
                   >Contact Us</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-white mb-4">Legal</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.legal">Legal</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="./terms.html" class="hover:text-indigo-400"
+                <a href="./terms.html" class="hover:text-indigo-400" data-i18n="footerNav.terms"
                   >Terms and Conditions</a
                 >
               </li>
               <li>
-                <a href="./privacy.html" class="hover:text-indigo-400"
+                <a href="./privacy.html" class="hover:text-indigo-400" data-i18n="footerNav.privacy"
                   >Privacy Policy</a
                 >
               </li>
@@ -172,7 +176,7 @@
           </div>
           <div>
             <div>
-              <h3 class="font-bold text-white mb-4">Follow Us</h3>
+              <h3 class="font-bold text-white mb-4" data-i18n="footerNav.followUs">Follow Us</h3>
               <div class="flex justify-center md:justify-start space-x-4">
                 <a
                   href="https://www.instagram.com/thebentopdf/"

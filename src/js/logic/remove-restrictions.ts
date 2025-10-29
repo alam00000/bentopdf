@@ -5,6 +5,7 @@ import {
   readFileAsArrayBuffer,
 } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 export async function removeRestrictions() {
   const file = state.files[0];
@@ -17,16 +18,16 @@ export async function removeRestrictions() {
   let qpdf: any;
 
   try {
-    showLoader('Initializing...');
+    showLoader(String(t('alerts.initializing')));
     qpdf = await initializeQpdf();
 
-    showLoader('Reading PDF...');
+    showLoader(String(t('alerts.readingPdf')));
     const fileBuffer = await readFileAsArrayBuffer(file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
     qpdf.FS.writeFile(inputPath, uint8Array);
 
-    showLoader('Removing restrictions...');
+    showLoader(String(t('alerts.removingRestrictions')));
 
     const args = [inputPath];
 
@@ -45,21 +46,20 @@ export async function removeRestrictions() {
         qpdfError.message?.includes('encrypt')
       ) {
         throw new Error(
-          'Failed to remove restrictions. The PDF may require the correct owner password.'
+          String(t('alerts.failedToRemoveRestrictions'))
         );
       }
 
       throw new Error(
-        'Failed to remove restrictions: ' +
-          (qpdfError.message || 'Unknown error')
+        String(t('alerts.failedToRemoveRestrictionsError', { error: qpdfError.message || String(t('alerts.unknownError')) }))
       );
     }
 
-    showLoader('Preparing download...');
+    showLoader(String(t('alerts.preparingDownload')));
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Operation resulted in an empty file.');
+      throw new Error(String(t('alerts.operationResultedInEmptyFile')));
     }
 
     const blob = new Blob([outputFile], { type: 'application/pdf' });
@@ -68,15 +68,15 @@ export async function removeRestrictions() {
     hideLoader();
 
     showAlert(
-      'Success',
-      'PDF restrictions removed successfully! The file is now fully editable and printable.'
+      String(t('alerts.success')),
+      String(t('alerts.restrictionsRemovedSuccess'))
     );
   } catch (error: any) {
     console.error('Error during restriction removal:', error);
     hideLoader();
     showAlert(
-      'Operation Failed',
-      `An error occurred: ${error.message || 'The PDF might be corrupted or password-protected.'}`
+      String(t('alerts.operationFailed')),
+      String(t('alerts.operationFailedMessage', { error: error.message || '' }))
     );
   } finally {
     try {

@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, parsePageRanges } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFDocument, PageSizes } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { createIcons, icons } from 'lucide';
@@ -15,7 +16,7 @@ async function renderPosterizePreview(pageNum: number) {
   if (!posterizeState.pdfJsDoc) return;
 
   posterizeState.currentPage = pageNum;
-  showLoader(`Rendering preview for page ${pageNum}...`);
+  showLoader(String(t('alerts.renderingPreviewPage', { pageNumber: pageNum })));
 
   const canvas = document.getElementById(
     'posterize-preview-canvas'
@@ -143,7 +144,7 @@ export async function setupPosterizeTool() {
 }
 
 export async function posterize() {
-  showLoader('Posterizing PDF...');
+  showLoader(String(t('alerts.posterizingPdf')));
   try {
     const rows =
       parseInt(
@@ -184,7 +185,7 @@ export async function posterize() {
     const pageIndicesToProcess = parsePageRanges(pageRangeInput, totalPages);
 
     if (pageIndicesToProcess.length === 0) {
-      throw new Error('Invalid page range specified.');
+      throw new Error(String(t('alerts.invalidPageRangeSpecified')));
     }
 
     const tempCanvas = document.createElement('canvas');
@@ -277,10 +278,10 @@ export async function posterize() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       'posterized.pdf'
     );
-    showAlert('Success', 'Your PDF has been posterized.');
+    showAlert(String(t('alerts.success')), String(t('alerts.pdfPosterizedSuccess')));
   } catch (e) {
     console.error(e);
-    showAlert('Error', e.message || 'Could not posterize the PDF.');
+    showAlert(String(t('alerts.error')), e.message || String(t('alerts.couldNotPosterizePdf')));
   } finally {
     hideLoader();
   }

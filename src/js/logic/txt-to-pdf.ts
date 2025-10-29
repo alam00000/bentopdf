@@ -1,5 +1,6 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
+import { t } from '../i18n/index.js';
 
 import {
   PDFDocument as PDFLibDocument,
@@ -9,12 +10,12 @@ import {
 } from 'pdf-lib';
 
 export async function txtToPdf() {
-  showLoader('Creating PDF...');
+  showLoader(String(t('alerts.creatingPdf')));
   try {
     // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
     const text = document.getElementById('text-input').value;
     if (!text.trim()) {
-      showAlert('Input Required', 'Please enter some text to convert.');
+      showAlert(String(t('alerts.inputRequired')), String(t('alerts.enterTextToConvert')));
       hideLoader();
       return;
     }
@@ -88,7 +89,7 @@ export async function txtToPdf() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to create PDF from text.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedCreatePdfFromText')));
   } finally {
     hideLoader();
   }

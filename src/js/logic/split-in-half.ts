@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
 
@@ -8,10 +9,10 @@ export async function splitInHalf() {
   // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
   const splitType = document.getElementById('split-type').value;
   if (!state.pdfDoc) {
-    showAlert('Error', 'No PDF document is loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.noPdfLoaded')));
     return;
   }
-  showLoader('Splitting PDF pages...');
+  showLoader(String(t('alerts.splittingPdfPages')));
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pages = state.pdfDoc.getPages();
@@ -21,7 +22,7 @@ export async function splitInHalf() {
       const { width, height } = originalPage.getSize();
       const whiteColor = rgb(1, 1, 1); // For masking
 
-      showLoader(`Processing page ${i + 1} of ${pages.length}...`);
+      showLoader(String(t('alerts.processingPage', { current: i + 1, total: pages.length })));
 
       // Copy the page twice for all split types
       const [page1] = await newPdfDoc.copyPages(state.pdfDoc, [i]);
@@ -48,7 +49,7 @@ export async function splitInHalf() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while splitting the PDF.');
+    showAlert(String(t('alerts.error')), String(t('alerts.errorSplittingPdf')));
   } finally {
     hideLoader();
   }

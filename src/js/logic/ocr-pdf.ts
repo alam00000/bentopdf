@@ -2,6 +2,7 @@ import { tesseractLanguages } from '../config/tesseract-languages.js';
 import { showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import Tesseract from 'tesseract.js';
 import { PDFDocument as PDFLibDocument, StandardFonts, rgb } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
@@ -93,8 +94,8 @@ async function runOCR() {
 
   if (selectedLangs.length === 0) {
     showAlert(
-      'No Languages Selected',
-      'Please select at least one language for OCR.'
+      String(t('alerts.noLanguagesSelected')),
+      String(t('alerts.pleaseSelectAtLeastOneLanguageForOcr'))
     );
     return;
   }
@@ -264,8 +265,8 @@ async function runOCR() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'OCR Error',
-      'An error occurred during the OCR process. The worker may have failed to load. Please try again.'
+      String(t('alerts.ocrError')),
+      String(t('alerts.ocrProcessError'))
     );
     document.getElementById('ocr-options').classList.remove('hidden');
     document.getElementById('ocr-progress').classList.add('hidden');

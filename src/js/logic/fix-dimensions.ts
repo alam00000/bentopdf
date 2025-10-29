@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument, rgb, PageSizes } from 'pdf-lib';
 
@@ -34,7 +35,7 @@ export async function fixDimensions() {
     (document.getElementById('background-color') as HTMLInputElement).value
   );
 
-  showLoader('Standardizing pages...');
+  showLoader(String(t('alerts.standardizingPages')));
   try {
     let targetWidth, targetHeight;
 
@@ -107,8 +108,8 @@ export async function fixDimensions() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while standardizing pages.');
-  } finally {
+    showAlert(String(t('alerts.error')), String(t('alerts.errorStandardizingPages')));
+  } finally{
     hideLoader();
   }
 }

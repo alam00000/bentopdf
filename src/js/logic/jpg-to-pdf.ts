@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
@@ -52,10 +53,10 @@ function sanitizeImageAsJpeg(imageBytes: any) {
 
 export async function jpgToPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select at least one JPG file.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.selectAtLeastOneJpg')));
     return;
   }
-  showLoader('Creating PDF from JPGs...');
+  showLoader(String(t('alerts.creatingPdfFromJpgs')));
   try {
     const pdfDoc = await PDFLibDocument.create();
 
@@ -79,7 +80,7 @@ export async function jpgToPdf() {
             fallbackError
           );
           throw new Error(
-            `Could not process "${file.name}". The file may be corrupted.`
+            String(t('alerts.couldNotProcessFile', { fileName: file.name }))
           );
         }
       }
@@ -100,7 +101,7 @@ export async function jpgToPdf() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Conversion Error', e.message);
+    showAlert(String(t('alerts.conversionError')), e.message);
   } finally {
     hideLoader();
   }

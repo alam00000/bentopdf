@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function addBlankPage() {
@@ -10,12 +11,12 @@ export async function addBlankPage() {
   const pageCountInput = document.getElementById('page-count').value;
 
   if (pageNumberInput.trim() === '') {
-    showAlert('Invalid Input', 'Please enter a page number.');
+    showAlert(String(t('alerts.invalidInput')), String(t('alerts.pleaseEnterPageNumber')));
     return;
   }
 
   if (pageCountInput.trim() === '') {
-    showAlert('Invalid Input', 'Please enter the number of pages to insert.');
+    showAlert(String(t('alerts.invalidInput')), String(t('alerts.pleaseEnterPageCount')));
     return;
   }
 
@@ -24,21 +25,21 @@ export async function addBlankPage() {
   const totalPages = state.pdfDoc.getPageCount();
   if (isNaN(position) || position < 0 || position > totalPages) {
     showAlert(
-      'Invalid Input',
-      `Please enter a number between 0 and ${totalPages}.`
+      String(t('alerts.invalidInput')),
+      String(t('alerts.pageNumberOutOfRange', { count: totalPages }))
     );
     return;
   }
 
   if (isNaN(pageCount) || pageCount < 1) {
     showAlert(
-      'Invalid Input',
-      'Please enter a valid number of pages (1 or more).'
+      String(t('alerts.invalidInput')),
+      String(t('alerts.pageCountMustBePositive'))
     );
     return;
   }
 
-  showLoader(`Adding ${pageCount} blank page${pageCount > 1 ? 's' : ''}...`);
+  showLoader(String(t(pageCount > 1 ? 'alerts.addingBlankPages' : 'alerts.addingBlankPage', { count: pageCount })));
   try {
     const newPdf = await PDFLibDocument.create();
     const { width, height } = state.pdfDoc.getPage(0).getSize();
@@ -69,7 +70,7 @@ export async function addBlankPage() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', `Could not add blank page${pageCount > 1 ? 's' : ''}.`);
+    showAlert(String(t('alerts.error')), String(t(pageCount > 1 ? 'alerts.couldNotAddBlankPages' : 'alerts.couldNotAddBlankPage')));
   } finally {
     hideLoader();
   }

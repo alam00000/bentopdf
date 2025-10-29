@@ -5,6 +5,7 @@ import {
   readFileAsArrayBuffer,
 } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 export async function encrypt() {
   const file = state.files[0];
@@ -16,7 +17,7 @@ export async function encrypt() {
       ?.value || '';
 
   if (!userPassword) {
-    showAlert('Input Required', 'Please enter a user password.');
+    showAlert(String(t('alerts.inputRequired')), String(t('alerts.pleaseEnterUserPassword')));
     return;
   }
 
@@ -28,16 +29,16 @@ export async function encrypt() {
   let qpdf: any;
 
   try {
-    showLoader('Initializing encryption...');
+    showLoader(String(t('alerts.initializingEncryption')));
     qpdf = await initializeQpdf();
 
-    showLoader('Reading PDF...');
+    showLoader(String(t('alerts.readingPdf')));
     const fileBuffer = await readFileAsArrayBuffer(file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
     qpdf.FS.writeFile(inputPath, uint8Array);
 
-    showLoader('Encrypting PDF with 256-bit AES...');
+    showLoader(String(t('alerts.encryptingPdf')));
 
     const args = [inputPath, '--encrypt', userPassword, ownerPassword, '256'];
 
@@ -62,15 +63,15 @@ export async function encrypt() {
     } catch (qpdfError: any) {
       console.error('qpdf execution error:', qpdfError);
       throw new Error(
-        'Encryption failed: ' + (qpdfError.message || 'Unknown error')
+        String(t('alerts.encryptionFailed')) + ': ' + (qpdfError.message || String(t('alerts.unknownError')))
       );
     }
 
-    showLoader('Preparing download...');
+    showLoader(String(t('alerts.preparingDownload')));
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Encryption resulted in an empty file.');
+      throw new Error(String(t('alerts.encryptionEmptyFile')));
     }
 
     const blob = new Blob([outputFile], { type: 'application/pdf' });
@@ -78,18 +79,18 @@ export async function encrypt() {
 
     hideLoader();
 
-    let successMessage = 'PDF encrypted successfully with 256-bit AES!';
+    let successMessage = String(t('alerts.pdfEncrypted'));
     if (!hasDistinctOwnerPassword) {
       successMessage +=
         ' Note: Without a separate owner password, the PDF has no usage restrictions.';
     }
 
-    showAlert('Success', successMessage);
+    showAlert(String(t('alerts.success')), successMessage);
   } catch (error: any) {
     console.error('Error during PDF encryption:', error);
     hideLoader();
     showAlert(
-      'Encryption Failed',
+      String(t('alerts.error')),
       `An error occurred: ${error.message || 'The PDF might be corrupted.'}`
     );
   } finally {

@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import Sortable from 'sortablejs';
 import { icons, createIcons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
@@ -71,8 +72,8 @@ function attachEventListeners(element: any) {
       initializePageGridSortable();
     } else {
       showAlert(
-        'Cannot Delete',
-        'You cannot delete the last page of the document.'
+        String(t('alerts.cannotDelete')),
+        String(t('alerts.cannotDeleteLastPage'))
       );
     }
   });
@@ -82,7 +83,7 @@ export async function renderDuplicateOrganizeThumbnails() {
   const grid = document.getElementById('page-grid');
   if (!grid) return;
 
-  showLoader('Rendering page previews...');
+  showLoader(String(t('alerts.renderingPagePreviews')));
   const pdfData = await state.pdfDoc.save();
   // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
   const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
@@ -151,7 +152,7 @@ export async function renderDuplicateOrganizeThumbnails() {
 }
 
 export async function processAndSave() {
-  showLoader('Building new PDF...');
+  showLoader(String(t('alerts.buildingNewPdf')));
   try {
     const grid = document.getElementById('page-grid');
     const finalPageElements = grid.querySelectorAll('.page-thumbnail');
@@ -171,7 +172,7 @@ export async function processAndSave() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to save the new PDF.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedSaveNewPdf')));
   } finally {
     hideLoader();
   }

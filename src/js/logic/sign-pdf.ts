@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import html2canvas from 'html2canvas';
 
 const signState = {
@@ -503,10 +504,10 @@ export async function setupSignTool() {
 
 export async function applyAndSaveSignatures() {
   if (signState.placedSignatures.length === 0) {
-    showAlert('No Signatures Placed', 'Please place at least one signature.');
+    showAlert(String(t('alerts.noSignaturesPlaced')), String(t('alerts.pleaseAddAtLeastOneSignature')));
     return;
   }
-  showLoader('Applying signatures...');
+  showLoader(String(t('alerts.applyingSignatures')));
   try {
     const pages = state.pdfDoc.getPages();
     for (const sig of signState.placedSignatures) {
@@ -541,7 +542,7 @@ export async function applyAndSaveSignatures() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to apply signatures.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedToApplySignatures')));
   } finally {
     hideLoader();
   }

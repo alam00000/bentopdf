@@ -1,14 +1,15 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import JSZip from 'jszip';
 
 export async function pdfToZip() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select one or more PDF files.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.pleaseSelectPdf')));
     return;
   }
-  showLoader('Creating ZIP file...');
+  showLoader(String(t('alerts.creatingZipFile')));
   try {
     const zip = new JSZip();
     for (const file of state.files) {
@@ -19,7 +20,7 @@ export async function pdfToZip() {
     downloadFile(zipBlob, 'pdfs.zip');
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to create ZIP file.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedCreateZip')));
   } finally {
     hideLoader();
   }

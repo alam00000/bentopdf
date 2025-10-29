@@ -5,6 +5,7 @@ import {
   formatBytes,
 } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import * as pdfjsLib from 'pdfjs-dist';
 
 import { PDFDocument, PDFName, PDFDict, PDFStream, PDFNumber } from 'pdf-lib';
@@ -279,15 +280,15 @@ export async function compress() {
     let usedMethod;
 
     if (algorithm === 'vector') {
-      showLoader('Running Vector (Smart) compression...');
+      showLoader(String(t('alerts.runningVectorCompression')));
       resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
       usedMethod = 'Vector';
     } else if (algorithm === 'photon') {
-      showLoader('Running Photon (Rasterize) compression...');
+      showLoader(String(t('alerts.runningPhotonCompression')));
       resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
       usedMethod = 'Photon';
     } else {
-      showLoader('Running Automatic (Vector first)...');
+      showLoader(String(t('alerts.runningAutomaticVector')));
       const vectorResultBytes = await performSmartCompression(
         arrayBuffer,
         smartSettings
@@ -297,8 +298,8 @@ export async function compress() {
         resultBytes = vectorResultBytes;
         usedMethod = 'Vector (Automatic)';
       } else {
-        showAlert('Vector failed to reduce size. Trying Photon...', 'info');
-        showLoader('Running Automatic (Photon fallback)...');
+        showAlert(String(t('alerts.vectorFailedTryingPhoton')), 'info');
+        showLoader(String(t('alerts.runningAutomaticPhoton')));
         resultBytes = await performLegacyCompression(
           arrayBuffer,
           legacySettings
@@ -315,13 +316,13 @@ export async function compress() {
 
     if (savings > 0) {
       showAlert(
-        'Compression Complete',
+        String(t('alerts.compressionComplete')),
         `Method: **${usedMethod}**. ` +
           `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
       );
     } else {
       showAlert(
-        'Compression Finished',
+        String(t('alerts.compressionFinished')),
         `Method: **${usedMethod}**. ` +
           `Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
         // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
@@ -335,8 +336,8 @@ export async function compress() {
     );
   } catch (e) {
     showAlert(
-      'Error',
-      `An error occurred during compression. Error: ${e.message}`
+      String(t('alerts.error')),
+      String(t('alerts.errorDuringCompression', { error: e.message }))
     );
   } finally {
     hideLoader();

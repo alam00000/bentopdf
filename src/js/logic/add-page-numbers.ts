@@ -1,11 +1,12 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { rgb, StandardFonts } from 'pdf-lib';
 
 export async function addPageNumbers() {
-  showLoader('Adding page numbers...');
+  showLoader(String(t('alerts.addingPageNumbers')));
   try {
     // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
     const position = document.getElementById('position').value;
@@ -127,10 +128,10 @@ export async function addPageNumbers() {
       new Blob([newPdfBytes], { type: 'application/pdf' }),
       'paginated.pdf'
     );
-    showAlert('Success', 'Page numbers added successfully!');
+    showAlert(String(t('alerts.success')), String(t('alerts.pageNumbersAddedSuccess')));
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not add page numbers.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotAddPageNumbers')));
   } finally {
     hideLoader();
   }

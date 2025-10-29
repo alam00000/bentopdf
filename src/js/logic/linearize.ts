@@ -2,6 +2,7 @@ import createModule from '@neslinesli93/qpdf-wasm';
 import { showLoader, hideLoader, showAlert } from '../ui';
 import { readFileAsArrayBuffer, downloadFile } from '../utils/helpers';
 import { state } from '../state';
+import { t } from '../i18n/index.js';
 import JSZip from 'jszip';
 
 let qpdfInstance: any = null;
@@ -10,7 +11,7 @@ async function initializeQpdf() {
   if (qpdfInstance) {
     return qpdfInstance;
   }
-  showLoader('Initializing optimization engine...');
+  showLoader(String(t('alerts.initializingOptimizationEngine')));
   try {
     qpdfInstance = await createModule({
       locateFile: () => '/qpdf.wasm',
@@ -18,8 +19,8 @@ async function initializeQpdf() {
   } catch (error) {
     console.error('Failed to initialize qpdf-wasm:', error);
     showAlert(
-      'Initialization Error',
-      'Could not load the optimization engine. Please refresh the page and try again.'
+      String(t('alerts.initializationError')),
+      String(t('alerts.couldNotLoadOptimizationEngine'))
     );
     throw error;
   } finally {
@@ -34,11 +35,11 @@ export async function linearizePdf() {
     (file: File) => file.type === 'application/pdf'
   );
   if (!pdfFiles || pdfFiles.length === 0) {
-    showAlert('No PDF Files', 'Please upload at least one PDF file.');
+    showAlert(String(t('alerts.noPdfFiles')), String(t('alerts.pleaseUploadAtLeastOnePdf')));
     return;
   }
 
-  showLoader('Optimizing PDFs for web view (linearizing)...');
+  showLoader(String(t('alerts.linearizingPdfs')));
   const zip = new JSZip(); // Create a JSZip instance
   let qpdf: any;
   let successCount = 0;
@@ -52,7 +53,7 @@ export async function linearizePdf() {
       const inputPath = `/input_${i}.pdf`;
       const outputPath = `/output_${i}.pdf`;
 
-      showLoader(`Optimizing ${file.name} (${i + 1}/${pdfFiles.length})...`);
+      showLoader(String(t('alerts.optimizingFile', { fileName: file.name, current: i + 1, total: pdfFiles.length })));
 
       try {
         const fileBuffer = await readFileAsArrayBuffer(file);
@@ -69,7 +70,7 @@ export async function linearizePdf() {
           console.error(
             `Linearization resulted in an empty file for ${file.name}.`
           );
-          throw new Error(`Processing failed for ${file.name}.`);
+          throw new Error(String(t('alerts.processingFailedForFile', { fileName: file.name })));
         }
 
         zip.file(`linearized-${file.name}`, outputFile, { binary: true });
@@ -99,23 +100,23 @@ export async function linearizePdf() {
     }
 
     if (successCount === 0) {
-      throw new Error('No PDF files could be linearized.');
+      throw new Error(String(t('alerts.noPdfFilesCouldBeLinearized')));
     }
 
-    showLoader('Generating ZIP file...');
+    showLoader(String(t('alerts.generatingZip')));
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     downloadFile(zipBlob, 'linearized-pdfs.zip');
 
-    let alertMessage = `${successCount} PDF(s) linearized successfully.`;
+    let alertMessage = String(t('alerts.linearizedSuccess', { count: successCount }));
     if (errorCount > 0) {
-      alertMessage += ` ${errorCount} file(s) failed.`;
+      alertMessage += ` ${String(t('alerts.filesFailed', { count: errorCount }))}`;
     }
-    showAlert('Processing Complete', alertMessage);
+    showAlert(String(t('alerts.processingComplete')), alertMessage);
   } catch (error: any) {
     console.error('Linearization process error:', error);
     showAlert(
-      'Linearization Failed',
-      `An error occurred: ${error.message || 'Unknown error'}.`
+      String(t('alerts.linearizationFailed')),
+      String(t('alerts.errorOccurred', { error: error.message || 'Unknown error' }))
     );
   } finally {
     hideLoader();

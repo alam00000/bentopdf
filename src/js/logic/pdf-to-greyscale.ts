@@ -1,15 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function pdfToGreyscale() {
   if (!state.pdfDoc) {
-    showAlert('Error', 'PDF not loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.pdfNotLoaded')));
     return;
   }
-  showLoader('Converting to greyscale...');
+  showLoader(String(t('alerts.convertingToGreyscale')));
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pdfBytes = await state.pdfDoc.save();
@@ -61,7 +62,7 @@ export async function pdfToGreyscale() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not convert to greyscale.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotConvertToGreyscale')));
   } finally {
     hideLoader();
   }

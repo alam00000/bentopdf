@@ -1,15 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import heic2any from 'heic2any';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function heicToPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select at least one HEIC file.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.pleaseSelectHeic')));
     return;
   }
-  showLoader('Converting HEIC to PDF...');
+  showLoader(String(t('alerts.convertingHeicToPdf')));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of state.files) {
@@ -39,8 +40,8 @@ export async function heicToPdf() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert HEIC to PDF. One of the files may be invalid or unsupported.'
+      String(t('alerts.error')),
+      String(t('alerts.couldNotConvertHeic'))
     );
   } finally {
     hideLoader();

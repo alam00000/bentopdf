@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import {
   PDFDocument as PDFLibDocument,
   PDFTextField,
@@ -34,7 +35,7 @@ async function renderPage() {
   if (pdfRendering || !pdfJsDoc) return;
 
   pdfRendering = true;
-  showLoader(`Rendering page ${currentPageNum}...`);
+  showLoader(String(t('alerts.renderingPage', { pageNumber: currentPageNum })));
 
   const page = await pdfJsDoc.getPage(currentPageNum);
   const viewport = page.getViewport({ scale: 1.0 });
@@ -251,11 +252,13 @@ function createFormFieldHtml(field: any): HTMLElement {
     const p = document.createElement('p');
     p.className = 'text-sm text-gray-400';
     if (field instanceof PDFSignature) {
-      p.textContent = 'Signature field: Not supported for direct editing.';
+      p.textContent = String(t('alerts.signatureFieldNotSupported'));
     } else if (field instanceof PDFButton) {
-      p.textContent = `Button: ${labelText}`;
+      p.textContent = String(t('alerts.buttonLabel', { label: labelText }));
     } else {
-      p.textContent = `Unsupported field type: ${field.constructor.name}`;
+      p.textContent = String(
+        t('alerts.unsupportedFieldType', { type: field.constructor.name })
+      );
     }
     unsupportedDiv.appendChild(p);
     return unsupportedDiv;
@@ -286,8 +289,9 @@ export async function setupFormFiller() {
     formContainer.textContent = '';
 
     if (fields.length === 0) {
-      formContainer.innerHTML =
-        '<p class="text-center text-gray-400">This PDF contains no form fields.</p>';
+      formContainer.innerHTML = `<p class="text-center text-gray-400">${String(
+        t('alerts.pdfContainsNoFormFields')
+      )}</p>`;
       processBtn.classList.add('hidden');
     } else {
       fields.forEach((field: any) => {
@@ -302,7 +306,9 @@ export async function setupFormFiller() {
           // Sanitize error message display
           const p1 = document.createElement('p');
           p1.className = 'text-sm text-gray-500';
-          p1.textContent = `Unsupported field: ${field.getName()}`;
+          p1.textContent = String(
+            t('alerts.unsupportedFieldName', { name: field.getName() })
+          );
           const p2 = document.createElement('p');
           p2.className = 'text-xs text-gray-500';
           p2.textContent = e.message;
@@ -345,15 +351,15 @@ export async function setupFormFiller() {
   } catch (e) {
     console.error('Critical error setting up form filler:', e);
     showAlert(
-      'Error',
-      'Failed to read PDF form data. The file may be corrupt or not a valid form.'
+      String(t('alerts.error')),
+      String(t('alerts.failedToReadPdfFormData'))
     );
     hideLoader();
   }
 }
 
 export async function processAndDownloadForm() {
-  showLoader('Applying form data...');
+  showLoader(String(t('alerts.applyingFormData')));
   try {
     const form = state.pdfDoc.getForm();
 
@@ -393,10 +399,10 @@ export async function processAndDownloadForm() {
       'filled-form.pdf'
     );
 
-    showAlert('Success', 'Form has been filled and downloaded.');
+    showAlert(String(t('alerts.success')), String(t('alerts.formFilledAndDownloaded')));
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to save the filled form.');
+    showAlert(String(t('alerts.error')), String(t('alerts.failedToSaveFilledForm')));
   } finally {
     hideLoader();
   }

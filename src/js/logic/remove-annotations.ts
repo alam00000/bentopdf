@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFName } from 'pdf-lib';
 
 export function setupRemoveAnnotationsTool() {
@@ -71,7 +72,7 @@ export function removeAnnotationsFromDoc(
 }
 
 export async function removeAnnotations() {
-  showLoader('Removing annotations...');
+  showLoader(String(t('alerts.removingAnnotations')));
   try {
     const totalPages = state.pdfDoc.getPageCount();
     let targetPageIndices = [];
@@ -86,7 +87,7 @@ export async function removeAnnotations() {
     } else {
       // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
       const rangeInput = document.getElementById('page-range-input').value;
-      if (!rangeInput.trim()) throw new Error('Please enter a page range.');
+      if (!rangeInput.trim()) throw new Error(String(t('alerts.pleaseEnterPageRange')));
       const ranges = rangeInput.split(',');
       for (const range of ranges) {
         const trimmedRange = range.trim();
@@ -111,7 +112,7 @@ export async function removeAnnotations() {
     }
 
     if (targetPageIndices.length === 0)
-      throw new Error('No valid pages were selected.');
+      throw new Error(String(t('alerts.noValidPagesSelected')));
 
     const typesToRemove = new Set(
       Array.from(document.querySelectorAll('.annot-checkbox:checked')).map(
@@ -120,7 +121,7 @@ export async function removeAnnotations() {
     );
 
     if (typesToRemove.size === 0)
-      throw new Error('Please select at least one annotation type to remove.');
+      throw new Error(String(t('alerts.pleaseSelectAnnotationType')));
 
     removeAnnotationsFromDoc(state.pdfDoc, targetPageIndices, typesToRemove);
 
@@ -132,8 +133,8 @@ export async function removeAnnotations() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      e.message || 'Could not remove annotations. Please check your page range.'
+      String(t('alerts.error')),
+      e.message || String(t('alerts.couldNotRemoveAnnotations'))
     );
   } finally {
     hideLoader();

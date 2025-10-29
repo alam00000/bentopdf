@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { removeMetadataFromDoc } from './remove-metadata.js';
 import { removeAnnotationsFromDoc } from './remove-annotations.js';
 import { flattenFormsInDoc } from './flatten.js';
@@ -8,11 +9,11 @@ import { PDFName } from 'pdf-lib';
 
 export async function sanitizePdf() {
   if (!state.pdfDoc) {
-    showAlert('Error', 'No PDF document loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.noPdfLoaded')));
     return;
   }
 
-  showLoader('Sanitizing PDF...');
+  showLoader(String(t('alerts.sanitizingPdf')));
   try {
     const pdfDoc = state.pdfDoc;
 
@@ -565,8 +566,8 @@ export async function sanitizePdf() {
 
     if (!changesMade) {
       showAlert(
-        'No Changes',
-        'No items were selected for removal or none were found in the PDF.'
+        String(t('alerts.noChanges')),
+        String(t('alerts.noItemsSelectedForRemoval'))
       );
       hideLoader();
       return;
@@ -577,10 +578,10 @@ export async function sanitizePdf() {
       new Blob([sanitizedPdfBytes], { type: 'application/pdf' }),
       'sanitized.pdf'
     );
-    showAlert('Success', 'PDF has been sanitized and downloaded.');
+    showAlert(String(t('alerts.success')), String(t('alerts.pdfSanitizedSuccess')));
   } catch (e) {
     console.error('Sanitization Error:', e);
-    showAlert('Error', `An error occurred during sanitization: ${e.message}`);
+    showAlert(String(t('alerts.error')), String(t('alerts.errorDuringSanitization', { error: e.message })));
   } finally {
     hideLoader();
   }

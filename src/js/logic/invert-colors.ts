@@ -1,14 +1,15 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function invertColors() {
   if (!state.pdfDoc) {
-    showAlert('Error', 'PDF not loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.pdfNotLoaded')));
     return;
   }
-  showLoader('Inverting PDF colors...');
+  showLoader(String(t('alerts.invertingColors')));
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pdfBytes = await state.pdfDoc.save();
@@ -58,7 +59,7 @@ export async function invertColors() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not invert PDF colors.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotInvertColors')));
   } finally {
     hideLoader();
   }

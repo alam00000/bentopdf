@@ -1,15 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { decode } from 'tiff';
 
 export async function tiffToPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select at least one TIFF file.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.pleaseSelectTiff')));
     return;
   }
-  showLoader('Converting TIFF to PDF...');
+  showLoader(String(t('alerts.convertingTiffToPdf')));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of state.files) {
@@ -23,7 +24,7 @@ export async function tiffToPdf() {
         const ctx = canvas.getContext('2d');
 
         if (!ctx) {
-          throw new Error('Failed to get canvas context');
+          throw new Error(String(t('alerts.failedToGetCanvasContext')));
         }
 
         const imageData = ctx.createImageData(ifd.width, ifd.height);
@@ -86,8 +87,8 @@ export async function tiffToPdf() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert TIFF to PDF. One of the files may be invalid or corrupted.'
+      String(t('alerts.error')),
+      String(t('alerts.couldNotConvertTiffToPdf'))
     );
   } finally {
     hideLoader();

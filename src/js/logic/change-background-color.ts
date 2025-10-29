@@ -1,12 +1,13 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
 
 export async function changeBackgroundColor() {
   if (!state.pdfDoc) {
-    showAlert('Error', 'PDF not loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.pdfNotLoaded')));
     return;
   }
 
@@ -14,7 +15,7 @@ export async function changeBackgroundColor() {
   const colorHex = document.getElementById('background-color').value;
   const color = hexToRgb(colorHex);
 
-  showLoader('Changing background color...');
+  showLoader(String(t('alerts.changingBackgroundColor')));
   try {
     const newPdfDoc = await PDFLibDocument.create();
 
@@ -48,7 +49,7 @@ export async function changeBackgroundColor() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not change the background color.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotChangeBackground')));
   } finally {
     hideLoader();
   }

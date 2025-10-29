@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
@@ -76,10 +77,10 @@ function sanitizeImageAsPng(imageBytes: any) {
 
 export async function imageToPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select at least one image file.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.selectAtLeastOneImage')));
     return;
   }
-  showLoader('Converting images to PDF...');
+  showLoader(String(t('alerts.convertingImagesToPdf')));
   try {
     const pdfDoc = await PDFLibDocument.create();
     const imageList = document.getElementById('image-list');
@@ -132,7 +133,7 @@ export async function imageToPdf() {
 
     if (pdfDoc.getPageCount() === 0) {
       throw new Error(
-        'No valid images could be processed. Please check your files.'
+        String(t('alerts.noValidImagesProcessed'))
       );
     }
 
@@ -143,7 +144,7 @@ export async function imageToPdf() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', e.message || 'Failed to create PDF from images.');
+    showAlert(String(t('alerts.error')), e.message || String(t('alerts.failedCreatePdfFromImages')));
   } finally {
     hideLoader();
   }

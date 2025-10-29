@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFDocument } from 'pdf-lib';
 import Sortable from 'sortablejs';
 
@@ -24,7 +25,7 @@ export async function setupAlternateMergeTool() {
   fileList.innerHTML = '';
   alternateMergeState.pdfDocs = {};
 
-  showLoader('Loading PDF documents...');
+  showLoader(String(t('alerts.loadingPdfDocuments')));
   try {
     for (const file of state.files) {
       const pdfBytes = await readFileAsArrayBuffer(file);
@@ -69,7 +70,7 @@ export async function setupAlternateMergeTool() {
     });
   } catch (error) {
     showAlert(
-      'Error',
+      String(t('alerts.error')),
       'Failed to load one or more PDF files. They may be corrupted or password-protected.'
     );
     console.error(error);
@@ -81,13 +82,13 @@ export async function setupAlternateMergeTool() {
 export async function alternateMerge() {
   if (Object.keys(alternateMergeState.pdfDocs).length < 2) {
     showAlert(
-      'Not Enough Files',
+      String(t('alerts.error')),
       'Please upload at least two PDF files to alternate and mix.'
     );
     return;
   }
 
-  showLoader('Alternating and mixing pages...');
+  showLoader(String(t('alerts.alternatingPages')));
   try {
     const newPdfDoc = await PDFDocument.create();
     const fileList = document.getElementById('alternate-file-list');
@@ -115,10 +116,10 @@ export async function alternateMerge() {
       new Blob([new Uint8Array(mergedPdfBytes)], { type: 'application/pdf' }),
       'alternated-mixed.pdf'
     );
-    showAlert('Success', 'PDFs have been mixed successfully!');
+    showAlert(String(t('alerts.success')), String(t('alerts.pdfsMixedSuccessfully')));
   } catch (e) {
     console.error('Alternate Merge error:', e);
-    showAlert('Error', 'An error occurred while mixing the PDFs.');
+    showAlert(String(t('alerts.error')), String(t('alerts.errorMixingPdfs')));
   } finally {
     hideLoader();
   }

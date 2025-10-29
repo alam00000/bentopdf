@@ -28,10 +28,11 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="./about.html" class="nav-link">About</a>
-            <a href="./contact.html" class="nav-link">Contact</a>
-            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+            <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+            <a href="./about.html" class="nav-link" data-i18n="nav.about">About</a>
+            <a href="./contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#tools-header" class="nav-link" data-i18n="nav.allTools">All Tools</a>
+            <!-- Language Switcher will be injected here by languageSwitcher.ts -->
           </div>
 
           <!-- Mobile Hamburger Button -->
@@ -43,7 +44,7 @@
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
-              <span class="sr-only">Open main menu</span>
+              <span class="sr-only" data-i18n="nav.openMenu">Open main menu</span>
               <!-- Hamburger Icon -->
               <svg
                 id="menu-icon"
@@ -89,25 +90,24 @@
         class="hidden md:hidden bg-gray-800 border-t border-gray-700"
       >
         <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-          <a href="index.html" class="mobile-nav-link">Home</a>
-          <a href="./about.html" class="mobile-nav-link">About</a>
-          <a href="./contact.html" class="mobile-nav-link">Contact</a>
-          <a href="index.html#tools-header" class="mobile-nav-link"
-            >All Tools</a
-          >
+          <a href="index.html" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+          <a href="./about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+          <a href="./contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+          <a href="index.html#tools-header" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
+          <!-- Mobile Language Switcher will be injected here by languageSwitcher.ts -->
         </div>
       </div>
     </nav>
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
       <section id="hero-section" class="text-center py-20">
-        <h1 class="text-4xl md:text-7xl font-bold text-white mb-4">
+        <h1 class="text-4xl md:text-7xl font-bold text-white mb-4" data-i18n-html="hero.title">
           The <span class="marker-slanted"> PDF Toolkit </span> built for
           privacy<span
             class="text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500"
             >.</span
           >
         </h1>
-        <p class="text-lg text-gray-400 mb-8">Fast, Secure and Forever Free.</p>
+        <p class="text-lg text-gray-400 mb-8" data-i18n="hero.subtitle">Fast, Secure and Forever Free.</p>
         <div
           class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mb-8"
         >
@@ -115,19 +115,19 @@
             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-indigo-500/30 text-indigo-300 text-sm font-medium backdrop-blur-sm"
           >
             <i data-lucide="check-circle" class="w-4 h-4"></i>
-            No Signups
+            <span data-i18n="hero.noSignups">No Signups</span>
           </span>
           <span
             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-indigo-500/30 text-indigo-300 text-sm font-medium backdrop-blur-sm"
           >
             <i data-lucide="check-circle" class="w-4 h-4"></i>
-            Unlimited Use
+            <span data-i18n="hero.unlimitedUse">Unlimited Use</span>
           </span>
           <span
             class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800/50 border border-indigo-500/30 text-indigo-300 text-sm font-medium backdrop-blur-sm"
           >
             <i data-lucide="check-circle" class="w-4 h-4"></i>
-            Works Offline
+            <span data-i18n="hero.worksOffline">Works Offline</span>
           </span>
         </div>
 
@@ -135,6 +135,7 @@
           <a
             href="#tools-header"
             class="inline-block px-8 py-3 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1"
+            data-i18n="hero.cta"
             >Start Using - Forever Free</a
           >
         </div>
@@ -143,7 +144,7 @@
       <div class="section-divider"></div>
 
       <section id="features-section" class="py-20">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12" data-i18n-html="features.heading">
           Why <span class="marker-slanted">BentoPDF?</span>
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -153,9 +154,9 @@
                 data-lucide="user-plus"
                 class="w-10 h-10 text-indigo-400 flex-shrink-0"
               ></i>
-              <h3 class="text-xl font-bold text-white">No Signup</h3>
+              <h3 class="text-xl font-bold text-white" data-i18n="features.noSignup.title">No Signup</h3>
             </div>
-            <p class="text-gray-400 pl-14">
+            <p class="text-gray-400 pl-14" data-i18n="features.noSignup.description">
               Start instantly, no accounts or emails.
             </p>
           </div>
@@ -165,9 +166,9 @@
                 data-lucide="shield"
                 class="w-10 h-10 text-indigo-400 flex-shrink-0"
               ></i>
-              <h3 class="text-xl font-bold text-white">No Uploads</h3>
+              <h3 class="text-xl font-bold text-white" data-i18n="features.noUploads.title">No Uploads</h3>
             </div>
-            <p class="text-gray-400 pl-14">
+            <p class="text-gray-400 pl-14" data-i18n="features.noUploads.description">
               100% client-side, your files never leave your device.
             </p>
           </div>
@@ -177,9 +178,9 @@
                 data-lucide="badge-dollar-sign"
                 class="w-10 h-10 text-indigo-400 flex-shrink-0"
               ></i>
-              <h3 class="text-xl font-bold text-white">Forever Free</h3>
+              <h3 class="text-xl font-bold text-white" data-i18n="features.foreverFree.title">Forever Free</h3>
             </div>
-            <p class="text-gray-400 pl-14">
+            <p class="text-gray-400 pl-14" data-i18n="features.foreverFree.description">
               All tools, no trials, no paywalls.
             </p>
           </div>
@@ -189,9 +190,9 @@
                 data-lucide="infinity"
                 class="w-10 h-10 text-indigo-400 flex-shrink-0"
               ></i>
-              <h3 class="text-xl font-bold text-white">No Limits</h3>
+              <h3 class="text-xl font-bold text-white" data-i18n="features.noLimits.title">No Limits</h3>
             </div>
-            <p class="text-gray-400 pl-14">
+            <p class="text-gray-400 pl-14" data-i18n="features.noLimits.description">
               Use as much as you want, no hidden caps.
             </p>
           </div>
@@ -201,9 +202,9 @@
                 data-lucide="layers"
                 class="w-10 h-10 text-indigo-400 flex-shrink-0"
               ></i>
-              <h3 class="text-xl font-bold text-white">Batch Processing</h3>
+              <h3 class="text-xl font-bold text-white" data-i18n="features.batchProcessing.title">Batch Processing</h3>
             </div>
-            <p class="text-gray-400 pl-14">Handle unlimited PDFs in one go.</p>
+            <p class="text-gray-400 pl-14" data-i18n="features.batchProcessing.description">Handle unlimited PDFs in one go.</p>
           </div>
           <div class="bg-gray-800 p-6 rounded-lg">
             <div class="flex items-center gap-4 mb-3">
@@ -211,9 +212,9 @@
                 data-lucide="zap"
                 class="w-10 h-10 text-indigo-400 flex-shrink-0"
               ></i>
-              <h3 class="text-xl font-bold text-white">Lightning Fast</h3>
+              <h3 class="text-xl font-bold text-white" data-i18n="features.lightningFast.title">Lightning Fast</h3>
             </div>
-            <p class="text-gray-400 pl-14">
+            <p class="text-gray-400 pl-14" data-i18n="features.lightningFast.description">
               Process PDFs instantly, without waiting or delays.
             </p>
           </div>
@@ -223,10 +224,10 @@
       <div class="section-divider"></div>
 
       <div id="tools-header" class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3" data-i18n-html="tools.heading">
           Get Started with <span class="marker-slanted ml-2"> Tools</span>
         </h2>
-        <p class="text-gray-400">Click a tool to open the file uploader</p>
+        <p class="text-gray-400" data-i18n="tools.description">Click a tool to open the file uploader</p>
       </div>
 
       <div id="grid-view">
@@ -239,6 +240,7 @@
               type="text"
               id="search-bar"
               class="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+              data-i18n-placeholder="tools.searchPlaceholder"
               placeholder="Search for a tool (e.g., 'split', 'organize'...)"
             />
             <span
@@ -264,7 +266,7 @@
           class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer"> Back to Tools </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"> Back to Tools </span>
         </button>
         <div id="tool-content"></div>
       </div>
@@ -277,7 +279,7 @@
           class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
         >
           <div class="solid-spinner"></div>
-          <p id="loader-text" class="text-white text-lg font-medium">
+          <p id="loader-text" class="text-white text-lg font-medium" data-i18n="modals.processing">
             Processing...
           </p>
         </div>
@@ -290,7 +292,7 @@
         <div
           class="bg-gray-800 max-w-sm w-full p-6 rounded-lg border border-gray-700 shadow-xl text-center"
         >
-          <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
+          <h3 id="alert-title" class="text-xl font-bold text-white mb-2" data-i18n="modals.alert">
             Alert
           </h3>
           <p id="alert-message" class="text-gray-300 mb-6 whitespace-pre-line">
@@ -299,6 +301,7 @@
           <button
             id="alert-ok"
             class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
+            data-i18n="modals.ok"
           >
             OK
           </button>
@@ -313,17 +316,19 @@
           class="bg-white text-black rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col"
         >
           <div class="p-4 border-b flex justify-between items-center">
-            <h3 class="text-xl font-bold">Document Preview</h3>
+            <h3 class="text-xl font-bold" data-i18n="modals.documentPreview">Document Preview</h3>
             <div class="flex gap-4">
               <button
                 id="preview-download-btn"
                 class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
+                data-i18n="modals.downloadAsPdf"
               >
                 Download as PDF
               </button>
               <button
                 id="preview-close-btn"
                 class="btn bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700"
+                data-i18n="modals.close"
               >
                 Close
               </button>
@@ -340,6 +345,7 @@
         <div class="mb-8 text-center">
           <h2
             class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-balance"
+            data-i18n-html="security.heading"
           >
             Your data never leaves your device
             <span class="inline-flex items-center gap-2">
@@ -361,6 +367,7 @@
         <div class="mb-16 text-center">
           <span
             class="inline-flex items-center gap-2 text-indigo-400 text-lg font-medium transition-colors"
+            data-i18n="security.subheading"
           >
             All the processing happens locally on your device.
           </span>
@@ -380,11 +387,12 @@
                 class="w-full h-full"
               />
             </div>
-            <h3 class="text-lg md:text-xl font-bold text-white mb-3">
+            <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="security.gdpr.title">
               GDPR compliance
             </h3>
             <p
               class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
+              data-i18n="security.gdpr.description"
             >
               Protects the personal data and privacy of individuals within the
               European Union.
@@ -401,11 +409,12 @@
                 class="w-full h-full"
               />
             </div>
-            <h3 class="text-lg md:text-xl font-bold text-white mb-3">
+            <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="security.ccpa.title">
               CCPA compliance
             </h3>
             <p
               class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
+              data-i18n="security.ccpa.description"
             >
               Gives California residents rights over how their personal
               information is collected, used, and shared.
@@ -422,11 +431,12 @@
                 class="w-full h-full"
               />
             </div>
-            <h3 class="text-lg md:text-xl font-bold text-white mb-3">
+            <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="security.hipaa.title">
               HIPAA compliance
             </h3>
             <p
               class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
+              data-i18n="security.hipaa.description"
             >
               Sets safeguards for handling sensitive health information in the
               United States healthcare system.
@@ -442,6 +452,7 @@
       <section id="faq-accordion" class="space-y-4 hide-section">
         <h2
           class="text-3xl md:text-4xl font-bold text-center text-white mb-12 mt-8"
+          data-i18n-html="faq.heading"
         >
           Frequently Asked <span class="marker-slanted">Questions</span>
         </h2>
@@ -450,7 +461,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q1.question"
               >Is BentoPDF really free?</span
             >
             <i
@@ -461,7 +472,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n="faq.q1.answer">
               Yes, absolutely. All tools on BentoPDF are 100% free to use, with
               no file limits, no sign-ups, and no watermarks. We believe
               everyone deserves access to simple, powerful PDF tools without a
@@ -474,7 +485,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q2.question"
               >Are my files secure? Where are they processed?</span
             >
             <i
@@ -485,7 +496,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n-html="faq.q2.answer">
               Your files are as secure as possible because they **never leave
               your computer**. All processing happens directly in your web
               browser (client-side). We never upload your files to a server, so
@@ -498,7 +509,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q3.question"
               >Does it work on Mac, Windows, and Mobile?</span
             >
             <i
@@ -509,7 +520,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n="faq.q3.answer">
               Yes! Since BentoPDF runs entirely in your browser, it works on any
               operating system with a modern web browser, including Windows,
               macOS, Linux, iOS, and Android.
@@ -522,7 +533,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q4.question"
               >Is BentoPDF GDPR compliant?</span
             >
             <i
@@ -533,7 +544,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n="faq.q4.answer">
               Yes. BentoPDF is fully GDPR compliant. Since all file processing
               happens locally in your browser and we never collect or transmit
               your files to any server, we have no access to your data. This
@@ -547,7 +558,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q5.question"
               >Do you store or track any of my files?</span
             >
             <i
@@ -558,7 +569,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n="faq.q5.answer">
               No. We never store, track, or log your files. Everything you do on
               BentoPDF happens in your browser memory and disappears once you
               close the page. There are no uploads, no history logs, and no
@@ -572,7 +583,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q6.question"
               >What makes BentoPDF different from other PDF tools?</span
             >
             <i
@@ -583,7 +594,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n="faq.q6.answer">
               Most PDF tools upload your files to a server for processing.
               BentoPDF never does that. We use secure, modern web technology to
               process your files directly in your browser. This means faster
@@ -597,7 +608,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q7.question"
               >How does browser-based processing keep me safe?</span
             >
             <i
@@ -608,7 +619,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n="faq.q7.answer">
               By running entirely inside your browser, BentoPDF ensures that
               your files never leave your device. This eliminates the risks of
               server hacks, data breaches, or unauthorized access. Your files
@@ -622,7 +633,7 @@
           <button
             class="faq-question w-full flex justify-between items-center text-left p-6"
           >
-            <span class="text-lg font-semibold text-white"
+            <span class="text-lg font-semibold text-white" data-i18n="faq.q8.question"
               >Do you use cookies or analytics to track me?</span
             >
             <i
@@ -633,7 +644,7 @@
           <div
             class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
           >
-            <p class="p-6 pt-0 text-gray-400">
+            <p class="p-6 pt-0 text-gray-400" data-i18n-html="faq.q8.answer">
               We care about your privacy. BentoPDF does not track personal
               information. We use
               <a
@@ -655,7 +666,7 @@
       <div class="section-divider hide-section"></div>
 
       <section id="testimonials-section" class="py-20 hide-section">
-        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12" data-i18n-html="testimonials.heading">
           What Our <span class="marker-slanted">Users</span> Say
         </h2>
         <div
@@ -670,7 +681,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="testimonials.user1.review">
               "This is the tool I've been searching for! It's fast, free, and I
               love that my confidential documents never get uploaded to some
               random server. A lifesaver for my freelance work."
@@ -685,7 +696,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="testimonials.user2.review">
               "Finally, a PDF editor that just works. No ads, no sign-ups, no
               nonsense. The merge tool is surprisingly powerful. I've already
               bookmarked it on all my devices."
@@ -700,7 +711,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="testimonials.user3.review">
               "Terrible. It won't let me upload my files to the cloud. How is my
               Big Data Tech Overlord supposed to know I signed a permission slip
               for my kid's field trip? Useless for my data profile."
@@ -715,7 +726,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="testimonials.user4.review">
               "As a researcher, data privacy is paramount. BentoPDF's
               client-side processing model is exactly what my institution
               recommends. It's robust, reliable, and secure. A fantastic
@@ -731,7 +742,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="testimonials.user5.review">
               "This website is broken. My ad blocker says it hasn't blocked a
               single tracker. How am I supposed to know if a product is good if
               it's not following me around the internet for a week? 1 star."
@@ -746,7 +757,7 @@
                 </div>
               </div>
             </div>
-            <p class="text-gray-400">
+            <p class="text-gray-400" data-i18n="testimonials.user6.review">
               "Simple, elegant, and powerful. I needed to merge 50 reports, and
               it handled it instantly without crashing my browser. This is what
               a web tool should be. Highly recommended."
@@ -760,10 +771,10 @@
         <div
           class="max-w-4xl mx-auto text-center bg-gray-800 p-8 md:p-12 rounded-xl border border-gray-700 shadow-2xl"
         >
-          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="support.heading">
             Like My Work?
           </h2>
-          <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-i18n="support.description">
             BentoPDF is a passion project, built to provide a free, private, and
             powerful PDF toolkit for everyone. If you find it useful, consider
             supporting its development. Every coffee helps!
@@ -776,7 +787,7 @@
             class="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1 mt-5"
           >
             <i data-lucide="coffee" class="w-7 h-7"></i>
-            <span>Buy Me a Coffee</span>
+            <span data-i18n="support.button">Buy Me a Coffee</span>
           </a>
         </div>
       </section>
@@ -804,18 +815,18 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-white mb-4">Company</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.company">Company</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="./about.html" class="hover:text-indigo-400"
+                <a href="./about.html" class="hover:text-indigo-400" data-i18n="footerNav.aboutUs"
                   >About Us</a
                 >
               </li>
               <li>
-                <a href="./faq.html" class="hover:text-indigo-400">FAQ</a>
+                <a href="./faq.html" class="hover:text-indigo-400" data-i18n="footerNav.faq">FAQ</a>
               </li>
               <li>
-                <a href="./contact.html" class="hover:text-indigo-400"
+                <a href="./contact.html" class="hover:text-indigo-400" data-i18n="footerNav.contactUs"
                   >Contact Us</a
                 >
               </li>
@@ -823,15 +834,15 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-white mb-4">Legal</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.legal">Legal</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="./terms.html" class="hover:text-indigo-400"
+                <a href="./terms.html" class="hover:text-indigo-400" data-i18n="footerNav.terms"
                   >Terms and Conditions</a
                 >
               </li>
               <li>
-                <a href="./privacy.html" class="hover:text-indigo-400"
+                <a href="./privacy.html" class="hover:text-indigo-400" data-i18n="footerNav.privacy"
                   >Privacy Policy</a
                 >
               </li>
@@ -839,7 +850,7 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-white mb-4">Follow Us</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.followUs">Follow Us</h3>
             <div class="flex justify-center md:justify-start space-x-4">
               <a
                 href="https://github.com/alam00000/bentopdf"

@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import { PDFName } from 'pdf-lib';
 
 export function removeMetadataFromDoc(pdfDoc) {
@@ -46,7 +47,7 @@ export function removeMetadataFromDoc(pdfDoc) {
 }
 
 export async function removeMetadata() {
-  showLoader('Removing all metadata...');
+  showLoader(String(t('alerts.removingAllMetadata')));
   try {
     removeMetadataFromDoc(state.pdfDoc);
 
@@ -57,7 +58,7 @@ export async function removeMetadata() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while trying to remove metadata.');
+    showAlert(String(t('alerts.error')), String(t('alerts.errorRemovingMetadata')));
   } finally {
     hideLoader();
   }

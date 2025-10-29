@@ -1,12 +1,13 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import JSZip from 'jszip';
 import UTIF from 'utif';
 import * as pdfjsLib from 'pdfjs-dist';
 
 export async function pdfToTiff() {
-  showLoader('Converting PDF to TIFF...');
+  showLoader(String(t('alerts.convertingPdfToTiff')));
   try {
     const pdf = await pdfjsLib.getDocument(
       await readFileAsArrayBuffer(state.files[0])
@@ -42,8 +43,8 @@ export async function pdfToTiff() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert PDF to TIFF. The file might be corrupted.'
+      String(t('alerts.error')),
+      String(t('alerts.failedConvertPdfToTiff'))
     );
   } finally {
     hideLoader();

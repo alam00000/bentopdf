@@ -1,10 +1,11 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 import JSZip from 'jszip';
 
 export async function pdfToJpg() {
-  showLoader('Converting to JPG...');
+  showLoader(String(t('alerts.convertingToJpg')));
   try {
     // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
     const pdf = await pdfjsLib.getDocument(
@@ -33,8 +34,8 @@ export async function pdfToJpg() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert PDF to JPG. The file might be corrupted.'
+      String(t('alerts.error')),
+      String(t('alerts.failedConvertJpg'))
     );
   } finally {
     hideLoader();

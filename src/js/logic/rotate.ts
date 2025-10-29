@@ -1,11 +1,12 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { degrees } from 'pdf-lib';
 
 export async function rotate() {
-  showLoader('Applying rotations...');
+  showLoader(String(t('alerts.applyingRotations')));
   try {
     const pages = state.pdfDoc.getPages();
     document.querySelectorAll('.page-rotator-item').forEach((item) => {
@@ -26,7 +27,7 @@ export async function rotate() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not apply rotations.');
+    showAlert(String(t('alerts.error')), String(t('alerts.couldNotApplyRotations')));
   } finally {
     hideLoader();
   }

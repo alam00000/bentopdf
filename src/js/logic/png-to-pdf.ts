@@ -1,15 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 export async function pngToPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select at least one PNG file.');
+    showAlert(String(t('alerts.noFiles')), String(t('alerts.pleaseSelectPng')));
     return;
   }
-  showLoader('Creating PDF from PNGs...');
+  showLoader(String(t('alerts.convertingPngToPdf')));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of state.files) {
@@ -31,8 +32,8 @@ export async function pngToPdf() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to create PDF from PNG images. Ensure all files are valid PNGs.'
+      String(t('alerts.error')),
+      String(t('alerts.couldNotConvertPngToPdf'))
     );
   } finally {
     hideLoader();

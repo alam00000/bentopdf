@@ -5,6 +5,7 @@ import {
   readFileAsArrayBuffer,
 } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 export async function changePermissions() {
   const file = state.files[0];
@@ -23,15 +24,15 @@ export async function changePermissions() {
   let qpdf: any;
 
   try {
-    showLoader('Initializing...');
+    showLoader(String(t('alerts.initializing')));
     qpdf = await initializeQpdf();
 
-    showLoader('Reading PDF...');
+    showLoader(String(t('alerts.readingPdf')));
     const fileBuffer = await readFileAsArrayBuffer(file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
     qpdf.FS.writeFile(inputPath, uint8Array);
 
-    showLoader('Processing PDF permissions...');
+    showLoader(String(t('alerts.processingPdfPermissions')));
 
     const args = [inputPath];
 
@@ -110,14 +111,14 @@ export async function changePermissions() {
         throw new Error('PASSWORD_REQUIRED');
       }
 
-      throw new Error('Processing failed: ' + errorMsg || 'Unknown error');
+      throw new Error('Processing failed: ' + errorMsg || String(t('alerts.unknownError')));
     }
 
-    showLoader('Preparing download...');
+    showLoader(String(t('alerts.preparingDownload')));
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Processing resulted in an empty file.');
+      throw new Error(String(t('alerts.processingResultedInEmptyFile')));
     }
 
     const blob = new Blob([outputFile], { type: 'application/pdf' });
@@ -125,31 +126,30 @@ export async function changePermissions() {
 
     hideLoader();
 
-    let successMessage = 'PDF permissions changed successfully!';
+    let successMessage = String(t('alerts.permissionsChangedSuccess'));
     if (!shouldEncrypt) {
-      successMessage =
-        'PDF decrypted successfully! All encryption and restrictions removed.';
+      successMessage = String(t('alerts.pdfDecryptedSuccess'));
     }
 
-    showAlert('Success', successMessage);
+    showAlert(String(t('alerts.success')), successMessage);
   } catch (error: any) {
     console.error('Error during PDF permission change:', error);
     hideLoader();
 
     if (error.message === 'INVALID_PASSWORD') {
       showAlert(
-        'Incorrect Password',
-        'The current password you entered is incorrect. Please try again.'
+        String(t('alerts.incorrectPassword')),
+        String(t('alerts.incorrectPasswordMessage'))
       );
     } else if (error.message === 'PASSWORD_REQUIRED') {
       showAlert(
-        'Password Required',
-        'This PDF is password-protected. Please enter the current password to proceed.'
+        String(t('alerts.passwordRequired')),
+        String(t('alerts.passwordRequiredMessage'))
       );
     } else {
       showAlert(
-        'Processing Failed',
-        `An error occurred: ${error.message || 'The PDF might be corrupted or password protected.'}`
+        String(t('alerts.processingFailed')),
+        String(t('alerts.processingFailedMessage', { error: error.message || '' }))
       );
     }
   } finally {

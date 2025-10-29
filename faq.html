@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/png" href="images/favicon.svg" />
     <link href="/src/css/styles.css" rel="stylesheet" />
+    <script type="module" src="/src/js/main.ts"></script>
   </head>
 
   <body class="antialiased bg-gray-900 text-gray-300">
@@ -32,10 +33,10 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden md:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="./about.html" class="nav-link">About</a>
-            <a href="./contact.html" class="nav-link">Contact</a>
-            <a href="index.html#tools-header" class="nav-link">All Tools</a>
+            <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+            <a href="./about.html" class="nav-link" data-i18n="nav.about">About</a>
+            <a href="./contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            <a href="index.html#tools-header" class="nav-link" data-i18n="nav.allTools">All Tools</a>
           </div>
 
           <!-- Mobile Hamburger Button -->
@@ -93,10 +94,10 @@
         class="hidden md:hidden bg-gray-800 border-t border-gray-700"
       >
         <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-          <a href="index.html" class="mobile-nav-link">Home</a>
-          <a href="./about.html" class="mobile-nav-link">About</a>
-          <a href="./contact.html" class="mobile-nav-link">Contact</a>
-          <a href="index.html#tools-header" class="mobile-nav-link"
+          <a href="index.html" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+          <a href="./about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+          <a href="./contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+          <a href="index.html#tools-header" class="mobile-nav-link" data-i18n="nav.allTools"
             >All Tools</a
           >
         </div>
@@ -105,10 +106,10 @@
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
       <section id="faq-hero" class="text-center py-16 md:py-24">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4" data-i18n="faqPage.title">
           Frequently Asked Questions
         </h1>
-        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto">
+        <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto" data-i18n="faqPage.subtitle">
           Have questions? We've got answers. Here are some of the most common
           things people ask about BentoPDF.
         </p>
@@ -119,7 +120,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q1.question">
               Are my files safe and private?
             </h3>
             <i
@@ -128,7 +129,7 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>
+            <p data-i18n-html="faqPage.q1.answer">
               <strong>Absolutely.</strong> This is the most important feature of
               BentoPDF. All processing happens 100% locally in your web browser.
               Your files are never uploaded to any server, which means we—or
@@ -141,7 +142,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q2.question">
               Is BentoPDF really free? What's the catch?
             </h3>
             <i
@@ -150,7 +151,7 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>
+            <p data-i18n="faqPage.q2.answer">
               Yes, it's completely free, and there's no catch. There are no
               hidden fees, no subscription plans, no usage limits, and no
               premium-only features. We believe essential tools should be
@@ -163,7 +164,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q3.question">
               Do I need an internet connection to use the tools?
             </h3>
             <i
@@ -172,7 +173,7 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>
+            <p data-i18n="faqPage.q3.answer">
               After you load the website for the first time, most tools will
               work completely offline! Because all the processing libraries are
               loaded into your browser, you can disconnect from the internet and
@@ -187,7 +188,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q4.question">
               Are there any file size or usage limitations?
             </h3>
             <i
@@ -196,7 +197,7 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>
+            <p data-i18n="faqPage.q4.answer">
               No, we do not impose any artificial limits on file size, the
               number of files, or how many times you can use a tool. The only
               practical limitation is the processing power and memory of your
@@ -210,7 +211,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q5.question">
               Why did my PDF fail to process?
             </h3>
             <i
@@ -219,17 +220,17 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>Failures are rare but can happen for a few reasons:</p>
+            <p data-i18n="faqPage.q5.answer">Failures are rare but can happen for a few reasons:</p>
             <ul class="list-disc list-inside mt-2 space-y-1">
-              <li>
+              <li data-i18n="faqPage.q5.reasons.0">
                 The PDF might be corrupted or not compliant with standard
                 specifications.
               </li>
-              <li>
+              <li data-i18n="faqPage.q5.reasons.1">
                 The file could be encrypted with a password you don't have.
                 Please use our Decrypt tool first.
               </li>
-              <li>
+              <li data-i18n="faqPage.q5.reasons.2">
                 The file might be a special "XFA" or dynamic form-based PDF,
                 which some of our tools cannot process.
               </li>
@@ -241,7 +242,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q6.question">
               Do you track my activity on BentoPDF?
             </h3>
             <i
@@ -250,7 +251,7 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>
+            <p data-i18n-html="faqPage.q6.answer">
               We care about your privacy. BentoPDF does not track personal
               information. We use
               <a
@@ -272,7 +273,7 @@
           class="bg-gray-800 border border-gray-700 rounded-lg p-5 group"
         >
           <summary class="flex items-center justify-between cursor-pointer">
-            <h3 class="font-semibold text-white text-lg">
+            <h3 class="font-semibold text-white text-lg" data-i18n="faqPage.q7.question">
               What technology does BentoPDF use?
             </h3>
             <i
@@ -281,7 +282,7 @@
             ></i>
           </summary>
           <div class="mt-4 text-gray-400">
-            <p>
+            <p data-i18n-html="faqPage.q7.answer">
               BentoPDF is built on the power of modern web technologies. We
               primarily use JavaScript libraries like
               <strong>PDF-lib.js</strong> and <strong>PDFKit.js</strong> that
@@ -296,16 +297,17 @@
       <div class="section-divider mt-16"></div>
 
       <section id="contact-section" class="text-center py-16">
-        <h2 class="text-3xl font-bold text-white mb-4">
+        <h2 class="text-3xl font-bold text-white mb-4" data-i18n="faqPage.contactSection.heading">
           Still have questions?
         </h2>
-        <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+        <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto" data-i18n="faqPage.contactSection.text">
           If you can't find the answer you're looking for, feel free to reach
           out to our support team. We're always Bento to help.
         </p>
         <a
           href="contact.html"
           class="inline-block px-8 py-3 rounded-full bg-gray-700 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:bg-gray-600 transition-colors duration-200"
+          data-i18n="faqPage.contactSection.button"
         >
           Contact Us
         </a>
@@ -332,14 +334,14 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-white mb-4">Company</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.company">Company</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="about.html" class="hover:text-indigo-400">About Us</a>
+                <a href="about.html" class="hover:text-indigo-400" data-i18n="footerNav.aboutUs">About Us</a>
               </li>
-              <li><a href="faq.html" class="hover:text-indigo-400">FAQ</a></li>
+              <li><a href="faq.html" class="hover:text-indigo-400" data-i18n="footerNav.faq">FAQ</a></li>
               <li>
-                <a href="contact.html" class="hover:text-indigo-400"
+                <a href="contact.html" class="hover:text-indigo-400" data-i18n="footerNav.contactUs"
                   >Contact Us</a
                 >
               </li>
@@ -347,15 +349,15 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-white mb-4">Legal</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.legal">Legal</h3>
             <ul class="space-y-2 text-gray-400">
               <li>
-                <a href="./terms.html" class="hover:text-indigo-400"
+                <a href="./terms.html" class="hover:text-indigo-400" data-i18n="footerNav.terms"
                   >Terms and Conditions</a
                 >
               </li>
               <li>
-                <a href="./privacy.html" class="hover:text-indigo-400"
+                <a href="./privacy.html" class="hover:text-indigo-400" data-i18n="footerNav.privacy"
                   >Privacy Policy</a
                 >
               </li>
@@ -363,7 +365,7 @@
           </div>
 
           <div>
-            <h3 class="font-bold text-white mb-4">Follow Us</h3>
+            <h3 class="font-bold text-white mb-4" data-i18n="footerNav.followUs">Follow Us</h3>
             <div class="flex justify-center md:justify-start space-x-4">
               <a
                 href="https://www.instagram.com/thebentopdf/"

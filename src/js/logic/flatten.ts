@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { t } from '../i18n/index.js';
 
 export function flattenFormsInDoc(pdfDoc) {
   const form = pdfDoc.getForm();
@@ -9,10 +10,10 @@ export function flattenFormsInDoc(pdfDoc) {
 
 export async function flatten() {
   if (!state.pdfDoc) {
-    showAlert('Error', 'PDF not loaded.');
+    showAlert(String(t('alerts.error')), String(t('alerts.pdfNotLoaded')));
     return;
   }
-  showLoader('Flattening PDF...');
+  showLoader(String(t('alerts.flatteningPdf')));
   try {
     flattenFormsInDoc(state.pdfDoc);
 
@@ -25,11 +26,11 @@ export async function flatten() {
     console.error(e);
     if (e.message.includes('getForm')) {
       showAlert(
-        'No Form Found',
+        String(t('alerts.error')),
         'This PDF does not contain any form fields to flatten.'
       );
     } else {
-      showAlert('Error', 'Could not flatten the PDF.');
+      showAlert(String(t('alerts.error')), String(t('alerts.couldNotFlatten')));
     }
   } finally {
     hideLoader();
