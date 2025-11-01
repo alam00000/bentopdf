@@ -764,18 +764,11 @@ export function setupFileInputHandler(toolId) {
       const fileURL = URL.createObjectURL(file);
       state.currentPdfUrl = fileURL;
 
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.textContent = `
-                import EmbedPDF from 'https://snippet.embedpdf.com/embedpdf.js';
-                EmbedPDF.init({
-                    type: 'container',
-                    target: document.getElementById('embed-pdf-container'),
-                    src: '${fileURL}',
-                    theme: 'dark',
-                });
-            `;
-      document.head.appendChild(script);
+      if (pdfContainer) {
+        pdfContainer.innerHTML = `<embed src="${fileURL}" type="application/pdf" width="100%" height="600px" style="background:#222;" />`;
+      } else {
+        window.open(fileURL, '_blank');
+      }
 
       const backBtn = document.getElementById('back-to-grid');
       const urlRevoker = () => {

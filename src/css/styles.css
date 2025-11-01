@@ -581,3 +581,71 @@ button:disabled,
     display: none !important;
   }
 }
+
+/* Simple mode styles - hide everything except loading screen when simple mode is enabled */
+html.simple-mode-loading body > *:not(#simple-loading-screen) {
+  display: none !important;
+}
+
+html.simple-mode-loading #simple-loading-screen {
+  display: flex !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #111827 !important;
+  z-index: 9999 !important;
+  justify-content: center !important;
+  align-items: center !important;
+  visibility: visible !important;
+}
+
+/* Hide elements in simple mode after loading */
+body.simple-mode nav:not(.simple-nav),
+body.simple-mode #hero-section,
+body.simple-mode #features-section,
+body.simple-mode #security-compliance-section,
+body.simple-mode #faq-accordion,
+body.simple-mode #testimonials-section,
+body.simple-mode #support-section,
+body.simple-mode footer:not(.simple-footer),
+body.simple-mode .section-divider {
+  display: none !important;
+}
+
+.simple-loading-content {
+  text-align: center;
+  color: white;
+}
+
+.simple-loading-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+.simple-loading-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.simple-loading-subtitle {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+.simple-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #374151;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+

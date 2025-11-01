@@ -9,6 +9,14 @@ import '../css/styles.css';
 import { formatShortcutDisplay, formatStars } from './utils/helpers.js';
 import { APP_VERSION, injectVersion } from '../version.js';
 
+const hideLoadingScreen = () => {
+  document.documentElement.classList.remove('simple-mode-loading');
+  const loadingScreen = document.getElementById('simple-loading-screen');
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+  }
+};
+
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -19,16 +27,14 @@ const init = () => {
   // Handle simple mode - hide branding sections but keep logo and copyright
   if (__SIMPLE_MODE__) {
     const hideBrandingSections = () => {
-      // Hide navigation but keep logo
+      document.body.classList.add('simple-mode');
+
+      // Create a simple nav with just logo
       const nav = document.querySelector('nav');
       if (nav) {
-        // Hide the entire nav but we'll create a minimal one with just logo
-        nav.style.display = 'none';
-
-        // Create a simple nav with just logo on the right
         const simpleNav = document.createElement('nav');
         simpleNav.className =
-          'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
+          'simple-nav bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
         simpleNav.innerHTML = `
           <div class="container mx-auto px-4">
             <div class="flex justify-start items-center h-16">
@@ -44,52 +50,12 @@ const init = () => {
         document.body.insertBefore(simpleNav, document.body.firstChild);
       }
 
-      const heroSection = document.getElementById('hero-section');
-      if (heroSection) {
-        heroSection.style.display = 'none';
-      }
-
-      const githubLink = document.querySelector('a[href*="github.com/alam00000/bentopdf"]');
-      if (githubLink) {
-        (githubLink as HTMLElement).style.display = 'none';
-      }
-
-      const featuresSection = document.getElementById('features-section');
-      if (featuresSection) {
-        featuresSection.style.display = 'none';
-      }
-
-      const securitySection = document.getElementById(
-        'security-compliance-section'
-      );
-      if (securitySection) {
-        securitySection.style.display = 'none';
-      }
-
-      const faqSection = document.getElementById('faq-accordion');
-      if (faqSection) {
-        faqSection.style.display = 'none';
-      }
-
-      const testimonialsSection = document.getElementById(
-        'testimonials-section'
-      );
-      if (testimonialsSection) {
-        testimonialsSection.style.display = 'none';
-      }
-
-      const supportSection = document.getElementById('support-section');
-      if (supportSection) {
-        supportSection.style.display = 'none';
-      }
-
       // Hide footer but keep copyright
       const footer = document.querySelector('footer');
       if (footer) {
-        footer.style.display = 'none';
-
         const simpleFooter = document.createElement('footer');
-        simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
+        simpleFooter.className =
+          'simple-footer mt-16 border-t-2 border-gray-700 py-8';
         simpleFooter.innerHTML = `
           <div class="container mx-auto px-4">
             <div class="flex items-center mb-4">
@@ -132,6 +98,8 @@ const init = () => {
       if (app) {
         app.style.paddingTop = '1rem';
       }
+
+      document.documentElement.classList.remove('simple-mode-loading');
     };
 
     hideBrandingSections();
@@ -146,7 +114,7 @@ const init = () => {
     }
   }
 
-
+  setTimeout(hideLoadingScreen, 10);
   dom.toolGrid.textContent = '';
 
   categories.forEach((category) => {

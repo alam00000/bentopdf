@@ -29,6 +29,7 @@
     "@types/blob-stream": "^0.1.33",
     "@types/html2canvas": "^1.0.0",
     "@types/pdfkit": "^0.17.3",
+    "@types/quill": "^2.0.14",
     "@types/sortablejs": "^1.15.8",
     "@types/utif": "^3.0.6",
     "@vitest/coverage-v8": "^3.2.4",
@@ -39,6 +40,7 @@
     "typescript": "~5.9.3",
     "vite": "^7.1.11",
     "vite-plugin-node-polyfills": "^0.24.0",
+    "vite-plugin-pwa": "^1.1.0",
     "vitest": "^3.2.4"
   },
   "dependencies": {
@@ -63,6 +65,7 @@
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^5.4.296",
     "pdfkit": "^0.17.2",
+    "quill": "^2.0.3",
     "sortablejs": "^1.15.6",
     "tailwindcss": "^4.1.14",
     "terser": "^5.44.0",

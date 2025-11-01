@@ -322,7 +322,7 @@ const createFileInputHTML = (options = {}) => {
             </div>
         `
             : ''
-        }
+          }
     `;
 };
 
@@ -812,7 +812,14 @@ export const toolTemplates = {
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Flatten PDF</button>
     `,
-    'pdf-to-png': () => `
+  'flatten-as-image': () => `
+        <h2 class="text-2xl font-bold text-white mb-4">Flatten PDF as Image</h2>
+        <p class="mb-6 text-gray-400">Convert PDF Pages to Images, usefull for signed PDF.</p>
+        ${createFileInputHTML()}
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+        <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Flatten PDF as Image</button>
+    `,
+  'pdf-to-png': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to PNG</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality PNG image.</p>
         ${createFileInputHTML()}
@@ -1193,6 +1200,11 @@ export const toolTemplates = {
             </div>
         </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF</button>
+    `,
+  'html-to-pdf': () => `
+        <h2 class="text-2xl font-bold text-white mb-4">HTML to PDF</h2>
+        <p class="mb-6 text-gray-400">Type or paste your text below and convert it to a PDF with custom formatting.</p>
+        <div id="html-to-pdf-container" class="h-full"></div>
     `,
     'invert-colors': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Invert PDF Colors</h2>
