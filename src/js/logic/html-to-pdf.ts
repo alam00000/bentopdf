@@ -200,7 +200,7 @@ const renderFormattedText = (
     pdf.setFontSize(adjustedFontSize);
     pdf.setTextColor(segment.textColor.r, segment.textColor.g, segment.textColor.b);
 
-    // Handle background color (skip for code blocks and blockquotes since they have unified backgrounds)
+    // Handle background color (completely skip for code blocks and blockquotes since they have unified backgrounds)
     if (segment.backgroundColor && blockType !== 'code' && blockType !== 'blockquote') {
       const textWidth = pdf.getTextWidth(segment.text);
       const textHeight = segment.fontSize * 0.352778;
@@ -503,9 +503,9 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
               });
             }
 
-            // Parse background color
+            // Parse background color (skip for code blocks since they have unified backgrounds)
             let backgroundColor = null;
-            if (attrs.background) {
+            if (attrs.background && block.type !== 'code') {
               const bgColor = parseColor(attrs.background);
               if (bgColor !== PDF_CONSTANTS.DEFAULT_COLORS.BLACK) {
                 backgroundColor = bgColor;
@@ -655,6 +655,13 @@ const determineLineType = (attrs: any, currentLine: any): void => {
 
 const processTextInsert = (text: string, attrs: any, currentLine: any, content: any[]): any => {
   if (!text.includes('\n')) {
+    currentLine.segments.push({ text, attributes: attrs });
+    return currentLine;
+  }
+
+  // Special handling for code blocks - keep all lines together in a single block
+  if (attrs['code-block']) {
+    // For code blocks, add the entire text as one segment with newlines preserved
     currentLine.segments.push({ text, attributes: attrs });
     return currentLine;
   }
