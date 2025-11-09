@@ -21,8 +21,7 @@ export function setupWatermarkUI() {
   const imageOptions = document.getElementById('image-watermark-options');
 
   watermarkTypeRadios.forEach((radio) => {
-    radio.addEventListener('change', (e) => {
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'EventTarg... Remove this comment to see the full error message
+    radio.addEventListener('change', (e) => { 
       if (e.target.value === 'text') {
         textOptions.classList.remove('hidden');
         imageOptions.classList.add('hidden');

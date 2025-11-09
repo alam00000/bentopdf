@@ -56,6 +56,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Flatten PDF as Image**        | Convert PDF Pages to Images, usefull for signed PDF.    |
 | **Remove Annotations** | Remove comments, highlights, and other annotations.         |
 | **Remove Blank Pages** | Auto detect and remove blank pages in a PDF.                |
+| **Edit Bookmarks** | Add, Edit, Create, Import and Export PDF Bookmarks.                |
 
 ### Convert to PDF
 
@@ -64,6 +65,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Image to PDF**    | Convert JPG, PNG, WebP, SVG, BMP, HEIC, and TIFF images to PDF. |
 | **Markdown to PDF** | Convert `.md` files into professional PDF documents.            |
 | **Text to PDF**     | Convert plain text files into a PDF.                            |
+| **JSON to PDF**     | Convert JSON to PDF.                            |
 
 ### Convert from PDF
 
@@ -72,6 +74,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **PDF to Image**     | Convert PDF pages to JPG, PNG, WebP, BMP, or TIFF formats.                     |
 | **PDF to Greyscale** | Convert a color PDF into a black-and-white version.                            |
 | **OCR PDF**          | Make scanned PDFs searchable and copyable using Optical Character Recognition. |
+| **PDF to JSON**          | Convert JSON to PDFs. |
 
 ### Secure & Optimize PDFs
 
@@ -103,17 +106,21 @@ You can run BentoPDF locally for development or personal use.
 
 ### 🚀 Quick Start with Docker
 
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/LWO8I0?referralCode=LokiSalmonNeko)
+
 You can run BentoPDF directly from Docker Hub or GitHub Container Registry without cloning the repository:
 
 You can also watch the video on how to set it up 👉
 [BentoPDF Docker Setup](https://drive.google.com/file/d/1C4eJ2nqeaH__1Tlad-xuBHaF2Ha4fSBf/view?usp=drive_link)
 
 **Using Docker Hub:**
+
 ```bash
 docker run -p 3000:8080 bentopdf/bentopdf:latest
 ```
 
 **Using GitHub Container Registry:**
+
 ```bash
 docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
 ```
@@ -181,11 +188,13 @@ For detailed security configuration, see [SECURITY.md](SECURITY.md).
 BentoPDF supports semantic versioning with multiple Docker tags available on both Docker Hub and GitHub Container Registry:
 
 **Docker Hub:**
+
 - **Latest**: `bentopdf/bentopdf:latest`
 - **Specific Version**: `bentopdf/bentopdf:1.0.0`
 - **Version with Prefix**: `bentopdf/bentopdf:v1.0.0`
 
 **GitHub Container Registry:**
+
 - **Latest**: `ghcr.io/alam00000/bentopdf:latest`
 - **Specific Version**: `ghcr.io/alam00000/bentopdf:1.0.0`
 - **Version with Prefix**: `ghcr.io/alam00000/bentopdf:v1.0.0`
@@ -307,6 +316,7 @@ BentoPDF wouldn't be possible without the amazing open-source tools and librarie
 - **[Vite](https://vitejs.dev/)** – For lightning-fast development and build tooling.
 - **[Tailwind CSS](https://tailwindcss.com/)** – For rapid, flexible, and beautiful UI styling.
 - **[qpdf](https://github.com/qpdf/qpdf)** and **[qpdf-wasm](https://github.com/neslinesli93/qpdf-wasm)**– A powerful command-line tool and library for inspecting, repairing, and transforming PDF file ported to wasm
+- **[cpdf](https://www.coherentpdf.com/)** – For content preserving pdf operations.
 
 Your work inspires and empowers developers everywhere. Thank you for making open-source amazing!
 

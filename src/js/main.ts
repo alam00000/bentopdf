@@ -137,10 +137,19 @@ const init = () => {
       'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6';
 
     category.tools.forEach((tool) => {
-      const toolCard = document.createElement('div');
-      toolCard.className =
-        'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center';
-      toolCard.dataset.toolId = tool.id;
+      let toolCard: HTMLDivElement | HTMLAnchorElement;
+
+      if (tool.href) {
+        toolCard = document.createElement('a');
+        toolCard.href = tool.href;
+        toolCard.className =
+          'tool-card block bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:shadow-lg transition duration-200';
+      } else {
+        toolCard = document.createElement('div');
+        toolCard.className =
+          'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-lg transition duration-200';
+        toolCard.dataset.toolId = tool.id;
+      }
 
       const icon = document.createElement('i');
       icon.className = 'w-10 h-10 mb-3 text-indigo-400';

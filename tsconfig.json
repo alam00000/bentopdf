@@ -29,7 +29,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
     "types": ["vite/client", "vitest/globals"], // Added vitest/globals
 
     /* Easier module handling for Vite */
@@ -61,6 +61,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/**/*.ts"], // Updated to include all TS files
+  "include": ["src", "src/**/*.ts", "public/workers"], // Updated to include all TS files
   "exclude": ["node_modules", "dist"]
 }

@@ -14,6 +14,8 @@ RUN npm run build -- --mode production
 # Production stage
 FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 
+LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
+
 COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /etc/nginx/tmp && chown -R nginx:nginx /etc/nginx/tmp

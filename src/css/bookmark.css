@@ -1,0 +1,131 @@
+body {
+  color: #374151;
+}
+
+.sortable-ghost {
+  opacity: 0.4;
+  border: 2px dashed #2b7fff;
+}
+.sortable-drag {
+  cursor: move;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-minimized {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  max-width: 350px;
+  max-height: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+}
+
+.child-container {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.child-container::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.child-container > li {
+  position: relative;
+}
+
+.child-container > li::before {
+  content: '';
+  position: absolute;
+  left: -0.75rem;
+  top: 1.25rem;
+  width: 0.75rem;
+  height: 2px;
+  background: #e5e7eb;
+}
+
+.style-preview {
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.destination-marker {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.destination-marker svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.pdf-canvas-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.pdf-canvas-wrapper.picking-mode {
+  cursor: crosshair;
+}
+
+.coordinate-tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 20;
+  white-space: nowrap;
+}
+
+.destination-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(59, 130, 246, 0.1);
+  border: 2px solid #3b82f6;
+  pointer-events: none;
+  z-index: 5;
+}

@@ -1,5 +1,6 @@
 import createModule from '@neslinesli93/qpdf-wasm';
 import { showLoader, hideLoader, showAlert } from '../ui';
+import { createIcons } from 'lucide';
 
 const STANDARD_SIZES = {
   A4: { width: 595.28, height: 841.89 },
@@ -176,4 +177,13 @@ export async function initializeQpdf() {
   }
 
   return qpdfInstance;
+}
+
+export function initializeIcons(): void {
+  createIcons({
+    attrs: {
+      class: 'bento-icon',
+      'stroke-width': '1.5',
+    },
+  });
 }
