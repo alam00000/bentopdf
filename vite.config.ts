@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
     ],
     define: {
       __SIMPLE_MODE__: JSON.stringify(
-        env.SIMPLE_MODE === 'true' || env.VITE_SIMPLE_MODE === 'true'
+        process.env.SIMPLE_MODE === 'true' || env.VITE_SIMPLE_MODE === 'true'
       ),
     },
     resolve: {
