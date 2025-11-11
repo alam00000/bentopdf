@@ -18,6 +18,13 @@ if (__SIMPLE_MODE__) {
   }
 }
 
+const hideLoadingScreen = () => {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+  }
+};
+
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -90,10 +97,16 @@ const init = () => {
       if (app) {
         app.style.paddingTop = '1rem';
       }
+
+      hideLoadingScreen();
     };
 
-    setupSimpleMode();
+    // Add a small delay to ensure everything is ready
+    setTimeout(setupSimpleMode, 100);
+  } else {
+      hideLoadingScreen();
   }
+
 
   dom.toolGrid.textContent = '';
 

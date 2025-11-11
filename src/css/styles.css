@@ -533,3 +533,62 @@ html.simple-mode-loading .section-divider {
   display: none !important;
 }
 
+/* Simple Mode Loading Screen */
+.simple-loading-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111827;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Show loading screen only in simple mode */
+html.simple-mode-loading .simple-loading-screen {
+  display: flex;
+}
+
+/* Hide loading screen when simple mode is fully loaded */
+body.simple-mode .simple-loading-screen {
+  display: none;
+}
+
+.simple-loading-content {
+  text-align: center;
+  color: white;
+}
+
+.simple-loading-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+.simple-loading-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.simple-loading-subtitle {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+.simple-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #374151;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
