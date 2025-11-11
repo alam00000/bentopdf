@@ -543,12 +543,6 @@ body.simple-mode .section-divider {
   display: none !important;
 }
 
-/* Hide loading screen when simple mode is fully loaded */
-body.simple-mode #simple-loading-screen {
-  display: none !important;
-}
-
-
 .simple-loading-content {
   text-align: center;
   color: white;

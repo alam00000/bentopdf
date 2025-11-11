@@ -5,49 +5,11 @@ import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 
-// Add simple-mode class immediately to prevent flicker
-if (__SIMPLE_MODE__) {
-  // Immediately add the loading class to hide all content except loading screen
-  document.documentElement.classList.add('simple-mode-loading');
-
-  // Immediately try to show the loading screen
-  const showLoadingScreen = () => {
-    const loadingScreen = document.getElementById('simple-loading-screen');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'flex';
-    }
-  };
-
-  // Try immediately
-  showLoadingScreen();
-
-  // Try again when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', showLoadingScreen);
-  }
-}
-
 const hideLoadingScreen = () => {
-  // Hide loading screen
+  document.documentElement.classList.remove('simple-mode-loading');
   const loadingScreen = document.getElementById('simple-loading-screen');
   if (loadingScreen) {
     loadingScreen.style.display = 'none';
-  }
-
-  // Only manipulate content if we're in simple mode loading state
-  if (document.documentElement.classList.contains('simple-mode-loading')) {
-    // Show all content by removing display:none from body children
-    const body = document.body;
-    for (let i = 0; i < body.children.length; i++) {
-      const child = body.children[i] as HTMLElement;
-      if (child.id !== 'simple-loading-screen') {
-        child.style.display = '';
-      }
-    }
-
-    // Remove loading class and add simple mode class
-    document.documentElement.classList.remove('simple-mode-loading');
-    document.body.classList.add('simple-mode');
   }
 };
 
@@ -60,6 +22,8 @@ const init = () => {
   // Handle simple mode - hide branding sections but keep logo and copyright
   if (__SIMPLE_MODE__) {
     const setupSimpleMode = () => {
+      document.body.classList.add('simple-mode');
+
       // Create a simple nav with just logo
       const nav = document.querySelector('nav');
       if (nav) {
@@ -83,7 +47,8 @@ const init = () => {
       const footer = document.querySelector('footer');
       if (footer) {
         const simpleFooter = document.createElement('footer');
-        simpleFooter.className = 'simple-footer mt-16 border-t-2 border-gray-700 py-8';
+        simpleFooter.className =
+          'simple-footer mt-16 border-t-2 border-gray-700 py-8';
         simpleFooter.innerHTML = `
           <div class="container mx-auto px-4">
             <div class="flex items-center mb-4">
@@ -120,21 +85,12 @@ const init = () => {
         app.style.paddingTop = '1rem';
       }
 
-      // Hide loading screen and show simple mode content
-      hideLoadingScreen();
+      document.documentElement.classList.remove('simple-mode-loading');
     };
-
-    // Setup simple mode after a short delay
-    setTimeout(setupSimpleMode, 500);
-  } else {
-    // In normal mode, just ensure loading screen is hidden (if it exists)
-    const loadingScreen = document.getElementById('simple-loading-screen');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-    }
+    setupSimpleMode();
   }
 
-
+  setTimeout(hideLoadingScreen, 10);
   dom.toolGrid.textContent = '';
 
   categories.forEach((category) => {
