@@ -7,21 +7,47 @@ import '../css/styles.css';
 
 // Add simple-mode class immediately to prevent flicker
 if (__SIMPLE_MODE__) {
+  // Immediately add the loading class to hide all content except loading screen
   document.documentElement.classList.add('simple-mode-loading');
-  // Use DOMContentLoaded to ensure body is available
-  if (document.body) {
-    document.body.classList.add('simple-mode');
-  } else {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.add('simple-mode');
-    });
+
+  // Immediately try to show the loading screen
+  const showLoadingScreen = () => {
+    const loadingScreen = document.getElementById('simple-loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'flex';
+    }
+  };
+
+  // Try immediately
+  showLoadingScreen();
+
+  // Try again when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showLoadingScreen);
   }
 }
 
 const hideLoadingScreen = () => {
-  const loadingScreen = document.getElementById('loading-screen');
+  // Hide loading screen
+  const loadingScreen = document.getElementById('simple-loading-screen');
   if (loadingScreen) {
     loadingScreen.style.display = 'none';
+  }
+
+  // Only manipulate content if we're in simple mode loading state
+  if (document.documentElement.classList.contains('simple-mode-loading')) {
+    // Show all content by removing display:none from body children
+    const body = document.body;
+    for (let i = 0; i < body.children.length; i++) {
+      const child = body.children[i] as HTMLElement;
+      if (child.id !== 'simple-loading-screen') {
+        child.style.display = '';
+      }
+    }
+
+    // Remove loading class and add simple mode class
+    document.documentElement.classList.remove('simple-mode-loading');
+    document.body.classList.add('simple-mode');
   }
 };
 
@@ -33,10 +59,6 @@ const init = () => {
 
   // Handle simple mode - hide branding sections but keep logo and copyright
   if (__SIMPLE_MODE__) {
-    // Clean up loading state and ensure simple-mode is on body
-    document.documentElement.classList.remove('simple-mode-loading');
-    document.body.classList.add('simple-mode');
-
     const setupSimpleMode = () => {
       // Create a simple nav with just logo
       const nav = document.querySelector('nav');
@@ -98,13 +120,18 @@ const init = () => {
         app.style.paddingTop = '1rem';
       }
 
+      // Hide loading screen and show simple mode content
       hideLoadingScreen();
     };
 
-    // Add a small delay to ensure everything is ready
-    setTimeout(setupSimpleMode, 100);
+    // Setup simple mode after a short delay
+    setTimeout(setupSimpleMode, 500);
   } else {
-      hideLoadingScreen();
+    // In normal mode, just ensure loading screen is hidden (if it exists)
+    const loadingScreen = document.getElementById('simple-loading-screen');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+    }
   }
 
 
