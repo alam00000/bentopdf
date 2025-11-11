@@ -5,6 +5,19 @@ import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 
+// Add simple-mode class immediately to prevent flicker
+if (__SIMPLE_MODE__) {
+  document.documentElement.classList.add('simple-mode-loading');
+  // Use DOMContentLoaded to ensure body is available
+  if (document.body) {
+    document.body.classList.add('simple-mode');
+  } else {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('simple-mode');
+    });
+  }
+}
+
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -13,17 +26,17 @@ const init = () => {
 
   // Handle simple mode - hide branding sections but keep logo and copyright
   if (__SIMPLE_MODE__) {
-    const hideBrandingSections = () => {
-      // Hide navigation but keep logo
+    // Clean up loading state and ensure simple-mode is on body
+    document.documentElement.classList.remove('simple-mode-loading');
+    document.body.classList.add('simple-mode');
+
+    const setupSimpleMode = () => {
+      // Create a simple nav with just logo
       const nav = document.querySelector('nav');
       if (nav) {
-        // Hide the entire nav but we'll create a minimal one with just logo
-        nav.style.display = 'none';
-
-        // Create a simple nav with just logo on the right
         const simpleNav = document.createElement('nav');
         simpleNav.className =
-          'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
+          'simple-nav bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
         simpleNav.innerHTML = `
           <div class="container mx-auto px-4">
             <div class="flex justify-start items-center h-16">
@@ -37,47 +50,11 @@ const init = () => {
         document.body.insertBefore(simpleNav, document.body.firstChild);
       }
 
-      const heroSection = document.getElementById('hero-section');
-      if (heroSection) {
-        heroSection.style.display = 'none';
-      }
-
-      const featuresSection = document.getElementById('features-section');
-      if (featuresSection) {
-        featuresSection.style.display = 'none';
-      }
-
-      const securitySection = document.getElementById(
-        'security-compliance-section'
-      );
-      if (securitySection) {
-        securitySection.style.display = 'none';
-      }
-
-      const faqSection = document.getElementById('faq-accordion');
-      if (faqSection) {
-        faqSection.style.display = 'none';
-      }
-
-      const testimonialsSection = document.getElementById(
-        'testimonials-section'
-      );
-      if (testimonialsSection) {
-        testimonialsSection.style.display = 'none';
-      }
-
-      const supportSection = document.getElementById('support-section');
-      if (supportSection) {
-        supportSection.style.display = 'none';
-      }
-
-      // Hide footer but keep copyright
+      // Create simple footer with copyright
       const footer = document.querySelector('footer');
       if (footer) {
-        footer.style.display = 'none';
-
         const simpleFooter = document.createElement('footer');
-        simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
+        simpleFooter.className = 'simple-footer mt-16 border-t-2 border-gray-700 py-8';
         simpleFooter.innerHTML = `
           <div class="container mx-auto px-4">
             <div class="flex items-center mb-4">
@@ -92,11 +69,7 @@ const init = () => {
         document.body.appendChild(simpleFooter);
       }
 
-      const sectionDividers = document.querySelectorAll('.section-divider');
-      sectionDividers.forEach((divider) => {
-        (divider as HTMLElement).style.display = 'none';
-      });
-
+      // Update page title and tools header
       document.title = 'BentoPDF - PDF Tools';
 
       const toolsHeader = document.getElementById('tools-header');
@@ -119,7 +92,7 @@ const init = () => {
       }
     };
 
-    hideBrandingSections();
+    setupSimpleMode();
   }
 
   dom.toolGrid.textContent = '';
