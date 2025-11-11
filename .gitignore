@@ -26,3 +26,6 @@ dist-ssr
 coverage/
 *.lcov
 
+# Tauri compiled files and executables
+src-tauri/target/
+src-tauri/gen/schemas
