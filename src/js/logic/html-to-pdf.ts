@@ -20,8 +20,8 @@ const PDF_CONSTANTS = {
     BLACK: { r: 0, g: 0, b: 0 },
     LINK_BLUE: { r: 0, g: 102, b: 204 },
     LIGHT_GRAY: { r: 249, g: 249, b: 249 },
-    GRAY_BORDER: { r: 221, g: 221, b: 221 },
-    CODE_BG: { r: 245, g: 245, b: 245 },
+    GRAY_BORDER: { r: 128, g: 128, b: 128 },
+    CODE_BG: { r: 230, g: 240, b: 255 },
     PLACEHOLDER_GRAY: { r: 128, g: 128, b: 128 }
   }
 } as const;
@@ -201,7 +201,7 @@ const renderFormattedText = (
     pdf.setTextColor(segment.textColor.r, segment.textColor.g, segment.textColor.b);
 
     // Handle background color (completely skip for code blocks and blockquotes since they have unified backgrounds)
-    if (segment.backgroundColor && blockType !== 'code' && blockType !== 'blockquote') {
+    if (segment.backgroundColor) {
       const textWidth = pdf.getTextWidth(segment.text);
       const textHeight = segment.fontSize * 0.352778;
       pdf.setFillColor(segment.backgroundColor.r, segment.backgroundColor.g, segment.backgroundColor.b);
@@ -317,11 +317,6 @@ const renderCodeBlock = async (pdf: any, formattedSegments: any[], lineText: str
   // Text should start with proper top padding from the box top
   const textStartY = currentY + verticalPadding + lineHeight;
 
-  // Draw background rectangle
-  pdf.setFillColor(PDF_CONSTANTS.DEFAULT_COLORS.CODE_BG.r, PDF_CONSTANTS.DEFAULT_COLORS.CODE_BG.g, PDF_CONSTANTS.DEFAULT_COLORS.CODE_BG.b);
-  pdf.rect(boxStartX, currentY, boxWidth, blockHeight, 'F');
-
-  // Draw border around the entire box
   pdf.setDrawColor(PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.r, PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.g, PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.b);
   pdf.setLineWidth(0.5);
   pdf.rect(boxStartX, currentY, boxWidth, blockHeight, 'S');
@@ -402,6 +397,7 @@ const renderRegularParagraph = async (pdf: any, formattedSegments: any[], lineTe
 };
 
 const renderBlockType = async (pdf: any, blockType: string, formattedSegments: any[], lineText: string, currentY: number, maxWidth: number, alignment: string, pageWidth: number, pageHeight: number, block: any): Promise<number> => {
+  console.log('Rendering block type:', blockType);
   switch (blockType) {
     case 'blockquote':
       return await renderBlockQuote(pdf, formattedSegments, lineText, currentY, maxWidth, pageWidth);
@@ -667,45 +663,52 @@ const determineLineType = (attrs: any, currentLine: any): void => {
 };
 
 const processTextInsert = (text: string, attrs: any, currentLine: any, content: any[]): any => {
-  if (!text.includes('\n')) {
-    currentLine.segments.push({ text, attributes: attrs });
-    return currentLine;
-  }
+  const getBlockType = (attributes: any) => {
+    if (attributes.header) return 'header';
+    if (attributes['code-block']) return 'code';
+    if (attributes.blockquote) return 'blockquote';
+    if (attributes.list) return 'list';
+    return 'paragraph';
+  };
 
-  // Special handling for code blocks - keep all lines together in a single block
-  if (attrs['code-block']) {
-    // For code blocks, add the entire text as one segment with newlines preserved
-    currentLine.segments.push({ text, attributes: attrs });
-    return currentLine;
-  }
-
+  const blockType = getBlockType(attrs);
   const parts = text.split('\n');
 
-  // Add first part to current line (even if empty)
-  currentLine.segments.push({ text: parts[0] || '', attributes: attrs });
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
 
-  // Process complete lines (all but the last part)
-  for (let i = 0; i < parts.length - 1; i++) {
-    // Always push the current line (even if it's empty - this preserves empty lines)
-    determineLineType(attrs, currentLine);
-    content.push(currentLine);
+    // If the block type is different from the current line's type,
+    // push the old line and start a new one.
+    if (blockType !== currentLine.type) {
+      if (currentLine.segments.length > 0 && currentLine.segments.some((s: any) => s.text.trim() !== '')) {
+        content.push(currentLine);
+      }
+      currentLine = { type: blockType, segments: [], attributes: attrs };
+      determineLineType(attrs, currentLine);
+    }
 
-    // Start new line for next iteration
-    currentLine = { type: 'paragraph', segments: [], attributes: {} };
+    // Add the text part as a new segment if it has content or is not the last part.
+    if (part || i < parts.length - 1) {
+      currentLine.segments.push({ text: part, attributes: attrs });
+    }
 
-    // Add the next part (even if it's empty - this creates empty paragraphs)
-    if (i < parts.length - 2) {
-      const nextPart = parts[i + 1];
-      currentLine.segments.push({ text: nextPart || '', attributes: attrs });
+    // If there's a newline (i.e., not the last part of the split),
+    // we need to decide whether to end the current block.
+    if (i < parts.length - 1) {
+      // For paragraphs, headers, and lists, a newline creates a new block.
+      if (blockType === 'paragraph' || blockType === 'header' || blockType === 'list') {
+        content.push(currentLine);
+        // Start a new paragraph. If the next op continues a special block, it will be handled in the next call.
+        currentLine = { type: 'paragraph', segments: [], attributes: {} };
+      }
+      // For 'code' and 'blockquote', we do nothing here, allowing subsequent text
+      // with the same block attribute to be added to the same block.
     }
   }
 
-  // Handle last part (even if empty)
-  const lastPart = parts[parts.length - 1];
-  currentLine.segments.push({ text: lastPart || '', attributes: attrs });
-
   return currentLine;
 };
+
 
 const processObjectInsert = (insertObj: any, attrs: any, currentLine: any): void => {
   if (insertObj.image) {
@@ -871,14 +874,15 @@ export function mountHtmlToPdfTool() {
     </div>
 
     <div class="mt-6 space-y-3">
-      <div class="space-y-2">
-        <button id="text-pdf" class="btn-gradient w-full">Basic Text PDF (quill-to-pdf)</button>
-        <p class="text-sm text-gray-600 ml-2">• Fastest • Limited formatting • Selectable text • Smallest file size</p>
-      </div>
-      
+     
       <div class="space-y-2">
         <button id="advanced-pdf" class="btn-gradient w-full">Advanced Text PDF (Recommended)</button>
         <p class="text-sm text-gray-600 ml-2">• Good formatting • Selectable text • Small file size • Proper structure</p>
+      </div>
+
+      <div class="space-y-2">
+        <button id="text-pdf" class="btn-gradient w-full">Basic Text PDF (quill-to-pdf)</button>
+        <p class="text-sm text-gray-600 ml-2">• Fastest • Limited formatting • Selectable text • Smallest file size</p>
       </div>
       
       <div class="space-y-2">
