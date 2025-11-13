@@ -288,8 +288,8 @@ const renderBlockQuote = async (pdf: any, formattedSegments: any[], lineText: st
   const textHeight = textLines.length * lineHeight;
   const blockHeight = textHeight + (verticalPadding * 2);
 
-  // Corrected: Removed extra lineHeight from text start position
-  const textStartY = currentY + verticalPadding;
+  // Corrected: Position the start of the text correctly by adding the first line's height.
+  const textStartY = currentY + verticalPadding + (lineHeight * 0.8);
 
   // Draw background rectangle
   pdf.setFillColor(PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.r, PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.g, PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.b);
@@ -302,7 +302,7 @@ const renderBlockQuote = async (pdf: any, formattedSegments: any[], lineText: st
 
   // Render text inside the block
   await renderFormattedText(pdf, formattedSegments, lineText, textStartX, textStartY, availableTextWidth, 'left', 'blockquote', PDF_CONSTANTS.MARGIN, pageWidth, lineHeight);
-  renderFormattedText
+
   // Return position after the block
   return currentY + blockHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
 };
