@@ -62,7 +62,6 @@
     "pdfjs-dist": "^5.4.296",
     "pdfkit": "^0.17.2",
     "quill": "^2.0.3",
-    "quill-to-pdf": "^1.0.7",
     "sortablejs": "^1.15.6",
     "tailwindcss": "^4.1.14",
     "terser": "^5.44.0",

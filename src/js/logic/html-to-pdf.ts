@@ -1,8 +1,7 @@
-import { showLoader, hideLoader, showAlert } from '../ui.js';
+import { hideLoader, showAlert, showLoader } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import { pdfExporter } from 'quill-to-pdf';
 
 // Constants
 const PDF_CONSTANTS = {
@@ -50,17 +49,6 @@ const parseColor = (colorStr?: string): { r: number; g: number; b: number } => {
 
 const generateFilename = (): string =>
   `document-${new Date().toISOString().slice(0, 10)}.pdf`;
-
-const generateTextPDF = async (): Promise<void> => {
-  try {
-    const delta = quill.getContents();
-    const pdfBlob: Blob = await pdfExporter.generatePdf(delta);
-    downloadFile(pdfBlob, generateFilename());
-  } catch (error) {
-    console.error('Text PDF generation failed:', error);
-    showAlert('Error', 'Failed to generate text-based PDF. Try the Browser Print or Image PDF options.');
-  }
-};
 
 const extractAndProcessHtmlContent = (): string => {
   let htmlContent = quill.root.innerHTML;
@@ -200,8 +188,13 @@ const renderFormattedText = (
 
   for (const line of allLines) {
     const lineWidth = pdf.getTextWidth(line);
-    const lineStartX = getAlignedX(alignment, startX, lineWidth, pageWidth, margin);
-    let currentLineX = lineStartX;
+    let currentLineX = getAlignedX(
+      alignment,
+      startX,
+      lineWidth,
+      pageWidth,
+      margin
+    );
     let remainingLineText = line;
 
     while (remainingLineText.length > 0 && segmentIndex < formattedSegments.length) {
@@ -375,18 +368,6 @@ const processInlineImages = async (pdf: any, block: any, currentY: number, maxWi
   }
 
   return currentY;
-};
-
-const renderBlockType = async (pdf: any, blockType: string, formattedSegments: any[], lineText: string, currentY: number, maxWidth: number, alignment: string, pageWidth: number, pageHeight: number, block: any): Promise<number> => {
-  console.log('Rendering block type:', blockType);
-  switch (blockType) {
-    case 'blockquote':
-      return await renderBlockQuote(pdf, formattedSegments, lineText, currentY, maxWidth, pageWidth);
-    case 'code':
-      return await renderCodeBlock(pdf, formattedSegments, lineText, currentY, maxWidth, pageWidth);
-    default:
-      return await renderRegularParagraph(pdf, formattedSegments, lineText, currentY, maxWidth, alignment, pageWidth, pageHeight, block);
-  }
 };
 
 const generateAdvancedTextPdf = async (): Promise<void> => {
@@ -591,74 +572,6 @@ const determineLineType = (attrs: any, currentLine: any): void => {
   currentLine.attributes = attrs;
 };
 
-const processTextInsert = (text: string, attrs: any, currentLine: any, content: any[]): any => {
-  const getBlockType = (attributes: any) => {
-    if (attributes.header) return 'header';
-    if (attributes['code-block']) return 'code';
-    if (attributes.blockquote) return 'blockquote';
-    if (attributes.list) return 'list';
-    return 'paragraph';
-  };
-
-  const blockType = getBlockType(attrs);
-  const parts = text.split('\n');
-
-  parts.forEach((part, i) => {
-    const isLastPart = i === parts.length - 1;
-
-    // If the block type is different, finalize the previous line and start a new one.
-    // This is the key change: we check type on every part.
-    if (blockType !== currentLine.type && currentLine.segments.length > 0) {
-      if (currentLine.segments.some((s: any) => s.text.trim() !== '')) {
-        content.push(currentLine);
-      }
-      // Start a new line with the correct type
-      currentLine = { type: blockType, segments: [], attributes: attrs };
-      determineLineType(attrs, currentLine);
-    } else if (blockType !== currentLine.type) {
-      // If the current line is empty but the type is changing, just switch the type.
-      currentLine.type = blockType;
-      determineLineType(attrs, currentLine);
-    }
-
-    // Add the text part as a new segment if it has content.
-    if (part) {
-      currentLine.segments.push({ text: part, attributes: attrs });
-    }
-
-    // If there's a newline (i.e., not the last part), finalize the current line.
-    if (!isLastPart) {
-      content.push(currentLine);
-      // Start a new line. For code/blockquote, the next op will continue it.
-      // For others, it correctly starts a new paragraph.
-      currentLine = { type: 'paragraph', segments: [], attributes: {} };
-    }
-  });
-
-  return currentLine;
-};
-
-const processObjectInsert = (insertObj: any, attrs: any, currentLine: any): void => {
-  if (insertObj.image) {
-    currentLine.segments.push({
-      type: 'image',
-      src: insertObj.image,
-      attributes: attrs
-    });
-  } else if (insertObj.link) {
-    currentLine.segments.push({
-      type: 'link',
-      url: insertObj.link,
-      attributes: attrs
-    });
-  } else {
-    currentLine.segments.push({
-      text: '[Embed]',
-      attributes: attrs
-    });
-  }
-};
-
 const parseQuillDelta = (delta: any): any[] => {
   if (!delta || !delta.ops) return [];
 
@@ -844,7 +757,7 @@ const generateAdvancedPdf = async (): Promise<void> => {
 export async function htmlToPdf() {
   showLoader('Creating PDF...');
   try {
-    await generateTextPDF();
+    await generateAdvancedTextPdf();
   } catch (e) {
     console.error(e);
     showAlert('Error', 'Failed to create PDF from text.');
@@ -852,8 +765,6 @@ export async function htmlToPdf() {
     hideLoader();
   }
 }
-
-
 
 export function mountHtmlToPdfTool() {
   const container = document.querySelector('#html-to-pdf-container');
@@ -867,18 +778,13 @@ export function mountHtmlToPdfTool() {
     <div class="mt-6 space-y-3">
      
       <div class="space-y-2">
-        <button id="advanced-pdf" class="btn-gradient w-full">Advanced Text PDF (Recommended)</button>
-        <p class="text-sm text-gray-600 ml-2">• Good formatting • Selectable text • Small file size • Proper structure</p>
-      </div>
-
-      <div class="space-y-2">
-        <button id="text-pdf" class="btn-gradient w-full">Basic Text PDF (quill-to-pdf)</button>
-        <p class="text-sm text-gray-600 ml-2">• Fastest • Limited formatting • Selectable text • Smallest file size</p>
+        <button id="advanced-pdf" class="btn-gradient w-full">Advanced Text PDF</button>
+        <p class="text-sm text-gray-600 ml-2">• Good formatting • Small file size • Proper structure</p>
       </div>
       
       <div class="space-y-2">
         <button id="print-to-pdf" class="btn-outline w-full">Browser Print to PDF</button>
-        <p class="text-sm text-gray-600 ml-2">• Best formatting • Selectable text • Uses browser engine • Requires user interaction</p>
+        <p class="text-sm text-gray-600 ml-2">• Best formatting • Uses browser engine • Requires user interaction</p>
       </div>
     </div>
   `;
@@ -1053,7 +959,6 @@ export function mountHtmlToPdfTool() {
   }, 100);
 
   // ---- Button handlers ----
-  document.getElementById('text-pdf')?.addEventListener('click', htmlToPdf);
   document.getElementById('advanced-pdf')?.addEventListener('click', generateAdvancedPdf);
   document.getElementById('print-to-pdf')?.addEventListener('click', usePrintToPdf);
 }
