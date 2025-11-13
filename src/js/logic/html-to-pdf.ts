@@ -731,11 +731,9 @@ const processObjectInsert = (insertObj: any, attrs: any, currentLine: any): void
 };
 
 const parseQuillDelta = (delta: any): any[] => {
+  if (!delta || !delta.ops) return [];
+
   const content: any[] = [];
-  if (!delta || !delta.ops) return content;
-
-  let currentLine: any = { type: 'paragraph', segments: [], attributes: {} };
-
   const getBlockType = (attributes: any) => {
     if (attributes.header) return 'header';
     if (attributes['code-block']) return 'code';
@@ -744,63 +742,68 @@ const parseQuillDelta = (delta: any): any[] => {
     return 'paragraph';
   };
 
-  const finalizeLine = () => {
-    if (currentLine.segments.length > 0) {
-      // Push the line only if it has meaningful content or is part of a code block
-      const hasText = currentLine.segments.some((s: any) => s.text && s.text.trim() !== '');
-      const isCodeOrBQ = currentLine.type === 'code' || currentLine.type === 'blockquote';
-      if (hasText || isCodeOrBQ) {
-        content.push(currentLine);
+  // Group ops into lines based on newline characters
+  const lines = delta.ops.reduce((acc: any[][], op: any) => {
+    if (typeof op.insert !== 'string') {
+      acc[acc.length - 1].push(op);
+      return acc;
+    }
+
+    const parts = op.insert.split('\n');
+    parts.forEach((part, index) => {
+      if (index > 0) {
+        // A newline was found, so start a new line group
+        acc.push([]);
+      }
+      if (part) {
+        // Add the text part to the current line group
+        acc[acc.length - 1].push({ insert: part, attributes: op.attributes });
+      }
+    });
+
+    // If the op ends with a newline, the attributes of that op apply to the line.
+    // We capture this by adding the original op (with its attributes) to the line it terminates.
+    if (op.insert.endsWith('\n')) {
+        acc[acc.length - 2].push(op);
+    }
+
+
+    return acc;
+  }, [[]]);
+
+  // Process each line group into a content block
+  for (const lineOps of lines) {
+    if (lineOps.length === 0) continue;
+
+    // Find the op that defines the block type (usually the one with the newline)
+    const blockOp = lineOps.find(op => op.attributes && (op.attributes.header || op.attributes['code-block'] || op.attributes.blockquote || op.attributes.list)) || {};
+    const blockAttrs = blockOp.attributes || {};
+    const blockType = getBlockType(blockAttrs);
+
+    const currentBlock: any = {
+      type: blockType,
+      segments: [],
+      attributes: blockAttrs,
+    };
+    determineLineType(blockAttrs, currentBlock);
+
+    // Create segments for the line
+    for (const op of lineOps) {
+      if (typeof op.insert === 'string') {
+        currentBlock.segments.push({ text: op.insert, attributes: op.attributes || {} });
+      } else if (op.insert && op.insert.image) {
+        currentBlock.segments.push({ type: 'image', src: op.insert.image, attributes: op.attributes || {} });
+      } else if (op.insert && op.insert.link) {
+        currentBlock.segments.push({ type: 'link', url: op.insert.link, attributes: op.attributes || {} });
       }
     }
-  };
 
-  for (const op of delta.ops) {
-    const attrs = op.attributes || {};
-    const blockType = getBlockType(attrs);
-
-    if (typeof op.insert === 'string') {
-      const lines = op.insert.split('\n');
-
-      lines.forEach((line, i) => {
-        const isLastLineOfOp = i === lines.length - 1;
-
-        // A newline character in the delta op signifies a block-level change or a line break.
-        if (!isLastLineOfOp) {
-          // This part of the string is a full line ending with a newline.
-          if (line) {
-            currentLine.segments.push({ text: line, attributes: attrs });
-          }
-          finalizeLine();
-
-          // Start a new line. The type is determined by the current op's attributes.
-          // If the op is just `\n` with a block attribute, this sets up the new block type.
-          currentLine = { type: blockType, segments: [], attributes: attrs };
-          determineLineType(attrs, currentLine);
-
-        } else {
-          // This is the last part of the string (or the only part if no newlines).
-          // It does not end with a newline, so it's part of the current line.
-          if (line) {
-            // If the block type of this op is different from the current line,
-            // it indicates a style change within the same line.
-            if (blockType !== 'paragraph' && currentLine.type === 'paragraph') {
-                 currentLine.type = blockType;
-                 determineLineType(attrs, currentLine);
-            }
-            currentLine.segments.push({ text: line, attributes: attrs });
-          }
-        }
-      });
-    } else if (op.insert && typeof op.insert === 'object') {
-      processObjectInsert(op.insert, op.attributes || {}, currentLine);
+    if (currentBlock.segments.length > 0) {
+      content.push(currentBlock);
     }
   }
 
-  // Push the very last line if it has content
-  finalizeLine();
-
-  // A final pass to merge consecutive code/blockquote blocks
+  // Merge consecutive code/blockquote blocks
   if (content.length < 2) return content;
 
   const mergedContent = [content[0]];
@@ -808,45 +811,7 @@ const parseQuillDelta = (delta: any): any[] => {
     const prev = mergedContent[mergedContent.length - 1];
     const curr = content[i];
     if ((curr.type === 'code' && prev.type === 'code') || (curr.type === 'blockquote' && prev.type === 'blockquote')) {
-      // Add a newline segment before merging to preserve line breaks
       prev.segments.push({ text: '\n', attributes: {} });
-      prev.segments.push(...curr.segments);
-    } else {
-      mergedContent.push(curr);
-    }
-  }
-
-  return mergedContent;
-};
-
-const parseQuillDelta_old = (delta: any): any[] => {
-  const content: any[] = [];
-  if (!delta || !delta.ops) return content;
-
-  let currentLine: any = { type: 'paragraph', segments: [], attributes: {} };
-
-  for (const op of delta.ops) {
-    if (typeof op.insert === 'string') {
-      console.log('deltas: ', op);
-      currentLine = processTextInsert(op.insert, op.attributes || {}, currentLine, content);
-    } else if (typeof op.insert === 'object') {
-      processObjectInsert(op.insert, op.attributes || {}, currentLine);
-    }
-  }
-
-  // Push the very last line if it has content
-  if (currentLine.segments.length > 0 && currentLine.segments.some((s: any) => s.text.trim() !== '')) {
-    content.push(currentLine);
-  }
-
-  // A final pass to merge consecutive code/blockquote blocks
-  if (content.length < 2) return content;
-
-  const mergedContent = [content[0]];
-  for (let i = 1; i < content.length; i++) {
-    const prev = mergedContent[mergedContent.length - 1];
-    const curr = content[i];
-    if ((curr.type === 'code' && prev.type === 'code') || (curr.type === 'blockquote' && prev.type === 'blockquote')) {
       prev.segments.push(...curr.segments);
     } else {
       mergedContent.push(curr);
