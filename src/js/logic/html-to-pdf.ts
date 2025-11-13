@@ -188,17 +188,13 @@ const renderFormattedText = (
   pageWidth: number,
   lineHeight: number = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT
 ): number => {
-  if (!formattedSegments.length) return startY;
+  if (!formattedSegments.length && !fullText.trim()) {
+    return startY + lineHeight;
+  }
 
-  let currentX = startX;
   let currentY = startY;
-  let totalLines = 0;
-
-  // First, calculate the total number of lines the full text will occupy
   const allLines = pdf.splitTextToSize(fullText, maxWidth);
-  const totalTextHeight = allLines.length * lineHeight;
 
-  // Now, render segments line by line
   let segmentIndex = 0;
   let consumedTextInSegment = 0;
 
@@ -220,7 +216,7 @@ const renderFormattedText = (
 
       const textToRender = remainingLineText.startsWith(remainingSegmentText)
         ? remainingSegmentText
-        : remainingLineText;
+        : remainingLineText.substring(0, remainingSegmentText.length);
 
       const { adjustedFontSize, yOffset } = calculateScriptFormatting(segment);
       pdf.setFont(segment.fontFamily, segment.fontStyle);
@@ -243,13 +239,10 @@ const renderFormattedText = (
       remainingLineText = remainingLineText.substring(textToRender.length);
     }
     currentY += lineHeight;
-    totalLines++;
   }
 
-  // Return the final Y position, ensuring at least one line height is added for non-empty text
-  return startY + Math.max(totalLines, allLines.length) * lineHeight;
+  return currentY;
 };
-
 const getFontStyle = (attrs: any): string => {
   if (attrs.bold && attrs.italic) return 'bolditalic';
   if (attrs.bold) return 'bold';
@@ -283,74 +276,62 @@ const renderImagePlaceholder = (pdf: any, message: string, currentY: number): nu
 
 const renderBlockQuote = async (pdf: any, formattedSegments: any[], lineText: string, currentY: number, maxWidth: number, pageWidth: number): Promise<number> => {
   const boxStartX = PDF_CONSTANTS.MARGIN;
-  const textPadding = 8; // Horizontal padding
+  const textPadding = 8;
   const verticalPadding = 5;
   const textStartX = boxStartX + textPadding;
   const availableTextWidth = maxWidth - (textPadding * 2);
+  const lineHeight = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9;
 
+  pdf.setFont('helvetica', 'normal');
+  pdf.setFontSize(11);
   const textLines = pdf.splitTextToSize(lineText, availableTextWidth);
-  const textHeight = textLines.length * PDF_CONSTANTS.DEFAULT_LINE_HEIGHT;
-  const blockHeight = textHeight + (verticalPadding * 2); // Top + bottom padding
-  const boxWidth = maxWidth;
+  const textHeight = textLines.length * lineHeight;
+  const blockHeight = textHeight + (verticalPadding * 2);
 
-  // Text should start with proper top padding from the box top
-  // Improved baseline calculation for better vertical centering
-  const textStartY = currentY + verticalPadding + (PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9); // Better baseline offset
+  // Corrected: Removed extra lineHeight from text start position
+  const textStartY = currentY + verticalPadding;
 
   // Draw background rectangle
   pdf.setFillColor(PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.r, PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.g, PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.b);
-  pdf.rect(boxStartX, currentY, boxWidth, blockHeight, 'F');
+  pdf.rect(boxStartX, currentY, maxWidth, blockHeight, 'F');
 
   // Draw left border line
   pdf.setDrawColor(PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.r, PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.g, PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.b);
   pdf.setLineWidth(2);
   pdf.line(boxStartX, currentY, boxStartX, currentY + blockHeight);
 
-  // Render text with proper vertical positioning inside the box and tighter line spacing
-  await renderFormattedText(pdf, formattedSegments, lineText, textStartX, textStartY, availableTextWidth, 'left', 'blockquote', PDF_CONSTANTS.MARGIN, pageWidth, PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9);
-
+  // Render text inside the block
+  await renderFormattedText(pdf, formattedSegments, lineText, textStartX, textStartY, availableTextWidth, 'left', 'blockquote', PDF_CONSTANTS.MARGIN, pageWidth, lineHeight);
+  renderFormattedText
   // Return position after the block
   return currentY + blockHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
 };
 
 const renderCodeBlock = async (pdf: any, formattedSegments: any[], lineText: string, currentY: number, maxWidth: number, pageWidth: number): Promise<number> => {
-  // Consistent positioning with blockquote
   const boxStartX = PDF_CONSTANTS.MARGIN;
-  const textPadding = 8; // Horizontal padding
+  const textPadding = 8;
   const verticalPadding = 5;
   const textStartX = boxStartX + textPadding;
   const availableTextWidth = maxWidth - (textPadding * 2);
+  const lineHeight = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9;
 
-  // Set code block font for proper measurement
   pdf.setFont('courier', 'normal');
   pdf.setFontSize(10);
 
-  // Split text properly to handle newlines and word wrapping
   const textLines = pdf.splitTextToSize(lineText, availableTextWidth);
-  const lineHeight = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9;
   const textHeight = textLines.length * lineHeight;
-  const blockHeight = textHeight + (verticalPadding * 2); // Top + bottom padding
-  const boxWidth = maxWidth;
+  const blockHeight = textHeight + (verticalPadding * 2);
 
-  // Text should start with proper top padding from the box top
-  const textStartY = currentY + verticalPadding + lineHeight;
+  const textStartY = currentY + verticalPadding + (lineHeight * 0.8);
 
   pdf.setDrawColor(PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.r, PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.g, PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.b);
   pdf.setLineWidth(0.5);
-  pdf.rect(boxStartX, currentY, boxWidth, blockHeight, 'S');
+  pdf.rect(boxStartX, currentY, maxWidth, blockHeight, 'S');
 
-  // Render text directly without using renderFormattedText to avoid complications
-  pdf.setTextColor(0, 0, 0);
-  let currentTextY = textStartY;
-  for (const line of textLines) {
-    pdf.text(line, textStartX, currentTextY);
-    currentTextY += lineHeight;
-  }
+  await renderFormattedText(pdf, formattedSegments, lineText, textStartX, textStartY, availableTextWidth, 'left', 'code', PDF_CONSTANTS.MARGIN, pageWidth, lineHeight);
 
-  // Return position after the block
   return currentY + blockHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
 };
-
 const processInlineImages = async (pdf: any, block: any, currentY: number, maxWidth: number, pageHeight: number): Promise<number> => {
   if (!block.images?.length) return currentY;
 
@@ -594,6 +575,7 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
   }
 };
 
+
 const determineLineType = (attrs: any, currentLine: any): void => {
   if (attrs.header) {
     currentLine.type = 'header';
@@ -689,68 +671,63 @@ const parseQuillDelta = (delta: any): any[] => {
     return 'paragraph';
   };
 
-  // Group ops into lines based on newline characters
-  const lines = delta.ops.reduce((acc: any[][], op: any) => {
+  let lineOps: any[] = [];
+  for (const op of delta.ops) {
     if (typeof op.insert !== 'string') {
-      acc[acc.length - 1].push(op);
-      return acc;
+      lineOps.push(op);
+      continue;
     }
 
     const parts = op.insert.split('\n');
-    parts.forEach((part, index) => {
-      if (index > 0) {
-        // A newline was found, so start a new line group
-        acc.push([]);
-      }
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i];
       if (part) {
-        // Add the text part to the current line group
-        acc[acc.length - 1].push({ insert: part, attributes: op.attributes });
+        lineOps.push({ insert: part, attributes: op.attributes });
       }
-    });
 
-    // If the op ends with a newline, the attributes of that op apply to the line.
-    // We capture this by adding the original op (with its attributes) to the line it terminates.
-    if (op.insert.endsWith('\n')) {
-        acc[acc.length - 2].push(op);
+      if (i < parts.length - 1) {
+        const blockOp = lineOps.find(o => o.attributes && (o.attributes.header || o.attributes['code-block'] || o.attributes.blockquote || o.attributes.list)) || op;
+        const blockAttrs = blockOp.attributes || {};
+        const blockType = getBlockType(blockAttrs);
+
+        const currentBlock: any = {
+          type: blockType,
+          segments: [],
+          attributes: blockAttrs,
+        };
+        determineLineType(blockAttrs, currentBlock);
+
+        for (const lineOp of lineOps) {
+          if (typeof lineOp.insert === 'string') {
+            currentBlock.segments.push({ text: lineOp.insert, attributes: lineOp.attributes || {} });
+          } else if (lineOp.insert && lineOp.insert.image) {
+            currentBlock.segments.push({ type: 'image', src: lineOp.insert.image, attributes: lineOp.attributes || {} });
+          }
+        }
+        content.push(currentBlock);
+        lineOps = [];
+      }
     }
+  }
 
-
-    return acc;
-  }, [[]]);
-
-  // Process each line group into a content block
-  for (const lineOps of lines) {
-    if (lineOps.length === 0) continue;
-
-    // Find the op that defines the block type (usually the one with the newline)
+  if (lineOps.length > 0) {
     const blockOp = lineOps.find(op => op.attributes && (op.attributes.header || op.attributes['code-block'] || op.attributes.blockquote || op.attributes.list)) || {};
     const blockAttrs = blockOp.attributes || {};
     const blockType = getBlockType(blockAttrs);
-
-    const currentBlock: any = {
-      type: blockType,
-      segments: [],
-      attributes: blockAttrs,
-    };
+    const currentBlock: any = { type: blockType, segments: [], attributes: blockAttrs };
     determineLineType(blockAttrs, currentBlock);
-
-    // Create segments for the line
     for (const op of lineOps) {
       if (typeof op.insert === 'string') {
         currentBlock.segments.push({ text: op.insert, attributes: op.attributes || {} });
       } else if (op.insert && op.insert.image) {
         currentBlock.segments.push({ type: 'image', src: op.insert.image, attributes: op.attributes || {} });
-      } else if (op.insert && op.insert.link) {
-        currentBlock.segments.push({ type: 'link', url: op.insert.link, attributes: op.attributes || {} });
       }
     }
-
     if (currentBlock.segments.length > 0) {
       content.push(currentBlock);
     }
   }
 
-  // Merge consecutive code/blockquote blocks
   if (content.length < 2) return content;
 
   const mergedContent = [content[0]];
@@ -767,7 +744,6 @@ const parseQuillDelta = (delta: any): any[] => {
 
   return mergedContent;
 };
-
 const generatePrintCSS = (): string => `
   @page { margin: 20mm; size: A4; }
   
