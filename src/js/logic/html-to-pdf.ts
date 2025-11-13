@@ -187,49 +187,67 @@ const renderFormattedText = (
   margin: number,
   pageWidth: number,
   lineHeight: number = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT
-) => {
-  if (!formattedSegments.length) return;
+): number => {
+  if (!formattedSegments.length) return startY;
 
   let currentX = startX;
   let currentY = startY;
+  let totalLines = 0;
 
-  for (const segment of formattedSegments) {
-    const { adjustedFontSize, yOffset } = calculateScriptFormatting(segment);
+  // First, calculate the total number of lines the full text will occupy
+  const allLines = pdf.splitTextToSize(fullText, maxWidth);
+  const totalTextHeight = allLines.length * lineHeight;
 
-    pdf.setFont(segment.fontFamily, segment.fontStyle);
-    pdf.setFontSize(adjustedFontSize);
-    pdf.setTextColor(segment.textColor.r, segment.textColor.g, segment.textColor.b);
+  // Now, render segments line by line
+  let segmentIndex = 0;
+  let consumedTextInSegment = 0;
 
-    // Handle background color (completely skip for code blocks and blockquotes since they have unified backgrounds)
-    if (segment.backgroundColor) {
-      const textWidth = pdf.getTextWidth(segment.text);
-      const textHeight = segment.fontSize * 0.352778;
-      pdf.setFillColor(segment.backgroundColor.r, segment.backgroundColor.g, segment.backgroundColor.b);
-      pdf.rect(currentX, currentY - textHeight, textWidth, textHeight * 1.2, 'F');
-    }
+  for (const line of allLines) {
+    const lineWidth = pdf.getTextWidth(line);
+    const lineStartX = getAlignedX(alignment, startX, lineWidth, pageWidth, margin);
+    let currentLineX = lineStartX;
+    let remainingLineText = line;
 
-    const textLines = pdf.splitTextToSize(segment.text, maxWidth);
+    while (remainingLineText.length > 0 && segmentIndex < formattedSegments.length) {
+      const segment = formattedSegments[segmentIndex];
+      const remainingSegmentText = segment.text.substring(consumedTextInSegment);
 
-    textLines.forEach((line: string, i: number) => {
-      const lineWidth = pdf.getTextWidth(line);
-      const renderX = getAlignedX(alignment, currentX, lineWidth, pageWidth, margin);
-
-      pdf.text(line, renderX, currentY + yOffset);
-      renderTextDecorations(pdf, segment, renderX, currentY, yOffset, lineWidth, adjustedFontSize);
-
-      if (i < textLines.length - 1) {
-        currentY += lineHeight;
+      if (!remainingSegmentText) {
+        segmentIndex++;
+        consumedTextInSegment = 0;
+        continue;
       }
-    });
 
-    // Position for next segment
-    if (textLines.length === 1) {
-      currentX += pdf.getTextWidth(segment.text);
-    } else {
-      currentX = startX;
-      currentY += lineHeight;
+      const textToRender = remainingLineText.startsWith(remainingSegmentText)
+        ? remainingSegmentText
+        : remainingLineText;
+
+      const { adjustedFontSize, yOffset } = calculateScriptFormatting(segment);
+      pdf.setFont(segment.fontFamily, segment.fontStyle);
+      pdf.setFontSize(adjustedFontSize);
+      pdf.setTextColor(segment.textColor.r, segment.textColor.g, segment.textColor.b);
+
+      if (segment.backgroundColor) {
+        const segmentWidth = pdf.getTextWidth(textToRender);
+        const textHeight = segment.fontSize * 0.352778;
+        pdf.setFillColor(segment.backgroundColor.r, segment.backgroundColor.g, segment.backgroundColor.b);
+        pdf.rect(currentLineX, currentY - textHeight, segmentWidth, textHeight * 1.2, 'F');
+      }
+
+      pdf.text(textToRender, currentLineX, currentY + yOffset);
+      const renderedWidth = pdf.getTextWidth(textToRender);
+      renderTextDecorations(pdf, segment, currentLineX, currentY, yOffset, renderedWidth, adjustedFontSize);
+
+      currentLineX += renderedWidth;
+      consumedTextInSegment += textToRender.length;
+      remainingLineText = remainingLineText.substring(textToRender.length);
     }
+    currentY += lineHeight;
+    totalLines++;
   }
+
+  // Return the final Y position, ensuring at least one line height is added for non-empty text
+  return startY + Math.max(totalLines, allLines.length) * lineHeight;
 };
 
 const getFontStyle = (attrs: any): string => {
@@ -378,24 +396,6 @@ const processInlineImages = async (pdf: any, block: any, currentY: number, maxWi
   return currentY;
 };
 
-const renderRegularParagraph = async (pdf: any, formattedSegments: any[], lineText: string, currentY: number, maxWidth: number, alignment: string, pageWidth: number, pageHeight: number, block: any): Promise<number> => {
-  // Note: Text rendering for paragraphs is now handled in the main flow to prevent doubling
-  // This function only handles post-text processing like images and positioning
-
-  // Process inline images
-  currentY = await processInlineImages(pdf, block, currentY, maxWidth, pageHeight);
-
-  // Calculate spacing - handle empty paragraphs differently
-  if (!lineText.trim()) {
-    // Empty paragraph - no additional spacing since it was already added in main flow
-    return currentY + PDF_CONSTANTS.PARAGRAPH_SPACING;
-  } else {
-    // Non-empty paragraph - add text height and spacing
-    const textLines = pdf.splitTextToSize(lineText, maxWidth);
-    return currentY + textLines.length * PDF_CONSTANTS.DEFAULT_LINE_HEIGHT + PDF_CONSTANTS.PARAGRAPH_SPACING;
-  }
-};
-
 const renderBlockType = async (pdf: any, blockType: string, formattedSegments: any[], lineText: string, currentY: number, maxWidth: number, alignment: string, pageWidth: number, pageHeight: number, block: any): Promise<number> => {
   console.log('Rendering block type:', blockType);
   switch (blockType) {
@@ -436,122 +436,91 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
         currentY = PDF_CONSTANTS.MARGIN;
       }
 
-      let startX = PDF_CONSTANTS.MARGIN;
-      let alignment = block.attributes?.align || 'left';
+      const startX = PDF_CONSTANTS.MARGIN;
+      const alignment = block.attributes?.align || 'left';
 
+      // Process text segments with formatting for all relevant block types
+      let lineText = '';
+      const formattedSegments: any[] = [];
+
+      for (const segment of block.segments) {
+        const attrs = segment.attributes || {};
+
+        if (segment.type === 'image') {
+          if (!block.images) block.images = [];
+          block.images.push({ src: segment.src, position: lineText.length });
+          continue;
+        } else if (segment.type === 'link') {
+          lineText += `[LINK: ${segment.url}]`;
+          continue;
+        }
+
+        const segmentText = segment.text || '';
+        const fontStyle = getFontStyle(attrs);
+        const segmentSize = getFontSize(block.type, attrs);
+        const fontFamily = getFontFamily(block.type, attrs);
+        let textColor = parseColor(attrs.color);
+
+        if (attrs.link) {
+          textColor = PDF_CONSTANTS.DEFAULT_COLORS.LINK_BLUE;
+          if (!block.links) block.links = [];
+          block.links.push({ text: segmentText, url: attrs.link, startIndex: lineText.length, length: segmentText.length });
+        }
+
+        let backgroundColor = null;
+        if (attrs.background && block.type !== 'code' && block.type !== 'blockquote') {
+          const bgColor = parseColor(attrs.background);
+          if (bgColor !== PDF_CONSTANTS.DEFAULT_COLORS.BLACK) {
+            backgroundColor = bgColor;
+          }
+        }
+
+        formattedSegments.push({
+          text: segmentText,
+          fontFamily,
+          fontStyle,
+          fontSize: segmentSize,
+          textColor,
+          backgroundColor,
+          underline: attrs.underline || false,
+          strike: attrs.strike || attrs.strikethrough || false,
+          script: attrs.script || null,
+          startIndex: lineText.length,
+          endIndex: lineText.length + segmentText.length
+        });
+
+        lineText += segmentText;
+      }
+
+      // Render based on block type
       switch (block.type) {
         case 'header':
           const fontSize = PDF_CONSTANTS.HEADER_SIZES[block.level as keyof typeof PDF_CONSTANTS.HEADER_SIZES] || 12;
           pdf.setFont('helvetica', 'bold');
           pdf.setFontSize(fontSize);
-          currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.7; // Reduced header top spacing
+          currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.7;
+          pdf.text(lineText, startX, currentY);
+          currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.8 + PDF_CONSTANTS.PARAGRAPH_SPACING;
+          break;
 
-          const headerText = block.segments.map((seg: any) => seg.text).join('');
-          pdf.text(headerText, startX, currentY);
-          currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.8 + PDF_CONSTANTS.PARAGRAPH_SPACING; // Reduced header bottom spacing
+        case 'blockquote':
+          currentY = await renderBlockQuote(pdf, formattedSegments, lineText, currentY, maxWidth, pageWidth);
+          break;
+
+        case 'code':
+          currentY = await renderCodeBlock(pdf, formattedSegments, lineText, currentY, maxWidth, pageWidth);
           break;
 
         case 'paragraph':
-        case 'blockquote':
-        case 'code':
-          currentY += 1; // Reduced top spacing
-
-          // Process text segments with formatting
-          let lineText = '';
-          let currentX: number = startX;
-
-          // Store formatted text segments for proper rendering
-          const formattedSegments: any[] = [];
-
-          for (const segment of block.segments) {
-            const attrs = segment.attributes || {};
-
-            if (segment.type === 'image') {
-              // Handle images - try to load and embed, fallback to placeholder
-              try {
-                // Store image info for processing after text
-                if (!block.images) block.images = [];
-                block.images.push({
-                  src: segment.src,
-                  position: lineText.length
-                });
-              } catch (error) {
-                lineText += '[IMAGE: Error loading]';
-              }
-              continue;
-            } else if (segment.type === 'link') {
-              // Handle links
-              lineText += `[LINK: ${segment.url}]`;
-              continue;
-            }
-
-            // Handle regular text segments with proper formatting
-            const segmentText = segment.text || '';
-
-            const fontStyle = getFontStyle(attrs);
-            const segmentSize = getFontSize(block.type, attrs);
-            const fontFamily = getFontFamily(block.type, attrs);
-
-            // Parse colors
-            let textColor = parseColor(attrs.color);
-
-            // Handle link formatting (override color with blue)
-            if (attrs.link) {
-              textColor = PDF_CONSTANTS.DEFAULT_COLORS.LINK_BLUE;
-
-              // Store link info for later processing
-              if (!block.links) block.links = [];
-              block.links.push({
-                text: segmentText,
-                url: attrs.link,
-                startIndex: lineText.length,
-                length: segmentText.length
-              });
-            }
-
-            // Parse background color (skip for code blocks since they have unified backgrounds)
-            let backgroundColor = null;
-            if (attrs.background && block.type !== 'code') {
-              const bgColor = parseColor(attrs.background);
-              if (bgColor !== PDF_CONSTANTS.DEFAULT_COLORS.BLACK) {
-                backgroundColor = bgColor;
-              }
-            }
-
-            // Store formatted segment for rendering
-            formattedSegments.push({
-              text: segmentText,
-              fontFamily,
-              fontStyle,
-              fontSize: segmentSize,
-              textColor,
-              backgroundColor,
-              underline: attrs.underline || false,
-              strike: attrs.strike || attrs.strikethrough || false,
-              script: attrs.script || null, // Add script attribute for super/sub
-              startIndex: lineText.length,
-              endIndex: lineText.length + segmentText.length
-            });
-
-            lineText += segmentText;
-          }
-
-          // Handle different block types with visual indicators
-          // Note: blockquote and code blocks handle their own text rendering, paragraphs need separate rendering
-          if (block.type === 'paragraph') {
-            if (formattedSegments.length > 0 && lineText.trim()) {
-              // Render formatted text segments for non-empty paragraphs with tighter line spacing
-              await renderFormattedText(pdf, formattedSegments, lineText, currentX, currentY, maxWidth, alignment, block.type, PDF_CONSTANTS.MARGIN, pageWidth, PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9);
-            } else if (!lineText.trim()) {
-              // Handle empty paragraph - add minimal spacing to preserve the empty line
-              currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.8;
-            }
-            // For paragraphs, still call renderBlockType for post-processing (images, spacing)
-            currentY = await renderBlockType(pdf, block.type, formattedSegments, lineText, currentY, maxWidth, alignment, pageWidth, pageHeight, block);
+          if (lineText.trim()) {
+            currentY = renderFormattedText(pdf, formattedSegments, lineText, startX, currentY, maxWidth, alignment, block.type, PDF_CONSTANTS.MARGIN, pageWidth, PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9);
           } else {
-            // For blockquotes and code blocks, let renderBlockType handle everything including text rendering
-            currentY = await renderBlockType(pdf, block.type, formattedSegments, lineText, currentY, maxWidth, alignment, pageWidth, pageHeight, block);
+            // Handle empty lines by adding a standard line height.
+            currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT;
           }
+          // Add spacing after the paragraph and process any inline images.
+          currentY += PDF_CONSTANTS.PARAGRAPH_SPACING;
+          currentY = await processInlineImages(pdf, block, currentY, maxWidth, pageHeight);
           break;
 
         case 'list':
@@ -559,62 +528,42 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
           pdf.setFontSize(12);
           pdf.setTextColor(0, 0, 0);
 
-          // Reset list counter if list type changed
           if (lastListType !== block.type + (block.ordered ? 'ordered' : 'unordered')) {
             currentListNumber = 1;
             lastListType = block.type + (block.ordered ? 'ordered' : 'unordered');
           }
 
-          const listText = block.segments.map((seg: any) => seg.text || (seg.type === 'image' ? '[IMAGE]' : seg.type === 'link' ? `[${seg.url}]` : '')).join('');
-          let bullet;
-          if (block.ordered) {
-            bullet = `${currentListNumber}. `;
-            currentListNumber++;
-          } else {
-            bullet = '• ';
-          }
-
-          const listLines = pdf.splitTextToSize(bullet + listText, maxWidth - 15);
+          const bullet = block.ordered ? `${currentListNumber++}. ` : '• ';
+          const listLines = pdf.splitTextToSize(bullet + lineText, maxWidth - 15);
           pdf.text(listLines, PDF_CONSTANTS.MARGIN + 10, currentY);
-          currentY += listLines.length * PDF_CONSTANTS.DEFAULT_LINE_HEIGHT + 1.5; // Reduced from +3 to +1.5
+          currentY += listLines.length * PDF_CONSTANTS.DEFAULT_LINE_HEIGHT + 1.5;
           break;
 
         case 'image':
-          // Handle standalone images
           try {
             const imageSegment = block.segments.find((seg: any) => seg.type === 'image');
-            if (imageSegment && imageSegment.src) {
-              // Try to load and embed the actual image
+            if (imageSegment?.src) {
               const imageData = await loadImageAsBase64(imageSegment.src);
-
               if (imageData) {
-                // Calculate image dimensions to fit within page margins
                 const maxImageWidth = maxWidth;
-                const maxImageHeight = 100; // Max height in mm
-
+                const maxImageHeight = 100;
                 let imgWidth = imageData.width * PDF_CONSTANTS.PIXELS_TO_MM;
                 let imgHeight = imageData.height * PDF_CONSTANTS.PIXELS_TO_MM;
 
-                // Scale down if too large
                 if (imgWidth > maxImageWidth) {
                   const ratio = maxImageWidth / imgWidth;
                   imgWidth = maxImageWidth;
                   imgHeight *= ratio;
                 }
-
                 if (imgHeight > maxImageHeight) {
                   const ratio = maxImageHeight / imgHeight;
                   imgHeight = maxImageHeight;
                   imgWidth *= ratio;
                 }
-
-                // Check if image fits on current page
                 if (currentY + imgHeight > pageHeight - PDF_CONSTANTS.MARGIN) {
                   pdf.addPage();
                   currentY = PDF_CONSTANTS.MARGIN;
                 }
-
-                // Add the image to PDF
                 pdf.addImage(imageData.data, 'JPEG', PDF_CONSTANTS.MARGIN, currentY, imgWidth, imgHeight);
                 currentY += imgHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
               } else {
@@ -627,17 +576,15 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
           }
           break;
 
-      default:
-        // Reset list counter for non-list items
-        if (block.type !== 'list') {
-          currentListNumber = 1;
-          lastListType = null;
-        }
-        break;
+        default:
+          if (block.type !== 'list') {
+            currentListNumber = 1;
+            lastListType = null;
+          }
+          break;
       }
     }
 
-    // Download the PDF
     const pdfBlob = pdf.output('blob');
     downloadFile(pdfBlob, generateFilename());
 
