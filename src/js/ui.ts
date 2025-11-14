@@ -2,6 +2,7 @@ import { resetState } from './state.js';
 import { formatBytes } from './utils/helpers.js';
 import { tesseractLanguages } from './config/tesseract-languages.js';
 import { icons, createIcons } from 'lucide';
+import { state } from './state.js';
 import Sortable from 'sortablejs';
 
 // Centralizing DOM element selection
@@ -22,6 +23,106 @@ export const dom = {
   toolsHeader: document.getElementById('tools-header'),
   dividers: document.querySelectorAll('.section-divider'),
   hideSections: document.querySelectorAll('.hide-section'),
+};
+
+const TOOL_PANEL_SELECTORS = [
+    '[id$="-options"]',
+    '[id$="-preview"]',
+    '[id$="-organizer"]',
+    '[id$="-rotator"]',
+    '[id$="-editor"]',
+    '[id$="-controls"]',
+    '#cropper-ui-container',
+    '#crop-editor',
+    '#form-filler-options',
+    '#metadata-form',
+    '#embed-pdf-wrapper',
+    '#signature-editor',
+];
+
+const TOOL_PANEL_QUERY = TOOL_PANEL_SELECTORS.join(', ');
+
+type PanelCleanup = (panel: HTMLElement) => void;
+
+const PANEL_CLEANUP_HANDLERS: Record<string, PanelCleanup> = {
+    'embed-pdf-wrapper': () => {
+        const embedContainer = document.getElementById('embed-pdf-container');
+        if (embedContainer) {
+            embedContainer.textContent = '';
+        }
+        if (state.currentPdfUrl) {
+            URL.revokeObjectURL(state.currentPdfUrl);
+            state.currentPdfUrl = null;
+        }
+    },
+    'cropper-ui-container': (panel) => {
+        const cropperContainer = panel.querySelector('#cropper-container');
+        if (cropperContainer instanceof HTMLElement) {
+            cropperContainer.textContent = '';
+        }
+        const status = panel.querySelector('#status');
+        if (status) {
+            status.textContent = 'Please select a PDF file to begin.';
+        }
+        const cropButton = panel.querySelector('#crop-button') as
+            | HTMLButtonElement
+            | null;
+        if (cropButton) {
+            cropButton.disabled = true;
+        }
+    },
+    'crop-editor': (panel) => {
+        const canvas = panel.querySelector('#canvas-editor') as
+            | HTMLCanvasElement
+            | null;
+        if (canvas) {
+            const context = canvas.getContext('2d');
+            if (context) {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+    },
+};
+
+export const resetToolPanels = () => {
+    if (!dom.toolContent) return;
+
+    const panels = dom.toolContent.querySelectorAll(TOOL_PANEL_QUERY);
+
+    const processBtn = document.getElementById('process-btn') as
+        | HTMLButtonElement
+        | null;
+    let shouldHideProcessBtn = false;
+
+    panels.forEach((panel) => {
+        if (!(panel instanceof HTMLElement)) return;
+
+        if (processBtn && panel.contains(processBtn)) {
+            shouldHideProcessBtn = true;
+        }
+
+        panel.classList.add('hidden');
+
+        const cleanup = panel.id ? PANEL_CLEANUP_HANDLERS[panel.id] : null;
+        if (cleanup) {
+            cleanup(panel);
+        }
+    });
+
+    if (processBtn) {
+        processBtn.disabled = true;
+        processBtn.onclick = null;
+
+        if (
+            processBtn.dataset.initiallyHidden === 'true' ||
+            shouldHideProcessBtn
+        ) {
+            processBtn.classList.add('hidden');
+        }
+    }
+
+    state.pdfDoc = null;
+    state.pdfPages = [];
 };
 
 export const showLoader = (text = 'Processing...') => {
@@ -213,10 +314,14 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
 export const renderFileDisplay = (container: any, files: any) => {
   container.textContent = '';
   if (files.length > 0) {
-    files.forEach((file: any) => {
+    files.forEach((file: any, index: number) => {
       const fileDiv = document.createElement('div');
       fileDiv.className =
         'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+      fileDiv.dataset.fileIndex = index.toString();
+
+      const leftSection = document.createElement('div');
+      leftSection.className = 'flex-grow flex items-center min-w-0';
 
       const nameSpan = document.createElement('span');
       nameSpan.className = 'truncate font-medium text-gray-200';
@@ -226,9 +331,50 @@ export const renderFileDisplay = (container: any, files: any) => {
       sizeSpan.className = 'flex-shrink-0 ml-4 text-gray-400';
       sizeSpan.textContent = formatBytes(file.size);
 
-      fileDiv.append(nameSpan, sizeSpan);
+      leftSection.append(nameSpan, sizeSpan);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'ml-4 text-red-400 hover:text-red-300 focus:outline-none';
+            deleteButton.innerHTML = '<i data-lucide="trash-2"></i>';
+            deleteButton.onclick = () => {
+                const filesArray = Array.from(files);
+                filesArray.splice(index, 1);
+                state.files = filesArray;
+
+                if (filesArray.length === 0) {
+                    container.textContent = '';
+
+                    const fileInput = document.getElementById('file-input') as HTMLInputElement | null;
+                    if (fileInput) {
+                        fileInput.value = '';
+                    }
+
+                    const supplementalLists = [
+                        'file-list',
+                        'page-merge-preview',
+                        'image-list',
+                        'alternate-file-list',
+                    ];
+                    supplementalLists.forEach((id) => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.textContent = '';
+                        }
+                    });
+
+                    resetToolPanels();
+
+                    return;
+                }
+
+                renderFileDisplay(container, filesArray);
+                createIcons({ icons });
+            };
+
+      fileDiv.append(leftSection, deleteButton);
       container.appendChild(fileDiv);
     });
+    createIcons({ icons });
   }
 };
 
