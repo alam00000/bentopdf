@@ -201,4 +201,55 @@ describe('Remove Blank Pages Tool', () => {
     );
     expect(helpers.downloadFile).not.toHaveBeenCalled();
   });
+
+  it('should handle errors during page removal gracefully', async () => {
+    document.body.innerHTML = `
+      <div id="analysis-text"></div>
+      <input id="sensitivity-slider" type="range" min="0" max="100" value="95" />
+      <span id="sensitivity-value"></span>
+      <div id="analysis-preview" class="hidden"></div>
+      <div id="removed-pages-thumbnails"></div>
+    `;
+    mockPdfJsDoc.getPage = vi.fn((pageNum: number) => {
+      if (pageNum === 2) return Promise.resolve(createMockPage(true)); 
+      return Promise.resolve(createMockPage(false));
+    });
+    
+    // Force error during PDF creation
+    const testError = new Error('PDF creation failed');
+    vi.mocked(PDFDocument.create).mockRejectedValueOnce(testError);
+
+    const consoleSpy = vi.spyOn(console, 'error');
+    
+    await setupRemoveBlankPagesTool();
+    await removeBlankPages();
+
+    expect(consoleSpy).toHaveBeenCalledWith(testError);
+    expect(ui.showAlert).toHaveBeenCalledWith(
+      'Error',
+      'Could not remove blank pages.'
+    );
+    expect(ui.hideLoader).toHaveBeenCalled();
+
+    consoleSpy.mockRestore();
+  });
+
+  it('should return early if no PDF document is loaded', async () => {
+  // Set state.pdfDoc to null
+    state.pdfDoc = null;
+
+    document.body.innerHTML = `
+      <div id="analysis-text"></div>
+      <input id="sensitivity-slider" type="range" min="0" max="100" value="95" />
+      <span id="sensitivity-value"></span>
+      <div id="analysis-preview" class="hidden"></div>
+      <div id="removed-pages-thumbnails"></div>
+    `;
+
+    await setupRemoveBlankPagesTool();
+
+    expect(ui.showLoader).not.toHaveBeenCalled();
+    expect(ui.hideLoader).not.toHaveBeenCalled();
+    expect(mockPdfJsDoc.getPage).not.toHaveBeenCalled();
+  });
 });
