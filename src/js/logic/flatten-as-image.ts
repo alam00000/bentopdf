@@ -3,7 +3,7 @@ import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
-async function doImageConvertAndFlatten(pdf, newPdf) {
+export async function doImageConvertAndFlatten(pdf, newPdf) {
   const totalPages = pdf.numPages;
   for (let i = 1; i <= totalPages; i++) {
     showLoader(`Processing page ${i} of ${totalPages}...`);
@@ -32,14 +32,13 @@ async function doImageConvertAndFlatten(pdf, newPdf) {
   }
 }
 
-export async function flattenAsImage() {
+export async function flattenAsImage(pdfBuffer?: ArrayBuffer) {
   showLoader('Flattening/Converting PDF...');
   try {
+    const source = pdfBuffer || await readFileAsArrayBuffer(state.files[0]);
+
     // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
-      await readFileAsArrayBuffer(state.files[0])
-    ).promise;
-  
+    const pdf = await pdfjsLib.getDocument({data: source }).promise;
     const pdfDoc = await PDFLibDocument.create();
     await doImageConvertAndFlatten(pdf, pdfDoc);
 

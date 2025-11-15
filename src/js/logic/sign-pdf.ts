@@ -2,6 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
 import html2canvas from 'html2canvas';
+import { flattenAsImage } from './flatten-as-image.js';
 
 const signState = {
   pdf: null,
@@ -535,6 +536,15 @@ export async function applyAndSaveSignatures() {
     }
 
     const newPdfBytes = await state.pdfDoc.save();
+
+    // if we should convert it as image
+    const flattenAsImageCheck = document.getElementById('flatten-signature-as-image') as HTMLInputElement;
+    if (flattenAsImageCheck && flattenAsImageCheck.checked) {
+      console.log('flattening as image');
+      await flattenAsImage(newPdfBytes.buffer);
+      return;
+    }
+
     downloadFile(
       new Blob([newPdfBytes], { type: 'application/pdf' }),
       'signed.pdf'

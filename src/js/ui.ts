@@ -1773,6 +1773,10 @@ export const toolTemplates = {
         </div>
 
     </div>
+    <label class="flex items-center gap-2 mt-2 text-sm text-gray-300 cursor-pointer">
+        <input type="checkbox" id="flatten-signature-as-image" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600">
+        Flatten PDF as Images 
+    </label>
     <button id="process-btn" class="hidden btn-gradient w-full mt-6">Apply Signatures & Download PDF</button>
 `,
 
