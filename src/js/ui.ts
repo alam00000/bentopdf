@@ -1704,7 +1704,7 @@ export const toolTemplates = {
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mt-2 gap-4 sm:gap-2">
                     <div class="flex items-center gap-2">
                         <label for="signature-color" class="text-sm font-medium text-gray-300">Color:</label>
-                        <input type="color" id="signature-color" value="#22c55e" class="w-10 h-10 bg-gray-700 border border-gray-600 rounded-lg p-1 cursor-pointer">
+                        <input type="color" id="signature-color" value="#000" class="w-10 h-10 bg-gray-700 border border-gray-600 rounded-lg p-1 cursor-pointer">
                     </div>
                     <div class="flex items-center gap-2">
                         <button id="clear-draw-btn" class="btn hover:bg-gray-600 text-sm flex-grow sm:flex-grow-0">Clear</button>
