@@ -535,19 +535,19 @@ export async function applyAndSaveSignatures() {
       });
     }
 
+    const signedFilename = getSignedFilename(state.files[0]?.name);
     const newPdfBytes = await state.pdfDoc.save();
 
-    // if we should convert it as image
     const flattenAsImageCheck = document.getElementById('flatten-signature-as-image') as HTMLInputElement;
     if (flattenAsImageCheck && flattenAsImageCheck.checked) {
       console.log('flattening as image');
-      await flattenAsImage(newPdfBytes.buffer);
+      await flattenAsImage(newPdfBytes.buffer, signedFilename);
       return;
     }
 
     downloadFile(
       new Blob([newPdfBytes], { type: 'application/pdf' }),
-      'signed.pdf'
+      signedFilename
     );
   } catch (e) {
     console.error(e);
@@ -555,4 +555,14 @@ export async function applyAndSaveSignatures() {
   } finally {
     hideLoader();
   }
+}
+
+function getSignedFilename(originalFilename: string): string {
+  if (!originalFilename) return 'signed.pdf';
+  const nameParts = originalFilename.split('.');
+  if (nameParts.length > 1) {
+    nameParts[nameParts.length - 2] += '_signed';
+    return nameParts.join('.');
+  }
+  return originalFilename + '_signed.pdf';
 }

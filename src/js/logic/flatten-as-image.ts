@@ -32,9 +32,10 @@ export async function doImageConvertAndFlatten(pdf, newPdf) {
   }
 }
 
-export async function flattenAsImage(pdfBuffer?: ArrayBuffer) {
+export async function flattenAsImage(pdfBuffer?: ArrayBuffer, filename?: string) {
   showLoader('Flattening/Converting PDF...');
   try {
+    const saveFilename = filename || state.files[0].name;
     const source = pdfBuffer || await readFileAsArrayBuffer(state.files[0]);
 
     // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
@@ -45,7 +46,7 @@ export async function flattenAsImage(pdfBuffer?: ArrayBuffer) {
     const flattenedBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(flattenedBytes)], { type: 'application/pdf' }),
-      'flattened-as-image.pdf'
+      saveFilename
     );
   } catch (e) {
     console.error(e);
