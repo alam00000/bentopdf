@@ -19,7 +19,7 @@ import { pngToPdf } from './png-to-pdf.js';
 import { pdfToWebp } from './pdf-to-webp.js';
 import { webpToPdf } from './webp-to-pdf.js';
 import { deletePages } from './delete-pages.js';
-import { addBlankPage } from './add-blank-page.js';
+import { addBlankPage, setupBlankPageTool } from './add-blank-page.js';
 import { extractPages } from './extract-pages.js';
 import { addWatermark, setupWatermarkUI } from './add-watermark.js';
 import { addHeaderFooter } from './add-header-footer.js';
@@ -91,7 +91,7 @@ export const toolLogic = {
   'pdf-to-webp': pdfToWebp,
   'webp-to-pdf': webpToPdf,
   'delete-pages': deletePages,
-  'add-blank-page': addBlankPage,
+  'add-blank-page': { process: addBlankPage, setup: setupBlankPageTool },
   'extract-pages': extractPages,
   'add-watermark': { process: addWatermark, setup: setupWatermarkUI },
   'add-header-footer': addHeaderFooter,

@@ -116,6 +116,13 @@ async function handleSinglePdfUpload(toolId, file) {
       await setupCanvasEditor(toolId);
     }
 
+    if (toolId === 'add-blank-page') {
+      const logic = toolLogic[toolId];
+      if (logic && typeof logic.setup === 'function') {
+        await logic.setup();
+      }
+    }
+
     if (toolId === 'view-metadata') {
       const resultsDiv = document.getElementById('metadata-results');
       showLoader('Analyzing full PDF metadata...');

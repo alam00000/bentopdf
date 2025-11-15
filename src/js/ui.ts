@@ -842,13 +842,53 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Insert one or more blank pages at a specific position in your document.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <div id="blank-page-options" class="hidden mt-6">
-            <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
-            <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank pages after page number:</label>
-            <input type="number" id="page-number" min="0" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter 0 to add to the beginning">
-            <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert:</label>
-            <input type="number" id="page-count" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter number of pages">
-            <button id="process-btn" class="btn-gradient w-full">Add Pages & Download</button>
+        <div id="blank-page-options" class="mt-6">
+            <div class="flex gap-2 p-1 rounded-lg bg-gray-900 border border-gray-700 mb-4 hidden" id="mode-toggle-container">
+                <button id="text-mode-btn" class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md">File Mode</button>
+                <button id="visual-mode-btn" class="flex-1 btn text-gray-300 font-semibold py-2 rounded-md">Page Mode</button>
+            </div>
+
+            <div id="text-mode-panel">
+                <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+                    <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                    <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+                        <li>Enter page positions where you want to insert blank pages.</li>
+                        <li>Use 0-based positions: 0 means before the first page, 1 means after page 1, etc.</li>
+                        <li>You can specify single positions or ranges (e.g., "0, 2-4, 6").</li>
+                        <li>Enter 0 to add pages at the beginning of the document.</li>
+                    </ul>
+                </div>
+                <div id="text-mode-controls" style="display: none;">
+                    <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
+                    <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank pages after page positions (e.g., "0, 2-4, 6"):</label>
+                    <input type="text" id="page-number" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter 0 to add to the beginning, or ranges like &quot;0, 2-4, 6&quot;">
+                    <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert at each position:</label>
+                    <input type="number" id="page-count" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter number of pages">
+                    <button id="process-btn" class="btn-gradient w-full">Add Pages & Download</button>
+                </div>
+            </div>
+
+            <div id="visual-mode-panel" class="hidden">
+                <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+                    <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                    <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+                        <li>All pages from your PDF are shown below.</li>
+                        <li>Click on any page to add a blank page marker before that page.</li>
+                        <li>Click on the "START" area to add a blank page at the beginning.</li>
+                        <li>Drag and drop blank page markers between pages to reposition them.</li>
+                        <li>Click on a marker or use the "Remove" button to delete it.</li>
+                        <li>Use the "Add Blank Page" button below to quickly add more markers.</li>
+                    </ul>
+                </div>
+                <div id="visual-mode-controls" style="display: none;">
+                    <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages-visual"></span></p>
+                    <label for="page-count-visual" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert at each marker:</label>
+                    <input type="number" id="page-count-visual" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter number of pages">
+                    <div id="page-preview-container" class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 p-4 bg-gray-900 rounded-lg border border-gray-700 min-h-[200px] mb-4"></div>
+                    <button id="add-blank-marker-btn" class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-md mb-4 w-full">Add Blank Page Marker</button>
+                    <button id="process-btn-visual" class="btn-gradient w-full">Add Pages & Download</button>
+                </div>
+            </div>
         </div>
     `,
   'extract-pages': () => `

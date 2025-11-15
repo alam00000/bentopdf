@@ -129,6 +129,55 @@ export function parsePageRanges(rangeString: any, totalPages: any) {
 }
 
 /**
+ * Parses insertion positions from a range string (0-based positions).
+ * Supports single positions and ranges like "0, 2-4, 6".
+ * @param rangeString - The range string (e.g., "0, 2-4, 6")
+ * @param totalPages - Total number of pages in the PDF
+ * @returns Array of sorted unique insertion positions (0-based), or null if invalid
+ */
+export function parseInsertionPositions(
+  rangeString: any,
+  totalPages: any
+): number[] | null {
+  if (!rangeString || rangeString.trim() === '') {
+    return null;
+  }
+
+  const positions = new Set<number>();
+  const parts = rangeString.split(',');
+
+  for (const part of parts) {
+    const trimmedPart = part.trim();
+    if (!trimmedPart) continue;
+
+    if (trimmedPart.includes('-')) {
+      const [start, end] = trimmedPart.split('-').map(Number);
+      if (
+        isNaN(start) ||
+        isNaN(end) ||
+        start < 0 ||
+        end > totalPages ||
+        start > end
+      ) {
+        return null; // Invalid range
+      }
+
+      for (let i = start; i <= end; i++) {
+        positions.add(i);
+      }
+    } else {
+      const pos = Number(trimmedPart);
+      if (isNaN(pos) || pos < 0 || pos > totalPages) {
+        return null; // Invalid position
+      }
+      positions.add(pos);
+    }
+  }
+
+  return Array.from(positions).sort((a, b) => a - b);
+}
+
+/**
  * Formats an ISO 8601 date string (e.g., "2008-02-21T17:15:56-08:00")
  * into a localized, human-readable string.
  * @param {string} isoDateString - The ISO 8601 date string.
