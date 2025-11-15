@@ -422,6 +422,49 @@ export async function setupBlankPageTool() {
   // Show mode toggle after file upload (controls will be shown based on active mode below)
   document.getElementById('mode-toggle-container')?.classList.remove('hidden');
   
+  // Add input validation to page-number field (only allow numbers, commas, dashes, and spaces)
+  const pageNumberInput = document.getElementById('page-number');
+  if (pageNumberInput) {
+    // Filter invalid characters on input (handles typing and pasting)
+    pageNumberInput.addEventListener('input', (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      // Only allow numbers (0-9), commas, dashes, and spaces
+      target.value = target.value.replace(/[^0-9,\-\s]/g, '');
+    });
+    
+    // Also prevent invalid characters on keypress
+    pageNumberInput.addEventListener('keypress', (e: KeyboardEvent) => {
+      const char = e.key;
+      // Allow: numbers, comma, dash, space, backspace, delete, arrow keys, etc.
+      const allowedKeys = [
+        'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+        'Home', 'End', 'Tab', 'Enter'
+      ];
+      if (allowedKeys.includes(char)) {
+        return; // Allow control keys
+      }
+      // Only allow numbers, comma, dash, and space
+      if (!/^[0-9,\-\s]$/.test(char)) {
+        e.preventDefault();
+      }
+    });
+    
+    // Handle paste events to filter invalid characters
+    pageNumberInput.addEventListener('paste', (e: ClipboardEvent) => {
+      e.preventDefault();
+      const pastedText = e.clipboardData?.getData('text') || '';
+      // Filter to only allow numbers, commas, dashes, and spaces
+      const filteredText = pastedText.replace(/[^0-9,\-\s]/g, '');
+      const target = e.target as HTMLInputElement;
+      const start = target.selectionStart || 0;
+      const end = target.selectionEnd || 0;
+      // Insert filtered text at cursor position
+      target.value = target.value.substring(0, start) + filteredText + target.value.substring(end);
+      // Set cursor position after inserted text
+      target.setSelectionRange(start + filteredText.length, start + filteredText.length);
+    });
+  }
+  
   // @ts-expect-error TS(2339) FIXME: Property 'disabled' does not exist on type 'HTMLEl... Remove this comment to see the full error message
   document.getElementById('process-btn').disabled = false;
   document.getElementById('process-btn').onclick = addBlankPage;

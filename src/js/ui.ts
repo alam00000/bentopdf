@@ -861,7 +861,7 @@ export const toolTemplates = {
                 <div id="text-mode-controls" style="display: none;">
                     <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
                     <label for="page-number" class="block mb-2 text-sm font-medium text-gray-300">Insert blank pages after page positions (e.g., "0, 2-4, 6"):</label>
-                    <input type="text" id="page-number" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4" placeholder="Enter 0 to add to the beginning, or ranges like &quot;0, 2-4, 6&quot;">
+                    <input type="text" id="page-number" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4">
                     <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank pages to insert at each position:</label>
                     <input type="number" id="page-count" min="1" value="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="Enter number of pages">
                     <button id="process-btn" class="btn-gradient w-full">Add Pages & Download</button>
