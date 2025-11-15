@@ -6,6 +6,14 @@ import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 import { formatStars } from './utils/helpers.js';
 
+const hideLoadingScreen = () => {
+  document.documentElement.classList.remove('simple-mode-loading');
+  const loadingScreen = document.getElementById('simple-loading-screen');
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none';
+  }
+};
+
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -14,8 +22,10 @@ const init = () => {
 
   // Handle simple mode - hide branding sections but keep logo and copyright
   if (__SIMPLE_MODE__) {
-    const hideBrandingSections = () => {
-      // Hide navigation but keep logo
+    const setupSimpleMode = () => {
+      document.body.classList.add('simple-mode');
+
+      // Create a simple nav with just logo
       const nav = document.querySelector('nav');
       if (nav) {
         // Hide the entire nav but we'll create a minimal one with just logo
@@ -78,10 +88,9 @@ const init = () => {
       }
 
       // Hide footer but keep copyright
+      // Create simple footer with copyright
       const footer = document.querySelector('footer');
       if (footer) {
-        footer.style.display = 'none';
-
         const simpleFooter = document.createElement('footer');
         simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
         simpleFooter.innerHTML = `
@@ -101,11 +110,7 @@ const init = () => {
         document.body.appendChild(simpleFooter);
       }
 
-      const sectionDividers = document.querySelectorAll('.section-divider');
-      sectionDividers.forEach((divider) => {
-        (divider as HTMLElement).style.display = 'none';
-      });
-
+      // Update page title and tools header
       document.title = 'BentoPDF - PDF Tools';
 
       const toolsHeader = document.getElementById('tools-header');
@@ -126,11 +131,13 @@ const init = () => {
       if (app) {
         app.style.paddingTop = '1rem';
       }
+      document.documentElement.classList.remove('simple-mode-loading');
     };
 
-    hideBrandingSections();
+    setupSimpleMode();
   }
 
+  setTimeout(hideLoadingScreen, 10);
   dom.toolGrid.textContent = '';
 
   categories.forEach((category) => {
@@ -268,20 +275,6 @@ const init = () => {
 
   createIcons({ icons });
   console.log('Please share our tool and share the love!');
-
-  const githubStarsElement = document.getElementById('github-stars');
-  if (githubStarsElement && !__SIMPLE_MODE__) {
-    fetch('https://api.github.com/repos/alam00000/bentopdf')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.stargazers_count !== undefined) {
-          githubStarsElement.textContent = formatStars(data.stargazers_count);
-        }
-      })
-      .catch(() => {
-        githubStarsElement.textContent = '-';
-      });
-  }
 };
 
 document.addEventListener('DOMContentLoaded', init);
