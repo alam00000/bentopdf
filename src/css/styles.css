@@ -511,6 +511,16 @@ details[open] > summary .icon {
   transform: rotate(45deg);
 }
 
+button,
+.btn,
+.btn-gradient {
+  cursor: pointer;
+}
+
+button:disabled,
+.btn:disabled {
+  cursor: not-allowed;
+}
 /* Simple mode styles - hide everything except loading screen when simple mode is enabled */
 html.simple-mode-loading body > *:not(#simple-loading-screen) {
   display: none !important;

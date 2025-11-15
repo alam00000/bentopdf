@@ -49,10 +49,10 @@ export const hexToRgb = (hex: any) => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
-        r: parseInt(result[1], 16) / 255,
-        g: parseInt(result[2], 16) / 255,
-        b: parseInt(result[3], 16) / 255,
-      }
+      r: parseInt(result[1], 16) / 255,
+      g: parseInt(result[2], 16) / 255,
+      b: parseInt(result[3], 16) / 255,
+    }
     : { r: 0, g: 0, b: 0 }; // Default to black
 };
 
@@ -187,3 +187,10 @@ export function initializeIcons(): void {
     },
   });
 }
+
+export function formatStars(num: number) {
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1) + 'K';
+  }
+  return num.toLocaleString();
+};

@@ -27,7 +27,7 @@ import { addHeaderFooter } from './add-header-footer.js';
 import { imageToPdf } from './image-to-pdf.js';
 import { changePermissions } from './change-permissions.js';
 import { pdfToMarkdown } from './pdf-to-markdown.js';
-import { txtToPdf } from './txt-to-pdf.js';
+import { txtToPdf, setupTxtToPdfTool } from './txt-to-pdf.js';
 import { htmlToPdf, mountHtmlToPdfTool } from './html-to-pdf.js';
 import { invertColors } from './invert-colors.js';
 // import { viewMetadata } from './view-metadata.js';
@@ -65,6 +65,8 @@ import {
 import { alternateMerge, setupAlternateMergeTool } from './alternate-merge.js';
 import { linearizePdf } from './linearize.js';
 import { addAttachments, setupAddAttachmentsTool } from './add-attachments.js';
+import { extractAttachments } from './extract-attachments.js';
+import { editAttachments, setupEditAttachmentsTool } from './edit-attachments.js';
 import { sanitizePdf } from './sanitize-pdf.js';
 import { removeRestrictions } from './remove-restrictions.js';
 
@@ -86,7 +88,6 @@ export const toolLogic = {
   'edit-metadata': editMetadata,
   'remove-metadata': removeMetadata,
   flatten,
-  'flatten-as-image': flattenAsImage,
   'pdf-to-png': pdfToPng,
   'png-to-pdf': pngToPdf,
   'pdf-to-webp': pdfToWebp,
@@ -99,7 +100,7 @@ export const toolLogic = {
   'image-to-pdf': imageToPdf,
   'change-permissions': changePermissions,
   'pdf-to-markdown': pdfToMarkdown,
-  'txt-to-pdf': txtToPdf,
+  'txt-to-pdf': { process: txtToPdf, setup: setupTxtToPdfTool },
   'html-to-pdf': { process: htmlToPdf, setup: mountHtmlToPdfTool },
   'invert-colors': invertColors,
   'reverse-pages': reversePages,
@@ -141,6 +142,11 @@ export const toolLogic = {
   'add-attachments': {
     process: addAttachments,
     setup: setupAddAttachmentsTool,
+  },
+  'extract-attachments': extractAttachments,
+  'edit-attachments': {
+    process: editAttachments,
+    setup: setupEditAttachmentsTool,
   },
   'sanitize-pdf': sanitizePdf,
 };

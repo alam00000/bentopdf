@@ -5,7 +5,6 @@ import JSZip from 'jszip';
 
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
-// Track if visual selector has been rendered to avoid duplicates
 let visualSelectorRendered = false;
 
 async function renderVisualSelector() {
@@ -89,6 +88,9 @@ export function setupSplitTool() {
   const evenOddPanel = document.getElementById('even-odd-panel');
   const zipOptionWrapper = document.getElementById('zip-option-wrapper');
   const allPagesPanel = document.getElementById('all-pages-panel');
+  const bookmarksPanel = document.getElementById('bookmarks-panel');
+  const nTimesPanel = document.getElementById('n-times-panel');
+  const nTimesWarning = document.getElementById('n-times-warning');
 
   if (!splitModeSelect) return;
 
@@ -106,7 +108,10 @@ export function setupSplitTool() {
     visualPanel.classList.add('hidden');
     evenOddPanel.classList.add('hidden');
     allPagesPanel.classList.add('hidden');
+    bookmarksPanel.classList.add('hidden');
+    nTimesPanel.classList.add('hidden');
     zipOptionWrapper.classList.add('hidden');
+    if (nTimesWarning) nTimesWarning.classList.add('hidden');
 
     if (mode === 'range') {
       rangePanel.classList.remove('hidden');
@@ -119,6 +124,34 @@ export function setupSplitTool() {
       evenOddPanel.classList.remove('hidden');
     } else if (mode === 'all') {
       allPagesPanel.classList.remove('hidden');
+    } else if (mode === 'bookmarks') {
+      bookmarksPanel.classList.remove('hidden');
+      zipOptionWrapper.classList.remove('hidden');
+    } else if (mode === 'n-times') {
+      nTimesPanel.classList.remove('hidden');
+      zipOptionWrapper.classList.remove('hidden');
+
+      const updateWarning = () => {
+        if (!state.pdfDoc) return;
+        const totalPages = state.pdfDoc.getPageCount();
+        const nValue = parseInt((document.getElementById('split-n-value') as HTMLInputElement)?.value || '5');
+        const remainder = totalPages % nValue;
+        if (remainder !== 0 && nTimesWarning) {
+          nTimesWarning.classList.remove('hidden');
+          const warningText = document.getElementById('n-times-warning-text');
+          if (warningText) {
+            warningText.textContent = `The PDF has ${totalPages} pages, which is not evenly divisible by ${nValue}. The last PDF will contain ${remainder} page(s).`;
+          }
+        } else if (nTimesWarning) {
+          nTimesWarning.classList.add('hidden');
+        }
+      };
+
+      const nValueInput = document.getElementById('split-n-value') as HTMLInputElement;
+      if (nValueInput) {
+        nValueInput.addEventListener('input', updateWarning);
+        updateWarning();
+      }
     }
   });
 }
@@ -185,10 +218,81 @@ export async function split() {
           // @ts-expect-error TS(2339) FIXME: Property 'dataset' does not exist on type 'Element... Remove this comment to see the full error message
           .map((el) => parseInt(el.dataset.pageIndex));
         break;
+      case 'bookmarks':
+        const { getCpdf } = await import('../utils/cpdf-helper.js');
+        const cpdf = await getCpdf();
+        const pdfBytes = await state.pdfDoc.save();
+        const pdf = cpdf.fromMemory(new Uint8Array(pdfBytes), '');
+
+        cpdf.startGetBookmarkInfo(pdf);
+        const bookmarkCount = cpdf.numberBookmarks();
+        const bookmarkLevel = (document.getElementById('bookmark-level') as HTMLSelectElement)?.value;
+
+        const splitPages: number[] = [];
+        for (let i = 0; i < bookmarkCount; i++) {
+          const level = cpdf.getBookmarkLevel(i);
+          const page = cpdf.getBookmarkPage(pdf, i);
+
+          if (bookmarkLevel === 'all' || level === parseInt(bookmarkLevel)) {
+            if (page > 1 && !splitPages.includes(page - 1)) {
+              splitPages.push(page - 1); // Convert to 0-based index
+            }
+          }
+        }
+        cpdf.endGetBookmarkInfo();
+        cpdf.deletePdf(pdf);
+
+        if (splitPages.length === 0) {
+          throw new Error('No bookmarks found at the selected level.');
+        }
+
+        splitPages.sort((a, b) => a - b);
+        const zip = new JSZip();
+
+        for (let i = 0; i < splitPages.length; i++) {
+          const startPage = i === 0 ? 0 : splitPages[i];
+          const endPage = i < splitPages.length - 1 ? splitPages[i + 1] - 1 : totalPages - 1;
+
+          const newPdf = await PDFLibDocument.create();
+          const pageIndices = Array.from({ length: endPage - startPage + 1 }, (_, idx) => startPage + idx);
+          const copiedPages = await newPdf.copyPages(state.pdfDoc, pageIndices);
+          copiedPages.forEach((page: any) => newPdf.addPage(page));
+          const pdfBytes2 = await newPdf.save();
+          zip.file(`split-${i + 1}.pdf`, pdfBytes2);
+        }
+
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        downloadFile(zipBlob, 'split-by-bookmarks.zip');
+        hideLoader();
+        return;
+
+      case 'n-times':
+        const nValue = parseInt((document.getElementById('split-n-value') as HTMLInputElement)?.value || '5');
+        if (nValue < 1) throw new Error('N must be at least 1.');
+
+        const zip2 = new JSZip();
+        const numSplits = Math.ceil(totalPages / nValue);
+
+        for (let i = 0; i < numSplits; i++) {
+          const startPage = i * nValue;
+          const endPage = Math.min(startPage + nValue - 1, totalPages - 1);
+          const pageIndices = Array.from({ length: endPage - startPage + 1 }, (_, idx) => startPage + idx);
+
+          const newPdf = await PDFLibDocument.create();
+          const copiedPages = await newPdf.copyPages(state.pdfDoc, pageIndices);
+          copiedPages.forEach((page: any) => newPdf.addPage(page));
+          const pdfBytes3 = await newPdf.save();
+          zip2.file(`split-${i + 1}.pdf`, pdfBytes3);
+        }
+
+        const zipBlob2 = await zip2.generateAsync({ type: 'blob' });
+        downloadFile(zipBlob2, 'split-n-times.zip');
+        hideLoader();
+        return;
     }
 
     const uniqueIndices = [...new Set(indicesToExtract)];
-    if (uniqueIndices.length === 0) {
+    if (uniqueIndices.length === 0 && splitMode !== 'bookmarks' && splitMode !== 'n-times') {
       throw new Error('No pages were selected for splitting.');
     }
 

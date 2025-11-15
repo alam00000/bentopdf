@@ -502,32 +502,89 @@ async function handleMultiFileUpload(toolId) {
     toolLogic.merge.setup();
   } else if (toolId === 'alternate-merge') {
     toolLogic['alternate-merge'].setup();
-  } else if (toolId === 'image-to-pdf') {
-    const imageList = document.getElementById('image-list');
-    imageList.textContent = ''; // Clear safely
+  } else     if (toolId === 'image-to-pdf') {
+      const imageList = document.getElementById('image-list');
+      imageList.textContent = ''; 
+      state.files.forEach((file) => {
+        const url = URL.createObjectURL(file);
+        const li = document.createElement('li');
+        li.className = 'relative group cursor-move';
+        li.dataset.fileName = file.name;
 
-    state.files.forEach((file) => {
-      const url = URL.createObjectURL(file);
-      const li = document.createElement('li');
-      li.className = 'relative group cursor-move';
-      li.dataset.fileName = file.name;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'w-full h-36 sm:h-40 md:h-44 bg-gray-900 rounded-md border-2 border-gray-600 flex items-center justify-center overflow-hidden';
 
-      const img = document.createElement('img');
-      img.src = url;
-      img.className =
-        'w-full h-full object-cover rounded-md border-2 border-gray-600';
+        const img = document.createElement('img');
+        img.src = url;
+        img.className = 'max-w-full max-h-full object-contain';
 
-      const p = document.createElement('p');
-      p.className =
-        'absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs text-center truncate p-1';
-      p.textContent = file.name; // Safe insertion
+        const p = document.createElement('p');
+        p.className =
+          'absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs text-center truncate p-1';
+        p.textContent = file.name; 
 
-      li.append(img, p);
-      imageList.appendChild(li);
-    });
+        wrapper.appendChild(img);
+        li.append(wrapper, p);
+        imageList.appendChild(li);
+      });
 
-    Sortable.create(imageList);
-  }
+      Sortable.create(imageList);
+      // Show image-to-pdf options and wire up slider text
+      const opts = document.getElementById('image-to-pdf-options');
+      if (opts) {
+        opts.classList.remove('hidden');
+        const slider = document.getElementById('image-pdf-quality') as HTMLInputElement;
+        const value = document.getElementById('image-pdf-quality-value');
+        if (slider && value) {
+          const update = () => (value.textContent = `${Math.round(parseFloat(slider.value) * 100)}%`);
+          slider.addEventListener('input', update);
+          update();
+        }
+      }
+    }
+
+    if (toolId === 'pdf-to-jpg') {
+      const qualitySlider = document.getElementById('jpg-quality') as HTMLInputElement;
+      const qualityValue = document.getElementById('jpg-quality-value');
+      if (qualitySlider && qualityValue) {
+        const updateValue = () => {
+          qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+        };
+        qualitySlider.addEventListener('input', updateValue);
+        updateValue();
+      }
+    }
+
+    if (toolId === 'pdf-to-png') {
+      const qualitySlider = document.getElementById('png-quality') as HTMLInputElement;
+      const qualityValue = document.getElementById('png-quality-value');
+      if (qualitySlider && qualityValue) {
+        const updateValue = () => {
+          qualityValue.textContent = `${qualitySlider.value}x`;
+        };
+        qualitySlider.addEventListener('input', updateValue);
+        updateValue();
+      }
+    }
+
+    if (toolId === 'pdf-to-webp') {
+      const qualitySlider = document.getElementById('webp-quality') as HTMLInputElement;
+      const qualityValue = document.getElementById('webp-quality-value');
+      if (qualitySlider && qualityValue) {
+        const updateValue = () => {
+          qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+        };
+        qualitySlider.addEventListener('input', updateValue);
+        updateValue();
+      }
+    }
+
+    if (toolId === 'jpg-to-pdf' || toolId === 'png-to-pdf') {
+      const optionsDiv = document.getElementById(`${toolId}-options`);
+      if (optionsDiv) {
+        optionsDiv.classList.remove('hidden');
+      }
+    }
 }
 
 export function setupFileInputHandler(toolId) {
@@ -557,7 +614,26 @@ export function setupFileInputHandler(toolId) {
     }
 
     if (isMultiFileTool) {
-      await handleMultiFileUpload(toolId);
+      if (toolId === 'txt-to-pdf' || toolId === 'compress' || toolId === 'extract-attachments') {
+        const processBtn = document.getElementById('process-btn');
+        if (processBtn) {
+          (processBtn as HTMLButtonElement).disabled = false;
+          if (toolId === 'compress') {
+            const optionsDiv = document.getElementById('compress-options');
+            if (optionsDiv) optionsDiv.classList.remove('hidden');
+          }
+          processBtn.onclick = () => {
+            const logic = toolLogic[toolId];
+            if (logic) {
+              const func =
+                typeof logic.process === 'function' ? logic.process : logic;
+              func();
+            }
+          };
+        }
+      } else {
+        await handleMultiFileUpload(toolId);
+      }
     } else if (singlePdfLoadTools.includes(toolId)) {
       await handleSinglePdfUpload(toolId, state.files[0]);
     } else if (simpleTools.includes(toolId)) {

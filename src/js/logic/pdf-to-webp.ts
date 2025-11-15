@@ -19,8 +19,11 @@ export async function pdfToWebp() {
       canvas.width = viewport.width;
       const context = canvas.getContext('2d');
       await page.render({ canvasContext: context, viewport: viewport }).promise;
+      const qualityInput = document.getElementById('webp-quality') as HTMLInputElement;
+      const quality = qualityInput ? parseFloat(qualityInput.value) : 0.9;
+      
       const blob = await new Promise((resolve) =>
-        canvas.toBlob(resolve, 'image/webp', 0.9)
+        canvas.toBlob(resolve, 'image/webp', quality)
       );
       zip.file(`page_${i}.webp`, blob as Blob);
     }

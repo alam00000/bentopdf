@@ -11,9 +11,13 @@ export async function pdfToPng() {
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const zip = new JSZip();
+    
+    const qualityInput = document.getElementById('png-quality') as HTMLInputElement;
+    const scale = qualityInput ? parseFloat(qualityInput.value) : 2.0;
+    
     for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);
-      const viewport = page.getViewport({ scale: 2.0 });
+      const viewport = page.getViewport({ scale });
       const canvas = document.createElement('canvas');
       canvas.height = viewport.height;
       canvas.width = viewport.width;

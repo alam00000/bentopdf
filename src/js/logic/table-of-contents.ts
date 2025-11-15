@@ -53,13 +53,12 @@ function showStatus(
   type: 'success' | 'error' | 'info' = 'info'
 ) {
   statusMessage.textContent = message;
-  statusMessage.className = `mt-4 p-3 rounded-lg text-sm ${
-    type === 'success'
+  statusMessage.className = `mt-4 p-3 rounded-lg text-sm ${type === 'success'
       ? 'bg-green-900 text-green-200'
       : type === 'error'
         ? 'bg-red-900 text-red-200'
         : 'bg-blue-900 text-blue-200'
-  }`;
+    }`;
   statusMessage.classList.remove('hidden');
 }
 
@@ -198,7 +197,7 @@ worker.onerror = (error) => {
 
 if (backToToolsBtn) {
   backToToolsBtn.addEventListener('click', () => {
-    window.location.href = '../../index.html#tools-header';
+    window.location.href = '/';
   });
 }
 

@@ -50,14 +50,14 @@ function showInputModal(title, fields = [], defaultValues = {}) {
                                 <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
                                 <select id="modal-${field.name}" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
                                     ${field.options
-                                      .map(
-                                        (opt) => `
+              .map(
+                (opt) => `
                                         <option value="${opt.value}" ${defaultValues[field.name] === opt.value ? 'selected' : ''}>
                                             ${opt.label}
                                         </option>
                                     `
-                                      )
-                                      .join('')}
+              )
+              .join('')}
                                 </select>
                                 ${field.name === 'color' ? '<input type="color" id="modal-color-picker" class="hidden w-full h-10 mt-2 rounded cursor-pointer border border-gray-300" value="#000000" />' : ''}
                             </div>
@@ -653,6 +653,9 @@ const fileDisplayArea = document.getElementById(
 ) as HTMLElement;
 const backToToolsBtn = document.getElementById(
   'back-to-tools'
+) as HTMLButtonElement;
+const closeBtn = document.getElementById(
+  'back-btn'
 ) as HTMLButtonElement;
 const canvas = document.getElementById('pdf-canvas');
 const ctx = canvas.getContext('2d');
@@ -2078,7 +2081,13 @@ async function extractExistingBookmarks(doc) {
 // Back to tools button
 if (backToToolsBtn) {
   backToToolsBtn.addEventListener('click', () => {
-    window.location.href = '../../index.html#tools-header';
+    window.location.href = '/';
+  });
+}
+
+if (closeBtn) {
+  closeBtn.addEventListener('click', () => {
+    window.location.href = '/';
   });
 }
 

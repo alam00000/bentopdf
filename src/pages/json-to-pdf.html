@@ -1,113 +1,112 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON to PDF Converter - BentoPDF</title>
-    <link rel="icon" type="image/png" href="../../images/favicon.svg" />
-    <link href="../../src/css/styles.css" rel="stylesheet" />
-  </head>
-  <body class="antialiased bg-gray-900">
-    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-      <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-            <img src="../../public/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
-            <span class="text-white font-bold text-xl ml-2">
-              <a href="../../index.html">BentoPDF</a>
-            </span>
-          </div>
 
-          <!-- Desktop Navigation -->
-          <div class="hidden md:flex items-center space-x-8 text-white">
-            <a href="../../index.html" class="nav-link">Home</a>
-            <a href="../../about.html" class="nav-link">About</a>
-            <a href="../../contact.html" class="nav-link">Contact</a>
-            <a href="../../index.html#tools-header" class="nav-link">All Tools</a>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON to PDF Converter - BentoPDF</title>
+  <link rel="icon" type="image/png" href="../../images/favicon.svg" />
+  <link href="../../src/css/styles.css" rel="stylesheet" />
+</head>
 
-          <!-- Mobile Hamburger Button -->
-          <div class="md:hidden flex items-center">
-            <button id="mobile-menu-button" type="button"
-              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
-              aria-controls="mobile-menu" aria-expanded="false">
-              <span class="sr-only">Open main menu</span>
-              <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Mobile Menu Dropdown -->
-      <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-        <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-          <a href="../../index.html" class="mobile-nav-link">Home</a>
-          <a href="../../about.html" class="mobile-nav-link">About</a>
-          <a href="../../contact.html" class="mobile-nav-link">Contact</a>
-          <a href="../../index.html#tools-header" class="mobile-nav-link">All Tools</a>
-        </div>
-      </div>
-    </nav>
-
-    <div class="min-h-screen flex items-center justify-center p-4 bg-gray-900">
-      <div class="bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
-        <button id="back-to-tools"
-          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
-          <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer"> Back to Tools </span>
-        </button>
-        <h1 class="text-2xl font-bold text-white mb-2">JSON to PDF Converter</h1>
-        <p class="text-gray-400 mb-6">
-          Upload multiple JSON files to convert them all to PDF format. Files will be downloaded as a ZIP archive.
-        </p>
-        <div class="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3 mb-6">
-          <p class="text-yellow-200 text-sm">
-            <strong>Note:</strong> Only JSON files created by the PDF-to-JSON converter tool are supported. Standard JSON files from other tools will not work.
-          </p>
+<body class="antialiased bg-gray-900">
+  <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
+          <img src="../../public/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+          <span class="text-white font-bold text-xl ml-2">
+            <a href="/">BentoPDF</a>
+          </span>
         </div>
 
-        <div class="upload-section mb-6">
-          <div class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors duration-300">
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-              <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-              <p class="mb-2 text-sm text-gray-300">
-                <span class="font-semibold">Click to select files</span> or drag and drop
-              </p>
-              <p class="text-xs text-gray-500">Multiple JSON files</p>
-              <p class="text-xs text-gray-500">Your files never leave your device.</p>
-            </div>
-            <input 
-              type="file" 
-              id="jsonFiles" 
-              accept="application/json" 
-              multiple 
-              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            />
-          </div>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8 text-white">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/about.html" class="nav-link">About</a>
+          <a href="/contact.html" class="nav-link">Contact</a>
+          <a href="/" class="nav-link">All Tools</a>
+        </div>
 
-          <!-- File Display Area -->
-          <div id="fileList" class="mt-4 hidden"></div>
-
-          <button id="convertBtn" disabled class="btn-gradient w-full mt-6">
-            Convert to PDF
+        <!-- Mobile Hamburger Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" type="button"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
+            aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
-
-        <!-- Status Message -->
-        <div id="status-message" class="mt-4 hidden p-3 rounded-lg text-sm"></div>
       </div>
     </div>
 
-    <script type="module" src="../js/logic/json-to-pdf.ts"></script>
-    <script type="module" src="../js/utils/lucide-init.ts"></script>
-    <script type="module" src="../js/mobileMenu.ts"></script>
-  </body>
-</html>
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
+      <div class="px-2 pt-2 pb-3 space-y-1 text-center">
+        <a href="/" class="mobile-nav-link">Home</a>
+        <a href="/about.html" class="mobile-nav-link">About</a>
+        <a href="/contact.html" class="mobile-nav-link">Contact</a>
+        <a href="/" class="mobile-nav-link">All Tools</a>
+      </div>
+    </div>
+  </nav>
 
+  <div class="min-h-screen flex items-center justify-center p-4 bg-gray-900">
+    <div class="bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
+      <button id="back-to-tools"
+        class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
+        <i data-lucide="arrow-left" class="cursor-pointer"></i>
+        <span class="cursor-pointer"> Back to Tools </span>
+      </button>
+      <h1 class="text-2xl font-bold text-white mb-2">JSON to PDF Converter</h1>
+      <p class="text-gray-400 mb-6">
+        Upload multiple JSON files to convert them all to PDF format. Files will be downloaded as a ZIP archive.
+      </p>
+      <div class="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3 mb-6">
+        <p class="text-yellow-200 text-sm">
+          <strong>Note:</strong> Only JSON files created by the PDF-to-JSON converter tool are supported. Standard JSON
+          files from other tools will not work.
+        </p>
+      </div>
+
+      <div class="upload-section mb-6">
+        <div
+          class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors duration-300">
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
+            <p class="mb-2 text-sm text-gray-300">
+              <span class="font-semibold">Click to select files</span> or drag and drop
+            </p>
+            <p class="text-xs text-gray-500">Multiple JSON files</p>
+            <p class="text-xs text-gray-500">Your files never leave your device.</p>
+          </div>
+          <input type="file" id="jsonFiles" accept="application/json" multiple
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" />
+        </div>
+
+        <!-- File Display Area -->
+        <div id="fileList" class="mt-4 hidden"></div>
+
+        <button id="convertBtn" disabled class="btn-gradient w-full mt-6">
+          Convert to PDF
+        </button>
+      </div>
+
+      <!-- Status Message -->
+      <div id="status-message" class="mt-4 hidden p-3 rounded-lg text-sm"></div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/logic/json-to-pdf.ts"></script>
+  <script type="module" src="../js/utils/lucide-init.ts"></script>
+  <script type="module" src="../js/mobileMenu.ts"></script>
+</body>
+
+</html>

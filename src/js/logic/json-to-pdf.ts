@@ -16,13 +16,12 @@ function showStatus(
   type: 'success' | 'error' | 'info' = 'info'
 ) {
   statusMessage.textContent = message
-  statusMessage.className = `mt-4 p-3 rounded-lg text-sm ${
-    type === 'success'
+  statusMessage.className = `mt-4 p-3 rounded-lg text-sm ${type === 'success'
       ? 'bg-green-900 text-green-200'
       : type === 'error'
         ? 'bg-red-900 text-red-200'
         : 'bg-blue-900 text-blue-200'
-  }`
+    }`
   statusMessage.classList.remove('hidden')
 }
 
@@ -36,7 +35,7 @@ function updateFileList() {
     fileListDiv.classList.add('hidden')
     return
   }
-  
+
   fileListDiv.classList.remove('hidden')
   selectedFiles.forEach((file) => {
     const fileDiv = document.createElement('div')
@@ -61,7 +60,7 @@ jsonFilesInput.addEventListener('change', (e) => {
     selectedFiles = Array.from(target.files)
     convertBtn.disabled = selectedFiles.length === 0
     updateFileList()
-    
+
     if (selectedFiles.length === 0) {
       showStatus('Please select at least 1 JSON file', 'info')
     } else {
@@ -87,10 +86,10 @@ async function convertJSONsToPDF() {
     showStatus('Converting JSONs to PDFs...', 'info')
 
     worker.postMessage({
-        command: 'convert',
-        fileBuffers: fileBuffers,
-        fileNames: selectedFiles.map(f => f.name)
-    }, fileBuffers); 
+      command: 'convert',
+      fileBuffers: fileBuffers,
+      fileNames: selectedFiles.map(f => f.name)
+    }, fileBuffers);
 
   } catch (error) {
     console.error('Error reading files:', error)
@@ -100,55 +99,55 @@ async function convertJSONsToPDF() {
 }
 
 worker.onmessage = async (e: MessageEvent) => {
-    convertBtn.disabled = false;
-    
-    if (e.data.status === 'success') {
-        const pdfFiles = e.data.pdfFiles as Array<{ name: string, data: ArrayBuffer }>;
-        
-        try {
-          showStatus('Creating ZIP file...', 'info')
-          
-          const zip = new JSZip()
-          pdfFiles.forEach(({ name, data }) => {
-            const pdfName = name.replace(/\.json$/i, '.pdf')
-            const uint8Array = new Uint8Array(data)
-            zip.file(pdfName, uint8Array)
-          })
-          
-          const zipBlob = await zip.generateAsync({ type: 'blob' })
-          const url = URL.createObjectURL(zipBlob)
-          const a = document.createElement('a')
-          a.href = url
-          a.download = 'jsons-to-pdf.zip'
-          downloadFile(zipBlob, 'jsons-to-pdf.zip')
+  convertBtn.disabled = false;
 
-          showStatus('✅ JSONs converted to PDF successfully! ZIP download started.', 'success')
-          
-          selectedFiles = []
-          jsonFilesInput.value = ''
-          fileListDiv.innerHTML = ''
-          fileListDiv.classList.add('hidden')
-          convertBtn.disabled = true
-          
-          setTimeout(() => {
-            hideStatus()
-          }, 3000)
+  if (e.data.status === 'success') {
+    const pdfFiles = e.data.pdfFiles as Array<{ name: string, data: ArrayBuffer }>;
 
-        } catch (error) {
-          console.error('Error creating ZIP:', error)
-          showStatus(`❌ Error creating ZIP: ${error instanceof Error ? error.message : 'Unknown error'}`, 'error')
-        }
+    try {
+      showStatus('Creating ZIP file...', 'info')
 
-    } else if (e.data.status === 'error') {
-        const errorMessage = e.data.message || 'Unknown error occurred in worker.';
-        console.error('Worker Error:', errorMessage);
-        showStatus(`❌ Worker Error: ${errorMessage}`, 'error');
+      const zip = new JSZip()
+      pdfFiles.forEach(({ name, data }) => {
+        const pdfName = name.replace(/\.json$/i, '.pdf')
+        const uint8Array = new Uint8Array(data)
+        zip.file(pdfName, uint8Array)
+      })
+
+      const zipBlob = await zip.generateAsync({ type: 'blob' })
+      const url = URL.createObjectURL(zipBlob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'jsons-to-pdf.zip'
+      downloadFile(zipBlob, 'jsons-to-pdf.zip')
+
+      showStatus('✅ JSONs converted to PDF successfully! ZIP download started.', 'success')
+
+      selectedFiles = []
+      jsonFilesInput.value = ''
+      fileListDiv.innerHTML = ''
+      fileListDiv.classList.add('hidden')
+      convertBtn.disabled = true
+
+      setTimeout(() => {
+        hideStatus()
+      }, 3000)
+
+    } catch (error) {
+      console.error('Error creating ZIP:', error)
+      showStatus(`❌ Error creating ZIP: ${error instanceof Error ? error.message : 'Unknown error'}`, 'error')
     }
+
+  } else if (e.data.status === 'error') {
+    const errorMessage = e.data.message || 'Unknown error occurred in worker.';
+    console.error('Worker Error:', errorMessage);
+    showStatus(`❌ Worker Error: ${errorMessage}`, 'error');
+  }
 };
 
 if (backToToolsBtn) {
   backToToolsBtn.addEventListener('click', () => {
-    window.location.href = '../../index.html#tools-header'
+    window.location.href = '/'
   })
 }
 

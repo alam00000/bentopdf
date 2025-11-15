@@ -320,6 +320,8 @@ export const toolTemplates = {
             <option value="even-odd">Split by Even/Odd Pages</option>
             <option value="all">Split All Pages into Separate Files</option>
             <option value="visual">Select Pages Visually</option>
+            <option value="bookmarks">Split by Bookmarks</option>
+            <option value="n-times">Split N Times</option>
         </select>
 
         <div id="range-panel">
@@ -364,6 +366,39 @@ export const toolTemplates = {
         <div id="all-pages-panel" class="hidden p-3 bg-gray-900 rounded-lg border border-gray-700">
             <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
             <p class="text-xs text-gray-400 mt-1">This mode will create a separate PDF file for every single page in your document and download them together in one ZIP archive.</p>
+        </div>
+
+        <div id="bookmarks-panel" class="hidden">
+            <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+                <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                <p class="text-xs text-gray-400 mt-1">Split the PDF at bookmark locations. Each bookmark will start a new PDF file.</p>
+            </div>
+            <div class="mb-4">
+                <label for="bookmark-level" class="block mb-2 text-sm font-medium text-gray-300">Bookmark Level</label>
+                <select id="bookmark-level" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                    <option value="0">Level 0 (Top level only)</option>
+                    <option value="1">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                    <option value="all" selected>All Levels</option>
+                </select>
+                <p class="mt-1 text-xs text-gray-400">Select which bookmark nesting level to use for splitting</p>
+            </div>
+        </div>
+
+        <div id="n-times-panel" class="hidden">
+            <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+                <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                <p class="text-xs text-gray-400 mt-1">Split the PDF into N equal parts. For example, a 40-page PDF with N=5 will create 8 PDFs with 5 pages each.</p>
+            </div>
+            <div class="mb-4">
+                <label for="split-n-value" class="block mb-2 text-sm font-medium text-gray-300">Number of Pages per Split (N)</label>
+                <input type="number" id="split-n-value" min="1" value="5" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                <p class="mt-1 text-xs text-gray-400">Each resulting PDF will contain N pages (except possibly the last one)</p>
+            </div>
+            <div id="n-times-warning" class="hidden p-3 bg-yellow-900/30 border border-yellow-500/30 rounded-lg mb-3">
+                <p class="text-sm text-yellow-200"><strong>Note:</strong> <span id="n-times-warning-text"></span></p>
+            </div>
         </div>
         
         <div id="zip-option-wrapper" class="hidden mt-4">
@@ -533,9 +568,17 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality JPG image.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <div id="jpg-preview" class="hidden text-center mt-6">
-            <p class="mb-4 text-white">Click "Download All as ZIP" to get images for all pages.</p>
-            <button id="process-btn" class="btn-gradient w-full mt-6">Download All as ZIP</button>
+        <div id="jpg-preview" class="hidden mt-6">
+            <div class="mb-4">
+                <label for="jpg-quality" class="block mb-2 text-sm font-medium text-gray-300">Image Quality</label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="jpg-quality" min="0.1" max="1.0" step="0.1" value="0.9" class="flex-1">
+                    <span id="jpg-quality-value" class="text-white font-medium w-16 text-right">90%</span>
+                </div>
+                <p class="mt-1 text-xs text-gray-400">Higher quality = larger file size</p>
+            </div>
+            <p class="mb-4 text-white text-center">Click "Download All as ZIP" to get images for all pages.</p>
+            <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
         </div>
     `,
   'jpg-to-pdf': () => `
@@ -543,6 +586,17 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert one or more JPG images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/jpeg', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
+        <div id="jpg-to-pdf-options" class="hidden mt-6">
+            <div class="mb-4">
+                <label for="jpg-pdf-quality" class="block mb-2 text-sm font-medium text-gray-300">PDF Quality</label>
+                <select id="jpg-pdf-quality" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                    <option value="high">High Quality (Larger file)</option>
+                    <option value="medium" selected>Medium Quality (Balanced)</option>
+                    <option value="low">Low Quality (Smaller file)</option>
+                </select>
+                <p class="mt-1 text-xs text-gray-400">Controls image compression when embedding into PDF</p>
+            </div>
+        </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
   'scan-to-pdf': () => `
@@ -580,8 +634,8 @@ export const toolTemplates = {
 `,
   compress: () => `
     <h2 class="text-2xl font-bold text-white mb-4">Compress PDF</h2>
-    <p class="mb-6 text-gray-400">Reduce file size by choosing the compression method that best suits your document.</p>
-    ${createFileInputHTML()}
+    <p class="mb-6 text-gray-400">Reduce file size by choosing the compression method that best suits your document. Supports multiple PDFs.</p>
+    ${createFileInputHTML({ multiple: true, showControls: true })}
     <div id="file-display-area" class="mt-4 space-y-2"></div>
     <div id="compress-options" class="hidden mt-6 space-y-6">
         <div>
@@ -712,8 +766,16 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality PNG image.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <div id="png-preview" class="hidden text-center mt-6">
-            <p class="mb-4 text-white">Your file is ready. Click the button to download a ZIP file containing all PNG images.</p>
+        <div id="png-preview" class="hidden mt-6">
+            <div class="mb-4">
+                <label for="png-quality" class="block mb-2 text-sm font-medium text-gray-300">Image Quality (Scale)</label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="png-quality" min="1.0" max="4.0" step="0.5" value="2.0" class="flex-1">
+                    <span id="png-quality-value" class="text-white font-medium w-16 text-right">2.0x</span>
+                </div>
+                <p class="mt-1 text-xs text-gray-400">Higher scale = better quality but larger file size</p>
+            </div>
+            <p class="mb-4 text-white text-center">Your file is ready. Click the button to download a ZIP file containing all PNG images.</p>
             <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
         </div>
     `,
@@ -722,6 +784,17 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert one or more PNG images into a single PDF file.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/png', showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
+        <div id="png-to-pdf-options" class="hidden mt-6">
+            <div class="mb-4">
+                <label for="png-pdf-quality" class="block mb-2 text-sm font-medium text-gray-300">PDF Quality</label>
+                <select id="png-pdf-quality" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                    <option value="high">High Quality (Larger file)</option>
+                    <option value="medium" selected>Medium Quality (Balanced)</option>
+                    <option value="low">Low Quality (Smaller file)</option>
+                </select>
+                <p class="mt-1 text-xs text-gray-400">Controls image compression when embedding into PDF</p>
+            </div>
+        </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
   'pdf-to-webp': () => `
@@ -729,8 +802,16 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a modern WebP image.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <div id="webp-preview" class="hidden text-center mt-6">
-            <p class="mb-4 text-white">Your file is ready. Click the button to download a ZIP file containing all WebP images.</p>
+        <div id="webp-preview" class="hidden mt-6">
+            <div class="mb-4">
+                <label for="webp-quality" class="block mb-2 text-sm font-medium text-gray-300">Image Quality</label>
+                <div class="flex items-center gap-4">
+                    <input type="range" id="webp-quality" min="0.1" max="1.0" step="0.1" value="0.9" class="flex-1">
+                    <span id="webp-quality-value" class="text-white font-medium w-16 text-right">90%</span>
+                </div>
+                <p class="mt-1 text-xs text-gray-400">Higher quality = larger file size</p>
+            </div>
+            <p class="mb-4 text-white text-center">Your file is ready. Click the button to download a ZIP file containing all WebP images.</p>
             <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
         </div>
     `,
@@ -915,7 +996,18 @@ export const toolTemplates = {
         <h2 class="text-2xl font-bold text-white mb-4">Image to PDF Converter</h2>
         <p class="mb-6 text-gray-400">Combine multiple images into a single PDF. Drag and drop to reorder.</p>
         ${createFileInputHTML({ multiple: true, accept: 'image/jpeg,image/png,image/webp', showControls: true })}
-        <ul id="image-list" class="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4"></ul>
+        <ul id="image-list" class="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+        </ul>
+        <div id="image-to-pdf-options" class="hidden mt-6">
+          <div class="mb-4">
+            <label for="image-pdf-quality" class="block mb-2 text-sm font-medium text-gray-300">PDF Image Quality</label>
+            <div class="flex items-center gap-4">
+              <input type="range" id="image-pdf-quality" min="0.3" max="1.0" step="0.1" value="0.9" class="flex-1">
+              <span id="image-pdf-quality-value" class="text-white font-medium w-16 text-right">90%</span>
+            </div>
+            <p class="mt-1 text-xs text-gray-400">Higher quality = larger PDF size</p>
+          </div>
+        </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
     `,
 
@@ -1000,8 +1092,24 @@ export const toolTemplates = {
     `,
   'txt-to-pdf': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Text to PDF</h2>
-        <p class="mb-6 text-gray-400">Type or paste your text below and convert it to a PDF with custom formatting.</p>
-        <textarea id="text-input" rows="12" class="w-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-2.5 font-sans" placeholder="Start typing here..."></textarea>
+        <p class="mb-6 text-gray-400">Upload one or more text files, or type/paste text below to convert to PDF with custom formatting.</p>
+        
+        <div class="mb-4">
+            <div class="flex gap-2 p-1 rounded-lg bg-gray-900 border border-gray-700 mb-4">
+                <button id="txt-mode-upload-btn" class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md">Upload Files</button>
+                <button id="txt-mode-text-btn" class="flex-1 btn bg-gray-700 text-gray-300 font-semibold py-2 rounded-md">Type Text</button>
+            </div>
+            
+            <div id="txt-upload-panel">
+                ${createFileInputHTML({ multiple: true, accept: 'text/plain,.txt', showControls: true })}
+                <div id="file-display-area" class="mt-4 space-y-2"></div>
+            </div>
+            
+            <div id="txt-text-panel" class="hidden">
+                <textarea id="text-input" rows="12" class="w-full bg-gray-900 border border-gray-600 text-gray-300 rounded-lg p-2.5 font-sans" placeholder="Start typing here..."></textarea>
+            </div>
+        </div>
+        
         <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
                 <label for="font-family" class="block mb-2 text-sm font-medium text-gray-300">Font Family</label>
@@ -1990,6 +2098,23 @@ export const toolTemplates = {
       <div id="attachment-file-list" class="mt-4 space-y-2"></div>
 
       <button id="process-btn" class="hidden btn-gradient w-full mt-6" disabled>Embed Files & Download</button>
+    </div>
+  `,
+  'extract-attachments': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Extract Attachments</h2>
+    <p class="mb-6 text-gray-400">Extract all embedded files from one or more PDFs. All attachments will be downloaded in a ZIP archive.</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="btn-gradient w-full mt-6">Extract Attachments</button>
+  `,
+  'edit-attachments': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Edit Attachments</h2>
+    <p class="mb-6 text-gray-400">View, remove, or replace attachments in your PDF.</p>
+    ${createFileInputHTML({ accept: 'application/pdf' })}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <div id="edit-attachments-options" class="hidden mt-6">
+      <div id="attachments-list" class="space-y-3 mb-4"></div>
+      <button id="process-btn" class="btn-gradient w-full mt-6">Save Changes & Download</button>
     </div>
   `,
 

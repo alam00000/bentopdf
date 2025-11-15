@@ -12,6 +12,9 @@ export async function pdfToJpg() {
     ).promise;
     const zip = new JSZip();
 
+    const qualityInput = document.getElementById('jpg-quality') as HTMLInputElement;
+    const quality = qualityInput ? parseFloat(qualityInput.value) : 0.9;
+
     for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);
       const viewport = page.getViewport({ scale: 2.0 });
@@ -23,7 +26,7 @@ export async function pdfToJpg() {
       await page.render({ canvasContext: context, viewport: viewport }).promise;
 
       const blob = await new Promise((resolve) =>
-        canvas.toBlob(resolve, 'image/jpeg', 0.9)
+        canvas.toBlob(resolve, 'image/jpeg', quality)
       );
       zip.file(`page_${i}.jpg`, blob as Blob);
     }

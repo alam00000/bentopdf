@@ -4,6 +4,12 @@ export const categories = [
     name: 'Popular Tools',
     tools: [
       {
+        href: '/src/pages/pdf-multi-tool.html',
+        name: 'PDF Multi Tool',
+        icon: 'pencil-ruler',
+        subtitle: 'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface.',
+      },
+      {
         id: 'merge',
         name: 'Merge PDF',
         icon: 'combine',
@@ -317,6 +323,24 @@ export const categories = [
         name: 'Add Attachments',
         icon: 'paperclip',
         subtitle: 'Embed one or more files into your PDF.',
+      },
+      {
+        id: 'extract-attachments',
+        name: 'Extract Attachments',
+        icon: 'download',
+        subtitle: 'Extract all embedded files from PDF(s) as a ZIP.',
+      },
+      {
+        id: 'edit-attachments',
+        name: 'Edit Attachments',
+        icon: 'file-edit',
+        subtitle: 'View or remove attachments in your PDF.',
+      },
+      {
+        href: '/src/pages/pdf-multi-tool.html',
+        name: 'PDF Multi Tool',
+        icon: 'pencil-ruler',
+        subtitle: 'Full-featured PDF editor with page management.',
       },
       {
         id: 'split',
