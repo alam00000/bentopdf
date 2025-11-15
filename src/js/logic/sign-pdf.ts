@@ -4,6 +4,8 @@ import { state } from '../state.js';
 import html2canvas from 'html2canvas';
 import { flattenAsImage } from './flatten-as-image.js';
 
+const SIGNATURES_STORAGE_KEY = 'bentopdf_signatures';
+
 const signState = {
   pdf: null,
   canvas: null,
@@ -152,17 +154,40 @@ function getMousePos(canvas: any, evt: any) {
   };
 }
 
-function addSignatureToSaved(imageDataUrl: any) {
-  const img = new Image();
-  img.src = imageDataUrl;
-  signState.savedSignatures.push(img);
+function saveSignaturesToLocalStorage() {
+  localStorage.setItem(
+    SIGNATURES_STORAGE_KEY,
+    JSON.stringify(signState.savedSignatures)
+  );
+}
+
+function loadSignaturesFromLocalStorage() {
+  const stored = localStorage.getItem(SIGNATURES_STORAGE_KEY);
+  if (stored) {
+    try {
+      signState.savedSignatures = JSON.parse(stored);
+    } catch (e) {
+      signState.savedSignatures = [];
+    }
+  }
+}
+
+function addSignatureToSaved(imageDataUrl) {
+  // Add new signature, keep only latest 5
+  signState.savedSignatures.unshift(imageDataUrl);
+  if (signState.savedSignatures.length > 5) {
+    signState.savedSignatures = signState.savedSignatures.slice(0, 5);
+  }
+  saveSignaturesToLocalStorage();
   renderSavedSignatures();
 }
 
 function renderSavedSignatures() {
   const container = document.getElementById('saved-signatures-container');
-  container.textContent = ''; //change
-  signState.savedSignatures.forEach((img, index) => {
+  container.textContent = '';
+  signState.savedSignatures.forEach((imgDataUrl, index) => {
+    const img = new Image();
+    img.src = imgDataUrl;
     const wrapper = document.createElement('div');
     wrapper.className =
       'saved-signature p-1 bg-white rounded-md cursor-pointer border-2 border-transparent hover:border-indigo-500 h-16';
@@ -385,6 +410,10 @@ function setupPlacementListeners() {
 
 export async function setupSignTool() {
   document.getElementById('signature-editor').classList.remove('hidden');
+
+  // On initialization, load signatures from localStorage
+  loadSignaturesFromLocalStorage();
+  renderSavedSignatures();
 
   signState.canvas = document.getElementById('canvas-sign');
   signState.context = signState.canvas.getContext('2d');
