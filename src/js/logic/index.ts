@@ -88,6 +88,7 @@ export const toolLogic = {
   'edit-metadata': editMetadata,
   'remove-metadata': removeMetadata,
   flatten,
+  'flatten-as-image': flattenAsImage,
   'pdf-to-png': pdfToPng,
   'png-to-pdf': pngToPdf,
   'pdf-to-webp': pdfToWebp,
