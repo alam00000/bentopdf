@@ -79,6 +79,19 @@ body {
   transform: scale(0.98);
 }
 
+/* Show hand cursor on clickable buttons */
+button,
+.btn,
+.btn-gradient {
+  cursor: pointer;
+}
+
+/* Disabled buttons show not-allowed cursor */
+button:disabled,
+.btn:disabled {
+  cursor: not-allowed;
+}
+
 /* Custom file input */
 input[type='file']::file-selector-button {
   @apply bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg cursor-pointer hover:bg-indigo-700 transition-colors duration-200 mr-4;
