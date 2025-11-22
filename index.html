@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="simple-mode-loading">
 
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,29 @@
   <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
 
-<body class="antialiased">
+  <body class="antialiased">
+    <div id="simple-loading-screen" class="simple-loading-screen" style="display: flex; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #111827; z-index: 99999; justify-content: center; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+      <div style="text-align: center; color: white;">
+        <img src="images/favicon.svg" alt="BentoPDF Logo" style="width: 64px; height: 64px; margin: 0 auto 1rem auto; display: block;">
+        <h1 style="font-size: 2rem; font-weight: bold; margin: 0 0 0.5rem 0; color: white;">BentoPDF</h1>
+        <p style="font-size: 1rem; color: #9ca3af; margin: 0 0 2rem 0;">Loading PDF Tools...</p>
+        <div style="width: 40px; height: 40px; border: 4px solid #374151; border-top-color: #4f46e5; border-radius: 50%; margin: 0 auto; animation: spin 1s linear infinite;"></div>
+      </div>
+    </div>
+
+  <!-- Inline CSS for immediate loading screen visibility -->
+  <style>
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+    </style>
+    <script>
+      if (document.documentElement.classList.contains('simple-mode-loading')) {
+        document.getElementById('simple-loading-screen').style.display = 'flex';
+      }
+    </script>
+
   <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center h-16">
