@@ -1,0 +1,21 @@
+{
+  "name": "BentoPDF",
+  "short_name": "BentoPDF",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#18181b",
+  "theme_color": "#18181b",
+  "description": "All-in-one PDF toolkit, fully offline.",
+  "icons": [
+    {
+      "src": "images/favicon.png",
+      "sizes": "86x166",
+      "type": "image/png"
+    },
+    {
+      "src": "images/favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -80,6 +80,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Change Text Color**  | Change the color of text content within the PDF.            |
 | **Fill Forms**         | Fill out PDF forms directly in your browser.                |
 | **Flatten PDF**        | Flatten form fields and annotations into static content.    |
+| **Flatten PDF as Image**        | Convert PDF Pages to Images, usefull for signed PDF.    |
 | **Remove Annotations** | Remove comments, highlights, and other annotations.         |
 | **Remove Blank Pages** | Auto detect and remove blank pages in a PDF.                |
 | **Edit Bookmarks** | Add, Edit, Create, Import and Export PDF Bookmarks.                |
