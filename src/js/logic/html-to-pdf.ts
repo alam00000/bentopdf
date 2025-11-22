@@ -482,10 +482,8 @@ const processInlineImages = async (
     try {
       const imageData = await loadImageAsBase64(image.src);
       if (imageData) {
-        currentY += 5; // Small spacing
-
-        const maxInlineImageWidth = maxWidth / 2;
-        const maxInlineImageHeight = 50;
+        const maxInlineImageWidth = maxWidth;
+        const maxInlineImageHeight = pageHeight - currentY - PDF_CONSTANTS.MARGIN;
 
         let imgWidth = imageData.width * PDF_CONSTANTS.PIXELS_TO_MM;
         let imgHeight = imageData.height * PDF_CONSTANTS.PIXELS_TO_MM;
@@ -711,15 +709,8 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
             // Handle empty lines by adding a standard line height.
             currentY += getLineHeight(textStyleDefaults.fontSize);
           }
-          // Add spacing after the paragraph and process any inline images.
+          // Add spacing after the paragraph
           currentY += PDF_CONSTANTS.PARAGRAPH_SPACING;
-          currentY = await processInlineImages(
-            pdf,
-            block,
-            currentY,
-            maxWidth,
-            pageHeight
-          );
           break;
 
         case 'list':
@@ -746,56 +737,6 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
             listLines.length * getLineHeight(textStyleDefaults.fontSize) + 1.5;
           break;
 
-        case 'image':
-          try {
-            const imageSegment = block.segments.find(
-              (seg: any) => seg.type === 'image'
-            );
-            if (imageSegment?.src) {
-              const imageData = await loadImageAsBase64(imageSegment.src);
-              if (imageData) {
-                const maxImageWidth = maxWidth;
-                const maxImageHeight = 100;
-                let imgWidth = imageData.width * PDF_CONSTANTS.PIXELS_TO_MM;
-                let imgHeight = imageData.height * PDF_CONSTANTS.PIXELS_TO_MM;
-
-                if (imgWidth > maxImageWidth) {
-                  const ratio = maxImageWidth / imgWidth;
-                  imgWidth = maxImageWidth;
-                  imgHeight *= ratio;
-                }
-                if (imgHeight > maxImageHeight) {
-                  const ratio = maxImageHeight / imgHeight;
-                  imgHeight = maxImageHeight;
-                  imgWidth *= ratio;
-                }
-                if (currentY + imgHeight > pageHeight - PDF_CONSTANTS.MARGIN) {
-                  pdf.addPage();
-                  currentY = PDF_CONSTANTS.MARGIN;
-                }
-                pdf.addImage(
-                  imageData.data,
-                  'JPEG',
-                  PDF_CONSTANTS.MARGIN,
-                  currentY,
-                  imgWidth,
-                  imgHeight
-                );
-                currentY += imgHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
-              } else {
-                currentY = renderImagePlaceholder(
-                  pdf,
-                  `Unable to load - ${imageSegment.src}`,
-                  currentY
-                );
-              }
-            }
-          } catch (error) {
-            console.warn('Error handling image in PDF:', error);
-            currentY = renderImagePlaceholder(pdf, 'Error loading', currentY);
-          }
-          break;
-
         default:
           if (block.type !== 'list') {
             currentListNumber = 1;
@@ -803,6 +744,15 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
           }
           break;
       }
+
+      currentY = await processInlineImages(
+        pdf,
+        block,
+        currentY,
+        maxWidth,
+        pageHeight
+      );
+
     }
 
     const pdfBlob = pdf.output('blob');
