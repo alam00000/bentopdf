@@ -187,14 +187,12 @@ const renderFormattedText = (
   let consumedTextInSegment = 0;
 
   for (const line of allLines) {
-    const lineWidth = pdf.getTextWidth(line);
-    let currentLineX = getAlignedX(
-      alignment,
-      startX,
-      lineWidth,
-      pageWidth,
-      margin
-    );
+    let lineStart = 0;
+    let lineEnd = line.length;
+    let currentLineX = getAlignedX(alignment, startX, pdf.getTextWidth(line), pageWidth, margin);
+
+    let segmentIndex = 0;
+    let consumedTextInSegment = 0;
     let remainingLineText = line;
 
     while (remainingLineText.length > 0 && segmentIndex < formattedSegments.length) {
@@ -207,9 +205,8 @@ const renderFormattedText = (
         continue;
       }
 
-      const textToRender = remainingLineText.startsWith(remainingSegmentText)
-        ? remainingSegmentText
-        : remainingLineText.substring(0, remainingSegmentText.length);
+      const charsToRender = Math.min(remainingSegmentText.length, remainingLineText.length);
+      const textToRender = remainingSegmentText.substring(0, charsToRender);
 
       const { adjustedFontSize, yOffset } = calculateScriptFormatting(segment);
       pdf.setFont(segment.fontFamily, segment.fontStyle);
@@ -228,8 +225,13 @@ const renderFormattedText = (
       renderTextDecorations(pdf, segment, currentLineX, currentY, yOffset, renderedWidth, adjustedFontSize);
 
       currentLineX += renderedWidth;
-      consumedTextInSegment += textToRender.length;
-      remainingLineText = remainingLineText.substring(textToRender.length);
+      consumedTextInSegment += charsToRender;
+      remainingLineText = remainingLineText.substring(charsToRender);
+
+      if (consumedTextInSegment >= segment.text.length) {
+        segmentIndex++;
+        consumedTextInSegment = 0;
+      }
     }
     currentY += lineHeight;
   }
