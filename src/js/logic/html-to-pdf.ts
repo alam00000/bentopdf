@@ -7,7 +7,6 @@ import 'quill/dist/quill.snow.css';
 const PDF_CONSTANTS = {
   PIXELS_TO_MM: 0.264583,
   EM_TO_POINTS: 12,
-  DEFAULT_LINE_HEIGHT: 3.5,
   PARAGRAPH_SPACING: 2.5,
   MARGIN: 20,
   SUPERSCRIPT_SCALE: 0.7,
@@ -213,7 +212,7 @@ const renderFormattedText = (
   blockType: string,
   margin: number,
   pageWidth: number,
-  lineHeight: number = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT
+  lineHeight: number
 ): number => {
   if (!formattedSegments.length && !fullText.trim()) {
     return startY + lineHeight;
@@ -308,6 +307,9 @@ const renderFormattedText = (
 
   return currentY;
 };
+
+const getLineHeight = (fontSize: number): number => fontSize * 0.29 + 1.1;
+
 const getFontStyle = (attrs: any): string => {
   if (attrs.bold && attrs.italic) return 'bolditalic';
   if (attrs.bold) return 'bold';
@@ -351,7 +353,7 @@ const renderImagePlaceholder = (
   pdf.text(`[Image: ${message}]`, PDF_CONSTANTS.MARGIN, currentY);
   return (
     currentY +
-    PDF_CONSTANTS.DEFAULT_LINE_HEIGHT +
+    getLineHeight(10) +
     PDF_CONSTANTS.PARAGRAPH_SPACING
   );
 };
@@ -369,10 +371,11 @@ const renderBlockQuote = async (
   const verticalPadding = 5;
   const textStartX = boxStartX + textPadding;
   const availableTextWidth = maxWidth - textPadding * 2;
-  const lineHeight = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9;
+  const fontSize = textStyleDefaults.fontSize - 1;
+  const lineHeight = getLineHeight(fontSize);
 
   pdf.setFont(textStyleDefaults.fontFamily, 'normal');
-  pdf.setFontSize(textStyleDefaults.fontSize - 1);
+  pdf.setFontSize(fontSize);
   const textLines = pdf.splitTextToSize(lineText, availableTextWidth);
   const textHeight = textLines.length * lineHeight;
   const blockHeight = textHeight + verticalPadding * 2;
@@ -429,10 +432,11 @@ const renderCodeBlock = async (
   const verticalPadding = 5;
   const textStartX = boxStartX + textPadding;
   const availableTextWidth = maxWidth - textPadding * 2;
-  const lineHeight = PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9;
+  const fontSize = textStyleDefaults.fontSize - 2;
+  const lineHeight = getLineHeight(fontSize);
 
   pdf.setFont('courier', 'normal');
-  pdf.setFontSize(textStyleDefaults.fontSize - 2);
+  pdf.setFontSize(fontSize);
 
   const textLines = pdf.splitTextToSize(lineText, availableTextWidth);
   const textHeight = textLines.length * lineHeight;
@@ -464,6 +468,7 @@ const renderCodeBlock = async (
 
   return currentY + blockHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
 };
+
 const processInlineImages = async (
   pdf: any,
   block: any,
@@ -658,10 +663,10 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
           const fontSize = textStyleDefaults.fontSize * headerScale;
           pdf.setFont(textStyleDefaults.fontFamily, 'bold');
           pdf.setFontSize(fontSize);
-          currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.7;
+          currentY += getLineHeight(fontSize);
           pdf.text(lineText, startX, currentY);
           currentY +=
-            PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.8 +
+            getLineHeight(fontSize) +
             PDF_CONSTANTS.PARAGRAPH_SPACING;
           break;
 
@@ -700,11 +705,11 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
               block.type,
               PDF_CONSTANTS.MARGIN,
               pageWidth,
-              PDF_CONSTANTS.DEFAULT_LINE_HEIGHT * 0.9
+              getLineHeight(textStyleDefaults.fontSize)
             );
           } else {
             // Handle empty lines by adding a standard line height.
-            currentY += PDF_CONSTANTS.DEFAULT_LINE_HEIGHT;
+            currentY += getLineHeight(textStyleDefaults.fontSize);
           }
           // Add spacing after the paragraph and process any inline images.
           currentY += PDF_CONSTANTS.PARAGRAPH_SPACING;
@@ -719,7 +724,7 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
 
         case 'list':
           pdf.setFont(textStyleDefaults.fontFamily, 'normal');
-          pdf.setFontSize(12);
+          pdf.setFontSize(textStyleDefaults.fontSize);
           pdf.setTextColor(0, 0, 0);
 
           if (
@@ -738,7 +743,7 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
           );
           pdf.text(listLines, PDF_CONSTANTS.MARGIN + 10, currentY);
           currentY +=
-            listLines.length * PDF_CONSTANTS.DEFAULT_LINE_HEIGHT + 1.5;
+            listLines.length * getLineHeight(textStyleDefaults.fontSize) + 1.5;
           break;
 
         case 'image':
