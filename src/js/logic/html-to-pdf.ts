@@ -25,11 +25,15 @@ const PDF_CONSTANTS = {
 } as const;
 
 type TextStyleDefaults = {
+  pageSize: string;
+  pageOrientation: string;
   fontSize: number;
   fontFamily: string;
 };
 
 let textStyleDefaults: TextStyleDefaults = {
+  pageSize: 'a4',
+  pageOrientation: 'portrait',
   fontSize: 12,
   fontFamily: 'helvetica',
 };
@@ -338,26 +342,6 @@ const getFontFamily = (blockType: string, attrs: any): string => {
   return textStyleDefaults.fontFamily;
 };
 
-const renderImagePlaceholder = (
-  pdf: any,
-  message: string,
-  currentY: number
-): number => {
-  pdf.setFont(textStyleDefaults.fontFamily, 'italic');
-  pdf.setFontSize(10);
-  pdf.setTextColor(
-    PDF_CONSTANTS.DEFAULT_COLORS.PLACEHOLDER_GRAY.r,
-    PDF_CONSTANTS.DEFAULT_COLORS.PLACEHOLDER_GRAY.g,
-    PDF_CONSTANTS.DEFAULT_COLORS.PLACEHOLDER_GRAY.b
-  );
-  pdf.text(`[Image: ${message}]`, PDF_CONSTANTS.MARGIN, currentY);
-  return (
-    currentY +
-    getLineHeight(10) +
-    PDF_CONSTANTS.PARAGRAPH_SPACING
-  );
-};
-
 const renderBlockQuote = async (
   pdf: any,
   formattedSegments: any[],
@@ -483,7 +467,8 @@ const processInlineImages = async (
       const imageData = await loadImageAsBase64(image.src);
       if (imageData) {
         const maxInlineImageWidth = maxWidth;
-        const maxInlineImageHeight = pageHeight - currentY - PDF_CONSTANTS.MARGIN;
+        const maxInlineImageHeight =
+          pageHeight - currentY - PDF_CONSTANTS.MARGIN;
 
         let imgWidth = imageData.width * PDF_CONSTANTS.PIXELS_TO_MM;
         let imgHeight = imageData.height * PDF_CONSTANTS.PIXELS_TO_MM;
@@ -525,44 +510,44 @@ const processInlineImages = async (
   return currentY;
 };
 
+const initTextPageDefaults = (): void => {
+  const fontFamilyKey = (
+    document.getElementById('font-family') as HTMLSelectElement
+  )?.value?.toLowerCase();
+  const fontSize = parseInt(
+    (document.getElementById('font-size') as HTMLInputElement)?.value
+  );
+  const pageSizeKey = (
+    document.getElementById('page-size') as HTMLSelectElement
+  )?.value?.toLowerCase();
+  const pageOrientationKey = (
+    document.getElementById('page-orientation') as HTMLSelectElement
+  )?.value?.toLowerCase();
+
+  if (fontFamilyKey) textStyleDefaults.fontFamily = fontFamilyKey;
+  if (fontSize) textStyleDefaults.fontSize = fontSize;
+  if (pageSizeKey) textStyleDefaults.pageSize = pageSizeKey;
+  if (pageOrientationKey)
+    textStyleDefaults.pageOrientation = pageOrientationKey;
+};
+
 const generateAdvancedTextPdf = async (): Promise<void> => {
   try {
     const { jsPDF } = await import('jspdf');
-
-    const DEFAULTS = {
-      fontFamily: 'helvetica',
-      fontSize: 12,
-      pageSize: 'a4',
-      pageOrientation: 'portrait',
-    };
-
-    const fontFamilyKey =
-      (
-        document.getElementById('font-family') as HTMLSelectElement
-      )?.value?.toLowerCase() || DEFAULTS.fontFamily;
-    const fontSize =
-      parseInt(
-        (document.getElementById('font-size') as HTMLInputElement)?.value
-      ) || DEFAULTS.fontSize;
-    const pageSizeKey =
-      (
-        document.getElementById('page-size') as HTMLSelectElement
-      )?.value?.toLowerCase() || DEFAULTS.pageOrientation;
-    const pageOrientationKey =
-      (
-        document.getElementById('page-orientation') as HTMLSelectElement
-      )?.value?.toLowerCase() || DEFAULTS.pageSize;
-
-    textStyleDefaults.fontFamily = fontFamilyKey || DEFAULTS.fontFamily;
-    textStyleDefaults.fontSize = fontSize || DEFAULTS.fontSize;
+    initTextPageDefaults();
 
     const orientation =
-      pageOrientationKey === 'landscape' || pageOrientationKey === 'l'
+      textStyleDefaults.pageOrientation === 'landscape' ||
+      textStyleDefaults.pageOrientation === 'l'
         ? 'l'
         : 'p';
-    const pdf = new jsPDF(orientation, 'mm', pageSizeKey.toLowerCase());
-    pdf.setFont(fontFamilyKey.toLowerCase(), 'normal');
-    pdf.setFontSize(fontSize);
+    const pdf = new jsPDF(
+      orientation,
+      'mm',
+      textStyleDefaults.pageSize.toLowerCase()
+    );
+    pdf.setFont(textStyleDefaults.fontFamily.toLowerCase(), 'normal');
+    pdf.setFontSize(textStyleDefaults.fontSize);
 
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
@@ -663,9 +648,7 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
           pdf.setFontSize(fontSize);
           currentY += getLineHeight(fontSize);
           pdf.text(lineText, startX, currentY);
-          currentY +=
-            getLineHeight(fontSize) +
-            PDF_CONSTANTS.PARAGRAPH_SPACING;
+          currentY += getLineHeight(fontSize) + PDF_CONSTANTS.PARAGRAPH_SPACING;
           break;
 
         case 'blockquote':
@@ -752,7 +735,6 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
         maxWidth,
         pageHeight
       );
-
     }
 
     const pdfBlob = pdf.output('blob');
@@ -900,22 +882,30 @@ const parseQuillDelta = (delta: any): any[] => {
 
   return mergedContent;
 };
-const generatePrintCSS = (): string => `
-  @page { margin: 20mm; size: A4; }
+
+const generatePrintCSS = (): string => {
+  const fontFamily = textStyleDefaults.fontFamily;
+  const fontSize = textStyleDefaults.fontSize;
+  const pageSize = textStyleDefaults.pageSize.toLowerCase();
+  const headerScales = PDF_CONSTANTS.HEADER_SCALES;
+
+  const headerCSS = Object.entries(headerScales)
+    .map(
+      ([level, scale]) =>
+        `h${level} { font-size: ${fontSize * scale}pt; margin: ${8 + 2 * (7 - Number(level))}pt 0 ${6 + 2 * (7 - Number(level))}pt 0; font-weight: bold; line-height: ${fontSize * scale * 1.1}pt; }`
+    )
+    .join('\n  ');
+
+  return `
+  @page { margin: 20mm; size: ${pageSize} ${textStyleDefaults.pageOrientation}; }
   
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    font-size: 12pt; line-height: 1.6; color: #333; margin: 0; padding: 0; background: white;
+    font-family: ${fontFamily}, system-ui, sans-serif;
+    font-size: ${fontSize}pt; line-height: ${fontSize * 1.1}pt; color: #000; margin: 0; padding: 0; background: white;
   }
   
   /* Headers */
-  h1, h2, h3, h4, h5, h6 { font-weight: bold; line-height: 1.3; }
-  h1 { font-size: 24pt; margin: 16pt 0 12pt 0; }
-  h2 { font-size: 20pt; margin: 14pt 0 10pt 0; }
-  h3 { font-size: 18pt; margin: 12pt 0 8pt 0; }
-  h4 { font-size: 16pt; margin: 10pt 0 6pt 0; }
-  h5 { font-size: 14pt; margin: 8pt 0 6pt 0; }
-  h6 { font-size: 13pt; margin: 8pt 0 6pt 0; }
+  ${headerCSS}
   
   /* Text formatting */
   strong, b { font-weight: bold !important; }
@@ -950,7 +940,7 @@ const generatePrintCSS = (): string => `
     background: #f9f9f9; font-style: italic;
   }
   
-  pre, .ql-code-block {
+  pre, .ql-code-block-container {
     background: #f5f5f5; border: 1pt solid #ddd; border-radius: 4pt;
     padding: 12pt; font-family: 'Courier New', Courier, monospace;
     font-size: 10pt; margin: 8pt 0;
@@ -958,6 +948,7 @@ const generatePrintCSS = (): string => `
   
   @media print { body { -webkit-print-color-adjust: exact; } }
 `;
+};
 
 const usePrintToPdf = (): void => {
   const printWin = window.open('', '_blank');
@@ -970,6 +961,7 @@ const usePrintToPdf = (): void => {
   }
 
   const processedHtml = extractAndProcessHtmlContent();
+  initTextPageDefaults();
 
   printWin.document.write(`
     <!DOCTYPE html>
