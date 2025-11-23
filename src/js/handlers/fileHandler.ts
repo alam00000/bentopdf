@@ -707,7 +707,7 @@ export function setupFileInputHandler(toolId) {
     }
 
     if (isMultiFileTool) {
-      if (toolId === 'txt-to-pdf' || toolId === 'compress' || toolId === 'extract-attachments') {
+      if (toolId === 'txt-to-pdf' || toolId === 'compress' || toolId === 'extract-attachments' || toolId === 'extract-images') {
         const processBtn = document.getElementById('process-btn');
         if (processBtn) {
           (processBtn as HTMLButtonElement).disabled = false;

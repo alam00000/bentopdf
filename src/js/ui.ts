@@ -2097,6 +2097,13 @@ export const toolTemplates = {
     <div id="file-display-area" class="mt-4 space-y-2"></div>
     <button id="process-btn" class="btn-gradient w-full mt-6">Extract Attachments</button>
   `,
+  'extract-images': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Extract Images</h2>
+    <p class="mb-6 text-gray-400">Extract all embedded images from one or more PDFs. All images will be downloaded in a ZIP archive.</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="btn-gradient w-full mt-6">Extract Images</button>
+  `,
     'edit-attachments': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Edit Attachments</h2>
     <p class="mb-6 text-gray-400">View, remove, or replace attachments in your PDF.</p>

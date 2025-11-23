@@ -432,6 +432,12 @@ export const categories = [
         icon: 'notepad-text-dashed',
         subtitle: 'Split a large page into multiple smaller pages.',
       },
+      {
+        id: 'extract-images',
+        name: 'Extract Images',
+        icon: 'image',
+        subtitle: 'Extract all images from PDF(s) as a ZIP.',
+      },
     ],
   },
   {

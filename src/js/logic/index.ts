@@ -66,6 +66,7 @@ import { alternateMerge, setupAlternateMergeTool } from './alternate-merge.js';
 import { linearizePdf } from './linearize.js';
 import { addAttachments, setupAddAttachmentsTool } from './add-attachments.js';
 import { extractAttachments } from './extract-attachments.js';
+import { extractImages } from './extract-images.js';
 import { editAttachments, setupEditAttachmentsTool } from './edit-attachments.js';
 import { sanitizePdf } from './sanitize-pdf.js';
 import { removeRestrictions } from './remove-restrictions.js';
@@ -150,4 +151,5 @@ export const toolLogic = {
     setup: setupEditAttachmentsTool,
   },
   'sanitize-pdf': sanitizePdf,
+  'extract-images': extractImages,
 };

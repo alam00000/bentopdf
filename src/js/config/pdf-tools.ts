@@ -69,4 +69,5 @@ export const multiFileTools = [
   'txt-to-pdf',
   'compress',
   'extract-attachments',
+  'extract-images'
 ];
