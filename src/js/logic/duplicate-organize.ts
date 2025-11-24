@@ -1,10 +1,13 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile } from '../utils/helpers.js';
+import { downloadFile, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { renderPagesProgressively, cleanupLazyRendering } from '../utils/render-utils.js';
 import Sortable from 'sortablejs';
 import { icons, createIcons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 const duplicateOrganizeState = {
   sortableInstances: {},
@@ -88,8 +91,7 @@ export async function renderDuplicateOrganizeThumbnails() {
 
   showLoader('Rendering page previews...');
   const pdfData = await state.pdfDoc.save();
-  // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-  const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
+  const pdfjsDoc = await getPDFDocument({ data: pdfData }).promise;
 
   grid.textContent = '';
 
@@ -191,7 +193,7 @@ export async function processAndSave() {
     }
 
     const newPdfDoc = await PDFLibDocument.create();
-    
+
     const totalPages = state.pdfDoc.getPageCount();
     const invalidIndices = finalIndices.filter(i => i >= totalPages);
     if (invalidIndices.length > 0) {

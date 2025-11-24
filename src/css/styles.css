@@ -109,7 +109,7 @@ input[type='file']::file-selector-button {
   border: 2px dashed #4f46e5;
 }
 
-#embed-pdf-container > div {
+#embed-pdf-container>div {
   width: 100%;
   height: 100%;
 }
@@ -119,7 +119,7 @@ input[type='file']::file-selector-button {
 }
 
 .page-thumbnail,
-#file-list > li {
+#file-list>li {
   cursor: grab;
 }
 
@@ -495,19 +495,19 @@ footer a {
   color: rgb(165 180 252);
 }
 
-details > summary {
+details>summary {
   list-style: none;
 }
 
-details > summary::-webkit-details-marker {
+details>summary::-webkit-details-marker {
   display: none;
 }
 
-details > summary .icon {
+details>summary .icon {
   transition: transform 0.2s ease-in-out;
 }
 
-details[open] > summary .icon {
+details[open]>summary .icon {
   transform: rotate(45deg);
 }
 
@@ -568,6 +568,7 @@ button:disabled,
 #shortcuts-list::-webkit-scrollbar-thumb:hover {
   background: #6b7280;
 }
+
 /* Hide elements on touch devices */
 @media (pointer: coarse) {
   .hidden-on-touch {
@@ -582,6 +583,12 @@ button:disabled,
   }
 }
 
+/* Scroll to Top Button Visibility */
+#scroll-to-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
 /* Simple mode styles - hide everything except loading screen when simple mode is enabled */
 html.simple-mode-loading body > *:not(#simple-loading-screen) {
   display: none !important;

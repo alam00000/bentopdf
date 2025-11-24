@@ -1,13 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import JSZip from 'jszip';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 export async function pdfToWebp() {
   showLoader('Converting to WebP...');
   try {
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const zip = new JSZip();
@@ -18,10 +21,10 @@ export async function pdfToWebp() {
       canvas.height = viewport.height;
       canvas.width = viewport.width;
       const context = canvas.getContext('2d');
-      await page.render({ canvasContext: context, viewport: viewport }).promise;
+      await page.render({ canvasContext: context, viewport: viewport, canvas }).promise;
       const qualityInput = document.getElementById('webp-quality') as HTMLInputElement;
       const quality = qualityInput ? parseFloat(qualityInput.value) : 0.9;
-      
+
       const blob = await new Promise((resolve) =>
         canvas.toBlob(resolve, 'image/webp', quality)
       );

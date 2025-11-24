@@ -71,6 +71,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | Tool Name              | Description                                                 |
 | :--------------------- | :---------------------------------------------------------- |
 | **PDF Editor**         | A comprehensive editor to modify your PDFs.                 |
+| **Create Fillable Forms** | Create professional fillable PDF forms with text fields, checkboxes, dropdowns, radio buttons, signatures, and more. Fully compliant with PDF standards for compatibility with all PDF viewers. |
 | **Add Page Numbers**   | Easily add page numbers with customizable formatting.       |
 | **Add Watermark**      | Add text or image watermarks to protect your documents.     |
 | **Header & Footer**    | Add customizable headers and footers.                       |

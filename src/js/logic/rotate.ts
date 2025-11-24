@@ -1,7 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile } from '../utils/helpers.js';
+import { downloadFile, resetAndReloadTool } from '../utils/helpers.js';
 import { state } from '../state.js';
-import { getRotationState } from '../handlers/fileHandler.js';
+import { getRotationState, resetRotationState } from '../handlers/fileHandler.js';
 
 import { degrees } from 'pdf-lib';
 
@@ -24,6 +24,10 @@ export async function rotate() {
       new Blob([rotatedPdfBytes], { type: 'application/pdf' }),
       'rotated.pdf'
     );
+
+    resetAndReloadTool(() => {
+      resetRotationState();
+    });
   } catch (e) {
     console.error(e);
     showAlert('Error', 'Could not apply rotations.');

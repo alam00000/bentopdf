@@ -7,11 +7,10 @@ import Sortable from 'sortablejs';
 import { createIcons, icons } from 'lucide';
 import '../../css/bookmark.css';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
+import { truncateFilename, getPDFDocument } from '../utils/helpers.js';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 const modalContainer = document.getElementById('modal-container');
 
@@ -715,8 +714,10 @@ function handleResize() {
   if (window.innerWidth >= 1024) {
     viewerSection.classList.remove('hidden');
     bookmarksSection.classList.remove('hidden');
-    showViewerBtn.classList.remove('bg-blue-50', 'text-blue-600');
-    showBookmarksBtn.classList.remove('bg-blue-50', 'text-blue-600');
+    showViewerBtn.classList.remove('bg-indigo-600', 'text-white');
+    showViewerBtn.classList.add('text-gray-300');
+    showBookmarksBtn.classList.remove('bg-indigo-600', 'text-white');
+    showBookmarksBtn.classList.add('text-gray-300');
   }
 }
 
@@ -725,15 +726,19 @@ window.addEventListener('resize', handleResize);
 showViewerBtn.addEventListener('click', () => {
   viewerSection.classList.remove('hidden');
   bookmarksSection.classList.add('hidden');
-  showViewerBtn.classList.add('bg-blue-50', 'text-blue-600');
-  showBookmarksBtn.classList.remove('bg-blue-50', 'text-blue-600');
+  showViewerBtn.classList.add('bg-indigo-600', 'text-white');
+  showViewerBtn.classList.remove('text-gray-300');
+  showBookmarksBtn.classList.remove('bg-indigo-600', 'text-white');
+  showBookmarksBtn.classList.add('text-gray-300');
 });
 
 showBookmarksBtn.addEventListener('click', () => {
   viewerSection.classList.add('hidden');
   bookmarksSection.classList.remove('hidden');
-  showBookmarksBtn.classList.add('bg-blue-50', 'text-blue-600');
-  showViewerBtn.classList.remove('bg-blue-50', 'text-blue-600');
+  showBookmarksBtn.classList.add('bg-indigo-600', 'text-white');
+  showBookmarksBtn.classList.remove('text-gray-300');
+  showViewerBtn.classList.remove('bg-indigo-600', 'text-white');
+  showViewerBtn.classList.add('text-gray-300');
 });
 
 // Dropdown toggles
@@ -863,8 +868,10 @@ function resetToUploader() {
   // Reset mobile view
   viewerSection.classList.remove('hidden');
   bookmarksSection.classList.add('hidden');
-  showViewerBtn.classList.add('bg-blue-50', 'text-blue-600');
-  showBookmarksBtn.classList.remove('bg-blue-50', 'text-blue-600');
+  showViewerBtn.classList.add('bg-indigo-600', 'text-white');
+  showViewerBtn.classList.remove('text-gray-300');
+  showBookmarksBtn.classList.remove('bg-indigo-600', 'text-white');
+  showBookmarksBtn.classList.add('text-gray-300');
 }
 
 document.addEventListener('keydown', (e) => {
@@ -1033,7 +1040,7 @@ async function loadPDF(e) {
   if (!file) return;
 
   originalFileName = file.name.replace('.pdf', '');
-  filenameDisplay.textContent = originalFileName;
+  filenameDisplay.textContent = truncateFilename(file.name);
   renderFileDisplay(file);
   const arrayBuffer = await file.arrayBuffer();
 
@@ -1046,7 +1053,7 @@ async function loadPDF(e) {
 
   pdfLibDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
 
-  const loadingTask = pdfjsLib.getDocument({
+  const loadingTask = getPDFDocument({
     data: new Uint8Array(arrayBuffer),
   });
   pdfJsDoc = await loadingTask.promise;

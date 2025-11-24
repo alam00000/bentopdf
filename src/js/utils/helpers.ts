@@ -1,6 +1,9 @@
 import createModule from '@neslinesli93/qpdf-wasm';
-import { showLoader, hideLoader, showAlert } from '../ui';
+import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { createIcons } from 'lucide';
+import { state, resetState } from '../state.js';
+import * as pdfjsLib from 'pdfjs-dist'
+
 
 const STANDARD_SIZES = {
   A4: { width: 595.28, height: 841.89 },
@@ -45,16 +48,17 @@ export function convertPoints(points: any, unit: any) {
   return result.toFixed(2);
 }
 
-export const hexToRgb = (hex: any) => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+// Convert hex color to RGB
+export function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result
     ? {
       r: parseInt(result[1], 16) / 255,
       g: parseInt(result[2], 16) / 255,
       b: parseInt(result[3], 16) / 255,
     }
-    : { r: 0, g: 0, b: 0 }; // Default to black
-};
+    : { r: 0, g: 0, b: 0 }
+}
 
 export const formatBytes = (bytes: any, decimals = 1) => {
   if (bytes === 0) return '0 Bytes';
@@ -195,14 +199,86 @@ export function formatStars(num: number) {
   return num.toLocaleString();
 };
 
+/**
+ * Truncates a filename to a maximum length, adding ellipsis if needed.
+ * Preserves the file extension.
+ * @param filename - The filename to truncate
+ * @param maxLength - Maximum length (default: 30)
+ * @returns Truncated filename with ellipsis if needed
+ */
+export function truncateFilename(filename: string, maxLength: number = 25): string {
+  if (filename.length <= maxLength) {
+    return filename;
+  }
+
+  const lastDotIndex = filename.lastIndexOf('.');
+  const extension = lastDotIndex !== -1 ? filename.substring(lastDotIndex) : '';
+  const nameWithoutExt = lastDotIndex !== -1 ? filename.substring(0, lastDotIndex) : filename;
+
+  const availableLength = maxLength - extension.length - 3; // 3 for '...'
+
+  if (availableLength <= 0) {
+    return filename.substring(0, maxLength - 3) + '...';
+  }
+
+  return nameWithoutExt.substring(0, availableLength) + '...' + extension;
+}
+
 export function formatShortcutDisplay(shortcut: string, isMac: boolean): string {
-    if (!shortcut) return '';
-    return shortcut
-      .replace('mod', isMac ? '⌘' : 'Ctrl')
-      .replace('ctrl', isMac ? '^' : 'Ctrl') // Control key on Mac shows as ^
-      .replace('alt', isMac ? '⌥' : 'Alt')
-      .replace('shift', 'Shift')
-      .split('+')
-      .map(k => k.charAt(0).toUpperCase() + k.slice(1))
-      .join(isMac ? '' : '+');
+  if (!shortcut) return '';
+  return shortcut
+    .replace('mod', isMac ? '⌘' : 'Ctrl')
+    .replace('ctrl', isMac ? '^' : 'Ctrl') // Control key on Mac shows as ^
+    .replace('alt', isMac ? '⌥' : 'Alt')
+    .replace('shift', 'Shift')
+    .split('+')
+    .map(k => k.charAt(0).toUpperCase() + k.slice(1))
+    .join(isMac ? '' : '+');
+}
+
+export function resetAndReloadTool(preResetCallback?: () => void) {
+  const toolid = state.activeTool;
+
+  if (preResetCallback) {
+    preResetCallback();
+  }
+
+  resetState();
+
+  if (toolid) {
+    const element = document.querySelector(
+      `[data-tool-id="${toolid}"]`
+    ) as HTMLElement;
+    if (element) element.click();
+  }
+}
+
+/**
+ * Wrapper for pdfjsLib.getDocument that adds the required wasmUrl configuration.
+ * Use this instead of calling pdfjsLib.getDocument directly.
+ * @param src The source to load (url string, typed array, or parameters object)
+ * @returns The PDF loading task
+ */
+export function getPDFDocument(src: any) {
+  let params = src;
+
+  // Handle different input types similar to how getDocument handles them, 
+  // but we ensure we have an object to attach wasmUrl to.
+  if (typeof src === 'string') {
+    params = { url: src };
+  } else if (src instanceof Uint8Array || src instanceof ArrayBuffer) {
+    params = { data: src };
+  }
+
+  // Ensure params is an object
+  if (typeof params !== 'object' || params === null) {
+    params = {};
+  }
+
+  // Add wasmUrl pointing to our public/wasm directory
+  // This is required for PDF.js v5+ to load OpenJPEG for certain images
+  return pdfjsLib.getDocument({
+    ...params,
+    wasmUrl: '/pdfjs-viewer/wasm/',
+  });
 }

@@ -18,10 +18,7 @@ const hideLoadingScreen = () => {
 };
 
 const init = () => {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-  ).toString();
+  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
   // Handle simple mode - hide branding sections but keep logo and copyright
   // Handle simple mode - hide branding sections but keep logo and copyright
@@ -276,8 +273,86 @@ const init = () => {
       });
   }
 
+
   // Initialize Shortcuts System
   ShortcutsManager.init();
+
+  // Tab switching for settings modal
+  const shortcutsTabBtn = document.getElementById('shortcuts-tab-btn');
+  const preferencesTabBtn = document.getElementById('preferences-tab-btn');
+  const shortcutsTabContent = document.getElementById('shortcuts-tab-content');
+  const preferencesTabContent = document.getElementById('preferences-tab-content');
+  const shortcutsTabFooter = document.getElementById('shortcuts-tab-footer');
+  const preferencesTabFooter = document.getElementById('preferences-tab-footer');
+  const resetShortcutsBtn = document.getElementById('reset-shortcuts-btn');
+
+  if (shortcutsTabBtn && preferencesTabBtn) {
+    shortcutsTabBtn.addEventListener('click', () => {
+      shortcutsTabBtn.classList.add('bg-indigo-600', 'text-white');
+      shortcutsTabBtn.classList.remove('text-gray-300');
+      preferencesTabBtn.classList.remove('bg-indigo-600', 'text-white');
+      preferencesTabBtn.classList.add('text-gray-300');
+      shortcutsTabContent?.classList.remove('hidden');
+      preferencesTabContent?.classList.add('hidden');
+      shortcutsTabFooter?.classList.remove('hidden');
+      preferencesTabFooter?.classList.add('hidden');
+      resetShortcutsBtn?.classList.remove('hidden');
+    });
+
+    preferencesTabBtn.addEventListener('click', () => {
+      preferencesTabBtn.classList.add('bg-indigo-600', 'text-white');
+      preferencesTabBtn.classList.remove('text-gray-300');
+      shortcutsTabBtn.classList.remove('bg-indigo-600', 'text-white');
+      shortcutsTabBtn.classList.add('text-gray-300');
+      preferencesTabContent?.classList.remove('hidden');
+      shortcutsTabContent?.classList.add('hidden');
+      preferencesTabFooter?.classList.remove('hidden');
+      shortcutsTabFooter?.classList.add('hidden');
+      resetShortcutsBtn?.classList.add('hidden');
+    });
+  }
+
+  // Full-width toggle functionality
+  const fullWidthToggle = document.getElementById('full-width-toggle') as HTMLInputElement;
+  const toolInterface = document.getElementById('tool-interface');
+
+  // Load saved preference
+  const savedFullWidth = localStorage.getItem('fullWidthMode') === 'true';
+  if (fullWidthToggle) {
+    fullWidthToggle.checked = savedFullWidth;
+    applyFullWidthMode(savedFullWidth);
+  }
+
+  function applyFullWidthMode(enabled: boolean) {
+    if (toolInterface) {
+      if (enabled) {
+        toolInterface.classList.remove('max-w-4xl');
+      } else {
+        toolInterface.classList.add('max-w-4xl');
+      }
+    }
+
+    // Apply to all page uploaders
+    const pageUploaders = document.querySelectorAll('#tool-uploader');
+    pageUploaders.forEach((uploader) => {
+      if (enabled) {
+        uploader.classList.remove('max-w-2xl', 'max-w-5xl');
+      } else {
+        // Restore original max-width (most are max-w-2xl, add-stamps is max-w-5xl)
+        if (!uploader.classList.contains('max-w-2xl') && !uploader.classList.contains('max-w-5xl')) {
+          uploader.classList.add('max-w-2xl');
+        }
+      }
+    });
+  }
+
+  if (fullWidthToggle) {
+    fullWidthToggle.addEventListener('change', (e) => {
+      const enabled = (e.target as HTMLInputElement).checked;
+      localStorage.setItem('fullWidthMode', enabled.toString());
+      applyFullWidthMode(enabled);
+    });
+  }
 
   // Shortcuts UI Handlers
   if (dom.openShortcutsBtn) {
@@ -672,6 +747,31 @@ const init = () => {
     });
 
     createIcons({ icons });
+  }
+
+  const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+
+  if (scrollToTopBtn) {
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY < lastScrollY && currentScrollY > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+
+      lastScrollY = currentScrollY;
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'instant'
+      });
+    });
   }
 };
 

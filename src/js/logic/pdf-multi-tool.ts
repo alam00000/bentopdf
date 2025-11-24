@@ -3,7 +3,7 @@ import { degrees, PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import JSZip from 'jszip';
 import Sortable from 'sortablejs';
-import { downloadFile } from '../utils/helpers';
+import { downloadFile, getPDFDocument } from '../utils/helpers';
 import { renderPagesProgressively, cleanupLazyRendering, renderPageToCanvas, createPlaceholder } from '../utils/render-utils';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 
@@ -357,7 +357,7 @@ async function loadPdfs(files: File[]) {
         const pdfIndex = currentPdfDocs.length - 1;
 
         const pdfBytes = await pdfDoc.save();
-        const pdfjsDoc = await pdfjsLib.getDocument({ data: new Uint8Array(pdfBytes) }).promise;
+        const pdfjsDoc = await getPDFDocument({ data: new Uint8Array(pdfBytes) }).promise;
         const numPages = pdfjsDoc.numPages;
 
         // Pre-fill allPages with placeholders to maintain order/state
@@ -741,7 +741,7 @@ async function handleInsertPdf(e: Event) {
 
     // Load PDF.js document for rendering
     const pdfBytes = await pdfDoc.save();
-    const pdfjsDoc = await pdfjsLib.getDocument({ data: new Uint8Array(pdfBytes) }).promise;
+    const pdfjsDoc = await getPDFDocument({ data: new Uint8Array(pdfBytes) }).promise;
     const numPages = pdfjsDoc.numPages;
 
     const newPages: PageData[] = [];

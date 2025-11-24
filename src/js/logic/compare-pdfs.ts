@@ -1,6 +1,10 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { readFileAsArrayBuffer } from '../utils/helpers.js';
+import { readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 const state = {
   pdfDoc1: null,
@@ -122,8 +126,7 @@ async function setupFileInput(inputId: any, docKey: any, displayId: any) {
     try {
       showLoader(`Loading ${file.name}...`);
       const pdfBytes = await readFileAsArrayBuffer(file);
-      // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-      state[docKey] = await pdfjsLib.getDocument(pdfBytes).promise;
+      state[docKey] = await getPDFDocument(pdfBytes).promise;
 
       if (state.pdfDoc1 && state.pdfDoc2) {
         document.getElementById('compare-viewer').classList.remove('hidden');

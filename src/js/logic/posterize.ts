@@ -1,9 +1,11 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, parsePageRanges } from '../utils/helpers.js';
+import { downloadFile, parsePageRanges, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { PDFDocument, PageSizes } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { createIcons, icons } from 'lucide';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 const posterizeState = {
   pdfJsDoc: null,
@@ -121,7 +123,7 @@ export async function setupPosterizeTool() {
       .getPageCount()
       .toString();
     const pdfBytes = await state.pdfDoc.save();
-    posterizeState.pdfJsDoc = await pdfjsLib.getDocument({ data: pdfBytes })
+    posterizeState.pdfJsDoc = await getPDFDocument({ data: pdfBytes })
       .promise;
     posterizeState.pageSnapshots = {};
     posterizeState.currentPage = 1;

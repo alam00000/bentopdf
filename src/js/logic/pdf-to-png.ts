@@ -1,20 +1,23 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import JSZip from 'jszip';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 export async function pdfToPng() {
   showLoader('Converting to PNG...');
   try {
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const zip = new JSZip();
-    
+
     const qualityInput = document.getElementById('png-quality') as HTMLInputElement;
     const scale = qualityInput ? parseFloat(qualityInput.value) : 2.0;
-    
+
     for (let i = 1; i <= pdf.numPages; i++) {
       const page = await pdf.getPage(i);
       const viewport = page.getViewport({ scale });
@@ -22,7 +25,7 @@ export async function pdfToPng() {
       canvas.height = viewport.height;
       canvas.width = viewport.width;
       const context = canvas.getContext('2d');
-      await page.render({ canvasContext: context, viewport: viewport }).promise;
+      await page.render({ canvasContext: context, viewport: viewport, canvas }).promise;
       const blob = await new Promise((resolve) =>
         canvas.toBlob(resolve, 'image/png')
       );

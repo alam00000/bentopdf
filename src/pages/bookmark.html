@@ -61,14 +61,16 @@
     </div>
   </nav>
   <div id="uploader" class="min-h-screen flex items-center justify-center p-4 bg-gray-900">
-    <div class="bg-gray-800 rounded-xl shadow-xl p-8 max-w-md w-full text-gray-200 border border-gray-700">
+    <div id="tool-uploader"
+      class="bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
       <button id="back-to-tools"
         class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
         <i data-lucide="arrow-left" class="cursor-pointer"></i>
         <span class="cursor-pointer"> Back to Tools </span>
       </button>
+      <h1 class="text-2xl font-bold text-white mb-2">Edit Bookmarks</h1>
       <p class="text-gray-400 mb-6">
-        Upload a PDF to begin editing bookmarks
+        Add, edit, import, delete and extract PDF bookmarks.
       </p>
 
       <!-- Drop Zone for Main PDF Upload -->
@@ -489,6 +491,7 @@
     </div>
   </footer>
   <script type="module" src="../js/utils/lucide-init.ts"></script>
+  <script type="module" src="../js/utils/full-width.ts"></script>
   <script type="module" src="../version.ts"></script>
   <script type="module" src="../js/logic/bookmark-pdf.ts"></script>
   <script type="module" src="../js/mobileMenu.ts"></script>

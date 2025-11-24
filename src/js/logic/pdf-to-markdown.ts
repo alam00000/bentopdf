@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 
 export async function pdfToMarkdown() {
@@ -7,8 +7,7 @@ export async function pdfToMarkdown() {
   try {
     const file = state.files[0];
     const arrayBuffer = await readFileAsArrayBuffer(file);
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    const pdf = await getPDFDocument({ data: arrayBuffer }).promise;
     let markdown = '';
 
     for (let i = 1; i <= pdf.numPages; i++) {

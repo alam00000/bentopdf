@@ -1,9 +1,11 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 // --- Global State for the Cropper Tool ---
 const cropperState = {
@@ -129,45 +131,44 @@ function enableControls() {
  */
 async function performMetadataCrop(pdfToModify: any, cropData: any) {
   for (const pageNum in cropData) {
-    // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
-    const page = pdfToModify.getPages()[pageNum - 1];
-    const { width: pageWidth, height: pageHeight } = page.getSize();
-    const rotation = page.getRotation().angle;
+    const pdfJsPage = await cropperState.pdfDoc.getPage(Number(pageNum));
+    const viewport = pdfJsPage.getViewport({ scale: 1 });
+
     const crop = cropData[pageNum];
 
-    const visualPdfWidth = pageWidth * crop.width;
-    const visualPdfHeight = pageHeight * crop.height;
-    const visualPdfX = pageWidth * crop.x;
-    const visualPdfY = pageHeight * crop.y;
+    // Man I hate doing math
+    // Calculate visual crop rectangle in viewport pixels
+    const cropX = viewport.width * crop.x;
+    const cropY = viewport.height * crop.y;
+    const cropW = viewport.width * crop.width;
+    const cropH = viewport.height * crop.height;
 
-    let finalX, finalY, finalWidth, finalHeight;
-    switch (rotation) {
-      case 90:
-        finalX = visualPdfY;
-        finalY = pageWidth - visualPdfX - visualPdfWidth;
-        finalWidth = visualPdfHeight;
-        finalHeight = visualPdfWidth;
-        break;
-      case 180:
-        finalX = pageWidth - visualPdfX - visualPdfWidth;
-        finalY = pageHeight - visualPdfY - visualPdfHeight;
-        finalWidth = visualPdfWidth;
-        finalHeight = visualPdfHeight;
-        break;
-      case 270:
-        finalX = pageHeight - visualPdfY - visualPdfHeight;
-        finalY = visualPdfX;
-        finalWidth = visualPdfHeight;
-        finalHeight = visualPdfWidth;
-        break;
-      default:
-        finalX = visualPdfX;
-        finalY = pageHeight - visualPdfY - visualPdfHeight;
-        finalWidth = visualPdfWidth;
-        finalHeight = visualPdfHeight;
-        break;
-    }
-    page.setCropBox(finalX, finalY, finalWidth, finalHeight);
+    // Define the 4 corners of the crop rectangle in visual coordinates (Top-Left origin)
+    const visualCorners = [
+      { x: cropX, y: cropY },                   // TL
+      { x: cropX + cropW, y: cropY },           // TR
+      { x: cropX + cropW, y: cropY + cropH },   // BR
+      { x: cropX, y: cropY + cropH },           // BL
+    ];
+
+    // This handles rotation, media box offsets, and coordinate system flips automatically
+    const pdfCorners = visualCorners.map(p => {
+      return viewport.convertToPdfPoint(p.x, p.y);
+    });
+
+    // Find the bounding box of the converted points in PDF coordinates
+    // convertToPdfPoint returns [x, y] arrays
+    const pdfXs = pdfCorners.map(p => p[0]);
+    const pdfYs = pdfCorners.map(p => p[1]);
+
+    const minX = Math.min(...pdfXs);
+    const maxX = Math.max(...pdfXs);
+    const minY = Math.min(...pdfYs);
+    const maxY = Math.max(...pdfYs);
+
+    // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
+    const page = pdfToModify.getPages()[pageNum - 1];
+    page.setCropBox(minX, minY, maxX - minX, maxY - minY);
   }
 }
 
@@ -242,107 +243,104 @@ export async function setupCropperTool() {
   if (state.files.length === 0) return;
 
   // Clear pageCrops on new file upload
-  cropperState.pageCrops = {};
-
-  const arrayBuffer = await readFileAsArrayBuffer(state.files[0]);
-  cropperState.originalPdfBytes = arrayBuffer;
-  const arrayBufferForPdfJs = (arrayBuffer as ArrayBuffer).slice(0);
-  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-  ).toString();
-
   try {
-    const loadingTask = pdfjsLib.getDocument({ data: arrayBufferForPdfJs });
+    // Clear pageCrops on new file upload
+    cropperState.pageCrops = {};
+
+    const arrayBuffer = await readFileAsArrayBuffer(state.files[0]);
+    cropperState.originalPdfBytes = arrayBuffer;
+    const arrayBufferForPdfJs = (arrayBuffer as ArrayBuffer).slice(0);
+    const loadingTask = getPDFDocument({ data: arrayBufferForPdfJs });
 
     cropperState.pdfDoc = await loadingTask.promise;
     cropperState.currentPageNum = 1;
 
     await displayPageAsImage(cropperState.currentPageNum);
-
-    document
-      .getElementById('prev-page')
-      .addEventListener('click', () => changePage(-1));
-    document
-      .getElementById('next-page')
-      .addEventListener('click', () => changePage(1));
-
-    document
-      .getElementById('crop-button')
-      .addEventListener('click', async () => {
-        // Get the last known crop from the active page before processing
-        saveCurrentCrop();
-
-        const isDestructive = (
-          document.getElementById('destructive-crop-toggle') as HTMLInputElement
-        ).checked;
-        const isApplyToAll = (
-          document.getElementById('apply-to-all-toggle') as HTMLInputElement
-        ).checked;
-
-        let finalCropData = {};
-        if (isApplyToAll) {
-          const currentCrop =
-            cropperState.pageCrops[cropperState.currentPageNum];
-          if (!currentCrop) {
-            showAlert('No Crop Area', 'Please select an area to crop first.');
-            return;
-          }
-          // Apply the active page's crop to all pages
-          for (let i = 1; i <= cropperState.pdfDoc.numPages; i++) {
-            finalCropData[i] = currentCrop;
-          }
-        } else {
-          // If not applying to all, only process pages with saved crops
-          finalCropData = Object.keys(cropperState.pageCrops).reduce(
-            (obj, key) => {
-              obj[key] = cropperState.pageCrops[key];
-              return obj;
-            },
-            {}
-          );
-        }
-
-        if (Object.keys(finalCropData).length === 0) {
-          showAlert(
-            'No Crop Area',
-            'Please select an area on at least one page to crop.'
-          );
-          return;
-        }
-
-        showLoader('Applying crop...');
-
-        try {
-          let finalPdfBytes;
-          if (isDestructive) {
-            const newPdfDoc = await performFlatteningCrop(finalCropData);
-            finalPdfBytes = await newPdfDoc.save();
-          } else {
-            const pdfToModify = await PDFLibDocument.load(
-              cropperState.originalPdfBytes
-            );
-            await performMetadataCrop(pdfToModify, finalCropData);
-            finalPdfBytes = await pdfToModify.save();
-          }
-
-          const fileName = isDestructive
-            ? 'flattened_crop.pdf'
-            : 'standard_crop.pdf';
-          downloadFile(
-            new Blob([finalPdfBytes], { type: 'application/pdf' }),
-            fileName
-          );
-          showAlert('Success', 'Crop complete! Your download has started.');
-        } catch (e) {
-          console.error(e);
-          showAlert('Error', 'An error occurred during cropping.');
-        } finally {
-          hideLoader();
-        }
-      });
   } catch (error) {
     console.error('Error setting up cropper tool:', error);
     showAlert('Error', 'Failed to load PDF for cropping.');
   }
+
+  document
+    .getElementById('prev-page')
+    .addEventListener('click', () => changePage(-1));
+  document
+    .getElementById('next-page')
+    .addEventListener('click', () => changePage(1));
+
+  document
+    .getElementById('crop-button')
+    .addEventListener('click', async () => {
+      // Get the last known crop from the active page before processing
+      saveCurrentCrop();
+
+      const isDestructive = (
+        document.getElementById('destructive-crop-toggle') as HTMLInputElement
+      ).checked;
+      const isApplyToAll = (
+        document.getElementById('apply-to-all-toggle') as HTMLInputElement
+      ).checked;
+
+      let finalCropData = {};
+      if (isApplyToAll) {
+        const currentCrop =
+          cropperState.pageCrops[cropperState.currentPageNum];
+        if (!currentCrop) {
+          showAlert('No Crop Area', 'Please select an area to crop first.');
+          return;
+        }
+        // Apply the active page's crop to all pages
+        for (let i = 1; i <= cropperState.pdfDoc.numPages; i++) {
+          finalCropData[i] = currentCrop;
+        }
+      } else {
+        // If not applying to all, only process pages with saved crops
+        finalCropData = Object.keys(cropperState.pageCrops).reduce(
+          (obj, key) => {
+            obj[key] = cropperState.pageCrops[key];
+            return obj;
+          },
+          {}
+        );
+      }
+
+      if (Object.keys(finalCropData).length === 0) {
+        showAlert(
+          'No Crop Area',
+          'Please select an area on at least one page to crop.'
+        );
+        return;
+      }
+
+      showLoader('Applying crop...');
+
+      try {
+        let finalPdfBytes;
+        if (isDestructive) {
+          const newPdfDoc = await performFlatteningCrop(finalCropData);
+          finalPdfBytes = await newPdfDoc.save();
+        } else {
+          const pdfToModify = await PDFLibDocument.load(
+            cropperState.originalPdfBytes
+          );
+          await performMetadataCrop(pdfToModify, finalCropData);
+          finalPdfBytes = await pdfToModify.save();
+        }
+
+        const fileName = isDestructive
+          ? 'flattened_crop.pdf'
+          : 'standard_crop.pdf';
+        downloadFile(
+          new Blob([finalPdfBytes], { type: 'application/pdf' }),
+          fileName
+        );
+        showAlert('Success', 'Crop complete! Your download has started.');
+      } catch (e) {
+        console.error(e);
+        showAlert('Error', 'An error occurred during cropping.');
+      } finally {
+        hideLoader();
+      }
+    });
+
 }

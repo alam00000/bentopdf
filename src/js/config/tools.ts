@@ -162,6 +162,12 @@ export const categories = [
         subtitle: 'Fill in forms directly in the browser. Also supports XFA forms.',
       },
       {
+        href: '/src/pages/form-creator.html',
+        name: 'Create PDF Form',
+        icon: 'file-input',
+        subtitle: 'Create fillable PDF forms with drag-and-drop text fields.',
+      },
+      {
         id: 'remove-blank-pages',
         name: 'Remove Blank Pages',
         icon: 'file-minus-2',
@@ -431,6 +437,12 @@ export const categories = [
         name: 'Posterize PDF',
         icon: 'notepad-text-dashed',
         subtitle: 'Split a large page into multiple smaller pages.',
+      },
+      {
+        id: 'extract-images',
+        name: 'Extract Images',
+        icon: 'image',
+        subtitle: 'Extract all images from PDF(s) as a ZIP.',
       },
     ],
   },
