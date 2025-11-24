@@ -1,7 +1,9 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
-import { downloadFile } from '../utils/helpers.js';
+import { downloadFile, getPDFDocument } from '../utils/helpers.js';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 import { state } from '../state.js';
 import { renderPagesProgressively, cleanupLazyRendering } from '../utils/render-utils.js';
 import JSZip from 'jszip';
@@ -27,7 +29,7 @@ async function renderVisualSelector() {
 
   try {
     const pdfData = await state.pdfDoc.save();
-    const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+    const pdf = await getPDFDocument({ data: pdfData }).promise;
 
     // Function to create wrapper element for each page
     const createWrapper = (canvas: HTMLCanvasElement, pageNumber: number) => {

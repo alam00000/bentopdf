@@ -3,6 +3,7 @@ import {
   downloadFile,
   readFileAsArrayBuffer,
   hexToRgb,
+  resetAndReloadTool,
 } from '../utils/helpers.js';
 import { state, resetState } from '../state.js';
 
@@ -21,7 +22,7 @@ export function setupWatermarkUI() {
   const imageOptions = document.getElementById('image-watermark-options');
 
   watermarkTypeRadios.forEach((radio) => {
-    radio.addEventListener('change', (e) => { 
+    radio.addEventListener('change', (e) => {
       if (e.target.value === 'text') {
         textOptions.classList.remove('hidden');
         imageOptions.classList.add('hidden');
@@ -40,9 +41,9 @@ export function setupWatermarkUI() {
   opacitySliderText.addEventListener(
     'input',
     () =>
-      (opacityValueText.textContent = (
-        opacitySliderText as HTMLInputElement
-      ).value)
+    (opacityValueText.textContent = (
+      opacitySliderText as HTMLInputElement
+    ).value)
   );
 
   angleSliderText.addEventListener(
@@ -59,17 +60,17 @@ export function setupWatermarkUI() {
   opacitySliderImage.addEventListener(
     'input',
     () =>
-      (opacityValueImage.textContent = (
-        opacitySliderImage as HTMLInputElement
-      ).value)
+    (opacityValueImage.textContent = (
+      opacitySliderImage as HTMLInputElement
+    ).value)
   );
 
   angleSliderImage.addEventListener(
     'input',
     () =>
-      (angleValueImage.textContent = (
-        angleSliderImage as HTMLInputElement
-      ).value)
+    (angleValueImage.textContent = (
+      angleSliderImage as HTMLInputElement
+    ).value)
   );
 }
 
@@ -175,14 +176,7 @@ export async function addWatermark() {
       'watermarked.pdf'
     );
 
-    const toolid = state.activeTool;
-    resetState();
-    if (toolid) {
-      const element = document.querySelector(
-        `[data-tool-id="${toolid}"]`
-      ) as HTMLElement;
-      if (element) element.click();
-    }
+    resetAndReloadTool();
   } catch (e) {
     console.error(e);
     showAlert(

@@ -162,6 +162,12 @@ export const categories = [
         subtitle: 'Fill in forms directly in the browser. Also supports XFA forms.',
       },
       {
+        href: '/src/pages/form-creator.html',
+        name: 'Create PDF Form',
+        icon: 'file-input',
+        subtitle: 'Create fillable PDF forms with drag-and-drop text fields.',
+      },
+      {
         id: 'remove-blank-pages',
         name: 'Remove Blank Pages',
         icon: 'file-minus-2',

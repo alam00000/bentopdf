@@ -287,15 +287,28 @@
       <div class="bg-gray-800 w-full max-w-2xl rounded-xl border border-gray-700 shadow-2xl flex flex-col max-h-[80vh]">
         <div class="p-6 border-b border-gray-700 flex justify-between items-center">
           <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="keyboard" class="w-6 h-6 text-indigo-400"></i>
-            Keyboard Shortcuts
+            <i data-lucide="settings" class="w-6 h-6 text-indigo-400"></i>
+            Settings
           </h3>
           <button id="close-shortcuts-modal" class="text-gray-400 hover:text-white transition-colors">
             <i data-lucide="x" class="w-6 h-6"></i>
           </button>
         </div>
 
-        <div class="p-6 overflow-y-auto flex-grow">
+        <!-- Tabs -->
+        <div class="flex border-b border-gray-700">
+          <button id="shortcuts-tab-btn" class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white">
+            <i data-lucide="keyboard" class="inline-block w-4 h-4 mr-1"></i>
+            Shortcuts
+          </button>
+          <button id="preferences-tab-btn" class="flex-1 py-3 text-sm font-medium text-gray-300 hover:text-white">
+            <i data-lucide="sliders" class="inline-block w-4 h-4 mr-1"></i>
+            Preferences
+          </button>
+        </div>
+
+        <!-- Shortcuts Tab Content -->
+        <div id="shortcuts-tab-content" class="p-6 overflow-y-auto flex-grow">
           <div class="flex justify-between items-center mb-6">
             <div class="relative flex-grow mr-4">
               <i data-lucide="search"
@@ -320,8 +333,32 @@
           </div>
         </div>
 
+        <!-- Preferences Tab Content -->
+        <div id="preferences-tab-content" class="hidden p-6 overflow-y-auto flex-grow">
+          <h4 class="text-lg font-semibold text-white mb-4">Display Preferences</h4>
+
+          <div class="space-y-4">
+            <div class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700">
+              <div class="flex-1">
+                <label for="full-width-toggle" class="text-sm font-medium text-gray-200 cursor-pointer">
+                  Full Width Mode
+                </label>
+                <p class="text-xs text-gray-400 mt-1">
+                  Use the full screen width for all tools instead of a centered container
+                </p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer ml-4">
+                <input type="checkbox" id="full-width-toggle" class="sr-only peer">
+                <div
+                  class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
         <div class="p-6 border-t border-gray-700 flex justify-between items-center bg-gray-850 rounded-b-xl">
-          <div class="flex gap-3">
+          <div id="shortcuts-tab-footer" class="flex gap-3">
             <button id="import-shortcuts-btn"
               class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
               <i data-lucide="upload" class="w-4 h-4"></i> Import
@@ -330,6 +367,9 @@
               class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
               <i data-lucide="download" class="w-4 h-4"></i> Export
             </button>
+          </div>
+          <div id="preferences-tab-footer" class="hidden w-full">
+            <p class="text-xs text-gray-400 text-center">Settings are automatically saved</p>
           </div>
           <button id="reset-shortcuts-btn"
             class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors">
@@ -697,6 +737,13 @@
     </section>
 
     <div id="signature-ghost" class="hidden"></div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top-btn"
+      class="fixed bottom-12 right-8 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 invisible z-40"
+      aria-label="Scroll to top">
+      <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
   </div>
 
   <footer class="mt-16 border-t-2 border-gray-700 py-8">

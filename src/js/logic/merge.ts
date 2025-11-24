@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.ts';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.ts';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.ts';
 import { state } from '../state.ts';
 import { renderPagesProgressively, cleanupLazyRendering, createPlaceholder } from '../utils/render-utils.ts';
 
@@ -8,10 +8,7 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import Sortable from 'sortablejs';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 const mergeState = {
   pdfDocs: {},
@@ -183,7 +180,7 @@ async function renderPageMergeThumbnails() {
       if (!pdfDoc) continue;
 
       const pdfData = await pdfDoc.save();
-      const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
+      const pdfjsDoc = await getPDFDocument({ data: pdfData }).promise;
 
       // Create a wrapper function that includes the file name
       const createWrapperWithFileName = (canvas: HTMLCanvasElement, pageNumber: number) => {

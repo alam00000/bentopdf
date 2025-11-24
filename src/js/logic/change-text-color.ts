@@ -3,10 +3,14 @@ import {
   downloadFile,
   hexToRgb,
   readFileAsArrayBuffer,
+  getPDFDocument,
 } from '../utils/helpers.js';
 import { state } from '../state.js';
-
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 let isRenderingPreview = false;
 let renderTimeout: any;
@@ -16,29 +20,25 @@ async function updateTextColorPreview() {
   isRenderingPreview = true;
 
   try {
-    const textColorCanvas = document.getElementById('text-color-canvas');
+    const textColorCanvas = document.getElementById('text-color-canvas') as HTMLCanvasElement;
     if (!textColorCanvas) return;
 
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const page = await pdf.getPage(1); // Preview first page
     const viewport = page.getViewport({ scale: 0.8 });
-    // @ts-expect-error TS(2339) FIXME: Property 'getContext' does not exist on type 'HTML... Remove this comment to see the full error message
     const context = textColorCanvas.getContext('2d');
 
-    // @ts-expect-error TS(2339) FIXME: Property 'width' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
     textColorCanvas.width = viewport.width;
-    // @ts-expect-error TS(2339) FIXME: Property 'height' does not exist on type 'HTMLElem... Remove this comment to see the full error message
     textColorCanvas.height = viewport.height;
 
-    await page.render({ canvasContext: context, viewport }).promise;
+    await page.render({ canvasContext: context, viewport, canvas: textColorCanvas }).promise;
     const imageData = context.getImageData(
       0,
       0,
-      (textColorCanvas as HTMLCanvasElement).width,
-      (textColorCanvas as HTMLCanvasElement).height
+      textColorCanvas.width,
+      textColorCanvas.height
     );
     const data = imageData.data;
     const colorHex = (
@@ -78,21 +78,19 @@ export async function setupTextColorTool() {
     renderTimeout = setTimeout(updateTextColorPreview, 250);
   });
 
-  // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-  const pdf = await pdfjsLib.getDocument(
+  const pdf = await getPDFDocument(
     await readFileAsArrayBuffer(state.files[0])
   ).promise;
   const page = await pdf.getPage(1);
   const viewport = page.getViewport({ scale: 0.8 });
 
-  // @ts-expect-error TS(2339) FIXME: Property 'width' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  originalCanvas.width = viewport.width;
-  // @ts-expect-error TS(2339) FIXME: Property 'height' does not exist on type 'HTMLElem... Remove this comment to see the full error message
-  originalCanvas.height = viewport.height;
+  (originalCanvas as HTMLCanvasElement).width = viewport.width;
+  (originalCanvas as HTMLCanvasElement).height = viewport.height;
 
   await page.render({
     canvasContext: (originalCanvas as HTMLCanvasElement).getContext('2d'),
     viewport,
+    canvas: originalCanvas as HTMLCanvasElement,
   }).promise;
   await updateTextColorPreview();
 }
@@ -103,16 +101,14 @@ export async function changeTextColor() {
     return;
   }
 
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  const colorHex = document.getElementById('text-color-input').value;
+  const colorHex = (document.getElementById('text-color-input') as HTMLInputElement).value;
   const { r, g, b } = hexToRgb(colorHex);
   const darknessThreshold = 120;
 
   showLoader('Changing text color...');
   try {
     const newPdfDoc = await PDFLibDocument.create();
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
 
@@ -126,7 +122,7 @@ export async function changeTextColor() {
       canvas.height = viewport.height;
       const context = canvas.getContext('2d');
 
-      await page.render({ canvasContext: context, viewport }).promise;
+      await page.render({ canvasContext: context, viewport, canvas }).promise;
 
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
@@ -144,16 +140,15 @@ export async function changeTextColor() {
       }
       context.putImageData(imageData, 0, 0);
 
-      const pngImageBytes = await new Promise((resolve) =>
+      const pngImageBytes = await new Promise<Uint8Array>((resolve) =>
         canvas.toBlob((blob) => {
           const reader = new FileReader();
-          // @ts-expect-error TS(2769) FIXME: No overload matches this call.
-          reader.onload = () => resolve(new Uint8Array(reader.result));
-          reader.readAsArrayBuffer(blob);
+          reader.onload = () => resolve(new Uint8Array(reader.result as ArrayBuffer));
+          reader.readAsArrayBuffer(blob!);
         }, 'image/png')
       );
 
-      const pngImage = await newPdfDoc.embedPng(pngImageBytes as ArrayBuffer);
+      const pngImage = await newPdfDoc.embedPng(pngImageBytes);
       const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
       newPage.drawImage(pngImage, {
         x: 0,

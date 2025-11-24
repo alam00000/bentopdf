@@ -1,10 +1,14 @@
 import { resetState } from './state.js';
-import { formatBytes } from './utils/helpers.js';
+import { formatBytes, getPDFDocument } from './utils/helpers.js';
 import { tesseractLanguages } from './config/tesseract-languages.js';
 import { renderPagesProgressively, cleanupLazyRendering } from './utils/render-utils.js';
 import { icons, createIcons } from 'lucide';
 import Sortable from 'sortablejs';
-import { getRotationState } from './handlers/fileHandler.js';
+import { getRotationState, updateRotationState } from './handlers/fileHandler.js';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 // Centralizing DOM element selection
 export const dom = {
@@ -133,8 +137,7 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
     showLoader('Rendering page previews...');
 
     const pdfData = await pdfDoc.save();
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+    const pdf = await getPDFDocument({ data: pdfData }).promise;
 
     // Function to create wrapper element for each page
     const createWrapper = (canvas: HTMLCanvasElement, pageNumber: number) => {
@@ -217,10 +220,13 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
                     '.page-rotator-item'
                 ) as HTMLElement;
                 const imgEl = card.querySelector('img');
+                const pageIndex = pageNumber - 1;
                 let currentRotation = parseInt(card.dataset.rotation);
                 currentRotation = (currentRotation + 90) % 360;
                 card.dataset.rotation = currentRotation.toString();
                 imgEl.style.transform = `rotate(${currentRotation}deg)`;
+
+                updateRotationState(pageIndex, currentRotation);
             });
 
             controlsDiv.append(pageNumSpan, rotateBtn);
@@ -630,8 +636,8 @@ export const toolTemplates = {
             <div class="mb-4">
                 <label for="jpg-quality" class="block mb-2 text-sm font-medium text-gray-300">Image Quality</label>
                 <div class="flex items-center gap-4">
-                    <input type="range" id="jpg-quality" min="0.1" max="1.0" step="0.1" value="0.9" class="flex-1">
-                    <span id="jpg-quality-value" class="text-white font-medium w-16 text-right">90%</span>
+                    <input type="range" id="jpg-quality" min="0.1" max="1.0" step="0.01" value="1.0" class="flex-1">
+                    <span id="jpg-quality-value" class="text-white font-medium w-16 text-right">100%</span>
                 </div>
                 <p class="mt-1 text-xs text-gray-400">Higher quality = larger file size</p>
             </div>
@@ -1326,15 +1332,27 @@ export const toolTemplates = {
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="dimensions-results" class="hidden mt-6">
-            <div class="flex justify-end mb-4">
-                <label for="units-select" class="text-sm font-medium text-gray-300 self-center mr-3">Display Units:</label>
-                <select id="units-select" class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2">
-                    <option value="pt" selected>Points (pt)</option>
-                    <option value="in">Inches (in)</option>
-                    <option value="mm">Millimeters (mm)</option>
-                    <option value="px">Pixels (at 96 DPI)</option>
-                </select>
+            <!-- Summary Statistics Panel -->
+            <div id="dimensions-summary" class="mb-6"></div>
+
+            <!-- Controls Row -->
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+                <div class="flex items-center gap-3">
+                    <label for="units-select" class="text-sm font-medium text-gray-300">Display Units:</label>
+                    <select id="units-select" class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2">
+                        <option value="pt" selected>Points (pt)</option>
+                        <option value="in">Inches (in)</option>
+                        <option value="mm">Millimeters (mm)</option>
+                        <option value="px">Pixels (at 96 DPI)</option>
+                    </select>
+                </div>
+                <button id="export-csv-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Export to CSV
+                </button>
             </div>
+
+            <!-- Dimensions Table -->
             <div class="overflow-x-auto rounded-lg border border-gray-700">
                 <table class="min-w-full divide-y divide-gray-700 text-sm text-left">
                     <thead class="bg-gray-900">
@@ -1343,6 +1361,9 @@ export const toolTemplates = {
                             <th class="px-4 py-3 font-medium text-white">Dimensions (W x H)</th>
                             <th class="px-4 py-3 font-medium text-white">Standard Size</th>
                             <th class="px-4 py-3 font-medium text-white">Orientation</th>
+                            <th class="px-4 py-3 font-medium text-white">Aspect Ratio</th>
+                            <th class="px-4 py-3 font-medium text-white">Area</th>
+                            <th class="px-4 py-3 font-medium text-white">Rotation</th>
                         </tr>
                     </thead>
                     <tbody id="dimensions-table-body" class="divide-y divide-gray-700">
@@ -1351,6 +1372,7 @@ export const toolTemplates = {
             </div>
         </div>
     `,
+
 
     'n-up': () => `
         <h2 class="text-2xl font-bold text-white mb-4">N-Up Page Arrangement</h2>
@@ -1430,11 +1452,19 @@ export const toolTemplates = {
 
     'combine-single-page': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Combine to a Single Page</h2>
-        <p class="mb-6 text-gray-400">Stitch all pages of your PDF together vertically to create one continuous, scrollable page.</p>
+        <p class="mb-6 text-gray-400">Stitch all pages of your PDF together vertically or horizontally to create one continuous page.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="combine-options" class="hidden mt-6 space-y-4">
+            <div>
+                <label for="combine-orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                <select id="combine-orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                    <option value="vertical" selected>Vertical (Stack pages top to bottom)</option>
+                    <option value="horizontal">Horizontal (Stack pages left to right)</option>
+                </select>
+            </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="page-spacing" class="block mb-2 text-sm font-medium text-gray-300">Spacing Between Pages (in points)</label>
@@ -1445,12 +1475,25 @@ export const toolTemplates = {
                     <input type="color" id="background-color" value="#FFFFFF" class="w-full h-[42px] bg-gray-700 border border-gray-600 rounded-lg p-1 cursor-pointer">
                 </div>
             </div>
+            
             <div>
                 <label class="flex items-center gap-2 text-sm font-medium text-gray-300">
                     <input type="checkbox" id="add-separator" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
                     Draw a separator line between pages
                 </label>
             </div>
+            
+            <div id="separator-options" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-gray-900 border border-gray-700">
+                <div>
+                    <label for="separator-thickness" class="block mb-2 text-sm font-medium text-gray-300">Separator Line Thickness (in points)</label>
+                    <input type="number" id="separator-thickness" value="0.5" min="0.1" max="10" step="0.1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                </div>
+                <div>
+                    <label for="separator-color" class="block mb-2 text-sm font-medium text-gray-300">Separator Line Color</label>
+                    <input type="color" id="separator-color" value="#CCCCCC" class="w-full h-[42px] bg-gray-700 border border-gray-600 rounded-lg p-1 cursor-pointer">
+                </div>
+            </div>
+            
             <button id="process-btn" class="btn-gradient w-full mt-6">Combine Pages</button>
         </div>
     `,
@@ -1759,6 +1802,14 @@ export const toolTemplates = {
         <div id="canvas-container-sign" class="relative w-full overflow-auto bg-gray-900 rounded-lg border border-gray-600" style="height: 85vh;">
             <!-- PDF.js viewer iframe will be loaded here -->
         </div>
+        
+        <div class="mt-4 flex items-center gap-2">
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
+                <input type="checkbox" id="flatten-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                Flatten PDF (use the Save button below)
+            </label>
+        </div>
+
         <button id="process-btn" class="btn-gradient w-full mt-4" style="display:none;">Save & Download Signed PDF</button>
     </div>
 `,

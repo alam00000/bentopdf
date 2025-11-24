@@ -1,13 +1,16 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import JSZip from 'jszip';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 export async function pdfToJpg() {
   showLoader('Converting to JPG...');
   try {
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const zip = new JSZip();
@@ -23,7 +26,7 @@ export async function pdfToJpg() {
       canvas.height = viewport.height;
       canvas.width = viewport.width;
 
-      await page.render({ canvasContext: context, viewport: viewport }).promise;
+      await page.render({ canvasContext: context, viewport: viewport, canvas }).promise;
 
       const blob = await new Promise((resolve) =>
         canvas.toBlob(resolve, 'image/jpeg', quality)

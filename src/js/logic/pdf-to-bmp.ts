@@ -1,7 +1,10 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import JSZip from 'jszip';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 /**
  * Creates a BMP file buffer from raw pixel data (ImageData).
@@ -53,8 +56,7 @@ function encodeBMP(imageData: any) {
 export async function pdfToBmp() {
   showLoader('Converting PDF to BMP images...');
   try {
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const zip = new JSZip();
@@ -69,7 +71,7 @@ export async function pdfToBmp() {
       canvas.width = viewport.width;
 
       // Render the PDF page directly to the canvas
-      await page.render({ canvasContext: context, viewport: viewport }).promise;
+      await page.render({ canvasContext: context, viewport: viewport, canvas }).promise;
 
       // Get the raw pixel data from this canvas
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);

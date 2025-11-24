@@ -1,9 +1,11 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile } from '../utils/helpers.js';
+import { downloadFile, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFPageProxy } from 'pdfjs-dist/types/src/display/api.js';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 let analysisCache = [];
 
@@ -38,7 +40,7 @@ async function analyzePages() {
   showLoader('Analyzing for blank pages...');
 
   const pdfBytes = await state.pdfDoc.save();
-  const pdf = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
+  const pdf = await getPDFDocument({ data: pdfBytes }).promise;
 
   analysisCache = [];
   const promises = [];

@@ -1,9 +1,29 @@
 import { showLoader, hideLoader, showAlert } from './ui.js';
+import { getPDFDocument } from './utils/helpers.js';
 import { state } from './state.js';
 import { toolLogic } from './logic/index.js';
 import { icons, createIcons } from 'lucide';
+import * as pdfjsLib from 'pdfjs-dist';
 
-const editorState = {
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
+
+const editorState: {
+  pdf: any;
+  canvas: any;
+  context: any;
+  container: any;
+  currentPageNum: number;
+  pageRendering: boolean;
+  pageNumPending: number | null;
+  scale: number | 'fit';
+  pageSnapshot: any;
+  isDrawing: boolean;
+  startX: number;
+  startY: number;
+  cropBoxes: Record<number, any>;
+  lastInteractionRect: { x: number; y: number; width: number; height: number } | null;
+} = {
   pdf: null,
   canvas: null,
   context: null,
@@ -41,7 +61,6 @@ async function renderPage(num: any) {
   try {
     const page = await editorState.pdf.getPage(num);
 
-    // @ts-expect-error TS(2367) FIXME: This condition will always return 'false' since th... Remove this comment to see the full error message
     if (editorState.scale === 'fit') {
       editorState.scale = calculateFitScale(page);
     }
@@ -185,12 +204,10 @@ export async function setupCanvasEditor(toolId: any) {
 
   const pageNav = document.getElementById('page-nav');
   const pdfData = await state.pdfDoc.save();
-  // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-  editorState.pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
+  editorState.pdf = await getPDFDocument({ data: pdfData }).promise;
 
   editorState.cropBoxes = {};
   editorState.currentPageNum = 1;
-  // @ts-expect-error TS(2322) FIXME: Type 'string' is not assignable to type 'number'.
   editorState.scale = 'fit';
 
   pageNav.textContent = '';
@@ -256,11 +273,13 @@ export async function setupCanvasEditor(toolId: any) {
 
   if (toolId === 'crop') {
     document.getElementById('zoom-in-btn').onclick = () => {
-      editorState.scale += 0.25;
+      if (typeof editorState.scale === 'number') {
+        editorState.scale += 0.25;
+      }
       renderPage(editorState.currentPageNum);
     };
     document.getElementById('zoom-out-btn').onclick = () => {
-      if (editorState.scale > 0.25) {
+      if (typeof editorState.scale === 'number' && editorState.scale > 0.25) {
         editorState.scale -= 0.25;
         renderPage(editorState.currentPageNum);
       }

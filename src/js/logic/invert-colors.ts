@@ -1,7 +1,11 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile } from '../utils/helpers.js';
+import { downloadFile, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 export async function invertColors() {
   if (!state.pdfDoc) {
@@ -12,8 +16,7 @@ export async function invertColors() {
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pdfBytes = await state.pdfDoc.save();
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdfjsDoc = await pdfjsLib.getDocument({ data: pdfBytes }).promise;
+    const pdfjsDoc = await getPDFDocument({ data: pdfBytes }).promise;
 
     for (let i = 1; i <= pdfjsDoc.numPages; i++) {
       const page = await pdfjsDoc.getPage(i);
@@ -22,7 +25,7 @@ export async function invertColors() {
       canvas.width = viewport.width;
       canvas.height = viewport.height;
       const ctx = canvas.getContext('2d');
-      await page.render({ canvasContext: ctx, viewport }).promise;
+      await page.render({ canvasContext: ctx, viewport, canvas }).promise;
 
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;

@@ -3,11 +3,13 @@ import {
   downloadFile,
   readFileAsArrayBuffer,
   formatBytes,
+  getPDFDocument,
 } from '../utils/helpers.js';
 import { state } from '../state.js';
 import * as pdfjsLib from 'pdfjs-dist';
-
 import { PDFDocument, PDFName, PDFDict, PDFStream, PDFNumber } from 'pdf-lib';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
 function dataUrlToBytes(dataUrl: any) {
   const base64 = dataUrl.split(',')[1];
@@ -70,8 +72,8 @@ async function performSmartCompression(arrayBuffer: any, settings: any) {
         const bitsPerComponent =
           stream.dict.get(PDFName.of('BitsPerComponent')) instanceof PDFNumber
             ? (
-                stream.dict.get(PDFName.of('BitsPerComponent')) as PDFNumber
-              ).asNumber()
+              stream.dict.get(PDFName.of('BitsPerComponent')) as PDFNumber
+            ).asNumber()
             : 8;
 
         if (width > 0 && height > 0) {
@@ -183,12 +185,7 @@ async function performSmartCompression(arrayBuffer: any, settings: any) {
 }
 
 async function performLegacyCompression(arrayBuffer: any, settings: any) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-  ).toString();
-
-  const pdfJsDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  const pdfJsDoc = await getPDFDocument({ data: arrayBuffer }).promise;
   const newPdfDoc = await PDFDocument.create();
 
   for (let i = 1; i <= pdfJsDoc.numPages; i++) {
@@ -324,13 +321,13 @@ export async function compress() {
         showAlert(
           'Compression Complete',
           `Method: **${usedMethod}**. ` +
-            `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
+          `File size reduced from ${originalSize} to ${compressedSize} (Saved ${savingsPercent}%).`
         );
       } else {
         showAlert(
           'Compression Finished',
           `Method: **${usedMethod}**. ` +
-            `Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
+          `Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
           // @ts-expect-error TS(2554) FIXME: Expected 2 arguments, but got 3.
           'warning'
         );
@@ -384,13 +381,13 @@ export async function compress() {
         showAlert(
           'Compression Complete',
           `Compressed ${state.files.length} PDF(s). ` +
-            `Total size reduced from ${formatBytes(totalOriginalSize)} to ${formatBytes(totalCompressedSize)} (Saved ${totalSavingsPercent}%).`
+          `Total size reduced from ${formatBytes(totalOriginalSize)} to ${formatBytes(totalCompressedSize)} (Saved ${totalSavingsPercent}%).`
         );
       } else {
         showAlert(
           'Compression Finished',
           `Compressed ${state.files.length} PDF(s). ` +
-            `Total size: ${formatBytes(totalCompressedSize)}.`
+          `Total size: ${formatBytes(totalCompressedSize)}.`
         );
       }
 

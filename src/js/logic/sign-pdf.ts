@@ -1,3 +1,4 @@
+import { PDFDocument } from 'pdf-lib';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
@@ -50,7 +51,7 @@ export async function setupSignTool() {
       enablePermissions: false,
     };
     localStorage.setItem('pdfjs.preferences', JSON.stringify(newPrefs));
-  } catch {}
+  } catch { }
 
   const viewerUrl = new URL('/pdfjs-viewer/viewer.html', window.location.origin);
   const query = new URLSearchParams({ file: blobUrl });
@@ -83,7 +84,7 @@ export async function setupSignTool() {
           try {
             const highlightBtn = doc.getElementById('editorHighlightButton') as HTMLButtonElement | null;
             highlightBtn?.click();
-          } catch {}
+          } catch { }
         });
       }
     } catch (e) {
@@ -115,11 +116,41 @@ export async function applyAndSaveSignatures() {
       return;
     }
 
-    // Delegate to the built-in download behavior of the base viewer.
     const app = viewerWindow.PDFViewerApplication;
-    app.eventBus?.dispatch('download', { source: app });
+    const flattenCheckbox = document.getElementById('flatten-signature-toggle') as HTMLInputElement | null;
+    const shouldFlatten = flattenCheckbox?.checked;
+
+    if (shouldFlatten) {
+      showLoader('Flattening and saving PDF...');
+
+      const rawPdfBytes = await app.pdfDocument.saveDocument(app.pdfDocument.annotationStorage);
+
+      const pdfBytes = new Uint8Array(rawPdfBytes);
+
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+
+      pdfDoc.getForm().flatten();
+
+      const flattenedPdfBytes = await pdfDoc.save();
+
+      const blob = new Blob([flattenedPdfBytes as BlobPart], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `signed_flattened_${state.files[0].name}`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      hideLoader();
+    } else {
+      // Delegate to the built-in download behavior of the base viewer.
+      app.eventBus?.dispatch('download', { source: app });
+    }
   } catch (error) {
-    console.error('Failed to trigger download in base PDF.js viewer:', error);
+    console.error('Failed to export the signed PDF:', error);
+    hideLoader();
     showAlert('Export failed', 'Could not export the signed PDF. Please try again.');
   }
 }

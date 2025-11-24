@@ -7,7 +7,7 @@ import {
   renderFileDisplay,
   switchView,
 } from '../ui.js';
-import { formatIsoDate, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { formatIsoDate, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { setupCanvasEditor } from '../canvasEditor.js';
 import { toolLogic } from '../logic/index.js';
 import { renderDuplicateOrganizeThumbnails } from '../logic/duplicate-organize.js';
@@ -21,14 +21,24 @@ import {
 } from '../config/pdf-tools.js';
 import * as pdfjsLib from 'pdfjs-dist';
 
-// Global state for rotation tracking (used by Rotate tool)
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 const rotationState: number[] = [];
 let imageSortableInstance: Sortable | null = null;
 const activeImageUrls = new Map<File, string>();
 
-// Export getter for rotation state (used by ui.ts)
 export function getRotationState(): readonly number[] {
   return rotationState;
+}
+
+export function updateRotationState(pageIndex: number, rotation: number) {
+  if (pageIndex >= 0 && pageIndex < rotationState.length) {
+    rotationState[pageIndex] = rotation;
+  }
+}
+
+export function resetRotationState() {
+  rotationState.length = 0;
 }
 
 async function handleSinglePdfUpload(toolId, file) {
@@ -164,7 +174,7 @@ async function handleSinglePdfUpload(toolId, file) {
 
       try {
         const pdfBytes = await readFileAsArrayBuffer(state.files[0]);
-        const pdfjsDoc = await pdfjsLib.getDocument({
+        const pdfjsDoc = await getPDFDocument({
           data: pdfBytes as ArrayBuffer,
         }).promise;
         const [metadataResult, fieldObjects] = await Promise.all([
@@ -467,6 +477,43 @@ async function handleSinglePdfUpload(toolId, file) {
 
     if (toolId === 'page-dimensions') {
       toolLogic['page-dimensions']();
+    }
+
+    // Setup quality sliders for image conversion tools
+    if (toolId === 'pdf-to-jpg') {
+      const qualitySlider = document.getElementById('jpg-quality') as HTMLInputElement;
+      const qualityValue = document.getElementById('jpg-quality-value');
+      if (qualitySlider && qualityValue) {
+        const updateValue = () => {
+          qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+        };
+        qualitySlider.addEventListener('input', updateValue);
+        updateValue();
+      }
+    }
+
+    if (toolId === 'pdf-to-png') {
+      const qualitySlider = document.getElementById('png-quality') as HTMLInputElement;
+      const qualityValue = document.getElementById('png-quality-value');
+      if (qualitySlider && qualityValue) {
+        const updateValue = () => {
+          qualityValue.textContent = `${qualitySlider.value}x`;
+        };
+        qualitySlider.addEventListener('input', updateValue);
+        updateValue();
+      }
+    }
+
+    if (toolId === 'pdf-to-webp') {
+      const qualitySlider = document.getElementById('webp-quality') as HTMLInputElement;
+      const qualityValue = document.getElementById('webp-quality-value');
+      if (qualitySlider && qualityValue) {
+        const updateValue = () => {
+          qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+        };
+        qualitySlider.addEventListener('input', updateValue);
+        updateValue();
+      }
     }
 
     if (toolLogic[toolId] && typeof toolLogic[toolId].setup === 'function') {

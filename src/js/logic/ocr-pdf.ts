@@ -1,10 +1,14 @@
 import { tesseractLanguages } from '../config/tesseract-languages.js';
 import { showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import Tesseract from 'tesseract.js';
 import { PDFDocument as PDFLibDocument, StandardFonts, rgb } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
+import * as pdfjsLib from 'pdfjs-dist';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+
 
 let searchablePdfBytes: any = null;
 
@@ -117,8 +121,7 @@ async function runOCR() {
       tessedit_char_whitelist: whitelist,
     });
 
-    // @ts-expect-error TS(2304) FIXME: Cannot find name 'pdfjsLib'.
-    const pdf = await pdfjsLib.getDocument(
+    const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const newPdfDoc = await PDFLibDocument.create();
@@ -136,7 +139,7 @@ async function runOCR() {
       canvas.width = viewport.width;
       canvas.height = viewport.height;
       const context = canvas.getContext('2d');
-      await page.render({ canvasContext: context, viewport }).promise;
+      await page.render({ canvasContext: context, viewport, canvas }).promise;
 
       if (binarize) {
         binarizeCanvas(context);
