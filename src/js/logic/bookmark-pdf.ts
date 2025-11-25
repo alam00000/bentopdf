@@ -1908,45 +1908,64 @@ async function extractExistingBookmarks(doc) {
       console.error('Error building named destinations:', e);
     }
 
-    function findPageIndex(pageRef) {
+    function findPageIndex(pageRef, resolvedPageRef = null) {
       if (!pageRef) return 0;
 
       try {
-        const resolved = resolveRef(pageRef);
-
-        if (pageRef.numberValue !== undefined) {
-          const numericIndex = pageRef.numberValue | 0;
-          if (numericIndex >= 0 && numericIndex < pages.length)
-            return numericIndex;
-        }
-
-        if (pageRef.objectNumber !== undefined) {
-          const idxByObjNum = pages.findIndex(
-            (p) => p.ref.objectNumber === pageRef.objectNumber
-          );
-          if (idxByObjNum !== -1) return idxByObjNum;
-        }
-
-        if (pageRef.toString) {
-          const target = pageRef.toString();
-          const idxByString = pages.findIndex(
-            (p) => p.ref.toString() === target
-          );
-          if (idxByString !== -1) return idxByString;
-        }
-
-        if (resolved && resolved.get) {
+        // Method 1: Try the resolved page ref first (if provided)
+        if (resolvedPageRef) {
+          // Check if resolved is a page dictionary - compare to each page's dictionary
           for (let i = 0; i < pages.length; i++) {
             const pageDict = doc.context.lookup(pages[i].ref);
-            if (pageDict === resolved) return i;
+            if (pageDict === resolvedPageRef) {
+              return i;
+            }
+          }
+        }
+
+        // Method 2: Direct PDFRef comparison
+        const directMatch = pages.findIndex((p) => p.ref === pageRef);
+        if (directMatch !== -1) {
+          return directMatch;
+        }
+
+        // Method 3: Try resolving if not already resolved
+        if (!resolvedPageRef) {
+          const resolved = resolveRef(pageRef);
+          if (resolved) {
+            // Check if the resolved object matches any page's dictionary
+            for (let i = 0; i < pages.length; i++) {
+              const pageDict = doc.context.lookup(pages[i].ref);
+              if (pageDict === resolved) {
+                return i;
+              }
+            }
+          }
+        }
+
+        // Method 4: Compare by string representation
+        if (pageRef.toString) {
+          const target = pageRef.toString();
+          const stringMatch = pages.findIndex(
+            (p) => p.ref && p.ref.toString() === target
+          );
+          if (stringMatch !== -1) {
+            return stringMatch;
+          }
+        }
+
+        // Method 5: Try numeric value (for edge cases)
+        if (pageRef.numberValue !== undefined) {
+          const numericIndex = pageRef.numberValue | 0;
+          if (numericIndex >= 0 && numericIndex < pages.length) {
+            return numericIndex;
           }
         }
       } catch (e) {
-        console.error('Error finding page:', e);
+        console.error('Error finding page index:', e);
       }
 
-      // Fallback: keep current behavior but log for diagnostics
-      console.warn('Falling back to page 0 for destination');
+      // If we couldn't find a match, return 0
       return 0;
     }
 
@@ -1969,7 +1988,24 @@ async function extractExistingBookmarks(doc) {
         try {
           const name = dest.decodeText ? dest.decodeText() : dest.toString();
           if (namedDests.has(name)) {
-            dest = namedDests.get(name);
+            const namedDest = namedDests.get(name);
+
+            // Named destinations can be:
+            // 1. A direct array [pageRef, /XYZ, ...]
+            // 2. A dictionary with a 'D' entry containing the array
+            if (namedDest.array) {
+              dest = namedDest;
+            } else if (namedDest.lookup) {
+              // It's a dictionary - extract the 'D' entry
+              const destFromDict = namedDest.lookup(PDFName.of('D'));
+              if (destFromDict) {
+                dest = destFromDict;
+              } else {
+                dest = namedDest;
+              }
+            } else {
+              dest = namedDest;
+            }
           } else if (dest.lookup) {
             // Some named destinations resolve to a dictionary with 'D' entry
             const maybeDict = resolveRef(dest);
@@ -1984,7 +2020,9 @@ async function extractExistingBookmarks(doc) {
         }
       }
 
-      return resolveRef(dest);
+      // dest is typically an array like [pageRef, /XYZ, x, y, zoom]
+      // Resolving it would corrupt the array structure
+      return dest;
     }
 
     function traverse(item) {
@@ -2004,7 +2042,8 @@ async function extractExistingBookmarks(doc) {
 
       if (dest && dest.array) {
         const pageRef = dest.array[0];
-        pageIndex = findPageIndex(pageRef);
+        const resolvedPageRef = resolveRef(pageRef);
+        pageIndex = findPageIndex(pageRef, resolvedPageRef);
 
         if (dest.array.length > 2) {
           const xObj = resolveRef(dest.array[2]);
