@@ -1804,11 +1804,20 @@ export const toolTemplates = {
         </div>
         
         <div class="mt-4 flex items-center gap-2">
-            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
-                <input type="checkbox" id="flatten-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                Flatten PDF (use the Save button below)
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer border border-gray-700 rounded-lg p-2">
+                <input type="radio" name="flatten-signature-mode" id="flatten-signature-nothing-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                No Postprocessing
+            </label>
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer border border-gray-700 rounded-lg p-2">
+                <input type="radio" name="flatten-signature-mode" id="flatten-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                Flatten
+            </label>
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer border border-gray-700 rounded-lg p-2">
+                <input type="radio" name="flatten-signature-mode" id="flatten-as-image-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                Flatten as Image
             </label>
         </div>
+        <p class="mt-2 text-xs text-gray-400">Use the Save button below if you chose flattening.</p>
 
         <button id="process-btn" class="btn-gradient w-full mt-4" style="display:none;">Save & Download Signed PDF</button>
     </div>
