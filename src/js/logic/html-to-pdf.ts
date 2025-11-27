@@ -360,14 +360,19 @@ const renderBlockQuote = async (
 
   pdf.setFont(textStyleDefaults.fontFamily, 'normal');
   pdf.setFontSize(fontSize);
-  const textLines = pdf.splitTextToSize(lineText, availableTextWidth);
-  const textHeight = textLines.length * lineHeight;
+
+  const originalLines = lineText.split('\n');
+  let totalLines: string[] = [];
+  for (const line of originalLines) {
+    const wrappedLines = pdf.splitTextToSize(line, availableTextWidth);
+    totalLines = totalLines.concat(wrappedLines);
+  }
+
+  const textHeight = totalLines.length * lineHeight;
   const blockHeight = textHeight + verticalPadding * 2;
 
-  // Corrected: Position the start of the text correctly by adding the first line's height.
   const textStartY = currentY + verticalPadding + lineHeight * 0.8;
 
-  // Draw background rectangle
   pdf.setFillColor(
     PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.r,
     PDF_CONSTANTS.DEFAULT_COLORS.LIGHT_GRAY.g,
@@ -375,7 +380,6 @@ const renderBlockQuote = async (
   );
   pdf.rect(boxStartX, currentY, maxWidth, blockHeight, 'F');
 
-  // Draw left border line
   pdf.setDrawColor(
     PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.r,
     PDF_CONSTANTS.DEFAULT_COLORS.GRAY_BORDER.g,
@@ -384,22 +388,56 @@ const renderBlockQuote = async (
   pdf.setLineWidth(2);
   pdf.line(boxStartX, currentY, boxStartX, currentY + blockHeight);
 
-  // Render text inside the block
-  await renderFormattedText(
-    pdf,
-    formattedSegments,
-    lineText,
-    textStartX,
-    textStartY,
-    availableTextWidth,
-    'left',
-    'blockquote',
-    PDF_CONSTANTS.MARGIN,
-    pageWidth,
-    lineHeight
-  );
+  let y = textStartY;
+  let lineStartCharIndex = 0;
+  for (const line of originalLines) {
+    const lineEndCharIndex = lineStartCharIndex + line.length;
 
-  // Return position after the block
+    const lineSegments = formattedSegments
+      .map((segment) => {
+        const segmentStart = segment.startIndex;
+        const segmentEnd = segment.endIndex;
+
+        if (segmentStart >= lineEndCharIndex || segmentEnd <= lineStartCharIndex) {
+          return null; // Segment is completely outside this line
+        }
+
+        const newStart = Math.max(segmentStart, lineStartCharIndex);
+        const newEnd = Math.min(segmentEnd, lineEndCharIndex);
+        const newText = segment.text.substring(
+          newStart - segmentStart,
+          newEnd - segmentStart
+        );
+
+        if (newText.length === 0) {
+          return null;
+        }
+
+        return {
+          ...segment,
+          text: newText,
+          startIndex: newStart - lineStartCharIndex,
+          endIndex: newEnd - lineStartCharIndex,
+        };
+      })
+      .filter((s) => s !== null);
+
+    y = renderFormattedText(
+      pdf,
+      lineSegments as any[],
+      line,
+      textStartX,
+      y,
+      availableTextWidth,
+      'left',
+      'blockquote',
+      PDF_CONSTANTS.MARGIN,
+      pageWidth,
+      lineHeight
+    );
+    lineStartCharIndex = lineEndCharIndex + 1; // +1 for the '\n' character
+  }
+
   return currentY + blockHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
 };
 
@@ -422,7 +460,7 @@ const renderCodeBlock = async (
   pdf.setFont('courier', 'normal');
   pdf.setFontSize(fontSize);
 
-  const textLines = pdf.splitTextToSize(lineText, availableTextWidth);
+  const textLines = lineText.split('\n');
   const textHeight = textLines.length * lineHeight;
   const blockHeight = textHeight + verticalPadding * 2;
 
@@ -436,19 +474,11 @@ const renderCodeBlock = async (
   pdf.setLineWidth(0.5);
   pdf.rect(boxStartX, currentY, maxWidth, blockHeight, 'S');
 
-  await renderFormattedText(
-    pdf,
-    formattedSegments,
-    lineText,
-    textStartX,
-    textStartY,
-    availableTextWidth,
-    'left',
-    'code',
-    PDF_CONSTANTS.MARGIN,
-    pageWidth,
-    lineHeight
-  );
+  let y = textStartY;
+  for (const line of textLines) {
+    pdf.text(line, textStartX, y);
+    y += lineHeight;
+  }
 
   return currentY + blockHeight + PDF_CONSTANTS.PARAGRAPH_SPACING;
 };
@@ -869,10 +899,9 @@ const parseQuillDelta = (delta: any): any[] => {
   for (let i = 1; i < content.length; i++) {
     const prev = mergedContent[mergedContent.length - 1];
     const curr = content[i];
-    if (
-      (curr.type === 'code' && prev.type === 'code') ||
-      (curr.type === 'blockquote' && prev.type === 'blockquote')
-    ) {
+
+    // Merge consecutive blocks of the same type (e.g., code, blockquote, list)
+    if (curr.type === prev.type && curr.type !== 'paragraph') {
       prev.segments.push({ text: '\n', attributes: {} });
       prev.segments.push(...curr.segments);
     } else {
