@@ -61,8 +61,8 @@ const parseColor = (colorStr?: string): { r: number; g: number; b: number } => {
   }
 };
 
-const generateFilename = (): string =>
-  `document-${new Date().toISOString().slice(0, 10)}.pdf`;
+const generateFilename = (html_ending = false): string =>
+  `document-${new Date().toISOString().slice(0, 10)}.${html_ending ? 'html' : 'pdf'}`;
 
 const extractAndProcessHtmlContent = (): string => {
   let htmlContent = quill.root.innerHTML;
@@ -980,6 +980,44 @@ const usePrintToPdf = (): void => {
   printWin.print();
 };
 
+const saveContent = () => {
+  try {
+    const htmlContent = quill.root.innerHTML;
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    downloadFile(blob, generateFilename(true));
+  } catch (error) {
+    console.error('Failed to save content:', error);
+    showAlert('Error', 'Could not save the editor content.');
+  }
+};
+
+const loadContent = () => {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.html,.htm,.txt';
+
+  input.onchange = (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const fileContent = event.target?.result;
+      if (typeof fileContent === 'string') {
+        quill.root.innerHTML = fileContent;
+      } else {
+        showAlert('Error', 'Failed to read file content.');
+      }
+    };
+    reader.onerror = () => {
+      showAlert('Error', 'Error reading the selected file.');
+    };
+    reader.readAsText(file);
+  };
+
+  input.click();
+};
+
 const generateAdvancedPdf = async (): Promise<void> => {
   showLoader('Generating Advanced Text PDF...');
   try {
@@ -1010,6 +1048,10 @@ export function mountHtmlToPdfTool() {
 
   container.innerHTML = `
     <div class="p-6 flex flex-col h-full">
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <button id="load-content" class="btn-secondary w-full">Load HTML Content into editor</button>
+        <button id="save-content" class="btn-secondary w-full">Save Content as HTML</button>
+      </div>
       <div id="editor" class="bg-white border-2 border-gray-300 rounded-lg overflow-hidden" style="height: 500px; max-height: 60vh; display: flex; flex-direction: column;"></div>
     </div>
     
@@ -1048,7 +1090,6 @@ export function mountHtmlToPdfTool() {
     </div>
 
     <div class="mt-6 space-y-3">
-     
       <div class="space-y-2">
         <button id="advanced-pdf" class="btn-gradient w-full">Advanced Text PDF</button>
         <p class="text-sm text-gray-600 ml-2">• Good formatting • Small file size • Proper structure</p>
@@ -1112,7 +1153,7 @@ export function mountHtmlToPdfTool() {
         padding: 8px !important;
         position: sticky !important;
         top: 0 !important;
-        z-index: 100 !important;
+        z-index: 50 !important;
         flex-shrink: 0 !important;
         order: 1 !important;
       `;
@@ -1237,4 +1278,6 @@ export function mountHtmlToPdfTool() {
   document
     .getElementById('print-to-pdf')
     ?.addEventListener('click', usePrintToPdf);
+  document.getElementById('save-content')?.addEventListener('click', saveContent);
+  document.getElementById('load-content')?.addEventListener('click', loadContent);
 }
