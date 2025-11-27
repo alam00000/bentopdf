@@ -900,8 +900,10 @@ const parseQuillDelta = (delta: any): any[] => {
     const prev = mergedContent[mergedContent.length - 1];
     const curr = content[i];
 
-    // Merge consecutive blocks of the same type (e.g., code, blockquote, list)
-    if (curr.type === prev.type && curr.type !== 'paragraph') {
+    if (
+      (curr.type === 'code' && prev.type === 'code') ||
+      (curr.type === 'blockquote' && prev.type === 'blockquote')
+    ) {
       prev.segments.push({ text: '\n', attributes: {} });
       prev.segments.push(...curr.segments);
     } else {
