@@ -2,6 +2,7 @@ import { PDFDocument } from 'pdf-lib';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { flattenAsImage } from './flatten-as-image.ts';
 
 const signState = {
   viewerIframe: null,
@@ -118,7 +119,9 @@ export async function applyAndSaveSignatures() {
 
     const app = viewerWindow.PDFViewerApplication;
     const flattenCheckbox = document.getElementById('flatten-signature-toggle') as HTMLInputElement | null;
+    const flattenAsImageCheckbox = document.getElementById('flatten-as-image-signature-toggle') as HTMLInputElement | null;
     const shouldFlatten = flattenCheckbox?.checked;
+    const shouldFlattenAsImage = flattenAsImageCheckbox?.checked;
 
     if (shouldFlatten) {
       showLoader('Flattening and saving PDF...');
@@ -144,6 +147,13 @@ export async function applyAndSaveSignatures() {
       URL.revokeObjectURL(url);
 
       hideLoader();
+    } else if (shouldFlattenAsImage) {
+      showLoader('Flattening and saving PDF as image...');
+      const rawPdfBytes = await app.pdfDocument.saveDocument(app.pdfDocument.annotationStorage);
+      const pdfBytes = new Uint8Array(rawPdfBytes);
+      const originalName = state.files[0].name;
+      const flatName = originalName.replace(/\.pdf$/i, '_flat.pdf');
+      await flattenAsImage(null, pdfBytes.buffer, flatName)
     } else {
       // Delegate to the built-in download behavior of the base viewer.
       app.eventBus?.dispatch('download', { source: app });
