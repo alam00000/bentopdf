@@ -833,7 +833,7 @@ export const toolTemplates = {
                 <p class="mt-1 text-xs text-gray-400">Higher scale = better quality but larger file size</p>
             </div>
             <p class="mb-4 text-white text-center">Your file is ready. Click the button to download a ZIP file containing all PNG images.</p>
-            <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
+            <button id="process-btn" class="btn-gradient w-full">Download All</button>
         </div>
     `,
     'png-to-pdf': () => `
