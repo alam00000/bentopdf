@@ -1294,7 +1294,7 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality TIFF image. Your files will be downloaded in a ZIP archive.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to TIFF & Download ZIP</button>
+        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to TIFF & Download All</button>
     `,
 
     'split-in-half': () => `
