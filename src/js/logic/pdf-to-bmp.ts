@@ -3,6 +3,7 @@ import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/he
 import { state } from '../state.js';
 import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
+import { PDFPageProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
@@ -59,33 +60,28 @@ export async function pdfToBmp() {
     const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
-    const zip = new JSZip();
 
-    for (let i = 1; i <= pdf.numPages; i++) {
-      showLoader(`Processing page ${i} of ${pdf.numPages}...`);
-      const page = await pdf.getPage(i);
-      const viewport = page.getViewport({ scale: 1.5 });
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
+    if(pdf.numPages === 1) {
+        showLoader(`Processing page 1 of ${pdf.numPages}...`);
+        const page = await pdf.getPage(1);
+        const bmpBuffer = await pageToBlob(page);
+        downloadFile(bmpBuffer, getCleanFilename(state.files[0].name) +'.bmp');
+    } else {
+      const zip = new JSZip();
 
-      // Render the PDF page directly to the canvas
-      await page.render({ canvasContext: context, viewport: viewport, canvas }).promise;
+      for (let i = 1; i <= pdf.numPages; i++) {
+        showLoader(`Processing page ${i} of ${pdf.numPages}...`);
+        const page = await pdf.getPage(i);
+        const bmpBuffer = await pageToBlob(page); 
 
-      // Get the raw pixel data from this canvas
-      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        // Add the generated BMP file to the zip archive
+        zip.file(`page_${i}.bmp`, bmpBuffer);
+      }
 
-      // Use our new self-contained function to create the BMP file
-      const bmpBuffer = encodeBMP(imageData);
-
-      // Add the generated BMP file to the zip archive
-      zip.file(`page_${i}.bmp`, bmpBuffer);
+      showLoader('Compressing files into a ZIP...');
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      downloadFile(zipBlob, getCleanFilename(state.files[0].name) + '_bmps.zip');
     }
-
-    showLoader('Compressing files into a ZIP...');
-    const zipBlob = await zip.generateAsync({ type: 'blob' });
-    downloadFile(zipBlob, 'converted_bmp_images.zip');
   } catch (e) {
     console.error(e);
     showAlert(
@@ -95,4 +91,25 @@ export async function pdfToBmp() {
   } finally {
     hideLoader();
   }
+}
+
+async function pageToBlob(page: PDFPageProxy): Promise<Blob> {
+  const viewport = page.getViewport({ scale: 1.5 });
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  canvas.height = viewport.height;
+  canvas.width = viewport.width;
+
+  // Render the PDF page directly to the canvas
+  await page.render({ canvasContext: context, viewport: viewport, canvas }).promise;
+
+  // Get the raw pixel data from this canvas
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+  // Use our new self-contained function to create the BMP file
+  return new Blob([encodeBMP(imageData)]);
+}
+
+function getCleanFilename(fileName: string): string {
+  return fileName.replace(/\.pdf$/i, '');
 }

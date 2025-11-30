@@ -1287,7 +1287,7 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a BMP image. Your files will be downloaded in a ZIP archive.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to BMP & Download ZIP</button>
+        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to BMP & Download All</button>
     `,
     'pdf-to-tiff': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to TIFF</h2>
