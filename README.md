@@ -10,6 +10,15 @@
 
 ---
 
+> __NOTE__: Since this fork strive further away from the Upstream project goals, features and roadmap, please visit the original repo for the official BentoPDF project.
+> 
+> It is also hard to keep up with the upstream changes as this is a manual work to do changes in similar files.
+> 
+> Pull Requests to the Upstream are not merged. So many changes can only be found here.    
+> Also, it is concentrating on the simple mode with some additional features.
+ 
+---
+
 ## 📜 Licensing
 
 BentoPDF is dual-licensed:
