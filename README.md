@@ -24,15 +24,8 @@
 BentoPDF is dual-licensed:
 
 - **AGPL-3.0** for open-source projects where you share your full source code publicly
-- **Commercial License** for proprietary/closed-source applications - **[Get Lifetime License for $49](https://ko-fi.com/s/f32ca4cb75)** (a one-time lifetime purchase, includes all feature updates forever)
-
-For more details, see our [Licensing Page](https://bentopdf.com/licensing.html)
 
 <hr>
-
-## ⭐ Stargazers over time
-
-[![Star History Chart](https://api.star-history.com/svg?repos=alam00000/bentopdf&type=Date)](https://star-history.com/#alam00000/bentopdf&Date)
 
 ---
 
@@ -157,32 +150,6 @@ You can run BentoPDF locally for development or personal use.
 
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
 - [npm](https://www.npmjs.com/) (or yarn/pnpm)
-- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/install/) (for containerized setup)
-
-### 🚀 Quick Start with Docker
-
-[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/K4AU2B)
-
-You can run BentoPDF directly from Docker Hub or GitHub Container Registry without cloning the repository:
-
-You can also watch the video on how to set it up 👉
-[BentoPDF Docker Setup](https://drive.google.com/file/d/1C4eJ2nqeaH__1Tlad-xuBHaF2Ha4fSBf/view?usp=drive_link)
-
-**Using Docker Hub:**
-
-```bash
-docker run -p 3000:8080 bentopdf/bentopdf:latest
-```
-
-**Using GitHub Container Registry:**
-
-```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
-```
-
-Open your browser at: http://localhost:3000
-
-This is the fastest way to try BentoPDF without setting up a development environment.
 
 ### 🏠 Self-Hosting
 
@@ -245,7 +212,7 @@ If you prefer to build from source:
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
+git clone https://github.com/renierr/bentopdf.git
 cd bentopdf
 
 # Install dependencies
@@ -265,75 +232,7 @@ The website can be accessible at: ```http://localhost:3000/```
 
 The `npm run package` command creates a `dist-{version}.zip` file that you can use for self-hosting.
 
-### 🚀 Run with Docker Compose (Recommended)
-
-For a more robust setup with auto-restart capabilities:
-
-1. **Download the repo and create a `docker-compose.yml` file or use the one given in repo**:
-
-```yaml
-services:
-  bentopdf:
-    image: bentopdf/bentopdf:latest
-    container_name: bentopdf
-    ports:
-      - '3000:8080'
-    restart: unless-stopped
-```
-
-2. **Start the application**:
-
-```bash
-docker-compose up -d
-```
-
-The application will be available at `http://localhost:3000`.
-
-### 🏢 Simple Mode for Internal Use
-
-For organizations that want a clean, distraction-free interface focused solely on PDF tools, BentoPDF supports a **Simple Mode** that hides all branding and marketing content.
-
-**What Simple Mode does:**
-
-- Hides navigation, hero section, features, FAQ, testimonials, and footer
-- Shows only the essential PDF tools
-- Updates page title to "PDF Tools"
-- Perfect for internal company tools and educational institutions
-
-For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
-
-### 🔒 Security Features
-
-BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:
-
-- **Non-Root Execution**: Container runs with minimal privileges using nginx-unprivileged
-- **Port 8080**: Uses high port number to avoid requiring root privileges
-- **Security Best Practices**: Follows Principle of Least Privilege
-
-#### Basic Usage
-
-```bash
-docker build -t bentopdf .
-docker run -p 8080:8080 bentopdf
-```
-
-For detailed security configuration, see [SECURITY.md](SECURITY.md).
-
 ### 📦 Version Management
-
-BentoPDF supports semantic versioning with multiple Docker tags available on both Docker Hub and GitHub Container Registry:
-
-**Docker Hub:**
-
-- **Latest**: `bentopdf/bentopdf:latest`
-- **Specific Version**: `bentopdf/bentopdf:1.0.0`
-- **Version with Prefix**: `bentopdf/bentopdf:v1.0.0`
-
-**GitHub Container Registry:**
-
-- **Latest**: `ghcr.io/alam00000/bentopdf:latest`
-- **Specific Version**: `ghcr.io/alam00000/bentopdf:1.0.0`
-- **Version with Prefix**: `ghcr.io/alam00000/bentopdf:v1.0.0`
 
 #### Quick Release
 
@@ -357,7 +256,7 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
+   git clone https://github.com/renierr/bentopdf.git
    cd bentopdf
    ```
 
@@ -373,31 +272,6 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
    ```
    The application will be available at `http://localhost:5173`.
 
-#### Option 2: Build and Run with Docker Compose
-
-1. **Clone the Repository**:
-
-   ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf
-   ```
-
-2. **Run with Docker Compose**:
-
-   ```bash
-   docker-compose -f docker-compose.dev.yml up -d
-   ```
-
-   The application will be available at `http://localhost:3000`.
-
-   > **Note:** After making any local changes to the code, rebuild the Docker image using:
-
-   ```bash
-   docker-compose -f docker-compose.dev.yml up --build -d
-   ```
-
-   This ensures your latest changes are applied inside the container.
-
 ---
 
 ## 🛠️ Tech Stack & Background
@@ -412,19 +286,6 @@ BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript*
 
 ---
 
-## 🗺️ Roadmap
-
-### Planned Features:
-
-- **HTML to PDF**: Convert HTML files or web pages into PDF documents.
-- **Markdown to PDF**: Enhanced support for converting `.md` files to PDF.
-- **Convert to PDF/A**: Convert PDFs to the PDF/A archival format.
-- **Edit PDF Content**: Directly edit text and other content within your PDF.
-- **PDF to Office**: Converts PDF files into editable Word, Excel, and PowerPoint formats.
-- **Office to PDF**: Converts Word, Excel, and PowerPoint documents into optimized PDFs.
-
-Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/AP2Y97juZT).
-
 ---
 
 ## 🤝 Contributing
@@ -435,8 +296,6 @@ We welcome contributions from the community! Here's how you can get started:
 2.  Follow the **Getting Started** steps to set up your local environment.
 3.  Make your changes and commit them with a clear message.
 4.  **Open a Pull Request** and describe the changes you've made.
-
-Have an idea for a new tool or an improvement? [Open an issue](https://github.com/alam00000/bentopdf/issues) to discuss it first.
 
 ---
 
