@@ -7,3 +7,9 @@ services:
     restart: unless-stopped
     ports:
       - '8080:8080'
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
