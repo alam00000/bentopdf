@@ -774,8 +774,7 @@ export const toolTemplates = {
                 </div>
                 <p class="mt-1 text-xs text-gray-400">Higher quality = larger file size</p>
             </div>
-            <p class="mb-4 text-white text-center">Click "Download All as ZIP" to get images for all pages.</p>
-            <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
+            <button id="process-btn" class="btn-gradient w-full">Convert to JPG & Download All</button>
         </div>
     `,
     'jpg-to-pdf': () => `
