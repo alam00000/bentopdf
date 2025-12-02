@@ -291,9 +291,6 @@ footer a {
   box-shadow:
     0 10px 15px -3px rgba(79, 70, 229, 0.3),
     0 4px 6px -4px rgba(79, 70, 229, 0.3);
-  /* hover:shadow-xl hover:shadow-indigo-500/30 */
-  transform: translateY(-0.25rem);
-  /* hover:-translate-y-1 */
 }
 
 .btn-gradient:focus {
@@ -603,4 +600,16 @@ button:disabled,
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
   pointer-events: none;
+}
+
+/* Hide spin buttons for number inputs */
+input[type="number"] {
+  appearance: none;
+  -moz-appearance: textfield; /* Firefox */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  margin: 0;
 }

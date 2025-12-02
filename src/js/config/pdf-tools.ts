@@ -69,4 +69,5 @@ export const multiFileTools = [
   'compress',
   'extract-attachments',
   'flatten',
+  'repair-pdf',
 ];

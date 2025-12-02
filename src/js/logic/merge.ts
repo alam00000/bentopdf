@@ -1,7 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.ts';
 import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.ts';
 import { state } from '../state.ts';
-import { renderPagesProgressively, cleanupLazyRendering, createPlaceholder } from '../utils/render-utils.ts';
+import { renderPagesProgressively, cleanupLazyRendering } from '../utils/render-utils.ts';
 
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -9,9 +9,22 @@ import Sortable from 'sortablejs';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-const mergeState = {
-  pdfDocs: {} as Record<string, any>,
-  pdfBytes: {} as Record<string, ArrayBuffer>,
+interface MergeState {
+  pdfDocs: Record<string, any>;
+  pdfBytes: Record<string, ArrayBuffer>;
+  activeMode: 'file' | 'page';
+  sortableInstances: {
+    fileList?: Sortable;
+    pageThumbnails?: Sortable;
+  };
+  isRendering: boolean;
+  cachedThumbnails: boolean | null;
+  lastFileHash: string | null;
+}
+
+const mergeState: MergeState = {
+  pdfDocs: {},
+  pdfBytes: {},
   activeMode: 'file',
   sortableInstances: {},
   isRendering: false,
@@ -21,47 +34,14 @@ const mergeState = {
 
 const mergeWorker = new Worker('/workers/merge.worker.js');
 
-function parsePageRanges(rangeString: any, totalPages: any) {
-  const indices = new Set();
-  if (!rangeString.trim()) return [];
-
-  const ranges = rangeString.split(',');
-  for (const range of ranges) {
-    const trimmedRange = range.trim();
-    if (trimmedRange.includes('-')) {
-      const [start, end] = trimmedRange.split('-').map(Number);
-      if (
-        isNaN(start) ||
-        isNaN(end) ||
-        start < 1 ||
-        end > totalPages ||
-        start > end
-      )
-        continue;
-      for (let i = start; i <= end; i++) {
-        indices.add(i - 1);
-      }
-    } else {
-      const pageNum = Number(trimmedRange);
-      if (isNaN(pageNum) || pageNum < 1 || pageNum > totalPages) continue;
-      indices.add(pageNum - 1);
-    }
-  }
-  // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
-  return Array.from(indices).sort((a, b) => a - b);
-}
-
 function initializeFileListSortable() {
   const fileList = document.getElementById('file-list');
   if (!fileList) return;
 
-  // @ts-expect-error TS(2339) FIXME: Property 'fileList' does not exist on type '{}'.
   if (mergeState.sortableInstances.fileList) {
-    // @ts-expect-error TS(2339) FIXME: Property 'fileList' does not exist on type '{}'.
     mergeState.sortableInstances.fileList.destroy();
   }
 
-  // @ts-expect-error TS(2339) FIXME: Property 'fileList' does not exist on type '{}'.
   mergeState.sortableInstances.fileList = Sortable.create(fileList, {
     handle: '.drag-handle',
     animation: 150,
@@ -81,13 +61,10 @@ function initializePageThumbnailsSortable() {
   const container = document.getElementById('page-merge-preview');
   if (!container) return;
 
-  // @ts-expect-error TS(2339) FIXME: Property 'pageThumbnails' does not exist on type '... Remove this comment to see the full error message
   if (mergeState.sortableInstances.pageThumbnails) {
-    // @ts-expect-error TS(2339) FIXME: Property 'pageThumbnails' does not exist on type '... Remove this comment to see the full error message
     mergeState.sortableInstances.pageThumbnails.destroy();
   }
 
-  // @ts-expect-error TS(2339) FIXME: Property 'pageThumbnails' does not exist on type '... Remove this comment to see the full error message
   mergeState.sortableInstances.pageThumbnails = Sortable.create(container, {
     animation: 150,
     ghostClass: 'sortable-ghost',
@@ -192,7 +169,7 @@ async function renderPageMergeThumbnails() {
         container,
         createWrapperWithFileName,
         {
-          batchSize: 6,
+          batchSize: 8,
           useLazyLoading: true,
           lazyLoadMargin: '300px',
           onProgress: (current, total) => {
@@ -224,8 +201,8 @@ async function renderPageMergeThumbnails() {
 export async function merge() {
   showLoader('Merging PDFs...');
   try {
-    const jobs: any[] = [];
-    const filesToMerge: any[] = [];
+    const jobs: MergeJob[] = [];
+    const filesToMerge: MergeFile[] = [];
     const uniqueFileNames = new Set<string>();
 
     if (mergeState.activeMode === 'file') {
@@ -234,8 +211,7 @@ export async function merge() {
 
       const sortedFiles = Array.from(fileList.children)
         .map((li) => {
-          // @ts-expect-error TS(2339) FIXME: Property 'dataset' does not exist on type 'Element...
-          return state.files.find((f) => f.name === li.dataset.fileName);
+          return state.files.find((f) => f.name === (li as HTMLElement).dataset.fileName);
         })
         .filter(Boolean);
 
@@ -267,10 +243,9 @@ export async function merge() {
 
       const rawPages: { fileName: string; pageIndex: number }[] = [];
       for (const el of pageElements) {
-        // @ts-expect-error TS(2339)
-        const fileName = el.dataset.fileName;
-        // @ts-expect-error TS(2339)
-        const pageIndex = parseInt(el.dataset.pageIndex, 10); // 0-based index from dataset
+        const element = el as HTMLElement;
+        const fileName = element.dataset.fileName;
+        const pageIndex = parseInt(element.dataset.pageIndex || '', 10); // 0-based index from dataset
 
         if (fileName && !isNaN(pageIndex)) {
           uniqueFileNames.add(fileName);
@@ -304,8 +279,8 @@ export async function merge() {
           jobs.push({
             fileName: current.fileName,
             rangeType: 'range',
-            startPage: current.pageIndex + 1, 
-            endPage: endPage + 1 
+            startPage: current.pageIndex + 1,
+            endPage: endPage + 1
           });
         }
       }
@@ -324,13 +299,15 @@ export async function merge() {
       }
     }
 
-    mergeWorker.postMessage({
+    const message: MergeMessage = {
       command: 'merge',
       files: filesToMerge,
       jobs: jobs
-    }, filesToMerge.map(f => f.data)); 
+    };
 
-    mergeWorker.onmessage = (e) => {
+    mergeWorker.postMessage(message, filesToMerge.map(f => f.data));
+
+    mergeWorker.onmessage = (e: MessageEvent<MergeResponse>) => {
       hideLoader();
       if (e.data.status === 'success') {
         const blob = new Blob([e.data.pdfBytes], { type: 'application/pdf' });

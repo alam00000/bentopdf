@@ -3,9 +3,14 @@ import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/he
 import { state } from '../state.js';
 import Sortable from 'sortablejs';
 
-const alternateMergeState = {
-  pdfDocs: {} as Record<string, any>,
-  pdfBytes: {} as Record<string, ArrayBuffer>,
+interface AlternateMergeState {
+  pdfDocs: Record<string, any>;
+  pdfBytes: Record<string, ArrayBuffer>;
+}
+
+const alternateMergeState: AlternateMergeState = {
+  pdfDocs: {},
+  pdfBytes: {},
 };
 
 const alternateMergeWorker = new Worker('/workers/alternate-merge.worker.js');
@@ -98,7 +103,7 @@ export async function alternateMerge() {
       (li) => (li as HTMLElement).dataset.fileName
     ).filter(Boolean) as string[];
 
-    const filesToMerge: { name: string; data: ArrayBuffer }[] = [];
+    const filesToMerge: InterleaveFile[] = [];
     for (const name of sortedFileNames) {
       const bytes = alternateMergeState.pdfBytes[name];
       if (bytes) {
@@ -112,12 +117,14 @@ export async function alternateMerge() {
       return;
     }
 
-    alternateMergeWorker.postMessage({
+    const message: InterleaveMessage = {
       command: 'interleave',
       files: filesToMerge
-    }, filesToMerge.map(f => f.data));
+    };
 
-    alternateMergeWorker.onmessage = (e) => {
+    alternateMergeWorker.postMessage(message, filesToMerge.map(f => f.data));
+
+    alternateMergeWorker.onmessage = (e: MessageEvent<InterleaveResponse>) => {
       hideLoader();
       if (e.data.status === 'success') {
         const blob = new Blob([e.data.pdfBytes], { type: 'application/pdf' });

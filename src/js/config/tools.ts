@@ -468,6 +468,12 @@ export const categories = [
         subtitle:
           'Remove password protection and security restrictions associated with digitally signed PDF files.',
       },
+      {
+        href: '/src/pages/repair-pdf.html',
+        name: 'Repair PDF',
+        icon: 'wrench',
+        subtitle: 'Recover data from corrupted or damaged PDF files.',
+      },
     ],
   },
   {

@@ -5,7 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Advanced PDF Bookmark Tool - BentoPDF</title>
-  <link rel="icon" type="image/png" href="../../images/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/favicon.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link href="../../src/css/styles.css" rel="stylesheet" />
   <link href="../../src/css/bookmark.css" rel="stylesheet" />
 </head>
@@ -271,7 +274,7 @@
               <input type="text" id="bookmark-title" placeholder="Bookmark title..."
                 class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm" />
               <button id="add-top-level-btn"
-                class="w-full px-3 py-2 bg-gradient-to-b from-blue-500 to-blue-600 hover:shadow-xl text-white rounded text-sm font-medium flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200">
+                class="w-full px-3 py-2 btn-gradient hover:shadow-xl text-white rounded text-sm font-medium !flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 <span>Add to Page <span id="current-page-display">1</span></span>
               </button>
@@ -391,11 +394,14 @@
 
             <div class="space-y-2">
               <button id="download-btn"
-                class="w-full px-4 py-2 bg-gradient-to-b from-blue-600 to-blue-700 hover:shadow-xl text-white rounded font-medium flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200">
+                class="w-full px-4 py-2 btn-gradient hover:shadow-xl text-white rounded font-medium !flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200">
                 Save PDF with Bookmarks
               </button>
               <button id="extract-existing-btn"
-                class="w-full px-4 py-2 bg-gradient-to-b from-green-500 to-green-600 hover:shadow-xl text-white rounded font-medium flex items-center justify-center gap-2 focus:ring-2 focus:ring-green-400 transition duration-200">
+                class="w-full px-4 py-2 bg-gray-50 text-gray-800 
+                border border-gray-200 rounded-xl font-medium 
+                flex items-center justify-center gap-2
+                shadow-sm hover:shadow-md transition duration-200">
                 Extract Existing Bookmarks
               </button>
             </div>

@@ -9,7 +9,7 @@ export interface RenderConfig {
     batchSize?: number;
     useLazyLoading?: boolean;
     lazyLoadMargin?: string;
-    eagerLoadBatches?: number; // Number of batches to load ahead eagerly (default: 1)
+    eagerLoadBatches?: number; // Number of batches to load ahead eagerly (default: 2)
     onProgress?: (current: number, total: number) => void;
     onPageRendered?: (pageIndex: number, element: HTMLElement) => void;
     onBatchComplete?: () => void;
@@ -214,7 +214,7 @@ export async function renderPagesProgressively(
     const {
         batchSize = 8,  // Increased from 5 to 8 for faster initial render
         useLazyLoading = true,
-        eagerLoadBatches = 1, // Eagerly load 1 batch ahead by default
+        eagerLoadBatches = 2, // Eagerly load 1 batch ahead by default
         onProgress,
         onBatchComplete,
     } = config;
@@ -318,7 +318,7 @@ export function observePlaceholder(
  * Eagerly renders the next batch in the background
  */
 function renderEagerBatch(config: RenderConfig): void {
-    const { eagerLoadBatches = 1, batchSize = 8 } = config;
+    const { eagerLoadBatches = 2, batchSize = 8 } = config;
 
     if (eagerLoadBatches <= 0 || lazyLoadState.eagerLoadQueue.length === 0) {
         return;
