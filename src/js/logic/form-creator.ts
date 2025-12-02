@@ -1,8 +1,9 @@
-import { PDFDocument, StandardFonts, rgb, TextAlignment, PDFName, PDFString, PageSizes, PDFBool, PDFDict, PDFArray } from 'pdf-lib'
+import { PDFDocument, StandardFonts, rgb, TextAlignment, PDFName, PDFString, PageSizes, PDFBool, PDFDict, PDFArray, PDFRadioGroup } from 'pdf-lib'
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js'
 import { downloadFile, hexToRgb, getPDFDocument } from '../utils/helpers.js'
 import { createIcons, icons } from 'lucide'
 import * as pdfjsLib from 'pdfjs-dist'
+import 'pdfjs-dist/web/pdf_viewer.css'
 
 // Initialize PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString()
@@ -49,18 +50,21 @@ interface PageData {
 let fields: FormField[] = []
 let selectedField: FormField | null = null
 let fieldCounter = 0
+let existingFieldNames: Set<string> = new Set() 
+let existingRadioGroups: Set<string> = new Set() 
 let draggedElement: HTMLElement | null = null
 let offsetX = 0
 let offsetY = 0
 
-// Multi-page state
 let pages: PageData[] = []
 let currentPageIndex = 0
 let uploadedPdfDoc: PDFDocument | null = null
+let uploadedPdfjsDoc: any = null 
 let pageSize: { width: number; height: number } = { width: 612, height: 792 }
 let currentScale = 1.333
+let pdfViewerOffset = { x: 0, y: 0 }
+let pdfViewerScale = 1.333
 
-// Resize state
 let resizing = false
 let resizeField: FormField | null = null
 let resizePos: string | null = null
@@ -419,8 +423,8 @@ function renderField(field: FormField): void {
         let newX = touch.clientX - rect.left - offsetX
         let newY = touch.clientY - rect.top - offsetY
 
-        newX = Math.max(0, Math.min(newX, 816 - fieldWrapper.offsetWidth))
-        newY = Math.max(0, Math.min(newY, 1056 - fieldWrapper.offsetHeight))
+        newX = Math.max(0, Math.min(newX, rect.width - fieldWrapper.offsetWidth))
+        newY = Math.max(0, Math.min(newY, rect.height - fieldWrapper.offsetHeight))
 
         fieldWrapper.style.left = newX + 'px'
         fieldWrapper.style.top = newY + 'px'
@@ -496,8 +500,8 @@ document.addEventListener('mousemove', (e) => {
         let newX = e.clientX - rect.left - offsetX
         let newY = e.clientY - rect.top - offsetY
 
-        newX = Math.max(0, Math.min(newX, 816 - draggedElement.offsetWidth))
-        newY = Math.max(0, Math.min(newY, 1056 - draggedElement.offsetHeight))
+        newX = Math.max(0, Math.min(newX, rect.width - draggedElement.offsetWidth))
+        newY = Math.max(0, Math.min(newY, rect.height - draggedElement.offsetHeight))
 
         draggedElement.style.left = newX + 'px'
         draggedElement.style.top = newY + 'px'
@@ -834,9 +838,21 @@ function showProperties(field: FormField): void {
     propertiesPanel.innerHTML = `
     <div class="space-y-3">
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1">Field Name</label>
+        <label class="block text-xs font-semibold text-gray-300 mb-1">Field Name ${field.type === 'radio' ? '(Group Name)' : ''}</label>
         <input type="text" id="propName" value="${field.name}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+        <div id="nameError" class="hidden text-red-400 text-xs mt-1"></div>
       </div>
+      ${field.type === 'radio' && (existingRadioGroups.size > 0 || fields.some(f => f.type === 'radio' && f.id !== field.id)) ? `
+      <div>
+        <label class="block text-xs font-semibold text-gray-300 mb-1">Existing Radio Groups</label>
+        <select id="existingGroups" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option value="">-- Select existing group --</option>
+          ${Array.from(existingRadioGroups).map(name => `<option value="${name}">${name}</option>`).join('')}
+          ${Array.from(new Set(fields.filter(f => f.type === 'radio' && f.id !== field.id).map(f => f.name))).map(name => !existingRadioGroups.has(name) ? `<option value="${name}">${name}</option>` : '').join('')}
+        </select>
+        <p class="text-xs text-gray-400 mt-1">Select to add this button to an existing group</p>
+      </div>
+      ` : ''}
       ${specificProps}
       <div>
         <label class="block text-xs font-semibold text-gray-300 mb-1">Tooltip / Help Text</label>
@@ -858,25 +874,50 @@ function showProperties(field: FormField): void {
 
     // Common listeners
     const propName = document.getElementById('propName') as HTMLInputElement
+    const nameError = document.getElementById('nameError') as HTMLDivElement
     const propTooltip = document.getElementById('propTooltip') as HTMLInputElement
     const propRequired = document.getElementById('propRequired') as HTMLInputElement
     const propReadOnly = document.getElementById('propReadOnly') as HTMLInputElement
     const deleteBtn = document.getElementById('deleteBtn') as HTMLButtonElement
 
+    const validateName = (newName: string): boolean => {
+        if (!newName) {
+            nameError.textContent = 'Field name cannot be empty'
+            nameError.classList.remove('hidden')
+            propName.classList.add('border-red-500')
+            return false
+        }
+
+        if (field.type === 'radio') {
+            nameError.classList.add('hidden')
+            propName.classList.remove('border-red-500')
+            return true
+        }
+
+        const isDuplicateInFields = fields.some(f => f.id !== field.id && f.name === newName)
+        const isDuplicateInPdf = existingFieldNames.has(newName)
+
+        if (isDuplicateInFields || isDuplicateInPdf) {
+            nameError.textContent = `Field name "${newName}" already exists in this ${isDuplicateInPdf ? 'PDF' : 'form'}. Please try using a unique name.`
+            nameError.classList.remove('hidden')
+            propName.classList.add('border-red-500')
+            return false
+        }
+
+        nameError.classList.add('hidden')
+        propName.classList.remove('border-red-500')
+        return true
+    }
+
+    propName.addEventListener('input', (e) => {
+        const newName = (e.target as HTMLInputElement).value.trim()
+        validateName(newName)
+    })
+
     propName.addEventListener('change', (e) => {
         const newName = (e.target as HTMLInputElement).value.trim()
 
-        if (!newName) {
-            showModal('Invalid Name', 'Field name cannot be empty.', 'warning');
-            (e.target as HTMLInputElement).value = field.name
-            return
-        }
-
-        // Check for duplicate name
-        const isDuplicate = fields.some(f => f.id !== field.id && f.name === newName)
-
-        if (isDuplicate) {
-            showModal('Duplicate Name', `A field with the name "${newName}" already exists. Please choose a unique name.`, 'error');
+        if (!validateName(newName)) {
             (e.target as HTMLInputElement).value = field.name
             return
         }
@@ -892,6 +933,27 @@ function showProperties(field: FormField): void {
     propTooltip.addEventListener('input', (e) => {
         field.tooltip = (e.target as HTMLInputElement).value
     })
+
+    if (field.type === 'radio') {
+        const existingGroupsSelect = document.getElementById('existingGroups') as HTMLSelectElement
+        if (existingGroupsSelect) {
+            existingGroupsSelect.addEventListener('change', (e) => {
+                const selectedGroup = (e.target as HTMLSelectElement).value
+                if (selectedGroup) {
+                    propName.value = selectedGroup
+                    field.name = selectedGroup
+                    validateName(selectedGroup)
+
+                    // Update field label
+                    const fieldWrapper = document.getElementById(field.id)
+                    if (fieldWrapper) {
+                        const label = fieldWrapper.querySelector('.field-label') as HTMLElement
+                        if (label) label.textContent = field.name
+                    }
+                }
+            })
+        }
+    }
 
     propRequired.addEventListener('change', (e) => {
         field.required = (e.target as HTMLInputElement).checked
@@ -1255,17 +1317,40 @@ downloadBtn.addEventListener('click', async () => {
     // Check for duplicate field names before generating PDF
     const nameCount = new Map<string, number>()
     const duplicates: string[] = []
+    const conflictsWithPdf: string[] = []
 
     fields.forEach(field => {
         const count = nameCount.get(field.name) || 0
         nameCount.set(field.name, count + 1)
+
+        if (existingFieldNames.has(field.name)) {
+            if (field.type === 'radio' && existingRadioGroups.has(field.name)) {
+            } else {
+                conflictsWithPdf.push(field.name)
+            }
+        }
     })
 
     nameCount.forEach((count, name) => {
         if (count > 1) {
-            duplicates.push(name)
+            const fieldsWithName = fields.filter(f => f.name === name)
+            const allRadio = fieldsWithName.every(f => f.type === 'radio')
+
+            if (!allRadio) {
+                duplicates.push(name)
+            }
         }
     })
+
+    if (conflictsWithPdf.length > 0) {
+        const conflictList = [...new Set(conflictsWithPdf)].map(name => `"${name}"`).join(', ')
+        showModal(
+            'Field Name Conflict',
+            `The following field names already exist in the uploaded PDF: ${conflictList}. Please rename these fields before downloading.`,
+            'error'
+        )
+        return
+    }
 
     if (duplicates.length > 0) {
         const duplicateList = duplicates.map(name => `"${name}"`).join(', ')
@@ -1318,13 +1403,23 @@ downloadBtn.addEventListener('click', async () => {
             const pdfPage = pdfDoc.getPage(field.pageIndex)
             const { height: pageHeight } = pdfPage.getSize()
 
-            const scaleX = 1 / currentScale
-            const scaleY = 1 / currentScale
+            const scaleX = 1 / pdfViewerScale
+            const scaleY = 1 / pdfViewerScale
 
-            const x = field.x * scaleX
-            const y = pageHeight - field.y * scaleY - field.height * scaleY // PDF coordinates from bottom
+            const adjustedX = field.x - pdfViewerOffset.x
+            const adjustedY = field.y - pdfViewerOffset.y
+
+            const x = adjustedX * scaleX
+            const y = pageHeight - (adjustedY * scaleY) - (field.height * scaleY)
             const width = field.width * scaleX
             const height = field.height * scaleY
+
+            console.log(`Field "${field.name}":`, {
+                screenPos: { x: field.x, y: field.y },
+                adjustedPos: { x: adjustedX, y: adjustedY },
+                pdfPos: { x, y, width, height },
+                metrics: { offset: pdfViewerOffset, scale: pdfViewerScale }
+            })
 
             if (field.type === 'text') {
                 const textField = form.createTextField(field.name)
@@ -1398,14 +1493,23 @@ downloadBtn.addEventListener('click', async () => {
                 }
 
             } else if (field.type === 'radio') {
-                const groupName = field.groupName || 'RadioGroup1'
+                const groupName = field.name
                 let radioGroup
 
                 if (radioGroups.has(groupName)) {
                     radioGroup = radioGroups.get(groupName)
                 } else {
-                    radioGroup = form.createRadioGroup(groupName)
-                    radioGroups.set(groupName, radioGroup)
+                    const existingField = form.getFieldMaybe(groupName)
+
+                    if (existingField) {
+                        radioGroup = existingField
+                        radioGroups.set(groupName, radioGroup)
+                        console.log(`Using existing radio group from PDF: ${groupName}`)
+                    } else {
+                        radioGroup = form.createRadioGroup(groupName)
+                        radioGroups.set(groupName, radioGroup)
+                        console.log(`Created new radio group: ${groupName}`)
+                    }
                 }
 
                 radioGroup.addOptionToPage(field.exportValue || 'Yes', pdfPage as any, {
@@ -1585,7 +1689,7 @@ downloadBtn.addEventListener('click', async () => {
 
                 // Add Date Format and Keystroke Actions to the FIELD (not widget)
                 const dateFormat = field.dateFormat || 'mm/dd/yyyy'
-                
+
                 const formatAction = pdfDoc.context.obj({
                     Type: 'Action',
                     S: 'JavaScript',
@@ -1707,6 +1811,9 @@ downloadBtn.addEventListener('click', async () => {
         const pdfBytes = await pdfDoc.save()
         const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' })
         downloadFile(blob, 'fillable-form.pdf')
+        showModal('Success', 'Your PDF has been downloaded successfully.', 'info', () => {
+            resetToInitial()
+        }, 'Okay')
     } catch (error) {
         console.error('Error generating PDF:', error)
         const errorMessage = (error as Error).message
@@ -1716,7 +1823,12 @@ downloadBtn.addEventListener('click', async () => {
             // Extract the field name from the error message
             const match = errorMessage.match(/A field already exists with the specified name: "(.+?)"/)
             const fieldName = match ? match[1] : 'unknown'
-            showModal('Duplicate Field Name', `A field named "${fieldName}" already exists. Please rename this field to use a unique name before downloading.`, 'error')
+
+            if (existingRadioGroups.has(fieldName)) {
+                console.log(`Adding to existing radio group: ${fieldName}`)
+            } else {
+                showModal('Duplicate Field Name', `A field named "${fieldName}" already exists. Please rename this field to use a unique name before downloading.`, 'error')
+            }
         } else {
             showModal('Error', 'Error generating PDF: ' + errorMessage, 'error')
         }
@@ -1805,7 +1917,7 @@ function switchToPage(pageIndex: number): void {
 }
 
 // Render the canvas for the current page
-function renderCanvas(): void {
+async function renderCanvas(): Promise<void> {
     const currentPage = pages[currentPageIndex]
     if (!currentPage) return
 
@@ -1814,6 +1926,7 @@ function renderCanvas(): void {
 
     currentScale = scale
 
+    // Use actual PDF page dimensions (not scaled)
     const canvasWidth = currentPage.width * scale
     const canvasHeight = currentPage.height * scale
 
@@ -1822,20 +1935,135 @@ function renderCanvas(): void {
 
     canvas.innerHTML = ''
 
-    if (currentPage.pdfPageData) {
-        const img = document.createElement('img')
-        img.src = currentPage.pdfPageData as string
-        img.style.position = 'absolute'
-        img.style.top = '0'
-        img.style.left = '0'
-        img.style.width = '100%'
-        img.style.height = '100%'
-        img.style.pointerEvents = 'none'
-        img.style.opacity = '0.8' // Slightly transparent so fields are visible
-        canvas.appendChild(img)
+    if (uploadedPdfDoc) {
+        try {
+            const arrayBuffer = await uploadedPdfDoc.save()
+            const blob = new Blob([arrayBuffer.buffer as ArrayBuffer], { type: 'application/pdf' })
+            const blobUrl = URL.createObjectURL(blob)
+
+            const iframe = document.createElement('iframe')
+            iframe.src = `/pdfjs-viewer/viewer.html?file=${encodeURIComponent(blobUrl)}#page=${currentPageIndex + 1}&toolbar=0`
+            iframe.style.width = '100%'
+            iframe.style.height = `${canvasHeight}px`
+            iframe.style.border = 'none'
+            iframe.style.position = 'absolute'
+            iframe.style.top = '0'
+            iframe.style.left = '0'
+            iframe.style.pointerEvents = 'none'
+            iframe.style.opacity = '0.8'
+
+            iframe.onload = () => {
+                try {
+                    const viewerWindow = iframe.contentWindow as any
+                    if (viewerWindow && viewerWindow.PDFViewerApplication) {
+                        const app = viewerWindow.PDFViewerApplication
+
+                        const style = viewerWindow.document.createElement('style')
+                        style.textContent = `
+                            * {
+                                margin: 0 !important;
+                                padding: 0 !important;
+                            }
+                            html, body {
+                                margin: 0 !important;
+                                padding: 0 !important;
+                                background-color: transparent !important;
+                                overflow: hidden !important;
+                            }
+                            #toolbarContainer {
+                                display: none !important;
+                            }
+                            #mainContainer {
+                                top: 0 !important;
+                                position: absolute !important;
+                                left: 0 !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                            }
+                            #outerContainer {
+                                background-color: transparent !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                            }
+                            #viewerContainer {
+                                top: 0 !important;
+                                background-color: transparent !important;
+                                overflow: hidden !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                            }
+                            .toolbar {
+                                display: none !important;
+                            }
+                            .pdfViewer {
+                                padding: 0 !important;
+                                margin: 0 !important;
+                            }
+                            .page {
+                                margin: 0 !important;
+                                padding: 0 !important;
+                                border: none !important;
+                                box-shadow: none !important;
+                            }
+                        `
+                        viewerWindow.document.head.appendChild(style)
+
+                        const checkRender = setInterval(() => {
+                            if (app.pdfViewer && app.pdfViewer.pagesCount > 0) {
+                                clearInterval(checkRender)
+
+                                const pageContainer = viewerWindow.document.querySelector('.page')
+                                if (pageContainer) {
+                                    const initialRect = pageContainer.getBoundingClientRect()
+
+                                    const offsetX = -initialRect.left
+                                    const offsetY = -initialRect.top
+                                    pageContainer.style.transform = `translate(${offsetX}px, ${offsetY}px)`
+
+                                    setTimeout(() => {
+                                        const rect = pageContainer.getBoundingClientRect()
+                                        const style = viewerWindow.getComputedStyle(pageContainer)
+
+                                        const borderLeft = parseFloat(style.borderLeftWidth) || 0
+                                        const borderTop = parseFloat(style.borderTopWidth) || 0
+                                        const borderRight = parseFloat(style.borderRightWidth) || 0
+
+                                        pdfViewerOffset = {
+                                            x: rect.left + borderLeft,
+                                            y: rect.top + borderTop
+                                        }
+
+                                        const contentWidth = rect.width - borderLeft - borderRight
+                                        pdfViewerScale = contentWidth / currentPage.width
+
+                                        console.log('📏 Calibrated Metrics (force positioned):', {
+                                            initialPosition: { left: initialRect.left, top: initialRect.top },
+                                            appliedTransform: { x: offsetX, y: offsetY },
+                                            finalRect: { left: rect.left, top: rect.top, width: rect.width, height: rect.height },
+                                            computedBorders: { left: borderLeft, top: borderTop, right: borderRight },
+                                            finalOffset: pdfViewerOffset,
+                                            finalScale: pdfViewerScale,
+                                            pdfDimensions: { width: currentPage.width, height: currentPage.height }
+                                        })
+                                    }, 50)
+                                }
+                            }
+                        }, 100)
+                    }
+                } catch (e) {
+                    console.error('Error accessing iframe content:', e)
+                }
+            }
+
+            canvas.appendChild(iframe)
+
+            console.log('Canvas dimensions:', { width: canvasWidth, height: canvasHeight, scale: currentScale })
+            console.log('PDF page dimensions:', { width: currentPage.width, height: currentPage.height })
+        } catch (error) {
+            console.error('Error rendering PDF:', error)
+        }
     }
 
-    // Render fields for current page
     fields.filter(f => f.pageIndex === currentPageIndex).forEach(field => {
         renderField(field)
     })
@@ -1904,25 +2132,41 @@ async function handlePdfUpload(file: File) {
         uploadedPdfDoc = await PDFDocument.load(arrayBuffer)
 
         // Check for existing fields and update counter
+        existingFieldNames.clear()
         try {
             const form = uploadedPdfDoc.getForm()
-            const fields = form.getFields()
-            fields.forEach(field => {
+            const pdfFields = form.getFields()
+
+            // console.log('📋 Found', pdfFields.length, 'existing fields in uploaded PDF')
+
+            pdfFields.forEach(field => {
                 const name = field.getName()
-                // Check if name matches pattern Type_Number
+                existingFieldNames.add(name) // Track all existing field names
+
+                if (field instanceof PDFRadioGroup) {
+                    existingRadioGroups.add(name)
+                }
+
+                // console.log('  Field:', name, '| Type:', field.constructor.name)
+
                 const match = name.match(/([a-zA-Z]+)_(\d+)/)
                 if (match) {
                     const num = parseInt(match[2])
-                    if (!isNaN(num) && num >= fieldCounter) {
+                    if (!isNaN(num) && num > fieldCounter) {
                         fieldCounter = num
+                        console.log('    → Updated field counter to:', fieldCounter)
                     }
                 }
             })
+
+            // TODO@ALAM: DEBUGGER 
+            // console.log('Field counter after upload:', fieldCounter)
+            // console.log('Existing field names:', Array.from(existingFieldNames))
         } catch (e) {
-            // No form or error getting fields, ignore
+            console.log('No form fields found or error reading fields:', e)
         }
 
-        const pdfjsDoc = await getPDFDocument({ data: arrayBuffer }).promise
+        uploadedPdfjsDoc = await getPDFDocument({ data: arrayBuffer }).promise
 
         const pageCount = uploadedPdfDoc.getPageCount()
         pages = []
@@ -1931,27 +2175,11 @@ async function handlePdfUpload(file: File) {
             const page = uploadedPdfDoc.getPage(i)
             const { width, height } = page.getSize()
 
-            const pdfjsPage = await pdfjsDoc.getPage(i + 1)
-            const viewport = pdfjsPage.getViewport({ scale: 1.333 })
-
-            const tempCanvas = document.createElement('canvas')
-            tempCanvas.width = viewport.width
-            tempCanvas.height = viewport.height
-
-            const context = tempCanvas.getContext('2d')!
-            await pdfjsPage.render({
-                canvasContext: context,
-                viewport,
-                canvas: tempCanvas,
-            }).promise
-
-            const dataUrl = tempCanvas.toDataURL('image/png')
-
             pages.push({
                 index: i,
                 width,
                 height,
-                pdfPageData: dataUrl as any
+                pdfPageData: undefined
             })
         }
 
@@ -2005,17 +2233,26 @@ const errorModalTitle = document.getElementById('errorModalTitle')
 const errorModalMessage = document.getElementById('errorModalMessage')
 const errorModalClose = document.getElementById('errorModalClose')
 
-function showModal(title: string, message: string, type: 'error' | 'warning' | 'info' = 'error') {
-    if (!errorModal || !errorModalTitle || !errorModalMessage) return
+let modalCloseCallback: (() => void) | null = null
+
+function showModal(title: string, message: string, type: 'error' | 'warning' | 'info' = 'error', onClose?: () => void, buttonText: string = 'Close') {
+    if (!errorModal || !errorModalTitle || !errorModalMessage || !errorModalClose) return
 
     errorModalTitle.textContent = title
     errorModalMessage.textContent = message
+    errorModalClose.textContent = buttonText
+
+    modalCloseCallback = onClose || null
     errorModal.classList.remove('hidden')
 }
 
 if (errorModalClose) {
     errorModalClose.addEventListener('click', () => {
         errorModal?.classList.add('hidden')
+        if (modalCloseCallback) {
+            modalCloseCallback()
+            modalCloseCallback = null
+        }
     })
 }
 
@@ -2024,6 +2261,10 @@ if (errorModal) {
     errorModal.addEventListener('click', (e) => {
         if (e.target === errorModal) {
             errorModal.classList.add('hidden')
+            if (modalCloseCallback) {
+                modalCloseCallback()
+                modalCloseCallback = null
+            }
         }
     })
 }

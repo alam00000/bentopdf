@@ -89,6 +89,7 @@ export default defineConfig(({ mode }) => {
           'pdf-multi-tool': resolve(__dirname, 'src/pages/pdf-multi-tool.html'),
           'add-stamps': resolve(__dirname, 'src/pages/add-stamps.html'),
           'form-creator': resolve(__dirname, 'src/pages/form-creator.html'),
+          'repair-pdf': resolve(__dirname, 'src/pages/repair-pdf.html'),
         },
       },
     },

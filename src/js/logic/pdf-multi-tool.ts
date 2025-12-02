@@ -6,6 +6,7 @@ import Sortable from 'sortablejs';
 import { downloadFile, getPDFDocument } from '../utils/helpers';
 import { renderPagesProgressively, cleanupLazyRendering, renderPageToCanvas, createPlaceholder } from '../utils/render-utils';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
+import { repairPdfFile } from './repair-pdf.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -351,8 +352,27 @@ async function loadPdfs(files: File[]) {
       if (renderCancelled) break;
 
       try {
-        const arrayBuffer = await file.arrayBuffer();
-        const pdfDoc = await PDFLibDocument.load(arrayBuffer);
+        let arrayBuffer: ArrayBuffer;
+
+        try {
+          console.log(`Repairing ${file.name}...`);
+          const loadingText = document.getElementById('loading-text');
+          if (loadingText) loadingText.textContent = `Repairing ${file.name}...`;
+
+          const repairedData = await repairPdfFile(file);
+          if (repairedData) {
+            arrayBuffer = repairedData.buffer as ArrayBuffer;
+            console.log(`Successfully repaired ${file.name} before loading.`);
+          } else {
+            console.warn(`Repair returned null for ${file.name}, using original file.`);
+            arrayBuffer = await file.arrayBuffer();
+          }
+        } catch (repairError) {
+          console.warn(`Failed to repair ${file.name}, attempting to load original:`, repairError);
+          arrayBuffer = await file.arrayBuffer();
+        }
+
+        const pdfDoc = await PDFLibDocument.load(arrayBuffer, { ignoreEncryption: true, throwOnInvalidObject: false });
         currentPdfDocs.push(pdfDoc);
         const pdfIndex = currentPdfDocs.length - 1;
 
@@ -735,7 +755,7 @@ async function handleInsertPdf(e: Event) {
 
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const pdfDoc = await PDFLibDocument.load(arrayBuffer);
+    const pdfDoc = await PDFLibDocument.load(arrayBuffer, { ignoreEncryption: true, throwOnInvalidObject: false });
     currentPdfDocs.push(pdfDoc);
     const pdfIndex = currentPdfDocs.length - 1;
 

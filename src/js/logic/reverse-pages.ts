@@ -19,7 +19,7 @@ export async function reversePages() {
     for (let j = 0; j < pdfDocs.length; j++) {
       const file = pdfDocs[j];
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFLibDocument.load(arrayBuffer);
+      const pdfDoc = await PDFLibDocument.load(arrayBuffer, { ignoreEncryption: true, throwOnInvalidObject: false });
       const newPdf = await PDFLibDocument.create();
       const pageCount = pdfDoc.getPageCount();
       const reversedIndices = Array.from(

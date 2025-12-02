@@ -1,7 +1,7 @@
 // @ts-nocheck
 // TODO: @ALAM - remove ts-nocheck and fix types later, possibly convert this into an npm package
 
-import { PDFDocument, PDFName, PDFString, PDFNumber, PDFArray } from 'pdf-lib';
+import { PDFDocument, PDFName, PDFString, PDFNumber, PDFArray, PDFHexString } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import Sortable from 'sortablejs';
 import { createIcons, icons } from 'lucide';
@@ -37,19 +37,19 @@ function showInputModal(title, fields = [], defaultValues = {}) {
       .map((field) => {
         if (field.type === 'text') {
           return `
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
-                                <input type="text" id="modal-${field.name}" value="${escapeHTML(defaultValues[field.name] || '')}" 
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg" 
-                                    placeholder="${field.placeholder || ''}" />
-                            </div>
-                        `;
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
+      <input type="text" id="modal-${field.name}" value="${escapeHTML(defaultValues[field.name] || '')}"
+class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+placeholder="${field.placeholder || ''}" />
+  </div>
+    `;
         } else if (field.type === 'select') {
           return `
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
-                                <select id="modal-${field.name}" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                                    ${field.options
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
+      <select id="modal-${field.name}" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+        ${field.options
               .map(
                 (opt) => `
                                         <option value="${opt.value}" ${defaultValues[field.name] === opt.value ? 'selected' : ''}>
@@ -57,91 +57,92 @@ function showInputModal(title, fields = [], defaultValues = {}) {
                                         </option>
                                     `
               )
-              .join('')}
-                                </select>
+              .join('')
+            }
+</select>
                                 ${field.name === 'color' ? '<input type="color" id="modal-color-picker" class="hidden w-full h-10 mt-2 rounded cursor-pointer border border-gray-300" value="#000000" />' : ''}
-                            </div>
-                        `;
+</div>
+  `;
         } else if (field.type === 'destination') {
           const hasDestination =
             defaultValues.destX !== null && defaultValues.destX !== undefined;
           return `
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
-                                <div class="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
-                                    <div class="flex items-center gap-2">
-                                        <label class="flex items-center gap-1 text-xs">
-                                            <input type="checkbox" id="modal-use-destination" class="w-4 h-4" ${hasDestination ? 'checked' : ''}>
-                                            <span>Set custom destination</span>
-                                        </label>
-                                    </div>
-                                    <div id="destination-controls" class="${hasDestination ? '' : 'hidden'} space-y-2">
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div>
-                                                <label class="text-xs text-gray-600">Page</label>
-                                                <input type="number" id="modal-dest-page" min="1" max="${field.maxPages || 1}" value="${defaultValues.destPage || field.page || 1}" 
-                                                    class="w-full px-2 py-1 border border-gray-300 rounded text-sm" step="1" />
-                                            </div>
-                                            <div>
-                                                <label class="text-xs text-gray-600">Zoom (%)</label>
-                                                <select id="modal-dest-zoom" class="w-full px-2 py-1 border border-gray-300 rounded text-sm">
-                                                    <option value="">Inherit</option>
-                                                    <option value="0">Fit Page</option>
-                                                    <option value="50">50%</option>
-                                                    <option value="75">75%</option>
-                                                    <option value="100">100%</option>
-                                                    <option value="125">125%</option>
-                                                    <option value="150">150%</option>
-                                                    <option value="200">200%</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-2">
-                                            <div>
-                                                <label class="text-xs text-gray-600">X Position</label>
-                                                <input type="number" id="modal-dest-x" value="0" step="10"
-                                                    class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
-                                            </div>
-                                            <div>
-                                                <label class="text-xs text-gray-600">Y Position</label>
-                                                <input type="number" id="modal-dest-y" value="0" step="10"
-                                                    class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
-                                            </div>
-                                        </div>
-                                        <button id="modal-pick-destination" class="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs flex items-center justify-center gap-1">
-                                            <i data-lucide="crosshair" class="w-3 h-3"></i> Click on PDF to Pick Location
-                                        </button>
-                                        <p class="text-xs text-gray-500 italic">Click the button above, then click on the PDF where you want the bookmark to jump to</p>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
+  <div class="mb-4">
+    <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
+      <div class="p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-2">
+        <div class="flex items-center gap-2">
+          <label class="flex items-center gap-1 text-xs">
+            <input type="checkbox" id="modal-use-destination" class="w-4 h-4" ${hasDestination ? 'checked' : ''}>
+              <span>Set custom destination </span>
+                </label>
+                </div>
+                <div id="destination-controls" class="${hasDestination ? '' : 'hidden'} space-y-2">
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                    <label class="text-xs text-gray-600">Page</label>
+                      <input type="number" id="modal-dest-page" min="1" max="${field.maxPages || 1}" value="${defaultValues.destPage || field.page || 1}"
+class="w-full px-2 py-1 border border-gray-300 rounded text-sm" step="1" />
+  </div>
+  <div>
+  <label class="text-xs text-gray-600">Zoom(%)</label>
+    <select id="modal-dest-zoom" class="w-full px-2 py-1 border border-gray-300 rounded text-sm">
+      <option value="">Inherit</option>
+        <option value="0">Fit Page</option>
+          <option value="50">50%</option>
+            <option value="75">75%</option>
+              <option value="100">100%</option>
+                <option value="125">125%</option>
+                  <option value="150">150%</option>
+                    <option value="200">200%</option>
+                      </select>
+                      </div>
+                      </div>
+                      <div class="grid grid-cols-2 gap-2">
+                        <div>
+                        <label class="text-xs text-gray-600">X Position</label>
+                          <input type="number" id="modal-dest-x" value="0" step="10"
+class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
+  </div>
+  <div>
+  <label class="text-xs text-gray-600">Y Position</label>
+    <input type="number" id="modal-dest-y" value="0" step="10"
+class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
+  </div>
+  </div>
+  <button id="modal-pick-destination" class="w-full px-3 py-2 btn-gradient text-white rounded text-xs !flex items-center justify-center gap-1">
+    <i data-lucide="crosshair" class="w-3 h-3"></i> Click on PDF to Pick Location
+      </button>
+      <p class="text-xs text-gray-500 italic">Click the button above, then click on the PDF where you want the bookmark to jump to</p>
+        </div>
+        </div>
+        </div>
+          `;
         } else if (field.type === 'preview') {
           return `
-                            <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
-                                <div id="modal-preview" class="style-preview bg-gray-50">
-                                    <span id="preview-text" style="font-size: 16px;">Preview Text</span>
-                                </div>
-                            </div>
-                        `;
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
+            <div id="modal-preview" class="style-preview bg-gray-50">
+              <span id="preview-text" style="font-size: 16px;">Preview Text</span>
+                </div>
+                </div>
+                  `;
         }
         return '';
       })
       .join('');
 
     modal.innerHTML = `
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">${title}</h3>
-                        <div class="mb-6">
-                            ${fieldsHTML}
-                        </div>
-                        <div class="flex gap-2 justify-end">
-                            <button id="modal-cancel" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
-                            <button id="modal-confirm" class="px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white">Confirm</button>
-                        </div>
-                    </div>
-                `;
+                <div class="p-6">
+                  <h3 class="text-xl font-bold text-gray-800 mb-4">${title}</h3>
+                    <div class="mb-6">
+                      ${fieldsHTML}
+</div>
+  <div class="flex gap-2 justify-end">
+    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Cancel</button>
+      <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">Confirm</button>
+        </div>
+        </div>
+          `;
 
     overlay.appendChild(modal);
     modalContainer.appendChild(overlay);
@@ -476,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasWrapper.appendChild(coordTooltip);
     }
 
-    coordTooltip.textContent = `X: ${Math.round(x)}, Y: ${Math.round(y)}`;
+    coordTooltip.textContent = `X: ${Math.round(x)}, Y: ${Math.round(y)} `;
     coordTooltip.style.left = e.clientX - rect.left + 15 + 'px';
     coordTooltip.style.top = e.clientY - rect.top + 15 + 'px';
   });
@@ -525,12 +526,12 @@ document.addEventListener('DOMContentLoaded', () => {
     destinationMarker = document.createElement('div');
     destinationMarker.className = 'destination-marker';
     destinationMarker.innerHTML = `
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
-                        <circle cx="12" cy="12" r="10" fill="#3b82f6" fill-opacity="0.2"/>
-                        <path d="M12 2 L12 22 M2 12 L22 12"/>
-                        <circle cx="12" cy="12" r="2" fill="#3b82f6"/>
-                    </svg>
-                `;
+  <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+    <circle cx="12" cy="12" r="10" fill="#3b82f6" fill-opacity="0.2" />
+      <path d="M12 2 L12 22 M2 12 L22 12" />
+        <circle cx="12" cy="12" r="2" fill="#3b82f6" />
+          </svg>
+            `;
     const canvasRect = canvas.getBoundingClientRect();
     const wrapperRect = canvasWrapper.getBoundingClientRect();
     destinationMarker.style.position = 'absolute';
@@ -549,7 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasX + canvasRect.left - wrapperRect.left + 20 + 'px';
     coordDisplay.style.top =
       canvasY + canvasRect.top - wrapperRect.top - 30 + 'px';
-    coordDisplay.textContent = `X: ${Math.round(pdfX)}, Y: ${Math.round(pdfY)}`;
+    coordDisplay.textContent = `X: ${Math.round(pdfX)}, Y: ${Math.round(pdfY)} `;
     canvasWrapper.appendChild(coordDisplay);
 
     // Call callback with PDF coordinates
@@ -577,14 +578,14 @@ function showConfirmModal(message) {
     modal.className = 'modal-content';
 
     modal.innerHTML = `
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Confirm Action</h3>
-                        <p class="text-gray-600 mb-6">${message}</p>
-                        <div class="flex gap-2 justify-end">
-                            <button id="modal-cancel" class="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300">Cancel</button>
-                            <button id="modal-confirm" class="px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white">Confirm</button>
-                        </div>
-                    </div>
+  <div class="p-6">
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Confirm Action</h3>
+      <p class="text-gray-600 mb-6">${message}</p>
+        <div class="flex gap-2 justify-end">
+          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Cancel</button>
+            <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">Confirm</button>
+              </div>
+              </div>
                 `;
 
     overlay.appendChild(modal);
@@ -618,14 +619,14 @@ function showAlertModal(title, message) {
     modal.className = 'modal-content';
 
     modal.innerHTML = `
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">${title}</h3>
-                        <p class="text-gray-600 mb-6">${message}</p>
-                        <div class="flex justify-end">
-                            <button id="modal-ok" class="px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 text-white">OK</button>
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">${title}</h3>
+                  <p class="text-gray-600 mb-6">${message}</p>
+                    <div class="flex justify-end">
+                      <button id="modal-ok" class="px-4 py-2 rounded btn-gradient text-white">OK</button>
                         </div>
-                    </div>
-                `;
+                        </div>
+                          `;
 
     overlay.appendChild(modal);
     modalContainer.appendChild(overlay);
@@ -832,7 +833,7 @@ deleteAllBtn.addEventListener('click', async () => {
   }
 
   const confirmed = await showConfirmModal(
-    `Delete all ${bookmarkTree.length} bookmark(s)?`
+    `Delete all ${bookmarkTree.length} bookmark(s) ? `
   );
   if (confirmed) {
     bookmarkTree = [];
@@ -949,7 +950,7 @@ batchDeleteBtn.addEventListener('click', async () => {
   if (selectedBookmarks.size === 0) return;
 
   const confirmed = await showConfirmModal(
-    `Delete ${selectedBookmarks.size} bookmark(s)?`
+    `Delete ${selectedBookmarks.size} bookmark(s) ? `
   );
   if (!confirmed) return;
 
@@ -1173,7 +1174,7 @@ async function renderPage(num, zoom = null, destX = null, destY = null) {
     ctx.stroke();
 
     // Draw coordinate text background
-    const text = `X: ${Math.round(destX)}, Y: ${Math.round(destY)}`;
+    const text = `X: ${Math.round(destX)}, Y: ${Math.round(destY)} `;
     ctx.font = 'bold 12px monospace';
     const textMetrics = ctx.measureText(text);
     const textWidth = textMetrics.width;
@@ -1532,7 +1533,7 @@ function createNodeElement(node, level = 0) {
     if (result && result.title) {
       node.children.push({
         id: Date.now() + Math.random(),
-        title: result.title,
+        title: cleanTitle(result.title),
         page: currentPage,
         children: [],
         color: null,
@@ -1608,7 +1609,7 @@ function createNodeElement(node, level = 0) {
     );
 
     if (result) {
-      node.title = result.title;
+      node.title = cleanTitle(result.title);
       node.color = result.color || null;
       node.style = result.style || null;
 
@@ -1756,7 +1757,7 @@ function parseCSV(text) {
     const [, title, page, level] = match;
     const bookmark = {
       id: Date.now() + Math.random(),
-      title: title.replace(/""/g, '"'),
+      title: cleanTitle(title.replace(/""/g, '"')),
       page: parseInt(page),
       children: [],
       color: null,
@@ -1787,6 +1788,15 @@ jsonImportHidden.addEventListener('change', async (e) => {
   const text = await file.text();
   try {
     const imported = JSON.parse(text);
+    // Recursively clean titles in imported JSON
+    function cleanImportedTree(nodes) {
+      if (!nodes) return;
+      for (const node of nodes) {
+        if (node.title) node.title = cleanTitle(node.title);
+        if (node.children) cleanImportedTree(node.children);
+      }
+    }
+    cleanImportedTree(imported);
     bookmarkTree = imported;
     saveState();
     renderBookmarkTree();
@@ -1834,254 +1844,84 @@ extractExistingBtn.addEventListener('click', async () => {
   }
 });
 
+// function cleanTitle(title) {
+//   // @TODO@ALAM: visit this for encoding issues later
+//   if (typeof title === 'string') {
+//     if (title.includes('€') && !title.includes(' ')) {
+//       return title.replace(/€/g, ' ');
+//     }
+//     return title.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
+//   }
+//   return title;
+// }
+
+function cleanTitle(title) {
+  // @TODO@ALAM: check for other encoding issues
+  if (typeof title === 'string') {
+    return title.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
+  }
+  return title;
+}
+
 async function extractExistingBookmarks(doc) {
   try {
-    const outlines = doc.catalog.lookup(PDFName.of('Outlines'));
-    if (!outlines) return [];
+    const outline = await pdfJsDoc.getOutline();
+    console.log(outline);
+    if (!outline) return [];
 
-    const pages = doc.getPages();
-
-    // Helper to resolve references
-    function resolveRef(obj) {
-      if (!obj) return null;
-      if (obj.lookup) return obj;
-      if (obj.objectNumber !== undefined && doc.context) {
-        return doc.context.lookup(obj);
-      }
-      return obj;
-    }
-
-    // Build named destinations map (support full name-tree with Kids and Catalog-level Dests)
-    const namedDests = new Map();
-    try {
-      function addNamePair(nameObj, destObj) {
-        try {
-          const key = nameObj.decodeText
-            ? nameObj.decodeText()
-            : String(nameObj);
-          namedDests.set(key, resolveRef(destObj));
-        } catch (_) {
-          // ignore malformed entry
-        }
-      }
-
-      function traverseNamesNode(node) {
-        if (!node) return;
-        node = resolveRef(node);
-        if (!node) return;
-
-        const namesArray = node.lookup
-          ? node.lookup(PDFName.of('Names'))
-          : null;
-        if (namesArray && namesArray.array) {
-          for (let i = 0; i < namesArray.array.length; i += 2) {
-            const n = namesArray.array[i];
-            const d = namesArray.array[i + 1];
-            addNamePair(n, d);
-          }
-        }
-
-        const kidsArray = node.lookup ? node.lookup(PDFName.of('Kids')) : null;
-        if (kidsArray && kidsArray.array) {
-          for (const kid of kidsArray.array) traverseNamesNode(kid);
-        }
-      }
-
-      // Names tree under Catalog/Names/Dests
-      const names = doc.catalog.lookup(PDFName.of('Names'));
-      if (names) {
-        const destsTree = names.lookup(PDFName.of('Dests'));
-        if (destsTree) traverseNamesNode(destsTree);
-      }
-
-      // Some PDFs store Dests directly under the Catalog's Dests as a dictionary
-      const catalogDests = doc.catalog.lookup(PDFName.of('Dests'));
-      if (catalogDests && catalogDests.dict) {
-        const entries = catalogDests.dict.entries();
-        for (const [key, value] of entries) {
-          // keys are PDFName; convert to string
-          const keyStr = key.decodeText ? key.decodeText() : key.toString();
-          namedDests.set(keyStr, resolveRef(value));
-        }
-      }
-    } catch (e) {
-      console.error('Error building named destinations:', e);
-    }
-
-    function findPageIndex(pageRef, resolvedPageRef = null) {
-      if (!pageRef) return 0;
-
-      try {
-        // Method 1: Try the resolved page ref first (if provided)
-        if (resolvedPageRef) {
-          // Check if resolved is a page dictionary - compare to each page's dictionary
-          for (let i = 0; i < pages.length; i++) {
-            const pageDict = doc.context.lookup(pages[i].ref);
-            if (pageDict === resolvedPageRef) {
-              return i;
-            }
-          }
-        }
-
-        // Method 2: Direct PDFRef comparison
-        const directMatch = pages.findIndex((p) => p.ref === pageRef);
-        if (directMatch !== -1) {
-          return directMatch;
-        }
-
-        // Method 3: Try resolving if not already resolved
-        if (!resolvedPageRef) {
-          const resolved = resolveRef(pageRef);
-          if (resolved) {
-            // Check if the resolved object matches any page's dictionary
-            for (let i = 0; i < pages.length; i++) {
-              const pageDict = doc.context.lookup(pages[i].ref);
-              if (pageDict === resolved) {
-                return i;
-              }
-            }
-          }
-        }
-
-        // Method 4: Compare by string representation
-        if (pageRef.toString) {
-          const target = pageRef.toString();
-          const stringMatch = pages.findIndex(
-            (p) => p.ref && p.ref.toString() === target
-          );
-          if (stringMatch !== -1) {
-            return stringMatch;
-          }
-        }
-
-        // Method 5: Try numeric value (for edge cases)
-        if (pageRef.numberValue !== undefined) {
-          const numericIndex = pageRef.numberValue | 0;
-          if (numericIndex >= 0 && numericIndex < pages.length) {
-            return numericIndex;
-          }
-        }
-      } catch (e) {
-        console.error('Error finding page index:', e);
-      }
-
-      // If we couldn't find a match, return 0
-      return 0;
-    }
-
-    function getDestination(item) {
-      if (!item) return null;
-
-      // Try Dest entry first
-      let dest = item.lookup(PDFName.of('Dest'));
-
-      // If no Dest, try Action/D
-      if (!dest) {
-        const action = resolveRef(item.lookup(PDFName.of('A')));
-        if (action) {
-          dest = action.lookup(PDFName.of('D'));
-        }
-      }
-
-      // Handle named destinations
-      if (dest && !dest.array) {
-        try {
-          const name = dest.decodeText ? dest.decodeText() : dest.toString();
-          if (namedDests.has(name)) {
-            const namedDest = namedDests.get(name);
-
-            // Named destinations can be:
-            // 1. A direct array [pageRef, /XYZ, ...]
-            // 2. A dictionary with a 'D' entry containing the array
-            if (namedDest.array) {
-              dest = namedDest;
-            } else if (namedDest.lookup) {
-              // It's a dictionary - extract the 'D' entry
-              const destFromDict = namedDest.lookup(PDFName.of('D'));
-              if (destFromDict) {
-                dest = destFromDict;
-              } else {
-                dest = namedDest;
-              }
-            } else {
-              dest = namedDest;
-            }
-          } else if (dest.lookup) {
-            // Some named destinations resolve to a dictionary with 'D' entry
-            const maybeDict = resolveRef(dest);
-            const dictD =
-              maybeDict && maybeDict.lookup
-                ? maybeDict.lookup(PDFName.of('D'))
-                : null;
-            if (dictD) dest = resolveRef(dictD);
-          }
-        } catch (_) {
-          // leave dest as-is if it can't be decoded
-        }
-      }
-
-      // dest is typically an array like [pageRef, /XYZ, x, y, zoom]
-      // Resolving it would corrupt the array structure
-      return dest;
-    }
-
-    function traverse(item) {
-      if (!item) return null;
-      item = resolveRef(item);
-      if (!item) return null;
-
-      const title = item.lookup(PDFName.of('Title'));
-      const dest = getDestination(item);
-      const colorObj = item.lookup(PDFName.of('C'));
-      const flagsObj = item.lookup(PDFName.of('F'));
-
+    async function processOutlineItem(item) {
       let pageIndex = 0;
       let destX = null;
       let destY = null;
       let zoom = null;
 
-      if (dest && dest.array) {
-        const pageRef = dest.array[0];
-        const resolvedPageRef = resolveRef(pageRef);
-        pageIndex = findPageIndex(pageRef, resolvedPageRef);
+      try {
+        let dest = item.dest;
+        if (typeof dest === 'string') {
+          dest = await pdfJsDoc.getDestination(dest);
+        }
 
-        if (dest.array.length > 2) {
-          const xObj = resolveRef(dest.array[2]);
-          const yObj = resolveRef(dest.array[3]);
-          const zoomObj = resolveRef(dest.array[4]);
+        if (Array.isArray(dest)) {
+          const destRef = dest[0];
+          pageIndex = await pdfJsDoc.getPageIndex(destRef);
 
-          if (xObj && xObj.numberValue !== undefined) destX = xObj.numberValue;
-          if (yObj && yObj.numberValue !== undefined) destY = yObj.numberValue;
-          if (zoomObj && zoomObj.numberValue !== undefined) {
-            zoom = String(Math.round(zoomObj.numberValue * 100));
+          if (dest.length > 2) {
+            const x = dest[2];
+            const y = dest[3];
+            const z = dest[4];
+
+            if (typeof x === 'number') destX = x;
+            if (typeof y === 'number') destY = y;
+            if (typeof z === 'number') zoom = String(Math.round(z * 100));
           }
         }
+      } catch (e) {
+        console.warn('Error resolving destination:', e);
       }
 
-      // Rest of the color and style processing remains the same
       let color = null;
-      if (colorObj && colorObj.array) {
-        const [r, g, b] = colorObj.array;
-        if (r > 0.8 && g < 0.3 && b < 0.3) color = 'red';
-        else if (r < 0.3 && g < 0.3 && b > 0.8) color = 'blue';
-        else if (r < 0.3 && g > 0.8 && b < 0.3) color = 'green';
-        else if (r > 0.8 && g > 0.8 && b < 0.3) color = 'yellow';
-        else if (r > 0.5 && g < 0.5 && b > 0.5) color = 'purple';
+      if (item.color) {
+        const [r, g, b] = item.color;
+        const rN = r / 255;
+        const gN = g / 255;
+        const bN = b / 255;
+
+        if (rN > 0.8 && gN < 0.3 && bN < 0.3) color = 'red';
+        else if (rN < 0.3 && gN < 0.3 && bN > 0.8) color = 'blue';
+        else if (rN < 0.3 && gN > 0.8 && bN < 0.3) color = 'green';
+        else if (rN > 0.8 && gN > 0.8 && bN < 0.3) color = 'yellow';
+        else if (rN > 0.5 && gN < 0.5 && bN > 0.5) color = 'purple';
       }
 
+      // Map style
       let style = null;
-      if (flagsObj) {
-        const flags = flagsObj.numberValue || 0;
-        const isBold = (flags & 2) !== 0;
-        const isItalic = (flags & 1) !== 0;
-        if (isBold && isItalic) style = 'bold-italic';
-        else if (isBold) style = 'bold';
-        else if (isItalic) style = 'italic';
-      }
+      if (item.bold && item.italic) style = 'bold-italic';
+      else if (item.bold) style = 'bold';
+      else if (item.italic) style = 'italic';
 
       const bookmark = {
         id: Date.now() + Math.random(),
-        title: title ? title.decodeText() : 'Untitled',
+        title: cleanTitle(item.title),
         page: pageIndex + 1,
         children: [],
         color,
@@ -2091,21 +1931,10 @@ async function extractExistingBookmarks(doc) {
         zoom,
       };
 
-      // Process children (make sure to resolve refs)
-      let child = resolveRef(item.lookup(PDFName.of('First')));
-      while (child) {
-        const childBookmark = traverse(child);
-        if (childBookmark) bookmark.children.push(childBookmark);
-        child = resolveRef(child.lookup(PDFName.of('Next')));
-      }
-
-      if (pageIndex === 0 && bookmark.children.length > 0) {
-        const firstChild = bookmark.children[0];
-        if (firstChild) {
-          bookmark.page = firstChild.page;
-          bookmark.destX = firstChild.destX;
-          bookmark.destY = firstChild.destY;
-          bookmark.zoom = firstChild.zoom;
+      if (item.items && item.items.length > 0) {
+        for (const childItem of item.items) {
+          const childBookmark = await processOutlineItem(childItem);
+          bookmark.children.push(childBookmark);
         }
       }
 
@@ -2113,11 +1942,9 @@ async function extractExistingBookmarks(doc) {
     }
 
     const result = [];
-    let first = resolveRef(outlines.lookup(PDFName.of('First')));
-    while (first) {
-      const bookmark = traverse(first);
-      if (bookmark) result.push(bookmark);
-      first = resolveRef(first.lookup(PDFName.of('Next')));
+    for (const item of outline) {
+      const bookmark = await processOutlineItem(item);
+      result.push(bookmark);
     }
 
     return result;
@@ -2153,7 +1980,7 @@ downloadBtn.addEventListener('click', async () => {
       const itemDict = pdfLibDoc.context.obj({});
       const itemRef = pdfLibDoc.context.register(itemDict);
 
-      itemDict.set(PDFName.of('Title'), PDFString.of(node.title));
+      itemDict.set(PDFName.of('Title'), PDFHexString.fromText(node.title));
       itemDict.set(PDFName.of('Parent'), parentRef);
 
       // Always map bookmark page to zero-based index consistently

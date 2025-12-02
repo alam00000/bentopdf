@@ -68,3 +68,44 @@ export async function deletePages() {
     hideLoader();
   }
 }
+
+export function setupDeletePagesTool() {
+  const input = document.getElementById('pages-to-delete') as HTMLInputElement;
+  if (!input) return;
+
+  const updateHighlights = () => {
+    const val = input.value;
+    const pagesToDelete = new Set<number>();
+
+    const parts = val.split(',');
+    for (const part of parts) {
+      const trimmed = part.trim();
+      if (trimmed.includes('-')) {
+        const [start, end] = trimmed.split('-').map(Number);
+        if (!isNaN(start) && !isNaN(end) && start <= end) {
+          for (let i = start; i <= end; i++) pagesToDelete.add(i);
+        }
+      } else {
+        const num = Number(trimmed);
+        if (!isNaN(num)) pagesToDelete.add(num);
+      }
+    }
+
+    const thumbnails = document.querySelectorAll('#delete-pages-preview .page-thumbnail');
+    thumbnails.forEach((thumb) => {
+      const pageNum = parseInt((thumb as HTMLElement).dataset.pageNumber || '0');
+      const innerContainer = thumb.querySelector('div.relative');
+
+      if (pagesToDelete.has(pageNum)) {
+        innerContainer?.classList.add('border-red-500');
+        innerContainer?.classList.remove('border-gray-600');
+      } else {
+        innerContainer?.classList.remove('border-red-500');
+        innerContainer?.classList.add('border-gray-600');
+      }
+    });
+  };
+
+  input.addEventListener('input', updateHighlights);
+  updateHighlights();
+}

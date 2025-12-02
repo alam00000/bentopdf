@@ -1,7 +1,7 @@
 {
   "name": "bento-pdf",
   "private": true,
-  "version": "1.8.1",
+  "version": "1.10.0",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {

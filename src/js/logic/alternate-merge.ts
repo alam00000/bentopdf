@@ -1,12 +1,19 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer } from '../utils/helpers.js';
+import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
-import { PDFDocument } from 'pdf-lib';
 import Sortable from 'sortablejs';
 
-const alternateMergeState = {
+interface AlternateMergeState {
+  pdfDocs: Record<string, any>;
+  pdfBytes: Record<string, ArrayBuffer>;
+}
+
+const alternateMergeState: AlternateMergeState = {
   pdfDocs: {},
+  pdfBytes: {},
 };
+
+const alternateMergeWorker = new Worker('/workers/alternate-merge.worker.js');
 
 export async function setupAlternateMergeTool() {
   const optionsDiv = document.getElementById('alternate-merge-options');
@@ -23,18 +30,18 @@ export async function setupAlternateMergeTool() {
 
   fileList.innerHTML = '';
   alternateMergeState.pdfDocs = {};
+  alternateMergeState.pdfBytes = {};
 
   showLoader('Loading PDF documents...');
   try {
     for (const file of state.files) {
       const pdfBytes = await readFileAsArrayBuffer(file);
-      alternateMergeState.pdfDocs[file.name] = await PDFDocument.load(
-        pdfBytes as ArrayBuffer,
-        {
-          ignoreEncryption: true,
-        }
-      );
-      const pageCount = alternateMergeState.pdfDocs[file.name].getPageCount();
+      alternateMergeState.pdfBytes[file.name] = pdfBytes as ArrayBuffer;
+
+      const bytesForPdfJs = (pdfBytes as ArrayBuffer).slice(0);
+      const pdfjsDoc = await getPDFDocument({ data: bytesForPdfJs }).promise;
+      alternateMergeState.pdfDocs[file.name] = pdfjsDoc;
+      const pageCount = pdfjsDoc.numPages;
 
       const li = document.createElement('li');
       li.className =
@@ -79,7 +86,7 @@ export async function setupAlternateMergeTool() {
 }
 
 export async function alternateMerge() {
-  if (Object.keys(alternateMergeState.pdfDocs).length < 2) {
+  if (Object.keys(alternateMergeState.pdfBytes).length < 2) {
     showAlert(
       'Not Enough Files',
       'Please upload at least two PDF files to alternate and mix.'
@@ -89,37 +96,55 @@ export async function alternateMerge() {
 
   showLoader('Alternating and mixing pages...');
   try {
-    const newPdfDoc = await PDFDocument.create();
     const fileList = document.getElementById('alternate-file-list');
+    if (!fileList) throw new Error('File list not found');
+
     const sortedFileNames = Array.from(fileList.children).map(
       (li) => (li as HTMLElement).dataset.fileName
-    );
+    ).filter(Boolean) as string[];
 
-    const loadedDocs = sortedFileNames.map(
-      (name) => alternateMergeState.pdfDocs[name]
-    );
-    const pageCounts = loadedDocs.map((doc) => doc.getPageCount());
-    const maxPages = Math.max(...pageCounts);
-
-    for (let i = 0; i < maxPages; i++) {
-      for (const doc of loadedDocs) {
-        if (i < doc.getPageCount()) {
-          const [copiedPage] = await newPdfDoc.copyPages(doc, [i]);
-          newPdfDoc.addPage(copiedPage);
-        }
+    const filesToMerge: InterleaveFile[] = [];
+    for (const name of sortedFileNames) {
+      const bytes = alternateMergeState.pdfBytes[name];
+      if (bytes) {
+        filesToMerge.push({ name, data: bytes });
       }
     }
 
-    const mergedPdfBytes = await newPdfDoc.save();
-    downloadFile(
-      new Blob([new Uint8Array(mergedPdfBytes)], { type: 'application/pdf' }),
-      'alternated-mixed.pdf'
-    );
-    showAlert('Success', 'PDFs have been mixed successfully!');
+    if (filesToMerge.length < 2) {
+      showAlert('Error', 'At least two valid PDFs are required.');
+      hideLoader();
+      return;
+    }
+
+    const message: InterleaveMessage = {
+      command: 'interleave',
+      files: filesToMerge
+    };
+
+    alternateMergeWorker.postMessage(message, filesToMerge.map(f => f.data));
+
+    alternateMergeWorker.onmessage = (e: MessageEvent<InterleaveResponse>) => {
+      hideLoader();
+      if (e.data.status === 'success') {
+        const blob = new Blob([e.data.pdfBytes], { type: 'application/pdf' });
+        downloadFile(blob, 'alternated-mixed.pdf');
+        showAlert('Success', 'PDFs have been mixed successfully!');
+      } else {
+        console.error('Worker interleave error:', e.data.message);
+        showAlert('Error', e.data.message || 'Failed to interleave PDFs.');
+      }
+    };
+
+    alternateMergeWorker.onerror = (e) => {
+      hideLoader();
+      console.error('Worker error:', e);
+      showAlert('Error', 'An unexpected error occurred in the merge worker.');
+    };
+
   } catch (e) {
     console.error('Alternate Merge error:', e);
     showAlert('Error', 'An error occurred while mixing the PDFs.');
-  } finally {
     hideLoader();
   }
 }

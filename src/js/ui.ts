@@ -44,19 +44,23 @@ export const dom = {
 };
 
 export const showLoader = (text = 'Processing...') => {
-    dom.loaderText.textContent = text;
-    dom.loaderModal.classList.remove('hidden');
+    if (dom.loaderText) dom.loaderText.textContent = text;
+    if (dom.loaderModal) dom.loaderModal.classList.remove('hidden');
 };
 
-export const hideLoader = () => dom.loaderModal.classList.add('hidden');
+export const hideLoader = () => {
+    if (dom.loaderModal) dom.loaderModal.classList.add('hidden');
+};
 
 export const showAlert = (title: any, message: any) => {
-    dom.alertTitle.textContent = title;
-    dom.alertMessage.textContent = message;
-    dom.alertModal.classList.remove('hidden');
+    if (dom.alertTitle) dom.alertTitle.textContent = title;
+    if (dom.alertMessage) dom.alertMessage.textContent = message;
+    if (dom.alertModal) dom.alertModal.classList.remove('hidden');
 };
 
-export const hideAlert = () => dom.alertModal.classList.add('hidden');
+export const hideAlert = () => {
+    if (dom.alertModal) dom.alertModal.classList.add('hidden');
+};
 
 export const switchView = (view: any) => {
     if (view === 'grid') {
@@ -125,7 +129,7 @@ function initializeOrganizeSortable(containerId: any) {
  * @param {object} pdfDoc The loaded pdf-lib document instance.
  */
 export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
-    const containerId = toolId === 'organize' ? 'page-organizer' : 'page-rotator';
+    const containerId = toolId === 'organize' ? 'page-organizer' : toolId === 'delete-pages' ? 'delete-pages-preview' : 'page-rotator';
     const container = document.getElementById(containerId);
     if (!container) return;
 
@@ -133,6 +137,9 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
 
     // Cleanup any previous lazy loading observers
     cleanupLazyRendering();
+
+    const currentRenderId = Date.now();
+    container.dataset.renderId = currentRenderId.toString();
 
     showLoader('Rendering page previews...');
 
@@ -185,7 +192,7 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
 
             wrapper.append(pageNumSpan, deleteBtn);
         } else if (toolId === 'rotate') {
-            wrapper.className = 'page-rotator-item flex flex-col items-center gap-2';
+            wrapper.className = 'page-rotator-item flex flex-col items-center gap-2 relative group';
 
             // Read rotation from state (handles "Rotate All" on lazy-loaded pages)
             const rotationStateArray = getRotationState();
@@ -202,35 +209,122 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
 
             wrapper.appendChild(imgContainer);
 
-            const controlsDiv = document.createElement('div');
-            controlsDiv.className = 'flex items-center justify-center gap-3 w-full';
-
+            // Page Number Overlay (Top Left)
             const pageNumSpan = document.createElement('span');
-            pageNumSpan.className = 'font-medium text-sm text-white';
+            pageNumSpan.className =
+                'absolute top-2 left-2 bg-gray-900 bg-opacity-75 text-white text-xs font-medium rounded-md px-2 py-1 shadow-sm z-10 pointer-events-none';
             pageNumSpan.textContent = pageNumber.toString();
+            wrapper.appendChild(pageNumSpan);
 
-            const rotateBtn = document.createElement('button');
-            rotateBtn.className =
-                'rotate-btn btn bg-gray-700 hover:bg-gray-600 p-2 rounded-full';
-            rotateBtn.title = 'Rotate 90°';
-            rotateBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-5 h-5"></i>';
-            rotateBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const card = (e.currentTarget as HTMLElement).closest(
-                    '.page-rotator-item'
-                ) as HTMLElement;
+            const controlsDiv = document.createElement('div');
+            controlsDiv.className = 'flex flex-col lg:flex-row items-center justify-center w-full gap-2 px-1';
+
+            // Custom Stepper Component
+            const stepperContainer = document.createElement('div');
+            stepperContainer.className = 'flex items-center border border-gray-600 rounded-md bg-gray-800 overflow-hidden w-24 h-8';
+
+            const decrementBtn = document.createElement('button');
+            decrementBtn.className = 'px-2 h-full text-gray-400 hover:text-white hover:bg-gray-700 border-r border-gray-600 transition-colors flex items-center justify-center';
+            decrementBtn.innerHTML = '<i data-lucide="minus" class="w-3 h-3"></i>';
+
+            const angleInput = document.createElement('input');
+            angleInput.type = 'number';
+            angleInput.className = 'no-spinner w-full h-full bg-transparent text-white text-xs text-center focus:outline-none appearance-none m-0 p-0 border-none';
+            angleInput.value = initialRotation.toString();
+            angleInput.placeholder = "0";
+
+            const incrementBtn = document.createElement('button');
+            incrementBtn.className = 'px-2 h-full text-gray-400 hover:text-white hover:bg-gray-700 border-l border-gray-600 transition-colors flex items-center justify-center';
+            incrementBtn.innerHTML = '<i data-lucide="plus" class="w-3 h-3"></i>';
+
+            // Helper to update rotation
+            const updateRotation = (newRotation: number) => {
+                const card = wrapper; // Closure capture
                 const imgEl = card.querySelector('img');
                 const pageIndex = pageNumber - 1;
-                let currentRotation = parseInt(card.dataset.rotation);
-                currentRotation = (currentRotation + 90) % 360;
-                card.dataset.rotation = currentRotation.toString();
-                imgEl.style.transform = `rotate(${currentRotation}deg)`;
 
-                updateRotationState(pageIndex, currentRotation);
+                // Update UI
+                angleInput.value = newRotation.toString();
+                card.dataset.rotation = newRotation.toString();
+                imgEl.style.transform = `rotate(${newRotation}deg)`;
+
+                // Update State
+                updateRotationState(pageIndex, newRotation);
+            };
+
+            // Event Listeners
+            decrementBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let current = parseInt(angleInput.value) || 0;
+                updateRotation(current - 1);
             });
 
-            controlsDiv.append(pageNumSpan, rotateBtn);
+            incrementBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let current = parseInt(angleInput.value) || 0;
+                updateRotation(current + 1);
+            });
+
+            angleInput.addEventListener('change', (e) => {
+                e.stopPropagation();
+                let val = parseInt((e.target as HTMLInputElement).value) || 0;
+                updateRotation(val);
+            });
+            angleInput.addEventListener('click', (e) => e.stopPropagation());
+
+            stepperContainer.append(decrementBtn, angleInput, incrementBtn);
+
+            const rotateBtn = document.createElement('button');
+            rotateBtn.className = 'rotate-btn btn bg-gray-700 hover:bg-gray-600 p-1.5 rounded-md text-gray-200 transition-colors flex-shrink-0';
+            rotateBtn.title = 'Rotate +90°';
+            rotateBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-4 h-4"></i>';
+            rotateBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let current = parseInt(angleInput.value) || 0;
+                updateRotation(current + 90);
+            });
+
+            controlsDiv.append(stepperContainer, rotateBtn);
             wrapper.appendChild(controlsDiv);
+        } else if (toolId === 'delete-pages') {
+            wrapper.className = 'page-thumbnail relative group cursor-pointer transition-all duration-200';
+            wrapper.dataset.pageNumber = pageNumber.toString();
+
+            const innerContainer = document.createElement('div');
+            innerContainer.className = 'relative w-full h-36 bg-gray-900 rounded-lg flex items-center justify-center overflow-hidden border-2 border-gray-600 transition-colors duration-200';
+            innerContainer.appendChild(img);
+            wrapper.appendChild(innerContainer);
+
+            const pageNumSpan = document.createElement('span');
+            pageNumSpan.className =
+                'absolute top-2 left-2 bg-gray-900 bg-opacity-75 text-white text-xs font-medium rounded-md px-2 py-1 shadow-sm z-10 pointer-events-none';
+            pageNumSpan.textContent = pageNumber.toString();
+            wrapper.appendChild(pageNumSpan);
+
+            wrapper.addEventListener('click', () => {
+                const input = document.getElementById('pages-to-delete') as HTMLInputElement;
+                if (!input) return;
+
+                const currentVal = input.value;
+                let pages = currentVal.split(',').map(s => s.trim()).filter(s => s);
+                const pageStr = pageNumber.toString();
+
+                if (pages.includes(pageStr)) {
+                    pages = pages.filter(p => p !== pageStr);
+                } else {
+                    pages.push(pageStr);
+                }
+
+                pages.sort((a, b) => {
+                    const numA = parseInt(a.split('-')[0]);
+                    const numB = parseInt(b.split('-')[0]);
+                    return numA - numB;
+                });
+
+                input.value = pages.join(', ');
+
+                input.dispatchEvent(new Event('input'));
+            });
         }
 
         return wrapper;
@@ -243,7 +337,7 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
             container,
             createWrapper,
             {
-                batchSize: 6,
+                batchSize: 8,
                 useLazyLoading: true,
                 lazyLoadMargin: '300px',
                 onProgress: (current, total) => {
@@ -251,12 +345,17 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
                 },
                 onBatchComplete: () => {
                     createIcons({ icons });
+                },
+                shouldCancel: () => {
+                    return container.dataset.renderId !== currentRenderId.toString();
                 }
             }
         );
 
         if (toolId === 'organize') {
             initializeOrganizeSortable(containerId);
+        } else if (toolId === 'delete-pages') {
+            // No sortable needed for delete pages
         }
 
         // Reinitialize lucide icons for dynamically added elements
@@ -576,15 +675,49 @@ export const toolTemplates = {
         <div id="rotate-all-controls" class="hidden my-6">
             <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
                 <h3 class="text-sm font-semibold text-gray-400 mb-3 text-center">BATCH ACTIONS</h3>
-                <div class="flex justify-center gap-4">
-                    <button id="rotate-all-left-btn" class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-200 bg-gray-800 border border-gray-600 rounded-lg shadow-sm hover:bg-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transform transition-all duration-150 active:scale-95">
-                        <i data-lucide="rotate-ccw" class="mr-2 h-4 w-4"></i>
-                        Rotate All Left
-                    </button>
-                    <button id="rotate-all-right-btn" class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-gray-200 bg-gray-800 border border-gray-600 rounded-lg shadow-sm hover:bg-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transform transition-all duration-150 active:scale-95">
-                        <i data-lucide="rotate-cw" class="mr-2 h-4 w-4"></i>
-                        Rotate All Right
-                    </button>
+                <div class="flex flex-col md:flex-row justify-center gap-6 items-center">
+                    
+                    <!-- 90 Degree Rotation Group -->
+                    <div class="flex flex-col gap-2 items-center">
+                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">Rotate By 90 degrees</span>
+                        <div class="flex gap-2">
+                            <button id="rotate-all-left-btn" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-gray-800 border border-gray-600 rounded-lg shadow-sm hover:bg-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transform transition-all duration-150 active:scale-95" title="Rotate Left 90°">
+                                <i data-lucide="rotate-ccw" class="mr-2 h-4 w-4"></i>
+                                Left
+                            </button>
+                            <button id="rotate-all-right-btn" class="flex items-center justify-center px-4 py-2 text-sm font-medium text-gray-200 bg-gray-800 border border-gray-600 rounded-lg shadow-sm hover:bg-gray-700 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-500 transform transition-all duration-150 active:scale-95" title="Rotate Right 90°">
+                                <i data-lucide="rotate-cw" class="mr-2 h-4 w-4"></i>
+                                Right
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:block w-px h-12 bg-gray-700"></div>
+                    
+                    <!-- Custom Rotation Group -->
+                    <div class="flex flex-col gap-2 items-center">
+                        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">Rotate By Custom Degrees</span>
+                        <div class="flex gap-2 items-center">
+                            
+                            <!-- Custom Stepper -->
+                            <div class="flex items-center border border-gray-600 rounded-md bg-gray-800 overflow-hidden h-10">
+                                <button id="rotate-all-decrement-btn" class="px-3 h-full text-gray-400 hover:text-white hover:bg-gray-700 border-r border-gray-600 transition-colors flex items-center justify-center">
+                                    <i data-lucide="minus" class="w-4 h-4"></i>
+                                </button>
+                                <div class="relative w-20 h-full">
+                                    <input type="number" id="custom-rotate-all-input" placeholder="0" class="no-spinner w-full h-full bg-transparent text-white text-sm text-center focus:outline-none appearance-none m-0 p-0 border-none" min="-360" max="360">
+                                </div>
+                                <button id="rotate-all-increment-btn" class="px-3 h-full text-gray-400 hover:text-white hover:bg-gray-700 border-l border-gray-600 transition-colors flex items-center justify-center">
+                                    <i data-lucide="plus" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+
+                            <button id="rotate-all-custom-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors shadow-sm h-10">
+                                Apply
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -814,7 +947,7 @@ export const toolTemplates = {
     flatten: () => `
         <h2 class="text-2xl font-bold text-white mb-4">Flatten PDF</h2>
         <p class="mb-6 text-gray-400">Make PDF forms and annotations non-editable by flattening them.</p>
-        ${createFileInputHTML()}
+        ${createFileInputHTML({ multiple: true, showControls: true })}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Flatten PDF</button>
     `,
@@ -904,6 +1037,7 @@ export const toolTemplates = {
             <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
             <label for="pages-to-delete" class="block mb-2 text-sm font-medium text-gray-300">Enter pages to delete (e.g., 2, 4-6, 9):</label>
             <input type="text" id="pages-to-delete" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6" placeholder="e.g., 2, 4-6, 9">
+            <div id="delete-pages-preview" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 my-6"></div>
             <button id="process-btn" class="btn-gradient w-full">Delete Pages & Download</button>
         </div>
     `,

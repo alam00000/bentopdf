@@ -19,7 +19,7 @@ import { pdfToPng } from './pdf-to-png.js';
 import { pngToPdf } from './png-to-pdf.js';
 import { pdfToWebp } from './pdf-to-webp.js';
 import { webpToPdf } from './webp-to-pdf.js';
-import { deletePages } from './delete-pages.js';
+import { deletePages, setupDeletePagesTool } from './delete-pages.js';
 import { addBlankPage } from './add-blank-page.js';
 import { extractPages } from './extract-pages.js';
 import { addWatermark, setupWatermarkUI } from './add-watermark.js';
@@ -70,6 +70,7 @@ import { extractImages } from './extract-images.js';
 import { editAttachments, setupEditAttachmentsTool } from './edit-attachments.js';
 import { sanitizePdf } from './sanitize-pdf.js';
 import { removeRestrictions } from './remove-restrictions.js';
+import { repairPdf } from './repair-pdf.js';
 
 export const toolLogic = {
   merge: { process: merge, setup: setupMergeTool },
@@ -77,6 +78,7 @@ export const toolLogic = {
   encrypt,
   decrypt,
   'remove-restrictions': removeRestrictions,
+  'repair-pdf': repairPdf,
   organize,
   rotate,
   'add-page-numbers': addPageNumbers,
@@ -94,7 +96,7 @@ export const toolLogic = {
   'png-to-pdf': pngToPdf,
   'pdf-to-webp': pdfToWebp,
   'webp-to-pdf': webpToPdf,
-  'delete-pages': deletePages,
+  'delete-pages': { process: deletePages, setup: setupDeletePagesTool },
   'add-blank-page': addBlankPage,
   'extract-pages': extractPages,
   'add-watermark': { process: addWatermark, setup: setupWatermarkUI },
