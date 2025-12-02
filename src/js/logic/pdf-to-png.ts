@@ -29,7 +29,7 @@ export async function pdfToPng() {
     if (pdf.numPages === 1) {
       downloadFile(
         await pageToBlob(await pdf.getPage(1), scale),
-        getCleanFilename(state.files[0].name) + '.png'
+        getCleanFilename() + '.png'
       );
     } else {
       const zip = new JSZip();
@@ -41,7 +41,7 @@ export async function pdfToPng() {
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(
         zipBlob,
-        getCleanFilename(state.files[0].name) + '_pngs.zip'
+        getCleanFilename() + '_pngs.zip'
       );
     }
   } catch (e) {
@@ -69,6 +69,10 @@ async function pageToBlob(page: PDFPageProxy, scale: number): Promise<Blob> {
   return blob as Blob;
 }
 
-function getCleanFilename(fileName: string): string {
-  return fileName.replace(/\.pdf$/i, '');
+function getCleanFilename(): string {
+  let clean = state.files[0].name.replace(/\.pdf$/i, '').trim();
+  if (clean.length > 80) {
+    clean = clean.slice(0, 80);
+  }
+  return clean;
 }

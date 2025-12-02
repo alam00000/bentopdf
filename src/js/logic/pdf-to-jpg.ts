@@ -21,7 +21,7 @@ export async function pdfToJpg() {
     if(pdf.numPages === 1) {
       const page = await pdf.getPage(1);
       const blob = await pageToBlob(page, quality);
-      downloadFile(blob, getCleanFilename(state.files[0].name) + '.jpg');
+      downloadFile(blob, getCleanFilename() + '.jpg');
     } else {
     const zip = new JSZip();
     for (let i = 1; i <= pdf.numPages; i++) {
@@ -31,7 +31,7 @@ export async function pdfToJpg() {
     }
 
     const zipBlob = await zip.generateAsync({ type: 'blob' });
-    downloadFile(zipBlob, getCleanFilename(state.files[0].name) + '_jpgs.zip');
+    downloadFile(zipBlob, getCleanFilename() + '_jpgs.zip');
     }
   } catch (e) {
     console.error(e);
@@ -59,8 +59,8 @@ async function pageToBlob(page: PDFPageProxy, quality: number): Promise<Blob> {
   return blob as Blob;
 }
 
-function getCleanFilename(fileName: string): string {
-  let clean = fileName.replace(/\.pdf$/i, '').trim();
+function getCleanFilename(): string {
+  let clean = state.files[0].name.replace(/\.pdf$/i, '').trim();
   if (clean.length > 80) {
     clean = clean.slice(0, 80);
   }

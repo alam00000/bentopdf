@@ -18,7 +18,7 @@ export async function pdfToWebp() {
     if(pdf.numPages === 1) {
       const page = await pdf.getPage(1);
       const blob = await pageToBlob(page);
-      downloadFile(blob, getCleanFilename(state.files[0].name) + '.webp');
+      downloadFile(blob, getCleanFilename() + '.webp');
     } else {
       const zip = new JSZip();
       for (let i = 1; i <= pdf.numPages; i++) {
@@ -27,7 +27,7 @@ export async function pdfToWebp() {
         zip.file(`page_${i}.webp`, blob as Blob);
       }
       const zipBlob = await zip.generateAsync({ type: 'blob' });
-      downloadFile(zipBlob, getCleanFilename(state.files[0].name) + '_webps.zip');
+      downloadFile(zipBlob, getCleanFilename() + '_webps.zip');
     }
   } catch (e) {
     console.error(e);
@@ -53,8 +53,8 @@ async function pageToBlob(page: PDFPageProxy): Promise<Blob> {
   return blob as Blob;
 }
 
-function getCleanFilename(fileName: string): string {
-  let clean = fileName.replace(/\.pdf$/i, '').trim();
+function getCleanFilename(): string {
+  let clean = state.files[0].name.replace(/\.pdf$/i, '').trim();
   if (clean.length > 80) {
     clean = clean.slice(0, 80);
   }

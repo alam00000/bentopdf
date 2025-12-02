@@ -18,7 +18,7 @@ export async function pdfToTiff() {
     if(pdf.numPages === 1) {
       const page = await pdf.getPage(1);
       const tiffBuffer = await pageToBlob(page);
-      downloadFile(tiffBuffer, getCleanFilename(state.files[0].name) + '.tiff');
+      downloadFile(tiffBuffer, getCleanFilename() + '.tiff');
     } else {
       const zip = new JSZip();
 
@@ -29,7 +29,7 @@ export async function pdfToTiff() {
       }
 
       const zipBlob = await zip.generateAsync({ type: 'blob' });
-      downloadFile(zipBlob, getCleanFilename(state.files[0].name) + '_tiffs.zip');
+      downloadFile(zipBlob, getCleanFilename() + '_tiffs.zip');
     }
   } catch (e) {
     console.error(e);
@@ -65,8 +65,8 @@ async function pageToBlob(page: PDFPageProxy): Promise<Blob> {
   return new Blob([tiffBuffer]);
 }
 
-function getCleanFilename(fileName: string): string {
-  let clean = fileName.replace(/\.pdf$/i, '').trim();
+function getCleanFilename(): string {
+  let clean = state.files[0].name.replace(/\.pdf$/i, '').trim();
   if (clean.length > 80) {
     clean = clean.slice(0, 80);
   }

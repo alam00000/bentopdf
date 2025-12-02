@@ -65,7 +65,7 @@ export async function pdfToBmp() {
         showLoader(`Processing page 1 of ${pdf.numPages}...`);
         const page = await pdf.getPage(1);
         const bmpBuffer = await pageToBlob(page);
-        downloadFile(bmpBuffer, getCleanFilename(state.files[0].name) +'.bmp');
+        downloadFile(bmpBuffer, getCleanFilename() +'.bmp');
     } else {
       const zip = new JSZip();
 
@@ -80,7 +80,7 @@ export async function pdfToBmp() {
 
       showLoader('Compressing files into a ZIP...');
       const zipBlob = await zip.generateAsync({ type: 'blob' });
-      downloadFile(zipBlob, getCleanFilename(state.files[0].name) + '_bmps.zip');
+      downloadFile(zipBlob, getCleanFilename() + '_bmps.zip');
     }
   } catch (e) {
     console.error(e);
@@ -110,6 +110,10 @@ async function pageToBlob(page: PDFPageProxy): Promise<Blob> {
   return new Blob([encodeBMP(imageData)]);
 }
 
-function getCleanFilename(fileName: string): string {
-  return fileName.replace(/\.pdf$/i, '');
+function getCleanFilename(): string {
+  let clean = state.files[0].name.replace(/\.pdf$/i, '').trim();
+  if (clean.length > 80) {
+    clean = clean.slice(0, 80);
+  }
+  return clean;
 }
