@@ -4,20 +4,25 @@ import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/he
 import { state } from '../state.js';
 import Tesseract from 'tesseract.js';
 import { PDFDocument as PDFLibDocument, StandardFonts, rgb } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
 import { icons, createIcons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
+import type { Word } from '../types/index.js';
 
-let searchablePdfBytes: any = null;
+let searchablePdfBytes: Uint8Array | null = null;
 
-function sanitizeTextForWinAnsi(text: string): string {
-  // Remove invisible Unicode control characters (like Left-to-Right Mark U+200E)
-  return text
-    .replace(/[\u0000-\u001F\u007F-\u009F\u200E\u200F\u202A-\u202E\uFEFF]/g, '')
-    .replace(/[^\u0020-\u007E\u00A0-\u00FF]/g, '');
-}
+import { getFontForLanguage } from '../utils/font-loader.js';
+
+
+// function sanitizeTextForWinAnsi(text: string): string {
+//   // Remove invisible Unicode control characters (like Left-to-Right Mark U+200E)
+//   return text
+//     .replace(/[\u0000-\u001F\u007F-\u009F\u200E\u200F\u202A-\u202E\uFEFF]/g, '')
+//     .replace(/[^\u0020-\u007E\u00A0-\u00FF]/g, '');
+// }
 
 function parseHOCR(hocrText: string) {
   const parser = new DOMParser();
@@ -55,7 +60,7 @@ function parseHOCR(hocrText: string) {
   return words;
 }
 
-function binarizeCanvas(ctx: any) {
+function binarizeCanvas(ctx: CanvasRenderingContext2D) {
   const imageData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
   const data = imageData.data;
   for (let i = 0; i < data.length; i += 4) {
@@ -68,7 +73,7 @@ function binarizeCanvas(ctx: any) {
   ctx.putImageData(imageData, 0, 0);
 }
 
-function updateProgress(status: any, progress: any) {
+function updateProgress(status: string, progress: number) {
   const progressBar = document.getElementById('progress-bar');
   const progressStatus = document.getElementById('progress-status');
   const progressLog = document.getElementById('progress-log');
@@ -88,12 +93,13 @@ async function runOCR() {
   const selectedLangs = Array.from(
     document.querySelectorAll('.lang-checkbox:checked')
   ).map((cb) => (cb as HTMLInputElement).value);
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  const scale = parseFloat(document.getElementById('ocr-resolution').value);
-  // @ts-expect-error TS(2339) FIXME: Property 'checked' does not exist on type 'HTMLEle... Remove this comment to see the full error message
-  const binarize = document.getElementById('ocr-binarize').checked;
-  // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-  const whitelist = document.getElementById('ocr-whitelist').value;
+  const scale = parseFloat(
+    (document.getElementById('ocr-resolution') as HTMLSelectElement).value
+  );
+  const binarize = (document.getElementById('ocr-binarize') as HTMLInputElement)
+    .checked;
+  const whitelist = (document.getElementById('ocr-whitelist') as HTMLInputElement)
+    .value;
 
   if (selectedLangs.length === 0) {
     showAlert(
@@ -109,12 +115,13 @@ async function runOCR() {
 
   try {
     const worker = await Tesseract.createWorker(langString, 1, {
-      logger: (m: any) => updateProgress(m.status, m.progress || 0),
+      logger: (m: { status: string; progress: number }) =>
+        updateProgress(m.status, m.progress || 0),
     });
 
-    // Enable hOCR output
     await worker.setParameters({
       tessjs_create_hocr: '1',
+      tessedit_pageseg_mode: Tesseract.PSM.AUTO,
     });
 
     await worker.setParameters({
@@ -125,7 +132,48 @@ async function runOCR() {
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     const newPdfDoc = await PDFLibDocument.create();
-    const font = await newPdfDoc.embedFont(StandardFonts.Helvetica);
+
+    newPdfDoc.registerFontkit(fontkit);
+
+    updateProgress('Loading fonts...', 0);
+
+    // Prioritize non-Latin languages for font selection if multiple are selected
+    const cjkLangs = ['jpn', 'chi_sim', 'chi_tra', 'kor'];
+    const indicLangs = ['hin', 'ben', 'guj', 'kan', 'mal', 'ori', 'pan', 'tam', 'tel', 'sin'];
+    const priorityLangs = [...cjkLangs, ...indicLangs, 'ara', 'rus', 'ukr'];
+
+    const primaryLang = selectedLangs.find(l => priorityLangs.includes(l)) || selectedLangs[0] || 'eng';
+
+    const hasCJK = selectedLangs.some(l => cjkLangs.includes(l));
+    const hasIndic = selectedLangs.some(l => indicLangs.includes(l));
+    const hasLatin = selectedLangs.some(l => !priorityLangs.includes(l)) || selectedLangs.includes('eng');
+    const isIndicPlusLatin = hasIndic && hasLatin && !hasCJK;
+
+    let primaryFont;
+    let latinFont;
+
+    try {
+      let fontBytes;
+      if (isIndicPlusLatin) {
+        const [scriptFontBytes, latinFontBytes] = await Promise.all([
+          getFontForLanguage(primaryLang),
+          getFontForLanguage('eng')
+        ]);
+        primaryFont = await newPdfDoc.embedFont(scriptFontBytes, { subset: false });
+        latinFont = await newPdfDoc.embedFont(latinFontBytes, { subset: false });
+      } else {
+        // For CJK or single-script, use one font
+        fontBytes = await getFontForLanguage(primaryLang);
+        primaryFont = await newPdfDoc.embedFont(fontBytes, { subset: false });
+        latinFont = primaryFont;
+      }
+    } catch (e) {
+      console.error('Font loading failed, falling back to Helvetica', e);
+      primaryFont = await newPdfDoc.embedFont(StandardFonts.Helvetica);
+      latinFont = primaryFont;
+      showAlert('Font Warning', 'Could not load the specific font for this language. Some characters may not appear correctly.');
+    }
+
     let fullText = '';
 
     for (let i = 1; i <= pdf.numPages; i++) {
@@ -135,10 +183,12 @@ async function runOCR() {
       );
       const page = await pdf.getPage(i);
       const viewport = page.getViewport({ scale });
+
       const canvas = document.createElement('canvas');
       canvas.width = viewport.width;
       canvas.height = viewport.height;
       const context = canvas.getContext('2d');
+
       await page.render({ canvasContext: context, viewport, canvas }).promise;
 
       if (binarize) {
@@ -155,8 +205,8 @@ async function runOCR() {
       const pngImageBytes = await new Promise((resolve) =>
         canvas.toBlob((blob) => {
           const reader = new FileReader();
-          // @ts-expect-error TS(2769) FIXME: No overload matches this call.
-          reader.onload = () => resolve(new Uint8Array(reader.result));
+          reader.onload = () =>
+            resolve(new Uint8Array(reader.result as ArrayBuffer));
           reader.readAsArrayBuffer(blob);
         }, 'image/png')
       );
@@ -172,22 +222,37 @@ async function runOCR() {
       if (data.hocr) {
         const words = parseHOCR(data.hocr);
 
-        words.forEach((word: any) => {
+        words.forEach((word: Word) => {
           const { x0, y0, x1, y1 } = word.bbox;
-          // Sanitize the text to remove characters WinAnsi cannot encode
-          const text = sanitizeTextForWinAnsi(word.text);
+          const text = word.text.replace(/[\u0000-\u001F\u007F-\u009F\u200E\u200F\u202A-\u202E\uFEFF]/g, '');
 
-          // Skip words that become empty after sanitization
           if (!text.trim()) return;
+
+          const hasNonLatin = /[^\u0000-\u007F]/.test(text);
+          const font = hasNonLatin ? primaryFont : latinFont;
+
+          if (!font) {
+            console.warn(`Font not available for text: "${text}"`);
+            return;
+          }
 
           const bboxWidth = x1 - x0;
           const bboxHeight = y1 - y0;
 
+          if (bboxWidth <= 0 || bboxHeight <= 0) {
+            return;
+          }
+
           let fontSize = bboxHeight * 0.9;
-          let textWidth = font.widthOfTextAtSize(text, fontSize);
-          while (textWidth > bboxWidth && fontSize > 1) {
-            fontSize -= 0.5;
-            textWidth = font.widthOfTextAtSize(text, fontSize);
+          try {
+            let textWidth = font.widthOfTextAtSize(text, fontSize);
+            while (textWidth > bboxWidth && fontSize > 1) {
+              fontSize -= 0.5;
+              textWidth = font.widthOfTextAtSize(text, fontSize);
+            }
+          } catch (error) {
+            console.warn(`Could not calculate text width for "${text}":`, error);
+            return;
           }
 
           try {
@@ -200,11 +265,11 @@ async function runOCR() {
               opacity: 0,
             });
           } catch (error) {
-            // If drawing fails despite sanitization, log and skip this word
             console.warn(`Could not draw text "${text}":`, error);
           }
         });
       }
+
 
       fullText += data.text + '\n\n';
     }
@@ -216,23 +281,27 @@ async function runOCR() {
     document.getElementById('ocr-results').classList.remove('hidden');
 
     createIcons({ icons });
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    document.getElementById('ocr-text-output').value = fullText.trim();
+    (
+      document.getElementById('ocr-text-output') as HTMLTextAreaElement
+    ).value = fullText.trim();
 
     document
       .getElementById('download-searchable-pdf')
       .addEventListener('click', () => {
-        downloadFile(
-          new Blob([searchablePdfBytes], { type: 'application/pdf' }),
-          'searchable.pdf'
-        );
+        if (searchablePdfBytes) {
+          downloadFile(
+            new Blob([searchablePdfBytes as BlobPart], { type: 'application/pdf' }),
+            'searchable.pdf'
+          );
+        }
       });
 
     // CHANGE: The copy button logic is updated to be safer.
     document.getElementById('copy-text-btn').addEventListener('click', (e) => {
       const button = e.currentTarget as HTMLButtonElement;
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme...
-      const textToCopy = document.getElementById('ocr-text-output').value;
+      const textToCopy = (
+        document.getElementById('ocr-text-output') as HTMLTextAreaElement
+      ).value;
 
       navigator.clipboard.writeText(textToCopy).then(() => {
         button.textContent = ''; // Clear the button safely
@@ -259,8 +328,9 @@ async function runOCR() {
     document
       .getElementById('download-txt-btn')
       .addEventListener('click', () => {
-        // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-        const textToSave = document.getElementById('ocr-text-output').value;
+        const textToSave = (
+          document.getElementById('ocr-text-output') as HTMLTextAreaElement
+        ).value;
         const blob = new Blob([textToSave], { type: 'text/plain' });
         downloadFile(blob, 'ocr-text.txt');
       });

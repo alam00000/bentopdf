@@ -1316,12 +1316,21 @@ export const toolTemplates = {
         
         <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-                <label for="font-family" class="block mb-2 text-sm font-medium text-gray-300">Font Family</label>
-                <select id="font-family" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="Helvetica">Helvetica</option>
-                    <option value="TimesRoman">Times New Roman</option>
-                    <option value="Courier">Courier</option>
-                </select>
+                <label class="block mb-2 text-sm font-medium text-gray-300">Select Languages</label>
+                <div class="relative">
+                    <button id="lang-dropdown-btn" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 text-left flex justify-between items-center">
+                        <span id="lang-dropdown-text" class="truncate">English (Default)</span>
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    <div id="lang-dropdown-content" class="hidden absolute z-10 w-full bg-gray-800 border border-gray-600 rounded-lg mt-1 max-h-60 overflow-y-auto shadow-lg">
+                        <div class="p-2 sticky top-0 bg-gray-800 border-b border-gray-700">
+                            <input type="text" id="lang-search" class="w-full bg-gray-700 border border-gray-600 text-white rounded px-2 py-1 text-sm" placeholder="Search languages...">
+                        </div>
+                        <div id="language-list-container" class="p-2 space-y-1">
+                            <!-- Checkboxes injected here -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <div>
                 <label for="font-size" class="block mb-2 text-sm font-medium text-gray-300">Font Size</label>
@@ -1330,9 +1339,41 @@ export const toolTemplates = {
             <div>
                 <label for="page-size" class="block mb-2 text-sm font-medium text-gray-300">Page Size</label>
                 <select id="page-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <option value="A4">A4</option>
-                    <option value="Letter">Letter</option>
+                    <optgroup label="ISO A Series">
+                        <option value="A4" selected>A4 (210 x 297 mm)</option>
+                        <option value="A3">A3 (297 x 420 mm)</option>
+                        <option value="A5">A5 (148 x 210 mm)</option>
+                        <option value="A6">A6 (105 x 148 mm)</option>
+                    </optgroup>
+                    <optgroup label="North American">
+                        <option value="Letter">Letter (8.5 x 11 in)</option>
+                        <option value="Legal">Legal (8.5 x 14 in)</option>
+                        <option value="Tabloid">Tabloid (11 x 17 in)</option>
+                        <option value="Executive">Executive (7.25 x 10.5 in)</option>
+                    </optgroup>
+                    <optgroup label="ISO B Series">
+                        <option value="B4">B4 (250 x 353 mm)</option>
+                        <option value="B5">B5 (176 x 250 mm)</option>
+                    </optgroup>
+                    <option value="Custom">Custom Size</option>
                 </select>
+            </div>
+            <div>
+                <label for="page-orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                <select id="page-orientation" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                    <option value="portrait">Portrait</option>
+                    <option value="landscape">Landscape</option>
+                </select>
+            </div>
+            <div id="custom-size-container" class="hidden col-span-2 grid grid-cols-2 gap-4">
+                <div>
+                    <label for="custom-width" class="block mb-2 text-sm font-medium text-gray-300">Width (pt)</label>
+                    <input type="number" id="custom-width" value="595" min="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                </div>
+                <div>
+                    <label for="custom-height" class="block mb-2 text-sm font-medium text-gray-300">Height (pt)</label>
+                    <input type="number" id="custom-height" value="842" min="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+                </div>
             </div>
             <div>
                 <label for="text-color" class="block mb-2 text-sm font-medium text-gray-300">Text Color</label>

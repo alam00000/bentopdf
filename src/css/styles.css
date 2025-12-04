@@ -568,20 +568,6 @@ button:disabled,
   background: #6b7280;
 }
 
-/* Hide elements on touch devices */
-@media (pointer: coarse) {
-  .hidden-on-touch {
-    display: none !important;
-  }
-}
-
-/* Also hide on very small screens just in case */
-@media (max-width: 640px) {
-  .hidden-on-touch {
-    display: none !important;
-  }
-}
-
 /* Scroll to Top Button Visibility */
 #scroll-to-top-btn.visible {
   opacity: 1;

@@ -2,6 +2,9 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
 import { state } from '../state.js';
 import JSZip from 'jszip';
+import { getFontForLanguage, getLanguageForChar } from '../utils/font-loader.js';
+import { languageToFontFamily } from '../config/font-mappings.js';
+import fontkit from '@pdf-lib/fontkit';
 
 import {
   PDFDocument as PDFLibDocument,
@@ -10,69 +13,46 @@ import {
   PageSizes,
 } from 'pdf-lib';
 
-function sanitizeTextForPdf(text: string): string {
-  return text
-    .split('')
-    .map((char) => {
-      const code = char.charCodeAt(0);
-
-      if (code === 0x20 || code === 0x09 || code === 0x0A) {
-        return char;
-      }
-
-      if ((code >= 0x00 && code <= 0x1F) || (code >= 0x7F && code <= 0x9F)) {
-        return ' ';
-      }
-
-      if (code < 0x20 || (code > 0x7E && code < 0xA0)) {
-        return ' ';
-      }
-
-      const replacements: { [key: number]: string } = {
-        0x2018: "'",
-        0x2019: "'",
-        0x201C: '"',
-        0x201D: '"',
-        0x2013: '-',
-        0x2014: '--',
-        0x2026: '...',
-        0x00A0: ' ',
-      };
-
-      if (replacements[code]) {
-        return replacements[code];
-      }
-
-      try {
-        if (code <= 0xFF) {
-          return char;
-        }
-        return '?';
-      } catch {
-        return '?';
-      }
-    })
-    .join('')
-    .replace(/[ \t]+/g, ' ')
-    .replace(/\r\n/g, '\n')
-    .replace(/\r/g, '\n')
-    .split('\n')
-    .map((line) => line.trimEnd())
-    .join('\n');
-}
-
 async function createPdfFromText(
   text: string,
-  fontFamilyKey: string,
+  selectedLanguages: string[],
   fontSize: number,
   pageSizeKey: string,
-  colorHex: string
+  colorHex: string,
+  orientation: string,
+  customWidth?: number,
+  customHeight?: number
 ): Promise<Uint8Array> {
-  const sanitizedText = sanitizeTextForPdf(text);
-
   const pdfDoc = await PDFLibDocument.create();
-  const font = await pdfDoc.embedFont(StandardFonts[fontFamilyKey]);
-  const pageSize = PageSizes[pageSizeKey];
+  pdfDoc.registerFontkit(fontkit);
+
+  console.log(`User selected languages: ${selectedLanguages.join(', ')}`);
+
+  const fontMap = new Map<string, any>();
+  const fallbackFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+  if (!selectedLanguages.includes('eng')) {
+    selectedLanguages.push('eng');
+  }
+
+  for (const lang of selectedLanguages) {
+    try {
+      const fontBytes = await getFontForLanguage(lang);
+      const font = await pdfDoc.embedFont(fontBytes, { subset: false });
+      fontMap.set(lang, font);
+    } catch (e) {
+      console.warn(`Failed to load font for ${lang}, using fallback`, e);
+      fontMap.set(lang, fallbackFont);
+    }
+  }
+
+  let pageSize = pageSizeKey === 'Custom'
+    ? [customWidth || 595, customHeight || 842] as [number, number]
+    : PageSizes[pageSizeKey];
+
+  if (orientation === 'landscape') {
+    pageSize = [pageSize[1], pageSize[0]] as [number, number];
+  }
   const margin = 72;
   const textColor = hexToRgb(colorHex);
 
@@ -82,43 +62,130 @@ async function createPdfFromText(
   const lineHeight = fontSize * 1.3;
   let y = height - margin;
 
-  const paragraphs = sanitizedText.split('\n');
+  const paragraphs = text.split('\n');
+
   for (const paragraph of paragraphs) {
+    if (paragraph.trim() === '') {
+      y -= lineHeight;
+      if (y < margin) {
+        page = pdfDoc.addPage(pageSize);
+        y = page.getHeight() - margin;
+      }
+      continue;
+    }
+
     const words = paragraph.split(' ');
-    let currentLine = '';
+    let currentLineWords: { text: string; font: any }[] = [];
+    let currentLineWidth = 0;
+
     for (const word of words) {
-      const testLine =
-        currentLine.length > 0 ? `${currentLine} ${word}` : word;
-      if (font.widthOfTextAtSize(testLine, fontSize) <= textWidth) {
-        currentLine = testLine;
+      let wordLang = 'eng';
+
+      for (const char of word) {
+        const charLang = getLanguageForChar(char);
+
+        if (charLang === 'chi_sim') {
+          if (selectedLanguages.includes('jpn')) wordLang = 'jpn';
+          else if (selectedLanguages.includes('kor')) wordLang = 'kor';
+          else if (selectedLanguages.includes('chi_tra')) wordLang = 'chi_tra';
+          else if (selectedLanguages.includes('chi_sim')) wordLang = 'chi_sim';
+        } else if (selectedLanguages.includes(charLang)) {
+          wordLang = charLang;
+        }
+
+        if (wordLang !== 'eng') break;
+      }
+
+      const font = fontMap.get(wordLang) || fontMap.get('eng') || fallbackFont;
+
+      let wordWidth = 0;
+      try {
+        wordWidth = font.widthOfTextAtSize(word, fontSize);
+      } catch (e) {
+        console.warn(`Width calculation failed for "${word}"`, e);
+        wordWidth = word.length * fontSize * 0.5;
+      }
+
+      let spaceWidth = 0;
+      if (currentLineWords.length > 0) {
+        try {
+          spaceWidth = font.widthOfTextAtSize(' ', fontSize);
+        } catch {
+          spaceWidth = fontSize * 0.25;
+        }
+      }
+
+      if (currentLineWidth + spaceWidth + wordWidth <= textWidth) {
+        currentLineWords.push({ text: word, font });
+        currentLineWidth += spaceWidth + wordWidth;
       } else {
+        // Draw current line
         if (y < margin + lineHeight) {
           page = pdfDoc.addPage(pageSize);
           y = page.getHeight() - margin;
         }
-        page.drawText(currentLine, {
-          x: margin,
-          y,
-          font,
-          size: fontSize,
-          color: rgb(textColor.r, textColor.g, textColor.b),
-        });
+
+        let currentX = margin;
+        for (let i = 0; i < currentLineWords.length; i++) {
+          const w = currentLineWords[i];
+          try {
+            page.drawText(w.text, {
+              x: currentX,
+              y,
+              font: w.font,
+              size: fontSize,
+              color: rgb(textColor.r, textColor.g, textColor.b),
+            });
+
+            const wWidth = w.font.widthOfTextAtSize(w.text, fontSize);
+            currentX += wWidth;
+
+            if (i < currentLineWords.length - 1) {
+              const sWidth = w.font.widthOfTextAtSize(' ', fontSize);
+              currentX += sWidth;
+            }
+          } catch (e) {
+            console.warn(`Failed to draw word: "${w.text}"`, e);
+          }
+        }
+
         y -= lineHeight;
-        currentLine = word;
+
+        currentLineWords = [{ text: word, font }];
+        currentLineWidth = wordWidth;
       }
     }
-    if (currentLine.length > 0) {
+
+    if (currentLineWords.length > 0) {
       if (y < margin + lineHeight) {
         page = pdfDoc.addPage(pageSize);
         y = page.getHeight() - margin;
       }
-      page.drawText(currentLine, {
-        x: margin,
-        y,
-        font,
-        size: fontSize,
-        color: rgb(textColor.r, textColor.g, textColor.b),
-      });
+
+      let currentX = margin;
+      for (let i = 0; i < currentLineWords.length; i++) {
+        const w = currentLineWords[i];
+        try {
+          page.drawText(w.text, {
+            x: currentX,
+            y,
+            font: w.font,
+            size: fontSize,
+            color: rgb(textColor.r, textColor.g, textColor.b),
+          });
+
+          const wWidth = w.font.widthOfTextAtSize(w.text, fontSize);
+          currentX += wWidth;
+
+          if (i < currentLineWords.length - 1) {
+            const sWidth = w.font.widthOfTextAtSize(' ', fontSize);
+            currentX += sWidth;
+          }
+        } catch (e) {
+          console.warn(`Failed to draw word: "${w.text}"`, e);
+        }
+      }
+
       y -= lineHeight;
     }
   }
@@ -133,6 +200,99 @@ export async function setupTxtToPdfTool() {
   const textPanel = document.getElementById('txt-text-panel');
 
   if (!uploadBtn || !textBtn || !uploadPanel || !textPanel) return;
+
+  const langContainer = document.getElementById('language-list-container');
+  const dropdownBtn = document.getElementById('lang-dropdown-btn');
+  const dropdownContent = document.getElementById('lang-dropdown-content');
+  const dropdownText = document.getElementById('lang-dropdown-text');
+  const searchInput = document.getElementById('lang-search');
+
+  if (langContainer && langContainer.children.length === 0) {
+    const allLanguages = Object.keys(languageToFontFamily).sort().map(code => {
+      let name = code;
+      try {
+        const displayNames = new Intl.DisplayNames(['en'], { type: 'language' });
+        name = displayNames.of(code) || code;
+      } catch (e) {
+        console.warn(`Failed to get language name for ${code}`, e);
+      }
+      return { code, name: `${name} (${code})` };
+    });
+
+    const renderLanguages = (filter = '') => {
+      langContainer.innerHTML = '';
+      const lowerFilter = filter.toLowerCase();
+
+      allLanguages.forEach(lang => {
+        if (lang.name.toLowerCase().includes(lowerFilter) || lang.code.toLowerCase().includes(lowerFilter)) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'flex items-center hover:bg-gray-700 p-1 rounded';
+
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.value = lang.code;
+          checkbox.id = `lang-${lang.code}`;
+          checkbox.className = 'w-4 h-4 text-indigo-600 bg-gray-600 border-gray-500 rounded focus:ring-indigo-500 ring-offset-gray-800';
+          if (lang.code === 'eng') checkbox.checked = true;
+
+          const label = document.createElement('label');
+          label.htmlFor = `lang-${lang.code}`;
+          label.className = 'ml-2 text-sm font-medium text-gray-300 w-full cursor-pointer';
+          label.textContent = lang.name;
+
+          checkbox.addEventListener('change', updateButtonText);
+
+          wrapper.appendChild(checkbox);
+          wrapper.appendChild(label);
+          langContainer.appendChild(wrapper);
+        }
+      });
+    };
+
+    renderLanguages();
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const filter = (e.target as HTMLInputElement).value.toLowerCase();
+        const items = langContainer.children;
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i] as HTMLElement;
+          const text = item.textContent?.toLowerCase() || '';
+          if (text.includes(filter)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    if (dropdownBtn && dropdownContent) {
+      dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownContent.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!dropdownBtn.contains(e.target as Node) && !dropdownContent.contains(e.target as Node)) {
+          dropdownContent.classList.add('hidden');
+        }
+      });
+    }
+
+    function updateButtonText() {
+      const checkboxes = langContainer?.querySelectorAll('input[type="checkbox"]:checked');
+      const count = checkboxes?.length || 0;
+      if (count === 0) {
+        if (dropdownText) dropdownText.textContent = 'Select Languages';
+      } else if (count === 1) {
+        const text = checkboxes[0].nextElementSibling.textContent;
+        if (dropdownText) dropdownText.textContent = text || '1 Language Selected';
+      } else {
+        if (dropdownText) dropdownText.textContent = `${count} Languages Selected`;
+      }
+    }
+  }
 
   const switchToUpload = () => {
     uploadPanel.classList.remove('hidden');
@@ -155,6 +315,19 @@ export async function setupTxtToPdfTool() {
   uploadBtn.addEventListener('click', switchToUpload);
   textBtn.addEventListener('click', switchToText);
 
+  const pageSizeSelect = document.getElementById('page-size') as HTMLSelectElement;
+  const customSizeContainer = document.getElementById('custom-size-container');
+
+  if (pageSizeSelect && customSizeContainer) {
+    pageSizeSelect.addEventListener('change', () => {
+      if (pageSizeSelect.value === 'Custom') {
+        customSizeContainer.classList.remove('hidden');
+      } else {
+        customSizeContainer.classList.add('hidden');
+      }
+    });
+  }
+
   const processBtn = document.getElementById('process-btn');
   if (processBtn) {
     processBtn.onclick = txtToPdf;
@@ -167,25 +340,41 @@ export async function txtToPdf() {
 
   showLoader('Creating PDF...');
   try {
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    const fontFamilyKey = document.getElementById('font-family').value;
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    const fontSize = parseInt(document.getElementById('font-size').value) || 12;
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    const pageSizeKey = document.getElementById('page-size').value;
-    // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-    const colorHex = document.getElementById('text-color').value;
+    const selectedLanguages: string[] = [];
+    const langContainer = document.getElementById('language-list-container');
+    if (langContainer) {
+      const checkboxes = langContainer.querySelectorAll('input[type="checkbox"]:checked');
+      checkboxes.forEach((cb) => {
+        selectedLanguages.push((cb as HTMLInputElement).value);
+      });
+    }
+    if (selectedLanguages.length === 0) selectedLanguages.push('eng'); // Fallback
+
+    const fontSize = parseInt((document.getElementById('font-size') as HTMLInputElement)?.value) || 12;
+    const pageSizeKey = (document.getElementById('page-size') as HTMLSelectElement)?.value;
+    const orientation = (document.getElementById('page-orientation') as HTMLSelectElement)?.value || 'portrait';
+    const colorHex = (document.getElementById('text-color') as HTMLInputElement)?.value;
+
+    let customWidth: number | undefined;
+    let customHeight: number | undefined;
+    if (pageSizeKey === 'Custom') {
+      customWidth = parseInt((document.getElementById('custom-width') as HTMLInputElement)?.value) || 595;
+      customHeight = parseInt((document.getElementById('custom-height') as HTMLInputElement)?.value) || 842;
+    }
 
     if (isUploadMode && state.files.length > 0) {
       if (state.files.length === 1) {
         const file = state.files[0];
-        const text = await file.text();
+        const text = (await file.text()).normalize('NFC');
         const pdfBytes = await createPdfFromText(
           text,
-          fontFamilyKey,
+          selectedLanguages,
           fontSize,
           pageSizeKey,
-          colorHex
+          colorHex,
+          orientation,
+          customWidth,
+          customHeight
         );
         const baseName = file.name.replace(/\.txt$/i, '');
         downloadFile(
@@ -197,13 +386,16 @@ export async function txtToPdf() {
         const zip = new JSZip();
 
         for (const file of state.files) {
-          const text = await file.text();
+          const text = (await file.text()).normalize('NFC');
           const pdfBytes = await createPdfFromText(
             text,
-            fontFamilyKey,
+            selectedLanguages,
             fontSize,
             pageSizeKey,
-            colorHex
+            colorHex,
+            orientation,
+            customWidth,
+            customHeight
           );
           const baseName = file.name.replace(/\.txt$/i, '');
           zip.file(`${baseName}.pdf`, pdfBytes);
@@ -213,8 +405,7 @@ export async function txtToPdf() {
         downloadFile(zipBlob, 'text-to-pdf.zip');
       }
     } else {
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-      const text = document.getElementById('text-input').value;
+      const text = ((document.getElementById('text-input') as HTMLTextAreaElement)?.value || '').normalize('NFC');
       if (!text.trim()) {
         showAlert('Input Required', 'Please enter some text to convert.');
         hideLoader();
@@ -223,10 +414,13 @@ export async function txtToPdf() {
 
       const pdfBytes = await createPdfFromText(
         text,
-        fontFamilyKey,
+        selectedLanguages,
         fontSize,
         pageSizeKey,
-        colorHex
+        colorHex,
+        orientation,
+        customWidth,
+        customHeight
       );
       downloadFile(
         new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),

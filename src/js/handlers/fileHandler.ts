@@ -473,24 +473,24 @@ async function handleSinglePdfUpload(toolId, file) {
 
       addBtn.onclick = () => {
         const fieldWrapper = document.createElement('div');
-        fieldWrapper.className = 'flex items-center gap-2 custom-field-wrapper';
+        fieldWrapper.className = 'flex flex-col sm:flex-row items-stretch sm:items-center gap-2 custom-field-wrapper';
 
         const keyInput = document.createElement('input');
         keyInput.type = 'text';
         keyInput.placeholder = 'Key (e.g., Department)';
         keyInput.className =
-          'custom-meta-key w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
+          'custom-meta-key w-full sm:w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
         const valueInput = document.createElement('input');
         valueInput.type = 'text';
         valueInput.placeholder = 'Value (e.g., Marketing)';
         valueInput.className =
-          'custom-meta-value flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
+          'custom-meta-value w-full sm:flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
         removeBtn.className =
-          'btn p-2 text-red-500 hover:bg-gray-700 rounded-full';
+          'btn p-2 text-red-500 hover:bg-gray-700 rounded-full self-center sm:self-auto';
         removeBtn.innerHTML = '<i data-lucide="trash-2"></i>';
         removeBtn.addEventListener('click', () => fieldWrapper.remove());
 
