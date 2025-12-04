@@ -599,7 +599,8 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none; /* Chrome, Safari, Edge */
   margin: 0;
 }
-/* Simple mode styles - hide everything except loading screen when simple mode is enabled */
+
+/* Simple mode loading */
 html.simple-mode-loading body > *:not(#simple-loading-screen) {
   display: none !important;
 }
@@ -616,19 +617,6 @@ html.simple-mode-loading #simple-loading-screen {
   justify-content: center !important;
   align-items: center !important;
   visibility: visible !important;
-}
-
-/* Hide elements in simple mode after loading */
-body.simple-mode nav:not(.simple-nav),
-body.simple-mode #hero-section,
-body.simple-mode #features-section,
-body.simple-mode #security-compliance-section,
-body.simple-mode #faq-accordion,
-body.simple-mode #testimonials-section,
-body.simple-mode #support-section,
-body.simple-mode footer:not(.simple-footer),
-body.simple-mode .section-divider {
-  display: none !important;
 }
 
 .simple-loading-content {
