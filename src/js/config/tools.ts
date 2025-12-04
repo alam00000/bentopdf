@@ -233,6 +233,12 @@ export const categories = [
         subtitle: 'Convert a plain text file into a PDF.',
       },
       {
+        id: 'html-to-pdf',
+        name: 'HTML to PDF',
+        icon: 'file-pen',
+        subtitle: 'Convert a HTML into a PDF.',
+      },
+      {
         href: '/src/pages/json-to-pdf.html',
         name: 'JSON to PDF',
         icon: 'file-code',
@@ -432,6 +438,12 @@ export const categories = [
         icon: 'notepad-text-dashed',
         subtitle: 'Split a large page into multiple smaller pages.',
       },
+      {
+        id: 'extract-images',
+        name: 'Extract Images',
+        icon: 'image',
+        subtitle: 'Extract all images from PDF(s) as a ZIP.',
+      },
     ],
   },
   {
@@ -502,6 +514,12 @@ export const categories = [
         name: 'Flatten PDF',
         icon: 'layers',
         subtitle: 'Make form fields and annotations non-editable.',
+      },
+      {
+        id: 'flatten-as-image',
+        name: 'Flatten PDF as Image',
+        icon: 'layers',
+        subtitle: 'Convert all Pages as Image, usefull for signed PDF.',
       },
       {
         id: 'remove-metadata',

@@ -26,3 +26,7 @@ dist-ssr
 coverage/
 *.lcov
 
+.env.development
+/pnpm-lock.yaml
+/*.iml
+.zed/

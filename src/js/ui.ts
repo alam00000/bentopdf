@@ -66,10 +66,6 @@ export const switchView = (view: any) => {
     if (view === 'grid') {
         dom.gridView.classList.remove('hidden');
         dom.toolInterface.classList.add('hidden');
-        // show hero and features and header
-        dom.heroSection.classList.remove('hidden');
-        dom.featuresSection.classList.remove('hidden');
-        dom.toolsHeader.classList.remove('hidden');
         // show dividers
         dom.dividers.forEach((divider) => {
             divider.classList.remove('hidden');
@@ -83,9 +79,6 @@ export const switchView = (view: any) => {
     } else {
         dom.gridView.classList.add('hidden');
         dom.toolInterface.classList.remove('hidden');
-        dom.featuresSection.classList.add('hidden');
-        dom.heroSection.classList.add('hidden');
-        dom.toolsHeader.classList.add('hidden');
         dom.dividers.forEach((divider) => {
             divider.classList.add('hidden');
         });
@@ -427,7 +420,7 @@ const createFileInputHTML = (options = {}) => {
             </div>
         `
             : ''
-        }
+          }
     `;
 };
 
@@ -951,7 +944,14 @@ export const toolTemplates = {
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Flatten PDF</button>
     `,
-    'pdf-to-png': () => `
+  'flatten-as-image': () => `
+        <h2 class="text-2xl font-bold text-white mb-4">Flatten PDF as Image</h2>
+        <p class="mb-6 text-gray-400">Convert PDF Pages to Images, usefull for signed PDF.</p>
+        ${createFileInputHTML()}
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+        <button id="process-btn" class="hidden mt-6 btn-gradient w-full">Flatten PDF as Image</button>
+    `,
+  'pdf-to-png': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to PNG</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality PNG image.</p>
         ${createFileInputHTML()}
@@ -1374,6 +1374,11 @@ export const toolTemplates = {
             </div>
         </div>
         <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF</button>
+    `,
+  'html-to-pdf': () => `
+        <h2 class="text-2xl font-bold text-white mb-4">HTML to PDF</h2>
+        <p class="mb-6 text-gray-400">Type or paste your text below and convert it to a PDF with custom formatting.</p>
+        <div id="html-to-pdf-container" class="h-full"></div>
     `,
     'invert-colors': () => `
         <h2 class="text-2xl font-bold text-white mb-4">Invert PDF Colors</h2>
@@ -1967,11 +1972,20 @@ export const toolTemplates = {
         </div>
         
         <div class="mt-4 flex items-center gap-2">
-            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
-                <input type="checkbox" id="flatten-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                Flatten PDF (use the Save button below)
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer border border-gray-700 rounded-lg p-2">
+                <input type="radio" name="flatten-signature-mode" id="flatten-signature-nothing-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                No Postprocessing
+            </label>
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer border border-gray-700 rounded-lg p-2">
+                <input type="radio" name="flatten-signature-mode" id="flatten-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                Flatten
+            </label>
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer border border-gray-700 rounded-lg p-2">
+                <input type="radio" name="flatten-signature-mode" id="flatten-as-image-signature-toggle" class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                Flatten as Image
             </label>
         </div>
+        <p class="mt-2 text-xs text-gray-400">Use the Save button below if you chose flattening.</p>
 
         <button id="process-btn" class="btn-gradient w-full mt-4" style="display:none;">Save & Download Signed PDF</button>
     </div>
@@ -2310,6 +2324,13 @@ export const toolTemplates = {
     ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
     <div id="file-display-area" class="mt-4 space-y-2"></div>
     <button id="process-btn" class="btn-gradient w-full mt-6">Extract Attachments</button>
+  `,
+  'extract-images': () => `
+    <h2 class="text-2xl font-bold text-white mb-4">Extract Images</h2>
+    <p class="mb-6 text-gray-400">Extract all embedded images from one or more PDFs. All images will be downloaded in a ZIP archive.</p>
+    ${createFileInputHTML({ multiple: true, accept: 'application/pdf', showControls: true })}
+    <div id="file-display-area" class="mt-4 space-y-2"></div>
+    <button id="process-btn" class="btn-gradient w-full mt-6">Extract Images</button>
   `,
     'edit-attachments': () => `
     <h2 class="text-2xl font-bold text-white mb-4">Edit Attachments</h2>
