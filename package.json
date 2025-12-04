@@ -22,7 +22,12 @@
     "release:major": "node scripts/release.js major",
     "serve:simple": "SIMPLE_MODE=true npm run build && npm run preview -- --port 3000",
     "serve": "npm run build && npm run preview -- --port 3000",
-    "package": "node scripts/package-dist.js"
+    "package": "node scripts/package-dist.js",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:dev": "npm run build && wrangler deploy --env development",
+    "deploy:prod": "npm run build && wrangler deploy --env production",
+    "cf:dev": "wrangler dev",
+    "cf:tail": "wrangler tail"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
