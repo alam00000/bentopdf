@@ -20,88 +20,6 @@ const hideLoadingScreen = () => {
 const init = () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-  // Handle simple mode - hide branding sections but keep logo and copyright
-  // Handle simple mode - hide branding sections but keep logo and copyright
-  if (__SIMPLE_MODE__) {
-    const hideBrandingSections = () => {
-      document.body.classList.add('simple-mode');
-
-      // Create a simple nav with just logo
-      const nav = document.querySelector('nav');
-      if (nav) {
-        const simpleNav = document.createElement('nav');
-        simpleNav.className =
-          'simple-nav bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
-        simpleNav.innerHTML = `
-          <div class="container mx-auto px-4">
-            <div class="flex justify-start items-center h-16">
-              <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
-                <span class="text-white font-bold text-xl ml-2">
-                  <a href="index.html">BentoPDF</a>
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-        document.body.insertBefore(simpleNav, document.body.firstChild);
-      }
-
-      // Hide footer but keep copyright
-      const footer = document.querySelector('footer');
-      if (footer) {
-        const simpleFooter = document.createElement('footer');
-        simpleFooter.className =
-          'simple-footer mt-16 border-t-2 border-gray-700 py-8';
-        simpleFooter.innerHTML = `
-          <div class="container mx-auto px-4">
-            <div class="flex items-center mb-4">
-              <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
-              <span class="text-white font-bold text-lg">BentoPDF</span>
-            </div>
-            <p class="text-gray-400 text-sm">
-              &copy; 2025 BentoPDF. All rights reserved.
-            </p>
-            <p class="text-gray-500 text-xs mt-2">
-              Version <span id="app-version-simple">${APP_VERSION}</span>
-            </p>
-          </div>
-        `;
-        document.body.appendChild(simpleFooter);
-      }
-
-      const sectionDividers = document.querySelectorAll('.section-divider');
-      sectionDividers.forEach((divider) => {
-        (divider as HTMLElement).style.display = 'none';
-      });
-
-      document.title = 'BentoPDF - PDF Tools';
-
-      const toolsHeader = document.getElementById('tools-header');
-      if (toolsHeader) {
-        const title = toolsHeader.querySelector('h2');
-        const subtitle = toolsHeader.querySelector('p');
-        if (title) {
-          title.textContent = 'PDF Tools';
-          title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
-        }
-        if (subtitle) {
-          subtitle.textContent = 'Select a tool to get started';
-          subtitle.className = 'text-lg text-gray-400';
-        }
-      }
-
-      const app = document.getElementById('app');
-      if (app) {
-        app.style.paddingTop = '1rem';
-      }
-
-      document.documentElement.classList.remove('simple-mode-loading');
-    };
-
-    hideBrandingSections();
-  }
-
   // Hide shortcuts buttons on mobile devices (Android/iOS)
   // exclude iPad -> users can connect keyboard and use shortcuts
   const isMobile = /Android|iPhone|iPod/i.test(navigator.userAgent);
@@ -269,30 +187,6 @@ const init = () => {
 
   createIcons({ icons });
   console.log('Please share our tool and share the love!');
-
-
-  const githubStarsElements = [
-    document.getElementById('github-stars-desktop'),
-    document.getElementById('github-stars-mobile')
-  ];
-
-  if (githubStarsElements.some(el => el) && !__SIMPLE_MODE__) {
-    fetch('https://api.github.com/repos/alam00000/bentopdf')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.stargazers_count !== undefined) {
-          const formattedStars = formatStars(data.stargazers_count);
-          githubStarsElements.forEach(el => {
-            if (el) el.textContent = formattedStars;
-          });
-        }
-      })
-      .catch(() => {
-        githubStarsElements.forEach(el => {
-          if (el) el.textContent = '-';
-        });
-      });
-  }
 
 
   // Initialize Shortcuts System
