@@ -941,9 +941,15 @@ const generatePrintCSS = (): string => {
   }
   
   body {
-    margin: 20mm;
     font-family: ${fontFamily}, system-ui, sans-serif;
-    font-size: ${fontSize}pt; line-height: ${fontSize * 1.1}pt; color: #000; margin: 0; padding: 0; background: white;
+    font-size: ${fontSize}pt; line-height: ${fontSize * 1.1}pt; 
+    color: #000; 
+    padding: 0; 
+    margin: 0;
+    background: white;
+    width: 100%;
+    height: 100%;
+    print-color-adjust: exact !important;
   }
   
   @media print {
@@ -993,8 +999,6 @@ const generatePrintCSS = (): string => {
     padding: 12pt; font-family: 'Courier New', Courier, monospace;
     font-size: 10pt; margin: 8pt 0;
   }
-  
-  @media print { body { -webkit-print-color-adjust: exact; } }
 `;
 };
 
