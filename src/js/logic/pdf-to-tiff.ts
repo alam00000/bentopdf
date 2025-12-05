@@ -8,14 +8,19 @@ import { PDFPageProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
+const yieldToUI = () => new Promise((r) => setTimeout(r, 0));
+
 export async function pdfToTiff() {
   showLoader('Converting PDF to TIFF...');
+  await yieldToUI();
   try {
     const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
     ).promise;
     
     if(pdf.numPages === 1) {
+      showLoader(`Processing the single page...`);
+      await yieldToUI();
       const page = await pdf.getPage(1);
       const tiffBuffer = await pageToBlob(page);
       downloadFile(tiffBuffer, getCleanFilename() + '.tiff');
@@ -23,11 +28,15 @@ export async function pdfToTiff() {
       const zip = new JSZip();
 
       for (let i = 1; i <= pdf.numPages; i++) {
+        showLoader(`Processing page ${i} of ${pdf.numPages}...`);
+        await yieldToUI();
         const page = await pdf.getPage(i);
         const tiffBuffer = await pageToBlob(page);
         zip.file(`page_${i}.tiff`, tiffBuffer);
       }
 
+      showLoader('Compressing files into a ZIP...');
+      await yieldToUI();
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, getCleanFilename() + '_tiffs.zip');
     }
