@@ -767,8 +767,7 @@ export const toolTemplates = {
                 </div>
                 <p class="mt-1 text-xs text-gray-400">Higher quality = larger file size</p>
             </div>
-            <p class="mb-4 text-white text-center">Click "Download All as ZIP" to get images for all pages.</p>
-            <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
+            <button id="process-btn" class="btn-gradient w-full">Convert to JPG & Download All</button>
         </div>
     `,
     'jpg-to-pdf': () => `
@@ -965,8 +964,7 @@ export const toolTemplates = {
                 </div>
                 <p class="mt-1 text-xs text-gray-400">Higher scale = better quality but larger file size</p>
             </div>
-            <p class="mb-4 text-white text-center">Your file is ready. Click the button to download a ZIP file containing all PNG images.</p>
-            <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
+            <button id="process-btn" class="btn-gradient w-full">Convert to PNG & Download All</button>
         </div>
     `,
     'png-to-pdf': () => `
@@ -1001,8 +999,7 @@ export const toolTemplates = {
                 </div>
                 <p class="mt-1 text-xs text-gray-400">Higher quality = larger file size</p>
             </div>
-            <p class="mb-4 text-white text-center">Your file is ready. Click the button to download a ZIP file containing all WebP images.</p>
-            <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
+            <button id="process-btn" class="btn-gradient w-full">Convert to WEBP & Download All</button>
         </div>
     `,
     'webp-to-pdf': () => `
@@ -1467,14 +1464,14 @@ export const toolTemplates = {
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a BMP image. Your files will be downloaded in a ZIP archive.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to BMP & Download ZIP</button>
+        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to BMP & Download All</button>
     `,
     'pdf-to-tiff': () => `
         <h2 class="text-2xl font-bold text-white mb-4">PDF to TIFF</h2>
         <p class="mb-6 text-gray-400">Convert each page of a PDF file into a high-quality TIFF image. Your files will be downloaded in a ZIP archive.</p>
         ${createFileInputHTML()}
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to TIFF & Download ZIP</button>
+        <button id="process-btn" class="btn-gradient w-full mt-6">Convert to TIFF & Download All</button>
     `,
 
     'split-in-half': () => `
