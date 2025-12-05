@@ -946,6 +946,12 @@ const generatePrintCSS = (): string => {
     font-size: ${fontSize}pt; line-height: ${fontSize * 1.1}pt; color: #000; margin: 0; padding: 0; background: white;
   }
   
+  @media print {
+    .print-instructions {
+      display: none !important;
+    }
+  }
+  
   /* Headers */
   ${headerCSS}
   
@@ -1002,6 +1008,28 @@ const usePrintToPdf = (): void => {
     return;
   }
 
+  const pageSizeKey =
+    (document.getElementById('page-size') as HTMLSelectElement)?.value || 'A4';
+  const orientation = textStyleDefaults.pageOrientation;
+  const pageSizeMm = [
+      `${(textStyleDefaults.pageSize[0] * 0.352778).toFixed(1)}mm`,
+      `${(textStyleDefaults.pageSize[1] * 0.352778).toFixed(1)}mm`,
+    ].join(' x ');
+
+  const printInstructions = `
+    <div class="print-instructions" style="background: #ffffe0; border: 1px solid #e6e6e6; padding: 15px; margin-bottom: 20px; border-radius: 5px; font-family: sans-serif; font-size: 12pt;">
+      <h4 style="margin: 0 0 10px 0;">Print Settings</h4>
+      <button id="closePrint">Close Print Window</button>
+      <button id="runPrint">Print</button>
+      <p style="margin: 0;">For best results, please set the following in the print dialog:</p>
+      <ul style="margin: 5px 0 0 20px; padding: 0;">
+        <li><strong>Paper Size:</strong> ${pageSizeKey} - ${pageSizeMm}</li>
+        <li><strong>Orientation:</strong> ${orientation}</li>
+        <li><strong>Margins:</strong> Default or None (margins are included in the document)</li>
+      </ul>
+    </div>
+  `;
+
   const processedHtml = extractAndProcessHtmlContent();
   initTextPageDefaults();
 
@@ -1013,13 +1041,27 @@ const usePrintToPdf = (): void => {
         <meta charset="utf-8">
         <style>${generatePrintCSS()}</style>
       </head>
-      <body>${processedHtml}</body>
+      <body>
+        ${printInstructions}
+        ${processedHtml}
+      </body>
     </html>
   `);
 
   printWin.document.close();
   printWin.focus();
-  printWin.print();
+  printWin.document
+    .getElementById('closePrint')
+    ?.addEventListener('click', () => printWin.close());
+  printWin.document
+    .getElementById('runPrint')
+    ?.addEventListener('click', () => printWin.print());
+
+  // Delay to ensure content is fully loaded before printing
+  setTimeout(() => {
+    printWin.print();
+  }, 500);
+
 };
 
 const saveContent = () => {
