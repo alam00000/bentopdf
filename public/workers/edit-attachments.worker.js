@@ -1,9 +1,9 @@
-self.importScripts('/coherentpdf.browser.min.js');
+self.importScripts('../coherentpdf.browser.min.js');
 
 function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
   try {
     const uint8Array = new Uint8Array(fileBuffer);
-    
+
     let pdf;
     try {
       pdf = coherentpdf.fromMemory(uint8Array, '');
@@ -40,8 +40,8 @@ function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
 
         attachments.push({
           index: i,
-          name: String(name),  
-          page: Number(page), 
+          name: String(name),
+          page: Number(page),
           data: buffer
         });
       } catch (error) {
@@ -73,7 +73,7 @@ function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
 function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove) {
   try {
     const uint8Array = new Uint8Array(fileBuffer);
-    
+
     let pdf;
     try {
       pdf = coherentpdf.fromMemory(uint8Array, '');
@@ -89,28 +89,28 @@ function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove)
       coherentpdf.startGetAttachments(pdf);
       const attachmentCount = coherentpdf.numberGetAttachments();
       const attachmentsToKeep = [];
-      
+
       for (let i = 0; i < attachmentCount; i++) {
         if (!attachmentsToRemove.includes(i)) {
           const name = coherentpdf.getAttachmentName(i);
           const page = coherentpdf.getAttachmentPage(i);
           const data = coherentpdf.getAttachmentData(i);
-          
+
           const dataCopy = new Uint8Array(data.length);
           dataCopy.set(new Uint8Array(data));
-          
-          attachmentsToKeep.push({ 
-            name: String(name), 
-            page: Number(page),  
-            data: dataCopy 
+
+          attachmentsToKeep.push({
+            name: String(name),
+            page: Number(page),
+            data: dataCopy
           });
         }
       }
-      
+
       coherentpdf.endGetAttachments();
 
       coherentpdf.removeAttachedFiles(pdf);
-      
+
       for (const attachment of attachmentsToKeep) {
         if (attachment.page === 0) {
           coherentpdf.attachFileFromMemory(attachment.data, attachment.name, pdf);
@@ -119,7 +119,7 @@ function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove)
         }
       }
     }
-    
+
     const modifiedBytes = coherentpdf.toMemory(pdf, false, true);
     coherentpdf.deletePdf(pdf);
 

@@ -1,15 +1,15 @@
-self.importScripts('/coherentpdf.browser.min.js');
+self.importScripts('../coherentpdf.browser.min.js');
 
 function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
   try {
     const allAttachments = [];
     const totalFiles = fileBuffers.length;
-    
+
     for (let i = 0; i < totalFiles; i++) {
       const buffer = fileBuffers[i];
       const fileName = fileNames[i];
       const uint8Array = new Uint8Array(buffer);
-      
+
       let pdf;
       try {
         pdf = coherentpdf.fromMemory(uint8Array, '');
@@ -73,7 +73,7 @@ function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
       });
       return;
     }
-    
+
     const response = {
       status: 'success',
       attachments: []

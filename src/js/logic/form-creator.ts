@@ -8,50 +8,14 @@ import 'pdfjs-dist/web/pdf_viewer.css'
 // Initialize PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString()
 
-interface FormField {
-    id: string
-    type: 'text' | 'checkbox' | 'radio' | 'dropdown' | 'optionlist' | 'button' | 'signature' | 'date' | 'image'
-    x: number
-    y: number
-    width: number
-    height: number
-    name: string
-    defaultValue: string
-    fontSize: number
-    alignment: 'left' | 'center' | 'right'
-    textColor: string
-    required: boolean
-    readOnly: boolean
-    tooltip: string
-    combCells: number
-    maxLength: number
-    options?: string[]
-    checked?: boolean
-    exportValue?: string
-    groupName?: string
-    label?: string
-    pageIndex: number
-    action?: 'none' | 'reset' | 'print' | 'url' | 'js' | 'showHide'
-    actionUrl?: string
-    jsScript?: string
-    targetFieldName?: string
-    visibilityAction?: 'show' | 'hide' | 'toggle'
-    dateFormat?: string
-    multiline?: boolean
-}
+import { FormField, PageData } from '../types/index.js'
 
-interface PageData {
-    index: number
-    width: number
-    height: number
-    pdfPageData?: string
-}
 
 let fields: FormField[] = []
 let selectedField: FormField | null = null
 let fieldCounter = 0
-let existingFieldNames: Set<string> = new Set() 
-let existingRadioGroups: Set<string> = new Set() 
+let existingFieldNames: Set<string> = new Set()
+let existingRadioGroups: Set<string> = new Set()
 let draggedElement: HTMLElement | null = null
 let offsetX = 0
 let offsetY = 0
@@ -59,7 +23,7 @@ let offsetY = 0
 let pages: PageData[] = []
 let currentPageIndex = 0
 let uploadedPdfDoc: PDFDocument | null = null
-let uploadedPdfjsDoc: any = null 
+let uploadedPdfjsDoc: any = null
 let pageSize: { width: number; height: number } = { width: 612, height: 792 }
 let currentScale = 1.333
 let pdfViewerOffset = { x: 0, y: 0 }
@@ -99,6 +63,132 @@ const addPageBtn = document.getElementById('addPageBtn') as HTMLButtonElement
 const resetBtn = document.getElementById('resetBtn') as HTMLButtonElement
 const downloadBtn = document.getElementById('downloadBtn') as HTMLButtonElement
 const backToToolsBtn = document.getElementById('back-to-tools') as HTMLButtonElement | null
+const gotoPageInput = document.getElementById('gotoPageInput') as HTMLInputElement
+const gotoPageBtn = document.getElementById('gotoPageBtn') as HTMLButtonElement
+
+const gridVInput = document.getElementById('gridVInput') as HTMLInputElement
+const gridHInput = document.getElementById('gridHInput') as HTMLInputElement
+const toggleGridBtn = document.getElementById('toggleGridBtn') as HTMLButtonElement
+const enableGridCheckbox = document.getElementById('enableGridCheckbox') as HTMLInputElement
+let gridV = 2
+let gridH = 2
+let gridAlwaysVisible = false
+let gridEnabled = true
+
+if (gridVInput && gridHInput) {
+    gridVInput.value = '2'
+    gridHInput.value = '2'
+
+    const updateGrid = () => {
+        let v = parseInt(gridVInput.value) || 2
+        let h = parseInt(gridHInput.value) || 2
+
+        if (v < 2) { v = 2; gridVInput.value = '2' }
+        if (h < 2) { h = 2; gridHInput.value = '2' }
+        if (v > 14) { v = 14; gridVInput.value = '14' }
+        if (h > 14) { h = 14; gridHInput.value = '14' }
+
+        gridV = v
+        gridH = h
+
+        if (gridAlwaysVisible && gridEnabled) {
+            renderGrid()
+        }
+    }
+
+    gridVInput.addEventListener('input', updateGrid)
+    gridHInput.addEventListener('input', updateGrid)
+}
+
+if (enableGridCheckbox) {
+    enableGridCheckbox.addEventListener('change', (e) => {
+        gridEnabled = (e.target as HTMLInputElement).checked
+
+        if (!gridEnabled) {
+            removeGrid()
+            if (gridVInput) gridVInput.disabled = true
+            if (gridHInput) gridHInput.disabled = true
+            if (toggleGridBtn) toggleGridBtn.disabled = true
+        } else {
+            if (gridVInput) gridVInput.disabled = false
+            if (gridHInput) gridHInput.disabled = false
+            if (toggleGridBtn) toggleGridBtn.disabled = false
+            if (gridAlwaysVisible) renderGrid()
+        }
+    })
+}
+
+if (toggleGridBtn) {
+    toggleGridBtn.addEventListener('click', () => {
+        gridAlwaysVisible = !gridAlwaysVisible
+
+        if (gridAlwaysVisible) {
+            toggleGridBtn.classList.add('bg-indigo-600')
+            toggleGridBtn.classList.remove('bg-gray-600')
+            if (gridEnabled) renderGrid()
+        } else {
+            toggleGridBtn.classList.remove('bg-indigo-600')
+            toggleGridBtn.classList.add('bg-gray-600')
+            removeGrid()
+        }
+    })
+}
+
+function renderGrid() {
+    const existingGrid = document.getElementById('pdfGrid')
+    if (existingGrid) existingGrid.remove()
+
+    const gridContainer = document.createElement('div')
+    gridContainer.id = 'pdfGrid'
+    gridContainer.className = 'absolute inset-0 pointer-events-none'
+    gridContainer.style.zIndex = '1'
+
+    if (gridV > 0) {
+        const stepX = canvas.offsetWidth / gridV
+        for (let i = 0; i <= gridV; i++) {
+            const line = document.createElement('div')
+            line.className = 'absolute top-0 bottom-0 border-l-2 border-indigo-500 opacity-60'
+            line.style.left = (i * stepX) + 'px'
+            gridContainer.appendChild(line)
+        }
+    }
+
+    if (gridH > 0) {
+        const stepY = canvas.offsetHeight / gridH
+        for (let i = 0; i <= gridH; i++) {
+            const line = document.createElement('div')
+            line.className = 'absolute left-0 right-0 border-t-2 border-indigo-500 opacity-60'
+            line.style.top = (i * stepY) + 'px'
+            gridContainer.appendChild(line)
+        }
+    }
+
+    canvas.insertBefore(gridContainer, canvas.firstChild)
+}
+
+function removeGrid() {
+    const existingGrid = document.getElementById('pdfGrid')
+    if (existingGrid) existingGrid.remove()
+}
+
+if (gotoPageBtn && gotoPageInput) {
+    gotoPageBtn.addEventListener('click', () => {
+        const pageNum = parseInt(gotoPageInput.value)
+        if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= pages.length) {
+            currentPageIndex = pageNum - 1
+            renderCanvas()
+            updatePageNavigation()
+        } else {
+            alert(`Please enter a valid page number between 1 and ${pages.length}`)
+        }
+    })
+
+    gotoPageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            gotoPageBtn.click()
+        }
+    })
+}
 
 // Tool item interactions
 const toolItems = document.querySelectorAll('.tool-item')
@@ -109,10 +199,13 @@ toolItems.forEach(item => {
             e.dataTransfer.effectAllowed = 'copy'
             const type = (item as HTMLElement).dataset.type || 'text'
             e.dataTransfer.setData('text/plain', type)
+            if (gridEnabled) renderGrid()
         }
     })
 
-    // Click to select tool for placement
+    item.addEventListener('dragend', () => {
+        if (!gridAlwaysVisible && gridEnabled) removeGrid()
+    })
     item.addEventListener('click', () => {
         const type = (item as HTMLElement).dataset.type || 'text'
 
@@ -191,8 +284,9 @@ canvas.addEventListener('dragover', (e) => {
 
 canvas.addEventListener('drop', (e) => {
     e.preventDefault()
+    if (!gridAlwaysVisible) removeGrid()
     const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left - 75 // Center the field on drop point
+    const x = e.clientX - rect.left - 75
     const y = e.clientY - rect.top - 15
     const type = e.dataTransfer?.getData('text/plain') || 'text'
     createField(type as any, x, y)
@@ -246,7 +340,9 @@ function createField(type: FormField['type'], x: number, y: number): void {
         visibilityAction: type === 'button' ? 'toggle' : undefined,
         dateFormat: type === 'date' ? 'mm/dd/yyyy' : undefined,
         pageIndex: currentPageIndex,
-        multiline: type === 'text' ? false : undefined
+        multiline: type === 'text' ? false : undefined,
+        borderColor: '#000000',
+        hideBorder: false
     }
 
     fields.push(field)
@@ -263,6 +359,7 @@ function renderField(field: FormField): void {
     fieldWrapper.style.top = field.y + 'px'
     fieldWrapper.style.width = field.width + 'px'
     fieldWrapper.style.overflow = 'visible'
+    fieldWrapper.style.zIndex = '10' // Ensure fields are above grid and PDF
 
     // Create label - hidden by default, shown on group hover or selection
     const label = document.createElement('div')
@@ -398,6 +495,7 @@ function renderField(field: FormField): void {
         offsetX = e.clientX - rect.left - field.x
         offsetY = e.clientY - rect.top - field.y
         selectField(field)
+        if (gridEnabled) renderGrid()
         e.preventDefault()
     })
 
@@ -559,9 +657,9 @@ document.addEventListener('mouseup', () => {
     draggedElement = null
     resizing = false
     resizeField = null
+    if (!gridAlwaysVisible) removeGrid()
 })
 
-// Touch move for dragging and resizing
 document.addEventListener('touchmove', (e) => {
     const touch = e.touches[0]
     if (resizing && resizeField) {
@@ -866,6 +964,14 @@ function showProperties(field: FormField): void {
         <input type="checkbox" id="propReadOnly" ${field.readOnly ? 'checked' : ''} class="mr-2">
         <label for="propReadOnly" class="text-xs font-semibold text-gray-300">Read Only</label>
       </div>
+      <div>
+        <label class="block text-xs font-semibold text-gray-300 mb-1">Border Color</label>
+        <input type="color" id="propBorderColor" value="${field.borderColor || '#000000'}" class="w-full border border-gray-500 rounded px-2 py-1 h-10">
+      </div>
+      <div class="flex items-center">
+        <input type="checkbox" id="propHideBorder" ${field.hideBorder ? 'checked' : ''} class="mr-2">
+        <label for="propHideBorder" class="text-xs font-semibold text-gray-300">Hide Border</label>
+      </div>
       <button id="deleteBtn" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition text-sm font-semibold">
         Delete Field
       </button>
@@ -961,6 +1067,17 @@ function showProperties(field: FormField): void {
 
     propReadOnly.addEventListener('change', (e) => {
         field.readOnly = (e.target as HTMLInputElement).checked
+    })
+
+    const propBorderColor = document.getElementById('propBorderColor') as HTMLInputElement
+    const propHideBorder = document.getElementById('propHideBorder') as HTMLInputElement
+
+    propBorderColor.addEventListener('input', (e) => {
+        field.borderColor = (e.target as HTMLInputElement).value
+    })
+
+    propHideBorder.addEventListener('change', (e) => {
+        field.hideBorder = (e.target as HTMLInputElement).checked
     })
 
     deleteBtn.addEventListener('click', () => {
@@ -1424,14 +1541,15 @@ downloadBtn.addEventListener('click', async () => {
             if (field.type === 'text') {
                 const textField = form.createTextField(field.name)
                 const rgbColor = hexToRgb(field.textColor)
+                const borderRgb = hexToRgb(field.borderColor || '#000000')
 
                 textField.addToPage(pdfPage, {
                     x: x,
                     y: y,
                     width: width,
                     height: height,
-                    borderWidth: 1,
-                    borderColor: rgb(0, 0, 0),
+                    borderWidth: field.hideBorder ? 0 : 1,
+                    borderColor: rgb(borderRgb.r, borderRgb.g, borderRgb.b),
                     backgroundColor: rgb(1, 1, 1),
                     textColor: rgb(rgbColor.r, rgbColor.g, rgbColor.b),
                 })
@@ -1474,13 +1592,14 @@ downloadBtn.addEventListener('click', async () => {
 
             } else if (field.type === 'checkbox') {
                 const checkBox = form.createCheckBox(field.name)
+                const borderRgb = hexToRgb(field.borderColor || '#000000')
                 checkBox.addToPage(pdfPage, {
                     x: x,
                     y: y,
                     width: width,
                     height: height,
-                    borderWidth: 1,
-                    borderColor: rgb(0, 0, 0),
+                    borderWidth: field.hideBorder ? 0 : 1,
+                    borderColor: rgb(borderRgb.r, borderRgb.g, borderRgb.b),
                     backgroundColor: rgb(1, 1, 1),
                 })
                 if (field.checked) checkBox.check()
@@ -1512,13 +1631,14 @@ downloadBtn.addEventListener('click', async () => {
                     }
                 }
 
+                const borderRgb = hexToRgb(field.borderColor || '#000000')
                 radioGroup.addOptionToPage(field.exportValue || 'Yes', pdfPage as any, {
                     x: x,
                     y: y,
                     width: width,
                     height: height,
-                    borderWidth: 1,
-                    borderColor: rgb(0, 0, 0),
+                    borderWidth: field.hideBorder ? 0 : 1,
+                    borderColor: rgb(borderRgb.r, borderRgb.g, borderRgb.b),
                     backgroundColor: rgb(1, 1, 1),
                 })
                 if (field.checked) radioGroup.select(field.exportValue || 'Yes')
@@ -1532,13 +1652,14 @@ downloadBtn.addEventListener('click', async () => {
 
             } else if (field.type === 'dropdown') {
                 const dropdown = form.createDropdown(field.name)
+                const borderRgb = hexToRgb(field.borderColor || '#000000')
                 dropdown.addToPage(pdfPage, {
                     x: x,
                     y: y,
                     width: width,
                     height: height,
-                    borderWidth: 1,
-                    borderColor: rgb(0, 0, 0),
+                    borderWidth: field.hideBorder ? 0 : 1,
+                    borderColor: rgb(borderRgb.r, borderRgb.g, borderRgb.b),
                     backgroundColor: rgb(1, 1, 1), // Light blue not supported in standard PDF appearance easily without streams
                 })
                 if (field.options) dropdown.setOptions(field.options)
@@ -1561,13 +1682,14 @@ downloadBtn.addEventListener('click', async () => {
 
             } else if (field.type === 'optionlist') {
                 const optionList = form.createOptionList(field.name)
+                const borderRgb = hexToRgb(field.borderColor || '#000000')
                 optionList.addToPage(pdfPage, {
                     x: x,
                     y: y,
                     width: width,
                     height: height,
-                    borderWidth: 1,
-                    borderColor: rgb(0, 0, 0),
+                    borderWidth: field.hideBorder ? 0 : 1,
+                    borderColor: rgb(borderRgb.r, borderRgb.g, borderRgb.b),
                     backgroundColor: rgb(1, 1, 1),
                 })
                 if (field.options) optionList.setOptions(field.options)
@@ -1590,13 +1712,14 @@ downloadBtn.addEventListener('click', async () => {
 
             } else if (field.type === 'button') {
                 const button = form.createButton(field.name)
+                const borderRgb = hexToRgb(field.borderColor || '#000000')
                 button.addToPage(field.label || 'Button', pdfPage, {
                     x: x,
                     y: y,
                     width: width,
                     height: height,
-                    borderWidth: 1,
-                    borderColor: rgb(0, 0, 0),
+                    borderWidth: field.hideBorder ? 0 : 1,
+                    borderColor: rgb(borderRgb.r, borderRgb.g, borderRgb.b),
                     backgroundColor: rgb(0.8, 0.8, 0.8), // Light gray
                 })
 
@@ -1839,7 +1962,7 @@ downloadBtn.addEventListener('click', async () => {
 const backToToolsBtns = document.querySelectorAll('[id^="back-to-tools"]') as NodeListOf<HTMLButtonElement>
 backToToolsBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        window.location.href = '/'
+        window.location.href = import.meta.env.BASE_URL
     })
 })
 

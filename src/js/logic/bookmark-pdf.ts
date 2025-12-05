@@ -1957,13 +1957,13 @@ async function extractExistingBookmarks(doc) {
 // Back to tools button
 if (backToToolsBtn) {
   backToToolsBtn.addEventListener('click', () => {
-    window.location.href = '/';
+    window.location.href = import.meta.env.BASE_URL;
   });
 }
 
 if (closeBtn) {
   closeBtn.addEventListener('click', () => {
-    window.location.href = '/';
+    window.location.href = import.meta.env.BASE_URL;
   });
 }
 

@@ -13,7 +13,7 @@ const alternateMergeState: AlternateMergeState = {
   pdfBytes: {},
 };
 
-const alternateMergeWorker = new Worker('/workers/alternate-merge.worker.js');
+const alternateMergeWorker = new Worker(import.meta.env.BASE_URL + 'workers/alternate-merge.worker.js');
 
 export async function setupAlternateMergeTool() {
   const optionsDiv = document.getElementById('alternate-merge-options');

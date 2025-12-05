@@ -1,5 +1,5 @@
-import { merge, setupMergeTool } from './merge.js';
-import { setupSplitTool, split } from './split.js';
+
+
 import { encrypt } from './encrypt.js';
 import { decrypt } from './decrypt.js';
 import { organize } from './organize.js';
@@ -8,7 +8,7 @@ import { addPageNumbers } from './add-page-numbers.js';
 import { pdfToJpg } from './pdf-to-jpg.js';
 import { jpgToPdf } from './jpg-to-pdf.js';
 import { scanToPdf } from './scan-to-pdf.js';
-import { compress } from './compress.js';
+
 import { pdfToGreyscale } from './pdf-to-greyscale.js';
 import { pdfToZip } from './pdf-to-zip.js';
 import { editMetadata } from './edit-metadata.js';
@@ -70,8 +70,7 @@ import { removeRestrictions } from './remove-restrictions.js';
 import { repairPdf } from './repair-pdf.js';
 
 export const toolLogic = {
-  merge: { process: merge, setup: setupMergeTool },
-  split: { process: split, setup: setupSplitTool },
+
   encrypt,
   decrypt,
   'remove-restrictions': removeRestrictions,
@@ -82,7 +81,7 @@ export const toolLogic = {
   'pdf-to-jpg': pdfToJpg,
   'jpg-to-pdf': jpgToPdf,
   'scan-to-pdf': scanToPdf,
-  compress,
+
   'pdf-to-greyscale': pdfToGreyscale,
   'pdf-to-zip': pdfToZip,
   'edit-metadata': editMetadata,

@@ -3,7 +3,7 @@ import { state } from '../state.js';
 import { showAlert } from '../ui.js';
 import JSZip from 'jszip';
 
-const worker = new Worker('/workers/extract-attachments.worker.js');
+const worker = new Worker(import.meta.env.BASE_URL + 'workers/extract-attachments.worker.js');
 
 interface ExtractAttachmentSuccessResponse {
   status: 'success';

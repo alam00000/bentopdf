@@ -17,18 +17,18 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                    <img src="../../public/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+                    <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
                     <span class="text-white font-bold text-xl ml-2">
-                        <a href="/">BentoPDF</a>
+                        <a href="../../index.html">BentoPDF</a>
                     </span>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8 text-white">
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="../../index.html" class="nav-link">Home</a>
                     <a href="/about.html" class="nav-link">About</a>
                     <a href="/contact.html" class="nav-link">Contact</a>
-                    <a href="/" class="nav-link">All Tools</a>
+                    <a href="../../index.html" class="nav-link">All Tools</a>
                 </div>
 
                 <!-- Mobile Hamburger Button -->
@@ -55,10 +55,10 @@
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-                <a href="/" class="mobile-nav-link">Home</a>
+                <a href="../../index.html" class="mobile-nav-link">Home</a>
                 <a href="/about.html" class="mobile-nav-link">About</a>
                 <a href="/contact.html" class="mobile-nav-link">Contact</a>
-                <a href="/" class="mobile-nav-link">All Tools</a>
+                <a href="../../index.html" class="mobile-nav-link">All Tools</a>
             </div>
         </div>
     </nav>
@@ -205,6 +205,27 @@
                                 disabled>
                                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
                             </button>
+                            <div class="flex items-center gap-2 ml-2 border-l border-gray-600 pl-2">
+                                <span class="text-sm text-gray-400">Go to:</span>
+                                <input type="number" id="gotoPageInput" min="1"
+                                    class="w-16 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <button id="gotoPageBtn"
+                                    class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded text-sm transition-colors">Go</button>
+                            </div>
+                            <div class="flex items-center gap-2 ml-2 border-l border-gray-600 pl-2">
+                                <input type="checkbox" id="enableGridCheckbox" checked class="mr-1">
+                                <label for="enableGridCheckbox" class="text-sm text-gray-400">Grid:</label>
+                                <input type="number" id="gridVInput" min="2" max="14" value="2" placeholder="V"
+                                    class="w-12 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <span class="text-gray-400">x</span>
+                                <input type="number" id="gridHInput" min="2" max="14" value="2" placeholder="H"
+                                    class="w-12 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <button id="toggleGridBtn"
+                                    class="bg-gray-600 hover:bg-gray-500 text-white p-1 rounded transition-colors"
+                                    title="Toggle Grid">
+                                    <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+                                </button>
+                            </div>
                         </div>
                         <div class="flex items-center gap-2">
                             <button id="resetBtn"
@@ -306,7 +327,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 <div class="mb-8 md:mb-0">
                     <div class="flex items-center justify-center md:justify-start mb-4">
-                        <img src="../../public/images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
+                        <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
                         <span class="text-xl font-bold text-white">BentoPDF</span>
                     </div>
                     <p class="text-gray-400 text-sm">

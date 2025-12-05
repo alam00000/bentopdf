@@ -1,4 +1,4 @@
-self.importScripts('/coherentpdf.browser.min.js');
+self.importScripts('../coherentpdf.browser.min.js');
 
 self.onmessage = function (e) {
     const { command, files } = e.data;

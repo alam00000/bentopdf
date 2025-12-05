@@ -33,6 +33,7 @@ Please describe **how you tested your changes** so that maintainers can verify t
 
 ### Checklist:
 
+- [ ] I have signed the [Contributor License Agreement (CLA)](ICLA.md) or my organization has signed the [Corporate CLA](CCLA.md)
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented my code, particularly in hard-to-understand areas

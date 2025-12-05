@@ -1,0 +1,20 @@
+{
+  "signedContributors": [
+    {
+      "name": "Akhrameev",
+      "id": 1945749,
+      "comment_id": 3618670485,
+      "created_at": "2025-12-05T21:32:56Z",
+      "repoId": 1074785178,
+      "pullRequestNo": 225
+    },
+    {
+      "name": "Skillkiller",
+      "id": 18444809,
+      "comment_id": 3618954326,
+      "created_at": "2025-12-05T23:29:22Z",
+      "repoId": 1074785178,
+      "pullRequestNo": 215
+    }
+  ]
+}

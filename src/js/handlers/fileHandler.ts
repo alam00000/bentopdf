@@ -473,24 +473,24 @@ async function handleSinglePdfUpload(toolId, file) {
 
       addBtn.onclick = () => {
         const fieldWrapper = document.createElement('div');
-        fieldWrapper.className = 'flex items-center gap-2 custom-field-wrapper';
+        fieldWrapper.className = 'flex flex-col sm:flex-row items-stretch sm:items-center gap-2 custom-field-wrapper';
 
         const keyInput = document.createElement('input');
         keyInput.type = 'text';
         keyInput.placeholder = 'Key (e.g., Department)';
         keyInput.className =
-          'custom-meta-key w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
+          'custom-meta-key w-full sm:w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
         const valueInput = document.createElement('input');
         valueInput.type = 'text';
         valueInput.placeholder = 'Value (e.g., Marketing)';
         valueInput.className =
-          'custom-meta-value flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
+          'custom-meta-value w-full sm:flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
         removeBtn.className =
-          'btn p-2 text-red-500 hover:bg-gray-700 rounded-full';
+          'btn p-2 text-red-500 hover:bg-gray-700 rounded-full self-center sm:self-auto';
         removeBtn.innerHTML = '<i data-lucide="trash-2"></i>';
         removeBtn.addEventListener('click', () => fieldWrapper.remove());
 
@@ -624,9 +624,11 @@ async function handleMultiFileUpload(toolId) {
     }
   }
 
-  if (toolId === 'merge') {
-    toolLogic.merge.setup();
-  } else if (toolId === 'alternate-merge') {
+  // if (toolId === 'merge') {
+  //   toolLogic.merge.setup();
+  // }
+
+  if (toolId === 'alternate-merge') {
     toolLogic['alternate-merge'].setup();
   } else if (toolId === 'image-to-pdf') {
     const imageList = document.getElementById('image-list');
@@ -741,7 +743,7 @@ async function handleMultiFileUpload(toolId) {
     }
   }
 
-  if (toolId === 'jpg-to-pdf' || toolId === 'png-to-pdf') {
+  if (toolId === 'png-to-pdf') {
     const optionsDiv = document.getElementById(`${toolId}-options`);
     if (optionsDiv) {
       optionsDiv.classList.remove('hidden');
@@ -829,42 +831,6 @@ export function setupFileInputHandler(toolId) {
           }
         };
       }
-    } else if (toolId === 'edit') {
-      const file = state.files[0];
-      if (!file) return;
-
-      const pdfWrapper = document.getElementById('embed-pdf-wrapper');
-      const pdfContainer = document.getElementById('embed-pdf-container');
-
-      pdfContainer.textContent = ''; // Clear safely
-
-      if (state.currentPdfUrl) {
-        URL.revokeObjectURL(state.currentPdfUrl);
-      }
-      pdfWrapper.classList.remove('hidden');
-      const fileURL = URL.createObjectURL(file);
-      state.currentPdfUrl = fileURL;
-
-      const script = document.createElement('script');
-      script.type = 'module';
-      script.textContent = `
-                import EmbedPDF from 'https://snippet.embedpdf.com/embedpdf.js';
-                EmbedPDF.init({
-                    type: 'container',
-                    target: document.getElementById('embed-pdf-container'),
-                    src: '${fileURL}',
-                    theme: 'dark',
-                });
-            `;
-      document.head.appendChild(script);
-
-      const backBtn = document.getElementById('back-to-grid');
-      const urlRevoker = () => {
-        URL.revokeObjectURL(fileURL);
-        state.currentPdfUrl = null;
-        backBtn.removeEventListener('click', urlRevoker);
-      };
-      backBtn.addEventListener('click', urlRevoker);
     }
   };
 

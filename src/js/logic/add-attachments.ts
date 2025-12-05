@@ -2,7 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui';
 import { readFileAsArrayBuffer, downloadFile } from '../utils/helpers';
 import { state } from '../state';
 
-const worker = new Worker('/workers/add-attachments.worker.js');
+const worker = new Worker(import.meta.env.BASE_URL + 'workers/add-attachments.worker.js');
 
 let attachments: File[] = [];
 

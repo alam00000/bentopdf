@@ -4,38 +4,38 @@ export const categories = [
     name: 'Popular Tools',
     tools: [
       {
-        href: '/src/pages/pdf-multi-tool.html',
+        href: import.meta.env.BASE_URL + 'src/pages/pdf-multi-tool.html',
         name: 'PDF Multi Tool',
         icon: 'pencil-ruler',
         subtitle: 'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface.',
       },
       {
-        id: 'merge',
+        href: import.meta.env.BASE_URL + 'src/pages/merge-pdf.html',
         name: 'Merge PDF',
         icon: 'combine',
         subtitle: 'Combine multiple PDFs into one file. Preserves Bookmarks.',
       },
       {
-        id: 'split',
+        href: import.meta.env.BASE_URL + 'src/pages/split-pdf.html',
         name: 'Split PDF',
         icon: 'scissors',
         subtitle: 'Extract a range of pages into a new PDF.',
       },
       {
-        id: 'compress',
+        href: import.meta.env.BASE_URL + 'src/pages/compress-pdf.html',
         name: 'Compress PDF',
         icon: 'zap',
         subtitle: 'Reduce the file size of your PDF.',
       },
       {
-        id: 'edit',
+        href: import.meta.env.BASE_URL + 'src/pages/edit-pdf.html',
         name: 'PDF Editor',
         icon: 'pocket-knife',
         subtitle:
           'Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs',
       },
       {
-        id: 'jpg-to-pdf',
+        href: import.meta.env.BASE_URL + 'src/pages/jpg-to-pdf.html',
         name: 'JPG to PDF',
         icon: 'image-up',
         subtitle: 'Create a PDF from one or more JPG images.',
@@ -76,7 +76,7 @@ export const categories = [
     name: 'Edit & Annotate',
     tools: [
       {
-        id: 'edit',
+        href: import.meta.env.BASE_URL + 'src/pages/edit-pdf.html',
         name: 'PDF Editor',
         icon: 'pocket-knife',
         subtitle:
@@ -84,13 +84,13 @@ export const categories = [
       },
       {
         // id: 'bookmark-pdf',
-        href: '/src/pages/bookmark.html',
+        href: import.meta.env.BASE_URL + 'src/pages/bookmark.html',
         name: 'Edit Bookmarks',
         icon: 'bookmark',
         subtitle: 'Add, edit, import, delete and extract PDF bookmarks.',
       },
       {
-        href: '/src/pages/table-of-contents.html',
+        href: import.meta.env.BASE_URL + 'src/pages/table-of-contents.html',
         name: 'Table of Contents',
         icon: 'list',
         subtitle: 'Generate a table of contents page from PDF bookmarks.',
@@ -138,7 +138,7 @@ export const categories = [
         subtitle: 'Draw, type, or upload your signature.',
       },
       {
-        href: '/src/pages/add-stamps.html',
+        href: import.meta.env.BASE_URL + 'src/pages/add-stamps.html',
         name: 'Add Stamps',
         icon: 'stamp',
         subtitle: 'Add image stamps to your PDF using the annotation toolbar.',
@@ -162,7 +162,7 @@ export const categories = [
         subtitle: 'Fill in forms directly in the browser. Also supports XFA forms.',
       },
       {
-        href: '/src/pages/form-creator.html',
+        href: import.meta.env.BASE_URL + 'src/pages/form-creator.html',
         name: 'Create PDF Form',
         icon: 'file-input',
         subtitle: 'Create fillable PDF forms with drag-and-drop text fields.',
@@ -185,7 +185,7 @@ export const categories = [
         subtitle: 'Convert JPG, PNG, WebP, BMP, TIFF, SVG, HEIC to PDF.',
       },
       {
-        id: 'jpg-to-pdf',
+        href: import.meta.env.BASE_URL + 'src/pages/jpg-to-pdf.html',
         name: 'JPG to PDF',
         icon: 'image-up',
         subtitle: 'Create a PDF from one or more JPG images.',
@@ -233,7 +233,7 @@ export const categories = [
         subtitle: 'Convert a plain text file into a PDF.',
       },
       {
-        href: '/src/pages/json-to-pdf.html',
+        href: import.meta.env.BASE_URL + 'src/pages/json-to-pdf.html',
         name: 'JSON to PDF',
         icon: 'file-code',
         subtitle: 'Convert JSON files to PDF format.',
@@ -283,7 +283,7 @@ export const categories = [
         subtitle: 'Convert all colors to black and white.',
       },
       {
-        href: '/src/pages/pdf-to-json.html',
+        href: import.meta.env.BASE_URL + 'src/pages/pdf-to-json.html',
         name: 'PDF to JSON',
         icon: 'file-code',
         subtitle: 'Convert PDF files to JSON format.',
@@ -301,7 +301,7 @@ export const categories = [
         subtitle: 'Make a PDF searchable and copyable.',
       },
       {
-        id: 'merge',
+        href: import.meta.env.BASE_URL + 'src/pages/merge-pdf.html',
         name: 'Merge PDF',
         icon: 'combine',
         subtitle: 'Combine multiple PDFs into one file.',
@@ -343,7 +343,7 @@ export const categories = [
         subtitle: 'View or remove attachments in your PDF.',
       },
       {
-        href: '/src/pages/pdf-multi-tool.html',
+        href: import.meta.env.BASE_URL + 'src/pages/pdf-multi-tool.html',
         name: 'PDF Multi Tool',
         icon: 'pencil-ruler',
         subtitle: 'Full-featured PDF editor with page management.',
@@ -438,7 +438,7 @@ export const categories = [
     name: 'Optimize & Repair',
     tools: [
       {
-        id: 'compress',
+        href: import.meta.env.BASE_URL + 'src/pages/compress-pdf.html',
         name: 'Compress PDF',
         icon: 'zap',
         subtitle: 'Reduce the file size of your PDF.',
@@ -469,7 +469,7 @@ export const categories = [
           'Remove password protection and security restrictions associated with digitally signed PDF files.',
       },
       {
-        href: '/src/pages/repair-pdf.html',
+        href: import.meta.env.BASE_URL + 'src/pages/repair-pdf.html',
         name: 'Repair PDF',
         icon: 'wrench',
         subtitle: 'Recover data from corrupted or damaged PDF files.',

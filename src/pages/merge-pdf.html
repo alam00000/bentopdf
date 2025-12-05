@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Repair PDF - BentoPDF</title>
+  <title>Merge PDF - BentoPDF</title>
+  <meta name="description"
+    content="Combine multiple PDF files into one document or merge specific pages. Free, secure, and runs entirely in your browser.">
   <link rel="icon" type="image/png" href="../../images/favicon.svg" />
   <link href="../../src/css/styles.css" rel="stylesheet" />
 </head>
@@ -60,7 +62,7 @@
     </div>
   </nav>
 
-  <div id="uploader" class="min-h-screen flex items-center justify-center p-4 bg-gray-900">
+  <div id="uploader" class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900">
     <div id="tool-uploader"
       class="bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
       <button id="back-to-tools"
@@ -68,14 +70,15 @@
         <i data-lucide="arrow-left" class="cursor-pointer"></i>
         <span class="cursor-pointer"> Back to Tools </span>
       </button>
-      <h1 class="text-2xl font-bold text-white mb-2">Repair PDF</h1>
+
+      <h1 class="text-2xl font-bold text-white mb-2">Merge PDFs</h1>
       <p class="text-gray-400 mb-6">
-        Recover data from corrupted or damaged PDF files.
+        Combine whole files, or select specific pages to merge into a new document.
       </p>
 
       <!-- Drop Zone for Main PDF Upload -->
       <div id="drop-zone"
-        class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
+        class="relative flex flex-col items-center justify-center w-full h-48 md:h-96 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
           <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
           <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select a file</span> or drag and
@@ -84,7 +87,7 @@
           <p class="text-xs text-gray-500">Your files never leave your device.</p>
         </div>
         <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" multiple
-          accept=".pdf">
+          accept="application/pdf">
       </div>
 
       <!-- Control buttons for multi-file uploads -->
@@ -99,19 +102,54 @@
         </button>
       </div>
 
-      <!-- File Display Area -->
-      <div id="file-display-area" class="mt-4 space-y-2"></div>
+      <div id="merge-options" class="hidden mt-6">
+        <div class="flex gap-2 p-1 rounded-lg bg-gray-900 border border-gray-700 mb-4">
+          <button id="file-mode-btn" class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md">File
+            Mode</button>
+          <button id="page-mode-btn" class="flex-1 btn text-gray-300 font-semibold py-2 rounded-md">Page Mode</button>
+        </div>
 
-      <button id="process-btn" class="btn-gradient w-full mt-6 hidden">Repair PDF</button>
+        <div id="file-mode-panel">
+          <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+            <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+            <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+              <li>Click and drag the <i data-lucide="grip-vertical" class="inline-block w-3 h-3"></i> icon to change the
+                order of the files.</li>
+              <li>In the "Pages" box for each file, you can specify ranges (e.g., "1-3, 5") to merge only those pages.
+              </li>
+              <li>Leave the "Pages" box blank to include all pages from that file.</li>
+            </ul>
+          </div>
+          <ul id="file-list" class="space-y-2"></ul>
+        </div>
+
+        <div id="page-mode-panel" class="hidden">
+          <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
+            <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+            <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
+              <li>All pages from your uploaded PDFs are shown below.</li>
+              <li>Simply drag and drop the individual page thumbnails to create the exact order you want for your new
+                file.</li>
+            </ul>
+          </div>
+          <div id="page-merge-preview"
+            class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-4 p-4 bg-gray-900 rounded-lg border border-gray-700 min-h-[200px]">
+          </div>
+        </div>
+
+        <button id="process-btn" class="btn-gradient w-full mt-6">Merge PDFs</button>
+      </div>
 
     </div>
   </div>
 
   <!-- Loader Modal -->
-  <div id="loader-modal" class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden">
-    <div class="text-center">
-      <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500 mb-4"></div>
-      <p id="loader-text" class="text-white text-lg font-semibold">Processing...</p>
+  <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl">
+      <div class="solid-spinner"></div>
+      <p id="loader-text" class="text-white text-lg font-medium">
+        Processing...
+      </p>
     </div>
   </div>
 
@@ -120,7 +158,7 @@
     <div class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700">
       <h3 id="alert-title" class="text-xl font-bold text-white mb-2">Alert</h3>
       <p id="alert-message" class="text-gray-300 mb-6"></p>
-      <button onclick="document.getElementById('alert-modal').classList.add('hidden')"
+      <button id="alert-ok"
         class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
         OK
       </button>
@@ -214,7 +252,7 @@
   <script type="module" src="../js/utils/full-width.ts"></script>
   <script type="module" src="../js/utils/simple-mode-footer.ts"></script>
   <script type="module" src="../version.ts"></script>
-  <script type="module" src="../js/logic/repair-pdf-page.ts"></script>
+  <script type="module" src="../js/logic/merge-pdf-page.ts"></script>
   <script type="module" src="../js/mobileMenu.ts"></script>
 </body>
 

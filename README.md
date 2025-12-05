@@ -249,9 +249,33 @@ npm run package
 
 # Serve the dist folder
 npx serve dist
+
+The website can be accessible at: http://localhost:3000/
+
 ```
 
-The website can be accessible at: ```http://localhost:3000/```
+**Subdirectory Hosting:**
+
+BentoPDF can also be hosted from a subdirectory (e.g., `example.com/tools/bentopdf/`):
+
+```bash
+
+# Example:
+# 1. Build the app with the specific BASE_URL. BASE_URL must have a trailing and leading slash. The BASE_URL can be any url of your choice. Here we are using /tools/bentopdf/ as an example.
+
+BASE_URL=/tools/bentopdf/ npm run build
+
+# 2. Create the nested directory structure inside serve-test (or any folder of your choice for local testing. In case of production, create the nested directory structure inside the root directory)
+mkdir -p serve-test/tools/bentopdf
+
+# 3. Copy all files from the 'dist' folder into that nested directory
+cp -r dist/* serve-test/tools/bentopdf/
+
+# 4. Serve the 'serve-test' folder
+npx serve serve-test
+```
+
+The website can be accessible at: ```http://localhost:3000/tools/bentopdf/```
 
 The `npm run package` command creates a `dist-{version}.zip` file that you can use for self-hosting.
 

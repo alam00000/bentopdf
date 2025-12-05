@@ -140,15 +140,20 @@ const init = () => {
     hideBrandingSections();
   }
 
-  // Hide shortcuts button on touch devices
-  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (isTouchDevice) {
-    const shortcutsBtn = document.getElementById('open-shortcuts-btn');
-    if (shortcutsBtn) {
-      shortcutsBtn.style.display = 'none';
-    }
-  }
+  // Hide shortcuts buttons on mobile devices (Android/iOS)
+  // exclude iPad -> users can connect keyboard and use shortcuts
+  const isMobile = /Android|iPhone|iPod/i.test(navigator.userAgent);
+  const keyboardShortcutBtn = document.getElementById('shortcut');
+  const shortcutSettingsBtn = document.getElementById('open-shortcuts-btn');
 
+  if (isMobile) {
+    keyboardShortcutBtn.style.display = 'none';
+    shortcutSettingsBtn.style.display = 'none';
+  } else {
+    keyboardShortcutBtn.textContent = navigator.userAgent.toUpperCase().includes('MAC')
+      ? '⌘ + K'
+      : 'Ctrl + K';
+  }
 
   dom.toolGrid.textContent = '';
 
@@ -205,6 +210,22 @@ const init = () => {
 
   const searchBar = document.getElementById('search-bar');
   const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');
+  
+  const fuzzyMatch = (searchTerm: string, targetText: string): boolean => {
+    if (!searchTerm) return true;
+
+    let searchIndex = 0;
+    let targetIndex = 0;
+
+    while (searchIndex < searchTerm.length && targetIndex < targetText.length) {
+      if (searchTerm[searchIndex] === targetText[targetIndex]) {
+        searchIndex++;
+      }
+      targetIndex++;
+    }
+
+    return searchIndex === searchTerm.length;
+  };
 
   searchBar.addEventListener('input', () => {
     // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
@@ -218,8 +239,9 @@ const init = () => {
         const toolName = card.querySelector('h3').textContent.toLowerCase();
         const toolSubtitle =
           card.querySelector('p')?.textContent.toLowerCase() || '';
+
         const isMatch =
-          toolName.includes(searchTerm) || toolSubtitle.includes(searchTerm);
+          fuzzyMatch(searchTerm, toolName) || fuzzyMatch(searchTerm, toolSubtitle);
 
         card.classList.toggle('hidden', !isMatch);
         if (isMatch) {
@@ -242,17 +264,6 @@ const init = () => {
       searchBar.focus();
     }
   });
-
-  const shortcutK = document.getElementById('shortcut');
-  const isIosOrAndroid = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-  if (isIosOrAndroid) {
-    shortcutK.style.display = 'none';
-  } else {
-    shortcutK.textContent = navigator.userAgent.toUpperCase().includes('MAC')
-      ? '⌘ + K'
-      : 'Ctrl + K';
-  }
 
   dom.toolGrid.addEventListener('click', (e) => {
     // @ts-expect-error TS(2339) FIXME: Property 'closest' does not exist on type 'EventTa... Remove this comment to see the full error message

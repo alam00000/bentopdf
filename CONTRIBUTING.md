@@ -6,6 +6,34 @@ This document outlines how to contribute, report issues, and get involved in the
 
 ---
 
+## Contributor License Agreement (CLA)
+
+Before we can accept your contributions, you must sign our Contributor License Agreement (CLA). This is required because BentoPDF uses a dual licensing model:
+
+- **AGPL-3.0** for open source use
+- **Commercial license** for proprietary use
+
+The CLA ensures we can include your contributions in both versions of the project.
+
+### For Individual Contributors
+
+Sign our [Individual Contributor License Agreement (ICLA)](ICLA.md). When you submit your first pull request, the CLA Assistant bot will automatically ask you to sign by commenting on the PR.
+
+### For Corporate Contributors
+
+If you are contributing on behalf of your employer, your organization needs to sign our [Corporate Contributor License Agreement (CCLA)](CCLA.md). Please contact us at [contact@bentopdf.com](mailto:contact@bentopdf.com) to arrange corporate CLA signing.
+
+### What the CLA Grants
+
+By signing the CLA, you:
+
+- Grant us a broad copyright license to use, modify, and relicense your contributions (including for commercial use)
+- Grant a patent license for any patents covering your contribution
+- Represent that you have the authority to make the contribution
+- Retain full copyright ownership of your contributions
+
+---
+
 ## 1. How to Contribute
 
 You can contribute in several ways:
