@@ -7,6 +7,8 @@ import { PDFPageProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
+const yieldToUI = () => new Promise((r) => setTimeout(r, 0));
+
 /**
  * Creates a BMP file buffer from raw pixel data (ImageData).
  * This function is self-contained and has no external dependencies.
@@ -56,6 +58,7 @@ function encodeBMP(imageData: any) {
 
 export async function pdfToBmp() {
   showLoader('Converting PDF to BMP images...');
+  await yieldToUI();
   try {
     const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
@@ -63,6 +66,7 @@ export async function pdfToBmp() {
 
     if(pdf.numPages === 1) {
         showLoader(`Processing the single page...`);
+        await yieldToUI();
         const page = await pdf.getPage(1);
         const bmpBuffer = await pageToBlob(page);
         downloadFile(bmpBuffer, getCleanFilename() +'.bmp');
@@ -71,6 +75,7 @@ export async function pdfToBmp() {
 
       for (let i = 1; i <= pdf.numPages; i++) {
         showLoader(`Processing page ${i} of ${pdf.numPages}...`);
+        await yieldToUI();
         const page = await pdf.getPage(i);
         const bmpBuffer = await pageToBlob(page); 
 
