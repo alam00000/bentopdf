@@ -999,6 +999,7 @@ const generatePrintCSS = (): string => {
 };
 
 const usePrintToPdf = (): void => {
+  initTextPageDefaults();
   const printWin = window.open('', '_blank');
   if (!printWin) {
     showAlert(
@@ -1017,21 +1018,20 @@ const usePrintToPdf = (): void => {
     ].join(' x ');
 
   const printInstructions = `
-    <div class="print-instructions" style="background: #ffffe0; border: 1px solid #e6e6e6; padding: 15px; margin-bottom: 20px; border-radius: 5px; font-family: sans-serif; font-size: 12pt;">
-      <h4 style="margin: 0 0 10px 0;">Print Settings</h4>
-      <button id="closePrint">Close Print Window</button>
-      <button id="runPrint">Print</button>
+    <div class="print-instructions" style="position: relative; background: #ffffe0; border: 1px solid #e6e6e6; padding: 15px; margin-bottom: 20px; border-radius: 5px; font-family: sans-serif; font-size: 12pt;">
+      <button onclick="window.print()" style="background: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 12pt; margin-right: 10px;">Print</button>
+      <button onclick="window.close()" style="background: #6c757d; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 12pt;">Close</button>
+      <h4 style="margin: 15px 0 10px 0;">Recommended Print Settings</h4>
       <p style="margin: 0;">For best results, please set the following in the print dialog:</p>
       <ul style="margin: 5px 0 0 20px; padding: 0;">
-        <li><strong>Paper Size:</strong> ${pageSizeKey} - ${pageSizeMm}</li>
+        <li><strong>Paper Size:</strong> ${pageSizeKey} (${pageSizeMm})</li>
         <li><strong>Orientation:</strong> ${orientation}</li>
-        <li><strong>Margins:</strong> Default or None (margins are included in the document)</li>
+        <li><strong>Margins:</strong> 'Default' or 'None'</li>
       </ul>
     </div>
   `;
 
   const processedHtml = extractAndProcessHtmlContent();
-  initTextPageDefaults();
 
   printWin.document.write(`
     <!DOCTYPE html>
@@ -1050,18 +1050,10 @@ const usePrintToPdf = (): void => {
 
   printWin.document.close();
   printWin.focus();
-  printWin.document
-    .getElementById('closePrint')
-    ?.addEventListener('click', () => printWin.close());
-  printWin.document
-    .getElementById('runPrint')
-    ?.addEventListener('click', () => printWin.print());
 
-  // Delay to ensure content is fully loaded before printing
-  setTimeout(() => {
-    printWin.print();
-  }, 500);
-
+  printWin.onafterprint = () => {
+    printWin.close();
+  };
 };
 
 const saveContent = () => {
