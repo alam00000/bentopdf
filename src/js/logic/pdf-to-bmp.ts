@@ -84,6 +84,7 @@ export async function pdfToBmp() {
       }
 
       showLoader('Compressing files into a ZIP...');
+      await yieldToUI();
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, getCleanFilename() + '_bmps.zip');
     }
