@@ -2,6 +2,7 @@ import { hideLoader, showAlert, showLoader } from '../ui.js';
 import { downloadFile } from '../utils/helpers.js';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
+import { PageSizes } from 'pdf-lib';
 
 // Constants
 const PDF_CONSTANTS = {
@@ -25,14 +26,14 @@ const PDF_CONSTANTS = {
 } as const;
 
 type TextStyleDefaults = {
-  pageSize: string;
+  pageSize: [number, number];
   pageOrientation: string;
   fontSize: number;
   fontFamily: string;
 };
 
 let textStyleDefaults: TextStyleDefaults = {
-  pageSize: 'a4',
+  pageSize: PageSizes['A4'],
   pageOrientation: 'portrait',
   fontSize: 12,
   fontFamily: 'helvetica',
@@ -549,14 +550,20 @@ const initTextPageDefaults = (): void => {
   );
   const pageSizeKey = (
     document.getElementById('page-size') as HTMLSelectElement
-  )?.value?.toLowerCase();
+  )?.value || 'A4';
   const pageOrientationKey = (
     document.getElementById('page-orientation') as HTMLSelectElement
   )?.value?.toLowerCase();
 
+  const customWidth = parseInt((document.getElementById('custom-width') as HTMLInputElement)?.value);
+  const customHeight = parseInt((document.getElementById('custom-height') as HTMLInputElement)?.value);
+  let pageSize = pageSizeKey === 'Custom'
+    ? [customWidth || 595, customHeight || 842] as [number, number]
+    : (PageSizes[pageSizeKey] || PageSizes['A4']);
+
   if (fontFamilyKey) textStyleDefaults.fontFamily = fontFamilyKey;
   if (fontSize) textStyleDefaults.fontSize = fontSize;
-  if (pageSizeKey) textStyleDefaults.pageSize = pageSizeKey;
+  if (pageSize) textStyleDefaults.pageSize = pageSize;
   if (pageOrientationKey)
     textStyleDefaults.pageOrientation = pageOrientationKey;
 };
@@ -565,7 +572,7 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
   try {
     const { jsPDF } = await import('jspdf');
     initTextPageDefaults();
-
+    const pageSizeMm = [textStyleDefaults.pageSize[0] * 0.352778, textStyleDefaults.pageSize[1] * 0.352778];
     const orientation =
       textStyleDefaults.pageOrientation === 'landscape' ||
       textStyleDefaults.pageOrientation === 'l'
@@ -574,7 +581,7 @@ const generateAdvancedTextPdf = async (): Promise<void> => {
     const pdf = new jsPDF(
       orientation,
       'mm',
-      textStyleDefaults.pageSize.toLowerCase()
+      pageSizeMm
     );
     pdf.setFont(textStyleDefaults.fontFamily.toLowerCase(), 'normal');
     pdf.setFontSize(textStyleDefaults.fontSize);
@@ -917,7 +924,7 @@ const parseQuillDelta = (delta: any): any[] => {
 const generatePrintCSS = (): string => {
   const fontFamily = textStyleDefaults.fontFamily;
   const fontSize = textStyleDefaults.fontSize;
-  const pageSize = textStyleDefaults.pageSize.toLowerCase();
+  const pageSize = textStyleDefaults.pageSize;
   const headerScales = PDF_CONSTANTS.HEADER_SCALES;
 
   const headerCSS = Object.entries(headerScales)
@@ -928,9 +935,13 @@ const generatePrintCSS = (): string => {
     .join('\n  ');
 
   return `
-  @page { margin: 20mm; size: ${pageSize} ${textStyleDefaults.pageOrientation}; }
+  @page { 
+    margin: 20mm; 
+    size: ${pageSize[0]}pt ${pageSize[1]}pt ${textStyleDefaults.pageOrientation}; 
+  }
   
   body {
+    margin: 20mm;
     font-family: ${fontFamily}, system-ui, sans-serif;
     font-size: ${fontSize}pt; line-height: ${fontSize * 1.1}pt; color: #000; margin: 0; padding: 0; background: white;
   }
@@ -1102,14 +1113,25 @@ export function mountHtmlToPdfTool() {
       <div>
         <label for="page-size" class="block mb-2 text-sm font-medium text-gray-300">Page Size</label>
         <select id="page-size" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-          <option value="a3">A3</option>
-          <option value="a4" selected>A4</option>
-          <option value="a5">A5</option>
-          <option value="letter">Letter</option>
-          <option value="legal">Legal</option>
-          <option value="tabloid">Tabloid</option>
-          <option value="ledger">Ledger</option>
+            <optgroup label="ISO A Series">
+                <option value="A4" selected>A4 (210 x 297 mm)</option>
+                <option value="A3">A3 (297 x 420 mm)</option>
+                <option value="A5">A5 (148 x 210 mm)</option>
+                <option value="A6">A6 (105 x 148 mm)</option>
+            </optgroup>
+            <optgroup label="North American">
+                <option value="Letter">Letter (8.5 x 11 in)</option>
+                <option value="Legal">Legal (8.5 x 14 in)</option>
+                <option value="Tabloid">Tabloid (11 x 17 in)</option>
+                <option value="Executive">Executive (7.25 x 10.5 in)</option>
+            </optgroup>
+            <optgroup label="ISO B Series">
+                <option value="B4">B4 (250 x 353 mm)</option>
+                <option value="B5">B5 (176 x 250 mm)</option>
+            </optgroup>
+            <option value="Custom">Custom Size</option>
         </select>
+
       </div>
       <div>
         <label for="page-orientation" class="block mb-2 text-sm font-medium text-gray-300">Page Orientation</label>
@@ -1117,6 +1139,16 @@ export function mountHtmlToPdfTool() {
           <option value="portrait" selected>Portrait</option>
           <option value="landscape">Landscape</option>
         </select>
+      </div>
+      <div id="custom-size-container" class="hidden col-span-2 grid grid-cols-2 gap-4">
+        <div>
+            <label for="custom-width" class="block mb-2 text-sm font-medium text-gray-300">Width (pt)</label>
+            <input type="number" id="custom-width" value="595" min="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+        </div>
+        <div>
+            <label for="custom-height" class="block mb-2 text-sm font-medium text-gray-300">Height (pt)</label>
+            <input type="number" id="custom-height" value="842" min="1" class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
+        </div>
       </div>
     </div>
 
@@ -1132,6 +1164,20 @@ export function mountHtmlToPdfTool() {
       </div>
     </div>
   `;
+
+  const pageSizeSelect = document.getElementById('page-size') as HTMLSelectElement;
+  const customSizeContainer = document.getElementById('custom-size-container');
+
+  if (pageSizeSelect && customSizeContainer) {
+    pageSizeSelect.addEventListener('change', () => {
+      if (pageSizeSelect.value === 'Custom') {
+        customSizeContainer.classList.remove('hidden');
+      } else {
+        customSizeContainer.classList.add('hidden');
+      }
+    });
+  }
+
 
   quill = new Quill('#editor', {
     theme: 'snow',
