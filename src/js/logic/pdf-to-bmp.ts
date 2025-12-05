@@ -62,7 +62,7 @@ export async function pdfToBmp() {
     ).promise;
 
     if(pdf.numPages === 1) {
-        showLoader(`Processing page 1 of ${pdf.numPages}...`);
+        showLoader(`Processing the single page...`);
         const page = await pdf.getPage(1);
         const bmpBuffer = await pageToBlob(page);
         downloadFile(bmpBuffer, getCleanFilename() +'.bmp');
