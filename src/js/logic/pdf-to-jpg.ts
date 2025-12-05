@@ -23,15 +23,15 @@ export async function pdfToJpg() {
       const blob = await pageToBlob(page, quality);
       downloadFile(blob, getCleanFilename() + '.jpg');
     } else {
-    const zip = new JSZip();
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const blob = await pageToBlob(page, quality);
-      zip.file(`page_${i}.jpg`, blob as Blob);
-    }
+      const zip = new JSZip();
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const blob = await pageToBlob(page, quality);
+        zip.file(`page_${i}.jpg`, blob as Blob);
+      }
 
-    const zipBlob = await zip.generateAsync({ type: 'blob' });
-    downloadFile(zipBlob, getCleanFilename() + '_jpgs.zip');
+      const zipBlob = await zip.generateAsync({ type: 'blob' });
+      downloadFile(zipBlob, getCleanFilename() + '_jpgs.zip');
     }
   } catch (e) {
     console.error(e);
