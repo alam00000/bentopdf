@@ -14,8 +14,11 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString();
 
+const yieldToUI = () => new Promise((r) => setTimeout(r, 0));
+
 export async function pdfToPng() {
   showLoader('Converting to PNG...');
+  await yieldToUI();
   try {
     const pdf = await getPDFDocument(
       await readFileAsArrayBuffer(state.files[0])
@@ -27,6 +30,8 @@ export async function pdfToPng() {
     const scale = qualityInput ? parseFloat(qualityInput.value) : 2.0;
 
     if (pdf.numPages === 1) {
+      showLoader(`Processing the single page...`);
+      await yieldToUI();
       downloadFile(
         await pageToBlob(await pdf.getPage(1), scale),
         getCleanFilename() + '.png'
@@ -35,9 +40,14 @@ export async function pdfToPng() {
       const zip = new JSZip();
 
       for (let i = 1; i <= pdf.numPages; i++) {
+        showLoader(`Processing page ${i} of ${pdf.numPages}...`);
+        await yieldToUI();
         const page = await pdf.getPage(i);
         zip.file(`page_${i}.png`, await pageToBlob(page, scale));
       }
+
+      showLoader('Compressing files into a ZIP...');
+      await yieldToUI();
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(
         zipBlob,
