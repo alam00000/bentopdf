@@ -7,7 +7,11 @@ import {
   renderFileDisplay,
   switchView,
 } from '../ui.js';
-import { formatIsoDate, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
+import {
+  formatIsoDate,
+  readFileAsArrayBuffer,
+  getPDFDocument,
+} from '../utils/helpers.js';
 import { setupCanvasEditor } from '../canvasEditor.js';
 import { toolLogic } from '../logic/index.js';
 import { renderDuplicateOrganizeThumbnails } from '../logic/duplicate-organize.js';
@@ -21,7 +25,15 @@ import {
 } from '../config/pdf-tools.js';
 import * as pdfjsLib from 'pdfjs-dist';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
+
+const embedPdfWasmUrl = new URL(
+  'embedpdf-snippet/dist/pdfium.wasm',
+  import.meta.url
+).href;
 
 const rotationState: number[] = [];
 let imageSortableInstance: Sortable | null = null;
@@ -117,7 +129,11 @@ async function handleSinglePdfUpload(toolId, file) {
         .toString();
     }
 
-    if (toolId === 'organize' || toolId === 'rotate' || toolId === 'delete-pages') {
+    if (
+      toolId === 'organize' ||
+      toolId === 'rotate' ||
+      toolId === 'delete-pages'
+    ) {
       await renderPageThumbnails(toolId, state.pdfDoc);
 
       if (toolId === 'rotate') {
@@ -134,11 +150,18 @@ async function handleSinglePdfUpload(toolId, file) {
         const rotateAllRightBtn = document.getElementById(
           'rotate-all-right-btn'
         );
-        const rotateAllCustomBtn = document.getElementById('rotate-all-custom-btn');
-        const rotateAllCustomInput = document.getElementById('custom-rotate-all-input') as HTMLInputElement;
-        const rotateAllDecrementBtn = document.getElementById('rotate-all-decrement-btn');
-        const rotateAllIncrementBtn = document.getElementById('rotate-all-increment-btn');
-
+        const rotateAllCustomBtn = document.getElementById(
+          'rotate-all-custom-btn'
+        );
+        const rotateAllCustomInput = document.getElementById(
+          'custom-rotate-all-input'
+        ) as HTMLInputElement;
+        const rotateAllDecrementBtn = document.getElementById(
+          'rotate-all-decrement-btn'
+        );
+        const rotateAllIncrementBtn = document.getElementById(
+          'rotate-all-increment-btn'
+        );
 
         rotateAllControls.classList.remove('hidden');
         createIcons({ icons });
@@ -146,12 +169,14 @@ async function handleSinglePdfUpload(toolId, file) {
         const rotateAll = (angle: number) => {
           // Update rotation state for ALL pages (including unrendered ones)
           for (let i = 0; i < rotationState.length; i++) {
-            rotationState[i] = (rotationState[i] + angle);
+            rotationState[i] = rotationState[i] + angle;
           }
 
           // Update DOM for currently rendered pages
           document.querySelectorAll('.page-rotator-item').forEach((item) => {
-            const pageIndex = parseInt((item as HTMLElement).dataset.pageIndex || '0');
+            const pageIndex = parseInt(
+              (item as HTMLElement).dataset.pageIndex || '0'
+            );
             const newRotation = rotationState[pageIndex];
             (item as HTMLElement).dataset.rotation = newRotation.toString();
 
@@ -473,7 +498,8 @@ async function handleSinglePdfUpload(toolId, file) {
 
       addBtn.onclick = () => {
         const fieldWrapper = document.createElement('div');
-        fieldWrapper.className = 'flex flex-col sm:flex-row items-stretch sm:items-center gap-2 custom-field-wrapper';
+        fieldWrapper.className =
+          'flex flex-col sm:flex-row items-stretch sm:items-center gap-2 custom-field-wrapper';
 
         const keyInput = document.createElement('input');
         keyInput.type = 'text';
@@ -515,7 +541,9 @@ async function handleSinglePdfUpload(toolId, file) {
 
     // Setup quality sliders for image conversion tools
     if (toolId === 'pdf-to-jpg') {
-      const qualitySlider = document.getElementById('jpg-quality') as HTMLInputElement;
+      const qualitySlider = document.getElementById(
+        'jpg-quality'
+      ) as HTMLInputElement;
       const qualityValue = document.getElementById('jpg-quality-value');
       if (qualitySlider && qualityValue) {
         const updateValue = () => {
@@ -527,7 +555,9 @@ async function handleSinglePdfUpload(toolId, file) {
     }
 
     if (toolId === 'pdf-to-png') {
-      const qualitySlider = document.getElementById('png-quality') as HTMLInputElement;
+      const qualitySlider = document.getElementById(
+        'png-quality'
+      ) as HTMLInputElement;
       const qualityValue = document.getElementById('png-quality-value');
       if (qualitySlider && qualityValue) {
         const updateValue = () => {
@@ -539,7 +569,9 @@ async function handleSinglePdfUpload(toolId, file) {
     }
 
     if (toolId === 'pdf-to-webp') {
-      const qualitySlider = document.getElementById('webp-quality') as HTMLInputElement;
+      const qualitySlider = document.getElementById(
+        'webp-quality'
+      ) as HTMLInputElement;
       const qualityValue = document.getElementById('webp-quality-value');
       if (qualitySlider && qualityValue) {
         const updateValue = () => {
@@ -634,7 +666,9 @@ async function handleMultiFileUpload(toolId) {
     const imageList = document.getElementById('image-list');
 
     const renderedFiles = new Set(
-      Array.from(imageList.querySelectorAll('li')).map(li => li.dataset.fileName)
+      Array.from(imageList.querySelectorAll('li')).map(
+        (li) => li.dataset.fileName
+      )
     );
 
     state.files.forEach((file) => {
@@ -658,7 +692,8 @@ async function handleMultiFileUpload(toolId) {
       li.dataset.fileName = file.name;
 
       const wrapper = document.createElement('div');
-      wrapper.className = 'w-full h-36 sm:h-40 md:h-44 bg-gray-900 rounded-md border-2 border-gray-600 flex items-center justify-center overflow-hidden';
+      wrapper.className =
+        'w-full h-36 sm:h-40 md:h-44 bg-gray-900 rounded-md border-2 border-gray-600 flex items-center justify-center overflow-hidden';
 
       const img = document.createElement('img');
       img.src = url;
@@ -675,7 +710,9 @@ async function handleMultiFileUpload(toolId) {
     });
 
     const syncStateWithDOM = () => {
-      const domOrder = Array.from(imageList.querySelectorAll('li')).map(li => li.dataset.fileName);
+      const domOrder = Array.from(imageList.querySelectorAll('li')).map(
+        (li) => li.dataset.fileName
+      );
       state.files.sort((a, b) => {
         const aIndex = domOrder.indexOf(a.name);
         const bIndex = domOrder.indexOf(b.name);
@@ -688,7 +725,7 @@ async function handleMultiFileUpload(toolId) {
         animation: 150,
         onEnd: () => {
           syncStateWithDOM();
-        }
+        },
       });
     }
 
@@ -697,10 +734,13 @@ async function handleMultiFileUpload(toolId) {
     const opts = document.getElementById('image-to-pdf-options');
     if (opts && opts.classList.contains('hidden')) {
       opts.classList.remove('hidden');
-      const slider = document.getElementById('image-pdf-quality') as HTMLInputElement;
+      const slider = document.getElementById(
+        'image-pdf-quality'
+      ) as HTMLInputElement;
       const value = document.getElementById('image-pdf-quality-value');
       if (slider && value) {
-        const update = () => (value.textContent = `${Math.round(parseFloat(slider.value) * 100)}%`);
+        const update = () =>
+          (value.textContent = `${Math.round(parseFloat(slider.value) * 100)}%`);
         slider.addEventListener('input', update);
         update();
       }
@@ -708,7 +748,9 @@ async function handleMultiFileUpload(toolId) {
   }
 
   if (toolId === 'pdf-to-jpg') {
-    const qualitySlider = document.getElementById('jpg-quality') as HTMLInputElement;
+    const qualitySlider = document.getElementById(
+      'jpg-quality'
+    ) as HTMLInputElement;
     const qualityValue = document.getElementById('jpg-quality-value');
     if (qualitySlider && qualityValue) {
       const updateValue = () => {
@@ -720,7 +762,9 @@ async function handleMultiFileUpload(toolId) {
   }
 
   if (toolId === 'pdf-to-png') {
-    const qualitySlider = document.getElementById('png-quality') as HTMLInputElement;
+    const qualitySlider = document.getElementById(
+      'png-quality'
+    ) as HTMLInputElement;
     const qualityValue = document.getElementById('png-quality-value');
     if (qualitySlider && qualityValue) {
       const updateValue = () => {
@@ -732,7 +776,9 @@ async function handleMultiFileUpload(toolId) {
   }
 
   if (toolId === 'pdf-to-webp') {
-    const qualitySlider = document.getElementById('webp-quality') as HTMLInputElement;
+    const qualitySlider = document.getElementById(
+      'webp-quality'
+    ) as HTMLInputElement;
     const qualityValue = document.getElementById('webp-quality-value');
     if (qualitySlider && qualityValue) {
       const updateValue = () => {
@@ -760,11 +806,23 @@ export function setupFileInputHandler(toolId) {
     if (newFiles.length === 0) return;
 
     if (toolId === 'image-to-pdf') {
-      const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/bmp', 'image/tiff'];
-      const validFiles = newFiles.filter(file => validTypes.includes(file.type));
+      const validTypes = [
+        'image/jpeg',
+        'image/png',
+        'image/webp',
+        'image/gif',
+        'image/bmp',
+        'image/tiff',
+      ];
+      const validFiles = newFiles.filter((file) =>
+        validTypes.includes(file.type)
+      );
 
       if (validFiles.length < newFiles.length) {
-        showAlert('Invalid Files', 'Some files were skipped because they are not supported images.');
+        showAlert(
+          'Invalid Files',
+          'Some files were skipped because they are not supported images.'
+        );
       }
 
       newFiles = validFiles;
@@ -790,7 +848,12 @@ export function setupFileInputHandler(toolId) {
     }
 
     if (isMultiFileTool) {
-      if (toolId === 'txt-to-pdf' || toolId === 'compress' || toolId === 'extract-attachments' || toolId === 'flatten') {
+      if (
+        toolId === 'txt-to-pdf' ||
+        toolId === 'compress' ||
+        toolId === 'extract-attachments' ||
+        toolId === 'flatten'
+      ) {
         const processBtn = document.getElementById('process-btn');
         if (processBtn) {
           (processBtn as HTMLButtonElement).disabled = false;
@@ -831,6 +894,40 @@ export function setupFileInputHandler(toolId) {
           }
         };
       }
+    } else if (toolId === 'edit') {
+      const file = state.files[0];
+      if (!file) return;
+
+      const pdfWrapper = document.getElementById('embed-pdf-wrapper');
+      const pdfContainer = document.getElementById('embed-pdf-container');
+
+      if (!pdfContainer) return;
+
+      pdfContainer.textContent = ''; // Clear safely
+
+      if (state.currentPdfUrl) {
+        URL.revokeObjectURL(state.currentPdfUrl);
+      }
+      pdfWrapper.classList.remove('hidden');
+      const fileURL = URL.createObjectURL(file);
+      state.currentPdfUrl = fileURL;
+
+      const { default: EmbedPDF } = await import('embedpdf-snippet');
+      EmbedPDF.init({
+        type: 'container',
+        target: pdfContainer,
+        src: fileURL,
+        worker: true,
+        wasmUrl: embedPdfWasmUrl,
+      });
+
+      const backBtn = document.getElementById('back-to-grid');
+      const urlRevoker = () => {
+        URL.revokeObjectURL(fileURL);
+        state.currentPdfUrl = null;
+        backBtn.removeEventListener('click', urlRevoker);
+      };
+      backBtn.addEventListener('click', urlRevoker);
     }
   };
 
@@ -849,7 +946,7 @@ export function setupFileInputHandler(toolId) {
     const clearBtn = document.getElementById('clear-files-btn');
     if (clearBtn) {
       clearBtn.addEventListener('click', () => {
-        activeImageUrls.forEach(url => URL.revokeObjectURL(url));
+        activeImageUrls.forEach((url) => URL.revokeObjectURL(url));
         activeImageUrls.clear();
 
         state.files = [];
