@@ -279,6 +279,6 @@ export function getPDFDocument(src: any) {
   // This is required for PDF.js v5+ to load OpenJPEG for certain images
   return pdfjsLib.getDocument({
     ...params,
-    wasmUrl: '/pdfjs-viewer/wasm/',
+    wasmUrl: import.meta.env.BASE_URL + '/pdfjs-viewer/wasm/',
   });
 }

@@ -27,7 +27,7 @@ export async function setupFormFiller() {
     const blobUrl = URL.createObjectURL(blob);
 
     viewerIframe = document.createElement('iframe');
-    viewerIframe.src = `/pdfjs-viewer/viewer.html?file=${encodeURIComponent(blobUrl)}`;
+    viewerIframe.src = `${import.meta.env.BASE_URL || ''}/pdfjs-viewer/viewer.html?file=${encodeURIComponent(blobUrl)}`;
     viewerIframe.style.width = '100%';
     viewerIframe.style.height = '100%';
     viewerIframe.style.border = 'none';
