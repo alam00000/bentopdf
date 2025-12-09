@@ -74,7 +74,7 @@ async function loadPdfInViewer(file: File) {
   iframe.className = 'w-full h-full border-0'
   iframe.allowFullscreen = true
 
-  const viewerUrl = new URL('/pdfjs-annotation-viewer/web/viewer.html', window.location.origin)
+  const viewerUrl = new URL(import.meta.env.BASE_URL + '/pdfjs-annotation-viewer/web/viewer.html', window.location.origin)
   iframe.src = `${viewerUrl.toString()}?file=${encodeURIComponent(currentBlobUrl)}`
 
   iframe.addEventListener('load', () => {

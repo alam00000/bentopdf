@@ -1,4 +1,4 @@
-self.importScripts('/coherentpdf.browser.min.js');
+self.importScripts(import.meta.env.BASE_URL + '/coherentpdf.browser.min.js');
 
 function convertJSONsToPDFInWorker(fileBuffers, fileNames) {
   try {
