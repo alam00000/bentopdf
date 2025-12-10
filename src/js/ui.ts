@@ -1812,7 +1812,7 @@ Right
 
     'sign-pdf': () => `
                                                                                                                                                                         <h2 class="text-2xl font-bold text-white mb-4" > Sign PDF </h2>
-                                                                                                                                                                            <p class="mb-6 text-gray-400" > Upload a PDF to sign it using the built-in PDF.js viewer.Look for the <strong > signature / pen tool < /strong> in the toolbar to add your signature.</p >
+                                                                                                                                                                            <p class="mb-6 text-gray-400" > Upload a PDF to sign it using the built-in PDF.js viewer. Look for the <strong > signature / pen tool </strong > in the toolbar to add your signature.</p >
                                                                                                                                                                                 ${createFileInputHTML()}
     <div id = "file-display-area" class="mt-4 space-y-2" > </div>
 
