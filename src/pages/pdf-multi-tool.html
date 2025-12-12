@@ -9,7 +9,10 @@
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <link rel="apple-touch-icon" href="/images/favicon.png" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link href="../../src/css/styles.css" rel="stylesheet" />
+  <link rel="alternate" hreflang="en" href="/en/pdf-multi-tool.html" />
+  <link rel="alternate" hreflang="de" href="/de/pdf-multi-tool.html" />
+  <link rel="alternate" hreflang="x-default" href="/en/pdf-multi-tool.html" />
+  <link href="/src/css/styles.css" rel="stylesheet" />
 
   <style>
     /* Hide scrollbar for toolbar overflow */
@@ -46,9 +49,9 @@
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0 flex items-center">
-          <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+          <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
           <span class="text-white font-bold text-xl ml-2">
-            <a href="../../index.html">BentoPDF</a>
+            <a href="/">BentoPDF</a>
           </span>
           <span class="text-gray-400 ml-3 text-sm sm:text-base">PDF Multi Tool</span>
         </div>
@@ -240,7 +243,8 @@
   <input type="file" id="insert-pdf-input" accept="application/pdf" class="hidden">
 
   <!-- Scripts -->
-  <script type="module" src="../js/logic/pdf-multi-tool.ts"></script>
+  <script type="module" src="/src/js/logic/pdf-multi-tool.ts"></script>
+  <script type="module" src="/src/js/main.ts"></script>
 </body>
 
 </html>

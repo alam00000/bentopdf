@@ -1,0 +1,279 @@
+{
+    "categories": {
+        "popularTools": "Popular Tools",
+        "editAnnotate": "Edit & Annotate",
+        "convertToPdf": "Convert to PDF",
+        "convertFromPdf": "Convert from PDF",
+        "organizeManage": "Organize & Manage",
+        "optimizeRepair": "Optimize & Repair",
+        "securePdf": "Secure PDF"
+    },
+    "pdfMultiTool": {
+        "name": "PDF Multi Tool",
+        "subtitle": "Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface."
+    },
+    "mergePdf": {
+        "name": "Merge PDF",
+        "subtitle": "Combine multiple PDFs into one file. Preserves Bookmarks."
+    },
+    "splitPdf": {
+        "name": "Split PDF",
+        "subtitle": "Extract a range of pages into a new PDF."
+    },
+    "compressPdf": {
+        "name": "Compress PDF",
+        "subtitle": "Reduce the file size of your PDF."
+    },
+    "pdfEditor": {
+        "name": "PDF Editor",
+        "subtitle": "Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs."
+    },
+    "jpgToPdf": {
+        "name": "JPG to PDF",
+        "subtitle": "Create a PDF from one or more JPG images."
+    },
+    "signPdf": {
+        "name": "Sign PDF",
+        "subtitle": "Draw, type, or upload your signature."
+    },
+    "cropPdf": {
+        "name": "Crop PDF",
+        "subtitle": "Trim the margins of every page in your PDF."
+    },
+    "extractPages": {
+        "name": "Extract Pages",
+        "subtitle": "Save a selection of pages as new files."
+    },
+    "duplicateOrganize": {
+        "name": "Duplicate & Organize",
+        "subtitle": "Duplicate, reorder, and delete pages."
+    },
+    "deletePages": {
+        "name": "Delete Pages",
+        "subtitle": "Remove specific pages from your document."
+    },
+    "editBookmarks": {
+        "name": "Edit Bookmarks",
+        "subtitle": "Add, edit, import, delete and extract PDF bookmarks."
+    },
+    "tableOfContents": {
+        "name": "Table of Contents",
+        "subtitle": "Generate a table of contents page from PDF bookmarks."
+    },
+    "pageNumbers": {
+        "name": "Page Numbers",
+        "subtitle": "Insert page numbers into your document."
+    },
+    "addWatermark": {
+        "name": "Add Watermark",
+        "subtitle": "Stamp text or an image over your PDF pages."
+    },
+    "headerFooter": {
+        "name": "Header & Footer",
+        "subtitle": "Add text to the top and bottom of pages."
+    },
+    "invertColors": {
+        "name": "Invert Colors",
+        "subtitle": "Create a \"dark mode\" version of your PDF."
+    },
+    "backgroundColor": {
+        "name": "Background Color",
+        "subtitle": "Change the background color of your PDF."
+    },
+    "changeTextColor": {
+        "name": "Change Text Color",
+        "subtitle": "Change the color of text in your PDF."
+    },
+    "addStamps": {
+        "name": "Add Stamps",
+        "subtitle": "Add image stamps to your PDF using the annotation toolbar."
+    },
+    "removeAnnotations": {
+        "name": "Remove Annotations",
+        "subtitle": "Strip comments, highlights, and links."
+    },
+    "pdfFormFiller": {
+        "name": "PDF Form Filler",
+        "subtitle": "Fill in forms directly in the browser. Also supports XFA forms."
+    },
+    "createPdfForm": {
+        "name": "Create PDF Form",
+        "subtitle": "Create fillable PDF forms with drag-and-drop text fields."
+    },
+    "removeBlankPages": {
+        "name": "Remove Blank Pages",
+        "subtitle": "Automatically detect and delete blank pages."
+    },
+    "imageToPdf": {
+        "name": "Image to PDF",
+        "subtitle": "Convert JPG, PNG, WebP, BMP, TIFF, SVG, HEIC to PDF."
+    },
+    "pngToPdf": {
+        "name": "PNG to PDF",
+        "subtitle": "Create a PDF from one or more PNG images."
+    },
+    "webpToPdf": {
+        "name": "WebP to PDF",
+        "subtitle": "Create a PDF from one or more WebP images."
+    },
+    "svgToPdf": {
+        "name": "SVG to PDF",
+        "subtitle": "Create a PDF from one or more SVG images."
+    },
+    "bmpToPdf": {
+        "name": "BMP to PDF",
+        "subtitle": "Create a PDF from one or more BMP images."
+    },
+    "heicToPdf": {
+        "name": "HEIC to PDF",
+        "subtitle": "Create a PDF from one or more HEIC images."
+    },
+    "tiffToPdf": {
+        "name": "TIFF to PDF",
+        "subtitle": "Create a PDF from one or more TIFF images."
+    },
+    "textToPdf": {
+        "name": "Text to PDF",
+        "subtitle": "Convert a plain text file into a PDF."
+    },
+    "jsonToPdf": {
+        "name": "JSON to PDF",
+        "subtitle": "Convert JSON files to PDF format."
+    },
+    "pdfToJpg": {
+        "name": "PDF to JPG",
+        "subtitle": "Convert each PDF page into a JPG image."
+    },
+    "pdfToPng": {
+        "name": "PDF to PNG",
+        "subtitle": "Convert each PDF page into a PNG image."
+    },
+    "pdfToWebp": {
+        "name": "PDF to WebP",
+        "subtitle": "Convert each PDF page into a WebP image."
+    },
+    "pdfToBmp": {
+        "name": "PDF to BMP",
+        "subtitle": "Convert each PDF page into a BMP image."
+    },
+    "pdfToTiff": {
+        "name": "PDF to TIFF",
+        "subtitle": "Convert each PDF page into a TIFF image."
+    },
+    "pdfToGreyscale": {
+        "name": "PDF to Greyscale",
+        "subtitle": "Convert all colors to black and white."
+    },
+    "pdfToJson": {
+        "name": "PDF to JSON",
+        "subtitle": "Convert PDF files to JSON format."
+    },
+    "ocrPdf": {
+        "name": "OCR PDF",
+        "subtitle": "Make a PDF searchable and copyable."
+    },
+    "alternateMix": {
+        "name": "Alternate & Mix Pages",
+        "subtitle": "Merge PDFs by alternating pages from each PDF. Preserves Bookmarks."
+    },
+    "addAttachments": {
+        "name": "Add Attachments",
+        "subtitle": "Embed one or more files into your PDF."
+    },
+    "extractAttachments": {
+        "name": "Extract Attachments",
+        "subtitle": "Extract all embedded files from PDF(s) as a ZIP."
+    },
+    "editAttachments": {
+        "name": "Edit Attachments",
+        "subtitle": "View or remove attachments in your PDF."
+    },
+    "dividePages": {
+        "name": "Divide Pages",
+        "subtitle": "Divide pages horizontally or vertically."
+    },
+    "addBlankPage": {
+        "name": "Add Blank Page",
+        "subtitle": "Insert an empty page anywhere in your PDF."
+    },
+    "reversePages": {
+        "name": "Reverse Pages",
+        "subtitle": "Flip the order of all pages in your document."
+    },
+    "rotatePdf": {
+        "name": "Rotate PDF",
+        "subtitle": "Turn pages in 90-degree increments."
+    },
+    "nUpPdf": {
+        "name": "N-Up PDF",
+        "subtitle": "Arrange multiple pages onto a single sheet."
+    },
+    "combineToSinglePage": {
+        "name": "Combine to Single Page",
+        "subtitle": "Stitch all pages into one continuous scroll."
+    },
+    "viewMetadata": {
+        "name": "View Metadata",
+        "subtitle": "Inspect the hidden properties of your PDF."
+    },
+    "editMetadata": {
+        "name": "Edit Metadata",
+        "subtitle": "Change the author, title, and other properties."
+    },
+    "pdfsToZip": {
+        "name": "PDFs to ZIP",
+        "subtitle": "Package multiple PDF files into a ZIP archive."
+    },
+    "comparePdfs": {
+        "name": "Compare PDFs",
+        "subtitle": "Compare two PDFs side by side."
+    },
+    "posterizePdf": {
+        "name": "Posterize PDF",
+        "subtitle": "Split a large page into multiple smaller pages."
+    },
+    "fixPageSize": {
+        "name": "Fix Page Size",
+        "subtitle": "Standardize all pages to a uniform size."
+    },
+    "linearizePdf": {
+        "name": "Linearize PDF",
+        "subtitle": "Optimize PDF for fast web viewing."
+    },
+    "pageDimensions": {
+        "name": "Page Dimensions",
+        "subtitle": "Analyze page size, orientation, and units."
+    },
+    "removeRestrictions": {
+        "name": "Remove Restrictions",
+        "subtitle": "Remove password protection and security restrictions associated with digitally signed PDF files."
+    },
+    "repairPdf": {
+        "name": "Repair PDF",
+        "subtitle": "Recover data from corrupted or damaged PDF files."
+    },
+    "encryptPdf": {
+        "name": "Encrypt PDF",
+        "subtitle": "Lock your PDF by adding a password."
+    },
+    "sanitizePdf": {
+        "name": "Sanitize PDF",
+        "subtitle": "Remove metadata, annotations, scripts, and more."
+    },
+    "decryptPdf": {
+        "name": "Decrypt PDF",
+        "subtitle": "Unlock PDF by removing password protection."
+    },
+    "flattenPdf": {
+        "name": "Flatten PDF",
+        "subtitle": "Make form fields and annotations non-editable."
+    },
+    "removeMetadata": {
+        "name": "Remove Metadata",
+        "subtitle": "Strip hidden data from your PDF."
+    },
+    "changePermissions": {
+        "name": "Change Permissions",
+        "subtitle": "Set or change user permissions on a PDF."
+    }
+}

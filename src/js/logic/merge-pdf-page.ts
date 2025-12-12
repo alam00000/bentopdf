@@ -435,7 +435,7 @@ export async function refreshMergeUI() {
     if (!fileModeBtn || !pageModeBtn || !filePanel || !pagePanel || !fileList) return;
 
     fileList.textContent = ''; // Clear list safely
-    (state.files as File[]).forEach((f) => {
+    (state.files as File[]).forEach((f, index) => {
         const doc = mergeState.pdfDocs[f.name];
         const pageCount = doc ? doc.numPages : 'N/A';
         const safeFileName = f.name.replace(/[^a-zA-Z0-9]/g, '_');
@@ -461,7 +461,10 @@ export async function refreshMergeUI() {
         mainDiv.append(nameSpan, dragHandle);
 
         const rangeDiv = document.createElement('div');
-        rangeDiv.className = 'mt-2';
+        rangeDiv.className = 'mt-2 flex items-center gap-2';
+
+        const inputWrapper = document.createElement('div');
+        inputWrapper.className = 'flex-1';
 
         const label = document.createElement('label');
         label.htmlFor = `range-${safeFileName}`;
@@ -475,11 +478,24 @@ export async function refreshMergeUI() {
             'w-full bg-gray-800 border border-gray-600 text-white rounded-md p-2 text-sm mt-1 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors';
         input.placeholder = 'Leave blank for all pages';
 
-        rangeDiv.append(label, input);
+        inputWrapper.append(label, input);
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'text-red-400 hover:text-red-300 p-2 flex-shrink-0 self-end';
+        deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+        deleteBtn.title = 'Remove file';
+        deleteBtn.onclick = (e) => {
+            e.stopPropagation();
+            state.files = state.files.filter((_, i) => i !== index);
+            updateUI();
+        };
+
+        rangeDiv.append(inputWrapper, deleteBtn);
         li.append(mainDiv, rangeDiv);
         fileList.appendChild(li);
     });
 
+    createIcons({ icons });
     initializeFileListSortable();
 
     const newFileModeBtn = fileModeBtn.cloneNode(true) as HTMLElement;
@@ -558,7 +574,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 state.files = [...state.files, ...Array.from(files)];
                 await updateUI();
             }
-            fileInput.value = '';
         });
 
         dropZone.addEventListener('dragover', (e) => {
@@ -584,13 +599,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        dropZone.addEventListener('click', () => {
-            fileInput.click();
+
+        fileInput.addEventListener('click', () => {
+            fileInput.value = '';
         });
     }
 
     if (addMoreBtn) {
         addMoreBtn.addEventListener('click', () => {
+            fileInput.value = '';
             fileInput.click();
         });
     }

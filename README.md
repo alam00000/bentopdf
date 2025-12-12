@@ -10,6 +10,14 @@
 
 ---
 
+## 📢 Join Us on Discord
+
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-7289da?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Bgq3Ay3f2w)
+
+Have questions, feature requests, or want to chat with the community? Join our Discord server!
+
+---
+
 ## 📜 Licensing
 
 BentoPDF is dual-licensed:
@@ -136,6 +144,19 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Fix Page Size**      | Standardize all pages to a uniform size.                           |
 | **Page Dimensions**    | Analyze page size, orientation, and units.                         |
 | **Remove Restrictions**| Remove password protection and security restrictions associated with digitally signed PDF files. |
+
+---
+
+## 🌍 Translations
+
+BentoPDF is available in multiple languages:
+
+| Language | Status |
+|----------|--------|
+| English  | [![English](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/en/common.json) |
+| German   | [![German](https://img.shields.io/badge/In_Progress-yellow?style=flat-square)](public/locales/de/common.json) |
+
+Want to help translate BentoPDF into your language? Check out our [Translation Guide](TRANSLATION.md)!
 
 ---
 
@@ -278,6 +299,36 @@ npx serve serve-test
 The website can be accessible at: ```http://localhost:3000/tools/bentopdf/```
 
 The `npm run package` command creates a `dist-{version}.zip` file that you can use for self-hosting.
+
+**Docker Subdirectory Deployment:**
+
+BentoPDF's Docker image also supports the `BASE_URL` build argument for subdirectory deployments:
+
+```bash
+# Build for subdirectory deployment
+docker build --build-arg BASE_URL=/bentopdf/ -t bentopdf .
+
+# Run the container
+docker run -p 3000:8080 bentopdf
+
+# The app will be accessible at http://localhost:3000/bentopdf/
+```
+
+**Combined with Simple Mode:**
+
+```bash
+# Build with both BASE_URL and SIMPLE_MODE
+docker build \
+  --build-arg BASE_URL=/tools/pdf/ \
+  --build-arg SIMPLE_MODE=true \
+  -t bentopdf-simple .
+
+docker run -p 3000:8080 bentopdf-simple
+```
+
+> **Important**: 
+> - Always include trailing slashes in `BASE_URL` (e.g., `/bentopdf/` not `/bentopdf`)
+> - The default value is `/` for root deployment
 
 ### 🚀 Run with Docker Compose (Recommended)
 
@@ -437,7 +488,7 @@ BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript*
 - **PDF to Office**: Converts PDF files into editable Word, Excel, and PowerPoint formats.
 - **Office to PDF**: Converts Word, Excel, and PowerPoint documents into optimized PDFs.
 
-Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/AP2Y97juZT).
+Contributions and discussions on the roadmap are welcome! Join the conversation via [Discord](https://discord.gg/Bgq3Ay3f2w).
 
 ---
 

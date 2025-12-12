@@ -69,7 +69,7 @@ export const formatBytes = (bytes: any, decimals = 1) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-export const downloadFile = (blob: any, filename: any) => {
+export const downloadFile = (blob: Blob, filename: string): void => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -89,12 +89,12 @@ export const readFileAsArrayBuffer = (file: any) => {
   });
 };
 
-export function parsePageRanges(rangeString: any, totalPages: any) {
+export function parsePageRanges(rangeString: string, totalPages: number): number[] {
   if (!rangeString || rangeString.trim() === '') {
     return Array.from({ length: totalPages }, (_, i) => i);
   }
 
-  const indices = new Set();
+  const indices = new Set<number>();
   const parts = rangeString.split(',');
 
   for (const part of parts) {
@@ -128,9 +128,10 @@ export function parsePageRanges(rangeString: any, totalPages: any) {
     }
   }
 
-  // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
+
   return Array.from(indices).sort((a, b) => a - b);
 }
+
 
 /**
  * Formats an ISO 8601 date string (e.g., "2008-02-21T17:15:56-08:00")

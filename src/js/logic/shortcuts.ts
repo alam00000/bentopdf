@@ -1,4 +1,3 @@
-import { setupToolInterface } from '../handlers/toolSelectionHandler.js';
 import { categories } from '../config/tools.js';
 
 export class ShortcutsManager {
@@ -181,14 +180,9 @@ export class ShortcutsManager {
                     const tool = allTools.find(t => this.getToolId(t) === toolId);
 
                     if (tool && (tool as any).href) {
+                        // All tools now use href - navigate to the page
                         const href = (tool as any).href;
                         window.location.href = href.startsWith('/') ? href : `/${href}`;
-                    } else if (tool && (tool as any).id) {
-                        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-                            setupToolInterface(toolId);
-                        } else {
-                            window.location.href = `/#tool-${toolId}`;
-                        }
                     }
                     return;
                 }

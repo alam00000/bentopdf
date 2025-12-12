@@ -14,10 +14,10 @@ export function applyFullWidthMode(enabled: boolean) {
     const pageUploaders = document.querySelectorAll('#tool-uploader');
     pageUploaders.forEach((uploader) => {
         if (enabled) {
-            uploader.classList.remove('max-w-2xl', 'max-w-5xl');
+            uploader.classList.remove('max-w-2xl', 'max-w-4xl', 'max-w-5xl');
         } else {
             // Restore original max-width if not already present
-            if (!uploader.classList.contains('max-w-2xl') && !uploader.classList.contains('max-w-5xl')) {
+            if (!uploader.classList.contains('max-w-2xl') && !uploader.classList.contains('max-w-4xl') && !uploader.classList.contains('max-w-5xl')) {
                 uploader.classList.add('max-w-2xl');
             }
         }

@@ -1,7 +1,7 @@
 {
   "name": "bento-pdf",
   "private": true,
-  "version": "1.10.5",
+  "version": "1.11.1",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
@@ -57,6 +57,9 @@
     "cropperjs": "^1.6.1",
     "heic2any": "^0.0.4",
     "html2canvas": "^1.4.1",
+    "i18next": "^25.7.2",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "i18next-http-backend": "^3.0.2",
     "javascript-obfuscator": "^4.1.1",
     "jspdf": "^3.0.3",
     "jszip": "^3.10.1",

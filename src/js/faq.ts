@@ -1,5 +1,5 @@
 // Simple FAQ accordion handler for standalone pages
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     const faqAccordion = document.getElementById('faq-accordion');
     if (faqAccordion) {
         faqAccordion.addEventListener('click', (e) => {
