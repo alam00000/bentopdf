@@ -6,6 +6,7 @@ ARG BASE_URL=
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
+COPY vendor ./vendor
 RUN npm ci
 COPY . .
 
