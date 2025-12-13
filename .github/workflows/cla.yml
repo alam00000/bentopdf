@@ -28,7 +28,7 @@ jobs:
       )
     steps:
       - name: "CLA Assistant"
-        uses: cla-assistant/github-action@v2.5.0
+        uses: cla-assistant/github-action@v2.6.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_ASSISTANT_TOKEN }}
