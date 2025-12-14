@@ -1,0 +1,84 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "licensing": "Licence",
+    "allTools": "Tous les outils",
+    "openMainMenu": "Ouvrir le menu principal",
+    "language": "Langue"
+  },
+  "hero": {
+    "title": "La",
+    "pdfToolkit": "boîte à outils PDF",
+    "builtForPrivacy": "respectueuse de la confidentialité",
+    "noSignups": "Sans inscription",
+    "unlimitedUse": "Utilisation illimitée",
+    "worksOffline": "Fonctionne hors ligne",
+    "startUsing": "Commencer maintenant"
+  },
+  "usedBy": {
+    "title": "Utilisé par des entreprises et des professionnels chez"
+  },
+  "features": {
+    "title": "Pourquoi choisir",
+    "bentoPdf": "BentoPDF ?",
+    "noSignup": {
+      "title": "Sans inscription",
+      "description": "Démarrez instantanément, sans compte ni e-mail."
+    },
+    "noUploads": {
+      "title": "Aucun téléversement",
+      "description": "100 % côté client, vos fichiers ne quittent jamais votre appareil."
+    },
+    "foreverFree": {
+      "title": "Gratuit pour toujours",
+      "description": "Tous les outils, sans essai ni mur payant."
+    },
+    "noLimits": {
+      "title": "Sans limites",
+      "description": "Utilisation libre, sans restriction cachée."
+    },
+    "batchProcessing": {
+      "title": "Traitement par lots",
+      "description": "Traitez un nombre illimité de PDF en une seule fois."
+    },
+    "lightningFast": {
+      "title": "Ultra rapide",
+      "description": "Traitement instantané des PDF, sans attente."
+    }
+  },
+  "tools": {
+    "title": "Commencer avec",
+    "toolsLabel": "Outils",
+    "subtitle": "Cliquez sur un outil pour ouvrir le sélecteur de fichiers",
+    "searchPlaceholder": "Rechercher un outil (ex. « fractionner », « organiser »...)",
+    "backToTools": "Retour aux outils"
+  },
+  "upload": {
+    "clickToSelect": "Cliquez pour sélectionner un fichier",
+    "orDragAndDrop": "ou glissez-déposez",
+    "pdfOrImages": "PDF ou images",
+    "filesNeverLeave": "Vos fichiers ne quittent jamais votre appareil.",
+    "addMore": "Ajouter d’autres fichiers",
+    "clearAll": "Tout effacer"
+  },
+  "loader": {
+    "processing": "Traitement en cours..."
+  },
+  "alert": {
+    "title": "Alerte",
+    "ok": "OK"
+  },
+  "preview": {
+    "title": "Aperçu du document",
+    "downloadAsPdf": "Télécharger en PDF",
+    "close": "Fermer"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "shortcuts": "Raccourcis",
+    "preferences": "Préférences",
+    "displayPreferences": "Préférences d’affichage",
+    "searchShortcuts": "Rechercher des raccourcis...",
+    "shortcutsInfo": "Maintenez les touches enfoncées pour définir un rac
