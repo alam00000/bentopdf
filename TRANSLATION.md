@@ -22,11 +22,13 @@ BentoPDF uses **i18next** for internationalization (i18n). Currently supported l
 - **English** (`en`) - Default
 - **German** (`de`)
 - **Vietnamese** (`vi`)
+- **Spanish** (`es`)
 
 The app automatically detects the language from the URL path:
 - `/en/` → English
 - `/de/` → German
 - `/vi/` → Vietnamese
+- `/es/` → Spanish
 
 ---
 
@@ -39,12 +41,12 @@ The app automatically detects the language from the URL path:
 3. Change the translation value
 4. Save and test
 
-**To add a new language (e.g., Spanish):**
+**To add a new language (e.g., French):**
 
-1. Copy `public/locales/en/common.json` to `public/locales/es/common.json`
-2. Translate all values in `es/common.json`
-3. Add Spanish to `supportedLanguages` in `src/js/i18n/i18n.ts`
-4. Add Spanish name to `languageNames` in `src/js/i18n/i18n.ts`
+1. Copy `public/locales/en/common.json` to `public/locales/fr/common.json`
+2. Translate all values in `fr/common.json`
+3. Add French to `supportedLanguages` in `src/js/i18n/i18n.ts`
+4. Add French name to `languageNames` in `src/js/i18n/i18n.ts`
 5. Test thoroughly
 
 ---
@@ -101,13 +103,16 @@ Edit `src/js/i18n/i18n.ts`:
 
 ```typescript
 // Add 'fr' to supported languages
-export const supportedLanguages = ['en', 'de', 'fr'] as const;
+export const supportedLanguages = ['en', 'de', 'zh', 'vi', 'es', 'fr'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 // Add French display name
 export const languageNames: Record<SupportedLanguage, string> = {
     en: 'English',
     de: 'Deutsch',
+    zh: '中文',
+    vi: 'Tiếng Việt',
+    es: 'Español',
     fr: 'Français',  // ← Add this
 };
 ```
@@ -120,6 +125,15 @@ npm run dev
 
 # Visit the French version
 # http://localhost:5173/fr/
+```
+
+### Step 5: Update Vite Configuration
+
+Don't forget to update the routing in `vite.config.ts`:
+
+```typescript
+// Add 'fr' to the language match
+const langMatch = url.match(/^\/(en|de|zh|vi|es|fr)(\/.*)?$/);
 ```
 
 ---
@@ -265,6 +279,7 @@ In `common.json`:
    - English: `http://localhost:5173/en/`
    - German: `http://localhost:5173/de/`
    - Vietnamese: `http://localhost:5173/vi/`
+   - Spanish: `http://localhost:5173/es/`
    - Your new language: `http://localhost:5173/fr/`
 
 3. **Check these pages:**
@@ -430,7 +445,10 @@ export const languageNames = {
 When adding a new language, make sure these files are updated:
 
 - [ ] `public/locales/{lang}/common.json` - Main translation file
+- [ ] `public/locales/{lang}/tools.json` - Tools translation file
 - [ ] `src/js/i18n/i18n.ts` - Add to `supportedLanguages` and `languageNames`
+- [ ] `vite.config.ts` - Add language to routing regex
+- [ ] Update hreflang tags in HTML files for SEO
 - [ ] Test all pages: homepage, about, contact, FAQ, tool pages
 - [ ] Test settings modal and shortcuts
 - [ ] Test language switcher in footer
@@ -475,6 +493,7 @@ Current translation coverage:
 | English  | `en` | ✅ Complete | Core team |
 | German   | `de` | 🚧 In Progress | Core team |
 | Vietnamese | `vi` | ✅ Complete | Community |
+| Spanish | `es` | ✅ Complete | Community |
 | Your Language | `??` | 🚧 In Progress | You? |
 
 ---
