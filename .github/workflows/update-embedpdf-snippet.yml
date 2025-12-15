@@ -123,7 +123,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.gate.outputs.run == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: 'chore: update embedpdf snippet'
           title: 'Update vendored EmbedPDF snippet'
