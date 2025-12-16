@@ -1,0 +1,282 @@
+{
+    "categories": {
+        "popularTools": "Popüler Araçlar",
+        "editAnnotate": "Düzenle ve Açıklama Ekle",
+        "convertToPdf": "PDF'ye Dönüştür",
+        "convertFromPdf": "PDF'den Dönüştür",
+        "organizeManage": "Düzenle ve Yönet",
+        "optimizeRepair": "Optimize Et ve Onar",
+        "securePdf": "PDF Güvenceye Al"
+    },
+    "pdfMultiTool": {
+        "name": "PDF Çoklu Araç",
+        "subtitle": "Birleştir, Böl, Düzenle, Sil, Döndür, Boş Sayfa Ekle, Çıkar ve Tek bir arayüzde çoğalt."
+    },
+    "mergePdf": {
+        "name": "PDF Birleştir",
+        "subtitle": "Birden fazla PDF dosyasını tek bir dosyada birleştirin. Yer İşaretlerini Korur."
+    },
+    "splitPdf": {
+        "name": "PDF Böl",
+        "subtitle": "Belirli sayfaları yeni bir PDF olarak çıkarın."
+    },
+    "compressPdf": {
+        "name": "PDF Sıkıştır",
+        "subtitle": "PDF dosyanızın boyutunu küçültün."
+    },
+    "pdfEditor": {
+        "name": "PDF Düzenleyici",
+        "subtitle": "Açıklama ekleme, vurgulama, düzeltme, yorum ekleme, şekil/resim ekleme, arama ve PDF görüntüleme işlemleri."
+    },
+    "jpgToPdf": {
+        "name": "JPG'den PDF'ye",
+        "subtitle": "Bir veya daha fazla JPG resminden PDF oluşturun."
+    },
+    "signPdf": {
+        "name": "PDF İmzala",
+        "subtitle": "Çizerek, yazarak ya da imzanızı yükleyerek imzalayın."
+    },
+    "cropPdf": {
+        "name": "PDF Kırp",
+        "subtitle": "PDF'inizdeki her sayfanın kenar boşluklarını kırpın."
+    },
+    "extractPages": {
+        "name": "Sayfaları Çıkar",
+        "subtitle": "Seçili sayfaları yeni dosya olarak kaydedin."
+    },
+    "duplicateOrganize": {
+        "name": "Çoğalt ve Düzenle",
+        "subtitle": "Sayfaları çoğaltın, yeniden sıralayın ve silin."
+    },
+    "deletePages": {
+        "name": "Sayfa Sil",
+        "subtitle": "Belgenizden belirli sayfaları kaldırın."
+    },
+    "editBookmarks": {
+        "name": "Yer İşaretlerini Düzenle",
+        "subtitle": "PDF yer işaretleri ekleyin, düzenleyin, içe aktarın, silin ve çıkarın."
+    },
+    "tableOfContents": {
+        "name": "İçindekiler",
+        "subtitle": "PDF yer işaretlerinden bir içerik tablosu sayfası oluşturun."
+    },
+    "pageNumbers": {
+        "name": "Sayfa Numaraları",
+        "subtitle": "Belgenize sayfa numaraları ekleyin."
+    },
+    "addWatermark": {
+        "name": "Filigran Ekle",
+        "subtitle": "PDF sayfalarınızın üzerine metin veya bir resim yerleştirin."
+    },
+    "headerFooter": {
+        "name": "Başlık ve Altbilgi",
+        "subtitle": "Sayfaların en üstüne ve altına metin ekleyin."
+    },
+    "invertColors": {
+        "name": "Renkleri Ters Çevir",
+        "subtitle": "PDF'nizin \"koyu tema\" sürümünü oluşturun."
+    },
+    "backgroundColor": {
+        "name": "Arka Plan Rengi",
+        "subtitle": "PDF'nizin arka plan rengini değiştirin."
+    },
+    "changeTextColor": {
+        "name": "Metin Rengini Değiştir",
+        "subtitle": "PDF'deki metin rengini değiştirin."
+    },
+    "addStamps": {
+        "name": "Damga Ekle",
+        "subtitle": "Ek açıklama araç çubuğunu kullanarak PDF'nize resim damgaları ekleyin.",
+        "usernameLabel": "Damga Kullanıcı Adı",
+        "usernamePlaceholder": "Adınızı girin (damgalar için)",
+        "usernameHint": "Bu ad oluşturduğunuz damgalarda görünecektir."
+    },
+    "removeAnnotations": {
+        "name": "Açıklamaları Kaldır",
+        "subtitle": "Yorumları, vurguları ve bağlantıları kaldırın."
+    },
+    "pdfFormFiller": {
+        "name": "PDF Form Doldurucu",
+        "subtitle": "Tarayıcıda doğrudan formları doldurun. Ayrıca XFA formlarını da destekler."
+    },
+    "createPdfForm": {
+        "name": "PDF Form Oluştur",
+        "subtitle": "Sürükle-bırak metin alanları ile doldurulabilir PDF formlar oluşturun."
+    },
+    "removeBlankPages": {
+        "name": "Boş Sayfaları Kaldır",
+        "subtitle": "Boş sayfaları otomatik olarak tespit edip silin."
+    },
+    "imageToPdf": {
+        "name": "Resimden PDF'ye",
+        "subtitle": "JPG, PNG, WebP, BMP, TIFF, SVG, HEIC dosyalarını PDF'ye dönüştürün."
+    },
+    "pngToPdf": {
+        "name": "PNG'den PDF'ye",
+        "subtitle": "Bir veya daha fazla PNG resminden PDF oluşturun."
+    },
+    "webpToPdf": {
+        "name": "WebP'den PDF'ye",
+        "subtitle": "Bir veya daha fazla WebP resminden PDF oluşturun."
+    },
+    "svgToPdf": {
+        "name": "SVG'den PDF'ye",
+        "subtitle": "Bir veya daha fazla SVG resminden PDF oluşturun."
+    },
+    "bmpToPdf": {
+        "name": "BMP'den PDF'ye",
+        "subtitle": "Bir veya daha fazla BMP resminden PDF oluşturun."
+    },
+    "heicToPdf": {
+        "name": "HEIC'den PDF'ye",
+        "subtitle": "Bir veya daha fazla HEIC resminden PDF oluşturun."
+    },
+    "tiffToPdf": {
+        "name": "TIFF'den PDF'ye",
+        "subtitle": "Bir veya daha fazla TIFF resminden PDF oluşturun."
+    },
+    "textToPdf": {
+        "name": "Metinden PDF'ye",
+        "subtitle": "Düz metin dosyasını PDF'ye dönüştürün."
+    },
+    "jsonToPdf": {
+        "name": "JSON'dan PDF'ye",
+        "subtitle": "JSON dosyalarını PDF formatına dönüştürün."
+    },
+    "pdfToJpg": {
+        "name": "PDF'den JPG'ye",
+        "subtitle": "Her PDF sayfasını JPG resmi olarak dönüştürün."
+    },
+    "pdfToPng": {
+        "name": "PDF'den PNG'ye",
+        "subtitle": "Her PDF sayfasını PNG resmi olarak dönüştürün."
+    },
+    "pdfToWebp": {
+        "name": "PDF'den WebP'ye",
+        "subtitle": "Her PDF sayfasını WebP resmi olarak dönüştürün."
+    },
+    "pdfToBmp": {
+        "name": "PDF'den BMP'ye",
+        "subtitle": "Her PDF sayfasını BMP resmi olarak dönüştürün."
+    },
+    "pdfToTiff": {
+        "name": "PDF'den TIFF'ye",
+        "subtitle": "Her PDF sayfasını TIFF resmi olarak dönüştürün."
+    },
+    "pdfToGreyscale": {
+        "name": "PDF'yi Gri Tonlamaya Dönüştür",
+        "subtitle": "Tüm renkleri siyah-beyaza dönüştürün."
+    },
+    "pdfToJson": {
+        "name": "PDF'den JSON'a",
+        "subtitle": "PDF dosyalarını JSON formatına dönüştürün."
+    },
+    "ocrPdf": {
+        "name": "OCR PDF",
+        "subtitle": "PDF'yi aranabilir ve kopyalanabilir hâle getirin."
+    },
+    "alternateMix": {
+        "name": "Sayfaları Alternatif Karıştır",
+        "subtitle": "PDF'leri her birinden sayfaları alternatif olarak alarak birleştirin. Yer İşaretlerini Korur."
+    },
+    "addAttachments": {
+        "name": "Ek Dosyalar Ekle",
+        "subtitle": "Bir veya daha fazla dosyayı PDF'nize gömün."
+    },
+    "extractAttachments": {
+        "name": "Ek Dosyaları Çıkar",
+        "subtitle": "Tüm gömülü dosyaları PDF(ler)den ZIP olarak çıkarın."
+    },
+    "editAttachments": {
+        "name": "Ek Dosyaları Düzenle",
+        "subtitle": "PDF'nizdeki ekleri görüntüleyin veya kaldırın."
+    },
+    "dividePages": {
+        "name": "Sayfaları Böl",
+        "subtitle": "Sayfaları yatay veya dikey olarak bölün."
+    },
+    "addBlankPage": {
+        "name": "Boş Sayfa Ekle",
+        "subtitle": "PDF'nizin herhangi bir yerine boş bir sayfa ekleyin."
+    },
+    "reversePages": {
+        "name": "Sayfaları Ters Çevir",
+        "subtitle": "Belgedeki tüm sayfaların sırasını tersine çevirin."
+    },
+    "rotatePdf": {
+        "name": "PDF Döndür",
+        "subtitle": "Sayfaları 90 derecelik artışlarla döndürün."
+    },
+    "nUpPdf": {
+        "name": "N-Up PDF",
+        "subtitle": "Birden fazla sayfayı tek bir sayfaya yerleştirin."
+    },
+    "combineToSinglePage": {
+        "name": "Tek Sayfada Birleştir",
+        "subtitle": "Tüm sayfaları sürekli bir kaydırma olarak birleştirin."
+    },
+    "viewMetadata": {
+        "name": "Meta Verileri Görüntüle",
+        "subtitle": "PDF'nizin gizli özelliklerini inceleyin."
+    },
+    "editMetadata": {
+        "name": "Meta Verileri Düzenle",
+        "subtitle": "Yazar, başlık ve diğer özellikleri değiştirin."
+    },
+    "pdfsToZip": {
+        "name": "PDF'leri ZIP'e Dönüştür",
+        "subtitle": "Birden fazla PDF dosyasını ZIP arşivine paketleyin."
+    },
+    "comparePdfs": {
+        "name": "PDF'leri Karşılaştır",
+        "subtitle": "İki PDF'i yan yana karşılaştırın."
+    },
+    "posterizePdf": {
+        "name": "PDF'yi Posterleştir",
+        "subtitle": "Büyük bir sayfayı birden fazla küçük sayfaya bölün."
+    },
+    "fixPageSize": {
+        "name": "Sayfa Boyutunu Düzelt",
+        "subtitle": "Tüm sayfaları standart bir boyuta getirin."
+    },
+    "linearizePdf": {
+        "name": "PDF'yi Doğrusallaştır",
+        "subtitle": "PDF'yi hızlı web görüntülemesi için optimize edin."
+    },
+    "pageDimensions": {
+        "name": "Sayfa Boyutları",
+        "subtitle": "Sayfa boyutu, yönü ve ölçü birimlerini analiz edin."
+    },
+    "removeRestrictions": {
+        "name": "Kısıtlamaları Kaldır",
+        "subtitle": "Dijital olarak imzalanan PDF dosyalarıyla ilişkili parola korumasını ve güvenlik kısıtlamalarını kaldırın."
+    },
+    "repairPdf": {
+        "name": "PDF Onar",
+        "subtitle": "Bozulmuş veya zarar görmüş PDF dosyalarından veri kurtarın."
+    },
+    "encryptPdf": {
+        "name": "PDF Şifrele",
+        "subtitle": "PDF'nizi bir parola ekleyerek kilitleyin."
+    },
+    "sanitizePdf": {
+        "name": "PDF Temizle",
+        "subtitle": "Meta verileri, açıklamaları, komut dosyalarını ve daha fazlasını kaldırın."
+    },
+    "decryptPdf": {
+        "name": "PDF Şifresini Kaldır",
+        "subtitle": "PDF'nin kilidini parola korumasını kaldırarak açın."
+    },
+    "flattenPdf": {
+        "name": "PDF'yi Düzleştir",
+        "subtitle": "Form alanlarını ve açıklamaları düzenlenemez hâle getirin."
+    },
+    "removeMetadata": {
+        "name": "Meta Verileri Kaldır",
+        "subtitle": "PDF'nizden gizli verileri temizleyin."
+    },
+    "changePermissions": {
+        "name": "İzinleri Değiştir",
+        "subtitle": "Bir PDF üzerinde kullanıcı izinlerini ayarlayın veya değiştirin."
+    }
+}
