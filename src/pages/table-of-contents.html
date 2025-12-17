@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/table-of-contents.html" />
   <link rel="alternate" hreflang="de" href="/de/table-of-contents.html" />
+  <link rel="alternate" hreflang="es" href="/es/table-of-contents.html" />
   <link rel="alternate" hreflang="x-default" href="/en/table-of-contents.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -90,8 +91,8 @@
             <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select a file</span> <span
               data-i18n="upload.orDragAndDrop">or drag and drop</span>
           </p>
-          <p class="text-xs text-gray-500">A single PDF file</p>
-          <p class="text-xs text-gray-500">
+          <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
+          <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
             Your files never leave your device.
           </p>
         </div>
@@ -105,16 +106,16 @@
       <!-- Options Section -->
       <div class="mt-6 space-y-4">
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">
+          <label class="block text-sm font-medium text-gray-300 mb-2" data-i18n="toc.title">
             TOC Title
           </label>
           <input type="text" id="toc-title" value="Table of Contents"
             class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Table of Contents" />
+                 placeholder="Table of Contents" />
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">
+          <label class="block text-sm font-medium text-gray-300 mb-2" data-i18n="toc.fontSize">
             Font Size
           </label>
           <select id="font-size"
@@ -139,7 +140,7 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">
+          <label class="block text-sm font-medium text-gray-300 mb-2" data-i18n="toc.fontFamily">
             Font Family
           </label>
           <select id="font-family"
@@ -161,7 +162,7 @@
 
         <div class="flex items-center gap-2">
           <input type="checkbox" id="add-bookmark" checked class="w-4 h-4 accent-blue-500" />
-          <label for="add-bookmark" class="text-sm text-gray-300">
+          <label for="add-bookmark" class="text-sm text-gray-300" data-i18n="toc.addBookmarkToToc">
             Add bookmark for TOC page
           </label>
         </div>
@@ -169,7 +170,7 @@
 
       <!-- Generate Button -->
       <button id="generate-btn" disabled class="btn-gradient w-full mt-6">
-        <span id="generate-btn-text">Generate Table of Contents</span>
+        <span id="generate-btn-text" data-i18n="buttons.generateToc">Generate Table of Contents</span>
       </button>
 
       <!-- Status Message -->

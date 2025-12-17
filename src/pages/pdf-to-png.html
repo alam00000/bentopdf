@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/pdf-to-png.html" />
     <link rel="alternate" hreflang="de" href="/de/pdf-to-png.html" />
+    <link rel="alternate" hreflang="es" href="/es/pdf-to-png.html" />
     <link rel="alternate" hreflang="x-default" href="/en/pdf-to-png.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -83,7 +84,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -95,15 +96,15 @@
 
             <div id="options-panel" class="hidden mt-6">
                 <div class="mb-4">
-                    <label for="png-scale" class="block mb-2 text-sm font-medium text-gray-300">Image Scale</label>
+                    <label for="png-scale" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="pdfToPng.scale">Image Scale</label>
                     <div class="flex items-center gap-4">
                         <input type="range" id="png-scale" min="1.0" max="3.0" step="0.1" value="2.0" class="flex-1">
                         <span id="png-scale-value" class="text-white font-medium w-16 text-right">2.0x</span>
                     </div>
-                    <p class="mt-1 text-xs text-gray-400">Higher scale = better quality but larger file size</p>
+                    <p class="mt-1 text-xs text-gray-400" data-i18n="pdfToPng.scaleNote">Higher scale = better quality but larger file size</p>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full">Download All as ZIP</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.downloadAllZip">Download All as ZIP</button>
             </div>
 
         </div>

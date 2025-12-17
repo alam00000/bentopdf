@@ -11,6 +11,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="alternate" hreflang="en" href="/en/form-creator.html" />
     <link rel="alternate" hreflang="de" href="/de/form-creator.html" />
+    <link rel="alternate" hreflang="es" href="/es/form-creator.html" />
     <link rel="alternate" hreflang="x-default" href="/en/form-creator.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -75,7 +76,7 @@
             <button id="back-to-tools-upload"
                 class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
                 <i data-lucide="arrow-left" class="cursor-pointer"></i>
-                <span class="cursor-pointer">Back to Tools</span>
+                <span class="cursor-pointer" data-i18n="tools.backToTools">Back to Tools</span>
             </button>
 
             <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:createPdfForm.name">Create PDF Form</h1>
@@ -88,10 +89,10 @@
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
                     <p class="mb-2 text-sm text-gray-300">
-                        <span class="font-semibold">Click to select a PDF</span> <span
+                        <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select a PDF</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span>
                     </p>
-                    <p class="text-xs text-gray-500">Single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">Single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -107,7 +108,7 @@
                     <div class="w-full border-t border-gray-600"></div>
                 </div>
                 <div class="relative flex justify-center text-sm">
-                    <span class="px-4 bg-gray-800 text-gray-400 font-medium">OR</span>
+                    <span class="px-4 bg-gray-800 text-gray-400 font-medium" data-i18n="common.or">OR</span>
                 </div>
             </div>
 
@@ -115,7 +116,7 @@
                 <button id="blankPdfBtn"
                     class="w-full bg-gray-700 hover:bg-gray-600 text-white p-4 rounded-lg flex items-center justify-center gap-3 transition-colors">
                     <i data-lucide="file-plus" class="w-5 h-5"></i>
-                    <span class="font-semibold">Create Blank PDF</span>
+                    <span class="font-semibold" data-i18n="formCreator.createBlank">Create Blank PDF</span>
                 </button>
 
                 <div id="pageSizeSelector" class="mt-4 hidden">
@@ -161,7 +162,7 @@
             <button id="back-to-tools-creator"
                 class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
                 <i data-lucide="arrow-left" class="cursor-pointer"></i>
-                <span class="cursor-pointer">Back to Tools</span>
+                <span class="cursor-pointer" data-i18n="tools.backToTools">Back to Tools</span>
             </button>
 
             <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:createPdfForm.name">Create PDF Form</h1>
@@ -178,19 +179,19 @@
                     <div class="bg-gray-700 rounded-lg p-4">
                         <h2 class="font-semibold text-gray-200 mb-3 flex items-center gap-2">
                             <i data-lucide="settings" class="w-4 h-4"></i>
-                            Properties
+                            <span data-i18n="common.properties">Properties</span>
                         </h2>
                         <div id="propertiesPanel" class="space-y-3">
-                            <p class="text-gray-500 text-sm">Select a field to edit properties</p>
+                            <p class="text-gray-500 text-sm" data-i18n="formCreator.selectToEdit">Select a field to edit properties</p>
                         </div>
                     </div>
 
                     <!-- Field Count -->
                     <div class="mt-4 bg-gray-700 rounded-lg p-3 text-center">
                         <p class="text-sm text-gray-400">
-                            <span id="fieldCount" class="text-indigo-400 font-bold text-lg">0</span> field(s)
+                            <span id="fieldCount" class="text-indigo-400 font-bold text-lg">0</span> <span data-i18n="common.field">field(s)</span>
                         </p>
-                        <p class="text-xs text-gray-500 mt-1">Press Delete to remove selected field</p>
+                        <p class="text-xs text-gray-500 mt-1" data-i18n="formCreator.pressToDelete">Press Delete to remove selected field</p>
                     </div>
                 </aside>
 
@@ -211,15 +212,15 @@
                                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
                             </button>
                             <div class="flex items-center gap-2 ml-2 border-l border-gray-600 pl-2">
-                                <span class="text-sm text-gray-400">Go to:</span>
+                                <span class="text-sm text-gray-400" data-i18n="common.goto">Go to:</span>
                                 <input type="number" id="gotoPageInput" min="1"
                                     class="w-16 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <button id="gotoPageBtn"
-                                    class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded text-sm transition-colors">Go</button>
+                                    class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded text-sm transition-colors" data-i18n="common.go">Go</button>
                             </div>
                             <div class="flex items-center gap-2 ml-2 border-l border-gray-600 pl-2">
                                 <input type="checkbox" id="enableGridCheckbox" checked class="mr-1">
-                                <label for="enableGridCheckbox" class="text-sm text-gray-400">Grid:</label>
+                                <label for="enableGridCheckbox" class="text-sm text-gray-400" data-i18n="common.grid">Grid:</label>
                                 <input type="number" id="gridVInput" min="2" max="14" value="2" placeholder="V"
                                     class="w-12 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <span class="text-gray-400">x</span>
@@ -236,12 +237,12 @@
                             <button id="resetBtn"
                                 class="bg-gray-600 hover:bg-gray-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors">
                                 <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                                <span class="text-sm">Reset</span>
+                                <span class="text-sm" data-i18n="common.grid">Reset</span>
                             </button>
                             <button id="addPageBtn"
                                 class="bg-indigo-600 hover:bg-indigo-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors">
                                 <i data-lucide="file-plus" class="w-4 h-4"></i>
-                                <span class="text-sm">Add Page</span>
+                                <span class="text-sm" data-i18n="common.addPage">Add Page</span>
                             </button>
                         </div>
                     </div>
@@ -250,61 +251,61 @@
                     <div class="bg-gray-700 rounded-lg p-2 mb-4">
                         <div class="flex flex-wrap gap-2 justify-center items-center max-w-full overflow-hidden">
                             <div class="text-gray-400 text-sm font-semibold mr-2 flex items-center gap-1">
-                                <i data-lucide="wrench" class="w-4 h-4"></i> Fields:
+                                <i data-lucide="wrench" class="w-4 h-4"></i> <span data-i18n="common.fields">Fields</span>:
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="text" title="Text Field">
                                 <i data-lucide="type" class="w-4 h-4"></i>
-                                <span class="text-xs">Text</span>
+                                <span class="text-xs" data-i18n="formCreator.text">Text</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="checkbox" title="Checkbox">
                                 <i data-lucide="check-square" class="w-4 h-4"></i>
-                                <span class="text-xs">Checkbox</span>
+                                <span class="text-xs" data-i18n="formCreator.checkbox">Checkbox</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="radio" title="Radio Button">
                                 <i data-lucide="circle-dot" class="w-4 h-4"></i>
-                                <span class="text-xs">Radio</span>
+                                <span class="text-xs" data-i18n="formCreator.radio">Radio</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="dropdown" title="Dropdown">
                                 <i data-lucide="chevron-down-square" class="w-4 h-4"></i>
-                                <span class="text-xs">Dropdown</span>
+                                <span class="text-xs" data-i18n="formCreator.dropdown">Dropdown</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="optionlist" title="Option List">
                                 <i data-lucide="list" class="w-4 h-4"></i>
-                                <span class="text-xs">List</span>
+                                <span class="text-xs" data-i18n="formCreator.list">List</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="button" title="Button">
                                 <i data-lucide="square-mouse-pointer" class="w-4 h-4"></i>
-                                <span class="text-xs">Button</span>
+                                <span class="text-xs" data-i18n="formCreator.button">Button</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="signature" title="Signature">
                                 <i data-lucide="pen-tool" class="w-4 h-4"></i>
-                                <span class="text-xs">Signature</span>
+                                <span class="text-xs" data-i18n="formCreator.signature">Signature</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="date" title="Date Field">
                                 <i data-lucide="calendar" class="w-4 h-4"></i>
-                                <span class="text-xs">Date</span>
+                                <span class="text-xs" data-i18n="formCreator.date">Date</span>
                             </div>
 
                             <div class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                                 draggable="true" data-type="image" title="Image Field">
                                 <i data-lucide="image" class="w-4 h-4"></i>
-                                <span class="text-xs">Image</span>
+                                <span class="text-xs" data-i18n="formCreator.image">Image</span>
                             </div>
                         </div>
                     </div>
@@ -320,7 +321,7 @@
 
                     <!-- Download Button -->
                     <button id="downloadBtn" class="btn-gradient w-full flex items-center justify-center gap-2 py-3">
-                        <span>Download PDF Form</span>
+                        <span data-i18n="buttons.downloadForm">Download PDF Form</span>
                     </button>
                 </main>
             </div>

@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/divide-pages.html" />
     <link rel="alternate" hreflang="de" href="/de/divide-pages.html" />
+    <link rel="alternate" hreflang="es" href="/es/divide-pages.html" />
     <link rel="alternate" hreflang="x-default" href="/en/divide-pages.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -82,7 +83,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -94,24 +95,24 @@
 
             <div id="tool-options" class="hidden mt-6">
                 <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-                    <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                    <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="divide.how">How it works:</strong></p>
                     <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                        <li><strong>Vertical:</strong> Split each page into left and right halves.</li>
-                        <li><strong>Horizontal:</strong> Split each page into top and bottom halves.</li>
-                        <li>The result will have twice as many pages as the original.</li>
+                        <li><strong data-i18n="divide.vertical">Vertical:</strong> <span data-i18n="divide.verticalHalfs">Split each page into left and right halves.</span></li>
+                        <li><strong data-i18n="divide.horizontal">Horizontal:</strong> <span data-i18n="divide.horizontalHalfs">Split each page into top and bottom halves.</span></li>
+                        <li data-i18n="divide.result">The result will have twice as many pages as the original.</li>
                     </ul>
                 </div>
 
                 <div class="mb-4">
-                    <label for="split-type" class="block mb-2 text-sm font-medium text-gray-300">Split Direction</label>
+                    <label for="split-type" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="divide.splitDirection">Split Direction</label>
                     <select id="split-type"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                        <option value="vertical">Vertical (Left & Right)</option>
-                        <option value="horizontal">Horizontal (Top & Bottom)</option>
+                        <option value="vertical" data-i18n="divide.splitVertical">Vertical (Left & Right)</option>
+                        <option value="horizontal" data-i18n="divide.splitHorizontal">Horizontal (Top & Bottom)</option>
                     </select>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-4">Divide Pages</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4"  data-i18n="buttons.divide">Divide Pages</button>
             </div>
         </div>
     </div>

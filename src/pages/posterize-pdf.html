@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/posterize-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/posterize-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/posterize-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/posterize-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -80,7 +81,9 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span class="font-semibold"
+                              data-i18n="upload.clickToSelect">Click to select PDF</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
@@ -95,7 +98,7 @@
             <div id="tool-options" class="hidden mt-6 space-y-6">
                 <!-- Preview Section -->
                 <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-300">
+                    <label class="block text-sm font-medium text-gray-300" data-i18n="posterize.pagePreview">
                         Page Preview (<span id="current-preview-page">1</span> / <span
                             id="total-preview-pages">1</span>)
                     </label>
@@ -115,17 +118,17 @@
 
                 <!-- Grid Layout -->
                 <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
-                    <h3 class="text-lg font-semibold text-white mb-3">Grid Layout</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3" data-i18n="posterize.gridLayout">Grid Layout</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label for="posterize-rows"
-                                class="block mb-2 text-sm font-medium text-gray-300">Rows</label>
+                                class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.rows">Rows</label>
                             <input type="number" id="posterize-rows" value="1" min="1"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                         </div>
                         <div>
                             <label for="posterize-cols"
-                                class="block mb-2 text-sm font-medium text-gray-300">Columns</label>
+                                class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.columns">Columns</label>
                             <input type="number" id="posterize-cols" value="2" min="1"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                         </div>
@@ -134,28 +137,28 @@
 
                 <!-- Output Page Settings -->
                 <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
-                    <h3 class="text-lg font-semibold text-white mb-3">Output Page Settings</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3" data-i18n="posterize.outputPageSettings">Output Page Settings</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label for="output-page-size" class="block mb-2 text-sm font-medium text-gray-300">Page
+                            <label for="output-page-size" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.pageSize">Page
                                 Size</label>
                             <select id="output-page-size"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                                 <option value="A4" selected>A4</option>
-                                <option value="Letter">Letter</option>
-                                <option value="Legal">Legal</option>
+                                <option value="Letter" data-i18n="posterize.letter">Letter</option>
+                                <option value="Legal" data-i18n="posterize.legal">Legal</option>
                                 <option value="A3">A3</option>
                                 <option value="A5">A5</option>
                             </select>
                         </div>
                         <div>
                             <label for="output-orientation"
-                                class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                                class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.orientation">Orientation</label>
                             <select id="output-orientation"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                                <option value="auto" selected>Automatic (Recommended)</option>
-                                <option value="portrait">Portrait</option>
-                                <option value="landscape">Landscape</option>
+                                <option value="auto" selected data-i18n="posterize.auto">Automatic (Recommended)</option>
+                                <option value="portrait" data-i18n="posterize.portrait">Portrait</option>
+                                <option value="landscape" data-i18n="posterize.landscape">Landscape</option>
                             </select>
                         </div>
                     </div>
@@ -163,19 +166,19 @@
 
                 <!-- Advanced Options -->
                 <div class="p-4 bg-gray-900 border border-gray-700 rounded-lg">
-                    <h3 class="text-lg font-semibold text-white mb-3">Advanced Options</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3" data-i18n="posterize.advanced.info">Advanced Options</h3>
                     <div class="space-y-4">
                         <!-- Content Scaling -->
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-300">Content Scaling</label>
+                            <label class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.advanced.contentScaling">Content Scaling</label>
                             <div class="flex gap-4 p-2 rounded-lg bg-gray-800">
                                 <label
                                     class="flex-1 flex items-center gap-2 p-3 rounded-md hover:bg-gray-700 cursor-pointer has-[:checked]:bg-indigo-600">
                                     <input type="radio" name="scaling-mode" value="fit" checked
                                         class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
                                     <div>
-                                        <span class="font-semibold text-white">Fit</span>
-                                        <p class="text-xs text-gray-400">Preserves all content, may add margins.</p>
+                                        <span class="font-semibold text-white" data-i18n="posterize.advanced.fit">Fit</span>
+                                        <p class="text-xs text-gray-400" data-i18n="posterize.advanced.preserves">Preserves all content, may add margins.</p>
                                     </div>
                                 </label>
                                 <label
@@ -183,8 +186,8 @@
                                     <input type="radio" name="scaling-mode" value="fill"
                                         class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
                                     <div>
-                                        <span class="font-semibold text-white">Fill (Crop)</span>
-                                        <p class="text-xs text-gray-400">Fills the page, may crop content.</p>
+                                        <span class="font-semibold text-white" data-i18n="posterize.advanced.fill">Fill (Crop)</span>
+                                        <p class="text-xs text-gray-400" data-i18n="posterize.advanced.fillPage">Fills the page, may crop content.</p>
                                     </div>
                                 </label>
                             </div>
@@ -192,33 +195,33 @@
 
                         <!-- Overlap -->
                         <div>
-                            <label for="overlap" class="block mb-2 text-sm font-medium text-gray-300">Overlap (for
+                            <label for="overlap" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.advanced.overlap">Overlap (for
                                 assembly)</label>
                             <div class="flex items-center gap-2">
                                 <input type="number" id="overlap" value="0" min="0"
                                     class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                                 <select id="overlap-units"
                                     class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                                    <option value="pt">Points</option>
-                                    <option value="in">Inches</option>
-                                    <option value="mm">mm</option>
+                                    <option value="pt" data-i18n="posterize.advanced.points">Points</option>
+                                    <option value="in" data-i18n="posterize.advanced.inches">Inches</option>
+                                    <option value="mm" data-i18n="posterize.advanced.mm">mm</option>
                                 </select>
                             </div>
                         </div>
 
                         <!-- Page Range -->
                         <div>
-                            <label for="page-range" class="block mb-2 text-sm font-medium text-gray-300">Page Range
+                            <label for="page-range" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="posterize.advanced.pageRange">Page Range
                                 (optional)</label>
                             <input type="text" id="page-range"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
                                 placeholder="e.g., 1-3, 5">
-                            <p class="text-xs text-gray-400 mt-1">Total pages: <span id="total-pages">0</span></p>
+                            <p class="text-xs text-gray-400 mt-1" data-i18n="posterize.advanced.totalPages">Total pages: <span id="total-pages">0</span></p>
                         </div>
                     </div>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full" disabled>Posterize PDF</button>
+                <button id="process-btn" class="btn-gradient w-full" disabled data-i18n="buttons.posterize">Posterize PDF</button>
             </div>
         </div>
     </div>

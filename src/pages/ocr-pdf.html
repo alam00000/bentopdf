@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/ocr-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/ocr-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/ocr-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/ocr-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -80,14 +81,22 @@
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-6">
                 <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
                 <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                    <li><strong class="text-white">Extract Text:</strong> Uses Tesseract OCR to recognize text from
-                        scanned images or PDFs.</li>
-                    <li><strong class="text-white">Searchable Output:</strong> Creates a new PDF with an invisible text
-                        layer, making your document fully searchable while preserving the original appearance.</li>
-                    <li><strong class="text-white">Character Filtering:</strong> Use whitelists to filter out unwanted
-                        characters and improve accuracy for specific document types (invoices, forms, etc.).</li>
-                    <li><strong class="text-white">Multi-language Support:</strong> Select multiple languages for
-                        documents containing mixed language content.</li>
+                    <li><strong class="text-white" data-i18n="tools:ocrPdf.notes.extract">Extract Text:</strong>
+                        <span data-i18n="tools:ocrPdf.notes.extractDetail">Uses Tesseract OCR to recognize text from
+                        scanned images or PDFs.</span>
+                    </li>
+                    <li><strong class="text-white" data-i18n="tools:ocrPdf.notes.searchable">Searchable Output:</strong>
+                        <span data-i18n="tools:ocrPdf.notes.searchableDetail">Creates a new PDF with an invisible text
+                        layer, making your document fully searchable while preserving the original appearance.</span>
+                    </li>
+                    <li><strong class="text-white" data-i18n="tools:ocrPdf.notes.characterFiltering">Character Filtering:</strong>
+                        <span data-i18n="tools:ocrPdf.notes.characterFilteringDetail">Use whitelists to filter out unwanted
+                        characters and improve accuracy for specific document types (invoices, forms, etc.).</span>
+                    </li>
+                    <li><strong class="text-white" data-i18n="tools:ocrPdf.notes.multiLanguage">Multi-language Support:</strong>
+                        <span data-i18n="tools:ocrPdf.notes.multiLanguageDetail">Select multiple languages for
+                        documents containing mixed language content.</span>
+                    </li>
                 </ul>
             </div>
 
@@ -95,7 +104,7 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
+                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold" data-i18n="upload.clickToSelect">Click to select PDF</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
@@ -109,76 +118,80 @@
             <!-- OCR Options -->
             <div id="tool-options" class="hidden mt-6 space-y-4">
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-300">Languages in Document</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-300" data-i18n="pdfToOcr.languages">
+                        Languages in Document
+                    </label>
                     <div class="relative">
                         <input type="text" id="lang-search"
                             class="w-full bg-gray-900 border border-gray-600 text-white rounded-lg p-2.5 mb-2"
+                               data-i18n-placeholder="pdfToOcr.languagesPlaceholder"
                             placeholder="Search for languages...">
                         <div id="lang-list"
                             class="max-h-48 overflow-y-auto border border-gray-600 rounded-lg p-2 bg-gray-900">
                             <!-- Language checkboxes will be populated by JS -->
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 mt-1">Selected: <span id="selected-langs-display"
-                            class="font-semibold">None</span></p>
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="pdfToOcr.selected">Selected: <span id="selected-langs-display"
+                            class="font-semibold" data-i18n="pdfToOcr.none">None</span></p>
                 </div>
 
                 <!-- Advanced settings -->
                 <details class="bg-gray-900 border border-gray-700 rounded-lg p-3">
                     <summary class="text-sm font-medium text-gray-300 cursor-pointer flex items-center justify-between">
-                        <span>Advanced Settings (Recommended to improve accuracy)</span>
+                        <span data-i18n="pdfToOcr.advancedSettings.title">Advanced Settings (Recommended to improve accuracy)</span>
                         <i data-lucide="chevron-down" class="w-4 h-4 transition-transform details-icon"></i>
                     </summary>
                     <div class="mt-4 space-y-4">
                         <!-- Resolution -->
                         <div>
                             <label for="ocr-resolution"
-                                class="block mb-1 text-xs font-medium text-gray-400">Resolution</label>
+                                class="block mb-1 text-xs font-medium text-gray-400" data-i18n="pdfToOcr.advancedSettings.resolution.title">Resolution</label>
                             <select id="ocr-resolution"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
-                                <option value="2.0">Standard (192 DPI)</option>
-                                <option value="3.0" selected>High (288 DPI)</option>
-                                <option value="4.0">Ultra (384 DPI)</option>
+                                <option value="2.0" data-i18n="pdfToOcr.advancedSettings.resolution.standard">Standard (192 DPI)</option>
+                                <option value="3.0" data-i18n="pdfToOcr.advancedSettings.resolution.high" selected>High (288 DPI)</option>
+                                <option value="4.0" data-i18n="pdfToOcr.advancedSettings.resolution.ultra">Ultra (384 DPI)</option>
                             </select>
                         </div>
                         <!-- Binarization -->
                         <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
                             <input type="checkbox" id="ocr-binarize"
                                 class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600">
-                            Binarize Image (Enhance Contrast for Clean Scans)
+                            <span data-i18n="pdfToOcr.binarize">Binarize Image (Enhance Contrast for Clean Scans)</span>
                         </label>
                         <!-- Whitelist Presets -->
                         <div>
-                            <label for="whitelist-preset" class="block mb-1 text-xs font-medium text-gray-400">Character
-                                Whitelist Preset</label>
+                            <label for="whitelist-preset" class="block mb-1 text-xs font-medium text-gray-400" data-i18n="pdfToOcr.whitelist.title">
+                                Character Whitelist Preset
+                            </label>
                             <select id="whitelist-preset"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm mb-2">
-                                <option value="">None (All characters)</option>
-                                <option value="alphanumeric">Alphanumeric + Basic Punctuation</option>
-                                <option value="numbers-currency">Numbers + Currency Symbols</option>
-                                <option value="letters-only">Letters Only (A-Z, a-z)</option>
-                                <option value="numbers-only">Numbers Only (0-9)</option>
-                                <option value="invoice">Invoice/Receipt (Numbers, $, ., -, /)</option>
-                                <option value="forms">Forms (Alphanumeric + Common Symbols)</option>
-                                <option value="custom">Custom...</option>
+                                <option value="" data-i18n="pdfToOcr.whitelist.none">None (All characters)</option>
+                                <option value="alphanumeric" data-i18n="pdfToOcr.whitelist.alphanumeric">Alphanumeric + Basic Punctuation</option>
+                                <option value="numbers-currency" data-i18n="pdfToOcr.whitelist.currency">Numbers + Currency Symbols</option>
+                                <option value="letters-only" data-i18n="pdfToOcr.whitelist.letters">Letters Only (A-Z, a-z)</option>
+                                <option value="numbers-only" data-i18n="pdfToOcr.whitelist.numbers">Numbers Only (0-9)</option>
+                                <option value="invoice" data-i18n="pdfToOcr.whitelist.invoice">Invoice/Receipt (Numbers, $, ., -, /)</option>
+                                <option value="forms" data-i18n="pdfToOcr.whitelist.forms">Forms (Alphanumeric + Common Symbols)</option>
+                                <option value="custom" data-i18n="pdfToOcr.whitelist.custom">Custom...</option>
                             </select>
-                            <p class="text-xs text-gray-500 mt-1">Only these characters will be recognized. Leave empty
+                            <p class="text-xs text-gray-500 mt-1" data-i18n="pdfToOcr.whitelist.note">Only these characters will be recognized. Leave empty
                                 for all characters.</p>
                         </div>
                         <!-- Whitelist Input -->
                         <div>
-                            <label for="ocr-whitelist" class="block mb-1 text-xs font-medium text-gray-400">Character
+                            <label for="ocr-whitelist" class="block mb-1 text-xs font-medium text-gray-400" data-i18n="pdfToOcr.whitelist.optional">Character
                                 Whitelist (Optional)</label>
                             <input type="text" id="ocr-whitelist"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
                                 placeholder="e.g., abcdefghijklmnopqrstuvwxyz0123456789$.,">
-                            <p class="text-xs text-gray-500 mt-1">Only these characters will be recognized. Leave empty
+                            <p class="text-xs text-gray-500 mt-1" data-i18n="pdfToOcr.whitelist.note">Only these characters will be recognized. Leave empty
                                 for all characters.</p>
                         </div>
                     </div>
                 </details>
 
-                <button id="process-btn" class="btn-gradient w-full disabled:opacity-50" disabled>Start OCR</button>
+                <button id="process-btn" class="btn-gradient w-full disabled:opacity-50" disabled data-i18n="buttons.startOcr">Start OCR</button>
             </div>
 
             <!-- Progress Section -->

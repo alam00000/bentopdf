@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/add-attachments.html" />
     <link rel="alternate" hreflang="de" href="/de/add-attachments.html" />
+    <link rel="alternate" hreflang="es" href="/es/add-attachments.html" />
     <link rel="alternate" hreflang="x-default" href="/en/add-attachments.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -81,10 +82,14 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
-                        device.</p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span class="font-semibold" data-i18n="upload.clickToSelect">
+                            Click to select a file
+                        </span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+                        Your files never leave your device.
+                    </p>
                 </div>
                 <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
                     accept="application/pdf">
@@ -94,14 +99,14 @@
 
             <!-- Attachment Options (hidden until PDF loaded) -->
             <div id="tool-options" class="hidden mt-6">
-                <h2 class="text-lg font-semibold text-white mb-3">Select Files to Attach</h2>
+                <h2 class="text-lg font-semibold text-white mb-3" data-i18n="attachment.select">Select Files to Attach</h2>
 
                 <div id="attachment-drop-zone"
                     class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300 mb-4">
                     <div class="flex flex-col items-center justify-center">
                         <i data-lucide="paperclip" class="w-8 h-8 mb-2 text-gray-400"></i>
-                        <p class="text-sm text-gray-400">Click or drop files to attach</p>
-                        <p class="text-xs text-gray-500">Any file type</p>
+                        <p class="text-sm text-gray-400" data-i18n="attachment.dropToAttach">Click or drop files to attach</p>
+                        <p class="text-xs text-gray-500" data-i18n="attachment.anyType">Any file type</p>
                     </div>
                     <input id="attachment-files-input" type="file"
                         class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" multiple>
@@ -111,29 +116,29 @@
 
                 <!-- Attachment Level Options (hidden until attachments added) -->
                 <div id="attachment-level-options" class="hidden mt-4">
-                    <h3 class="text-md font-medium text-white mb-2">Attachment Level</h3>
+                    <h3 class="text-md font-medium text-white mb-2" data-i18n="attachment.level.attachment">Attachment Level</h3>
                     <div class="flex gap-4 mb-3">
                         <label class="flex items-center gap-2 text-gray-300">
                             <input type="radio" name="attachment-level" value="document" checked
                                 class="accent-indigo-500">
-                            <span>Document Level</span>
+                            <span data-i18n="attachment.level.document">Document Level</span>
                         </label>
                         <label class="flex items-center gap-2 text-gray-300">
                             <input type="radio" name="attachment-level" value="page" class="accent-indigo-500">
-                            <span>Page Level</span>
+                            <span data-i18n="attachment.level.page">Page Level</span>
                         </label>
                     </div>
 
                     <div id="page-range-wrapper" class="hidden mb-4">
                         <label for="attachment-page-range" class="text-sm text-gray-400 block mb-1">
-                            Page Range (e.g., 1,3,5-7) - Total: <span id="attachment-total-pages">0</span> pages
+                            <span data-i18n="attachment.range">Page Range</span> (e.g., 1,3,5-7) - Total: <span id="attachment-total-pages">0</span> pages
                         </label>
                         <input type="text" id="attachment-page-range" placeholder="1,3,5-7"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm">
                     </div>
                 </div>
 
-                <button id="process-btn" class="hidden btn-gradient w-full mt-4">Add Attachments</button>
+                <button id="process-btn" class="hidden btn-gradient w-full mt-4" data-i18n="buttons.addAttachments">Add Attachments</button>
             </div>
         </div>
     </div>

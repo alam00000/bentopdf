@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/bookmark.html" />
   <link rel="alternate" hreflang="de" href="/de/bookmark.html" />
+  <link rel="alternate" hreflang="es" href="/es/bookmark.html" />
   <link rel="alternate" hreflang="x-default" href="/en/bookmark.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
   <link href="../../src/css/bookmark.css" rel="stylesheet" />
@@ -88,8 +89,8 @@
             <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select a file</span> <span
               data-i18n="upload.orDragAndDrop">or drag and drop</span>
           </p>
-          <p class="text-xs text-gray-500">A single PDF file</p>
-          <p class="text-xs text-gray-500">
+          <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
+          <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
             Your files never leave your device.
           </p>
         </div>
@@ -104,26 +105,26 @@
       <div class="mt-4">
         <label class="flex items-center gap-2 text-sm text-gray-300">
           <input type="checkbox" id="auto-extract-checkbox" class="w-4 h-4 accent-blue-500" />
-          <span>Auto-extract existing bookmarks</span>
+          <span data-i18n="bookmarks.autoExtract">Auto-extract existing bookmarks</span>
         </label>
       </div>
 
       <!-- Import Bookmarks Section -->
       <div class="mt-8 pt-6 border-t border-gray-700">
-        <h3 class="text-sm font-semibold text-gray-300 mb-4">
+        <h3 class="text-sm font-semibold text-gray-300 mb-4" data-i18n="bookmarks.importBookmarks">
           Or Import Bookmarks
         </h3>
 
         <!-- CSV Upload -->
         <label class="block mb-4">
-          <span class="text-xs text-gray-500">CSV format: title,page,level</span>
+          <span class="text-xs text-gray-500" data-i18n="bookmarks.cvsFormats">CSV format: title,page,level</span>
           <div
             class="relative flex flex-col items-center justify-center w-full h-32 mt-2 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors duration-300">
             <div class="flex flex-col items-center justify-center pt-4 pb-4">
               <i data-lucide="sheet" class="w-8 h-8 mb-2 text-gray-400"></i>
               <p class="text-xs text-gray-400">
-                <span class="font-semibold">Click to upload CSV</span> or drag
-                here
+                <span class="font-semibold" data-i18n="upload.clickToSelectCsv">Click to upload CSV</span>
+                <span data-i18n="upload.orDragAndDrop">or drag here</span>
               </p>
             </div>
             <input type="file" id="csv-input" accept=".csv"
@@ -133,14 +134,14 @@
 
         <!-- JSON Upload -->
         <label class="block">
-          <span class="text-xs text-gray-500">JSON format</span>
+          <span class="text-xs text-gray-500" data-i18n="common.jsonFormat">JSON format</span>
           <div
             class="relative flex flex-col items-center justify-center w-full h-32 mt-2 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors duration-300">
             <div class="flex flex-col items-center justify-center pt-4 pb-4">
               <i data-lucide="braces" class="w-8 h-8 mb-2 text-gray-400"></i>
               <p class="text-xs text-gray-400">
-                <span class="font-semibold">Click to upload JSON</span> or
-                drag here
+                <span class="font-semibold" data-i18n="upload.clickToSelectJson">Click to upload JSON</span>
+                <span data-i18n="upload.orDragAndDrop">or drag here</span>
               </p>
             </div>
             <input type="file" id="json-input" accept=".json"

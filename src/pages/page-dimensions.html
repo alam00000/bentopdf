@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/page-dimensions.html" />
     <link rel="alternate" hreflang="de" href="/de/page-dimensions.html" />
+    <link rel="alternate" hreflang="es" href="/es/page-dimensions.html" />
     <link rel="alternate" hreflang="x-default" href="/en/page-dimensions.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,8 +80,10 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                    </p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -95,19 +98,19 @@
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                     <div class="flex items-center gap-2">
-                        <label for="units-select" class="text-sm font-medium text-gray-300">Units:</label>
+                        <label for="units-select" class="text-sm font-medium text-gray-300" data-i18n="pageDimensions.units">Units:</label>
                         <select id="units-select"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg p-2">
-                            <option value="pt">Points (pt)</option>
-                            <option value="in">Inches (in)</option>
-                            <option value="mm">Millimeters (mm)</option>
-                            <option value="px">Pixels (px)</option>
+                            <option value="pt" data-i18n="pageDimensions.points">Points (pt)</option>
+                            <option value="in" data-i18n="pageDimensions.inches">Inches (in)</option>
+                            <option value="mm" data-i18n="pageDimensions.mm">Millimeters (mm)</option>
+                            <option value="px" data-i18n="pageDimensions.pixels">Pixels (px)</option>
                         </select>
                     </div>
                     <button id="export-csv-btn"
                         class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors">
                         <i data-lucide="download" class="w-4 h-4"></i>
-                        <span>Export to CSV</span>
+                        <span data-i18n="pageDimensions.export">Export to CSV</span>
                     </button>
                 </div>
 
@@ -115,13 +118,13 @@
                     <table class="w-full text-sm text-left">
                         <thead class="text-xs uppercase bg-gray-900 text-gray-400">
                             <tr>
-                                <th class="px-4 py-3">Page #</th>
-                                <th class="px-4 py-3">Dimensions</th>
-                                <th class="px-4 py-3">Standard Size</th>
-                                <th class="px-4 py-3">Orientation</th>
-                                <th class="px-4 py-3">Aspect Ratio</th>
-                                <th class="px-4 py-3">Area</th>
-                                <th class="px-4 py-3">Rotation</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.page">Page #</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.dimensions">Dimensions</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.standard">Standard Size</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.orientation">Orientation</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.ascpect">Aspect Ratio</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.area">Area</th>
+                                <th class="px-4 py-3" data-i18n="pageDimensions.rotation">Rotation</th>
                             </tr>
                         </thead>
                         <tbody id="dimensions-table-body" class="bg-gray-800 divide-y divide-gray-700">

@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="de" href="/de/pdf-multi-tool.html" />
+  <link rel="alternate" hreflang="es" href="/es/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="x-default" href="/en/pdf-multi-tool.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -75,7 +76,7 @@
         <button id="upload-pdfs-btn"
           class="flex items-center gap-1 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="upload" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden sm:inline">Upload PDFs</span>
+          <span class="hidden sm:inline" data-i18n="multiTool.uploadPdfs">Upload PDFs</span>
           <span class="sm:hidden">Upload</span>
         </button>
 
@@ -86,107 +87,107 @@
         <button id="add-blank-page-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="file-plus" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden sm:inline">Add Blank Page</span>
+          <span class="hidden sm:inline" data-i18n="multiTool.addBlankPage">Add Blank Page</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
-        <span class="text-gray-400 text-xs sm:text-sm md:inline">Edit:</span>
+        <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.edit">Edit:</span>
 
 
         <!-- Undo / Redo / Reset -->
         <button id="undo-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="undo-2" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline">Undo</span>
+          <span class="hidden lg:inline" data-i18n="multiTool.undo">Undo</span>
         </button>
 
         <button id="redo-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="redo-2" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline">Redo</span>
+          <span class="hidden lg:inline"data-i18n="multiTool.redo">Redo</span>
         </button>
 
         <button id="reset-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="refresh-ccw" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline">Reset</span>
+          <span class="hidden lg:inline"data-i18n="multiTool.reset">Reset</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
 
         <!-- Selection -->
-        <span class="text-gray-400 text-xs sm:text-sm md:inline">Selection:</span>
+        <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.selection">Selection:</span>
 
         <button id="select-all-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="check-square" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline">Select All</span>
+          <span class="hidden lg:inline" data-i18n="multiTool.selectAll">Select All</span>
         </button>
 
         <button id="deselect-all-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="square" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline">Deselect All</span>
+          <span class="hidden lg:inline" data-i18n="multiTool.deselectAll">Deselect All</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
 
         <!-- Rotate -->
-        <span class="text-gray-400 text-xs sm:text-sm md:inline">Rotate:</span>
+        <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.rotate">Rotate:</span>
         <button id="bulk-rotate-left-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="rotate-ccw" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Left</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.left">Left</span>
         </button>
 
         <button id="bulk-rotate-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="rotate-cw" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Right</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.right">Right</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
-        <span class="text-gray-400 text-xs sm:text-sm md:inline">Transform:</span>
+        <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.transform">Transform:</span>
 
 
         <!-- Duplicate / Split -->
         <button id="bulk-duplicate-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="copy" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Duplicate</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.duplicate">Duplicate</span>
         </button>
 
         <button id="bulk-split-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="scissors" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Split</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.split">Split</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
-        <span class="text-gray-400 text-xs sm:text-sm md:inline">Clear:</span>
+        <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.clear">Clear:</span>
 
 
         <!-- Delete -->
         <button id="bulk-delete-btn"
           class="flex items-center gap-1 sm:gap-2 bg-red-500 hover:bg-red-700 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="trash-2" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Delete</span>
+          <span class="hidden xl:inline" data-i18n="common.delete">Delete</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
 
         <!-- Download -->
-        <span class="text-gray-400 text-xs sm:text-sm md:inline">Download:</span>
+        <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="common.download">Download:</span>
         <button id="bulk-download-btn"
           class="flex items-center gap-1 sm:gap-2 bg-green-600 hover:bg-green-700 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="download" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Download Selected</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.downloadSelected">Download Selected</span>
         </button>
 
         <button id="export-pdf-btn"
           class="flex items-center gap-1 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="download" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline">Export PDF</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.exportPdf">Export PDF</span>
         </button>
       </div>
     </div>
@@ -197,11 +198,11 @@
         class="hidden border-2 border-dashed border-gray-600 rounded-lg p-6 sm:p-12 text-center max-w-full cursor-pointer"
         onclick="document.getElementById('pdf-file-input').click()">
         <i data-lucide="upload-cloud" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-gray-400 mb-3 sm:mb-4"></i>
-        <p class="text-gray-300 text-base sm:text-lg mb-1 sm:mb-2">Upload PDF Files</p>
-        <p class="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">Drag and drop PDF files here, or click to select</p>
+        <p class="text-gray-300 text-base sm:text-lg mb-1 sm:mb-2" data-i18n="multiTool.uploadPdfFile">Upload PDF Files</p>
+        <p class="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4" data-i18n="multiTool.dragOrClick">Drag and drop PDF files here, or click to select</p>
         <input type="file" id="pdf-file-input" accept="application/pdf" multiple class="hidden">
         <button onclick="event.stopPropagation(); document.getElementById('pdf-file-input').click()"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 sm:px-6 py-2 rounded text-sm sm:text-base">
+          class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 sm:px-6 py-2 rounded text-sm sm:text-base" data-i18n="multiTool.selectFiles">
           Select Files
         </button>
       </div>

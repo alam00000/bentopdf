@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/remove-metadata.html" />
     <link rel="alternate" hreflang="de" href="/de/remove-metadata.html" />
+    <link rel="alternate" hreflang="es" href="/es/remove-metadata.html" />
     <link rel="alternate" hreflang="x-default" href="/en/remove-metadata.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,8 +80,10 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                    </p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -92,17 +95,17 @@
 
             <div id="tool-options" class="hidden mt-6">
                 <div class="p-4 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-                    <h3 class="text-sm font-semibold text-white mb-2">What will be removed:</h3>
+                    <h3 class="text-sm font-semibold text-white mb-2" data-i18n="removeMetadata.what">What will be removed:</h3>
                     <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-                        <li>Title, Author, Subject, Keywords</li>
-                        <li>Creator and Producer information</li>
-                        <li>Creation and Modification dates</li>
-                        <li>XMP Metadata streams</li>
-                        <li>Document IDs</li>
-                        <li>PieceInfo (private application data)</li>
+                        <li data-i18n="removeMetadata.title">Title, Author, Subject, Keywords</li>
+                        <li data-i18n="removeMetadata.creator">Creator and Producer information</li>
+                        <li data-i18n="removeMetadata.creation">Creation and Modification dates</li>
+                        <li data-i18n="removeMetadata.xmp">XMP Metadata streams</li>
+                        <li data-i18n="removeMetadata.documentId">Document IDs</li>
+                        <li data-i18n="removeMetadata.pieceInfo">PieceInfo (private application data)</li>
                     </ul>
                 </div>
-                <button id="process-btn" class="btn-gradient w-full">Remove All Metadata</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.removeMetadata">Remove All Metadata</button>
             </div>
         </div>
     </div>

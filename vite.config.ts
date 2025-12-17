@@ -11,7 +11,7 @@ function pagesRewritePlugin(): Plugin {
       server.middlewares.use((req, res, next) => {
         const url = req.url?.split('?')[0] || '';
 
-        const langMatch = url.match(/^\/(en|de)(\/.*)?$/);
+        const langMatch = url.match(/^\/(en|de|es)(\/.*)?$/);
         if (langMatch) {
           const lang = langMatch[1];
           const restOfPath = langMatch[2] || '/';

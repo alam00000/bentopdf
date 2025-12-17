@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/change-permissions.html" />
     <link rel="alternate" hreflang="de" href="/de/change-permissions.html" />
+    <link rel="alternate" hreflang="es" href="/es/change-permissions.html" />
     <link rel="alternate" hreflang="x-default" href="/en/change-permissions.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -80,8 +81,10 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                    </p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -93,69 +96,72 @@
 
             <div id="tool-options" class="hidden mt-6 space-y-4">
                 <div>
-                    <label for="current-password" class="block mb-2 text-sm font-medium text-gray-300">Current Password
-                        (if encrypted)</label>
-                    <input type="password" id="current-password" placeholder="Enter current password"
+                    <label for="current-password" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="changePermissions.password">
+                        Current Password (if encrypted)
+                    </label>
+                    <input type="password" id="current-password" placeholder="Enter current password" data-i18n-placeholder="changePermissions.passwordPlaceholder"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                 </div>
 
                 <div>
-                    <label for="new-user-password" class="block mb-2 text-sm font-medium text-gray-300">New User
-                        Password</label>
-                    <input type="password" id="new-user-password" placeholder="Password to open PDF"
+                    <label for="new-user-password" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="changePermissions.userPassword">
+                        New User Password
+                    </label>
+                    <input type="password" id="new-user-password" placeholder="Password to open PDF" data-i18n-placeholder="changePermissions.userPasswordPlaceholder"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                 </div>
 
                 <div>
-                    <label for="new-owner-password" class="block mb-2 text-sm font-medium text-gray-300">New Owner
-                        Password</label>
-                    <input type="password" id="new-owner-password" placeholder="Password for permissions"
+                    <label for="new-owner-password" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="changePermissions.ownerPassword">
+                        New Owner Password
+                    </label>
+                    <input type="password" id="new-owner-password" placeholder="Password for permissions" data-i18n-placeholder="changePermissions.ownerPasswordPlaceholder"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <p class="text-xs text-gray-500 mt-1">Leave both passwords empty to decrypt the PDF.</p>
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="changePermissions.ownerPasswordInfo">Leave both passwords empty to decrypt the PDF.</p>
                 </div>
 
                 <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
-                    <h3 class="text-sm font-semibold text-white mb-3">Permissions (requires owner password)</h3>
+                    <h3 class="text-sm font-semibold text-white mb-3" data-i18n="changePermissions.info.title">Permissions (requires owner password)</h3>
                     <div class="space-y-2">
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-printing" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Printing</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.printing">Allow Printing</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-copying" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Copying Text</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.copying">Allow Copying Text</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-modifying" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Modifying</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.modifying">Allow Modifying</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-annotating" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Annotating</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.annotating">Allow Annotating</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-filling-forms" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Filling Forms</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.filling">Allow Filling Forms</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-document-assembly" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Document Assembly</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.document">Allow Document Assembly</span>
                         </label>
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="allow-page-extraction" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500">
-                            <span class="text-sm text-gray-300">Allow Page Extraction</span>
+                            <span class="text-sm text-gray-300" data-i18n="changePermissions.info.page">Allow Page Extraction</span>
                         </label>
                     </div>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full">Change Permissions</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.changePermissions">Change Permissions</button>
             </div>
         </div>
     </div>

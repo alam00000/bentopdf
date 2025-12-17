@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/pdf-to-json.html" />
   <link rel="alternate" hreflang="de" href="/de/pdf-to-json.html" />
+  <link rel="alternate" hreflang="es" href="/es/pdf-to-json.html" />
   <link rel="alternate" hreflang="x-default" href="/en/pdf-to-json.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -83,10 +84,10 @@
           <div class="flex flex-col items-center justify-center pt-5 pb-6">
             <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-300">
-              <span class="font-semibold">Click to select files</span> <span data-i18n="upload.orDragAndDrop">or drag
+              <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select files</span> <span data-i18n="upload.orDragAndDrop">or drag
                 and drop</span>
             </p>
-            <p class="text-xs text-gray-500">Multiple PDF files</p>
+            <p class="text-xs text-gray-500" data-i18n="upload.oneOrMorePdfs">Multiple PDF files</p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your device.</p>
           </div>
           <input type="file" id="pdfFiles" accept="application/pdf" multiple
@@ -96,7 +97,7 @@
         <!-- File Display Area -->
         <div id="fileList" class="mt-4 hidden"></div>
 
-        <button id="convertBtn" disabled class="btn-gradient w-full mt-6">
+        <button id="convertBtn" disabled class="btn-gradient w-full mt-6" data-i18n="buttons.toJson">
           Convert to JSON
         </button>
       </div>

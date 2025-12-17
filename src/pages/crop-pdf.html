@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/crop-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/crop-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/crop-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/crop-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
     <link href="../../node_modules/cropperjs/dist/cropper.min.css" rel="stylesheet" />
@@ -86,7 +87,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF Documents</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.pdfDocuments">PDF Documents</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -108,7 +109,7 @@
                         title="Previous Page" disabled>
                         <i data-lucide="chevron-left" class="w-5 h-5"></i>
                     </button>
-                    <span id="page-info" class="text-white font-medium px-2">Page 1 of 1</span>
+                    <span id="page-info" class="text-white font-medium px-2"><span data-i18n="common.page">Page</span> 1 <span data-i18n="common.of">of</span> 1</span>
                     <button id="next-page" class="btn p-2 rounded-full bg-gray-700 hover:bg-gray-600" title="Next Page"
                         disabled>
                         <i data-lucide="chevron-right" class="w-5 h-5"></i>
@@ -119,12 +120,12 @@
                     <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
                         <input type="checkbox" id="destructive-crop-toggle"
                             class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                        Flattening Crop (converts pages to images)
+                        <span data-i18n="crop.flatten">Flattening Crop (converts pages to images)</span>
                     </label>
                     <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
                         <input type="checkbox" id="apply-to-all-toggle"
                             class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                        Apply to all pages
+                        <span data-i18n="crop.applyToAll">Apply to all pages</span>
                     </label>
                 </div>
             </div>
@@ -136,7 +137,7 @@
 
             <!-- Options -->
 
-            <button id="crop-button" class="btn-gradient w-full mt-6" disabled>Crop & Download</button>
+            <button id="crop-button" class="btn-gradient w-full mt-6" disabled data-i18n="buttons.cropAndDownload">Crop & Download</button>
         </div>
     </div>
 

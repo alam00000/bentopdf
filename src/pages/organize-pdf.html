@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/organize-pdf.html" />
   <link rel="alternate" hreflang="de" href="/de/organize-pdf.html" />
+  <link rel="alternate" hreflang="es" href="/es/organize-pdf.html" />
   <link rel="alternate" hreflang="x-default" href="/en/organize-pdf.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -53,7 +54,7 @@
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold" data-i18n="upload.clickToSelect">Click to select a file</span> <span data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF Documents</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.pdfDocuments">PDF Documents</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your device.</p>
                 </div>
                 <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
@@ -66,7 +67,7 @@
             <!-- Page Grid (shown after file upload) -->
             <div id="page-grid" class="hidden grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 my-6"></div>
 
-            <button id="process-btn" class="hidden btn-gradient w-full mt-6">Save Changes</button>
+            <button id="process-btn" class="hidden btn-gradient w-full mt-6" data-i18n="buttons.saveChanges">Save Changes</button>
         </div>
     </div>
     <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">

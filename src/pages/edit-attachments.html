@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/edit-attachments.html" />
     <link rel="alternate" hreflang="de" href="/de/edit-attachments.html" />
+    <link rel="alternate" hreflang="es" href="/es/edit-attachments.html" />
     <link rel="alternate" hreflang="x-default" href="/en/edit-attachments.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,10 +80,13 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
-                        device.</p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                    </p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+                        Your files never leave your device.
+                    </p>
                 </div>
                 <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
                     accept="application/pdf">
@@ -91,9 +95,9 @@
             <div id="file-display-area" class="mt-4 space-y-2"></div>
 
             <div id="tool-options" class="hidden mt-6">
-                <h2 class="text-lg font-semibold text-white mb-3">Attachments</h2>
+                <h2 class="text-lg font-semibold text-white mb-3" data-i18n="attachment.attachments">Attachments</h2>
                 <div id="attachments-list" class="space-y-2"></div>
-                <button id="process-btn" class="hidden btn-gradient w-full mt-4">Save Changes</button>
+                <button id="process-btn" class="hidden btn-gradient w-full mt-4"data-i18n="buttons.saveChanges">Save Changes</button>
             </div>
         </div>
     </div>

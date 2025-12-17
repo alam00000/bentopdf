@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/fix-page-size.html" />
     <link rel="alternate" hreflang="de" href="/de/fix-page-size.html" />
+    <link rel="alternate" hreflang="es" href="/es/fix-page-size.html" />
     <link rel="alternate" hreflang="x-default" href="/en/fix-page-size.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -80,7 +81,8 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
+                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
+                            data-i18n="upload.orDragAndDrop">Click to select PDF</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
@@ -95,17 +97,17 @@
             <div id="tool-options" class="hidden mt-6 space-y-4">
                 <!-- Target Size -->
                 <div>
-                    <label for="target-size" class="block mb-2 text-sm font-medium text-gray-300">Target Page
-                        Size</label>
+                    <label for="target-size" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="fixPageSize.target">
+                        Target Page Size</label>
                     <select id="target-size"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                         <option value="A4">A4 (210 × 297 mm)</option>
-                        <option value="Letter">Letter (8.5 × 11 in)</option>
-                        <option value="Legal">Legal (8.5 × 14 in)</option>
+                        <option value="Letter" data-i18n="fixPageSize.letter">Letter (8.5 × 11 in)</option>
+                        <option value="Legal" data-i18n="fixPageSize.legal">Legal (8.5 × 14 in)</option>
                         <option value="A3">A3 (297 × 420 mm)</option>
                         <option value="A5">A5 (148 × 210 mm)</option>
-                        <option value="Tabloid">Tabloid (11 × 17 in)</option>
-                        <option value="Custom">Custom...</option>
+                        <option value="Tabloid" data-i18n="fixPageSize.tabloid">Tabloid (11 × 17 in)</option>
+                        <option value="Custom" data-i18n="fixPageSize.custom">Custom...</option>
                     </select>
                 </div>
 
@@ -113,49 +115,49 @@
                 <div id="custom-size-wrapper" class="hidden space-y-3">
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label for="custom-width" class="block mb-1 text-xs font-medium text-gray-400">Width</label>
+                            <label for="custom-width" class="block mb-1 text-xs font-medium text-gray-400" data-i18n="fixPageSize.width">Width</label>
                             <input type="number" id="custom-width" step="0.01" min="0.1" value="8.5"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
                         </div>
                         <div>
                             <label for="custom-height"
-                                class="block mb-1 text-xs font-medium text-gray-400">Height</label>
+                                class="block mb-1 text-xs font-medium text-gray-400" data-i18n="fixPageSize.height">Height</label>
                             <input type="number" id="custom-height" step="0.01" min="0.1" value="11"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
                         </div>
                     </div>
                     <div>
-                        <label for="custom-units" class="block mb-1 text-xs font-medium text-gray-400">Units</label>
+                        <label for="custom-units" class="block mb-1 text-xs font-medium text-gray-400" data-i18n="fixPageSize.units">Units</label>
                         <select id="custom-units"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
-                            <option value="in">Inches</option>
-                            <option value="mm">Millimeters</option>
+                            <option value="in" data-i18n="fixPageSize.inches">Inches</option>
+                            <option value="mm" data-i18n="fixPageSize.mm">Millimeters</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Orientation -->
                 <div>
-                    <label for="orientation" class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                    <label for="orientation" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="fixPageSize.orientation">Orientation</label>
                     <select id="orientation"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                        <option value="auto">Auto (Keep Original)</option>
-                        <option value="portrait">Portrait</option>
-                        <option value="landscape">Landscape</option>
+                        <option value="auto" data-i18n="fixPageSize.auto">Auto (Keep Original)</option>
+                        <option value="portrait" data-i18n="fixPageSize.portrait">Portrait</option>
+                        <option value="landscape" data-i18n="fixPageSize.landscape">Landscape</option>
                     </select>
                 </div>
 
                 <!-- Scaling Mode -->
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-300">Content Scaling</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-300" data-i18n="fixPageSize.scaling">Content Scaling</label>
                     <div class="flex gap-4 p-2 rounded-lg bg-gray-900">
                         <label
                             class="flex-1 flex items-center gap-2 p-3 rounded-md hover:bg-gray-700 cursor-pointer has-[:checked]:bg-indigo-600">
                             <input type="radio" name="scaling-mode" value="fit" checked
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
                             <div>
-                                <span class="font-semibold text-white">Fit</span>
-                                <p class="text-xs text-gray-400">Preserves all content, may add margins.</p>
+                                <span class="font-semibold text-white" data-i18n="fixPageSize.fit">Fit</span>
+                                <p class="text-xs text-gray-400" data-i18n="fixPageSize.fitInfo">Preserves all content, may add margins.</p>
                             </div>
                         </label>
                         <label
@@ -163,8 +165,8 @@
                             <input type="radio" name="scaling-mode" value="fill"
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
                             <div>
-                                <span class="font-semibold text-white">Fill (Crop)</span>
-                                <p class="text-xs text-gray-400">Fills the page, may crop content.</p>
+                                <span class="font-semibold text-white" data-i18n="fixPageSize.fill">Fill (Crop)</span>
+                                <p class="text-xs text-gray-400" data-i18n="fixPageSize.fillInfo">Fills the page, may crop content.</p>
                             </div>
                         </label>
                     </div>
@@ -172,16 +174,16 @@
 
                 <!-- Background Color -->
                 <div>
-                    <label for="background-color" class="block mb-2 text-sm font-medium text-gray-300">Background
-                        Color</label>
+                    <label for="background-color" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="fixPageSize.backgroundColor">
+                        Background Color</label>
                     <div class="flex items-center gap-3">
                         <input type="color" id="background-color" value="#ffffff"
                             class="h-10 w-20 rounded border border-gray-600 bg-gray-700 cursor-pointer">
-                        <span class="text-sm text-gray-400">Color for margins/padding</span>
+                        <span class="text-sm text-gray-400" data-i18n="fixPageSize.colorMargin">Color for margins/padding</span>
                     </div>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full">Fix Page Size</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.fixSize">Fix Page Size</button>
             </div>
         </div>
     </div>

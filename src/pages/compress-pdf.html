@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/compress-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/compress-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/compress-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/compress-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -81,9 +82,9 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select files</span> <span
+                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold" data-i18n="upload.clickToSelect">Click to select files</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">One or more PDF files</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.oneOrMorePdfs">One or more PDF files</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -106,31 +107,31 @@
 
             <div id="compress-options" class="hidden mt-6 space-y-6">
                 <div>
-                    <label for="compression-level" class="block mb-2 text-sm font-medium text-gray-300">Compression
+                    <label for="compression-level" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="compress.level.info">Compression
                         Level</label>
                     <select id="compression-level"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="balanced">Balanced (Recommended)</option>
-                        <option value="high-quality">High Quality (Larger file)</option>
-                        <option value="small-size">Smallest Size (Lower quality)</option>
-                        <option value="extreme">Extreme (Very low quality)</option>
+                        <option value="balanced" data-i18n="compress.level.balanced">Balanced (Recommended)</option>
+                        <option value="high-quality" data-i18n="compress.level.high">High Quality (Larger file)</option>
+                        <option value="small-size" data-i18n="compress.level.small">Smallest Size (Lower quality)</option>
+                        <option value="extreme" data-i18n="compress.level.extreme">Extreme (Very low quality)</option>
                     </select>
                 </div>
 
                 <div>
-                    <label for="compression-algorithm" class="block mb-2 text-sm font-medium text-gray-300">Compression
+                    <label for="compression-algorithm" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="compress.algorithm.info">Compression
                         Algorithm</label>
                     <select id="compression-algorithm"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="vector">Vector (For Text Heavy PDF)</option>
-                        <option value="photon">Photon (For Complex Images & Drawings)</option>
+                        <option value="vector" data-i18n="compress.algorithm.vector">Vector (For Text Heavy PDF)</option>
+                        <option value="photon" data-i18n="compress.algorithm.photon">Photon (For Complex Images & Drawings)</option>
                     </select>
-                    <p class="mt-2 text-xs text-gray-400">
+                    <p class="mt-2 text-xs text-gray-400" data-i18n="compress.algorithm.note">
                         Choose 'Vector' for text based PDFs, or 'Photon' for scanned documents and complex images.
                     </p>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-4">Compress PDF</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.compress">Compress PDF</button>
             </div>
 
         </div>

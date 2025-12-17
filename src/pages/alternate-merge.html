@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/alternate-merge.html" />
     <link rel="alternate" hreflang="de" href="/de/alternate-merge.html" />
+    <link rel="alternate" hreflang="es" href="/es/alternate-merge.html" />
     <link rel="alternate" hreflang="x-default" href="/en/alternate-merge.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -83,7 +84,7 @@
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select files</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">Multiple PDF files (at least 2)</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.atLeastTwoFiles">Multiple PDF files (at least 2)</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -94,12 +95,12 @@
             <div id="file-display-area" class="mt-4 space-y-2"></div>
 
             <div id="tool-options" class="hidden mt-6">
-                <h2 class="text-lg font-semibold text-white mb-4">Files Order</h2>
-                <p class="text-sm text-gray-400 mb-3">Drag to reorder. Pages will be interleaved in this order.</p>
+                <h2 class="text-lg font-semibold text-white mb-4" data-i18n="alternate.filesOrder">Files Order</h2>
+                <p class="text-sm text-gray-400 mb-3" data-i18n="alternate.reorder">Drag to reorder. Pages will be interleaved in this order.</p>
 
                 <ul id="file-list" class="space-y-2 mb-4"></ul>
 
-                <button id="process-btn" class="btn-gradient w-full mt-4">Mix Pages</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.mixPages">Mix Pages</button>
             </div>
         </div>
     </div>

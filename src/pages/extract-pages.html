@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/extract-pages.html" />
     <link rel="alternate" hreflang="de" href="/de/extract-pages.html" />
+    <link rel="alternate" hreflang="es" href="/es/extract-pages.html" />
     <link rel="alternate" hreflang="x-default" href="/en/extract-pages.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -84,7 +85,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF Documents</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.pdfDocuments">PDF Documents</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -97,13 +98,13 @@
 
             <!-- Extract Options (shown after file upload) -->
             <div id="extract-options" class="hidden mt-6">
-                <p class="mb-2 font-medium text-white">Total Pages: <span id="total-pages"></span></p>
-                <label for="pages-to-extract" class="block mb-2 text-sm font-medium text-gray-300">Enter pages to
+                <p class="mb-2 font-medium text-white"><span data-i18n="extract.total">Total Pages: </span><span id="total-pages"></span></p>
+                <label for="pages-to-extract" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="extract.enterPages">Enter pages to
                     extract (e.g., 2, 4-6, 9):</label>
                 <input type="text" id="pages-to-extract"
                     class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-6"
-                    placeholder="e.g., 2, 4-6, 9">
-                <button id="process-btn" class="btn-gradient w-full">Extract & Download ZIP</button>
+                       data-i18n-placeholder="extract.placeholder" placeholder="e.g., 2, 4-6, 9">
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.extract">Extract & Download ZIP</button>
             </div>
         </div>
     </div>

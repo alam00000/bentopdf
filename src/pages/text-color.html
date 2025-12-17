@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/text-color.html" />
     <link rel="alternate" hreflang="de" href="/de/text-color.html" />
+    <link rel="alternate" hreflang="es" href="/es/text-color.html" />
     <link rel="alternate" hreflang="x-default" href="/en/text-color.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -83,7 +84,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.pdfFile">PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -95,12 +96,13 @@
 
             <div id="options-panel" class="hidden mt-6 space-y-4">
                 <div>
-                    <label for="text-color-input" class="block mb-2 text-sm font-medium text-gray-300">New Text
-                        Color</label>
+                    <label for="text-color-input" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textColor.newTextColor">
+                        New Text Color
+                    </label>
                     <input type="color" id="text-color-input" value="#0000FF"
                         class="w-full h-12 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer">
                 </div>
-                <button id="process-btn" class="btn-gradient w-full mt-4">Change Text Color</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.changeTextColor">Change Text Color</button>
             </div>
 
         </div>

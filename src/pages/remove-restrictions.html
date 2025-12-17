@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/remove-restrictions.html" />
     <link rel="alternate" hreflang="de" href="/de/remove-restrictions.html" />
+    <link rel="alternate" hreflang="es" href="/es/remove-restrictions.html" />
     <link rel="alternate" hreflang="x-default" href="/en/remove-restrictions.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -81,8 +82,9 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -94,25 +96,27 @@
 
             <div id="tool-options" class="hidden mt-6 space-y-4">
                 <div>
-                    <label for="owner-password-remove" class="block mb-2 text-sm font-medium text-gray-300">Owner
-                        Password (Optional)</label>
+                    <label for="owner-password-remove" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="removeRestrictions.password">
+                        Owner Password (Optional)
+                    </label>
                     <input type="password" id="owner-password-remove" placeholder="Enter owner password if required"
+                           data-i18n-placeholder="removeRestrictions.passwordPlaceholder"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <p class="text-xs text-gray-500 mt-1">Leave empty if the PDF has no owner password.</p>
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="removeRestrictions.password">Leave empty if the PDF has no owner password.</p>
                 </div>
 
                 <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
-                    <h3 class="text-sm font-semibold text-white mb-2">What will be removed:</h3>
+                    <h3 class="text-sm font-semibold text-white mb-2" data-i18n="removeRestrictions.info.what">What will be removed:</h3>
                     <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-                        <li>Password protection</li>
-                        <li>Printing restrictions</li>
-                        <li>Editing restrictions</li>
-                        <li>Copying restrictions</li>
-                        <li>All other security limitations</li>
+                        <li data-i18n="removeRestrictions.info.password">Password protection</li>
+                        <li data-i18n="removeRestrictions.info.printing">Printing restrictions</li>
+                        <li data-i18n="removeRestrictions.info.editing">Editing restrictions</li>
+                        <li data-i18n="removeRestrictions.info.copying">Copying restrictions</li>
+                        <li data-i18n="removeRestrictions.info.all">All other security limitations</li>
                     </ul>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full">Remove Restrictions</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.removeRestrictions">Remove Restrictions</button>
             </div>
         </div>
     </div>

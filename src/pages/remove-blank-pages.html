@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/remove-blank-pages.html" />
     <link rel="alternate" hreflang="de" href="/de/remove-blank-pages.html" />
+    <link rel="alternate" hreflang="es" href="/es/remove-blank-pages.html" />
     <link rel="alternate" hreflang="x-default" href="/en/remove-blank-pages.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -84,7 +85,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.pdfFile">PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -97,23 +98,23 @@
             <div id="options-panel" class="hidden mt-6 space-y-4">
                 <div>
                     <label for="sensitivity-slider" class="block mb-2 text-sm font-medium text-gray-300">
-                        Sensitivity: <span id="sensitivity-value">80</span>%
+                        <span data-i18n="removeBlankPage.sensitivity">Sensitivity</span>: <span id="sensitivity-value">80</span>%
                     </label>
                     <input type="range" id="sensitivity-slider" min="0" max="100" value="80" step="5"
                         class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer">
-                    <p class="text-xs text-gray-400 mt-1">Higher values detect more pages as blank</p>
+                    <p class="text-xs text-gray-400 mt-1" data-i18n="removeBlankPage.higherValues">Higher values detect more pages as blank</p>
                 </div>
-                <button id="detect-btn" class="btn-gradient w-full mt-4">Detect Blank Pages</button>
+                <button id="detect-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.detectBlandPages">Detect Blank Pages</button>
             </div>
 
             <!-- Preview of detected blank pages -->
             <div id="preview-panel" class="hidden mt-6">
-                <h3 class="text-lg font-semibold text-white mb-3">Detected Blank Pages</h3>
+                <h3 class="text-lg font-semibold text-white mb-3" data-i18n="buttons.detectBlandPages">Detected Blank Pages</h3>
                 <p id="preview-info" class="text-gray-400 text-sm mb-4"></p>
                 <div id="blank-pages-preview"
                     class="grid grid-cols-3 md:grid-cols-4 gap-3 max-h-64 overflow-y-auto p-2 bg-gray-900 rounded-lg border border-gray-700">
                 </div>
-                <button id="process-btn" class="btn-gradient w-full mt-4">Remove Selected Blank Pages</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.removeBlandPages">Remove Selected Blank Pages</button>
             </div>
 
         </div>

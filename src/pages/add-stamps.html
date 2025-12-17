@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/add-stamps.html" />
   <link rel="alternate" hreflang="de" href="/de/add-stamps.html" />
+  <link rel="alternate" hreflang="es" href="/es/add-stamps.html" />
   <link rel="alternate" hreflang="x-default" href="/en/add-stamps.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -86,7 +87,7 @@
             <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select a file</span> <span
               data-i18n="upload.orDragAndDrop">or drag and drop</span>
           </p>
-          <p class="text-xs text-gray-500">PDF file</p>
+          <p class="text-xs text-gray-500" data-i18n="upload.pdfFile">PDF file</p>
           <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your device.</p>
         </div>
         <input type="file" id="pdfFile" accept="application/pdf"
@@ -98,7 +99,7 @@
       <!-- Viewer, shown after a PDF is uploaded -->
       <div id="viewer-card" class="hidden mt-6 border border-gray-700 rounded-lg overflow-hidden">
         <div class="px-4 py-3 border-b border-gray-700 flex items-center justify-between">
-          <h2 class="text-lg font-semibold text-white">Stamp Editor</h2>
+          <h2 class="text-lg font-semibold text-white" data-i18n="stamp.editor">Stamp Editor</h2>
           <p class="text-xs text-gray-400">Use the toolbar's image stamp tool to place stamps.</p>
         </div>
         <div id="stamp-viewer-container" class="min-h-[500px] bg-black/70 flex items-stretch justify-stretch">
@@ -107,7 +108,7 @@
       </div>
 
       <button id="save-stamped-btn" class="hidden btn-gradient w-full mt-6 flex items-center justify-center gap-2">
-        <span>Save Stamped PDF</span>
+        <span data-i18n="buttons.stamp">Save Stamped PDF</span>
       </button>
     </div>
   </div>

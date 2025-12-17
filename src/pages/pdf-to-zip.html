@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/pdf-to-zip.html" />
     <link rel="alternate" hreflang="de" href="/de/pdf-to-zip.html" />
+    <link rel="alternate" hreflang="es" href="/es/pdf-to-zip.html" />
     <link rel="alternate" hreflang="x-default" href="/en/pdf-to-zip.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,9 +80,9 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select files</span> <span
+                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold" data-i18n="upload.clickToSelect">Click to select files</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">Multiple PDF files</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.oneOrMorePdfs">Multiple PDF files</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -93,14 +94,14 @@
 
             <div id="tool-options" class="hidden mt-6">
                 <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-                    <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                    <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="toZip.how">How it works:</strong></p>
                     <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                        <li>All selected PDF files will be packaged into a single ZIP archive.</li>
-                        <li>File names will be preserved in the archive.</li>
+                        <li data-i18n="toZip.all">All selected PDF files will be packaged into a single ZIP archive.</li>
+                        <li data-i18n="toZip.file">File names will be preserved in the archive.</li>
                     </ul>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-4">Create ZIP Archive</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.saveZip">Create ZIP Archive</button>
             </div>
         </div>
     </div>

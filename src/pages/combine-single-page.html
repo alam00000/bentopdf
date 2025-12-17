@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/combine-single-page.html" />
     <link rel="alternate" hreflang="de" href="/de/combine-single-page.html" />
+    <link rel="alternate" hreflang="es" href="/es/combine-single-page.html" />
     <link rel="alternate" hreflang="x-default" href="/en/combine-single-page.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -83,7 +84,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -96,16 +97,16 @@
             <div id="tool-options" class="hidden mt-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="combine-orientation" class="block mb-2 text-sm font-medium text-gray-300">Layout
+                        <label for="combine-orientation" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="combine.layout.info">Layout
                             Direction</label>
                         <select id="combine-orientation"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                            <option value="vertical" selected>Vertical (Top to Bottom)</option>
-                            <option value="horizontal">Horizontal (Left to Right)</option>
+                            <option value="vertical" selected data-i18n="combine.layout.vertical">Vertical (Top to Bottom)</option>
+                            <option value="horizontal" data-i18n="combine.layout.horizontal">Horizontal (Left to Right)</option>
                         </select>
                     </div>
                     <div>
-                        <label for="page-spacing" class="block mb-2 text-sm font-medium text-gray-300">Spacing
+                        <label for="page-spacing" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="combine.spacing">Spacing
                             (pixels)</label>
                         <input type="number" id="page-spacing" min="0" value="0"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
@@ -114,7 +115,7 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="background-color" class="block mb-2 text-sm font-medium text-gray-300">Background
+                        <label for="background-color" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="combine.backgroundColor">Background
                             Color</label>
                         <input type="color" id="background-color" value="#FFFFFF"
                             class="w-full h-10 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer">
@@ -123,27 +124,27 @@
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="add-separator"
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600">
-                            <span class="text-sm text-gray-300">Add Separator Lines</span>
+                            <span class="text-sm text-gray-300" data-i18n="combine.addSeparator">Add Separator Lines</span>
                         </label>
                     </div>
                 </div>
 
                 <div id="separator-options" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="separator-thickness" class="block mb-2 text-sm font-medium text-gray-300">Separator
+                        <label for="separator-thickness" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="combine.separatorThickness">Separator
                             Thickness</label>
                         <input type="number" id="separator-thickness" min="0.5" step="0.5" value="0.5"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div>
-                        <label for="separator-color" class="block mb-2 text-sm font-medium text-gray-300">Separator
+                        <label for="separator-color" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="combine.separatorColor">Separator
                             Color</label>
                         <input type="color" id="separator-color" value="#000000"
                             class="w-full h-10 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer">
                     </div>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-4">Combine Pages</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.combine">Combine Pages</button>
             </div>
         </div>
     </div>

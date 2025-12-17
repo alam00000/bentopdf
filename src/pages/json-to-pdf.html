@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/json-to-pdf.html" />
   <link rel="alternate" hreflang="de" href="/de/json-to-pdf.html" />
+  <link rel="alternate" hreflang="es" href="/es/json-to-pdf.html" />
   <link rel="alternate" hreflang="x-default" href="/en/json-to-pdf.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -78,8 +79,8 @@
       </p>
       <div class="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3 mb-6">
         <p class="text-yellow-200 text-sm">
-          <strong>Note:</strong> Only JSON files created by the PDF-to-JSON converter tool are supported. Standard JSON
-          files from other tools will not work.
+          <strong data-i18n="tools:jsonToPdf.note.title">Note:</strong> <span data-i18n="tools:jsonToPdf.note.text"> Only JSON files created by the PDF-to-JSON converter tool are supported. Standard JSON
+          files from other tools will not work.</span>
         </p>
       </div>
 
@@ -89,10 +90,10 @@
           <div class="flex flex-col items-center justify-center pt-5 pb-6">
             <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-300">
-              <span class="font-semibold">Click to select files</span> <span data-i18n="upload.orDragAndDrop">or drag
+              <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select files</span> <span data-i18n="upload.orDragAndDrop">or drag
                 and drop</span>
             </p>
-            <p class="text-xs text-gray-500">Multiple JSON files</p>
+            <p class="text-xs text-gray-500" data-i18n="upload.oneOrMorePdfs">Multiple JSON files</p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your device.</p>
           </div>
           <input type="file" id="jsonFiles" accept="application/json" multiple
@@ -102,7 +103,7 @@
         <!-- File Display Area -->
         <div id="fileList" class="mt-4 hidden"></div>
 
-        <button id="convertBtn" disabled class="btn-gradient w-full mt-6">
+        <button id="convertBtn" disabled class="btn-gradient w-full mt-6" data-i18n="buttons.convertToPdf">
           Convert to PDF
         </button>
       </div>

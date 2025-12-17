@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/edit-metadata.html" />
     <link rel="alternate" hreflang="de" href="/de/edit-metadata.html" />
+    <link rel="alternate" hreflang="es" href="/es/edit-metadata.html" />
     <link rel="alternate" hreflang="x-default" href="/en/edit-metadata.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -82,7 +83,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -93,49 +94,49 @@
             <div id="file-display-area" class="mt-4 space-y-2"></div>
 
             <div id="tool-options" class="hidden mt-6">
-                <h2 class="text-lg font-semibold text-white mb-4">Edit Metadata</h2>
+                <h2 class="text-lg font-semibold text-white mb-4" data-i18n="editMetadata.info">Edit Metadata</h2>
 
                 <div class="space-y-4">
                     <div>
-                        <label for="meta-title" class="block mb-2 text-sm font-medium text-gray-300">Title</label>
+                        <label for="meta-title" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.title">Title</label>
                         <input type="text" id="meta-title"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div>
-                        <label for="meta-author" class="block mb-2 text-sm font-medium text-gray-300">Author</label>
+                        <label for="meta-author" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.author">Author</label>
                         <input type="text" id="meta-author"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div>
-                        <label for="meta-subject" class="block mb-2 text-sm font-medium text-gray-300">Subject</label>
+                        <label for="meta-subject" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.subject">Subject</label>
                         <input type="text" id="meta-subject"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div>
-                        <label for="meta-keywords" class="block mb-2 text-sm font-medium text-gray-300">Keywords
+                        <label for="meta-keywords" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.keywords">Keywords
                             (comma-separated)</label>
                         <input type="text" id="meta-keywords"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div>
-                        <label for="meta-creator" class="block mb-2 text-sm font-medium text-gray-300">Creator</label>
+                        <label for="meta-creator" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.creator">Creator</label>
                         <input type="text" id="meta-creator"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div>
-                        <label for="meta-producer" class="block mb-2 text-sm font-medium text-gray-300">Producer</label>
+                        <label for="meta-producer" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.producer">Producer</label>
                         <input type="text" id="meta-producer"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="meta-creation-date"
-                                class="block mb-2 text-sm font-medium text-gray-300">Creation Date</label>
+                                class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.creationDate">Creation Date</label>
                             <input type="datetime-local" id="meta-creation-date"
                                 class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
                         </div>
                         <div>
-                            <label for="meta-mod-date" class="block mb-2 text-sm font-medium text-gray-300">Modification
+                            <label for="meta-mod-date" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="editMetadata.modificationDate">Modification
                                 Date</label>
                             <input type="datetime-local" id="meta-mod-date"
                                 class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
@@ -145,16 +146,16 @@
 
                 <!-- Custom Fields Section -->
                 <div class="mt-6">
-                    <h3 class="text-md font-semibold text-white mb-2">Custom Fields</h3>
-                    <p class="text-xs text-gray-400 mb-3">Note: Custom fields are not supported by all PDF readers.</p>
+                    <h3 class="text-md font-semibold text-white mb-2" data-i18n="editMetadata.customFields.info">Custom Fields</h3>
+                    <p class="text-xs text-gray-400 mb-3" data-i18n="editMetadata.customFields.note">Note: Custom fields are not supported by all PDF readers.</p>
                     <div id="custom-fields-container" class="space-y-3"></div>
                     <button id="add-custom-field" type="button"
                         class="flex items-center gap-2 mt-3 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm">
-                        <i data-lucide="plus" class="w-4 h-4"></i> Add Custom Field
+                        <i data-lucide="plus" class="w-4 h-4"></i> <span data-i18n="buttons.addCustomField">Add Custom Field</span>
                     </button>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-6">Save Metadata</button>
+                <button id="process-btn" class="btn-gradient w-full mt-6" data-i18n="buttons.saveMetadata">Save Metadata</button>
             </div>
         </div>
     </div>

@@ -94,7 +94,12 @@
     },
     "pdfFormFiller": {
         "name": "PDF-Formular ausfüllen",
-        "subtitle": "Formulare direkt im Browser ausfüllen. Unterstützt auch XFA-Formulare."
+        "subtitle": "Formulare direkt im Browser ausfüllen. Unterstützt auch XFA-Formulare.",
+        "info": "Upload a PDF with form fields. Fill them directly in the viewer below, then click the button to save and download the filled form. Also supports XFA forms.",
+        "note": {
+            "title": "Note on XFA Forms:",
+            "text": "XFA (XML Forms Architecture) is a legacy format that's only supported by certain PDF viewers like BentoPDF and Firefox. If you open an XFA PDF in other software and see blank pages or no form fields, it means that viewer doesn't support XFA. To view and fill XFA forms properly, use Firefox or BentoPDF's Form Filler."
+        }
     },
     "createPdfForm": {
         "name": "PDF-Formular erstellen",
@@ -138,7 +143,11 @@
     },
     "jsonToPdf": {
         "name": "JSON zu PDF",
-        "subtitle": "JSON-Dateien in PDF-Format konvertieren."
+        "subtitle": "JSON-Dateien in PDF-Format konvertieren.",
+        "note": {
+            "title": "Note:",
+            "text": "Only JSON files created by the PDF-to-JSON converter tool are supported. Standard JSON files from other tools will not work. "
+        }
     },
     "pdfToJpg": {
         "name": "PDF zu JPG",
@@ -170,7 +179,17 @@
     },
     "ocrPdf": {
         "name": "OCR PDF",
-        "subtitle": "Eine PDF durchsuchbar und kopierbar machen."
+        "subtitle": "Eine PDF durchsuchbar und kopierbar machen.",
+        "notes": {
+            "extract": "Extract Text:",
+            "extractDetail": "Uses Tesseract OCR to recognize text from scanned images or PDFs.",
+            "searchable": "Searchable Output:",
+            "searchableDetail": "Creates a new PDF with an invisible text layer, making your document fully searchable while preserving the original appearance.",
+            "characterFiltering": "Character Filtering:",
+            "characterFilteringDetail": "Use whitelists to filter out unwanted characters and improve accuracy for specific document types (invoices, forms, etc.).",
+            "multiLanguage": "Multi-language Support:",
+            "multiLanguageDetail": "Select multiple languages for documents containing mixed language content."
+        }
     },
     "alternateMix": {
         "name": "Seiten abwechselnd mischen",

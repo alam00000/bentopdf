@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/svg-to-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/svg-to-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/svg-to-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/svg-to-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -84,7 +85,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">SVG Graphics</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.svgGraphics">SVG Graphics</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -110,18 +111,19 @@
             <!-- Options -->
             <div id="jpg-to-pdf-options" class="hidden mt-6">
                 <div class="mb-4">
-                    <label for="jpg-pdf-quality" class="block mb-2 text-sm font-medium text-gray-300"> PDF Quality
+                    <label for="jpg-pdf-quality" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="imageToPdf.quality">
+                        PDF Quality
                     </label>
                     <select id="jpg-pdf-quality"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                        <option value="high"> High Quality (Larger file) </option>
-                        <option value="medium" selected> Medium Quality (Balanced) </option>
-                        <option value="low"> Low Quality (Smaller file) </option>
+                        <option value="high" data-i18n="imageToPdf.high">High Quality (Larger file)</option>
+                        <option value="medium" selected data-i18n="imageToPdf.medium">Medium Quality (Balanced)</option>
+                        <option value="low" data-i18n="imageToPdf.low">Low Quality (Smaller file)</option>
                     </select>
-                    <p class="mt-1 text-xs text-gray-400"> Controls image compression when embedding into PDF </p>
+                    <p class="mt-1 text-xs text-gray-400" data-i18n="imageToPdf.controls"> Controls image compression when embedding into PDF </p>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-6">Convert to PDF</button>
+                <button id="process-btn" class="btn-gradient w-full mt-6" data-i18n="buttons.convertToPdf">Convert to PDF</button>
             </div>
 
         </div>

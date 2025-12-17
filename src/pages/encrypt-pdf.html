@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/encrypt-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/encrypt-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/encrypt-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/encrypt-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,8 +80,9 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -92,34 +94,36 @@
 
             <div id="tool-options" class="hidden mt-6 space-y-4">
                 <div>
-                    <label for="user-password-input" class="block mb-2 text-sm font-medium text-gray-300">User Password
-                        (Required)</label>
-                    <input type="password" id="user-password-input" placeholder="Enter password to open PDF"
+                    <label for="user-password-input" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="encrypt.password">
+                        User Password (Required)
+                    </label>
+                    <input type="password" id="user-password-input" placeholder="Enter password to open PDF" data-i18n-placeholder="encrypt.passwordPlaceholder"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <p class="text-xs text-gray-500 mt-1">This password will be required to open the PDF.</p>
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="encrypt.passwordHint">This password will be required to open the PDF.</p>
                 </div>
 
                 <div>
-                    <label for="owner-password-input" class="block mb-2 text-sm font-medium text-gray-300">Owner
-                        Password (Optional)</label>
-                    <input type="password" id="owner-password-input"
+                    <label for="owner-password-input" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="encrypt.ownerPassword">
+                        Owner Password (Optional)
+                    </label>
+                    <input type="password" id="owner-password-input" data-i18n-placeholder="encrypt.ownerPasswordPlaceholder"
                         placeholder="Enter password for permissions (optional)"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <p class="text-xs text-gray-500 mt-1">If provided, usage restrictions will be applied. Leave empty
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="encrypt.ownerPasswordHint">If provided, usage restrictions will be applied. Leave empty
                         for no restrictions.</p>
                 </div>
 
                 <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
-                    <h3 class="text-sm font-semibold text-white mb-2">Encryption Details:</h3>
+                    <h3 class="text-sm font-semibold text-white mb-2" data-i18n="encrypt.info.details">Encryption Details:</h3>
                     <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-                        <li>256-bit AES encryption (highest security)</li>
-                        <li>User password required to open PDF</li>
-                        <li>Owner password enables usage restrictions</li>
-                        <li>Without owner password: no restrictions applied</li>
+                        <li data-i18n="encrypt.info.aes">256-bit AES encryption (highest security)</li>
+                        <li data-i18n="encrypt.info.userPassword">User password required to open PDF</li>
+                        <li data-i18n="encrypt.info.ownerPassword">Owner password enables usage restrictions</li>
+                        <li data-i18n="encrypt.info.without">Without owner password: no restrictions applied</li>
                     </ul>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full">Encrypt PDF</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.encrypt">Encrypt PDF</button>
             </div>
         </div>
     </div>

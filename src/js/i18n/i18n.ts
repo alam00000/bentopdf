@@ -3,17 +3,18 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpBackend from 'i18next-http-backend';
 
 // Supported languages
-export const supportedLanguages = ['en', 'de'] as const;
+export const supportedLanguages = ['en', 'de', 'es'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageNames: Record<SupportedLanguage, string> = {
     en: 'English',
     de: 'Deutsch',
+    es: "Español",
 };
 
 export const getLanguageFromUrl = (): SupportedLanguage => {
     const path = window.location.pathname;
-    const langMatch = path.match(/^\/(en|de)(?:\/|$)/);
+    const langMatch = path.match(/^\/(en|de|es)(?:\/|$)/);
     if (langMatch && supportedLanguages.includes(langMatch[1] as SupportedLanguage)) {
         return langMatch[1] as SupportedLanguage;
     }
@@ -69,16 +70,14 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
     const currentLang = getLanguageFromUrl();
 
     let newPath: string;
-    if (currentPath.match(/^\/(en|de)\//)) {
-        newPath = currentPath.replace(/^\/(en|de)\//, `/${lang}/`);
-    } else if (currentPath.match(/^\/(en|de)$/)) {
+    if (currentPath.match(/^\/(en|de|es)\//)) {
+        newPath = currentPath.replace(/^\/(en|de|es)\//, `/${lang}/`);
+    } else if (currentPath.match(/^\/(en|de|es)$/)) {
         newPath = `/${lang}`;
     } else {
         newPath = `/${lang}${currentPath}`;
     }
-
-    const newUrl = newPath + window.location.search + window.location.hash;
-    window.location.href = newUrl;
+    window.location.href = newPath + window.location.search + window.location.hash;
 };
 
 // Apply translations to all elements with data-i18n attribute
@@ -133,7 +132,7 @@ export const rewriteLinks = (): void => {
             return;
         }
 
-        if (href.match(/^\/(en|de)\//)) {
+        if (href.match(/^\/(en|de|es)\//)) {
             return;
         }
         let newHref: string;

@@ -1,0 +1,851 @@
+{
+    "nav": {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "contact": "Contacto",
+        "licensing": "Licencia",
+        "allTools": "Todas las herramientas",
+        "openMainMenu": "Abrir menú principal",
+        "language": "Idioma"
+    },
+    "hero": {
+        "title": "El",
+        "pdfToolkit": "PDF Toolkit",
+        "builtForPrivacy": "para máxima privacidad",
+        "noSignups": "Sin registro",
+        "unlimitedUse": "Uso Ilimitado",
+        "worksOffline": "Funciona offline",
+        "startUsing": "Úsalo ahora"
+    },
+    "usedBy": {
+        "title": "Usado por empresas y personas trabajando en"
+    },
+    "features": {
+        "title": "Por qué",
+        "bentoPdf": "BentoPDF?",
+        "noSignup": {
+            "title": "Sin registro",
+            "description": "Empieza de inmediato, sin cuentas o emails."
+        },
+        "noUploads": {
+            "title": "Sin subir a la nube",
+            "description": "100% en el navegador, tus archivos nunca salen de tu dispositivo."
+        },
+        "foreverFree": {
+            "title": "Gratis por siempre",
+            "description": "Todas las herramientas, sin pruebas, sin paywalls."
+        },
+        "noLimits": {
+            "title": "Sin Límites",
+            "description": "Úsalo tanto como quieras, sin límites ocultos."
+        },
+        "batchProcessing": {
+            "title": "Procesamiento por lotes",
+            "description": "Trabaja con PDFs ilimitados en una sola ejecución."
+        },
+        "lightningFast": {
+            "title": "Realmente veloz",
+            "description": "Procesa PDFs instantáneamente, sin esperas."
+        }
+    },
+    "tools": {
+        "title": "Inicia con",
+        "toolsLabel": "Herramientas",
+        "subtitle": "Haz clic a una herramienta para abrir el cargador de archivos",
+        "searchPlaceholder": "Buscar herramienta (p.e. 'separar', 'organizar'...)",
+        "backToTools": "Volver a Herramientas"
+    },
+    "upload": {
+        "clickToSelect": "Haz clic para seleccionar un archivo",
+        "orDragAndDrop": "o arrastra",
+        "pdfOrImages": "PDFs o Imágenes",
+        "filesNeverLeave": "Tus archivos no salen de tu dispositivo.",
+        "addMore": "Agragar más archivos",
+        "clearAll": "Borrar todo",
+        "singleFile": "Un solo archivo",
+        "oneOrMorePdfs": "Uno o más archivos",
+        "pdfFile": "archivo PDF",
+        "jpgImage": "imagen JPG",
+        "pngImage": "imagen PNG",
+        "webpImage": "imagen WEBP",
+        "pdfDocuments": "tus documentos PDF",
+        "clickToSelectCsv": "Haz clic para subir un archivo CSV",
+        "clickToSelectJson": "Haz clic para subir un archivo JSON",
+        "allImages": "Todos los tipos de imagen",
+        "svgGraphics": "Gráficos SVG",
+        "bmpImage": "imagen BMP",
+        "heicImage": "imagen HEIC/HEIF",
+        "tiffImage": "imagen TIFF",
+        "textFiles": "Archivos de texto (.txt)",
+        "atLeastTwoFiles": "Varios PDF (al menos 2)",
+        "clickOrDrop": "Haz clic o arrastra"
+    },
+    "bookmarks": {
+        "autoExtract": "Extraer los marcadores automáticamente",
+        "importBookmarks": "O importa tus marcadores",
+        "cvsFormats": "formato CVS: títle,page,level"
+    },
+    "toc": {
+        "title": "Título de la TDC",
+        "fontSize": "Tamaño del Texto",
+        "fontFamily": "Fuente",
+        "addBookmarkToToc": "Agregar marcador para la TDC"
+    },
+    "buttons": {
+        "invertColors": "Invertir Colores",
+        "generateToc": "Generar Tabla de Contenidos",
+        "changeBackgroundColor": "Cambiar color de fondo",
+        "changeTextColor": "Cambiar color del texto",
+        "sign": "Guardar y descargar PDF firmado",
+        "stamp": "Guardar PDF sellado",
+        "removeAnnotations": "Eliminar Anotaciones",
+        "cropAndDownload": "Cortar y descargar",
+        "downloadForm": "Descargar Formulario PDF",
+        "detectBlandPages": "Detectar páginas vacías",
+        "removeBlandPages": "Eliminar páginas vacías",
+        "convertToPdf": "Convertir a PDF",
+        "uploadFiles": "Cargar Archivos",
+        "typeText": "Escribir Texto",
+        "createPdf": "Crear PDF",
+        "downloadAllZip": "Descargar todo como ZIP",
+        "toGreyscale": "Convertir a escala de grises",
+        "toJson": "Convertir a JSON",
+        "startOcr": "Iniciar OCR",
+        "fileMode": "Modo Archivo",
+        "pageMode": "Modo Página",
+        "mergePdf": "Unir PDFs",
+        "mixPages": "Intercalar Páginas",
+        "saveChanges": "Guardar cambios",
+        "addAttachments": "Agregar adjuntos",
+        "extractAttachment": "Extraer adjuntos",
+        "split": "Separar PDF",
+        "divide": "Dividir Páginas",
+        "extract": "Extraer y descargar ZIP",
+        "delete": "Eliminar páginas y descargar",
+        "reverse": "Invertir Orden",
+        "rotate": "Aplicar Rotaciones",
+        "nup": "Create N-Up PDF",
+        "combine": "Combine Pages",
+        "metadata": "Copiar Metadata como JSON",
+        "addCustomField": "Agregar campos personalizados",
+        "saveMetadata": "Guardar Metadata",
+        "saveZip": "Crear archivo ZIP",
+        "compare": {
+            "overlay": "Sobreposición",
+            "sideBySide": "Lado a lado",
+            "flicker": "Parpadear"
+        },
+        "posterize": "Posterizar PDF",
+        "compress": "Comprimir PDF",
+        "fixSize": "Fijar Tamaño de Página",
+        "linearize": "Linearizar PDF(s)",
+        "removeRestrictions": "Eliminar Restricciones",
+        "repair": "Reparar PDF",
+        "encrypt": "Encriptar PDF",
+        "sanitize": "Limpiar PDF",
+        "decrypt": "Desencriptar PDF",
+        "flatten": "Aplanar PDF(s)",
+        "removeMetadata": " Eliminar toda la Metadata",
+        "changePermissions": "Cambiar Permisos"
+    },
+    "invertColors": {
+        "clickToInvertColors": "Haz clic en el botón para invertir todos los colores en tu PDF."
+    },
+    "background": {
+        "color": "Color de fondo"
+    },
+    "textColor": {
+        "newTextColor": "Nuevo color de texto"
+    },
+    "sign": {
+        "flatten": "Aplanar PDF (usa el botón de a continuación)"
+    },
+    "stamp": {
+        "editor": "Editor de Sellos"
+    },
+    "removeAnnotations": {
+        "clickToRemove": "Haz clic en el botón para eliminar las anotaciones de tu PDF."
+    },
+    "crop": {
+        "flatten": "Cortado Aplanado (convierte las páginas en imágenes)",
+        "applyToAll": "Aplicar a todas las páginas"
+    },
+    "formFiller": {
+        "hint": "Archivo PDF con formulario"
+    },
+    "formCreator": {
+        "createBlank": "Crear PDF en blanco",
+        "selectToEdit": "Selecciona un campo para editar sus propiedades",
+        "pressToDelete": "Presiona Eliminar para quitar el campo seleccionado",
+        "text": "Texto",
+        "checkbox": "Selección Múltiple",
+        "radio": "Selección Única",
+        "dropdown": "Desplegable",
+        "list": "Lista",
+        "button": "Botón",
+        "signature": "Firma",
+        "date": "Fecha",
+        "image": "Imagen"
+    },
+    "removeBlankPage": {
+        "sensitivity": "Sensitividad",
+        "higherValues": "Valores más altos detectarán más páginas como vacías"
+    },
+    "imageToPdf": {
+        "quality": "Calidad del PDF",
+        "high": "Alta (archivo más grande)",
+        "medium": "Media (Balanceado)",
+        "low": "Baja (archivo más pequeño)",
+        "controls": "Controla la compresión de la imagen cuando se incrusta en el PDF"
+    },
+    "textToPdf": {
+        "selectLanguage": "Seleccionar Idiomas",
+        "defaultLanguage": "Inglés (Por defecto)",
+        "searchPlaceholder": "Buscar Idiomas",
+        "fontSize": "Tamaño del Texto",
+        "pageSize": "Tamaño de la Página",
+        "customSize": "Tamaño personalizado",
+        "landscape": "Panorama",
+        "portrait": "Retrato",
+        "width": "Ancho",
+        "height": "Alto",
+        "textColor": "Color del Texto"
+    },
+    "pdfToImage": {
+        "quality": "Calidad de la Imagen",
+        "qualityNote": "Mayor calidad = mayor tamaño del archivo"
+    },
+    "pdfToPng": {
+        "scale": "Escalado de la Imagen",
+        "scaleNote": "Mayor escala = mejor calidad pero archivos más grandes"
+    },
+    "pdfToOcr": {
+        "languages": "Idiomas en el documento",
+        "languagesPlaceholder": "Buscar idiomas...",
+        "selected": "Seleccionado",
+        "none": "Ninguno",
+        "advancedSettings": {
+            "title": "Configuración Avanzada (Recomendado para mejorar exactitud)",
+            "resolution": {
+                "title": "Resolución",
+                "standard": "Estándar",
+                "high": "Alto",
+                "ultra": "Ultra"
+            }
+        },
+        "binarize": "Binarizar Imagen (Subir el contraste para escaneos limpios)",
+        "whitelist": {
+            "title": "Filtro de Caracteres",
+            "none": "Ninguno (Todos los caracteres)",
+            "alphanumeric": "Alfanumérico + Signos Básicos",
+            "currency": "Números y símbolos de moneda",
+            "letters": "Solo letras (A-Z, a-z)",
+            "numbers": "Solo números (0-9)",
+            "invoice": "Facturas/Boletas (números, $, ., -, /)",
+            "forms": "Formularios (Alfanumérico + Símbolos comunes)",
+            "custom": "Personalizado",
+            "note": "Solo estos caracteres serán reconocidos. Déjalo en blanco para todos los caracteres.",
+            "optional": "Filtro de Caracteres (Opcional)"
+        }
+    },
+    "mergePdf": {
+        "how": "Cómo funciona:",
+        "fileMode": {
+            "drag": "Haz clic y arrastra el",
+            "icon": "ícono para cambiar el orden de los archivos.",
+            "specifyRanges": "En la parte de \"Páginas\" de cada archivo puedes especificar rangos (\"1-3, 5\") para unir solo esas páginas",
+            "leavePages": "Deja \"Páginas\" en blanco para incluir todas las páginas de ese archivo."
+        },
+        "pageMode": {
+            "all": "Todas las páginas de tu PDF cargado se muestran a continuación.",
+            "drag": "Simplemente arrastra las páginas individuales para crear el orden en el que quieres tu nuevo archivo."
+        }
+    },
+    "alternate": {
+        "filesOrder": "Orden de Archivos",
+        "reorder": "Arrastra para ordenar. Las páginas. Las páginas se intercalarán en este orden."
+    },
+    "attachment": {
+        "select": "Selecciona un archivo a adjuntar",
+        "dropToAttach": "Arrastra archivos para adjuntar",
+        "anyType": "Cualquier tipo",
+        "level": {
+            "attachment": "Nivel de Adjunto",
+            "document": "Nivel de Documento",
+            "page": "Nivel de Página"
+        },
+        "range": "Rango de Página",
+        "attachments": "Adjuntos"
+    },
+    "multiTool": {
+        "uploadPdfs": "Subir PDFs",
+        "upload": "Subir",
+        "addBlankPage": "Agregar página vacía",
+        "edit": "Editar:",
+        "undo": "Deshacer",
+        "redo": "Rehacer",
+        "reset": "Reestablecer",
+        "selection": "Selección:",
+        "selectAll": "Seleccionar Todo",
+        "deselectAll": "Deseleccionar Todo",
+        "rotate": "Rotar:",
+        "left": "Izquierda",
+        "right": "Derecha",
+        "transform": "Transformar",
+        "duplicate": "Duplicar",
+        "split": "Separar",
+        "clear": "Limpiar:",
+        "downloadSelected": "Descargar Seleccionados",
+        "exportPdf": "Exportar PDF",
+        "uploadPdfFile": "Subir PDFs",
+        "dragOrClick": "Arrastra tus archivos aquí o haz clic para seleccionar",
+        "selectFiles": "Seleccionar Archivos"
+    },
+    "split": {
+        "splitMode": "Modo de Separado",
+        "range": "Extraer por rango de páginas (Por defecto)",
+        "evenOdd": "Separar páginas Pares/Impares",
+        "all": "Separar las páginas en archivos separados",
+        "selected": "Seleccionar páginas visualmente",
+        "bookmarks": "Separar por marcadores",
+        "nTimes": "Separar N veces",
+        "how": "Cómo funciona:",
+        "rangeMode": {
+            "numbers": "Ingresa números de página separados por coma (2, 8, 14)",
+            "pages": "Ingresa rangos de página usando guiones (5-10)",
+            "combine": "Combina para selecciones complejas (1-3, 7, 12-15)",
+            "pageRange": "Rangos de página"
+        },
+        "evenOddMode": {
+            "info": "Extrae páginas solo pares o impares a un nuevo PDF.",
+            "even": "Páginas Pares",
+            "odd": "Páginas Impares"
+        },
+        "allMode": {
+            "every": "Cada página del PDF será guardada como un nuevo PDF.",
+            "result": "El resultado será descargado como un ZIP conteniendo todas las páginas."
+        },
+        "selectedMode": {
+            "click": "Haz clic en la página para seleccionar las páginas que quieres extraer",
+            "selected": "Las páginas seleccionadas estarán resaltadas"
+        },
+        "bookmarksMode": {
+            "split": "Separa el PDF basándose en sus marcadores",
+            "select": "Selecciona el nivel de marcador a separar",
+            "level": {
+                "title": "Nivel del Marcador",
+                "all": "Todos",
+                "0": "Nivel 0 (Solo primer nivel)",
+                "1": "Nivel 1",
+                "2": "Nivel 2",
+                "3": "Nivel 3"
+            }
+        },
+        "nTimesMode": {
+            "split": "Separa el PDF en varios archivos, cada uno conteniendo N páginas.",
+            "ppf": "Páginas por archivo (N)"
+        },
+        "zipOption": "Descargar ZIP"
+    },
+    "divide": {
+        "how": "Cómo funciona:",
+        "vertical": "Vertical",
+        "verticalHalfs": "Separar cada página mitades izquierda y derecha.",
+        "horizontal": "Horizontal",
+        "horizontalHalfs": "Separar cada página mitades superior e inferior.",
+        "result": "El resiltado tendré el doble de páginas que el original.",
+        "splitDirection": "Dirección de Separado",
+        "splitVertical": "Vertical (izquierda y derecha)",
+        "splitHorizontal": "Horizontal (superior e inferior)"
+    },
+    "extract": {
+        "total": "Total de páginas:",
+        "enterPages": "Ingresa las páginas a extraer (2, 4-6, 9):",
+        "placeholder": "2, 4-6, 9"
+    },
+    "delete": {
+        "totalPages": "Total de páginas:",
+        "pagesToDelete": "Ingresa las páginas a eliminar (2, 4-6, 9):",
+        "placeholder": "por ejemplo 2, 4-6, 9"
+    },
+    "addBlankPages": {
+        "how": "Cómo funciona:",
+        "specify": "Especifica la posición donde deben agregarse las páginas vacías.",
+        "position": "En la posición 0 la agregará al inicio. Una posicón igual al número de páginas, agregará al final.",
+        "match": "Las páginas vacías serán iguales en tamaño a la primera página de tu documento.",
+        "insert": {
+            "after": "Agregar luego de la página",
+            "zero": "Ingresa 0 para agregar al inicio",
+            "number": "Número de páginas vacías"
+        }
+    },
+    "reverse": {
+        "how": "Cómo funciona:",
+        "all": "El orden de todas las páginas serán invertidas (la primera se convienrte en la última, la última se convierte en la primera).",
+        "ifUpload": "Si subes varios PDFs, cada documento invertido y descargado en un archivo ZIP independiente."
+    },
+    "rotate": {
+        "batchActions": "Acciones en Lote",
+        "rotate90": "Rotar 90 grados",
+        "rotateCustom": "Rotar en grados específicos",
+        "left": "Izquierda",
+        "right": "Derecha",
+        "apply": "Aplicar"
+    },
+    "nup": {
+        "how": "Cómo funciona:",
+        "choose": "Elije cuántas páginas entrarán en cada hoja (2, 4, 9 o 16).",
+        "select": "Selecciona el tamaño y orientación de la salida.",
+        "optionally": "Opcionalmente agrega márgenes y bordes en las páginas.",
+        "pagesPerSheet": {
+            "info": "Páginas por hoja",
+            "two": "2 (1x2)",
+            "four": "4 (2x2)",
+            "nine": "9 (3x3)",
+            "sixteen": "16 (4x4)"
+        },
+        "output": {
+            "info": "Tamaño de la salida",
+            "letter": "Carta (8.5\" x 11\")",
+            "legal": "Legal"
+        },
+        "orientation": {
+            "info": "Orientación",
+            "auto": "Automático",
+            "portrait": "Vertical",
+            "landscape": "Horizaontal"
+        },
+        "addMargin": "Agregar Márgenes",
+        "addBorders": "Agregar Bordes",
+        "borderColors": "Color del Borde"
+    },
+    "combine": {
+        "layout": {
+            "info": "Dirección de diseño",
+            "vertical": "Vertical (Arriba hacia abajo",
+            "horizontal": "Horizontal (Izquierda a derecha)"
+        },
+        "spacing": "Espaciado (píxeles)",
+        "backgroundColor": "Color de fondo",
+        "addSeparator": "Agregar separador",
+        "separatorThickness": "Grosor del separador",
+        "separatorColor": "Color del separador"
+    },
+    "metadata": "Metadata del Documento",
+    "editMetadata": {
+        "info": "Editar Metadata",
+        "title": "Título",
+        "author": "Autor",
+        "subject": "Sujeto",
+        "keywords": "Keywords",
+        "creator": "Creador",
+        "producer": "Productor",
+        "creationDate": "Fecha de Creación",
+        "modificationDate": "Fecha de Modificación",
+        "customFields": {
+            "info": "Campos Personalizados",
+            "note": "Nota: No todos los lectores soportan campos personalizados."
+        }
+    },
+    "toZip": {
+        "how": "Cómo funciona:",
+        "all": "Todos los archivos seleccionados serán agregados a un único archivo ZIP.",
+        "file": "Los nombres de los archivos se mantendrán en el ZIP."
+    },
+    "compare": {
+        "first": "Primer PDF",
+        "second": "Segundo PDF",
+        "opacity": "Opacidad",
+        "syncScrolling": "Sincronizar desplazamiento"
+    },
+    "posterize": {
+        "pagePreview": "Vista Previa",
+        "gridLayout": "Diseño de cuadrícula",
+        "rows": "Filas",
+        "columns": "Columnas",
+        "outputPageSettings": "Configuración de salida",
+        "pageSize": "Tamalo de Página",
+        "letter": "Carta",
+        "legal": "Legal",
+        "orientation": "Orientación",
+        "auto": "Automático (Recomendado)",
+        "portrait": "Vertical",
+        "landscape": "Horizontal",
+        "advanced": {
+            "info": "Opciones Avanzadas",
+            "contentScaling": "Escalado de Contenido",
+            "fit": "Ajustar",
+            "preserves": "Mantiene todo el contenido, puede agregar márgenes.",
+            "fill": "Rellenar (Cortar)",
+            "fillPage": "Rellena la página, puede cortar el contenido.",
+            "overlap": "Sobreponer (para ensablado)",
+            "points": "Puntos",
+            "inches": "Pulgadas",
+            "mm": "mm",
+            "pageRange": "Rango de página (opcional)",
+            "totalPages": "Páginas totales:"
+        }
+    },
+    "compress": {
+        "level": {
+            "info": "Nivel de Compresión",
+            "balanced": "Balanceado (Recomendado)",
+            "high": "Calidad Alta (archivo grande)",
+            "small": "Calidad Baja (menor tamaño)",
+            "extreme": "Calidad Muy baja (extremo)"
+        },
+        "algorithm": {
+            "vector": "Vector (Para PFDs con mucho texto)",
+            "photon": "Photon (para imágenes y dibujos complejos)",
+            "info": "Elije 'Vector' para PFD con mucho texto o 'Photon' para documentos escaneados e imágenes complejas."
+        }
+    },
+    "fixPageSize": {
+        "target": "Objetivo de Tamaño de Página",
+        "letter": "Carta (8.5 × 11 in)",
+        "legal": "Legal (8.5 × 14 in)",
+        "tabloid": "Tabloid (11 × 17 in)",
+        "custom": "Personalizado...",
+        "width": "Ancho",
+        "height": "Alto",
+        "units": "Unidades",
+        "inches": "Pulgadas",
+        "mm": "Milímetros",
+        "orientation": "Orientación",
+        "auto": "Auto (Mantiene el Original)",
+        "portrait": "Vertical",
+        "landscape": "Horizontal",
+        "scaling": "Escalado de Contenido",
+        "fit": "Encajar",
+        "fitInfo": "Mantiene todo el contenido, puede agregar márgenes.",
+        "fill": "Rellenar (Recortado)",
+        "fillInfo": "Rellena la página, puede recortar el contenido.",
+        "backgroundColor": "Color de Fondo",
+        "colorMargin": "Color para los márgenes/padding"
+    },
+    "linearize": {
+        "whatIs": "Qué es Linearización?",
+        "optimizes": "Optimiza la estructura del PDF para la visualización web",
+        "enables": "Habilita la carga progresiva (la primera página carga más rápido)",
+        "improves": "Mejora la experiencia para PDFs en línea",
+        "also": "También conocido como \"Fast Web View\" (Vista web rápida) u \"Optimized\" (Optimizado)"
+    },
+    "pageDimensions": {
+        "units": "Unidades:",
+        "points": "Puntos (pt)",
+        "inches": "Pulgadas (in)",
+        "mm": "Milímetros (mm)",
+        "pixels": "Píxeles (px)",
+        "export": "Exportar a CSV",
+        "page": "Página #",
+        "dimensions": "Dimensiones",
+        "standard": "Tamaño Estándar",
+        "orientation": "Orientación",
+        "ascpect": "Ratio",
+        "area": "Área",
+        "rotation": "Rotación"
+    },
+    "removeRestrictions": {
+        "password": "Contraseña del propietario (Opcional)",
+        "passwordPlaceholder": "Ingresa la contraseña del propietario si se necesitara",
+        "leaveEmpty": "Déjalo en blanco si el PDF no tiene contraseña.",
+        "info": {
+            "what": "Lo que se eliminará:",
+            "password": "Protección de contraseña",
+            "printing": "Protección de Impresión",
+            "editing": "Protección de Edición",
+            "copying": "Protección de Copia",
+            "all": "Cualquier otras limitaciones de seguridad"
+        }
+    },
+    "encrypt": {
+        "password": "Contraseña (Obligatorio)",
+        "passwordPlaceholder": "Para ingresar contraseña para abrir el PDF.",
+        "passwordHint": "Esta contraseña será solicitada al abrir el PDF.",
+        "ownerPassword": "Contraseña del propietario (Opcional)",
+        "ownerPasswordPlaceholder": "Ingresar contraseña para permisos (opcional)",
+        "ownerPasswordHint": "Si se ingresa una contraseña, se aplicará restricciones de uso. Déjalo en blanco para ninguna restricción.",
+        "info": {
+            "details": "Detalles de Encriptación:",
+            "aes": "Encriptación 256-bit AES (la mejor seguridad)",
+            "userPassword": "Contraseña requerida para abrir PDF",
+            "ownerPassword": "Contraseña de propietario habilita restricciones de uso",
+            "without": "Sin contraseña de propietario: no se aplican restricciones"
+        }
+    },
+    "sanitize": {
+        "options": "Opciones de Limpieza:",
+        "flatten": "Aplanar Formularios",
+        "remove": {
+            "metadata": "Eliminar Metadata",
+            "annotations": "Eliminar Anotaciones",
+            "javascript": "Eliminar JavaScript",
+            "embeddedFiles": "Eliminar Archivos Incrustados",
+            "layers": "Eliminar Capas (OCG)",
+            "links": "Eliminar Enlaces",
+            "sctructure": "Eliminar Árbol de Escructura",
+            "markinfo": "Eliminar MarkInfo",
+            "embeddedFonts": "Eliminar Fuentes Incrustadas"
+        },
+        "info": "Limpiza elimina contenido sensible permanentemente. Algunas opciones pueden afectar el renderizado del PDF"
+    },
+    "decrypt": {
+        "password": "Contraseña del PDF",
+        "passwordPlaceholder": "Ingresa la contraseña del PDF",
+        "info": "Ingresa la contraseña que se utilizó para proteger este PDF."
+    },
+    "flatten": {
+        "what": "What will be flattened:",
+        "form": "Form fields (text fields, checkboxes, radio buttons, etc.)",
+        "annotations": "Annotations and comments",
+        "interactive": "Interactive elements",
+        "note": "Note: Flattened content cannot be edited or filled out."
+    },
+    "removeMetadata": {
+        "what": "Lo que será eliminado:",
+        "title": "Título, autor, sujeto, keywords",
+        "creator": "Información del creador y productor",
+        "creation": "Fechas de creación y modificación",
+        "xmp": "Metadata XMP",
+        "documentId": "IDs del Documento",
+        "pieceInfo": "PieceInfo (Información privada de la aplicación)"
+    },
+    "changePermissions": {
+        "password": "Contraseña actual (si está encriptado)",
+        "passwordPlaceholder": "Ingresar contraseña actual",
+        "userPassword": "Nueva contraseña",
+        "userPasswordPlaceholder": "Contraseña para abrir el PDF",
+        "ownerPassword": "Nueva contraseña de Propietario",
+        "ownerPasswordPlaceholder": "Contraseña para permisos",
+        "ownerPasswordInfo": "Deja ambos en blanco para desencriptar el PDF.",
+        "info": {
+            "title": "Permisons (requiere contraseña del propietario)",
+            "printing": "Permitir Impresiones",
+            "copying": "Permitir copiar texto",
+            "modifying": "Permitir modificacione",
+            "annotating": "Permitir anotaciones",
+            "filling": "Permitir llenado de formularios",
+            "document": "Permitir Ensamblaje de Documento",
+            "page": "Permitir extracción de páginas"
+        }
+    },
+    "loader": {
+        "processing": "Procesando..."
+    },
+    "alert": {
+        "title": "Alerta",
+        "ok": "OK"
+    },
+    "preview": {
+        "title": "Vista Previa",
+        "downloadAsPdf": "Descargar como PDF",
+        "close": "Cerrar"
+    },
+    "settings": {
+        "title": "Configuración",
+        "shortcuts": "Atajos",
+        "preferences": "Preferencias",
+        "displayPreferences": "Mostrar Preferencias",
+        "searchShortcuts": "Buscar atajos...",
+        "shortcutsInfo": "Mantén presionado una tecla para establecer un atajo. Los cambios se guardan automáticamente.",
+        "shortcutsWarning": "⚠️ Evita atajos de navegadores (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N etc.) ya que pueden no funcionar correctamente.",
+        "import": "Importar",
+        "export": "Exportar",
+        "resetToDefaults": "Restablecer a predeterminados",
+        "fullWidthMode": "Modo ancho completo",
+        "fullWidthDescription": "Utiliza el ancho completo para todas las herramientas en vez de un contenedor centrado",
+        "settingsAutoSaved": "Las configuraciones se guardan automáticamente",
+        "clickToSet": "Haz clic para establecer",
+        "pressKeys": "Presiona una tecla...",
+        "warnings": {
+            "alreadyInUse": "Atajo ya en uso",
+            "assignedTo": "ya está asignado a:",
+            "chooseDifferent": "Por favor, elije otro atajo.",
+            "reserved": "Advertencia de Atajo Reservado",
+            "commonlyUsed": "normalmente usado para:",
+            "unreliable": "Puede que este atajo no funcione correctamente o esté en conflicto con uno del navegador o del sistema",
+            "useAnyway": "¿Quieres usarlo de todas formas?",
+            "resetTitle": "Reestablecer Atajos",
+            "resetMessage": "¿Estás seguro de reestablecer todos los atajos?br><br>Esto no se puede deshacer.",
+            "importSuccessTitle": "Importado Exitosamente",
+            "importSuccessMessage": "¡Atajos importados de manera exitosa!",
+            "importFailTitle": "Importación Fallida",
+            "importFailMessage": "Falló la importación de los atajos. Archivo con formato inválido."
+        }
+    },
+    "warning": {
+        "title": "Advertencia",
+        "cancel": "Cancelar",
+        "proceed": "Continuar"
+    },
+    "compliance": {
+        "title": "Tus archivos nunca salen de tu dispositivo",
+        "weKeep": "Mantenemos",
+        "yourInfoSafe": "tu información segura",
+        "byFollowingStandards": "al seguir estándares globales de seguridad.",
+        "processingLocal": "Todos los procesos ocurren localmente en tu dispositivo.",
+        "gdpr": {
+            "title": "Cumplimiento de GDPR",
+            "description": "Protege los datos personales y privacidad de individuos en la Unión Europea."
+        },
+        "ccpa": {
+            "title": "Cumplimiento CCPA",
+            "description": "Otorga a los residentes de California sobre cómo sus datos personales es recolectada, usada y compartida."
+        },
+        "hipaa": {
+            "title": "Cumplimiento HIPAA",
+            "description": "Establece salvaguardas para el manejo de información sanitaria confidencial en el sistema de salud de los Estados Unidos."
+        }
+    },
+    "faq": {
+        "title": "Preguntas",
+        "questions": "Frecuentes",
+        "isFree": {
+            "question": "¿BentoPDF es de verdad gratuito?",
+            "answer": "Claro que sí. Todas las herramientas en BentoPDF son 100% gratuitas, sin límites, sin cuentas y sin marcas de agua. Creemos que todos merecen acceso a herramientas simples y poderosas sin tener que pagar."
+        },
+        "areFilesSecure": {
+            "question": "¿Mis archivos están seguros? ¿Dónde se procesan?",
+            "answer": "Tus archivos están tan seguros como es posible porque nunca salen de tu PC. Todo el procesamiento sucede en el navegador. Nunca subimos tus archivos a un servidor, por lo que mantienes total privacidad y control sobre tus documentos."
+        },
+        "platforms": {
+            "question": "¿Funciona en Mac, Windows y celular/móbil?",
+            "answer": "¡Sí! Ya que BentoPDF se ejecuta en tu navegador, funciona en cualquier sistema operativo con un navegador moderno, incluyendo Linux, Windows, macOS, iOS y Android."
+        },
+        "gdprCompliant": {
+            "question": "¿BentoPDF cumple con GDPR?",
+            "answer": "Sí, BentoPDF cumple completamente con GDPR. Ya que los archivos son procesados localmente en tu navegafor y no recolectamos ni transmitimos tus archivos a algún servidor, no tenemos acceso a tus datos. Esto asegura que siempre estás en control de tus documentos."
+        },
+        "dataStorage": {
+            "question": "¿Almacenan o rastrean algunos de mis archivos?",
+            "answer": "No. No almacenamos, rastreamos o guardamos logs de tus archivos. Todo lo que haces en BentoPDF sucede en la memoria de tu navegador y desaparece cuando cierras la página. No se suben archivos, no hay historial de logs ni hay servidores externos involucrados."
+        },
+        "different": {
+            "question": "¿Qhé hace a BentoPDF diferente de otras herramientas PDF?",
+            "answer": "La mayoría de herramientas PDF carga/sube tus arhivos a un servidor para el procesamiento. BentoPDF nunca hace eso. Utilizamos tegnología moderna y segura para procesar tus archivos directamente en tu navegador. Lo que se traduce en alto rendimiento, mayor privacidad y completa tranquilidad."
+        },
+        "browserBased": {
+            "question": "¿Cómo es que el procesamiento en el navegador me mantiene seguro?",
+            "answer": "Al ejecutarse completamente en el navegador, BentoPDF garantiza que tus archivos nunca salgan de tu dispositivo. Esto elimina el riesgo de brechas de seguridad en servidores, exposición de datos o acceso no autorizado. Tus archivo siempre son tuyos."
+        },
+        "analytics": {
+            "question": "¿Utilizan cookies o datos de analítica para rastrearme?",
+            "answer": "Nos importa tu privacidad. BentoPDF no rastrea información personal. Utilizamos Simple Analytics únicamente para ver el recuento de visitas anónimas. Esto significa que podemos saber cuántos usuarios visitan nuestá página, pero nunca sabemos quién eres. Simple Analytics cumple con GDPR y respeta tu privacidad."
+        }
+    },
+    "testimonials": {
+        "title": "Lo que nuestros",
+        "users": "Usuarios",
+        "say": "Dicen"
+    },
+    "support": {
+        "title": "¿Te gusta mi trabajo?",
+        "description": "BentoPDF es un proyecto de pasión, hecho para ofrecer una herramienta PDF gratuita, privada y potente para todo. Si te es útil, considera apoyando el desarrollo. ¡Cada cafecito ayuda!",
+        "buyMeCoffee": "Invítame un café"
+    },
+    "footer": {
+        "copyright": "© 2025 BentoPDF. Todos los derechos reservados.",
+        "version": "Versioón",
+        "company": "Empresa",
+        "aboutUs": "Nosotros",
+        "faqLink": "FAQ",
+        "contactUs": "Contacto",
+        "legal": "Legal",
+        "termsAndConditions": "Términos y Condiciones",
+        "privacyPolicy": "Política de Privacidad,",
+        "followUs": "Síguenos"
+    },
+    "merge": {
+        "title": "Unir PDFs",
+        "description": "Combina archivos completos o selecciona páginas específicas para unir en un nuevo documento.",
+        "fileMode": "Modo Archivo",
+        "pageMode": "Modo Página",
+        "howItWorks": "Cómo funciona:",
+        "fileModeInstructions": [
+            "Haz clic y arrastra el ícono para cambiar el orden de los archivos.",
+            "En la caja de \"Páginas\" de cada archivo, puedes especificar rangos (p.e. \"1-3, 5\") para unir solo esas páginas.",
+            "Deja la caja de \"Páginas\" vacía para incluir todas las páginas de ese archivo."
+        ],
+        "pageModeInstructions": [
+            "Todas las páginas de tus archivos cargados se muestran a continuación.",
+            "Simplemente arrastra las miniaturas para crear el orden exacto en que quieras que se genere tu nuevo archivo."
+        ],
+        "mergePdfs": "Unir PDFs"
+    },
+    "common": {
+        "page": "Página",
+        "pages": "Páginas",
+        "of": "de",
+        "download": "Descargar",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "add": "Agregar",
+        "remove": "Eliminar",
+        "loading": "Cargando...",
+        "error": "Error",
+        "success": "Éxito",
+        "file": "Archivo",
+        "files": "Archivos",
+        "jsonFormat": "Formato JSON",
+        "or": "O",
+        "properties": "Propiedades",
+        "field": "campo(s)",
+        "goto": "Ir a:",
+        "go": "Ir",
+        "grid": "Grilla:",
+        "reset": "Reestablecer",
+        "addPage": "Agregar página",
+        "fields": "Campos"
+    },
+    "about": {
+        "hero": {
+            "title": "Creemos que las herramientas PDF deben ser",
+            "subtitle": "fápidas, privadas y gratuitas.",
+            "noCompromises": "Sin compromisos."
+        },
+        "mission": {
+            "title": "Nuestra Misión",
+            "description": "Ofrecer las herramientas PDF más completas que respeten tu privacidad y nunca soliciten un pago. Creemos que las herramientas esenciales para documentos deben ser accesibles para todos, en cualquier lugar, sin barreras."
+        },
+        "philosophy": {
+            "label": "Nuestra Filosofía Central",
+            "title": "La privacidad es Primero. Siempre.",
+            "description": "En una era donde los datos son un bien, adoptamos un enfoque diferente. Todo el procesamiento de las herramientas de BentoPDF se realiza localmente en tu navegador. Esto significa que tus archivos nunca entran en contacto con nuestros servidores, nunca vemos tus documentos y no rastreamos lo que haces. Tus documentos se mantienen completamente privados. No es solo una función, es nuestra base."
+        },
+        "whyBentopdf": {
+            "title": "Por qué",
+            "speed": {
+                "title": "Creado para la Velocidad",
+                "description": "Sin esperas para subir o descargar archivos de un servidor. Al procesar archivos directamente en tu navegador con tecnologías web modernas como WebAssembly, ofrecemos una velocidad inigualable para todas nuestras herramientas."
+            },
+            "free": {
+                "title": "Completamente Gratuito",
+                "description": "Sin pruebas, sin suscripciones, sin cargos ocultos y sin funciones premium retenidas. Creemos que las potentes herramientas PDF deben ser un servicio público, no una fuente de lucro."
+            },
+            "noAccount": {
+                "title": "No se requiere cuenta",
+                "description": "Empieza a usar cualquier herramienta de inmediato. No necesitamos tu correo electrónico, contraseña ni información personal. Tu flujo de trabajo debe ser fluido y anónimo."
+            },
+            "openSource": {
+                "title": "Espíritu de código abierto",
+                "description": "Diseñado con transparencia en mente. Aprovechamos increíbles bibliotecas de código abierto como PDF-lib y PDF.js, y creemos en el esfuerzo comunitario para que herramientas potentes sean accesibles para todos."
+            }
+        },
+        "cta": {
+            "title": "¿Listo para comenzar?",
+            "description": "Únete a los miles de usuarios que confían en BentoPDF para sus necesidades diarias de documentos. Experimenta la diferencia que la privacidad y el rendimiento pueden marcar.",
+            "button": "Explore All Tools"
+        }
+    },
+    "contact": {
+        "title": "Ponte en Contacto",
+        "subtitle": "Nos encantaría saber de ti. Si tienes alguna pregunta, comentario o solicitud de alguna funcionalidad, no dudes en contactarnos.",
+        "email": "Puedes comunicarte con nosotros directamente por correo electrónico a:"
+    },
+    "licensing": {
+        "title": "Licencias para",
+        "subtitle": "Elige la licencia que se ajuste a tus necesidades."
+    }
+}

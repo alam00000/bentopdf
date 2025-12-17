@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/compare-pdfs.html" />
     <link rel="alternate" hreflang="de" href="/de/compare-pdfs.html" />
+    <link rel="alternate" hreflang="es" href="/es/compare-pdfs.html" />
     <link rel="alternate" hreflang="x-default" href="/en/compare-pdfs.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
     <style>
@@ -111,8 +112,8 @@
                     class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                     <div id="file-display-1" class="flex flex-col items-center justify-center">
                         <i data-lucide="file-text" class="w-8 h-8 mb-2 text-gray-400"></i>
-                        <p class="text-sm text-gray-400">First PDF</p>
-                        <p class="text-xs text-gray-500">Click or drop</p>
+                        <p class="text-sm text-gray-400" data-i18n="compare.first">First PDF</p>
+                        <p class="text-xs text-gray-500" data-i18n="upload.clickOrDrop">Click or drop</p>
                     </div>
                     <input id="file-input-1" type="file"
                         class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" accept="application/pdf">
@@ -121,8 +122,8 @@
                     class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                     <div id="file-display-2" class="flex flex-col items-center justify-center">
                         <i data-lucide="file-text" class="w-8 h-8 mb-2 text-gray-400"></i>
-                        <p class="text-sm text-gray-400">Second PDF</p>
-                        <p class="text-xs text-gray-500">Click or drop</p>
+                        <p class="text-sm text-gray-400" data-i18n="compare.second">Second PDF</p>
+                        <p class="text-xs text-gray-500" data-i18n="upload.clickOrDrop">Click or drop</p>
                     </div>
                     <input id="file-input-2" type="file"
                         class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" accept="application/pdf">
@@ -140,7 +141,7 @@
                         <i data-lucide="chevron-left"></i>
                     </button>
                     <span class="text-white font-medium">
-                        Page <span id="current-page-display-compare">1</span> of <span
+                        <span data-i18n="common.page">Page</span> <span id="current-page-display-compare">1</span> <span data-i18n="common.of">of</span> <span
                             id="total-pages-display-compare">1</span>
                     </span>
                     <button id="next-page-compare"
@@ -154,9 +155,9 @@
                     <!-- View Mode Buttons -->
                     <div class="bg-gray-700 p-1 rounded-md flex gap-1">
                         <button id="view-mode-overlay"
-                            class="btn bg-indigo-600 px-3 py-1 rounded text-sm font-semibold">Overlay</button>
+                            class="btn bg-indigo-600 px-3 py-1 rounded text-sm font-semibold" data-i18n="buttons.compare.overlay">Overlay</button>
                         <button id="view-mode-side"
-                            class="btn px-3 py-1 rounded text-sm font-semibold">Side-by-Side</button>
+                            class="btn px-3 py-1 rounded text-sm font-semibold" data-i18n="buttons.compare.sideBySide">Side-by-Side</button>
                     </div>
 
                     <!-- Divider -->
@@ -165,8 +166,8 @@
                     <!-- Overlay Controls -->
                     <div id="overlay-controls" class="flex items-center gap-2">
                         <button id="flicker-btn"
-                            class="btn bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-md text-sm font-semibold">Flicker</button>
-                        <label for="opacity-slider" class="text-sm font-medium text-gray-300">Opacity:</label>
+                            class="btn bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-md text-sm font-semibold" data-i18n="buttons.compare.flicker">Flicker</button>
+                        <label for="opacity-slider" class="text-sm font-medium text-gray-300" data-i18n="compare.opacity">Opacity:</label>
                         <input type="range" id="opacity-slider" min="0" max="1" step="0.05" value="0.5"
                             class="w-24 accent-indigo-500">
                     </div>
@@ -176,7 +177,7 @@
                         <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
                             <input type="checkbox" id="sync-scroll-toggle" checked
                                 class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                            Sync Scrolling
+                            <span data-i18n="compare.syncScrolling">Sync Scrolling</span>
                         </label>
                     </div>
                 </div>

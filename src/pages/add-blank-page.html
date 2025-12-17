@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/add-blank-page.html" />
     <link rel="alternate" hreflang="de" href="/de/add-blank-page.html" />
+    <link rel="alternate" hreflang="es" href="/es/add-blank-page.html" />
     <link rel="alternate" hreflang="x-default" href="/en/add-blank-page.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -85,7 +86,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -97,27 +98,30 @@
 
             <div id="tool-options" class="hidden mt-6">
                 <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-                    <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                    <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="addBlankPages.how">How it works:</strong></p>
                     <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                        <li>Specify the position where blank pages should be inserted.</li>
-                        <li>Position 0 inserts at the beginning, position equal to page count inserts at the end.</li>
-                        <li>Blank pages will match the size of the first page in your document.</li>
+                        <li data-i18n="addBlankPages.specify">Specify the position where blank pages should be inserted.</li>
+                        <li data-i18n="addBlankPages.position">Position 0 inserts at the beginning, position equal to page count inserts at the end.</li>
+                        <li data-i18n="addBlankPages.match">Blank pages will match the size of the first page in your document.</li>
                     </ul>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="page-position" class="block mb-2 text-sm font-medium text-gray-300">Insert after
-                            page</label>
+                        <label for="page-position" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="addBlankPages.insert.after">
+                            Insert after page
+                        </label>
                         <input type="number" id="page-position" min="0" value="0"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                             placeholder="0">
-                        <p id="page-position-hint" class="text-xs text-gray-500 mt-1">Enter 0 to insert at the
-                            beginning.</p>
+                        <p id="page-position-hint" class="text-xs text-gray-500 mt-1" data-i18n="addBlankPages.insert.zero">
+                            Enter 0 to insert at the beginning.
+                        </p>
                     </div>
                     <div>
-                        <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300">Number of blank
-                            pages</label>
+                        <label for="page-count" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="addBlankPages.insert.number">
+                            Number of blank pages
+                        </label>
                         <input type="number" id="page-count" min="1" value="1"
                             class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                             placeholder="1">

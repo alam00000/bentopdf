@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/flatten-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/flatten-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/flatten-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/flatten-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,9 +80,11 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDFs</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">Single or multiple PDF files supported</p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDFs</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                    </p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.oneOrMorePdfs">Single or multiple PDF files supported</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -105,15 +108,15 @@
 
             <div id="tool-options" class="hidden mt-6">
                 <div class="p-4 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-                    <h3 class="text-sm font-semibold text-white mb-2">What will be flattened:</h3>
+                    <h3 class="text-sm font-semibold text-white mb-2" data-i18n="flatten.what">What will be flattened:</h3>
                     <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-                        <li>Form fields (text fields, checkboxes, radio buttons, etc.)</li>
-                        <li>Annotations and comments</li>
-                        <li>Interactive elements</li>
+                        <li data-i18n="flatten.form">Form fields (text fields, checkboxes, radio buttons, etc.)</li>
+                        <li data-i18n="flatten.annotations">Annotations and comments</li>
+                        <li data-i18n="flatten.interactive">Interactive elements</li>
                     </ul>
-                    <p class="text-xs text-gray-500 mt-2">Note: Flattened content cannot be edited or filled out.</p>
+                    <p class="text-xs text-gray-500 mt-2" data-i18n="flatten.note">Note: Flattened content cannot be edited or filled out.</p>
                 </div>
-                <button id="process-btn" class="btn-gradient w-full">Flatten PDF(s)</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.flatten">Flatten PDF(s)</button>
             </div>
         </div>
     </div>

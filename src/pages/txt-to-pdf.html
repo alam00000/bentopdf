@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/txt-to-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/txt-to-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/txt-to-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/txt-to-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -62,8 +63,8 @@
             class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
             <button id="back-to-tools"
                 class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
-                <i data-lucide="arrow-left" class="cursor-pointer"></i><span class="cursor-pointer"> Back to Tools
-                </span>
+                <i data-lucide="arrow-left" class="cursor-pointer"></i>
+                <span class="cursor-pointer" data-i18n="tools.backToTools">Back to Tools</span>
             </button>
 
             <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:textToPdf.name">Text to PDF</h1>
@@ -75,9 +76,9 @@
             <div class="mb-4">
                 <div class="flex gap-2 p-1 rounded-lg bg-gray-900 border border-gray-700 mb-4">
                     <button id="txt-mode-upload-btn"
-                        class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md">Upload Files</button>
+                        class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md" data-i18n="buttons.uploadFiles">Upload Files</button>
                     <button id="txt-mode-text-btn"
-                        class="flex-1 btn bg-gray-700 text-gray-300 font-semibold py-2 rounded-md">Type Text</button>
+                        class="flex-1 btn bg-gray-700 text-gray-300 font-semibold py-2 rounded-md" data-i18n="buttons.typeText">Type Text</button>
                 </div>
 
                 <!-- Upload Panel -->
@@ -86,9 +87,11 @@
                         class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                         <div class="flex flex-col items-center justify-center pt-5 pb-6">
                             <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                            <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select
-                                    file(s)</span> <span data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                            <p class="text-xs text-gray-500">Text files (.txt)</p>
+                            <p class="mb-2 text-sm text-gray-400">
+                                <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select file(s)</span>
+                                <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                            </p>
+                            <p class="text-xs text-gray-500" data-i18n="upload.textFiles">Text files (.txt)</p>
                             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave
                                 your device.</p>
                         </div>
@@ -122,11 +125,11 @@
             <!-- Formatting Options -->
             <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-300">Select Languages</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.selectLanguage">Select Languages</label>
                     <div class="relative">
                         <button id="lang-dropdown-btn"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 text-left flex justify-between items-center">
-                            <span id="lang-dropdown-text" class="truncate">English (Default)</span>
+                            <span id="lang-dropdown-text" class="truncate" data-i18n="textToPdf.defaultLanguage">English (Default)</span>
                             <i data-lucide="chevron-down" class="w-4 h-4"></i>
                         </button>
                         <div id="lang-dropdown-content"
@@ -134,6 +137,7 @@
                             <div class="p-2 sticky top-0 bg-gray-800 border-b border-gray-700">
                                 <input type="text" id="lang-search"
                                     class="w-full bg-gray-700 border border-gray-600 text-white rounded px-2 py-1 text-sm"
+                                       data-i18n-placeholder="textToPdf.searchPlaceholder"
                                     placeholder="Search languages...">
                             </div>
                             <div id="language-list-container" class="p-2 space-y-1"></div>
@@ -141,12 +145,12 @@
                     </div>
                 </div>
                 <div>
-                    <label for="font-size" class="block mb-2 text-sm font-medium text-gray-300">Font Size</label>
+                    <label for="font-size" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.fontSize">Font Size</label>
                     <input type="number" id="font-size" value="12"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                 </div>
                 <div>
-                    <label for="page-size" class="block mb-2 text-sm font-medium text-gray-300">Page Size</label>
+                    <label for="page-size" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.pageSize">Page Size</label>
                     <select id="page-size"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                         <optgroup label="ISO A Series">
@@ -165,40 +169,42 @@
                             <option value="B4">B4 (250 x 353 mm)</option>
                             <option value="B5">B5 (176 x 250 mm)</option>
                         </optgroup>
-                        <option value="Custom">Custom Size</option>
+                        <option value="Custom" data-i18n="textToPdf.customSize">Custom Size</option>
                     </select>
                 </div>
                 <div>
                     <label for="page-orientation"
-                        class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                        class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.orientation">Orientation</label>
                     <select id="page-orientation"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                        <option value="portrait">Portrait</option>
-                        <option value="landscape">Landscape</option>
+                        <option value="portrait" data-i18n="textToPdf.portrait">Portrait</option>
+                        <option value="landscape" data-i18n="textToPdf.landscape">Landscape</option>
                     </select>
                 </div>
                 <div id="custom-size-container" class="hidden col-span-2 grid grid-cols-2 gap-4">
                     <div>
-                        <label for="custom-width" class="block mb-2 text-sm font-medium text-gray-300">Width
-                            (pt)</label>
+                        <label for="custom-width" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.width">
+                            Width (pt)
+                        </label>
                         <input type="number" id="custom-width" value="595" min="1"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                     </div>
                     <div>
-                        <label for="custom-height" class="block mb-2 text-sm font-medium text-gray-300">Height
-                            (pt)</label>
+                        <label for="custom-height" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.height">
+                            Height (pt)
+                        </label>
                         <input type="number" id="custom-height" value="842" min="1"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
                     </div>
                 </div>
                 <div>
-                    <label for="text-color" class="block mb-2 text-sm font-medium text-gray-300">Text Color</label>
+                    <label for="text-color" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="textToPdf.textColor">Text Color</label>
                     <input type="color" id="text-color" value="#000000"
                         class="w-full h-[42px] bg-gray-700 border border-gray-600 rounded-lg p-1 cursor-pointer">
                 </div>
             </div>
 
-            <button id="process-btn" class="btn-gradient w-full mt-6">Create PDF</button>
+            <button id="process-btn" class="btn-gradient w-full mt-6"data-i18n="buttons.createPdf">Create PDF</button>
         </div>
     </div>
 

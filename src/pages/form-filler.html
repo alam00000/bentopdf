@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/form-filler.html" />
     <link rel="alternate" hreflang="de" href="/de/form-filler.html" />
+    <link rel="alternate" hreflang="es" href="/es/form-filler.html" />
     <link rel="alternate" hreflang="x-default" href="/en/form-filler.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -72,18 +73,17 @@
             </button>
 
             <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:pdfFormFiller.name">PDF Form Filler</h1>
-            <p class="text-gray-400 mb-4">
+            <p class="text-gray-400 mb-4" data-i18n="tools:pdfFormFiller.info">
                 Upload a PDF with form fields. Fill them directly in the viewer below, then click the button to save and
                 download the filled form. Also supports XFA forms.
             </p>
 
             <div class="mb-6 p-3 bg-blue-900/20 border border-blue-700/50 rounded-lg">
                 <p class="text-sm text-blue-300">
-                    <strong>Note on XFA Forms:</strong> XFA (XML Forms Architecture) is a legacy format that's only
+                    <strong data-i18n="tools:pdfFormFiller.note.title">Note on XFA Forms:</strong> <span data-i18n="tools:pdfFormFiller.note.text">XFA (XML Forms Architecture) is a legacy format that's only
                     supported by certain PDF viewers like BentoPDF and Firefox. If you open an XFA PDF in other software
-                    and see blank pages or no form fields, it means that viewer doesn't support XFA. To view and fill
-                    XFA
-                    forms properly, use Firefox or BentoPDF's Form Filler.
+                    and see blank pages or no form fields, it means that viewer doesn't support XFA. To view and fill XFA
+                    forms properly, use Firefox or BentoPDF's Form Filler.</span>
                 </p>
             </div>
 
@@ -94,7 +94,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF file with form fields</p>
+                    <p class="text-xs text-gray-500" data-i18n="formFiller.hint">PDF file with form fields</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>

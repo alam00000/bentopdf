@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/decrypt-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/decrypt-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/decrypt-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/decrypt-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -79,8 +80,10 @@
                 class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select PDF</span> <span
-                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="mb-2 text-sm text-gray-400">
+                        <span data-i18n="upload.clickToSelect" class="font-semibold">Click to select PDF</span>
+                        <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+                    </p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -92,14 +95,13 @@
 
             <div id="tool-options" class="hidden mt-6 space-y-4">
                 <div>
-                    <label for="password-input" class="block mb-2 text-sm font-medium text-gray-300">PDF
-                        Password</label>
-                    <input type="password" id="password-input" placeholder="Enter the PDF password"
+                    <label for="password-input" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="decrypt.password">PDF Password</label>
+                    <input type="password" id="password-input" placeholder="Enter the PDF password" data-i18n-placeholder="decrypt.passwordPlaceholder"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                    <p class="text-xs text-gray-500 mt-1">Enter the password used to protect this PDF.</p>
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="decrypt.info">Enter the password used to protect this PDF.</p>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full">Decrypt PDF</button>
+                <button id="process-btn" class="btn-gradient w-full" data-i18n="buttons.decrypt">Decrypt PDF</button>
             </div>
         </div>
     </div>

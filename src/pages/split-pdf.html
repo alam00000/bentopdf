@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/split-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/split-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/split-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/split-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -89,7 +90,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -101,27 +102,27 @@
 
             <div id="split-options" class="hidden mt-6">
 
-                <label for="split-mode" class="block mb-2 text-sm font-medium text-gray-300">Split Mode</label>
+                <label for="split-mode" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="split.splitMode">Split Mode</label>
                 <select id="split-mode"
                     class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4">
-                    <option value="range">Extract by Page Range (Default)</option>
-                    <option value="even-odd">Split by Even/Odd Pages</option>
-                    <option value="all">Split All Pages into Separate Files</option>
-                    <option value="visual">Select Pages Visually</option>
-                    <option value="bookmarks">Split by Bookmarks</option>
-                    <option value="n-times">Split N Times</option>
+                    <option value="range" data-i18n="split.range">Extract by Page Range (Default)</option>
+                    <option value="even-odd" data-i18n="split.evenOdd">Split by Even/Odd Pages</option>
+                    <option value="all" data-i18n="split.all">Split All Pages into Separate Files</option>
+                    <option value="visual" data-i18n="split.selected">Select Pages Visually</option>
+                    <option value="bookmarks" data-i18n="split.bookmarks">Split by Bookmarks</option>
+                    <option value="n-times" data-i18n="split.nTimes">Split N Times</option>
                 </select>
 
                 <div id="range-panel">
                     <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
-                        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                        <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="split.how">How it works:</strong></p>
                         <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                            <li>Enter page numbers separated by commas (e.g., 2, 8, 14).</li>
-                            <li>Enter page ranges using a hyphen (e.g., 5-10).</li>
-                            <li>Combine them for complex selections (e.g., 1-3, 7, 12-15).</li>
+                            <li data-i18n="split.rangeMode.numbers">Enter page numbers separated by commas (e.g., 2, 8, 14).</li>
+                            <li data-i18n="split.rangeMode.pages">Enter page ranges using a hyphen (e.g., 5-10).</li>
+                            <li data-i18n="split.rangeMode.combine">Combine them for complex selections (e.g., 1-3, 7, 12-15).</li>
                         </ul>
                     </div>
-                    <label for="page-range" class="block mb-2 text-sm font-medium text-gray-300">Page Range</label>
+                    <label for="page-range" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="split.rangeMode.pageRange">Page Range</label>
                     <input type="text" id="page-range"
                         class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
                         placeholder="e.g. 1-5, 8, 11-13">
@@ -129,39 +130,39 @@
 
                 <div id="even-odd-panel" class="hidden">
                     <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
-                        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                        <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="split.how">How it works:</strong></p>
                         <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                            <li>Extract all even pages (2, 4, 6...) or all odd pages (1, 3, 5...) into a new PDF.</li>
+                            <li data-i18n="split.evenOddModel.info">Extract all even pages (2, 4, 6...) or all odd pages (1, 3, 5...) into a new PDF.</li>
                         </ul>
                     </div>
                     <div class="flex items-center mb-4">
                         <input id="split-even" type="radio" value="even" name="even-odd-choice"
                             class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-600 ring-offset-gray-800 focus:ring-2">
-                        <label for="split-even" class="ml-2 text-sm font-medium text-gray-300">Even Pages</label>
+                        <label for="split-even" class="ml-2 text-sm font-medium text-gray-300" data-i18n="split.evenOddModel.even">Even Pages</label>
                     </div>
                     <div class="flex items-center">
                         <input id="split-odd" type="radio" value="odd" name="even-odd-choice"
                             class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-600 ring-offset-gray-800 focus:ring-2">
-                        <label for="split-odd" class="ml-2 text-sm font-medium text-gray-300">Odd Pages</label>
+                        <label for="split-odd" class="ml-2 text-sm font-medium text-gray-300" data-i18n="split.evenOddModel.odd">Odd Pages</label>
                     </div>
                 </div>
 
                 <div id="all-pages-panel" class="hidden">
                     <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
-                        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                        <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="split.how">How it works:</strong></p>
                         <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                            <li>Every single page of the PDF will be saved as a separate PDF file.</li>
-                            <li>The result will be downloaded as a ZIP file containing all the pages.</li>
+                            <li data-i18n="split.allMode.every">Every single page of the PDF will be saved as a separate PDF file.</li>
+                            <li data-i18n="split.allMode.result">The result will be downloaded as a ZIP file containing all the pages.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div id="visual-select-panel" class="hidden">
                     <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
-                        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                        <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="split.how">How it works:</strong></p>
                         <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                            <li>Click on the page thumbnails below to select the pages you want to extract.</li>
-                            <li>Selected pages will be highlighted.</li>
+                            <li data-i18n="split.selectedMode.click">Click on the page thumbnails below to select the pages you want to extract.</li>
+                            <li data-i18n="split.selectedMode.selected">Selected pages will be highlighted.</li>
                         </ul>
                     </div>
                     <div id="page-selector-grid"
@@ -172,32 +173,33 @@
 
                 <div id="bookmarks-panel" class="hidden">
                     <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
-                        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                        <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="split.how">How it works:</strong></p>
                         <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                            <li>Split the PDF based on its bookmarks (outline).</li>
-                            <li>Select the bookmark level to split at.</li>
+                            <li data-i18n="split.bookmarksMode.split">Split the PDF based on its bookmarks (outline).</li>
+                            <li data-i18n="split.bookmarksMode.select">Select the bookmark level to split at.</li>
                         </ul>
                     </div>
-                    <label for="bookmark-level" class="block mb-2 text-sm font-medium text-gray-300">Bookmark
-                        Level</label>
+                    <label for="bookmark-level" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="split.bookmarksMode.level.title">
+                        Bookmark Level
+                    </label>
                     <select id="bookmark-level"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4">
-                        <option value="all" selected>All Levels</option>
-                        <option value="0">Level 0 (Top Level Only)</option>
-                        <option value="1">Level 1</option>
-                        <option value="2">Level 2</option>
-                        <option value="3">Level 3</option>
+                        <option value="all" selected data-i18n="split.bookmarksMode.level.all">All Levels</option>
+                        <option value="0" selected data-i18n="split.bookmarksMode.level.0">Level 0 (Top Level Only)</option>
+                        <option value="1" selected data-i18n="split.bookmarksMode.level.1">Level 1</option>
+                        <option value="2" selected data-i18n="split.bookmarksMode.level.2">Level 2</option>
+                        <option value="3" selected data-i18n="split.bookmarksMode.level.3">Level 3</option>
                     </select>
                 </div>
 
                 <div id="n-times-panel" class="hidden">
                     <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
-                        <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
-                        <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                            <li>Split the PDF into multiple files, each containing N pages.</li>
+                        <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="split.how">How it works:</strong></p>
+                        <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1" data-i18n="split.nTimesMode">
+                            <li data-i18n="split.split">Split the PDF into multiple files, each containing N pages.</li>
                         </ul>
                     </div>
-                    <label for="split-n-value" class="block mb-2 text-sm font-medium text-gray-300">Pages per file
+                    <label for="split-n-value" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="split.nTimesMode.ppf">Pages per file
                         (N)</label>
                     <input type="number" id="split-n-value" min="1" value="5"
                         class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5">
@@ -210,11 +212,11 @@
                 <div id="zip-option-wrapper" class="mt-4 flex items-center">
                     <input id="download-as-zip" type="checkbox"
                         class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600 ring-offset-gray-800 focus:ring-2">
-                    <label for="download-as-zip" class="ml-2 text-sm font-medium text-gray-300">Download as ZIP (for
+                    <label for="download-as-zip" class="ml-2 text-sm font-medium text-gray-300" data-i18n="split.zipOption">Download as ZIP (for
                         multiple files)</label>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-6">Split PDF</button>
+                <button id="process-btn" class="btn-gradient w-full mt-6" data-i18n="buttons.split">Split PDF</button>
             </div>
 
         </div>

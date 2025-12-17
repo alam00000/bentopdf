@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/sign-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/sign-pdf.html" />
+    <link rel="alternate" hreflang="de" href="/de/sign-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/sign-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -85,7 +86,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">PDF Documents</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.pdfDocuments">PDF Documents</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -109,12 +110,12 @@
                 <label class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer">
                     <input type="checkbox" id="flatten-signature-toggle"
                         class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                    Flatten PDF (use the Save button below)
+                    <span data-i18n="sign.flatten">Flatten PDF (use the Save button below)</span>
                 </label>
             </div>
 
-            <button id="process-btn" class="btn-gradient w-full mt-4" style="display:none;">Save & Download Signed
-                PDF</button>
+            <button id="process-btn" class="btn-gradient w-full mt-4" style="display:none;" data-i18n="buttons.sign">
+                Save & Download Signed PDF</button>
         </div>
     </div>
 
@@ -122,7 +123,7 @@
     <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
         <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl">
             <div class="solid-spinner"></div>
-            <p id="loader-text" class="text-white text-lg font-medium">
+            <p id="loader-text" class="text-white text-lg font-medium" data-i18n="loader.processing">
                 Processing...
             </p>
         </div>

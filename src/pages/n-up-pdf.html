@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/n-up-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/n-up-pdf.html" />
+    <link rel="alternate" hreflang="es" href="/es/n-up-pdf.html" />
     <link rel="alternate" hreflang="x-default" href="/en/n-up-pdf.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -82,7 +83,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -94,34 +95,33 @@
 
             <div id="tool-options" class="hidden mt-6">
                 <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-                    <p class="text-sm text-gray-300"><strong class="text-white">How it works:</strong></p>
+                    <p class="text-sm text-gray-300"><strong class="text-white" data-i18n="nup.how">How it works:</strong></p>
                     <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
-                        <li>Choose how many pages to fit on each sheet (2, 4, 9, or 16).</li>
-                        <li>Select output page size and orientation.</li>
-                        <li>Optionally add margins and borders around each page.</li>
+                        <li data-i18n="nup.choose">Choose how many pages to fit on each sheet (2, 4, 9, or 16).</li>
+                        <li data-i18n="nup.select">Select output page size and orientation.</li>
+                        <li data-i18n="nup.optionally">Optionally add margins and borders around each page.</li>
                     </ul>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label for="pages-per-sheet" class="block mb-2 text-sm font-medium text-gray-300">Pages per
-                            Sheet</label>
+                        <label for="pages-per-sheet" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="nup.pagesPerSheet.info">Pages per Sheet</label>
                         <select id="pages-per-sheet"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                            <option value="2">2-up (1x2)</option>
-                            <option value="4" selected>4-up (2x2)</option>
-                            <option value="9">9-up (3x3)</option>
-                            <option value="16">16-up (4x4)</option>
+                            <option value="2" data-i18n="nup.pagesPerSheet.two">2-up (1x2)</option>
+                            <option value="4" selected data-i18n="nup.pagesPerSheet.four">4-up (2x2)</option>
+                            <option value="9" data-i18n="nup.pagesPerSheet.nine">9-up (3x3)</option>
+                            <option value="16" data-i18n="nup.pagesPerSheet.sisteen">16-up (4x4)</option>
                         </select>
                     </div>
                     <div>
-                        <label for="output-page-size" class="block mb-2 text-sm font-medium text-gray-300">Output Page
+                        <label for="output-page-size" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="nup.output.info">Output Page
                             Size</label>
                         <select id="output-page-size"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                            <option value="Letter" selected>Letter (8.5" x 11")</option>
-                            <option value="A4">A4</option>
-                            <option value="Legal">Legal</option>
+                            <option value="Letter" selected data-i18n="nup.output.letter">Letter (8.5" x 11")</option>
+                            <option value="A4" >A4</option>
+                            <option value="Legal" data-i18n="nup.output.legal">Legal</option>
                             <option value="A3">A3</option>
                         </select>
                     </div>
@@ -130,19 +130,19 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label for="output-orientation"
-                            class="block mb-2 text-sm font-medium text-gray-300">Orientation</label>
+                            class="block mb-2 text-sm font-medium text-gray-300" data-i18n="nup.orientation.info">Orientation</label>
                         <select id="output-orientation"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5">
-                            <option value="auto" selected>Auto</option>
-                            <option value="portrait">Portrait</option>
-                            <option value="landscape">Landscape</option>
+                            <option value="auto" selected data-i18n="nup.orientation.auto">Auto</option>
+                            <option value="portrait" data-i18n="nup.orientation.portrait">Portrait</option>
+                            <option value="landscape" data-i18n="nup.orientation.landscape">Landscape</option>
                         </select>
                     </div>
                     <div class="flex items-end gap-4">
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="add-margins"
                                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600">
-                            <span class="text-sm text-gray-300">Add Margins</span>
+                            <span class="text-sm text-gray-300" data-i18n="nup.addMargin">Add Margins</span>
                         </label>
                     </div>
                 </div>
@@ -151,17 +151,17 @@
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" id="add-border"
                             class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600">
-                        <span class="text-sm text-gray-300">Add Border</span>
+                        <span class="text-sm text-gray-300" data-i18n="nup.addBorders">Add Border</span>
                     </label>
                     <div id="border-color-wrapper" class="hidden">
-                        <label for="border-color" class="block mb-2 text-sm font-medium text-gray-300">Border
+                        <label for="border-color" class="block mb-2 text-sm font-medium text-gray-300" data-i18n="nup.borderColor">Border
                             Color</label>
                         <input type="color" id="border-color" value="#000000"
                             class="w-full h-10 bg-gray-700 border border-gray-600 rounded-lg cursor-pointer">
                     </div>
                 </div>
 
-                <button id="process-btn" class="btn-gradient w-full mt-4">Create N-Up PDF</button>
+                <button id="process-btn" class="btn-gradient w-full mt-4" data-i18n="buttons.nup">Create N-Up PDF</button>
             </div>
         </div>
     </div>

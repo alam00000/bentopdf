@@ -61,7 +61,573 @@
         "pdfOrImages": "PDFs or Images",
         "filesNeverLeave": "Your files never leave your device.",
         "addMore": "Add More Files",
-        "clearAll": "Clear All"
+        "clearAll": "Clear All",
+        "singleFile": "A single PDF file",
+        "oneOrMorePdfs": "One or more PDF files",
+        "pdfFile": "PDF file",
+        "jpgImage": "JPG image",
+        "pngImage": "PNG Image",
+        "webpImage": "WEBP Image",
+        "pdfDocuments": "PDF Documents",
+        "clickToSelectCsv": "Click to upload CSV",
+        "clickToSelectJson": "Click to upload JSON",
+        "allImages": "All Image Types",
+        "svgGraphics": "SVG Graphics",
+        "bmpImage": "BMP images",
+        "heicImage": "HEIC/HEIF images",
+        "tiffImage": "TIFF images",
+        "textFiles": "Text files (.txt)",
+        "atLeastTwoFiles": "Multiple PDF files (at least 2)",
+        "clickOrDrop": "Click or Drop"
+    },
+    "bookmarks": {
+        "autoExtract": "Auto-extract existing bookmarks",
+        "importBookmarks": "Or Import Bookmarks",
+        "cvsFormats": "CSV format: title,page,level",
+        "addBookmarkToToc": "Add bookmark for TOC page"
+    },
+    "toc": {
+        "title": "TOC Title",
+        "fontSize": "Font size",
+        "fontFamily": "Font Family"
+    },
+    "buttons": {
+        "invertColors": "Invert Colors",
+        "generateToc": "Generate Table of Contents",
+        "changeBackgroundColor": "Change Background Color",
+        "changeTextColor": "Change Text Color",
+        "sign": "Save & Download Signed PDF",
+        "stamp": "Save Stamped PDF",
+        "removeAnnotations": "Remove Annotations",
+        "cropAndDownload": "Crop & Download",
+        "downloadForm": "Download PDF Form",
+        "detectBlandPages": "Detect Blank Pages",
+        "removeBlandPages": "Remove Blank Pages",
+        "convertToPdf": "Convert to PDF",
+        "uploadFiles": "Upload files",
+        "typeText": "Type Text",
+        "createPdf": "Create PDF",
+        "downloadAllZip": "Download All as ZIP",
+        "toGreyscale": "Convert to Greyscale",
+        "toJson": "Convert to JSON",
+        "startOcr": "Start OCR",
+        "fileMode": "File Mode",
+        "pageMode": "Page Mode",
+        "mergePdf": "Merge PDFs",
+        "mixPages": "Mix Pages",
+        "saveChanges": "Save Changes",
+        "addAttachments": "Add Attachments",
+        "extractAttachment": "Extract Attachments",
+        "split": "Split PDF",
+        "divide": "Divide Pages",
+        "extract": "Extract & Download ZIP",
+        "delete": "Delete Pages & Download",
+        "reverse": "Reverse Pages",
+        "rotate": "Apply Rotations",
+        "nup": "Create N-Up PDF",
+        "combine": "Combine Pages",
+        "metadata": "Copy Metadata as JSON",
+        "addCustomField": "Add Custom Field",
+        "saveMetadata": "Save Metadata",
+        "saveZip": "Create ZIP Archive",
+        "compare": {
+            "overlay": "Overlay",
+            "sideBySide": "Side-by-Side",
+            "flicker": "Flicker"
+        },
+        "posterize": "Posterize PDF",
+        "compress": "Compress PDF",
+        "fixSize": "Fix Page Size",
+        "linearize": "Linearize PDF(s)",
+        "removeRestrictions": "Remove Restrictions",
+        "repair": "Repair PDF",
+        "encrypt": "Encrypt PDF",
+        "sanitize": "Sanitize PDF",
+        "decrypt": "Decrypt PDF",
+        "flatten": "Flatten PDF(s)",
+        "removeMetadata": "Remove All Metadata",
+        "changePermissions": "Change Permissions"
+    },
+    "invertColors": {
+        "clickToInvertColors": "Click the button below to invert all colors in your PDF."
+    },
+    "background": {
+        "color": "Background Color"
+    },
+    "textColor": {
+        "newTextColor": "New Text Color"
+    },
+    "sign": {
+        "flatten": "Flatten PDF (use the Save button below)"
+    },
+    "stamp": {
+        "editor": "Stamp Editor"
+    },
+    "removeAnnotations": {
+        "clickToRemove": "Click the button below to remove all annotations from your PDF."
+    },
+    "crop": {
+        "flatten": "Flattening Crop (converts pages to images)",
+        "applyToAll": "Apply to all pages"
+    },
+    "formFiller": {
+        "hint": "PDF file with form fields"
+    },
+    "formCreator": {
+        "createBlank": "Create Blank PDF",
+        "selectToEdit": "Select a field to edit properties",
+        "pressToDelete": "Press Delete to remove selected field",
+        "text": "Text",
+        "checkbox": "Checkbox",
+        "radio": "Radio",
+        "dropdown": "Dropdown",
+        "list": "List",
+        "button": "Button",
+        "signature": "Signature",
+        "date": "Date",
+        "image": "Image"
+    },
+    "removeBlankPage": {
+        "sensitivity": "Sensitivity",
+        "higherValues": "Higher values detect more pages as blank"
+    },
+    "imageToPdf": {
+        "quality": "PDF Quality",
+        "high": "High Quality (Larger file)",
+        "medium": "Medium Quality (Balanced)",
+        "low": "Low Quality (Smaller file)",
+        "controls": "Controls image compression when embedding into PDF"
+    },
+    "textToPdf": {
+        "selectLanguage": "Select Languages",
+        "defaultLanguage": "English (Default)",
+        "searchPlaceholder": "Search Languages",
+        "fontSize": "Font Size",
+        "pageSize": "Page Size",
+        "customSize": "Custom Size",
+        "landscape": "Landscape",
+        "portrait": "Portrait",
+        "width": "Width",
+        "height": "Height",
+        "textColor": "Text color"
+    },
+    "pdfToImage": {
+        "quality": "Image quality",
+        "qualityNote": "Higher quality = larger file size"
+    },
+    "pdfToPng": {
+        "scale": "Image scale",
+        "scaleNote": "Higher scale = better quality but larger file size"
+    },
+    "pdfToOcr": {
+        "languages": "Languages in Document",
+        "languagesPlaceholder": "Search for languages...",
+        "selected": "Selected",
+        "none": "None",
+        "advancedSettings": {
+            "title": "Advanced Settings (Recommended to improve accuracy)",
+            "resolution": {
+                "title": "Resolution",
+                "standard": "Standard",
+                "high": "High",
+                "ultra": "Ultra"
+            }
+        },
+        "binarize": "Binarize Image (Enhance Contrast for Clean Scans)",
+        "whitelist": {
+            "title": "Character Whitelist Preset",
+            "none": "None (All characters)",
+            "alphanumeric": "Alphanumeric + Basic Punctuation",
+            "currency": "Numbers + Currency Symbols",
+            "letters": "Letters Only (A-Z, a-z)",
+            "numbers": "Numbers Only (0-9)",
+            "invoice": "Invoice/Receipt (Numbers, $, ., -, /)",
+            "forms": "Forms (Alphanumeric + Common Symbols)",
+            "custom": "Custom",
+            "note": "Only these characters will be recognized. Leave empty for all characters.",
+            "optional": "Character Whitelist Preset (Optional)"
+        }
+    },
+    "mergePdf": {
+        "how": "How it works:",
+        "fileMode": {
+            "drag": "Click and drag the",
+            "icon": "icon to change the order of the files.",
+            "specifyRanges": "In the \"Pages\" box for each file, you can specify ranges (e.g., \"1-3, 5\") to merge only those pages.",
+            "leavePages": "Leave the \"Pages\" box blank to include all pages from that file."
+        },
+        "pageMode": {
+            "all": "All pages from your uploaded PDFs are shown below.",
+            "drag": "Simply drag and drop the individual page thumbnails to create the exact order you want for your new file."
+        }
+    },
+    "alternate": {
+        "filesOrder": "Files Order",
+        "reorder": "Drag to reorder. Pages will be interleaved in this order."
+    },
+    "attachment": {
+        "select": "Select Files to Attach",
+        "dropToAttach": "Click or drop files to attach",
+        "anyType": "Any file type",
+        "level": {
+            "attachment": "Attachment Level",
+            "document": "Document Level",
+            "page": "Page Level"
+        },
+        "range": "Page Range",
+        "attachments": "Attachments"
+    },
+    "multiTool": {
+        "uploadPdfs": "Upload PDFs",
+        "upload": "Upload",
+        "addBlankPage": "Add Blank Page",
+        "edit": "Edit:",
+        "undo": "Undo",
+        "redo": "Redo",
+        "reset": "Reset",
+        "selection": "Selection:",
+        "selectAll": "Select All",
+        "deselectAll": "Deselect All",
+        "rotate": "Rotate:",
+        "left": "Left",
+        "right": "Right",
+        "transform": "Transform",
+        "duplicate": "Duplicate",
+        "split": "Split",
+        "clear": "Clear:",
+        "downloadSelected": "Download Selected",
+        "exportPdf": "Export PDF",
+        "uploadPdfFile": "Upload PDF files",
+        "dragOrClick": "Drag and drop PDF files here, or click to select",
+        "selectFiles": "Select Files"
+    },
+    "split": {
+        "splitMode": "Split Mode",
+        "range": "Extract by Page Range (Default)",
+        "evenOdd": "Split by Even/Odd Pages",
+        "all": "Split All Pages into Separate Files",
+        "selected": "Select Pages Visually",
+        "bookmarks": "Split by Bookmarks",
+        "nTimes": "Split N Times",
+        "how": "How it works:",
+        "rangeMode": {
+            "numbers": "Enter page numbers separated by commas (e.g., 2, 8, 14).",
+            "pages": "Enter page ranges using a hyphen (e.g., 5-10).",
+            "combine": "Combine them for complex selections (e.g., 1-3, 7, 12-15).",
+            "pageRange": "Page Range"
+        },
+        "evenOddMode": {
+            "info": "Extract all even pages (2, 4, 6...) or all odd pages (1, 3, 5...) into a new PDF.",
+            "even": "Even Pages",
+            "odd": "Odd Pages"
+        },
+        "allMode": {
+            "every": "Every single page of the PDF will be saved as a separate PDF file.",
+            "result": "The result will be downloaded as a ZIP file containing all the pages."
+        },
+        "selectedMode": {
+            "click": "Click on the page thumbnails below to select the pages you want to extract.",
+            "selected": "Selected pages will be highlighted."
+        },
+        "bookmarksMode": {
+            "split": "Split the PDF based on its bookmarks (outline).",
+            "select": "Select the bookmark level to split at.",
+            "level": {
+                "title": "Bookmark Level",
+                "all": "All Levels",
+                "0": "Level 0 (Top Level Only)",
+                "1": "Level 1",
+                "2": "Level 2",
+                "3": "Level 3"
+            }
+        },
+        "nTimesMode": {
+            "split": "Split the PDF into multiple files, each containing N pages.",
+            "ppf": "Pages per file (N)"
+        },
+        "zipOption": "Download as ZIP (for multiple files)"
+    },
+    "divide": {
+        "how": "How it works:",
+        "vertical": "Vertical",
+        "verticalHalfs": "Split each page into left and right halves.",
+        "horizontal": "Horizontal",
+        "horizontalHalfs": "Split each page into top and bottom halves.",
+        "result": "The result will have twice as many pages as the original.",
+        "splitDirection": "Split Direction",
+        "splitVertical": "Vertical (Left & Right)",
+        "splitHorizontal": "Horizontal (Top & Bottom)"
+    },
+    "extract": {
+        "total": "Total Pages:",
+        "enterPages": "Enter pages to extract (e.g., 2, 4-6, 9):",
+        "placeholder": "e.g., 2, 4-6, 9"
+    },
+    "delete": {
+        "totalPages": "Total Pages:",
+        "pagesToDelete": "Enter pages to delete (e.g., 2, 4-6, 9):",
+        "placeholder": "e.g., 2, 4-6, 9"
+    },
+    "addBlankPages": {
+        "how": "How it works:",
+        "specify": "Specify the position where blank pages should be inserted.",
+        "position": "Position 0 inserts at the beginning, position equal to page count inserts at the end.",
+        "match": "Blank pages will match the size of the first page in your document.",
+        "insert": {
+            "after": "Insert after page",
+            "zero": "Enter 0 to insert at the beginning",
+            "number": "Number of blank pages"
+        }
+    },
+    "reverse": {
+        "how": "How it works:",
+        "all": "All pages will be reversed (first becomes last, last becomes first).",
+        "ifUpload": "If you upload multiple PDFs, each will be reversed and downloaded as a ZIP file."
+    },
+    "rotate": {
+        "batchActions": "Batch Actions",
+        "rotate90": "Rotate by 90 Degrees",
+        "rotateCustom": "Rotate by Custom Degrees",
+        "left": "Left",
+        "right": "Right",
+        "apply": "Apply"
+    },
+    "nup": {
+        "how": "How it works:",
+        "choose": "Choose how many pages to fit on each sheet (2, 4, 9, or 16).",
+        "select": "Select output page size and orientation.",
+        "optionally": "Optionally add margins and borders around each page.",
+        "pagesPerSheet": {
+            "info": "Pages per Sheet",
+            "two": "2-up (1x2)",
+            "four": "4-up (2x2)",
+            "nine": "9-up (3x3)",
+            "sixteen": "16-up (4x4)"
+        },
+        "output": {
+            "info": "Output Page Size",
+            "letter": "Letter (8.5\" x 11\")",
+            "legal": "Legal"
+        },
+        "orientation": {
+            "info": "Orientation",
+            "auto": "Auto",
+            "portrait": "Portrait",
+            "landscape": "Landscape"
+        },
+        "addMargin": "Add Margins",
+        "addBorders": "Add Borders",
+        "borderColors": "Border Color"
+    },
+    "combine": {
+        "layout": {
+            "info": "Layout Direction",
+            "vertical": "Vertical (Top to Bottom)",
+            "horizontal": "Horizontal (Left to Right)"
+        },
+        "spacing": "Spacing (pixels)",
+        "backgroundColor": "Background Color",
+        "addSeparator": "Add Separator Lines",
+        "separatorThickness": "Separator Thickness",
+        "separatorColor": "Separator Color"
+    },
+    "metadata": "Document Metadata",
+    "editMetadata": {
+        "info": "Edit Metadata",
+        "title": "Title",
+        "author": "Author",
+        "subject": "Subject",
+        "keywords": "Keywords",
+        "creator": "Creator",
+        "producer": "Producer",
+        "creationDate": "Creation Date",
+        "modificationDate": "Modification Date",
+        "customFields": {
+            "info": "Custom Fields",
+            "note": "Note: Custom fields are not supported by all PDF readers."
+        }
+    },
+    "toZip": {
+        "how": "How it works:",
+        "all": "All selected PDF files will be packaged into a single ZIP archive.",
+        "file": "File names will be preserved in the archive."
+    },
+    "compare": {
+        "first": "First PDF",
+        "second": "Second PDF",
+        "opacity": "Opacity",
+        "syncScrolling": "Sync Scrolling"
+    },
+    "posterize": {
+        "pagePreview": "Page Preview",
+        "gridLayout": "Grid Layout",
+        "rows": "Rows",
+        "columns": "Columns",
+        "outputPageSettings": "Output Page Settings",
+        "pageSize": "Page Size",
+        "letter": "Letter",
+        "legal": "Legal",
+        "orientation": "Orientation",
+        "auto": "Automatic (Recommended)",
+        "portrait": "Portrait",
+        "landscape": "Landscape",
+        "advanced": {
+            "info": "Advanced Options",
+            "contentScaling": "Content Scaling",
+            "fit": "Fit",
+            "preserves": "Preserves all content, may add margins.",
+            "fill": "Fill (Crop)",
+            "fillPage": "Fills the page, may crop content.",
+            "overlap": "Overlap (for assembly)",
+            "points": "Points",
+            "inches": "Inches",
+            "mm": "mm",
+            "pageRange": "Page Range (optional)",
+            "totalPages": "Total pages:"
+        }
+    },
+    "compress": {
+        "level": {
+            "info": "Compression Level",
+            "balanced": "Balanced (Recommended)",
+            "high": "High Quality (Larger file)",
+            "small": "Smallest Size (Lower quality)",
+            "extreme": "Extreme (Very low quality)"
+        },
+        "algorithm": {
+            "vector": "Vector (For Text Heavy PDF)",
+            "photon": "Photon (For Complex Images & Drawings)",
+            "info": "Choose 'Vector' for text based PDFs, or 'Photon' for scanned documents and complex images."
+        }
+    },
+    "fixPageSize": {
+        "target": "Target Page Size",
+        "letter": "Letter (8.5 × 11 in)",
+        "legal": "Legal (8.5 × 14 in)",
+        "tabloid": "Tabloid (11 × 17 in)",
+        "custom": "Custom...",
+        "width": "Width",
+        "height": "Height",
+        "units": "Units",
+        "inches": "Inches",
+        "mm": "Millimiters",
+        "orientation": "Orientation",
+        "auto": "Auto (Keep Original)",
+        "portrait": "Portrait",
+        "landscape": "Landscape",
+        "scaling": "Content Scaling",
+        "fit": "Fit",
+        "fitInfo": "Preserves all content, may add margins.",
+        "fill": "Fill (Crop)",
+        "fillInfo": "Fills the page, may crop content.",
+        "backgroundColor": "Background Color",
+        "colorMargin": "Color for margins/padding"
+    },
+    "linearize": {
+        "whatIs": "What is linearization?",
+        "optimizes": "Optimizes PDF structure for web viewing",
+        "enables": "Enables progressive loading (first page displays faster)",
+        "improves": "Improves user experience for online PDFs",
+        "also": "Also known as \"Fast Web View\" or \"Optimized\""
+    },
+    "pageDimensions": {
+        "units": "Units:",
+        "points": "Points (pt)",
+        "inches": "Inches (in)",
+        "mm": "Millimeters (mm)",
+        "pixels": "Pixels (px)",
+        "export": "Export to CSV",
+        "page": "Page #",
+        "dimensions": "Dimensions",
+        "standard": "Standard Size",
+        "orientation": "Orientation",
+        "ascpect": "Aspect Ratio",
+        "area": "Area",
+        "rotation": "Rotation"
+    },
+    "removeRestrictions": {
+        "password": "Owner Password (Optional)",
+        "passwordPlaceholder": "Enter owner password if required",
+        "leaveEmpty": "Leave empty if the PDF has no owner password.",
+        "info": {
+            "what": "What will be removed:",
+            "password": "Password protection",
+            "printing": "Printing restrictions",
+            "editing": "Editing restrictions",
+            "copying": "Copying restrictions",
+            "all": "All other security limitations"
+        }
+    },
+    "encrypt": {
+        "password": "User Password (Required)",
+        "passwordPlaceholder": "Enter password to open PDF.",
+        "passwordHint": "This password will be required to open the PDF.",
+        "ownerPassword": "Owner Password (Optional)",
+        "ownerPasswordPlaceholder": "Enter password for permissions (optional)",
+        "ownerPasswordHint": "If provided, usage restrictions will be applied. Leave empty for no restrictions.",
+        "info": {
+            "details": "Encryption Details:",
+            "aes": "256-bit AES encryption (highest security)",
+            "userPassword": "User password required to open PDF",
+            "ownerPassword": "Owner password enables usage restrictions",
+            "without": "Without owner password: no restrictions applied"
+        }
+    },
+    "sanitize": {
+        "options": "Sanitization Optionst:",
+        "flatten": "Flatten Forms",
+        "remove": {
+            "metadata": "Remove Metadata",
+            "annotations": "Remove Annotations",
+            "javascript": "Remove JavaScript",
+            "embeddedFiles": "Remove Embedded Files",
+            "layers": "Remove Layers (OCG)",
+            "links": "Remove Links",
+            "sctructure": "Remove Structure Tree",
+            "markinfo": "Remove MarkInfo",
+            "embeddedFonts": "Remove Embedded Fonts"
+        },
+        "info": "Sanitization removes sensitive content permanently. Some options may affect PDF rendering."
+    },
+    "decrypt": {
+        "password": "PDF Password",
+        "passwordPlaceholder": "Enter the PDF password",
+        "info": "Enter the password used to protect this PDF."
+    },
+    "flatten": {
+        "what": "What will be flattened:",
+        "form": "Form fields (text fields, checkboxes, radio buttons, etc.)",
+        "annotations": "Annotations and comments",
+        "interactive": "Interactive elements",
+        "note": "Note: Flattened content cannot be edited or filled out."
+    },
+    "removeMetadata": {
+        "what": "What will be removed:",
+        "title": "Title, Author, Subject, Keywords",
+        "creator": "Creator and Producer information",
+        "creation": "Creation and Modification dates",
+        "xmp": "XMP Metadata streams",
+        "documentId": "Document IDs",
+        "pieceInfo": "PieceInfo (private application data)"
+    },
+    "changePermissions": {
+        "password": "Current Password (if encrypted)",
+        "passwordPlaceholder": "Enter current password",
+        "userPassword": "New User Password",
+        "userPasswordPlaceholder": "Password to open PDF",
+        "ownerPassword": "New Owner Password",
+        "ownerPasswordPlaceholder": "Password for permissions",
+        "ownerPasswordInfo": "Leave both passwords empty to decrypt the PDF.",
+        "info": {
+            "title": "Permissions (requires owner password)",
+            "printing": "Allow Printing",
+            "copying": "Allow Copying Text",
+            "modifying": "Allow Modifying",
+            "annotating": "Allow Annotating",
+            "filling": "Allow Filling Forms",
+            "document": "Allow Document Assembly",
+            "page": "Allow Page Extraction"
+        }
     },
     "loader": {
         "processing": "Processing..."
@@ -221,7 +787,17 @@
         "error": "Error",
         "success": "Success",
         "file": "File",
-        "files": "Files"
+        "files": "Files",
+        "jsonFormat": "JSON Format",
+        "or": "or",
+        "properties": "Properties",
+        "field": "field(s)",
+        "goto": "Go to:",
+        "go": "Go",
+        "grid": "Grid:",
+        "reset": "Reset",
+        "addPage": "Add page",
+        "fields": "Fields"
     },
     "about": {
         "hero": {

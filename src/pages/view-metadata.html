@@ -12,6 +12,7 @@
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="alternate" hreflang="en" href="/en/view-metadata.html" />
     <link rel="alternate" hreflang="de" href="/de/view-metadata.html" />
+    <link rel="alternate" hreflang="es" href="/es/view-metadata.html" />
     <link rel="alternate" hreflang="x-default" href="/en/view-metadata.html" />
     <link href="/src/css/styles.css" rel="stylesheet" />
 </head>
@@ -82,7 +83,7 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">A single PDF file</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.singleFile">A single PDF file</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
@@ -93,12 +94,12 @@
             <div id="file-display-area" class="mt-4 space-y-2"></div>
 
             <div id="tool-options" class="hidden mt-6">
-                <h2 class="text-lg font-semibold text-white mb-4">Document Metadata</h2>
+                <h2 class="text-lg font-semibold text-white mb-4" data-i18n="metadata">Document Metadata</h2>
                 <div id="metadata-display" class="space-y-3">
                 </div>
 
                 <button id="copy-metadata" class="btn-gradient w-full mt-6">
-                    <i data-lucide="copy" class="w-4 h-4 inline mr-2"></i> Copy Metadata as JSON
+                    <i data-lucide="copy" class="w-4 h-4 inline mr-2"></i> <span data-i18n="buttons.metadata">Copy Metadata as JSON</span>
                 </button>
             </div>
         </div>
