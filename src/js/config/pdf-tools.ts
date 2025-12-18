@@ -10,7 +10,6 @@ export const singlePdfLoadTools = [
   'edit',
   'edit-metadata',
   'remove-metadata',
-
   'delete-pages',
   'add-blank-page',
   'extract-pages',

@@ -289,17 +289,36 @@
         "selectAll": "Seleccionar Todo",
         "deselectAll": "Deseleccionar Todo",
         "rotate": "Rotar:",
-        "left": "Izquierda",
-        "right": "Derecha",
+        "rotateLeft": "Izquierda",
+        "rotateRight": "Derecha",
         "transform": "Transformar",
         "duplicate": "Duplicar",
         "split": "Separar",
         "clear": "Limpiar:",
+        "delete": "Eliminar",
+        "download": "Descargar:",
         "downloadSelected": "Descargar Seleccionados",
         "exportPdf": "Exportar PDF",
-        "uploadPdfFile": "Subir PDFs",
-        "dragOrClick": "Arrastra tus archivos aquí o haz clic para seleccionar",
-        "selectFiles": "Seleccionar Archivos"
+        "uploadPdfFiles": "Subir PDFs",
+        "dragAndDrop": "Arrastra tus PDF aquí o haz clic para seleccionar",
+        "selectFiles": "Seleccionar Archivos",
+        "renderingPages": "Renderizando páginas...",
+        "actions": {
+            "duplicatePage": "Duplicar esta página",
+            "deletePage": "Eliminar esta página",
+            "insertPdf": "Insertar PDF después de esta página",
+            "toggleSplit": "Activar o desactivar la división después de esta página"
+        },
+        "pleaseWait": "Por favor, espera",
+        "pagesRendering": "Las páginas aún están siendo renderizadas, por favor espera...",
+        "noPagesSelected": "Niguna página seleccionadad",
+        "selectOnePage": "Por favor, selecciona al menos una página para descargar.",
+        "noPages": "Sin páginas",
+        "noPagesToExport": "No hay páginas para exportar.",
+        "renderingTitle": "Renderizando vistas previas",
+        "errorRendering": "Falló el renderizado de vistas previas",
+        "error": "Error",
+        "failedToLoad": "Error en la carga"
     },
     "split": {
         "splitMode": "Modo de Separado",
@@ -314,7 +333,8 @@
             "numbers": "Ingresa números de página separados por coma (2, 8, 14)",
             "pages": "Ingresa rangos de página usando guiones (5-10)",
             "combine": "Combina para selecciones complejas (1-3, 7, 12-15)",
-            "pageRange": "Rangos de página"
+            "pageRange": "Rangos de página",
+            "pageRangePlaceholder": "por ejemplo 1-5,8, 11-13"
         },
         "evenOddMode": {
             "info": "Extrae páginas solo pares o impares a un nuevo PDF.",

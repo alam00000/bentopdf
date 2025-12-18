@@ -86,7 +86,10 @@
     },
     "addStamps": {
         "name": "Agregar Sellos",
-        "subtitle": "Agrega imágenes como sellos en tu PDF utilizando la barra de herramienta de anotaciones."
+        "subtitle": "Agrega imágenes como sellos en tu PDF utilizando la barra de herramienta de anotaciones.",
+        "usernameLabel": "Usuario de Sello",
+        "usernamePlaceholder": "Ingresa tu nombre (para sellos)",
+        "usernameHint": "Este nombre aparecerá en los sellos que crees."
     },
     "removeAnnotations": {
         "name": "Eliminar Anotaciones",

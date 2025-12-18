@@ -496,10 +496,9 @@
             "extreme": "Extreme (Very low quality)"
         },
         "algorithm": {
-            "info": "Compression Algorithm",
             "vector": "Vector (For Text Heavy PDF)",
             "photon": "Photon (For Complex Images & Drawings)",
-            "note": "Choose 'Vector' for text based PDFs, or 'Photon' for scanned documents and complex images."
+            "info": "Choose 'Vector' for text based PDFs, or 'Photon' for scanned documents and complex images."
         }
     },
     "fixPageSize": {
