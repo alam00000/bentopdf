@@ -86,7 +86,10 @@
     },
     "addStamps": {
         "name": "Stempel hinzufügen",
-        "subtitle": "Bildstempel zu Ihrer PDF über die Annotations-Symbolleiste hinzufügen."
+        "subtitle": "Bildstempel zu Ihrer PDF über die Annotations-Symbolleiste hinzufügen.",
+        "usernameLabel": "Stempel-Benutzername",
+        "usernamePlaceholder": "Geben Sie Ihren Namen ein (für Stempel)",
+        "usernameHint": "Dieser Name erscheint auf von Ihnen erstellten Stempeln."
     },
     "removeAnnotations": {
         "name": "Annotationen entfernen",

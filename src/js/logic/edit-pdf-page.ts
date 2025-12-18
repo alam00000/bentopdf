@@ -3,6 +3,11 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { formatBytes } from '../utils/helpers.js';
 
+const embedPdfWasmUrl = new URL(
+  'embedpdf-snippet/dist/pdfium.wasm',
+  import.meta.url
+).href;
+
 let currentPdfUrl: string | null = null;
 
 if (document.readyState === 'loading') {
@@ -130,18 +135,14 @@ async function handleFiles(files: FileList) {
         const fileURL = URL.createObjectURL(file);
         currentPdfUrl = fileURL;
 
-        // Dynamically load EmbedPDF script
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.textContent = `
-        import EmbedPDF from 'https://snippet.embedpdf.com/embedpdf.js';
+        const { default: EmbedPDF } = await import('embedpdf-snippet');
         EmbedPDF.init({
             type: 'container',
-            target: document.getElementById('embed-pdf-container'),
-            src: '${fileURL}',
+            target: pdfContainer,
+            src: fileURL,
+            worker: true,
+            wasmUrl: embedPdfWasmUrl,
         });
-    `;
-        document.head.appendChild(script);
 
         // Update back button to reset state
         const backBtn = document.getElementById('back-to-tools');

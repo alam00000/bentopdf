@@ -1,0 +1,282 @@
+{
+    "categories": {
+        "popularTools": "Công cụ phổ biến",
+        "editAnnotate": "Chỉnh sửa & Ghi chú",
+        "convertToPdf": "Chuyển đổi sang PDF",
+        "convertFromPdf": "Chuyển đổi từ PDF",
+        "organizeManage": "Sắp xếp & Quản lý",
+        "optimizeRepair": "Tối ưu hóa & Sửa chữa",
+        "securePdf": "Bảo mật PDF"
+    },
+    "pdfMultiTool": {
+        "name": "Công cụ đa năng PDF",
+        "subtitle": "Gộp, Chia, Sắp xếp, Xóa, Xoay, Thêm trang trống, Trích xuất và Nhân đôi trong một giao diện thống nhất."
+    },
+    "mergePdf": {
+        "name": "Gộp PDF",
+        "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark."
+    },
+    "splitPdf": {
+        "name": "Chia PDF",
+        "subtitle": "Trích xuất một phạm vi trang thành PDF mới."
+    },
+    "compressPdf": {
+        "name": "Nén PDF",
+        "subtitle": "Giảm kích thước tệp PDF của bạn."
+    },
+    "pdfEditor": {
+        "name": "Trình chỉnh sửa PDF",
+        "subtitle": "Ghi chú, tô sáng, chỉnh sửa, bình luận, thêm hình dạng/hình ảnh, tìm kiếm và xem PDF."
+    },
+    "jpgToPdf": {
+        "name": "JPG sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh JPG."
+    },
+    "signPdf": {
+        "name": "Ký PDF",
+        "subtitle": "Vẽ, gõ hoặc tải lên chữ ký của bạn."
+    },
+    "cropPdf": {
+        "name": "Cắt PDF",
+        "subtitle": "Cắt lề của mọi trang trong PDF của bạn."
+    },
+    "extractPages": {
+        "name": "Trích xuất trang",
+        "subtitle": "Lưu một lựa chọn trang dưới dạng tệp mới."
+    },
+    "duplicateOrganize": {
+        "name": "Nhân đôi & Sắp xếp",
+        "subtitle": "Nhân đôi, sắp xếp lại và xóa trang."
+    },
+    "deletePages": {
+        "name": "Xóa trang",
+        "subtitle": "Xóa các trang cụ thể khỏi tài liệu của bạn."
+    },
+    "editBookmarks": {
+        "name": "Chỉnh sửa Bookmark",
+        "subtitle": "Thêm, chỉnh sửa, nhập, xóa và trích xuất bookmark PDF."
+    },
+    "tableOfContents": {
+        "name": "Mục lục",
+        "subtitle": "Tạo trang mục lục từ bookmark PDF."
+    },
+    "pageNumbers": {
+        "name": "Số trang",
+        "subtitle": "Chèn số trang vào tài liệu của bạn."
+    },
+    "addWatermark": {
+        "name": "Thêm Watermark",
+        "subtitle": "Đóng dấu văn bản hoặc hình ảnh lên các trang PDF của bạn."
+    },
+    "headerFooter": {
+        "name": "Đầu trang & Chân trang",
+        "subtitle": "Thêm văn bản vào đầu và cuối trang."
+    },
+    "invertColors": {
+        "name": "Đảo ngược màu",
+        "subtitle": "Tạo phiên bản \"chế độ tối\" cho PDF của bạn."
+    },
+    "backgroundColor": {
+        "name": "Màu nền",
+        "subtitle": "Thay đổi màu nền của PDF của bạn."
+    },
+    "changeTextColor": {
+        "name": "Thay đổi màu văn bản",
+        "subtitle": "Thay đổi màu văn bản trong PDF của bạn."
+    },
+    "addStamps": {
+        "name": "Thêm tem",
+        "subtitle": "Thêm tem hình ảnh vào PDF của bạn bằng thanh công cụ ghi chú.",
+        "usernameLabel": "Tên người dùng tem",
+        "usernamePlaceholder": "Nhập tên của bạn (cho tem)",
+        "usernameHint": "Tên này sẽ xuất hiện trên các tem bạn tạo."
+    },
+    "removeAnnotations": {
+        "name": "Xóa ghi chú",
+        "subtitle": "Loại bỏ bình luận, tô sáng và liên kết."
+    },
+    "pdfFormFiller": {
+        "name": "Điền form PDF",
+        "subtitle": "Điền form trực tiếp trong trình duyệt. Cũng hỗ trợ form XFA."
+    },
+    "createPdfForm": {
+        "name": "Tạo form PDF",
+        "subtitle": "Tạo form PDF có thể điền với các trường văn bản kéo và thả."
+    },
+    "removeBlankPages": {
+        "name": "Xóa trang trống",
+        "subtitle": "Tự động phát hiện và xóa trang trống."
+    },
+    "imageToPdf": {
+        "name": "Hình ảnh sang PDF",
+        "subtitle": "Chuyển đổi JPG, PNG, WebP, BMP, TIFF, SVG, HEIC sang PDF."
+    },
+    "pngToPdf": {
+        "name": "PNG sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh PNG."
+    },
+    "webpToPdf": {
+        "name": "WebP sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh WebP."
+    },
+    "svgToPdf": {
+        "name": "SVG sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh SVG."
+    },
+    "bmpToPdf": {
+        "name": "BMP sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh BMP."
+    },
+    "heicToPdf": {
+        "name": "HEIC sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh HEIC."
+    },
+    "tiffToPdf": {
+        "name": "TIFF sang PDF",
+        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh TIFF."
+    },
+    "textToPdf": {
+        "name": "Văn bản sang PDF",
+        "subtitle": "Chuyển đổi tệp văn bản thuần túy thành PDF."
+    },
+    "jsonToPdf": {
+        "name": "JSON sang PDF",
+        "subtitle": "Chuyển đổi tệp JSON sang định dạng PDF."
+    },
+    "pdfToJpg": {
+        "name": "PDF sang JPG",
+        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh JPG."
+    },
+    "pdfToPng": {
+        "name": "PDF sang PNG",
+        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh PNG."
+    },
+    "pdfToWebp": {
+        "name": "PDF sang WebP",
+        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh WebP."
+    },
+    "pdfToBmp": {
+        "name": "PDF sang BMP",
+        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh BMP."
+    },
+    "pdfToTiff": {
+        "name": "PDF sang TIFF",
+        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh TIFF."
+    },
+    "pdfToGreyscale": {
+        "name": "PDF sang thang xám",
+        "subtitle": "Chuyển đổi tất cả màu sắc sang đen trắng."
+    },
+    "pdfToJson": {
+        "name": "PDF sang JSON",
+        "subtitle": "Chuyển đổi tệp PDF sang định dạng JSON."
+    },
+    "ocrPdf": {
+        "name": "OCR PDF",
+        "subtitle": "Làm cho PDF có thể tìm kiếm và sao chép được."
+    },
+    "alternateMix": {
+        "name": "Xen kẽ & Trộn trang",
+        "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark."
+    },
+    "addAttachments": {
+        "name": "Thêm tệp đính kèm",
+        "subtitle": "Nhúng một hoặc nhiều tệp vào PDF của bạn."
+    },
+    "extractAttachments": {
+        "name": "Trích xuất tệp đính kèm",
+        "subtitle": "Trích xuất tất cả tệp được nhúng từ PDF thành ZIP."
+    },
+    "editAttachments": {
+        "name": "Chỉnh sửa tệp đính kèm",
+        "subtitle": "Xem hoặc xóa tệp đính kèm trong PDF của bạn."
+    },
+    "dividePages": {
+        "name": "Chia trang",
+        "subtitle": "Chia trang theo chiều ngang hoặc chiều dọc."
+    },
+    "addBlankPage": {
+        "name": "Thêm trang trống",
+        "subtitle": "Chèn trang trống ở bất kỳ đâu trong PDF của bạn."
+    },
+    "reversePages": {
+        "name": "Đảo ngược trang",
+        "subtitle": "Lật ngược thứ tự tất cả các trang trong tài liệu của bạn."
+    },
+    "rotatePdf": {
+        "name": "Xoay PDF",
+        "subtitle": "Xoay trang theo bội số 90 độ."
+    },
+    "nUpPdf": {
+        "name": "N-Up PDF",
+        "subtitle": "Sắp xếp nhiều trang lên một tờ."
+    },
+    "combineToSinglePage": {
+        "name": "Kết hợp thành một trang",
+        "subtitle": "Ghép tất cả các trang thành một cuộn liên tục."
+    },
+    "viewMetadata": {
+        "name": "Xem Metadata",
+        "subtitle": "Kiểm tra các thuộc tính ẩn của PDF của bạn."
+    },
+    "editMetadata": {
+        "name": "Chỉnh sửa Metadata",
+        "subtitle": "Thay đổi tác giả, tiêu đề và các thuộc tính khác."
+    },
+    "pdfsToZip": {
+        "name": "PDF sang ZIP",
+        "subtitle": "Đóng gói nhiều tệp PDF thành kho lưu trữ ZIP."
+    },
+    "comparePdfs": {
+        "name": "So sánh PDF",
+        "subtitle": "So sánh hai PDF cạnh nhau."
+    },
+    "posterizePdf": {
+        "name": "Posterize PDF",
+        "subtitle": "Chia một trang lớn thành nhiều trang nhỏ hơn."
+    },
+    "fixPageSize": {
+        "name": "Sửa kích thước trang",
+        "subtitle": "Chuẩn hóa tất cả các trang về cùng một kích thước."
+    },
+    "linearizePdf": {
+        "name": "Tuyến tính hóa PDF",
+        "subtitle": "Tối ưu hóa PDF để xem web nhanh."
+    },
+    "pageDimensions": {
+        "name": "Kích thước trang",
+        "subtitle": "Phân tích kích thước trang, hướng và đơn vị."
+    },
+    "removeRestrictions": {
+        "name": "Xóa hạn chế",
+        "subtitle": "Xóa bảo vệ mật khẩu và hạn chế bảo mật liên quan đến tệp PDF được ký số."
+    },
+    "repairPdf": {
+        "name": "Sửa chữa PDF",
+        "subtitle": "Khôi phục dữ liệu từ tệp PDF bị hỏng hoặc hư hỏng."
+    },
+    "encryptPdf": {
+        "name": "Mã hóa PDF",
+        "subtitle": "Khóa PDF của bạn bằng cách thêm mật khẩu."
+    },
+    "sanitizePdf": {
+        "name": "Làm sạch PDF",
+        "subtitle": "Xóa metadata, ghi chú, script và nhiều hơn nữa."
+    },
+    "decryptPdf": {
+        "name": "Giải mã PDF",
+        "subtitle": "Mở khóa PDF bằng cách xóa bảo vệ mật khẩu."
+    },
+    "flattenPdf": {
+        "name": "Làm phẳng PDF",
+        "subtitle": "Làm cho trường form và ghi chú không thể chỉnh sửa."
+    },
+    "removeMetadata": {
+        "name": "Xóa Metadata",
+        "subtitle": "Loại bỏ dữ liệu ẩn khỏi PDF của bạn."
+    },
+    "changePermissions": {
+        "name": "Thay đổi quyền",
+        "subtitle": "Đặt hoặc thay đổi quyền người dùng trên PDF."
+    }
+}

@@ -168,7 +168,7 @@ export async function initializeQpdf() {
   showLoader('Initializing PDF engine...');
   try {
     qpdfInstance = await createModule({
-      locateFile: () => '/qpdf.wasm',
+      locateFile: () => import.meta.env.BASE_URL + 'qpdf.wasm',
     });
   } catch (error) {
     console.error('Failed to initialize qpdf-wasm:', error);
@@ -280,6 +280,6 @@ export function getPDFDocument(src: any) {
   // This is required for PDF.js v5+ to load OpenJPEG for certain images
   return pdfjsLib.getDocument({
     ...params,
-    wasmUrl: '/pdfjs-viewer/wasm/',
+    wasmUrl: import.meta.env.BASE_URL + 'pdfjs-viewer/wasm/',
   });
 }

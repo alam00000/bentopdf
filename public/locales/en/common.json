@@ -21,7 +21,7 @@
         "title": "Used by companies and people working at"
     },
     "features": {
-        "title": "Why",
+        "title": "Why choose",
         "bentoPdf": "BentoPDF?",
         "noSignup": {
             "title": "No Signup",
@@ -847,5 +847,48 @@
     "licensing": {
         "title": "Licensing for",
         "subtitle": "Choose the license that fits your needs."
+    },
+    "multiTool": {
+        "uploadPdfs": "Upload PDFs",
+        "upload": "Upload",
+        "addBlankPage": "Add Blank Page",
+        "edit": "Edit:",
+        "undo": "Undo",
+        "redo": "Redo",
+        "reset": "Reset",
+        "selection": "Selection:",
+        "selectAll": "Select All",
+        "deselectAll": "Deselect All",
+        "rotate": "Rotate:",
+        "rotateLeft": "Left",
+        "rotateRight": "Right",
+        "transform": "Transform:",
+        "duplicate": "Duplicate",
+        "split": "Split",
+        "clear": "Clear:",
+        "delete": "Delete",
+        "download": "Download:",
+        "downloadSelected": "Download Selected",
+        "exportPdf": "Export PDF",
+        "uploadPdfFiles": "Select PDF Files",
+        "dragAndDrop": "Drag and drop PDF files here, or click to select",
+        "selectFiles": "Select Files",
+        "renderingPages": "Rendering pages...",
+        "actions": {
+            "duplicatePage": "Duplicate this page",
+            "deletePage": "Delete this page",
+            "insertPdf": "Insert PDF after this page",
+            "toggleSplit": "Toggle split after this page"
+        },
+        "pleaseWait": "Please Wait",
+        "pagesRendering": "Pages are still being rendered. Please wait...",
+        "noPagesSelected": "No Pages Selected",
+        "selectOnePage": "Please select at least one page to download.",
+        "noPages": "No Pages",
+        "noPagesToExport": "There are no pages to export.",
+        "renderingTitle": "Rendering page previews",
+        "errorRendering": "Failed to render page thumbnails",
+        "error": "Error",
+        "failedToLoad": "Failed to load"
     }
 }

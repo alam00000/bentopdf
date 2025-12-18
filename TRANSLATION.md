@@ -21,10 +21,12 @@ BentoPDF uses **i18next** for internationalization (i18n). Currently supported l
 
 - **English** (`en`) - Default
 - **German** (`de`)
+- **Vietnamese** (`vi`)
 
 The app automatically detects the language from the URL path:
 - `/en/` → English
 - `/de/` → German
+- `/vi/` → Vietnamese
 
 ---
 
@@ -262,6 +264,7 @@ In `common.json`:
 2. **Visit each language:**
    - English: `http://localhost:5173/en/`
    - German: `http://localhost:5173/de/`
+   - Vietnamese: `http://localhost:5173/vi/`
    - Your new language: `http://localhost:5173/fr/`
 
 3. **Check these pages:**
@@ -471,6 +474,7 @@ Current translation coverage:
 |----------|------|--------|------------|
 | English  | `en` | ✅ Complete | Core team |
 | German   | `de` | 🚧 In Progress | Core team |
+| Vietnamese | `vi` | ✅ Complete | Community |
 | Your Language | `??` | 🚧 In Progress | You? |
 
 ---

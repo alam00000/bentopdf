@@ -86,19 +86,24 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract version from tag
+      - name: Extract version and determine release type
         id: version
         run: |
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
+          if [[ $GITHUB_REF == refs/tags/v* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
             echo "version=${VERSION}" >> $GITHUB_OUTPUT
             echo "version_without_v=${VERSION#v}" >> $GITHUB_OUTPUT
+            echo "is_release=true" >> $GITHUB_OUTPUT
           else
-            echo "version=latest" >> $GITHUB_OUTPUT
-            echo "version_without_v=latest" >> $GITHUB_OUTPUT
+            SHORT_SHA=${GITHUB_SHA::7}
+            echo "version=edge" >> $GITHUB_OUTPUT
+            echo "short_sha=${SHORT_SHA}" >> $GITHUB_OUTPUT
+            echo "is_release=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Build and push ${{ matrix.mode.name }} image
+      # Build and push for releases (with 'latest' tag)
+      - name: Build and push ${{ matrix.mode.name }} image (release)
+        if: steps.version.outputs.is_release == 'true'
         uses: docker/build-push-action@v6
         with:
           push: true
@@ -111,6 +116,23 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:latest
             ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version_without_v }}
             ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}
+          platforms: linux/amd64,linux/arm64
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Build and push for main branch (with 'edge' tag)
+      - name: Build and push ${{ matrix.mode.name }} image (edge)
+        if: steps.version.outputs.is_release == 'false'
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          build-args: |
+            SIMPLE_MODE=${{ matrix.mode.simple_mode }}
+          tags: |
+            bentopdf/bentopdf${{ matrix.mode.suffix }}:edge
+            bentopdf/bentopdf${{ matrix.mode.suffix }}:sha-${{ steps.version.outputs.short_sha }}
+            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge
+            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:sha-${{ steps.version.outputs.short_sha }}
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max

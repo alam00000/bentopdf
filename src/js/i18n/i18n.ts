@@ -3,18 +3,20 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpBackend from 'i18next-http-backend';
 
 // Supported languages
-export const supportedLanguages = ['en', 'de', 'es'] as const;
+export const supportedLanguages = ['en', 'de', 'zh', 'vi', 'es'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageNames: Record<SupportedLanguage, string> = {
     en: 'English',
     de: 'Deutsch',
+    zh: '中文',
+    vi: 'Tiếng Việt',
     es: "Español",
 };
 
 export const getLanguageFromUrl = (): SupportedLanguage => {
     const path = window.location.pathname;
-    const langMatch = path.match(/^\/(en|de|es)(?:\/|$)/);
+    const langMatch = path.match(/^\/(en|de|zh|vi|es)(?:\/|$)/);
     if (langMatch && supportedLanguages.includes(langMatch[1] as SupportedLanguage)) {
         return langMatch[1] as SupportedLanguage;
     }
@@ -70,14 +72,16 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
     const currentLang = getLanguageFromUrl();
 
     let newPath: string;
-    if (currentPath.match(/^\/(en|de|es)\//)) {
-        newPath = currentPath.replace(/^\/(en|de|es)\//, `/${lang}/`);
-    } else if (currentPath.match(/^\/(en|de|es)$/)) {
+    if (currentPath.match(/^\/(en|de|zh|vi|es)\//)) {
+        newPath = currentPath.replace(/^\/(en|de|zh|vi|es)\//, `/${lang}/`);
+    } else if (currentPath.match(/^\/(en|de|zh|vi|es)$/)) {
         newPath = `/${lang}`;
     } else {
         newPath = `/${lang}${currentPath}`;
     }
-    window.location.href = newPath + window.location.search + window.location.hash;
+
+    const newUrl = newPath + window.location.search + window.location.hash;
+    window.location.href = newUrl;
 };
 
 // Apply translations to all elements with data-i18n attribute
@@ -132,7 +136,7 @@ export const rewriteLinks = (): void => {
             return;
         }
 
-        if (href.match(/^\/(en|de|es)\//)) {
+        if (href.match(/^\/(en|de|zh|vi|es)\//)) {
             return;
         }
         let newHref: string;

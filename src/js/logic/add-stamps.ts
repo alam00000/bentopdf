@@ -14,6 +14,7 @@ const viewerCard = document.getElementById('viewer-card') as HTMLDivElement | nu
 const saveStampedBtn = document.getElementById('save-stamped-btn') as HTMLButtonElement
 const backToToolsBtn = document.getElementById('back-to-tools') as HTMLButtonElement | null
 const toolUploader = document.getElementById('tool-uploader') as HTMLDivElement | null
+const usernameInput = document.getElementById('stamp-username') as HTMLInputElement | null
 
 function resetState() {
   selectedFile = null
@@ -158,8 +159,11 @@ async function loadPdfInViewer(file: File) {
   iframe.className = 'w-full h-full border-0'
   iframe.allowFullscreen = true
 
-  const viewerUrl = new URL('/pdfjs-annotation-viewer/web/viewer.html', window.location.origin)
-  iframe.src = `${viewerUrl.toString()}?file=${encodeURIComponent(currentBlobUrl)}`
+  const viewerUrl = new URL(import.meta.env.BASE_URL + 'pdfjs-annotation-viewer/web/viewer.html', window.location.origin)
+  const stampUserName = usernameInput?.value?.trim() || ''
+  // ae_username is the hash parameter used by pdfjs-annotation-extension to set the username
+  const hashParams = stampUserName ? `#ae_username=${encodeURIComponent(stampUserName)}` : ''
+  iframe.src = `${viewerUrl.toString()}?file=${encodeURIComponent(currentBlobUrl)}${hashParams}`
 
   iframe.addEventListener('load', () => {
     setupAnnotationViewer(iframe)

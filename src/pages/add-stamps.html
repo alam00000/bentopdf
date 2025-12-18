@@ -11,6 +11,7 @@
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/add-stamps.html" />
   <link rel="alternate" hreflang="de" href="/de/add-stamps.html" />
+  <link rel="alternate" hreflang="vi" href="/vi/add-stamps.html" />
   <link rel="alternate" hreflang="es" href="/es/add-stamps.html" />
   <link rel="alternate" hreflang="x-default" href="/en/add-stamps.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
@@ -78,6 +79,16 @@
       <p class="text-gray-400 mb-6" data-i18n="tools:addStamps.subtitle">
         Upload a PDF, add image stamps using the toolbar, and then save the stamped PDF.
       </p>
+
+      <div class="mb-4">
+        <label for="stamp-username" class="block text-sm font-medium text-gray-300 mb-2"
+          data-i18n="tools:addStamps.usernameLabel">Stamp Username</label>
+        <input type="text" id="stamp-username"
+          class="w-full px-4 py-2 bg-gray-900 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+          placeholder="Enter your name (for stamps)" data-i18n-placeholder="tools:addStamps.usernamePlaceholder" />
+        <p class="text-xs text-gray-500 mt-1" data-i18n="tools:addStamps.usernameHint">This name will appear on stamps
+          you create.</p>
+      </div>
 
       <div id="drop-zone"
         class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">

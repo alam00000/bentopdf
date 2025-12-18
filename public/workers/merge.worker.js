@@ -1,4 +1,5 @@
-self.importScripts('../coherentpdf.browser.min.js');
+const baseUrl = self.location.href.substring(0, self.location.href.lastIndexOf('/workers/') + 1);
+self.importScripts(baseUrl + 'coherentpdf.browser.min.js');
 
 self.onmessage = function (e) {
     const { command, files, jobs } = e.data;

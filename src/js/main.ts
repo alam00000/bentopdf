@@ -7,7 +7,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 import { formatShortcutDisplay, formatStars } from './utils/helpers.js';
 import { APP_VERSION, injectVersion } from '../version.js';
-import { initI18n, applyTranslations, rewriteLinks, injectLanguageSwitcher, t } from './i18n/index.js';
+import { initI18n, applyTranslations, rewriteLinks, injectLanguageSwitcher, createLanguageSwitcher, t } from './i18n/index.js';
 
 const init = async () => {
   await initI18n();
@@ -17,13 +17,10 @@ const init = async () => {
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
   if (__SIMPLE_MODE__) {
     const hideBrandingSections = () => {
-      // Hide navigation but keep logo
       const nav = document.querySelector('nav');
       if (nav) {
-        // Hide the entire nav but we'll create a minimal one with just logo
         nav.style.display = 'none';
 
-        // Create a simple nav with just logo on the right
         const simpleNav = document.createElement('nav');
         simpleNav.className =
           'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
@@ -31,7 +28,7 @@ const init = async () => {
           <div class="container mx-auto px-4">
             <div class="flex justify-start items-center h-16">
               <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
+                <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
                 <span class="text-white font-bold text-xl ml-2">
                   <a href="index.html">BentoPDF</a>
                 </span>
@@ -87,28 +84,44 @@ const init = async () => {
         usedBySection.style.display = 'none';
       }
 
-      // Hide footer but keep copyright
       const footer = document.querySelector('footer');
-      if (footer) {
+      if (footer && !document.querySelector('[data-simple-footer]')) {
         footer.style.display = 'none';
 
         const simpleFooter = document.createElement('footer');
         simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
+        simpleFooter.setAttribute('data-simple-footer', 'true');
         simpleFooter.innerHTML = `
           <div class="container mx-auto px-4">
-            <div class="flex items-center mb-4">
-              <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
-              <span class="text-white font-bold text-lg">BentoPDF</span>
+            <div class="flex items-center justify-between flex-wrap gap-4">
+              <div>
+                <div class="flex items-center mb-2">
+                  <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
+                  <span class="text-white font-bold text-lg">BentoPDF</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                  &copy; 2025 BentoPDF. All rights reserved.
+                </p>
+                <p class="text-gray-500 text-xs mt-2">
+                  Version <span id="app-version-simple">${APP_VERSION}</span>
+                </p>
+              </div>
+              <div id="simple-mode-lang-switcher" class="flex-shrink-0"></div>
             </div>
-            <p class="text-gray-400 text-sm">
-              &copy; 2025 BentoPDF. All rights reserved.
-            </p>
-            <p class="text-gray-500 text-xs mt-2">
-              Version <span id="app-version-simple">${APP_VERSION}</span>
-            </p>
           </div>
         `;
         document.body.appendChild(simpleFooter);
+
+        const langContainer = simpleFooter.querySelector('#simple-mode-lang-switcher');
+        if (langContainer) {
+          const switcher = createLanguageSwitcher();
+          const dropdown = switcher.querySelector('div[role="menu"]');
+          if (dropdown) {
+            dropdown.classList.remove('mt-2');
+            dropdown.classList.add('bottom-full', 'mb-2');
+          }
+          langContainer.appendChild(switcher);
+        }
       }
 
       const sectionDividers = document.querySelectorAll('.section-divider');

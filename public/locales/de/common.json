@@ -22,7 +22,7 @@
     },
     "features": {
         "title": "Warum",
-        "bentoPdf": "BentoPDF?",
+        "bentoPdf": "BentoPDF wählen?",
         "noSignup": {
             "title": "Keine Anmeldung",
             "description": "Sofort starten, keine Konten oder E-Mails erforderlich."
@@ -849,5 +849,48 @@
     "licensing": {
         "title": "Lizenzierung für",
         "subtitle": "Wählen Sie die Lizenz, die Ihren Anforderungen entspricht."
+    },
+    "multiTool": {
+        "uploadPdfs": "PDFs hochladen",
+        "upload": "Hochladen",
+        "addBlankPage": "Leere Seite hinzufügen",
+        "edit": "Bearbeiten:",
+        "undo": "Rückgängig",
+        "redo": "Wiederholen",
+        "reset": "Zurücksetzen",
+        "selection": "Auswahl:",
+        "selectAll": "Alles auswählen",
+        "deselectAll": "Auswahl aufheben",
+        "rotate": "Drehen:",
+        "rotateLeft": "Links",
+        "rotateRight": "Rechts",
+        "transform": "Transformieren:",
+        "duplicate": "Duplizieren",
+        "split": "Teilen",
+        "clear": "Löschen:",
+        "delete": "Entfernen",
+        "download": "Download:",
+        "downloadSelected": "Auswahl herunterladen",
+        "exportPdf": "PDF exportieren",
+        "uploadPdfFiles": "PDF-Dateien auswählen",
+        "dragAndDrop": "PDF-Dateien hierhin ziehen oder klicken zum Auswählen",
+        "selectFiles": "Dateien auswählen",
+        "renderingPages": "Seiten werden gerendert...",
+        "actions": {
+            "duplicatePage": "Diese Seite duplizieren",
+            "deletePage": "Diese Seite löschen",
+            "insertPdf": "PDF nach dieser Seite einfügen",
+            "toggleSplit": "Trennung nach dieser Seite umschalten"
+        },
+        "pleaseWait": "Bitte warten",
+        "pagesRendering": "Seiten werden noch gerendert. Bitte warten...",
+        "noPagesSelected": "Keine Seiten ausgewählt",
+        "selectOnePage": "Bitte wählen Sie mindestens eine Seite zum Herunterladen aus.",
+        "noPages": "Keine Seiten",
+        "noPagesToExport": "Keine Seiten zum Exportieren vorhanden.",
+        "renderingTitle": "Seiten-Vorschau wird gerendert",
+        "errorRendering": "Fehler beim Rendern der Seitenvorschau",
+        "error": "Fehler",
+        "failedToLoad": "Laden fehlgeschlagen"
     }
 }

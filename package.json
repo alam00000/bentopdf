@@ -1,7 +1,7 @@
 {
   "name": "bento-pdf",
   "private": true,
-  "version": "1.11.1",
+  "version": "1.11.2",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
@@ -35,7 +35,6 @@
     "@vitest/ui": "^3.2.4",
     "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
-    "ts-migrate": "^0.1.35",
     "typescript": "~5.9.3",
     "vite": "^7.2.7",
     "vite-plugin-node-polyfills": "^0.24.0",
@@ -60,7 +59,6 @@
     "i18next": "^25.7.2",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
-    "javascript-obfuscator": "^4.1.1",
     "jspdf": "^3.0.3",
     "jszip": "^3.10.1",
     "lucide": "^0.546.0",
@@ -72,6 +70,7 @@
     "terser": "^5.44.0",
     "tesseract.js": "^6.0.1",
     "tiff": "^7.1.2",
-    "utif": "^3.1.0"
+    "utif": "^3.1.0",
+    "embedpdf-snippet": "file:vendor/embedpdf/embedpdf-snippet-1.5.0.tgz"
   }
 }

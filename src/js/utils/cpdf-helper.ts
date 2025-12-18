@@ -18,7 +18,7 @@ export async function ensureCpdfLoaded(): Promise<void> {
     }
 
     const script = document.createElement('script');
-    script.src = '/coherentpdf.browser.min.js';
+    script.src = import.meta.env.BASE_URL + 'coherentpdf.browser.min.js';
     script.onload = () => {
       cpdfLoaded = true;
       resolve();

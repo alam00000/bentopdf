@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (rotateAllLeft) {
         rotateAllLeft.addEventListener('click', function () {
             for (let i = 0; i < pageState.rotations.length; i++) {
-                pageState.rotations[i] = pageState.rotations[i] - 90;
+                pageState.rotations[i] = pageState.rotations[i] + 90;
             }
             updateAllRotationDisplays();
         });
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (rotateAllRight) {
         rotateAllRight.addEventListener('click', function () {
             for (let i = 0; i < pageState.rotations.length; i++) {
-                pageState.rotations[i] = pageState.rotations[i] + 90;
+                pageState.rotations[i] = pageState.rotations[i] - 90;
             }
             updateAllRotationDisplays();
         });

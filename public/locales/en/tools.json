@@ -86,7 +86,10 @@
     },
     "addStamps": {
         "name": "Add Stamps",
-        "subtitle": "Add image stamps to your PDF using the annotation toolbar."
+        "subtitle": "Add image stamps to your PDF using the annotation toolbar.",
+        "usernameLabel": "Stamp Username",
+        "usernamePlaceholder": "Enter your name (for stamps)",
+        "usernameHint": "This name will appear on stamps you create."
     },
     "removeAnnotations": {
         "name": "Remove Annotations",

@@ -12,6 +12,7 @@
   <link rel="alternate" hreflang="en" href="/en/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="de" href="/de/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="es" href="/es/pdf-multi-tool.html" />
+  <link rel="alternate" hreflang="vi" href="/vi/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="x-default" href="/en/pdf-multi-tool.html" />
   <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -58,7 +59,7 @@
         </div>
         <button id="close-tool-btn"
           class="flex items-center gap-1 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
-          <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i> Close
+          <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i> <span data-i18n="common.close">Close</span>
         </button>
       </div>
     </div>
@@ -77,7 +78,7 @@
           class="flex items-center gap-1 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="upload" class="w-3 h-3 sm:w-4 sm:h-4"></i>
           <span class="hidden sm:inline" data-i18n="multiTool.uploadPdfs">Upload PDFs</span>
-          <span class="sm:hidden">Upload</span>
+          <span class="sm:hidden" data-i18n="multiTool.upload">Upload</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
@@ -104,13 +105,13 @@
         <button id="redo-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="redo-2" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline"data-i18n="multiTool.redo">Redo</span>
+          <span class="hidden lg:inline" data-i18n="multiTool.redo">Redo</span>
         </button>
 
         <button id="reset-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="refresh-ccw" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden lg:inline"data-i18n="multiTool.reset">Reset</span>
+          <span class="hidden lg:inline" data-i18n="multiTool.reset">Reset</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
@@ -137,13 +138,13 @@
         <button id="bulk-rotate-left-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="rotate-ccw" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline" data-i18n="multiTool.left">Left</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.rotateLeft">Left</span>
         </button>
 
         <button id="bulk-rotate-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
           <i data-lucide="rotate-cw" class="w-3 h-3 sm:w-4 sm:h-4"></i>
-          <span class="hidden xl:inline" data-i18n="multiTool.right">Right</span>
+          <span class="hidden xl:inline" data-i18n="multiTool.rotateRight">Right</span>
         </button>
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
@@ -198,11 +199,14 @@
         class="hidden border-2 border-dashed border-gray-600 rounded-lg p-6 sm:p-12 text-center max-w-full cursor-pointer"
         onclick="document.getElementById('pdf-file-input').click()">
         <i data-lucide="upload-cloud" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-gray-400 mb-3 sm:mb-4"></i>
-        <p class="text-gray-300 text-base sm:text-lg mb-1 sm:mb-2" data-i18n="multiTool.uploadPdfFile">Upload PDF Files</p>
-        <p class="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4" data-i18n="multiTool.dragOrClick">Drag and drop PDF files here, or click to select</p>
+        <p class="text-gray-300 text-base sm:text-lg mb-1 sm:mb-2" data-i18n="multiTool.uploadPdfFiles">Select PDF Files
+        </p>
+        <p class="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4" data-i18n="multiTool.dragAndDrop">Drag and drop PDF
+          files here, or click to select</p>
         <input type="file" id="pdf-file-input" accept="application/pdf" multiple class="hidden">
         <button onclick="event.stopPropagation(); document.getElementById('pdf-file-input').click()"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 sm:px-6 py-2 rounded text-sm sm:text-base" data-i18n="multiTool.selectFiles">
+          class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 sm:px-6 py-2 rounded text-sm sm:text-base"
+          data-i18n="multiTool.selectFiles">
           Select Files
         </button>
       </div>
@@ -218,7 +222,8 @@
       <div class="flex items-center justify-center mb-4">
         <i data-lucide="loader" class="w-12 h-12 text-indigo-400 animate-spin"></i>
       </div>
-      <p id="loading-text" class="text-white text-center text-lg mb-4">Rendering pages...</p>
+      <p id="loading-text" class="text-white text-center text-lg mb-4" data-i18n="multiTool.renderingPages">Rendering
+        pages...</p>
       <div class="w-full bg-gray-700 rounded-full h-2.5">
         <div id="loading-progress" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300"
           style="width: 0%"></div>

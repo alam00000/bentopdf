@@ -181,7 +181,7 @@ async function setupSignTool() {
         localStorage.setItem('pdfjs.preferences', JSON.stringify(newPrefs));
     } catch { }
 
-    const viewerUrl = new URL('/pdfjs-viewer/viewer.html', window.location.origin);
+    const viewerUrl = new URL(`${import.meta.env.BASE_URL}pdfjs-viewer/viewer.html`, window.location.origin);
     const query = new URLSearchParams({ file: signState.blobUrl });
     iframe.src = `${viewerUrl.toString()}?${query.toString()}`;
 

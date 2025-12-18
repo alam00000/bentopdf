@@ -6,13 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BentoPDF - The Privacy First PDF Toolkit</title>
   <!-- i18n: hreflang tags for SEO -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/" />
   <link rel="alternate" hreflang="de" href="/de/" />
+  <link rel="alternate" hreflang="vi" href="/vi/" />
   <link rel="alternate" hreflang="es" href="/es/" />
   <link rel="alternate" hreflang="x-default" href="/en/" />
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-  <link rel="icon" type="image/png" href="images/favicon.png" />
-  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/favicon.png" />
   <link href="src/css/styles.css" rel="stylesheet" />
 </head>
 
@@ -21,7 +23,7 @@
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-          <img src="images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+          <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
           <span class="text-white font-bold text-xl ml-2">
             <a href="index.html">BentoPDF</a>
           </span>
@@ -207,7 +209,7 @@
 
     <section id="features-section" class="py-20">
       <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
-        <span data-i18n="features.title"></span></span> <span class="marker-slanted"
+        <span data-i18n="features.title"></span> <span class="marker-slanted"
           data-i18n="features.bentoPdf">BentoPDF?</span>
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -397,8 +399,8 @@
           <div class="mb-4 p-3 bg-indigo-900/20 border border-indigo-500/30 rounded-lg flex items-start gap-3">
             <i data-lucide="info" class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"></i>
             <p class="text-sm text-indigo-200">
-              Press and hold keys to set a shortcut. Changes are <strong>auto-saved</strong>.
-              <br><span class="text-yellow-300">⚠️ Avoid common browser shortcuts (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N
+              <span data-i18n="settings.shortcutsInfo">Press and hold keys to set a shortcut. Changes are <strong>auto-saved</strong>.</span>
+              <br><span class="text-yellow-300" data-i18n="settings.shortcutsWarning">⚠️ Avoid common browser shortcuts (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N
                 etc.) as they
                 may not work reliably.</span>
             </p>
@@ -494,7 +496,7 @@
     <section id="security-compliance-section" class="py-20 hide-section">
       <div class="mb-8 text-center">
         <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-balance">
-          <span data-i18n="compliance.title"></span></span>
+          <span data-i18n="compliance.title"></span>
           <span class="inline-flex items-center gap-2">
             <i data-lucide="shield" class="w-8 h-8 md:w-10 md:h-10 text-indigo-400 bg-indigo-900 rounded-lg p-1.5"></i>
             <span data-i18n="compliance.weKeep">We keep</span>

@@ -13,6 +13,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString();
 
+import { t } from '../i18n/i18n';
+
 interface PageData {
   id: string; // Unique ID for DOM reconciliation
   pdfIndex: number;
@@ -107,7 +109,7 @@ function showLoading(current: number, total: number) {
   loader.classList.remove('hidden');
   const percentage = Math.round((current / total) * 100);
   progress.style.width = `${percentage}%`;
-  text.textContent = `Rendering pages...`;
+  text.textContent = t('multiTool.renderingPages');
 }
 
 async function withButtonLoading(buttonId: string, action: () => Promise<void>) {
@@ -158,7 +160,7 @@ function initializeTool() {
   document.getElementById('upload-pdfs-btn')?.addEventListener('click', () => {
     console.log('Upload button clicked, isRendering:', isRendering);
     if (isRendering) {
-      showModal('Please Wait', 'Pages are still being rendered. Please wait...', 'info');
+      showModal(t('multiTool.pleaseWait'), t('multiTool.pagesRendering'), 'info');
       return;
     }
     document.getElementById('pdf-file-input')?.click();
@@ -194,8 +196,9 @@ function initializeTool() {
   });
   document.getElementById('bulk-download-btn')?.addEventListener('click', () => {
     if (isRendering) return;
+    if (isRendering) return;
     if (selectedPages.size === 0) {
-      showModal('No Pages Selected', 'Please select at least one page to download.', 'info');
+      showModal(t('multiTool.noPagesSelected'), t('multiTool.selectOnePage'), 'info');
       return;
     }
     withButtonLoading('bulk-download-btn', async () => {
@@ -217,8 +220,9 @@ function initializeTool() {
 
   document.getElementById('export-pdf-btn')?.addEventListener('click', () => {
     if (isRendering) return;
+    if (isRendering) return;
     if (allPages.length === 0) {
-      showModal('No Pages', 'There are no pages to export.', 'info');
+      showModal(t('multiTool.noPages'), t('multiTool.noPagesToExport'), 'info');
       return;
     }
     withButtonLoading('export-pdf-btn', async () => {
@@ -329,7 +333,7 @@ async function handlePdfUpload(e: Event) {
 
 async function loadPdfs(files: File[]) {
   if (isRendering) {
-    showModal('Please Wait', 'Pages are still being rendered. Please wait...', 'info');
+    showModal(t('multiTool.pleaseWait'), t('multiTool.pagesRendering'), 'info');
     return;
   }
 
@@ -424,7 +428,7 @@ async function loadPdfs(files: File[]) {
 
       } catch (e) {
         console.error(`Failed to load PDF ${file.name}:`, e);
-        showModal('Error', `Failed to load ${file.name}. The file may be corrupted.`, 'error');
+        showModal(t('multiTool.error'), `${t('multiTool.failedToLoad')} ${file.name}.`, 'error');
       }
     }
 
@@ -501,7 +505,7 @@ function createPageElement(canvas: HTMLCanvasElement | null, index: number): HTM
     loading.className = 'flex flex-col items-center justify-center text-gray-400';
     loading.innerHTML = `
       <i data-lucide="loader" class="w-8 h-8 animate-spin mb-2"></i>
-      <span class="text-xs">Loading...</span>
+      <span class="text-xs">${t('common.loading')}</span>
     `;
     preview.appendChild(loading);
     preview.classList.add('bg-gray-700'); // Darker background for loading
@@ -510,7 +514,7 @@ function createPageElement(canvas: HTMLCanvasElement | null, index: number): HTM
   // Page info
   const info = document.createElement('div');
   info.className = 'text-xs text-gray-400 text-center mb-2';
-  info.textContent = `Page ${index + 1}`;
+  info.textContent = `${t('common.page')} ${index + 1}`;
 
   // Actions toolbar
   const actions = document.createElement('div');
@@ -551,7 +555,7 @@ function createPageElement(canvas: HTMLCanvasElement | null, index: number): HTM
   const duplicateBtn = document.createElement('button');
   duplicateBtn.className = 'p-1 rounded hover:bg-gray-700';
   duplicateBtn.innerHTML = '<i data-lucide="copy" class="w-4 h-4 text-gray-300"></i>';
-  duplicateBtn.title = 'Duplicate this page';
+  duplicateBtn.title = t('multiTool.actions.duplicatePage');
   duplicateBtn.onclick = (e) => {
     e.stopPropagation();
     snapshot();
@@ -562,7 +566,7 @@ function createPageElement(canvas: HTMLCanvasElement | null, index: number): HTM
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'p-1 rounded hover:bg-gray-700';
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4 text-red-400"></i>';
-  deleteBtn.title = 'Delete this page';
+  deleteBtn.title = t('multiTool.actions.deletePage');
   deleteBtn.onclick = (e) => {
     e.stopPropagation();
     snapshot();
@@ -573,7 +577,7 @@ function createPageElement(canvas: HTMLCanvasElement | null, index: number): HTM
   const insertBtn = document.createElement('button');
   insertBtn.className = 'p-1 rounded hover:bg-gray-700';
   insertBtn.innerHTML = '<i data-lucide="file-plus" class="w-4 h-4 text-gray-300"></i>';
-  insertBtn.title = 'Insert PDF after this page';
+  insertBtn.title = t('multiTool.actions.insertPdf');
   insertBtn.onclick = (e) => {
     e.stopPropagation();
     snapshot();
@@ -584,7 +588,7 @@ function createPageElement(canvas: HTMLCanvasElement | null, index: number): HTM
   const splitBtn = document.createElement('button');
   splitBtn.className = 'p-1 rounded hover:bg-gray-700';
   splitBtn.innerHTML = '<i data-lucide="scissors" class="w-4 h-4 text-gray-300"></i>';
-  splitBtn.title = 'Toggle split after this page';
+  splitBtn.title = t('multiTool.actions.toggleSplit');
   splitBtn.onclick = (e) => {
     e.stopPropagation();
     snapshot();

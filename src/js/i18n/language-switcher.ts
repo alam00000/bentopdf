@@ -95,7 +95,7 @@ export const injectLanguageSwitcher = (): void => {
     let followUsColumn: HTMLElement | null = null;
 
     headings.forEach((h3) => {
-        if (h3.textContent?.trim() === 'Follow Us' || h3.textContent?.trim() === 'Folgen Sie uns') {
+        if (h3.textContent?.trim() === 'Follow Us' || h3.textContent?.trim() === 'Folgen Sie uns' || h3.textContent?.trim() === 'Theo dõi chúng tôi') {
             followUsColumn = h3.parentElement;
         }
     });
