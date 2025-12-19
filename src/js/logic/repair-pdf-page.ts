@@ -38,12 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 state.files = [...state.files, ...Array.from(files)];
                 updateUI();
             }
-            fileInput.value = '';
         });
 
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
-            dropZone.classList.add('bg-gray-700'); 
+            dropZone.classList.add('bg-gray-700');
         });
 
         dropZone.addEventListener('dragleave', (e) => {
@@ -64,8 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        dropZone.addEventListener('click', () => {
-            fileInput.click();
+        // Clear value on click to allow re-selecting the same file
+        fileInput.addEventListener('click', () => {
+            fileInput.value = '';
         });
     }
 

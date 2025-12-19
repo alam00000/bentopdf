@@ -247,24 +247,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const infoContainer = document.createElement('div');
                 infoContainer.className = 'flex flex-col overflow-hidden';
 
-                const nameSizeContainer = document.createElement('div');
-                nameSizeContainer.className = 'flex items-center gap-2';
-
-                const nameSpan = document.createElement('span');
-                nameSpan.className = 'truncate font-medium text-gray-200';
+                const nameSpan = document.createElement('div');
+                nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
                 nameSpan.textContent = file.name;
 
-                const sizeSpan = document.createElement('span');
-                sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
-                sizeSpan.textContent = `(${formatBytes(file.size)})`;
+                const metaSpan = document.createElement('div');
+                metaSpan.className = 'text-xs text-gray-400';
+                metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`;
 
-                nameSizeContainer.append(nameSpan, sizeSpan);
-
-                const pagesSpan = document.createElement('span');
-                pagesSpan.className = 'text-xs text-gray-500 mt-0.5';
-                pagesSpan.textContent = 'Loading pages...';
-
-                infoContainer.append(nameSizeContainer, pagesSpan);
+                infoContainer.append(nameSpan, metaSpan);
 
                 const removeBtn = document.createElement('button');
                 removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
@@ -280,10 +271,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const arrayBuffer = await readFileAsArrayBuffer(file);
                     const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-                    pagesSpan.textContent = `${pdfDoc.numPages} Pages`;
+                    metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
                 } catch (error) {
                     console.error('Error loading PDF:', error);
-                    pagesSpan.textContent = 'Could not load page count';
+                    metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
                 }
             }
 
@@ -512,7 +503,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fileInput && dropZone) {
         fileInput.addEventListener('change', (e) => {
             handleFileSelect((e.target as HTMLInputElement).files);
-            fileInput.value = '';
         });
 
         dropZone.addEventListener('dragover', (e) => {
@@ -539,8 +529,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        dropZone.addEventListener('click', () => {
-            fileInput.click();
+        // Clear value on click to allow re-selecting the same file
+        fileInput.addEventListener('click', () => {
+            fileInput.value = '';
         });
     }
 

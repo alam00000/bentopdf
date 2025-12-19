@@ -1,0 +1,279 @@
+{
+    "categories": {
+        "popularTools": "热门工具",
+        "editAnnotate": "编辑与注释",
+        "convertToPdf": "转换为 PDF",
+        "convertFromPdf": "从 PDF 转换",
+        "organizeManage": "组织与管理",
+        "optimizeRepair": "优化与修复",
+        "securePdf": "安全 PDF"
+    },
+    "pdfMultiTool": {
+        "name": "PDF 多功能工具",
+        "subtitle": "在一个统一的界面中合并、分割、组织、删除、旋转、添加空白页、提取和复制。"
+    },
+    "mergePdf": {
+        "name": "合并 PDF",
+        "subtitle": "将多个 PDF 合并为一个文件。保留书签。"
+    },
+    "splitPdf": {
+        "name": "分割 PDF",
+        "subtitle": "将指定范围的页面提取到新 PDF 中。"
+    },
+    "compressPdf": {
+        "name": "压缩 PDF",
+        "subtitle": "减小您的 PDF 文件大小。"
+    },
+    "pdfEditor": {
+        "name": "PDF 编辑器",
+        "subtitle": "注释、高亮、涂黑、评论、添加形状/图片、搜索和查看 PDF。"
+    },
+    "jpgToPdf": {
+        "name": "JPG 转 PDF",
+        "subtitle": "从一张或多张 JPG 图片创建 PDF。"
+    },
+    "signPdf": {
+        "name": "签署 PDF",
+        "subtitle": "绘制、键入或上传您的签名。"
+    },
+    "cropPdf": {
+        "name": "裁剪 PDF",
+        "subtitle": "修剪 PDF 中每一页的边距。"
+    },
+    "extractPages": {
+        "name": "提取页面",
+        "subtitle": "将选定的页面保存为新文件。"
+    },
+    "duplicateOrganize": {
+        "name": "复制与组织",
+        "subtitle": "复制、重新排序和删除页面。"
+    },
+    "deletePages": {
+        "name": "删除页面",
+        "subtitle": "自您的文档中移除特定页面。"
+    },
+    "editBookmarks": {
+        "name": "编辑书签",
+        "subtitle": "添加、编辑、导入、删除和提取 PDF 书签。"
+    },
+    "tableOfContents": {
+        "name": "目录",
+        "subtitle": "根据 PDF 书签生成目录页。"
+    },
+    "pageNumbers": {
+        "name": "页码",
+        "subtitle": "将页码插入到您的文档中。"
+    },
+    "addWatermark": {
+        "name": "添加水印",
+        "subtitle": "在您的 PDF 页面上添加文字或图片水印。"
+    },
+    "headerFooter": {
+        "name": "页眉和页脚",
+        "subtitle": "在页面顶部和底部添加文字。"
+    },
+    "invertColors": {
+        "name": "反转颜色",
+        "subtitle": "创建您的 PDF 的“暗黑模式”版本。"
+    },
+    "backgroundColor": {
+        "name": "背景颜色",
+        "subtitle": "更改您的 PDF 的背景颜色。"
+    },
+    "changeTextColor": {
+        "name": "更改文本颜色",
+        "subtitle": "更改您 PDF 中文本的颜色。"
+    },
+    "addStamps": {
+        "name": "添加印章",
+        "subtitle": "使用注释工具栏向您的 PDF 添加图片印章。"
+    },
+    "removeAnnotations": {
+        "name": "移除注释",
+        "subtitle": "移除评论、高亮和链接。"
+    },
+    "pdfFormFiller": {
+        "name": "PDF 表单填写器",
+        "subtitle": "直接在浏览器中填写表单。也支持 XFA 表单。"
+    },
+    "createPdfForm": {
+        "name": "创建 PDF 表单",
+        "subtitle": "使用拖放文本字段创建可填写的 PDF 表单。"
+    },
+    "removeBlankPages": {
+        "name": "移除空白页",
+        "subtitle": "自动检测并删除空白页。"
+    },
+    "imageToPdf": {
+        "name": "图片转 PDF",
+        "subtitle": "将 JPG, PNG, WebP, BMP, TIFF, SVG, HEIC 转换为 PDF。"
+    },
+    "pngToPdf": {
+        "name": "PNG 转 PDF",
+        "subtitle": "从一张或多张 PNG 图片创建 PDF。"
+    },
+    "webpToPdf": {
+        "name": "WebP 转 PDF",
+        "subtitle": "从一张或多张 WebP 图片创建 PDF。"
+    },
+    "svgToPdf": {
+        "name": "SVG 转 PDF",
+        "subtitle": "从一张或多张 SVG 图片创建 PDF。"
+    },
+    "bmpToPdf": {
+        "name": "BMP 转 PDF",
+        "subtitle": "从一张或多张 BMP 图片创建 PDF。"
+    },
+    "heicToPdf": {
+        "name": "HEIC 转 PDF",
+        "subtitle": "从一张或多张 HEIC 图片创建 PDF。"
+    },
+    "tiffToPdf": {
+        "name": "TIFF 转 PDF",
+        "subtitle": "从一张或多张 TIFF 图片创建 PDF。"
+    },
+    "textToPdf": {
+        "name": "文本转 PDF",
+        "subtitle": "将纯文本文件转换为 PDF。"
+    },
+    "jsonToPdf": {
+        "name": "JSON 转 PDF",
+        "subtitle": "将 JSON 文件转换为 PDF 格式。"
+    },
+    "pdfToJpg": {
+        "name": "PDF 转 JPG",
+        "subtitle": "将每一页 PDF 转换为 JPG 图片。"
+    },
+    "pdfToPng": {
+        "name": "PDF 转 PNG",
+        "subtitle": "将每一页 PDF 转换为 PNG 图片。"
+    },
+    "pdfToWebp": {
+        "name": "PDF 转 WebP",
+        "subtitle": "将每一页 PDF 转换为 WebP 图片。"
+    },
+    "pdfToBmp": {
+        "name": "PDF 转 BMP",
+        "subtitle": "将每一页 PDF 转换为 BMP 图片。"
+    },
+    "pdfToTiff": {
+        "name": "PDF 转 TIFF",
+        "subtitle": "将每一页 PDF 转换为 TIFF 图片。"
+    },
+    "pdfToGreyscale": {
+        "name": "PDF 转 灰度",
+        "subtitle": "将所有颜色转换为黑白。"
+    },
+    "pdfToJson": {
+        "name": "PDF 转 JSON",
+        "subtitle": "将 PDF 文件转换为 JSON 格式。"
+    },
+    "ocrPdf": {
+        "name": "OCR PDF",
+        "subtitle": "使 PDF 可搜索和可复制。"
+    },
+    "alternateMix": {
+        "name": "交替混合页面",
+        "subtitle": "通过交替每个 PDF 的页面来合并 PDF。保留书签。"
+    },
+    "addAttachments": {
+        "name": "添加附件",
+        "subtitle": "将一个或多个文件嵌入到您的 PDF 中。"
+    },
+    "extractAttachments": {
+        "name": "提取附件",
+        "subtitle": "从 PDF 中提取所有嵌入的文件为 ZIP。"
+    },
+    "editAttachments": {
+        "name": "编辑附件",
+        "subtitle": "查看或移除 PDF 中的附件。"
+    },
+    "dividePages": {
+        "name": "分割页面",
+        "subtitle": "水平或垂直分割页面。"
+    },
+    "addBlankPage": {
+        "name": "添加空白页",
+        "subtitle": "在 PDF 的任意位置插入空白页。"
+    },
+    "reversePages": {
+        "name": "反转页面",
+        "subtitle": "反转文档中所有页面的顺序。"
+    },
+    "rotatePdf": {
+        "name": "旋转 PDF",
+        "subtitle": "以 90 度增量旋转页面。"
+    },
+    "nUpPdf": {
+        "name": "N-Up PDF",
+        "subtitle": "将多页排列在单张纸上。"
+    },
+    "combineToSinglePage": {
+        "name": "合并为单页",
+        "subtitle": "将所有页面拼接成一个连续的滚动页面。"
+    },
+    "viewMetadata": {
+        "name": "查看元数据",
+        "subtitle": "检查 PDF 的隐藏属性。"
+    },
+    "editMetadata": {
+        "name": "编辑元数据",
+        "subtitle": "更改作者、标题和其他属性。"
+    },
+    "pdfsToZip": {
+        "name": "PDF 转 ZIP",
+        "subtitle": "将多个 PDF 文件打包成一个 ZIP 归档。"
+    },
+    "comparePdfs": {
+        "name": "比较 PDF",
+        "subtitle": "并排比较两个 PDF。"
+    },
+    "posterizePdf": {
+        "name": "海报化 PDF",
+        "subtitle": "将大页面分割成多个小页面。"
+    },
+    "fixPageSize": {
+        "name": "修复页面尺寸",
+        "subtitle": "将所有页面标准化为统一尺寸。"
+    },
+    "linearizePdf": {
+        "name": "线性化 PDF",
+        "subtitle": "优化 PDF 以便快速网络查看。"
+    },
+    "pageDimensions": {
+        "name": "页面尺寸",
+        "subtitle": "分析页面大小、方向和单位。"
+    },
+    "removeRestrictions": {
+        "name": "移除限制",
+        "subtitle": "移除与数字签名 PDF 文件相关的密码保护和安全限制。"
+    },
+    "repairPdf": {
+        "name": "修复 PDF",
+        "subtitle": "从损坏的 PDF 文件中恢复数据。"
+    },
+    "encryptPdf": {
+        "name": "加密 PDF",
+        "subtitle": "通过添加密码锁定您的 PDF。"
+    },
+    "sanitizePdf": {
+        "name": "清理 PDF",
+        "subtitle": "移除元数据、注释、脚本等。"
+    },
+    "decryptPdf": {
+        "name": "解密 PDF",
+        "subtitle": "通过移除密码保护解锁 PDF。"
+    },
+    "flattenPdf": {
+        "name": "扁平化 PDF",
+        "subtitle": "使表单字段和注释不可编辑。"
+    },
+    "removeMetadata": {
+        "name": "移除元数据",
+        "subtitle": "从 PDF 中剥离隐藏数据。"
+    },
+    "changePermissions": {
+        "name": "更改权限",
+        "subtitle": "设置或更改 PDF 上的用户权限。"
+    }
+}

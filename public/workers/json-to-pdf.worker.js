@@ -1,4 +1,5 @@
-self.importScripts('/coherentpdf.browser.min.js');
+const baseUrl = self.location.href.substring(0, self.location.href.lastIndexOf('/workers/') + 1);
+self.importScripts(baseUrl + 'coherentpdf.browser.min.js');
 
 function convertJSONsToPDFInWorker(fileBuffers, fileNames) {
   try {
@@ -14,8 +15,8 @@ function convertJSONsToPDFInWorker(fileBuffers, fileNames) {
       try {
         pdf = coherentpdf.fromJSONMemory(uint8Array);
       } catch (error) {
-        const errorMsg = error && error.message 
-          ? error.message 
+        const errorMsg = error && error.message
+          ? error.message
           : 'Unknown error';
         throw new Error(
           `Failed to convert "${fileName}" to PDF. ` +
@@ -23,7 +24,7 @@ function convertJSONsToPDFInWorker(fileBuffers, fileNames) {
           `Error: ${errorMsg}`
         );
       }
-      
+
       const pdfData = coherentpdf.toMemory(pdf, false, false);
 
       const pdfBuffer = pdfData.buffer.slice(0);

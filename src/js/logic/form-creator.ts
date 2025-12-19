@@ -2065,7 +2065,7 @@ async function renderCanvas(): Promise<void> {
             const blobUrl = URL.createObjectURL(blob)
 
             const iframe = document.createElement('iframe')
-            iframe.src = `/pdfjs-viewer/viewer.html?file=${encodeURIComponent(blobUrl)}#page=${currentPageIndex + 1}&toolbar=0`
+            iframe.src = `${import.meta.env.BASE_URL}pdfjs-viewer/viewer.html?file=${encodeURIComponent(blobUrl)}#page=${currentPageIndex + 1}&toolbar=0`
             iframe.style.width = '100%'
             iframe.style.height = `${canvasHeight}px`
             iframe.style.border = 'none'

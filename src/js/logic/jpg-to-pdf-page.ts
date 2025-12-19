@@ -43,8 +43,9 @@ function initializePage() {
             }
         });
 
-        dropZone.addEventListener('click', () => {
-            fileInput?.click();
+        // Clear value on click to allow re-selecting the same file
+        fileInput?.addEventListener('click', () => {
+            if (fileInput) fileInput.value = '';
         });
     }
 
@@ -75,7 +76,6 @@ function handleFileUpload(e: Event) {
     if (input.files && input.files.length > 0) {
         handleFiles(input.files);
     }
-    input.value = '';
 }
 
 function handleFiles(newFiles: FileList) {

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HEIC to PDF - BentoPDF</title>
+    <meta name="description" content="Convert HEIC images to PDF. Free, secure, and runs entirely in your browser.">
+    <link rel="icon" type="image/png" href="/images/favicon.svg" />
+    <link rel="alternate" hreflang="en" href="/en/heic-to-pdf.html" />
+    <link rel="alternate" hreflang="de" href="/de/heic-to-pdf.html" />
+    <link rel="alternate" hreflang="vi" href="/vi/heic-to-pdf.html" />
+    <link rel="alternate" hreflang="x-default" href="/en/heic-to-pdf.html" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+</head>
+
+<body class="antialiased bg-gray-900">
+    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
+                    <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+                    <span class="text-white font-bold text-xl ml-2">
+                        <a href="/">BentoPDF</a>
+                    </span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8 text-white">
+                    <a href="/" class="nav-link" data-i18n="nav.home">Home</a>
+                    <a href="/about.html" class="nav-link" data-i18n="nav.about">About</a>
+                    <a href="/contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+                    <a href="/" class="nav-link" data-i18n="nav.allTools">All Tools</a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 text-center">
+                <a href="/" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+                <a href="/about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+                <a href="/contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+                <a href="/" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="uploader" class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900">
+        <div id="tool-uploader"
+            class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
+            <button id="back-to-tools"
+                class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
+                <i data-lucide="arrow-left" class="cursor-pointer"></i>
+                <span class="cursor-pointer" data-i18n="tools.backToTools"> Back to Tools </span>
+            </button>
+
+            <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:heicToPdf.name">HEIC to PDF</h1>
+            <p class="text-gray-400 mb-6" data-i18n="tools:heicToPdf.subtitle">
+                Convert one or more HEIC (High Efficiency) images from your iPhone or camera into a single PDF file.
+            </p>
+
+            <div id="drop-zone"
+                class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
+                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select files</span> <span
+                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
+                    <p class="text-xs text-gray-500">HEIC/HEIF images</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
+                        device.</p>
+                </div>
+                <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                    accept=".heic,.heif" multiple>
+            </div>
+
+            <div id="file-controls" class="hidden mt-4 flex gap-3">
+                <button id="add-more-btn"
+                    class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="plus"></i> <span data-i18n="upload.addMore">Add More Files</span>
+                </button>
+                <button id="clear-files-btn"
+                    class="btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="x"></i> <span data-i18n="upload.clearAll">Clear All</span>
+                </button>
+            </div>
+
+            <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+            <button id="process-btn" class="hidden btn-gradient w-full mt-6">Convert to PDF</button>
+
+        </div>
+    </div>
+
+    <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl">
+            <div class="solid-spinner"></div>
+            <p id="loader-text" class="text-white text-lg font-medium">
+                Processing...
+            </p>
+        </div>
+    </div>
+
+    <div id="alert-modal" class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden">
+        <div class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700">
+            <h3 id="alert-title" class="text-xl font-bold text-white mb-2" data-i18n="alert.title"
+                data-i18n="alert.title">Alert</h3>
+            <p id="alert-message" class="text-gray-300 mb-6"></p>
+            <button id="alert-ok"
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <footer class="mt-16 border-t-2 border-gray-700 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start mb-4">
+                        <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
+                        <span class="text-xl font-bold text-white">BentoPDF</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        &copy; 2025 BentoPDF. All rights reserved.
+                    </p>
+                    <p class="text-gray-500 text-xs mt-2">
+                        Version <span id="app-version"></span>
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-white mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/about.html" class="hover:text-indigo-400">About Us</a></li>
+                        <li><a href="/faq.html" class="hover:text-indigo-400">FAQ</a></li>
+                        <li><a href="/contact.html" class="hover:text-indigo-400">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-white mb-4">Legal</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="/licensing.html" class="hover:text-indigo-400">Licensing</a></li>
+                        <li><a href="/terms.html" class="hover:text-indigo-400">Terms and Conditions</a></li>
+                        <li><a href="/privacy.html" class="hover:text-indigo-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-white mb-4">Follow Us</h3>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://github.com/alam00000/bentopdf" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-indigo-400" title="GitHub">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="https://discord.gg/Bgq3Ay3f2w" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-400 hover:text-indigo-400" title="Discord">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/thebentopdf/" class="text-gray-400 hover:text-indigo-400"
+                            title="Instagram">
+                            <i data-lucide="instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/bentopdf/" class="text-gray-400 hover:text-indigo-400"
+                            title="LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://x.com/BentoPDF" class="text-gray-400 hover:text-indigo-400"
+                            title="X (Twitter)">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module" src="/src/js/logic/heic-to-pdf-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+</body>
+
+</html>

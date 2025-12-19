@@ -9,7 +9,11 @@
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <link rel="apple-touch-icon" href="/images/favicon.png" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link href="../../src/css/styles.css" rel="stylesheet" />
+  <link rel="alternate" hreflang="en" href="/en/bookmark.html" />
+  <link rel="alternate" hreflang="de" href="/de/bookmark.html" />
+  <link rel="alternate" hreflang="vi" href="/vi/bookmark.html" />
+  <link rel="alternate" hreflang="x-default" href="/en/bookmark.html" />
+  <link href="/src/css/styles.css" rel="stylesheet" />
   <link href="../../src/css/bookmark.css" rel="stylesheet" />
 </head>
 
@@ -18,18 +22,18 @@
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-          <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+          <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
           <span class="text-white font-bold text-xl ml-2">
-            <a href="../../index.html">BentoPDF</a>
+            <a href="/">BentoPDF</a>
           </span>
         </div>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 text-white">
-          <a href="../../index.html" class="nav-link">Home</a>
-          <a href="../../about.html" class="nav-link">About</a>
-          <a href="../../contact.html" class="nav-link">Contact</a>
-          <a href="../../index.html" class="nav-link">All Tools</a>
+          <a href="/" class="nav-link" data-i18n="nav.home">Home</a>
+          <a href="/about.html" class="nav-link" data-i18n="nav.about">About</a>
+          <a href="/contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+          <a href="/" class="nav-link" data-i18n="nav.allTools">All Tools</a>
         </div>
 
         <!-- Mobile Hamburger Button -->
@@ -56,10 +60,10 @@
     <!-- Mobile Menu Dropdown -->
     <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
       <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-        <a href="../../index.html" class="mobile-nav-link">Home</a>
-        <a href="../../about.html" class="mobile-nav-link">About</a>
-        <a href="../../contact.html" class="mobile-nav-link">Contact</a>
-        <a href="../../index.html" class="mobile-nav-link">All Tools</a>
+        <a href="/" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+        <a href="/about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+        <a href="/contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+        <a href="/" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
       </div>
     </div>
   </nav>
@@ -69,10 +73,10 @@
       <button id="back-to-tools"
         class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
         <i data-lucide="arrow-left" class="cursor-pointer"></i>
-        <span class="cursor-pointer"> Back to Tools </span>
+        <span class="cursor-pointer" data-i18n="tools.backToTools"> Back to Tools </span>
       </button>
-      <h1 class="text-2xl font-bold text-white mb-2">Edit Bookmarks</h1>
-      <p class="text-gray-400 mb-6">
+      <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:editBookmarks.name">Edit Bookmarks</h1>
+      <p class="text-gray-400 mb-6" data-i18n="tools:editBookmarks.subtitle">
         Add, edit, import, delete and extract PDF bookmarks.
       </p>
 
@@ -82,8 +86,8 @@
         <div class="flex flex-col items-center justify-center pt-5 pb-6">
           <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
           <p class="mb-2 text-sm text-gray-300">
-            <span class="font-semibold">Click to select a file</span> or drag
-            and drop
+            <span class="font-semibold" data-i18n="upload.clickToSelect">Click to select a file</span> <span
+              data-i18n="upload.orDragAndDrop">or drag and drop</span>
           </p>
           <p class="text-xs text-gray-500">A single PDF file</p>
           <p class="text-xs text-gray-500">
@@ -397,8 +401,7 @@
                 class="w-full px-4 py-2 btn-gradient hover:shadow-xl text-white rounded font-medium !flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200">
                 Save PDF with Bookmarks
               </button>
-              <button id="extract-existing-btn"
-                class="w-full px-4 py-2 bg-gray-50 text-gray-800 
+              <button id="extract-existing-btn" class="w-full px-4 py-2 bg-gray-50 text-gray-800 
                 border border-gray-200 rounded-xl font-medium 
                 flex items-center justify-center gap-2
                 shadow-sm hover:shadow-md transition duration-200">
@@ -421,7 +424,7 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
         <div class="mb-8 md:mb-0">
           <div class="flex items-center justify-center md:justify-start mb-4">
-            <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
+            <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
             <span class="text-xl font-bold text-white">BentoPDF</span>
           </div>
           <p class="text-gray-400 text-sm">
@@ -436,13 +439,13 @@
           <h3 class="font-bold text-white mb-4">Company</h3>
           <ul class="space-y-2 text-gray-400">
             <li>
-              <a href="../../about.html" class="hover:text-indigo-400">About Us</a>
+              <a href="/about.html" class="hover:text-indigo-400">About Us</a>
             </li>
             <li>
-              <a href="../../faq.html" class="hover:text-indigo-400">FAQ</a>
+              <a href="/faq.html" class="hover:text-indigo-400">FAQ</a>
             </li>
             <li>
-              <a href="../../contact.html" class="hover:text-indigo-400">Contact Us</a>
+              <a href="/contact.html" class="hover:text-indigo-400">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -451,13 +454,13 @@
           <h3 class="font-bold text-white mb-4">Legal</h3>
           <ul class="space-y-2 text-gray-400">
             <li>
-              <a href="../../licensing.html" class="hover:text-indigo-400">Licensing</a>
+              <a href="/licensing.html" class="hover:text-indigo-400">Licensing</a>
             </li>
             <li>
-              <a href="../../terms.html" class="hover:text-indigo-400">Terms and Conditions</a>
+              <a href="/terms.html" class="hover:text-indigo-400">Terms and Conditions</a>
             </li>
             <li>
-              <a href="../../privacy.html" class="hover:text-indigo-400">Privacy Policy</a>
+              <a href="/privacy.html" class="hover:text-indigo-400">Privacy Policy</a>
             </li>
           </ul>
         </div>
@@ -473,7 +476,7 @@
                   clip-rule="evenodd" />
               </svg>
             </a>
-            <a href="https://discord.gg/AP2Y97juZT" target="_blank" rel="noopener noreferrer"
+            <a href="https://discord.gg/Bgq3Ay3f2w" target="_blank" rel="noopener noreferrer"
               class="text-gray-400 hover:text-indigo-400" title="Discord">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path
@@ -499,12 +502,13 @@
       </div>
     </div>
   </footer>
-  <script type="module" src="../js/utils/lucide-init.ts"></script>
-  <script type="module" src="../js/utils/full-width.ts"></script>
-  <script type="module" src="../js/utils/simple-mode-footer.ts"></script>
-  <script type="module" src="../version.ts"></script>
-  <script type="module" src="../js/logic/bookmark-pdf.ts"></script>
-  <script type="module" src="../js/mobileMenu.ts"></script>
+  <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+  <script type="module" src="/src/js/utils/full-width.ts"></script>
+  <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+  <script type="module" src="/src/version.ts"></script>
+  <script type="module" src="/src/js/logic/bookmark-pdf.ts"></script>
+  <script type="module" src="/src/js/mobileMenu.ts"></script>
+  <script type="module" src="/src/js/main.ts"></script>
 </body>
 
 </html>

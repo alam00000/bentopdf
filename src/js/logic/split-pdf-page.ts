@@ -48,24 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const infoContainer = document.createElement('div');
                 infoContainer.className = 'flex flex-col overflow-hidden';
 
-                const nameSizeContainer = document.createElement('div');
-                nameSizeContainer.className = 'flex items-center gap-2';
-
-                const nameSpan = document.createElement('span');
-                nameSpan.className = 'truncate font-medium text-gray-200';
+                const nameSpan = document.createElement('div');
+                nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
                 nameSpan.textContent = file.name;
 
-                const sizeSpan = document.createElement('span');
-                sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
-                sizeSpan.textContent = `(${formatBytes(file.size)})`;
+                const metaSpan = document.createElement('div');
+                metaSpan.className = 'text-xs text-gray-400';
+                metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`; // Placeholder
 
-                nameSizeContainer.append(nameSpan, sizeSpan);
-
-                const pagesSpan = document.createElement('span');
-                pagesSpan.className = 'text-xs text-gray-500 mt-0.5';
-                pagesSpan.textContent = 'Loading pages...'; // Placeholder
-
-                infoContainer.append(nameSizeContainer, pagesSpan);
+                infoContainer.append(nameSpan, metaSpan);
 
                 // Add remove button
                 const removeBtn = document.createElement('button');
@@ -90,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         hideLoader();
                     }
                     // Update page count
-                    pagesSpan.textContent = `${state.pdfDoc.getPageCount()} Pages`;
+                    metaSpan.textContent = `${formatBytes(file.size)} • ${state.pdfDoc.getPageCount()} pages`;
                 } catch (error) {
                     console.error('Error loading PDF:', error);
                     showAlert('Error', 'Failed to load PDF file.');
@@ -449,7 +440,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fileInput && dropZone) {
         fileInput.addEventListener('change', (e) => {
             handleFileSelect((e.target as HTMLInputElement).files);
-            fileInput.value = '';
         });
 
         dropZone.addEventListener('dragover', (e) => {
@@ -477,8 +467,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        dropZone.addEventListener('click', () => {
-            fileInput.click();
+        // Clear value on click to allow re-selecting the same file
+        fileInput.addEventListener('click', () => {
+            fileInput.value = '';
         });
     }
 

@@ -219,10 +219,14 @@ async function performFlatteningCrop(cropData: any) {
         finalHeight
       );
 
-      const pngBytes = await new Promise((res) =>
-        finalCanvas.toBlob((blob) => blob.arrayBuffer().then(res), 'image/png')
+      // Quality value from the compress-pdf.js settings.
+      // 0.9 for "High Quality", 0.6 for "Balanced". Let's use High Quality.
+      const jpegQuality = 0.9;
+
+      const jpegBytes = await new Promise((res) =>
+        finalCanvas.toBlob((blob) => blob.arrayBuffer().then(res), 'image/jpeg', jpegQuality)
       );
-      const embeddedImage = await newPdfDoc.embedPng(pngBytes as ArrayBuffer);
+      const embeddedImage = await newPdfDoc.embedJpg(jpegBytes as ArrayBuffer);
       const newPage = newPdfDoc.addPage([finalWidth, finalHeight]);
       newPage.drawImage(embeddedImage, {
         x: 0,

@@ -7,8 +7,13 @@
     <title>JPG to PDF - BentoPDF</title>
     <meta name="description"
         content="Convert one or more JPG images into a single PDF file. Free, secure, and runs entirely in your browser.">
-    <link rel="icon" type="image/png" href="../../images/favicon.svg" />
-    <link href="../../src/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/images/favicon.svg" />
+    <link rel="alternate" hreflang="en" href="/en/jpg-to-pdf.html" />
+    <link rel="alternate" hreflang="de" href="/de/jpg-to-pdf.html" />
+    <link rel="alternate" hreflang="vi" href="/vi/jpg-to-pdf.html" />
+    <link rel="alternate" hreflang="x-default" href="/en/jpg-to-pdf.html" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
 </head>
 
 <body class="antialiased bg-gray-900">
@@ -16,17 +21,17 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                    <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+                    <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
                     <span class="text-white font-bold text-xl ml-2">
-                        <a href="../../index.html">BentoPDF</a>
+                        <a href="/">BentoPDF</a>
                     </span>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-8 text-white">
-                    <a href="../../index.html" class="nav-link">Home</a>
-                    <a href="../../about.html" class="nav-link">About</a>
-                    <a href="../../contact.html" class="nav-link">Contact</a>
-                    <a href="../../index.html" class="nav-link">All Tools</a>
+                    <a href="/" class="nav-link" data-i18n="nav.home">Home</a>
+                    <a href="/about.html" class="nav-link" data-i18n="nav.about">About</a>
+                    <a href="/contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+                    <a href="/" class="nav-link" data-i18n="nav.allTools">All Tools</a>
                 </div>
 
                 <div class="md:hidden flex items-center">
@@ -51,38 +56,39 @@
 
         <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-                <a href="../../index.html" class="mobile-nav-link">Home</a>
-                <a href="../../about.html" class="mobile-nav-link">About</a>
-                <a href="../../contact.html" class="mobile-nav-link">Contact</a>
-                <a href="../../index.html" class="mobile-nav-link">All Tools</a>
+                <a href="/" class="mobile-nav-link" data-i18n="nav.home">Home</a>
+                <a href="/about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+                <a href="/contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+                <a href="/" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
             </div>
         </div>
     </nav>
 
     <div id="uploader" class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900">
         <div id="tool-uploader"
-            class="bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
+            class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
             <button id="back-to-tools"
                 class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
                 <i data-lucide="arrow-left" class="cursor-pointer"></i>
-                <span class="cursor-pointer"> Back to Tools </span>
+                <span class="cursor-pointer" data-i18n="tools.backToTools"> Back to Tools </span>
             </button>
 
-            <h1 class="text-2xl font-bold text-white mb-2">JPG to PDF</h1>
-            <p class="text-gray-400 mb-6">
+            <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:jpgToPdf.name">JPG to PDF</h1>
+            <p class="text-gray-400 mb-6" data-i18n="tools:jpgToPdf.subtitle">
                 Convert one or more JPG images into a single PDF file.
             </p>
 
             <!-- Drop Zone -->
             <div id="drop-zone"
-                class="relative flex flex-col items-center justify-center w-full h-48 md:h-96 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
+                class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select a file</span> or
-                        drag and
-                        drop</p>
+                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
+                            data-i18n="upload.clickToSelect">Click to select a file</span> <span
+                            data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
                     <p class="text-xs text-gray-500">JPG Images</p>
-                    <p class="text-xs text-gray-500">Your files never leave your device.</p>
+                    <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
+                        device.</p>
                 </div>
                 <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
                     multiple accept="image/jpeg, image/jpg">
@@ -92,11 +98,11 @@
             <div id="file-controls" class="hidden mt-4 flex gap-3">
                 <button id="add-more-btn"
                     class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
-                    <i data-lucide="plus"></i> Add More Files
+                    <i data-lucide="plus"></i> <span data-i18n="upload.addMore">Add More Files</span>
                 </button>
                 <button id="clear-files-btn"
                     class="btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
-                    <i data-lucide="x"></i> Clear All
+                    <i data-lucide="x"></i> <span data-i18n="upload.clearAll">Clear All</span>
                 </button>
             </div>
 
@@ -136,7 +142,8 @@
     <!-- Alert Modal -->
     <div id="alert-modal" class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden">
         <div class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700">
-            <h3 id="alert-title" class="text-xl font-bold text-white mb-2">Alert</h3>
+            <h3 id="alert-title" class="text-xl font-bold text-white mb-2" data-i18n="alert.title"
+                data-i18n="alert.title">Alert</h3>
             <p id="alert-message" class="text-gray-300 mb-6"></p>
             <button id="alert-ok"
                 class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
@@ -150,7 +157,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
                 <div class="mb-8 md:mb-0">
                     <div class="flex items-center justify-center md:justify-start mb-4">
-                        <img src="../../images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
+                        <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
                         <span class="text-xl font-bold text-white">BentoPDF</span>
                     </div>
                     <p class="text-gray-400 text-sm">
@@ -165,13 +172,13 @@
                     <h3 class="font-bold text-white mb-4">Company</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li>
-                            <a href="../../about.html" class="hover:text-indigo-400">About Us</a>
+                            <a href="/about.html" class="hover:text-indigo-400">About Us</a>
                         </li>
                         <li>
-                            <a href="../../faq.html" class="hover:text-indigo-400">FAQ</a>
+                            <a href="/faq.html" class="hover:text-indigo-400">FAQ</a>
                         </li>
                         <li>
-                            <a href="../../contact.html" class="hover:text-indigo-400">Contact Us</a>
+                            <a href="/contact.html" class="hover:text-indigo-400">Contact Us</a>
                         </li>
                     </ul>
                 </div>
@@ -180,13 +187,13 @@
                     <h3 class="font-bold text-white mb-4">Legal</h3>
                     <ul class="space-y-2 text-gray-400">
                         <li>
-                            <a href="../../licensing.html" class="hover:text-indigo-400">Licensing</a>
+                            <a href="/licensing.html" class="hover:text-indigo-400">Licensing</a>
                         </li>
                         <li>
-                            <a href="../../terms.html" class="hover:text-indigo-400">Terms and Conditions</a>
+                            <a href="/terms.html" class="hover:text-indigo-400">Terms and Conditions</a>
                         </li>
                         <li>
-                            <a href="../../privacy.html" class="hover:text-indigo-400">Privacy Policy</a>
+                            <a href="/privacy.html" class="hover:text-indigo-400">Privacy Policy</a>
                         </li>
                     </ul>
                 </div>
@@ -202,7 +209,7 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </a>
-                        <a href="https://discord.gg/AP2Y97juZT" target="_blank" rel="noopener noreferrer"
+                        <a href="https://discord.gg/Bgq3Ay3f2w" target="_blank" rel="noopener noreferrer"
                             class="text-gray-400 hover:text-indigo-400" title="Discord">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path
@@ -229,12 +236,13 @@
             </div>
         </div>
     </footer>
-    <script type="module" src="../js/utils/lucide-init.ts"></script>
-    <script type="module" src="../js/utils/full-width.ts"></script>
-    <script type="module" src="../js/utils/simple-mode-footer.ts"></script>
-    <script type="module" src="../version.ts"></script>
-    <script type="module" src="../js/logic/jpg-to-pdf-page.ts"></script>
-    <script type="module" src="../js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module" src="/src/js/logic/jpg-to-pdf-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
 </body>
 
 </html>

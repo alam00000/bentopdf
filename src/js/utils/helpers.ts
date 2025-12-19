@@ -69,7 +69,7 @@ export const formatBytes = (bytes: any, decimals = 1) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-export const downloadFile = (blob: any, filename: any) => {
+export const downloadFile = (blob: Blob, filename: string): void => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -89,12 +89,12 @@ export const readFileAsArrayBuffer = (file: any) => {
   });
 };
 
-export function parsePageRanges(rangeString: any, totalPages: any) {
+export function parsePageRanges(rangeString: string, totalPages: number): number[] {
   if (!rangeString || rangeString.trim() === '') {
     return Array.from({ length: totalPages }, (_, i) => i);
   }
 
-  const indices = new Set();
+  const indices = new Set<number>();
   const parts = rangeString.split(',');
 
   for (const part of parts) {
@@ -128,9 +128,10 @@ export function parsePageRanges(rangeString: any, totalPages: any) {
     }
   }
 
-  // @ts-expect-error TS(2362) FIXME: The left-hand side of an arithmetic operation must... Remove this comment to see the full error message
+
   return Array.from(indices).sort((a, b) => a - b);
 }
+
 
 /**
  * Formats an ISO 8601 date string (e.g., "2008-02-21T17:15:56-08:00")
@@ -167,7 +168,7 @@ export async function initializeQpdf() {
   showLoader('Initializing PDF engine...');
   try {
     qpdfInstance = await createModule({
-      locateFile: () => '/qpdf.wasm',
+      locateFile: () => import.meta.env.BASE_URL + 'qpdf.wasm',
     });
   } catch (error) {
     console.error('Failed to initialize qpdf-wasm:', error);
@@ -279,6 +280,25 @@ export function getPDFDocument(src: any) {
   // This is required for PDF.js v5+ to load OpenJPEG for certain images
   return pdfjsLib.getDocument({
     ...params,
-    wasmUrl: '/pdfjs-viewer/wasm/',
+    wasmUrl: import.meta.env.BASE_URL + 'pdfjs-viewer/wasm/',
   });
+}
+
+/**
+ * Returns a sanitized PDF filename.
+ *
+ * The provided filename is processed as follows:
+ * - Removes a trailing `.pdf` file extension (case-insensitive)
+ * - Trims leading and trailing whitespace
+ * - Truncates the name to a maximum of 80 characters
+ *
+ * @param filename The original filename (including extension)
+ * @returns The sanitized filename without the `.pdf` extension, limited to 80 characters
+ */
+export function getCleanPdfFilename(filename: string): string {
+  let clean = filename.replace(/\.pdf$/i, '').trim();
+  if (clean.length > 80) {
+    clean = clean.slice(0, 80);
+  }
+  return clean;
 }

@@ -23,23 +23,13 @@ import * as pdfjsLib from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
+// Re-export rotation state utilities
+export { getRotationState, updateRotationState, resetRotationState, initializeRotationState } from '../utils/rotation-state.js';
+
 const rotationState: number[] = [];
 let imageSortableInstance: Sortable | null = null;
 const activeImageUrls = new Map<File, string>();
 
-export function getRotationState(): readonly number[] {
-  return rotationState;
-}
-
-export function updateRotationState(pageIndex: number, rotation: number) {
-  if (pageIndex >= 0 && pageIndex < rotationState.length) {
-    rotationState[pageIndex] = rotation;
-  }
-}
-
-export function resetRotationState() {
-  rotationState.length = 0;
-}
 
 async function handleSinglePdfUpload(toolId, file) {
   showLoader('Loading PDF...');

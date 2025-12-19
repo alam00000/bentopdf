@@ -1,0 +1,318 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "contact": "Contact",
+        "licensing": "Licensing",
+        "allTools": "All Tools",
+        "openMainMenu": "Open main menu",
+        "language": "Language"
+    },
+    "hero": {
+        "title": "The",
+        "pdfToolkit": "PDF Toolkit",
+        "builtForPrivacy": "built for privacy",
+        "noSignups": "No Signups",
+        "unlimitedUse": "Unlimited Use",
+        "worksOffline": "Works Offline",
+        "startUsing": "Start Using Now"
+    },
+    "usedBy": {
+        "title": "Used by companies and people working at"
+    },
+    "features": {
+        "title": "Why choose",
+        "bentoPdf": "BentoPDF?",
+        "noSignup": {
+            "title": "No Signup",
+            "description": "Start instantly, no accounts or emails."
+        },
+        "noUploads": {
+            "title": "No Uploads",
+            "description": "100% client-side, your files never leave your device."
+        },
+        "foreverFree": {
+            "title": "Forever Free",
+            "description": "All tools, no trials, no paywalls."
+        },
+        "noLimits": {
+            "title": "No Limits",
+            "description": "Use as much as you want, no hidden caps."
+        },
+        "batchProcessing": {
+            "title": "Batch Processing",
+            "description": "Handle unlimited PDFs in one go."
+        },
+        "lightningFast": {
+            "title": "Lightning Fast",
+            "description": "Process PDFs instantly, without waiting or delays."
+        }
+    },
+    "tools": {
+        "title": "Get Started with",
+        "toolsLabel": "Tools",
+        "subtitle": "Click a tool to open the file uploader",
+        "searchPlaceholder": "Search for a tool (e.g., 'split', 'organize'...)",
+        "backToTools": "Back to Tools"
+    },
+    "upload": {
+        "clickToSelect": "Click to select a file",
+        "orDragAndDrop": "or drag and drop",
+        "pdfOrImages": "PDFs or Images",
+        "filesNeverLeave": "Your files never leave your device.",
+        "addMore": "Add More Files",
+        "clearAll": "Clear All"
+    },
+    "loader": {
+        "processing": "Processing..."
+    },
+    "alert": {
+        "title": "Alert",
+        "ok": "OK"
+    },
+    "preview": {
+        "title": "Document Preview",
+        "downloadAsPdf": "Download as PDF",
+        "close": "Close"
+    },
+    "settings": {
+        "title": "Settings",
+        "shortcuts": "Shortcuts",
+        "preferences": "Preferences",
+        "displayPreferences": "Display Preferences",
+        "searchShortcuts": "Search shortcuts...",
+        "shortcutsInfo": "Press and hold keys to set a shortcut. Changes are auto-saved.",
+        "shortcutsWarning": "⚠️ Avoid common browser shortcuts (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N etc.) as they may not work reliably.",
+        "import": "Import",
+        "export": "Export",
+        "resetToDefaults": "Reset to Defaults",
+        "fullWidthMode": "Full Width Mode",
+        "fullWidthDescription": "Use the full screen width for all tools instead of a centered container",
+        "settingsAutoSaved": "Settings are automatically saved",
+        "clickToSet": "Click to set",
+        "pressKeys": "Press keys...",
+        "warnings": {
+            "alreadyInUse": "Shortcut Already in Use",
+            "assignedTo": "is already assigned to:",
+            "chooseDifferent": "Please choose a different shortcut.",
+            "reserved": "Reserved Shortcut Warning",
+            "commonlyUsed": "is commonly used for:",
+            "unreliable": "This shortcut may not work reliably or might conflict with browser/system behavior.",
+            "useAnyway": "Do you want to use it anyway?",
+            "resetTitle": "Reset Shortcuts",
+            "resetMessage": "Are you sure you want to reset all shortcuts to default?<br><br>This action cannot be undone.",
+            "importSuccessTitle": "Import Successful",
+            "importSuccessMessage": "Shortcuts imported successfully!",
+            "importFailTitle": "Import Failed",
+            "importFailMessage": "Failed to import shortcuts. Invalid file format."
+        }
+    },
+    "warning": {
+        "title": "Warning",
+        "cancel": "Cancel",
+        "proceed": "Proceed"
+    },
+    "compliance": {
+        "title": "Your data never leaves your device",
+        "weKeep": "We keep",
+        "yourInfoSafe": "your information safe",
+        "byFollowingStandards": "by following global security standards.",
+        "processingLocal": "All the processing happens locally on your device.",
+        "gdpr": {
+            "title": "GDPR compliance",
+            "description": "Protects the personal data and privacy of individuals within the European Union."
+        },
+        "ccpa": {
+            "title": "CCPA compliance",
+            "description": "Gives California residents rights over how their personal information is collected, used, and shared."
+        },
+        "hipaa": {
+            "title": "HIPAA compliance",
+            "description": "Sets safeguards for handling sensitive health information in the United States healthcare system."
+        }
+    },
+    "faq": {
+        "title": "Frequently Asked",
+        "questions": "Questions",
+        "isFree": {
+            "question": "Is BentoPDF really free?",
+            "answer": "Yes, absolutely. All tools on BentoPDF are 100% free to use, with no file limits, no sign-ups, and no watermarks. We believe everyone deserves access to simple, powerful PDF tools without a paywall."
+        },
+        "areFilesSecure": {
+            "question": "Are my files secure? Where are they processed?",
+            "answer": "Your files are as secure as possible because they never leave your computer. All processing happens directly in your web browser (client-side). We never upload your files to a server, so you maintain complete privacy and control over your documents."
+        },
+        "platforms": {
+            "question": "Does it work on Mac, Windows, and Mobile?",
+            "answer": "Yes! Since BentoPDF runs entirely in your browser, it works on any operating system with a modern web browser, including Windows, macOS, Linux, iOS, and Android."
+        },
+        "gdprCompliant": {
+            "question": "Is BentoPDF GDPR compliant?",
+            "answer": "Yes. BentoPDF is fully GDPR compliant. Since all file processing happens locally in your browser and we never collect or transmit your files to any server, we have no access to your data. This ensures you are always in control of your documents."
+        },
+        "dataStorage": {
+            "question": "Do you store or track any of my files?",
+            "answer": "No. We never store, track, or log your files. Everything you do on BentoPDF happens in your browser memory and disappears once you close the page. There are no uploads, no history logs, and no servers involved."
+        },
+        "different": {
+            "question": "What makes BentoPDF different from other PDF tools?",
+            "answer": "Most PDF tools upload your files to a server for processing. BentoPDF never does that. We use secure, modern web technology to process your files directly in your browser. This means faster performance, stronger privacy, and complete peace of mind."
+        },
+        "browserBased": {
+            "question": "How does browser-based processing keep me safe?",
+            "answer": "By running entirely inside your browser, BentoPDF ensures that your files never leave your device. This eliminates the risks of server hacks, data breaches, or unauthorized access. Your files remain yours—always."
+        },
+        "analytics": {
+            "question": "Do you use cookies or analytics to track me?",
+            "answer": "We care about your privacy. BentoPDF does not track personal information. We use Simple Analytics solely to see anonymous visit counts. This means we can know how many users visit our site, but we never know who you are. Simple Analytics is fully GDPR-compliant and respects your privacy."
+        }
+    },
+    "testimonials": {
+        "title": "What Our",
+        "users": "Users",
+        "say": "Say"
+    },
+    "support": {
+        "title": "Like My Work?",
+        "description": "BentoPDF is a passion project, built to provide a free, private, and powerful PDF toolkit for everyone. If you find it useful, consider supporting its development. Every coffee helps!",
+        "buyMeCoffee": "Buy Me a Coffee"
+    },
+    "footer": {
+        "copyright": "© 2025 BentoPDF. All rights reserved.",
+        "version": "Version",
+        "company": "Company",
+        "aboutUs": "About Us",
+        "faqLink": "FAQ",
+        "contactUs": "Contact Us",
+        "legal": "Legal",
+        "termsAndConditions": "Terms and Conditions",
+        "privacyPolicy": "Privacy Policy",
+        "followUs": "Follow Us"
+    },
+    "merge": {
+        "title": "Merge PDFs",
+        "description": "Combine whole files, or select specific pages to merge into a new document.",
+        "fileMode": "File Mode",
+        "pageMode": "Page Mode",
+        "howItWorks": "How it works:",
+        "fileModeInstructions": [
+            "Click and drag the icon to change the order of the files.",
+            "In the \"Pages\" box for each file, you can specify ranges (e.g., \"1-3, 5\") to merge only those pages.",
+            "Leave the \"Pages\" box blank to include all pages from that file."
+        ],
+        "pageModeInstructions": [
+            "All pages from your uploaded PDFs are shown below.",
+            "Simply drag and drop the individual page thumbnails to create the exact order you want for your new file."
+        ],
+        "mergePdfs": "Merge PDFs"
+    },
+    "common": {
+        "page": "Page",
+        "pages": "Pages",
+        "of": "of",
+        "download": "Download",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "remove": "Remove",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "file": "File",
+        "files": "Files"
+    },
+    "about": {
+        "hero": {
+            "title": "We believe PDF tools should be",
+            "subtitle": "fast, private, and free.",
+            "noCompromises": "No compromises."
+        },
+        "mission": {
+            "title": "Our Mission",
+            "description": "To provide the most comprehensive PDF toolbox that respects your privacy and never asks for payment. We believe essential document tools should be accessible to everyone, everywhere, without barriers."
+        },
+        "philosophy": {
+            "label": "Our Core Philosophy",
+            "title": "Privacy First. Always.",
+            "description": "In an era where data is a commodity, we take a different approach. All processing for Bentopdf tools happens locally in your browser. This means your files never touch our servers, we never see your documents, and we don't track what you do. Your documents remain completely and unequivocally private. It's not just a feature; it's our foundation."
+        },
+        "whyBentopdf": {
+            "title": "Why",
+            "speed": {
+                "title": "Built for Speed",
+                "description": "No waiting for uploads or downloads to a server. By processing files directly in your browser using modern web technologies like WebAssembly, we offer unparalleled speed for all our tools."
+            },
+            "free": {
+                "title": "Completely Free",
+                "description": "No trials, no subscriptions, no hidden fees, and no \"premium\" features held hostage. We believe powerful PDF tools should be a public utility, not a profit center."
+            },
+            "noAccount": {
+                "title": "No Account Required",
+                "description": "Start using any tool immediately. We don't need your email, a password, or any personal information. Your workflow should be frictionless and anonymous."
+            },
+            "openSource": {
+                "title": "Open Source Spirit",
+                "description": "Built with transparency in mind. We leverage incredible open-source libraries like PDF-lib and PDF.js, and believe in the community-driven effort to make powerful tools accessible to everyone."
+            }
+        },
+        "cta": {
+            "title": "Ready to get started?",
+            "description": "Join thousands of users who trust Bentopdf for their daily document needs. Experience the difference that privacy and performance can make.",
+            "button": "Explore All Tools"
+        }
+    },
+    "contact": {
+        "title": "Get in Touch",
+        "subtitle": "We'd love to hear from you. Whether you have a question, feedback, or a feature request, please don't hesitate to reach out.",
+        "email": "You can reach us directly by email at:"
+    },
+    "licensing": {
+        "title": "Licensing for",
+        "subtitle": "Choose the license that fits your needs."
+    },
+    "multiTool": {
+        "uploadPdfs": "Upload PDFs",
+        "upload": "Upload",
+        "addBlankPage": "Add Blank Page",
+        "edit": "Edit:",
+        "undo": "Undo",
+        "redo": "Redo",
+        "reset": "Reset",
+        "selection": "Selection:",
+        "selectAll": "Select All",
+        "deselectAll": "Deselect All",
+        "rotate": "Rotate:",
+        "rotateLeft": "Left",
+        "rotateRight": "Right",
+        "transform": "Transform:",
+        "duplicate": "Duplicate",
+        "split": "Split",
+        "clear": "Clear:",
+        "delete": "Delete",
+        "download": "Download:",
+        "downloadSelected": "Download Selected",
+        "exportPdf": "Export PDF",
+        "uploadPdfFiles": "Select PDF Files",
+        "dragAndDrop": "Drag and drop PDF files here, or click to select",
+        "selectFiles": "Select Files",
+        "renderingPages": "Rendering pages...",
+        "actions": {
+            "duplicatePage": "Duplicate this page",
+            "deletePage": "Delete this page",
+            "insertPdf": "Insert PDF after this page",
+            "toggleSplit": "Toggle split after this page"
+        },
+        "pleaseWait": "Please Wait",
+        "pagesRendering": "Pages are still being rendered. Please wait...",
+        "noPagesSelected": "No Pages Selected",
+        "selectOnePage": "Please select at least one page to download.",
+        "noPages": "No Pages",
+        "noPagesToExport": "There are no pages to export.",
+        "renderingTitle": "Rendering page previews",
+        "errorRendering": "Failed to render page thumbnails",
+        "error": "Error",
+        "failedToLoad": "Failed to load"
+    }
+}
