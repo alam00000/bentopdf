@@ -49,8 +49,8 @@
         }
     },
     "tools": {
-        "title": "Başlayın",
-        "toolsLabel": "Araçlar",
+        "title": "Araçlarla",
+        "toolsLabel": "Başlayın",
         "subtitle": "Dosya yükleyiciyi açmak için bir araç seçin",
         "searchPlaceholder": "Bir araç arayın (örn. 'böl', 'düzenle'...)",
         "backToTools": "Araçlara Dön"
