@@ -16,8 +16,72 @@ if (document.readyState === 'loading') {
     initializePage();
 }
 
+function resetWatermarkOptions() {
+    if ((document.querySelector('input[name="watermark-type"][value="text"]') as HTMLInputElement).checked) {
+        const textInput = document.getElementById('watermark-text') as HTMLInputElement;
+        if (textInput) textInput.value = 'CONFIDENTIAL';
+        const fontSize = document.getElementById('font-size') as HTMLInputElement;
+        if (fontSize) fontSize.value = '72';
+        const textColor = document.getElementById('text-color') as HTMLInputElement;
+        if (textColor) textColor.value = '#888888';
+        const opacityText = document.getElementById('opacity-text') as HTMLInputElement;
+        if (opacityText) opacityText.value = '0.3';
+        const angleText = document.getElementById('angle-text') as HTMLInputElement;
+        if (angleText) angleText.value = '-45';
+        const opacityValueText = document.getElementById('opacity-value-text');
+        if (opacityValueText) opacityValueText.textContent = '0.3';
+        const angleValueText = document.getElementById('angle-value-text');
+        if (angleValueText) angleValueText.textContent = '-45';
+    } else if((document.querySelector('input[name="watermark-type"][value="image"]') as HTMLInputElement).checked) {
+        const imageInput = document.getElementById('image-watermark-input') as HTMLInputElement;
+        if (imageInput) imageInput.value = '';
+        const opacityImage = document.getElementById('opacity-image') as HTMLInputElement;
+        if (opacityImage) opacityImage.value = '0.3';
+        const angleImage = document.getElementById('angle-image') as HTMLInputElement;
+        if (angleImage) angleImage.value = '0';
+        const opacityValueImage = document.getElementById('opacity-value-image');
+        if (opacityValueImage) opacityValueImage.textContent = '0.3';
+        const angleValueImage = document.getElementById('angle-value-image');
+        if (angleValueImage) angleValueImage.textContent = '0';
+    }
+}
+
 function initializePage() {
+
+    const resetBtn = document.getElementById('reset-watermark-options');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetWatermarkOptions);
+    }
+
     createIcons({ icons });
+
+    try {
+
+        ['text', 'image'].forEach(type => {
+            const configStr = localStorage.getItem(`bentopdf.watermarkConfig.${type}`);
+            if (configStr) {
+                const config = JSON.parse(configStr);
+                if (type === 'text') {
+                    (document.getElementById('watermark-text') as HTMLInputElement).value = config.text || '';
+                    (document.getElementById('font-size') as HTMLInputElement).value = config.fontSize?.toString() || '72';
+                    document.getElementById('angle-value-text')!.textContent = config.angle?.toString() || '0';
+                    (document.getElementById('angle-text') as HTMLInputElement).value = config.angle?.toString() || '0';
+                    document.getElementById('opacity-value-text')!.textContent = config.opacity?.toString() || '0.3';
+                    (document.getElementById('opacity-text') as HTMLInputElement).value = config.opacity?.toString() || '0.3';
+                    (document.getElementById('text-color') as HTMLInputElement).value = config.color?.toString() || '#000000';
+                } else if (type === 'image') {
+                    document.getElementById('angle-value-image')!.textContent = config.angle?.toString() || '0';
+                    (document.getElementById('angle-image') as HTMLInputElement).value = config.angle?.toString() || '0';
+                    document.getElementById('opacity-value-image')!.textContent = config.opacity?.toString() || '0.3';
+                    (document.getElementById('opacity-image') as HTMLInputElement).value = config.opacity?.toString() || '0.3';
+                }
+            }
+        });
+        const watermarkType = localStorage.getItem(`bentopdf.watermarkConfig.watermarkType`) || 'text';
+        (document.querySelector(`input[name="watermark-type"][value="${watermarkType}"]`) as HTMLInputElement).checked = true;
+    } catch (err) {
+        showAlert('Error', 'Unable to load watermark configuration.');
+    }
 
     const fileInput = document.getElementById('file-input') as HTMLInputElement;
     const dropZone = document.getElementById('drop-zone');
@@ -153,6 +217,7 @@ async function addWatermark() {
         const pages = pageState.pdfDoc.getPages();
         let watermarkAsset: any = null;
 
+
         if (watermarkType === 'text') {
             watermarkAsset = await pageState.pdfDoc.embedFont(StandardFonts.Helvetica);
         } else {
@@ -206,6 +271,29 @@ async function addWatermark() {
                     rotate: degrees(angle),
                 });
             }
+        }
+
+        try {
+            let config: any = {};
+            if (watermarkType === 'text') {
+                config.text = (document.getElementById('watermark-text') as HTMLInputElement).value;
+                config.fontSize = parseInt((document.getElementById('font-size') as HTMLInputElement).value) || 72;
+                config.angle = parseInt((document.getElementById('angle-text') as HTMLInputElement).value) || 0;
+                config.opacity = parseFloat((document.getElementById('opacity-text') as HTMLInputElement).value) || 0.3;
+                config.color = (document.getElementById('text-color') as HTMLInputElement).value;
+            } else {
+                const imageFile = (document.getElementById('image-watermark-input') as HTMLInputElement).files?.[0];
+                if (imageFile) {
+                    config.imageName = imageFile.name;
+                    config.imageType = imageFile.type;
+                }
+                config.angle = parseInt((document.getElementById('angle-image') as HTMLInputElement).value) || 0;
+                config.opacity = parseFloat((document.getElementById('opacity-image') as HTMLInputElement).value) || 0.3;
+            }
+            localStorage.setItem(`bentopdf.watermarkConfig.${watermarkType}`, JSON.stringify(config));
+            localStorage.setItem(`bentopdf.watermarkConfig.watermarkType`, watermarkType);
+        } catch (err) {
+            showAlert('Error', err.message || 'Could not store the watermark configuration.');
         }
 
         const newPdfBytes = await pageState.pdfDoc.save();

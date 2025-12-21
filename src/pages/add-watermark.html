@@ -96,17 +96,26 @@
             <div id="file-display-area" class="mt-4 space-y-2"></div>
 
             <div id="options-panel" class="hidden mt-6 space-y-4">
-                <div class="flex gap-4 mb-4">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="watermark-type" value="text" checked
-                            class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                        <span class="text-sm font-medium text-gray-300">Text Watermark</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="radio" name="watermark-type" value="image"
-                            class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
-                        <span class="text-sm font-medium text-gray-300">Image Watermark</span>
-                    </label>
+                <div class="flex items-center justify-between gap-2 mt-6">
+                    <div class="flex items-center justify-center gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="watermark-type" value="text" checked
+                                class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                            <span class="text-sm font-medium text-gray-300">Text Watermark</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="watermark-type" value="image"
+                                class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500">
+                            <span class="text-sm font-medium text-gray-300">Image Watermark</span>
+                        </label>
+                    </div>
+                    <div class="flex justify-end mt-2">
+                        <button id="reset-watermark-options" type="button"
+                            class="flex items-center gap-2 px-4 py-1 rounded-lg text-gray-200 hover:bg-gray-600">
+                            <i data-lucide="rotate-ccw"></i>
+                            <span>Reset</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="text-watermark-options">
@@ -152,7 +161,8 @@
                     <div class="space-y-4">
                         <div>
                             <label for="image-watermark-input"
-                                class="block mb-2 text-sm font-medium text-gray-300">Watermark Image (PNG/JPG)</label>
+                                class="block mb-2 text-sm font-medium text-gray-300">Watermark
+                                Image (PNG/JPG)</label>
                             <input type="file" id="image-watermark-input" accept="image/png, image/jpeg"
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700">
                         </div>
