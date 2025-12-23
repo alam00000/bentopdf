@@ -74,7 +74,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         working-directory: ../embed-pdf-viewer
         run: |
-          npm pack ./snippet --pack-destination ../bentopdf/vendor/embedpdf
+          npm pack ./viewers/snippet --pack-destination ../bentopdf/vendor/embedpdf
           ls -l ../bentopdf/vendor/embedpdf
 
       - name: Sanitize tarball (rename pkg and pin deps)
