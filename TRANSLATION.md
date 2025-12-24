@@ -24,6 +24,7 @@ BentoPDF uses **i18next** for internationalization (i18n). Currently supported l
 - **Vietnamese** (`vi`)
 
 The app automatically detects the language from the URL path:
+
 - `/en/` → English
 - `/de/` → German
 - `/vi/` → Vietnamese
@@ -86,11 +87,13 @@ Open `public/locales/fr/common.json` and translate all the values:
 ⚠️ **Important**: Only translate the **values**, NOT the keys!
 
 ✅ **Correct:**
+
 ```json
 "home": "Accueil"
 ```
 
 ❌ **Wrong:**
+
 ```json
 "accueil": "Accueil"
 ```
@@ -106,9 +109,9 @@ export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 // Add French display name
 export const languageNames: Record<SupportedLanguage, string> = {
-    en: 'English',
-    de: 'Deutsch',
-    fr: 'Français',  // ← Add this
+  en: 'English',
+  de: 'Deutsch',
+  fr: 'Français', // ← Add this
 };
 ```
 
@@ -207,6 +210,7 @@ Tool names and descriptions are defined in `src/js/config/tools.ts` and use a sp
 ```
 
 In translations:
+
 ```json
 {
   "tools": {
@@ -234,14 +238,15 @@ console.log(message); // "Error" or "Fehler" depending on language
 For input placeholders:
 
 ```html
-<input 
-  type="text" 
-  placeholder="Search for a tool..." 
+<input
+  type="text"
+  placeholder="Search for a tool..."
   data-i18n-placeholder="tools.searchPlaceholder"
 />
 ```
 
 In `common.json`:
+
 ```json
 {
   "tools": {
@@ -257,6 +262,7 @@ In `common.json`:
 ### Manual Testing
 
 1. **Start development server:**
+
    ```bash
    npm run dev
    ```
@@ -289,11 +295,12 @@ Check for missing translations:
 node scripts/check-translations.js
 ```
 
-*(If this script doesn't exist, you may need to create it or manually compare JSON files)*
+_(If this script doesn't exist, you may need to create it or manually compare JSON files)_
 
 ### Browser Testing
 
 Test in different browsers:
+
 - Chrome/Edge
 - Firefox
 - Safari
@@ -307,11 +314,13 @@ Test in different browsers:
 BentoPDF is **friendly, clear, and professional**. Match this tone in your translations.
 
 ✅ **Good:**
+
 ```json
 "hero.title": "Ihr kostenloses und sicheres PDF-Toolkit"
 ```
 
 ❌ **Too formal:**
+
 ```json
 "hero.title": "Ihr gebührenfreies und gesichertes Werkzeug für PDF-Dokumente"
 ```
@@ -339,6 +348,7 @@ When translating, **keep the HTML tags intact**:
 If your language has complex plural rules or gender distinctions, consult the [i18next pluralization guide](https://www.i18next.com/translation-function/plurals).
 
 Example:
+
 ```json
 {
   "pages": "page",
@@ -349,6 +359,7 @@ Example:
 ### 4. Don't Translate Brand Names or Legal Terms
 
 Keep these as-is:
+
 - BentoPDF
 - PDF
 - GitHub
@@ -361,6 +372,7 @@ Keep these as-is:
 ### 5. Technical Terms
 
 For technical terms, use commonly accepted translations in your language:
+
 - "Merge" → "Fusionner" (French), "Zusammenführen" (German)
 - "Split" → "Diviser" (French), "Teilen" (German)
 - "Compress" → "Compresser" (French), "Komprimieren" (German)
@@ -380,6 +392,7 @@ If a translation is much longer, test it visually to ensure it doesn't break the
 ### Issue: Translations Not Showing Up
 
 **Solution:**
+
 1. Clear your browser cache
 2. Hard refresh (Ctrl+F5 or Cmd+Shift+R)
 3. Check browser console for errors
@@ -388,22 +401,26 @@ If a translation is much longer, test it visually to ensure it doesn't break the
 ### Issue: Some Text Still in English
 
 **Possible causes:**
+
 1. Missing translation key in your language file
 2. Missing `data-i18n` attribute in HTML
 3. Hardcoded text in JavaScript
 
 **Solution:**
+
 - Compare your language file with `en/common.json` to find missing keys
 - Search the codebase for hardcoded strings
 
 ### Issue: JSON Syntax Error
 
 **Symptoms:**
+
 ```
 SyntaxError: Unexpected token } in JSON at position 1234
 ```
 
 **Solution:**
+
 - Use a JSON validator: https://jsonlint.com/
 - Common mistakes:
   - Trailing comma after last item
@@ -414,12 +431,13 @@ SyntaxError: Unexpected token } in JSON at position 1234
 
 **Solution:**
 Make sure you added the language to both arrays in `i18n.ts`:
+
 ```typescript
 export const supportedLanguages = ['en', 'de', 'fr']; // ← Add here
 export const languageNames = {
-    en: 'English',
-    de: 'Deutsch',
-    fr: 'Français', // ← And here
+  en: 'English',
+  de: 'Deutsch',
+  fr: 'Français', // ← And here
 };
 ```
 
@@ -470,12 +488,13 @@ Thank you for contributing to BentoPDF! 🎉
 
 Current translation coverage:
 
-| Language | Code | Status | Maintainer |
-|----------|------|--------|------------|
-| English  | `en` | ✅ Complete | Core team |
-| German   | `de` | 🚧 In Progress | Core team |
-| Vietnamese | `vi` | ✅ Complete | Community |
-| Your Language | `??` | 🚧 In Progress | You? |
+| Language      | Code | Status         | Maintainer   |
+| ------------- | ---- | -------------- | ------------ |
+| English       | `en` | ✅ Complete    | Core team    |
+| German        | `de` | 🚧 In Progress | Core team    |
+| French        | `fr` | ✅ Complete    | MobiWise.dev |
+| Vietnamese    | `vi` | ✅ Complete    | Community    |
+| Your Language | `??` | 🚧 In Progress | You?         |
 
 ---
 
