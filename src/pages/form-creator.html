@@ -175,6 +175,22 @@
             <div class="flex flex-col lg:flex-row gap-6">
                 <!-- Sidebar with Properties -->
                 <aside class="lg:w-64 flex-shrink-0 order-2 lg:order-1">
+                    <!-- Form Properties Section -->
+                    <div class="bg-gray-700 rounded-lg p-4 mb-4">
+                        <h2 class="font-semibold text-gray-200 mb-3 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-4 h-4"></i>
+                            Form Properties
+                        </h2>
+                        <div id="formPropertiesPanel" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Fonts to be Embedded</label>
+                                <div id="embeddedFontsList" class="space-y-1 max-h-32 overflow-y-auto bg-gray-600 border border-gray-500 rounded p-2">
+                                    <!-- Embedded fonts will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Properties Section -->
                     <div class="bg-gray-700 rounded-lg p-4">
                         <h2 class="font-semibold text-gray-200 mb-3 flex items-center gap-2">
@@ -421,6 +437,149 @@
                 <button id="errorModalClose"
                     class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded transition-colors">
                     Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Font Modal -->
+    <div id="addFontModal" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-75">
+        <div class="bg-gray-800 rounded-lg shadow-2xl max-w-2xl w-full mx-4 border border-gray-700">
+            <div class="p-6 border-b border-gray-700">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-white">Add Custom Font</h3>
+                    <button id="addFontClose" class="text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <p class="text-gray-400 mt-2">Add fonts to your form. They will be downloaded and embedded in the PDF.</p>
+            </div>
+            
+            <div class="p-6 space-y-6">
+                <!-- Error Message Area -->
+                <div id="fontModalError" class="hidden bg-red-900/30 border border-red-700/50 rounded-lg p-4">
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="alert-circle" class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"></i>
+                        <div>
+                            <h4 class="text-sm font-semibold text-red-200 mb-2" id="fontModalErrorTitle">Error</h4>
+                            <p class="text-sm text-red-200 whitespace-pre-line" id="fontModalErrorMessage"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab Selection -->
+                <div class="flex border-b border-gray-600">
+                    <button id="tabGoogleFont" class="tab-btn active px-4 py-2 text-sm font-medium text-indigo-400 border-b-2 border-indigo-400">
+                        Google Font
+                    </button>
+                    <button id="tabFontUrl" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-300">
+                        Font URL
+                    </button>
+                    <button id="tabUploadFont" class="tab-btn px-4 py-2 text-sm font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-300">
+                        Upload Font
+                    </button>
+                </div>
+
+                <!-- Google Font Tab -->
+                <div id="googleFontTab" class="tab-content">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">Google Font Name</label>
+                            <input type="text" id="googleFontName" placeholder="e.g., Open Sans Bold, Roboto 300, Poppins Semi Bold" 
+                                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <p class="text-xs text-gray-400 mt-1">
+                                Supports smart parsing! Try "Open Sans Bold", "Roboto 300", or just "Poppins". 
+                                <a href="https://fonts.google.com" target="_blank" class="text-indigo-400 hover:text-indigo-300">Browse Google Fonts</a>
+                            </p>
+                            <div class="mt-2 text-xs text-green-400 bg-green-900/20 border border-green-700/50 rounded p-2">
+                                <strong>Smart Download:</strong> Uses multiple sources (CDN, proxy) to bypass network restrictions. Popular fonts have highest success rate.
+                            </div>
+                        </div>
+                        <div class="bg-blue-900/30 border border-blue-700/50 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="info" class="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5"></i>
+                                <div class="text-sm text-blue-200">
+                                    <p class="font-semibold mb-2">Smart Parsing Examples:</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                                        <div><span class="font-mono bg-gray-800 px-2 py-1 rounded">Open Sans Bold</span> → Bold (700)</div>
+                                        <div><span class="font-mono bg-gray-800 px-2 py-1 rounded">Roboto 300</span> → Light (300)</div>
+                                        <div><span class="font-mono bg-gray-800 px-2 py-1 rounded">Poppins Semi Bold</span> → Semi Bold (600)</div>
+                                        <div><span class="font-mono bg-gray-800 px-2 py-1 rounded">Inter</span> → Regular (400)</div>
+                                    </div>
+                                    <p class="font-semibold mb-1">Popular Fonts:</p>
+                                    <p>Open Sans, Roboto, Lato, Montserrat, Poppins, Source Sans Pro, Raleway, Ubuntu, Nunito, Inter, Playfair Display, Merriweather, Lora</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Font URL Tab -->
+                <div id="fontUrlTab" class="tab-content hidden">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">Font File URL</label>
+                            <input type="url" id="fontUrl" placeholder="https://example.com/fonts/CustomFont.woff2" 
+                                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <p class="text-xs text-gray-400 mt-1">Direct link to a font file (.ttf, .otf, .woff, .woff2)</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">Font Name</label>
+                            <input type="text" id="fontUrlName" placeholder="e.g., Custom Font Bold" 
+                                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <p class="text-xs text-gray-400 mt-1">Name to display in the font dropdown</p>
+                        </div>
+                        <div class="bg-blue-900/30 border border-blue-700/50 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="info" class="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5"></i>
+                                <div class="text-sm text-blue-200">
+                                    <p class="font-semibold mb-1">Direct Font File URLs:</p>
+                                    <p class="mb-2">Use direct links to font files from CDNs, your own server, or public repositories.</p>
+                                    <div class="space-y-1 text-xs font-mono bg-gray-800 p-2 rounded">
+                                        <div>✓ https://example.com/fonts/MyFont.woff2</div>
+                                        <div>✓ https://cdn.jsdelivr.net/npm/@fontsource/roboto/files/roboto-latin-400-normal.woff2</div>
+                                        <div>✓ https://your-server.com/assets/CustomFont.ttf</div>
+                                    </div>
+                                    <p class="mt-2 text-xs text-yellow-300">Note: URL must allow cross-origin access (CORS)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload Font Tab -->
+                <div id="uploadFontTab" class="tab-content hidden">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">Upload Font File</label>
+                            <div class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-lg cursor-pointer bg-gray-700 hover:bg-gray-600 transition-colors">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <i data-lucide="upload" class="w-8 h-8 mb-2 text-gray-400"></i>
+                                    <p class="mb-2 text-sm text-gray-300">
+                                        <span class="font-semibold">Click to upload</span> or drag and drop
+                                    </p>
+                                    <p class="text-xs text-gray-500">TTF, OTF, WOFF, WOFF2 files</p>
+                                </div>
+                                <input type="file" id="fontFileInput" accept=".ttf,.otf,.woff,.woff2" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                            </div>
+                            <div id="uploadedFileName" class="hidden mt-2 text-sm text-green-400"></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-2">Font Name</label>
+                            <input type="text" id="uploadFontName" placeholder="e.g., My Custom Font" 
+                                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <p class="text-xs text-gray-400 mt-1">Name to display in the font dropdown</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 border-t border-gray-700 flex justify-end gap-3">
+                <button id="addFontCancel" class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg transition-colors">
+                    Cancel
+                </button>
+                <button id="addFontSubmit" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors">
+                    Add Font
                 </button>
             </div>
         </div>

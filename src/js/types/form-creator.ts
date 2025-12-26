@@ -10,6 +10,7 @@ export interface FormField {
     fontSize: number
     alignment: 'left' | 'center' | 'right'
     textColor: string
+    fontFamily: string
     required: boolean
     readOnly: boolean
     tooltip: string
