@@ -4,931 +4,268 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BentoPDF - The Privacy First PDF Toolkit</title>
-  <!-- i18n: hreflang tags for SEO -->
+  <title>BentoPDF - PDF Toolkit</title>
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="alternate" hreflang="en" href="/en/" />
-  <link rel="alternate" hreflang="de" href="/de/" />
-  <link rel="alternate" hreflang="vi" href="/vi/" />
-  <link rel="alternate" hreflang="x-default" href="/en/" />
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
   <link rel="icon" type="image/png" href="/images/favicon.png" />
   <link rel="apple-touch-icon" href="/images/favicon.png" />
   <link href="src/css/styles.css" rel="stylesheet" />
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-gray-900">
+  <!-- Top Navigation Bar -->
   <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-    <div class="container mx-auto px-4">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-          <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
-          <span class="text-white font-bold text-xl ml-2">
-            <a href="index.html">BentoPDF</a>
-          </span>
+    <div class="px-4">
+      <div class="flex justify-between items-center h-12">
+        <div class="flex items-center gap-4">
+          <!-- Sidebar Toggle Button -->
+          <button id="sidebar-toggle" class="p-1.5 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" title="Toggle Sidebar">
+            <i data-lucide="panel-left" class="w-5 h-5"></i>
+          </button>
+          <div class="flex items-center cursor-pointer" id="home-logo">
+            <img src="/images/favicon.svg" alt="BentoPDF Logo" class="h-6 w-6" />
+            <span class="text-white font-bold text-lg ml-2">BentoPDF</span>
+          </div>
         </div>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
-          <a href="./about.html" class="nav-link" data-i18n="nav.about">About</a>
-          <a href="./contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
-          <a href="./licensing.html" class="nav-link" data-i18n="nav.licensing">Licensing</a>
-          <a href="index.html#tools-header" class="nav-link" data-i18n="nav.allTools">All Tools</a>
-          <a href="https://github.com/alam00000/bentopdf/" target="_blank" rel="noopener noreferrer" class="
-            inline-flex items-center gap-1.5 text-sm font-medium
-            bg-gray-800 text-gray-200 border border-gray-600
-            pl-2.5 pr-3 py-1
-            rounded-full transition-colors duration-200
-            shadow-sm hover:shadow-md hover:bg-gray-700
-          ">
-            <svg class="w-4 h-4 flex-shrink-0 text-gray-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                clip-rule="evenodd" />
-            </svg>
-            <span id="github-stars-desktop">-</span>
-          </a>
-        </div>
-
-        <!-- Mobile Hamburger Button -->
-        <div class="md:hidden flex items-center gap-4">
-          <a href="https://github.com/alam00000/bentopdf/" target="_blank" rel="noopener noreferrer" class="
-            inline-flex items-center gap-1.5 text-sm font-medium
-            bg-gray-800 text-gray-200 border border-gray-600
-            pl-2.5 pr-3 py-1
-            rounded-full transition-colors duration-200
-            shadow-sm hover:shadow-md hover:bg-gray-700
-          ">
-            <svg class="w-4 h-4 flex-shrink-0 text-gray-200" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill-rule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                clip-rule="evenodd" />
-            </svg>
-            <span id="github-stars-mobile">-</span>
-          </a>
-          <button id="mobile-menu-button" type="button"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
-            aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only" data-i18n="nav.openMainMenu">Open main menu</span>
-            <!-- Hamburger Icon -->
-            <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <!-- Close Icon -->
-            <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-              viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+        <div class="flex items-center gap-2">
+          <button id="open-shortcuts-btn" class="p-1.5 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors" title="Settings">
+            <i data-lucide="settings" class="w-5 h-5"></i>
           </button>
         </div>
-      </div>
-    </div>
-
-    <!-- Mobile Menu Dropdown -->
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-      <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-        <a href="index.html" class="mobile-nav-link" data-i18n="nav.home">Home</a>
-        <a href="./about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
-        <a href="./contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
-        <a href="./licensing.html" class="mobile-nav-link" data-i18n="nav.licensing">Licensing</a>
-        <a href="index.html#tools-header" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
       </div>
     </div>
   </nav>
-  <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
-    <section id="hero-section" class="text-center py-20 relative">
-      <div class="bg-grid-pattern"></div>
-      <h1 class="text-4xl md:text-7xl font-bold text-white mb-4">
-        <span data-i18n="hero.title">The</span> <span
-          class="inline-flex items-center gap-3 border-2 border-indigo-400 bg-indigo-900 text-indigo-300 px-4 py-2 rounded-full mx-2 align-middle">
-          <span data-i18n="hero.pdfToolkit">PDF Toolkit</span> <i data-lucide="briefcase"
-            class="w-8 h-8 md:w-12 md:h-12 transform -rotate-4"></i> </span> <span
-          data-i18n="hero.builtForPrivacy">built
-          for
-          privacy</span><span
-          class="text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">.</span>
-      </h1>
-      <!-- <p class="text-lg text-gray-400 mb-12">Fast, Secure and Forever Free.</p> -->
-      <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-4 mb-12 mt-12">
-        <span
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/40 border border-gray-700/50 text-gray-400 text-sm font-medium">
-          <i data-lucide="check-circle" class="w-4 h-4 text-gray-400"></i>
-          <span data-i18n="hero.noSignups">No Signups</span>
-        </span>
-        <span
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/40 border border-gray-700/50 text-gray-400 text-sm font-medium">
-          <i data-lucide="check-circle" class="w-4 h-4 text-gray-400"></i>
-          <span data-i18n="hero.unlimitedUse">Unlimited Use</span>
-        </span>
-        <span
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/40 border border-gray-700/50 text-gray-400 text-sm font-medium">
-          <i data-lucide="check-circle" class="w-4 h-4 text-gray-400"></i>
-          <span data-i18n="hero.worksOffline">Works Offline</span>
-        </span>
-      </div>
 
-      <div class="flex flex-col items-center gap-4">
-        <a href="#tools-header"
-          class="inline-flex items-center gap-3 pl-8 pr-2 py-2 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1">
-          <span data-i18n="hero.startUsing">Start Using Now</span>
-          <span class="bg-white text-indigo-600 rounded-full p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </span>
-        </a>
+  <!-- Main Layout: Sidebar + Workspace -->
+  <div class="flex h-[calc(100vh-48px)]">
 
-      </div>
-    </section>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-72 bg-gray-800 border-r border-gray-700 flex flex-col overflow-hidden flex-shrink-0">
 
-    <!-- USED BY SECTION START -->
-    <section class="py-10 hide-section">
-      <div class="container mx-auto px-4">
-        <p class="text-center text-gray-500 text-sm font-medium mb-8" data-i18n="usedBy.title">Used by companies and
-          people working at</p>
-        <div
-          class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-
-          <!-- Google -->
-          <svg class="h-6 md:h-8 w-auto text-gray-400 hover:text-white transition-colors" viewBox="0 0 24 24"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.347.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.053-3.227 2.107-2.08 2.72-5.027 2.72-7.44 0-.733-.053-1.44-.16-2.133h-10.613z" />
-          </svg>
-
-          <!-- Microsoft -->
-          <svg class="h-6 md:h-8 w-auto text-gray-400 hover:text-white transition-colors" viewBox="0 0 24 24"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M0 0h11.377v11.372H0zM12.623 0H24v11.372H12.623zM0 12.623h11.377V24H0zM12.623 12.623H24V24H12.623z" />
-          </svg>
-
-          <!-- Reddit -->
-          <svg class="h-6 md:h-8 w-auto text-gray-400 hover:text-white transition-colors" viewBox="0 0 24 24"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
-          </svg>
-
-          <!-- Amazon -->
-          <svg class="h-6 md:h-8 w-auto text-gray-400 hover:text-white transition-colors" viewBox="0 0 48 48"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M25.4026553,25.9595294 C24.660417,27.4418824 23.3876054,28.3962353 22.0103725,28.7181176 C21.8015298,28.7181176 21.4826213,28.8225882 21.1637129,28.8225882 C18.835399,28.8225882 17.458166,27.0211765 17.458166,24.3727059 C17.458166,20.9788235 19.4703937,19.392 22.0103725,18.6465882 C23.3876054,18.3303529 24.9793255,18.2230588 26.5682233,18.2230588 L26.5682233,19.4964706 C26.5682233,21.9331765 26.6726447,23.8390588 25.4026553,25.9595294 L25.4026553,25.9595294 Z M26.5682233,13.3524706 C25.1909904,13.4569412 23.5992703,13.5614118 22.0103725,13.7703529 C19.574815,14.0922353 17.1392576,14.5157647 15.1298521,15.4701176 C11.2098182,17.0597647 8.55977364,20.4508235 8.55977364,25.4287059 C8.55977364,31.6856471 12.5842289,34.8621176 17.6726531,34.8621176 C19.3659723,34.8621176 20.7432053,34.6475294 22.0103725,34.3341176 C24.0282445,33.696 25.7187415,32.5298824 27.7309692,30.4094118 C28.8965372,31.9990588 29.2182679,32.7444706 31.2276733,34.4385882 C31.7582467,34.6475294 32.28882,34.6475294 32.7093276,34.3341176 C33.9821392,33.2724706 36.208854,31.3637647 37.3715998,30.3049412 C37.9021732,29.8814118 37.7977518,29.2432941 37.4760212,28.7181176 C36.3132753,27.2329412 35.1448851,25.9595294 35.1448851,23.0992941 L35.1448851,13.5614118 C35.1448851,9.53505882 35.4666157,5.82494118 32.5004849,3.072 C30.0649275,0.849882353 26.2493149,0 23.2831841,0 L22.0103725,0 C16.6115064,0.313411765 10.8937319,2.64564706 9.61809814,9.32329412 C9.40643324,10.1731765 10.0442501,10.4894118 10.4675799,10.5938824 L16.3998415,11.3364706 C17.0348362,11.2291765 17.3537447,10.6983529 17.458166,10.1731765 C17.9859172,7.84094118 19.8937235,6.67482353 22.0103725,6.46023529 L22.4365245,6.46023529 C23.7093361,6.46023529 25.086569,6.99105882 25.8259851,8.05270588 C26.6726447,9.32329412 26.5682233,11.0202353 26.5682233,12.5054118 L26.5682233,13.3524706 L26.5682233,13.3524706 Z">
-            </path>
-            <path
-              d="M47.9943556,35.9463529 L47.9943556,35.9435294 C47.971778,35.4437647 47.8673567,35.0625882 47.658514,34.7463529 L47.6359364,34.7152941 L47.6105366,34.6842353 C47.3988717,34.4527059 47.1956734,34.3651765 46.9755419,34.2691765 C46.3179696,34.0150588 45.3612442,33.8795294 44.2097872,33.8767059 C43.382883,33.8767059 42.4713128,33.9557647 41.5540982,34.1562353 L41.551276,34.0941176 L40.6284171,34.4018824 L40.6114839,34.4103529 L40.0893771,34.5797647 L40.0893771,34.6023529 C39.47696,34.8564706 38.9209869,35.1727059 38.4045245,35.5482353 C38.0827939,35.7882353 37.8175072,36.1072941 37.8033962,36.5957647 C37.7949296,36.8611765 37.9303952,37.1661176 38.1533489,37.3468235 C38.3763025,37.5275294 38.6359448,37.5896471 38.8645429,37.5896471 C38.9181647,37.5896471 38.9689643,37.5868235 39.0141194,37.5783529 L39.0592746,37.5755294 L39.093141,37.5698824 C39.5446928,37.4738824 40.2022651,37.4089412 40.9727253,37.3016471 C41.6331198,37.2282353 42.3330251,37.1745882 42.9397978,37.1745882 C43.368772,37.1717647 43.7554132,37.2028235 44.0206999,37.2592941 C44.1533432,37.2875294 44.2521202,37.3214118 44.3057419,37.3496471 C44.3254973,37.3552941 44.3396083,37.3637647 44.3480749,37.3694118 C44.3593637,37.4061176 44.3762969,37.5021176 44.3734747,37.6348235 C44.3791191,38.1430588 44.164632,39.0861176 43.8683012,40.0065882 C43.5804369,40.9270588 43.2304843,41.8503529 42.999064,42.4630588 C42.94262,42.6042353 42.9059314,42.7595294 42.9059314,42.9289412 C42.900287,43.1745882 43.0018862,43.4738824 43.2163733,43.6715294 C43.425216,43.8691765 43.696147,43.9482353 43.9219229,43.9482353 L43.9332117,43.9482353 C44.2718756,43.9454118 44.5597398,43.8098824 44.8080933,43.6150588 C47.1505182,41.5087059 47.9661336,38.1430588 48,36.2484706 L47.9943556,35.9463529 Z M41.0489247,38.8658824 C40.8090378,38.8630588 40.5635065,38.9195294 40.3349084,39.0268235 C40.0780883,39.1284706 39.8156239,39.2470588 39.5672704,39.3515294 L39.2032068,39.504 L38.7290774,39.6931765 L38.7290774,39.6988235 C33.5785648,41.7882353 28.16841,43.0136471 23.1618295,43.1209412 C22.9783866,43.1265882 22.7921215,43.1265882 22.614323,43.1265882 C14.7403887,43.1322353 8.31706456,39.4785882 1.83729642,35.8785882 C1.61152053,35.76 1.37727804,35.6978824 1.15150215,35.6978824 C0.860815683,35.6978824 0.561662624,35.808 0.344353327,36.0112941 C0.12704403,36.2174118 -0.00277710907,36.5138824 4.50895989e-05,36.816 C-0.00277710907,37.2084706 0.208887791,37.5698824 0.505218651,37.8042353 C6.58705678,43.0870588 13.25309,47.9943529 22.2192152,48 C22.3941915,48 22.57199,47.9943529 22.7497885,47.9915294 C28.453452,47.8644706 34.902176,45.936 39.9087564,42.7905882 L39.9398006,42.7708235 C40.5945507,42.3783529 41.2493008,41.9322353 41.8673623,41.4381176 C42.2511813,41.1529412 42.516468,40.7068235 42.516468,40.2437647 C42.4995348,39.4221176 41.8024517,38.8658824 41.0489247,38.8658824 Z">
-            </path>
-          </svg>
-
-          <!-- Oracle -->
-          <svg class="h-6 md:h-8 w-auto text-gray-400 hover:text-white transition-colors" viewBox="0 0 16 16"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-              d="M.1 8c0 2.761 2.237 5 4.997 5h5.806A4.999 4.999 0 0015.9 8c0-2.761-2.237-5-4.997-5H5.097A4.999 4.999 0 00.1 8zm13.911 0a3.235 3.235 0 01-3.234 3.237h-5.55A3.235 3.235 0 011.991 8a3.235 3.235 0 013.234-3.236h5.551A3.235 3.235 0 0114.011 8z"
-              clip-rule="evenodd" />
-          </svg>
-
-          <!-- Apple -->
-          <svg class="h-6 md:h-8 w-auto text-gray-400 hover:text-white transition-colors -ml-3" viewBox="0 0 24 24"
-            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.78 1.18-.19 2.31-.89 3.51-.84 1.54.06 2.77.74 3.69 1.74-3.54 1.84-2.86 6.53.51 7.91-.48 1.13-1.1 2.25-2.79 3.38zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-          </svg>
-
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <section id="features-section" class="py-20">
-      <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
-        <span data-i18n="features.title"></span> <span class="marker-slanted"
-          data-i18n="features.bentoPdf">BentoPDF?</span>
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="flex items-center gap-4 mb-3">
-            <i data-lucide="user-plus" class="w-10 h-10 text-indigo-400 flex-shrink-0"></i>
-            <h3 class="text-xl font-bold text-white" data-i18n="features.noSignup.title">No Signup</h3>
-          </div>
-          <p class="text-gray-400 pl-14" data-i18n="features.noSignup.description">
-            Start instantly, no accounts or emails.
-          </p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="flex items-center gap-4 mb-3">
-            <i data-lucide="shield" class="w-10 h-10 text-indigo-400 flex-shrink-0"></i>
-            <h3 class="text-xl font-bold text-white" data-i18n="features.noUploads.title">No Uploads</h3>
-          </div>
-          <p class="text-gray-400 pl-14" data-i18n="features.noUploads.description">
-            100% client-side, your files never leave your device.
-          </p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="flex items-center gap-4 mb-3">
-            <i data-lucide="badge-dollar-sign" class="w-10 h-10 text-indigo-400 flex-shrink-0"></i>
-            <h3 class="text-xl font-bold text-white" data-i18n="features.foreverFree.title">Forever Free</h3>
-          </div>
-          <p class="text-gray-400 pl-14" data-i18n="features.foreverFree.description">
-            All tools, no trials, no paywalls.
-          </p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="flex items-center gap-4 mb-3">
-            <i data-lucide="infinity" class="w-10 h-10 text-indigo-400 flex-shrink-0"></i>
-            <h3 class="text-xl font-bold text-white" data-i18n="features.noLimits.title">No Limits</h3>
-          </div>
-          <p class="text-gray-400 pl-14" data-i18n="features.noLimits.description">
-            Use as much as you want, no hidden caps.
-          </p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="flex items-center gap-4 mb-3">
-            <i data-lucide="layers" class="w-10 h-10 text-indigo-400 flex-shrink-0"></i>
-            <h3 class="text-xl font-bold text-white" data-i18n="features.batchProcessing.title">Batch Processing</h3>
-          </div>
-          <p class="text-gray-400 pl-14" data-i18n="features.batchProcessing.description">Handle unlimited PDFs in one
-            go.
-          </p>
-        </div>
-        <div class="bg-gray-800 p-6 rounded-lg">
-          <div class="flex items-center gap-4 mb-3">
-            <i data-lucide="zap" class="w-10 h-10 text-indigo-400 flex-shrink-0"></i>
-            <h3 class="text-xl font-bold text-white" data-i18n="features.lightningFast.title">Lightning Fast</h3>
-          </div>
-          <p class="text-gray-400 pl-14" data-i18n="features.lightningFast.description">
-            Process PDFs instantly, without waiting or delays.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <div id="tools-header" class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
-        <span data-i18n="tools.title">Get Started with</span> <span class="marker-slanted ml-2"
-          data-i18n="tools.toolsLabel"> Tools</span>
-      </h2>
-      <p class="text-gray-400" data-i18n="tools.subtitle">Click a tool to open the file uploader</p>
-    </div>
-
-    <div id="grid-view">
-      <div class="mb-8 max-w-lg mx-auto">
+      <!-- Search Box -->
+      <div class="p-3 border-b border-gray-700">
         <div class="relative">
-          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-            <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
-          </span>
-          <input type="text" id="search-bar"
-            class="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-            placeholder="Search for a tool (e.g., 'split', 'organize'...)"
-            data-i18n-placeholder="tools.searchPlaceholder" />
-          <span class="absolute inset-y-0 right-0 flex items-center rounded-lg pr-2 gap-2">
-            <kbd id="shortcut"
-              class="bg-gray-800 px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 border border-gray-700 shadow-sm"></kbd>
-            <button id="open-shortcuts-btn"
-              class="p-1 hover:bg-gray-600 rounded-md text-gray-400 hover:text-white transition-colors"
-              title="Keyboard Shortcuts">
-              <i data-lucide="settings" class="w-4 h-4"></i>
-            </button>
-          </span>
+          <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+          <input type="text" id="sidebar-search"
+            class="w-full bg-gray-900 border border-gray-600 text-white text-sm rounded-lg pl-9 pr-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+            placeholder="Search tools..." />
         </div>
       </div>
 
-      <div id="tool-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"></div>
-    </div>
+      <!-- Scrollable Tool List -->
+      <div id="sidebar-tools" class="flex-1 overflow-y-auto">
 
-    <div id="tool-interface"
-      class="hidden w-full max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-6 md:p-8 border border-gray-700">
-      <button id="back-to-grid"
-        class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
-        <i data-lucide="arrow-left" class="cursor-pointer"></i>
-        <span class="cursor-pointer" data-i18n="tools.backToTools"> Back to Tools </span>
-      </button>
-      <div id="tool-content"></div>
-    </div>
-
-    <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-      <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl">
-        <div class="solid-spinner"></div>
-        <p id="loader-text" class="text-white text-lg font-medium" data-i18n="loader.processing">
-          Processing...
-        </p>
-      </div>
-    </div>
-
-    <div id="alert-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-      <div class="bg-gray-800 max-w-sm w-full p-6 rounded-lg border border-gray-700 shadow-xl text-center">
-        <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
-        </h3>
-        <p id="alert-message" class="text-gray-300 mb-6 whitespace-pre-line">
-          This is an alert message.
-        </p>
-        <button id="alert-ok"
-          class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700">
-          OK
-        </button>
-      </div>
-    </div>
-
-    <div id="preview-modal"
-      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40 p-4">
-      <div class="bg-white text-black rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col">
-        <div class="p-4 border-b flex justify-between items-center">
-          <h3 class="text-xl font-bold">Document Preview</h3>
-          <div class="flex gap-4">
-            <button id="preview-download-btn"
-              class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700">
-              Download as PDF
-            </button>
-            <button id="preview-close-btn"
-              class="btn bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700">
-              Close
-            </button>
+        <!-- Pinned Tools Section -->
+        <div id="pinned-section" class="hidden">
+          <div class="px-3 py-2 flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-gray-500 flex items-center gap-1.5">
+              <i data-lucide="pin" class="w-3 h-3"></i>
+              Pinned
+            </span>
           </div>
+          <div id="pinned-tools" class="px-2 pb-2 space-y-0.5">
+            <!-- Pinned tools will be rendered here -->
+          </div>
+          <div class="border-b border-gray-700 mx-3 mb-2"></div>
         </div>
-        <div id="preview-content" class="p-8 overflow-y-auto flex-grow"></div>
+
+        <!-- Tool Categories -->
+        <div id="tool-categories" class="px-2 pb-4">
+          <!-- Categories will be rendered here -->
+        </div>
+
       </div>
-    </div>
+    </aside>
 
-    <!-- Shortcuts Modal -->
-    <div id="shortcuts-modal"
-      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-      <div class="bg-gray-800 w-full max-w-2xl rounded-xl border border-gray-700 shadow-2xl flex flex-col max-h-[80vh]">
-        <div class="p-6 border-b border-gray-700 flex justify-between items-center">
-          <h3 class="text-xl font-bold text-white flex items-center gap-2">
-            <i data-lucide="settings" class="w-6 h-6 text-indigo-400"></i>
-            Settings
-          </h3>
-          <button id="close-shortcuts-modal" class="text-gray-400 hover:text-white transition-colors">
-            <i data-lucide="x" class="w-6 h-6"></i>
-          </button>
-        </div>
+    <!-- Main Workspace -->
+    <main id="workspace" class="flex-1 bg-gray-900 overflow-auto">
 
-        <!-- Tabs -->
-        <div class="flex border-b border-gray-700">
-          <button id="shortcuts-tab-btn" class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white">
-            <i data-lucide="keyboard" class="inline-block w-4 h-4 mr-1"></i>
-            Shortcuts
-          </button>
-          <button id="preferences-tab-btn" class="flex-1 py-3 text-sm font-medium text-gray-300 hover:text-white">
-            <i data-lucide="sliders" class="inline-block w-4 h-4 mr-1"></i>
-            <span data-i18n="settings.preferences">Preferences</span>
-          </button>
-        </div>
-
-        <!-- Shortcuts Tab Content -->
-        <div id="shortcuts-tab-content" class="p-6 overflow-y-auto flex-grow">
-          <div class="flex justify-between items-center mb-6">
-            <div class="relative flex-grow mr-4">
-              <i data-lucide="search"
-                class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500"></i>
-              <input type="text" id="shortcut-search" placeholder="Search shortcuts..."
-                class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-indigo-500 focus:border-indigo-500">
+      <!-- Default Drop Zone (shown when no tool is active) -->
+      <div id="default-workspace" class="h-full flex items-center justify-center p-8">
+        <div class="text-center max-w-md">
+          <div id="drop-zone-main" class="border-2 border-dashed border-gray-600 rounded-2xl p-12 hover:border-indigo-500 hover:bg-gray-800/50 transition-all cursor-pointer">
+            <input type="file" id="file-input-main" class="hidden" accept="application/pdf" multiple />
+            <div class="mb-4">
+              <i data-lucide="file-up" class="w-16 h-16 text-gray-500 mx-auto"></i>
             </div>
+            <h2 class="text-xl font-semibold text-white mb-2">Drop PDF here</h2>
+            <p class="text-gray-400 text-sm mb-4">or click to upload</p>
+            <p class="text-gray-500 text-xs">Select a tool from the sidebar to get started</p>
           </div>
-
-          <div class="mb-4 p-3 bg-indigo-900/20 border border-indigo-500/30 rounded-lg flex items-start gap-3">
-            <i data-lucide="info" class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"></i>
-            <p class="text-sm text-indigo-200">
-              <span data-i18n="settings.shortcutsInfo">Press and hold keys to set a shortcut. Changes are <strong>auto-saved</strong>.</span>
-              <br><span class="text-yellow-300" data-i18n="settings.shortcutsWarning">⚠️ Avoid common browser shortcuts (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N
-                etc.) as they
-                may not work reliably.</span>
-            </p>
-          </div>
-
-          <div id="shortcuts-list" class="space-y-2">
-            <!-- Shortcuts will be populated here -->
-          </div>
-        </div>
-
-        <!-- Preferences Tab Content -->
-        <div id="preferences-tab-content" class="hidden p-6 overflow-y-auto flex-grow">
-          <h4 class="text-lg font-semibold text-white mb-4" data-i18n="settings.displayPreferences">Display Preferences
-          </h4>
-
-          <div class="space-y-4">
-            <div class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700">
-              <div class="flex-1">
-                <label for="full-width-toggle" class="text-sm font-medium text-gray-200 cursor-pointer"
-                  data-i18n="settings.fullWidthMode">
-                  Full Width Mode
-                </label>
-                <p class="text-xs text-gray-400 mt-1" data-i18n="settings.fullWidthDescription">
-                  Use the full screen width for all tools instead of a centered container
-                </p>
-              </div>
-              <label class="relative inline-flex items-center cursor-pointer ml-4">
-                <input type="checkbox" id="full-width-toggle" class="sr-only peer">
-                <div
-                  class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600">
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="p-6 border-t border-gray-700 flex justify-between items-center bg-gray-850 rounded-b-xl">
-          <div id="shortcuts-tab-footer" class="flex gap-3">
-            <button id="import-shortcuts-btn"
-              class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
-              <i data-lucide="upload" class="w-4 h-4"></i> Import
-            </button>
-            <button id="export-shortcuts-btn"
-              class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
-              <i data-lucide="download" class="w-4 h-4"></i> Export
-            </button>
-          </div>
-          <div id="preferences-tab-footer" class="hidden w-full">
-            <p class="text-xs text-gray-400 text-center" data-i18n="settings.settingsAutoSaved">Settings are
-              automatically saved</p>
-          </div>
-          <button id="reset-shortcuts-btn"
-            class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors">
-            Reset to Defaults
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Warning Modal -->
-    <div id="warning-modal"
-      class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-      <div
-        class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl max-w-md w-full overflow-hidden animate-scale-in">
-        <div class="p-6">
-          <div class="flex items-start gap-4 mb-4">
-            <div id="warning-icon"
-              class="w-12 h-12 flex items-center justify-center rounded-full bg-yellow-500/10 flex-shrink-0">
-              <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-500"></i>
-            </div>
-            <div class="flex-1">
-              <h3 id="warning-title" class="text-xl font-bold text-white mb-2">Warning</h3>
-              <p id="warning-message" class="text-gray-300 text-sm leading-relaxed"></p>
-            </div>
-          </div>
-        </div>
-        <div class="flex gap-3 p-4 bg-gray-850 border-t border-gray-700">
-          <button id="warning-cancel-btn"
-            class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors">
-            Cancel
-          </button>
-          <button id="warning-confirm-btn"
-            class="flex-1 px-4 py-2.5 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-medium transition-colors">
-            Proceed
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-divider hide-section mb-20 mt-10"></div>
-
-    <!-- COMPLIANCE SECTION START -->
-    <section id="security-compliance-section" class="py-20 hide-section">
-      <div class="mb-8 text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6 text-balance">
-          <span data-i18n="compliance.title"></span>
-          <span class="inline-flex items-center gap-2">
-            <i data-lucide="shield" class="w-8 h-8 md:w-10 md:h-10 text-indigo-400 bg-indigo-900 rounded-lg p-1.5"></i>
-            <span data-i18n="compliance.weKeep">We keep</span>
-          </span>
-          <br class="hidden sm:block" />
-          <span
-            class="inline-block border-2 border-indigo-400 bg-indigo-900 text-indigo-300 px-4 py-2 rounded-full mx-2 text-2xl md:text-3xl lg:text-4xl font-bold"
-            data-i18n="compliance.yourInfoSafe">
-            your information safe
-          </span>
-          <span data-i18n="compliance.byFollowingStandards">by following global security standards.</span>
-        </h2>
-      </div>
-      <div class="mb-16 text-center">
-        <span class="inline-flex items-center gap-2 text-indigo-400 text-lg font-medium transition-colors"
-          data-i18n="compliance.processingLocal">
-          All the processing happens locally on your device.
-        </span>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-4">
-        <!-- GDPR Compliance -->
-        <div class="flex flex-col items-center text-center">
-          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-600 flex items-center justify-center mb-4">
-            <img src="images/gdpr.svg" alt="GDPR compliance" class="w-full h-full" />
-          </div>
-          <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="compliance.gdpr.title">
-            GDPR compliance
-          </h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
-            data-i18n="compliance.gdpr.description">
-            Protects the personal data and privacy of individuals within the
-            European Union.
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center">
-          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-600 flex items-center justify-center mb-4">
-            <img src="images/ccpa.svg" alt="CCPA compliance" class="w-full h-full" />
-          </div>
-          <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="compliance.ccpa.title">
-            CCPA compliance
-          </h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
-            data-i18n="compliance.ccpa.description">
-            Gives California residents rights over how their personal
-            information is collected, used, and shared.
-          </p>
-        </div>
-
-        <div class="flex flex-col items-center text-center">
-          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-blue-600 flex items-center justify-center mb-4">
-            <img src="images/hipaa.svg" alt="HIPAA compliance" class="w-full h-full" />
-          </div>
-          <h3 class="text-lg md:text-xl font-bold text-white mb-3" data-i18n="compliance.hipaa.title">
-            HIPAA compliance
-          </h3>
-          <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs"
-            data-i18n="compliance.hipaa.description">
-            Sets safeguards for handling sensitive health information in the
-            United States healthcare system.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPLAINCE SECTION END -->
-
-    <div class="section-divider hide-section"></div>
-
-    <section id="faq-accordion" class="space-y-4 hide-section">
-      <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12 mt-8">
-        <span data-i18n="faq.title">Frequently Asked</span> <span class="marker-slanted"
-          data-i18n="faq.questions">Questions</span>
-      </h2>
-      <!-- Existing FAQs here... -->
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.isFree.question">Is BentoPDF really free?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.isFree.answer">
-            Yes, absolutely. All tools on BentoPDF are 100% free to use, with
-            no file limits, no sign-ups, and no watermarks. We believe
-            everyone deserves access to simple, powerful PDF tools without a
-            paywall.
-          </p>
         </div>
       </div>
 
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.areFilesSecure.question">Are my files secure?
-            Where are they processed?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.areFilesSecure.answer">
-            Your files are as secure as possible because they **never leave
-            your computer**. All processing happens directly in your web
-            browser (client-side). We never upload your files to a server, so
-            you maintain complete privacy and control over your documents.
-          </p>
-        </div>
+      <!-- Tool Interface (shown when a tool is selected) -->
+      <div id="tool-interface" class="hidden h-full">
+        <div id="tool-content" class="h-full"></div>
       </div>
 
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.platforms.question">Does it work on Mac,
-            Windows, and Mobile?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.platforms.answer">
-            Yes! Since BentoPDF runs entirely in your browser, it works on any
-            operating system with a modern web browser, including Windows,
-            macOS, Linux, iOS, and Android.
-          </p>
-        </div>
-      </div>
-
-      <!-- New FAQ: GDPR Compliance -->
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.gdprCompliant.question">Is BentoPDF GDPR
-            compliant?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.gdprCompliant.answer">
-            Yes. BentoPDF is fully GDPR compliant. Since all file processing
-            happens locally in your browser and we never collect or transmit
-            your files to any server, we have no access to your data. This
-            ensures you are always in control of your documents.
-          </p>
-        </div>
-      </div>
-
-      <!-- New FAQ: Data Storage -->
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.dataStorage.question">Do you store or track any
-            of my files?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.dataStorage.answer">
-            No. We never store, track, or log your files. Everything you do on
-            BentoPDF happens in your browser memory and disappears once you
-            close the page. There are no uploads, no history logs, and no
-            servers involved.
-          </p>
-        </div>
-      </div>
-
-      <!-- New FAQ: Privacy -->
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.different.question">What makes BentoPDF
-            different from other PDF tools?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.different.answer">
-            Most PDF tools upload your files to a server for processing.
-            BentoPDF never does that. We use secure, modern web technology to
-            process your files directly in your browser. This means faster
-            performance, stronger privacy, and complete peace of mind.
-          </p>
-        </div>
-      </div>
-
-      <!-- New FAQ: Browser-Based -->
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.browserBased.question">How does browser-based
-            processing keep me safe?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.browserBased.answer">
-            By running entirely inside your browser, BentoPDF ensures that
-            your files never leave your device. This eliminates the risks of
-            server hacks, data breaches, or unauthorized access. Your files
-            remain yours—always.
-          </p>
-        </div>
-      </div>
-
-      <!-- New FAQ: Analytics -->
-      <div class="faq-item bg-gray-800 rounded-lg border border-gray-700">
-        <button class="faq-question w-full flex justify-between items-center text-left p-6">
-          <span class="text-lg font-semibold text-white" data-i18n="faq.analytics.question">Do you use cookies or
-            analytics to track me?</span>
-          <i data-lucide="chevron-down" class="faq-icon w-6 h-6 text-gray-400 transition-transform"></i>
-        </button>
-        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-          <p class="p-6 pt-0 text-gray-400" data-i18n="faq.analytics.answer">
-            We care about your privacy. BentoPDF does not track personal
-            information. We use
-            <a href="https://simpleanalytics.com" class="text-indigo-400 hover:underline" target="_blank"
-              rel="noopener noreferrer">Simple Analytics</a>
-            solely to see anonymous visit counts. This means we can know how
-            many users visit our site, but
-            <strong>we never know who you are</strong>. Simple Analytics is
-            fully GDPR-compliant and respects your privacy.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider hide-section"></div>
-
-    <section id="testimonials-section" class="py-20 hide-section">
-      <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">
-        <span data-i18n="testimonials.title">What Our</span> <span class="marker-slanted"
-          data-i18n="testimonials.users">Users</span> <span data-i18n="testimonials.say">Say</span>
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        <div class="testimonial-card">
-          <div class="flex items-center mb-4">
-            <div>
-              <p class="font-bold text-white">Sarah L.</p>
-              <div class="text-yellow-400 flex items-center text-sm">
-                ★★★★★
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            "This is the tool I've been searching for! It's fast, free, and I
-            love that my confidential documents never get uploaded to some
-            random server. A lifesaver for my freelance work."
-          </p>
-        </div>
-        <div class="testimonial-card">
-          <div class="flex items-center mb-4">
-            <div>
-              <p class="font-bold text-white">Mark Chen</p>
-              <div class="text-yellow-400 flex items-center text-sm">
-                ★★★★★
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            "Finally, a PDF editor that just works. No ads, no sign-ups, no
-            nonsense. The merge tool is surprisingly powerful. I've already
-            bookmarked it on all my devices."
-          </p>
-        </div>
-        <div class="testimonial-card">
-          <div class="flex items-center mb-4">
-            <div>
-              <p class="font-bold text-white">Anonymous User A-35Z</p>
-              <div class="text-yellow-400 flex items-center text-sm">
-                ★☆☆☆☆
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            "Terrible. It won't let me upload my files to the cloud. How is my
-            Big Data Tech Overlord supposed to know I signed a permission slip
-            for my kid's field trip? Useless for my data profile."
-          </p>
-        </div>
-        <div class="testimonial-card">
-          <div class="flex items-center mb-4">
-            <div>
-              <p class="font-bold text-white">Dr. Brickson</p>
-              <div class="text-yellow-400 flex items-center text-sm">
-                ★★★★★
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            "As a researcher, data privacy is paramount. BentoPDF's
-            client-side processing model is exactly what my institution
-            recommends. It's robust, reliable, and secure. A fantastic
-            resource."
-          </p>
-        </div>
-        <div class="testimonial-card">
-          <div class="flex items-center mb-4">
-            <div>
-              <p class="font-bold text-white">AdTracker Pro</p>
-              <div class="text-yellow-400 flex items-center text-sm">
-                ★☆☆☆☆
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            "This website is broken. My ad blocker says it hasn't blocked a
-            single tracker. How am I supposed to know if a product is good if
-            it's not following me around the internet for a week? 1 star."
-          </p>
-        </div>
-        <div class="testimonial-card">
-          <div class="flex items-center mb-4">
-            <div>
-              <p class="font-bold text-white">Raj P.</p>
-              <div class="text-yellow-400 flex items-center text-sm">
-                ★★★★★
-              </div>
-            </div>
-          </div>
-          <p class="text-gray-400">
-            "Simple, elegant, and powerful. I needed to merge 50 reports, and
-            it handled it instantly without crashing my browser. This is what
-            a web tool should be. Highly recommended."
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <div class="section-divider"></div>
-    <section id="support-section" class="py-20">
-      <div class="max-w-4xl mx-auto text-center bg-gray-800 p-8 md:p-12 rounded-xl border border-gray-700 shadow-2xl">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="support.title">
-          Like My Work?
-        </h2>
-        <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-i18n="support.description">
-          BentoPDF is a passion project, built to provide a free, private, and
-          powerful PDF toolkit for everyone. If you find it useful, consider
-          supporting its development. Every coffee helps!
-        </p>
-
-        <a href="https://ko-fi.com/alio01" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1 mt-5">
-          <i data-lucide="coffee" class="w-7 h-7"></i>
-          <span data-i18n="support.buyMeCoffee">Buy Me a Coffee</span>
-        </a>
-      </div>
-    </section>
-
-    <div id="signature-ghost" class="hidden"></div>
-
-    <!-- Scroll to Top Button -->
-    <button id="scroll-to-top-btn"
-      class="fixed bottom-12 right-8 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 invisible z-40"
-      aria-label="Scroll to top">
-      <i data-lucide="arrow-up" class="w-6 h-6"></i>
-    </button>
+    </main>
   </div>
 
-  <footer class="mt-16 border-t-2 border-gray-700 py-8">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
-        <div class="mb-8 md:mb-0">
-          <div class="flex items-center justify-center md:justify-start mb-4">
-            <img src="public/images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
-            <span class="text-xl font-bold text-white">BentoPDF</span>
+  <!-- Modals -->
+
+  <!-- Loader Modal -->
+  <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl">
+      <div class="solid-spinner"></div>
+      <p id="loader-text" class="text-white text-lg font-medium">Processing...</p>
+    </div>
+  </div>
+
+  <!-- Alert Modal -->
+  <div id="alert-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div class="bg-gray-800 max-w-sm w-full p-6 rounded-lg border border-gray-700 shadow-xl text-center">
+      <h3 id="alert-title" class="text-xl font-bold text-white mb-2">Alert</h3>
+      <p id="alert-message" class="text-gray-300 mb-6 whitespace-pre-line">This is an alert message.</p>
+      <button id="alert-ok" class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700">OK</button>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40 p-4">
+    <div class="bg-white text-black rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col">
+      <div class="p-4 border-b flex justify-between items-center">
+        <h3 class="text-xl font-bold">Document Preview</h3>
+        <div class="flex gap-4">
+          <button id="preview-download-btn" class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700">Download as PDF</button>
+          <button id="preview-close-btn" class="btn bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700">Close</button>
+        </div>
+      </div>
+      <div id="preview-content" class="p-8 overflow-y-auto flex-grow"></div>
+    </div>
+  </div>
+
+  <!-- Shortcuts/Settings Modal -->
+  <div id="shortcuts-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div class="bg-gray-800 w-full max-w-2xl rounded-xl border border-gray-700 shadow-2xl flex flex-col max-h-[80vh]">
+      <div class="p-6 border-b border-gray-700 flex justify-between items-center">
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i data-lucide="settings" class="w-6 h-6 text-indigo-400"></i>
+          Settings
+        </h3>
+        <button id="close-shortcuts-modal" class="text-gray-400 hover:text-white transition-colors">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-gray-700">
+        <button id="shortcuts-tab-btn" class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white">
+          <i data-lucide="keyboard" class="inline-block w-4 h-4 mr-1"></i>
+          Shortcuts
+        </button>
+        <button id="preferences-tab-btn" class="flex-1 py-3 text-sm font-medium text-gray-300 hover:text-white">
+          <i data-lucide="sliders" class="inline-block w-4 h-4 mr-1"></i>
+          Preferences
+        </button>
+      </div>
+
+      <!-- Shortcuts Tab Content -->
+      <div id="shortcuts-tab-content" class="p-6 overflow-y-auto flex-grow">
+        <div class="flex justify-between items-center mb-6">
+          <div class="relative flex-grow mr-4">
+            <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+            <input type="text" id="shortcut-search" placeholder="Search shortcuts..."
+              class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-indigo-500 focus:border-indigo-500">
           </div>
-          <p class="text-gray-400 text-sm" data-i18n="footer.copyright">
-            &copy; 2025 BentoPDF. All rights reserved.
+        </div>
+
+        <div class="mb-4 p-3 bg-indigo-900/20 border border-indigo-500/30 rounded-lg flex items-start gap-3">
+          <i data-lucide="info" class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"></i>
+          <p class="text-sm text-indigo-200">
+            Press and hold keys to set a shortcut. Changes are <strong>auto-saved</strong>.
           </p>
-          <p class="text-gray-500 text-xs mt-2">
-            <span data-i18n="footer.version">Version</span> <span id="app-version"></span>
-          </p>
         </div>
 
-        <div>
-          <h3 class="font-bold text-white mb-4" data-i18n="footer.company">Company</h3>
-          <ul class="space-y-2 text-gray-400">
-            <li>
-              <a href="./about.html" class="hover:text-indigo-400" data-i18n="footer.aboutUs">About Us</a>
-            </li>
-            <li>
-              <a href="./faq.html" class="hover:text-indigo-400" data-i18n="footer.faqLink">FAQ</a>
-            </li>
-            <li>
-              <a href="./contact.html" class="hover:text-indigo-400" data-i18n="footer.contactUs">Contact Us</a>
-            </li>
-          </ul>
+        <div id="shortcuts-list" class="space-y-2">
+          <!-- Shortcuts will be populated here -->
         </div>
+      </div>
 
-        <div>
-          <h3 class="font-bold text-white mb-4" data-i18n="footer.legal">Legal</h3>
-          <ul class="space-y-2 text-gray-400">
-            <li>
-              <a href="./licensing.html" class="hover:text-indigo-400" data-i18n="nav.licensing">Licensing</a>
-            </li>
-            <li>
-              <a href="./terms.html" class="hover:text-indigo-400" data-i18n="footer.termsAndConditions">Terms and
-                Conditions</a>
-            </li>
-            <li>
-              <a href="./privacy.html" class="hover:text-indigo-400" data-i18n="footer.privacyPolicy">Privacy Policy</a>
-            </li>
-          </ul>
-        </div>
+      <!-- Preferences Tab Content -->
+      <div id="preferences-tab-content" class="hidden p-6 overflow-y-auto flex-grow">
+        <h4 class="text-lg font-semibold text-white mb-4">Display Preferences</h4>
 
-        <div>
-          <h3 class="font-bold text-white mb-4" data-i18n="footer.followUs">Follow Us</h3>
-          <div class="flex justify-center md:justify-start space-x-4">
-            <a href="https://github.com/alam00000/bentopdf" target="_blank" rel="noopener noreferrer"
-              class="text-gray-400 hover:text-indigo-400" title="GitHub">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd"
-                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                  clip-rule="evenodd" />
-              </svg>
-            </a>
-            <a href="https://discord.gg/Bgq3Ay3f2w" target="_blank" rel="noopener noreferrer"
-              class="text-gray-400 hover:text-indigo-400" title="Discord">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/thebentopdf/" class="text-gray-400 hover:text-indigo-400"
-              title="Instagram">
-              <i data-lucide="instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/bentopdf/" class="text-gray-400 hover:text-indigo-400"
-              title="LinkedIn">
-              <i data-lucide="linkedin"></i>
-            </a>
-            <a href="https://x.com/BentoPDF" class="text-gray-400 hover:text-indigo-400" title="X (Twitter)">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-            </a>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700">
+            <div class="flex-1">
+              <label for="full-width-toggle" class="text-sm font-medium text-gray-200 cursor-pointer">
+                Full Width Mode
+              </label>
+              <p class="text-xs text-gray-400 mt-1">
+                Use the full screen width for all tools instead of a centered container
+              </p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer ml-4">
+              <input type="checkbox" id="full-width-toggle" class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+            </label>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-gray-900 rounded-lg border border-gray-700">
+            <div class="flex-1">
+              <label for="sidebar-collapsed-toggle" class="text-sm font-medium text-gray-200 cursor-pointer">
+                Collapse Sidebar by Default
+              </label>
+              <p class="text-xs text-gray-400 mt-1">
+                Start with the sidebar collapsed for more workspace
+              </p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer ml-4">
+              <input type="checkbox" id="sidebar-collapsed-toggle" class="sr-only peer">
+              <div class="w-11 h-6 bg-gray-700 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-800 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+            </label>
           </div>
         </div>
       </div>
+
+      <div class="p-6 border-t border-gray-700 flex justify-between items-center bg-gray-850 rounded-b-xl">
+        <div id="shortcuts-tab-footer" class="flex gap-3">
+          <button id="import-shortcuts-btn" class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
+            <i data-lucide="upload" class="w-4 h-4"></i> Import
+          </button>
+          <button id="export-shortcuts-btn" class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors">
+            <i data-lucide="download" class="w-4 h-4"></i> Export
+          </button>
+        </div>
+        <div id="preferences-tab-footer" class="hidden w-full">
+          <p class="text-xs text-gray-400 text-center">Settings are automatically saved</p>
+        </div>
+        <button id="reset-shortcuts-btn" class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors">
+          Reset to Defaults
+        </button>
+      </div>
     </div>
-  </footer>
+  </div>
+
+  <!-- Warning Modal -->
+  <div id="warning-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl max-w-md w-full overflow-hidden animate-scale-in">
+      <div class="p-6">
+        <div class="flex items-start gap-4 mb-4">
+          <div id="warning-icon" class="w-12 h-12 flex items-center justify-center rounded-full bg-yellow-500/10 flex-shrink-0">
+            <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-500"></i>
+          </div>
+          <div class="flex-1">
+            <h3 id="warning-title" class="text-xl font-bold text-white mb-2">Warning</h3>
+            <p id="warning-message" class="text-gray-300 text-sm leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+      <div class="flex gap-3 p-4 bg-gray-850 border-t border-gray-700">
+        <button id="warning-cancel-btn" class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors">Cancel</button>
+        <button id="warning-confirm-btn" class="flex-1 px-4 py-2.5 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-medium transition-colors">Proceed</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="signature-ghost" class="hidden"></div>
 
   <script type="module" src="src/js/utils/lucide-init.ts"></script>
   <script type="module" src="src/version.ts"></script>
   <script type="module" src="src/js/main.ts"></script>
-  <script type="module" src="src/js/mobileMenu.ts"></script>
 </body>
 
 </html>

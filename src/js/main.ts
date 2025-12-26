@@ -1,437 +1,420 @@
 import { categories } from './config/tools.js';
-import { dom, switchView, hideAlert, showLoader, hideLoader, showAlert } from './ui.js';
-import { state, resetState } from './state.js';
+import { dom, hideAlert } from './ui.js';
 import { ShortcutsManager } from './logic/shortcuts.js';
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
-import { formatShortcutDisplay, formatStars } from './utils/helpers.js';
-import { APP_VERSION, injectVersion } from '../version.js';
-import { initI18n, applyTranslations, rewriteLinks, injectLanguageSwitcher, createLanguageSwitcher, t } from './i18n/index.js';
+import { formatShortcutDisplay } from './utils/helpers.js';
 
-const init = async () => {
-  await initI18n();
-  injectLanguageSwitcher();
-  applyTranslations();
+// ============================================================================
+// Types
+// ============================================================================
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-  if (__SIMPLE_MODE__) {
-    const hideBrandingSections = () => {
-      const nav = document.querySelector('nav');
-      if (nav) {
-        nav.style.display = 'none';
+interface Tool {
+  href: string;
+  name: string;
+  icon: string;
+  subtitle: string;
+}
 
-        const simpleNav = document.createElement('nav');
-        simpleNav.className =
-          'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
-        simpleNav.innerHTML = `
-          <div class="container mx-auto px-4">
-            <div class="flex justify-start items-center h-16">
-              <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
-                <span class="text-white font-bold text-xl ml-2">
-                  <a href="index.html">BentoPDF</a>
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-        document.body.insertBefore(simpleNav, document.body.firstChild);
-      }
+interface Category {
+  name: string;
+  tools: Tool[];
+}
 
-      const heroSection = document.getElementById('hero-section');
-      if (heroSection) {
-        heroSection.style.display = 'none';
-      }
+// ============================================================================
+// State Management
+// ============================================================================
 
-      const githubLink = document.querySelector('a[href*="github.com/alam00000/bentopdf"]');
-      if (githubLink) {
-        (githubLink as HTMLElement).style.display = 'none';
-      }
+const PINNED_TOOLS_KEY = 'bentopdf-pinned-tools';
+const SIDEBAR_COLLAPSED_KEY = 'bentopdf-sidebar-collapsed';
+const EXPANDED_CATEGORIES_KEY = 'bentopdf-expanded-categories';
 
-      const featuresSection = document.getElementById('features-section');
-      if (featuresSection) {
-        featuresSection.style.display = 'none';
-      }
-
-      const securitySection = document.getElementById(
-        'security-compliance-section'
-      );
-      if (securitySection) {
-        securitySection.style.display = 'none';
-      }
-
-      const faqSection = document.getElementById('faq-accordion');
-      if (faqSection) {
-        faqSection.style.display = 'none';
-      }
-
-      const testimonialsSection = document.getElementById(
-        'testimonials-section'
-      );
-      if (testimonialsSection) {
-        testimonialsSection.style.display = 'none';
-      }
-
-      const supportSection = document.getElementById('support-section');
-      if (supportSection) {
-        supportSection.style.display = 'none';
-      }
-
-      // Hide "Used by companies" section
-      const usedBySection = document.querySelector('.hide-section') as HTMLElement;
-      if (usedBySection) {
-        usedBySection.style.display = 'none';
-      }
-
-      const footer = document.querySelector('footer');
-      if (footer && !document.querySelector('[data-simple-footer]')) {
-        footer.style.display = 'none';
-
-        const simpleFooter = document.createElement('footer');
-        simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
-        simpleFooter.setAttribute('data-simple-footer', 'true');
-        simpleFooter.innerHTML = `
-          <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-              <div>
-                <div class="flex items-center mb-2">
-                  <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
-                  <span class="text-white font-bold text-lg">BentoPDF</span>
-                </div>
-                <p class="text-gray-400 text-sm">
-                  &copy; 2025 BentoPDF. All rights reserved.
-                </p>
-                <p class="text-gray-500 text-xs mt-2">
-                  Version <span id="app-version-simple">${APP_VERSION}</span>
-                </p>
-              </div>
-              <div id="simple-mode-lang-switcher" class="flex-shrink-0"></div>
-            </div>
-          </div>
-        `;
-        document.body.appendChild(simpleFooter);
-
-        const langContainer = simpleFooter.querySelector('#simple-mode-lang-switcher');
-        if (langContainer) {
-          const switcher = createLanguageSwitcher();
-          const dropdown = switcher.querySelector('div[role="menu"]');
-          if (dropdown) {
-            dropdown.classList.remove('mt-2');
-            dropdown.classList.add('bottom-full', 'mb-2');
-          }
-          langContainer.appendChild(switcher);
-        }
-      }
-
-      const sectionDividers = document.querySelectorAll('.section-divider');
-      sectionDividers.forEach((divider) => {
-        (divider as HTMLElement).style.display = 'none';
-      });
-
-      document.title = 'BentoPDF - PDF Tools';
-
-      const toolsHeader = document.getElementById('tools-header');
-      if (toolsHeader) {
-        const title = toolsHeader.querySelector('h2');
-        const subtitle = toolsHeader.querySelector('p');
-        if (title) {
-          title.textContent = 'PDF Tools';
-          title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
-        }
-        if (subtitle) {
-          subtitle.textContent = 'Select a tool to get started';
-          subtitle.className = 'text-lg text-gray-400';
-        }
-      }
-
-      const app = document.getElementById('app');
-      if (app) {
-        app.style.paddingTop = '1rem';
-      }
-    };
-
-    hideBrandingSections();
+function getPinnedTools(): string[] {
+  try {
+    const stored = localStorage.getItem(PINNED_TOOLS_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
   }
+}
 
-  // Hide shortcuts buttons on mobile devices (Android/iOS)
-  // exclude iPad -> users can connect keyboard and use shortcuts
-  const isMobile = /Android|iPhone|iPod/i.test(navigator.userAgent);
-  const keyboardShortcutBtn = document.getElementById('shortcut');
-  const shortcutSettingsBtn = document.getElementById('open-shortcuts-btn');
+function savePinnedTools(tools: string[]): void {
+  localStorage.setItem(PINNED_TOOLS_KEY, JSON.stringify(tools));
+}
 
-  if (isMobile) {
-    if (keyboardShortcutBtn) keyboardShortcutBtn.style.display = 'none';
-    if (shortcutSettingsBtn) shortcutSettingsBtn.style.display = 'none';
+function togglePinnedTool(toolId: string): boolean {
+  const pinned = getPinnedTools();
+  const index = pinned.indexOf(toolId);
+  if (index === -1) {
+    pinned.push(toolId);
+    savePinnedTools(pinned);
+    return true; // now pinned
   } else {
-    if (keyboardShortcutBtn) {
-      keyboardShortcutBtn.textContent = navigator.userAgent.toUpperCase().includes('MAC')
-        ? '⌘ + K'
-        : 'Ctrl + K';
+    pinned.splice(index, 1);
+    savePinnedTools(pinned);
+    return false; // now unpinned
+  }
+}
+
+function isToolPinned(toolId: string): boolean {
+  return getPinnedTools().includes(toolId);
+}
+
+function getExpandedCategories(): string[] {
+  try {
+    const stored = localStorage.getItem(EXPANDED_CATEGORIES_KEY);
+    // Default: first category expanded
+    return stored ? JSON.parse(stored) : [categories[0]?.name || ''];
+  } catch {
+    return [categories[0]?.name || ''];
+  }
+}
+
+function saveExpandedCategories(cats: string[]): void {
+  localStorage.setItem(EXPANDED_CATEGORIES_KEY, JSON.stringify(cats));
+}
+
+function toggleCategoryExpanded(categoryName: string): boolean {
+  const expanded = getExpandedCategories();
+  const index = expanded.indexOf(categoryName);
+  if (index === -1) {
+    expanded.push(categoryName);
+    saveExpandedCategories(expanded);
+    return true;
+  } else {
+    expanded.splice(index, 1);
+    saveExpandedCategories(expanded);
+    return false;
+  }
+}
+
+function isCategoryExpanded(categoryName: string): boolean {
+  return getExpandedCategories().includes(categoryName);
+}
+
+// ============================================================================
+// Utility Functions
+// ============================================================================
+
+function getToolId(tool: Tool): string {
+  if (tool.href) {
+    const match = tool.href.match(/([^/]+)\.html$/);
+    return match ? match[1] : tool.href;
+  }
+  return 'unknown';
+}
+
+function getToolById(toolId: string): Tool | undefined {
+  for (const category of categories) {
+    for (const tool of category.tools) {
+      if (getToolId(tool) === toolId) {
+        return tool;
+      }
     }
   }
+  return undefined;
+}
 
+function fuzzyMatch(searchTerm: string, targetText: string): boolean {
+  if (!searchTerm) return true;
+  const search = searchTerm.toLowerCase();
+  const target = targetText.toLowerCase();
 
-  const categoryTranslationKeys: Record<string, string> = {
-    'Popular Tools': 'tools:categories.popularTools',
-    'Edit & Annotate': 'tools:categories.editAnnotate',
-    'Convert to PDF': 'tools:categories.convertToPdf',
-    'Convert from PDF': 'tools:categories.convertFromPdf',
-    'Organize & Manage': 'tools:categories.organizeManage',
-    'Optimize & Repair': 'tools:categories.optimizeRepair',
-    'Secure PDF': 'tools:categories.securePdf',
-  };
+  // Simple contains match
+  if (target.includes(search)) return true;
 
-  const toolTranslationKeys: Record<string, string> = {
-    'PDF Multi Tool': 'tools:pdfMultiTool',
-    'Merge PDF': 'tools:mergePdf',
-    'Split PDF': 'tools:splitPdf',
-    'Compress PDF': 'tools:compressPdf',
-    'PDF Editor': 'tools:pdfEditor',
-    'JPG to PDF': 'tools:jpgToPdf',
-    'Sign PDF': 'tools:signPdf',
-    'Crop PDF': 'tools:cropPdf',
-    'Extract Pages': 'tools:extractPages',
-    'Duplicate & Organize': 'tools:duplicateOrganize',
-    'Delete Pages': 'tools:deletePages',
-    'Edit Bookmarks': 'tools:editBookmarks',
-    'Table of Contents': 'tools:tableOfContents',
-    'Page Numbers': 'tools:pageNumbers',
-    'Add Watermark': 'tools:addWatermark',
-    'Header & Footer': 'tools:headerFooter',
-    'Invert Colors': 'tools:invertColors',
-    'Background Color': 'tools:backgroundColor',
-    'Change Text Color': 'tools:changeTextColor',
-    'Add Stamps': 'tools:addStamps',
-    'Remove Annotations': 'tools:removeAnnotations',
-    'PDF Form Filler': 'tools:pdfFormFiller',
-    'Create PDF Form': 'tools:createPdfForm',
-    'Remove Blank Pages': 'tools:removeBlankPages',
-    'Image to PDF': 'tools:imageToPdf',
-    'PNG to PDF': 'tools:pngToPdf',
-    'WebP to PDF': 'tools:webpToPdf',
-    'SVG to PDF': 'tools:svgToPdf',
-    'BMP to PDF': 'tools:bmpToPdf',
-    'HEIC to PDF': 'tools:heicToPdf',
-    'TIFF to PDF': 'tools:tiffToPdf',
-    'Text to PDF': 'tools:textToPdf',
-    'JSON to PDF': 'tools:jsonToPdf',
-    'PDF to JPG': 'tools:pdfToJpg',
-    'PDF to PNG': 'tools:pdfToPng',
-    'PDF to WebP': 'tools:pdfToWebp',
-    'PDF to BMP': 'tools:pdfToBmp',
-    'PDF to TIFF': 'tools:pdfToTiff',
-    'PDF to Greyscale': 'tools:pdfToGreyscale',
-    'PDF to JSON': 'tools:pdfToJson',
-    'OCR PDF': 'tools:ocrPdf',
-    'Alternate & Mix Pages': 'tools:alternateMix',
-    'Organize & Duplicate': 'tools:duplicateOrganize',
-    'Add Attachments': 'tools:addAttachments',
-    'Extract Attachments': 'tools:extractAttachments',
-    'Edit Attachments': 'tools:editAttachments',
-    'Divide Pages': 'tools:dividePages',
-    'Add Blank Page': 'tools:addBlankPage',
-    'Reverse Pages': 'tools:reversePages',
-    'Rotate PDF': 'tools:rotatePdf',
-    'N-Up PDF': 'tools:nUpPdf',
-    'Combine to Single Page': 'tools:combineToSinglePage',
-    'View Metadata': 'tools:viewMetadata',
-    'Edit Metadata': 'tools:editMetadata',
-    'PDFs to ZIP': 'tools:pdfsToZip',
-    'Compare PDFs': 'tools:comparePdfs',
-    'Posterize PDF': 'tools:posterizePdf',
-    'Fix Page Size': 'tools:fixPageSize',
-    'Linearize PDF': 'tools:linearizePdf',
-    'Page Dimensions': 'tools:pageDimensions',
-    'Remove Restrictions': 'tools:removeRestrictions',
-    'Repair PDF': 'tools:repairPdf',
-    'Encrypt PDF': 'tools:encryptPdf',
-    'Sanitize PDF': 'tools:sanitizePdf',
-    'Decrypt PDF': 'tools:decryptPdf',
-    'Flatten PDF': 'tools:flattenPdf',
-    'Remove Metadata': 'tools:removeMetadata',
-    'Change Permissions': 'tools:changePermissions',
-  };
+  // Fuzzy character match
+  let searchIndex = 0;
+  for (let i = 0; i < target.length && searchIndex < search.length; i++) {
+    if (search[searchIndex] === target[i]) {
+      searchIndex++;
+    }
+  }
+  return searchIndex === search.length;
+}
 
-  // Homepage-only tool grid rendering (not used on individual tool pages)
-  if (dom.toolGrid) {
-    dom.toolGrid.textContent = '';
+// ============================================================================
+// Sidebar Rendering
+// ============================================================================
 
-    categories.forEach((category) => {
-      const categoryGroup = document.createElement('div');
-      categoryGroup.className = 'category-group col-span-full';
+function createToolItem(tool: Tool, showUnpin: boolean = false): HTMLElement {
+  const toolId = getToolId(tool);
+  const isPinned = isToolPinned(toolId);
 
-      const title = document.createElement('h2');
-      title.className = 'text-xl font-bold text-indigo-400 mb-4 mt-8 first:mt-0 text-white';
-      const categoryKey = categoryTranslationKeys[category.name];
-      title.textContent = categoryKey ? t(categoryKey) : category.name;
+  const item = document.createElement('a');
+  item.href = tool.href;
+  item.className = 'tool-item group flex items-center gap-2 px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors text-sm';
+  item.dataset.toolId = toolId;
 
-      const toolsContainer = document.createElement('div');
-      toolsContainer.className =
-        'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6';
+  // Icon
+  const icon = document.createElement('i');
+  icon.className = 'w-4 h-4 text-gray-400 group-hover:text-indigo-400 flex-shrink-0';
+  icon.setAttribute('data-lucide', tool.icon);
 
-      category.tools.forEach((tool) => {
-        let toolCard: HTMLDivElement | HTMLAnchorElement;
+  // Name
+  const name = document.createElement('span');
+  name.className = 'flex-1 truncate';
+  name.textContent = tool.name;
 
-        if (tool.href) {
-          toolCard = document.createElement('a');
-          toolCard.href = tool.href;
-          toolCard.className =
-            'tool-card block bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:shadow-lg transition duration-200';
-        } else {
-          toolCard = document.createElement('div');
-          toolCard.className =
-            'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-lg transition duration-200';
-          toolCard.dataset.toolId = getToolId(tool);
-        }
+  // Pin/Unpin button
+  const pinBtn = document.createElement('button');
+  pinBtn.className = `pin-btn flex-shrink-0 p-0.5 rounded transition-all ${
+    showUnpin
+      ? 'text-gray-400 hover:text-red-400 opacity-100'
+      : isPinned
+        ? 'text-indigo-400 opacity-100'
+        : 'text-gray-500 opacity-0 group-hover:opacity-100 hover:text-indigo-400'
+  }`;
+  pinBtn.title = isPinned ? 'Unpin' : 'Pin to top';
+  pinBtn.innerHTML = showUnpin
+    ? '<i data-lucide="x" class="w-3.5 h-3.5"></i>'
+    : '<i data-lucide="pin" class="w-3.5 h-3.5"></i>';
 
-        const icon = document.createElement('i');
-        icon.className = 'w-10 h-10 mb-3 text-indigo-400';
-        icon.setAttribute('data-lucide', tool.icon);
+  pinBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    togglePinnedTool(toolId);
+    renderSidebar();
+  });
 
-        const toolName = document.createElement('h3');
-        toolName.className = 'font-semibold text-white';
-        const toolKey = toolTranslationKeys[tool.name];
-        toolName.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
+  item.append(icon, name, pinBtn);
+  return item;
+}
 
-        toolCard.append(icon, toolName);
+function createCategorySection(category: Category): HTMLElement {
+  const section = document.createElement('div');
+  section.className = 'category-section';
+  section.dataset.category = category.name;
 
-        if (tool.subtitle) {
-          const toolSubtitle = document.createElement('p');
-          toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
-          toolSubtitle.textContent = toolKey ? t(`${toolKey}.subtitle`) : tool.subtitle;
-          toolCard.appendChild(toolSubtitle);
-        }
+  const isExpanded = isCategoryExpanded(category.name);
 
-        toolsContainer.appendChild(toolCard);
-      });
+  // Header
+  const header = document.createElement('button');
+  header.className = 'category-header w-full flex items-center gap-2 px-2 py-2 text-left text-gray-400 hover:text-white hover:bg-gray-700/50 rounded-md transition-colors';
 
-      categoryGroup.append(title, toolsContainer);
-      dom.toolGrid.appendChild(categoryGroup);
-    });
+  const chevron = document.createElement('i');
+  chevron.className = `w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`;
+  chevron.setAttribute('data-lucide', 'chevron-right');
 
-    const searchBar = document.getElementById('search-bar');
-    const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');
+  const title = document.createElement('span');
+  title.className = 'text-xs font-semibold uppercase tracking-wider';
+  title.textContent = category.name;
 
-    const fuzzyMatch = (searchTerm: string, targetText: string): boolean => {
-      if (!searchTerm) return true;
+  const count = document.createElement('span');
+  count.className = 'ml-auto text-xs text-gray-500';
+  count.textContent = `${category.tools.length}`;
 
-      let searchIndex = 0;
-      let targetIndex = 0;
+  header.append(chevron, title, count);
 
-      while (searchIndex < searchTerm.length && targetIndex < targetText.length) {
-        if (searchTerm[searchIndex] === targetText[targetIndex]) {
-          searchIndex++;
-        }
-        targetIndex++;
-      }
+  // Tools container
+  const toolsContainer = document.createElement('div');
+  toolsContainer.className = `category-tools pl-2 space-y-0.5 overflow-hidden transition-all ${isExpanded ? '' : 'hidden'}`;
 
-      return searchIndex === searchTerm.length;
-    };
+  category.tools.forEach(tool => {
+    toolsContainer.appendChild(createToolItem(tool));
+  });
 
-    searchBar.addEventListener('input', () => {
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-      const searchTerm = searchBar.value.toLowerCase().trim();
+  // Toggle expand/collapse
+  header.addEventListener('click', () => {
+    const nowExpanded = toggleCategoryExpanded(category.name);
+    toolsContainer.classList.toggle('hidden', !nowExpanded);
+    chevron.classList.toggle('rotate-90', nowExpanded);
+  });
 
-      categoryGroups.forEach((group) => {
-        const toolCards = group.querySelectorAll('.tool-card');
-        let visibleToolsInCategory = 0;
+  section.append(header, toolsContainer);
+  return section;
+}
 
-        toolCards.forEach((card) => {
-          const toolName = card.querySelector('h3').textContent.toLowerCase();
-          const toolSubtitle =
-            card.querySelector('p')?.textContent.toLowerCase() || '';
+function renderPinnedSection(): void {
+  const pinnedSection = document.getElementById('pinned-section');
+  const pinnedContainer = document.getElementById('pinned-tools');
+  if (!pinnedSection || !pinnedContainer) return;
 
-          const isMatch =
-            fuzzyMatch(searchTerm, toolName) || fuzzyMatch(searchTerm, toolSubtitle);
+  const pinnedIds = getPinnedTools();
 
-          card.classList.toggle('hidden', !isMatch);
-          if (isMatch) {
-            visibleToolsInCategory++;
-          }
-        });
-
-        group.classList.toggle('hidden', visibleToolsInCategory === 0);
-      });
-    });
-
-    window.addEventListener('keydown', function (e) {
-      const key = e.key.toLowerCase();
-      const isMac = navigator.userAgent.toUpperCase().includes('MAC');
-      const isCtrlK = e.ctrlKey && key === 'k';
-      const isCmdK = isMac && e.metaKey && key === 'k';
-
-      if (isCtrlK || isCmdK) {
-        e.preventDefault();
-        searchBar.focus();
-      }
-    });
-
-    dom.toolGrid.addEventListener('click', (e) => {
-      // All tools now use href and navigate directly - no modal handling needed
-    });
+  if (pinnedIds.length === 0) {
+    pinnedSection.classList.add('hidden');
+    return;
   }
 
-  if (dom.backToGridBtn) {
-    dom.backToGridBtn.addEventListener('click', () => switchView('grid'));
-  }
+  pinnedSection.classList.remove('hidden');
+  pinnedContainer.innerHTML = '';
 
-  if (dom.alertOkBtn) {
-    dom.alertOkBtn.addEventListener('click', hideAlert);
-  }
+  pinnedIds.forEach(toolId => {
+    const tool = getToolById(toolId);
+    if (tool) {
+      pinnedContainer.appendChild(createToolItem(tool, true));
+    }
+  });
+}
 
-  const faqAccordion = document.getElementById('faq-accordion');
-  if (faqAccordion) {
-    faqAccordion.addEventListener('click', (e) => {
-      // @ts-expect-error TS(2339) FIXME: Property 'closest' does not exist on type 'EventTa... Remove this comment to see the full error message
-      const questionButton = e.target.closest('.faq-question');
-      if (!questionButton) return;
+function renderCategories(): void {
+  const container = document.getElementById('tool-categories');
+  if (!container) return;
 
-      const faqItem = questionButton.parentElement;
-      const answer = faqItem.querySelector('.faq-answer');
+  container.innerHTML = '';
 
-      faqItem.classList.toggle('open');
+  categories.forEach(category => {
+    container.appendChild(createCategorySection(category as Category));
+  });
+}
 
-      if (faqItem.classList.contains('open')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      } else {
-        answer.style.maxHeight = '0px';
-      }
-    });
-  }
-
+function renderSidebar(): void {
+  renderPinnedSection();
+  renderCategories();
   createIcons({ icons });
-  console.log('Please share our tool and share the love!');
+}
 
+// ============================================================================
+// Search Functionality
+// ============================================================================
 
-  const githubStarsElements = [
-    document.getElementById('github-stars-desktop'),
-    document.getElementById('github-stars-mobile')
-  ];
+function setupSearch(): void {
+  const searchInput = document.getElementById('sidebar-search') as HTMLInputElement;
+  if (!searchInput) return;
 
-  if (githubStarsElements.some(el => el) && !__SIMPLE_MODE__) {
-    fetch('https://api.github.com/repos/alam00000/bentopdf')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.stargazers_count !== undefined) {
-          const formattedStars = formatStars(data.stargazers_count);
-          githubStarsElements.forEach(el => {
-            if (el) el.textContent = formattedStars;
-          });
-        }
-      })
-      .catch(() => {
-        githubStarsElements.forEach(el => {
-          if (el) el.textContent = '-';
-        });
-      });
+  searchInput.addEventListener('input', () => {
+    const term = searchInput.value.trim();
+    filterTools(term);
+  });
+
+  // Keyboard shortcut: Ctrl/Cmd + K to focus search
+  window.addEventListener('keydown', (e) => {
+    const isMac = navigator.userAgent.toUpperCase().includes('MAC');
+    if ((isMac ? e.metaKey : e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+    // Escape to clear and blur
+    if (e.key === 'Escape' && document.activeElement === searchInput) {
+      searchInput.value = '';
+      filterTools('');
+      searchInput.blur();
+    }
+  });
+}
+
+function filterTools(searchTerm: string): void {
+  const pinnedSection = document.getElementById('pinned-section');
+  const categorySections = document.querySelectorAll('.category-section');
+
+  if (!searchTerm) {
+    // Reset to normal view
+    if (pinnedSection) {
+      const hasPinned = getPinnedTools().length > 0;
+      pinnedSection.classList.toggle('hidden', !hasPinned);
+    }
+
+    categorySections.forEach(section => {
+      section.classList.remove('hidden');
+      const tools = section.querySelectorAll('.tool-item');
+      tools.forEach(tool => tool.classList.remove('hidden'));
+
+      // Restore expand/collapse state
+      const categoryName = (section as HTMLElement).dataset.category || '';
+      const toolsContainer = section.querySelector('.category-tools');
+      const chevron = section.querySelector('.category-header i');
+      const isExpanded = isCategoryExpanded(categoryName);
+      toolsContainer?.classList.toggle('hidden', !isExpanded);
+      chevron?.classList.toggle('rotate-90', isExpanded);
+    });
+    return;
   }
 
+  // Hide pinned section during search
+  pinnedSection?.classList.add('hidden');
 
-  // Initialize Shortcuts System
-  ShortcutsManager.init();
+  // Filter and expand all categories
+  categorySections.forEach(section => {
+    const tools = section.querySelectorAll('.tool-item');
+    let hasVisibleTool = false;
 
-  // Tab switching for settings modal
+    tools.forEach(toolEl => {
+      const toolItem = toolEl as HTMLElement;
+      const toolName = toolItem.querySelector('span')?.textContent || '';
+      const toolId = toolItem.dataset.toolId || '';
+      const tool = getToolById(toolId);
+      const subtitle = tool?.subtitle || '';
+
+      const matches = fuzzyMatch(searchTerm, toolName) || fuzzyMatch(searchTerm, subtitle);
+      toolItem.classList.toggle('hidden', !matches);
+      if (matches) hasVisibleTool = true;
+    });
+
+    // Show/hide category based on matches
+    section.classList.toggle('hidden', !hasVisibleTool);
+
+    // Expand category if it has matches
+    if (hasVisibleTool) {
+      const toolsContainer = section.querySelector('.category-tools');
+      const chevron = section.querySelector('.category-header i');
+      toolsContainer?.classList.remove('hidden');
+      chevron?.classList.add('rotate-90');
+    }
+  });
+}
+
+// ============================================================================
+// Sidebar Toggle
+// ============================================================================
+
+function setupSidebarToggle(): void {
+  const sidebar = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('sidebar-toggle');
+  const sidebarCollapsedToggle = document.getElementById('sidebar-collapsed-toggle') as HTMLInputElement;
+
+  if (!sidebar || !toggleBtn) return;
+
+  // Load saved preference
+  const savedCollapsed = localStorage.getItem(SIDEBAR_COLLAPSED_KEY) === 'true';
+  if (savedCollapsed) {
+    sidebar.classList.add('sidebar-collapsed');
+  }
+
+  // Update preferences toggle
+  if (sidebarCollapsedToggle) {
+    sidebarCollapsedToggle.checked = savedCollapsed;
+    sidebarCollapsedToggle.addEventListener('change', (e) => {
+      const collapsed = (e.target as HTMLInputElement).checked;
+      localStorage.setItem(SIDEBAR_COLLAPSED_KEY, collapsed.toString());
+    });
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const isCollapsed = sidebar.classList.toggle('sidebar-collapsed');
+    localStorage.setItem(SIDEBAR_COLLAPSED_KEY, isCollapsed.toString());
+  });
+}
+
+// ============================================================================
+// Settings Modal
+// ============================================================================
+
+function setupSettingsModal(): void {
+  const openBtn = document.getElementById('open-shortcuts-btn');
+  const closeBtn = document.getElementById('close-shortcuts-modal');
+  const modal = document.getElementById('shortcuts-modal');
+
+  if (!openBtn || !closeBtn || !modal) return;
+
+  openBtn.addEventListener('click', () => {
+    renderShortcutsList();
+    modal.classList.remove('hidden');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.add('hidden');
+    }
+  });
+
+  // Tab switching
   const shortcutsTabBtn = document.getElementById('shortcuts-tab-btn');
   const preferencesTabBtn = document.getElementById('preferences-tab-btn');
   const shortcutsTabContent = document.getElementById('shortcuts-tab-content');
@@ -466,475 +449,238 @@ const init = async () => {
     });
   }
 
-  // Full-width toggle functionality
-  const fullWidthToggle = document.getElementById('full-width-toggle') as HTMLInputElement;
-  const toolInterface = document.getElementById('tool-interface');
-
-  // Load saved preference
-  const savedFullWidth = localStorage.getItem('fullWidthMode') === 'true';
-  if (fullWidthToggle) {
-    fullWidthToggle.checked = savedFullWidth;
-    applyFullWidthMode(savedFullWidth);
-  }
-
-  function applyFullWidthMode(enabled: boolean) {
-    if (toolInterface) {
-      if (enabled) {
-        toolInterface.classList.remove('max-w-4xl');
-      } else {
-        toolInterface.classList.add('max-w-4xl');
-      }
-    }
-
-    // Apply to all page uploaders
-    const pageUploaders = document.querySelectorAll('#tool-uploader');
-    pageUploaders.forEach((uploader) => {
-      if (enabled) {
-        uploader.classList.remove('max-w-2xl', 'max-w-5xl');
-      } else {
-        // Restore original max-width (most are max-w-2xl, add-stamps is max-w-5xl)
-        if (!uploader.classList.contains('max-w-2xl') && !uploader.classList.contains('max-w-5xl')) {
-          uploader.classList.add('max-w-2xl');
-        }
-      }
-    });
-  }
-
-  if (fullWidthToggle) {
-    fullWidthToggle.addEventListener('change', (e) => {
-      const enabled = (e.target as HTMLInputElement).checked;
-      localStorage.setItem('fullWidthMode', enabled.toString());
-      applyFullWidthMode(enabled);
-    });
-  }
-
-  // Shortcuts UI Handlers
-  if (dom.openShortcutsBtn) {
-    dom.openShortcutsBtn.addEventListener('click', () => {
-      renderShortcutsList();
-      dom.shortcutsModal.classList.remove('hidden');
-    });
-  }
-
-  if (dom.closeShortcutsModalBtn) {
-    dom.closeShortcutsModalBtn.addEventListener('click', () => {
-      dom.shortcutsModal.classList.add('hidden');
-    });
-  }
-
-  // Close modal on outside click
-  if (dom.shortcutsModal) {
-    dom.shortcutsModal.addEventListener('click', (e) => {
-      if (e.target === dom.shortcutsModal) {
-        dom.shortcutsModal.classList.add('hidden');
-      }
-    });
-  }
-
-  if (dom.resetShortcutsBtn) {
-    dom.resetShortcutsBtn.addEventListener('click', async () => {
-      const confirmed = await showWarningModal(
-        t('settings.warnings.resetTitle'),
-        t('settings.warnings.resetMessage'),
-        true
-      );
-
-      if (confirmed) {
+  // Reset shortcuts
+  if (resetShortcutsBtn) {
+    resetShortcutsBtn.addEventListener('click', async () => {
+      if (confirm('Reset all shortcuts to defaults?')) {
         ShortcutsManager.reset();
         renderShortcutsList();
       }
     });
   }
 
-  if (dom.exportShortcutsBtn) {
-    dom.exportShortcutsBtn.addEventListener('click', () => {
-      ShortcutsManager.exportSettings();
-    });
-  }
+  // Import/Export
+  const exportBtn = document.getElementById('export-shortcuts-btn');
+  const importBtn = document.getElementById('import-shortcuts-btn');
 
-  if (dom.importShortcutsBtn) {
-    dom.importShortcutsBtn.addEventListener('click', () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.json';
-      input.onchange = (e) => {
-        const file = (e.target as HTMLInputElement).files?.[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = async (e) => {
-            const content = e.target?.result as string;
-            if (ShortcutsManager.importSettings(content)) {
-              renderShortcutsList();
-              await showWarningModal(
-                t('settings.warnings.importSuccessTitle'),
-                t('settings.warnings.importSuccessMessage'),
-                false
-              );
-            } else {
-              await showWarningModal(
-                t('settings.warnings.importFailTitle'),
-                t('settings.warnings.importFailMessage'),
-                false
-              );
-            }
-          };
-          reader.readAsText(file);
-        }
-      };
-      input.click();
-    });
-  }
+  exportBtn?.addEventListener('click', () => {
+    ShortcutsManager.exportSettings();
+  });
 
-  if (dom.shortcutSearch) {
-    dom.shortcutSearch.addEventListener('input', (e) => {
-      const term = (e.target as HTMLInputElement).value.toLowerCase();
-      const sections = dom.shortcutsList.querySelectorAll('.category-section');
-
-      sections.forEach((section) => {
-        const items = section.querySelectorAll('.shortcut-item');
-        let visibleCount = 0;
-
-        items.forEach((item) => {
-          const text = item.textContent?.toLowerCase() || '';
-          if (text.includes(term)) {
-            item.classList.remove('hidden');
-            visibleCount++;
+  importBtn?.addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const content = e.target?.result as string;
+          if (ShortcutsManager.importSettings(content)) {
+            renderShortcutsList();
+            alert('Shortcuts imported successfully!');
           } else {
-            item.classList.add('hidden');
+            alert('Failed to import shortcuts. Invalid file format.');
           }
-        });
+        };
+        reader.readAsText(file);
+      }
+    };
+    input.click();
+  });
 
-        if (visibleCount === 0) {
-          section.classList.add('hidden');
-        } else {
-          section.classList.remove('hidden');
-        }
+  // Shortcut search
+  const shortcutSearch = document.getElementById('shortcut-search') as HTMLInputElement;
+  shortcutSearch?.addEventListener('input', (e) => {
+    const term = (e.target as HTMLInputElement).value.toLowerCase();
+    const sections = document.querySelectorAll('#shortcuts-list .category-section');
+
+    sections.forEach(section => {
+      const items = section.querySelectorAll('.shortcut-item');
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const text = item.textContent?.toLowerCase() || '';
+        const isMatch = text.includes(term);
+        item.classList.toggle('hidden', !isMatch);
+        if (isMatch) visibleCount++;
       });
+
+      section.classList.toggle('hidden', visibleCount === 0);
     });
-  }
+  });
+}
 
-  // Reserved shortcuts that commonly conflict with browser/OS functions
-  const RESERVED_SHORTCUTS: Record<string, { mac?: string; windows?: string }> = {
-    'mod+w': { mac: 'Closes tab', windows: 'Closes tab' },
-    'mod+t': { mac: 'Opens new tab', windows: 'Opens new tab' },
-    'mod+n': { mac: 'Opens new window', windows: 'Opens new window' },
-    'mod+shift+n': { mac: 'Opens incognito window', windows: 'Opens incognito window' },
-    'mod+q': { mac: 'Quits application (cannot be overridden)' },
-    'mod+m': { mac: 'Minimizes window' },
-    'mod+h': { mac: 'Hides window' },
-    'mod+r': { mac: 'Reloads page', windows: 'Reloads page' },
-    'mod+shift+r': { mac: 'Hard reloads page', windows: 'Hard reloads page' },
-    'mod+l': { mac: 'Focuses address bar', windows: 'Focuses address bar' },
-    'mod+d': { mac: 'Bookmarks page', windows: 'Bookmarks page' },
-    'mod+shift+t': { mac: 'Reopens closed tab', windows: 'Reopens closed tab' },
-    'mod+shift+w': { mac: 'Closes window', windows: 'Closes window' },
-    'mod+tab': { mac: 'Switches tabs', windows: 'Switches apps' },
-    'alt+f4': { windows: 'Closes window' },
-    'ctrl+tab': { mac: 'Switches tabs', windows: 'Switches tabs' },
-  };
+function renderShortcutsList(): void {
+  const container = document.getElementById('shortcuts-list');
+  if (!container) return;
 
-  function getReservedShortcutWarning(combo: string, isMac: boolean): string | null {
-    const reserved = RESERVED_SHORTCUTS[combo];
-    if (!reserved) return null;
+  container.innerHTML = '';
+  const allShortcuts = ShortcutsManager.getAllShortcuts();
+  const isMac = navigator.userAgent.toUpperCase().includes('MAC');
+  const allTools = categories.flatMap(c => c.tools);
 
-    const description = isMac ? reserved.mac : reserved.windows;
-    if (!description) return null;
+  categories.forEach(category => {
+    const section = document.createElement('div');
+    section.className = 'category-section mb-6 last:mb-0';
 
-    return description;
-  }
+    const header = document.createElement('h3');
+    header.className = 'text-gray-400 text-xs font-bold uppercase tracking-wider mb-3 pl-1';
+    header.textContent = category.name;
+    section.appendChild(header);
 
-  function showWarningModal(title: string, message: string, confirmMode: boolean = true): Promise<boolean> {
-    return new Promise((resolve) => {
-      if (!dom.warningModal || !dom.warningTitle || !dom.warningMessage || !dom.warningCancelBtn || !dom.warningConfirmBtn) {
-        resolve(confirmMode ? confirm(message) : (alert(message), true));
-        return;
-      }
+    const itemsContainer = document.createElement('div');
+    itemsContainer.className = 'space-y-2';
 
-      dom.warningTitle.textContent = title;
-      dom.warningMessage.innerHTML = message;
-      dom.warningModal.classList.remove('hidden');
-      dom.warningModal.classList.add('flex');
+    category.tools.forEach(tool => {
+      const toolId = getToolId(tool as Tool);
+      const currentShortcut = allShortcuts.get(toolId) || '';
 
-      if (confirmMode) {
-        dom.warningCancelBtn.style.display = '';
-        dom.warningConfirmBtn.textContent = 'Proceed';
-      } else {
-        dom.warningCancelBtn.style.display = 'none';
-        dom.warningConfirmBtn.textContent = 'OK';
-      }
+      const item = document.createElement('div');
+      item.className = 'shortcut-item flex items-center justify-between p-3 bg-gray-900 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors';
 
-      const handleConfirm = () => {
-        cleanup();
-        resolve(true);
+      const left = document.createElement('div');
+      left.className = 'flex items-center gap-3';
+
+      const icon = document.createElement('i');
+      icon.className = 'w-5 h-5 text-indigo-400';
+      icon.setAttribute('data-lucide', tool.icon);
+
+      const name = document.createElement('span');
+      name.className = 'text-gray-200 font-medium';
+      name.textContent = tool.name;
+
+      left.append(icon, name);
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'shortcut-input w-32 bg-gray-800 border border-gray-600 text-white text-center text-sm rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all';
+      input.placeholder = 'Click to set';
+      input.value = formatShortcutDisplay(currentShortcut, isMac);
+      input.readOnly = true;
+
+      input.onfocus = () => {
+        input.value = 'Press keys...';
+        input.classList.add('border-indigo-500');
       };
 
-      const handleCancel = () => {
-        cleanup();
-        resolve(false);
+      input.onblur = () => {
+        input.value = formatShortcutDisplay(ShortcutsManager.getShortcut(toolId) || '', isMac);
+        input.classList.remove('border-indigo-500');
       };
 
-      const cleanup = () => {
-        dom.warningModal?.classList.add('hidden');
-        dom.warningModal?.classList.remove('flex');
-        dom.warningConfirmBtn?.removeEventListener('click', handleConfirm);
-        dom.warningCancelBtn?.removeEventListener('click', handleCancel);
-      };
+      input.onkeydown = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
 
-      dom.warningConfirmBtn.addEventListener('click', handleConfirm);
-      dom.warningCancelBtn.addEventListener('click', handleCancel);
-
-      // Close on backdrop click
-      dom.warningModal.addEventListener('click', (e) => {
-        if (e.target === dom.warningModal) {
-          if (confirmMode) {
-            handleCancel();
-          } else {
-            handleConfirm();
-          }
-        }
-      }, { once: true });
-    });
-  }
-
-  function getToolId(tool: any): string {
-    if (tool.id) return tool.id;
-    if (tool.href) {
-      const match = tool.href.match(/\/([^/]+)\.html$/);
-      return match ? match[1] : tool.href;
-    }
-    return 'unknown';
-  }
-
-  function renderShortcutsList() {
-    if (!dom.shortcutsList) return;
-    dom.shortcutsList.innerHTML = '';
-
-    const allShortcuts = ShortcutsManager.getAllShortcuts();
-    const isMac = navigator.userAgent.toUpperCase().includes('MAC');
-    const allTools = categories.flatMap(c => c.tools);
-
-    categories.forEach(category => {
-      const section = document.createElement('div');
-      section.className = 'category-section mb-6 last:mb-0';
-
-      const header = document.createElement('h3');
-      header.className = 'text-gray-400 text-xs font-bold uppercase tracking-wider mb-3 pl-1';
-      // Translate category name
-      const categoryKey = categoryTranslationKeys[category.name];
-      header.textContent = categoryKey ? t(categoryKey) : category.name;
-      section.appendChild(header);
-
-      const itemsContainer = document.createElement('div');
-      itemsContainer.className = 'space-y-2';
-      section.appendChild(itemsContainer);
-
-      let hasTools = false;
-
-      category.tools.forEach(tool => {
-        hasTools = true;
-        const toolId = getToolId(tool);
-        const currentShortcut = allShortcuts.get(toolId) || '';
-
-        const item = document.createElement('div');
-        item.className = 'shortcut-item flex items-center justify-between p-3 bg-gray-900 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors';
-
-        const left = document.createElement('div');
-        left.className = 'flex items-center gap-3';
-
-        const icon = document.createElement('i');
-        icon.className = 'w-5 h-5 text-indigo-400';
-        icon.setAttribute('data-lucide', tool.icon);
-
-        const name = document.createElement('span');
-        name.className = 'text-gray-200 font-medium';
-        const toolKey = toolTranslationKeys[tool.name];
-        name.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
-
-        left.append(icon, name);
-
-        const right = document.createElement('div');
-        right.className = 'relative';
-
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'shortcut-input w-32 bg-gray-800 border border-gray-600 text-white text-center text-sm rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all';
-        input.placeholder = t('settings.clickToSet');
-        input.value = formatShortcutDisplay(currentShortcut, isMac);
-        input.readOnly = true;
-
-        const clearBtn = document.createElement('button');
-        clearBtn.className = 'absolute -right-2 -top-2 bg-gray-700 hover:bg-red-600 text-white rounded-full p-0.5 hidden group-hover:block shadow-sm';
-        clearBtn.innerHTML = '<i data-lucide="x" class="w-3 h-3"></i>';
-        if (currentShortcut) {
-          right.classList.add('group');
-        }
-
-        clearBtn.onclick = (e) => {
-          e.stopPropagation();
+        if (e.key === 'Backspace' || e.key === 'Delete') {
           ShortcutsManager.setShortcut(toolId, '');
           renderShortcutsList();
-        };
+          return;
+        }
 
-        input.onkeydown = async (e) => {
-          e.preventDefault();
-          e.stopPropagation();
+        const keys: string[] = [];
+        if (isMac) {
+          if (e.metaKey) keys.push('mod');
+          if (e.ctrlKey) keys.push('ctrl');
+        } else {
+          if (e.ctrlKey || e.metaKey) keys.push('mod');
+        }
+        if (e.altKey) keys.push('alt');
+        if (e.shiftKey) keys.push('shift');
 
-          if (e.key === 'Backspace' || e.key === 'Delete') {
-            ShortcutsManager.setShortcut(toolId, '');
-            renderShortcutsList();
-            return;
+        let key = e.key.toLowerCase();
+        if (e.altKey && e.code) {
+          if (e.code.startsWith('Key')) {
+            key = e.code.slice(3).toLowerCase();
+          } else if (e.code.startsWith('Digit')) {
+            key = e.code.slice(5);
           }
+        }
 
-          const keys: string[] = [];
-          // On Mac: metaKey = Command, ctrlKey = Control
-          // On Windows/Linux: metaKey is rare, ctrlKey = Ctrl
-          if (isMac) {
-            if (e.metaKey) keys.push('mod'); // Command on Mac
-            if (e.ctrlKey) keys.push('ctrl'); // Control on Mac (separate from Command)
-          } else {
-            if (e.ctrlKey || e.metaKey) keys.push('mod'); // Ctrl on Windows/Linux
-          }
-          if (e.altKey) keys.push('alt');
-          if (e.shiftKey) keys.push('shift');
-
-          let key = e.key.toLowerCase();
-
-          if (e.altKey && e.code) {
-            if (e.code.startsWith('Key')) {
-              key = e.code.slice(3).toLowerCase();
-            } else if (e.code.startsWith('Digit')) {
-              key = e.code.slice(5);
-            }
-          }
-
-          const isModifier = ['control', 'shift', 'alt', 'meta'].includes(key);
-          const isDeadKey = key === 'dead' || key.startsWith('dead');
-
-          // Ignore dead keys (used for accented characters on Mac with Option key)
-          if (isDeadKey) {
-            input.value = formatShortcutDisplay(ShortcutsManager.getShortcut(toolId) || '', isMac);
-            return;
-          }
-
-          if (!isModifier) {
-            keys.push(key);
-          }
-
+        const isModifier = ['control', 'shift', 'alt', 'meta'].includes(key);
+        if (!isModifier) {
+          keys.push(key);
           const combo = keys.join('+');
 
-          input.value = formatShortcutDisplay(combo, isMac);
-
-          if (!isModifier) {
-            const existingToolId = ShortcutsManager.findToolByShortcut(combo);
-
-            if (existingToolId && existingToolId !== toolId) {
-              const existingTool = allTools.find(t => getToolId(t) === existingToolId);
-              const existingToolName = existingTool?.name || existingToolId;
-              const displayCombo = formatShortcutDisplay(combo, isMac);
-
-              const existingToolKey = existingTool ? toolTranslationKeys[existingTool.name] : null;
-              const translatedToolName = existingToolKey ? t(`${existingToolKey}.name`) : existingToolName;
-
-              await showWarningModal(
-                t('settings.warnings.alreadyInUse'),
-                `<strong>${displayCombo}</strong> ${t('settings.warnings.assignedTo')}<br><br>` +
-                `<em>"${translatedToolName}"</em><br><br>` +
-                t('settings.warnings.chooseDifferent'),
-                false
-              );
-
-              input.value = formatShortcutDisplay(ShortcutsManager.getShortcut(toolId) || '', isMac);
-              input.classList.remove('border-indigo-500', 'text-indigo-400');
-              input.blur();
-              return;
-            }
-
-            const reservedWarning = getReservedShortcutWarning(combo, isMac);
-            if (reservedWarning) {
-              const displayCombo = formatShortcutDisplay(combo, isMac);
-              const shouldProceed = await showWarningModal(
-                t('settings.warnings.reserved'),
-                `<strong>${displayCombo}</strong> ${t('settings.warnings.commonlyUsed')}<br><br>` +
-                `"<em>${reservedWarning}</em>"<br><br>` +
-                `${t('settings.warnings.unreliable')}<br><br>` +
-                t('settings.warnings.useAnyway')
-              );
-
-              if (!shouldProceed) {
-                // Revert display
-                input.value = formatShortcutDisplay(ShortcutsManager.getShortcut(toolId) || '', isMac);
-                input.classList.remove('border-indigo-500', 'text-indigo-400');
-                input.blur();
-                return;
-              }
-            }
-
-            ShortcutsManager.setShortcut(toolId, combo);
-            // Re-render to update all inputs (show conflicts in real-time)
-            renderShortcutsList();
+          // Check for conflicts
+          const existingToolId = ShortcutsManager.findToolByShortcut(combo);
+          if (existingToolId && existingToolId !== toolId) {
+            const existingTool = allTools.find(t => getToolId(t as Tool) === existingToolId);
+            alert(`This shortcut is already assigned to "${existingTool?.name || existingToolId}"`);
+            input.blur();
+            return;
           }
-        };
 
-        input.onkeyup = (e) => {
-          // If the user releases a modifier without pressing a main key, revert to saved
-          const key = e.key.toLowerCase();
-          if (['control', 'shift', 'alt', 'meta'].includes(key)) {
-            const currentSaved = ShortcutsManager.getShortcut(toolId);
-          }
-        };
+          ShortcutsManager.setShortcut(toolId, combo);
+          renderShortcutsList();
+        }
+      };
 
-        input.onfocus = () => {
-          input.value = t('settings.pressKeys');
-          input.classList.add('border-indigo-500', 'text-indigo-400');
-        };
-
-        input.onblur = () => {
-          input.value = formatShortcutDisplay(ShortcutsManager.getShortcut(toolId) || '', isMac);
-          input.classList.remove('border-indigo-500', 'text-indigo-400');
-        };
-
-        right.append(input);
-        if (currentShortcut) right.append(clearBtn);
-
-        item.append(left, right);
-        itemsContainer.appendChild(item);
-      });
-
-      if (hasTools) {
-        dom.shortcutsList.appendChild(section);
-      }
+      item.append(left, input);
+      itemsContainer.appendChild(item);
     });
 
-    createIcons({ icons });
+    section.appendChild(itemsContainer);
+    container.appendChild(section);
+  });
+
+  createIcons({ icons });
+}
+
+// ============================================================================
+// Alert Modal
+// ============================================================================
+
+function setupAlertModal(): void {
+  if (dom.alertOkBtn) {
+    dom.alertOkBtn.addEventListener('click', hideAlert);
   }
+}
 
-  const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+// ============================================================================
+// Full Width Mode
+// ============================================================================
 
-  if (scrollToTopBtn) {
-    let lastScrollY = window.scrollY;
+function setupFullWidthMode(): void {
+  const toggle = document.getElementById('full-width-toggle') as HTMLInputElement;
+  if (!toggle) return;
 
-    window.addEventListener('scroll', () => {
-      const currentScrollY = window.scrollY;
+  const savedValue = localStorage.getItem('fullWidthMode') === 'true';
+  toggle.checked = savedValue;
 
-      if (currentScrollY < lastScrollY && currentScrollY > 300) {
-        scrollToTopBtn.classList.add('visible');
-      } else {
-        scrollToTopBtn.classList.remove('visible');
-      }
+  toggle.addEventListener('change', (e) => {
+    const enabled = (e.target as HTMLInputElement).checked;
+    localStorage.setItem('fullWidthMode', enabled.toString());
+  });
+}
 
-      lastScrollY = currentScrollY;
-    });
+// ============================================================================
+// Initialization
+// ============================================================================
 
-    scrollToTopBtn.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'instant'
-      });
-    });
-  }
+const init = async () => {
+  // Initialize PDF.js worker
+  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-  // Rewrite links after all dynamic content is fully loaded
-  rewriteLinks();
+  // Render sidebar
+  renderSidebar();
+
+  // Setup features
+  setupSearch();
+  setupSidebarToggle();
+  setupSettingsModal();
+  setupAlertModal();
+  setupFullWidthMode();
+
+  // Initialize shortcuts system
+  ShortcutsManager.init();
+
+  // Initialize icons
+  createIcons({ icons });
+
+  console.log('BentoPDF initialized');
 };
 
 window.addEventListener('load', init);
