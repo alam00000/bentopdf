@@ -5,7 +5,7 @@ import { downloadFile, hexToRgb, getPDFDocument } from '../utils/helpers.js'
 import { createIcons, icons } from 'lucide'
 import * as pdfjsLib from 'pdfjs-dist'
 import 'pdfjs-dist/web/pdf_viewer.css'
-import { FontParser } from '../utils/font-parser.js'
+import { parseFont } from '../utils/font-utils.js'
 import { initializeFontModal, showFontModal } from './font-modal.js'
 
 // Initialize PDF.js worker
@@ -21,34 +21,46 @@ let additionalFontBuffers: Map<string, ArrayBuffer> = new Map()
 
 // Helper function to apply parsed font styles to an element
 function applyParsedFontStyles(element: HTMLElement, fontFamily: string): void {
-    const parsedFont = FontParser.parseFont(fontFamily)
+    const parsedFont = parseFont(fontFamily)
     element.style.fontFamily = parsedFont.family
     element.style.fontWeight = parsedFont.weight
     element.style.fontStyle = parsedFont.style
 }
 
 // Callback function for when a font is added via the font modal
-function onFontAdded(fontName: string, fontBuffer: ArrayBuffer, isGoogleFont: boolean = false, cssUrl?: string): void {
+function onFontAdded(fontName: string, fontBuffer: ArrayBuffer): void {
     // Store in additional fonts
     additionalFonts.push(fontName)
 
     // Store font buffer for later embedding
     additionalFontBuffers.set(fontName, fontBuffer)
 
+    // Load the font for web rendering (applies to all custom fonts)
+    const parsedFont = parseFont(fontName)
+    const blob = new Blob([fontBuffer], { type: 'font/ttf' })
+    const fontUrl = URL.createObjectURL(blob)
+    const fontFace = new FontFace(parsedFont.family, `url(${fontUrl})`, {
+        weight: parsedFont.weight,
+        style: parsedFont.style
+    })
+
+    fontFace.load().then(() => {
+        document.fonts.add(fontFace)
+    }).catch(err => {
+        console.warn('Failed to load web font:', err)
+    })
+
 
     // Update all font dropdowns
     const propFontFamily = document.getElementById('propFontFamily') as HTMLSelectElement
-    if (propFontFamily) {
-        propFontFamily.innerHTML = getAllFontOptions()
-    }
+
+    if (propFontFamily) propFontFamily.innerHTML = getAllFontOptions()
 
     // Update embedded fonts list
     populateEmbeddedFontsList()
 
     // Update properties panel if currently showing
-    if (selectedField) {
-        showProperties(selectedField)
-    }
+    if (selectedField) showProperties(selectedField)
 }
 
 let fields: FormField[] = []
@@ -255,18 +267,15 @@ function populateEmbeddedFontsList(): void {
 
         const indicator = document.createElement('span')
         const isStandard = STANDARD_FONT_NAMES.includes(fontName)
-        const isGoogleFont = additionalFonts.includes(fontName)
 
         if (isStandard) {
             indicator.textContent = '🅰'
             indicator.title = 'Standard PDF Font'
-        } else if (isGoogleFont) {
-            indicator.textContent = '🌐'
-            indicator.title = 'Google Font'
         } else {
-            indicator.textContent = '💾'
-            indicator.title = 'Embedded Font'
+            indicator.textContent = '🌐'
+            indicator.title = 'Custom Font'
         }
+
         indicator.className = 'text-xs'
 
         const label = document.createElement('span')

@@ -1,4 +1,4 @@
-import { FontParser } from '../utils/font-parser.js'
+import { parseFont, getDisplayName, generateFontSourceUrl, hasValidFontExtension } from '../utils/font-utils.js'
 
 // Font modal elements
 const addFontModal = document.getElementById('addFontModal') as HTMLDivElement
@@ -229,12 +229,12 @@ const ERROR_MESSAGES = {
 // State variables
 let currentActiveTab = 'google'
 let selectedFontFile: File | null = null
-let onFontAdded: ((fontName: string, fontBuffer: ArrayBuffer, isGoogleFont?: boolean, cssUrl?: string) => void) | null = null
+let onFontAdded: ((fontName: string, fontBuffer: ArrayBuffer) => void) | null = null
 
 /**
  * Initialize the font modal functionality
  */
-export function initializeFontModal(onFontAddedCallback?: (fontName: string, fontBuffer: ArrayBuffer, isGoogleFont?: boolean, cssUrl?: string) => void): void {
+export function initializeFontModal(onFontAddedCallback?: (fontName: string, fontBuffer: ArrayBuffer) => void): void {
     onFontAdded = onFontAddedCallback || null
 
     // Set up event listeners
@@ -377,20 +377,18 @@ async function handleFontSubmit(): Promise<void> {
 
                 try {
                     // Parse the font name with smart weight detection
-                    const parsedFont = FontParser.parseFont(inputFontName)
-                    fontName = FontParser.getDisplayName(parsedFont)
-
-                    // Try multiple download methods for Google Fonts
-                    const googleFontUrl = FontParser.generateGoogleFontsUrl(parsedFont)
+                    const parsedFont = parseFont(inputFontName)
+                    fontName = getDisplayName(parsedFont)
 
                     try {
-                        const altUrl = `https://cdn.jsdelivr.net/fontsource/fonts/${parsedFont.family.toLowerCase().replace(/\s+/g, '-')}@latest/latin-${parsedFont.weight}-${parsedFont.style}.ttf`
-                        const altResponse = await fetch(altUrl)
+                        const fontSourceUrl = generateFontSourceUrl(parsedFont)
+                        const response = await fetch(fontSourceUrl)
 
-                        if (altResponse.ok) {
-                            fontBuffer = await altResponse.arrayBuffer()
+                        if (response.ok) {
+                            fontBuffer = await response.arrayBuffer()
                         }
-                    } catch (altError) {
+                    } catch (error) {
+                        // Font download failed
                     }
 
                     if (!fontBuffer) {
@@ -461,7 +459,7 @@ async function handleFontSubmit(): Promise<void> {
 
                     // Validate that it's actually a font file
                     const contentType = response.headers.get('content-type') || ''
-                    const hasValidExtension = url.match(/\.(ttf|otf|woff2?|eot)$/i)
+                    const hasValidExtension = hasValidFontExtension(url)
                     const hasValidContentType = contentType.includes('font/') ||
                                                contentType.includes('application/font') ||
                                                contentType.includes('application/x-font')
@@ -548,11 +546,7 @@ async function handleFontSubmit(): Promise<void> {
             addFontSubmit.style.opacity = '1'
 
             // Call the callback to add the font to the form creator
-            if (onFontAdded) {
-                const isGoogleFont = currentActiveTab === 'google'
-                const cssUrl = isGoogleFont ? FontParser.generateGoogleFontsUrl(FontParser.parseFont(googleFontName.value.trim())) : undefined
-                onFontAdded(fontName, fontBuffer, isGoogleFont, cssUrl)
-            }
+            if (onFontAdded) onFontAdded(fontName, fontBuffer)
 
             // Hide modal after a short delay to show success state
             setTimeout(() => {
