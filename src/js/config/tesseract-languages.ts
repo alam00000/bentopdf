@@ -24,6 +24,7 @@ export const tesseractLanguages = {
   ell: 'Greek, Modern (1453-)',
   enm: 'English, Middle (1100-1500)',
   epo: 'Esperanto',
+  esp: 'Spanish',
   est: 'Estonian',
   eus: 'Basque',
   fas: 'Persian',

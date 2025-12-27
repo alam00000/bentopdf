@@ -36,7 +36,7 @@
     "jsdom": "^27.0.1",
     "prettier": "^3.6.2",
     "typescript": "~5.9.3",
-    "vite": "^7.1.11",
+    "vite": "^7.2.7",
     "vite-plugin-node-polyfills": "^0.24.0",
     "vitest": "^3.2.4"
   },
