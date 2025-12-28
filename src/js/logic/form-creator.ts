@@ -638,11 +638,14 @@ function renderField(field: FormField): void {
 
     // Touch events for moving fields
     let touchMoveStarted = false
+
     fieldWrapper.addEventListener('touchstart', (e) => {
         if ((e.target as HTMLElement).classList.contains('resize-handle')) {
             return
         }
+
         touchMoveStarted = false
+
         const touch = e.touches[0]
         const rect = canvas.getBoundingClientRect()
         offsetX = touch.clientX - rect.left - field.x
@@ -653,6 +656,7 @@ function renderField(field: FormField): void {
     fieldWrapper.addEventListener('touchmove', (e) => {
         e.preventDefault()
         touchMoveStarted = true
+
         const touch = e.touches[0]
         const rect = canvas.getBoundingClientRect()
         let newX = touch.clientX - rect.left - offsetX
@@ -674,9 +678,12 @@ function renderField(field: FormField): void {
 
     // Add resize handles to the container - hidden by default
     const handles = ['nw', 'ne', 'sw', 'se', 'n', 's', 'e', 'w']
+
     handles.forEach((pos) => {
         const handle = document.createElement('div')
+
         handle.className = `absolute w-2.5 h-2.5 bg-white border border-indigo-600 z-10 cursor-${pos}-resize resize-handle hidden` // Added hidden class
+
         const positions: Record<string, string> = {
             nw: 'top-0 left-0 -translate-x-1/2 -translate-y-1/2',
             ne: 'top-0 right-0 translate-x-1/2 -translate-y-1/2',
@@ -699,6 +706,7 @@ function renderField(field: FormField): void {
         handle.addEventListener('touchstart', (e) => {
             e.stopPropagation()
             e.preventDefault()
+
             const touch = e.touches[0]
             // Create a synthetic mouse event for startResize
             const syntheticEvent = {
@@ -706,6 +714,7 @@ function renderField(field: FormField): void {
                 clientY: touch.clientY,
                 preventDefault: () => { }
             } as MouseEvent
+
             startResize(syntheticEvent, field, pos)
         })
 
@@ -742,6 +751,7 @@ document.addEventListener('mousemove', (e) => {
         draggedElement.style.top = newY + 'px'
 
         const field = fields.find((f) => f.id === draggedElement!.id)
+
         if (field) {
             field.x = newX
             field.y = newY
@@ -754,33 +764,41 @@ document.addEventListener('mousemove', (e) => {
         if (resizePos!.includes('e')) {
             resizeField.width = Math.max(50, startWidth + dx)
         }
+
         if (resizePos!.includes('w')) {
             const newWidth = Math.max(50, startWidth - dx)
             const widthDiff = startWidth - newWidth
+
             resizeField.width = newWidth
             resizeField.x = startLeft + widthDiff
         }
+
         if (resizePos!.includes('s')) {
             resizeField.height = Math.max(20, startHeight + dy)
         }
+
         if (resizePos!.includes('n')) {
             const newHeight = Math.max(20, startHeight - dy)
             const heightDiff = startHeight - newHeight
+
             resizeField.height = newHeight
             resizeField.y = startTop + heightDiff
         }
 
         if (fieldWrapper) {
             const container = fieldWrapper.querySelector('.field-container') as HTMLElement
+
             fieldWrapper.style.width = resizeField.width + 'px'
             fieldWrapper.style.left = resizeField.x + 'px'
             fieldWrapper.style.top = resizeField.y + 'px'
+
             if (container) {
                 container.style.height = resizeField.height + 'px'
             }
             // Update combing visuals on resize
             if (resizeField.combCells > 0) {
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                 if (textEl) {
                     textEl.style.letterSpacing = `calc(${resizeField.width / resizeField.combCells}px - 1ch)`
                     textEl.style.paddingLeft = `calc((${resizeField.width / resizeField.combCells}px - 1ch) / 2)`
@@ -794,11 +812,13 @@ document.addEventListener('mouseup', () => {
     draggedElement = null
     resizing = false
     resizeField = null
+
     if (!gridAlwaysVisible) removeGrid()
 })
 
 document.addEventListener('touchmove', (e) => {
     const touch = e.touches[0]
+
     if (resizing && resizeField) {
         const dx = touch.clientX - startX
         const dy = touch.clientY - startY
@@ -807,32 +827,41 @@ document.addEventListener('touchmove', (e) => {
         if (resizePos!.includes('e')) {
             resizeField.width = Math.max(50, startWidth + dx)
         }
+
         if (resizePos!.includes('w')) {
             const newWidth = Math.max(50, startWidth - dx)
             const widthDiff = startWidth - newWidth
+
             resizeField.width = newWidth
             resizeField.x = startLeft + widthDiff
         }
+
         if (resizePos!.includes('s')) {
             resizeField.height = Math.max(20, startHeight + dy)
         }
+
         if (resizePos!.includes('n')) {
             const newHeight = Math.max(20, startHeight - dy)
             const heightDiff = startHeight - newHeight
+
             resizeField.height = newHeight
             resizeField.y = startTop + heightDiff
         }
 
         if (fieldWrapper) {
             const container = fieldWrapper.querySelector('.field-container') as HTMLElement
+
             fieldWrapper.style.width = resizeField.width + 'px'
             fieldWrapper.style.left = resizeField.x + 'px'
             fieldWrapper.style.top = resizeField.y + 'px'
+
             if (container) {
                 container.style.height = resizeField.height + 'px'
             }
+
             if (resizeField.combCells > 0) {
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                 if (textEl) {
                     textEl.style.letterSpacing = `calc(${resizeField.width / resizeField.combCells}px - 1ch)`
                     textEl.style.paddingLeft = `calc((${resizeField.width / resizeField.combCells}px - 1ch) / 2)`
@@ -853,7 +882,9 @@ document.addEventListener('touchend', () => {
 function selectField(field: FormField): void {
     deselectAll()
     selectedField = field
+
     const fieldWrapper = document.getElementById(field.id)
+
     if (fieldWrapper) {
         const container = fieldWrapper.querySelector('.field-container') as HTMLElement
         const label = fieldWrapper.querySelector('.field-label') as HTMLElement
@@ -881,6 +912,7 @@ function selectField(field: FormField): void {
 function deselectAll(): void {
     if (selectedField) {
         const fieldWrapper = document.getElementById(selectedField.id)
+
         if (fieldWrapper) {
             const container = fieldWrapper.querySelector('.field-container') as HTMLElement
             const label = fieldWrapper.querySelector('.field-label') as HTMLElement
@@ -901,8 +933,10 @@ function deselectAll(): void {
                 handle.classList.add('hidden')
             })
         }
+
         selectedField = null
     }
+
     hideProperties()
 }
 
@@ -1182,6 +1216,7 @@ function showProperties(field: FormField): void {
 
         if (fieldWrapper) {
             const label = fieldWrapper.querySelector('.field-label') as HTMLElement
+
             if (label) label.textContent = field.name
         }
     })
@@ -1192,9 +1227,11 @@ function showProperties(field: FormField): void {
 
     if (field.type === 'radio') {
         const existingGroupsSelect = document.getElementById('existingGroups') as HTMLSelectElement
+
         if (existingGroupsSelect) {
             existingGroupsSelect.addEventListener('change', (e) => {
                 const selectedGroup = (e.target as HTMLSelectElement).value
+
                 if (selectedGroup) {
                     propName.value = selectedGroup
                     field.name = selectedGroup
@@ -1202,6 +1239,7 @@ function showProperties(field: FormField): void {
 
                     // Update field label
                     const fieldWrapper = document.getElementById(field.id)
+
                     if (fieldWrapper) {
                         const label = fieldWrapper.querySelector('.field-label') as HTMLElement
                         if (label) label.textContent = field.name
@@ -1255,15 +1293,21 @@ function showProperties(field: FormField): void {
 
         propMaxLength.addEventListener('input', (e) => {
             const val = parseInt((e.target as HTMLInputElement).value)
+
             field.maxLength = isNaN(val) ? 0 : Math.max(0, val)
+
             if (field.maxLength > 0) {
                 propValue.maxLength = field.maxLength
+
                 if (field.defaultValue.length > field.maxLength) {
                     field.defaultValue = field.defaultValue.substring(0, field.maxLength)
                     propValue.value = field.defaultValue
+
                     const fieldWrapper = document.getElementById(field.id)
+
                     if (fieldWrapper) {
                         const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                         if (textEl) textEl.textContent = field.defaultValue
                     }
                 }
@@ -1274,6 +1318,7 @@ function showProperties(field: FormField): void {
 
         propComb.addEventListener('input', (e) => {
             const val = parseInt((e.target as HTMLInputElement).value)
+
             field.combCells = isNaN(val) ? 0 : Math.max(0, val)
 
             if (field.combCells > 0) {
@@ -1289,6 +1334,7 @@ function showProperties(field: FormField): void {
             } else {
                 propMaxLength.disabled = false
                 propValue.removeAttribute('maxLength')
+
                 if (field.maxLength > 0) {
                     propValue.maxLength = field.maxLength
                 }
@@ -1296,9 +1342,11 @@ function showProperties(field: FormField): void {
 
             // Re-render field visual only, NOT the properties panel
             const fieldWrapper = document.getElementById(field.id)
+
             if (fieldWrapper) {
                 // Update text content
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                 if (textEl) {
                     textEl.textContent = field.defaultValue
                     if (field.combCells > 0) {
@@ -1324,7 +1372,6 @@ function showProperties(field: FormField): void {
             const selectedValue = (e.target as HTMLSelectElement).value
 
             if (selectedValue === '__more_fonts__') {
-                // Reset selection to previous value and show modal
                 propFontFamily.value = field.fontFamily
                 showFontModal()
                 return
@@ -1332,17 +1379,14 @@ function showProperties(field: FormField): void {
 
             field.fontFamily = selectedValue
 
-            // Update embedded font list
             populateEmbeddedFontsList()
 
-            // Update rendered font
             const fieldWrapper = document.getElementById(field.id)
 
             if (fieldWrapper) {
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
 
                 if (textEl) {
-                    // Apply font styles using helper function
                     applyParsedFontStyles(textEl, field.fontFamily)
                 }
             }
