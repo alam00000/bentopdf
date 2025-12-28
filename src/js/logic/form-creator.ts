@@ -22,6 +22,7 @@ let additionalFontBuffers: Map<string, ArrayBuffer> = new Map()
 // Helper function to apply parsed font styles to an element
 function applyParsedFontStyles(element: HTMLElement, fontFamily: string): void {
     const parsedFont = parseFont(fontFamily)
+
     element.style.fontFamily = parsedFont.family
     element.style.fontWeight = parsedFont.weight
     element.style.fontStyle = parsedFont.style
@@ -279,14 +280,15 @@ function populateEmbeddedFontsList(): void {
         indicator.className = 'text-xs'
 
         const label = document.createElement('span')
+
         label.textContent = fontName
         label.className = `text-xs text-gray-300 flex-1 ${STANDARD_FONT_NAMES.includes(fontName) ? '' : 'font-medium'}`
-        label.style.fontFamily = fontName.includes('Times') ? 'serif' :
-                                 fontName.includes('Courier') ? 'monospace' : 'sans-serif'
+        label.style.fontFamily = fontName
 
         // Count how many fields use this font
         const fieldCount = fields.filter(f => f.fontFamily === fontName).length
         const countBadge = document.createElement('span')
+
         countBadge.textContent = fieldCount.toString()
         countBadge.className = 'text-xs bg-indigo-600 text-white px-1.5 py-0.5 rounded-full'
         countBadge.title = `${fieldCount} field(s) using this font`
