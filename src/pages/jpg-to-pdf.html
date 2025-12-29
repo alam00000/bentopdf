@@ -75,7 +75,7 @@
 
             <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:jpgToPdf.name">JPG to PDF</h1>
             <p class="text-gray-400 mb-6" data-i18n="tools:jpgToPdf.subtitle">
-                Convert one or more JPG images into a single PDF file.
+                Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images.
             </p>
 
             <!-- Drop Zone -->
@@ -86,12 +86,12 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">JPG Images</p>
+                    <p class="text-xs text-gray-500">JPG, JPEG, JP2, JPX Images</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
                 <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-                    multiple accept="image/jpeg, image/jpg">
+                    multiple accept="image/jpeg, image/jpg, image/jp2, .jp2, .jpx, .jpeg, .jpg">
             </div>
 
             <!-- Control buttons -->
@@ -101,8 +101,8 @@
                     <i data-lucide="plus"></i> <span data-i18n="upload.addMore">Add More Files</span>
                 </button>
                 <button id="clear-files-btn"
-                    class="btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
-                    <i data-lucide="x"></i> <span data-i18n="upload.clearAll">Clear All</span>
+                    class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="trash-2"></i> <span data-i18n="upload.clearAll">Clear All</span>
                 </button>
             </div>
 

@@ -22,7 +22,29 @@
     },
     "compressPdf": {
         "name": "压缩 PDF",
-        "subtitle": "减小您的 PDF 文件大小。"
+        "subtitle": "减小您的 PDF 文件大小。",
+        "algorithmLabel": "压缩算法",
+        "condense": "Condense（推荐）",
+        "photon": "Photon（适用于图片较多的 PDF）",
+        "condenseInfo": "Condense 使用高级压缩：移除冗余数据、优化图片、精简字体。适用于大多数 PDF。",
+        "photonInfo": "Photon 将页面转换为图片。适用于图片较多/扫描的 PDF。",
+        "photonWarning": "警告：文本将无法选择，链接将失效。",
+        "levelLabel": "压缩级别",
+        "light": "轻度（保持质量）",
+        "balanced": "平衡（推荐）",
+        "aggressive": "积极（更小文件）",
+        "extreme": "极限（最大压缩）",
+        "grayscale": "转换为灰度",
+        "grayscaleHint": "通过移除颜色信息来减小文件大小",
+        "customSettings": "自定义设置",
+        "customSettingsHint": "微调压缩参数：",
+        "outputQuality": "输出质量",
+        "resizeImagesTo": "调整图片至",
+        "onlyProcessAbove": "仅处理高于",
+        "removeMetadata": "移除元数据",
+        "subsetFonts": "精简字体（移除未使用的字符）",
+        "removeThumbnails": "移除嵌入的缩略图",
+        "compressButton": "压缩 PDF"
     },
     "pdfEditor": {
         "name": "PDF 编辑器",
@@ -30,7 +52,7 @@
     },
     "jpgToPdf": {
         "name": "JPG 转 PDF",
-        "subtitle": "从一张或多张 JPG 图片创建 PDF。"
+        "subtitle": "从 JPG、JPEG 和 JPEG2000 (JP2/JPX) 图片创建 PDF。"
     },
     "signPdf": {
         "name": "签署 PDF",
@@ -106,7 +128,7 @@
     },
     "imageToPdf": {
         "name": "图片转 PDF",
-        "subtitle": "将 JPG, PNG, WebP, BMP, TIFF, SVG, HEIC 转换为 PDF。"
+        "subtitle": "将 JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP 转换为 PDF。"
     },
     "pngToPdf": {
         "name": "PNG 转 PDF",
@@ -204,6 +226,10 @@
         "name": "旋转 PDF",
         "subtitle": "以 90 度增量旋转页面。"
     },
+    "rotateCustom": {
+        "name": "按自定义角度旋转",
+        "subtitle": "按任意自定义角度旋转页面。"
+    },
     "nUpPdf": {
         "name": "N-Up PDF",
         "subtitle": "将多页排列在单张纸上。"
@@ -275,5 +301,189 @@
     "changePermissions": {
         "name": "更改权限",
         "subtitle": "设置或更改 PDF 上的用户权限。"
+    },
+    "odtToPdf": {
+        "name": "ODT 转 PDF",
+        "subtitle": "将 OpenDocument 文本文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "ODT 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "csvToPdf": {
+        "name": "CSV 转 PDF",
+        "subtitle": "将 CSV 电子表格文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "CSV 件",
+        "convertButton": "转换为 PDF"
+    },
+    "rtfToPdf": {
+        "name": "RTF 转 PDF",
+        "subtitle": "将富文本格式文档转换为 PDF。支持多个文件。",
+        "acceptedFormats": "RTF 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "wordToPdf": {
+        "name": "Word 转 PDF",
+        "subtitle": "将 Word 文档 (DOCX, DOC, ODT, RTF) 转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "DOCX, DOC, ODT, RTF 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "excelToPdf": {
+        "name": "Excel 转 PDF",
+        "subtitle": "将 Excel 电子表格 (XLSX, XLS, ODS, CSV) 转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "XLSX, XLS, ODS, CSV 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "powerpointToPdf": {
+        "name": "PowerPoint 转 PDF",
+        "subtitle": "将 PowerPoint 演示文稿 (PPTX, PPT, ODP) 转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "PPTX, PPT, ODP 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "markdownToPdf": {
+        "name": "Markdown 转 PDF",
+        "subtitle": "编写或粘贴 Markdown 并将其导出为精美格式的 PDF。",
+        "paneMarkdown": "Markdown",
+        "panePreview": "预览",
+        "btnUpload": "上传",
+        "btnSyncScroll": "同步滚动",
+        "btnSettings": "设置",
+        "btnExportPdf": "导出 PDF",
+        "settingsTitle": "Markdown 设置",
+        "settingsPreset": "预设",
+        "presetDefault": "默认 (GFM 风格)",
+        "presetCommonmark": "CommonMark (严格)",
+        "presetZero": "最小 (无功能)",
+        "settingsOptions": "Markdown 选项",
+        "optAllowHtml": "允许 HTML 标签",
+        "optBreaks": "将换行转换为 <br>",
+        "optLinkify": "自动将 URL 转换为链接",
+        "optTypographer": "排版器 (智能引号等)"
+    },
+    "pdfBooklet": {
+        "name": "PDF 小册子",
+        "subtitle": "重新排列页面用于双面小册子打印。折叠并装订以创建小册子。",
+        "howItWorks": "工作原理：",
+        "step1": "上传 PDF 文件。",
+        "step2": "页面将按小册子顺序重新排列。",
+        "step3": "双面打印，短边翻转，折叠并装订。",
+        "paperSize": "纸张大小",
+        "orientation": "方向",
+        "portrait": "纵向",
+        "landscape": "横向",
+        "pagesPerSheet": "每张页数",
+        "createBooklet": "创建小册子",
+        "processing": "处理中...",
+        "pageCount": "如需要，页数将补齐为 4 的倍数。"
+    },
+    "xpsToPdf": {
+        "name": "XPS 转 PDF",
+        "subtitle": "将 XPS/OXPS 文档转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "XPS, OXPS 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "mobiToPdf": {
+        "name": "MOBI 转 PDF",
+        "subtitle": "将 MOBI 电子书转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "MOBI 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "epubToPdf": {
+        "name": "EPUB 转 PDF",
+        "subtitle": "将 EPUB 电子书转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "EPUB 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "fb2ToPdf": {
+        "name": "FB2 转 PDF",
+        "subtitle": "将 FictionBook (FB2) 电子书转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "FB2 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "cbzToPdf": {
+        "name": "CBZ 转 PDF",
+        "subtitle": "将漫画档案 (CBZ/CBR) 转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "CBZ, CBR 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "wpdToPdf": {
+        "name": "WPD 转 PDF",
+        "subtitle": "将 WordPerfect 文档 (WPD) 转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "WPD 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "wpsToPdf": {
+        "name": "WPS 转 PDF",
+        "subtitle": "将 WPS Office 文档转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "WPS 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "xmlToPdf": {
+        "name": "XML 转 PDF",
+        "subtitle": "将 XML 文档转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "XML 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "pagesToPdf": {
+        "name": "Pages 转 PDF",
+        "subtitle": "将 Apple Pages 文档转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "Pages 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "odgToPdf": {
+        "name": "ODG 转 PDF",
+        "subtitle": "将 OpenDocument Graphics (ODG) 文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "ODG 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "odsToPdf": {
+        "name": "ODS 转 PDF",
+        "subtitle": "将 OpenDocument Spreadsheet (ODS) 文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "ODS 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "odpToPdf": {
+        "name": "ODP 转 PDF",
+        "subtitle": "将 OpenDocument Presentation (ODP) 文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "ODP 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "pubToPdf": {
+        "name": "PUB 转 PDF",
+        "subtitle": "将 Microsoft Publisher (PUB) 文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "PUB 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "vsdToPdf": {
+        "name": "VSD 转 PDF",
+        "subtitle": "将 Microsoft Visio (VSD, VSDX) 文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "VSD, VSDX 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "psdToPdf": {
+        "name": "PSD 转 PDF",
+        "subtitle": "将 Adobe Photoshop (PSD) 文件转换为 PDF 格式。支持多个文件。",
+        "acceptedFormats": "PSD 文件",
+        "convertButton": "转换为 PDF"
+    },
+    "pdfToSvg": {
+        "name": "PDF 转 SVG",
+        "subtitle": "将 PDF 文件的每一页转换为可缩放矢量图形 (SVG)，在任何尺寸下都能保持完美质量。"
+    },
+    "extractTables": {
+        "name": "提取 PDF 表格",
+        "subtitle": "从 PDF 文件中提取表格，并导出为 CSV、JSON 或 Markdown 格式。"
+    },
+    "pdfToCsv": {
+        "name": "PDF 转 CSV",
+        "subtitle": "从 PDF 中提取表格并转换为 CSV 格式。"
+    },
+    "pdfToExcel": {
+        "name": "PDF 转 Excel",
+        "subtitle": "从 PDF 中提取表格并转换为 Excel (XLSX) 格式。"
+    },
+    "pdfToText": {
+        "name": "PDF 转 文本",
+        "subtitle": "从 PDF 文件中提取文本并保存为纯文本文件 (.txt)。支持多个文件。",
+        "note": "此工具仅适用于数字创建的 PDF。对于扫描文档或基于图像的 PDF，请使用我们的 OCR PDF 工具。",
+        "convertButton": "提取文本"
     }
 }

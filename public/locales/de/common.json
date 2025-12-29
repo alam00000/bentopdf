@@ -53,7 +53,8 @@
         "toolsLabel": "Werkzeugen",
         "subtitle": "Klicken Sie auf ein Werkzeug, um den Datei-Uploader zu öffnen",
         "searchPlaceholder": "Werkzeug suchen (z.B. 'teilen', 'organisieren'...)",
-        "backToTools": "Zurück zu den Werkzeugen"
+        "backToTools": "Zurück zu den Werkzeugen",
+        "firstLoadNotice": "Der erste Ladevorgang dauert einen Moment, da wir unsere Konvertierungs-Engine herunterladen. Danach erfolgt jedes Laden sofort."
     },
     "upload": {
         "clickToSelect": "Klicken Sie, um eine Datei auszuwählen",

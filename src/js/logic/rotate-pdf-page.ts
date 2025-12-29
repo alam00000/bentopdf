@@ -39,19 +39,14 @@ function resetState() {
 
     const fileInput = document.getElementById('file-input') as HTMLInputElement;
     if (fileInput) fileInput.value = '';
-
-    const batchAngle = document.getElementById('batch-custom-angle') as HTMLInputElement;
-    if (batchAngle) batchAngle.value = '0';
 }
 
 function updateAllRotationDisplays() {
     for (let i = 0; i < pageState.rotations.length; i++) {
-        const input = document.getElementById(`page-angle-${i}`) as HTMLInputElement;
-        if (input) input.value = pageState.rotations[i].toString();
         const container = document.querySelector(`[data-page-index="${i}"]`);
         if (container) {
             const wrapper = container.querySelector('.thumbnail-wrapper') as HTMLElement;
-            if (wrapper) wrapper.style.transform = `rotate(${-pageState.rotations[i]}deg)`;
+            if (wrapper) wrapper.style.transform = `rotate(${pageState.rotations[i]}deg)`;
         }
     }
 }
@@ -67,6 +62,9 @@ function createPageWrapper(canvas: HTMLCanvasElement, pageNumber: number): HTMLE
     const canvasWrapper = document.createElement('div');
     canvasWrapper.className = 'thumbnail-wrapper flex items-center justify-center p-2 h-36';
     canvasWrapper.style.transition = 'transform 0.3s ease';
+    // Apply initial rotation if it exists
+    const initialRotation = pageState.rotations[pageIndex] || 0;
+    canvasWrapper.style.transform = `rotate(${initialRotation}deg)`;
 
     canvas.className = 'max-w-full max-h-full object-contain';
     canvasWrapper.appendChild(canvas);
@@ -78,49 +76,31 @@ function createPageWrapper(canvas: HTMLCanvasElement, pageNumber: number): HTMLE
     container.appendChild(canvasWrapper);
     container.appendChild(pageLabel);
 
-    // Per-page rotation controls
+    // Per-page rotation controls - Left and Right buttons only
     const controls = document.createElement('div');
-    controls.className = 'flex items-center justify-center gap-1 p-2 bg-gray-800';
+    controls.className = 'flex items-center justify-center gap-2 p-2 bg-gray-800';
 
-    const decrementBtn = document.createElement('button');
-    decrementBtn.className = 'w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-sm';
-    decrementBtn.textContent = '−';
-    decrementBtn.onclick = function (e) {
+    const rotateLeftBtn = document.createElement('button');
+    rotateLeftBtn.className = 'flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-xs';
+    rotateLeftBtn.innerHTML = '<i data-lucide="rotate-ccw" class="w-3 h-3"></i>';
+    rotateLeftBtn.onclick = function (e) {
         e.stopPropagation();
-        const input = document.getElementById(`page-angle-${pageIndex}`) as HTMLInputElement;
-        const current = parseInt(input.value) || 0;
-        input.value = (current - 1).toString();
-    };
-
-    const angleInput = document.createElement('input');
-    angleInput.type = 'number';
-    angleInput.id = `page-angle-${pageIndex}`;
-    angleInput.value = pageState.rotations[pageIndex]?.toString() || '0';
-    angleInput.className = 'w-12 h-8 text-center bg-gray-700 border border-gray-600 text-white rounded text-xs';
-
-    const incrementBtn = document.createElement('button');
-    incrementBtn.className = 'w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-sm';
-    incrementBtn.textContent = '+';
-    incrementBtn.onclick = function (e) {
-        e.stopPropagation();
-        const input = document.getElementById(`page-angle-${pageIndex}`) as HTMLInputElement;
-        const current = parseInt(input.value) || 0;
-        input.value = (current + 1).toString();
-    };
-
-    const applyBtn = document.createElement('button');
-    applyBtn.className = 'w-8 h-8 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600';
-    applyBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-4 h-4"></i>';
-    applyBtn.onclick = function (e) {
-        e.stopPropagation();
-        const input = document.getElementById(`page-angle-${pageIndex}`) as HTMLInputElement;
-        const angle = parseInt(input.value) || 0;
-        pageState.rotations[pageIndex] = angle;
+        pageState.rotations[pageIndex] = pageState.rotations[pageIndex] - 90;
         const wrapper = container.querySelector('.thumbnail-wrapper') as HTMLElement;
-        if (wrapper) wrapper.style.transform = `rotate(${-angle}deg)`;
+        if (wrapper) wrapper.style.transform = `rotate(${pageState.rotations[pageIndex]}deg)`;
     };
 
-    controls.append(decrementBtn, angleInput, incrementBtn, applyBtn);
+    const rotateRightBtn = document.createElement('button');
+    rotateRightBtn.className = 'flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-xs';
+    rotateRightBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-3 h-3"></i>';
+    rotateRightBtn.onclick = function (e) {
+        e.stopPropagation();
+        pageState.rotations[pageIndex] = pageState.rotations[pageIndex] + 90;
+        const wrapper = container.querySelector('.thumbnail-wrapper') as HTMLElement;
+        if (wrapper) wrapper.style.transform = `rotate(${pageState.rotations[pageIndex]}deg)`;
+    };
+
+    controls.append(rotateLeftBtn, rotateRightBtn);
     container.appendChild(controls);
 
     // Re-create icons for the new element
@@ -240,6 +220,8 @@ async function applyRotations() {
             const currentRotation = originalPage.getRotation().angle;
             const totalRotation = currentRotation + rotation;
 
+            console.log(`Page ${i}: rotation=${rotation}, currentRotation=${currentRotation}, totalRotation=${totalRotation}, applying=${-totalRotation}`);
+
             if (totalRotation % 90 === 0) {
                 const [copiedPage] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
                 copiedPage.setRotation(degrees(totalRotation));
@@ -306,10 +288,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const backBtn = document.getElementById('back-to-tools');
     const rotateAllLeft = document.getElementById('rotate-all-left');
     const rotateAllRight = document.getElementById('rotate-all-right');
-    const batchDecrement = document.getElementById('batch-decrement');
-    const batchIncrement = document.getElementById('batch-increment');
-    const batchApply = document.getElementById('batch-apply');
-    const batchAngleInput = document.getElementById('batch-custom-angle') as HTMLInputElement;
 
     if (backBtn) {
         backBtn.addEventListener('click', function () {
@@ -320,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (rotateAllLeft) {
         rotateAllLeft.addEventListener('click', function () {
             for (let i = 0; i < pageState.rotations.length; i++) {
-                pageState.rotations[i] = pageState.rotations[i] + 90;
+                pageState.rotations[i] = pageState.rotations[i] - 90;
             }
             updateAllRotationDisplays();
         });
@@ -329,35 +307,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (rotateAllRight) {
         rotateAllRight.addEventListener('click', function () {
             for (let i = 0; i < pageState.rotations.length; i++) {
-                pageState.rotations[i] = pageState.rotations[i] - 90;
+                pageState.rotations[i] = pageState.rotations[i] + 90;
             }
             updateAllRotationDisplays();
-        });
-    }
-
-    if (batchDecrement && batchAngleInput) {
-        batchDecrement.addEventListener('click', function () {
-            const current = parseInt(batchAngleInput.value) || 0;
-            batchAngleInput.value = (current - 1).toString();
-        });
-    }
-
-    if (batchIncrement && batchAngleInput) {
-        batchIncrement.addEventListener('click', function () {
-            const current = parseInt(batchAngleInput.value) || 0;
-            batchAngleInput.value = (current + 1).toString();
-        });
-    }
-
-    if (batchApply && batchAngleInput) {
-        batchApply.addEventListener('click', function () {
-            const angle = parseInt(batchAngleInput.value) || 0;
-            if (angle !== 0) {
-                for (let i = 0; i < pageState.rotations.length; i++) {
-                    pageState.rotations[i] = pageState.rotations[i] + angle;
-                }
-                updateAllRotationDisplays();
-            }
         });
     }
 

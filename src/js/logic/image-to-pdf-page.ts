@@ -1,9 +1,13 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer, formatBytes } from '../utils/helpers.js';
-import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { downloadFile, formatBytes } from '../utils/helpers.js';
+import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+
+const SUPPORTED_FORMATS = '.jpg,.jpeg,.png,.bmp,.gif,.tiff,.tif,.pnm,.pgm,.pbm,.ppm,.pam,.jxr,.jpx,.jp2,.psd,.svg,.heic,.heif,.webp';
+const SUPPORTED_FORMATS_DISPLAY = 'JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP';
 
 let files: File[] = [];
+let pymupdf: PyMuPDF | null = null;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializePage);
@@ -19,8 +23,14 @@ function initializePage() {
     const addMoreBtn = document.getElementById('add-more-btn');
     const clearFilesBtn = document.getElementById('clear-files-btn');
     const processBtn = document.getElementById('process-btn');
+    const formatDisplay = document.getElementById('supported-formats');
+
+    if (formatDisplay) {
+        formatDisplay.textContent = SUPPORTED_FORMATS_DISPLAY;
+    }
 
     if (fileInput) {
+        fileInput.accept = SUPPORTED_FORMATS;
         fileInput.addEventListener('change', handleFileUpload);
     }
 
@@ -43,7 +53,6 @@ function initializePage() {
             }
         });
 
-        // Clear value on click to allow re-selecting the same file
         fileInput?.addEventListener('click', () => {
             if (fileInput) fileInput.value = '';
         });
@@ -78,13 +87,21 @@ function handleFileUpload(e: Event) {
     }
 }
 
+function getFileExtension(filename: string): string {
+    return '.' + filename.split('.').pop()?.toLowerCase() || '';
+}
+
+function isValidImageFile(file: File): boolean {
+    const ext = getFileExtension(file.name);
+    const validExtensions = SUPPORTED_FORMATS.split(',');
+    return validExtensions.includes(ext) || file.type.startsWith('image/');
+}
+
 function handleFiles(newFiles: FileList) {
-    const validFiles = Array.from(newFiles).filter(file =>
-        file.type.startsWith('image/')
-    );
+    const validFiles = Array.from(newFiles).filter(isValidImageFile);
 
     if (validFiles.length < newFiles.length) {
-        showAlert('Invalid Files', 'Some files were skipped. Only image files are allowed.');
+        showAlert('Invalid Files', 'Some files were skipped. Only supported image formats are allowed.');
     }
 
     if (validFiles.length > 0) {
@@ -146,95 +163,12 @@ function updateUI() {
     }
 }
 
-function sanitizeImageAsJpeg(imageBytes: any) {
-    return new Promise((resolve, reject) => {
-        const blob = new Blob([imageBytes]);
-        const imageUrl = URL.createObjectURL(blob);
-        const img = new Image();
-
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.naturalWidth;
-            canvas.height = img.naturalHeight;
-            const ctx = canvas.getContext('2d');
-            if (!ctx) {
-                URL.revokeObjectURL(imageUrl);
-                return reject(new Error('Could not get canvas context'));
-            }
-            ctx.drawImage(img, 0, 0);
-
-            canvas.toBlob(
-                async (jpegBlob) => {
-                    if (!jpegBlob) {
-                        return reject(new Error('Canvas toBlob conversion failed.'));
-                    }
-                    const arrayBuffer = await jpegBlob.arrayBuffer();
-                    resolve(new Uint8Array(arrayBuffer));
-                },
-                'image/jpeg',
-                0.9
-            );
-            URL.revokeObjectURL(imageUrl);
-        };
-
-        img.onerror = () => {
-            URL.revokeObjectURL(imageUrl);
-            reject(
-                new Error(
-                    'The provided file could not be loaded as an image. It may be corrupted.'
-                )
-            );
-        };
-
-        img.src = imageUrl;
-    });
-}
-
-// Special handler for SVG files - must read as text
-function svgToPng(svgText: string): Promise<Uint8Array> {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
-        const url = URL.createObjectURL(svgBlob);
-
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const width = img.naturalWidth || img.width || 800;
-            const height = img.naturalHeight || img.height || 600;
-
-            canvas.width = width;
-            canvas.height = height;
-
-            const ctx = canvas.getContext('2d');
-            if (!ctx) {
-                URL.revokeObjectURL(url);
-                return reject(new Error('Could not get canvas context'));
-            }
-
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, width, height);
-            ctx.drawImage(img, 0, 0, width, height);
-
-            canvas.toBlob(
-                async (pngBlob) => {
-                    URL.revokeObjectURL(url);
-                    if (!pngBlob) {
-                        return reject(new Error('Canvas toBlob conversion failed.'));
-                    }
-                    const arrayBuffer = await pngBlob.arrayBuffer();
-                    resolve(new Uint8Array(arrayBuffer));
-                },
-                'image/png'
-            );
-        };
-
-        img.onerror = () => {
-            URL.revokeObjectURL(url);
-            reject(new Error('Failed to load SVG image'));
-        };
-
-        img.src = url;
-    });
+async function ensurePyMuPDF(): Promise<PyMuPDF> {
+    if (!pymupdf) {
+        pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+        await pymupdf.load();
+    }
+    return pymupdf;
 }
 
 async function convertToPdf() {
@@ -243,78 +177,23 @@ async function convertToPdf() {
         return;
     }
 
-    showLoader('Creating PDF from images...');
+    showLoader('Loading PyMuPDF engine...');
 
     try {
-        const pdfDoc = await PDFLibDocument.create();
+        const mupdf = await ensurePyMuPDF();
 
-        for (const file of files) {
-            try {
-                const isSvg = file.type === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg');
+        showLoader('Converting images to PDF...');
 
-                if (isSvg) {
-                    // Handle SVG files - read as text
-                    const svgText = await file.text();
-                    const pngBytes = await svgToPng(svgText);
-                    const pngImage = await pdfDoc.embedPng(pngBytes);
+        const pdfBlob = await mupdf.imagesToPdf(files);
 
-                    const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
-                    page.drawImage(pngImage, {
-                        x: 0,
-                        y: 0,
-                        width: pngImage.width,
-                        height: pngImage.height,
-                    });
-                } else if (file.type === 'image/png') {
-                    // Handle PNG files
-                    const originalBytes = await readFileAsArrayBuffer(file);
-                    const pngImage = await pdfDoc.embedPng(originalBytes as Uint8Array);
+        downloadFile(pdfBlob, 'images_to_pdf.pdf');
 
-                    const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
-                    page.drawImage(pngImage, {
-                        x: 0,
-                        y: 0,
-                        width: pngImage.width,
-                        height: pngImage.height,
-                    });
-                } else {
-                    // Handle JPG/other raster images
-                    const originalBytes = await readFileAsArrayBuffer(file);
-                    let jpgImage;
-
-                    try {
-                        jpgImage = await pdfDoc.embedJpg(originalBytes as Uint8Array);
-                    } catch (e) {
-                        // Fallback: convert to JPEG via canvas
-                        const sanitizedBytes = await sanitizeImageAsJpeg(originalBytes);
-                        jpgImage = await pdfDoc.embedJpg(sanitizedBytes as Uint8Array);
-                    }
-
-                    const page = pdfDoc.addPage([jpgImage.width, jpgImage.height]);
-                    page.drawImage(jpgImage, {
-                        x: 0,
-                        y: 0,
-                        width: jpgImage.width,
-                        height: jpgImage.height,
-                    });
-                }
-            } catch (error) {
-                console.error(`Failed to process ${file.name}:`, error);
-                throw new Error(`Could not process "${file.name}". The file may be corrupted.`);
-            }
-        }
-
-        const pdfBytes = await pdfDoc.save();
-        downloadFile(
-            new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
-            'from_images.pdf'
-        );
         showAlert('Success', 'PDF created successfully!', 'success', () => {
             resetState();
         });
     } catch (e: any) {
-        console.error(e);
-        showAlert('Conversion Error', e.message);
+        console.error('[ImageToPDF]', e);
+        showAlert('Conversion Error', e.message || 'Failed to convert images to PDF.');
     } finally {
         hideLoader();
     }

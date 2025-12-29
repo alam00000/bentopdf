@@ -44,9 +44,48 @@ export const dom = {
     warningConfirmBtn: document.getElementById('warning-confirm-btn'),
 };
 
-export const showLoader = (text = t('common.loading')) => {
+export const showLoader = (text = t('common.loading'), progress?: number) => {
     if (dom.loaderText) dom.loaderText.textContent = text;
-    if (dom.loaderModal) dom.loaderModal.classList.remove('hidden');
+
+    // Add or update progress bar if progress is provided
+    const loaderModal = dom.loaderModal;
+    if (loaderModal) {
+        let progressBar = loaderModal.querySelector('.loader-progress-bar') as HTMLElement;
+        let progressContainer = loaderModal.querySelector('.loader-progress-container') as HTMLElement;
+
+        if (progress !== undefined && progress >= 0) {
+            // Create progress container if it doesn't exist
+            if (!progressContainer) {
+                progressContainer = document.createElement('div');
+                progressContainer.className = 'loader-progress-container w-64 mt-4';
+                progressContainer.innerHTML = `
+                    <div class="bg-gray-700 rounded-full h-2 overflow-hidden">
+                        <div class="loader-progress-bar bg-indigo-500 h-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <p class="loader-progress-text text-xs text-gray-400 mt-1 text-center">0%</p>
+                `;
+                loaderModal.querySelector('.bg-gray-800')?.appendChild(progressContainer);
+                progressBar = progressContainer.querySelector('.loader-progress-bar') as HTMLElement;
+            }
+
+            // Update progress
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+            const progressText = progressContainer.querySelector('.loader-progress-text');
+            if (progressText) {
+                progressText.textContent = `${Math.round(progress)}%`;
+            }
+            progressContainer.classList.remove('hidden');
+        } else {
+            // Hide progress bar if no progress provided
+            if (progressContainer) {
+                progressContainer.classList.add('hidden');
+            }
+        }
+
+        loaderModal.classList.remove('hidden');
+    }
 };
 
 export const hideLoader = () => {
@@ -433,8 +472,8 @@ const createFileInputHTML = (options = {}) => {
                 <button id="add-more-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
                     <i data-lucide="plus"></i> ${t('upload.addMore')}
                 </button>
-                <button id="clear-files-btn" class="btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
-                    <i data-lucide="x"></i> ${t('upload.clearAll')}
+                <button id="clear-files-btn" class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="trash-2"></i> ${t('upload.clearAll')}
                 </button>
             </div>
         `

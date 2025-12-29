@@ -22,7 +22,29 @@
     },
     "compressPdf": {
         "name": "Compress PDF",
-        "subtitle": "Reduce the file size of your PDF."
+        "subtitle": "Reduce the file size of your PDF.",
+        "algorithmLabel": "Compression Algorithm",
+        "condense": "Condense (Recommended)",
+        "photon": "Photon (For Photo-Heavy PDFs)",
+        "condenseInfo": "Condense uses advanced compression: removes dead-weight, optimizes images, subsets fonts. Best for most PDFs.",
+        "photonInfo": "Photon converts pages to images. Use for photo-heavy/scanned PDFs.",
+        "photonWarning": "Warning: Text will become non-selectable and links will stop working.",
+        "levelLabel": "Compression Level",
+        "light": "Light (Preserve Quality)",
+        "balanced": "Balanced (Recommended)",
+        "aggressive": "Aggressive (Smaller Files)",
+        "extreme": "Extreme (Maximum Compression)",
+        "grayscale": "Convert to Grayscale",
+        "grayscaleHint": "Reduces file size by removing color information",
+        "customSettings": "Custom Settings",
+        "customSettingsHint": "Fine-tune compression parameters:",
+        "outputQuality": "Output Quality",
+        "resizeImagesTo": "Resize Images To",
+        "onlyProcessAbove": "Only Process Above",
+        "removeMetadata": "Remove metadata",
+        "subsetFonts": "Subset fonts (remove unused glyphs)",
+        "removeThumbnails": "Remove embedded thumbnails",
+        "compressButton": "Compress PDF"
     },
     "pdfEditor": {
         "name": "PDF Editor",
@@ -30,7 +52,7 @@
     },
     "jpgToPdf": {
         "name": "JPG to PDF",
-        "subtitle": "Create a PDF from one or more JPG images."
+        "subtitle": "Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images."
     },
     "signPdf": {
         "name": "Sign PDF",
@@ -108,8 +130,8 @@
         "subtitle": "Automatically detect and delete blank pages."
     },
     "imageToPdf": {
-        "name": "Image to PDF",
-        "subtitle": "Convert JPG, PNG, WebP, BMP, TIFF, SVG, HEIC to PDF."
+        "name": "Images to PDF",
+        "subtitle": "Convert JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP to PDF."
     },
     "pngToPdf": {
         "name": "PNG to PDF",
@@ -207,6 +229,10 @@
         "name": "Rotate PDF",
         "subtitle": "Turn pages in 90-degree increments."
     },
+    "rotateCustom": {
+        "name": "Rotate by Custom Degrees",
+        "subtitle": "Rotate pages by any custom angle."
+    },
     "nUpPdf": {
         "name": "N-Up PDF",
         "subtitle": "Arrange multiple pages onto a single sheet."
@@ -278,5 +304,189 @@
     "changePermissions": {
         "name": "Change Permissions",
         "subtitle": "Set or change user permissions on a PDF."
+    },
+    "odtToPdf": {
+        "name": "ODT to PDF",
+        "subtitle": "Convert OpenDocument Text files to PDF format. Supports multiple files.",
+        "acceptedFormats": "ODT files",
+        "convertButton": "Convert to PDF"
+    },
+    "csvToPdf": {
+        "name": "CSV to PDF",
+        "subtitle": "Convert CSV spreadsheet files to PDF format. Supports multiple files.",
+        "acceptedFormats": "CSV files",
+        "convertButton": "Convert to PDF"
+    },
+    "rtfToPdf": {
+        "name": "RTF to PDF",
+        "subtitle": "Convert Rich Text Format documents to PDF. Supports multiple files.",
+        "acceptedFormats": "RTF files",
+        "convertButton": "Convert to PDF"
+    },
+    "wordToPdf": {
+        "name": "Word to PDF",
+        "subtitle": "Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files.",
+        "acceptedFormats": "DOCX, DOC, ODT, RTF files",
+        "convertButton": "Convert to PDF"
+    },
+    "excelToPdf": {
+        "name": "Excel to PDF",
+        "subtitle": "Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files.",
+        "acceptedFormats": "XLSX, XLS, ODS, CSV files",
+        "convertButton": "Convert to PDF"
+    },
+    "powerpointToPdf": {
+        "name": "PowerPoint to PDF",
+        "subtitle": "Convert PowerPoint presentations (PPTX, PPT, ODP) to PDF format. Supports multiple files.",
+        "acceptedFormats": "PPTX, PPT, ODP files",
+        "convertButton": "Convert to PDF"
+    },
+    "markdownToPdf": {
+        "name": "Markdown to PDF",
+        "subtitle": "Write or paste Markdown and export it as a beautifully formatted PDF.",
+        "paneMarkdown": "Markdown",
+        "panePreview": "Preview",
+        "btnUpload": "Upload",
+        "btnSyncScroll": "Sync Scroll",
+        "btnSettings": "Settings",
+        "btnExportPdf": "Export PDF",
+        "settingsTitle": "Markdown Settings",
+        "settingsPreset": "Preset",
+        "presetDefault": "Default (GFM-like)",
+        "presetCommonmark": "CommonMark (strict)",
+        "presetZero": "Minimal (no features)",
+        "settingsOptions": "Markdown Options",
+        "optAllowHtml": "Allow HTML tags",
+        "optBreaks": "Convert newlines to <br>",
+        "optLinkify": "Auto-convert URLs to links",
+        "optTypographer": "Typographer (smart quotes, etc.)"
+    },
+    "pdfBooklet": {
+        "name": "PDF Booklet",
+        "subtitle": "Rearrange pages for double-sided booklet printing. Fold and staple to create a booklet.",
+        "howItWorks": "How it works:",
+        "step1": "Upload a PDF file.",
+        "step2": "Pages will be rearranged in booklet order.",
+        "step3": "Print double-sided, flip on short edge, fold and staple.",
+        "paperSize": "Paper Size",
+        "orientation": "Orientation",
+        "portrait": "Portrait",
+        "landscape": "Landscape",
+        "pagesPerSheet": "Pages per Sheet",
+        "createBooklet": "Create Booklet",
+        "processing": "Processing...",
+        "pageCount": "Page count will be padded to multiple of 4 if needed."
+    },
+    "xpsToPdf": {
+        "name": "XPS to PDF",
+        "subtitle": "Convert XPS/OXPS documents to PDF format. Supports multiple files.",
+        "acceptedFormats": "XPS, OXPS files",
+        "convertButton": "Convert to PDF"
+    },
+    "mobiToPdf": {
+        "name": "MOBI to PDF",
+        "subtitle": "Convert MOBI e-books to PDF format. Supports multiple files.",
+        "acceptedFormats": "MOBI files",
+        "convertButton": "Convert to PDF"
+    },
+    "epubToPdf": {
+        "name": "EPUB to PDF",
+        "subtitle": "Convert EPUB e-books to PDF format. Supports multiple files.",
+        "acceptedFormats": "EPUB files",
+        "convertButton": "Convert to PDF"
+    },
+    "fb2ToPdf": {
+        "name": "FB2 to PDF",
+        "subtitle": "Convert FictionBook (FB2) e-books to PDF format. Supports multiple files.",
+        "acceptedFormats": "FB2 files",
+        "convertButton": "Convert to PDF"
+    },
+    "cbzToPdf": {
+        "name": "CBZ to PDF",
+        "subtitle": "Convert comic book archives (CBZ/CBR) to PDF format. Supports multiple files.",
+        "acceptedFormats": "CBZ, CBR files",
+        "convertButton": "Convert to PDF"
+    },
+    "wpdToPdf": {
+        "name": "WPD to PDF",
+        "subtitle": "Convert WordPerfect documents (WPD) to PDF format. Supports multiple files.",
+        "acceptedFormats": "WPD files",
+        "convertButton": "Convert to PDF"
+    },
+    "wpsToPdf": {
+        "name": "WPS to PDF",
+        "subtitle": "Convert WPS Office documents to PDF format. Supports multiple files.",
+        "acceptedFormats": "WPS files",
+        "convertButton": "Convert to PDF"
+    },
+    "xmlToPdf": {
+        "name": "XML to PDF",
+        "subtitle": "Convert XML documents to PDF format. Supports multiple files.",
+        "acceptedFormats": "XML files",
+        "convertButton": "Convert to PDF"
+    },
+    "pagesToPdf": {
+        "name": "Pages to PDF",
+        "subtitle": "Convert Apple Pages documents to PDF format. Supports multiple files.",
+        "acceptedFormats": "Pages files",
+        "convertButton": "Convert to PDF"
+    },
+    "odgToPdf": {
+        "name": "ODG to PDF",
+        "subtitle": "Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files.",
+        "acceptedFormats": "ODG files",
+        "convertButton": "Convert to PDF"
+    },
+    "odsToPdf": {
+        "name": "ODS to PDF",
+        "subtitle": "Convert OpenDocument Spreadsheet (ODS) files to PDF format. Supports multiple files.",
+        "acceptedFormats": "ODS files",
+        "convertButton": "Convert to PDF"
+    },
+    "odpToPdf": {
+        "name": "ODP to PDF",
+        "subtitle": "Convert OpenDocument Presentation (ODP) files to PDF format. Supports multiple files.",
+        "acceptedFormats": "ODP files",
+        "convertButton": "Convert to PDF"
+    },
+    "pubToPdf": {
+        "name": "PUB to PDF",
+        "subtitle": "Convert Microsoft Publisher (PUB) files to PDF format. Supports multiple files.",
+        "acceptedFormats": "PUB files",
+        "convertButton": "Convert to PDF"
+    },
+    "vsdToPdf": {
+        "name": "VSD to PDF",
+        "subtitle": "Convert Microsoft Visio (VSD, VSDX) files to PDF format. Supports multiple files.",
+        "acceptedFormats": "VSD, VSDX files",
+        "convertButton": "Convert to PDF"
+    },
+    "psdToPdf": {
+        "name": "PSD to PDF",
+        "subtitle": "Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files.",
+        "acceptedFormats": "PSD files",
+        "convertButton": "Convert to PDF"
+    },
+    "pdfToSvg": {
+        "name": "PDF to SVG",
+        "subtitle": "Convert each page of a PDF file into a scalable vector graphic (SVG) for perfect quality at any size."
+    },
+    "extractTables": {
+        "name": "Extract PDF Tables",
+        "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown."
+    },
+    "pdfToCsv": {
+        "name": "PDF to CSV",
+        "subtitle": "Extract tables from PDF and convert to CSV format."
+    },
+    "pdfToExcel": {
+        "name": "PDF to Excel",
+        "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format."
+    },
+    "pdfToText": {
+        "name": "PDF to Text",
+        "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
+        "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
+        "convertButton": "Extract Text"
     }
 }

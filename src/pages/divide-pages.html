@@ -100,8 +100,18 @@
                     <ul class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1">
                         <li><strong>Vertical:</strong> Split each page into left and right halves.</li>
                         <li><strong>Horizontal:</strong> Split each page into top and bottom halves.</li>
-                        <li>The result will have twice as many pages as the original.</li>
+                        <li>Specify which pages to divide. Other pages will be kept as-is.</li>
+                        <li>Leave blank or use "all" to divide all pages.</li>
                     </ul>
+                </div>
+
+                <div class="mb-4">
+                    <label for="page-range" class="block mb-2 text-sm font-medium text-gray-300">Pages to Divide</label>
+                    <input type="text" id="page-range"
+                        class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+                        placeholder="e.g. 1-5, 8, 11-13 (leave blank for all pages)">
+                    <p class="mt-1 text-xs text-gray-400">Enter page numbers separated by commas or ranges with hyphens.
+                    </p>
                 </div>
 
                 <div class="mb-4">

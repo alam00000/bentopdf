@@ -198,8 +198,9 @@
                 <!-- Canvas Area -->
                 <main class="flex-1 order-1 lg:order-2 min-w-0">
                     <!-- Page Management Toolbar -->
-                    <div class="bg-gray-700 rounded-lg p-3 mb-4 flex flex-wrap gap-2 justify-between items-center">
-                        <div class="flex items-center gap-2">
+                    <div
+                        class="bg-gray-700 rounded-lg p-3 mb-4 flex flex-wrap gap-2 justify-center md:justify-between items-center overflow-hidden">
+                        <div class="flex flex-wrap items-center justify-center gap-2 min-w-0">
                             <button id="prevPageBtn"
                                 class="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 disabled>
@@ -211,14 +212,14 @@
                                 disabled>
                                 <i data-lucide="chevron-right" class="w-4 h-4"></i>
                             </button>
-                            <div class="flex items-center gap-2 ml-2 border-l border-gray-600 pl-2">
+                            <div class="flex items-center gap-2 md:ml-2 md:border-l border-gray-600 md:pl-2">
                                 <span class="text-sm text-gray-400">Go to:</span>
                                 <input type="number" id="gotoPageInput" min="1"
                                     class="w-16 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <button id="gotoPageBtn"
                                     class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded text-sm transition-colors">Go</button>
                             </div>
-                            <div class="flex items-center gap-2 ml-2 border-l border-gray-600 pl-2">
+                            <div class="hidden md:flex items-center gap-2 md:ml-2 md:border-l border-gray-600 md:pl-2">
                                 <input type="checkbox" id="enableGridCheckbox" checked class="mr-1">
                                 <label for="enableGridCheckbox" class="text-sm text-gray-400">Grid:</label>
                                 <input type="number" id="gridVInput" min="2" max="14" value="2" placeholder="V"
@@ -233,7 +234,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center justify-center gap-2">
                             <button id="resetBtn"
                                 class="bg-gray-600 hover:bg-gray-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors">
                                 <i data-lucide="rotate-ccw" class="w-4 h-4"></i>

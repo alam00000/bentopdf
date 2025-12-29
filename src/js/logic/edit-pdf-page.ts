@@ -4,8 +4,8 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { formatBytes } from '../utils/helpers.js';
 
 const embedPdfWasmUrl = new URL(
-  'embedpdf-snippet/dist/pdfium.wasm',
-  import.meta.url
+    'embedpdf-snippet/dist/pdfium.wasm',
+    import.meta.url
 ).href;
 
 let currentPdfUrl: string | null = null;
@@ -45,7 +45,6 @@ function initializePage() {
             }
         });
 
-        // Clear value on click to allow re-selecting the same file
         fileInput?.addEventListener('click', () => {
             if (fileInput) fileInput.value = '';
         });
@@ -81,11 +80,7 @@ async function handleFiles(files: FileList) {
 
         if (!pdfWrapper || !pdfContainer || !uploader || !dropZone || !fileDisplayArea) return;
 
-        // Hide uploader elements but keep the container
-        // Hide uploader elements but keep the container
-        // dropZone.classList.add('hidden');
 
-        // Show file display
         fileDisplayArea.innerHTML = '';
         const fileDiv = document.createElement('div');
         fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg';
@@ -114,7 +109,6 @@ async function handleFiles(files: FileList) {
             pdfContainer.textContent = '';
             pdfWrapper.classList.add('hidden');
             fileDisplayArea.innerHTML = '';
-            // dropZone.classList.remove('hidden');
             const fileInput = document.getElementById('file-input') as HTMLInputElement;
             if (fileInput) fileInput.value = '';
         };
@@ -123,13 +117,10 @@ async function handleFiles(files: FileList) {
         fileDisplayArea.appendChild(fileDiv);
         createIcons({ icons });
 
-        // Clear previous content
         pdfContainer.textContent = '';
         if (currentPdfUrl) {
             URL.revokeObjectURL(currentPdfUrl);
         }
-
-        // Show editor container
         pdfWrapper.classList.remove('hidden');
 
         const fileURL = URL.createObjectURL(file);

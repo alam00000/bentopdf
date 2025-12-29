@@ -1,0 +1,817 @@
+.md-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.md-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.md-editor-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+}
+
+.md-editor-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.md-editor-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.md-editor-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.md-editor-btn-secondary {
+  color: rgb(156, 163, 175);
+  background: rgb(31, 41, 55);
+  border: 1px solid rgb(55, 65, 81);
+}
+
+.md-editor-btn-secondary:hover {
+  background: rgb(55, 65, 81);
+  color: white;
+}
+
+.md-editor-btn-primary {
+  color: white;
+  background: rgb(79, 70, 229);
+}
+
+.md-editor-btn-primary:hover {
+  background: rgb(99, 102, 241);
+}
+
+.md-editor-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: rgb(31, 41, 55);
+  border: 1px solid rgb(55, 65, 81);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  color: rgb(156, 163, 175);
+}
+
+.theme-toggle-slider {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: rgb(55, 65, 81);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.theme-toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  top: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.theme-toggle-slider.active {
+  background: rgb(79, 70, 229);
+}
+
+.theme-toggle-slider.active::before {
+  transform: translateX(20px);
+}
+
+/* Split View Container */
+.md-editor-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  height: 600px;
+  border: 1px solid rgb(55, 65, 81);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.md-editor-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: rgb(31, 41, 55);
+}
+
+.md-editor-pane-header {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(156, 163, 175);
+  background: rgb(17, 24, 39);
+  border-bottom: 1px solid rgb(55, 65, 81);
+  flex-shrink: 0;
+}
+
+/* Separator between panes */
+.md-editor-pane:first-child {
+  border-right: 2px solid rgb(55, 65, 81);
+}
+
+.md-editor.light-mode .md-editor-pane:first-child {
+  border-right-color: rgb(229, 231, 235);
+}
+
+/* Editor Textarea */
+.md-editor-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgb(229, 231, 235);
+  background: rgb(31, 41, 55);
+  border: none;
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+}
+
+.md-editor-textarea::placeholder {
+  color: rgb(107, 114, 128);
+}
+
+.md-editor.light-mode .md-editor-pane {
+  background: white;
+}
+
+.md-editor.light-mode .md-editor-pane-header {
+  background: rgb(249, 250, 251);
+  color: rgb(75, 85, 99);
+  border-bottom-color: rgb(229, 231, 235);
+}
+
+.md-editor.light-mode .md-editor-textarea {
+  background: white;
+  color: rgb(17, 24, 39);
+}
+
+.md-editor.light-mode .md-editor-preview {
+  background: white;
+  color: rgb(17, 24, 39);
+}
+
+.md-editor-preview {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background: rgb(31, 41, 55);
+  color: rgb(229, 231, 235);
+}
+
+.md-editor-preview h1,
+.md-editor-preview h2,
+.md-editor-preview h3,
+.md-editor-preview h4,
+.md-editor-preview h5,
+.md-editor-preview h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+  color: white;
+}
+
+.md-editor-preview h1:first-child,
+.md-editor-preview h2:first-child,
+.md-editor-preview h3:first-child {
+  margin-top: 0;
+}
+
+.md-editor-preview h1 {
+  font-size: 2em;
+  border-bottom: 1px solid rgb(55, 65, 81);
+  padding-bottom: 0.3em;
+}
+
+.md-editor-preview h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid rgb(55, 65, 81);
+  padding-bottom: 0.3em;
+}
+
+.md-editor-preview h3 {
+  font-size: 1.25em;
+}
+
+.md-editor-preview p {
+  margin: 1em 0;
+  line-height: 1.6;
+}
+
+.md-editor-preview a {
+  color: rgb(96, 165, 250);
+  text-decoration: none;
+}
+
+.md-editor-preview a:hover {
+  text-decoration: underline;
+}
+
+.md-editor-preview code {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 0.9em;
+  background: rgb(17, 24, 39);
+  color: rgb(251, 191, 36);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.md-editor-preview pre {
+  background: rgb(17, 24, 39);
+  padding: 1rem;
+  overflow: auto;
+  border-radius: 0.5rem;
+  line-height: 1.45;
+  margin: 1em 0;
+  border: 1px solid rgb(55, 65, 81);
+}
+
+.md-editor-preview pre code {
+  background: none;
+  color: rgb(229, 231, 235);
+  padding: 0;
+}
+
+.md-editor-preview blockquote {
+  margin: 1em 0;
+  padding: 0 1em;
+  color: rgb(156, 163, 175);
+  border-left: 4px solid rgb(79, 70, 229);
+}
+
+.md-editor-preview ul,
+.md-editor-preview ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.md-editor-preview li {
+  margin: 0.25em 0;
+}
+
+.md-editor-preview table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.md-editor-preview th,
+.md-editor-preview td {
+  border: 1px solid rgb(55, 65, 81);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.md-editor-preview th {
+  background: rgb(17, 24, 39);
+  font-weight: 600;
+  color: white;
+}
+
+.md-editor-preview tr:nth-child(even) {
+  background: rgb(17, 24, 39);
+}
+
+.md-editor-preview hr {
+  border: none;
+  border-top: 1px solid rgb(55, 65, 81);
+  margin: 2em 0;
+}
+
+.md-editor-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Light Mode Preview Styles */
+.md-editor.light-mode .md-editor-preview h1,
+.md-editor.light-mode .md-editor-preview h2,
+.md-editor.light-mode .md-editor-preview h3,
+.md-editor.light-mode .md-editor-preview h4,
+.md-editor.light-mode .md-editor-preview h5,
+.md-editor.light-mode .md-editor-preview h6 {
+  color: rgb(17, 24, 39);
+}
+
+.md-editor.light-mode .md-editor-preview h1,
+.md-editor.light-mode .md-editor-preview h2 {
+  border-bottom-color: rgb(229, 231, 235);
+}
+
+.md-editor.light-mode .md-editor-preview a {
+  color: rgb(29, 78, 216);
+}
+
+.md-editor.light-mode .md-editor-preview code {
+  background: rgb(249, 250, 251);
+  color: rgb(220, 38, 38);
+}
+
+.md-editor.light-mode .md-editor-preview pre {
+  background: rgb(249, 250, 251);
+  border-color: rgb(229, 231, 235);
+}
+
+.md-editor.light-mode .md-editor-preview pre code {
+  color: rgb(17, 24, 39);
+}
+
+.md-editor.light-mode .md-editor-preview blockquote {
+  color: rgb(75, 85, 99);
+  border-left-color: rgb(99, 102, 241);
+}
+
+.md-editor.light-mode .md-editor-preview th,
+.md-editor.light-mode .md-editor-preview td {
+  border-color: rgb(229, 231, 235);
+}
+
+.md-editor.light-mode .md-editor-preview th {
+  background: rgb(249, 250, 251);
+  color: rgb(17, 24, 39);
+}
+
+.md-editor.light-mode .md-editor-preview tr:nth-child(even) {
+  background: rgb(249, 250, 251);
+}
+
+.md-editor.light-mode .md-editor-preview hr {
+  border-top-color: rgb(229, 231, 235);
+}
+
+/* Markdown Plugin Styles */
+.md-editor-preview mark {
+  background-color: rgb(254, 243, 199);
+  color: rgb(17, 24, 39);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+.md-editor-preview ins {
+  text-decoration: none;
+  background-color: rgb(134, 239, 172);
+  color: rgb(17, 24, 39);
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+.md-editor-preview .task-list-item {
+  list-style-type: none;
+  margin-left: -1.5em;
+}
+
+.md-editor-preview .footnotes {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid rgb(55, 65, 81);
+  font-size: 0.9em;
+}
+
+.md-editor.light-mode .md-editor-preview .footnotes {
+  border-top-color: rgb(229, 231, 235);
+}
+
+.md-editor-preview .table-of-contents {
+  background: rgb(17, 24, 39);
+  padding: 1em 1.5em;
+  border-radius: 0.5rem;
+  margin: 1em 0;
+  border: 1px solid rgb(55, 65, 81);
+}
+
+.md-editor.light-mode .md-editor-preview .table-of-contents {
+  background: rgb(249, 250, 251);
+  border-color: rgb(229, 231, 235);
+}
+
+/* Mermaid Diagrams */
+.md-editor-preview .mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+  padding: 1em;
+  background: rgb(17, 24, 39);
+  border-radius: 0.5rem;
+  border: 1px solid rgb(55, 65, 81);
+}
+
+.md-editor-preview .mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.md-editor.light-mode .md-editor-preview .mermaid-diagram {
+  background: rgb(249, 250, 251);
+  border-color: rgb(229, 231, 235);
+}
+
+.md-editor-preview .mermaid-error {
+  color: rgb(248, 113, 113);
+  background: rgba(239, 68, 68, 0.1);
+  padding: 1em;
+  border-radius: 0.5rem;
+  font-family: monospace;
+  font-size: 0.9em;
+  border: 1px solid rgb(239, 68, 68);
+}
+
+.md-editor.light-mode .md-editor-preview .mermaid-error {
+  color: rgb(185, 28, 28);
+  background: rgb(254, 242, 242);
+  border-color: rgb(252, 165, 165);
+}
+
+/* Settings Modal */
+.md-editor-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.md-editor-modal {
+  background: rgb(31, 41, 55);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border: 1px solid rgb(55, 65, 81);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.md-editor-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.md-editor-modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.md-editor-modal-close {
+  padding: 0.5rem;
+  color: rgb(156, 163, 175);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  transition: all 0.2s;
+}
+
+.md-editor-modal-close:hover {
+  background: rgb(55, 65, 81);
+  color: white;
+}
+
+.md-editor-settings-group {
+  margin-bottom: 1.5rem;
+}
+
+.md-editor-settings-group h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.md-editor-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0;
+  font-size: 0.875rem;
+  color: rgb(156, 163, 175);
+  cursor: pointer;
+}
+
+.md-editor-checkbox:hover {
+  color: white;
+}
+
+.md-editor-settings-group select {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: white;
+  background: rgb(17, 24, 39);
+  border: 1px solid rgb(55, 65, 81);
+  border-radius: 0.375rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.md-editor-settings-group select:hover {
+  border-color: rgb(75, 85, 99);
+}
+
+.md-editor-settings-group select:focus {
+  outline: none;
+  border-color: rgb(79, 70, 229);
+}
+
+/* Print Styles */
+@media print {
+
+  /* Reset all backgrounds, margins, and padding */
+  html,
+  body {
+    background: white !important;
+    background-color: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide all elements by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Hide UI elements completely - don't take up space */
+  .md-editor-header,
+  .md-editor-pane-header,
+  .md-editor-textarea,
+  .md-editor-modal-overlay,
+  .md-editor-pane:first-child,
+  header,
+  nav,
+  footer,
+  #back-to-tools,
+  .bg-gray-800>h1.text-2xl,
+  .bg-gray-800>p.text-gray-400,
+  #markdown-editor-container~h1,
+  #markdown-editor-container~p {
+    display: none !important;
+  }
+
+  .min-h-screen,
+  .max-w-7xl,
+  .bg-gray-800,
+  .rounded-xl,
+  .shadow-xl,
+  .p-6,
+  .py-8,
+  .px-4,
+  #markdown-editor-container,
+  [class*="container"] {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+    background-color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Reset container backgrounds and layouts */
+  .md-editor,
+  .md-editor-wrapper,
+  .md-editor-main,
+  .md-editor-pane {
+    background: white !important;
+    background-color: white !important;
+    border: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    visibility: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .md-editor-main {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Make preview and contents visible */
+  .md-editor-preview,
+  .md-editor-preview * {
+    visibility: visible !important;
+  }
+
+  .md-editor-preview {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+  }
+
+  .md-editor-preview h1,
+  .md-editor-preview h2,
+  .md-editor-preview h3,
+  .md-editor-preview h4,
+  .md-editor-preview h5,
+  .md-editor-preview h6 {
+    color: black !important;
+    page-break-after: avoid;
+  }
+
+  .md-editor-preview>h1:first-child,
+  .md-editor-preview>*:first-child {
+    margin-top: 0 !important;
+  }
+
+  .md-editor-preview p,
+  .md-editor-preview li,
+  .md-editor-preview span {
+    color: black !important;
+  }
+
+  .md-editor-preview a {
+    color: #0366d6 !important;
+  }
+
+  .md-editor-preview code {
+    background: #f6f8fa !important;
+    color: #24292e !important;
+  }
+
+  .md-editor-preview pre {
+    background: #f6f8fa !important;
+    border: 1px solid #e1e4e8 !important;
+    page-break-inside: avoid;
+  }
+
+  .md-editor-preview pre code {
+    color: #24292e !important;
+  }
+
+  .md-editor-preview blockquote {
+    color: #6a737d !important;
+    border-left-color: #dfe2e5 !important;
+  }
+
+  .md-editor-preview table {
+    page-break-inside: avoid;
+  }
+
+  .md-editor-preview th,
+  .md-editor-preview td {
+    border-color: #e1e4e8 !important;
+  }
+
+  .md-editor-preview th {
+    background: #f6f8fa !important;
+    color: black !important;
+  }
+
+  .md-editor-preview tr:nth-child(even) {
+    background: #f6f8fa !important;
+  }
+
+  .md-editor-preview .mermaid-diagram {
+    background: #f6f8fa !important;
+    border: 1px solid #e1e4e8 !important;
+    page-break-inside: avoid;
+  }
+
+  .md-editor-preview .mermaid-diagram svg {
+    max-width: 100% !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .md-editor-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .md-editor-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .md-editor-btn {
+    flex: 1 1 auto;
+    min-width: fit-content;
+  }
+
+  .md-editor-btn span {
+    display: none;
+  }
+
+  .theme-toggle {
+    padding: 0.5rem;
+  }
+
+  .md-editor-main {
+    grid-template-columns: 1fr;
+    height: auto;
+    gap: 0;
+  }
+
+  .md-editor-pane {
+    min-height: 300px;
+    max-height: 400px;
+  }
+
+  .md-editor-textarea,
+  .md-editor-preview {
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .md-editor-pane:first-child {
+    border-right: none;
+    border-bottom: 2px solid rgb(55, 65, 81);
+  }
+
+  .md-editor.light-mode .md-editor-pane:first-child {
+    border-right: none;
+    border-bottom-color: rgb(229, 231, 235);
+  }
+
+  .md-editor-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .md-editor-settings-group {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .md-editor-main {
+    height: 500px;
+  }
+
+  .md-editor-btn {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .md-editor-pane {
+    min-height: 250px;
+    max-height: 350px;
+  }
+
+  .md-editor-btn {
+    padding: 0.5rem;
+  }
+
+  .md-editor-header {
+    gap: 0.5rem;
+  }
+
+  .md-editor-actions {
+    gap: 0.375rem;
+  }
+}

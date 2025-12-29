@@ -29,8 +29,8 @@
 
                 <div class="hidden md:flex items-center space-x-8 text-white">
                     <a href="/" class="nav-link" data-i18n="nav.home">Home</a>
-                    <a href="./about.html" class="nav-link">About</a>
-                    <a href="./contact.html" class="nav-link">Contact</a>
+                    <a href="/about.html" class="nav-link">About</a>
+                    <a href="/contact.html" class="nav-link">Contact</a>
                     <a href="/" class="nav-link" data-i18n="nav.allTools">All Tools</a>
                 </div>
 
@@ -57,8 +57,8 @@
         <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1 text-center">
                 <a href="/" class="mobile-nav-link" data-i18n="nav.home">Home</a>
-                <a href="./about.html" class="mobile-nav-link">About</a>
-                <a href="./contact.html" class="mobile-nav-link">Contact</a>
+                <a href="/about.html" class="mobile-nav-link">About</a>
+                <a href="/contact.html" class="mobile-nav-link">Contact</a>
                 <a href="/" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
             </div>
         </div>
@@ -99,8 +99,8 @@
                     <i data-lucide="plus"></i> <span data-i18n="upload.addMore">Add More Files</span>
                 </button>
                 <button id="clear-files-btn"
-                    class="btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
-                    <i data-lucide="x"></i> <span data-i18n="upload.clearAll">Clear All</span>
+                    class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="trash-2"></i> <span data-i18n="upload.clearAll">Clear All</span>
                 </button>
             </div>
 
@@ -108,28 +108,96 @@
 
             <div id="compress-options" class="hidden mt-6 space-y-6">
                 <div>
-                    <label for="compression-level" class="block mb-2 text-sm font-medium text-gray-300">Compression
-                        Level</label>
-                    <select id="compression-level"
-                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="balanced">Balanced (Recommended)</option>
-                        <option value="high-quality">High Quality (Larger file)</option>
-                        <option value="small-size">Smallest Size (Lower quality)</option>
-                        <option value="extreme">Extreme (Very low quality)</option>
-                    </select>
-                </div>
-
-                <div>
                     <label for="compression-algorithm" class="block mb-2 text-sm font-medium text-gray-300">Compression
                         Algorithm</label>
                     <select id="compression-algorithm"
                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500">
-                        <option value="vector">Vector (For Text Heavy PDF)</option>
-                        <option value="photon">Photon (For Complex Images & Drawings)</option>
+                        <option value="condense"> Condense (Recommended)</option>
+                        <option value="photon"> Photon (For Photo-Heavy PDFs)</option>
                     </select>
-                    <p class="mt-2 text-xs text-gray-400">
-                        Choose 'Vector' for text based PDFs, or 'Photon' for scanned documents and complex images.
-                    </p>
+                    <div id="algorithm-info" class="mt-2 text-xs text-gray-400">
+                        <p id="condense-info"><strong>Condense</strong> uses advanced compression: removes dead-weight,
+                            optimizes images, subsets fonts. Best for most PDFs.</p>
+                        <p id="photon-info" class="hidden"><strong>Photon</strong> converts pages to images. Use for
+                            photo-heavy/scanned PDFs. <span class="text-yellow-500">⚠️ Warning: Text will become
+                                non-selectable and links will stop working.</span></p>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="compression-level" class="block mb-2 text-sm font-medium text-gray-300">Compression
+                        Level</label>
+                    <select id="compression-level"
+                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="light">Light (Preserve Quality)</option>
+                        <option value="balanced" selected>Balanced (Recommended)</option>
+                        <option value="aggressive">Aggressive (Smaller Files)</option>
+                        <option value="extreme">Extreme (Maximum Compression)</option>
+                    </select>
+                </div>
+
+                <!-- Grayscale toggle - always visible -->
+                <div class="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700">
+                    <input type="checkbox" id="convert-to-grayscale"
+                        class="w-5 h-5 rounded cursor-pointer flex-shrink-0">
+                    <div>
+                        <label for="convert-to-grayscale"
+                            class="text-sm font-medium text-gray-300 cursor-pointer">Convert to Grayscale</label>
+                        <p class="text-xs text-gray-500 mt-0.5">Reduces file size by removing color information</p>
+                    </div>
+                </div>
+
+                <div>
+                    <button id="toggle-custom-settings" type="button"
+                        class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 text-sm font-medium">
+                        <i data-lucide="settings" class="w-4 h-4"></i>
+                        <span>Custom Settings</span>
+                        <i data-lucide="chevron-down" id="custom-settings-chevron" class="w-4 h-4"></i>
+                    </button>
+
+                    <div id="custom-settings-panel"
+                        class="hidden mt-4 p-4 bg-gray-900 rounded-lg border border-gray-700 space-y-4">
+                        <div class="text-sm text-gray-400 mb-2">Fine-tune compression parameters:</div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div>
+                                <label for="image-quality" class="block mb-1 text-xs font-medium text-gray-400">Output
+                                    Quality</label>
+                                <input type="number" id="image-quality" value="75" min="1" max="100"
+                                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
+                                <p class="text-xs text-gray-500 mt-1">1-100%</p>
+                            </div>
+                            <div>
+                                <label for="dpi-target" class="block mb-1 text-xs font-medium text-gray-400">Resize
+                                    Images To</label>
+                                <input type="number" id="dpi-target" value="96" min="36" max="300"
+                                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
+                                <p class="text-xs text-gray-500 mt-1">DPI</p>
+                            </div>
+                            <div>
+                                <label for="dpi-threshold" class="block mb-1 text-xs font-medium text-gray-400">Only
+                                    Process Above</label>
+                                <input type="number" id="dpi-threshold" value="150" min="72" max="600"
+                                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm">
+                                <p class="text-xs text-gray-500 mt-1">DPI</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="remove-metadata" checked class="w-4 h-4 rounded">
+                                <span class="text-sm text-gray-300">Remove metadata</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="subset-fonts" checked class="w-4 h-4 rounded">
+                                <span class="text-sm text-gray-300">Subset fonts (remove unused glyphs)</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="remove-thumbnails" checked class="w-4 h-4 rounded">
+                                <span class="text-sm text-gray-300">Remove embedded thumbnails</span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
 
                 <button id="process-btn" class="btn-gradient w-full mt-4">Compress PDF</button>

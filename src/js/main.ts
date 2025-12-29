@@ -3,11 +3,13 @@ import { dom, switchView, hideAlert, showLoader, hideLoader, showAlert } from '.
 import { state, resetState } from './state.js';
 import { ShortcutsManager } from './logic/shortcuts.js';
 import { createIcons, icons } from 'lucide';
+import '@phosphor-icons/web/regular';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 import { formatShortcutDisplay, formatStars } from './utils/helpers.js';
 import { APP_VERSION, injectVersion } from '../version.js';
 import { initI18n, applyTranslations, rewriteLinks, injectLanguageSwitcher, createLanguageSwitcher, t } from './i18n/index.js';
+import { startBackgroundPreload } from './utils/wasm-preloader.js';
 
 const init = async () => {
   await initI18n();
@@ -207,7 +209,7 @@ const init = async () => {
     'PDF Form Filler': 'tools:pdfFormFiller',
     'Create PDF Form': 'tools:createPdfForm',
     'Remove Blank Pages': 'tools:removeBlankPages',
-    'Image to PDF': 'tools:imageToPdf',
+    'Images to PDF': 'tools:imageToPdf',
     'PNG to PDF': 'tools:pngToPdf',
     'WebP to PDF': 'tools:webpToPdf',
     'SVG to PDF': 'tools:svgToPdf',
@@ -233,6 +235,7 @@ const init = async () => {
     'Add Blank Page': 'tools:addBlankPage',
     'Reverse Pages': 'tools:reversePages',
     'Rotate PDF': 'tools:rotatePdf',
+    'Rotate by Custom Degrees': 'tools:rotateCustom',
     'N-Up PDF': 'tools:nUpPdf',
     'Combine to Single Page': 'tools:combineToSinglePage',
     'View Metadata': 'tools:viewMetadata',
@@ -287,7 +290,12 @@ const init = async () => {
 
         const icon = document.createElement('i');
         icon.className = 'w-10 h-10 mb-3 text-indigo-400';
-        icon.setAttribute('data-lucide', tool.icon);
+
+        if (tool.icon.startsWith('ph-')) {
+          icon.className = `ph ${tool.icon} text-4xl mb-3 text-indigo-400`;
+        } else {
+          icon.setAttribute('data-lucide', tool.icon);
+        }
 
         const toolName = document.createElement('h3');
         toolName.className = 'font-semibold text-white';
@@ -313,20 +321,68 @@ const init = async () => {
     const searchBar = document.getElementById('search-bar');
     const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');
 
-    const fuzzyMatch = (searchTerm: string, targetText: string): boolean => {
-      if (!searchTerm) return true;
+    const fuzzyMatchWithScore = (searchTerm: string, targetText: string): number => {
+      if (!searchTerm) return 100;
+
+      const search = searchTerm.toLowerCase();
+      const target = targetText.toLowerCase();
+
+      if (target === search) return 100;
+
+      if (target.includes(search)) {
+        if (target.startsWith(search)) return 95;
+        if (target.includes(' ' + search)) return 90;
+        return 85;
+      }
+
+      const words = target.split(/\s+/);
+      const searchWords = search.split(/\s+/);
+
+      let wordBoundaryScore = 0;
+      let matchedWords = 0;
+
+      for (const searchWord of searchWords) {
+        for (const targetWord of words) {
+          if (targetWord.startsWith(searchWord)) {
+            matchedWords++;
+            wordBoundaryScore += 20;
+            break;
+          }
+        }
+      }
+
+      if (matchedWords === searchWords.length) {
+        return Math.min(80, wordBoundaryScore);
+      }
 
       let searchIndex = 0;
       let targetIndex = 0;
+      let consecutiveMatches = 0;
+      let maxConsecutive = 0;
+      let totalMatches = 0;
 
-      while (searchIndex < searchTerm.length && targetIndex < targetText.length) {
-        if (searchTerm[searchIndex] === targetText[targetIndex]) {
+      while (searchIndex < search.length && targetIndex < target.length) {
+        if (search[searchIndex] === target[targetIndex]) {
           searchIndex++;
+          totalMatches++;
+          consecutiveMatches++;
+          maxConsecutive = Math.max(maxConsecutive, consecutiveMatches);
+        } else {
+          consecutiveMatches = 0;
         }
         targetIndex++;
       }
 
-      return searchIndex === searchTerm.length;
+      if (searchIndex !== search.length) return 0;
+      const matchRatio = totalMatches / search.length;
+      const consecutiveBonus = (maxConsecutive / search.length) * 20;
+      const lengthPenalty = Math.max(0, (target.length - search.length) / target.length) * 10;
+
+      const score = Math.max(0, Math.min(75,
+        (matchRatio * 50) + consecutiveBonus - lengthPenalty
+      ));
+
+      return score;
     };
 
     searchBar.addEventListener('input', () => {
@@ -334,20 +390,33 @@ const init = async () => {
       const searchTerm = searchBar.value.toLowerCase().trim();
 
       categoryGroups.forEach((group) => {
-        const toolCards = group.querySelectorAll('.tool-card');
+        const toolCards = Array.from(group.querySelectorAll('.tool-card'));
+
+        const scoredCards = toolCards.map((card) => {
+          const toolName = card.querySelector('h3')?.textContent || '';
+          const toolSubtitle = card.querySelector('p')?.textContent || '';
+
+          const nameScore = fuzzyMatchWithScore(searchTerm, toolName);
+          const subtitleScore = fuzzyMatchWithScore(searchTerm, toolSubtitle);
+
+          const score = Math.max(nameScore, subtitleScore) +
+            (nameScore > 0 && subtitleScore > 0 ? 5 : 0);
+
+          return { card, score };
+        });
+
+        scoredCards.sort((a, b) => b.score - a.score);
+
         let visibleToolsInCategory = 0;
+        const threshold = 10;
 
-        toolCards.forEach((card) => {
-          const toolName = card.querySelector('h3').textContent.toLowerCase();
-          const toolSubtitle =
-            card.querySelector('p')?.textContent.toLowerCase() || '';
-
-          const isMatch =
-            fuzzyMatch(searchTerm, toolName) || fuzzyMatch(searchTerm, toolSubtitle);
-
+        scoredCards.forEach(({ card, score }, index) => {
+          const isMatch = score >= threshold;
           card.classList.toggle('hidden', !isMatch);
+
           if (isMatch) {
             visibleToolsInCategory++;
+            (card as HTMLElement).style.order = index.toString();
           }
         });
 
@@ -402,6 +471,9 @@ const init = async () => {
 
   createIcons({ icons });
   console.log('Please share our tool and share the love!');
+
+  // Start background WASM preloading on all pages
+  startBackgroundPreload();
 
 
   const githubStarsElements = [

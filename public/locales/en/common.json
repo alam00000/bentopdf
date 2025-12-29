@@ -8,6 +8,10 @@
         "openMainMenu": "Open main menu",
         "language": "Language"
     },
+    "donation": {
+        "message": "Love BentoPDF? Help us keep it free and open source!",
+        "button": "Donate"
+    },
     "hero": {
         "title": "The",
         "pdfToolkit": "PDF Toolkit",
@@ -53,7 +57,8 @@
         "toolsLabel": "Tools",
         "subtitle": "Click a tool to open the file uploader",
         "searchPlaceholder": "Search for a tool (e.g., 'split', 'organize'...)",
-        "backToTools": "Back to Tools"
+        "backToTools": "Back to Tools",
+        "firstLoadNotice": "First load takes a moment as we download our conversion engine. After that, all loads will be instant."
     },
     "upload": {
         "clickToSelect": "Click to select a file",

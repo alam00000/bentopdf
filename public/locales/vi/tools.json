@@ -22,7 +22,29 @@
     },
     "compressPdf": {
         "name": "Nén PDF",
-        "subtitle": "Giảm kích thước tệp PDF của bạn."
+        "subtitle": "Giảm kích thước tệp PDF của bạn.",
+        "algorithmLabel": "Thuật toán nén",
+        "condense": "Condense (Khuyến nghị)",
+        "photon": "Photon (Dành cho PDF nhiều ảnh)",
+        "condenseInfo": "Condense sử dụng nén nâng cao: loại bỏ dữ liệu thừa, tối ưu hóa hình ảnh, gọn phông chữ. Phù hợp với hầu hết PDF.",
+        "photonInfo": "Photon chuyển đổi trang thành hình ảnh. Dùng cho PDF nhiều ảnh/quét.",
+        "photonWarning": "Cảnh báo: Văn bản sẽ không thể chọn được và liên kết sẽ không hoạt động.",
+        "levelLabel": "Mức độ nén",
+        "light": "Nhẹ (Giữ chất lượng)",
+        "balanced": "Cân bằng (Khuyến nghị)",
+        "aggressive": "Mạnh (Tệp nhỏ hơn)",
+        "extreme": "Cực đoan (Nén tối đa)",
+        "grayscale": "Chuyển sang thang xám",
+        "grayscaleHint": "Giảm kích thước tệp bằng cách loại bỏ thông tin màu",
+        "customSettings": "Cài đặt tùy chỉnh",
+        "customSettingsHint": "Tinh chỉnh các thông số nén:",
+        "outputQuality": "Chất lượng đầu ra",
+        "resizeImagesTo": "Thay đổi kích thước ảnh thành",
+        "onlyProcessAbove": "Chỉ xử lý khi trên",
+        "removeMetadata": "Xóa siêu dữ liệu",
+        "subsetFonts": "Gọn phông chữ (xóa ký tự không dùng)",
+        "removeThumbnails": "Xóa hình thu nhỏ nhúng",
+        "compressButton": "Nén PDF"
     },
     "pdfEditor": {
         "name": "Trình chỉnh sửa PDF",
@@ -30,7 +52,7 @@
     },
     "jpgToPdf": {
         "name": "JPG sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh JPG."
+        "subtitle": "Tạo PDF từ hình ảnh JPG, JPEG và JPEG2000 (JP2/JPX)."
     },
     "signPdf": {
         "name": "Ký PDF",
@@ -109,7 +131,7 @@
     },
     "imageToPdf": {
         "name": "Hình ảnh sang PDF",
-        "subtitle": "Chuyển đổi JPG, PNG, WebP, BMP, TIFF, SVG, HEIC sang PDF."
+        "subtitle": "Chuyển đổi JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP sang PDF."
     },
     "pngToPdf": {
         "name": "PNG sang PDF",
@@ -207,6 +229,10 @@
         "name": "Xoay PDF",
         "subtitle": "Xoay trang theo bội số 90 độ."
     },
+    "rotateCustom": {
+        "name": "Xoay theo độ tùy chỉnh",
+        "subtitle": "Xoay trang theo bất kỳ góc độ tùy chỉnh nào."
+    },
     "nUpPdf": {
         "name": "N-Up PDF",
         "subtitle": "Sắp xếp nhiều trang lên một tờ."
@@ -278,5 +304,189 @@
     "changePermissions": {
         "name": "Thay đổi quyền",
         "subtitle": "Đặt hoặc thay đổi quyền người dùng trên PDF."
+    },
+    "odtToPdf": {
+        "name": "ODT sang PDF",
+        "subtitle": "Chuyển đổi tệp OpenDocument Text sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp ODT",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "csvToPdf": {
+        "name": "CSV sang PDF",
+        "subtitle": "Chuyển đổi tệp bảng tính CSV sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp CSV",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "rtfToPdf": {
+        "name": "RTF sang PDF",
+        "subtitle": "Chuyển đổi tài liệu Rich Text Format sang PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp RTF",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "wordToPdf": {
+        "name": "Word sang PDF",
+        "subtitle": "Chuyển đổi tài liệu Word (DOCX, DOC, ODT, RTF) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp DOCX, DOC, ODT, RTF",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "excelToPdf": {
+        "name": "Excel sang PDF",
+        "subtitle": "Chuyển đổi bảng tính Excel (XLSX, XLS, ODS, CSV) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp XLSX, XLS, ODS, CSV",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "powerpointToPdf": {
+        "name": "PowerPoint sang PDF",
+        "subtitle": "Chuyển đổi bài thuyết trình PowerPoint (PPTX, PPT, ODP) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp PPTX, PPT, ODP",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "markdownToPdf": {
+        "name": "Markdown sang PDF",
+        "subtitle": "Viết hoặc dán Markdown và xuất nó thành PDF được định dạng đẹp.",
+        "paneMarkdown": "Markdown",
+        "panePreview": "Xem trước",
+        "btnUpload": "Tải lên",
+        "btnSyncScroll": "Cuộn đồng bộ",
+        "btnSettings": "Cài đặt",
+        "btnExportPdf": "Xuất PDF",
+        "settingsTitle": "Cài đặt Markdown",
+        "settingsPreset": "Cài đặt sẵn",
+        "presetDefault": "Mặc định (kiểu GFM)",
+        "presetCommonmark": "CommonMark (nghiêm ngặt)",
+        "presetZero": "Tối thiểu (không có tính năng)",
+        "settingsOptions": "Tùy chọn Markdown",
+        "optAllowHtml": "Cho phép thẻ HTML",
+        "optBreaks": "Chuyển đổi xuống dòng thành <br>",
+        "optLinkify": "Tự động chuyển URL thành liên kết",
+        "optTypographer": "Trình sắp chữ (dấu ngoặc thông minh, v.v.)"
+    },
+    "pdfBooklet": {
+        "name": "Sách nhỏ PDF",
+        "subtitle": "Sắp xếp lại các trang để in sách nhỏ hai mặt. Gấp và đóng ghim để tạo sách nhỏ.",
+        "howItWorks": "Cách hoạt động:",
+        "step1": "Tải lên tệp PDF.",
+        "step2": "Các trang sẽ được sắp xếp lại theo thứ tự sách nhỏ.",
+        "step3": "In hai mặt, lật cạnh ngắn, gấp và đóng ghim.",
+        "paperSize": "Kích thước giấy",
+        "orientation": "Hướng",
+        "portrait": "Dọc",
+        "landscape": "Ngang",
+        "pagesPerSheet": "Số trang mỗi tờ",
+        "createBooklet": "Tạo sách nhỏ",
+        "processing": "Đang xử lý...",
+        "pageCount": "Số trang sẽ được bổ sung lên bội số của 4 nếu cần."
+    },
+    "xpsToPdf": {
+        "name": "XPS sang PDF",
+        "subtitle": "Chuyển đổi tài liệu XPS/OXPS sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp XPS, OXPS",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "mobiToPdf": {
+        "name": "MOBI sang PDF",
+        "subtitle": "Chuyển đổi sách điện tử MOBI sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp MOBI",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "epubToPdf": {
+        "name": "EPUB sang PDF",
+        "subtitle": "Chuyển đổi sách điện tử EPUB sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp EPUB",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "fb2ToPdf": {
+        "name": "FB2 sang PDF",
+        "subtitle": "Chuyển đổi sách điện tử FictionBook (FB2) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp FB2",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "cbzToPdf": {
+        "name": "CBZ sang PDF",
+        "subtitle": "Chuyển đổi kho lưu trữ truyện tranh (CBZ/CBR) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp CBZ, CBR",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "wpdToPdf": {
+        "name": "WPD sang PDF",
+        "subtitle": "Chuyển đổi tài liệu WordPerfect (WPD) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp WPD",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "wpsToPdf": {
+        "name": "WPS sang PDF",
+        "subtitle": "Chuyển đổi tài liệu WPS Office sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp WPS",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "xmlToPdf": {
+        "name": "XML sang PDF",
+        "subtitle": "Chuyển đổi tài liệu XML sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp XML",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "pagesToPdf": {
+        "name": "Pages sang PDF",
+        "subtitle": "Chuyển đổi tài liệu Apple Pages sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp Pages",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "odgToPdf": {
+        "name": "ODG sang PDF",
+        "subtitle": "Chuyển đổi tệp OpenDocument Graphics (ODG) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp ODG",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "odsToPdf": {
+        "name": "ODS sang PDF",
+        "subtitle": "Chuyển đổi tệp OpenDocument Spreadsheet (ODS) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp ODS",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "odpToPdf": {
+        "name": "ODP sang PDF",
+        "subtitle": "Chuyển đổi tệp OpenDocument Presentation (ODP) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp ODP",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "pubToPdf": {
+        "name": "PUB sang PDF",
+        "subtitle": "Chuyển đổi tệp Microsoft Publisher (PUB) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp PUB",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "vsdToPdf": {
+        "name": "VSD sang PDF",
+        "subtitle": "Chuyển đổi tệp Microsoft Visio (VSD, VSDX) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp VSD, VSDX",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "psdToPdf": {
+        "name": "PSD sang PDF",
+        "subtitle": "Chuyển đổi tệp Adobe Photoshop (PSD) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+        "acceptedFormats": "Tệp PSD",
+        "convertButton": "Chuyển đổi sang PDF"
+    },
+    "pdfToSvg": {
+        "name": "PDF sang SVG",
+        "subtitle": "Chuyển đổi mỗi trang PDF thành đồ họa vector có thể mở rộng (SVG) với chất lượng hoàn hảo ở mọi kích thước."
+    },
+    "extractTables": {
+        "name": "Trích xuất bảng PDF",
+        "subtitle": "Trích xuất bảng từ tệp PDF và xuất dưới dạng CSV, JSON hoặc Markdown."
+    },
+    "pdfToCsv": {
+        "name": "PDF sang CSV",
+        "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng CSV."
+    },
+    "pdfToExcel": {
+        "name": "PDF sang Excel",
+        "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng Excel (XLSX)."
+    },
+    "pdfToText": {
+        "name": "PDF sang Văn bản",
+        "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
+        "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi.",
+        "convertButton": "Trích xuất văn bản"
     }
 }

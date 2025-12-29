@@ -1,21 +1,24 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes } from '../utils/helpers.js';
+import { downloadFile, formatBytes, parsePageRanges } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 interface DividePagesState {
     file: File | null;
     pdfDoc: PDFLibDocument | null;
+    totalPages: number;
 }
 
 const pageState: DividePagesState = {
     file: null,
     pdfDoc: null,
+    totalPages: 0,
 };
 
 function resetState() {
     pageState.file = null;
     pageState.pdfDoc = null;
+    pageState.totalPages = 0;
 
     const fileDisplayArea = document.getElementById('file-display-area');
     if (fileDisplayArea) fileDisplayArea.innerHTML = '';
@@ -28,6 +31,9 @@ function resetState() {
 
     const splitTypeSelect = document.getElementById('split-type') as HTMLSelectElement;
     if (splitTypeSelect) splitTypeSelect.value = 'vertical';
+
+    const pageRangeInput = document.getElementById('page-range') as HTMLInputElement;
+    if (pageRangeInput) pageRangeInput.value = '';
 }
 
 async function updateUI() {
@@ -73,10 +79,10 @@ async function updateUI() {
                 ignoreEncryption: true,
                 throwOnInvalidObject: false
             });
+            pageState.totalPages = pageState.pdfDoc.getPageCount();
             hideLoader();
 
-            const pageCount = pageState.pdfDoc.getPageCount();
-            metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;
+            metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageState.totalPages} pages`;
 
             if (toolOptions) toolOptions.classList.remove('hidden');
         } catch (error) {
@@ -96,8 +102,24 @@ async function dividePages() {
         return;
     }
 
+    const pageRangeInput = document.getElementById('page-range') as HTMLInputElement;
+    const pageRangeValue = pageRangeInput?.value.trim().toLowerCase() || '';
     const splitTypeSelect = document.getElementById('split-type') as HTMLSelectElement;
     const splitType = splitTypeSelect.value;
+
+    let pagesToDivide: Set<number>;
+
+    if (pageRangeValue === '' || pageRangeValue === 'all') {
+        pagesToDivide = new Set(Array.from({ length: pageState.totalPages }, (_, i) => i + 1));
+    } else {
+        const parsedIndices = parsePageRanges(pageRangeValue, pageState.totalPages);
+        pagesToDivide = new Set(parsedIndices.map(i => i + 1));
+
+        if (pagesToDivide.size === 0) {
+            showAlert('Invalid Range', 'Please enter a valid page range (e.g., 1-5, 8, 11-13).');
+            return;
+        }
+    }
 
     showLoader('Splitting PDF pages...');
 
@@ -106,27 +128,33 @@ async function dividePages() {
         const pages = pageState.pdfDoc.getPages();
 
         for (let i = 0; i < pages.length; i++) {
+            const pageNum = i + 1;
             const originalPage = pages[i];
             const { width, height } = originalPage.getSize();
 
-            showLoader(`Processing page ${i + 1} of ${pages.length}...`);
+            showLoader(`Processing page ${pageNum} of ${pages.length}...`);
 
-            const [page1] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
-            const [page2] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
+            if (pagesToDivide.has(pageNum)) {
+                const [page1] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
+                const [page2] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
 
-            switch (splitType) {
-                case 'vertical':
-                    page1.setCropBox(0, 0, width / 2, height);
-                    page2.setCropBox(width / 2, 0, width / 2, height);
-                    break;
-                case 'horizontal':
-                    page1.setCropBox(0, height / 2, width, height / 2);
-                    page2.setCropBox(0, 0, width, height / 2);
-                    break;
+                switch (splitType) {
+                    case 'vertical':
+                        page1.setCropBox(0, 0, width / 2, height);
+                        page2.setCropBox(width / 2, 0, width / 2, height);
+                        break;
+                    case 'horizontal':
+                        page1.setCropBox(0, height / 2, width, height / 2);
+                        page2.setCropBox(0, 0, width, height / 2);
+                        break;
+                }
+
+                newPdfDoc.addPage(page1);
+                newPdfDoc.addPage(page2);
+            } else {
+                const [copiedPage] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
+                newPdfDoc.addPage(copiedPage);
             }
-
-            newPdfDoc.addPage(page1);
-            newPdfDoc.addPage(page2);
         }
 
         const newPdfBytes = await newPdfDoc.save();

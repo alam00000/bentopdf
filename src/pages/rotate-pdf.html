@@ -99,42 +99,17 @@
                 <div class="bg-gray-900 rounded-lg border border-gray-700 p-4 mb-4">
                     <h3 class="text-center text-sm font-semibold text-white mb-4 uppercase tracking-wider">Batch Actions
                     </h3>
-                    <div class="flex flex-col md:flex-row gap-4 md:gap-8 justify-center items-center">
+                    <div class="flex justify-center items-center">
                         <!-- Rotate by 90 Degrees -->
-                        <div class="flex flex-col items-center">
-                            <span class="text-xs text-gray-400 uppercase tracking-wider mb-2">Rotate by 90
-                                Degrees</span>
-                            <div class="flex gap-2">
-                                <button id="rotate-all-left"
-                                    class="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm border border-gray-600">
-                                    <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Left
-                                </button>
-                                <button id="rotate-all-right"
-                                    class="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm border border-gray-600">
-                                    <i data-lucide="rotate-cw" class="w-4 h-4"></i> Right
-                                </button>
-                            </div>
-                        </div>
-                        <!-- Rotate by Custom Degrees -->
-                        <div class="flex flex-col items-center">
-                            <span class="text-xs text-gray-400 uppercase tracking-wider mb-2">Rotate by Custom
-                                Degrees</span>
-                            <div class="flex items-center gap-2">
-                                <button id="batch-decrement"
-                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded-lg border border-gray-600">
-                                    −
-                                </button>
-                                <input id="batch-custom-angle" type="number" value="0"
-                                    class="w-16 h-10 text-center bg-gray-700 border border-gray-600 text-white rounded-lg">
-                                <button id="batch-increment"
-                                    class="w-10 h-10 flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white rounded-lg border border-gray-600">
-                                    +
-                                </button>
-                                <button id="batch-apply"
-                                    class="px-4 h-10 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium">
-                                    Apply
-                                </button>
-                            </div>
+                        <div class="flex gap-2">
+                            <button id="rotate-all-left"
+                                class="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm border border-gray-600">
+                                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Left
+                            </button>
+                            <button id="rotate-all-right"
+                                class="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm border border-gray-600">
+                                <i data-lucide="rotate-cw" class="w-4 h-4"></i> Right
+                            </button>
                         </div>
                     </div>
                 </div>

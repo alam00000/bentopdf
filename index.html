@@ -31,9 +31,9 @@
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8">
           <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
-          <a href="./about.html" class="nav-link" data-i18n="nav.about">About</a>
-          <a href="./contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
-          <a href="./licensing.html" class="nav-link" data-i18n="nav.licensing">Licensing</a>
+          <a href="/about.html" class="nav-link" data-i18n="nav.about">About</a>
+          <a href="/contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+          <a href="/licensing.html" class="nav-link" data-i18n="nav.licensing">Licensing</a>
           <a href="index.html#tools-header" class="nav-link" data-i18n="nav.allTools">All Tools</a>
           <a href="https://github.com/alam00000/bentopdf/" target="_blank" rel="noopener noreferrer" class="
             inline-flex items-center gap-1.5 text-sm font-medium
@@ -90,13 +90,38 @@
     <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
       <div class="px-2 pt-2 pb-3 space-y-1 text-center">
         <a href="index.html" class="mobile-nav-link" data-i18n="nav.home">Home</a>
-        <a href="./about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
-        <a href="./contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
-        <a href="./licensing.html" class="mobile-nav-link" data-i18n="nav.licensing">Licensing</a>
+        <a href="/about.html" class="mobile-nav-link" data-i18n="nav.about">About</a>
+        <a href="/contact.html" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
+        <a href="/licensing.html" class="mobile-nav-link" data-i18n="nav.licensing">Licensing</a>
         <a href="index.html#tools-header" class="mobile-nav-link" data-i18n="nav.allTools">All Tools</a>
       </div>
     </div>
   </nav>
+
+  <!-- Donation Ribbon -->
+  <div id="donation-ribbon"
+    class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 py-2 px-4 text-center hide-section">
+    <div class="container mx-auto flex items-center justify-center gap-3 flex-wrap">
+      <span class="text-white text-sm font-medium flex items-center gap-2">
+        <span data-i18n="donation.message">Love BentoPDF? Help us keep it free and open source!</span>
+      </span>
+      <a href="https://ko-fi.com/alio01" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-3 py-1 bg-white text-purple-700 rounded-full text-xs font-semibold hover:bg-gray-100 transition-colors shadow-sm">
+        <i data-lucide="heart" class="w-3.5 h-3.5 text-purple-700"></i>
+        <span data-i18n="donation.button">Donate</span>
+      </a>
+      <a href="https://github.com/sponsors/alam00000" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-900 text-white rounded-full text-xs font-semibold hover:bg-gray-800 transition-colors shadow-sm border border-gray-700">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+          <path fill-rule="evenodd"
+            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+            clip-rule="evenodd" />
+        </svg>
+        <span>Sponsor</span>
+      </a>
+    </div>
+  </div>
+
   <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
     <section id="hero-section" class="text-center py-20 relative">
       <div class="bg-grid-pattern"></div>
@@ -398,8 +423,10 @@
           <div class="mb-4 p-3 bg-indigo-900/20 border border-indigo-500/30 rounded-lg flex items-start gap-3">
             <i data-lucide="info" class="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5"></i>
             <p class="text-sm text-indigo-200">
-              <span data-i18n="settings.shortcutsInfo">Press and hold keys to set a shortcut. Changes are <strong>auto-saved</strong>.</span>
-              <br><span class="text-yellow-300" data-i18n="settings.shortcutsWarning">⚠️ Avoid common browser shortcuts (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N
+              <span data-i18n="settings.shortcutsInfo">Press and hold keys to set a shortcut. Changes are
+                <strong>auto-saved</strong>.</span>
+              <br><span class="text-yellow-300" data-i18n="settings.shortcutsWarning">⚠️ Avoid common browser shortcuts
+                (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N
                 etc.) as they
                 may not work reliably.</span>
             </p>
@@ -810,26 +837,6 @@
       </div>
     </section>
 
-    <div class="section-divider"></div>
-    <section id="support-section" class="py-20">
-      <div class="max-w-4xl mx-auto text-center bg-gray-800 p-8 md:p-12 rounded-xl border border-gray-700 shadow-2xl">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-i18n="support.title">
-          Like My Work?
-        </h2>
-        <p class="text-gray-400 mb-8 max-w-2xl mx-auto" data-i18n="support.description">
-          BentoPDF is a passion project, built to provide a free, private, and
-          powerful PDF toolkit for everyone. If you find it useful, consider
-          supporting its development. Every coffee helps!
-        </p>
-
-        <a href="https://ko-fi.com/alio01" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center gap-3 px-8 py-3 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1 mt-5">
-          <i data-lucide="coffee" class="w-7 h-7"></i>
-          <span data-i18n="support.buyMeCoffee">Buy Me a Coffee</span>
-        </a>
-      </div>
-    </section>
-
     <div id="signature-ghost" class="hidden"></div>
 
     <!-- Scroll to Top Button -->
@@ -860,13 +867,13 @@
           <h3 class="font-bold text-white mb-4" data-i18n="footer.company">Company</h3>
           <ul class="space-y-2 text-gray-400">
             <li>
-              <a href="./about.html" class="hover:text-indigo-400" data-i18n="footer.aboutUs">About Us</a>
+              <a href="/about.html" class="hover:text-indigo-400" data-i18n="footer.aboutUs">About Us</a>
             </li>
             <li>
-              <a href="./faq.html" class="hover:text-indigo-400" data-i18n="footer.faqLink">FAQ</a>
+              <a href="/faq.html" class="hover:text-indigo-400" data-i18n="footer.faqLink">FAQ</a>
             </li>
             <li>
-              <a href="./contact.html" class="hover:text-indigo-400" data-i18n="footer.contactUs">Contact Us</a>
+              <a href="/contact.html" class="hover:text-indigo-400" data-i18n="footer.contactUs">Contact Us</a>
             </li>
           </ul>
         </div>
@@ -875,14 +882,14 @@
           <h3 class="font-bold text-white mb-4" data-i18n="footer.legal">Legal</h3>
           <ul class="space-y-2 text-gray-400">
             <li>
-              <a href="./licensing.html" class="hover:text-indigo-400" data-i18n="nav.licensing">Licensing</a>
+              <a href="/licensing.html" class="hover:text-indigo-400" data-i18n="nav.licensing">Licensing</a>
             </li>
             <li>
-              <a href="./terms.html" class="hover:text-indigo-400" data-i18n="footer.termsAndConditions">Terms and
+              <a href="/terms.html" class="hover:text-indigo-400" data-i18n="footer.termsAndConditions">Terms and
                 Conditions</a>
             </li>
             <li>
-              <a href="./privacy.html" class="hover:text-indigo-400" data-i18n="footer.privacyPolicy">Privacy Policy</a>
+              <a href="/privacy.html" class="hover:text-indigo-400" data-i18n="footer.privacyPolicy">Privacy Policy</a>
             </li>
           </ul>
         </div>
@@ -929,6 +936,7 @@
   <script type="module" src="src/version.ts"></script>
   <script type="module" src="src/js/main.ts"></script>
   <script type="module" src="src/js/mobileMenu.ts"></script>
+  <script type="module" src="src/js/sw-register.ts"></script>
 </body>
 
 </html>

@@ -1,0 +1,228 @@
+import { showLoader, hideLoader, showAlert } from '../ui.js';
+import {
+    downloadFile,
+    readFileAsArrayBuffer,
+    formatBytes,
+    getPDFDocument,
+} from '../utils/helpers.js';
+import { state } from '../state.js';
+import { createIcons, icons } from 'lucide';
+import { convertFileToPdfA, type PdfALevel } from '../utils/ghostscript-loader';
+
+document.addEventListener('DOMContentLoaded', () => {
+    const fileInput = document.getElementById('file-input') as HTMLInputElement;
+    const dropZone = document.getElementById('drop-zone');
+    const processBtn = document.getElementById('process-btn');
+    const fileDisplayArea = document.getElementById('file-display-area');
+    const optionsContainer = document.getElementById('options-container');
+    const fileControls = document.getElementById('file-controls');
+    const addMoreBtn = document.getElementById('add-more-btn');
+    const clearFilesBtn = document.getElementById('clear-files-btn');
+    const backBtn = document.getElementById('back-to-tools');
+    const pdfaLevelSelect = document.getElementById('pdfa-level') as HTMLSelectElement;
+
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            window.location.href = import.meta.env.BASE_URL;
+        });
+    }
+
+    const updateUI = async () => {
+        if (!fileDisplayArea || !optionsContainer || !processBtn || !fileControls) return;
+
+        if (state.files.length > 0) {
+            fileDisplayArea.innerHTML = '';
+
+            for (let index = 0; index < state.files.length; index++) {
+                const file = state.files[index];
+                const fileDiv = document.createElement('div');
+                fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+
+                const infoContainer = document.createElement('div');
+                infoContainer.className = 'flex flex-col overflow-hidden';
+
+                const nameSpan = document.createElement('div');
+                nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
+                nameSpan.textContent = file.name;
+
+                const metaSpan = document.createElement('div');
+                metaSpan.className = 'text-xs text-gray-400';
+                metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`;
+
+                infoContainer.append(nameSpan, metaSpan);
+
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
+                removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+                removeBtn.onclick = () => {
+                    state.files = state.files.filter((_, i) => i !== index);
+                    updateUI();
+                };
+
+                fileDiv.append(infoContainer, removeBtn);
+                fileDisplayArea.appendChild(fileDiv);
+
+                try {
+                    const arrayBuffer = await readFileAsArrayBuffer(file);
+                    const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
+                    metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
+                }
+            }
+
+            createIcons({ icons });
+            fileControls.classList.remove('hidden');
+            optionsContainer.classList.remove('hidden');
+            (processBtn as HTMLButtonElement).disabled = false;
+        } else {
+            fileDisplayArea.innerHTML = '';
+            fileControls.classList.add('hidden');
+            optionsContainer.classList.add('hidden');
+            (processBtn as HTMLButtonElement).disabled = true;
+        }
+    };
+
+    const resetState = () => {
+        state.files = [];
+        state.pdfDoc = null;
+
+        if (pdfaLevelSelect) pdfaLevelSelect.value = 'PDF/A-2b';
+
+        updateUI();
+    };
+
+    const convertToPdfA = async () => {
+        const level = pdfaLevelSelect.value as PdfALevel;
+
+        try {
+            if (state.files.length === 0) {
+                showAlert('No Files', 'Please select at least one PDF file.');
+                hideLoader();
+                return;
+            }
+
+            if (state.files.length === 1) {
+                const originalFile = state.files[0];
+
+                showLoader('Initializing Ghostscript...');
+
+                const convertedBlob = await convertFileToPdfA(
+                    originalFile,
+                    level,
+                    (msg) => showLoader(msg)
+                );
+
+                const fileName = originalFile.name.replace(/\.pdf$/i, '') + '_pdfa.pdf';
+
+                downloadFile(convertedBlob, fileName);
+
+                hideLoader();
+
+                showAlert(
+                    'Conversion Complete',
+                    `Successfully converted ${originalFile.name} to ${level}.`,
+                    'success',
+                    () => resetState()
+                );
+            } else {
+                showLoader('Converting multiple PDFs to PDF/A...');
+                const JSZip = (await import('jszip')).default;
+                const zip = new JSZip();
+
+                for (let i = 0; i < state.files.length; i++) {
+                    const file = state.files[i];
+                    showLoader(`Converting ${i + 1}/${state.files.length}: ${file.name}...`);
+
+                    const convertedBlob = await convertFileToPdfA(
+                        file,
+                        level,
+                        (msg) => showLoader(msg)
+                    );
+
+                    const baseName = file.name.replace(/\.pdf$/i, '');
+                    const blobBuffer = await convertedBlob.arrayBuffer();
+                    zip.file(`${baseName}_pdfa.pdf`, blobBuffer);
+                }
+
+                const zipBlob = await zip.generateAsync({ type: 'blob' });
+
+                downloadFile(zipBlob, 'pdfa-converted.zip');
+
+                hideLoader();
+
+                showAlert(
+                    'Conversion Complete',
+                    `Successfully converted ${state.files.length} PDF(s) to ${level}.`,
+                    'success',
+                    () => resetState()
+                );
+            }
+        } catch (e: any) {
+            hideLoader();
+            showAlert(
+                'Error',
+                `An error occurred during conversion. Error: ${e.message}`
+            );
+        }
+    };
+
+    const handleFileSelect = (files: FileList | null) => {
+        if (files && files.length > 0) {
+            state.files = [...state.files, ...Array.from(files)];
+            updateUI();
+        }
+    };
+
+    if (fileInput && dropZone) {
+        fileInput.addEventListener('change', (e) => {
+            handleFileSelect((e.target as HTMLInputElement).files);
+        });
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-gray-700');
+        });
+
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-gray-700');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-gray-700');
+            const files = e.dataTransfer?.files;
+            if (files && files.length > 0) {
+                const pdfFiles = Array.from(files).filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
+                if (pdfFiles.length > 0) {
+                    const dataTransfer = new DataTransfer();
+                    pdfFiles.forEach(f => dataTransfer.items.add(f));
+                    handleFileSelect(dataTransfer.files);
+                }
+            }
+        });
+
+        // Clear value on click to allow re-selecting the same file
+        fileInput.addEventListener('click', () => {
+            fileInput.value = '';
+        });
+    }
+
+    if (addMoreBtn) {
+        addMoreBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+    }
+
+    if (clearFilesBtn) {
+        clearFilesBtn.addEventListener('click', () => {
+            resetState();
+        });
+    }
+
+    if (processBtn) {
+        processBtn.addEventListener('click', convertToPdfA);
+    }
+});

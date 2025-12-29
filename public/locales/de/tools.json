@@ -22,7 +22,29 @@
     },
     "compressPdf": {
         "name": "PDF komprimieren",
-        "subtitle": "Die Dateigröße Ihrer PDF reduzieren."
+        "subtitle": "Die Dateigröße Ihrer PDF reduzieren.",
+        "algorithmLabel": "Komprimierungsalgorithmus",
+        "condense": "Condense (Empfohlen)",
+        "photon": "Photon (Für bildlastige PDFs)",
+        "condenseInfo": "Condense nutzt fortschrittliche Komprimierung: entfernt unnötige Daten, optimiert Bilder, reduziert Schriftarten. Optimal für die meisten PDFs.",
+        "photonInfo": "Photon wandelt Seiten in Bilder um. Für bildlastige/gescannte PDFs.",
+        "photonWarning": "Warnung: Text wird nicht mehr auswählbar und Links funktionieren nicht mehr.",
+        "levelLabel": "Komprimierungsstufe",
+        "light": "Leicht (Qualität erhalten)",
+        "balanced": "Ausgewogen (Empfohlen)",
+        "aggressive": "Aggressiv (Kleinere Dateien)",
+        "extreme": "Extrem (Maximale Komprimierung)",
+        "grayscale": "In Graustufen umwandeln",
+        "grayscaleHint": "Reduziert Dateigröße durch Entfernen von Farbinformationen",
+        "customSettings": "Erweiterte Einstellungen",
+        "customSettingsHint": "Komprimierungsparameter anpassen:",
+        "outputQuality": "Ausgabequalität",
+        "resizeImagesTo": "Bilder anpassen auf",
+        "onlyProcessAbove": "Nur verarbeiten über",
+        "removeMetadata": "Metadaten entfernen",
+        "subsetFonts": "Schriftarten optimieren (ungenutzte Zeichen entfernen)",
+        "removeThumbnails": "Eingebettete Miniaturansichten entfernen",
+        "compressButton": "PDF komprimieren"
     },
     "pdfEditor": {
         "name": "PDF-Editor",
@@ -30,7 +52,7 @@
     },
     "jpgToPdf": {
         "name": "JPG zu PDF",
-        "subtitle": "Eine PDF aus einem oder mehreren JPG-Bildern erstellen."
+        "subtitle": "Eine PDF aus JPG, JPEG und JPEG2000 (JP2/JPX) Bildern erstellen."
     },
     "signPdf": {
         "name": "PDF unterschreiben",
@@ -108,8 +130,8 @@
         "subtitle": "Leere Seiten automatisch erkennen und löschen."
     },
     "imageToPdf": {
-        "name": "Bild zu PDF",
-        "subtitle": "JPG, PNG, WebP, BMP, TIFF, SVG, HEIC in PDF konvertieren."
+        "name": "Bilder zu PDF",
+        "subtitle": "JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP in PDF konvertieren."
     },
     "pngToPdf": {
         "name": "PNG zu PDF",
@@ -207,6 +229,10 @@
         "name": "PDF drehen",
         "subtitle": "Seiten in 90-Grad-Schritten drehen."
     },
+    "rotateCustom": {
+        "name": "Um benutzerdefinierte Grad drehen",
+        "subtitle": "Seiten um einen beliebigen Winkel drehen."
+    },
     "nUpPdf": {
         "name": "N-Up PDF",
         "subtitle": "Mehrere Seiten auf einem einzigen Blatt anordnen."
@@ -278,5 +304,189 @@
     "changePermissions": {
         "name": "Berechtigungen ändern",
         "subtitle": "Benutzerberechtigungen für eine PDF festlegen oder ändern."
+    },
+    "odtToPdf": {
+        "name": "ODT zu PDF",
+        "subtitle": "OpenDocument Text-Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "ODT-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "csvToPdf": {
+        "name": "CSV zu PDF",
+        "subtitle": "CSV-Tabellendateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "CSV-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "rtfToPdf": {
+        "name": "RTF zu PDF",
+        "subtitle": "Rich Text Format-Dokumente in PDF konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "RTF-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "wordToPdf": {
+        "name": "Word zu PDF",
+        "subtitle": "Word-Dokumente (DOCX, DOC, ODT, RTF) in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "DOCX, DOC, ODT, RTF-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "excelToPdf": {
+        "name": "Excel zu PDF",
+        "subtitle": "Excel-Tabellen (XLSX, XLS, ODS, CSV) in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "XLSX, XLS, ODS, CSV-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "powerpointToPdf": {
+        "name": "PowerPoint zu PDF",
+        "subtitle": "PowerPoint-Präsentationen (PPTX, PPT, ODP) in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "PPTX, PPT, ODP-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "markdownToPdf": {
+        "name": "Markdown zu PDF",
+        "subtitle": "Schreiben oder fügen Sie Markdown ein und exportieren Sie es als schön formatiertes PDF.",
+        "paneMarkdown": "Markdown",
+        "panePreview": "Vorschau",
+        "btnUpload": "Hochladen",
+        "btnSyncScroll": "Sync-Scrollen",
+        "btnSettings": "Einstellungen",
+        "btnExportPdf": "PDF exportieren",
+        "settingsTitle": "Markdown-Einstellungen",
+        "settingsPreset": "Voreinstellung",
+        "presetDefault": "Standard (GFM-ähnlich)",
+        "presetCommonmark": "CommonMark (strikt)",
+        "presetZero": "Minimal (keine Funktionen)",
+        "settingsOptions": "Markdown-Optionen",
+        "optAllowHtml": "HTML-Tags erlauben",
+        "optBreaks": "Zeilenumbrüche in <br> umwandeln",
+        "optLinkify": "URLs automatisch in Links umwandeln",
+        "optTypographer": "Typograf (intelligente Anführungszeichen usw.)"
+    },
+    "pdfBooklet": {
+        "name": "PDF-Broschüre",
+        "subtitle": "Seiten für beidseitigen Broschürendruck neu anordnen. Falten und heften zum Erstellen einer Broschüre.",
+        "howItWorks": "So funktioniert es:",
+        "step1": "Eine PDF-Datei hochladen.",
+        "step2": "Die Seiten werden in Broschürenreihenfolge neu angeordnet.",
+        "step3": "Beidseitig drucken, an der kurzen Kante wenden, falten und heften.",
+        "paperSize": "Papiergröße",
+        "orientation": "Ausrichtung",
+        "portrait": "Hochformat",
+        "landscape": "Querformat",
+        "pagesPerSheet": "Seiten pro Blatt",
+        "createBooklet": "Broschüre erstellen",
+        "processing": "Verarbeitung...",
+        "pageCount": "Die Seitenzahl wird bei Bedarf auf ein Vielfaches von 4 aufgerundet."
+    },
+    "xpsToPdf": {
+        "name": "XPS zu PDF",
+        "subtitle": "XPS/OXPS-Dokumente in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "XPS, OXPS-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "mobiToPdf": {
+        "name": "MOBI zu PDF",
+        "subtitle": "MOBI-E-Books in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "MOBI-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "epubToPdf": {
+        "name": "EPUB zu PDF",
+        "subtitle": "EPUB-E-Books in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "EPUB-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "fb2ToPdf": {
+        "name": "FB2 zu PDF",
+        "subtitle": "FictionBook (FB2) E-Books in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "FB2-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "cbzToPdf": {
+        "name": "CBZ zu PDF",
+        "subtitle": "Comic-Archive (CBZ/CBR) in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "CBZ, CBR-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "wpdToPdf": {
+        "name": "WPD zu PDF",
+        "subtitle": "WordPerfect-Dokumente (WPD) in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "WPD-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "wpsToPdf": {
+        "name": "WPS zu PDF",
+        "subtitle": "WPS Office-Dokumente in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "WPS-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "xmlToPdf": {
+        "name": "XML zu PDF",
+        "subtitle": "XML-Dokumente in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "XML-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "pagesToPdf": {
+        "name": "Pages zu PDF",
+        "subtitle": "Apple Pages-Dokumente in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "Pages-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "odgToPdf": {
+        "name": "ODG zu PDF",
+        "subtitle": "OpenDocument Graphics (ODG) Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "ODG-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "odsToPdf": {
+        "name": "ODS zu PDF",
+        "subtitle": "OpenDocument Spreadsheet (ODS) Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "ODS-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "odpToPdf": {
+        "name": "ODP zu PDF",
+        "subtitle": "OpenDocument Presentation (ODP) Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "ODP-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "pubToPdf": {
+        "name": "PUB zu PDF",
+        "subtitle": "Microsoft Publisher (PUB) Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "PUB-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "vsdToPdf": {
+        "name": "VSD zu PDF",
+        "subtitle": "Microsoft Visio (VSD, VSDX) Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "VSD, VSDX-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "psdToPdf": {
+        "name": "PSD zu PDF",
+        "subtitle": "Adobe Photoshop (PSD) Dateien in PDF-Format konvertieren. Unterstützt mehrere Dateien.",
+        "acceptedFormats": "PSD-Dateien",
+        "convertButton": "In PDF konvertieren"
+    },
+    "pdfToSvg": {
+        "name": "PDF zu SVG",
+        "subtitle": "Jede Seite einer PDF-Datei in eine skalierbare Vektorgrafik (SVG) konvertieren für perfekte Qualität in jeder Größe."
+    },
+    "extractTables": {
+        "name": "PDF-Tabellen extrahieren",
+        "subtitle": "Tabellen aus PDF-Dateien extrahieren und als CSV, JSON oder Markdown exportieren."
+    },
+    "pdfToCsv": {
+        "name": "PDF zu CSV",
+        "subtitle": "Tabellen aus PDF extrahieren und in CSV-Format konvertieren."
+    },
+    "pdfToExcel": {
+        "name": "PDF zu Excel",
+        "subtitle": "Tabellen aus PDF extrahieren und in Excel (XLSX) Format konvertieren."
+    },
+    "pdfToText": {
+        "name": "PDF zu Text",
+        "subtitle": "Text aus PDF-Dateien extrahieren und als Textdatei (.txt) speichern. Unterstützt mehrere Dateien.",
+        "note": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser OCR PDF-Tool.",
+        "convertButton": "Text extrahieren"
     }
 }

@@ -53,7 +53,8 @@
         "toolsLabel": "工具",
         "subtitle": "点击工具以打开文件上传",
         "searchPlaceholder": "搜索工具 (例如 '合并', '分割'...)",
-        "backToTools": "返回工具列表"
+        "backToTools": "返回工具列表",
+        "firstLoadNotice": "首次加载需要一点时间，因为我们正在下载转换引擎。之后所有加载将即时完成。"
     },
     "upload": {
         "clickToSelect": "点击选择文件",

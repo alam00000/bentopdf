@@ -53,7 +53,8 @@
         "toolsLabel": "Công cụ",
         "subtitle": "Nhấp vào một công cụ để mở trình tải tệp lên",
         "searchPlaceholder": "Tìm kiếm công cụ (ví dụ: 'chia', 'sắp xếp'...)",
-        "backToTools": "Quay lại Công cụ"
+        "backToTools": "Quay lại Công cụ",
+        "firstLoadNotice": "Lần tải đầu tiên sẽ mất một chút thời gian vì chúng tôi đang tải xuống công cụ chuyển đổi. Sau đó, mọi lần tải sẽ ngay lập tức."
     },
     "upload": {
         "clickToSelect": "Nhấp để chọn tệp",

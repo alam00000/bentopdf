@@ -1,8 +1,11 @@
 import { defineConfig, Plugin } from 'vitest/config';
 import tailwindcss from '@tailwindcss/vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import viteCompression from 'vite-plugin-compression';
 import { resolve } from 'path';
 import fs from 'fs';
+import { constants as zlibConstants } from 'zlib';
 
 function pagesRewritePlugin(): Plugin {
   return {
@@ -79,11 +82,37 @@ function flattenPagesPlugin(): Plugin {
   };
 }
 
+function rewriteHtmlPathsPlugin(): Plugin {
+  const baseUrl = process.env.BASE_URL || '/';
+  const normalizedBase = baseUrl.replace(/\/?$/, '/');
+
+  return {
+    name: 'rewrite-html-paths',
+    enforce: 'post',
+    generateBundle(_, bundle) {
+      if (normalizedBase === '/') return;
+
+      for (const fileName of Object.keys(bundle)) {
+        if (fileName.endsWith('.html')) {
+          const asset = bundle[fileName];
+          if (asset.type === 'asset' && typeof asset.source === 'string') {
+            asset.source = asset.source
+              .replace(/href="\/(?!test\/|http|\/\/)/g, `href="${normalizedBase}`)
+              .replace(/src="\/(?!test\/|http|\/\/)/g, `src="${normalizedBase}`)
+              .replace(/content="\/(?!test\/|http|\/\/)/g, `content="${normalizedBase}`);
+          }
+        }
+      }
+    },
+  };
+}
+
 export default defineConfig(({ mode }) => ({
-  base: process.env.BASE_URL || '/',
+  base: (process.env.BASE_URL || '/').replace(/\/?$/, '/'),
   plugins: [
     pagesRewritePlugin(),
     flattenPagesPlugin(),
+    rewriteHtmlPathsPlugin(),
     tailwindcss(),
     nodePolyfills({
       include: ['buffer', 'stream', 'util', 'zlib', 'process'],
@@ -92,6 +121,63 @@ export default defineConfig(({ mode }) => ({
         global: true,
         process: true,
       },
+    }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'node_modules/@bentopdf/pymupdf-wasm/assets/*.wasm',
+          dest: 'pymupdf-wasm'
+        },
+        {
+          src: 'node_modules/@bentopdf/pymupdf-wasm/assets/*.js',
+          dest: 'pymupdf-wasm'
+        },
+        {
+          src: 'node_modules/@bentopdf/pymupdf-wasm/assets/*.whl',
+          dest: 'pymupdf-wasm'
+        },
+        {
+          src: 'node_modules/@bentopdf/pymupdf-wasm/assets/*.zip',
+          dest: 'pymupdf-wasm'
+        },
+        {
+          src: 'node_modules/@bentopdf/pymupdf-wasm/assets/*.json',
+          dest: 'pymupdf-wasm'
+        },
+        {
+          src: 'node_modules/@bentopdf/gs-wasm/assets/*.wasm',
+          dest: 'ghostscript-wasm'
+        },
+        {
+          src: 'node_modules/@bentopdf/gs-wasm/assets/*.js',
+          dest: 'ghostscript-wasm'
+        },
+        {
+          src: 'node_modules/embedpdf-snippet/dist/pdfium.wasm',
+          dest: 'embedpdf'
+        }
+      ]
+    }),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+      threshold: 1024,
+      compressionOptions: {
+        params: {
+          [zlibConstants.BROTLI_PARAM_QUALITY]: 11,
+          [zlibConstants.BROTLI_PARAM_MODE]: zlibConstants.BROTLI_MODE_TEXT,
+        },
+      },
+      deleteOriginFile: false,
+    }),
+    viteCompression({
+      algorithm: 'gzip',
+      ext: '.gz',
+      threshold: 1024,
+      compressionOptions: {
+        level: 9,
+      },
+      deleteOriginFile: false,
     }),
   ],
   define: {
@@ -168,6 +254,7 @@ export default defineConfig(({ mode }) => ({
         'add-blank-page': resolve(__dirname, 'src/pages/add-blank-page.html'),
         'divide-pages': resolve(__dirname, 'src/pages/divide-pages.html'),
         'rotate-pdf': resolve(__dirname, 'src/pages/rotate-pdf.html'),
+        'rotate-custom': resolve(__dirname, 'src/pages/rotate-custom.html'),
         'n-up-pdf': resolve(__dirname, 'src/pages/n-up-pdf.html'),
         'combine-single-page': resolve(__dirname, 'src/pages/combine-single-page.html'),
         'view-metadata': resolve(__dirname, 'src/pages/view-metadata.html'),
@@ -194,12 +281,47 @@ export default defineConfig(({ mode }) => ({
         'heic-to-pdf': resolve(__dirname, 'src/pages/heic-to-pdf.html'),
         'tiff-to-pdf': resolve(__dirname, 'src/pages/tiff-to-pdf.html'),
         'txt-to-pdf': resolve(__dirname, 'src/pages/txt-to-pdf.html'),
+        'markdown-to-pdf': resolve(__dirname, 'src/pages/markdown-to-pdf.html'),
         'pdf-to-bmp': resolve(__dirname, 'src/pages/pdf-to-bmp.html'),
         'pdf-to-greyscale': resolve(__dirname, 'src/pages/pdf-to-greyscale.html'),
         'pdf-to-jpg': resolve(__dirname, 'src/pages/pdf-to-jpg.html'),
         'pdf-to-png': resolve(__dirname, 'src/pages/pdf-to-png.html'),
         'pdf-to-tiff': resolve(__dirname, 'src/pages/pdf-to-tiff.html'),
         'pdf-to-webp': resolve(__dirname, 'src/pages/pdf-to-webp.html'),
+        'pdf-to-docx': resolve(__dirname, 'src/pages/pdf-to-docx.html'),
+        'extract-images': resolve(__dirname, 'src/pages/extract-images.html'),
+        'pdf-to-markdown': resolve(__dirname, 'src/pages/pdf-to-markdown.html'),
+        'rasterize-pdf': resolve(__dirname, 'src/pages/rasterize-pdf.html'),
+        'prepare-pdf-for-ai': resolve(__dirname, 'src/pages/prepare-pdf-for-ai.html'),
+        'pdf-layers': resolve(__dirname, 'src/pages/pdf-layers.html'),
+        'pdf-to-pdfa': resolve(__dirname, 'src/pages/pdf-to-pdfa.html'),
+        'odt-to-pdf': resolve(__dirname, 'src/pages/odt-to-pdf.html'),
+        'csv-to-pdf': resolve(__dirname, 'src/pages/csv-to-pdf.html'),
+        'rtf-to-pdf': resolve(__dirname, 'src/pages/rtf-to-pdf.html'),
+        'word-to-pdf': resolve(__dirname, 'src/pages/word-to-pdf.html'),
+        'excel-to-pdf': resolve(__dirname, 'src/pages/excel-to-pdf.html'),
+        'powerpoint-to-pdf': resolve(__dirname, 'src/pages/powerpoint-to-pdf.html'),
+        'pdf-booklet': resolve(__dirname, 'src/pages/pdf-booklet.html'),
+        'xps-to-pdf': resolve(__dirname, 'src/pages/xps-to-pdf.html'),
+        'mobi-to-pdf': resolve(__dirname, 'src/pages/mobi-to-pdf.html'),
+        'epub-to-pdf': resolve(__dirname, 'src/pages/epub-to-pdf.html'),
+        'fb2-to-pdf': resolve(__dirname, 'src/pages/fb2-to-pdf.html'),
+        'cbz-to-pdf': resolve(__dirname, 'src/pages/cbz-to-pdf.html'),
+        'wpd-to-pdf': resolve(__dirname, 'src/pages/wpd-to-pdf.html'),
+        'wps-to-pdf': resolve(__dirname, 'src/pages/wps-to-pdf.html'),
+        'xml-to-pdf': resolve(__dirname, 'src/pages/xml-to-pdf.html'),
+        'pages-to-pdf': resolve(__dirname, 'src/pages/pages-to-pdf.html'),
+        'odg-to-pdf': resolve(__dirname, 'src/pages/odg-to-pdf.html'),
+        'ods-to-pdf': resolve(__dirname, 'src/pages/ods-to-pdf.html'),
+        'odp-to-pdf': resolve(__dirname, 'src/pages/odp-to-pdf.html'),
+        'pub-to-pdf': resolve(__dirname, 'src/pages/pub-to-pdf.html'),
+        'vsd-to-pdf': resolve(__dirname, 'src/pages/vsd-to-pdf.html'),
+        'psd-to-pdf': resolve(__dirname, 'src/pages/psd-to-pdf.html'),
+        'pdf-to-svg': resolve(__dirname, 'src/pages/pdf-to-svg.html'),
+        'extract-tables': resolve(__dirname, 'src/pages/extract-tables.html'),
+        'pdf-to-csv': resolve(__dirname, 'src/pages/pdf-to-csv.html'),
+        'pdf-to-excel': resolve(__dirname, 'src/pages/pdf-to-excel.html'),
+        'pdf-to-text': resolve(__dirname, 'src/pages/pdf-to-text.html'),
 
       },
     },

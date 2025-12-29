@@ -14,6 +14,8 @@ COPY . .
 # Pass SIMPLE_MODE environment variable if provided
 ARG SIMPLE_MODE=false
 ENV SIMPLE_MODE=$SIMPLE_MODE
+ARG COMPRESSION_MODE=all
+ENV COMPRESSION_MODE=$COMPRESSION_MODE
 
 # global arg to local arg
 ARG BASE_URL
@@ -29,6 +31,7 @@ RUN if [ -z "$BASE_URL" ]; then \
 FROM nginxinc/nginx-unprivileged:stable-alpine-slim
 
 LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
+LABEL org.opencontainers.image.url="https://github.com/alam00000/bentopdf"
 
 # global arg to local arg
 ARG BASE_URL

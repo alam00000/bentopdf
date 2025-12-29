@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image to PDF - BentoPDF</title>
+    <title>Images to PDF - BentoPDF</title>
     <meta name="description"
-        content="Convert multiple images (JPG, PNG, WebP, SVG) into a single PDF file. Free, secure, and runs entirely in your browser.">
+        content="Convert images (JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JP2, PSD, SVG, HEIC, WebP) to PDF. Free, secure, runs in your browser.">
     <link rel="icon" type="image/png" href="/images/favicon.svg" />
     <link rel="alternate" hreflang="en" href="/en/image-to-pdf.html" />
     <link rel="alternate" hreflang="de" href="/de/image-to-pdf.html" />
@@ -69,7 +69,7 @@
                 <span class="cursor-pointer" data-i18n="tools.backToTools"> Back to Tools </span>
             </button>
 
-            <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:imageToPdf.name">Image to PDF</h1>
+            <h1 class="text-2xl font-bold text-white mb-2" data-i18n="tools:imageToPdf.name">Images to PDF</h1>
             <p class="text-gray-400 mb-6" data-i18n="tools:imageToPdf.subtitle">Convert one or more images into a single
                 PDF file.</p>
 
@@ -80,12 +80,14 @@
                     <p class="mb-2 text-sm text-gray-400"><span class="font-semibold"
                             data-i18n="upload.clickToSelect">Click to select a file</span> <span
                             data-i18n="upload.orDragAndDrop">or drag and drop</span></p>
-                    <p class="text-xs text-gray-500">All Image Types</p>
+                    <p id="supported-formats" class="text-xs text-gray-500">JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM,
+                        PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP</p>
                     <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">Your files never leave your
                         device.</p>
                 </div>
                 <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-                    multiple accept="image/*">
+                    multiple
+                    accept=".jpg,.jpeg,.png,.bmp,.gif,.tiff,.tif,.pnm,.pgm,.pbm,.ppm,.pam,.jxr,.jpx,.jp2,.psd,.svg,.heic,.heif,.webp">
             </div>
 
             <div id="file-controls" class="hidden mt-4 flex gap-3">
@@ -94,8 +96,8 @@
                     <i data-lucide="plus"></i> <span data-i18n="upload.addMore">Add More Files</span>
                 </button>
                 <button id="clear-files-btn"
-                    class="btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
-                    <i data-lucide="x"></i> <span data-i18n="upload.clearAll">Clear All</span>
+                    class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                    <i data-lucide="trash-2"></i> <span data-i18n="upload.clearAll">Clear All</span>
                 </button>
             </div>
 

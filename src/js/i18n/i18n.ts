@@ -44,7 +44,7 @@ export const initI18n = async (): Promise<typeof i18next> => {
             ns: ['common', 'tools'],
             defaultNS: 'common',
             backend: {
-                loadPath: `${import.meta.env.BASE_URL}locales/{{lng}}/{{ns}}.json`,
+                loadPath: `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}locales/{{lng}}/{{ns}}.json`,
             },
             detection: {
                 order: ['path', 'localStorage', 'navigator'],

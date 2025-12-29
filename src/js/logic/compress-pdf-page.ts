@@ -7,187 +7,94 @@ import {
 } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
+import { PDFDocument } from 'pdf-lib';
+import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
 import * as pdfjsLib from 'pdfjs-dist';
-import { PDFDocument, PDFName, PDFDict, PDFStream, PDFNumber } from 'pdf-lib';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-function dataUrlToBytes(dataUrl: any) {
-    const base64 = dataUrl.split(',')[1];
-    const binaryString = atob(base64);
-    const len = binaryString.length;
-    const bytes = new Uint8Array(len);
-    for (let i = 0; i < len; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
+const CONDENSE_PRESETS = {
+    light: {
+        images: { quality: 90, dpiTarget: 150, dpiThreshold: 200 },
+        scrub: { metadata: false, thumbnails: true },
+        subsetFonts: true,
+    },
+    balanced: {
+        images: { quality: 75, dpiTarget: 96, dpiThreshold: 150 },
+        scrub: { metadata: true, thumbnails: true },
+        subsetFonts: true,
+    },
+    aggressive: {
+        images: { quality: 50, dpiTarget: 72, dpiThreshold: 100 },
+        scrub: { metadata: true, thumbnails: true, xmlMetadata: true },
+        subsetFonts: true,
+    },
+    extreme: {
+        images: { quality: 30, dpiTarget: 60, dpiThreshold: 96 },
+        scrub: { metadata: true, thumbnails: true, xmlMetadata: true },
+        subsetFonts: true,
+    },
+};
+
+const PHOTON_PRESETS = {
+    light: { scale: 2.0, quality: 0.85 },
+    balanced: { scale: 1.5, quality: 0.65 },
+    aggressive: { scale: 1.2, quality: 0.45 },
+    extreme: { scale: 1.0, quality: 0.25 },
+};
+
+async function performCondenseCompression(
+    fileBlob: Blob,
+    level: string,
+    customSettings?: {
+        imageQuality?: number;
+        dpiTarget?: number;
+        dpiThreshold?: number;
+        removeMetadata?: boolean;
+        subsetFonts?: boolean;
+        convertToGrayscale?: boolean;
+        removeThumbnails?: boolean;
     }
-    return bytes;
-}
+) {
+    const pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+    await pymupdf.load();
 
-async function performSmartCompression(arrayBuffer: any, settings: any) {
-    const pdfDoc = await PDFDocument.load(arrayBuffer, {
-        ignoreEncryption: true,
-    });
-    const pages = pdfDoc.getPages();
+    const preset = CONDENSE_PRESETS[level as keyof typeof CONDENSE_PRESETS] || CONDENSE_PRESETS.balanced;
 
-    if (settings.removeMetadata) {
-        try {
-            pdfDoc.setTitle('');
-            pdfDoc.setAuthor('');
-            pdfDoc.setSubject('');
-            pdfDoc.setKeywords([]);
-            pdfDoc.setCreator('');
-            pdfDoc.setProducer('');
-        } catch (e) {
-            console.warn('Could not remove metadata:', e);
-        }
-    }
+    const dpiTarget = customSettings?.dpiTarget ?? preset.images.dpiTarget;
+    const userThreshold = customSettings?.dpiThreshold ?? preset.images.dpiThreshold;
+    const dpiThreshold = Math.max(userThreshold, dpiTarget + 10);
 
-    for (let i = 0; i < pages.length; i++) {
-        const page = pages[i];
-        const resources = page.node.Resources();
-        if (!resources) continue;
-
-        const xobjects = resources.lookup(PDFName.of('XObject'));
-        if (!(xobjects instanceof PDFDict)) continue;
-
-        for (const [key, value] of xobjects.entries()) {
-            const stream = pdfDoc.context.lookup(value);
-            if (
-                !(stream instanceof PDFStream) ||
-                stream.dict.get(PDFName.of('Subtype')) !== PDFName.of('Image')
-            )
-                continue;
-
-            try {
-                const imageBytes = stream.getContents();
-                if (imageBytes.length < settings.skipSize) continue;
-
-                const width =
-                    stream.dict.get(PDFName.of('Width')) instanceof PDFNumber
-                        ? (stream.dict.get(PDFName.of('Width')) as PDFNumber).asNumber()
-                        : 0;
-                const height =
-                    stream.dict.get(PDFName.of('Height')) instanceof PDFNumber
-                        ? (stream.dict.get(PDFName.of('Height')) as PDFNumber).asNumber()
-                        : 0;
-                const bitsPerComponent =
-                    stream.dict.get(PDFName.of('BitsPerComponent')) instanceof PDFNumber
-                        ? (
-                            stream.dict.get(PDFName.of('BitsPerComponent')) as PDFNumber
-                        ).asNumber()
-                        : 8;
-
-                if (width > 0 && height > 0) {
-                    let newWidth = width;
-                    let newHeight = height;
-
-                    const scaleFactor = settings.scaleFactor || 1.0;
-                    newWidth = Math.floor(width * scaleFactor);
-                    newHeight = Math.floor(height * scaleFactor);
-
-                    if (newWidth > settings.maxWidth || newHeight > settings.maxHeight) {
-                        const aspectRatio = newWidth / newHeight;
-                        if (newWidth > newHeight) {
-                            newWidth = Math.min(newWidth, settings.maxWidth);
-                            newHeight = newWidth / aspectRatio;
-                        } else {
-                            newHeight = Math.min(newHeight, settings.maxHeight);
-                            newWidth = newHeight * aspectRatio;
-                        }
-                    }
-
-                    const minDim = settings.minDimension || 50;
-                    if (newWidth < minDim || newHeight < minDim) continue;
-
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    canvas.width = Math.floor(newWidth);
-                    canvas.height = Math.floor(newHeight);
-
-                    const img = new Image();
-                    const imageUrl = URL.createObjectURL(
-                        new Blob([new Uint8Array(imageBytes)])
-                    );
-
-                    await new Promise((resolve, reject) => {
-                        img.onload = resolve;
-                        img.onerror = reject;
-                        img.src = imageUrl;
-                    });
-
-                    ctx.imageSmoothingEnabled = settings.smoothing !== false;
-                    ctx.imageSmoothingQuality = settings.smoothingQuality || 'medium';
-
-                    if (settings.grayscale) {
-                        ctx.filter = 'grayscale(100%)';
-                    } else if (settings.contrast) {
-                        ctx.filter = `contrast(${settings.contrast}) brightness(${settings.brightness || 1})`;
-                    }
-
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-                    let bestBytes = null;
-                    let bestSize = imageBytes.length;
-
-                    const jpegDataUrl = canvas.toDataURL('image/jpeg', settings.quality);
-                    const jpegBytes = dataUrlToBytes(jpegDataUrl);
-                    if (jpegBytes.length < bestSize) {
-                        bestBytes = jpegBytes;
-                        bestSize = jpegBytes.length;
-                    }
-
-                    if (settings.tryWebP) {
-                        try {
-                            const webpDataUrl = canvas.toDataURL(
-                                'image/webp',
-                                settings.quality
-                            );
-                            const webpBytes = dataUrlToBytes(webpDataUrl);
-                            if (webpBytes.length < bestSize) {
-                                bestBytes = webpBytes;
-                                bestSize = webpBytes.length;
-                            }
-                        } catch (e) {
-                            /* WebP not supported */
-                        }
-                    }
-
-                    if (bestBytes && bestSize < imageBytes.length * settings.threshold) {
-                        (stream as any).contents = bestBytes;
-                        stream.dict.set(PDFName.of('Length'), PDFNumber.of(bestSize));
-                        stream.dict.set(PDFName.of('Width'), PDFNumber.of(canvas.width));
-                        stream.dict.set(PDFName.of('Height'), PDFNumber.of(canvas.height));
-                        stream.dict.set(PDFName.of('Filter'), PDFName.of('DCTDecode'));
-                        stream.dict.delete(PDFName.of('DecodeParms'));
-                        stream.dict.set(PDFName.of('BitsPerComponent'), PDFNumber.of(8));
-
-                        if (settings.grayscale) {
-                            stream.dict.set(
-                                PDFName.of('ColorSpace'),
-                                PDFName.of('DeviceGray')
-                            );
-                        }
-                    }
-                    URL.revokeObjectURL(imageUrl);
-                }
-            } catch (error) {
-                console.warn('Skipping an uncompressible image in smart mode:', error);
-            }
-        }
-    }
-
-    const saveOptions = {
-        useObjectStreams: settings.useObjectStreams !== false,
-        addDefaultPage: false,
-        objectsPerTick: settings.objectsPerTick || 50,
+    const options = {
+        images: {
+            enabled: true,
+            quality: customSettings?.imageQuality ?? preset.images.quality,
+            dpiTarget,
+            dpiThreshold,
+            convertToGray: customSettings?.convertToGrayscale ?? false,
+        },
+        scrub: {
+            metadata: customSettings?.removeMetadata ?? preset.scrub.metadata,
+            thumbnails: customSettings?.removeThumbnails ?? preset.scrub.thumbnails,
+            xmlMetadata: (preset.scrub as any).xmlMetadata ?? false,
+        },
+        subsetFonts: customSettings?.subsetFonts ?? preset.subsetFonts,
+        save: {
+            garbage: 4 as const,
+            deflate: true,
+            clean: true,
+            useObjstms: true,
+        },
     };
 
-    return await pdfDoc.save(saveOptions);
+    const result = await pymupdf.compressPdf(fileBlob, options);
+    return result;
 }
 
-async function performLegacyCompression(arrayBuffer: any, settings: any) {
+async function performPhotonCompression(arrayBuffer: ArrayBuffer, level: string) {
     const pdfJsDoc = await getPDFDocument({ data: arrayBuffer }).promise;
     const newPdfDoc = await PDFDocument.create();
+    const settings = PHOTON_PRESETS[level as keyof typeof PHOTON_PRESETS] || PHOTON_PRESETS.balanced;
 
     for (let i = 1; i <= pdfJsDoc.numPages; i++) {
         const page = await pdfJsDoc.getPage(i);
@@ -197,13 +104,12 @@ async function performLegacyCompression(arrayBuffer: any, settings: any) {
         canvas.height = viewport.height;
         canvas.width = viewport.width;
 
-        await page.render({ canvasContext: context, viewport, canvas: canvas })
-            .promise;
+        await page.render({ canvasContext: context, viewport, canvas: canvas }).promise;
 
-        const jpegBlob = await new Promise((resolve) =>
-            canvas.toBlob(resolve, 'image/jpeg', settings.quality)
+        const jpegBlob = await new Promise<Blob>((resolve) =>
+            canvas.toBlob((blob) => resolve(blob as Blob), 'image/jpeg', settings.quality)
         );
-        const jpegBytes = await (jpegBlob as Blob).arrayBuffer();
+        const jpegBytes = await jpegBlob.arrayBuffer();
         const jpegImage = await newPdfDoc.embedJpg(jpegBytes);
         const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
         newPage.drawImage(jpegImage, {
@@ -219,13 +125,19 @@ async function performLegacyCompression(arrayBuffer: any, settings: any) {
 document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('file-input') as HTMLInputElement;
     const dropZone = document.getElementById('drop-zone');
-    const processBtn = document.getElementById('process-btn');
-    const fileDisplayArea = document.getElementById('file-display-area');
     const compressOptions = document.getElementById('compress-options');
-    const fileControls = document.getElementById('file-controls');
     const addMoreBtn = document.getElementById('add-more-btn');
     const clearFilesBtn = document.getElementById('clear-files-btn');
+    const processBtn = document.getElementById('process-btn');
     const backBtn = document.getElementById('back-to-tools');
+    const algorithmSelect = document.getElementById('compression-algorithm') as HTMLSelectElement;
+    const condenseInfo = document.getElementById('condense-info');
+    const photonInfo = document.getElementById('photon-info');
+    const toggleCustomSettings = document.getElementById('toggle-custom-settings');
+    const customSettingsPanel = document.getElementById('custom-settings-panel');
+    const customSettingsChevron = document.getElementById('custom-settings-chevron');
+
+    let useCustomSettings = false;
 
     if (backBtn) {
         backBtn.addEventListener('click', () => {
@@ -233,60 +145,79 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Toggle algorithm info
+    if (algorithmSelect && condenseInfo && photonInfo) {
+        algorithmSelect.addEventListener('change', () => {
+            if (algorithmSelect.value === 'condense') {
+                condenseInfo.classList.remove('hidden');
+                photonInfo.classList.add('hidden');
+            } else {
+                condenseInfo.classList.add('hidden');
+                photonInfo.classList.remove('hidden');
+            }
+        });
+    }
+
+    // Toggle custom settings panel
+    if (toggleCustomSettings && customSettingsPanel && customSettingsChevron) {
+        toggleCustomSettings.addEventListener('click', () => {
+            customSettingsPanel.classList.toggle('hidden');
+            customSettingsChevron.style.transform = customSettingsPanel.classList.contains('hidden')
+                ? 'rotate(0deg)'
+                : 'rotate(180deg)';
+            // Mark that user wants to use custom settings
+            if (!customSettingsPanel.classList.contains('hidden')) {
+                useCustomSettings = true;
+            }
+        });
+    }
+
     const updateUI = async () => {
-        if (!fileDisplayArea || !compressOptions || !processBtn || !fileControls) return;
+        if (!compressOptions) return;
 
         if (state.files.length > 0) {
-            fileDisplayArea.innerHTML = '';
+            const fileDisplayArea = document.getElementById('file-display-area');
+            if (fileDisplayArea) {
+                fileDisplayArea.innerHTML = '';
 
-            for (let index = 0; index < state.files.length; index++) {
-                const file = state.files[index];
-                const fileDiv = document.createElement('div');
-                fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+                for (let index = 0; index < state.files.length; index++) {
+                    const file = state.files[index];
+                    const fileDiv = document.createElement('div');
+                    fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
 
-                const infoContainer = document.createElement('div');
-                infoContainer.className = 'flex flex-col overflow-hidden';
+                    const infoContainer = document.createElement('div');
+                    infoContainer.className = 'flex flex-col overflow-hidden';
 
-                const nameSpan = document.createElement('div');
-                nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
-                nameSpan.textContent = file.name;
+                    const nameSpan = document.createElement('div');
+                    nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
+                    nameSpan.textContent = file.name;
 
-                const metaSpan = document.createElement('div');
-                metaSpan.className = 'text-xs text-gray-400';
-                metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`;
+                    const metaSpan = document.createElement('div');
+                    metaSpan.className = 'text-xs text-gray-400';
+                    metaSpan.textContent = formatBytes(file.size);
 
-                infoContainer.append(nameSpan, metaSpan);
+                    infoContainer.append(nameSpan, metaSpan);
 
-                const removeBtn = document.createElement('button');
-                removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
-                removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-                removeBtn.onclick = () => {
-                    state.files = state.files.filter((_, i) => i !== index);
-                    updateUI();
-                };
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
+                    removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+                    removeBtn.onclick = () => {
+                        state.files = state.files.filter((_, i) => i !== index);
+                        updateUI();
+                    };
 
-                fileDiv.append(infoContainer, removeBtn);
-                fileDisplayArea.appendChild(fileDiv);
-
-                try {
-                    const arrayBuffer = await readFileAsArrayBuffer(file);
-                    const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-                    metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
-                } catch (error) {
-                    console.error('Error loading PDF:', error);
-                    metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
+                    fileDiv.append(infoContainer, removeBtn);
+                    fileDisplayArea.appendChild(fileDiv);
                 }
-            }
 
-            createIcons({ icons });
-            fileControls.classList.remove('hidden');
+                createIcons({ icons });
+            }
             compressOptions.classList.remove('hidden');
-            (processBtn as HTMLButtonElement).disabled = false;
         } else {
-            fileDisplayArea.innerHTML = '';
-            fileControls.classList.add('hidden');
             compressOptions.classList.add('hidden');
-            (processBtn as HTMLButtonElement).disabled = true;
+            // Clear file display area
+            const fileDisplayArea = document.getElementById('file-display-area');
+            if (fileDisplayArea) fileDisplayArea.innerHTML = '';
         }
     };
 
@@ -297,8 +228,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const compressionLevel = document.getElementById('compression-level') as HTMLSelectElement;
         if (compressionLevel) compressionLevel.value = 'balanced';
 
-        const compressionAlgorithm = document.getElementById('compression-algorithm') as HTMLSelectElement;
-        if (compressionAlgorithm) compressionAlgorithm.value = 'vector';
+        if (algorithmSelect) algorithmSelect.value = 'condense';
+
+        useCustomSettings = false;
+        if (customSettingsPanel) customSettingsPanel.classList.add('hidden');
+        if (customSettingsChevron) customSettingsChevron.style.transform = 'rotate(0deg)';
+
+        const imageQuality = document.getElementById('image-quality') as HTMLInputElement;
+        const dpiTarget = document.getElementById('dpi-target') as HTMLInputElement;
+        const dpiThreshold = document.getElementById('dpi-threshold') as HTMLInputElement;
+        const removeMetadata = document.getElementById('remove-metadata') as HTMLInputElement;
+        const subsetFonts = document.getElementById('subset-fonts') as HTMLInputElement;
+        const convertToGrayscale = document.getElementById('convert-to-grayscale') as HTMLInputElement;
+        const removeThumbnails = document.getElementById('remove-thumbnails') as HTMLInputElement;
+
+        if (imageQuality) imageQuality.value = '75';
+        if (dpiTarget) dpiTarget.value = '96';
+        if (dpiThreshold) dpiThreshold.value = '150';
+        if (removeMetadata) removeMetadata.checked = true;
+        if (subsetFonts) subsetFonts.checked = true;
+        if (convertToGrayscale) convertToGrayscale.checked = false;
+        if (removeThumbnails) removeThumbnails.checked = true;
+
+        if (condenseInfo) condenseInfo.classList.remove('hidden');
+        if (photonInfo) photonInfo.classList.add('hidden');
 
         updateUI();
     };
@@ -306,52 +259,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const compress = async () => {
         const level = (document.getElementById('compression-level') as HTMLSelectElement).value;
         const algorithm = (document.getElementById('compression-algorithm') as HTMLSelectElement).value;
+        const convertToGrayscale = (document.getElementById('convert-to-grayscale') as HTMLInputElement)?.checked ?? false;
 
-        const settings = {
-            balanced: {
-                smart: {
-                    quality: 0.5,
-                    threshold: 0.95,
-                    maxWidth: 1800,
-                    maxHeight: 1800,
-                    skipSize: 3000,
-                },
-                legacy: { scale: 1.5, quality: 0.6 },
-            },
-            'high-quality': {
-                smart: {
-                    quality: 0.7,
-                    threshold: 0.98,
-                    maxWidth: 2500,
-                    maxHeight: 2500,
-                    skipSize: 5000,
-                },
-                legacy: { scale: 2.0, quality: 0.9 },
-            },
-            'small-size': {
-                smart: {
-                    quality: 0.3,
-                    threshold: 0.95,
-                    maxWidth: 1200,
-                    maxHeight: 1200,
-                    skipSize: 2000,
-                },
-                legacy: { scale: 1.2, quality: 0.4 },
-            },
-            extreme: {
-                smart: {
-                    quality: 0.1,
-                    threshold: 0.95,
-                    maxWidth: 1000,
-                    maxHeight: 1000,
-                    skipSize: 1000,
-                },
-                legacy: { scale: 1.0, quality: 0.2 },
-            },
-        };
+        let customSettings: {
+            imageQuality?: number;
+            dpiTarget?: number;
+            dpiThreshold?: number;
+            removeMetadata?: boolean;
+            subsetFonts?: boolean;
+            convertToGrayscale?: boolean;
+            removeThumbnails?: boolean;
+        } | undefined;
 
-        const smartSettings = { ...settings[level].smart, removeMetadata: true };
-        const legacySettings = settings[level].legacy;
+        if (useCustomSettings) {
+            const imageQuality = parseInt((document.getElementById('image-quality') as HTMLInputElement)?.value) || 75;
+            const dpiTarget = parseInt((document.getElementById('dpi-target') as HTMLInputElement)?.value) || 96;
+            const dpiThreshold = parseInt((document.getElementById('dpi-threshold') as HTMLInputElement)?.value) || 150;
+            const removeMetadata = (document.getElementById('remove-metadata') as HTMLInputElement)?.checked ?? true;
+            const subsetFonts = (document.getElementById('subset-fonts') as HTMLInputElement)?.checked ?? true;
+            const removeThumbnails = (document.getElementById('remove-thumbnails') as HTMLInputElement)?.checked ?? true;
+
+            customSettings = {
+                imageQuality,
+                dpiTarget,
+                dpiThreshold,
+                removeMetadata,
+                subsetFonts,
+                convertToGrayscale,
+                removeThumbnails,
+            };
+        } else {
+            customSettings = convertToGrayscale ? { convertToGrayscale } : undefined;
+        }
 
         try {
             if (state.files.length === 0) {
@@ -362,49 +301,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (state.files.length === 1) {
                 const originalFile = state.files[0];
-                const arrayBuffer = await readFileAsArrayBuffer(originalFile);
 
-                let resultBytes;
-                let usedMethod;
+                let resultBlob: Blob;
+                let resultSize: number;
+                let usedMethod: string;
 
-                if (algorithm === 'vector') {
-                    showLoader('Running Vector (Smart) compression...');
-                    resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
-                    usedMethod = 'Vector';
-                } else if (algorithm === 'photon') {
-                    showLoader('Running Photon (Rasterize) compression...');
-                    resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
-                    usedMethod = 'Photon';
+                if (algorithm === 'condense') {
+                    showLoader('Loading engine...');
+                    const result = await performCondenseCompression(originalFile, level, customSettings);
+                    resultBlob = result.blob;
+                    resultSize = result.compressedSize;
+                    usedMethod = 'Condense';
                 } else {
-                    showLoader('Running Automatic (Vector first)...');
-                    const vectorResultBytes = await performSmartCompression(
-                        arrayBuffer,
-                        smartSettings
-                    );
-
-                    if (vectorResultBytes.length < originalFile.size) {
-                        resultBytes = vectorResultBytes;
-                        usedMethod = 'Vector (Automatic)';
-                    } else {
-                        showAlert('Vector failed to reduce size. Trying Photon...', 'info');
-                        showLoader('Running Automatic (Photon fallback)...');
-                        resultBytes = await performLegacyCompression(
-                            arrayBuffer,
-                            legacySettings
-                        );
-                        usedMethod = 'Photon (Automatic)';
-                    }
+                    showLoader('Running Photon compression...');
+                    const arrayBuffer = await readFileAsArrayBuffer(originalFile) as ArrayBuffer;
+                    const resultBytes = await performPhotonCompression(arrayBuffer, level);
+                    const buffer = resultBytes.buffer.slice(resultBytes.byteOffset, resultBytes.byteOffset + resultBytes.byteLength) as ArrayBuffer;
+                    resultBlob = new Blob([buffer], { type: 'application/pdf' });
+                    resultSize = resultBytes.length;
+                    usedMethod = 'Photon';
                 }
 
                 const originalSize = formatBytes(originalFile.size);
-                const compressedSize = formatBytes(resultBytes.length);
-                const savings = originalFile.size - resultBytes.length;
-                const savingsPercent =
-                    savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
+                const compressedSize = formatBytes(resultSize);
+                const savings = originalFile.size - resultSize;
+                const savingsPercent = savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
 
                 downloadFile(
-                    new Blob([resultBytes], { type: 'application/pdf' }),
-                    'compressed-final.pdf'
+                    resultBlob,
+                    originalFile.name.replace(/\.pdf$/i, '') + '_compressed.pdf'
                 );
 
                 hideLoader();
@@ -419,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     showAlert(
                         'Compression Finished',
-                        `Method: ${usedMethod}. Could not reduce file size. Original: ${originalSize}, New: ${compressedSize}.`,
+                        `Method: ${usedMethod}. Could not reduce file size further. Original: ${originalSize}, New: ${compressedSize}.`,
                         'warning',
                         () => resetState()
                     );
@@ -434,22 +359,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let i = 0; i < state.files.length; i++) {
                     const file = state.files[i];
                     showLoader(`Compressing ${i + 1}/${state.files.length}: ${file.name}...`);
-                    const arrayBuffer = await readFileAsArrayBuffer(file);
                     totalOriginalSize += file.size;
 
-                    let resultBytes;
-                    if (algorithm === 'vector') {
-                        resultBytes = await performSmartCompression(arrayBuffer, smartSettings);
-                    } else if (algorithm === 'photon') {
-                        resultBytes = await performLegacyCompression(arrayBuffer, legacySettings);
+                    let resultBytes: Uint8Array;
+                    if (algorithm === 'condense') {
+                        const result = await performCondenseCompression(file, level, customSettings);
+                        resultBytes = new Uint8Array(await result.blob.arrayBuffer());
                     } else {
-                        const vectorResultBytes = await performSmartCompression(
-                            arrayBuffer,
-                            smartSettings
-                        );
-                        resultBytes = vectorResultBytes.length < file.size
-                            ? vectorResultBytes
-                            : await performLegacyCompression(arrayBuffer, legacySettings);
+                        const arrayBuffer = await readFileAsArrayBuffer(file) as ArrayBuffer;
+                        resultBytes = await performPhotonCompression(arrayBuffer, level);
                     }
 
                     totalCompressedSize += resultBytes.length;
@@ -459,10 +377,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const zipBlob = await zip.generateAsync({ type: 'blob' });
                 const totalSavings = totalOriginalSize - totalCompressedSize;
-                const totalSavingsPercent =
-                    totalSavings > 0
-                        ? ((totalSavings / totalOriginalSize) * 100).toFixed(1)
-                        : 0;
+                const totalSavingsPercent = totalSavings > 0
+                    ? ((totalSavings / totalOriginalSize) * 100).toFixed(1)
+                    : 0;
 
                 downloadFile(zipBlob, 'compressed-pdfs.zip');
 
@@ -486,6 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (e: any) {
             hideLoader();
+            console.error('[CompressPDF] Error:', e);
             showAlert(
                 'Error',
                 `An error occurred during compression. Error: ${e.message}`
@@ -520,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dropZone.classList.remove('bg-gray-700');
             const files = e.dataTransfer?.files;
             if (files && files.length > 0) {
-                const pdfFiles = Array.from(files).filter(f => f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf'));
+                const pdfFiles = Array.from(files).filter(f => f.type === 'application/pdf');
                 if (pdfFiles.length > 0) {
                     const dataTransfer = new DataTransfer();
                     pdfFiles.forEach(f => dataTransfer.items.add(f));
@@ -529,7 +447,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Clear value on click to allow re-selecting the same file
         fileInput.addEventListener('click', () => {
             fileInput.value = '';
         });
