@@ -85,15 +85,15 @@ This Agreement shall be governed by and construed in accordance with the laws of
 
 By submitting a pull request or other Contribution to the Project, and by typing your name and date below (or by signing electronically via CLA Assistant), you agree to the terms of this Individual Contributor License Agreement.
 
-**Full Legal Name:** Stephan Paternotte
+**Full Legal Name:** Muhammad Islam
 
-**GitHub Username:** Stephan-P
+**GitHub Username:** mafridi143
 
-**Email Address:** stephan@paternottes.net
+**Email Address:** mafridi143@gmail.com
 
-**Date:** 20-12-2025
+**Date:** 30-12-2025
 
-**Signature:** ___________________________
+**Signature:** Muhammad Islam
 
 ---
 
