@@ -87,8 +87,28 @@ async function performCondenseCompression(
         },
     };
 
-    const result = await pymupdf.compressPdf(fileBlob, options);
-    return result;
+    try {
+        const result = await pymupdf.compressPdf(fileBlob, options);
+        return result;
+    } catch (error: any) {
+        const errorMessage = error?.message || String(error);
+        if (errorMessage.includes('PatternType') || errorMessage.includes('pattern')) {
+            console.warn('[CompressPDF] Pattern error detected, retrying without image rewriting:', errorMessage);
+
+            const fallbackOptions = {
+                ...options,
+                images: {
+                    ...options.images,
+                    enabled: false,
+                },
+            };
+
+            const result = await pymupdf.compressPdf(fileBlob, fallbackOptions);
+            return { ...result, usedFallback: true };
+        }
+
+        throw new Error(`PDF compression failed: ${errorMessage}`);
+    }
 }
 
 async function performPhotonCompression(arrayBuffer: ArrayBuffer, level: string) {
@@ -312,6 +332,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     resultBlob = result.blob;
                     resultSize = result.compressedSize;
                     usedMethod = 'Condense';
+
+                    // Check if fallback was used
+                    if ((result as any).usedFallback) {
+                        usedMethod += ' (without image optimization due to unsupported patterns)';
+                    }
                 } else {
                     showLoader('Running Photon compression...');
                     const arrayBuffer = await readFileAsArrayBuffer(originalFile) as ArrayBuffer;

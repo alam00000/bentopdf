@@ -56,6 +56,11 @@ function pagesRewritePlugin(): Plugin {
           const pagePath = resolve(__dirname, 'src/pages', pageName);
           if (fs.existsSync(pagePath)) {
             req.url = `/src/pages${url}`;
+          } else if (url !== '/404.html' && !fs.existsSync(resolve(__dirname, pageName))) {
+            const rootExists = fs.existsSync(resolve(__dirname, pageName));
+            if (!rootExists) {
+              req.url = '/404.html';
+            }
           }
         }
         next();
@@ -86,6 +91,8 @@ function rewriteHtmlPathsPlugin(): Plugin {
   const baseUrl = process.env.BASE_URL || '/';
   const normalizedBase = baseUrl.replace(/\/?$/, '/');
 
+  const escapedBase = normalizedBase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
   return {
     name: 'rewrite-html-paths',
     enforce: 'post',
@@ -96,10 +103,14 @@ function rewriteHtmlPathsPlugin(): Plugin {
         if (fileName.endsWith('.html')) {
           const asset = bundle[fileName];
           if (asset.type === 'asset' && typeof asset.source === 'string') {
+            const hrefRegex = new RegExp(`href="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`, 'g');
+            const srcRegex = new RegExp(`src="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`, 'g');
+            const contentRegex = new RegExp(`content="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`, 'g');
+
             asset.source = asset.source
-              .replace(/href="\/(?!test\/|http|\/\/)/g, `href="${normalizedBase}`)
-              .replace(/src="\/(?!test\/|http|\/\/)/g, `src="${normalizedBase}`)
-              .replace(/content="\/(?!test\/|http|\/\/)/g, `content="${normalizedBase}`);
+              .replace(hrefRegex, `href="${normalizedBase}`)
+              .replace(srcRegex, `src="${normalizedBase}`)
+              .replace(contentRegex, `content="${normalizedBase}`);
           }
         }
       }
@@ -215,8 +226,16 @@ export default defineConfig(({ mode }) => ({
         faq: resolve(__dirname, 'faq.html'),
         privacy: resolve(__dirname, 'privacy.html'),
         terms: resolve(__dirname, 'terms.html'),
-        bookmark: resolve(__dirname, 'src/pages/bookmark.html'),
         licensing: resolve(__dirname, 'licensing.html'),
+        tools: resolve(__dirname, 'tools.html'),
+        '404': resolve(__dirname, '404.html'),
+        // Category Hub Pages
+        'pdf-converter': resolve(__dirname, 'pdf-converter.html'),
+        'pdf-editor': resolve(__dirname, 'pdf-editor.html'),
+        'pdf-security': resolve(__dirname, 'pdf-security.html'),
+        'pdf-merge-split': resolve(__dirname, 'pdf-merge-split.html'),
+        // Tool Pages
+        bookmark: resolve(__dirname, 'src/pages/bookmark.html'),
         'table-of-contents': resolve(
           __dirname,
           'src/pages/table-of-contents.html'

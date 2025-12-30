@@ -2,11 +2,12 @@
   "name": "bento-pdf",
   "private": true,
   "version": "1.15.3",
-  "license": "Apache-2.0",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:with-docs": "npm run build && npm run docs:build && node scripts/include-docs-in-dist.js",
     "build:gzip": "COMPRESSION_MODE=g npm run build",
     "build:brotli": "COMPRESSION_MODE=b npm run build",
     "build:original": "COMPRESSION_MODE=o npm run build",
@@ -105,6 +106,6 @@
     "tiff": "^7.1.2",
     "utif": "^3.1.0",
     "vite-plugin-static-copy": "^3.1.4",
-    "xlsx": "^0.18.5"
+    "xlsx": "file:vendor/sheetjs/xlsx-0.20.2.tgz"
   }
 }

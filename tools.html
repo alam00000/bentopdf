@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>All PDF Tools Directory - 100+ Free Online PDF Tools | BentoPDF</title>
+    <meta name="description"
+        content="Browse all 100+ free online PDF tools. Search and filter by category: converters, editors, security tools, and more. No signup, completely free, privacy-first.">
+    <meta name="keywords"
+        content="pdf tools, pdf converter, pdf editor, pdf security, free pdf tools, online pdf tools">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://www.bentopdf.com/tools">
+
+    <meta property="og:title" content="All PDF Tools Directory - 100+ Free Tools | BentoPDF">
+    <meta property="og:description"
+        content="Browse 100+ free online PDF tools. Converters, editors, security tools, and more. No signup required.">
+    <meta property="og:url" content="https://www.bentopdf.com/tools">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.bentopdf.com/images/og-tools.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <script type="module">
+        import '@phosphor-icons/web/regular';
+    </script>
+</head>
+
+<body class="antialiased bg-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="/images/favicon.svg" alt="BentoPDF Logo" class="h-8 w-8" />
+                    <span class="text-white font-bold text-xl ml-2">
+                        <a href="/">BentoPDF</a>
+                    </span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-white">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about.html" class="nav-link">About</a>
+                    <a href="/contact.html" class="nav-link">Contact</a>
+                    <a href="/tools.html" class="nav-link text-indigo-400">All Tools</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-6">All PDF Tools Directory</h1>
+            <p class="text-lg text-gray-300 mb-8">
+                Browse our complete collection of 100+ free PDF tools. Search by name or filter by category.
+            </p>
+        </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="container mx-auto px-4 mb-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Search Bar -->
+            <div class="mb-6">
+                <div class="relative">
+                    <i
+                        class="ph ph-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-xl text-gray-400"></i>
+                    <input type="text" id="search-input"
+                        placeholder="Search tools... (e.g., 'compress', 'convert to word', 'merge')"
+                        class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-12 pr-4 py-3 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button class="category-filter active" data-category="all">
+                    All Tools <span class="ml-1 text-xs opacity-75" id="count-all">103</span>
+                </button>
+                <button class="category-filter" data-category="converter">
+                    Converters <span class="ml-1 text-xs opacity-75" id="count-converter">47</span>
+                </button>
+                <button class="category-filter" data-category="editor">
+                    Editors <span class="ml-1 text-xs opacity-75" id="count-editor">23</span>
+                </button>
+                <button class="category-filter" data-category="security">
+                    Security <span class="ml-1 text-xs opacity-75" id="count-security">10</span>
+                </button>
+                <button class="category-filter" data-category="merge-split">
+                    Merge & Split <span class="ml-1 text-xs opacity-75" id="count-merge-split">12</span>
+                </button>
+                <button class="category-filter" data-category="other">
+                    Other Tools <span class="ml-1 text-xs opacity-75" id="count-other">11</span>
+                </button>
+            </div>
+
+            <!-- Results Count -->
+            <div class="text-gray-400 text-sm mb-4">
+                Showing <span id="results-count">103</span> tools
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="container mx-auto px-4 pb-12">
+        <div class="max-w-6xl mx-auto">
+            <div id="tools-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            </div>
+
+            <div id="no-results" class="hidden text-center py-12">
+                <i class="ph ph-magnifying-glass-minus text-6xl text-gray-600 mx-auto mb-4"></i>
+                <h3 class="text-xl font-semibold text-white mb-2">No tools found</h3>
+                <p class="text-gray-400">Try adjusting your search or filter</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t-2 border-gray-700 py-8">
+        <div class="container mx-auto px-4 text-center text-gray-400">
+            <p>&copy; 2025 BentoPDF. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module">
+        const tools = [
+            // Converters
+            { name: 'word-to-pdf', title: 'Word to PDF', category: 'converter', icon: 'microsoft-word-logo' },
+            { name: 'excel-to-pdf', title: 'Excel to PDF', category: 'converter', icon: 'microsoft-excel-logo' },
+            { name: 'powerpoint-to-pdf', title: 'PowerPoint to PDF', category: 'converter', icon: 'microsoft-powerpoint-logo' },
+            { name: 'pdf-to-docx', title: 'PDF to Word', category: 'converter', icon: 'microsoft-word-logo' },
+            { name: 'pdf-to-excel', title: 'PDF to Excel', category: 'converter', icon: 'microsoft-excel-logo' },
+            { name: 'pdf-to-jpg', title: 'PDF to JPG', category: 'converter', icon: 'file-image' },
+            { name: 'pdf-to-png', title: 'PDF to PNG', category: 'converter', icon: 'file-image' },
+            { name: 'jpg-to-pdf', title: 'JPG to PDF', category: 'converter', icon: 'file-jpg' },
+            { name: 'png-to-pdf', title: 'PNG to PDF', category: 'converter', icon: 'file-png' },
+            { name: 'image-to-pdf', title: 'Image to PDF', category: 'converter', icon: 'images' },
+            { name: 'pdf-to-text', title: 'PDF to Text', category: 'converter', icon: 'text-aa' },
+            { name: 'txt-to-pdf', title: 'Text to PDF', category: 'converter', icon: 'text-t' },
+            { name: 'markdown-to-pdf', title: 'Markdown to PDF', category: 'converter', icon: 'markdown-logo' },
+            { name: 'pdf-to-markdown', title: 'PDF to Markdown', category: 'converter', icon: 'markdown-logo' },
+            { name: 'svg-to-pdf', title: 'SVG to PDF', category: 'converter', icon: 'file-svg' },
+            { name: 'pdf-to-svg', title: 'PDF to SVG', category: 'converter', icon: 'file-code' },
+            { name: 'webp-to-pdf', title: 'WebP to PDF', category: 'converter', icon: 'image' },
+            { name: 'pdf-to-webp', title: 'PDF to WebP', category: 'converter', icon: 'file-image' },
+            { name: 'heic-to-pdf', title: 'HEIC to PDF', category: 'converter', icon: 'device-mobile' },
+            { name: 'tiff-to-pdf', title: 'TIFF to PDF', category: 'converter', icon: 'image' },
+            { name: 'pdf-to-tiff', title: 'PDF to TIFF', category: 'converter', icon: 'file-image' },
+            { name: 'bmp-to-pdf', title: 'BMP to PDF', category: 'converter', icon: 'image' },
+            { name: 'pdf-to-bmp', title: 'PDF to BMP', category: 'converter', icon: 'file-image' },
+            { name: 'csv-to-pdf', title: 'CSV to PDF', category: 'converter', icon: 'file-csv' },
+            { name: 'pdf-to-csv', title: 'PDF to CSV', category: 'converter', icon: 'file-csv' },
+            { name: 'json-to-pdf', title: 'JSON to PDF', category: 'converter', icon: 'file-code' },
+            { name: 'pdf-to-json', title: 'PDF to JSON', category: 'converter', icon: 'file-code' },
+            { name: 'xml-to-pdf', title: 'XML to PDF', category: 'converter', icon: 'file-code' },
+            { name: 'rtf-to-pdf', title: 'RTF to PDF', category: 'converter', icon: 'file-text' },
+            { name: 'odt-to-pdf', title: 'ODT to PDF', category: 'converter', icon: 'file' },
+            { name: 'ods-to-pdf', title: 'ODS to PDF', category: 'converter', icon: 'table' },
+            { name: 'odp-to-pdf', title: 'ODP to PDF', category: 'converter', icon: 'presentation' },
+            { name: 'odg-to-pdf', title: 'ODG to PDF', category: 'converter', icon: 'image' },
+            { name: 'epub-to-pdf', title: 'EPUB to PDF', category: 'converter', icon: 'book-open-text' },
+            { name: 'mobi-to-pdf', title: 'MOBI to PDF', category: 'converter', icon: 'book-open-text' },
+            { name: 'cbz-to-pdf', title: 'CBZ to PDF', category: 'converter', icon: 'book-open' },
+            { name: 'fb2-to-pdf', title: 'FB2 to PDF', category: 'converter', icon: 'book-bookmark' },
+            { name: 'psd-to-pdf', title: 'PSD to PDF', category: 'converter', icon: 'image' },
+            { name: 'xps-to-pdf', title: 'XPS to PDF', category: 'converter', icon: 'scan' },
+            { name: 'pages-to-pdf', title: 'Pages to PDF', category: 'converter', icon: 'file-text' },
+            { name: 'pub-to-pdf', title: 'PUB to PDF', category: 'converter', icon: 'book-open' },
+            { name: 'vsd-to-pdf', title: 'VSD to PDF', category: 'converter', icon: 'git-branch' },
+            { name: 'wpd-to-pdf', title: 'WPD to PDF', category: 'converter', icon: 'file-text' },
+            { name: 'wps-to-pdf', title: 'WPS to PDF', category: 'converter', icon: 'file-text' },
+            { name: 'pdf-to-greyscale', title: 'PDF to Greyscale', category: 'converter', icon: 'palette' },
+            { name: 'pdf-to-pdfa', title: 'PDF to PDF/A', category: 'converter', icon: 'archive' },
+            { name: 'pdf-to-zip', title: 'PDF to ZIP', category: 'converter', icon: 'file-zip' },
+
+            // Editors
+            { name: 'edit-pdf', title: 'Edit PDF', category: 'editor', icon: 'pencil-simple' },
+            { name: 'compress-pdf', title: 'Compress PDF', category: 'editor', icon: 'lightning' },
+            { name: 'rotate-pdf', title: 'Rotate PDF', category: 'editor', icon: 'arrow-clockwise' },
+            { name: 'rotate-custom', title: 'Custom Rotation', category: 'editor', icon: 'arrows-clockwise' },
+            { name: 'crop-pdf', title: 'Crop PDF', category: 'editor', icon: 'crop' },
+            { name: 'organize-pdf', title: 'Organize PDF', category: 'editor', icon: 'files' },
+            { name: 'delete-pages', title: 'Delete Pages', category: 'editor', icon: 'trash' },
+            { name: 'add-watermark', title: 'Add Watermark', category: 'editor', icon: 'drop' },
+            { name: 'header-footer', title: 'Header & Footer', category: 'editor', icon: 'paragraph' },
+            { name: 'page-numbers', title: 'Page Numbers', category: 'editor', icon: 'list-numbers' },
+            { name: 'background-color', title: 'Background Color', category: 'editor', icon: 'palette' },
+            { name: 'text-color', title: 'Text Color', category: 'editor', icon: 'eyedropper' },
+            { name: 'invert-colors', title: 'Invert Colors', category: 'editor', icon: 'circle-half' },
+            { name: 'add-blank-page', title: 'Add Blank Page', category: 'editor', icon: 'file-plus' },
+            { name: 'reverse-pages', title: 'Reverse Pages', category: 'editor', icon: 'sort-descending' },
+            { name: 'divide-pages', title: 'Divide Pages', category: 'editor', icon: 'columns' },
+            { name: 'remove-annotations', title: 'Remove Annotations', category: 'editor', icon: 'eraser' },
+            { name: 'remove-blank-pages', title: 'Remove Blank Pages', category: 'editor', icon: 'file-minus' },
+            { name: 'extract-pages', title: 'Extract Pages', category: 'editor', icon: 'squares-four' },
+            { name: 'extract-images', title: 'Extract Images', category: 'editor', icon: 'download-simple' },
+            { name: 'extract-tables', title: 'Extract Tables', category: 'editor', icon: 'table' },
+            { name: 'n-up-pdf', title: 'N-up PDF', category: 'editor', icon: 'squares-four' },
+            { name: 'posterize-pdf', title: 'Posterize PDF', category: 'editor', icon: 'notepad' },
+
+            // Security
+            { name: 'encrypt-pdf', title: 'Encrypt PDF', category: 'security', icon: 'lock' },
+            { name: 'decrypt-pdf', title: 'Decrypt PDF', category: 'security', icon: 'lock-open' },
+            { name: 'sign-pdf', title: 'Sign PDF', category: 'security', icon: 'pen-nib' },
+            { name: 'remove-restrictions', title: 'Remove Restrictions', category: 'security', icon: 'link-break' },
+            { name: 'change-permissions', title: 'Change Permissions', category: 'security', icon: 'shield-check' },
+            { name: 'sanitize-pdf', title: 'Sanitize PDF', category: 'security', icon: 'broom' },
+            { name: 'flatten-pdf', title: 'Flatten PDF', category: 'security', icon: 'stack' },
+            { name: 'linearize-pdf', title: 'Linearize PDF', category: 'security', icon: 'gauge' },
+            { name: 'remove-metadata', title: 'Remove Metadata', category: 'security', icon: 'file-x' },
+            { name: 'pdf-layers', title: 'PDF Layers', category: 'security', icon: 'stack-simple' },
+
+            // Merge & Split
+            { name: 'merge-pdf', title: 'Merge PDF', category: 'merge-split', icon: 'browsers' },
+            { name: 'split-pdf', title: 'Split PDF', category: 'merge-split', icon: 'scissors' },
+            { name: 'alternate-merge', title: 'Alternate Merge', category: 'merge-split', icon: 'shuffle' },
+            { name: 'combine-single-page', title: 'Combine Pages', category: 'merge-split', icon: 'arrows-out-line-vertical' },
+            { name: 'compare-pdfs', title: 'Compare PDFs', category: 'merge-split', icon: 'git-diff' },
+            { name: 'pdf-booklet', title: 'PDF Booklet', category: 'merge-split', icon: 'book-open' },
+
+            // Other
+            { name: 'ocr-pdf', title: 'OCR PDF', category: 'other', icon: 'barcode' },
+            { name: 'repair-pdf', title: 'Repair PDF', category: 'other', icon: 'wrench' },
+            { name: 'view-metadata', title: 'View Metadata', category: 'other', icon: 'info' },
+            { name: 'edit-metadata', title: 'Edit Metadata', category: 'other', icon: 'file-code' },
+            { name: 'add-attachments', title: 'Add Attachments', category: 'other', icon: 'paperclip' },
+            { name: 'edit-attachments', title: 'Edit Attachments', category: 'other', icon: 'paperclip-horizontal' },
+            { name: 'extract-attachments', title: 'Extract Attachments', category: 'other', icon: 'download' },
+            { name: 'rasterize-pdf', title: 'Rasterize PDF', category: 'other', icon: 'image' },
+            { name: 'prepare-pdf-for-ai', title: 'Prepare for AI', category: 'other', icon: 'sparkle' },
+            { name: 'fix-page-size', title: 'Fix Page Size', category: 'other', icon: 'ruler' },
+            { name: 'page-dimensions', title: 'Page Dimensions', category: 'other', icon: 'ruler' },
+            { name: 'table-of-contents', title: 'Table of Contents', category: 'other', icon: 'list' },
+            { name: 'bookmark', title: 'Bookmark PDF', category: 'other', icon: 'bookmark' },
+            { name: 'add-stamps', title: 'Add Stamps', category: 'other', icon: 'stamp' },
+            { name: 'form-creator', title: 'Form Creator', category: 'other', icon: 'file-plus' },
+            { name: 'form-filler', title: 'Form Filler', category: 'other', icon: 'pencil-line' },
+            { name: 'pdf-multi-tool', title: 'PDF Multi-Tool', category: 'other', icon: 'pencil-ruler' }
+        ];
+
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        function renderTools() {
+            const grid = document.getElementById('tools-grid');
+            const noResults = document.getElementById('no-results');
+
+            const filtered = tools.filter(tool => {
+                const matchesCategory = currentCategory === 'all' || tool.category === currentCategory;
+                const matchesSearch = tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    tool.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.classList.add('hidden');
+                noResults.classList.remove('hidden');
+                document.getElementById('results-count').textContent = '0';
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            noResults.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(tool => `
+                <a href="/src/pages/${tool.name}.html" class="tool-card">
+                    <i class="ph ph-${tool.icon} text-4xl text-indigo-400 mb-2"></i>
+                    <h3 class="font-semibold text-white text-sm">${tool.title}</h3>
+                </a>
+            `).join('');
+
+            document.getElementById('results-count').textContent = filtered.length;
+        }
+
+        document.querySelectorAll('.category-filter').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-filter').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.dataset.category;
+                renderTools();
+            });
+        });
+
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderTools();
+        });
+
+        renderTools();
+    </script>
+
+    <style>
+        .category-filter {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background-color: #1f2937;
+            color: #9ca3af;
+            border: 1px solid #374151;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .category-filter:hover {
+            background-color: #374151;
+            color: #fff;
+        }
+
+        .category-filter.active {
+            background-color: #4f46e5;
+            color: #fff;
+            border-color: #4f46e5;
+        }
+    </style>
+</body>
+
+</html>

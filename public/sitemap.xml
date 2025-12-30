@@ -16,6 +16,40 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Category Hub Pages -->
+  <url>
+    <loc>https://www.bentopdf.com/pdf-converter</loc>
+    <lastmod>2024-12-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.bentopdf.com/pdf-editor</loc>
+    <lastmod>2024-12-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.bentopdf.com/pdf-security</loc>
+    <lastmod>2024-12-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.bentopdf.com/pdf-merge-split</loc>
+    <lastmod>2024-12-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tools Directory -->
+  <url>
+    <loc>https://www.bentopdf.com/tools</loc>
+    <lastmod>2024-12-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- PDF Merge & Combine Tools -->
   <url>
     <loc>https://www.bentopdf.com/merge-pdf</loc>

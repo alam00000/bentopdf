@@ -27,3 +27,6 @@ dist-ssr
 coverage/
 *.lcov
 
+#backup
+.seo-backup
+

@@ -59,6 +59,13 @@ body {
     transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
   border: 1px solid #374151;
+  background-color: #1f2937;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .tool-card:hover {
