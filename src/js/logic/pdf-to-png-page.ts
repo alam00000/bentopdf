@@ -1,8 +1,9 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
+import { downloadFile, formatBytes, readFileAsArrayBuffer, getPDFDocument, getCleanPdfFilename } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
+import { PDFPageProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
@@ -87,31 +88,31 @@ async function convert() {
         const pdf = await getPDFDocument(
             await readFileAsArrayBuffer(files[0])
         ).promise;
-        const zip = new JSZip();
 
         const scaleInput = document.getElementById('png-scale') as HTMLInputElement;
         const scale = scaleInput ? parseFloat(scaleInput.value) : 2.0;
 
-        for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const viewport = page.getViewport({ scale });
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            await page.render({ canvasContext: context!, viewport: viewport, canvas }).promise;
-
-            const blob = await new Promise<Blob | null>((resolve) =>
-                canvas.toBlob(resolve, 'image/png')
-            );
-            if (blob) {
-                zip.file(`page_${i}.png`, blob);
+        if (pdf.numPages === 1) {
+            const page = await pdf.getPage(1);
+            const blob = await renderPage(page, scale);
+            downloadFile(blob, getCleanPdfFilename(files[0].name) + '.png');
+        } else {
+            const zip = new JSZip();
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const blob = await renderPage(page, scale);
+                if (blob) {
+                    zip.file(`page_${i}.png`, blob);
+                }
             }
+
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
+            downloadFile(
+              zipBlob,
+              getCleanPdfFilename(files[0].name) + '_pngs.zip'
+            );
         }
 
-        const zipBlob = await zip.generateAsync({ type: 'blob' });
-        downloadFile(zipBlob, 'converted_images.zip');
         showAlert('Success', 'PDF converted to PNGs successfully!', 'success', () => {
             resetState();
         });
@@ -124,6 +125,28 @@ async function convert() {
     } finally {
         hideLoader();
     }
+}
+
+async function renderPage(
+  page: PDFPageProxy,
+  scale: number
+): Promise<Blob | null> {
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({
+        canvasContext: context!,
+        viewport: viewport,
+        canvas,
+    }).promise;
+
+    const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, 'image/png')
+    );
+    return blob;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

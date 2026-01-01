@@ -1,8 +1,9 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
+import { downloadFile, formatBytes, readFileAsArrayBuffer, getPDFDocument, getCleanPdfFilename } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
+import { PDFPageProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
@@ -87,31 +88,27 @@ async function convert() {
         const pdf = await getPDFDocument(
             await readFileAsArrayBuffer(files[0])
         ).promise;
-        const zip = new JSZip();
 
         const qualityInput = document.getElementById('webp-quality') as HTMLInputElement;
         const quality = qualityInput ? parseFloat(qualityInput.value) : 0.85;
 
-        for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const viewport = page.getViewport({ scale: 2.0 });
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            await page.render({ canvasContext: context!, viewport: viewport, canvas }).promise;
-
-            const blob = await new Promise<Blob | null>((resolve) =>
-                canvas.toBlob(resolve, 'image/webp', quality)
-            );
-            if (blob) {
-                zip.file(`page_${i}.webp`, blob);
+        if (pdf.numPages === 1) {
+            const page = await pdf.getPage(1);
+            const blob = await renderPage(page, quality);
+            downloadFile(blob, getCleanPdfFilename(files[0].name) + '.webp');
+        } else {
+            const zip = new JSZip();
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const blob = await renderPage(page, quality);
+                if (blob) {
+                    zip.file(`page_${i}.webp`, blob);
+                }
             }
-        }
 
-        const zipBlob = await zip.generateAsync({ type: 'blob' });
-        downloadFile(zipBlob, 'converted_images.zip');
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
+            downloadFile(zipBlob, getCleanPdfFilename(files[0].name) + '_webps.zip');
+        }
         showAlert('Success', 'PDF converted to WebPs successfully!', 'success', () => {
             resetState();
         });
@@ -124,6 +121,28 @@ async function convert() {
     } finally {
         hideLoader();
     }
+}
+
+async function renderPage(
+  page: PDFPageProxy,
+  quality: number
+): Promise<Blob | null> {
+    const viewport = page.getViewport({ scale: 2.0 });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({
+        canvasContext: context!,
+        viewport: viewport,
+        canvas,
+    }).promise;
+
+    const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, 'image/webp', quality)
+    );
+    return blob;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

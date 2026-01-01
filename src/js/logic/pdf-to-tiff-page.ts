@@ -1,9 +1,10 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
+import { downloadFile, formatBytes, readFileAsArrayBuffer, getPDFDocument, getCleanPdfFilename } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
 import UTIF from 'utif';
+import { PDFPageProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
@@ -84,39 +85,27 @@ async function convert() {
         const pdf = await getPDFDocument(
             await readFileAsArrayBuffer(files[0])
         ).promise;
-        const zip = new JSZip();
 
-        for (let i = 1; i <= pdf.numPages; i++) {
-            const page = await pdf.getPage(i);
-            const viewport = page.getViewport({ scale: 2.0 });
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            await page.render({ canvasContext: context!, viewport: viewport, canvas }).promise;
-
-            const imageData = context!.getImageData(0, 0, canvas.width, canvas.height);
-            const rgba = imageData.data;
-
-            try {
-                const tiffData = UTIF.encodeImage(new Uint8Array(rgba), canvas.width, canvas.height);
-                const tiffBlob = new Blob([tiffData], { type: 'image/tiff' });
-                zip.file(`page_${i}.tiff`, tiffBlob);
-            } catch (encodeError: any) {
-                console.warn(`TIFF encoding failed for page ${i}, using PNG fallback:`, encodeError);
-                // Fallback to PNG if TIFF encoding fails (e.g., PackBits compression issues)
-                const pngBlob = await new Promise<Blob | null>((resolve) =>
-                    canvas.toBlob(resolve, 'image/png')
-                );
-                if (pngBlob) {
-                    zip.file(`page_${i}.png`, pngBlob);
+        if (pdf.numPages === 1) {
+            const page = await pdf.getPage(1);
+            const blob = await renderPage(page, 1);
+            downloadFile(blob.blobData, getCleanPdfFilename(files[0].name) + '.' + blob.ending);
+        } else {
+            const zip = new JSZip();
+            for (let i = 1; i <= pdf.numPages; i++) {
+                const page = await pdf.getPage(i);
+                const blob = await renderPage(page, i);
+                if (blob.blobData) {
+                zip.file(`page_${i}.` + blob.ending, blob.blobData);
                 }
             }
-        }
 
-        const zipBlob = await zip.generateAsync({ type: 'blob' });
-        downloadFile(zipBlob, 'converted_images.zip');
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
+            downloadFile(
+              zipBlob,
+              getCleanPdfFilename(files[0].name) + '_tiffs.zip'
+            );
+        }
         showAlert('Success', 'PDF converted to TIFFs successfully!', 'success', () => {
             resetState();
         });
@@ -128,6 +117,59 @@ async function convert() {
         );
     } finally {
         hideLoader();
+    }
+}
+
+async function renderPage(
+  page: PDFPageProxy,
+  pageNumber: number
+): Promise<{ blobData: Blob | null; ending: string; }> {
+    const viewport = page.getViewport({ scale: 2.0 });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    await page.render({
+        canvasContext: context!,
+        viewport: viewport,
+        canvas,
+    }).promise;
+
+    const imageData = context!.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+    const rgba = imageData.data;
+
+    try {
+        const tiffData = UTIF.encodeImage(
+        new Uint8Array(rgba),
+        canvas.width,
+        canvas.height
+        );
+        const tiffBlob = new Blob([tiffData], { type: 'image/tiff' });
+        return {
+            blobData: tiffBlob,
+            ending: 'tiff'
+        }
+    } catch (encodeError: any) {
+        console.warn(
+          `TIFF encoding failed for page ${pageNumber}, using PNG fallback:`,
+          encodeError
+        );
+        // Fallback to PNG if TIFF encoding fails (e.g., PackBits compression issues)
+        const pngBlob = await new Promise<Blob | null>((resolve) =>
+            canvas.toBlob(resolve, 'image/png')
+        );
+        if (pngBlob) {
+            return {
+                blobData: pngBlob,
+                ending: 'png'
+            }
+        }
     }
 }
 
