@@ -3,19 +3,20 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpBackend from 'i18next-http-backend';
 
 // Supported languages
-export const supportedLanguages = ['en', 'de', 'zh', 'vi'] as const;
+export const supportedLanguages = ['en', 'de', 'nl', 'vi', 'zh'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageNames: Record<SupportedLanguage, string> = {
     en: 'English',
     de: 'Deutsch',
-    zh: '中文',
+    nl: 'Nederlands',
     vi: 'Tiếng Việt',
+    zh: '中文',
 };
 
 export const getLanguageFromUrl = (): SupportedLanguage => {
     const path = window.location.pathname;
-    const langMatch = path.match(/^\/(en|de|zh|vi)(?:\/|$)/);
+    const langMatch = path.match(/^\/(en|de|nl|vi|zh)(?:\/|$)/);
     if (langMatch && supportedLanguages.includes(langMatch[1] as SupportedLanguage)) {
         return langMatch[1] as SupportedLanguage;
     }
@@ -72,8 +73,8 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
 
     let newPath: string;
     if (currentPath.match(/^\/(en|de|zh|vi)\//)) {
-        newPath = currentPath.replace(/^\/(en|de|zh|vi)\//, `/${lang}/`);
-    } else if (currentPath.match(/^\/(en|de|zh|vi)$/)) {
+        newPath = currentPath.replace(/^\/(en|de|nl|vi|zh)\//, `/${lang}/`);
+    } else if (currentPath.match(/^\/(en|de|nl|vi|zh)$/)) {
         newPath = `/${lang}`;
     } else {
         newPath = `/${lang}${currentPath}`;

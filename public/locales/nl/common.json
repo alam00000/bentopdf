@@ -1,0 +1,323 @@
+{
+    "nav": {
+        "home": "Thuis",
+        "about": "Over",
+        "contact": "Contact",
+        "licensing": "Licentie",
+        "allTools": "Alle Tools",
+        "openMainMenu": "Hoofdmenu openen",
+        "language": "Taal"
+    },
+    "donation": {
+        "message": "Vind je BentoPDF geweldig? Help ons het gratis en open source te houden!",
+        "button": "Doneren"
+    },
+    "hero": {
+        "title": "De",
+        "pdfToolkit": "PDF Toolkit",
+        "builtForPrivacy": "gemaakt voor privacy",
+        "noSignups": "Geen aanmelding",
+        "unlimitedUse": "Onbegrenst gebruik",
+        "worksOffline": "Werkt Offline",
+        "startUsing": "Direct aan de slag"
+    },
+    "usedBy": {
+        "title": "Gebruikt door bedrijven en personen werkzaam bij"
+    },
+    "features": {
+        "title": "Waarom",
+        "bentoPdf": "BentoPDF?",
+        "noSignup": {
+            "title": "Geen aanmelding",
+            "description": "Direct aan de slag, zonder account of e-mails."
+        },
+        "noUploads": {
+            "title": "Geen uploads",
+            "description": "100% client-side, je bestanden blijven op jouw apparaat."
+        },
+        "foreverFree": {
+            "title": "Voor altijd gratis",
+            "description": "Alle tools, geen proef, geen betaalmuur."
+        },
+        "noLimits": {
+            "title": "Geen beperkingen",
+            "description": "Gebruik het zoveel je wilt, geen verborgen limiet."
+        },
+        "batchProcessing": {
+            "title": "Reeksen verwerken",
+            "description": "Verwerk in een keer een onbeperkt aantal PDF's."
+        },
+        "lightningFast": {
+            "title": "Bliksemsnel",
+            "description": "Verwerk PDF's direct, zonder wachten of vertraging."
+        }
+    },
+    "tools": {
+        "title": "Aan de slag met",
+        "toolsLabel": "Tools",
+        "subtitle": "Klik een tool om de bestandslader te openen",
+        "searchPlaceholder": "Zoek een tool (bijv., 'splitsen', 'organiseren'...)",
+        "backToTools": "Terug naar Tools"
+        "firstLoadNotice": "De eerste keer duurt het even om onze conversiemachine te laden. Daarna gaat alles meteen."
+    },
+    "upload": {
+        "clickToSelect": "Klik om een bestand te selecteren",
+        "orDragAndDrop": "of sleep er een hierheen",
+        "pdfOrImages": "PDF's of Afbeeldingen",
+        "filesNeverLeave": "Je bestanden blijven op jouw apparaat.",
+        "addMore": "Meer bestanden toevoegen",
+        "clearAll": "Alles wissen"
+    },
+    "loader": {
+        "processing": "Verwerken..."
+    },
+    "alert": {
+        "title": "Let op",
+        "ok": "OK"
+    },
+    "preview": {
+        "title": "Document Weergeven",
+        "downloadAsPdf": "Downloaden als PDF",
+        "close": "Sluiten"
+    },
+    "settings": {
+        "title": "Instellingen",
+        "shortcuts": "Sneltoetsen",
+        "preferences": "Voorkeuren",
+        "displayPreferences": "Voorkeuren weergeven",
+        "searchShortcuts": "Sneltoetsen zoeken...",
+        "shortcutsInfo": "Houd toetsen ingedrukt om deze in te stellen als sneltoets. Aanpassingen worden automatisch opgeslagen.",
+        "shortcutsWarning": "⚠️ Voorkom algemene sneltoetsen voor browsers (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N etc.) aangezien deze niet betrouwbaar kunnen functioneren.",
+        "import": "Importeren",
+        "export": "Exporteren",
+        "resetToDefaults": "Terugzetten naar standaard",
+        "fullWidthMode": "Volledige breedte",
+        "fullWidthDescription": "Gebruik de volledige breedte van het scherm in plaats van een gecentreerde kolom",
+        "settingsAutoSaved": "Instellingen worden automatisch opgeslagen",
+        "clickToSet": "Klik om in te stellen",
+        "pressKeys": "Druk toetsen...",
+        "warnings": {
+            "alreadyInUse": "Sneltoets al in gebruik",
+            "assignedTo": "is al toegewezen aan:",
+            "chooseDifferent": "Kies een andere sneltoets.",
+            "reserved": "Waarschuwing voor gereserveerde sneltoets",
+            "commonlyUsed": "wordt algemeen gebruikt voor:",
+            "unreliable": "Deze sneltoets werkt mogelijk niet goed of is in conflict met gedrag van browser of systeem.",
+            "useAnyway": "Wil je het toch gebruiken?",
+            "resetTitle": "Sneltoetsen terugzetten",
+            "resetMessage": "Weet je zeker dat je alle sneltoetsen wilt terugzetten naar standaard?<br><br>Deze actie kan niet ongedaan worden gemaakt.",
+            "importSuccessTitle": "Import succesvoll",
+            "importSuccessMessage": "Sneltoetsen zijn met succes geïmporteerd!",
+            "importFailTitle": "Import mislukt",
+            "importFailMessage": "Het importeren van sneltoetsen is mislukt. Ongeldig bestandsformaat."
+        }
+    },
+    "warning": {
+        "title": "Waarschuwing",
+        "cancel": "Annuleren",
+        "proceed": "Verder"
+    },
+    "compliance": {
+        "title": "Jouw gegevens blijven op jouw appraat",
+        "weKeep": "Wij houden",
+        "yourInfoSafe": "jouw informatie veilig",
+        "byFollowingStandards": "volgens de volgende algemene veiligheidsstandaarden.",
+        "processingLocal": "Alle verwerking vindt lokaal plaats op jouw apparaat.",
+        "gdpr": {
+            "title": "AVG-naleving",
+            "description": "Beschermt persoonlijke gegevens en privacy van individuën binnen de Europese Unie."
+        },
+        "ccpa": {
+            "title": "CCPA-naleving",
+            "description": "Geeft inwoners van Californië rechten over hoe hun persoonlijke gegevens worden verzameld, gebruikt en gedeeld."
+        },
+        "hipaa": {
+            "title": "HIPAA-naleving",
+            "description": "Stelt waarborgen in voor het omgaan met gevoelige gezondheidsinformatie in het gezondheidszorgsysteem van de Verenigde Staten."
+        }
+    },
+    "faq": {
+        "title": "Vaak gestelde vragen",
+        "questions": "Vragen",
+        "isFree": {
+            "question": "Is BentoPDF echt gratis?",
+            "answer": "Ja, absoluut. Alle tools op BentoPDF zijn 100% gratis te gebruiken, zonder bestandslimieten, zonder aanmeldingen en zonder watermerken. Wij vinden dat iedereen toegang verdient tot eenvoudige, krachtige PDF-tools zonder betaalmuur."
+        },
+        "areFilesSecure": {
+            "question": "Zijn mijn bestanden veilig? Waar worden ze verwerkt?",
+            "answer": "Je bestanden zijn zo veilig mogelijk omdat ze je computer nooit verlaten. Alle verwerking gebeurt direct in je webbrowser (client-side). Je bestanden worden nooit naar een server ge-upload, zodat je volledige privacy en controle over je documenten behoudt."
+        },
+        "platforms": {
+            "question": "Werkt het op Mac, Windows en mobiel?",
+            "answer": "Ja! Omdat BentoPDF volledig in je browser werkt, werkt het op elk besturingssysteem met een moderne webbrowser, inclusief Windows, macOS, Linux, iOS en Android."
+        },
+        "gdprCompliant": {
+            "question": "Is BentoPDF AVG-conform?",
+            "answer": "Ja. BentoPDF voldoet volledig aan de AVG. Omdat alle bestandsverwerking lokaal in je browser gebeurt en we nooit je bestanden naar een server sturen of verzamelen, hebben wij geen toegang tot je gegevens. Zo houd jij altijd de controle over je documenten."
+        },
+        "dataStorage": {
+            "question": "Slaan jullie mijn bestanden op of volgen jullie die?",
+            "answer": "Nee. We slaan je bestanden nooit op, volgen ze niet en houden er geen logboek van bij. Alles wat je op BentoPDF doet, gebeurt in het geheugen van je browser en verdwijnt zodra je de pagina sluit. Er is geen upload, geen geschiedenislogboek en geen servers bij betrokken."
+        },
+        "different": {
+            "question": "Wat maakt BentoPDF anders dan andere PDF-tools?",
+            "answer": "De meeste PDF-tools verlangen dat je je bestanden voor verwerking naar een server uploadt. BentoPDF doet dat nooit. Wij gebruiken veilige, moderne webtechnologie om je bestanden direct in je browser te verwerken. Dit betekent snellere prestaties, betere privacy en totale gemoedsrust."
+        },
+        "browserBased": {
+            "question": "Hoe zorgt browsergebaseerde verwerking ervoor dat ik veilig blijf?",
+            "answer": "Omdat BentoPDF helemaal in je browser draait, blijven je bestanden altijd op je apparaat. Daardoor hoef je je geen zorgen te maken over hacks, datalekken of ongeoorloofde toegang. Je bestanden zijn altijd van jou."
+        },
+        "analytics": {
+            "question": "Gebruikt BentoPDF cookies of analytics om mij te volgen?",
+            "answer": "We geven om je privacy. BentoPDF houdt geen persoonlijke gegevens bij. We gebruiken Simple Analytics alleen om anonieme bezoekersaantallen te zien. Dit betekent dat we kunnen weten hoeveel mensen onze site bezoeken, maar we weten nooit wie jij bent. Simple Analytics is volledig AVG-conform en respecteert je privacy."
+        }
+    },
+    "testimonials": {
+        "title": "Wat Onze",
+        "users": "Gebruikers",
+        "say": "Zeggen"
+    },
+    "support": {
+        "title": "Vind je mijn werk leuk?",
+        "description": "BentoPDF is een project van passie, gemaakt om iedereen een gratis, privé en krachtig PDF-gereedschap te bieden. Als je het handig vindt, overweeg dan om de ontwikkeling te steunen. Elke koffie helpt!",
+        "buyMeCoffee": "Koop een kopje koffie voor me"
+    },
+    "footer": {
+        "copyright": "© 2025 BentoPDF. Alle rechten voorbehouden.",
+        "version": "Versie",
+        "company": "Bedrijf",
+        "aboutUs": "Over ons",
+        "faqLink": "FAQ",
+        "contactUs": "Contact",
+        "legal": "Juridisch",
+        "termsAndConditions": "Algemene voorwaarden",
+        "privacyPolicy": "Privacybeleid",
+        "followUs": "Volgen"
+    },
+    "merge": {
+        "title": "PDF's Samenvoegen",
+        "description": "Combineer hele bestanden, of selecteer specifieke pagina's om te samen te voegen tot een nieuw document.",
+        "fileMode": "Bestandsmodus",
+        "pageMode": "Paginamodus",
+        "howItWorks": "Hoe het werkt:",
+        "fileModeInstructions": [
+            "Klik en sleep het pictogram om de volgorde van de bestanden te wijzigen.",
+            "In het vak \"Pagina's\" voor elk bestand kan je reeksen opgeven (bijv. \"1-3, 5\") om alleen die pagina's samen te voegen.",
+            "Laat het vak \"Pagina's\" leeg om alle pagina's in het bestand op te nemen."
+        ],
+        "pageModeInstructions": [
+            "Alle pagina's van je PDF's worden hieronder weergegeven.",
+            "Sleep afzonderlijke pagina-miniaturen in de gewenste volgorde voor je nieuwe bestand."
+        ],
+        "mergePdfs": "PDF's Samenvoegen"
+    },
+    "common": {
+        "page": "Pagina",
+        "pages": "Pagina's",
+        "of": "van",
+        "download": "Download",
+        "cancel": "Annuleren",
+        "save": "Opslaan",
+        "delete": "Verwijderen",
+        "edit": "Bewerken",
+        "add": "Toevoegen",
+        "remove": "Verwijderen",
+        "loading": "Laden...",
+        "error": "Fout",
+        "success": "Success",
+        "file": "Bestand",
+        "files": "Bestanden"
+    },
+    "about": {
+        "hero": {
+            "title": "Wij vinden dat PDF-tools",
+            "subtitle": "snel, privé, en gratis moeten zijn.",
+            "noCompromises": "Geen compromissen."
+        },
+        "mission": {
+            "title": "Onze Missie",
+            "description": "Ons doel is om de meest complete PDF-toolbox te bieden die je privacy respecteert en nooit om betaling vraagt. Wij geloven dat essentiële documententools voor iedereen, overal en zonder obstakels toegankelijk moeten zijn."
+        },
+        "philosophy": {
+            "label": "Onze kernfilosofie",
+            "title": "Privacy First. Always.",
+            "description": "In een tijdperk waarin data een handelswaar is, doen wij het net even anders. Alle verwerking voor BentoPDF-tools gebeurt lokaal in je browser. Dat betekent dat je bestanden nooit oop onze servers terechtkomen, dat wij je documenten nooit zien en niets volgen van wat je doet. Je documenten blijven volledig privé, punt. Het is niet zomaar een functie; het is onze basis."
+        },
+        "whyBentopdf": {
+            "title": "Waarom",
+            "speed": {
+                "title": "Gemaakt voor snelheid",
+                "description": "Geen wachttijd voor uploads of downloads naar een server. Door bestanden direct in je browser te verwerken met moderne webtechnologieën zoals WebAssembly, bieden we ongeëvenaarde snelheid voor al onze tools."
+            },
+            "free": {
+                "title": "Volledig gratis",
+                "description": "Geen proefversies, geen abonnementen, geen verborgen kosten en geen \"premium\" functies die vworden achtergehouden. Wij vinden dat krachtige PDF-tools een openbare dienst moeten zijn, geen winstmachine."
+            },
+            "noAccount": {
+                "title": "Geen account vereist",
+                "description": "Begin meteen met het gebruiken van een tool. Je e-mail, wachtwoord of persoonlijke gegevens hebben we niet nodig. Je workflow kan soepel en anoniem zijn."
+            },
+            "openSource": {
+                "title": "De geest van Open Source",
+                "description": "Gebouwd met transparantie in gedachten. We maken gebruik van geweldige open-source bibliotheken zoals PDF-lib en PDF.js en geloven in de communitygedreven inspanning om krachtige tools voor iedereen toegankelijk te maken."
+            }
+        },
+        "cta": {
+            "title": "Klaar om te beginnen?",
+            "description": "Sluit je aan bij duizenden gebruikers die BentoPDF vertrouwen voor hun dagelijkse documentbehoeften. Ervaar zelf het verschil dat privacy en prestaties kunnen maken.",
+            "button": "Ontdek alle tools"
+        }
+    },
+    "contact": {
+        "title": "Neem contact op",
+        "subtitle": "We horen graag van je. Of je nu een vraag, feedback of een verzoek voor een functie hebt, aarzel dan niet om contact met ons op te nemen.",
+        "email": "Je kunt ons rechtstreeks bereiken via e-mail op:"
+    },
+    "licensing": {
+        "title": "Licentie voor",
+        "subtitle": "Kies de licentie die bij je past."
+    },
+    "multiTool": {
+        "uploadPdfs": "PDF's laden",
+        "upload": "Laden",
+        "addBlankPage": "Blanco pagina toevoegen",
+        "edit": "Bewerken:",
+        "undo": "Ongedaan maken",
+        "redo": "Opnieuw",
+        "reset": "Terugzetten",
+        "selection": "Selectie:",
+        "selectAll": "Alles selecteren",
+        "deselectAll": "Selectie opheffen",
+        "rotate": "Roteren:",
+        "rotateLeft": "Linksom",
+        "rotateRight": "Rechtsom",
+        "transform": "Transformeren:",
+        "duplicate": "Dupliceren",
+        "split": "Splitsen",
+        "clear": "Wissen:",
+        "delete": "Verwijderen",
+        "download": "Laden:",
+        "downloadSelected": "Selectie laden",
+        "exportPdf": "PDF Exporteren",
+        "uploadPdfFiles": "PDF-bestanden selecteren",
+        "dragAndDrop": "Klik om een bestand te selecteren, of sleep er een hierheen",
+        "selectFiles": "Bestanden selecteren",
+        "renderingPages": "Pagina's vewerken...",
+        "actions": {
+            "duplicatePage": "Deze pagina dupliceren",
+            "deletePage": "Deze pagina verwijderen",
+            "insertPdf": "PDF achter deze pagina invoegen",
+            "toggleSplit": "Splitsing maken na deze pagina"
+        },
+        "pleaseWait": "Even geduld",
+        "pagesRendering": "Pagina's worden nog verwerkt. Even geduld...",
+        "noPagesSelected": "Geen pagina's geselecteerd",
+        "selectOnePage": "Kies tenminste een pagina om te laden.",
+        "noPages": "Geen pagina's",
+        "noPagesToExport": "Er zijn geen pagina's om te exporteren.",
+        "renderingTitle": "Paginavoorbeeld verwerken",
+        "errorRendering": "Generatie van pagina-miniaturen is mislukt",
+        "error": "Fout",
+        "failedToLoad": "Laden is mislukt"
+    }
+}

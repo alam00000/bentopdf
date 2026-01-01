@@ -1,0 +1,492 @@
+{
+    "categories": {
+        "popularTools": "Populaire Tools",
+        "editAnnotate": "Bewerken & Annoteren",
+        "convertToPdf": "Converteren naar PDF",
+        "convertFromPdf": "Converteren van PDF",
+        "organizeManage": "Organiseren & Beheren",
+        "optimizeRepair": "Optimaliseren & Repareren",
+        "securePdf": "PDF beveiligen"
+    },
+    "pdfMultiTool": {
+        "name": "PDF Multi-tool",
+        "subtitle": "Samenvoegen, Splitsen, Organiseren, Verwijderen, Roteren, Blanco pagina's toevoegen, Extraheren and Dupliceren in een enkele werkomgeving."
+    },
+    "mergePdf": {
+        "name": "PDF Samenvoegen",
+        "subtitle": "Meerdere PDFs combineren tot een enkel bestand. Bladwijzers behouden."
+    },
+    "splitPdf": {
+        "name": "PDF Splitsen",
+        "subtitle": "Een reeks pagina's opslaan in een nieuwe PDF."
+    },
+    "compressPdf": {
+        "name": "PDF Comprimeren",
+        "subtitle": "De bestandsgrootte van je PDF verkleinen."
+        "algorithmLabel": "Compressie-algoritme",
+        "condense": "Condense (Aanbevolen)",
+        "photon": "Photon (Voor PDF's met veel foto's)",
+        "condenseInfo": "Condense gebruikt geavanceerde compressie: verwijdert overbodige onderdelen, optimaliseert afbeeldingen en kiest alleen de benodigde letters uit fonts. Ideaal voor de meeste PDF's.",
+        "photonInfo": "Photon zet pagina's om in afbeeldingen. Handig voor PDF's met veel foto's of gescande documenten.",
+        "photonWarning": "Let op: De tekst kan dan niet meer geselecteerd worden en links werken niet meer.",
+        "levelLabel": "Compressieniveau",
+        "light": "Licht (Kwaliteit behouden)",
+        "balanced": "Gebalanceerd (Aanbevolen)",
+        "aggressive": "Agressief (Kleinere bestanden)",
+        "extreme": "Extreem (Maximale compressie)",
+        "grayscale": "Converteren naar grijswaarden",
+        "grayscaleHint": "Vermindert de bestandsgrootte door kleurinformatie te verwijderen",
+        "customSettings": "Aangepaste instellingen",
+        "customSettingsHint": "Compressie-instellingen verfijnen:",
+        "outputQuality": "Uitvoerkwaliteit",
+        "resizeImagesTo": "Formaat van afbeeldingen aanpassen naar",
+        "onlyProcessAbove": "Alleen verwerken boven",
+        "removeMetadata": "Metagegevens wissen",
+        "subsetFonts": "Subset-lettertypen (ongebruikte tekens verwijderen)",
+        "removeThumbnails": "Ingesloten miniaturen verwijderen",
+        "compressButton": "PDF Comprimeren"
+    },
+    "pdfEditor": {
+        "name": "PDF Editor",
+        "subtitle": "PDFs annoteren, markeren, redigeren, commentaar toevoegen, vormen/afbeelding toevoegen, doorzoeken and weergeven."
+    },
+    "jpgToPdf": {
+        "name": "JPG naar PDF",
+        "subtitle": "Een of meer JPG-afbeeldingen opslaan als PDF."
+    },
+    "signPdf": {
+        "name": "PDF Ondertekenen",
+        "subtitle": "Je handtekening tekenen, typen, of invoegen."
+    },
+    "cropPdf": {
+        "name": "PDF Bijsnijden",
+        "subtitle": "De marges aanpassen van alle pagina's in je PDF."
+    },
+    "extractPages": {
+        "name": "Pagina's Extraheren",
+        "subtitle": "Een selectie van pagina's opslaan als nieuw bestand."
+    },
+    "duplicateOrganize": {
+        "name": "Dupliceren & Organiseren",
+        "subtitle": "Pagina's dupliceren, ordenen en verwijderen."
+    },
+    "deletePages": {
+        "name": "Pagina's Verwijderen",
+        "subtitle": "Specifieke pagina's uit een dodocument verwijderen."
+    },
+    "editBookmarks": {
+        "name": "Bladwijzers Bewerken",
+        "subtitle": "PDF-bladwijzers toevoegen, bewerken, importeren, verwijderen and extraheren."
+    },
+    "tableOfContents": {
+        "name": "Inhoudsopgave",
+        "subtitle": "Een inhoudsopgave genereren van PDF-bladwijzers."
+    },
+    "pageNumbers": {
+        "name": "Paginanummers",
+        "subtitle": "Paginanummers aan je document toevoegen."
+    },
+    "addWatermark": {
+        "name": "Watermerk toevoegen",
+        "subtitle": "Tekst of een afbeelding over de pagina's van je PDF stempelen."
+    },
+    "headerFooter": {
+        "name": "Koptekst & Voettekst",
+        "subtitle": "Tekst boven- of onderaan de pagina's toevoegen."
+    },
+    "invertColors": {
+        "name": "Kleuren Omkeren",
+        "subtitle": "Maak een \"donkere modus\"-versie van je PDF."
+    },
+    "backgroundColor": {
+        "name": "Achtergrondkleur",
+        "subtitle": "Wijzig de achtergrondkleur van je PDF."
+    },
+    "changeTextColor": {
+        "name": "Tekstkleur",
+        "subtitle": "Wijzig de tekstkleur van je PDF."
+    },
+    "addStamps": {
+        "name": "Stempels Toevoegen",
+        "subtitle": "Voeg afbeeldingsstempels toe aan je PDF met de werkbalk Annotatie.",
+        "usernameLabel": "Gebruikersnaam stempelen",
+        "usernamePlaceholder": "Voer je naam in (voor stempels)",
+        "usernameHint": "Deze naam verschijnt op stempels die jij aanmaakt."
+    },
+    "removeAnnotations": {
+        "name": "Annotaties Verwijderen",
+        "subtitle": "Commentaar, markeringen en links verwijderen."
+    },
+    "pdfFormFiller": {
+        "name": "PDF-formulier Vullen",
+        "subtitle": "Vul formulieren in vanuit de browser, incl. ondersteuning voor XFA-formulieren."
+    },
+    "createPdfForm": {
+        "name": "PDF-formulier Aanmaken",
+        "subtitle": "Maak invulbare PDF-formulieren aan met drag-and-drop tekstvelden."
+    },
+    "removeBlankPages": {
+        "name": "Blanco pagina's Verwijderen",
+        "subtitle": "Automatisch blanco pagina's detecteren en verwijderen."
+    },
+    "imageToPdf": {
+        "name": "Afbeelding naar PDF",
+        "subtitle": "Converteer JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP naar PDF."
+    },
+    "pngToPdf": {
+        "name": "PNG naar PDF",
+        "subtitle": "Maak een PDF van een of meer PNG-afbeeldingen."
+    },
+    "webpToPdf": {
+        "name": "WebP naar PDF",
+        "subtitle": "Maak een PDF van een of meer WebP-afbeeldingen."
+    },
+    "svgToPdf": {
+        "name": "SVG naar PDF",
+        "subtitle": "Maak een PDF van een of meer SVG-afbeeldingen."
+    },
+    "bmpToPdf": {
+        "name": "BMP naar PDF",
+        "subtitle": "Maak een PDF van een of meer BMP-afbeeldingen."
+    },
+    "heicToPdf": {
+        "name": "HEIC naar PDF",
+        "subtitle": "Maak een PDF van een of meer HEIC-afbeeldingen."
+    },
+    "tiffToPdf": {
+        "name": "TIFF naar PDF",
+        "subtitle": "Maak een PDF van een of meer TIFF-afbeeldingen."
+    },
+    "textToPdf": {
+        "name": "Tekst naar PDF",
+        "subtitle": "Converteer een bestand met platte tekst naar een PDF."
+    },
+    "jsonToPdf": {
+        "name": "JSON naar PDF",
+        "subtitle": "Converteer JSON-bestanden naar PDF-formaat."
+    },
+    "pdfToJpg": {
+        "name": "PDF naar JPG",
+        "subtitle": "Converteer elke PDF-pagina naar een JPG-afbeelding."
+    },
+    "pdfToPng": {
+        "name": "PDF naar PNG",
+        "subtitle": "Converteer elke PDF-pagina naar een PNG-afbeelding."
+    },
+    "pdfToWebp": {
+        "name": "PDF naar WebP",
+        "subtitle": "Converteer elke PDF-pagina naar een WebP-afbeelding."
+    },
+    "pdfToBmp": {
+        "name": "PDF naar BMP",
+        "subtitle": "Converteer elke PDF-pagina naar een BMP-afbeelding."
+    },
+    "pdfToTiff": {
+        "name": "PDF naar TIFF",
+        "subtitle": "Converteer elke PDF-pagina naar een TIFF-afbeelding."
+    },
+    "pdfToGreyscale": {
+        "name": "PDF naar Grijswaarden",
+        "subtitle": "Converteer alle kleuren naar zwart-wit."
+    },
+    "pdfToJson": {
+        "name": "PDF naar JSON",
+        "subtitle": "Converteer PDF-bestanden naar JSON-formaat."
+    },
+    "ocrPdf": {
+        "name": "OCR PDF",
+        "subtitle": "Maak een PDF doorzoekbaar en kopieerbaar."
+    },
+    "alternateMix": {
+        "name": "Pagina's Afwisselen & Mixen",
+        "subtitle": "Voeg PDF's samen met afwisselende pagina's vanuit elke PDF. Bladwijzers behouden."
+    },
+    "addAttachments": {
+        "name": "Bijlagen Toevoegen",
+        "subtitle": "Voeg een of meerbestanden in je PDF."
+    },
+    "extractAttachments": {
+        "name": "Bijlagen Extraheren",
+        "subtitle": "Extraheer alle ingevoegde bestanden als ZIP uit PDF(-en)."
+    },
+    "editAttachments": {
+        "name": "Bijlagen Bewerken",
+        "subtitle": "Bijlagen in je PDF weergeven of verwijderen."
+    },
+    "dividePages": {
+        "name": "Paginas Opdelen",
+        "subtitle": "Pagina's horizontaal of verticaal opdelen."
+    },
+    "addBlankPage": {
+        "name": "Blanco pagina Toevoegen",
+        "subtitle": "Een blanco pagina ergens in je PDF invoegen."
+    },
+    "reversePages": {
+        "name": "Paginavolgorde Omkeren",
+        "subtitle": "Keer de volgorde om van alle pagina's in je document."
+    },
+    "rotatePdf": {
+        "name": "PDF Roteren",
+        "subtitle": "Roteer pagina's in stappen van 90 gradden."
+    },
+    "rotateCustom": {
+        "name": "Roteren met aangepaste hoek",
+        "subtitle": "Roteer pagina's met elke gewenste hoek."
+    },
+    "nUpPdf": {
+        "name": "N+ PDF",
+        "subtitle": "Arrangeer meerdere pagina's op een enkel blad."
+    },
+    "combineToSinglePage": {
+        "name": "Combineren tot Enkele pagina",
+        "subtitle": "Plak alle pagina's aan elkaar tot een doorlopende rol."
+    },
+    "viewMetadata": {
+        "name": "Metadata Weergeven",
+        "subtitle": "Bekijk de verborgen eigenschappen van je PDF."
+    },
+    "editMetadata": {
+        "name": "Metadata Bewerken",
+        "subtitle": "Auteur, titel en andere eigenschappen aanpassen."
+    },
+    "pdfsToZip": {
+        "name": "PDF naar ZIP",
+        "subtitle": "Archiveer meerdere PDF's in een ZIP-bestand."
+    },
+    "comparePdfs": {
+        "name": "PDF's Vergelijken",
+        "subtitle": "Twee PDF's zij-aan-zij vergelijken."
+    },
+    "posterizePdf": {
+        "name": "PDF-Poster",
+        "subtitle": "Deel een grote pagina op in meerdere kleinere pagina's."
+    },
+    "fixPageSize": {
+        "name": "Paginagrootte Fiksen",
+        "subtitle": "Alle pagina's aanpassen tot een uniform formaat."
+    },
+    "linearizePdf": {
+        "name": "PDF Lineariseren",
+        "subtitle": "Optimaliseer een PDF voor snelle webweergave."
+    },
+    "pageDimensions": {
+        "name": "Pagina Afmetingen",
+        "subtitle": "Maak een analyse van paginagrootte, oriëntatie en eenheden."
+    },
+    "removeRestrictions": {
+        "name": "Beperkingen Verwijderen",
+        "subtitle": "Beveiligingswachtwoord en -beperkingen verwijderen van digitaal ondertekende PDF-bestanden."
+    },
+    "repairPdf": {
+        "name": "PDF Repareren",
+        "subtitle": "Gegevens herstellen van beschadigde PDF-bestanden."
+    },
+    "encryptPdf": {
+        "name": "PDF Versleutelen",
+        "subtitle": "Vegrendel je PDF door toevoeging van een toegangswachtwoord."
+    },
+    "sanitizePdf": {
+        "name": "PDF Opschonen",
+        "subtitle": "Metadata, annotaties, scripts en meer verwijderen."
+    },
+    "decryptPdf": {
+        "name": "PDF Ontgrendelen",
+        "subtitle": "PDF ontgrendelen door het verwijderen van de wachtwoordbeveiliging."
+    },
+    "flattenPdf": {
+        "name": "PDF Platmaken",
+        "subtitle": "Maak formuliervelden en annotaties onbewerkbaar."
+    },
+    "removeMetadata": {
+        "name": "Metadata Verwijderen",
+        "subtitle": "Verwijder verborgen gegevens uit je PDF."
+    },
+    "changePermissions": {
+        "name": "Rechten Aanpassen",
+        "subtitle": "Gebruikersrechten van een PDF instellen of aanpasssen."
+    },
+    "odtToPdf": {
+        "name": "ODT naar PDF",
+        "subtitle": "Converteer OpenDocument-tekstbestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "ODT-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "csvToPdf": {
+        "name": "CSV naar PDF",
+        "subtitle": "Converteer CSV-spreadsheetbestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "CSV-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "rtfToPdf": {
+        "name": "RTF naar PDF",
+        "subtitle": "Converteer Rich Text Format-documenten naar PDF. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "RTF-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "wordToPdf": {
+        "name": "Word naar PDF",
+        "subtitle": "Converteer Word-documenten (DOCX, DOC, ODT, RTF) naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "DOCX-, DOC-, ODT-, RTF-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "excelToPdf": {
+        "name": "Excel naar PDF",
+        "subtitle": "Converteer Excel-spreadsheets (XLSX, XLS, ODS, CSV) naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "XLSX-, XLS-, ODS-, CSV-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "powerpointToPdf": {
+        "name": "PowerPoint naar PDF",
+        "subtitle": "Converteer PowerPoint-presentaties (PPTX, PPT, ODP) naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "PPTX-, PPT-, ODP-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "markdownToPdf": {
+        "name": "Markdown naar PDF",
+        "subtitle": "Schrijf of plak Markdown en zet het om in een opgemaakte PDF.",
+        "paneMarkdown": "Markdown",
+        "panePreview": "Voorbeeld",
+        "btnUpload": "Laden",
+        "btnSyncScroll": "Synchroon bladeren",
+        "btnSettings": "Instellingen",
+        "btnExportPdf": "PDF exporteren",
+        "settingsTitle": "Markdown-instellingen",
+        "settingsPreset": "Voorinstelling",
+        "presetDefault": "Standaard (als GFM)",
+        "presetCommonmark": "CommonMark (strict)",
+        "presetZero": "Minimaal (geen functies)",
+        "settingsOptions": "Markdown-opties",
+        "optAllowHtml": "HTML-tags toestaan",
+        "optBreaks": "Newlines omzetten naar <br>",
+        "optLinkify": "URL's autom. omzetten naar links",
+        "optTypographer": "Typograaf (slimme aanhalingstekens, etc.)"
+    },
+    "pdfBooklet": {
+        "name": "PDF Boekje",
+        "subtitle": "Herschik de pagina's voor dubbelzijdig boekjeprinten. Vouw en niet ze om een boekje te maken.",
+        "howItWorks": "Het werkt zo:",
+        "step1": "Laad een PDF-bestand.",
+        "step2": "Pagina's worden in brochurevolgorde gerangschikt.",
+        "step3": "Dubbelzijdig afdrukken, omdraaien langs de korte kant, vouwen en nieten.",
+        "paperSize": "Paperformaat",
+        "orientation": "Ori�ntatie",
+        "portrait": "Staand",
+        "landscape": "Liggend",
+        "pagesPerSheet": "Pagina's per vel",
+        "createBooklet": "Boekje aanmaken",
+        "processing": "Verwerken...",
+        "pageCount": "Het aantal pagina's wordt indien nodig op een meervoud van 4 afgerond."
+    },
+    "xpsToPdf": {
+        "name": "XPS naar PDF",
+        "subtitle": "Converteer XPS/OXPS-documenten naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "XPS-, OXPS-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "mobiToPdf": {
+        "name": "MOBI naar PDF",
+        "subtitle": "Converteer MOBI e-books naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "MOBI-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "epubToPdf": {
+        "name": "EPUB naar PDF",
+        "subtitle": "Zet EPUB-e-books om naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "EPUB-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "fb2ToPdf": {
+        "name": "FB2 naar PDF",
+        "subtitle": "Converteer FictionBook (FB2) e-boeken naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "FB2-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "cbzToPdf": {
+        "name": "CBZ naar PDF",
+        "subtitle": "Converteer stripboekenarchieven (CBZ/CBR) naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "CBZ-, CBR-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "wpdToPdf": {
+        "name": "WPD naar PDF",
+        "subtitle": "Converteer WordPerfect-documenten (WPD) naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "WPD-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "wpsToPdf": {
+        "name": "WPS naar PDF",
+        "subtitle": "Converteer WPS Office-documenten naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "WPS-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "xmlToPdf": {
+        "name": "XML naar PDF",
+        "subtitle": "Converteer XML-documenten naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "XML-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "pagesToPdf": {
+        "name": "Pages naar PDF",
+        "subtitle": "Zet Apple Pages-documenten om naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "Pages-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "odgToPdf": {
+        "name": "ODG naar PDF",
+        "subtitle": "Converteer OpenDocument Graphics (ODG)-bestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "ODG-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "odsToPdf": {
+        "name": "ODS naar PDF",
+        "subtitle": "Converteer OpenDocument Spreadsheet (ODS)-bestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "ODS-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "odpToPdf": {
+        "name": "ODP naar PDF",
+        "subtitle": "Converteer OpenDocument-presentatie (ODP) bestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "ODP-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "pubToPdf": {
+        "name": "PUB naar PDF",
+        "subtitle": "Converteer Microsoft Publisher (PUB) bestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "PUB-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "vsdToPdf": {
+        "name": "VSD naar PDF",
+        "subtitle": "Converteer Microsoft Visio (VSD, VSDX) bestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "VSD-, VSDX-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "psdToPdf": {
+        "name": "PSD naar PDF",
+        "subtitle": "Converteer Adobe Photoshop (PSD) bestanden naar PDF-formaat. Ondersteunt meerdere bestanden.",
+        "acceptedFormats": "PSD-bestanden",
+        "convertButton": "Omzetten naar PDF"
+    },
+    "pdfToSvg": {
+        "name": "PDF naar SVG",
+        "subtitle": "Converteer elke pagina van een PDF-bestand naar een schaalbare vectorafbeelding (SVG) voor perfecte kwaliteit op elke grootte."
+    },
+    "extractTables": {
+        "name": "PDF-tabellen extraheren",
+        "subtitle": "Haal tabellen uit PDF-bestanden en exporteer ze als CSV, JSON of Markdown."
+    },
+    "pdfToCsv": {
+        "name": "PDF naar CSV",
+        "subtitle": "Haal tabellen uit een PDF en zet ze om naar CSV-formaat."
+    },
+    "pdfToExcel": {
+        "name": "PDF naar Excel",
+        "subtitle": "Haal tabellen uit PDF en converteer ze naar Excel (XLSX) formaat."
+    },
+    "pdfToText": {
+        "name": "PDF naar Text",
+        "subtitle": "Haal tekst uit PDF-bestanden en sla op als gewone tekst (.txt). Ondersteunt meerdere bestanden.",
+        "note": "Dit hulpmiddel werkt ALLEEN met digitaal gemaakte PDF's. Gebruik voor gescande documenten of op afbeeldingen gebaseerde PDF's in plaats hiervan de OCR PDF-tool.",
+        "convertButton": "Tekst extraheren"
+    }
+}
