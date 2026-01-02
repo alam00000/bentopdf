@@ -1,0 +1,317 @@
+{
+    "nav": {
+        "home": "Inicio",
+        "about": "Acerca de",
+        "contact": "Contacto",
+        "licensing": "Licencias",
+        "allTools": "Todas las Herramientas",
+        "openMainMenu": "Abrir menú principal",
+        "language": "Idioma"
+    },
+    "hero": {
+        "title": "El",
+        "pdfToolkit": "Kit de Herramientas PDF",
+        "builtForPrivacy": "creado para la privacidad",
+        "noSignups": "Sin Registros",
+        "unlimitedUse": "Uso Ilimitado",
+        "worksOffline": "Funciona sin Internet",
+        "startUsing": "Comenzar a Usar Ahora"
+    },
+    "usedBy": {
+        "title": "Utilizado por empresas y personas que trabajan en"
+    },
+    "features": {
+        "title": "¿Por qué elegir",
+        "bentoPdf": "BentoPDF?",
+        "noSignup": {
+            "title": "Sin Registro",
+            "description": "Comienza instantáneamente, sin cuentas o correos electrónicos."
+        },
+        "noUploads": {
+            "title": "Sin Subidas",
+            "description": "100% del lado del cliente, tus archivos nunca salen de tu dispositivo."
+        },
+        "foreverFree": {
+            "title": "Gratis Para Siempre",
+            "description": "Todas las herramientas, sin pruebas, sin muros de pago."
+        },
+        "noLimits": {
+            "title": "Sin Límites",
+            "description": "Usa todo lo que quieras, sin límites ocultos."
+        },
+        "batchProcessing": {
+            "title": "Procesamiento por Lotes",
+            "description": "Gestiona PDFs ilimitados de una sola vez."
+        },
+        "lightningFast": {
+            "title": "Ultra Rápido",
+            "description": "Procesa PDFs al instante, sin esperas ni retrasos."
+        }
+    },
+    "tools": {
+        "title": "Empieza con las",
+        "toolsLabel": "Herramientas",
+        "subtitle": "Haz clic en una herramienta para abrir el cargador de archivos",
+        "searchPlaceholder": "Buscar una herramienta (ej. 'dividir', 'organizar'...)",
+        "backToTools": "Volver a Herramientas"
+    },
+    "upload": {
+        "clickToSelect": "Haz clic para seleccionar",
+        "orDragAndDrop": "o arrastra y suelta",
+        "pdfOrImages": "PDFs o Imágenes",
+        "filesNeverLeave": "Tus archivos nunca salen de tu dispositivo.",
+        "addMore": "Añadir Más Archivos",
+        "clearAll": "Borrar Todo"
+    },
+    "loader": {
+        "processing": "Procesando..."
+    },
+    "alert": {
+        "title": "Alerta",
+        "ok": "OK"
+    },
+    "preview": {
+        "title": "Vista previa del documento",
+        "downloadAsPdf": "Descargar como PDF",
+        "close": "Cerrar"
+    },
+    "settings": {
+        "title": "Configuración",
+        "shortcuts": "Atajos de teclado",
+        "preferences": "Preferencias",
+        "displayPreferences": "Preferencias de visualización",
+        "searchShortcuts": "Buscar atajos...",
+        "shortcutsInfo": "Mantén presionadas las teclas para establecer un atajo. Los cambios se guardan automáticamente.",
+        "shortcutsWarning": "⚠️ Evita los atajos comunes del navegador (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N, etc.) ya que pueden no funcionar de manera confiable.",
+        "import": "Importar",
+        "export": "Exportar",
+        "resetToDefaults": "Restablecer valores predeterminados",
+        "fullWidthMode": "Modo ancho completo",
+        "fullWidthDescription": "Usa el ancho completo de la pantalla para todas las herramientas en lugar de un contenedor centrado",
+        "settingsAutoSaved": "La configuración se guarda automáticamente",
+        "clickToSet": "Haz clic para asignar",
+        "pressKeys": "Presiona las teclas...",
+        "warnings": {
+            "alreadyInUse": "Atajo ya en uso",
+            "assignedTo": "ya está asignado a:",
+            "chooseDifferent": "Por favor, elige un atajo diferente.",
+            "reserved": "Advertencia de atajo reservado:",
+            "unreliable": "Este atajo puede no funcionar de manera fiable o entrar en conflicto con el navegador/sistema.",
+            "useAnyway": "¿Quieres usarlo de todos modos?",
+            "resetTitle": "Restablecer atajos",
+            "resetMessage": "¿Estás seguro de que quieres restablecer todos los atajos a sus valores predeterminados?<br><br>Esta acción no se puede deshacer.",
+            "importSuccessTitle": "Importación exitosa",
+            "importSuccessMessage": "¡Atajos importados exitosamente!",
+            "importFailTitle": "Error en la importación",
+            "importFailMessage": "Error al importar atajos. Formato de archivo inválido."
+        }
+    },
+    "warning": {
+        "title": "Advertencia",
+        "cancel": "Cancelar",
+        "proceed": "Continuar"
+    },
+    "compliance": {
+        "title": "Tus datos nunca salen de tu dispositivo",
+        "weKeep": "Mantenemos",
+        "yourInfoSafe": "tu información segura",
+        "byFollowingStandards": "siguiendo estándares de seguridad globales.",
+        "processingLocal": "Todo el procesamiento ocurre localmente en tu dispositivo.",
+        "gdpr": {
+            "title": "Cumplimiento GDPR",
+            "description": "Protege los datos personales y la privacidad de las personas dentro de la Unión Europea."
+        },
+        "ccpa": {
+            "title": "Cumplimiento CCPA",
+            "description": "Otorga a los residentes de California derechos sobre cómo se recopila, usa y comparte su información personal."
+        },
+        "hipaa": {
+            "title": "Cumplimiento HIPAA",
+            "description": "Establece salvaguardas para manejar información de salud sensible en el sistema sanitario de Estados Unidos."
+        }
+    },
+    "faq": {
+        "title": "Preguntas",
+        "questions": "Frecuentes",
+        "isFree": {
+            "question": "¿Es BentoPDF realmente gratis?",
+            "answer": "Sí, absolutamente. Todas las herramientas de BentoPDF son 100% gratuitas, sin límites de archivos, sin registros y sin marcas de agua. Creemos que todos merecen acceso a herramientas PDF potentes y sencillas sin tener que pagar."
+        },
+        "areFilesSecure": {
+            "question": "¿Están seguros mis archivos? ¿Dónde se procesan?",
+            "answer": "Tus archivos están lo más seguros posible porque nunca salen de tu ordenador. Todo el procesamiento ocurre directamente en tu navegador web (del lado del cliente). Nunca subimos tus archivos a un servidor, por lo que mantienes total privacidad y control sobre tus documentos."
+        },
+        "platforms": {
+            "question": "¿Funciona en Mac, Windows y móvil?",
+            "answer": "¡Sí! Como BentoPDF se ejecuta completamente en tu navegador, funciona en cualquier sistema operativo con un navegador web moderno, incluyendo Windows, macOS, Linux, iOS y Android."
+        },
+        "gdprCompliant": {
+            "question": "¿Cumple BentoPDF con el RGPD?",
+            "answer": "Sí. BentoPDF cumple totalmente con el RGPD. Dado que todo el procesamiento de archivos ocurre localmente en tu navegador y nunca recopilamos ni transmitimos tus archivos a ningún servidor, no tenemos acceso a tus datos. Esto garantiza que siempre tengas el control de tus documentos."
+        },
+        "dataStorage": {
+            "question": "¿Almacenan o rastrean alguno de mis archivos?",
+            "answer": "No. Nunca almacenamos, rastreamos ni registramos tus archivos. Todo lo que haces en BentoPDF ocurre en la memoria de tu navegador y desaparece una vez que cierras la página. No hay subidas, ni historiales, ni servidores involucrados."
+        },
+        "different": {
+            "question": "¿Qué diferencia a BentoPDF de otras herramientas PDF?",
+            "answer": "La mayoría de las herramientas PDF suben tus archivos a un servidor para procesarlos. BentoPDF nunca hace eso. Utilizamos tecnología web moderna y segura para procesar tus archivos directamente en tu navegador. Esto significa un rendimiento más rápido, mayor privacidad y total tranquilidad."
+        },
+        "browserBased": {
+            "question": "¿Cómo me protege el procesamiento basado en el navegador?",
+            "answer": "Al ejecutarse completamente dentro de tu navegador, BentoPDF asegura que tus archivos nunca salgan de tu dispositivo. Esto elimina los riesgos de hackeos de servidores, filtraciones de datos o accesos no autorizados. Tus archivos siguen siendo tuyos, siempre."
+        },
+        "analytics": {
+            "question": "¿Usan cookies o análisis para rastrearme?",
+            "answer": "Nos importa tu privacidad. BentoPDF no rastrea información personal. Utilizamos Simple Analytics únicamente para ver recuentos de visitas anónimas. Esto significa que podemos saber cuántos usuarios visitan nuestro sitio, pero nunca sabemos quién eres. Simple Analytics cumple totalmente con el RGPD y respeta tu privacidad."
+        }
+    },
+    "testimonials": {
+        "title": "Lo que dicen nuestros",
+        "users": "Usuarios",
+        "say": "Opiniones"
+    },
+    "support": {
+        "title": "¿Te gusta mi trabajo?",
+        "description": "BentoPDF es un proyecto personal, creado para proporcionar un kit de herramientas PDF gratuito, privado y potente para todos. Si lo encuentras útil, considera apoyar su desarrollo. ¡Cada café ayuda!",
+        "buyMeCoffee": "Invítame a un café"
+    },
+    "footer": {
+        "copyright": "© 2025 BentoPDF. Todos los derechos reservados.",
+        "version": "Versión",
+        "company": "Empresa",
+        "aboutUs": "Acerca de Nosotros",
+        "faqLink": "FAQ",
+        "contactUs": "Contáctanos",
+        "legal": "Legal",
+        "termsAndConditions": "Términos y Condiciones",
+        "privacyPolicy": "Política de Privacidad",
+        "followUs": "Síguenos"
+    },
+    "merge": {
+        "title": "Unir PDFs",
+        "description": "Combina archivos completos o selecciona páginas específicas para unirlas en un nuevo documento.",
+        "fileMode": "Modo Archivo",
+        "pageMode": "Modo Página",
+        "howItWorks": "Cómo funciona:",
+        "fileModeInstructions": [
+            "Haz clic y arrastra el icono para cambiar el orden de los archivos.",
+            "En la casilla \"Páginas\" de cada archivo, puedes especificar rangos (ej. \"1-3, 5\") para unir solo esas páginas.",
+            "Deja la casilla \"Páginas\" en blanco para incluir todas las páginas de ese archivo."
+        ],
+        "pageModeInstructions": [
+            "Todas las páginas de tus PDFs subidos se muestran a continuación.",
+            "Simplemente arrastra y suelta las miniaturas de las páginas para crear el orden exacto que deseas para tu nuevo archivo."
+        ],
+        "mergePdfs": "Unir PDFs"
+    },
+    "common": {
+        "page": "Página",
+        "pages": "Páginas",
+        "of": "de",
+        "download": "Descargar",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "add": "Añadir",
+        "remove": "Quitar",
+        "loading": "Cargando...",
+        "error": "Error",
+        "success": "Éxito",
+        "file": "Archivo",
+        "files": "Archivos"
+    },
+    "about": {
+        "hero": {
+            "title": "Creemos que las herramientas PDF deben ser",
+            "subtitle": "rápidas, privadas y gratuitas.",
+            "noCompromises": "Sin compromisos."
+        },
+        "mission": {
+            "title": "Nuestra Misión",
+            "description": "Proporcionar la caja de herramientas PDF más completa que respete tu privacidad y nunca pida pago. Creemos que las herramientas documentales esenciales deben ser accesibles para todos, en todas partes, sin barreras."
+        },
+        "philosophy": {
+            "label": "Nuestra Filosofía Central",
+            "title": "Privacidad ante todo. Siempre.",
+            "description": "En una era donde los datos son una mercancía, adoptamos un enfoque diferente. Todo el procesamiento de las herramientas BentoPDF ocurre localmente en tu navegador. Esto significa que tus archivos nunca tocan nuestros servidores, nunca vemos tus documentos y no rastreamos lo que haces. Tus documentos permanecen completa e inequívocamente privados. No es solo una característica; es nuestra base."
+        },
+        "whyBentopdf": {
+            "title": "Por qué",
+            "speed": {
+                "title": "Creado para la Velocidad",
+                "description": "Sin esperas por subidas o descargas a un servidor. Al procesar archivos directamente en tu navegador usando tecnologías web modernas como WebAssembly, ofrecemos una velocidad inigualable en todas nuestras herramientas."
+            },
+            "free": {
+                "title": "Completamente Gratis",
+                "description": "Sin pruebas, sin suscripciones, sin tarifas ocultas y sin funciones \"premium\" secuestradas. Creemos que las herramientas PDF potentes deben ser un servicio público, no un centro de beneficios."
+            },
+            "noAccount": {
+                "title": "Sin Cuenta Requerida",
+                "description": "Empieza a usar cualquier herramienta inmediatamente. No necesitamos tu correo, una contraseña ni ninguna información personal. Tu flujo de trabajo debe ser fluido y anónimo."
+            },
+            "openSource": {
+                "title": "Espíritu Open Source",
+                "description": "Construido con la transparencia en mente. Aprovechamos increíbles librerías de código abierto como PDF-lib y PDF.js, y creemos en el esfuerzo impulsado por la comunidad para hacer que herramientas potentes sean accesibles para todos."
+            }
+        },
+        "cta": {
+            "title": "¿Listo para empezar?",
+            "description": "Únete a miles de usuarios que confían en BentoPDF para sus necesidades diarias de documentos. Experimenta la diferencia que la privacidad y el rendimiento pueden marcar.",
+            "button": "Explorar todas las herramientas"
+        }
+    },
+    "contact": {
+        "title": "Ponte en Contacto",
+        "subtitle": "Nos encantaría saber de ti. Ya sea que tengas una pregunta, comentarios o una sugerencia de función, no dudes en escribirnos.",
+        "email": "Puedes contactarnos directamente por correo en:"
+    },
+    "licensing": {
+        "title": "Licencias para",
+        "subtitle": "Elige la licencia que se ajuste a tus necesidades."
+    },
+    "multiTool": {
+        "uploadPdfs": "Subir PDFs",
+        "upload": "Subir",
+        "addBlankPage": "Añadir Pág. en Blanco",
+        "edit": "Editar:",
+        "undo": "Deshacer",
+        "redo": "Rehacer",
+        "reset": "Restablecer",
+        "selection": "Selección:",
+        "selectAll": "Seleccionar todo",
+        "deselectAll": "Deseleccionar todo",
+        "rotate": "Rotar:",
+        "rotateLeft": "Izquierda",
+        "rotateRight": "Derecha",
+        "transform": "Transformar:",
+        "duplicate": "Duplicar",
+        "split": "Dividir",
+        "clear": "Limpiar:",
+        "delete": "Borrar",
+        "download": "Descargar:",
+        "downloadSelected": "Descargar Selección",
+        "exportPdf": "Exportar PDF",
+        "uploadPdfFiles": "Seleccionar Archivos PDF",
+        "dragAndDrop": "Arrastra y suelta archivos PDFomplian aquí, o haz clic para seleccionar",
+        "selectFiles": "Seleccionar Archivos",
+        "renderingPages": "Generando visualización...",
+        "actions": {
+            "duplicatePage": "Duplicar esta página",
+            "deletePage": "Eliminar esta página",
+            "insertPdf": "Insertar PDF después de esta página",
+            "toggleSplit": "Alternar división después de esta página"
+        },
+        "pleaseWait": "Por favor, espera",
+        "pagesRendering": "Las páginas se están renderizando. Por favor, espera...",
+        "noPagesSelected": "Sin páginas seleccionadas",
+        "selectOnePage": "Por favor, selecciona al menos una página para descargar.",
+        "noPages": "Sin páginas",
+        "noPagesToExport": "No hay páginas para exportar.",
+        "renderingTitle": "Generando miniaturas",
+        "errorRendering": "Error al generar miniaturas de página",
+        "error": "Error",
+        "failedToLoad": "Error al cargar"
+    }
+}
