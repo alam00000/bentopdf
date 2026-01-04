@@ -1,0 +1,71 @@
+name: Build and Deploy to Netlify
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  # New job to build dist and create release
+  build-and-release:
+    runs-on: ubuntu-latest
+    # if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+
+      - name: Install Netlify CLI
+        run: npm install netlify-cli -g
+
+
+
+      - name: Extract version
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Deploy to Netlify
+        run: |
+          export SIMPLE_MODE=true
+          npx netlify deploy --dir=dist --prod --auth="$NETLIFY_AUTH_TOKEN" --site="$NETLIFY_SITE_ID"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+
+#      - name: Build distribution
+#        run: |
+#          export SIMPLE_MODE=true
+#          npm run build
+
+
+
+      - name: Package distribution
+        run: npm run package
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist-${{ steps.version.outputs.version }}.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
