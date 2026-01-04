@@ -44,7 +44,7 @@ jobs:
       - name: Deploy to Netlify
         run: |
           export SIMPLE_MODE=true
-          npx netlify deploy --dir=dist --prod --auth="$NETLIFY_AUTH_TOKEN" --site="$NETLIFY_SITE_ID"
+          npx netlify deploy --dir=dist --skip-build --prod --auth="$NETLIFY_AUTH_TOKEN" --site="$NETLIFY_SITE_ID"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
