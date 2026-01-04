@@ -42,12 +42,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Pdf Multi Tool">
 
-
   <title>PDF Multi Tool - BentoPDF</title>
-  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-  <link rel="icon" type="image/png" href="/images/favicon.png" />
-  <link rel="apple-touch-icon" href="/images/favicon.png" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="alternate" hreflang="en" href="/en/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="de" href="/de/pdf-multi-tool.html" />
   <link rel="alternate" hreflang="vi" href="/vi/pdf-multi-tool.html" />
@@ -80,6 +75,16 @@
       overflow: hidden;
     }
   </style>
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/images/favicon-512x512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
 </head>
 
 <body class="antialiased bg-gray-900 h-[100dvh] overflow-hidden flex flex-col">
@@ -89,7 +94,7 @@
     <div class="container mx-auto px-4">
       <div class="flex justify-between items-center h-16">
         <div class="flex-shrink-0 flex items-center">
-          <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
+          <img src="/images/favicon-no-bg.svg" alt="Bento PDF Logo" class="h-8 w-8" />
           <span class="text-white font-bold text-xl ml-2">
             <a href="/">BentoPDF</a>
           </span>
@@ -124,7 +129,6 @@
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
 
-
         <!-- Add Blank -->
         <button id="add-blank-page-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
@@ -134,7 +138,6 @@
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
         <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.edit">Edit:</span>
-
 
         <!-- Undo / Redo / Reset -->
         <button id="undo-btn"
@@ -191,7 +194,6 @@
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
         <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.transform">Transform:</span>
 
-
         <!-- Duplicate / Split -->
         <button id="bulk-duplicate-btn"
           class="flex items-center gap-1 sm:gap-2 bg-gray-700 hover:bg-gray-600 text-white px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded text-xs sm:text-sm md:text-base">
@@ -207,7 +209,6 @@
 
         <div class="border-l border-gray-600 h-5 sm:h-6 mx-1"></div>
         <span class="text-gray-400 text-xs sm:text-sm md:inline" data-i18n="multiTool.clear">Clear:</span>
-
 
         <!-- Delete -->
         <button id="bulk-delete-btn"

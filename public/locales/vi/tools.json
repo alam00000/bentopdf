@@ -488,5 +488,32 @@
         "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
         "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi.",
         "convertButton": "Trích xuất văn bản"
+    },
+    "digitalSignPdf": {
+        "name": "Chữ ký số PDF",
+        "pageTitle": "Chữ ký số PDF - Thêm chữ ký mật mã | BentoPDF",
+        "subtitle": "Thêm chữ ký số mật mã vào PDF của bạn bằng chứng chỉ X.509. Hỗ trợ định dạng PKCS#12 (.pfx, .p12) và PEM. Khóa riêng của bạn không bao giờ rời khỏi trình duyệt.",
+        "certificateSection": "Chứng chỉ",
+        "uploadCert": "Tải lên chứng chỉ (.pfx, .p12)",
+        "certPassword": "Mật khẩu chứng chỉ",
+        "certPasswordPlaceholder": "Nhập mật khẩu chứng chỉ",
+        "certInfo": "Thông tin chứng chỉ",
+        "certSubject": "Chủ thể",
+        "certIssuer": "Nhà phát hành",
+        "certValidity": "Hiệu lực",
+        "signatureDetails": "Chi tiết chữ ký (Tùy chọn)",
+        "reason": "Lý do",
+        "reasonPlaceholder": "ví dụ: Tôi phê duyệt tài liệu này",
+        "location": "Địa điểm",
+        "locationPlaceholder": "ví dụ: Hà Nội, Việt Nam",
+        "contactInfo": "Thông tin liên hệ",
+        "contactPlaceholder": "ví dụ: email@example.com",
+        "applySignature": "Áp dụng chữ ký số",
+        "successMessage": "Ký PDF thành công! Chữ ký có thể được xác minh trong bất kỳ trình đọc PDF nào."
+    },
+    "validateSignaturePdf": {
+        "name": "Xác minh chữ ký PDF",
+        "pageTitle": "Xác minh chữ ký PDF - Xác thực chữ ký số | BentoPDF",
+        "subtitle": "Xác minh chữ ký số trong tệp PDF của bạn. Kiểm tra hiệu lực chứng chỉ, xem thông tin người ký và xác nhận tính toàn vẹn tài liệu. Tất cả xử lý diễn ra trong trình duyệt của bạn."
     }
 }

@@ -2,6 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
 let files: File[] = [];
 let currentMode: 'upload' | 'text' = 'upload';
@@ -87,7 +88,7 @@ async function convert() {
     showLoader('Loading engine...');
 
     try {
-        const pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+        const pymupdf = new PyMuPDF(getWasmBaseUrl('pymupdf'));
         await pymupdf.load();
 
         let textContent = '';

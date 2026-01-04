@@ -1,7 +1,5 @@
 name: Update Sponsors
 on:
-  schedule:
-    - cron: '0 0 * * *'  # Daily
   workflow_dispatch:
 jobs:
   update:

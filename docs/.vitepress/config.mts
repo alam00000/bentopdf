@@ -8,7 +8,7 @@ export default defineConfig({
 
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        logo: '/images/favicon.svg',
+        logo: '/images/favicon-no-bg.svg',
 
         nav: [
             { text: 'Home', link: '/' },
@@ -65,7 +65,7 @@ export default defineConfig({
 
         footer: {
             message: 'Dual-licensed under AGPL-3.0 and Commercial License.',
-            copyright: 'Copyright © 2025 BentoPDF'
+            copyright: 'Copyright © 2026 BentoPDF'
         },
 
         search: {

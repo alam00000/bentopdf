@@ -1,4 +1,4 @@
-<p align="center"><img src="public/images/favicon.svg" width="80"></p>
+<p align="center"><img src="public/images/favicon-no-bg.svg" width="80"></p>
 <h1 align="center">BentoPDF</h1>
 
 **BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that is self hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
@@ -162,6 +162,8 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **Decrypt PDF**        | Remove password protection from a PDF (password required).         |
 | **Change Permissions** | Set or modify user permissions for printing, copying, and editing. |
 | **Sign PDF**           | Add your digital signature to a document.                          |
+| **Digital Signature**  | Add cryptographic digital signatures using X.509 certificates (PFX/PEM). |
+| **Validate Signature** | Verify digital signatures and view certificate details.            |
 | **Redact Content**     | Permanently remove sensitive content from your PDFs.               |
 | **Edit Metadata**      | View and modify PDF metadata (author, title, keywords, etc.).      |
 | **Remove Metadata**    | Strip all metadata from your PDF for privacy.                      |
@@ -308,6 +310,23 @@ docker build --build-arg COMPRESSION_MODE=all -t bentopdf:all .
 | `o` | originals | Development or custom compression |
 | `all` | all formats | Maximum compatibility (default) |
 
+**CDN Optimization:**
+
+BentoPDF can use jsDelivr CDN to serve large WASM files (LibreOffice, Ghostscript, PyMuPDF) for improved performance and reduced bandwidth costs:
+
+```bash
+# Production build with CDN (Recommended)
+VITE_USE_CDN=true npm run build
+
+# Standard build with local files only
+npm run build
+```
+
+**How it works:**
+- When `VITE_USE_CDN=true`: Browser loads WASM files from jsDelivr CDN (fast, global delivery)
+- Local files are **always included** as automatic fallback
+- If CDN fails then it falls back to local files
+
 **Subdirectory Hosting:**
 
 BentoPDF can also be hosted from a subdirectory (e.g., `example.com/tools/bentopdf/`):
@@ -416,6 +435,44 @@ docker run -p 8080:8080 bentopdf
 ```
 
 For detailed security configuration, see [SECURITY.md](SECURITY.md).
+
+### Digital Signature CORS Proxy (Required)
+
+The **Digital Signature** tool uses a signing library that may need to fetch certificate chain data from certificate authority provider. Since many certificate servers don't include CORS headers, a proxy is required for this feature to work in the browser.
+
+**When is the proxy needed?**
+- Only when using the Digital Signature tool
+- Only if your certificate requires fetching issuer certificates from external URLs
+- Self-signed certificates typically don't need this
+
+**Deploying the CORS Proxy (Cloudflare Workers):**
+
+1. **Navigate to the cloudflare directory:**
+   ```bash
+   cd cloudflare
+   ```
+
+2. **Login to Cloudflare (if not already):**
+   ```bash
+   npx wrangler login
+   ```
+
+3. **Deploy the worker:**
+   ```bash
+   npx wrangler deploy
+   ```
+
+4. **Note your worker URL** (e.g., `https://bentopdf-cors-proxy.your-subdomain.workers.dev`)
+
+5. **Set the environment variable when building:**
+   ```bash
+   VITE_CORS_PROXY_URL=https://your-worker-url.workers.dev npm run build
+   ```
+
+**Security Notes:**
+- The proxy only allows requests to certificate-related URLs (.crt, .cer, .pem, /certs/, /ocsp)
+- It blocks requests to localhost and private IP ranges
+- You can customize `ALLOWED_ORIGINS` in `wrangler.toml` to restrict which domains can use your proxy
 
 ### 📦 Version Management
 

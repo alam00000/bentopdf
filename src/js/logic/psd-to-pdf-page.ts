@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
 const ACCEPTED_EXTENSIONS = ['.psd'];
 const FILETYPE_NAME = 'PSD';
@@ -11,7 +12,7 @@ let pymupdf: PyMuPDF | null = null;
 
 async function ensurePyMuPDF(): Promise<PyMuPDF> {
     if (!pymupdf) {
-        pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+        pymupdf = new PyMuPDF(getWasmBaseUrl('pymupdf'));
         await pymupdf.load();
     }
     return pymupdf;

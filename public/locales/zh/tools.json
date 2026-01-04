@@ -485,5 +485,32 @@
         "subtitle": "从 PDF 文件中提取文本并保存为纯文本文件 (.txt)。支持多个文件。",
         "note": "此工具仅适用于数字创建的 PDF。对于扫描文档或基于图像的 PDF，请使用我们的 OCR PDF 工具。",
         "convertButton": "提取文本"
+    },
+    "digitalSignPdf": {
+        "name": "PDF 数字签名",
+        "pageTitle": "PDF 数字签名 - 添加加密签名 | BentoPDF",
+        "subtitle": "使用 X.509 证书为您的 PDF 添加加密数字签名。支持 PKCS#12 (.pfx, .p12) 和 PEM 格式。您的私钥永远不会离开您的浏览器。",
+        "certificateSection": "证书",
+        "uploadCert": "上传证书 (.pfx, .p12)",
+        "certPassword": "证书密码",
+        "certPasswordPlaceholder": "输入证书密码",
+        "certInfo": "证书信息",
+        "certSubject": "主体",
+        "certIssuer": "颁发者",
+        "certValidity": "有效期",
+        "signatureDetails": "签名详情（可选）",
+        "reason": "原因",
+        "reasonPlaceholder": "例如：我批准此文档",
+        "location": "位置",
+        "locationPlaceholder": "例如：北京，中国",
+        "contactInfo": "联系信息",
+        "contactPlaceholder": "例如：email@example.com",
+        "applySignature": "应用数字签名",
+        "successMessage": "PDF 签名成功！签名可在任何 PDF 阅读器中验证。"
+    },
+    "validateSignaturePdf": {
+        "name": "验证 PDF 签名",
+        "pageTitle": "验证 PDF 签名 - 验证数字签名 | BentoPDF",
+        "subtitle": "验证您的 PDF 文件中的数字签名。检查证书有效性、查看签名者详情并确认文档完整性。所有处理都在您的浏览器中进行。"
     }
 }

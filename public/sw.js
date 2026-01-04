@@ -1,10 +1,11 @@
 /**
  * BentoPDF Service Worker
  * Caches WASM files and static assets for offline support and faster loading
- * Version: 1.0.1
+ * Supports both local and CDN delivery with deduplication
+ * Version: 1.1.0
  */
 
-const CACHE_VERSION = 'bentopdf-v6';
+const CACHE_VERSION = 'bentopdf-v7';
 const CACHE_NAME = `${CACHE_VERSION}-static`;
 
 
@@ -38,19 +39,19 @@ const buildCriticalAssets = (basePath) => [
 self.addEventListener('install', (event) => {
     const basePath = getBasePath();
     const CRITICAL_ASSETS = buildCriticalAssets(basePath);
-    console.log('🚀 [ServiceWorker] Installing version:', CACHE_VERSION);
-    console.log('📍 [ServiceWorker] Base path detected:', basePath || '/');
-    console.log('📦 [ServiceWorker] Will cache', CRITICAL_ASSETS.length, 'critical assets');
+    // console.log('🚀 [ServiceWorker] Installing version:', CACHE_VERSION);
+    // console.log('📍 [ServiceWorker] Base path detected:', basePath || '/');
+    // console.log('📦 [ServiceWorker] Will cache', CRITICAL_ASSETS.length, 'critical assets');
 
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('[ServiceWorker] Caching critical assets...');
+                // console.log('[ServiceWorker] Caching critical assets...');
                 return cacheInBatches(cache, CRITICAL_ASSETS, 5);
             })
             .then(() => {
-                console.log('✅ [ServiceWorker] All critical assets cached successfully!');
-                console.log('⏭️  [ServiceWorker] Skipping waiting, activating immediately...');
+                // console.log('✅ [ServiceWorker] All critical assets cached successfully!');
+                // console.log('⏭️  [ServiceWorker] Skipping waiting, activating immediately...');
                 return self.skipWaiting();
             })
             .catch((error) => {
@@ -60,7 +61,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-    console.log('🔄 [ServiceWorker] Activating version:', CACHE_VERSION);
+    // console.log('🔄 [ServiceWorker] Activating version:', CACHE_VERSION);
 
     event.waitUntil(
         caches.keys()
@@ -68,15 +69,15 @@ self.addEventListener('activate', (event) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => {
                         if (cacheName.startsWith('bentopdf-') && cacheName !== CACHE_NAME) {
-                            console.log('[ServiceWorker] Deleting old cache:', cacheName);
+                            // console.log('[ServiceWorker] Deleting old cache:', cacheName);
                             return caches.delete(cacheName);
                         }
                     })
                 );
             })
             .then(() => {
-                console.log('✅ [ServiceWorker] Activated successfully!');
-                console.log('🎯 [ServiceWorker] Taking control of all pages...');
+                // console.log('✅ [ServiceWorker] Activated successfully!');
+                // console.log('🎯 [ServiceWorker] Taking control of all pages...');
                 return self.clients.claim();
             })
     );
@@ -85,55 +86,108 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     const url = new URL(event.request.url);
 
-    if (url.origin !== location.origin) {
+    const isCDN = url.hostname === 'cdn.jsdelivr.net';
+    const isLocal = url.origin === location.origin;
+
+    if (!isLocal && !isCDN) {
+        return;
+    }
+    if (isLocal && (url.searchParams.has('t') || url.searchParams.has('import') || url.searchParams.has('direct'))) {
+        // console.log('🔧 [Dev Mode] Skipping Vite HMR request:', url.pathname);
         return;
     }
 
-    if (url.searchParams.has('t') || url.searchParams.has('import') || url.searchParams.has('direct')) {
-        console.log('🔧 [Dev Mode] Skipping Vite HMR request:', url.pathname);
+    if (isLocal && (url.pathname.includes('/@vite') || url.pathname.includes('/@id') || url.pathname.includes('/@fs'))) {
         return;
     }
 
-    if (url.pathname.includes('/@vite') || url.pathname.includes('/@id') || url.pathname.includes('/@fs')) {
-        return;
-    }
-
-    if (shouldCache(url.pathname)) {
-        event.respondWith(cacheFirstStrategy(event.request));
-    } else if (url.pathname.endsWith('.html') || url.pathname === '/') {
+    if (shouldCache(url.pathname, isCDN)) {
+        event.respondWith(cacheFirstStrategyWithDedup(event.request, isCDN));
+    } else if (isLocal && (url.pathname.endsWith('.html') || url.pathname === '/')) {
         event.respondWith(networkFirstStrategy(event.request));
     }
 });
 
 /**
- * Cache-first strategy: Check cache first, fallback to network
- * Perfect for WASM files and static assets that rarely change
+ * Cache-first strategy with deduplication
+ * Ensures we only cache CDN OR local version, never both
  */
-async function cacheFirstStrategy(request) {
+async function cacheFirstStrategyWithDedup(request, isCDN) {
+    const url = new URL(request.url);
+    const fileName = url.pathname.split('/').pop();
+
     try {
-        const cachedResponse = await caches.match(request, {
-            ignoreVary: true,
-            ignoreSearch: true
-        });
+        const cachedResponse = await findCachedFile(fileName);
         if (cachedResponse) {
-            console.log('⚡ [Cache HIT] Instant load:', request.url.split('/').pop());
+            // console.log('⚡ [Cache HIT] Instant load:', fileName);
             return cachedResponse;
         }
 
-        console.log('📥 [Cache MISS] Downloading:', request.url.split('/').pop());
+        // console.log(`📥 [Cache MISS] Downloading from ${isCDN ? 'CDN' : 'local'}:`, fileName);
 
         const networkResponse = await fetch(request);
 
         if (networkResponse && networkResponse.status === 200) {
             const cache = await caches.open(CACHE_NAME);
-            cache.put(request, networkResponse.clone());
-            console.log('💾 [Cached] Saved for next time:', request.url.split('/').pop());
+
+            await removeDuplicateCache(cache, fileName, isCDN);
+
+            await cache.put(request, networkResponse.clone());
+            // console.log(`💾 [Cached from ${isCDN ? 'CDN' : 'local'}] Saved:`, fileName);
         }
 
         return networkResponse;
     } catch (error) {
-        console.error('[ServiceWorker] Fetch failed for:', request.url, error);
+        if (isCDN) {
+            console.warn(`⚠️ [CDN Failed] Trying local fallback for: ${fileName}`);
+            const basePath = getBasePath();
+            const localPath = getLocalPathForCDNUrl(url.pathname);
+
+            if (localPath) {
+                const localUrl = `${basePath}${localPath}${fileName}`;
+                try {
+                    const fallbackResponse = await fetch(localUrl);
+                    if (fallbackResponse && fallbackResponse.status === 200) {
+                        const cache = await caches.open(CACHE_NAME);
+                        await cache.put(localUrl, fallbackResponse.clone());
+                        // console.log('✅ [Fallback Success] Cached local version:', fileName);
+                        return fallbackResponse;
+                    }
+                } catch (fallbackError) {
+                    console.error('[ServiceWorker] Both CDN and local failed for:', fileName);
+                }
+            }
+        }
         throw error;
+    }
+}
+
+async function findCachedFile(fileName) {
+    const cache = await caches.open(CACHE_NAME);
+    const requests = await cache.keys();
+
+    for (const req of requests) {
+        const reqUrl = new URL(req.url);
+        if (reqUrl.pathname.endsWith(fileName)) {
+            return await cache.match(req);
+        }
+    }
+    return null;
+}
+
+async function removeDuplicateCache(cache, fileName, isCDN) {
+    const requests = await cache.keys();
+
+    for (const req of requests) {
+        const reqUrl = new URL(req.url);
+        if (reqUrl.pathname.endsWith(fileName)) {
+            // If caching CDN version, remove local version (and vice versa)
+            const reqIsCDN = reqUrl.hostname === 'cdn.jsdelivr.net';
+            if (reqIsCDN !== isCDN) {
+                await cache.delete(req);
+                // console.log(`[Dedup] Removed ${reqIsCDN ? 'CDN' : 'local'} version of:`, fileName);
+            }
+        }
     }
 }
 
@@ -154,7 +208,7 @@ async function networkFirstStrategy(request) {
     } catch (error) {
         const cachedResponse = await caches.match(request);
         if (cachedResponse) {
-            console.log('📴 [Offline Mode] Serving from cache:', request.url.split('/').pop());
+            // console.log('[Offline Mode] Serving from cache:', request.url.split('/').pop());
             return cachedResponse;
         }
         throw error;
@@ -162,10 +216,36 @@ async function networkFirstStrategy(request) {
 }
 
 /**
- * Determine if a URL should be cached
- * Handles both root (/) and subdirectory (/test/) deployments
+ * Map CDN URL path to local path
+ * Returns the local directory path for a given CDN package
  */
-function shouldCache(pathname) {
+function getLocalPathForCDNUrl(pathname) {
+    if (pathname.includes('/@bentopdf/pymupdf-wasm')) {
+        return '/pymupdf-wasm/';
+    }
+    if (pathname.includes('/@bentopdf/gs-wasm')) {
+        return '/ghostscript-wasm/';
+    }
+    if (pathname.includes('/@matbee/libreoffice-converter')) {
+        return '/libreoffice-wasm/';
+    }
+    return null;
+}
+
+/**
+ * Determine if a URL should be cached
+ * Handles both local and CDN URLs
+ */
+function shouldCache(pathname, isCDN = false) {
+    if (isCDN) {
+        return (
+            pathname.includes('/@bentopdf/pymupdf-wasm') ||
+            pathname.includes('/@bentopdf/gs-wasm') ||
+            pathname.includes('/@matbee/libreoffice-converter') ||
+            pathname.match(/\.(wasm|whl|zip|json|js|gz)$/)
+        );
+    }
+
     return (
         pathname.includes('/libreoffice-wasm/') ||
         pathname.includes('/pymupdf-wasm/') ||
@@ -182,7 +262,7 @@ function shouldCache(pathname) {
 async function cacheInBatches(cache, urls, batchSize = 5) {
     for (let i = 0; i < urls.length; i += batchSize) {
         const batch = urls.slice(i, i + batchSize);
-        console.log(`[ServiceWorker] Caching batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(urls.length / batchSize)}`);
+        // console.log(`[ServiceWorker] Caching batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(urls.length / batchSize)}`);
 
         await Promise.all(
             batch.map(async (url) => {
@@ -190,7 +270,7 @@ async function cacheInBatches(cache, urls, batchSize = 5) {
                     await cache.add(url);
                     const fileName = url.split('/').pop();
                     const fileSize = fileName.includes('.wasm') || fileName.includes('.whl') ? '(large file)' : '';
-                    console.log(`  ✓ Cached: ${fileName} ${fileSize}`);
+                    // console.log(`  ✓ Cached: ${fileName} ${fileSize}`);
                 } catch (error) {
                     console.warn('[ServiceWorker] Failed to cache:', url, error.message);
                 }
@@ -213,5 +293,5 @@ self.addEventListener('message', (event) => {
     }
 });
 
-console.log('🎉 [ServiceWorker] Script loaded successfully! Ready to cache assets.');
-console.log('📊 [ServiceWorker] Cache version:', CACHE_VERSION);
+// console.log('🎉 [ServiceWorker] Script loaded successfully! Ready to cache assets.');
+// console.log('📊 [ServiceWorker] Cache version:', CACHE_VERSION);

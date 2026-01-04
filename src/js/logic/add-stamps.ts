@@ -35,8 +35,7 @@ function resetState() {
     viewerContainer.style.aspectRatio = ''
   }
 
-  // Revert container width only if NOT in full width mode
-  const isFullWidth = localStorage.getItem('fullWidthMode') === 'true'
+  const isFullWidth = localStorage.getItem('fullWidthMode') !== 'false'
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-6xl')
     toolUploader.classList.add('max-w-2xl')
@@ -56,8 +55,8 @@ function updateFileList() {
   fileListDiv.classList.remove('hidden')
   fileListDiv.innerHTML = ''
 
-  // Expand container width for viewer if NOT in full width mode
-  const isFullWidth = localStorage.getItem('fullWidthMode') === 'true'
+  // Expand container width for viewer if NOT in full width mode (default to true if not set)
+  const isFullWidth = localStorage.getItem('fullWidthMode') !== 'false'
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-2xl')
     toolUploader.classList.add('max-w-6xl')
