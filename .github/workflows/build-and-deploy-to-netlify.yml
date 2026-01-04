@@ -7,6 +7,11 @@ on:
 #    tags:
 #      - "v*"
   workflow_dispatch:
+    inputs: 
+      tag: 
+        description: "Tag to create and release" 
+        required: true 
+        type: string
 
 jobs:
   # New job to build dist and create release
@@ -19,6 +24,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Create tag 
+        run: |
+          git config user.name "github-actions" 
+          git config user.email "github-actions@github.com" 
+          git tag ${{ github.event.inputs.tag }} 
+          git push origin ${{ github.event.inputs.tag }}
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
