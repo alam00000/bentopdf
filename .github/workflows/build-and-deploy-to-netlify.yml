@@ -2,10 +2,10 @@ name: Build and Deploy to Netlify
 
 on:
   push:
-    branches:
-      - "main"
-    tags:
-      - "v*"
+#    branches:
+#      - "main"
+#    tags:
+#      - "v*"
   workflow_dispatch:
 
 jobs:
