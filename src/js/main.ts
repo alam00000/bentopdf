@@ -102,7 +102,7 @@ const init = async () => {
                   <span class="text-white font-bold text-lg">BentoPDF</span>
                 </div>
                 <p class="text-gray-400 text-sm">
-                  &copy; 2025 BentoPDF. All rights reserved.
+                  &copy; 2026 BentoPDF. All rights reserved.
                 </p>
                 <p class="text-gray-500 text-xs mt-2">
                   Version <span id="app-version-simple">${APP_VERSION}</span>
@@ -321,107 +321,63 @@ const init = async () => {
     const searchBar = document.getElementById('search-bar');
     const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');
 
-    const fuzzyMatchWithScore = (searchTerm: string, targetText: string): number => {
-      if (!searchTerm) return 100;
-
-      const search = searchTerm.toLowerCase();
-      const target = targetText.toLowerCase();
-
-      if (target === search) return 100;
-
-      if (target.includes(search)) {
-        if (target.startsWith(search)) return 95;
-        if (target.includes(' ' + search)) return 90;
-        return 85;
-      }
-
-      const words = target.split(/\s+/);
-      const searchWords = search.split(/\s+/);
-
-      let wordBoundaryScore = 0;
-      let matchedWords = 0;
-
-      for (const searchWord of searchWords) {
-        for (const targetWord of words) {
-          if (targetWord.startsWith(searchWord)) {
-            matchedWords++;
-            wordBoundaryScore += 20;
-            break;
-          }
-        }
-      }
-
-      if (matchedWords === searchWords.length) {
-        return Math.min(80, wordBoundaryScore);
-      }
-
-      let searchIndex = 0;
-      let targetIndex = 0;
-      let consecutiveMatches = 0;
-      let maxConsecutive = 0;
-      let totalMatches = 0;
-
-      while (searchIndex < search.length && targetIndex < target.length) {
-        if (search[searchIndex] === target[targetIndex]) {
-          searchIndex++;
-          totalMatches++;
-          consecutiveMatches++;
-          maxConsecutive = Math.max(maxConsecutive, consecutiveMatches);
-        } else {
-          consecutiveMatches = 0;
-        }
-        targetIndex++;
-      }
-
-      if (searchIndex !== search.length) return 0;
-      const matchRatio = totalMatches / search.length;
-      const consecutiveBonus = (maxConsecutive / search.length) * 20;
-      const lengthPenalty = Math.max(0, (target.length - search.length) / target.length) * 10;
-
-      const score = Math.max(0, Math.min(75,
-        (matchRatio * 50) + consecutiveBonus - lengthPenalty
-      ));
-
-      return score;
-    };
+    const searchResultsContainer = document.createElement('div');
+    searchResultsContainer.id = 'search-results';
+    searchResultsContainer.className = 'hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 col-span-full';
+    dom.toolGrid.insertBefore(searchResultsContainer, dom.toolGrid.firstChild);
 
     searchBar.addEventListener('input', () => {
       // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
       const searchTerm = searchBar.value.toLowerCase().trim();
 
+      if (!searchTerm) {
+        searchResultsContainer.classList.add('hidden');
+        searchResultsContainer.innerHTML = '';
+        categoryGroups.forEach((group) => {
+          (group as HTMLElement).style.display = '';
+          const toolCards = group.querySelectorAll('.tool-card');
+          toolCards.forEach((card) => {
+            (card as HTMLElement).style.display = '';
+          });
+        });
+        return;
+      }
+
+      categoryGroups.forEach((group) => {
+        (group as HTMLElement).style.display = 'none';
+      });
+
+      searchResultsContainer.innerHTML = '';
+      searchResultsContainer.classList.remove('hidden');
+
+      const seenToolIds = new Set<string>();
+      const allTools: HTMLElement[] = [];
+
       categoryGroups.forEach((group) => {
         const toolCards = Array.from(group.querySelectorAll('.tool-card'));
 
-        const scoredCards = toolCards.map((card) => {
-          const toolName = card.querySelector('h3')?.textContent || '';
-          const toolSubtitle = card.querySelector('p')?.textContent || '';
+        toolCards.forEach((card) => {
+          const toolName = (card.querySelector('h3')?.textContent || '').toLowerCase();
+          const toolSubtitle = (card.querySelector('p')?.textContent || '').toLowerCase();
+          const toolHref = (card as HTMLAnchorElement).href || (card as HTMLElement).dataset.toolId || '';
 
-          const nameScore = fuzzyMatchWithScore(searchTerm, toolName);
-          const subtitleScore = fuzzyMatchWithScore(searchTerm, toolSubtitle);
+          const toolId = toolHref.split('/').pop()?.replace('.html', '') || toolName;
 
-          const score = Math.max(nameScore, subtitleScore) +
-            (nameScore > 0 && subtitleScore > 0 ? 5 : 0);
+          const isMatch = toolName.includes(searchTerm) || toolSubtitle.includes(searchTerm);
+          const isDuplicate = seenToolIds.has(toolId);
 
-          return { card, score };
-        });
-
-        scoredCards.sort((a, b) => b.score - a.score);
-
-        let visibleToolsInCategory = 0;
-        const threshold = 10;
-
-        scoredCards.forEach(({ card, score }, index) => {
-          const isMatch = score >= threshold;
-          card.classList.toggle('hidden', !isMatch);
-
-          if (isMatch) {
-            visibleToolsInCategory++;
-            (card as HTMLElement).style.order = index.toString();
+          if (isMatch && !isDuplicate) {
+            seenToolIds.add(toolId);
+            allTools.push(card.cloneNode(true) as HTMLElement);
           }
         });
-
-        group.classList.toggle('hidden', visibleToolsInCategory === 0);
       });
+
+      allTools.forEach((tool) => {
+        searchResultsContainer.appendChild(tool);
+      });
+
+      createIcons({ icons });
     });
 
     window.addEventListener('keydown', function (e) {
@@ -542,8 +498,7 @@ const init = async () => {
   const fullWidthToggle = document.getElementById('full-width-toggle') as HTMLInputElement;
   const toolInterface = document.getElementById('tool-interface');
 
-  // Load saved preference
-  const savedFullWidth = localStorage.getItem('fullWidthMode') === 'true';
+  const savedFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
   if (fullWidthToggle) {
     fullWidthToggle.checked = savedFullWidth;
     applyFullWidthMode(savedFullWidth);

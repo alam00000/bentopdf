@@ -253,8 +253,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const pageRangeInput = (document.getElementById('page-range') as HTMLInputElement).value;
                     if (!pageRangeInput) throw new Error('Choose a valid page range.');
                     const ranges = pageRangeInput.split(',');
+                    
+                    const rangeGroups: number[][] = [];
                     for (const range of ranges) {
                         const trimmedRange = range.trim();
+                        if (!trimmedRange) continue;
+                        
+                        const groupIndices: number[] = [];
                         if (trimmedRange.includes('-')) {
                             const [start, end] = trimmedRange.split('-').map(Number);
                             if (
@@ -265,12 +270,45 @@ document.addEventListener('DOMContentLoaded', () => {
                                 start > end
                             )
                                 continue;
-                            for (let i = start; i <= end; i++) indicesToExtract.push(i - 1);
+                            for (let i = start; i <= end; i++) groupIndices.push(i - 1);
                         } else {
                             const pageNum = Number(trimmedRange);
                             if (isNaN(pageNum) || pageNum < 1 || pageNum > totalPages) continue;
-                            indicesToExtract.push(pageNum - 1);
+                            groupIndices.push(pageNum - 1);
                         }
+                        
+                        if (groupIndices.length > 0) {
+                            rangeGroups.push(groupIndices);
+                            indicesToExtract.push(...groupIndices);
+                        }
+                    }
+                    
+                    if (rangeGroups.length > 1) {
+                        showLoader('Creating separate PDFs for each range...');
+                        const zip = new JSZip();
+                        
+                        for (let i = 0; i < rangeGroups.length; i++) {
+                            const group = rangeGroups[i];
+                            const newPdf = await PDFLibDocument.create();
+                            const copiedPages = await newPdf.copyPages(state.pdfDoc, group);
+                            copiedPages.forEach((page: any) => newPdf.addPage(page));
+                            const pdfBytes = await newPdf.save();
+                            
+                            const minPage = Math.min(...group) + 1;
+                            const maxPage = Math.max(...group) + 1;
+                            const filename = minPage === maxPage 
+                                ? `page-${minPage}.pdf` 
+                                : `pages-${minPage}-${maxPage}.pdf`;
+                            zip.file(filename, pdfBytes);
+                        }
+                        
+                        const zipBlob = await zip.generateAsync({ type: 'blob' });
+                        downloadFile(zipBlob, 'split-pages.zip');
+                        hideLoader();
+                        showAlert('Success', `PDF split into ${rangeGroups.length} files successfully!`, 'success', () => {
+                            resetState();
+                        });
+                        return;
                     }
                     break;
 

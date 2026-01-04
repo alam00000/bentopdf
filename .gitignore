@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 .npm-cache
+.env
+.env.production
+.env.local
 
 # Editor directories and files
 .vscode/*
@@ -29,4 +32,4 @@ coverage/
 
 #backup
 .seo-backup
-
+libreoffice-wasm-package

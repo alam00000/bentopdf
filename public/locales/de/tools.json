@@ -488,5 +488,32 @@
         "subtitle": "Text aus PDF-Dateien extrahieren und als Textdatei (.txt) speichern. Unterstützt mehrere Dateien.",
         "note": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser OCR PDF-Tool.",
         "convertButton": "Text extrahieren"
+    },
+    "digitalSignPdf": {
+        "name": "Digitale PDF-Signatur",
+        "pageTitle": "Digitale PDF-Signatur - Kryptografische Signatur hinzufügen | BentoPDF",
+        "subtitle": "Fügen Sie eine kryptografische digitale Signatur mit X.509-Zertifikaten zu Ihrer PDF hinzu. Unterstützt PKCS#12 (.pfx, .p12) und PEM-Formate. Ihr privater Schlüssel verlässt niemals Ihren Browser.",
+        "certificateSection": "Zertifikat",
+        "uploadCert": "Zertifikat hochladen (.pfx, .p12)",
+        "certPassword": "Zertifikat-Passwort",
+        "certPasswordPlaceholder": "Zertifikat-Passwort eingeben",
+        "certInfo": "Zertifikat-Informationen",
+        "certSubject": "Betreff",
+        "certIssuer": "Aussteller",
+        "certValidity": "Gültig",
+        "signatureDetails": "Signatur-Details (Optional)",
+        "reason": "Grund",
+        "reasonPlaceholder": "z.B. Ich genehmige dieses Dokument",
+        "location": "Ort",
+        "locationPlaceholder": "z.B. Berlin, Deutschland",
+        "contactInfo": "Kontaktdaten",
+        "contactPlaceholder": "z.B. email@beispiel.de",
+        "applySignature": "Digitale Signatur anwenden",
+        "successMessage": "PDF erfolgreich signiert! Die Signatur kann in jedem PDF-Reader überprüft werden."
+    },
+    "validateSignaturePdf": {
+        "name": "PDF-Signatur überprüfen",
+        "pageTitle": "PDF-Signatur überprüfen - Digitale Signaturen verifizieren | BentoPDF",
+        "subtitle": "Überprüfen Sie digitale Signaturen in Ihren PDF-Dateien. Prüfen Sie die Zertifikatsgültigkeit, sehen Sie Unterzeichnerdetails und bestätigen Sie die Dokumentenintegrität. Die gesamte Verarbeitung erfolgt in Ihrem Browser."
     }
 }

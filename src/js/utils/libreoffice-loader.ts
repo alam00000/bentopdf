@@ -7,6 +7,8 @@
 
 import { WorkerBrowserConverter } from '@matbee/libreoffice-converter/browser';
 
+const LIBREOFFICE_LOCAL_PATH = import.meta.env.BASE_URL + 'libreoffice-wasm/';
+
 export interface LoadProgress {
     phase: 'loading' | 'initializing' | 'converting' | 'complete' | 'ready';
     percent: number;
@@ -24,8 +26,8 @@ export class LibreOfficeConverter {
     private initializing = false;
     private basePath: string;
 
-    constructor(basePath: string = import.meta.env.BASE_URL + 'libreoffice-wasm/') {
-        this.basePath = basePath;
+    constructor(basePath?: string) {
+        this.basePath = basePath || LIBREOFFICE_LOCAL_PATH;
     }
 
     async initialize(onProgress?: ProgressCallback): Promise<void> {

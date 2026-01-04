@@ -488,5 +488,32 @@
         "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
         "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
         "convertButton": "Extract Text"
+    },
+    "digitalSignPdf": {
+        "name": "Digital Signature PDF",
+        "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
+        "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
+        "certificateSection": "Certificate",
+        "uploadCert": "Upload certificate (.pfx, .p12)",
+        "certPassword": "Certificate Password",
+        "certPasswordPlaceholder": "Enter certificate password",
+        "certInfo": "Certificate Information",
+        "certSubject": "Subject",
+        "certIssuer": "Issuer",
+        "certValidity": "Valid",
+        "signatureDetails": "Signature Details (Optional)",
+        "reason": "Reason",
+        "reasonPlaceholder": "e.g., I approve this document",
+        "location": "Location",
+        "locationPlaceholder": "e.g., New York, USA",
+        "contactInfo": "Contact Info",
+        "contactPlaceholder": "e.g., email@example.com",
+        "applySignature": "Apply Digital Signature",
+        "successMessage": "PDF signed successfully! The signature can be verified in any PDF reader."
+    },
+    "validateSignaturePdf": {
+        "name": "Validate PDF Signature",
+        "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
+        "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
     }
 }

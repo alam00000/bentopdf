@@ -2,6 +2,7 @@ import { getLibreOfficeConverter } from './libreoffice-loader.js';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
 import loadGsWASM from '@bentopdf/gs-wasm';
 import { setCachedGsModule } from './ghostscript-loader.js';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
 export enum PreloadStatus {
     IDLE = 'idle',
@@ -56,7 +57,8 @@ async function preloadPyMuPDF(): Promise<void> {
     console.log('[Preloader] Starting PyMuPDF preload...');
 
     try {
-        pymupdfInstance = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+        const pymupdfBaseUrl = getWasmBaseUrl('pymupdf');
+        pymupdfInstance = new PyMuPDF(pymupdfBaseUrl);
         await pymupdfInstance.load();
         preloadState.pymupdf = PreloadStatus.READY;
         console.log('[Preloader] PyMuPDF ready');
@@ -73,10 +75,11 @@ async function preloadGhostscript(): Promise<void> {
     console.log('[Preloader] Starting Ghostscript WASM preload...');
 
     try {
+        const gsBaseUrl = getWasmBaseUrl('ghostscript');
         const gsModule = await loadGsWASM({
             locateFile: (path: string) => {
                 if (path.endsWith('.wasm')) {
-                    return import.meta.env.BASE_URL + 'ghostscript-wasm/gs.wasm';
+                    return gsBaseUrl + 'gs.wasm';
                 }
                 return path;
             },

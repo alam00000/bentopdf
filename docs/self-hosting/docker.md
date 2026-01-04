@@ -2,6 +2,15 @@
 
 The easiest way to self-host BentoPDF in a production environment.
 
+> [!IMPORTANT]
+> **Required Headers for Office File Conversion**
+> 
+> LibreOffice-based tools (Word, Excel, PowerPoint conversion) require these HTTP headers for `SharedArrayBuffer` support:
+> - `Cross-Origin-Opener-Policy: same-origin`
+> - `Cross-Origin-Embedder-Policy: require-corp`
+> 
+> The official Docker images include these headers. If using a reverse proxy (Traefik, Caddy, etc.), ensure these headers are preserved or added.
+
 ## Quick Start
 
 ```bash
@@ -106,6 +115,10 @@ services:
       - "traefik.http.routers.bentopdf.entrypoints=websecure"
       - "traefik.http.routers.bentopdf.tls.certresolver=letsencrypt"
       - "traefik.http.services.bentopdf.loadbalancer.server.port=8080"
+      # Required headers for SharedArrayBuffer (LibreOffice WASM)
+      - "traefik.http.routers.bentopdf.middlewares=bentopdf-headers"
+      - "traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin"
+      - "traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp"
     restart: unless-stopped
 ```
 
@@ -135,6 +148,8 @@ Caddyfile:
 ```
 pdf.example.com {
     reverse_proxy bentopdf:8080
+    header Cross-Origin-Opener-Policy "same-origin"
+    header Cross-Origin-Embedder-Policy "require-corp"
 }
 ```
 

@@ -81,6 +81,7 @@ Choose your platform:
 - [Nginx](/self-hosting/nginx)
 - [Apache](/self-hosting/apache)
 - [Docker](/self-hosting/docker)
+- [CORS Proxy](/self-hosting/cors-proxy) - Required for digital signatures
 
 ## System Requirements
 

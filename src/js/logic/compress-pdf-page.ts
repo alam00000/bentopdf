@@ -9,6 +9,7 @@ import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument } from 'pdf-lib';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import * as pdfjsLib from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
@@ -56,7 +57,7 @@ async function performCondenseCompression(
         removeThumbnails?: boolean;
     }
 ) {
-    const pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+    const pymupdf = new PyMuPDF(getWasmBaseUrl('pymupdf'));
     await pymupdf.load();
 
     const preset = CONDENSE_PRESETS[level as keyof typeof CONDENSE_PRESETS] || CONDENSE_PRESETS.balanced;

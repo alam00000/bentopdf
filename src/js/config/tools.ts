@@ -720,6 +720,18 @@ export const categories = [
         icon: 'ph-shield-check',
         subtitle: 'Set or change user permissions on a PDF.',
       },
+      {
+        href: import.meta.env.BASE_URL + 'digital-sign-pdf.html',
+        name: 'Digital Signature',
+        icon: 'ph-certificate',
+        subtitle: 'Add a cryptographic digital signature using X.509 certificates.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'validate-signature-pdf.html',
+        name: 'Validate Signature',
+        icon: 'ph-seal-check',
+        subtitle: 'Verify digital signatures and view certificate details.',
+      },
     ],
   },
 ];

@@ -3,8 +3,9 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
-const pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+const pymupdf = new PyMuPDF(getWasmBaseUrl('pymupdf'));
 let files: File[] = [];
 
 const updateUI = () => {

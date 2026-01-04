@@ -5,7 +5,7 @@
  * They describe APIs provided by the CoherentPDF library (cpdf.js) but are original
  * work created for type safety and integration.
  *
- * Copyright © 2025 BentoPDF
+ * Copyright © 2026 BentoPDF
  * Licensed under the GNU Affero General Public License v3.0 or later (AGPLv3+).
  */
 declare global {

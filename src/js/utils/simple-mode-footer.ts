@@ -19,7 +19,7 @@ if (__SIMPLE_MODE__) {
               <span class="text-white font-bold text-lg">BentoPDF</span>
             </div>
             <p class="text-gray-400 text-sm">
-              &copy; 2025 BentoPDF. All rights reserved.
+              &copy; 2026 BentoPDF. All rights reserved.
             </p>
             <p class="text-gray-500 text-xs mt-2">
               Version <span id="app-version-simple">${APP_VERSION}</span>

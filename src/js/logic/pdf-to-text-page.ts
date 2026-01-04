@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
 let files: File[] = [];
 let pymupdf: PyMuPDF | null = null;
@@ -148,7 +149,7 @@ function updateUI() {
 
 async function ensurePyMuPDF(): Promise<PyMuPDF> {
     if (!pymupdf) {
-        pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+        pymupdf = new PyMuPDF(getWasmBaseUrl('pymupdf'));
         await pymupdf.load();
     }
     return pymupdf;

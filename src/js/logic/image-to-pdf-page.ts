@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
 const SUPPORTED_FORMATS = '.jpg,.jpeg,.png,.bmp,.gif,.tiff,.tif,.pnm,.pgm,.pbm,.ppm,.pam,.jxr,.jpx,.jp2,.psd,.svg,.heic,.heif,.webp';
 const SUPPORTED_FORMATS_DISPLAY = 'JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP';
@@ -165,7 +166,7 @@ function updateUI() {
 
 async function ensurePyMuPDF(): Promise<PyMuPDF> {
     if (!pymupdf) {
-        pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
+        pymupdf = new PyMuPDF(getWasmBaseUrl('pymupdf'));
         await pymupdf.load();
     }
     return pymupdf;

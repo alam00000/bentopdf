@@ -1,0 +1,16 @@
+name = "bentopdf-cors-proxy"
+main = "cors-proxy-worker.js"
+compatibility_date = "2024-01-01"
+
+# Deploy to Cloudflare's global network
+# If you are self hosting change the name to your worker name
+# Run: npx wrangler deploy
+
+# Optional: Custom domain routing
+# routes = [
+#   { pattern = "cors-proxy.bentopdf.com/*", zone_name = "bentopdf.com" }
+# ]
+
+# Optional: Environment variables
+# [vars]
+# ALLOWED_ORIGINS = "https://www.bentopdf.com,https://bentopdf.com"
