@@ -1,36 +1,23 @@
 name: Build and Deploy to Netlify
 
 on:
-#  push:
-#    branches:
-#      - "main"
-#    tags:
-#      - "v*"
   workflow_dispatch:
-    inputs: 
-      tag: 
-        description: "Tag to create and release" 
-        required: true 
+    inputs:
+      tag:
+        description: "Tag to create and release (e.g. v1.2.3)"
+        required: true
         type: string
 
 jobs:
-  # New job to build dist and create release
   build-and-release:
     runs-on: ubuntu-latest
-    # if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create tag 
-        run: |
-          git config user.name "github-actions" 
-          git config user.email "github-actions@github.com" 
-          git tag ${{ github.event.inputs.tag }} 
-          git push origin ${{ github.event.inputs.tag }}
-        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,17 +26,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build distribution
+        run: |
+          export SIMPLE_MODE=true
+          npm run build
 
-      - name: Install Netlify CLI
-        run: npm install netlify-cli -g
+      - name: Package distribution
+        run: npm run package
 
-
-
-      - name: Extract version
+      - name: Extract version from tag
         id: version
         run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          VERSION="${{ github.event.inputs.tag }}"
+          VERSION="${VERSION#v}"   # strip leading v
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Deploy to Netlify
         run: |
@@ -59,26 +49,20 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
-
-#      - name: Build distribution
-#        run: |
-#          export SIMPLE_MODE=true
-#          npm run build
-
-
-
-      - name: Package distribution
-        run: npm run package
+      - name: Create and push tag
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag ${{ github.event.inputs.tag }}
+          git push origin ${{ github.event.inputs.tag }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event.inputs.tag }}
           files: dist-${{ steps.version.outputs.version }}.zip
           generate_release_notes: true
           draft: false
           prerelease: false
-          tag_name: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
