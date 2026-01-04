@@ -1,7 +1,7 @@
 name: Build and Deploy to Netlify
 
 on:
-  push:
+#  push:
 #    branches:
 #      - "main"
 #    tags:
