@@ -77,6 +77,7 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: false
+          tag_name: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
