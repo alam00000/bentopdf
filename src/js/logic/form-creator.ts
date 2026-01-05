@@ -1,15 +1,68 @@
 import { PDFDocument, StandardFonts, rgb, TextAlignment, PDFName, PDFString, PageSizes, PDFBool, PDFDict, PDFArray, PDFRadioGroup } from 'pdf-lib'
+import fontkit from '@pdf-lib/fontkit'
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js'
 import { downloadFile, hexToRgb, getPDFDocument } from '../utils/helpers.js'
 import { createIcons, icons } from 'lucide'
 import * as pdfjsLib from 'pdfjs-dist'
 import 'pdfjs-dist/web/pdf_viewer.css'
+import { parseFont } from '../utils/font-utils.js'
+import { initializeFontModal, showFontModal } from './font-modal.js'
 
 // Initialize PDF.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString()
 
 import { FormField, PageData } from '../types/index.js'
 
+const STANDARD_FONT_NAMES: string[] = Object.values(StandardFonts)
+
+// Additional fonts storage
+let additionalFonts: string[] = []
+let additionalFontBuffers: Map<string, ArrayBuffer> = new Map()
+
+// Helper function to apply parsed font styles to an element
+function applyParsedFontStyles(element: HTMLElement, fontFamily: string): void {
+    const parsedFont = parseFont(fontFamily)
+
+    element.style.fontFamily = parsedFont.family
+    element.style.fontWeight = parsedFont.weight
+    element.style.fontStyle = parsedFont.style
+}
+
+// Callback function for when a font is added via the font modal
+function onFontAdded(fontName: string, fontBuffer: ArrayBuffer): void {
+    // Store in additional fonts
+    additionalFonts.push(fontName)
+
+    // Store font buffer for later embedding
+    additionalFontBuffers.set(fontName, fontBuffer)
+
+    // Load the font for web rendering (applies to all custom fonts)
+    const parsedFont = parseFont(fontName)
+    const blob = new Blob([fontBuffer], { type: 'font/ttf' })
+    const fontUrl = URL.createObjectURL(blob)
+    const fontFace = new FontFace(parsedFont.family, `url(${fontUrl})`, {
+        weight: parsedFont.weight,
+        style: parsedFont.style
+    })
+
+    fontFace.load().then(() => {
+        document.fonts.add(fontFace)
+    }).catch(err => {
+        console.warn('Failed to load web font:', err)
+    })
+
+
+    // Update all font dropdowns
+    const propFontFamily = document.getElementById('propFontFamily') as HTMLSelectElement
+
+    if (propFontFamily) propFontFamily.innerHTML = getAllFontOptions()
+
+    // Update embedded fonts list
+    populateEmbeddedFontsList()
+
+    // Update properties panel if currently showing
+    if (selectedField) showProperties(selectedField)
+}
 
 let fields: FormField[] = []
 let selectedField: FormField | null = null
@@ -43,6 +96,7 @@ let selectedToolType: string | null = null
 
 const canvas = document.getElementById('pdfCanvas') as HTMLDivElement
 const propertiesPanel = document.getElementById('propertiesPanel') as HTMLDivElement
+const embeddedFontsList = document.getElementById('embeddedFontsList') as HTMLDivElement
 const fieldCountDisplay = document.getElementById('fieldCount') as HTMLSpanElement
 const uploadArea = document.getElementById('upload-area') as HTMLDivElement
 const toolContainer = document.getElementById('tool-container') as HTMLDivElement
@@ -65,6 +119,7 @@ const downloadBtn = document.getElementById('downloadBtn') as HTMLButtonElement
 const backToToolsBtn = document.getElementById('back-to-tools') as HTMLButtonElement | null
 const gotoPageInput = document.getElementById('gotoPageInput') as HTMLInputElement
 const gotoPageBtn = document.getElementById('gotoPageBtn') as HTMLButtonElement
+
 
 const gridVInput = document.getElementById('gridVInput') as HTMLInputElement
 const gridHInput = document.getElementById('gridHInput') as HTMLInputElement
@@ -169,6 +224,81 @@ function renderGrid() {
 function removeGrid() {
     const existingGrid = document.getElementById('pdfGrid')
     if (existingGrid) existingGrid.remove()
+}
+
+// Get all available font options for dropdown
+function getAllFontOptions(selectedFontFamily?: string): string {
+    const allFonts = [...STANDARD_FONT_NAMES, ...additionalFonts]
+    const options = allFonts.map(font =>
+        `<option value="${font}" ${selectedFontFamily === font ? 'selected' : ''}>${font}</option>`
+    ).join('')
+
+    return options +
+           `<option disabled>────────────────</option>` +
+           `<option value="__more_fonts__" class="text-indigo-300 font-semibold">     + More fonts...</option>`
+}
+
+// Populate the embedded fonts list with fonts actually used in form fields
+function populateEmbeddedFontsList(): void {
+    if (!embeddedFontsList) return
+
+    embeddedFontsList.innerHTML = ''
+
+    // Get unique fonts from all fields
+    const usedFonts = new Set<string>()
+    fields.forEach(field => {
+        if (field.fontFamily) {
+            usedFonts.add(field.fontFamily)
+        }
+    })
+
+    if (usedFonts.size === 0) {
+        const emptyMessage = document.createElement('div')
+        emptyMessage.className = 'text-xs text-gray-400 italic text-center py-2'
+        emptyMessage.textContent = 'No fonts being used yet. Add text fields to see embedded fonts.'
+        embeddedFontsList.appendChild(emptyMessage)
+        return
+    }
+
+    const sortedFonts = Array.from(usedFonts).sort()
+
+    sortedFonts.forEach(fontName => {
+        const fontItem = document.createElement('div')
+        fontItem.className = 'flex items-center gap-2 py-1'
+
+        const indicator = document.createElement('span')
+        const isStandard = STANDARD_FONT_NAMES.includes(fontName)
+
+        if (isStandard) {
+            indicator.textContent = '🅰'
+            indicator.title = 'Standard PDF Font'
+        } else {
+            indicator.textContent = '🌐'
+            indicator.title = 'Custom Font'
+        }
+
+        indicator.className = 'text-xs'
+
+        const label = document.createElement('span')
+
+        label.textContent = fontName
+        label.className = `text-xs text-gray-300 flex-1 ${STANDARD_FONT_NAMES.includes(fontName) ? '' : 'font-medium'}`
+        label.style.fontFamily = fontName
+
+        // Count how many fields use this font
+        const fieldCount = fields.filter(f => f.fontFamily === fontName).length
+        const countBadge = document.createElement('span')
+
+        countBadge.textContent = fieldCount.toString()
+        countBadge.className = 'text-xs bg-indigo-600 text-white px-1.5 py-0.5 rounded-full'
+        countBadge.title = `${fieldCount} field(s) using this font`
+
+        fontItem.appendChild(indicator)
+        fontItem.appendChild(label)
+        fontItem.appendChild(countBadge)
+
+        embeddedFontsList.appendChild(fontItem)
+    })
 }
 
 if (gotoPageBtn && gotoPageInput) {
@@ -325,6 +455,7 @@ function createField(type: FormField['type'], x: number, y: number): void {
         fontSize: 12,
         alignment: 'left',
         textColor: '#000000',
+        fontFamily: StandardFonts.Helvetica,
         required: false,
         readOnly: false,
         tooltip: '',
@@ -348,6 +479,7 @@ function createField(type: FormField['type'], x: number, y: number): void {
     fields.push(field)
     renderField(field)
     updateFieldCount()
+    populateEmbeddedFontsList() // Update fonts list when field is added
 }
 
 // Render field on canvas
@@ -395,6 +527,11 @@ function renderField(field: FormField): void {
         contentEl.style.textOverflow = 'ellipsis'
         contentEl.style.alignItems = field.multiline ? 'flex-start' : 'center'
         contentEl.textContent = field.defaultValue
+
+        // Apply font family with proper weight and style parsing
+        if (field.fontFamily) {
+            applyParsedFontStyles(contentEl, field.fontFamily)
+        }
 
         // Apply combing visual if enabled
         if (field.combCells > 0) {
@@ -501,11 +638,14 @@ function renderField(field: FormField): void {
 
     // Touch events for moving fields
     let touchMoveStarted = false
+
     fieldWrapper.addEventListener('touchstart', (e) => {
         if ((e.target as HTMLElement).classList.contains('resize-handle')) {
             return
         }
+
         touchMoveStarted = false
+
         const touch = e.touches[0]
         const rect = canvas.getBoundingClientRect()
         offsetX = touch.clientX - rect.left - field.x
@@ -516,6 +656,7 @@ function renderField(field: FormField): void {
     fieldWrapper.addEventListener('touchmove', (e) => {
         e.preventDefault()
         touchMoveStarted = true
+
         const touch = e.touches[0]
         const rect = canvas.getBoundingClientRect()
         let newX = touch.clientX - rect.left - offsetX
@@ -537,9 +678,12 @@ function renderField(field: FormField): void {
 
     // Add resize handles to the container - hidden by default
     const handles = ['nw', 'ne', 'sw', 'se', 'n', 's', 'e', 'w']
+
     handles.forEach((pos) => {
         const handle = document.createElement('div')
+
         handle.className = `absolute w-2.5 h-2.5 bg-white border border-indigo-600 z-10 cursor-${pos}-resize resize-handle hidden` // Added hidden class
+
         const positions: Record<string, string> = {
             nw: 'top-0 left-0 -translate-x-1/2 -translate-y-1/2',
             ne: 'top-0 right-0 translate-x-1/2 -translate-y-1/2',
@@ -562,6 +706,7 @@ function renderField(field: FormField): void {
         handle.addEventListener('touchstart', (e) => {
             e.stopPropagation()
             e.preventDefault()
+
             const touch = e.touches[0]
             // Create a synthetic mouse event for startResize
             const syntheticEvent = {
@@ -569,6 +714,7 @@ function renderField(field: FormField): void {
                 clientY: touch.clientY,
                 preventDefault: () => { }
             } as MouseEvent
+
             startResize(syntheticEvent, field, pos)
         })
 
@@ -605,6 +751,7 @@ document.addEventListener('mousemove', (e) => {
         draggedElement.style.top = newY + 'px'
 
         const field = fields.find((f) => f.id === draggedElement!.id)
+
         if (field) {
             field.x = newX
             field.y = newY
@@ -617,33 +764,41 @@ document.addEventListener('mousemove', (e) => {
         if (resizePos!.includes('e')) {
             resizeField.width = Math.max(50, startWidth + dx)
         }
+
         if (resizePos!.includes('w')) {
             const newWidth = Math.max(50, startWidth - dx)
             const widthDiff = startWidth - newWidth
+
             resizeField.width = newWidth
             resizeField.x = startLeft + widthDiff
         }
+
         if (resizePos!.includes('s')) {
             resizeField.height = Math.max(20, startHeight + dy)
         }
+
         if (resizePos!.includes('n')) {
             const newHeight = Math.max(20, startHeight - dy)
             const heightDiff = startHeight - newHeight
+
             resizeField.height = newHeight
             resizeField.y = startTop + heightDiff
         }
 
         if (fieldWrapper) {
             const container = fieldWrapper.querySelector('.field-container') as HTMLElement
+
             fieldWrapper.style.width = resizeField.width + 'px'
             fieldWrapper.style.left = resizeField.x + 'px'
             fieldWrapper.style.top = resizeField.y + 'px'
+
             if (container) {
                 container.style.height = resizeField.height + 'px'
             }
             // Update combing visuals on resize
             if (resizeField.combCells > 0) {
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                 if (textEl) {
                     textEl.style.letterSpacing = `calc(${resizeField.width / resizeField.combCells}px - 1ch)`
                     textEl.style.paddingLeft = `calc((${resizeField.width / resizeField.combCells}px - 1ch) / 2)`
@@ -657,11 +812,13 @@ document.addEventListener('mouseup', () => {
     draggedElement = null
     resizing = false
     resizeField = null
+
     if (!gridAlwaysVisible) removeGrid()
 })
 
 document.addEventListener('touchmove', (e) => {
     const touch = e.touches[0]
+
     if (resizing && resizeField) {
         const dx = touch.clientX - startX
         const dy = touch.clientY - startY
@@ -670,32 +827,41 @@ document.addEventListener('touchmove', (e) => {
         if (resizePos!.includes('e')) {
             resizeField.width = Math.max(50, startWidth + dx)
         }
+
         if (resizePos!.includes('w')) {
             const newWidth = Math.max(50, startWidth - dx)
             const widthDiff = startWidth - newWidth
+
             resizeField.width = newWidth
             resizeField.x = startLeft + widthDiff
         }
+
         if (resizePos!.includes('s')) {
             resizeField.height = Math.max(20, startHeight + dy)
         }
+
         if (resizePos!.includes('n')) {
             const newHeight = Math.max(20, startHeight - dy)
             const heightDiff = startHeight - newHeight
+
             resizeField.height = newHeight
             resizeField.y = startTop + heightDiff
         }
 
         if (fieldWrapper) {
             const container = fieldWrapper.querySelector('.field-container') as HTMLElement
+
             fieldWrapper.style.width = resizeField.width + 'px'
             fieldWrapper.style.left = resizeField.x + 'px'
             fieldWrapper.style.top = resizeField.y + 'px'
+
             if (container) {
                 container.style.height = resizeField.height + 'px'
             }
+
             if (resizeField.combCells > 0) {
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                 if (textEl) {
                     textEl.style.letterSpacing = `calc(${resizeField.width / resizeField.combCells}px - 1ch)`
                     textEl.style.paddingLeft = `calc((${resizeField.width / resizeField.combCells}px - 1ch) / 2)`
@@ -716,7 +882,9 @@ document.addEventListener('touchend', () => {
 function selectField(field: FormField): void {
     deselectAll()
     selectedField = field
+
     const fieldWrapper = document.getElementById(field.id)
+
     if (fieldWrapper) {
         const container = fieldWrapper.querySelector('.field-container') as HTMLElement
         const label = fieldWrapper.querySelector('.field-label') as HTMLElement
@@ -744,6 +912,7 @@ function selectField(field: FormField): void {
 function deselectAll(): void {
     if (selectedField) {
         const fieldWrapper = document.getElementById(selectedField.id)
+
         if (fieldWrapper) {
             const container = fieldWrapper.querySelector('.field-container') as HTMLElement
             const label = fieldWrapper.querySelector('.field-label') as HTMLElement
@@ -764,8 +933,10 @@ function deselectAll(): void {
                 handle.classList.add('hidden')
             })
         }
+
         selectedField = null
     }
+
     hideProperties()
 }
 
@@ -786,6 +957,12 @@ function showProperties(field: FormField): void {
         <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Divide into boxes (0 to disable)</label>
             <input type="number" id="propComb" value="${field.combCells}" min="0" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">Font Family</label>
+            <select id="propFontFamily" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+            ${getAllFontOptions(field.fontFamily)}
+            </select>
         </div>
         <div>
             <label class="block text-xs font-semibold text-gray-300 mb-1">Font Size</label>
@@ -991,12 +1168,14 @@ function showProperties(field: FormField): void {
             nameError.textContent = 'Field name cannot be empty'
             nameError.classList.remove('hidden')
             propName.classList.add('border-red-500')
+
             return false
         }
 
         if (field.type === 'radio') {
             nameError.classList.add('hidden')
             propName.classList.remove('border-red-500')
+
             return true
         }
 
@@ -1007,16 +1186,19 @@ function showProperties(field: FormField): void {
             nameError.textContent = `Field name "${newName}" already exists in this ${isDuplicateInPdf ? 'PDF' : 'form'}. Please try using a unique name.`
             nameError.classList.remove('hidden')
             propName.classList.add('border-red-500')
+
             return false
         }
 
         nameError.classList.add('hidden')
         propName.classList.remove('border-red-500')
+
         return true
     }
 
     propName.addEventListener('input', (e) => {
         const newName = (e.target as HTMLInputElement).value.trim()
+
         validateName(newName)
     })
 
@@ -1029,9 +1211,12 @@ function showProperties(field: FormField): void {
         }
 
         field.name = newName
+
         const fieldWrapper = document.getElementById(field.id)
+
         if (fieldWrapper) {
             const label = fieldWrapper.querySelector('.field-label') as HTMLElement
+
             if (label) label.textContent = field.name
         }
     })
@@ -1042,9 +1227,11 @@ function showProperties(field: FormField): void {
 
     if (field.type === 'radio') {
         const existingGroupsSelect = document.getElementById('existingGroups') as HTMLSelectElement
+
         if (existingGroupsSelect) {
             existingGroupsSelect.addEventListener('change', (e) => {
                 const selectedGroup = (e.target as HTMLSelectElement).value
+
                 if (selectedGroup) {
                     propName.value = selectedGroup
                     field.name = selectedGroup
@@ -1052,6 +1239,7 @@ function showProperties(field: FormField): void {
 
                     // Update field label
                     const fieldWrapper = document.getElementById(field.id)
+
                     if (fieldWrapper) {
                         const label = fieldWrapper.querySelector('.field-label') as HTMLElement
                         if (label) label.textContent = field.name
@@ -1089,6 +1277,7 @@ function showProperties(field: FormField): void {
         const propValue = document.getElementById('propValue') as HTMLInputElement
         const propMaxLength = document.getElementById('propMaxLength') as HTMLInputElement
         const propComb = document.getElementById('propComb') as HTMLInputElement
+        const propFontFamily = document.getElementById('propFontFamily') as HTMLSelectElement
         const propFontSize = document.getElementById('propFontSize') as HTMLInputElement
         const propTextColor = document.getElementById('propTextColor') as HTMLInputElement
         const propAlignment = document.getElementById('propAlignment') as HTMLSelectElement
@@ -1104,15 +1293,21 @@ function showProperties(field: FormField): void {
 
         propMaxLength.addEventListener('input', (e) => {
             const val = parseInt((e.target as HTMLInputElement).value)
+
             field.maxLength = isNaN(val) ? 0 : Math.max(0, val)
+
             if (field.maxLength > 0) {
                 propValue.maxLength = field.maxLength
+
                 if (field.defaultValue.length > field.maxLength) {
                     field.defaultValue = field.defaultValue.substring(0, field.maxLength)
                     propValue.value = field.defaultValue
+
                     const fieldWrapper = document.getElementById(field.id)
+
                     if (fieldWrapper) {
                         const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                         if (textEl) textEl.textContent = field.defaultValue
                     }
                 }
@@ -1123,6 +1318,7 @@ function showProperties(field: FormField): void {
 
         propComb.addEventListener('input', (e) => {
             const val = parseInt((e.target as HTMLInputElement).value)
+
             field.combCells = isNaN(val) ? 0 : Math.max(0, val)
 
             if (field.combCells > 0) {
@@ -1138,6 +1334,7 @@ function showProperties(field: FormField): void {
             } else {
                 propMaxLength.disabled = false
                 propValue.removeAttribute('maxLength')
+
                 if (field.maxLength > 0) {
                     propValue.maxLength = field.maxLength
                 }
@@ -1145,9 +1342,11 @@ function showProperties(field: FormField): void {
 
             // Re-render field visual only, NOT the properties panel
             const fieldWrapper = document.getElementById(field.id)
+
             if (fieldWrapper) {
                 // Update text content
                 const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
                 if (textEl) {
                     textEl.textContent = field.defaultValue
                     if (field.combCells > 0) {
@@ -1165,6 +1364,30 @@ function showProperties(field: FormField): void {
                         textEl.style.textAlign = field.alignment
                         textEl.style.justifyContent = field.alignment === 'left' ? 'flex-start' : field.alignment === 'right' ? 'flex-end' : 'center'
                     }
+                }
+            }
+        })
+
+        propFontFamily.addEventListener('change', (e) => {
+            const selectedValue = (e.target as HTMLSelectElement).value
+
+            if (selectedValue === '__more_fonts__') {
+                propFontFamily.value = field.fontFamily
+                showFontModal()
+                return
+            }
+
+            field.fontFamily = selectedValue
+
+            populateEmbeddedFontsList()
+
+            const fieldWrapper = document.getElementById(field.id)
+
+            if (fieldWrapper) {
+                const textEl = fieldWrapper.querySelector('.field-text') as HTMLElement
+
+                if (textEl) {
+                    applyParsedFontStyles(textEl, field.fontFamily)
                 }
             }
         })
@@ -1410,6 +1633,7 @@ function deleteField(field: FormField): void {
     fields = fields.filter((f) => f.id !== field.id)
     deselectAll()
     updateFieldCount()
+    populateEmbeddedFontsList() // Update fonts list when field is deleted
 }
 
 // Delete key handler
@@ -1502,9 +1726,44 @@ downloadBtn.addEventListener('click', async () => {
             }
         }
 
+        // Register fontkit for custom font embedding
+        pdfDoc.registerFontkit(fontkit)
+
         const form = pdfDoc.getForm()
 
-        const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
+        // Embed fonts that are used in the form
+        const usedFonts = new Set<string>()
+
+        fields.forEach(field => {
+            if (field.fontFamily) usedFonts.add(field.fontFamily)
+        })
+
+        const embeddedFontMap = new Map<string, any>()
+
+        for (const fontName of usedFonts) {
+            try {
+                let embeddedFont
+
+                // Check if it's a custom font (additional font) or standard font
+                if (additionalFontBuffers.has(fontName)) {
+                    // Use the downloaded font buffer
+                    const fontBuffer = additionalFontBuffers.get(fontName)!
+
+                    if (fontBuffer.byteLength === 0) {
+                        embeddedFont = await pdfDoc.embedFont(StandardFonts.Helvetica)
+                    } else {
+                        embeddedFont = await pdfDoc.embedFont(fontBuffer)
+                    }
+                } else {
+                    // Use standard PDF font name
+                    embeddedFont = await pdfDoc.embedFont(fontName)
+                }
+
+                embeddedFontMap.set(fontName, embeddedFont)
+            } catch (error) {
+                throw new Error(`Failed to embed font "${fontName}": ${error.message}`)
+            }
+        }
 
         // Set document metadata for accessibility
         pdfDoc.setTitle('Fillable Form')
@@ -1554,10 +1813,11 @@ downloadBtn.addEventListener('click', async () => {
                     textColor: rgb(rgbColor.r, rgbColor.g, rgbColor.b),
                 })
 
+                // Set ALL properties FIRST (these may mark field as "dirty")
                 textField.setText(field.defaultValue)
                 textField.setFontSize(field.fontSize)
 
-                // Set alignment
+                // Set alignment BEFORE font to avoid marking field dirty again
                 if (field.alignment === 'center') {
                     textField.setAlignment(TextAlignment.Center)
                 } else if (field.alignment === 'right') {
@@ -1588,6 +1848,14 @@ downloadBtn.addEventListener('click', async () => {
                     textField.acroField.getWidgets().forEach(widget => {
                         widget.dict.set(PDFName.of('TU'), PDFString.of(field.tooltip))
                     })
+                }
+
+                // ABSOLUTE FINAL STEP: Apply custom font after ALL other properties are set
+                if (field.fontFamily && embeddedFontMap.has(field.fontFamily)) {
+                    const selectedFont = embeddedFontMap.get(field.fontFamily)
+
+                    // Update appearances LAST to avoid "dirty" flag override from ANY property setter
+                    textField.updateAppearances(selectedFont)
                 }
 
             } else if (field.type === 'checkbox') {
@@ -1929,7 +2197,6 @@ downloadBtn.addEventListener('click', async () => {
             }
         }
 
-        form.updateFieldAppearances(helveticaFont)
 
         const pdfBytes = await pdfDoc.save()
         const blob = new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' })
@@ -2005,6 +2272,10 @@ function resetToInitial(): void {
     currentPageIndex = 0
     uploadedPdfDoc = null
     selectedField = null
+
+    // Clear additional fonts
+    additionalFonts = []
+    additionalFontBuffers.clear()
 
     canvas.innerHTML = ''
 
@@ -2246,6 +2517,7 @@ confirmBlankBtn.addEventListener('click', () => {
     // Hide upload area and show tool container
     uploadArea.classList.add('hidden')
     toolContainer.classList.remove('hidden')
+    populateEmbeddedFontsList()
     setTimeout(() => createIcons({ icons }), 100)
 })
 
@@ -2282,7 +2554,7 @@ async function handlePdfUpload(file: File) {
                 }
             })
 
-            // TODO@ALAM: DEBUGGER 
+            // TODO@ALAM: DEBUGGER
             // console.log('Field counter after upload:', fieldCounter)
             // console.log('Existing field names:', Array.from(existingFieldNames))
         } catch (e) {
@@ -2313,6 +2585,7 @@ async function handlePdfUpload(file: File) {
         // Hide upload area and show tool container
         uploadArea.classList.add('hidden')
         toolContainer.classList.remove('hidden')
+        populateEmbeddedFontsList()
 
         // Init icons
         setTimeout(() => createIcons({ icons }), 100)
@@ -2392,4 +2665,10 @@ if (errorModal) {
     })
 }
 
+
+
+
+
+
+initializeFontModal(onFontAdded)
 initializeGlobalShortcuts()
