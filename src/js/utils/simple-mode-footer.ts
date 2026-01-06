@@ -31,7 +31,9 @@ if (__SIMPLE_MODE__) {
     `;
     document.body.appendChild(simpleFooter);
 
-    const langContainer = simpleFooter.querySelector('#simple-mode-lang-switcher');
+    const langContainer = simpleFooter.querySelector(
+      '#simple-mode-lang-switcher'
+    );
     if (langContainer) {
       const switcher = createLanguageSwitcher();
       const dropdown = switcher.querySelector('div[role="menu"]');

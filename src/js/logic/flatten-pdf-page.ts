@@ -3,12 +3,9 @@ import { downloadFile, formatBytes, readFileAsArrayBuffer } from '../utils/helpe
 import { PDFDocument } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
+import { FlattenPdfState } from '@/types';
 
-interface PageState {
-    files: File[];
-}
-
-const pageState: PageState = {
+const pageState: FlattenPdfState = {
     files: [],
 };
 

@@ -3,15 +3,11 @@ import { downloadFile, formatBytes, hexToRgb, getPDFDocument } from '../utils/he
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { CombineSinglePageState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-interface CombineState {
-    file: File | null;
-    pdfDoc: PDFLibDocument | null;
-}
-
-const pageState: CombineState = {
+const pageState: CombineSinglePageState = {
     file: null,
     pdfDoc: null,
 };

@@ -162,7 +162,7 @@ async function addPageNumbers() {
             const xOffset = bounds.x || 0;
             const yOffset = bounds.y || 0;
 
-            let pageNumText = format === 'page_x_of_y' ? `${i + 1} / ${totalPages}` : `${i + 1}`;
+            const pageNumText = format === 'page_x_of_y' ? `${i + 1} / ${totalPages}` : `${i + 1}`;
 
             const textWidth = helveticaFont.widthOfTextAtSize(pageNumText, fontSize);
             const textHeight = fontSize;

@@ -2,9 +2,9 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, hexToRgb, formatBytes } from '../utils/helpers.js';
 import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
+import { BackgroundColorState } from '@/types';
 
-interface PageState { file: File | null; pdfDoc: PDFLibDocument | null; }
-const pageState: PageState = { file: null, pdfDoc: null };
+const pageState: BackgroundColorState = { file: null, pdfDoc: null };
 
 if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initializePage); }
 else { initializePage(); }

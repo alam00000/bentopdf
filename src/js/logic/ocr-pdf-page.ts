@@ -7,19 +7,9 @@ import fontkit from '@pdf-lib/fontkit';
 import { icons, createIcons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import { getFontForLanguage } from '../utils/font-loader.js';
+import { OcrWord, OcrState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-
-interface Word {
-    text: string;
-    bbox: { x0: number; y0: number; x1: number; y1: number };
-    confidence: number;
-}
-
-interface OcrState {
-    file: File | null;
-    searchablePdfBytes: Uint8Array | null;
-}
 
 const pageState: OcrState = {
     file: null,
@@ -35,10 +25,10 @@ const whitelistPresets: Record<string, string> = {
     forms: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,()-_/@#:',
 };
 
-function parseHOCR(hocrText: string): Word[] {
+function parseHOCR(hocrText: string): OcrWord[] {
     const parser = new DOMParser();
     const doc = parser.parseFromString(hocrText, 'text/html');
-    const words: Word[] = [];
+    const words: OcrWord[] = [];
 
     const wordElements = doc.querySelectorAll('.ocrx_word');
 
@@ -264,7 +254,7 @@ async function runOCR() {
             if (data.hocr) {
                 const words = parseHOCR(data.hocr);
 
-                words.forEach(function (word: Word) {
+                words.forEach(function (word: OcrWord) {
                     const { x0, y0, x1, y1 } = word.bbox;
                     const text = word.text.replace(/[\u0000-\u001F\u007F-\u009F\u200E\u200F\u202A-\u202E\uFEFF]/g, '');
 

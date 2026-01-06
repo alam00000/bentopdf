@@ -1,37 +1,6 @@
 import { PdfSigner, type SignOption } from 'zgapdfsigner';
 import forge from 'node-forge';
-
-export interface SignatureInfo {
-    reason?: string;
-    location?: string;
-    contactInfo?: string;
-    name?: string;
-}
-
-export interface CertificateData {
-    p12Buffer: ArrayBuffer;
-    password: string;
-    certificate: forge.pki.Certificate;
-}
-
-export interface SignPdfOptions {
-    signatureInfo?: SignatureInfo;
-    visibleSignature?: VisibleSignatureOptions;
-}
-
-export interface VisibleSignatureOptions {
-    enabled: boolean;
-    imageData?: ArrayBuffer;
-    imageType?: 'png' | 'jpeg' | 'webp';
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    page: number | string;
-    text?: string;
-    textColor?: string;
-    textSize?: number;
-}
+import { CertificateData, SignPdfOptions } from '@/types';
 
 export function parsePfxFile(pfxBytes: ArrayBuffer, password: string): CertificateData {
     const pfxAsn1 = forge.asn1.fromDer(forge.util.createBuffer(new Uint8Array(pfxBytes)));
@@ -125,10 +94,57 @@ export function parseCombinedPem(pemContent: string, password?: string): Certifi
 const CORS_PROXY_URL = import.meta.env.VITE_CORS_PROXY_URL || '';
 
 /**
+ * Shared secret for signing proxy requests (HMAC-SHA256).
+ * 
+ * SECURITY NOTE FOR PRODUCTION:
+ * Client-side secrets are NEVER truly hidden and they can be extracted from
+ * bundled JavaScript. 
+ * 
+ * For production deployments with sensitive requirements, you should:
+ * 1. Use your own backend server to proxy certificate requests
+ * 2. Keep the HMAC secret on your server ONLY (never in frontend code)
+ * 3. Have your frontend call your server, which then calls the CORS proxy
+ * 
+ * This client-side HMAC provides limited protection (deters casual abuse)
+ * but should NOT be considered secure against determined attackers. BentoPDF
+ * accepts this tradeoff because of it's client side architecture.
+ * 
+ * To enable (optional):
+ * 1. Generate a secret: openssl rand -hex 32
+ * 2. Set PROXY_SECRET on your Cloudflare Worker: npx wrangler secret put PROXY_SECRET
+ * 3. Set VITE_CORS_PROXY_SECRET in your build environment (must match PROXY_SECRET)
+ */
+const CORS_PROXY_SECRET = import.meta.env.VITE_CORS_PROXY_SECRET || '';
+
+async function generateProxySignature(url: string, timestamp: number): Promise<string> {
+    const encoder = new TextEncoder();
+    const key = await crypto.subtle.importKey(
+        'raw',
+        encoder.encode(CORS_PROXY_SECRET),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false,
+        ['sign']
+    );
+
+    const message = `${url}${timestamp}`;
+    const signature = await crypto.subtle.sign(
+        'HMAC',
+        key,
+        encoder.encode(message)
+    );
+
+    return Array.from(new Uint8Array(signature))
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+}
+
+/**
  * Custom fetch wrapper that routes external certificate requests through a CORS proxy.
  * The zgapdfsigner library tries to fetch issuer certificates from URLs embedded in the
  * certificate's AIA extension. When those servers don't have CORS enabled (like www.cert.fnmt.es),
  * the fetch fails. This wrapper routes such requests through our CORS proxy.
+ * 
+ * If VITE_CORS_PROXY_SECRET is configured, requests include HMAC signatures for anti-spoofing.
  */
 function createCorsAwareFetch(): {
     wrappedFetch: typeof fetch;
@@ -150,8 +166,17 @@ function createCorsAwareFetch(): {
         ) && !url.startsWith(window.location.origin);
 
         if (isExternalCertificateUrl && CORS_PROXY_URL) {
-            const proxyUrl = `${CORS_PROXY_URL}?url=${encodeURIComponent(url)}`;
-            console.log(`[CORS Proxy] Routing certificate request through proxy: ${url}`);
+            let proxyUrl = `${CORS_PROXY_URL}?url=${encodeURIComponent(url)}`;
+
+            if (CORS_PROXY_SECRET) {
+                const timestamp = Date.now();
+                const signature = await generateProxySignature(url, timestamp);
+                proxyUrl += `&t=${timestamp}&sig=${signature}`;
+                console.log(`[CORS Proxy] Routing signed certificate request through proxy: ${url}`);
+            } else {
+                console.log(`[CORS Proxy] Routing certificate request through proxy: ${url}`);
+            }
+
             return originalFetch(proxyUrl, init);
         }
 

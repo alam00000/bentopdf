@@ -3,11 +3,11 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, hexToRgb, formatBytes, getPDFDocument, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { TextColorState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-interface PageState { file: File | null; pdfDoc: PDFLibDocument | null; }
-const pageState: PageState = { file: null, pdfDoc: null };
+const pageState: TextColorState = { file: null, pdfDoc: null };
 
 if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initializePage); }
 else { initializePage(); }

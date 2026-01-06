@@ -172,7 +172,7 @@ async function convertToPdf() {
         return;
     }
 
-    showLoader('Loading PyMuPDF engine...');
+    showLoader('Loading engine...');
 
     try {
         const mupdf = await ensurePyMuPDF();

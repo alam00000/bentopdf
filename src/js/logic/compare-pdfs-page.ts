@@ -2,16 +2,9 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { getPDFDocument } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
+import { CompareState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-
-interface CompareState {
-    pdfDoc1: pdfjsLib.PDFDocumentProxy | null;
-    pdfDoc2: pdfjsLib.PDFDocumentProxy | null;
-    currentPage: number;
-    viewMode: 'overlay' | 'side-by-side';
-    isSyncScroll: boolean;
-}
 
 const pageState: CompareState = {
     pdfDoc1: null,

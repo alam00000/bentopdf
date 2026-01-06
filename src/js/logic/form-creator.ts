@@ -14,8 +14,8 @@ import { FormField, PageData } from '../types/index.js'
 let fields: FormField[] = []
 let selectedField: FormField | null = null
 let fieldCounter = 0
-let existingFieldNames: Set<string> = new Set()
-let existingRadioGroups: Set<string> = new Set()
+const existingFieldNames: Set<string> = new Set()
+const existingRadioGroups: Set<string> = new Set()
 let draggedElement: HTMLElement | null = null
 let offsetX = 0
 let offsetY = 0
@@ -2045,7 +2045,7 @@ async function renderCanvas(): Promise<void> {
     if (!currentPage) return
 
     // Fixed scale for better visibility
-    let scale = 1.333
+    const scale = 1.333
 
     currentScale = scale
 

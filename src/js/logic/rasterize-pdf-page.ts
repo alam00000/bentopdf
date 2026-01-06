@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            showLoader('Loading PyMuPDF...');
+            showLoader('Loading engine...');
             await pymupdf.load();
 
             // Get options from UI

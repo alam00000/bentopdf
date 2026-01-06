@@ -1,63 +1,21 @@
 import forge from 'node-forge';
+import { ExtractedSignature, SignatureValidationResult } from '@/types';
 
-export interface SignatureValidationResult {
-    signatureIndex: number;
-    isValid: boolean;
-    signerName: string;
-    signerOrg?: string;
-    signerEmail?: string;
-    issuer: string;
-    issuerOrg?: string;
-    signatureDate?: Date;
-    validFrom: Date;
-    validTo: Date;
-    isExpired: boolean;
-    isSelfSigned: boolean;
-    isTrusted: boolean;
-    algorithms: {
-        digest: string;
-        signature: string;
-    };
-    serialNumber: string;
-    reason?: string;
-    location?: string;
-    contactInfo?: string;
-    byteRange?: number[];
-    coverageStatus: 'full' | 'partial' | 'unknown';
-    errorMessage?: string;
-}
 
-export interface ExtractedSignature {
-    index: number;
-    contents: Uint8Array;
-    byteRange: number[];
-    reason?: string;
-    location?: string;
-    contactInfo?: string;
-    name?: string;
-    signingTime?: string;
-}
-
-/**
- * Extract all digital signatures from a PDF file
- */
 export function extractSignatures(pdfBytes: Uint8Array): ExtractedSignature[] {
     const signatures: ExtractedSignature[] = [];
     const pdfString = new TextDecoder('latin1').decode(pdfBytes);
 
-    // Find all signature objects by looking for /Type /Sig
+    // Find all signature objects for /Type /Sig
     const sigRegex = /\/Type\s*\/Sig\b/g;
     let sigMatch;
     let sigIndex = 0;
 
     while ((sigMatch = sigRegex.exec(pdfString)) !== null) {
         try {
-            // Find the containing object
             const searchStart = Math.max(0, sigMatch.index - 5000);
             const searchEnd = Math.min(pdfString.length, sigMatch.index + 10000);
             const context = pdfString.substring(searchStart, searchEnd);
-
-            // Extract ByteRange
             const byteRangeMatch = context.match(/\/ByteRange\s*\[\s*(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s*\]/);
             if (!byteRangeMatch) continue;
 
@@ -68,14 +26,12 @@ export function extractSignatures(pdfBytes: Uint8Array): ExtractedSignature[] {
                 parseInt(byteRangeMatch[4], 10),
             ];
 
-            // Extract Contents (the actual PKCS#7 signature)
             const contentsMatch = context.match(/\/Contents\s*<([0-9A-Fa-f]+)>/);
             if (!contentsMatch) continue;
 
             const hexContents = contentsMatch[1];
             const contentsBytes = hexToBytes(hexContents);
 
-            // Extract optional fields
             const reasonMatch = context.match(/\/Reason\s*\(([^)]*)\)/);
             const locationMatch = context.match(/\/Location\s*\(([^)]*)\)/);
             const contactMatch = context.match(/\/ContactInfo\s*\(([^)]*)\)/);
@@ -105,9 +61,6 @@ export function extractSignatures(pdfBytes: Uint8Array): ExtractedSignature[] {
     return signatures;
 }
 
-/**
- * Validate a single extracted signature
- */
 export function validateSignature(
     signature: ExtractedSignature,
     pdfBytes: Uint8Array,
@@ -133,21 +86,17 @@ export function validateSignature(
     };
 
     try {
-        // Parse the PKCS#7 signature - convert Uint8Array to binary string
         const binaryString = String.fromCharCode.apply(null, Array.from(signature.contents));
         const asn1 = forge.asn1.fromDer(binaryString);
         const p7 = forge.pkcs7.messageFromAsn1(asn1) as any;
 
-        // Get signer info
         if (!p7.certificates || p7.certificates.length === 0) {
             result.errorMessage = 'No certificates found in signature';
             return result;
         }
 
-        // Use the first certificate (signer's certificate)
         const signerCert = p7.certificates[0] as forge.pki.Certificate;
 
-        // Extract signer information
         const subjectCN = signerCert.subject.getField('CN');
         const subjectO = signerCert.subject.getField('O');
         const subjectE = signerCert.subject.getField('E') || signerCert.subject.getField('emailAddress');
@@ -163,22 +112,17 @@ export function validateSignature(
         result.validTo = signerCert.validity.notAfter;
         result.serialNumber = signerCert.serialNumber;
 
-        // Check if expired
         const now = new Date();
         result.isExpired = now > result.validTo || now < result.validFrom;
 
-        // Check if self-signed
         result.isSelfSigned = signerCert.isIssuer(signerCert);
 
         // Check trust against provided certificate
         if (trustedCert) {
             try {
-                // Check if the signer cert is issued by the trusted cert
-                // or if the trusted cert matches one of the certs in the chain
                 const isTrustedIssuer = trustedCert.isIssuer(signerCert);
                 const isSameCert = signerCert.serialNumber === trustedCert.serialNumber;
 
-                // Also check if any cert in the PKCS#7 chain matches or is issued by trusted cert
                 let chainTrusted = false;
                 for (const cert of p7.certificates) {
                     if (trustedCert.isIssuer(cert) ||
@@ -194,7 +138,6 @@ export function validateSignature(
             }
         }
 
-        // Extract algorithm info
         result.algorithms = {
             digest: getDigestAlgorithmName(signerCert.siginfo?.algorithmOid || ''),
             signature: getSignatureAlgorithmName(signerCert.signatureOid || ''),
@@ -219,7 +162,6 @@ export function validateSignature(
             } catch { /* ignore */ }
         }
 
-        // Check byte range coverage
         if (signature.byteRange && signature.byteRange.length === 4) {
             const [start1, len1, start2, len2] = signature.byteRange;
             const totalCovered = len1 + len2;
@@ -232,7 +174,6 @@ export function validateSignature(
             }
         }
 
-        // Mark as valid if we could parse it
         result.isValid = true;
 
     } catch (e) {
@@ -242,9 +183,6 @@ export function validateSignature(
     return result;
 }
 
-/**
- * Validate all signatures in a PDF
- */
 export async function validatePdfSignatures(
     pdfBytes: Uint8Array,
     trustedCert?: forge.pki.Certificate
@@ -253,14 +191,9 @@ export async function validatePdfSignatures(
     return signatures.map(sig => validateSignature(sig, pdfBytes, trustedCert));
 }
 
-/**
- * Get the number of signatures in a PDF without full validation
- */
 export function countSignatures(pdfBytes: Uint8Array): number {
     return extractSignatures(pdfBytes).length;
 }
-
-// Helper functions
 
 function hexToBytes(hex: string): Uint8Array {
     const bytes = new Uint8Array(hex.length / 2);
@@ -268,9 +201,6 @@ function hexToBytes(hex: string): Uint8Array {
         bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
     }
 
-    // PDF signature /Contents are padded with trailing null bytes.
-    // node-forge ASN.1 parser fails with "Unparsed DER bytes remain" if we include them.
-    // Find the actual end of the DER data by stripping trailing zeros.
     let actualLength = bytes.length;
     while (actualLength > 0 && bytes[actualLength - 1] === 0) {
         actualLength--;

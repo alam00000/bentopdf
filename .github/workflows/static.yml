@@ -27,6 +27,7 @@ concurrency:
 env:
   SIMPLE_MODE: ${{ vars.SIMPLE_MODE }}
   BASE_URL: ${{ vars.BASE_URL }}/ 
+  HUSKY: 0 
 
 jobs:
   # Single deploy job since we're just deploying

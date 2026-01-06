@@ -469,10 +469,55 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
    VITE_CORS_PROXY_URL=https://your-worker-url.workers.dev npm run build
    ```
 
-**Security Notes:**
-- The proxy only allows requests to certificate-related URLs (.crt, .cer, .pem, /certs/, /ocsp)
-- It blocks requests to localhost and private IP ranges
-- You can customize `ALLOWED_ORIGINS` in `wrangler.toml` to restrict which domains can use your proxy
+#### Production Security Features
+
+The CORS proxy includes several security measures:
+
+| Feature | Description |
+|---------|-------------|
+| **URL Restrictions** | Only allows certificate URLs (`.crt`, `.cer`, `.pem`, `/certs/`, `/ocsp`) |
+| **Private IP Blocking** | Blocks requests to localhost, 10.x, 192.168.x, 172.16-31.x |
+| **File Size Limit** | Rejects files larger than 10MB |
+| **Rate Limiting** | 60 requests per IP per minute (requires KV) |
+| **HMAC Signatures** | Optional client-side signing (limited protection) |
+
+#### Enabling Rate Limiting (Recommended)
+
+Rate limiting requires Cloudflare KV storage:
+
+```bash
+cd cloudflare
+
+# Create KV namespace
+npx wrangler kv namespace create "RATE_LIMIT_KV"
+
+# Copy the returned ID and add to wrangler.toml:
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "YOUR_ID_HERE"
+
+# Redeploy
+npx wrangler deploy
+```
+
+**Free tier limits:** 100,000 reads/day, 1,000 writes/day (~300-500 signatures/day)
+
+#### HMAC Signature Verification (Optional)
+
+> **⚠️ Security Warning:** Client-side secrets can be extracted from bundled JavaScript. For production deployments with sensitive requirements, use your own backend server to proxy requests instead of embedding secrets in frontend code.
+
+BentoPDF uses client-side HMAC as a deterrent against casual abuse, but accepts this tradeoff due to its fully client-side architecture. To enable:
+
+```bash
+# Generate a secret
+openssl rand -hex 32
+
+# Set on Cloudflare Worker
+npx wrangler secret put PROXY_SECRET
+
+# Set in build environment
+VITE_CORS_PROXY_SECRET=your-secret npm run build
+```
 
 ### 📦 Version Management
 

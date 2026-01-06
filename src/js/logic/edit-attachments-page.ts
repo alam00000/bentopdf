@@ -1,21 +1,9 @@
+import { EditAttachmentState, AttachmentInfo } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 
 const worker = new Worker(import.meta.env.BASE_URL + 'workers/edit-attachments.worker.js');
-
-interface AttachmentInfo {
-    index: number;
-    name: string;
-    page: number;
-    data: Uint8Array;
-}
-
-interface EditAttachmentState {
-    file: File | null;
-    allAttachments: AttachmentInfo[];
-    attachmentsToRemove: Set<number>;
-}
 
 const pageState: EditAttachmentState = {
     file: null,

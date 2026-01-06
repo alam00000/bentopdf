@@ -306,19 +306,19 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
             // Event Listeners
             decrementBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                let current = parseInt(angleInput.value) || 0;
+                const current = parseInt(angleInput.value) || 0;
                 updateRotation(current - 1);
             });
 
             incrementBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                let current = parseInt(angleInput.value) || 0;
+                const current = parseInt(angleInput.value) || 0;
                 updateRotation(current + 1);
             });
 
             angleInput.addEventListener('change', (e) => {
                 e.stopPropagation();
-                let val = parseInt((e.target as HTMLInputElement).value) || 0;
+                const val = parseInt((e.target as HTMLInputElement).value) || 0;
                 updateRotation(val);
             });
             angleInput.addEventListener('click', (e) => e.stopPropagation());
@@ -331,7 +331,7 @@ export const renderPageThumbnails = async (toolId: any, pdfDoc: any) => {
             rotateBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-4 h-4"></i>';
             rotateBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                let current = parseInt(angleInput.value) || 0;
+                const current = parseInt(angleInput.value) || 0;
                 updateRotation(current + 90);
             });
 

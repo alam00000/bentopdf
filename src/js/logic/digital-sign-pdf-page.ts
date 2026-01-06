@@ -6,19 +6,8 @@ import {
     parsePfxFile,
     parseCombinedPem,
     getCertificateInfo,
-    type CertificateData,
-    type SignatureInfo,
-    type VisibleSignatureOptions,
 } from './digital-sign-pdf.js';
-
-interface DigitalSignState {
-    pdfFile: File | null;
-    pdfBytes: Uint8Array | null;
-    certFile: File | null;
-    certData: CertificateData | null;
-    sigImageData: ArrayBuffer | null;
-    sigImageType: 'png' | 'jpeg' | 'webp' | null;
-}
+import { SignatureInfo, VisibleSignatureOptions, DigitalSignState } from '@/types';
 
 const state: DigitalSignState = {
     pdfFile: null,

@@ -1,16 +1,9 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { readFileAsArrayBuffer, formatBytes } from '../utils/helpers.js';
-import { validatePdfSignatures, type SignatureValidationResult } from './validate-signature-pdf.js';
+import { validatePdfSignatures } from './validate-signature-pdf.js';
 import forge from 'node-forge';
-
-interface ValidateSignatureState {
-    pdfFile: File | null;
-    pdfBytes: Uint8Array | null;
-    results: SignatureValidationResult[];
-    trustedCertFile: File | null;
-    trustedCert: forge.pki.Certificate | null;
-}
+import { SignatureValidationResult, ValidateSignatureState } from '@/types';
 
 const state: ValidateSignatureState = {
     pdfFile: null,

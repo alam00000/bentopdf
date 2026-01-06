@@ -1,12 +1,9 @@
 import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes, initializeQpdf, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
+import { DecryptPdfState } from '@/types';
 
-interface PageState {
-    file: File | null;
-}
-
-const pageState: PageState = {
+const pageState: DecryptPdfState = {
     file: null,
 };
 

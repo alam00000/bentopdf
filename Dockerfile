@@ -7,6 +7,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 COPY vendor ./vendor
+ENV HUSKY=0
 RUN npm ci
 COPY . .
 

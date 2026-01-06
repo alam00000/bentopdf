@@ -771,8 +771,8 @@ let searchQuery = '';
 let csvBookmarks = null;
 let jsonBookmarks = null;
 let batchMode = false;
-let selectedBookmarks = new Set();
-let collapsedNodes = new Set();
+const selectedBookmarks = new Set();
+const collapsedNodes = new Set();
 
 const colorClasses = {
   red: 'bg-red-100 border-red-300',
@@ -1126,7 +1126,7 @@ async function renderPage(num, zoom = null, destX = null, destY = null) {
 
   const dpr = window.devicePixelRatio || 1;
 
-  let viewport = page.getViewport({ scale: zoomScale });
+  const viewport = page.getViewport({ scale: zoomScale });
   currentViewport = viewport;
 
   canvas.height = viewport.height * dpr;
