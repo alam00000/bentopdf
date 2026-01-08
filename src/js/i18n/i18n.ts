@@ -3,29 +3,36 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpBackend from 'i18next-http-backend';
 
 // Supported languages
-export const supportedLanguages = ['en', 'de', 'zh', 'vi', 'tr'] as const;
+export const supportedLanguages = ['en', 'de', 'zh', 'vi', 'id', 'tr'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageNames: Record<SupportedLanguage, string> = {
-    en: 'English',
-    de: 'Deutsch',
-    zh: '中文',
-    vi: 'Tiếng Việt',
-    tr: 'Türkçe',
+  en: 'English',
+  de: 'Deutsch',
+  zh: '中文',
+  vi: 'Tiếng Việt',
+  id: 'Indonesian',
+  tr: 'Türkçe',
 };
 
 export const getLanguageFromUrl = (): SupportedLanguage => {
-    const path = window.location.pathname;
-    const langMatch = path.match(/^\/(en|de|zh|vi|tr)(?:\/|$)/);
-    if (langMatch && supportedLanguages.includes(langMatch[1] as SupportedLanguage)) {
-        return langMatch[1] as SupportedLanguage;
-    }
-    const storedLang = localStorage.getItem('i18nextLng');
-    if (storedLang && supportedLanguages.includes(storedLang as SupportedLanguage)) {
-        return storedLang as SupportedLanguage;
-    }
+  const path = window.location.pathname;
+  const langMatch = path.match(/^\/(en|de|zh|vi|id|tr)(?:\/|$)/);
+  if (
+    langMatch &&
+    supportedLanguages.includes(langMatch[1] as SupportedLanguage)
+  ) {
+    return langMatch[1] as SupportedLanguage;
+  }
+  const storedLang = localStorage.getItem('i18nextLng');
+  if (
+    storedLang &&
+    supportedLanguages.includes(storedLang as SupportedLanguage)
+  ) {
+    return storedLang as SupportedLanguage;
+  }
 
-    return 'en';
+  return 'en';
 };
 
 let initialized = false;
@@ -66,22 +73,22 @@ export const t = (key: string, options?: Record<string, unknown>): string => {
 };
 
 export const changeLanguage = (lang: SupportedLanguage): void => {
-    if (!supportedLanguages.includes(lang)) return;
+  if (!supportedLanguages.includes(lang)) return;
 
-    const currentPath = window.location.pathname;
-    const currentLang = getLanguageFromUrl();
+  const currentPath = window.location.pathname;
+  const currentLang = getLanguageFromUrl();
 
-    let newPath: string;
-    if (currentPath.match(/^\/(en|de|zh|vi|tr)\//)) {
-        newPath = currentPath.replace(/^\/(en|de|zh|vi|tr)\//, `/${lang}/`);
-    } else if (currentPath.match(/^\/(en|de|zh|vi|tr)$/)) {
-        newPath = `/${lang}`;
-    } else {
-        newPath = `/${lang}${currentPath}`;
-    }
+  let newPath: string;
+  if (currentPath.match(/^\/(en|de|zh|vi|id|tr)\//)) {
+    newPath = currentPath.replace(/^\/(en|de|zh|vi|id|tr)\//, `/${lang}/`);
+  } else if (currentPath.match(/^\/(en|de|zh|vi|id|tr)$/)) {
+    newPath = `/${lang}`;
+  } else {
+    newPath = `/${lang}${currentPath}`;
+  }
 
-    const newUrl = newPath + window.location.search + window.location.hash;
-    window.location.href = newUrl;
+  const newUrl = newPath + window.location.search + window.location.hash;
+  window.location.href = newUrl;
 };
 
 // Apply translations to all elements with data-i18n attribute
@@ -120,38 +127,40 @@ export const applyTranslations = (): void => {
 };
 
 export const rewriteLinks = (): void => {
-    const currentLang = getLanguageFromUrl();
-    if (currentLang === 'en') return;
+  const currentLang = getLanguageFromUrl();
+  if (currentLang === 'en') return;
 
-    const links = document.querySelectorAll('a[href]');
-    links.forEach((link) => {
-        const href = link.getAttribute('href');
-        if (!href) return;
+  const links = document.querySelectorAll('a[href]');
+  links.forEach((link) => {
+    const href = link.getAttribute('href');
+    if (!href) return;
 
-        if (href.startsWith('http') ||
-            href.startsWith('mailto:') ||
-            href.startsWith('tel:') ||
-            href.startsWith('#') ||
-            href.startsWith('javascript:')) {
-            return;
-        }
+    if (
+      href.startsWith('http') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('#') ||
+      href.startsWith('javascript:')
+    ) {
+      return;
+    }
 
-        if (href.match(/^\/(en|de|zh|vi|tr|id)\//)) {
-            return;
-        }
-        let newHref: string;
-        if (href.startsWith('/')) {
-            newHref = `/${currentLang}${href}`;
-        } else if (href.startsWith('./')) {
-            newHref = href.replace('./', `/${currentLang}/`);
-        } else if (href === '/' || href === '') {
-            newHref = `/${currentLang}/`;
-        } else {
-            newHref = `/${currentLang}/${href}`;
-        }
+    if (href.match(/^\/(en|de|zh|vi|tr|id)\//)) {
+      return;
+    }
+    let newHref: string;
+    if (href.startsWith('/')) {
+      newHref = `/${currentLang}${href}`;
+    } else if (href.startsWith('./')) {
+      newHref = href.replace('./', `/${currentLang}/`);
+    } else if (href === '/' || href === '') {
+      newHref = `/${currentLang}/`;
+    } else {
+      newHref = `/${currentLang}/${href}`;
+    }
 
-        link.setAttribute('href', newHref);
-    });
+    link.setAttribute('href', newHref);
+  });
 };
 
 export default i18next;
