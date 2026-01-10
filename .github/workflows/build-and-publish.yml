@@ -12,7 +12,7 @@ jobs:
   # New job to build dist and create release
   build-and-release:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
+    if: github.repository == 'alam00000/bentopdf' && startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
     env:
@@ -53,6 +53,7 @@ jobs:
 
   docker-build-and-push:
     runs-on: ubuntu-latest
+    if: github.repository == 'alam00000/bentopdf'
     permissions:
       contents: write
       packages: write
