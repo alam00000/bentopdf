@@ -1,0 +1,51 @@
+{{- if .Values.httpRoute.enabled -}}
+{{- $fullName := include "chart.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+{{- $defaultGatewayName := (default $fullName .Values.gateway.name) -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "chart.labels" . | nindent 4 }}
+  {{- with .Values.httpRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  parentRefs:
+    {{- range $ref := .Values.httpRoute.parentRefs }}
+    - name: {{ default $defaultGatewayName $ref.name | quote }}
+      {{- with $ref.sectionName }}
+      sectionName: {{ . | quote }}
+      {{- end }}
+      {{- with $ref.namespace }}
+      namespace: {{ . | quote }}
+      {{- end }}
+      {{- with $ref.kind }}
+      kind: {{ . | quote }}
+      {{- end }}
+      {{- with $ref.group }}
+      group: {{ . | quote }}
+      {{- end }}
+    {{- end }}
+  {{- with .Values.httpRoute.hostnames }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    {{- range .Values.httpRoute.rules }}
+    {{- with .matches }}
+    - matches:
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .filters }}
+      filters:
+      {{- toYaml . | nindent 8 }}
+    {{- end }}
+      backendRefs:
+        - name: {{ $fullName }}
+          port: {{ $svcPort }}
+          weight: 1
+    {{- end }}
+{{- end }}

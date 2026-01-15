@@ -33,3 +33,6 @@ coverage/
 #backup
 .seo-backup
 libreoffice-wasm-package
+
+# helm chart
+bentopdf-*.tgz

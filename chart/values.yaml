@@ -1,0 +1,72 @@
+# Default values for the BentoPDF chart (single nginx static frontend).
+replicaCount: 1
+
+image:
+  # Image built from this repo's `Dockerfile` (nginx serving static frontend).
+  repository: bentopdf/bentopdf
+  pullPolicy: IfNotPresent
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+# Container listen port (BentoPDF nginx image listens on 8080).
+containerPort: 8080
+
+env: []
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: bentopdf.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+# Gateway API (optional)
+gateway:
+  enabled: false
+  name: "" # default: release fullname
+  namespace: "" # default: release namespace
+  annotations: {}
+  gatewayClassName: "" # required when enabled=true
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs:
+    - name: "" # default: gateway.name (if set) else release fullname
+      sectionName: http
+  hostnames:
+    - bentopdf.local
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+
+resources: {}
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
