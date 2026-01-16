@@ -58,6 +58,74 @@ function initializePage() {
     document.getElementById('back-to-tools')?.addEventListener('click', () => {
         window.location.href = import.meta.env.BASE_URL;
     });
+
+    const applyOrderBtn = document.getElementById('apply-order-btn');
+    if (applyOrderBtn) applyOrderBtn.addEventListener('click', applyCustomOrder);
+}
+
+function applyCustomOrder() {
+    const orderInput = document.getElementById('page-order-input') as HTMLInputElement;
+    const grid = document.getElementById('page-grid');
+
+    if (!orderInput || !grid) return;
+
+    const orderString = orderInput.value;
+    if (!orderString) {
+        showAlert('Invalid Order', 'Please enter a page order.');
+        return;
+    }
+
+    const newOrder = orderString.split(',').map(s => parseInt(s.trim(), 10));
+
+    // Validation
+    const currentGridCount = grid.children.length;
+    const validNumbers = newOrder.every(n => !isNaN(n) && n > 0); // Basic check, will validate against available thumbnails
+    if (!validNumbers) {
+        showAlert('Invalid Page Numbers', `Please enter positive numbers.`);
+        return;
+    }
+
+    if (newOrder.length !== currentGridCount) {
+        showAlert('Incorrect Page Count', `The number of pages specified (${newOrder.length}) does not match the current number of pages in the document (${currentGridCount}). Please provide a complete ordering for all pages.`);
+        return;
+    }
+
+    const uniqueNumbers = new Set(newOrder);
+    if (uniqueNumbers.size !== newOrder.length) {
+        showAlert('Duplicate Page Numbers', 'Please ensure all page numbers in the order are unique.');
+        return;
+    }
+
+    const currentThumbnails = Array.from(grid.children) as HTMLElement[];
+    const reorderedThumbnails: HTMLElement[] = [];
+    const foundIndices = new Set();
+
+    for (const pageNum of newOrder) {
+        const originalIndexToFind = pageNum - 1; // pageNum is 1-based, originalPageIndex is 0-based
+        const foundThumbnail = currentThumbnails.find(
+            thumb => thumb.dataset.originalPageIndex === originalIndexToFind.toString()
+        );
+
+        if (foundThumbnail) {
+            reorderedThumbnails.push(foundThumbnail);
+            foundIndices.add(originalIndexToFind.toString());
+        }
+    }
+
+    const allOriginalIndicesPresent = currentThumbnails.every(thumb => foundIndices.has(thumb.dataset.originalPageIndex));
+
+    if (reorderedThumbnails.length !== currentGridCount || !allOriginalIndicesPresent) {
+        showAlert('Invalid Page Order', 'The specified page order is incomplete or contains invalid page numbers. Please ensure you provide a new position for every original page.');
+        return;
+    }
+
+    // Clear the grid and append the reordered thumbnails
+    grid.innerHTML = '';
+    reorderedThumbnails.forEach(thumb => grid.appendChild(thumb));
+
+    initializeSortable(); // Re-initialize sortable on the new order
+
+    showAlert('Success', 'Pages have been reordered.', 'success');
 }
 
 function handleFileUpload(e: Event) {
@@ -160,11 +228,13 @@ function attachEventListeners(element: HTMLElement) {
 async function renderThumbnails() {
     const grid = document.getElementById('page-grid');
     const processBtn = document.getElementById('process-btn');
-    if (!grid) return;
+    const advancedSettings = document.getElementById('advanced-settings');
+    if (!grid || !processBtn || !advancedSettings) return;
 
     grid.innerHTML = '';
     grid.classList.remove('hidden');
-    processBtn?.classList.remove('hidden');
+    processBtn.classList.remove('hidden');
+    advancedSettings.classList.remove('hidden');
 
     for (let i = 1; i <= organizeState.totalPages; i++) {
         const page = await organizeState.pdfJsDoc.getPage(i);
@@ -289,6 +359,7 @@ function resetState() {
         grid.classList.add('hidden');
     }
     document.getElementById('process-btn')?.classList.add('hidden');
+    document.getElementById('advanced-settings')?.classList.add('hidden');
     const fileDisplayArea = document.getElementById('file-display-area');
     if (fileDisplayArea) fileDisplayArea.innerHTML = '';
 }
