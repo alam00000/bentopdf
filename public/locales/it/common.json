@@ -1,50 +1,50 @@
 {
   "nav": {
     "home": "Home",
-    "about": "Chi Siamo",
+    "about": "Chi siamo",
     "contact": "Contatti",
     "licensing": "Licenze",
-    "allTools": "Tutti gli Strumenti",
-    "openMainMenu": "Apri il Menu Principale",
+    "allTools": "Tutti gli strumenti",
+    "openMainMenu": "Apri il menu principale",
     "language": "Lingua"
   },
   "donation": {
-    "message": "Love BentoPDF? Help us keep it free and open source!",
-    "button": "Donate"
+    "message": "Ti piace BentoPDF? Aiutaci a mantenerlo gratuito e open source!",
+    "button": "Dona"
   },
   "hero": {
-    "title": "I",
-    "pdfToolkit": "tuoi attrezzi per i PDF",
-    "builtForPrivacy": "creati per la privacy",
-    "noSignups": "Nessun iscrizione",
+    "title": "Il",
+    "pdfToolkit": "kit di strumenti PDF",
+    "builtForPrivacy": "pensato per la privacy",
+    "noSignups": "Nessuna registrazione",
     "unlimitedUse": "Uso illimitato",
     "worksOffline": "Funziona offline",
-    "startUsing": "Inizia ad usarlo ora"
+    "startUsing": "Inizia a usarlo ora"
   },
   "usedBy": {
     "title": "Usato da aziende e persone che lavorano in"
   },
   "features": {
-    "title": "Perchè scegliere",
+    "title": "Perché scegliere",
     "bentoPdf": "BentoPDF?",
     "noSignup": {
-      "title": "Nessuna Registrazione",
-      "description": "Usa subito, senza account o email."
+      "title": "Nessuna registrazione",
+      "description": "Inizia subito, senza account né email."
     },
     "noUploads": {
       "title": "Nessun caricamento",
       "description": "100% client-side, i tuoi file non lasciano mai il dispositivo."
     },
     "foreverFree": {
-      "title": "Sempre Gratis",
+      "title": "Sempre gratis",
       "description": "Tutti gli strumenti, nessuna prova, nessun paywall."
     },
     "noLimits": {
-      "title": "Senza Limiti",
+      "title": "Senza limiti",
       "description": "Usalo quanto vuoi, senza limiti nascosti."
     },
     "batchProcessing": {
-      "title": "Elaborazione in Batch",
+      "title": "Elaborazione in batch",
       "description": "Gestisci un numero illimitato di PDF in un'unica operazione."
     },
     "lightningFast": {
@@ -55,15 +55,15 @@
   "tools": {
     "title": "Inizia con",
     "toolsLabel": "Strumenti",
-    "subtitle": "Clicca uno strumento per aprire il caricatore di file",
-    "searchPlaceholder": "Cerca uno strumento (es. 'split', 'organize'...)",
-    "backToTools": "Torna agli Strumenti",
-    "firstLoadNotice": "Il primo caricamento richiede un momento mentre scarichiamo il nostro motore di conversione. Dopo di ciò, tutti i caricamenti saranno immediati."
+    "subtitle": "Clicca su uno strumento per aprire il caricatore di file",
+    "searchPlaceholder": "Cerca uno strumento (es. \"split\", \"organizza\"...)",
+    "backToTools": "Torna agli strumenti",
+    "firstLoadNotice": "Il primo caricamento richiede qualche istante mentre scarichiamo il motore di conversione. Dopo di ciò, tutti i caricamenti saranno immediati."
   },
   "upload": {
     "clickToSelect": "Clicca per selezionare un file",
-    "orDragAndDrop": "o trascina e rilascia",
-    "pdfOrImages": "PDF o Immagini",
+    "orDragAndDrop": "oppure trascina e rilascia",
+    "pdfOrImages": "PDF o immagini",
     "filesNeverLeave": "I tuoi file non lasciano mai il tuo dispositivo.",
     "addMore": "Aggiungi altri file",
     "clearAll": "Svuota tutto"
@@ -76,7 +76,7 @@
     "ok": "OK"
   },
   "preview": {
-    "title": "Anteprima Documento",
+    "title": "Anteprima documento",
     "downloadAsPdf": "Scarica come PDF",
     "close": "Chiudi"
   },
@@ -87,7 +87,7 @@
     "displayPreferences": "Preferenze di visualizzazione",
     "searchShortcuts": "Cerca scorciatoie...",
     "shortcutsInfo": "Premi e tieni premuti i tasti per impostare una scorciatoia. Le modifiche vengono salvate automaticamente.",
-    "shortcutsWarning": "⚠️ Evita scorciatoie comuni del browser (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N ecc.) poiché potrebbero non funzionare in modo affidabile.",
+    "shortcutsWarning": "⚠️ Evita le scorciatoie comuni del browser (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N ecc.) perché potrebbero non funzionare in modo affidabile.",
     "import": "Importa",
     "export": "Esporta",
     "resetToDefaults": "Reimposta ai valori predefiniti",
@@ -95,7 +95,7 @@
     "fullWidthDescription": "Usa l'intera larghezza dello schermo per tutti gli strumenti invece di un contenitore centrato",
     "settingsAutoSaved": "Le impostazioni vengono salvate automaticamente",
     "clickToSet": "Clicca per impostare",
-    "pressKeys": "Premi tasti...",
+    "pressKeys": "Premi i tasti...",
     "warnings": {
       "alreadyInUse": "Scorciatoia già in uso",
       "assignedTo": "è già assegnata a:",
@@ -104,11 +104,11 @@
       "commonlyUsed": "è comunemente usata per:",
       "unreliable": "Questa scorciatoia potrebbe non funzionare in modo affidabile o potrebbe avere conflitti con il comportamento del browser/sistema.",
       "useAnyway": "Vuoi usarla comunque?",
-      "resetTitle": "Reimposta Scorciatoie",
+      "resetTitle": "Reimposta scorciatoie",
       "resetMessage": "Sei sicuro di voler reimpostare tutte le scorciatoie ai valori predefiniti?<br><br>Questa azione non può essere annullata.",
-      "importSuccessTitle": "Importazione Riuscita",
+      "importSuccessTitle": "Importazione riuscita",
       "importSuccessMessage": "Scorciatoie importate con successo!",
-      "importFailTitle": "Importazione Fallita",
+      "importFailTitle": "Importazione fallita",
       "importFailMessage": "Impossibile importare le scorciatoie. Formato file non valido."
     }
   },
@@ -137,8 +137,8 @@
     }
   },
   "faq": {
-    "title": "Domande Frequenti",
-    "questions": "Domande",
+    "title": "Domande",
+    "questions": "Frequenti",
     "isFree": {
       "question": "BentoPDF è davvero gratuito?",
       "answer": "Sì, assolutamente. Tutti gli strumenti su BentoPDF sono gratuiti al 100%, senza limiti di file, senza registrazioni e senza filigrane. Crediamo che tutti debbano poter accedere a strumenti PDF semplici e potenti senza barriere a pagamento."
@@ -174,8 +174,8 @@
   },
   "testimonials": {
     "title": "Cosa",
-    "users": "i Nostri Utenti",
-    "say": "Dicono"
+    "users": "dicono i nostri",
+    "say": "utenti"
   },
   "support": {
     "title": "Ti piace il mio lavoro?",
@@ -183,22 +183,22 @@
     "buyMeCoffee": "Offrimi un caffè"
   },
   "footer": {
-    "copyright": "© 2025 BentoPDF. Tutti i diritti riservati.",
+    "copyright": "© 2026 BentoPDF. Tutti i diritti riservati.",
     "version": "Versione",
     "company": "Azienda",
-    "aboutUs": "Chi Siamo",
+    "aboutUs": "Chi siamo",
     "faqLink": "FAQ",
     "contactUs": "Contattaci",
     "legal": "Legale",
-    "termsAndConditions": "Termini e Condizioni",
-    "privacyPolicy": "Informativa sulla Privacy",
+    "termsAndConditions": "Termini e condizioni",
+    "privacyPolicy": "Informativa sulla privacy",
     "followUs": "Seguici"
   },
   "merge": {
     "title": "Unisci PDF",
     "description": "Combina file interi, oppure seleziona pagine specifiche da unire in un nuovo documento.",
-    "fileMode": "Modalità File",
-    "pageMode": "Modalità Pagina",
+    "fileMode": "Modalità file",
+    "pageMode": "Modalità pagina",
     "howItWorks": "Come funziona:",
     "fileModeInstructions": [
       "Clicca e trascina l'icona per cambiare l'ordine dei file.",
@@ -247,7 +247,7 @@
       "title": "Perché BentoPDF",
       "speed": {
         "title": "Progettato per la velocità",
-        "description": "Nessuna attesa per upload o download verso un server. Elaborando i file direttamente nel browser con tecnologie web moderne come WebAssembly, offriamo velocità impareggiabile per tutti i nostri strumenti."
+        "description": "Nessuna attesa per upload o download verso un server. Elaborando i file direttamente nel browser con tecnologie web moderne come WebAssembly, offriamo una velocità impareggiabile per tutti i nostri strumenti."
       },
       "free": {
         "title": "Completamente gratuito",
@@ -266,58 +266,58 @@
       "title": "Pronto per iniziare?",
       "description": "Unisciti a migliaia di utenti che si affidano a BentoPDF per le loro esigenze quotidiane sui documenti. Sperimenta la differenza che privacy e prestazioni possono offrire.",
       "button": "Esplora tutti gli strumenti"
-    },
-    "contact": {
-      "title": "Contattaci",
-      "subtitle": "Ci farebbe piacere sentirti. Che tu abbia una domanda, un feedback o una richiesta di funzionalità, non esitare a contattarci.",
-      "email": "Puoi contattarci direttamente via email a:"
-    },
-    "licensing": {
-      "title": "Licenze per",
-      "subtitle": "Scegli la licenza che si adatta alle tue esigenze."
-    },
-    "multiTool": {
-      "uploadPdfs": "Carica PDF",
-      "upload": "Carica",
-      "addBlankPage": "Aggiungi pagina vuota",
-      "edit": "Modifica:",
-      "undo": "Annulla",
-      "redo": "Ripeti",
-      "reset": "Reimposta",
-      "selection": "Selezione:",
-      "selectAll": "Seleziona tutto",
-      "deselectAll": "Deseleziona tutto",
-      "rotate": "Ruota:",
-      "rotateLeft": "Sinistra",
-      "rotateRight": "Destra",
-      "transform": "Trasforma:",
-      "duplicate": "Duplica",
-      "split": "Dividi",
-      "clear": "Svuota:",
-      "delete": "Elimina",
-      "download": "Scarica:",
-      "downloadSelected": "Scarica selezionati",
-      "exportPdf": "Esporta PDF",
-      "uploadPdfFiles": "Seleziona file PDF",
-      "dragAndDrop": "Trascina e rilascia i file PDF qui, oppure clicca per selezionare",
-      "selectFiles": "Seleziona file",
-      "renderingPages": "Generazione anteprime pagine...",
-      "actions": {
-        "duplicatePage": "Duplica questa pagina",
-        "deletePage": "Elimina questa pagina",
-        "insertPdf": "Inserisci PDF dopo questa pagina",
-        "toggleSplit": "Attiva la divisione dopo questa pagina"
-      },
-      "pleaseWait": "Attendere...",
-      "pagesRendering": "Le pagine sono ancora in fase di generazione. Attendere...",
-      "noPagesSelected": "Nessuna pagina selezionata",
-      "selectOnePage": "Seleziona almeno una pagina da scaricare.",
-      "noPages": "Nessuna pagina",
-      "noPagesToExport": "Non ci sono pagine da esportare.",
-      "renderingTitle": "Generazione anteprime delle pagine",
-      "errorRendering": "Impossibile generare le miniature delle pagine",
-      "error": "Errore",
-      "failedToLoad": "Caricamento fallito"
     }
+  },
+  "contact": {
+    "title": "Contattaci",
+    "subtitle": "Ci farebbe piacere sentirti. Che tu abbia una domanda, un feedback o una richiesta di funzionalità, non esitare a contattarci.",
+    "email": "Puoi contattarci direttamente via email a:"
+  },
+  "licensing": {
+    "title": "Licenze per",
+    "subtitle": "Scegli la licenza che si adatta alle tue esigenze."
+  },
+  "multiTool": {
+    "uploadPdfs": "Carica PDF",
+    "upload": "Carica",
+    "addBlankPage": "Aggiungi pagina vuota",
+    "edit": "Modifica:",
+    "undo": "Annulla",
+    "redo": "Ripeti",
+    "reset": "Reimposta",
+    "selection": "Selezione:",
+    "selectAll": "Seleziona tutto",
+    "deselectAll": "Deseleziona tutto",
+    "rotate": "Ruota:",
+    "rotateLeft": "Sinistra",
+    "rotateRight": "Destra",
+    "transform": "Trasforma:",
+    "duplicate": "Duplica",
+    "split": "Dividi",
+    "clear": "Svuota:",
+    "delete": "Elimina",
+    "download": "Scarica:",
+    "downloadSelected": "Scarica selezionati",
+    "exportPdf": "Esporta PDF",
+    "uploadPdfFiles": "Seleziona file PDF",
+    "dragAndDrop": "Trascina e rilascia i file PDF qui, oppure clicca per selezionare",
+    "selectFiles": "Seleziona file",
+    "renderingPages": "Generazione anteprime pagine...",
+    "actions": {
+      "duplicatePage": "Duplica questa pagina",
+      "deletePage": "Elimina questa pagina",
+      "insertPdf": "Inserisci PDF dopo questa pagina",
+      "toggleSplit": "Attiva la divisione dopo questa pagina"
+    },
+    "pleaseWait": "Attendere...",
+    "pagesRendering": "Le pagine sono ancora in fase di generazione. Attendere...",
+    "noPagesSelected": "Nessuna pagina selezionata",
+    "selectOnePage": "Seleziona almeno una pagina da scaricare.",
+    "noPages": "Nessuna pagina",
+    "noPagesToExport": "Non ci sono pagine da esportare.",
+    "renderingTitle": "Generazione anteprime delle pagine",
+    "errorRendering": "Impossibile generare le miniature delle pagine",
+    "error": "Errore",
+    "failedToLoad": "Caricamento fallito"
   }
 }

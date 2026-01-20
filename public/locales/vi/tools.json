@@ -1,519 +1,533 @@
 {
-    "categories": {
-        "popularTools": "Công cụ phổ biến",
-        "editAnnotate": "Chỉnh sửa & Ghi chú",
-        "convertToPdf": "Chuyển đổi sang PDF",
-        "convertFromPdf": "Chuyển đổi từ PDF",
-        "organizeManage": "Sắp xếp & Quản lý",
-        "optimizeRepair": "Tối ưu hóa & Sửa chữa",
-        "securePdf": "Bảo mật PDF"
-    },
-    "pdfMultiTool": {
-        "name": "Công cụ đa năng PDF",
-        "subtitle": "Gộp, Chia, Sắp xếp, Xóa, Xoay, Thêm trang trống, Trích xuất và Nhân đôi trong một giao diện thống nhất."
-    },
-    "mergePdf": {
-        "name": "Gộp PDF",
-        "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark."
-    },
-    "splitPdf": {
-        "name": "Chia PDF",
-        "subtitle": "Trích xuất một phạm vi trang thành PDF mới."
-    },
-    "compressPdf": {
-        "name": "Nén PDF",
-        "subtitle": "Giảm kích thước tệp PDF của bạn.",
-        "algorithmLabel": "Thuật toán nén",
-        "condense": "Condense (Khuyến nghị)",
-        "photon": "Photon (Dành cho PDF nhiều ảnh)",
-        "condenseInfo": "Condense sử dụng nén nâng cao: loại bỏ dữ liệu thừa, tối ưu hóa hình ảnh, gọn phông chữ. Phù hợp với hầu hết PDF.",
-        "photonInfo": "Photon chuyển đổi trang thành hình ảnh. Dùng cho PDF nhiều ảnh/quét.",
-        "photonWarning": "Cảnh báo: Văn bản sẽ không thể chọn được và liên kết sẽ không hoạt động.",
-        "levelLabel": "Mức độ nén",
-        "light": "Nhẹ (Giữ chất lượng)",
-        "balanced": "Cân bằng (Khuyến nghị)",
-        "aggressive": "Mạnh (Tệp nhỏ hơn)",
-        "extreme": "Cực đoan (Nén tối đa)",
-        "grayscale": "Chuyển sang thang xám",
-        "grayscaleHint": "Giảm kích thước tệp bằng cách loại bỏ thông tin màu",
-        "customSettings": "Cài đặt tùy chỉnh",
-        "customSettingsHint": "Tinh chỉnh các thông số nén:",
-        "outputQuality": "Chất lượng đầu ra",
-        "resizeImagesTo": "Thay đổi kích thước ảnh thành",
-        "onlyProcessAbove": "Chỉ xử lý khi trên",
-        "removeMetadata": "Xóa siêu dữ liệu",
-        "subsetFonts": "Gọn phông chữ (xóa ký tự không dùng)",
-        "removeThumbnails": "Xóa hình thu nhỏ nhúng",
-        "compressButton": "Nén PDF"
-    },
-    "pdfEditor": {
-        "name": "Trình chỉnh sửa PDF",
-        "subtitle": "Ghi chú, tô sáng, chỉnh sửa, bình luận, thêm hình dạng/hình ảnh, tìm kiếm và xem PDF."
-    },
-    "jpgToPdf": {
-        "name": "JPG sang PDF",
-        "subtitle": "Tạo PDF từ hình ảnh JPG, JPEG và JPEG2000 (JP2/JPX)."
-    },
-    "signPdf": {
-        "name": "Ký PDF",
-        "subtitle": "Vẽ, gõ hoặc tải lên chữ ký của bạn."
-    },
-    "cropPdf": {
-        "name": "Cắt PDF",
-        "subtitle": "Cắt lề của mọi trang trong PDF của bạn."
-    },
-    "extractPages": {
-        "name": "Trích xuất trang",
-        "subtitle": "Lưu một lựa chọn trang dưới dạng tệp mới."
-    },
-    "duplicateOrganize": {
-        "name": "Nhân đôi & Sắp xếp",
-        "subtitle": "Nhân đôi, sắp xếp lại và xóa trang."
-    },
-    "deletePages": {
-        "name": "Xóa trang",
-        "subtitle": "Xóa các trang cụ thể khỏi tài liệu của bạn."
-    },
-    "editBookmarks": {
-        "name": "Chỉnh sửa Bookmark",
-        "subtitle": "Thêm, chỉnh sửa, nhập, xóa và trích xuất bookmark PDF."
-    },
-    "tableOfContents": {
-        "name": "Mục lục",
-        "subtitle": "Tạo trang mục lục từ bookmark PDF."
-    },
-    "pageNumbers": {
-        "name": "Số trang",
-        "subtitle": "Chèn số trang vào tài liệu của bạn."
-    },
-    "addWatermark": {
-        "name": "Thêm Watermark",
-        "subtitle": "Đóng dấu văn bản hoặc hình ảnh lên các trang PDF của bạn."
-    },
-    "headerFooter": {
-        "name": "Đầu trang & Chân trang",
-        "subtitle": "Thêm văn bản vào đầu và cuối trang."
-    },
-    "invertColors": {
-        "name": "Đảo ngược màu",
-        "subtitle": "Tạo phiên bản \"chế độ tối\" cho PDF của bạn."
-    },
-    "backgroundColor": {
-        "name": "Màu nền",
-        "subtitle": "Thay đổi màu nền của PDF của bạn."
-    },
-    "changeTextColor": {
-        "name": "Thay đổi màu văn bản",
-        "subtitle": "Thay đổi màu văn bản trong PDF của bạn."
-    },
-    "addStamps": {
-        "name": "Thêm tem",
-        "subtitle": "Thêm tem hình ảnh vào PDF của bạn bằng thanh công cụ ghi chú.",
-        "usernameLabel": "Tên người dùng tem",
-        "usernamePlaceholder": "Nhập tên của bạn (cho tem)",
-        "usernameHint": "Tên này sẽ xuất hiện trên các tem bạn tạo."
-    },
-    "removeAnnotations": {
-        "name": "Xóa ghi chú",
-        "subtitle": "Loại bỏ bình luận, tô sáng và liên kết."
-    },
-    "pdfFormFiller": {
-        "name": "Điền form PDF",
-        "subtitle": "Điền form trực tiếp trong trình duyệt. Cũng hỗ trợ form XFA."
-    },
-    "createPdfForm": {
-        "name": "Tạo form PDF",
-        "subtitle": "Tạo form PDF có thể điền với các trường văn bản kéo và thả."
-    },
-    "removeBlankPages": {
-        "name": "Xóa trang trống",
-        "subtitle": "Tự động phát hiện và xóa trang trống."
-    },
-    "imageToPdf": {
-        "name": "Hình ảnh sang PDF",
-        "subtitle": "Chuyển đổi JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP sang PDF."
-    },
-    "pngToPdf": {
-        "name": "PNG sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh PNG."
-    },
-    "webpToPdf": {
-        "name": "WebP sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh WebP."
-    },
-    "svgToPdf": {
-        "name": "SVG sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh SVG."
-    },
-    "bmpToPdf": {
-        "name": "BMP sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh BMP."
-    },
-    "heicToPdf": {
-        "name": "HEIC sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh HEIC."
-    },
-    "tiffToPdf": {
-        "name": "TIFF sang PDF",
-        "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh TIFF."
-    },
-    "textToPdf": {
-        "name": "Văn bản sang PDF",
-        "subtitle": "Chuyển đổi tệp văn bản thuần túy thành PDF."
-    },
-    "jsonToPdf": {
-        "name": "JSON sang PDF",
-        "subtitle": "Chuyển đổi tệp JSON sang định dạng PDF."
-    },
-    "pdfToJpg": {
-        "name": "PDF sang JPG",
-        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh JPG."
-    },
-    "pdfToPng": {
-        "name": "PDF sang PNG",
-        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh PNG."
-    },
-    "pdfToWebp": {
-        "name": "PDF sang WebP",
-        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh WebP."
-    },
-    "pdfToBmp": {
-        "name": "PDF sang BMP",
-        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh BMP."
-    },
-    "pdfToTiff": {
-        "name": "PDF sang TIFF",
-        "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh TIFF."
-    },
-    "pdfToGreyscale": {
-        "name": "PDF sang thang xám",
-        "subtitle": "Chuyển đổi tất cả màu sắc sang đen trắng."
-    },
-    "pdfToJson": {
-        "name": "PDF sang JSON",
-        "subtitle": "Chuyển đổi tệp PDF sang định dạng JSON."
-    },
-    "ocrPdf": {
-        "name": "OCR PDF",
-        "subtitle": "Làm cho PDF có thể tìm kiếm và sao chép được."
-    },
-    "alternateMix": {
-        "name": "Xen kẽ & Trộn trang",
-        "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark."
-    },
-    "addAttachments": {
-        "name": "Thêm tệp đính kèm",
-        "subtitle": "Nhúng một hoặc nhiều tệp vào PDF của bạn."
-    },
-    "extractAttachments": {
-        "name": "Trích xuất tệp đính kèm",
-        "subtitle": "Trích xuất tất cả tệp được nhúng từ PDF thành ZIP."
-    },
-    "editAttachments": {
-        "name": "Chỉnh sửa tệp đính kèm",
-        "subtitle": "Xem hoặc xóa tệp đính kèm trong PDF của bạn."
-    },
-    "dividePages": {
-        "name": "Chia trang",
-        "subtitle": "Chia trang theo chiều ngang hoặc chiều dọc."
-    },
-    "addBlankPage": {
-        "name": "Thêm trang trống",
-        "subtitle": "Chèn trang trống ở bất kỳ đâu trong PDF của bạn."
-    },
-    "reversePages": {
-        "name": "Đảo ngược trang",
-        "subtitle": "Lật ngược thứ tự tất cả các trang trong tài liệu của bạn."
-    },
-    "rotatePdf": {
-        "name": "Xoay PDF",
-        "subtitle": "Xoay trang theo bội số 90 độ."
-    },
-    "rotateCustom": {
-        "name": "Xoay theo độ tùy chỉnh",
-        "subtitle": "Xoay trang theo bất kỳ góc độ tùy chỉnh nào."
-    },
-    "nUpPdf": {
-        "name": "N-Up PDF",
-        "subtitle": "Sắp xếp nhiều trang lên một tờ."
-    },
-    "combineToSinglePage": {
-        "name": "Kết hợp thành một trang",
-        "subtitle": "Ghép tất cả các trang thành một cuộn liên tục."
-    },
-    "viewMetadata": {
-        "name": "Xem Metadata",
-        "subtitle": "Kiểm tra các thuộc tính ẩn của PDF của bạn."
-    },
-    "editMetadata": {
-        "name": "Chỉnh sửa Metadata",
-        "subtitle": "Thay đổi tác giả, tiêu đề và các thuộc tính khác."
-    },
-    "pdfsToZip": {
-        "name": "PDF sang ZIP",
-        "subtitle": "Đóng gói nhiều tệp PDF thành kho lưu trữ ZIP."
-    },
-    "comparePdfs": {
-        "name": "So sánh PDF",
-        "subtitle": "So sánh hai PDF cạnh nhau."
-    },
-    "posterizePdf": {
-        "name": "Posterize PDF",
-        "subtitle": "Chia một trang lớn thành nhiều trang nhỏ hơn."
-    },
-    "fixPageSize": {
-        "name": "Sửa kích thước trang",
-        "subtitle": "Chuẩn hóa tất cả các trang về cùng một kích thước."
-    },
-    "linearizePdf": {
-        "name": "Tuyến tính hóa PDF",
-        "subtitle": "Tối ưu hóa PDF để xem web nhanh."
-    },
-    "pageDimensions": {
-        "name": "Kích thước trang",
-        "subtitle": "Phân tích kích thước trang, hướng và đơn vị."
-    },
-    "removeRestrictions": {
-        "name": "Xóa hạn chế",
-        "subtitle": "Xóa bảo vệ mật khẩu và hạn chế bảo mật liên quan đến tệp PDF được ký số."
-    },
-    "repairPdf": {
-        "name": "Sửa chữa PDF",
-        "subtitle": "Khôi phục dữ liệu từ tệp PDF bị hỏng hoặc hư hỏng."
-    },
-    "encryptPdf": {
-        "name": "Mã hóa PDF",
-        "subtitle": "Khóa PDF của bạn bằng cách thêm mật khẩu."
-    },
-    "sanitizePdf": {
-        "name": "Làm sạch PDF",
-        "subtitle": "Xóa metadata, ghi chú, script và nhiều hơn nữa."
-    },
-    "decryptPdf": {
-        "name": "Giải mã PDF",
-        "subtitle": "Mở khóa PDF bằng cách xóa bảo vệ mật khẩu."
-    },
-    "flattenPdf": {
-        "name": "Làm phẳng PDF",
-        "subtitle": "Làm cho trường form và ghi chú không thể chỉnh sửa."
-    },
-    "removeMetadata": {
-        "name": "Xóa Metadata",
-        "subtitle": "Loại bỏ dữ liệu ẩn khỏi PDF của bạn."
-    },
-    "changePermissions": {
-        "name": "Thay đổi quyền",
-        "subtitle": "Đặt hoặc thay đổi quyền người dùng trên PDF."
-    },
-    "odtToPdf": {
-        "name": "ODT sang PDF",
-        "subtitle": "Chuyển đổi tệp OpenDocument Text sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp ODT",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "csvToPdf": {
-        "name": "CSV sang PDF",
-        "subtitle": "Chuyển đổi tệp bảng tính CSV sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp CSV",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "rtfToPdf": {
-        "name": "RTF sang PDF",
-        "subtitle": "Chuyển đổi tài liệu Rich Text Format sang PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp RTF",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "wordToPdf": {
-        "name": "Word sang PDF",
-        "subtitle": "Chuyển đổi tài liệu Word (DOCX, DOC, ODT, RTF) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp DOCX, DOC, ODT, RTF",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "excelToPdf": {
-        "name": "Excel sang PDF",
-        "subtitle": "Chuyển đổi bảng tính Excel (XLSX, XLS, ODS, CSV) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp XLSX, XLS, ODS, CSV",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "powerpointToPdf": {
-        "name": "PowerPoint sang PDF",
-        "subtitle": "Chuyển đổi bài thuyết trình PowerPoint (PPTX, PPT, ODP) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp PPTX, PPT, ODP",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "markdownToPdf": {
-        "name": "Markdown sang PDF",
-        "subtitle": "Viết hoặc dán Markdown và xuất nó thành PDF được định dạng đẹp.",
-        "paneMarkdown": "Markdown",
-        "panePreview": "Xem trước",
-        "btnUpload": "Tải lên",
-        "btnSyncScroll": "Cuộn đồng bộ",
-        "btnSettings": "Cài đặt",
-        "btnExportPdf": "Xuất PDF",
-        "settingsTitle": "Cài đặt Markdown",
-        "settingsPreset": "Cài đặt sẵn",
-        "presetDefault": "Mặc định (kiểu GFM)",
-        "presetCommonmark": "CommonMark (nghiêm ngặt)",
-        "presetZero": "Tối thiểu (không có tính năng)",
-        "settingsOptions": "Tùy chọn Markdown",
-        "optAllowHtml": "Cho phép thẻ HTML",
-        "optBreaks": "Chuyển đổi xuống dòng thành <br>",
-        "optLinkify": "Tự động chuyển URL thành liên kết",
-        "optTypographer": "Trình sắp chữ (dấu ngoặc thông minh, v.v.)"
-    },
-    "pdfBooklet": {
-        "name": "Sách nhỏ PDF",
-        "subtitle": "Sắp xếp lại các trang để in sách nhỏ hai mặt. Gấp và đóng ghim để tạo sách nhỏ.",
-        "howItWorks": "Cách hoạt động:",
-        "step1": "Tải lên tệp PDF.",
-        "step2": "Các trang sẽ được sắp xếp lại theo thứ tự sách nhỏ.",
-        "step3": "In hai mặt, lật cạnh ngắn, gấp và đóng ghim.",
-        "paperSize": "Kích thước giấy",
-        "orientation": "Hướng",
-        "portrait": "Dọc",
-        "landscape": "Ngang",
-        "pagesPerSheet": "Số trang mỗi tờ",
-        "createBooklet": "Tạo sách nhỏ",
-        "processing": "Đang xử lý...",
-        "pageCount": "Số trang sẽ được bổ sung lên bội số của 4 nếu cần."
-    },
-    "xpsToPdf": {
-        "name": "XPS sang PDF",
-        "subtitle": "Chuyển đổi tài liệu XPS/OXPS sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp XPS, OXPS",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "mobiToPdf": {
-        "name": "MOBI sang PDF",
-        "subtitle": "Chuyển đổi sách điện tử MOBI sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp MOBI",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "epubToPdf": {
-        "name": "EPUB sang PDF",
-        "subtitle": "Chuyển đổi sách điện tử EPUB sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp EPUB",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "fb2ToPdf": {
-        "name": "FB2 sang PDF",
-        "subtitle": "Chuyển đổi sách điện tử FictionBook (FB2) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp FB2",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "cbzToPdf": {
-        "name": "CBZ sang PDF",
-        "subtitle": "Chuyển đổi kho lưu trữ truyện tranh (CBZ/CBR) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp CBZ, CBR",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "wpdToPdf": {
-        "name": "WPD sang PDF",
-        "subtitle": "Chuyển đổi tài liệu WordPerfect (WPD) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp WPD",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "wpsToPdf": {
-        "name": "WPS sang PDF",
-        "subtitle": "Chuyển đổi tài liệu WPS Office sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp WPS",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "xmlToPdf": {
-        "name": "XML sang PDF",
-        "subtitle": "Chuyển đổi tài liệu XML sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp XML",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "pagesToPdf": {
-        "name": "Pages sang PDF",
-        "subtitle": "Chuyển đổi tài liệu Apple Pages sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp Pages",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "odgToPdf": {
-        "name": "ODG sang PDF",
-        "subtitle": "Chuyển đổi tệp OpenDocument Graphics (ODG) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp ODG",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "odsToPdf": {
-        "name": "ODS sang PDF",
-        "subtitle": "Chuyển đổi tệp OpenDocument Spreadsheet (ODS) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp ODS",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "odpToPdf": {
-        "name": "ODP sang PDF",
-        "subtitle": "Chuyển đổi tệp OpenDocument Presentation (ODP) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp ODP",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "pubToPdf": {
-        "name": "PUB sang PDF",
-        "subtitle": "Chuyển đổi tệp Microsoft Publisher (PUB) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp PUB",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "vsdToPdf": {
-        "name": "VSD sang PDF",
-        "subtitle": "Chuyển đổi tệp Microsoft Visio (VSD, VSDX) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp VSD, VSDX",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "psdToPdf": {
-        "name": "PSD sang PDF",
-        "subtitle": "Chuyển đổi tệp Adobe Photoshop (PSD) sang định dạng PDF. Hỗ trợ nhiều tệp.",
-        "acceptedFormats": "Tệp PSD",
-        "convertButton": "Chuyển đổi sang PDF"
-    },
-    "pdfToSvg": {
-        "name": "PDF sang SVG",
-        "subtitle": "Chuyển đổi mỗi trang PDF thành đồ họa vector có thể mở rộng (SVG) với chất lượng hoàn hảo ở mọi kích thước."
-    },
-    "extractTables": {
-        "name": "Trích xuất bảng PDF",
-        "subtitle": "Trích xuất bảng từ tệp PDF và xuất dưới dạng CSV, JSON hoặc Markdown."
-    },
-    "pdfToCsv": {
-        "name": "PDF sang CSV",
-        "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng CSV."
-    },
-    "pdfToExcel": {
-        "name": "PDF sang Excel",
-        "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng Excel (XLSX)."
-    },
-    "pdfToText": {
-        "name": "PDF sang Văn bản",
-        "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
-        "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi.",
-        "convertButton": "Trích xuất văn bản"
-    },
-    "digitalSignPdf": {
-        "name": "Chữ ký số PDF",
-        "pageTitle": "Chữ ký số PDF - Thêm chữ ký mật mã | BentoPDF",
-        "subtitle": "Thêm chữ ký số mật mã vào PDF của bạn bằng chứng chỉ X.509. Hỗ trợ định dạng PKCS#12 (.pfx, .p12) và PEM. Khóa riêng của bạn không bao giờ rời khỏi trình duyệt.",
-        "certificateSection": "Chứng chỉ",
-        "uploadCert": "Tải lên chứng chỉ (.pfx, .p12)",
-        "certPassword": "Mật khẩu chứng chỉ",
-        "certPasswordPlaceholder": "Nhập mật khẩu chứng chỉ",
-        "certInfo": "Thông tin chứng chỉ",
-        "certSubject": "Chủ thể",
-        "certIssuer": "Nhà phát hành",
-        "certValidity": "Hiệu lực",
-        "signatureDetails": "Chi tiết chữ ký (Tùy chọn)",
-        "reason": "Lý do",
-        "reasonPlaceholder": "ví dụ: Tôi phê duyệt tài liệu này",
-        "location": "Địa điểm",
-        "locationPlaceholder": "ví dụ: Hà Nội, Việt Nam",
-        "contactInfo": "Thông tin liên hệ",
-        "contactPlaceholder": "ví dụ: email@example.com",
-        "applySignature": "Áp dụng chữ ký số",
-        "successMessage": "Ký PDF thành công! Chữ ký có thể được xác minh trong bất kỳ trình đọc PDF nào."
-    },
-    "validateSignaturePdf": {
-        "name": "Xác minh chữ ký PDF",
-        "pageTitle": "Xác minh chữ ký PDF - Xác thực chữ ký số | BentoPDF",
-        "subtitle": "Xác minh chữ ký số trong tệp PDF của bạn. Kiểm tra hiệu lực chứng chỉ, xem thông tin người ký và xác nhận tính toàn vẹn tài liệu. Tất cả xử lý diễn ra trong trình duyệt của bạn."
-    }
+  "categories": {
+    "popularTools": "Công cụ phổ biến",
+    "editAnnotate": "Chỉnh sửa & Ghi chú",
+    "convertToPdf": "Chuyển đổi sang PDF",
+    "convertFromPdf": "Chuyển đổi từ PDF",
+    "organizeManage": "Sắp xếp & Quản lý",
+    "optimizeRepair": "Tối ưu hóa & Sửa chữa",
+    "securePdf": "Bảo mật PDF"
+  },
+  "pdfMultiTool": {
+    "name": "Công cụ đa năng PDF",
+    "subtitle": "Gộp, Chia, Sắp xếp, Xóa, Xoay, Thêm trang trống, Trích xuất và Nhân đôi trong một giao diện thống nhất."
+  },
+  "mergePdf": {
+    "name": "Gộp PDF",
+    "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark."
+  },
+  "splitPdf": {
+    "name": "Chia PDF",
+    "subtitle": "Trích xuất một phạm vi trang thành PDF mới."
+  },
+  "compressPdf": {
+    "name": "Nén PDF",
+    "subtitle": "Giảm kích thước tệp PDF của bạn.",
+    "algorithmLabel": "Thuật toán nén",
+    "condense": "Condense (Khuyến nghị)",
+    "photon": "Photon (Dành cho PDF nhiều ảnh)",
+    "condenseInfo": "Condense sử dụng nén nâng cao: loại bỏ dữ liệu thừa, tối ưu hóa hình ảnh, gọn phông chữ. Phù hợp với hầu hết PDF.",
+    "photonInfo": "Photon chuyển đổi trang thành hình ảnh. Dùng cho PDF nhiều ảnh/quét.",
+    "photonWarning": "Cảnh báo: Văn bản sẽ không thể chọn được và liên kết sẽ không hoạt động.",
+    "levelLabel": "Mức độ nén",
+    "light": "Nhẹ (Giữ chất lượng)",
+    "balanced": "Cân bằng (Khuyến nghị)",
+    "aggressive": "Mạnh (Tệp nhỏ hơn)",
+    "extreme": "Cực đoan (Nén tối đa)",
+    "grayscale": "Chuyển sang thang xám",
+    "grayscaleHint": "Giảm kích thước tệp bằng cách loại bỏ thông tin màu",
+    "customSettings": "Cài đặt tùy chỉnh",
+    "customSettingsHint": "Tinh chỉnh các thông số nén:",
+    "outputQuality": "Chất lượng đầu ra",
+    "resizeImagesTo": "Thay đổi kích thước ảnh thành",
+    "onlyProcessAbove": "Chỉ xử lý khi trên",
+    "removeMetadata": "Xóa siêu dữ liệu",
+    "subsetFonts": "Gọn phông chữ (xóa ký tự không dùng)",
+    "removeThumbnails": "Xóa hình thu nhỏ nhúng",
+    "compressButton": "Nén PDF"
+  },
+  "pdfEditor": {
+    "name": "Trình chỉnh sửa PDF",
+    "subtitle": "Ghi chú, tô sáng, chỉnh sửa, bình luận, thêm hình dạng/hình ảnh, tìm kiếm và xem PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG sang PDF",
+    "subtitle": "Tạo PDF từ hình ảnh JPG, JPEG và JPEG2000 (JP2/JPX)."
+  },
+  "signPdf": {
+    "name": "Ký PDF",
+    "subtitle": "Vẽ, gõ hoặc tải lên chữ ký của bạn."
+  },
+  "cropPdf": {
+    "name": "Cắt PDF",
+    "subtitle": "Cắt lề của mọi trang trong PDF của bạn."
+  },
+  "extractPages": {
+    "name": "Trích xuất trang",
+    "subtitle": "Lưu một lựa chọn trang dưới dạng tệp mới."
+  },
+  "duplicateOrganize": {
+    "name": "Nhân đôi & Sắp xếp",
+    "subtitle": "Nhân đôi, sắp xếp lại và xóa trang."
+  },
+  "deletePages": {
+    "name": "Xóa trang",
+    "subtitle": "Xóa các trang cụ thể khỏi tài liệu của bạn."
+  },
+  "editBookmarks": {
+    "name": "Chỉnh sửa Bookmark",
+    "subtitle": "Thêm, chỉnh sửa, nhập, xóa và trích xuất bookmark PDF."
+  },
+  "tableOfContents": {
+    "name": "Mục lục",
+    "subtitle": "Tạo trang mục lục từ bookmark PDF."
+  },
+  "pageNumbers": {
+    "name": "Số trang",
+    "subtitle": "Chèn số trang vào tài liệu của bạn."
+  },
+  "addWatermark": {
+    "name": "Thêm Watermark",
+    "subtitle": "Đóng dấu văn bản hoặc hình ảnh lên các trang PDF của bạn."
+  },
+  "headerFooter": {
+    "name": "Đầu trang & Chân trang",
+    "subtitle": "Thêm văn bản vào đầu và cuối trang."
+  },
+  "invertColors": {
+    "name": "Đảo ngược màu",
+    "subtitle": "Tạo phiên bản \"chế độ tối\" cho PDF của bạn."
+  },
+  "backgroundColor": {
+    "name": "Màu nền",
+    "subtitle": "Thay đổi màu nền của PDF của bạn."
+  },
+  "changeTextColor": {
+    "name": "Thay đổi màu văn bản",
+    "subtitle": "Thay đổi màu văn bản trong PDF của bạn."
+  },
+  "addStamps": {
+    "name": "Thêm tem",
+    "subtitle": "Thêm tem hình ảnh vào PDF của bạn bằng thanh công cụ ghi chú.",
+    "usernameLabel": "Tên người dùng tem",
+    "usernamePlaceholder": "Nhập tên của bạn (cho tem)",
+    "usernameHint": "Tên này sẽ xuất hiện trên các tem bạn tạo."
+  },
+  "removeAnnotations": {
+    "name": "Xóa ghi chú",
+    "subtitle": "Loại bỏ bình luận, tô sáng và liên kết."
+  },
+  "pdfFormFiller": {
+    "name": "Điền form PDF",
+    "subtitle": "Điền form trực tiếp trong trình duyệt. Cũng hỗ trợ form XFA."
+  },
+  "createPdfForm": {
+    "name": "Tạo form PDF",
+    "subtitle": "Tạo form PDF có thể điền với các trường văn bản kéo và thả."
+  },
+  "removeBlankPages": {
+    "name": "Xóa trang trống",
+    "subtitle": "Tự động phát hiện và xóa trang trống."
+  },
+  "imageToPdf": {
+    "name": "Hình ảnh sang PDF",
+    "subtitle": "Chuyển đổi JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP sang PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG sang PDF",
+    "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP sang PDF",
+    "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG sang PDF",
+    "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP sang PDF",
+    "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC sang PDF",
+    "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF sang PDF",
+    "subtitle": "Tạo PDF từ một hoặc nhiều hình ảnh TIFF."
+  },
+  "textToPdf": {
+    "name": "Văn bản sang PDF",
+    "subtitle": "Chuyển đổi tệp văn bản thuần túy thành PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON sang PDF",
+    "subtitle": "Chuyển đổi tệp JSON sang định dạng PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF sang JPG",
+    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh JPG."
+  },
+  "pdfToPng": {
+    "name": "PDF sang PNG",
+    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh PNG."
+  },
+  "pdfToWebp": {
+    "name": "PDF sang WebP",
+    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh WebP."
+  },
+  "pdfToBmp": {
+    "name": "PDF sang BMP",
+    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh BMP."
+  },
+  "pdfToTiff": {
+    "name": "PDF sang TIFF",
+    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh TIFF."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF sang thang xám",
+    "subtitle": "Chuyển đổi tất cả màu sắc sang đen trắng."
+  },
+  "pdfToJson": {
+    "name": "PDF sang JSON",
+    "subtitle": "Chuyển đổi tệp PDF sang định dạng JSON."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Làm cho PDF có thể tìm kiếm và sao chép được."
+  },
+  "alternateMix": {
+    "name": "Xen kẽ & Trộn trang",
+    "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark."
+  },
+  "addAttachments": {
+    "name": "Thêm tệp đính kèm",
+    "subtitle": "Nhúng một hoặc nhiều tệp vào PDF của bạn."
+  },
+  "extractAttachments": {
+    "name": "Trích xuất tệp đính kèm",
+    "subtitle": "Trích xuất tất cả tệp được nhúng từ PDF thành ZIP."
+  },
+  "editAttachments": {
+    "name": "Chỉnh sửa tệp đính kèm",
+    "subtitle": "Xem hoặc xóa tệp đính kèm trong PDF của bạn."
+  },
+  "dividePages": {
+    "name": "Chia trang",
+    "subtitle": "Chia trang theo chiều ngang hoặc chiều dọc."
+  },
+  "addBlankPage": {
+    "name": "Thêm trang trống",
+    "subtitle": "Chèn trang trống ở bất kỳ đâu trong PDF của bạn."
+  },
+  "reversePages": {
+    "name": "Đảo ngược trang",
+    "subtitle": "Lật ngược thứ tự tất cả các trang trong tài liệu của bạn."
+  },
+  "rotatePdf": {
+    "name": "Xoay PDF",
+    "subtitle": "Xoay trang theo bội số 90 độ."
+  },
+  "rotateCustom": {
+    "name": "Xoay theo độ tùy chỉnh",
+    "subtitle": "Xoay trang theo bất kỳ góc độ tùy chỉnh nào."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "Sắp xếp nhiều trang lên một tờ."
+  },
+  "combineToSinglePage": {
+    "name": "Kết hợp thành một trang",
+    "subtitle": "Ghép tất cả các trang thành một cuộn liên tục."
+  },
+  "viewMetadata": {
+    "name": "Xem Metadata",
+    "subtitle": "Kiểm tra các thuộc tính ẩn của PDF của bạn."
+  },
+  "editMetadata": {
+    "name": "Chỉnh sửa Metadata",
+    "subtitle": "Thay đổi tác giả, tiêu đề và các thuộc tính khác."
+  },
+  "pdfsToZip": {
+    "name": "PDF sang ZIP",
+    "subtitle": "Đóng gói nhiều tệp PDF thành kho lưu trữ ZIP."
+  },
+  "comparePdfs": {
+    "name": "So sánh PDF",
+    "subtitle": "So sánh hai PDF cạnh nhau."
+  },
+  "posterizePdf": {
+    "name": "Posterize PDF",
+    "subtitle": "Chia một trang lớn thành nhiều trang nhỏ hơn."
+  },
+  "fixPageSize": {
+    "name": "Sửa kích thước trang",
+    "subtitle": "Chuẩn hóa tất cả các trang về cùng một kích thước."
+  },
+  "linearizePdf": {
+    "name": "Tuyến tính hóa PDF",
+    "subtitle": "Tối ưu hóa PDF để xem web nhanh."
+  },
+  "pageDimensions": {
+    "name": "Kích thước trang",
+    "subtitle": "Phân tích kích thước trang, hướng và đơn vị."
+  },
+  "removeRestrictions": {
+    "name": "Xóa hạn chế",
+    "subtitle": "Xóa bảo vệ mật khẩu và hạn chế bảo mật liên quan đến tệp PDF được ký số."
+  },
+  "repairPdf": {
+    "name": "Sửa chữa PDF",
+    "subtitle": "Khôi phục dữ liệu từ tệp PDF bị hỏng hoặc hư hỏng."
+  },
+  "encryptPdf": {
+    "name": "Mã hóa PDF",
+    "subtitle": "Khóa PDF của bạn bằng cách thêm mật khẩu."
+  },
+  "sanitizePdf": {
+    "name": "Làm sạch PDF",
+    "subtitle": "Xóa metadata, ghi chú, script và nhiều hơn nữa."
+  },
+  "decryptPdf": {
+    "name": "Giải mã PDF",
+    "subtitle": "Mở khóa PDF bằng cách xóa bảo vệ mật khẩu."
+  },
+  "flattenPdf": {
+    "name": "Làm phẳng PDF",
+    "subtitle": "Làm cho trường form và ghi chú không thể chỉnh sửa."
+  },
+  "removeMetadata": {
+    "name": "Xóa Metadata",
+    "subtitle": "Loại bỏ dữ liệu ẩn khỏi PDF của bạn."
+  },
+  "changePermissions": {
+    "name": "Thay đổi quyền",
+    "subtitle": "Đặt hoặc thay đổi quyền người dùng trên PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT sang PDF",
+    "subtitle": "Chuyển đổi tệp OpenDocument Text sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp ODT",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV sang PDF",
+    "subtitle": "Chuyển đổi tệp bảng tính CSV sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp CSV",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF sang PDF",
+    "subtitle": "Chuyển đổi tài liệu Rich Text Format sang PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp RTF",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "wordToPdf": {
+    "name": "Word sang PDF",
+    "subtitle": "Chuyển đổi tài liệu Word (DOCX, DOC, ODT, RTF) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp DOCX, DOC, ODT, RTF",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel sang PDF",
+    "subtitle": "Chuyển đổi bảng tính Excel (XLSX, XLS, ODS, CSV) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp XLSX, XLS, ODS, CSV",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint sang PDF",
+    "subtitle": "Chuyển đổi bài thuyết trình PowerPoint (PPTX, PPT, ODP) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp PPTX, PPT, ODP",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown sang PDF",
+    "subtitle": "Viết hoặc dán Markdown và xuất nó thành PDF được định dạng đẹp.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Xem trước",
+    "btnUpload": "Tải lên",
+    "btnSyncScroll": "Cuộn đồng bộ",
+    "btnSettings": "Cài đặt",
+    "btnExportPdf": "Xuất PDF",
+    "settingsTitle": "Cài đặt Markdown",
+    "settingsPreset": "Cài đặt sẵn",
+    "presetDefault": "Mặc định (kiểu GFM)",
+    "presetCommonmark": "CommonMark (nghiêm ngặt)",
+    "presetZero": "Tối thiểu (không có tính năng)",
+    "settingsOptions": "Tùy chọn Markdown",
+    "optAllowHtml": "Cho phép thẻ HTML",
+    "optBreaks": "Chuyển đổi xuống dòng thành <br>",
+    "optLinkify": "Tự động chuyển URL thành liên kết",
+    "optTypographer": "Trình sắp chữ (dấu ngoặc thông minh, v.v.)"
+  },
+  "pdfBooklet": {
+    "name": "Sách nhỏ PDF",
+    "subtitle": "Sắp xếp lại các trang để in sách nhỏ hai mặt. Gấp và đóng ghim để tạo sách nhỏ.",
+    "howItWorks": "Cách hoạt động:",
+    "step1": "Tải lên tệp PDF.",
+    "step2": "Các trang sẽ được sắp xếp lại theo thứ tự sách nhỏ.",
+    "step3": "In hai mặt, lật cạnh ngắn, gấp và đóng ghim.",
+    "paperSize": "Kích thước giấy",
+    "orientation": "Hướng",
+    "portrait": "Dọc",
+    "landscape": "Ngang",
+    "pagesPerSheet": "Số trang mỗi tờ",
+    "createBooklet": "Tạo sách nhỏ",
+    "processing": "Đang xử lý...",
+    "pageCount": "Số trang sẽ được bổ sung lên bội số của 4 nếu cần."
+  },
+  "xpsToPdf": {
+    "name": "XPS sang PDF",
+    "subtitle": "Chuyển đổi tài liệu XPS/OXPS sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp XPS, OXPS",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI sang PDF",
+    "subtitle": "Chuyển đổi sách điện tử MOBI sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp MOBI",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB sang PDF",
+    "subtitle": "Chuyển đổi sách điện tử EPUB sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp EPUB",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 sang PDF",
+    "subtitle": "Chuyển đổi sách điện tử FictionBook (FB2) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp FB2",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ sang PDF",
+    "subtitle": "Chuyển đổi kho lưu trữ truyện tranh (CBZ/CBR) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp CBZ, CBR",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD sang PDF",
+    "subtitle": "Chuyển đổi tài liệu WordPerfect (WPD) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp WPD",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS sang PDF",
+    "subtitle": "Chuyển đổi tài liệu WPS Office sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp WPS",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML sang PDF",
+    "subtitle": "Chuyển đổi tài liệu XML sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp XML",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages sang PDF",
+    "subtitle": "Chuyển đổi tài liệu Apple Pages sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp Pages",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG sang PDF",
+    "subtitle": "Chuyển đổi tệp OpenDocument Graphics (ODG) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp ODG",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS sang PDF",
+    "subtitle": "Chuyển đổi tệp OpenDocument Spreadsheet (ODS) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp ODS",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP sang PDF",
+    "subtitle": "Chuyển đổi tệp OpenDocument Presentation (ODP) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp ODP",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB sang PDF",
+    "subtitle": "Chuyển đổi tệp Microsoft Publisher (PUB) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp PUB",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD sang PDF",
+    "subtitle": "Chuyển đổi tệp Microsoft Visio (VSD, VSDX) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp VSD, VSDX",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD sang PDF",
+    "subtitle": "Chuyển đổi tệp Adobe Photoshop (PSD) sang định dạng PDF. Hỗ trợ nhiều tệp.",
+    "acceptedFormats": "Tệp PSD",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF sang SVG",
+    "subtitle": "Chuyển đổi mỗi trang PDF thành đồ họa vector có thể mở rộng (SVG) với chất lượng hoàn hảo ở mọi kích thước."
+  },
+  "extractTables": {
+    "name": "Trích xuất bảng PDF",
+    "subtitle": "Trích xuất bảng từ tệp PDF và xuất dưới dạng CSV, JSON hoặc Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF sang CSV",
+    "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF sang Excel",
+    "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF sang Văn bản",
+    "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
+    "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi.",
+    "convertButton": "Trích xuất văn bản"
+  },
+  "digitalSignPdf": {
+    "name": "Chữ ký số PDF",
+    "pageTitle": "Chữ ký số PDF - Thêm chữ ký mật mã | BentoPDF",
+    "subtitle": "Thêm chữ ký số mật mã vào PDF của bạn bằng chứng chỉ X.509. Hỗ trợ định dạng PKCS#12 (.pfx, .p12) và PEM. Khóa riêng của bạn không bao giờ rời khỏi trình duyệt.",
+    "certificateSection": "Chứng chỉ",
+    "uploadCert": "Tải lên chứng chỉ (.pfx, .p12)",
+    "certPassword": "Mật khẩu chứng chỉ",
+    "certPasswordPlaceholder": "Nhập mật khẩu chứng chỉ",
+    "certInfo": "Thông tin chứng chỉ",
+    "certSubject": "Chủ thể",
+    "certIssuer": "Nhà phát hành",
+    "certValidity": "Hiệu lực",
+    "signatureDetails": "Chi tiết chữ ký (Tùy chọn)",
+    "reason": "Lý do",
+    "reasonPlaceholder": "ví dụ: Tôi phê duyệt tài liệu này",
+    "location": "Địa điểm",
+    "locationPlaceholder": "ví dụ: Hà Nội, Việt Nam",
+    "contactInfo": "Thông tin liên hệ",
+    "contactPlaceholder": "ví dụ: email@example.com",
+    "applySignature": "Áp dụng chữ ký số",
+    "successMessage": "Ký PDF thành công! Chữ ký có thể được xác minh trong bất kỳ trình đọc PDF nào."
+  },
+  "validateSignaturePdf": {
+    "name": "Xác minh chữ ký PDF",
+    "pageTitle": "Xác minh chữ ký PDF - Xác thực chữ ký số | BentoPDF",
+    "subtitle": "Xác minh chữ ký số trong tệp PDF của bạn. Kiểm tra hiệu lực chứng chỉ, xem thông tin người ký và xác nhận tính toàn vẹn tài liệu. Tất cả xử lý diễn ra trong trình duyệt của bạn."
+  },
+  "emailToPdf": {
+    "name": "Email sang PDF",
+    "subtitle": "Chuyển đổi tệp email (EML, MSG) sang định dạng PDF. Hỗ trợ xuất Outlook và định dạng email tiêu chuẩn.",
+    "acceptedFormats": "Tệp EML, MSG",
+    "convertButton": "Chuyển đổi sang PDF"
+  },
+  "fontToOutline": {
+    "name": "Phông chữ thành đường viền",
+    "subtitle": "Chuyển đổi tất cả phông chữ thành đường viền vector để hiển thị nhất quán trên mọi thiết bị."
+  },
+  "deskewPdf": {
+    "name": "Chỉnh nghiêng PDF",
+    "subtitle": "Tự động làm thẳng các trang quét bị nghiêng bằng OpenCV."
+  }
 }

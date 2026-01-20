@@ -1,73 +1,203 @@
 import { defineConfig, Plugin } from 'vitest/config';
+import type { IncomingMessage, ServerResponse } from 'http';
+import type { Connect } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import viteCompression from 'vite-plugin-compression';
+import handlebars from 'vite-plugin-handlebars';
 import { resolve } from 'path';
 import fs from 'fs';
 import { constants as zlibConstants } from 'zlib';
+import type { OutputBundle } from 'rollup';
 
-function pagesRewritePlugin(): Plugin {
-  return {
-    name: 'pages-rewrite',
-    configureServer(server) {
-      server.middlewares.use((req, res, next) => {
-        const url = req.url?.split('?')[0] || '';
+const SUPPORTED_LANGUAGES = [
+  'en',
+  'de',
+  'es',
+  'zh',
+  'zh-TW',
+  'vi',
+  'it',
+  'id',
+  'tr',
+  'fr',
+  'pt',
+] as const;
+const LANG_REGEX = new RegExp(
+  `^/(${SUPPORTED_LANGUAGES.join('|')})(?:/(.*))?$`
+);
 
-        const langMatch = url.match(/^\/(en|de|zh|vi|it)(\/.*)?$/);
-        if (langMatch) {
-          const lang = langMatch[1];
-          const restOfPath = langMatch[2] || '/';
+function loadPages(): Set<string> {
+  const pagesDir = resolve(__dirname, 'src/pages');
+  const pages = new Set<string>();
 
-          if (!langMatch[2]) {
-            res.writeHead(302, { Location: `/${lang}/` });
-            res.end();
-            return;
-          }
-          if (restOfPath === '/') {
-            req.url = '/index.html';
-            return next();
-          }
-          const pagePath = restOfPath.slice(1);
-          if (pagePath.endsWith('.html')) {
-            const srcPath = resolve(__dirname, 'src/pages', pagePath);
-            const rootPath = resolve(__dirname, pagePath);
-            if (fs.existsSync(srcPath)) {
-              req.url = `/src/pages/${pagePath}`;
-            } else if (fs.existsSync(rootPath)) {
-              req.url = `/${pagePath}`;
-            }
-          } else if (!pagePath.includes('.')) {
-            const htmlPath = pagePath + '.html';
-            const srcPath = resolve(__dirname, 'src/pages', htmlPath);
-            const rootPath = resolve(__dirname, htmlPath);
-            if (fs.existsSync(srcPath)) {
-              req.url = `/src/pages/${htmlPath}`;
-            } else if (fs.existsSync(rootPath)) {
-              req.url = `/${htmlPath}`;
-            }
+  if (fs.existsSync(pagesDir)) {
+    for (const file of fs.readdirSync(pagesDir)) {
+      if (file.endsWith('.html')) {
+        pages.add(file.replace('.html', ''));
+      }
+    }
+  }
+
+  const rootPages = [
+    'index',
+    'about',
+    'contact',
+    'faq',
+    'privacy',
+    'terms',
+    'licensing',
+    'tools',
+    '404',
+    'pdf-converter',
+    'pdf-editor',
+    'pdf-security',
+    'pdf-merge-split',
+  ];
+  rootPages.forEach((p) => pages.add(p));
+
+  return pages;
+}
+
+const PAGES = loadPages();
+
+function getBasePath(): string {
+  return (process.env.BASE_URL || '/').replace(/\/$/, '');
+}
+
+function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
+  return (
+    req: IncomingMessage,
+    res: ServerResponse,
+    next: Connect.NextFunction
+  ): void => {
+    if (!req.url) return next();
+
+    const basePath = getBasePath();
+    const [fullPathname, queryString] = req.url.split('?');
+
+    let pathname = fullPathname;
+    if (basePath && basePath !== '/' && pathname.startsWith(basePath)) {
+      pathname = pathname.slice(basePath.length) || '/';
+    }
+
+    if (!pathname.startsWith('/')) {
+      pathname = '/' + pathname;
+    }
+
+    const match = pathname.match(LANG_REGEX);
+
+    if (match) {
+      const lang = match[1];
+      const rest = match[2] ?? '';
+
+      if (rest === '' && !pathname.endsWith('/')) {
+        const redirectUrl = basePath ? `${basePath}/${lang}/` : `/${lang}/`;
+        res.statusCode = 302;
+        res.setHeader(
+          'Location',
+          redirectUrl + (queryString ? `?${queryString}` : '')
+        );
+        res.end();
+        return;
+      }
+
+      if (rest === '' || rest === '/') {
+        if (isDev) {
+          req.url = '/index.html' + (queryString ? `?${queryString}` : '');
+        } else {
+          const langIndexPath = resolve(__dirname, 'dist', lang, 'index.html');
+          if (fs.existsSync(langIndexPath)) {
+            req.url =
+              `/${lang}/index.html` + (queryString ? `?${queryString}` : '');
           } else {
-            req.url = restOfPath;
+            req.url = '/index.html' + (queryString ? `?${queryString}` : '');
           }
+        }
+        return next();
+      }
+
+      const cleanPath = rest.replace(/\/$/, '').replace(/\.html$/, '');
+      const pageName = cleanPath.split('/')[0];
+
+      if (pageName && PAGES.has(pageName)) {
+        if (isDev) {
+          const srcPath = resolve(__dirname, 'src/pages', `${pageName}.html`);
+          if (fs.existsSync(srcPath)) {
+            req.url =
+              `/src/pages/${pageName}.html` +
+              (queryString ? `?${queryString}` : '');
+          } else {
+            req.url =
+              `/${pageName}.html` + (queryString ? `?${queryString}` : '');
+          }
+        } else {
+          const langPagePath = resolve(
+            __dirname,
+            'dist',
+            lang,
+            `${pageName}.html`
+          );
+          if (fs.existsSync(langPagePath)) {
+            req.url =
+              `/${lang}/${pageName}.html` +
+              (queryString ? `?${queryString}` : '');
+          } else {
+            req.url =
+              `/${pageName}.html` + (queryString ? `?${queryString}` : '');
+          }
+        }
+      } else if (!cleanPath.includes('.')) {
+        if (isDev) {
+          req.url =
+            `/${cleanPath}.html` + (queryString ? `?${queryString}` : '');
+        } else {
+          const langPagePath = resolve(
+            __dirname,
+            'dist',
+            lang,
+            `${cleanPath}.html`
+          );
+          if (fs.existsSync(langPagePath)) {
+            req.url =
+              `/${lang}/${cleanPath}.html` +
+              (queryString ? `?${queryString}` : '');
+          } else {
+            req.url =
+              `/${cleanPath}.html` + (queryString ? `?${queryString}` : '');
+          }
+        }
+      }
+
+      return next();
+    }
+
+    if (isDev && pathname.endsWith('.html') && !pathname.startsWith('/src/')) {
+      const pageName = pathname.slice(1).replace('.html', '');
+      if (PAGES.has(pageName)) {
+        const srcPath = resolve(__dirname, 'src/pages', `${pageName}.html`);
+        if (fs.existsSync(srcPath)) {
+          req.url =
+            `/src/pages/${pageName}.html` +
+            (queryString ? `?${queryString}` : '');
           return next();
         }
-        if (url.endsWith('.html') && !url.startsWith('/src/')) {
-          const pageName = url.slice(1);
-          const pagePath = resolve(__dirname, 'src/pages', pageName);
-          if (fs.existsSync(pagePath)) {
-            req.url = `/src/pages${url}`;
-          } else if (
-            url !== '/404.html' &&
-            !fs.existsSync(resolve(__dirname, pageName))
-          ) {
-            const rootExists = fs.existsSync(resolve(__dirname, pageName));
-            if (!rootExists) {
-              req.url = '/404.html';
-            }
-          }
-        }
-        next();
-      });
+      }
+    }
+
+    next();
+  };
+}
+
+function languageRouterPlugin(): Plugin {
+  return {
+    name: 'language-router',
+    configureServer(server) {
+      server.middlewares.use(createLanguageMiddleware(true));
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(createLanguageMiddleware(false));
     },
   };
 }
@@ -76,7 +206,7 @@ function flattenPagesPlugin(): Plugin {
   return {
     name: 'flatten-pages',
     enforce: 'post',
-    generateBundle(_, bundle) {
+    generateBundle(_: unknown, bundle: OutputBundle): void {
       for (const fileName of Object.keys(bundle)) {
         if (fileName.startsWith('src/pages/') && fileName.endsWith('.html')) {
           const newFileName = fileName.replace('src/pages/', '');
@@ -84,6 +214,11 @@ function flattenPagesPlugin(): Plugin {
           bundle[newFileName].fileName = newFileName;
           delete bundle[fileName];
         }
+      }
+      if (process.env.SIMPLE_MODE === 'true' && bundle['simple-index.html']) {
+        bundle['index.html'] = bundle['simple-index.html'];
+        bundle['index.html'].fileName = 'index.html';
+        delete bundle['simple-index.html'];
       }
     },
   };
@@ -98,7 +233,7 @@ function rewriteHtmlPathsPlugin(): Plugin {
   return {
     name: 'rewrite-html-paths',
     enforce: 'post',
-    generateBundle(_, bundle) {
+    generateBundle(_: unknown, bundle: OutputBundle): void {
       if (normalizedBase === '/') return;
 
       for (const fileName of Object.keys(bundle)) {
@@ -129,7 +264,7 @@ function rewriteHtmlPathsPlugin(): Plugin {
   };
 }
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
   if (USE_CDN) {
@@ -176,7 +311,14 @@ export default defineConfig(({ mode }) => {
   return {
     base: (process.env.BASE_URL || '/').replace(/\/?$/, '/'),
     plugins: [
-      pagesRewritePlugin(),
+      handlebars({
+        partialDirectory: resolve(__dirname, 'src/partials'),
+        context: {
+          baseUrl: (process.env.BASE_URL || '/').replace(/\/?$/, '/'),
+          simpleMode: process.env.SIMPLE_MODE === 'true',
+        },
+      }),
+      languageRouterPlugin(),
       flattenPagesPlugin(),
       rewriteHtmlPathsPlugin(),
       tailwindcss(),
@@ -218,6 +360,7 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: {
+        '@/types': resolve(__dirname, 'src/js/types/index.ts'),
         stream: 'stream-browserify',
         zlib: 'browserify-zlib',
       },
@@ -242,7 +385,10 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         input: {
-          main: resolve(__dirname, 'index.html'),
+          main:
+            process.env.SIMPLE_MODE === 'true'
+              ? resolve(__dirname, 'simple-index.html')
+              : resolve(__dirname, 'index.html'),
           about: resolve(__dirname, 'about.html'),
           contact: resolve(__dirname, 'contact.html'),
           faq: resolve(__dirname, 'faq.html'),
@@ -418,6 +564,16 @@ export default defineConfig(({ mode }) => {
             __dirname,
             'src/pages/digital-sign-pdf.html'
           ),
+          'validate-signature-pdf': resolve(
+            __dirname,
+            'src/pages/validate-signature-pdf.html'
+          ),
+          'email-to-pdf': resolve(__dirname, 'src/pages/email-to-pdf.html'),
+          'font-to-outline': resolve(
+            __dirname,
+            'src/pages/font-to-outline.html'
+          ),
+          'deskew-pdf': resolve(__dirname, 'src/pages/deskew-pdf.html'),
         },
       },
     },
@@ -426,7 +582,7 @@ export default defineConfig(({ mode }) => {
       environment: 'jsdom',
       setupFiles: './src/tests/setup.ts',
       coverage: {
-        provider: 'v8',
+        provider: 'v8' as const,
         reporter: ['text', 'json', 'html'],
         exclude: [
           'node_modules/',

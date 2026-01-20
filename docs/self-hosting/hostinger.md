@@ -40,7 +40,6 @@ BASE_URL=/pdf-tools/ npm run build
 2. Create the folder in Hostinger:
    - Go to **File Manager** → **public_html**
    - Create a new folder: `pdf-tools`
-   
 3. Upload all contents of `dist` to `public_html/pdf-tools/`
 
 ## Step 3: Create .htaccess File
@@ -64,7 +63,7 @@ RewriteBase /
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
-    
+
     # REQUIRED for soffice.js (SharedArrayBuffer)
     Header always set Cross-Origin-Opener-Policy "same-origin"
     Header always set Cross-Origin-Embedder-Policy "require-corp"
@@ -142,7 +141,7 @@ AddType image/webp .webp
 # ============================================
 # 5. REDIRECTS & ROUTING
 # ============================================
-# Canonical WWW
+# Canonical WWW (update domain as needed)
 RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
 RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
 
@@ -150,19 +149,34 @@ RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Remove trailing slash
+# Remove trailing slash (except for language root directories)
 RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/$
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
 
-# Existing files/dirs
+# Existing files/dirs - serve directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Language routes
-RewriteRule ^(de|en|zh|vi)/(.*)$ /$2 [L]
-RewriteRule ^(de|en|zh|vi)/?$ / [L]
+# ============================================
+# 5.1. LANGUAGE ROUTES
+# ============================================
+# Supported languages: de, es, zh, zh-TW, vi, it, id, tr, fr, pt
+# English has no prefix - served from root
+
+# English prefix redirects to root (for SEO consistency)
+RewriteRule ^en/?$ / [R=301,L]
+RewriteRule ^en/(.+)$ /$1 [R=301,L]
+
+# Language prefix root (e.g., /de/ -> /de/index.html)
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /$1/index.html [L]
+
+# Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
+RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
 
 # ============================================
 # 5.5. DOCS ROUTING (VitePress)
@@ -173,15 +187,17 @@ RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [L]
 
 # ============================================
-# 6. SPA FALLBACK
+# 6. ADD .HTML EXTENSION IF FILE EXISTS (ROOT LEVEL ONLY)
 # ============================================
-# SPA Fallback (exclude /docs)
-RewriteCond %{REQUEST_URI} !^/docs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ /index.html [L]
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
 
-ErrorDocument 404 /index.html 
+# ============================================
+# 7. ERROR PAGES
+# ============================================
+ErrorDocument 404 /404.html
 ```
 
 ## Subdirectory .htaccess Example
@@ -191,12 +207,23 @@ For `yourdomain.com/pdf-tools/`, update these lines:
 ```apache
 RewriteBase /pdf-tools/
 
-# ... (same content) ...
+# ... (same content as above, but update paths) ...
 
-# SPA Fallback - update path
-RewriteRule ^ /pdf-tools/index.html [L]
+# Language prefix root
+RewriteCond %{DOCUMENT_ROOT}/pdf-tools/$1/index.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /pdf-tools/$1/index.html [L]
 
-ErrorDocument 404 /pdf-tools/index.html
+# Language prefix with path
+RewriteCond %{DOCUMENT_ROOT}/pdf-tools/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /pdf-tools/$1/$2.html [L]
+
+# Root level .html extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
+
+ErrorDocument 404 /pdf-tools/404.html
 ```
 
 ## Troubleshooting
@@ -222,12 +249,16 @@ If headers aren't being applied, contact Hostinger support to enable `mod_header
 
 ### 404 Errors on Page Refresh
 
-Make sure the SPA fallback rule is at the end of your `.htaccess`:
+Make sure the `.html` extension rule and language routes are correctly configured. BentoPDF uses static HTML files, not SPA routing:
 
 ```apache
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ /index.html [L]
+# Language routes serve actual files from language directories
+RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+
+# Root level pages
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
 ```
 
 ### File Upload Limits

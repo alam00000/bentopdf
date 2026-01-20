@@ -68,28 +68,7 @@
 
   <body class="antialiased bg-gray-900">
     <!-- Navigation -->
-    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-      <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center h-16">
-          <div class="flex-shrink-0 flex items-center">
-            <img
-              src="/images/favicon.svg"
-              alt="BentoPDF Logo"
-              class="h-8 w-8"
-            />
-            <span class="text-white font-bold text-xl ml-2">
-              <a href="/">BentoPDF</a>
-            </span>
-          </div>
-          <div class="hidden md:flex items-center space-x-8 text-white">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/about.html" class="nav-link">About</a>
-            <a href="/contact.html" class="nav-link">Contact</a>
-            <a href="/tools.html" class="nav-link text-indigo-400">All Tools</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    {{> navbar }}
 
     <!-- Hero -->
     <section class="container mx-auto px-4 py-12">
@@ -178,11 +157,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="mt-16 border-t-2 border-gray-700 py-8">
-      <div class="container mx-auto px-4 text-center text-gray-400">
-        <p>&copy; 2026 BentoPDF. All rights reserved.</p>
-      </div>
-    </footer>
+    {{> footer }}
 
     <script type="module" src="/src/js/utils/lucide-init.ts"></script>
     <script type="module" src="/src/version.ts"></script>

@@ -108,88 +108,7 @@
   </head>
 
   <body class="antialiased bg-gray-900">
-    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-      <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center h-16">
-          <div
-            class="flex-shrink-0 flex items-center cursor-pointer"
-            id="home-logo"
-          >
-            <img
-              src="/images/favicon-no-bg.svg"
-              alt="Bento PDF Logo"
-              class="h-8 w-8"
-            />
-            <span class="text-white font-bold text-xl ml-2">
-              <a href="/">BentoPDF</a>
-            </span>
-          </div>
-
-          <div class="hidden md:flex items-center space-x-8 text-white">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/about.html" class="nav-link">About</a>
-            <a href="/contact.html" class="nav-link">Contact</a>
-            <a href="/" class="nav-link">All Tools</a>
-          </div>
-
-          <div class="md:hidden flex items-center">
-            <button
-              id="mobile-menu-button"
-              type="button"
-              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Open main menu</span>
-              <svg
-                id="menu-icon"
-                class="block h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-              <svg
-                id="close-icon"
-                class="hidden h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-gray-800 border-t border-gray-700"
-      >
-        <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-          <a href="/" class="mobile-nav-link">Home</a>
-          <a href="/about.html" class="mobile-nav-link">About</a>
-          <a href="/contact.html" class="mobile-nav-link">Contact</a>
-          <a href="/" class="mobile-nav-link">All Tools</a>
-        </div>
-      </div>
-    </nav>
+    {{> navbar }}
 
     <div
       id="uploader"
@@ -362,35 +281,35 @@
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
-          href="/merge-pdf.html"
+          href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
           <h3 class="text-white font-semibold mb-1">Merge Pdf</h3>
           <p class="text-gray-400 text-sm">Free online merge pdf tool</p>
         </a>
         <a
-          href="/compress-pdf.html"
+          href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
           <h3 class="text-white font-semibold mb-1">Compress Pdf</h3>
           <p class="text-gray-400 text-sm">Free online compress pdf tool</p>
         </a>
         <a
-          href="/split-pdf.html"
+          href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
           <h3 class="text-white font-semibold mb-1">Split Pdf</h3>
           <p class="text-gray-400 text-sm">Free online split pdf tool</p>
         </a>
         <a
-          href="/edit-pdf.html"
+          href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
           <h3 class="text-white font-semibold mb-1">Edit Pdf</h3>
           <p class="text-gray-400 text-sm">Free online edit pdf tool</p>
         </a>
         <a
-          href="/rotate-pdf.html"
+          href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
           <h3 class="text-white font-semibold mb-1">Rotate Pdf</h3>
@@ -443,87 +362,7 @@
         </details>
       </div>
     </section>
-    <footer class="mt-16 border-t-2 border-gray-700 py-8">
-      <div class="container mx-auto px-4">
-        <div
-          class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left"
-        >
-          <div class="mb-8 md:mb-0">
-            <div class="flex items-center justify-center md:justify-start mb-4">
-              <img
-                src="/images/favicon-no-bg.svg"
-                alt="Bento PDF Logo"
-                class="h-10 w-10 mr-3"
-              />
-              <span class="text-xl font-bold text-white">BentoPDF</span>
-            </div>
-            <p class="text-gray-400 text-sm">
-              &copy; 2026 BentoPDF. All rights reserved.
-            </p>
-            <p class="text-gray-500 text-xs mt-2">
-              Version <span id="app-version"></span>
-            </p>
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-4">Company</h3>
-            <ul class="space-y-2 text-gray-400">
-              <li>
-                <a href="/about.html" class="hover:text-indigo-400">About Us</a>
-              </li>
-              <li><a href="/faq.html" class="hover:text-indigo-400">FAQ</a></li>
-              <li>
-                <a href="/contact.html" class="hover:text-indigo-400"
-                  >Contact Us</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-4">Legal</h3>
-            <ul class="space-y-2 text-gray-400">
-              <li>
-                <a href="/licensing.html" class="hover:text-indigo-400"
-                  >Licensing</a
-                >
-              </li>
-              <li>
-                <a href="/terms.html" class="hover:text-indigo-400"
-                  >Terms and Conditions</a
-                >
-              </li>
-              <li>
-                <a href="/privacy.html" class="hover:text-indigo-400"
-                  >Privacy Policy</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-bold text-white mb-4">Follow Us</h3>
-            <div class="flex justify-center md:justify-start space-x-4">
-              <a
-                href="https://github.com/nickvidal/bentopdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-gray-400 hover:text-indigo-400"
-                title="GitHub"
-              >
-                <i data-lucide="github"></i>
-              </a>
-              <a
-                href="https://discord.gg/Bgq3Ay3f2w"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-gray-400 hover:text-indigo-400"
-                title="Discord"
-              >
-                <i data-lucide="message-circle"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {{> footer }}
     <script type="module" src="/src/js/utils/lucide-init.ts"></script>
     <script type="module" src="/src/js/utils/full-width.ts"></script>
     <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>

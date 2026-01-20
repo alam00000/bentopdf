@@ -1,0 +1,511 @@
+{
+  "categories": {
+    "popularTools": "Popüler Araçlar",
+    "editAnnotate": "Düzenle & Açıklama Ekle",
+    "convertToPdf": "PDF'ye Dönüştür",
+    "convertFromPdf": "PDF'den Dönüştür",
+    "organizeManage": "Düzenle & Yönet",
+    "optimizeRepair": "Optimize Et & Onar",
+    "securePdf": "PDF Güvenliği"
+  },
+  "pdfMultiTool": {
+    "name": "PDF Çoklu Araç",
+    "subtitle": "Birleştir, Böl, Düzenle, Sil, Döndür, Boş Sayfa Ekle, Çıkar ve Çoğalt işlemlerini tek bir arayüzde yapın."
+  },
+  "mergePdf": {
+    "name": "PDF Birleştir",
+    "subtitle": "Birden fazla PDF'yi tek bir dosyada birleştirin. Yer imlerini korur."
+  },
+  "splitPdf": {
+    "name": "PDF Böl",
+    "subtitle": "Sayfa aralığını yeni bir PDF olarak çıkarın."
+  },
+  "compressPdf": {
+    "name": "PDF Sıkıştır",
+    "subtitle": "PDF dosya boyutunu küçültün."
+  },
+  "pdfEditor": {
+    "name": "PDF Düzenleyici",
+    "subtitle": "Açıklama ekleyin, vurgulayın, düzenleyin, yorum yapın, şekil/resim ekleyin, arama yapın ve PDF'leri görüntüleyin."
+  },
+  "jpgToPdf": {
+    "name": "JPG'den PDF'ye",
+    "subtitle": "Bir veya daha fazla JPG görselinden PDF oluşturun."
+  },
+  "signPdf": {
+    "name": "PDF İmzala",
+    "subtitle": "İmzanızı çizin, yazın veya yükleyin."
+  },
+  "cropPdf": {
+    "name": "PDF Kırp",
+    "subtitle": "PDF'nizdeki her sayfanın kenar boşluklarını kırpın."
+  },
+  "extractPages": {
+    "name": "Sayfaları Çıkar",
+    "subtitle": "Seçili sayfaları yeni dosyalar olarak kaydedin."
+  },
+  "duplicateOrganize": {
+    "name": "Çoğalt & Düzenle",
+    "subtitle": "Sayfaları çoğaltın, yeniden sıralayın ve silin."
+  },
+  "deletePages": {
+    "name": "Sayfaları Sil",
+    "subtitle": "Belgenizden belirli sayfaları kaldırın."
+  },
+  "editBookmarks": {
+    "name": "Yer İşaretlerini Düzenle",
+    "subtitle": "PDF yer imlerini ekleyin, düzenleyin, içe aktarın, silin ve çıkarın."
+  },
+  "tableOfContents": {
+    "name": "İçindekiler",
+    "subtitle": "PDF yer imlerinden bir içindekiler sayfası oluşturun."
+  },
+  "pageNumbers": {
+    "name": "Sayfa Numaraları",
+    "subtitle": "Belgenize sayfa numaraları ekleyin."
+  },
+  "addWatermark": {
+    "name": "Filigran Ekle",
+    "subtitle": "PDF sayfalarınızın üzerine metin veya görsel damgası ekleyin."
+  },
+  "headerFooter": {
+    "name": "Üst Bilgi & Alt Bilgi",
+    "subtitle": "Sayfaların üst ve alt kısmına metin ekleyin."
+  },
+  "invertColors": {
+    "name": "Renkleri Ters Çevir",
+    "subtitle": "PDF'niz için \"karanlık mod\" sürümü oluşturun."
+  },
+  "backgroundColor": {
+    "name": "Arka Plan Rengi",
+    "subtitle": "PDF'nizin arka plan rengini değiştirin."
+  },
+  "changeTextColor": {
+    "name": "Metin Rengini Değiştir",
+    "subtitle": "PDF'nizdeki metnin rengini değiştirin."
+  },
+  "addStamps": {
+    "name": "Damga Ekle",
+    "subtitle": "Açıklama araç çubuğunu kullanarak PDF'nize damga ekleyin.",
+    "usernameLabel": "Kullanıcı Adı",
+    "usernamePlaceholder": "Adınızı girin (damgalar için)",
+    "usernameHint": "Bu isim oluşturduğunuz damgalarda görünecektir."
+  },
+  "removeAnnotations": {
+    "name": "Açıklamaları Kaldır",
+    "subtitle": "Yorumları, vurguları ve bağlantıları kaldırın."
+  },
+  "pdfFormFiller": {
+    "name": "PDF Form Doldurucu",
+    "subtitle": "Formları doğrudan tarayıcıda doldurun. XFA formlarını da destekler."
+  },
+  "createPdfForm": {
+    "name": "PDF Formu Oluştur",
+    "subtitle": "Sürükle-bırak metin alanları ile doldurulabilir PDF formları oluşturun."
+  },
+  "removeBlankPages": {
+    "name": "Boş Sayfaları Kaldır",
+    "subtitle": "Boş sayfaları otomatik olarak tespit edin ve silin."
+  },
+  "imageToPdf": {
+    "name": "Görselden PDF'ye",
+    "subtitle": "JPG, PNG, WebP, BMP, TIFF, SVG, HEIC formatlarını PDF'ye dönüştürün."
+  },
+  "pngToPdf": {
+    "name": "PNG'den PDF'ye",
+    "subtitle": "Bir veya daha fazla PNG görselinden PDF oluşturun."
+  },
+  "webpToPdf": {
+    "name": "WebP'den PDF'ye",
+    "subtitle": "Bir veya daha fazla WebP görselinden PDF oluşturun."
+  },
+  "svgToPdf": {
+    "name": "SVG'den PDF'ye",
+    "subtitle": "Bir veya daha fazla SVG görselinden PDF oluşturun."
+  },
+  "bmpToPdf": {
+    "name": "BMP'den PDF'ye",
+    "subtitle": "Bir veya daha fazla BMP görselinden PDF oluşturun."
+  },
+  "heicToPdf": {
+    "name": "HEIC'den PDF'ye",
+    "subtitle": "Bir veya daha fazla HEIC görselinden PDF oluşturun."
+  },
+  "tiffToPdf": {
+    "name": "TIFF'den PDF'ye",
+    "subtitle": "Bir veya daha fazla TIFF görselinden PDF oluşturun."
+  },
+  "textToPdf": {
+    "name": "Metinden PDF'ye",
+    "subtitle": "Düz metin dosyasını PDF'ye dönüştürün."
+  },
+  "jsonToPdf": {
+    "name": "JSON'dan PDF'ye",
+    "subtitle": "JSON dosyalarını PDF formatına dönüştürün."
+  },
+  "pdfToJpg": {
+    "name": "PDF'den JPG'ye",
+    "subtitle": "Her PDF sayfasını JPG görseline dönüştürün."
+  },
+  "pdfToPng": {
+    "name": "PDF'den PNG'ye",
+    "subtitle": "Her PDF sayfasını PNG görseline dönüştürün."
+  },
+  "pdfToWebp": {
+    "name": "PDF'den WebP'ye",
+    "subtitle": "Her PDF sayfasını WebP görseline dönüştürün."
+  },
+  "pdfToBmp": {
+    "name": "PDF'den BMP'ye",
+    "subtitle": "Her PDF sayfasını BMP görseline dönüştürün."
+  },
+  "pdfToTiff": {
+    "name": "PDF'den TIFF'e",
+    "subtitle": "Her PDF sayfasını TIFF görseline dönüştürün."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF'yi Gri Tonlamaya Çevir",
+    "subtitle": "Tüm renkleri siyah beyaza çevirin."
+  },
+  "pdfToJson": {
+    "name": "PDF'den JSON'a",
+    "subtitle": "PDF dosyalarını JSON formatına dönüştürün."
+  },
+  "ocrPdf": {
+    "name": "PDF'de OCR",
+    "subtitle": "PDF'yi aranabilir ve kopyalanabilir hale getirin."
+  },
+  "alternateMix": {
+    "name": "Sayfaları Karıştır & Birleştir",
+    "subtitle": "PDF'leri her birinden sayfaları sırayla birleştirin. Yer imlerini korur."
+  },
+  "addAttachments": {
+    "name": "Ek Dosya Ekle",
+    "subtitle": "PDF'nize bir veya daha fazla dosya ekleyin."
+  },
+  "extractAttachments": {
+    "name": "Ek Dosyaları Çıkar",
+    "subtitle": "PDF'lerden tüm gömülü dosyaları ZIP olarak çıkarın."
+  },
+  "editAttachments": {
+    "name": "Ek Dosyaları Düzenle",
+    "subtitle": "PDF'nizdeki ek dosyaları görüntüleyin veya kaldırın."
+  },
+  "dividePages": {
+    "name": "Sayfaları Böl",
+    "subtitle": "Sayfaları yatay veya dikey olarak bölün."
+  },
+  "addBlankPage": {
+    "name": "Boş Sayfa Ekle",
+    "subtitle": "PDF'nize herhangi bir yerine boş sayfa ekleyin."
+  },
+  "reversePages": {
+    "name": "Sayfaları Ters Çevir",
+    "subtitle": "Belgenizdeki tüm sayfaların sırasını tersine çevirin."
+  },
+  "rotatePdf": {
+    "name": "PDF'yi Döndür",
+    "subtitle": "Sayfaları 90 derecelik artışlarla döndürün."
+  },
+  "nUpPdf": {
+    "name": "N'li PDF",
+    "subtitle": "Birden fazla sayfayı tek bir sayfaya yerleştirin."
+  },
+  "combineToSinglePage": {
+    "name": "Tek Sayfada Birleştir",
+    "subtitle": "Tüm sayfaları tek bir sürekli kaydırılabilir sayfada birleştirin."
+  },
+  "viewMetadata": {
+    "name": "Üst Veriyi Görüntüle",
+    "subtitle": "PDF'nizin gizli özelliklerini inceleyin."
+  },
+  "editMetadata": {
+    "name": "Üst Veriyi Düzenle",
+    "subtitle": "Yazar, başlık ve diğer özellikleri değiştirin."
+  },
+  "pdfsToZip": {
+    "name": "PDF'leri ZIP Yap",
+    "subtitle": "Birden fazla PDF dosyasını bir ZIP arşivinde paketleyin."
+  },
+  "comparePdfs": {
+    "name": "PDF'leri Karşılaştır",
+    "subtitle": "İki PDF'yi yan yana karşılaştırın."
+  },
+  "posterizePdf": {
+    "name": "PDF'yi Posta Boyutuna Böl",
+    "subtitle": "Büyük bir sayfayı birden fazla küçük sayfaya bölün."
+  },
+  "fixPageSize": {
+    "name": "Sayfa Boyutunu Düzelt",
+    "subtitle": "Tüm sayfaları standart bir boyuta getirin."
+  },
+  "linearizePdf": {
+    "name": "PDF'yi Doğrusallaştır",
+    "subtitle": "Hızlı web görüntüleme için PDF'yi optimize edin."
+  },
+  "pageDimensions": {
+    "name": "Sayfa Boyutları",
+    "subtitle": "Sayfa boyutunu, yönlendirmeyi ve birimleri analiz edin."
+  },
+  "removeRestrictions": {
+    "name": "Kısıtlamaları Kaldır",
+    "subtitle": "Dijital olarak imzalanmış PDF dosyalarıyla ilişkili şifre korumasını ve güvenlik kısıtlamalarını kaldırın."
+  },
+  "repairPdf": {
+    "name": "PDF'yi Onar",
+    "subtitle": "Bozulmuş veya hasarlı PDF dosyalarından veri kurtarın."
+  },
+  "encryptPdf": {
+    "name": "PDF'yi Şifrele",
+    "subtitle": "PDF'nizi şifre ekleyerek koruyun."
+  },
+  "sanitizePdf": {
+    "name": "PDF'yi Temizle",
+    "subtitle": "Üst verileri, açıklamaları, betikleri ve daha fazlasını kaldırın."
+  },
+  "decryptPdf": {
+    "name": "PDF'nin Şifresini Çöz",
+    "subtitle": "Şifre korumasını kaldırarak PDF'nin kilidini açın."
+  },
+  "flattenPdf": {
+    "name": "PDF'yi Düzleştir",
+    "subtitle": "Form alanlarını ve açıklamaları düzenlenemez hale getirin."
+  },
+  "removeMetadata": {
+    "name": "Üst Veriyi Kaldır",
+    "subtitle": "PDF'nizdeki gizli verileri temizleyin."
+  },
+  "changePermissions": {
+    "name": "İzinleri Değiştir",
+    "subtitle": "Bir PDF üzerindeki kullanıcı izinlerini ayarlayın veya değiştirin."
+  },
+  "emailToPdf": {
+    "name": "E-posta'dan PDF'ye",
+    "subtitle": "E-posta dosyalarını (EML, MSG) PDF formatına dönüştürün. Outlook dışa aktarmalarını ve standart e-posta formatlarını destekler.",
+    "acceptedFormats": "EML, MSG Dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
+  },
+  "fontToOutline": {
+    "name": "Yazı Tipi Çerçeveye Dönüştür",
+    "subtitle": "Tüm yazı tiplerini vektör çerçevelere dönüştürün, tüm cihazlarda tutarlı görüntü için."
+  },
+  "deskewPdf": {
+    "name": "PDF Eğriliğini Düzelt",
+    "subtitle": "OpenCV kullanarak eğik taranmış sayfaları otomatik olarak düzeltin."
+  },
+  "rotateCustom": {
+    "name": "Rotate by Custom Degrees",
+    "subtitle": "Rotate pages by any custom angle."
+  },
+  "odtToPdf": {
+    "name": "ODT to PDF",
+    "subtitle": "Convert OpenDocument Text files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODT files",
+    "convertButton": "Convert to PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV to PDF",
+    "subtitle": "Convert CSV spreadsheet files to PDF format. Supports multiple files.",
+    "acceptedFormats": "CSV files",
+    "convertButton": "Convert to PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF to PDF",
+    "subtitle": "Convert Rich Text Format documents to PDF. Supports multiple files.",
+    "acceptedFormats": "RTF files",
+    "convertButton": "Convert to PDF"
+  },
+  "wordToPdf": {
+    "name": "Word to PDF",
+    "subtitle": "Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files.",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF files",
+    "convertButton": "Convert to PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel to PDF",
+    "subtitle": "Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files.",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV files",
+    "convertButton": "Convert to PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint to PDF",
+    "subtitle": "Convert PowerPoint presentations (PPTX, PPT, ODP) to PDF format. Supports multiple files.",
+    "acceptedFormats": "PPTX, PPT, ODP files",
+    "convertButton": "Convert to PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown to PDF",
+    "subtitle": "Write or paste Markdown and export it as a beautifully formatted PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Preview",
+    "btnUpload": "Upload",
+    "btnSyncScroll": "Sync Scroll",
+    "btnSettings": "Settings",
+    "btnExportPdf": "Export PDF",
+    "settingsTitle": "Markdown Settings",
+    "settingsPreset": "Preset",
+    "presetDefault": "Default (GFM-like)",
+    "presetCommonmark": "CommonMark (strict)",
+    "presetZero": "Minimal (no features)",
+    "settingsOptions": "Markdown Options",
+    "optAllowHtml": "Allow HTML tags",
+    "optBreaks": "Convert newlines to <br>",
+    "optLinkify": "Auto-convert URLs to links",
+    "optTypographer": "Typographer (smart quotes, etc.)"
+  },
+  "pdfBooklet": {
+    "name": "PDF Booklet",
+    "subtitle": "Rearrange pages for double-sided booklet printing. Fold and staple to create a booklet.",
+    "howItWorks": "How it works:",
+    "step1": "Upload a PDF file.",
+    "step2": "Pages will be rearranged in booklet order.",
+    "step3": "Print double-sided, flip on short edge, fold and staple.",
+    "paperSize": "Paper Size",
+    "orientation": "Orientation",
+    "portrait": "Portrait",
+    "landscape": "Landscape",
+    "pagesPerSheet": "Pages per Sheet",
+    "createBooklet": "Create Booklet",
+    "processing": "Processing...",
+    "pageCount": "Page count will be padded to multiple of 4 if needed."
+  },
+  "xpsToPdf": {
+    "name": "XPS to PDF",
+    "subtitle": "Convert XPS/OXPS documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "XPS, OXPS files",
+    "convertButton": "Convert to PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI to PDF",
+    "subtitle": "Convert MOBI e-books to PDF format. Supports multiple files.",
+    "acceptedFormats": "MOBI files",
+    "convertButton": "Convert to PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB to PDF",
+    "subtitle": "Convert EPUB e-books to PDF format. Supports multiple files.",
+    "acceptedFormats": "EPUB files",
+    "convertButton": "Convert to PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 to PDF",
+    "subtitle": "Convert FictionBook (FB2) e-books to PDF format. Supports multiple files.",
+    "acceptedFormats": "FB2 files",
+    "convertButton": "Convert to PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ to PDF",
+    "subtitle": "Convert comic book archives (CBZ/CBR) to PDF format. Supports multiple files.",
+    "acceptedFormats": "CBZ, CBR files",
+    "convertButton": "Convert to PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD to PDF",
+    "subtitle": "Convert WordPerfect documents (WPD) to PDF format. Supports multiple files.",
+    "acceptedFormats": "WPD files",
+    "convertButton": "Convert to PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS to PDF",
+    "subtitle": "Convert WPS Office documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "WPS files",
+    "convertButton": "Convert to PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML to PDF",
+    "subtitle": "Convert XML documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "XML files",
+    "convertButton": "Convert to PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages to PDF",
+    "subtitle": "Convert Apple Pages documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "Pages files",
+    "convertButton": "Convert to PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG to PDF",
+    "subtitle": "Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODG files",
+    "convertButton": "Convert to PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS to PDF",
+    "subtitle": "Convert OpenDocument Spreadsheet (ODS) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODS files",
+    "convertButton": "Convert to PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP to PDF",
+    "subtitle": "Convert OpenDocument Presentation (ODP) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODP files",
+    "convertButton": "Convert to PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB to PDF",
+    "subtitle": "Convert Microsoft Publisher (PUB) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "PUB files",
+    "convertButton": "Convert to PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD to PDF",
+    "subtitle": "Convert Microsoft Visio (VSD, VSDX) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "VSD, VSDX files",
+    "convertButton": "Convert to PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD to PDF",
+    "subtitle": "Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "PSD files",
+    "convertButton": "Convert to PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF to SVG",
+    "subtitle": "Convert each page of a PDF file into a scalable vector graphic (SVG) for perfect quality at any size."
+  },
+  "extractTables": {
+    "name": "Extract PDF Tables",
+    "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF to CSV",
+    "subtitle": "Extract tables from PDF and convert to CSV format."
+  },
+  "pdfToExcel": {
+    "name": "PDF to Excel",
+    "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format."
+  },
+  "pdfToText": {
+    "name": "PDF to Text",
+    "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
+    "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
+    "convertButton": "Extract Text"
+  },
+  "digitalSignPdf": {
+    "name": "Digital Signature PDF",
+    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
+    "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
+    "certificateSection": "Certificate",
+    "uploadCert": "Upload certificate (.pfx, .p12)",
+    "certPassword": "Certificate Password",
+    "certPasswordPlaceholder": "Enter certificate password",
+    "certInfo": "Certificate Information",
+    "certSubject": "Subject",
+    "certIssuer": "Issuer",
+    "certValidity": "Valid",
+    "signatureDetails": "Signature Details (Optional)",
+    "reason": "Reason",
+    "reasonPlaceholder": "e.g., I approve this document",
+    "location": "Location",
+    "locationPlaceholder": "e.g., New York, USA",
+    "contactInfo": "Contact Info",
+    "contactPlaceholder": "e.g., email@example.com",
+    "applySignature": "Apply Digital Signature",
+    "successMessage": "PDF signed successfully! The signature can be verified in any PDF reader."
+  },
+  "validateSignaturePdf": {
+    "name": "Validate PDF Signature",
+    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
+    "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
+  }
+}

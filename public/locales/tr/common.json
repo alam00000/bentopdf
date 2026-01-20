@@ -1,0 +1,323 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "licensing": "Lisanslama",
+    "allTools": "Tüm Araçlar",
+    "openMainMenu": "Ana menüyü aç",
+    "language": "Dil"
+  },
+  "donation": {
+    "message": "BentoPDF'i seviyor musunuz? Ücretsiz ve açık kaynaklı kalmasına yardımcı olun!",
+    "button": "Bağış Yap"
+  },
+  "hero": {
+    "title": " ",
+    "pdfToolkit": "PDF Toolkit",
+    "builtForPrivacy": "gizlilik için tasarlandı",
+    "noSignups": "Kayıt Gerekmez",
+    "unlimitedUse": "Sınırsız Kullanım",
+    "worksOffline": "Çevrimdışı Çalışır",
+    "startUsing": "Hemen Kullanmaya Başla"
+  },
+  "usedBy": {
+    "title": "Şu şirketler ve çalışanları tarafından kullanılıyor"
+  },
+  "features": {
+    "title": "Neden",
+    "bentoPdf": "BentoPDF'yi seçmelisiniz?",
+    "noSignup": {
+      "title": "Kayıt Gerekmez",
+      "description": "Hemen başlayın, hesap veya e-posta gerekmez."
+    },
+    "noUploads": {
+      "title": "Yükleme Yok",
+      "description": "%100 istemci tarafında çalışır, dosyalarınız cihazınızı asla terk etmez."
+    },
+    "foreverFree": {
+      "title": "Tamamen Ücretsiz",
+      "description": "Tüm araçlar, deneme sürümü yok, ödeme duvarı yok."
+    },
+    "noLimits": {
+      "title": "Sınırsız",
+      "description": "İstediğiniz kadar kullanın, gizli sınırlar yok."
+    },
+    "batchProcessing": {
+      "title": "Toplu İşlem",
+      "description": "Sınırsız sayıda PDF'yi tek seferde işleyin."
+    },
+    "lightningFast": {
+      "title": "Şimşek Hızında",
+      "description": "PDF'leri anında işleyin, bekleme veya gecikme olmadan."
+    }
+  },
+  "tools": {
+    "title": "Araçlarla",
+    "toolsLabel": "Başlayın",
+    "subtitle": "Dosya yükleyiciyi açmak için bir araç seçin",
+    "searchPlaceholder": "Bir araç arayın (örn. 'böl', 'düzenle'...)",
+    "backToTools": "Araçlara Dön",
+    "firstLoadNotice": "Dönüştürme motorumuzu indirirken ilk yükleme biraz zaman alır. Sonrasında tüm yüklemeler anında gerçekleşir."
+  },
+  "upload": {
+    "clickToSelect": "Dosya seçmek için tıklayın",
+    "orDragAndDrop": "veya sürükleyip bırakın",
+    "pdfOrImages": "PDF veya Görseller",
+    "filesNeverLeave": "Dosyalarınız cihazınızı asla terk etmez.",
+    "addMore": "Daha Fazla Dosya Ekle",
+    "clearAll": "Tümünü Temizle"
+  },
+  "loader": {
+    "processing": "İşleniyor..."
+  },
+  "alert": {
+    "title": "Uyarı",
+    "ok": "Tamam"
+  },
+  "preview": {
+    "title": "Belge Önizleme",
+    "downloadAsPdf": "PDF Olarak İndir",
+    "close": "Kapat"
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "shortcuts": "Kısayollar",
+    "preferences": "Tercihler",
+    "displayPreferences": "Görüntü Tercihleri",
+    "searchShortcuts": "Kısayollarda ara...",
+    "shortcutsInfo": "Bir kısayol atamak için tuşlara basılı tutun. Değişiklikler otomatik olarak kaydedilir.",
+    "shortcutsWarning": "⚠️ Güvenilir çalışmayabileceğinden yaygın tarayıcı kısayollarından (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N vb.) kaçının.",
+    "import": "İçe Aktar",
+    "export": "Dışa Aktar",
+    "resetToDefaults": "Varsayılanlara Sıfırla",
+    "fullWidthMode": "Tam Genişlik Modu",
+    "fullWidthDescription": "Ortalanmış bir konteyner yerine tüm ekran genişliğini kullan",
+    "settingsAutoSaved": "Ayarlar otomatik olarak kaydedildi",
+    "clickToSet": "Ayarlamak için tıklayın",
+    "pressKeys": "Tuşlara basın...",
+    "warnings": {
+      "alreadyInUse": "Kısayol Zaten Kullanımda",
+      "assignedTo": "zaten şurada kullanılıyor:",
+      "chooseDifferent": "Lütfen farklı bir kısayol seçin.",
+      "reserved": "Ayrılmış Kısayol Uyarısı",
+      "commonlyUsed": "genellikle şunun için kullanılır:",
+      "unreliable": "Bu kısayol güvenilir çalışmayabilir veya tarayıcı/sistem davranışıyla çakışabilir.",
+      "useAnyway": "Yine de kullanmak istiyor musunuz?",
+      "resetTitle": "Kısayolları Sıfırla",
+      "resetMessage": "Tüm kısayolları varsayılan ayarlara sıfırlamak istediğinizden emin misiniz?<br><br>Bu işlem geri alınamaz.",
+      "importSuccessTitle": "İçe Aktarma Başarılı",
+      "importSuccessMessage": "Kısayollar başarıyla içe aktarıldı!",
+      "importFailTitle": "İçe Aktarma Başarısız",
+      "importFailMessage": "Kısayollar içe aktarılamadı. Geçersiz dosya biçimi."
+    }
+  },
+  "warning": {
+    "title": "Uyarı",
+    "cancel": "İptal",
+    "proceed": "Devam Et"
+  },
+  "compliance": {
+    "title": "Verileriniz cihazınızı asla terk etmez",
+    "weKeep": "Bilgilerinizi",
+    "yourInfoSafe": "güvende tutuyoruz",
+    "byFollowingStandards": "küresel güvenlik standartlarını takip ederek.",
+    "processingLocal": "Tüm işlemler cihazınızda yerel olarak gerçekleşir.",
+    "gdpr": {
+      "title": "GDPR uyumluluğu",
+      "description": "Avrupa Birliği'ndeki bireylerin kişisel verilerini ve gizliliğini korur."
+    },
+    "ccpa": {
+      "title": "CCPA uyumluluğu",
+      "description": "Kaliforniya sakinlerine kişisel bilgilerinin nasıl toplandığı, kullanıldığı ve paylaşıldığı konusunda haklar tanır."
+    },
+    "hipaa": {
+      "title": "HIPAA uyumluluğu",
+      "description": "ABD sağlık sisteminde hassas sağlık bilgilerinin işlenmesi için güvenlik önlemleri belirler."
+    }
+  },
+  "faq": {
+    "title": "Sıkça Sorulan",
+    "questions": "Sorular",
+    "isFree": {
+      "question": "BentoPDF gerçekten ücretsiz mi?",
+      "answer": "Evet, kesinlikle. BentoPDF'deki tüm araçlar %100 ücretsizdir, dosya sınırı yoktur, kayıt gerekmez ve filigran eklenmez. Herkesin ödeme duvarı olmadan basit, güçlü PDF araçlarına erişimi hak ettiğine inanıyoruz."
+    },
+    "areFilesSecure": {
+      "question": "Dosyalarım güvende mi? Nerede işleniyorlar?",
+      "answer": "Dosyalarınız mümkün olan en güvenli şekildedir çünkü bilgisayarınızı asla terk etmezler. Tüm işlemler doğrudan web tarayıcınızda (istemci tarafında) gerçekleşir. Dosyalarınızı asla bir sunucuya yüklemeyiz, böylece gizliliğiniz ve belgeleriniz üzerindeki kontrolünüz tam olarak sizde kalır."
+    },
+    "platforms": {
+      "question": "Mac, Windows ve Mobil'de çalışıyor mu?",
+      "answer": "Evet! BentoPDF tamamen tarayıcınızda çalıştığı için, Windows, macOS, Linux, iOS ve Android dahil modern bir web tarayıcısı olan herhangi bir işletim sisteminde çalışır."
+    },
+    "gdprCompliant": {
+      "question": "BentoPDF GDPR uyumlu mu?",
+      "answer": "Evet. BentoPDF tamamen GDPR uyumludur. Tüm dosya işlemleri tarayıcınızda yerel olarak gerçekleştiği ve dosyalarınızı herhangi bir sunucuya asla iletmediğimiz için verilerinize erişimimiz yoktur. Bu, belgeleriniz üzerindeki kontrolün her zaman sizde olduğundan emin olur."
+    },
+    "dataStorage": {
+      "question": "Dosyalarımı saklıyor veya takip ediyor musunuz?",
+      "answer": "Hayır. Dosyalarınızı asla saklamıyor, takip etmiyor veya kaydetmiyoruz. BentoPDF'de yaptığınız her şey tarayıcı belleğinizde gerçekleşir ve sayfayı kapattığınızda silinir. Yükleme, geçmiş kaydı veya sunucu yoktur."
+    },
+    "different": {
+      "question": "BentoPDF'yi diğer PDF araçlarından farklı kılan nedir?",
+      "answer": "Çoğu PDF aracı, işlem için dosyalarınızı bir sunucuya yükler. BentoPDF asla böyle yapmaz. Dosyalarınızı doğrudan tarayıcınızda işlemek için güvenli, modern web teknolojileri kullanırız. Bu, daha hızlı performans, daha güçlü gizlilik ve tam bir gönül rahatlığı anlamına gelir."
+    },
+    "browserBased": {
+      "question": "Tarayıcı tabanlı işlem beni nasıl korur?",
+      "answer": "Tamamen tarayıcınızın içinde çalışarak, BentoPDF dosyalarınızın cihazınızı asla terk etmemesini sağlar. Bu, sunucu saldırıları, veri ihlalleri veya yetkisiz erişim risklerini ortadan kaldırır. Dosyalarınız her zaman sizin kalır."
+    },
+    "analytics": {
+      "question": "Beni takip etmek için çerez veya analiz kullanıyor musunuz?",
+      "answer": "Gizliliğinizi önemsiyoruz. BentoPDF kişisel bilgileri takip etmez. Sadece anonim ziyaretçi sayılarını görmek için Simple Analytics kullanıyoruz. Bu, sitemizi kaç kişinin ziyaret ettiğini görebileceğimiz, ancak kim olduğunuzu asla bilemeyeceğimiz anlamına gelir. Simple Analytics tamamen GDPR uyumludur ve gizliliğinize saygı gösterir."
+    }
+  },
+  "testimonials": {
+    "title": "Kullanıcılarımız",
+    "users": "Ne Diyor",
+    "say": ""
+  },
+  "support": {
+    "title": "Çalışmamı Beğendiniz mi?",
+    "description": "BentoPDF, herkes için ücretsiz, özel ve güçlü bir PDF araç seti sağlamak amacıyla oluşturulmuş bir tutku projesidir. Faydalı bulduysanız, geliştirilmesini desteklemeyi düşünebilirsiniz. Her kahve yardımcı olur!",
+    "buyMeCoffee": "Bana Kahve Ismarla"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. Tüm hakları saklıdır.",
+    "version": "Sürüm",
+    "company": "Şirket",
+    "aboutUs": "Hakkımızda",
+    "faqLink": "SSS",
+    "contactUs": "İletişim",
+    "legal": "Yasal",
+    "termsAndConditions": "Kullanım Koşulları",
+    "privacyPolicy": "Gizlilik Politikası",
+    "followUs": "Bizi Takip Edin"
+  },
+  "merge": {
+    "title": "PDF Birleştir",
+    "description": "Dosyaların tamamını birleştirin veya yeni bir belge oluşturmak için belirli sayfaları seçin.",
+    "fileMode": "Dosya Modu",
+    "pageMode": "Sayfa Modu",
+    "howItWorks": "Nasıl Çalışır:",
+    "fileModeInstructions": [
+      "Dosyaların sırasını değiştirmek için simgeyi tıklayıp sürükleyin.",
+      "Her dosya için \"Sayfalar\" kutusuna, yalnızca o sayfaları birleştirmek için aralıklar belirtebilirsiniz (örn. \"1-3, 5\").",
+      "Tüm sayfaları dahil etmek için \"Sayfalar\" kutusunu boş bırakın."
+    ],
+    "pageModeInstructions": [
+      "Yüklediğiniz PDF'lerin tüm sayfaları aşağıda gösterilmiştir.",
+      "Yeni dosyanız için istediğiniz sırayı oluşturmak üzere sayfa küçük resimlerini sürükleyip bırakmanız yeterlidir."
+    ],
+    "mergePdfs": "PDF'leri Birleştir"
+  },
+  "common": {
+    "page": "Sayfa",
+    "pages": "Sayfa",
+    "of": "- ",
+    "download": "İndir",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "add": "Ekle",
+    "remove": "Kaldır",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "file": "Dosya",
+    "files": "Dosya"
+  },
+  "about": {
+    "hero": {
+      "title": "PDF araçlarının",
+      "subtitle": "hızlı, özel ve ücretsiz olması gerektiğine inanıyoruz.",
+      "noCompromises": "Taviz yok."
+    },
+    "mission": {
+      "title": "Misyonumuz",
+      "description": "Gizliliğinize saygı duyan ve asla ödeme talep etmeyen en kapsamlı PDF araç setini sağlamak. Temel belge araçlarının her yerde, herkes için erişilebilir olması gerektiğine inanıyoruz."
+    },
+    "philosophy": {
+      "label": "Temel Felsefemiz",
+      "title": "Öncelik Her Zaman Gizlilik.",
+      "description": "Verinin bir meta olarak kabul edildiği bir çağda, farklı bir yaklaşım benimsiyoruz. Bentopdf araçları için tüm işlemler tarayıcınızda yerel olarak gerçekleşir. Bu, dosyalarınızın sunucularımıza asla dokunmadığı, belgelerinizi asla görmediğimiz ve ne yaptığınızı takip etmediğimiz anlamına gelir. Belgeleriniz tamamen ve kesinlikle özel kalır. Bu sadece bir özellik değil, temelimizdir."
+    },
+    "whyBentopdf": {
+      "title": "Neden",
+      "speed": {
+        "title": "Hız İçin Tasarlandı",
+        "description": "Sunucuya yükleme veya indirme için bekleme yok. WebAssembly gibi modern web teknolojilerini kullanarak dosyaları doğrudan tarayıcınızda işleyerek, tüm araçlarımız için benzersiz bir hız sunuyoruz."
+      },
+      "free": {
+        "title": "Tamamen Ücretsiz",
+        "description": "Deneme sürümü yok, abonelik yok, gizli ücret yok ve \"premium\" özellikler rehin alınmamış. Güçlü PDF araçlarının bir kar merkezi değil, bir kamu hizmeti olması gerektiğine inanıyoruz."
+      },
+      "noAccount": {
+        "title": "Hesap Gerekmez",
+        "description": "Hemen herhangi bir aracı kullanmaya başlayın. E-postanıza, şifrenize veya herhangi bir kişisel bilginize ihtiyacımız yok. İş akışınız sürtünmesiz ve anonim olmalıdır."
+      },
+      "openSource": {
+        "title": "Açık Kaynak Ruhu",
+        "description": "Şeffaflık düşünülerek oluşturuldu. PDF-lib ve PDF.js gibi inanılmaz açık kaynaklı kütüphanelerden yararlanıyoruz ve güçlü araçları herkes için erişilebilir kılmak için topluluk odaklı çabaya inanıyoruz."
+      }
+    },
+    "cta": {
+      "title": "Başlamaya hazır mısınız?",
+      "description": "Günlük belge ihtiyaçları için BentoPDF'ye güvenen binlerce kullanıcıya katılın. Gizlilik ve performansın yaratabileceği farkı deneyimleyin.",
+      "button": "Tüm Araçları Keşfet"
+    }
+  },
+  "contact": {
+    "title": "İletişime Geçin",
+    "subtitle": "Sizden haber almak isteriz. Bir sorunuz, geri bildiriminiz veya bir özellik isteğiniz varsa, lütfen bize ulaşmaktan çekinmeyin.",
+    "email": "Bize doğrudan şu e-posta adresinden ulaşabilirsiniz:"
+  },
+  "licensing": {
+    "title": "Lisanslama",
+    "subtitle": "İhtiyaçlarınıza uygun lisansı seçin."
+  },
+  "multiTool": {
+    "uploadPdfs": "PDF Yükle",
+    "upload": "Yükle",
+    "addBlankPage": "Boş Sayfa Ekle",
+    "edit": "Düzenle:",
+    "undo": "Geri Al",
+    "redo": "Yinele",
+    "reset": "Sıfırla",
+    "selection": "Seçim:",
+    "selectAll": "Tümünü Seç",
+    "deselectAll": "Seçimi Kaldır",
+    "rotate": "Döndür:",
+    "rotateLeft": "Sola",
+    "rotateRight": "Sağa",
+    "transform": "Dönüştür:",
+    "duplicate": "Çoğalt",
+    "split": "Böl",
+    "clear": "Temizle:",
+    "delete": "Sil",
+    "download": "İndir:",
+    "downloadSelected": "Seçilenleri İndir",
+    "exportPdf": "PDF Olarak Dışa Aktar",
+    "uploadPdfFiles": "PDF Dosyalarını Seçin",
+    "dragAndDrop": "PDF dosyalarını buraya sürükleyip bırakın veya seçmek için tıklayın",
+    "selectFiles": "Dosya Seç",
+    "renderingPages": "Sayfalar oluşturuluyor...",
+    "actions": {
+      "duplicatePage": "Bu sayfayı çoğalt",
+      "deletePage": "Bu sayfayı sil",
+      "insertPdf": "Bu sayfadan sonra PDF ekle",
+      "toggleSplit": "Bu sayfadan sonra bölmeyi aç/kapat"
+    },
+    "pleaseWait": "Lütfen Bekleyin",
+    "pagesRendering": "Sayfalar hala oluşturuluyor. Lütfen bekleyin...",
+    "noPagesSelected": "Hiçbir Sayfa Seçilmedi",
+    "selectOnePage": "Lütfen indirmek için en az bir sayfa seçin.",
+    "noPages": "Sayfa Yok",
+    "noPagesToExport": "Dışa aktarılacak sayfa yok.",
+    "renderingTitle": "Sayfa önizlemeleri oluşturuluyor",
+    "errorRendering": "Sayfa küçük resimleri oluşturulamadı",
+    "error": "Hata",
+    "failedToLoad": "Yüklenemedi"
+  }
+}

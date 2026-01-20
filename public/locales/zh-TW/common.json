@@ -1,0 +1,323 @@
+{
+  "nav": {
+    "home": "首頁",
+    "about": "關於我們",
+    "contact": "聯絡我們",
+    "licensing": "產品授權",
+    "allTools": "所有工具",
+    "openMainMenu": "開啟主選單",
+    "language": "語言"
+  },
+  "donation": {
+    "message": "喜歡 BentoPDF？幫助我們保持免費和開源！",
+    "button": "捐贈"
+  },
+  "hero": {
+    "title": "專為隱私打造的",
+    "pdfToolkit": "PDF 工具箱",
+    "builtForPrivacy": " ",
+    "noSignups": "不須註冊",
+    "unlimitedUse": "無限使用",
+    "worksOffline": "離線可用",
+    "startUsing": "立刻開始使用"
+  },
+  "usedBy": {
+    "title": "被下列公司及其員工採用"
+  },
+  "features": {
+    "title": "為何你該選擇",
+    "bentoPdf": "BentoPDF？",
+    "noSignup": {
+      "title": "不須註冊",
+      "description": "立即可用，不須帳號或電子郵件。"
+    },
+    "noUploads": {
+      "title": "不須上傳",
+      "description": "所有文件都在用戶端處理，永遠不會離開你的裝置。"
+    },
+    "foreverFree": {
+      "title": "永遠免費",
+      "description": "所有工具免費使用，沒有試用期，也沒有付費牆。"
+    },
+    "noLimits": {
+      "title": "沒有限制",
+      "description": "隨心所欲的使用，沒有任何隱藏限制。"
+    },
+    "batchProcessing": {
+      "title": "批量處理",
+      "description": "一次處理無限量的 PDF 檔案。"
+    },
+    "lightningFast": {
+      "title": "快如閃電",
+      "description": "瞬間處理 PDF，無須忍受任何等待或延遲。"
+    }
+  },
+  "tools": {
+    "title": "開始使用",
+    "toolsLabel": "工具",
+    "subtitle": "點擊任意工具以開始上傳檔案",
+    "searchPlaceholder": "搜尋工具（例如「合併」或「分割」...）",
+    "backToTools": "返回工具列表",
+    "firstLoadNotice": "首次載入需要一點時間，因為我們正在下載轉換引擎。之後所有載入將即時完成。"
+  },
+  "upload": {
+    "clickToSelect": "點擊以選擇檔案",
+    "orDragAndDrop": "或將檔案拖放到此處",
+    "pdfOrImages": "PDF 或圖片",
+    "filesNeverLeave": "你的檔案永遠不會離開你的裝置。",
+    "addMore": "添加更多檔案",
+    "clearAll": "清除全部"
+  },
+  "loader": {
+    "processing": "正在處理..."
+  },
+  "alert": {
+    "title": "提示",
+    "ok": "確認"
+  },
+  "preview": {
+    "title": "文件預覽",
+    "downloadAsPdf": "下載為 PDF",
+    "close": "關閉"
+  },
+  "settings": {
+    "title": "設定",
+    "shortcuts": "快捷鍵",
+    "preferences": "偏好設定",
+    "displayPreferences": "顯示設定",
+    "searchShortcuts": "搜尋快捷鍵...",
+    "shortcutsInfo": "按下並按住按鍵以設定快捷鍵。變更將自動儲存。",
+    "shortcutsWarning": "⚠️ 避免使用瀏覽器常用快捷鍵（Cmd/Ctrl+W、Cmd/Ctrl+T、Cmd/Ctrl+N 等），它們可能無法穩定運作。",
+    "import": "匯入",
+    "export": "匯出",
+    "resetToDefaults": "恢復預設值",
+    "fullWidthMode": "全寬模式",
+    "fullWidthDescription": "使用全螢幕寬度而非置中容器顯示所有工具",
+    "settingsAutoSaved": "設定會自動儲存",
+    "clickToSet": "點擊以設定",
+    "pressKeys": "按下按鍵...",
+    "warnings": {
+      "alreadyInUse": "快捷鍵已被占用",
+      "assignedTo": "已被指定為：",
+      "chooseDifferent": "請選擇一個不同的快捷鍵。",
+      "reserved": "保留快捷鍵警告",
+      "commonlyUsed": "常被用於：",
+      "unreliable": "這個快捷鍵可能與系統/瀏覽器行為衝突或無法穩定運作。",
+      "useAnyway": "仍要使用嗎？",
+      "resetTitle": "重設快捷鍵",
+      "resetMessage": "確定要將所有快捷鍵恢復為預設值嗎？<br><br>這個操作無法被撤回。",
+      "importSuccessTitle": "匯入成功",
+      "importSuccessMessage": "快捷鍵匯入成功！",
+      "importFailTitle": "匯入失敗",
+      "importFailMessage": "匯入快捷鍵失敗。無效的檔案格式。"
+    }
+  },
+  "warning": {
+    "title": "警告",
+    "cancel": "取消",
+    "proceed": "繼續"
+  },
+  "compliance": {
+    "title": "你的資料永遠不會離開你的裝置",
+    "weKeep": "我們確保",
+    "yourInfoSafe": "你的資訊安全",
+    "byFollowingStandards": "遵循全球安全標準。",
+    "processingLocal": "所有處理過程都在你的裝置上進行。",
+    "gdpr": {
+      "title": "符合 GDPR 規範",
+      "description": "保護歐盟境內個人的數據及隱私。"
+    },
+    "ccpa": {
+      "title": "符合 CCPA 規範",
+      "description": "賦予加州居民對其個人資訊如何被蒐集、使用及分享的權利。"
+    },
+    "hipaa": {
+      "title": "符合 HIPAA 規範",
+      "description": "制定處理美國健保系統中敏感健康資訊的規範。"
+    }
+  },
+  "faq": {
+    "title": "常見",
+    "questions": "問題",
+    "isFree": {
+      "question": "BentoPDF 真的是免費的嗎？",
+      "answer": "沒錯，完全免費。BentoPDF 上的所有工具均為 100% 免費使用，並且沒有檔案限制、無須註冊且無浮水印。我們相信每個人都值得免費使用簡單且強大的 PDF 工具。"
+    },
+    "areFilesSecure": {
+      "question": "我的檔案都是安全的嗎？它們都在哪裡被處理？",
+      "answer": "你的檔案都非常安全，因為它們從未離開你的電腦。所有處理過程都直接在你的網頁瀏覽器中進行（用戶端）。我們永遠不會將你的檔案上傳到伺服器，因此你對你的文件保有完全的隱私與控制權。"
+    },
+    "platforms": {
+      "question": "我能在 Mac、Windows 和行動裝置上使用嗎？",
+      "answer": "可以！由於 BentoPDF 完全在你的瀏覽器中運作，它在任何有著現代網頁瀏覽器的系統中都能運行，包含 Windows、macOS、Linux、iOS 和 Android。"
+    },
+    "gdprCompliant": {
+      "question": "BentoPDF 符合 GDPR 規範嗎？",
+      "answer": "是的。BentoPDF 完全符合 GDPR 規範。由於所有檔案處理都在你的瀏覽器本地發生且我們永不蒐集或傳輸你的檔案至任何伺服器，我們無法存取你的資料。這確保你的文件永遠都在你的控制之中。"
+    },
+    "dataStorage": {
+      "question": "你會保存或追蹤我的檔案嗎？",
+      "answer": "不。我們永不儲存、追蹤或記錄你的檔案。你在 BentoPDF 上進行的任何操作都發生在你的瀏覽器記憶體中，並且會在你關閉頁面後立即消失。沒有上傳、沒有歷史紀錄且無伺服器參與。"
+    },
+    "different": {
+      "question": "BentoPDF 跟其他的 PDF 工具有何不同之處？",
+      "answer": "大多數 PDF 工具都透過將你的檔案上傳至伺服器好進行處理。BentoPDF 永遠不會那麼做。我們使用安全且現代的網頁科技以在你的瀏覽器中直接處理檔案。這意味著更快的性能、更強的隱私與完全的安心。"
+    },
+    "browserBased": {
+      "question": "瀏覽器端處理如何保障我的安全？",
+      "answer": "透過完全在你的瀏覽器內運作，BentoPDF 確保你的文件從未離開你的裝置。這消除了伺服器遭駭、資料外洩與未授權訪問的風險。你的檔案永遠都屬於你。"
+    },
+    "analytics": {
+      "question": "你會使用 Cookies 或網站分析來追蹤我嗎？",
+      "answer": "我們在乎你的隱私。BentoPDF 並不追蹤個人資訊。我們僅使用 Simple Analytics 來查看匿名訪問次數。這代表我們能知道有多少使用者造訪過我們的網站，但我們永遠都不會知道你是誰。Simple Analytics 完全符合 GDPR 規範且尊重你的隱私。"
+    }
+  },
+  "testimonials": {
+    "title": "看看我們的",
+    "users": "使用者",
+    "say": "怎麼說"
+  },
+  "support": {
+    "title": "喜歡我的作品嗎？",
+    "description": "BentoPDF 是一個出於熱情開發的專案，旨在為每個人提供一個免費、注重隱私且強大的 PDF 工具組。如果有幫上你的忙，請考慮支持它的開發。每杯咖啡都意義重大！",
+    "buyMeCoffee": "買杯咖啡給我"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF。版權所有。",
+    "version": "版本",
+    "company": "公司",
+    "aboutUs": "關於我們",
+    "faqLink": "常見問題",
+    "contactUs": "聯絡我們",
+    "legal": "法律",
+    "termsAndConditions": "服務條款",
+    "privacyPolicy": "隱私政策",
+    "followUs": "關注我們"
+  },
+  "merge": {
+    "title": "合併 PDF",
+    "description": "合併整個檔案，或選擇特定頁面合併為新文件。",
+    "fileMode": "檔案模式",
+    "pageMode": "頁面模式",
+    "howItWorks": "使用說明：",
+    "fileModeInstructions": [
+      "點擊並抓取圖標來改變檔案順序。",
+      "在每個文件的「頁碼」框中，你可以僅指定想要合併的頁面範圍（例如「1-3, 5」）。",
+      "將「頁碼」框留空以包含該檔案的所有頁面。"
+    ],
+    "pageModeInstructions": [
+      "下列是你上傳的 PDF 中的所有頁面。",
+      "只要將個別頁面縮圖拖放到指定位置，即可為新檔案建立您想要的精確排序。"
+    ],
+    "mergePdfs": "合併 PDF"
+  },
+  "common": {
+    "page": "頁",
+    "pages": "頁",
+    "of": " / ",
+    "download": "下載",
+    "cancel": "取消",
+    "save": "儲存",
+    "delete": "刪除",
+    "edit": "編輯",
+    "add": "添加",
+    "remove": "移除",
+    "loading": "載入中...",
+    "error": "錯誤",
+    "success": "成功",
+    "file": "檔案",
+    "files": "檔案"
+  },
+  "about": {
+    "hero": {
+      "title": "我們相信 PDF 工具應該",
+      "subtitle": "快速、私密且免費。",
+      "noCompromises": "絕不妥協。"
+    },
+    "mission": {
+      "title": "我們的任務",
+      "description": "在尊重你的隱私且從不要求收費的同時提供最全面的 PDF 工具箱。我們相信核心文件工具應讓任何人隨時隨地不受限的使用。"
+    },
+    "philosophy": {
+      "label": "我們的核心理念",
+      "title": "永遠以隱私為重。",
+      "description": "在數據被商品化的時代，我們採取截然不同的做法。所有 BentoPDF 工具的處理流程皆在你的瀏覽器本地完成。這意味著你的檔案絕不觸及我們的伺服器，我們從未看見你的文件內容，更不會追蹤你的行為。你的文件將始終保持無可置疑的私密性。這不僅是功能，更是我們的立身之本。"
+    },
+    "whyBentopdf": {
+      "title": "為何選擇",
+      "speed": {
+        "title": "生來迅捷",
+        "description": "無需等待與伺服器間的上傳和下載。透過在你的瀏覽器中使用 WebAssembly 等現代網路科技處理檔案，我們得以為所有工具提供無與倫比的速度。"
+      },
+      "free": {
+        "title": "完全免費",
+        "description": "沒有試用期、訂閱、隱藏費用與所謂的「高級」功能。我們相信強大的 PDF 工具應該是一種公共設施，而非以營利為重。"
+      },
+      "noAccount": {
+        "title": "無須帳號",
+        "description": "立即開始使用任何工具。我們不需要你的電子郵件、密碼或任何個人資訊。你的工作流程應當匿名且不受阻礙。"
+      },
+      "openSource": {
+        "title": "開源精神",
+        "description": "將透明性視為核心打造。我們使用了如 PDF-lib 和 PDF.js 等優秀的開源庫，並且相信社群驅動力能讓強大的工具惠及每一個人。"
+      }
+    },
+    "cta": {
+      "title": "準備好開始了嗎？",
+      "description": "加入成千上萬信任 BentoPDF 能勝任他們日常文件需求的使用者們。體驗隱私與性能所帶來的差距。",
+      "button": "探索所有工具"
+    }
+  },
+  "contact": {
+    "title": "保持聯絡",
+    "subtitle": "我們很樂意收到你的訊息。無論你想提出的是問題、回饋或功能請求，都請隨時聯繫我們。",
+    "email": "你可以直接透過電子郵件聯繫我們："
+  },
+  "licensing": {
+    "title": "授權使用",
+    "subtitle": "選擇適合需求的產品授權。"
+  },
+  "multiTool": {
+    "uploadPdfs": "上傳 PDF",
+    "upload": "上傳",
+    "addBlankPage": "添加空白頁面",
+    "edit": "編輯：",
+    "undo": "復原",
+    "redo": "取消復原",
+    "reset": "重設",
+    "selection": "選取：",
+    "selectAll": "選取全部",
+    "deselectAll": "取消選取全部",
+    "rotate": "旋轉：",
+    "rotateLeft": "左",
+    "rotateRight": "右",
+    "transform": "變換：",
+    "duplicate": "複製",
+    "split": "分割",
+    "clear": "清除：",
+    "delete": "刪除",
+    "download": "下載：",
+    "downloadSelected": "下載選取的項目",
+    "exportPdf": "匯出 PDF",
+    "uploadPdfFiles": "選擇 PDF 檔案",
+    "dragAndDrop": "拖放 PDF 檔案至此處，或是點擊以選取",
+    "selectFiles": "選擇檔案",
+    "renderingPages": "渲染頁面...",
+    "actions": {
+      "duplicatePage": "複製此頁",
+      "deletePage": "刪除此頁",
+      "insertPdf": "在此頁後插入 PDF",
+      "toggleSplit": "在此頁後切換分割"
+    },
+    "pleaseWait": "請稍後",
+    "pagesRendering": "正在渲染頁面。請稍後...",
+    "noPagesSelected": "未選擇頁面",
+    "selectOnePage": "請至少選擇一頁以開始下載。",
+    "noPages": "無頁面",
+    "noPagesToExport": "無可匯出的頁面。",
+    "renderingTitle": "正在渲染頁面預覽",
+    "errorRendering": "無法渲染頁面縮圖",
+    "error": "錯誤",
+    "failedToLoad": "載入失敗"
+  }
+}

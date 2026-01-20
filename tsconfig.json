@@ -26,16 +26,8 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable",
-      "WebWorker"
-    ],
-    "types": [
-      "vite/client",
-      "vitest/globals"
-    ], // Added vitest/globals
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
+    "types": ["vite/client", "vitest/globals"], // Added vitest/globals
     /* Easier module handling for Vite */
     "moduleResolution": "bundler",
     "allowJs": true,
@@ -59,21 +51,10 @@
     /* Path aliases (optional but helpful) */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@/types": [
-        "./src/js/types/index.ts"
-      ]
+      "@/*": ["./src/*"],
+      "@/types": ["./src/js/types/index.ts"]
     }
   },
-  "include": [
-    "src",
-    "src/**/*.ts",
-    "public/workers"
-  ], // Updated to include all TS files
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "include": ["src", "src/**/*.ts", "public/workers", "vite.config.ts"], // Updated to include all TS files
+  "exclude": ["node_modules", "dist"]
 }

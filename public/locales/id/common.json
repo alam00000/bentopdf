@@ -1,0 +1,323 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "licensing": "Lisensi",
+    "allTools": "Semua Alat",
+    "openMainMenu": "Buka menu utama",
+    "language": "Bahasa"
+  },
+  "donation": {
+    "message": "Suka BentoPDF? Bantu kami menjaganya tetap gratis dan sumber terbuka!",
+    "button": "Donasi"
+  },
+  "hero": {
+    "title": " ",
+    "pdfToolkit": "Toolkit PDF",
+    "builtForPrivacy": "yang dibuat untuk privasi",
+    "noSignups": "Tidak Ada Pendaftaran",
+    "unlimitedUse": "Penggunaan Tak Terbatas",
+    "worksOffline": "Bekerja Offline ",
+    "startUsing": "Mulai Menggunakan Sekarang"
+  },
+  "usedBy": {
+    "title": "Digunakan oleh perusahaan dan orang yang bekerja di"
+  },
+  "features": {
+    "title": "Mengapa memilih",
+    "bentoPdf": "BentoPDF?",
+    "noSignup": {
+      "title": "Tidak Ada Pendaftaran",
+      "description": "Mulai seketika, tanpa akun atau email."
+    },
+    "noUploads": {
+      "title": "Tidak Ada Unggahan",
+      "description": "100% di sisi klien, file Anda tidak pernah meninggalkan perangkat Anda."
+    },
+    "foreverFree": {
+      "title": "Gratis Selamanya",
+      "description": "Semua alat, tidak ada uji coba, tidak ada biaya berlangganan."
+    },
+    "noLimits": {
+      "title": "Tanpa Batas",
+      "description": "Gunakan sebanyak yang Anda inginkan, tanpa batas tersembunyi."
+    },
+    "batchProcessing": {
+      "title": "Pemrosesan Kelompok",
+      "description": "Tangani PDF tak terbatas dalam satu kali jalan."
+    },
+    "lightningFast": {
+      "title": "Sangat Cepat",
+      "description": "Proses PDF secara instan, tanpa menunggu atau penundaan."
+    }
+  },
+  "tools": {
+    "title": "Mulai dengan",
+    "toolsLabel": "Alat",
+    "subtitle": "Klik alat untuk membuka pengunggah file",
+    "searchPlaceholder": "Cari alat (contoh, 'pisah', 'organisir'...)",
+    "backToTools": "Kembali ke Alat",
+    "firstLoadNotice": "Pemuatan pertama memerlukan waktu sebentar karena kami mengunduh mesin konversi kami. Setelah itu, semua pemuatan akan instan."
+  },
+  "upload": {
+    "clickToSelect": "Klik untuk memilih file",
+    "orDragAndDrop": "atau seret dan jatuhkan",
+    "pdfOrImages": "PDF atau Gambar",
+    "filesNeverLeave": "File Anda tidak pernah meninggalkan perangkat Anda.",
+    "addMore": "Tambah Lebih Banyak File",
+    "clearAll": "Hapus Semua"
+  },
+  "loader": {
+    "processing": "Memproses..."
+  },
+  "alert": {
+    "title": "Peringatan",
+    "ok": "OK"
+  },
+  "preview": {
+    "title": "Pratinjau Dokumen",
+    "downloadAsPdf": "Unduh sebagai PDF",
+    "close": "Tutup"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "shortcuts": "Pintasan",
+    "preferences": "Preferensi",
+    "displayPreferences": "Preferensi Tampilan",
+    "searchShortcuts": "Cari pintasan...",
+    "shortcutsInfo": "Tekan dan tahan tombol untuk mengatur pintasan. Perubahan disimpan otomatis.",
+    "shortcutsWarning": "⚠️ Hindari pintasan browser umum (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N dll.) karena mungkin tidak bekerja dengan baik.",
+    "import": "Impor",
+    "export": "Ekspor",
+    "resetToDefaults": "Atur Ulang ke Default",
+    "fullWidthMode": "Mode Lebar Penuh",
+    "fullWidthDescription": "Gunakan lebar layar penuh untuk semua alat, bukan wadah yang dipusatkan",
+    "settingsAutoSaved": "Pengaturan disimpan secara otomatis",
+    "clickToSet": "Klik untuk mengatur",
+    "pressKeys": "Tekan tombol...",
+    "warnings": {
+      "alreadyInUse": "Pintasan Sudah Digunakan",
+      "assignedTo": "sudah ditugaskan ke:",
+      "chooseDifferent": "Silakan pilih pintasan yang berbeda.",
+      "reserved": "Peringatan Pintasan Cadangan",
+      "commonlyUsed": "biasanya digunakan untuk:",
+      "unreliable": "Pintasan ini mungkin tidak berfungsi dengan andal atau mungkin bertentangan dengan perilaku browser/sistem.",
+      "useAnyway": "Apakah Anda ingin menggunakannya saja?",
+      "resetTitle": "Atur Ulang Pintasan",
+      "resetMessage": "Apakah Anda yakin ingin mengatur ulang semua pintasan ke default?<br><br>Tindakan ini tidak dapat dibatalkan.",
+      "importSuccessTitle": "Impor Berhasil",
+      "importSuccessMessage": "Pintasan berhasil diimpor!",
+      "importFailTitle": "Impor Gagal",
+      "importFailMessage": "Gagal mengimpor pintasan. Format file tidak valid."
+    }
+  },
+  "warning": {
+    "title": "Peringatan",
+    "cancel": "Batal",
+    "proceed": "Lanjutkan"
+  },
+  "compliance": {
+    "title": "Data Anda tidak pernah meninggalkan perangkat Anda",
+    "weKeep": "Kami menjaga",
+    "yourInfoSafe": "informasi Anda aman",
+    "byFollowingStandards": "dengan mengikuti standar keamanan global.",
+    "processingLocal": "Semua pemrosesan terjadi secara lokal di perangkat Anda.",
+    "gdpr": {
+      "title": "Kepatuhan GDPR",
+      "description": "Melindungi data pribadi dan privasi individu dalam Uni Eropa."
+    },
+    "ccpa": {
+      "title": "Kepatuhan CCPA",
+      "description": "Memberikan hak kepada penduduk California atas bagaimana informasi pribadi mereka dikumpulkan, digunakan, dan dibagikan."
+    },
+    "hipaa": {
+      "title": "Kepatuhan HIPAA",
+      "description": "Menetapkan perlindungan untuk menangani informasi kesehatan sensitif dalam sistem perawatan kesehatan Amerika Serikat."
+    }
+  },
+  "faq": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "questions": "Pertanyaan",
+    "isFree": {
+      "question": "Apakah BentoPDF benar-benar gratis?",
+      "answer": "Ya, tentu saja. Semua alat di BentoPDF 100% gratis digunakan, tanpa batas file, tanpa pendaftaran, dan tanpa watermark. Kami percaya semua orang berhak mendapatkan akses ke alat PDF sederhana dan kuat tanpa paywall."
+    },
+    "areFilesSecure": {
+      "question": "Apakah file saya aman? Di mana file diproses?",
+      "answer": "File Anda sangat aman karena tidak pernah meninggalkan komputer Anda. Semua pemrosesan terjadi langsung di browser web Anda (sisi klien). Kami tidak pernah mengunggah file Anda ke server, sehingga Anda mempertahankan privasi dan kontrol lengkap atas dokumen Anda."
+    },
+    "platforms": {
+      "question": "Apakah ini bekerja di Mac, Windows, dan Mobile?",
+      "answer": "Ya! Karena BentoPDF berjalan sepenuhnya di browser Anda, ini bekerja di sistem operasi apa pun dengan browser web modern, termasuk Windows, macOS, Linux, iOS, dan Android."
+    },
+    "gdprCompliant": {
+      "question": "Apakah BentoPDF patuh GDPR?",
+      "answer": "Ya. BentoPDF sepenuhnya patuh GDPR. Karena semua pemrosesan file terjadi secara lokal di browser Anda dan kami tidak pernah mengumpulkan atau mentransmisikan file Anda ke server mana pun, kami tidak memiliki akses ke data Anda. Ini memastikan Anda selalu mengontrol dokumen Anda."
+    },
+    "dataStorage": {
+      "question": "Apakah Anda menyimpan atau melacak file saya?",
+      "answer": "Tidak. Kami tidak pernah menyimpan, melacak, atau mencatat file Anda. Semua yang Anda lakukan di BentoPDF terjadi di memori browser Anda dan hilang setelah Anda menutup halaman. Tidak ada unggahan, tidak ada log riwayat, dan tidak ada server yang terlibat."
+    },
+    "different": {
+      "question": "Apa yang membuat BentoPDF berbeda dari alat PDF lainnya?",
+      "answer": "Kebanyakan alat PDF mengunggah file Anda ke server untuk diproses. BentoPDF nggak pernah begitu. Kami pakai teknologi web modern dan aman buat memproses file Anda langsung di browser Anda. Ini berarti performa lebih cepat, privasi lebih kuat, dan ketenangan pikiran."
+    },
+    "browserBased": {
+      "question": "Bagaimana pemrosesan berbasis browser menjaga keamanan saya?",
+      "answer": "Dengan berjalan sepenuhnya di dalam browser Anda, BentoPDF memastikan file Anda tidak pernah meninggalkan perangkat Anda. Ini menghilangkan risiko peretasan server, pelanggaran data, atau akses tidak sah. File Anda tetap milik Anda—selalu."
+    },
+    "analytics": {
+      "question": "Apakah Anda menggunakan cookie atau analitik untuk melacak saya?",
+      "answer": "Kami peduli dengan privasi Anda. BentoPDF tidak melacak informasi pribadi. Kami menggunakan Simple Analytics hanya untuk melihat jumlah kunjungan anonim. Ini berarti kami dapat mengetahui berapa banyak pengguna yang mengunjungi situs kami, tetapi kami tidak pernah tahu siapa Anda. Simple Analytics sepenuhnya patuh GDPR dan menghormati privasi Anda."
+    }
+  },
+  "testimonials": {
+    "title": "Apa Kata",
+    "users": "Pengguna",
+    "say": "Kami"
+  },
+  "support": {
+    "title": "Suka Karya Saya?",
+    "description": "BentoPDF adalah proyek yang dibuat dengan sepenuh hati, untuk menyediakan toolkit PDF gratis, pribadi, dan kuat untuk semua orang. Kalau kamu merasa ini berguna, pertimbangkan untuk mendukung pengembangannya. Setiap secangkir kopi membantu!",
+    "buyMeCoffee": "Beli Kopi untuk Saya"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. Hak cipta dilindungi.",
+    "version": "Versi",
+    "company": "Perusahaan",
+    "aboutUs": "Tentang Kami",
+    "faqLink": "FAQ",
+    "contactUs": "Hubungi Kami",
+    "legal": "Hukum",
+    "termsAndConditions": "Syarat dan Ketentuan",
+    "privacyPolicy": "Kebijakan Privasi",
+    "followUs": "Ikuti Kami"
+  },
+  "merge": {
+    "title": "Gabung PDF",
+    "description": "Gabungkan file utuh, atau pilih halaman tertentu untuk digabungkan ke dalam dokumen baru.",
+    "fileMode": "Mode File",
+    "pageMode": "Mode Halaman",
+    "howItWorks": "Cara kerjanya:",
+    "fileModeInstructions": [
+      "Klik dan seret ikon untuk mengubah urutan file.",
+      "Di kotak \"Halaman\" untuk setiap file, Anda dapat menentukan rentang (misalnya, \"1-3, 5\") untuk menggabungkan hanya halaman tersebut.",
+      "Biarkan kotak \"Halaman\" kosong untuk menyertakan semua halaman dari file tersebut."
+    ],
+    "pageModeInstructions": [
+      "Semua halaman dari PDF yang Anda unggah ditampilkan di bawah.",
+      "Cukup seret dan jatuhkan thumbnail halaman satu per satu untuk membuat urutan yang tepat sesuai keinginan kamu untuk file baru."
+    ],
+    "mergePdfs": "Gabung PDF"
+  },
+  "common": {
+    "page": "Halaman",
+    "pages": "Halaman",
+    "of": "dari",
+    "download": "Unduh",
+    "cancel": "Batal",
+    "save": "Simpan",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "add": "Tambah",
+    "remove": "Hapus",
+    "loading": "Memuat...",
+    "error": "Kesalahan",
+    "success": "Berhasil",
+    "file": "File",
+    "files": "File"
+  },
+  "about": {
+    "hero": {
+      "title": "Kami percaya alat PDF harus",
+      "subtitle": "cepat, pribadi, dan gratis.",
+      "noCompromises": "Tidak ada kompromi."
+    },
+    "mission": {
+      "title": "Misi Kami",
+      "description": "Untuk menyediakan toolbox PDF paling komprehensif yang menghormati privasi Anda dan tidak pernah meminta pembayaran. Kami percaya alat dokumen penting harus dapat diakses oleh semua orang, di mana saja, tanpa hambatan."
+    },
+    "philosophy": {
+      "label": "Filosofi Inti Kami",
+      "title": "Privasi Yang Utama. Selalu.",
+      "description": "Di era di mana data adalah komoditas, kami mengambil pendekatan berbeda. Semua pemrosesan untuk alat Bentopdf terjadi secara lokal di browser Anda. Ini berarti file Anda tidak pernah menyentuh server kami, kami tidak pernah melihat dokumen Anda, dan kami tidak melacak apa yang Anda lakukan. Dokumen Anda tetap utuh dan privat secara tegas. Ini bukan hanya fitur; ini adalah fondasi kami."
+    },
+    "whyBentopdf": {
+      "title": "Mengapa",
+      "speed": {
+        "title": "Dibuat untuk Kecepatan",
+        "description": "Tidak ada menunggu unggahan atau unduhan ke server. Dengan memproses file langsung di browser Anda menggunakan teknologi web modern seperti WebAssembly, kami menawarkan kecepatan yang tak tertandingi untuk semua alat kami."
+      },
+      "free": {
+        "title": "Sepenuhnya Gratis",
+        "description": "Tidak ada uji coba, tidak ada langganan, tidak ada biaya tersembunyi, dan tidak ada fitur \"premium\" yang ditahan sebagai sandera. Kami percaya alat PDF yang kuat harus menjadi utilitas publik, bukan pusat keuntungan."
+      },
+      "noAccount": {
+        "title": "Tidak Perlu Akun",
+        "description": "Langsung mulai pakai alat apa saja. Kami tidak perlu email Anda, kata sandi, atau informasi pribadi apa pun. Alur kerja Anda harus lancar dan anonim."
+      },
+      "openSource": {
+        "title": "Semangat Sumber Terbuka",
+        "description": "Dibangun dengan transparansi sebagai prioritas. Kami manfaatkan pustaka open-source yang luar biasa seperti PDF-lib dan PDF.js, dan percaya pada upaya yang didorong komunitas untuk membuat alat-alat kuat bisa diakses semua orang."
+      }
+    },
+    "cta": {
+      "title": "Siap untuk memulai?",
+      "description": "Bergabunglah dengan ribuan pengguna yang percaya Bentopdf untuk kebutuhan dokumen harian mereka. Rasakan bedanya privasi dan performa yang ditawarkan.",
+      "button": "Jelajahi Semua Alat"
+    }
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Kami senang mendengar dari Anda. Apakah Anda memiliki pertanyaan, umpan balik, atau permintaan fitur, jangan ragu untuk menghubungi kami.",
+    "email": "Anda dapat menghubungi kami secara langsung melalui email di:"
+  },
+  "licensing": {
+    "title": "Lisensi untuk",
+    "subtitle": "Pilih lisensi yang sesuai dengan kebutuhan Anda."
+  },
+  "multiTool": {
+    "uploadPdfs": "Unggah PDF",
+    "upload": "Unggah",
+    "addBlankPage": "Tambah Halaman Kosong",
+    "edit": "Edit:",
+    "undo": "Undo",
+    "redo": "Redo",
+    "reset": "Atur Ulang",
+    "selection": "Pilihan:",
+    "selectAll": "Pilih Semua",
+    "deselectAll": "Batalkan Pilih Semua",
+    "rotate": "Putar:",
+    "rotateLeft": "Kiri",
+    "rotateRight": "Kanan",
+    "transform": "Transform:",
+    "duplicate": "Duplikat",
+    "split": "Pisah",
+    "clear": "Hapus:",
+    "delete": "Hapus",
+    "download": "Unduh:",
+    "downloadSelected": "Unduh yang Dipilih",
+    "exportPdf": "Ekspor PDF",
+    "uploadPdfFiles": "Pilih File PDF",
+    "dragAndDrop": "Seret dan jatuhkan file PDF di sini, atau klik untuk memilih",
+    "selectFiles": "Pilih File",
+    "renderingPages": "Merender halaman...",
+    "actions": {
+      "duplicatePage": "Duplikat halaman ini",
+      "deletePage": "Hapus halaman ini",
+      "insertPdf": "Sisipkan PDF setelah halaman ini",
+      "toggleSplit": "Alihkan pisah setelah halaman ini"
+    },
+    "pleaseWait": "Harap Tunggu",
+    "pagesRendering": "Halaman masih dirender. Harap tunggu...",
+    "noPagesSelected": "Tidak Ada Halaman yang Dipilih",
+    "selectOnePage": "Silakan pilih setidaknya satu halaman untuk diunduh.",
+    "noPages": "Tidak Ada Halaman",
+    "noPagesToExport": "Tidak ada halaman untuk diekspor.",
+    "renderingTitle": "Merender pratinjau halaman",
+    "errorRendering": "Gagal merender thumbnail halaman",
+    "error": "Kesalahan",
+    "failedToLoad": "Gagal memuat"
+  }
+}

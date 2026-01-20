@@ -28,28 +28,6 @@ const init = async () => {
   ).toString();
   if (__SIMPLE_MODE__) {
     const hideBrandingSections = () => {
-      const nav = document.querySelector('nav');
-      if (nav) {
-        nav.style.display = 'none';
-
-        const simpleNav = document.createElement('nav');
-        simpleNav.className =
-          'bg-gray-800 border-b border-gray-700 sticky top-0 z-30';
-        simpleNav.innerHTML = `
-          <div class="container mx-auto px-4">
-            <div class="flex justify-start items-center h-16">
-              <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8">
-                <span class="text-white font-bold text-xl ml-2">
-                  <a href="index.html">BentoPDF</a>
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-        document.body.insertBefore(simpleNav, document.body.firstChild);
-      }
-
       const heroSection = document.getElementById('hero-section');
       if (heroSection) {
         heroSection.style.display = 'none';
@@ -97,48 +75,6 @@ const init = async () => {
       ) as HTMLElement;
       if (usedBySection) {
         usedBySection.style.display = 'none';
-      }
-
-      const footer = document.querySelector('footer');
-      if (footer && !document.querySelector('[data-simple-footer]')) {
-        footer.style.display = 'none';
-
-        const simpleFooter = document.createElement('footer');
-        simpleFooter.className = 'mt-16 border-t-2 border-gray-700 py-8';
-        simpleFooter.setAttribute('data-simple-footer', 'true');
-        simpleFooter.innerHTML = `
-          <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between flex-wrap gap-4">
-              <div>
-                <div class="flex items-center mb-2">
-                  <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8 mr-2">
-                  <span class="text-white font-bold text-lg">BentoPDF</span>
-                </div>
-                <p class="text-gray-400 text-sm">
-                  &copy; 2026 BentoPDF. All rights reserved.
-                </p>
-                <p class="text-gray-500 text-xs mt-2">
-                  Version <span id="app-version-simple">${APP_VERSION}</span>
-                </p>
-              </div>
-              <div id="simple-mode-lang-switcher" class="flex-shrink-0"></div>
-            </div>
-          </div>
-        `;
-        document.body.appendChild(simpleFooter);
-
-        const langContainer = simpleFooter.querySelector(
-          '#simple-mode-lang-switcher'
-        );
-        if (langContainer) {
-          const switcher = createLanguageSwitcher();
-          const dropdown = switcher.querySelector('div[role="menu"]');
-          if (dropdown) {
-            dropdown.classList.remove('mt-2');
-            dropdown.classList.add('bottom-full', 'mb-2');
-          }
-          langContainer.appendChild(switcher);
-        }
       }
 
       const sectionDividers = document.querySelectorAll('.section-divider');
@@ -270,6 +206,11 @@ const init = async () => {
     'Flatten PDF': 'tools:flattenPdf',
     'Remove Metadata': 'tools:removeMetadata',
     'Change Permissions': 'tools:changePermissions',
+    'Email to PDF': 'tools:emailToPdf',
+    'Font to Outline': 'tools:fontToOutline',
+    'Deskew PDF': 'tools:deskewPdf',
+    'Digital Signature': 'tools:digitalSignPdf',
+    'Validate Signature': 'tools:validateSignaturePdf',
   };
 
   // Homepage-only tool grid rendering (not used on individual tool pages)

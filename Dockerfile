@@ -8,7 +8,11 @@ WORKDIR /app
 COPY package*.json ./
 COPY vendor ./vendor
 ENV HUSKY=0
-RUN npm ci
+RUN npm config set fetch-retries 5 && \
+    npm config set fetch-retry-mintimeout 60000 && \
+    npm config set fetch-retry-maxtimeout 300000 && \
+    npm config set fetch-timeout 600000 && \
+    npm ci
 COPY . .
 
 # Build without type checking (vite build only)
