@@ -1,13 +1,8 @@
+import { AlternateMergeState } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes, getPDFDocument } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import Sortable from 'sortablejs';
-
-interface AlternateMergeState {
-    files: File[];
-    pdfBytes: Map<string, ArrayBuffer>;
-    pdfDocs: Map<string, any>;
-}
 
 const pageState: AlternateMergeState = {
     files: [],

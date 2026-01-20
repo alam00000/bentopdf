@@ -2,12 +2,9 @@ import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes, hexToRgb } from '../utils/helpers.js';
 import { PDFDocument as PDFLibDocument, rgb, PageSizes } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
+import { FixPageSizeState } from '@/types';
 
-interface PageState {
-    file: File | null;
-}
-
-const pageState: PageState = {
+const pageState: FixPageSizeState = {
     file: null,
 };
 

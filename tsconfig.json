@@ -6,14 +6,12 @@
 //     "lib": ["ES2022", "DOM", "DOM.Iterable"],
 //     "types": ["vite/client"],
 //     "skipLibCheck": true,
-
 //     /* Bundler mode */
 //     "moduleResolution": "bundler",
 //     "allowImportingTsExtensions": true,
 //     "verbatimModuleSyntax": true,
 //     "moduleDetection": "force",
 //     "noEmit": true,
-
 //     /* Linting */
 //     "strict": true,
 //     "noUnusedLocals": true,
@@ -24,14 +22,12 @@
 //   },
 //   "include": ["src"]
 // }
-
 {
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
     "types": ["vite/client", "vitest/globals"], // Added vitest/globals
-
     /* Easier module handling for Vite */
     "moduleResolution": "bundler",
     "allowJs": true,
@@ -39,29 +35,26 @@
     "skipLibCheck": true,
     "noEmit": true,
     "allowImportingTsExtensions": true,
-
     /* Disable strict checks for now */
     "strict": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false,
     "noUncheckedSideEffectImports": false,
-
     /* Fix for ArrayBuffer type issues */
     "noImplicitAny": false,
-
     /* Quality-of-life options */
     "isolatedModules": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-
     /* Path aliases (optional but helpful) */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/types": ["./src/js/types/index.ts"]
     }
   },
-  "include": ["src", "src/**/*.ts", "public/workers"], // Updated to include all TS files
+  "include": ["src", "src/**/*.ts", "public/workers", "vite.config.ts"], // Updated to include all TS files
   "exclude": ["node_modules", "dist"]
 }

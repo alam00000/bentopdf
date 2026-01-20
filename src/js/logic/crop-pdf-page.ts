@@ -4,17 +4,9 @@ import { downloadFile, readFileAsArrayBuffer, formatBytes, getPDFDocument } from
 import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { CropperState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-
-interface CropperState {
-    pdfDoc: any;
-    currentPageNum: number;
-    cropper: any;
-    originalPdfBytes: ArrayBuffer | null;
-    pageCrops: Record<number, any>;
-    file: File | null;
-}
 
 const cropperState: CropperState = {
     pdfDoc: null,

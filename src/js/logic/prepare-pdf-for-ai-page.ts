@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            showLoader('Loading PyMuPDF...');
+            showLoader('Loading engine...');
             await pymupdf.load();
 
             const total = state.files.length;

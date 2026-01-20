@@ -6,19 +6,8 @@ import {
     parsePfxFile,
     parseCombinedPem,
     getCertificateInfo,
-    type CertificateData,
-    type SignatureInfo,
-    type VisibleSignatureOptions,
 } from './digital-sign-pdf.js';
-
-interface DigitalSignState {
-    pdfFile: File | null;
-    pdfBytes: Uint8Array | null;
-    certFile: File | null;
-    certData: CertificateData | null;
-    sigImageData: ArrayBuffer | null;
-    sigImageType: 'png' | 'jpeg' | 'webp' | null;
-}
+import { SignatureInfo, VisibleSignatureOptions, DigitalSignState } from '@/types';
 
 const state: DigitalSignState = {
     pdfFile: null,
@@ -596,15 +585,28 @@ async function processSignature(): Promise<void> {
         const sigX = parseInt(getElement<HTMLInputElement>('sig-x')?.value ?? '25', 10);
         const sigY = parseInt(getElement<HTMLInputElement>('sig-y')?.value ?? '700', 10);
         const sigWidth = parseInt(getElement<HTMLInputElement>('sig-width')?.value ?? '150', 10);
-        const sigHeight = parseInt(getElement<HTMLInputElement>('sig-height')?.value ?? '50', 10);
+        const sigHeight = parseInt(getElement<HTMLInputElement>('sig-height')?.value ?? '70', 10);
 
         const sigPageSelect = getElement<HTMLSelectElement>('sig-page');
         let sigPage: number | string = 0;
+        let numPages = 1;
+
+        try {
+            const pdfDoc = await getPDFDocument({ data: state.pdfBytes.slice() }).promise;
+            numPages = pdfDoc.numPages;
+        } catch (error) {
+            console.error('Error getting PDF page count:', error);
+        }
+
         if (sigPageSelect) {
             if (sigPageSelect.value === 'last') {
-                sigPage = 'last';
+                sigPage = (numPages - 1).toString();
             } else if (sigPageSelect.value === 'all') {
-                sigPage = 'all';
+                if (numPages === 1) {
+                    sigPage = '0';
+                } else {
+                    sigPage = `0-${numPages - 1}`;
+                }
             } else if (sigPageSelect.value === 'custom') {
                 sigPage = parseInt(getElement<HTMLInputElement>('sig-custom-page')?.value ?? '1', 10) - 1;
             } else {
@@ -623,12 +625,21 @@ async function processSignature(): Promise<void> {
             sigText = `Digitally signed by ${certInfo.subject}\n${date}`;
         }
 
+        let finalHeight = sigHeight;
+        if (sigText && !state.sigImageData) {
+            const lineCount = (sigText.match(/\n/g) || []).length + 1;
+            const lineHeightFactor = 1.4;
+            const padding = 16;
+            const calculatedHeight = Math.ceil(lineCount * sigTextSize * lineHeightFactor + padding);
+            finalHeight = Math.max(calculatedHeight, sigHeight);
+        }
+
         visibleSignature = {
             enabled: true,
             x: sigX,
             y: sigY,
             width: sigWidth,
-            height: sigHeight,
+            height: finalHeight,
             page: sigPage,
             imageData: state.sigImageData ?? undefined,
             imageType: state.sigImageType ?? undefined,
@@ -658,7 +669,16 @@ async function processSignature(): Promise<void> {
         hideLoader();
         console.error('Signing error:', error);
         const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-        showAlert('Signing Failed', `Failed to sign PDF: ${errorMessage}`);
+
+        // Check if this is a CORS/network error from certificate chain fetching
+        if (errorMessage.includes('Failed to fetch') || errorMessage.includes('CORS') || errorMessage.includes('NetworkError')) {
+            showAlert(
+                'Signing Failed',
+                'Failed to fetch certificate chain. This may be due to network issues or the certificate proxy being unavailable. Please check your internet connection and try again. If the issue persists, contact support.'
+            );
+        } else {
+            showAlert('Signing Failed', `Failed to sign PDF: ${errorMessage}`);
+        }
     }
 }
 

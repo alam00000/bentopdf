@@ -1,511 +1,530 @@
 {
-    "categories": {
-        "popularTools": "热门工具",
-        "editAnnotate": "编辑与注释",
-        "convertToPdf": "转换为 PDF",
-        "convertFromPdf": "从 PDF 转换",
-        "organizeManage": "组织与管理",
-        "optimizeRepair": "优化与修复",
-        "securePdf": "安全 PDF"
-    },
-    "pdfMultiTool": {
-        "name": "PDF 多功能工具",
-        "subtitle": "在一个统一的界面中合并、分割、组织、删除、旋转、添加空白页、提取和复制。"
-    },
-    "mergePdf": {
-        "name": "合并 PDF",
-        "subtitle": "将多个 PDF 合并为一个文件。保留书签。"
-    },
-    "splitPdf": {
-        "name": "分割 PDF",
-        "subtitle": "将指定范围的页面提取到新 PDF 中。"
-    },
-    "compressPdf": {
-        "name": "压缩 PDF",
-        "subtitle": "减小您的 PDF 文件大小。",
-        "algorithmLabel": "压缩算法",
-        "condense": "Condense（推荐）",
-        "photon": "Photon（适用于图片较多的 PDF）",
-        "condenseInfo": "Condense 使用高级压缩：移除冗余数据、优化图片、精简字体。适用于大多数 PDF。",
-        "photonInfo": "Photon 将页面转换为图片。适用于图片较多/扫描的 PDF。",
-        "photonWarning": "警告：文本将无法选择，链接将失效。",
-        "levelLabel": "压缩级别",
-        "light": "轻度（保持质量）",
-        "balanced": "平衡（推荐）",
-        "aggressive": "积极（更小文件）",
-        "extreme": "极限（最大压缩）",
-        "grayscale": "转换为灰度",
-        "grayscaleHint": "通过移除颜色信息来减小文件大小",
-        "customSettings": "自定义设置",
-        "customSettingsHint": "微调压缩参数：",
-        "outputQuality": "输出质量",
-        "resizeImagesTo": "调整图片至",
-        "onlyProcessAbove": "仅处理高于",
-        "removeMetadata": "移除元数据",
-        "subsetFonts": "精简字体（移除未使用的字符）",
-        "removeThumbnails": "移除嵌入的缩略图",
-        "compressButton": "压缩 PDF"
-    },
-    "pdfEditor": {
-        "name": "PDF 编辑器",
-        "subtitle": "注释、高亮、涂黑、评论、添加形状/图片、搜索和查看 PDF。"
-    },
-    "jpgToPdf": {
-        "name": "JPG 转 PDF",
-        "subtitle": "从 JPG、JPEG 和 JPEG2000 (JP2/JPX) 图片创建 PDF。"
-    },
-    "signPdf": {
-        "name": "签署 PDF",
-        "subtitle": "绘制、键入或上传您的签名。"
-    },
-    "cropPdf": {
-        "name": "裁剪 PDF",
-        "subtitle": "修剪 PDF 中每一页的边距。"
-    },
-    "extractPages": {
-        "name": "提取页面",
-        "subtitle": "将选定的页面保存为新文件。"
-    },
-    "duplicateOrganize": {
-        "name": "复制与组织",
-        "subtitle": "复制、重新排序和删除页面。"
-    },
-    "deletePages": {
-        "name": "删除页面",
-        "subtitle": "自您的文档中移除特定页面。"
-    },
-    "editBookmarks": {
-        "name": "编辑书签",
-        "subtitle": "添加、编辑、导入、删除和提取 PDF 书签。"
-    },
-    "tableOfContents": {
-        "name": "目录",
-        "subtitle": "根据 PDF 书签生成目录页。"
-    },
-    "pageNumbers": {
-        "name": "页码",
-        "subtitle": "将页码插入到您的文档中。"
-    },
-    "addWatermark": {
-        "name": "添加水印",
-        "subtitle": "在您的 PDF 页面上添加文字或图片水印。"
-    },
-    "headerFooter": {
-        "name": "页眉和页脚",
-        "subtitle": "在页面顶部和底部添加文字。"
-    },
-    "invertColors": {
-        "name": "反转颜色",
-        "subtitle": "创建您的 PDF 的“暗黑模式”版本。"
-    },
-    "backgroundColor": {
-        "name": "背景颜色",
-        "subtitle": "更改您的 PDF 的背景颜色。"
-    },
-    "changeTextColor": {
-        "name": "更改文本颜色",
-        "subtitle": "更改您 PDF 中文本的颜色。"
-    },
-    "addStamps": {
-        "name": "添加印章",
-        "subtitle": "使用注释工具栏向您的 PDF 添加图片印章。"
-    },
-    "removeAnnotations": {
-        "name": "移除注释",
-        "subtitle": "移除评论、高亮和链接。"
-    },
-    "pdfFormFiller": {
-        "name": "PDF 表单填写器",
-        "subtitle": "直接在浏览器中填写表单。也支持 XFA 表单。"
-    },
-    "createPdfForm": {
-        "name": "创建 PDF 表单",
-        "subtitle": "使用拖放文本字段创建可填写的 PDF 表单。"
-    },
-    "removeBlankPages": {
-        "name": "移除空白页",
-        "subtitle": "自动检测并删除空白页。"
-    },
-    "imageToPdf": {
-        "name": "图片转 PDF",
-        "subtitle": "将 JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP 转换为 PDF。"
-    },
-    "pngToPdf": {
-        "name": "PNG 转 PDF",
-        "subtitle": "从一张或多张 PNG 图片创建 PDF。"
-    },
-    "webpToPdf": {
-        "name": "WebP 转 PDF",
-        "subtitle": "从一张或多张 WebP 图片创建 PDF。"
-    },
-    "svgToPdf": {
-        "name": "SVG 转 PDF",
-        "subtitle": "从一张或多张 SVG 图片创建 PDF。"
-    },
-    "bmpToPdf": {
-        "name": "BMP 转 PDF",
-        "subtitle": "从一张或多张 BMP 图片创建 PDF。"
-    },
-    "heicToPdf": {
-        "name": "HEIC 转 PDF",
-        "subtitle": "从一张或多张 HEIC 图片创建 PDF。"
-    },
-    "tiffToPdf": {
-        "name": "TIFF 转 PDF",
-        "subtitle": "从一张或多张 TIFF 图片创建 PDF。"
-    },
-    "textToPdf": {
-        "name": "文本转 PDF",
-        "subtitle": "将纯文本文件转换为 PDF。"
-    },
-    "jsonToPdf": {
-        "name": "JSON 转 PDF",
-        "subtitle": "将 JSON 文件转换为 PDF 格式。"
-    },
-    "pdfToJpg": {
-        "name": "PDF 转 JPG",
-        "subtitle": "将每一页 PDF 转换为 JPG 图片。"
-    },
-    "pdfToPng": {
-        "name": "PDF 转 PNG",
-        "subtitle": "将每一页 PDF 转换为 PNG 图片。"
-    },
-    "pdfToWebp": {
-        "name": "PDF 转 WebP",
-        "subtitle": "将每一页 PDF 转换为 WebP 图片。"
-    },
-    "pdfToBmp": {
-        "name": "PDF 转 BMP",
-        "subtitle": "将每一页 PDF 转换为 BMP 图片。"
-    },
-    "pdfToTiff": {
-        "name": "PDF 转 TIFF",
-        "subtitle": "将每一页 PDF 转换为 TIFF 图片。"
-    },
-    "pdfToGreyscale": {
-        "name": "PDF 转 灰度",
-        "subtitle": "将所有颜色转换为黑白。"
-    },
-    "pdfToJson": {
-        "name": "PDF 转 JSON",
-        "subtitle": "将 PDF 文件转换为 JSON 格式。"
-    },
-    "ocrPdf": {
-        "name": "OCR PDF",
-        "subtitle": "使 PDF 可搜索和可复制。"
-    },
-    "alternateMix": {
-        "name": "交替混合页面",
-        "subtitle": "通过交替每个 PDF 的页面来合并 PDF。保留书签。"
-    },
-    "addAttachments": {
-        "name": "添加附件",
-        "subtitle": "将一个或多个文件嵌入到您的 PDF 中。"
-    },
-    "extractAttachments": {
-        "name": "提取附件",
-        "subtitle": "从 PDF 中提取所有嵌入的文件为 ZIP。"
-    },
-    "editAttachments": {
-        "name": "编辑附件",
-        "subtitle": "查看或移除 PDF 中的附件。"
-    },
-    "dividePages": {
-        "name": "分割页面",
-        "subtitle": "水平或垂直分割页面。"
-    },
-    "addBlankPage": {
-        "name": "添加空白页",
-        "subtitle": "在 PDF 的任意位置插入空白页。"
-    },
-    "reversePages": {
-        "name": "反转页面",
-        "subtitle": "反转文档中所有页面的顺序。"
-    },
-    "rotatePdf": {
-        "name": "旋转 PDF",
-        "subtitle": "以 90 度增量旋转页面。"
-    },
-    "rotateCustom": {
-        "name": "按自定义角度旋转",
-        "subtitle": "按任意自定义角度旋转页面。"
-    },
-    "nUpPdf": {
-        "name": "N-Up PDF",
-        "subtitle": "将多页排列在单张纸上。"
-    },
-    "combineToSinglePage": {
-        "name": "合并为单页",
-        "subtitle": "将所有页面拼接成一个连续的滚动页面。"
-    },
-    "viewMetadata": {
-        "name": "查看元数据",
-        "subtitle": "检查 PDF 的隐藏属性。"
-    },
-    "editMetadata": {
-        "name": "编辑元数据",
-        "subtitle": "更改作者、标题和其他属性。"
-    },
-    "pdfsToZip": {
-        "name": "PDF 转 ZIP",
-        "subtitle": "将多个 PDF 文件打包成一个 ZIP 归档。"
-    },
-    "comparePdfs": {
-        "name": "比较 PDF",
-        "subtitle": "并排比较两个 PDF。"
-    },
-    "posterizePdf": {
-        "name": "海报化 PDF",
-        "subtitle": "将大页面分割成多个小页面。"
-    },
-    "fixPageSize": {
-        "name": "修复页面尺寸",
-        "subtitle": "将所有页面标准化为统一尺寸。"
-    },
-    "linearizePdf": {
-        "name": "线性化 PDF",
-        "subtitle": "优化 PDF 以便快速网络查看。"
-    },
-    "pageDimensions": {
-        "name": "页面尺寸",
-        "subtitle": "分析页面大小、方向和单位。"
-    },
-    "removeRestrictions": {
-        "name": "移除限制",
-        "subtitle": "移除与数字签名 PDF 文件相关的密码保护和安全限制。"
-    },
-    "repairPdf": {
-        "name": "修复 PDF",
-        "subtitle": "从损坏的 PDF 文件中恢复数据。"
-    },
-    "encryptPdf": {
-        "name": "加密 PDF",
-        "subtitle": "通过添加密码锁定您的 PDF。"
-    },
-    "sanitizePdf": {
-        "name": "清理 PDF",
-        "subtitle": "移除元数据、注释、脚本等。"
-    },
-    "decryptPdf": {
-        "name": "解密 PDF",
-        "subtitle": "通过移除密码保护解锁 PDF。"
-    },
-    "flattenPdf": {
-        "name": "扁平化 PDF",
-        "subtitle": "使表单字段和注释不可编辑。"
-    },
-    "removeMetadata": {
-        "name": "移除元数据",
-        "subtitle": "从 PDF 中剥离隐藏数据。"
-    },
-    "changePermissions": {
-        "name": "更改权限",
-        "subtitle": "设置或更改 PDF 上的用户权限。"
-    },
-    "odtToPdf": {
-        "name": "ODT 转 PDF",
-        "subtitle": "将 OpenDocument 文本文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "ODT 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "csvToPdf": {
-        "name": "CSV 转 PDF",
-        "subtitle": "将 CSV 电子表格文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "CSV 件",
-        "convertButton": "转换为 PDF"
-    },
-    "rtfToPdf": {
-        "name": "RTF 转 PDF",
-        "subtitle": "将富文本格式文档转换为 PDF。支持多个文件。",
-        "acceptedFormats": "RTF 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "wordToPdf": {
-        "name": "Word 转 PDF",
-        "subtitle": "将 Word 文档 (DOCX, DOC, ODT, RTF) 转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "DOCX, DOC, ODT, RTF 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "excelToPdf": {
-        "name": "Excel 转 PDF",
-        "subtitle": "将 Excel 电子表格 (XLSX, XLS, ODS, CSV) 转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "XLSX, XLS, ODS, CSV 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "powerpointToPdf": {
-        "name": "PowerPoint 转 PDF",
-        "subtitle": "将 PowerPoint 演示文稿 (PPTX, PPT, ODP) 转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "PPTX, PPT, ODP 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "markdownToPdf": {
-        "name": "Markdown 转 PDF",
-        "subtitle": "编写或粘贴 Markdown 并将其导出为精美格式的 PDF。",
-        "paneMarkdown": "Markdown",
-        "panePreview": "预览",
-        "btnUpload": "上传",
-        "btnSyncScroll": "同步滚动",
-        "btnSettings": "设置",
-        "btnExportPdf": "导出 PDF",
-        "settingsTitle": "Markdown 设置",
-        "settingsPreset": "预设",
-        "presetDefault": "默认 (GFM 风格)",
-        "presetCommonmark": "CommonMark (严格)",
-        "presetZero": "最小 (无功能)",
-        "settingsOptions": "Markdown 选项",
-        "optAllowHtml": "允许 HTML 标签",
-        "optBreaks": "将换行转换为 <br>",
-        "optLinkify": "自动将 URL 转换为链接",
-        "optTypographer": "排版器 (智能引号等)"
-    },
-    "pdfBooklet": {
-        "name": "PDF 小册子",
-        "subtitle": "重新排列页面用于双面小册子打印。折叠并装订以创建小册子。",
-        "howItWorks": "工作原理：",
-        "step1": "上传 PDF 文件。",
-        "step2": "页面将按小册子顺序重新排列。",
-        "step3": "双面打印，短边翻转，折叠并装订。",
-        "paperSize": "纸张大小",
-        "orientation": "方向",
-        "portrait": "纵向",
-        "landscape": "横向",
-        "pagesPerSheet": "每张页数",
-        "createBooklet": "创建小册子",
-        "processing": "处理中...",
-        "pageCount": "如需要，页数将补齐为 4 的倍数。"
-    },
-    "xpsToPdf": {
-        "name": "XPS 转 PDF",
-        "subtitle": "将 XPS/OXPS 文档转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "XPS, OXPS 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "mobiToPdf": {
-        "name": "MOBI 转 PDF",
-        "subtitle": "将 MOBI 电子书转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "MOBI 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "epubToPdf": {
-        "name": "EPUB 转 PDF",
-        "subtitle": "将 EPUB 电子书转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "EPUB 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "fb2ToPdf": {
-        "name": "FB2 转 PDF",
-        "subtitle": "将 FictionBook (FB2) 电子书转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "FB2 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "cbzToPdf": {
-        "name": "CBZ 转 PDF",
-        "subtitle": "将漫画档案 (CBZ/CBR) 转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "CBZ, CBR 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "wpdToPdf": {
-        "name": "WPD 转 PDF",
-        "subtitle": "将 WordPerfect 文档 (WPD) 转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "WPD 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "wpsToPdf": {
-        "name": "WPS 转 PDF",
-        "subtitle": "将 WPS Office 文档转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "WPS 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "xmlToPdf": {
-        "name": "XML 转 PDF",
-        "subtitle": "将 XML 文档转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "XML 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "pagesToPdf": {
-        "name": "Pages 转 PDF",
-        "subtitle": "将 Apple Pages 文档转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "Pages 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "odgToPdf": {
-        "name": "ODG 转 PDF",
-        "subtitle": "将 OpenDocument Graphics (ODG) 文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "ODG 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "odsToPdf": {
-        "name": "ODS 转 PDF",
-        "subtitle": "将 OpenDocument Spreadsheet (ODS) 文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "ODS 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "odpToPdf": {
-        "name": "ODP 转 PDF",
-        "subtitle": "将 OpenDocument Presentation (ODP) 文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "ODP 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "pubToPdf": {
-        "name": "PUB 转 PDF",
-        "subtitle": "将 Microsoft Publisher (PUB) 文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "PUB 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "vsdToPdf": {
-        "name": "VSD 转 PDF",
-        "subtitle": "将 Microsoft Visio (VSD, VSDX) 文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "VSD, VSDX 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "psdToPdf": {
-        "name": "PSD 转 PDF",
-        "subtitle": "将 Adobe Photoshop (PSD) 文件转换为 PDF 格式。支持多个文件。",
-        "acceptedFormats": "PSD 文件",
-        "convertButton": "转换为 PDF"
-    },
-    "pdfToSvg": {
-        "name": "PDF 转 SVG",
-        "subtitle": "将 PDF 文件的每一页转换为可缩放矢量图形 (SVG)，在任何尺寸下都能保持完美质量。"
-    },
-    "extractTables": {
-        "name": "提取 PDF 表格",
-        "subtitle": "从 PDF 文件中提取表格，并导出为 CSV、JSON 或 Markdown 格式。"
-    },
-    "pdfToCsv": {
-        "name": "PDF 转 CSV",
-        "subtitle": "从 PDF 中提取表格并转换为 CSV 格式。"
-    },
-    "pdfToExcel": {
-        "name": "PDF 转 Excel",
-        "subtitle": "从 PDF 中提取表格并转换为 Excel (XLSX) 格式。"
-    },
-    "pdfToText": {
-        "name": "PDF 转 文本",
-        "subtitle": "从 PDF 文件中提取文本并保存为纯文本文件 (.txt)。支持多个文件。",
-        "note": "此工具仅适用于数字创建的 PDF。对于扫描文档或基于图像的 PDF，请使用我们的 OCR PDF 工具。",
-        "convertButton": "提取文本"
-    },
-    "digitalSignPdf": {
-        "name": "PDF 数字签名",
-        "pageTitle": "PDF 数字签名 - 添加加密签名 | BentoPDF",
-        "subtitle": "使用 X.509 证书为您的 PDF 添加加密数字签名。支持 PKCS#12 (.pfx, .p12) 和 PEM 格式。您的私钥永远不会离开您的浏览器。",
-        "certificateSection": "证书",
-        "uploadCert": "上传证书 (.pfx, .p12)",
-        "certPassword": "证书密码",
-        "certPasswordPlaceholder": "输入证书密码",
-        "certInfo": "证书信息",
-        "certSubject": "主体",
-        "certIssuer": "颁发者",
-        "certValidity": "有效期",
-        "signatureDetails": "签名详情（可选）",
-        "reason": "原因",
-        "reasonPlaceholder": "例如：我批准此文档",
-        "location": "位置",
-        "locationPlaceholder": "例如：北京，中国",
-        "contactInfo": "联系信息",
-        "contactPlaceholder": "例如：email@example.com",
-        "applySignature": "应用数字签名",
-        "successMessage": "PDF 签名成功！签名可在任何 PDF 阅读器中验证。"
-    }
+  "categories": {
+    "popularTools": "热门工具",
+    "editAnnotate": "编辑与注释",
+    "convertToPdf": "转换为 PDF",
+    "convertFromPdf": "从 PDF 转换",
+    "organizeManage": "组织与管理",
+    "optimizeRepair": "优化与修复",
+    "securePdf": "安全 PDF"
+  },
+  "pdfMultiTool": {
+    "name": "PDF 多功能工具",
+    "subtitle": "在一个统一的界面中合并、分割、组织、删除、旋转、添加空白页、提取和复制。"
+  },
+  "mergePdf": {
+    "name": "合并 PDF",
+    "subtitle": "将多个 PDF 合并为一个文件。保留书签。"
+  },
+  "splitPdf": {
+    "name": "分割 PDF",
+    "subtitle": "将指定范围的页面提取到新 PDF 中。"
+  },
+  "compressPdf": {
+    "name": "压缩 PDF",
+    "subtitle": "减小您的 PDF 文件大小。",
+    "algorithmLabel": "压缩算法",
+    "condense": "Condense（推荐）",
+    "photon": "Photon（适用于图片较多的 PDF）",
+    "condenseInfo": "Condense 使用高级压缩：移除冗余数据、优化图片、精简字体。适用于大多数 PDF。",
+    "photonInfo": "Photon 将页面转换为图片。适用于图片较多/扫描的 PDF。",
+    "photonWarning": "警告：文本将无法选择，链接将失效。",
+    "levelLabel": "压缩级别",
+    "light": "轻度（保持质量）",
+    "balanced": "平衡（推荐）",
+    "aggressive": "积极（更小文件）",
+    "extreme": "极限（最大压缩）",
+    "grayscale": "转换为灰度",
+    "grayscaleHint": "通过移除颜色信息来减小文件大小",
+    "customSettings": "自定义设置",
+    "customSettingsHint": "微调压缩参数：",
+    "outputQuality": "输出质量",
+    "resizeImagesTo": "调整图片至",
+    "onlyProcessAbove": "仅处理高于",
+    "removeMetadata": "移除元数据",
+    "subsetFonts": "精简字体（移除未使用的字符）",
+    "removeThumbnails": "移除嵌入的缩略图",
+    "compressButton": "压缩 PDF"
+  },
+  "pdfEditor": {
+    "name": "PDF 编辑器",
+    "subtitle": "注释、高亮、涂黑、评论、添加形状/图片、搜索和查看 PDF。"
+  },
+  "jpgToPdf": {
+    "name": "JPG 转 PDF",
+    "subtitle": "从 JPG、JPEG 和 JPEG2000 (JP2/JPX) 图片创建 PDF。"
+  },
+  "signPdf": {
+    "name": "签署 PDF",
+    "subtitle": "绘制、键入或上传您的签名。"
+  },
+  "cropPdf": {
+    "name": "裁剪 PDF",
+    "subtitle": "修剪 PDF 中每一页的边距。"
+  },
+  "extractPages": {
+    "name": "提取页面",
+    "subtitle": "将选定的页面保存为新文件。"
+  },
+  "duplicateOrganize": {
+    "name": "复制与组织",
+    "subtitle": "复制、重新排序和删除页面。"
+  },
+  "deletePages": {
+    "name": "删除页面",
+    "subtitle": "自您的文档中移除特定页面。"
+  },
+  "editBookmarks": {
+    "name": "编辑书签",
+    "subtitle": "添加、编辑、导入、删除和提取 PDF 书签。"
+  },
+  "tableOfContents": {
+    "name": "目录",
+    "subtitle": "根据 PDF 书签生成目录页。"
+  },
+  "pageNumbers": {
+    "name": "页码",
+    "subtitle": "将页码插入到您的文档中。"
+  },
+  "addWatermark": {
+    "name": "添加水印",
+    "subtitle": "在您的 PDF 页面上添加文字或图片水印。"
+  },
+  "headerFooter": {
+    "name": "页眉和页脚",
+    "subtitle": "在页面顶部和底部添加文字。"
+  },
+  "invertColors": {
+    "name": "反转颜色",
+    "subtitle": "创建您的 PDF 的“暗黑模式”版本。"
+  },
+  "backgroundColor": {
+    "name": "背景颜色",
+    "subtitle": "更改您的 PDF 的背景颜色。"
+  },
+  "changeTextColor": {
+    "name": "更改文本颜色",
+    "subtitle": "更改您 PDF 中文本的颜色。"
+  },
+  "addStamps": {
+    "name": "添加印章",
+    "subtitle": "使用注释工具栏向您的 PDF 添加图片印章。"
+  },
+  "removeAnnotations": {
+    "name": "移除注释",
+    "subtitle": "移除评论、高亮和链接。"
+  },
+  "pdfFormFiller": {
+    "name": "PDF 表单填写器",
+    "subtitle": "直接在浏览器中填写表单。也支持 XFA 表单。"
+  },
+  "createPdfForm": {
+    "name": "创建 PDF 表单",
+    "subtitle": "使用拖放文本字段创建可填写的 PDF 表单。"
+  },
+  "removeBlankPages": {
+    "name": "移除空白页",
+    "subtitle": "自动检测并删除空白页。"
+  },
+  "imageToPdf": {
+    "name": "图片转 PDF",
+    "subtitle": "将 JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP 转换为 PDF。"
+  },
+  "pngToPdf": {
+    "name": "PNG 转 PDF",
+    "subtitle": "从一张或多张 PNG 图片创建 PDF。"
+  },
+  "webpToPdf": {
+    "name": "WebP 转 PDF",
+    "subtitle": "从一张或多张 WebP 图片创建 PDF。"
+  },
+  "svgToPdf": {
+    "name": "SVG 转 PDF",
+    "subtitle": "从一张或多张 SVG 图片创建 PDF。"
+  },
+  "bmpToPdf": {
+    "name": "BMP 转 PDF",
+    "subtitle": "从一张或多张 BMP 图片创建 PDF。"
+  },
+  "heicToPdf": {
+    "name": "HEIC 转 PDF",
+    "subtitle": "从一张或多张 HEIC 图片创建 PDF。"
+  },
+  "tiffToPdf": {
+    "name": "TIFF 转 PDF",
+    "subtitle": "从一张或多张 TIFF 图片创建 PDF。"
+  },
+  "textToPdf": {
+    "name": "文本转 PDF",
+    "subtitle": "将纯文本文件转换为 PDF。"
+  },
+  "jsonToPdf": {
+    "name": "JSON 转 PDF",
+    "subtitle": "将 JSON 文件转换为 PDF 格式。"
+  },
+  "pdfToJpg": {
+    "name": "PDF 转 JPG",
+    "subtitle": "将每一页 PDF 转换为 JPG 图片。"
+  },
+  "pdfToPng": {
+    "name": "PDF 转 PNG",
+    "subtitle": "将每一页 PDF 转换为 PNG 图片。"
+  },
+  "pdfToWebp": {
+    "name": "PDF 转 WebP",
+    "subtitle": "将每一页 PDF 转换为 WebP 图片。"
+  },
+  "pdfToBmp": {
+    "name": "PDF 转 BMP",
+    "subtitle": "将每一页 PDF 转换为 BMP 图片。"
+  },
+  "pdfToTiff": {
+    "name": "PDF 转 TIFF",
+    "subtitle": "将每一页 PDF 转换为 TIFF 图片。"
+  },
+  "pdfToGreyscale": {
+    "name": "PDF 转 灰度",
+    "subtitle": "将所有颜色转换为黑白。"
+  },
+  "pdfToJson": {
+    "name": "PDF 转 JSON",
+    "subtitle": "将 PDF 文件转换为 JSON 格式。"
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "使 PDF 可搜索和可复制。"
+  },
+  "alternateMix": {
+    "name": "交替混合页面",
+    "subtitle": "通过交替每个 PDF 的页面来合并 PDF。保留书签。"
+  },
+  "addAttachments": {
+    "name": "添加附件",
+    "subtitle": "将一个或多个文件嵌入到您的 PDF 中。"
+  },
+  "extractAttachments": {
+    "name": "提取附件",
+    "subtitle": "从 PDF 中提取所有嵌入的文件为 ZIP。"
+  },
+  "editAttachments": {
+    "name": "编辑附件",
+    "subtitle": "查看或移除 PDF 中的附件。"
+  },
+  "dividePages": {
+    "name": "分割页面",
+    "subtitle": "水平或垂直分割页面。"
+  },
+  "addBlankPage": {
+    "name": "添加空白页",
+    "subtitle": "在 PDF 的任意位置插入空白页。"
+  },
+  "reversePages": {
+    "name": "反转页面",
+    "subtitle": "反转文档中所有页面的顺序。"
+  },
+  "rotatePdf": {
+    "name": "旋转 PDF",
+    "subtitle": "以 90 度增量旋转页面。"
+  },
+  "rotateCustom": {
+    "name": "按自定义角度旋转",
+    "subtitle": "按任意自定义角度旋转页面。"
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "将多页排列在单张纸上。"
+  },
+  "combineToSinglePage": {
+    "name": "合并为单页",
+    "subtitle": "将所有页面拼接成一个连续的滚动页面。"
+  },
+  "viewMetadata": {
+    "name": "查看元数据",
+    "subtitle": "检查 PDF 的隐藏属性。"
+  },
+  "editMetadata": {
+    "name": "编辑元数据",
+    "subtitle": "更改作者、标题和其他属性。"
+  },
+  "pdfsToZip": {
+    "name": "PDF 转 ZIP",
+    "subtitle": "将多个 PDF 文件打包成一个 ZIP 归档。"
+  },
+  "comparePdfs": {
+    "name": "比较 PDF",
+    "subtitle": "并排比较两个 PDF。"
+  },
+  "posterizePdf": {
+    "name": "海报化 PDF",
+    "subtitle": "将大页面分割成多个小页面。"
+  },
+  "fixPageSize": {
+    "name": "修复页面尺寸",
+    "subtitle": "将所有页面标准化为统一尺寸。"
+  },
+  "linearizePdf": {
+    "name": "线性化 PDF",
+    "subtitle": "优化 PDF 以便快速网络查看。"
+  },
+  "pageDimensions": {
+    "name": "页面尺寸",
+    "subtitle": "分析页面大小、方向和单位。"
+  },
+  "removeRestrictions": {
+    "name": "移除限制",
+    "subtitle": "移除与数字签名 PDF 文件相关的密码保护和安全限制。"
+  },
+  "repairPdf": {
+    "name": "修复 PDF",
+    "subtitle": "从损坏的 PDF 文件中恢复数据。"
+  },
+  "encryptPdf": {
+    "name": "加密 PDF",
+    "subtitle": "通过添加密码锁定您的 PDF。"
+  },
+  "sanitizePdf": {
+    "name": "清理 PDF",
+    "subtitle": "移除元数据、注释、脚本等。"
+  },
+  "decryptPdf": {
+    "name": "解密 PDF",
+    "subtitle": "通过移除密码保护解锁 PDF。"
+  },
+  "flattenPdf": {
+    "name": "扁平化 PDF",
+    "subtitle": "使表单字段和注释不可编辑。"
+  },
+  "removeMetadata": {
+    "name": "移除元数据",
+    "subtitle": "从 PDF 中剥离隐藏数据。"
+  },
+  "changePermissions": {
+    "name": "更改权限",
+    "subtitle": "设置或更改 PDF 上的用户权限。"
+  },
+  "odtToPdf": {
+    "name": "ODT 转 PDF",
+    "subtitle": "将 OpenDocument 文本文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "ODT 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV 转 PDF",
+    "subtitle": "将 CSV 电子表格文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "CSV 件",
+    "convertButton": "转换为 PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF 转 PDF",
+    "subtitle": "将富文本格式文档转换为 PDF。支持多个文件。",
+    "acceptedFormats": "RTF 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "wordToPdf": {
+    "name": "Word 转 PDF",
+    "subtitle": "将 Word 文档 (DOCX, DOC, ODT, RTF) 转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel 转 PDF",
+    "subtitle": "将 Excel 电子表格 (XLSX, XLS, ODS, CSV) 转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint 转 PDF",
+    "subtitle": "将 PowerPoint 演示文稿 (PPTX, PPT, ODP) 转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "PPTX, PPT, ODP 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown 转 PDF",
+    "subtitle": "编写或粘贴 Markdown 并将其导出为精美格式的 PDF。",
+    "paneMarkdown": "Markdown",
+    "panePreview": "预览",
+    "btnUpload": "上传",
+    "btnSyncScroll": "同步滚动",
+    "btnSettings": "设置",
+    "btnExportPdf": "导出 PDF",
+    "settingsTitle": "Markdown 设置",
+    "settingsPreset": "预设",
+    "presetDefault": "默认 (GFM 风格)",
+    "presetCommonmark": "CommonMark (严格)",
+    "presetZero": "最小 (无功能)",
+    "settingsOptions": "Markdown 选项",
+    "optAllowHtml": "允许 HTML 标签",
+    "optBreaks": "将换行转换为 <br>",
+    "optLinkify": "自动将 URL 转换为链接",
+    "optTypographer": "排版器 (智能引号等)"
+  },
+  "pdfBooklet": {
+    "name": "PDF 小册子",
+    "subtitle": "重新排列页面用于双面小册子打印。折叠并装订以创建小册子。",
+    "howItWorks": "工作原理：",
+    "step1": "上传 PDF 文件。",
+    "step2": "页面将按小册子顺序重新排列。",
+    "step3": "双面打印，短边翻转，折叠并装订。",
+    "paperSize": "纸张大小",
+    "orientation": "方向",
+    "portrait": "纵向",
+    "landscape": "横向",
+    "pagesPerSheet": "每张页数",
+    "createBooklet": "创建小册子",
+    "processing": "处理中...",
+    "pageCount": "如需要，页数将补齐为 4 的倍数。"
+  },
+  "xpsToPdf": {
+    "name": "XPS 转 PDF",
+    "subtitle": "将 XPS/OXPS 文档转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "XPS, OXPS 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI 转 PDF",
+    "subtitle": "将 MOBI 电子书转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "MOBI 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB 转 PDF",
+    "subtitle": "将 EPUB 电子书转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "EPUB 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 转 PDF",
+    "subtitle": "将 FictionBook (FB2) 电子书转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "FB2 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ 转 PDF",
+    "subtitle": "将漫画档案 (CBZ/CBR) 转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "CBZ, CBR 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD 转 PDF",
+    "subtitle": "将 WordPerfect 文档 (WPD) 转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "WPD 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS 转 PDF",
+    "subtitle": "将 WPS Office 文档转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "WPS 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML 转 PDF",
+    "subtitle": "将 XML 文档转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "XML 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages 转 PDF",
+    "subtitle": "将 Apple Pages 文档转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "Pages 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG 转 PDF",
+    "subtitle": "将 OpenDocument Graphics (ODG) 文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "ODG 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS 转 PDF",
+    "subtitle": "将 OpenDocument Spreadsheet (ODS) 文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "ODS 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP 转 PDF",
+    "subtitle": "将 OpenDocument Presentation (ODP) 文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "ODP 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB 转 PDF",
+    "subtitle": "将 Microsoft Publisher (PUB) 文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "PUB 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD 转 PDF",
+    "subtitle": "将 Microsoft Visio (VSD, VSDX) 文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "VSD, VSDX 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD 转 PDF",
+    "subtitle": "将 Adobe Photoshop (PSD) 文件转换为 PDF 格式。支持多个文件。",
+    "acceptedFormats": "PSD 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF 转 SVG",
+    "subtitle": "将 PDF 文件的每一页转换为可缩放矢量图形 (SVG)，在任何尺寸下都能保持完美质量。"
+  },
+  "extractTables": {
+    "name": "提取 PDF 表格",
+    "subtitle": "从 PDF 文件中提取表格，并导出为 CSV、JSON 或 Markdown 格式。"
+  },
+  "pdfToCsv": {
+    "name": "PDF 转 CSV",
+    "subtitle": "从 PDF 中提取表格并转换为 CSV 格式。"
+  },
+  "pdfToExcel": {
+    "name": "PDF 转 Excel",
+    "subtitle": "从 PDF 中提取表格并转换为 Excel (XLSX) 格式。"
+  },
+  "pdfToText": {
+    "name": "PDF 转 文本",
+    "subtitle": "从 PDF 文件中提取文本并保存为纯文本文件 (.txt)。支持多个文件。",
+    "note": "此工具仅适用于数字创建的 PDF。对于扫描文档或基于图像的 PDF，请使用我们的 OCR PDF 工具。",
+    "convertButton": "提取文本"
+  },
+  "digitalSignPdf": {
+    "name": "PDF 数字签名",
+    "pageTitle": "PDF 数字签名 - 添加加密签名 | BentoPDF",
+    "subtitle": "使用 X.509 证书为您的 PDF 添加加密数字签名。支持 PKCS#12 (.pfx, .p12) 和 PEM 格式。您的私钥永远不会离开您的浏览器。",
+    "certificateSection": "证书",
+    "uploadCert": "上传证书 (.pfx, .p12)",
+    "certPassword": "证书密码",
+    "certPasswordPlaceholder": "输入证书密码",
+    "certInfo": "证书信息",
+    "certSubject": "主体",
+    "certIssuer": "颁发者",
+    "certValidity": "有效期",
+    "signatureDetails": "签名详情（可选）",
+    "reason": "原因",
+    "reasonPlaceholder": "例如：我批准此文档",
+    "location": "位置",
+    "locationPlaceholder": "例如：北京，中国",
+    "contactInfo": "联系信息",
+    "contactPlaceholder": "例如：email@example.com",
+    "applySignature": "应用数字签名",
+    "successMessage": "PDF 签名成功！签名可在任何 PDF 阅读器中验证。"
+  },
+  "validateSignaturePdf": {
+    "name": "验证 PDF 签名",
+    "pageTitle": "验证 PDF 签名 - 验证数字签名 | BentoPDF",
+    "subtitle": "验证您的 PDF 文件中的数字签名。检查证书有效性、查看签名者详情并确认文档完整性。所有处理都在您的浏览器中进行。"
+  },
+  "emailToPdf": {
+    "name": "邮件转 PDF",
+    "subtitle": "将电子邮件文件 (EML, MSG) 转换为 PDF 格式。支持 Outlook 导出和标准邮件格式。",
+    "acceptedFormats": "EML, MSG 文件",
+    "convertButton": "转换为 PDF"
+  },
+  "fontToOutline": {
+    "name": "字体转轮廓",
+    "subtitle": "将所有字体转换为矢量轮廓，确保在所有设备上一致呈现。"
+  },
+  "deskewPdf": {
+    "name": "校正 PDF",
+    "subtitle": "使用 OpenCV 自动校正倾斜的扫描页面。"
+  }
 }

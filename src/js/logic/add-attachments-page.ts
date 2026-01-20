@@ -1,15 +1,10 @@
+import { AddAttachmentState } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 const worker = new Worker(import.meta.env.BASE_URL + 'workers/add-attachments.worker.js');
-
-interface AddAttachmentState {
-    file: File | null;
-    pdfDoc: PDFLibDocument | null;
-    attachments: File[];
-}
 
 const pageState: AddAttachmentState = {
     file: null,

@@ -3,18 +3,11 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { readFileAsArrayBuffer, formatBytes, downloadFile, getPDFDocument, parsePageRanges } from '../utils/helpers.js';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { DeletePagesState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
 
-interface DeleteState {
-    file: File | null;
-    pdfDoc: any;
-    pdfJsDoc: any;
-    totalPages: number;
-    pagesToDelete: Set<number>;
-}
-
-const deleteState: DeleteState = {
+const deleteState: DeletePagesState = {
     file: null,
     pdfDoc: null,
     pdfJsDoc: null,

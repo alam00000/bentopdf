@@ -1,353 +1,390 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="ltr" mozdisallowselectionprint>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="google" content="notranslate">
-  <title>PDF Signer - Bento PDF</title>
-  <link rel="stylesheet" href="pdf_viewer.css">
-  <link rel="stylesheet" href="viewer.css">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background-color: #525252;
-    }
-    
-    #viewerContainer {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      overflow: auto;
-      background-color: #404040;
-    }
-    
-    .toolbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 48px;
-      background-color: #323639;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      z-index: 1000;
-      gap: 10px;
-    }
-    
-    .toolbar button {
-      background-color: rgba(255,255,255,0.1);
-      border: none;
-      color: #fff;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 13px;
-    }
-    
-    .toolbar button:hover {
-      background-color: rgba(255,255,255,0.2);
-    }
-    
-    .toolbar button.active {
-      background-color: #4f46e5;
-    }
-    
-    .toolbar button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-    
-    .toolbar .page-info {
-      color: #fff;
-      font-size: 13px;
-      margin: 0 10px;
-    }
-    
-    .toolbar input[type="number"] {
-      width: 60px;
-      padding: 4px 8px;
-      background-color: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      border-radius: 4px;
-      text-align: center;
-    }
-    
-    #viewerContainer {
-      top: 48px;
-    }
-    
-    #viewer {
-      padding-top: 20px;
-    }
-    
-    .page {
-      margin: 10px auto;
-      border: 1px solid #999;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      position: relative;
-    }
-    
-    .toolbar .spacer {
-      flex: 1;
-    }
-    
-    .toolbar .zoom-controls {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-    }
-    
-    .toolbar select {
-      background-color: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      padding: 6px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    
-    .toolbar select option {
-      background-color: #323639;
-      color: #fff;
-    }
-    
-    .toolbar-separator {
-      width: 1px;
-      height: 24px;
-      background-color: rgba(255,255,255,0.2);
-      margin: 0 8px;
-    }
-    
-    .editor-button {
-      padding: 6px 8px !important;
-      min-width: 32px;
-    }
-    
-    .editor-button.active {
-      background-color: #4f46e5 !important;
-    }
-    
-    .editor-button svg {
-      display: block;
-      margin: 0 auto;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <meta name="google" content="notranslate" />
+    <title>PDF Signer - Bento PDF</title>
+    <link rel="stylesheet" href="pdf_viewer.css" />
+    <link rel="stylesheet" href="viewer.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: #525252;
+      }
 
-  </style>
-</head>
-<body>
-  <div class="toolbar">
-    <button id="previousPage" title="Previous Page">‹</button>
-    <input type="number" id="pageNumber" min="1" value="1">
-    <span class="page-info">/ <span id="numPages">--</span></span>
-    <button id="nextPage" title="Next Page">›</button>
-    
-    <div class="spacer"></div>
-    
-    <!-- Annotation Editor Tools -->
-    <div class="toolbar-separator"></div>
-    <button id="editorInk" class="editor-button" title="Draw">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M13.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h11zm-11 4a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-11zm0 4a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-11z"/>
-      </svg>
-    </button>
-    <button id="editorFreeText" class="editor-button" title="Add Text">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M5 0v3H0v10h16V3h-5V0H5zm9 12H2V4h12v8z"/>
-        <text x="5" y="10" font-family="Arial" font-size="6" fill="currentColor">A</text>
-      </svg>
-    </button>
-    <button id="editorStamp" class="editor-button" title="Add Image/Signature">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M2 0h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10l3-3 2.5 2.5L12 6l3 3V2a1 1 0 0 0-1-1H2z"/>
-        <circle cx="4.5" cy="4.5" r="1.5"/>
-      </svg>
-    </button>
-    <button id="editorNone" class="editor-button" title="Disable Editing">✕</button>
-    <div class="toolbar-separator"></div>
-    
-    <div class="zoom-controls">
-      <button id="zoomOut" title="Zoom Out">−</button>
-      <select id="scaleSelect">
-        <option value="auto">Auto</option>
-        <option value="page-fit">Fit Page</option>
-        <option value="page-width">Fit Width</option>
-        <option value="0.5">50%</option>
-        <option value="0.75">75%</option>
-        <option value="1" selected>100%</option>
-        <option value="1.25">125%</option>
-        <option value="1.5">150%</option>
-        <option value="2">200%</option>
-      </select>
-      <button id="zoomIn" title="Zoom In">+</button>
+      #viewerContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+        background-color: #404040;
+      }
+
+      .toolbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 48px;
+        background-color: #323639;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        z-index: 1000;
+        gap: 10px;
+      }
+
+      .toolbar button {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: #fff;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 13px;
+      }
+
+      .toolbar button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .toolbar button.active {
+        background-color: #4f46e5;
+      }
+
+      .toolbar button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .toolbar .page-info {
+        color: #fff;
+        font-size: 13px;
+        margin: 0 10px;
+      }
+
+      .toolbar input[type='number'] {
+        width: 60px;
+        padding: 4px 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      #viewerContainer {
+        top: 48px;
+      }
+
+      #viewer {
+        padding-top: 20px;
+      }
+
+      .page {
+        margin: 10px auto;
+        border: 1px solid #999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .toolbar .spacer {
+        flex: 1;
+      }
+
+      .toolbar .zoom-controls {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .toolbar select {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .toolbar select option {
+        background-color: #323639;
+        color: #fff;
+      }
+
+      .toolbar-separator {
+        width: 1px;
+        height: 24px;
+        background-color: rgba(255, 255, 255, 0.2);
+        margin: 0 8px;
+      }
+
+      .editor-button {
+        padding: 6px 8px !important;
+        min-width: 32px;
+      }
+
+      .editor-button.active {
+        background-color: #4f46e5 !important;
+      }
+
+      .editor-button svg {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <button id="previousPage" title="Previous Page">‹</button>
+      <input type="number" id="pageNumber" min="1" value="1" />
+      <span class="page-info">/ <span id="numPages">--</span></span>
+      <button id="nextPage" title="Next Page">›</button>
+
+      <div class="spacer"></div>
+
+      <!-- Annotation Editor Tools -->
+      <div class="toolbar-separator"></div>
+      <button id="editorInk" class="editor-button" title="Draw">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path
+            d="M13.5 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h11zm-11 4a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-11zm0 4a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5h-11z"
+          />
+        </svg>
+      </button>
+      <button id="editorFreeText" class="editor-button" title="Add Text">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M5 0v3H0v10h16V3h-5V0H5zm9 12H2V4h12v8z" />
+          <text
+            x="5"
+            y="10"
+            font-family="Arial"
+            font-size="6"
+            fill="currentColor"
+          >
+            A
+          </text>
+        </svg>
+      </button>
+      <button
+        id="editorStamp"
+        class="editor-button"
+        title="Add Image/Signature"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path
+            d="M2 0h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10l3-3 2.5 2.5L12 6l3 3V2a1 1 0 0 0-1-1H2z"
+          />
+          <circle cx="4.5" cy="4.5" r="1.5" />
+        </svg>
+      </button>
+      <button id="editorNone" class="editor-button" title="Disable Editing">
+        ✕
+      </button>
+      <div class="toolbar-separator"></div>
+
+      <div class="zoom-controls">
+        <button id="zoomOut" title="Zoom Out">−</button>
+        <select id="scaleSelect">
+          <option value="auto">Auto</option>
+          <option value="page-fit">Fit Page</option>
+          <option value="page-width">Fit Width</option>
+          <option value="0.5">50%</option>
+          <option value="0.75">75%</option>
+          <option value="1" selected>100%</option>
+          <option value="1.25">125%</option>
+          <option value="1.5">150%</option>
+          <option value="2">200%</option>
+        </select>
+        <button id="zoomIn" title="Zoom In">+</button>
+      </div>
     </div>
-  </div>
-  
-  <div id="viewerContainer">
-    <div id="viewer" class="pdfViewer"></div>
-  </div>
 
-  <script type="module">
-    import * as pdfjsLib from './pdf.mjs';
-    import { EventBus, PDFViewer, PDFLinkService } from './pdf_viewer.mjs';
+    <div id="viewerContainer">
+      <div id="viewer" class="pdfViewer"></div>
+    </div>
 
-    pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.mjs';
+    <script type="module">
+      import * as pdfjsLib from './pdf.mjs';
+      import { EventBus, PDFViewer, PDFLinkService } from './pdf_viewer.mjs';
 
-    const eventBus = new EventBus();
-    const linkService = new PDFLinkService({ eventBus });
-    
-    const pdfViewer = new PDFViewer({
-      container: document.getElementById('viewerContainer'),
-      viewer: document.getElementById('viewer'),
-      eventBus,
-      linkService,
-      annotationEditorMode: 1,
-      enableScripting: true,
-      renderer: 'canvas'
-    });
-    
-    linkService.setViewer(pdfViewer);
+      pdfjsLib.GlobalWorkerOptions.workerSrc = './pdf.worker.mjs';
 
-    let pdfDocument = null;
-    let currentScale = 1.0;
+      const eventBus = new EventBus();
+      const linkService = new PDFLinkService({ eventBus });
 
-    // Listen for messages from parent window
-    window.addEventListener('message', async (event) => {
-      console.log('Sign viewer received message:', event.data.type);
-      
-      if (event.data.type === 'loadPDF') {
-        console.log('Loading PDF, data size:', event.data.data?.byteLength || event.data.data?.length);
-        const { data } = event.data;
-        loadPDF(data);
-      } else if (event.data.type === 'save') {
-        console.log('Save requested');
-        // Save the PDF with annotations
-        const data = await pdfDocument.saveDocument();
-        if (data) {
-          console.log('Sending PDF data back, size:', data.byteLength);
-          window.parent.postMessage({ 
-            type: 'downloadPDF', 
-            data: Array.from(data) 
-          }, '*');
-        }
-      }
-    });
+      const pdfViewer = new PDFViewer({
+        container: document.getElementById('viewerContainer'),
+        viewer: document.getElementById('viewer'),
+        eventBus,
+        linkService,
+        annotationEditorMode: 1,
+        enableScripting: true,
+        renderer: 'canvas',
+      });
 
-    async function loadPDF(data) {
-      try {
-        console.log('loadPDF called');
-        const loadingTask = pdfjsLib.getDocument({ data });
-        pdfDocument = await loadingTask.promise;
-        console.log('PDF document loaded, pages:', pdfDocument.numPages);
-        
-        pdfViewer.setDocument(pdfDocument);
-        linkService.setDocument(pdfDocument);
-        pdfViewer.currentScaleValue = 'page-width';
-        
-        document.getElementById('numPages').textContent = pdfDocument.numPages;
-        document.getElementById('pageNumber').max = pdfDocument.numPages;
-        
-        console.log('Notifying parent: pdfLoaded');
-        // Notify parent that PDF is loaded
-        window.parent.postMessage({ type: 'pdfLoaded', numPages: pdfDocument.numPages }, '*');
-      } catch (error) {
-        console.error('Error loading PDF:', error);
-        window.parent.postMessage({ type: 'error', message: error.message }, '*');
-      }
-    }
+      linkService.setViewer(pdfViewer);
 
+      let pdfDocument = null;
+      let currentScale = 1.0;
 
-    // Navigation controls
-    document.getElementById('previousPage').addEventListener('click', () => {
-      if (pdfViewer.currentPageNumber > 1) {
-        pdfViewer.currentPageNumber--;
-      }
-    });
+      // Listen for messages from parent window
+      window.addEventListener('message', async (event) => {
+        console.log('Sign viewer received message:', event.data.type);
 
-    document.getElementById('nextPage').addEventListener('click', () => {
-      if (pdfViewer.currentPageNumber < pdfDocument?.numPages) {
-        pdfViewer.currentPageNumber++;
-      }
-    });
-
-    document.getElementById('pageNumber').addEventListener('change', (e) => {
-      const pageNum = parseInt(e.target.value);
-      if (pageNum >= 1 && pageNum <= pdfDocument?.numPages) {
-        pdfViewer.currentPageNumber = pageNum;
-      }
-    });
-
-    // Zoom controls
-    document.getElementById('zoomIn').addEventListener('click', () => {
-      currentScale = Math.min(currentScale + 0.1, 3.0);
-      pdfViewer.currentScale = currentScale;
-      document.getElementById('scaleSelect').value = currentScale.toFixed(2);
-    });
-
-    document.getElementById('zoomOut').addEventListener('click', () => {
-      currentScale = Math.max(currentScale - 0.1, 0.1);
-      pdfViewer.currentScale = currentScale;
-      document.getElementById('scaleSelect').value = currentScale.toFixed(2);
-    });
-
-    document.getElementById('scaleSelect').addEventListener('change', (e) => {
-      const value = e.target.value;
-      if (value === 'auto' || value === 'page-fit' || value === 'page-width') {
-        pdfViewer.currentScaleValue = value;
-      } else {
-        currentScale = parseFloat(value);
-        pdfViewer.currentScale = currentScale;
-      }
-    });
-
-    // Annotation Editor Mode buttons
-    // AnnotationEditorType values from PDF.js:
-    // DISABLE: -1, NONE: 0, FREETEXT: 3, HIGHLIGHT: 9, STAMP: 13, INK: 15
-    const editorButtons = {
-      editorInk: 15,      // INK - for drawing/signing
-      editorFreeText: 3,  // FREETEXT - for text
-      editorStamp: 13,    // STAMP - for images
-      editorNone: -1      // DISABLE editing
-    };
-
-    Object.entries(editorButtons).forEach(([buttonId, mode]) => {
-      const button = document.getElementById(buttonId);
-      if (!button) return;
-      
-      button.addEventListener('click', () => {
-        console.log('Setting annotation editor mode to:', mode);
-        
-        // Set the annotation editor mode
-        if (pdfViewer) {
-          pdfViewer.annotationEditorMode = mode;
-        }
-        
-        // Update active state
-        document.querySelectorAll('.editor-button').forEach(btn => {
-          btn.classList.remove('active');
-        });
-        if (mode !== -1 && mode !== 0) {
-          button.classList.add('active');
+        if (event.data.type === 'loadPDF') {
+          console.log(
+            'Loading PDF, data size:',
+            event.data.data?.byteLength || event.data.data?.length
+          );
+          const { data } = event.data;
+          loadPDF(data);
+        } else if (event.data.type === 'save') {
+          console.log('Save requested');
+          // Save the PDF with annotations
+          const data = await pdfDocument.saveDocument();
+          if (data) {
+            console.log('Sending PDF data back, size:', data.byteLength);
+            window.parent.postMessage(
+              {
+                type: 'downloadPDF',
+                data: Array.from(data),
+              },
+              '*'
+            );
+          }
         }
       });
-    });
 
-    // Update page number display when page changes
-    eventBus.on('pagechanging', (evt) => {
-      document.getElementById('pageNumber').value = evt.pageNumber;
-      document.getElementById('previousPage').disabled = evt.pageNumber <= 1;
-      document.getElementById('nextPage').disabled = evt.pageNumber >= pdfDocument?.numPages;
-    });
+      async function loadPDF(data) {
+        try {
+          console.log('loadPDF called');
+          const loadingTask = pdfjsLib.getDocument({ data });
+          pdfDocument = await loadingTask.promise;
+          console.log('PDF document loaded, pages:', pdfDocument.numPages);
 
-    // Notify parent that viewer is ready
-    console.log('Sign viewer initialized, notifying parent: viewerReady');
-    window.parent.postMessage({ type: 'viewerReady' }, '*');
-  </script>
-</body>
+          pdfViewer.setDocument(pdfDocument);
+          linkService.setDocument(pdfDocument);
+          pdfViewer.currentScaleValue = 'page-width';
+
+          document.getElementById('numPages').textContent =
+            pdfDocument.numPages;
+          document.getElementById('pageNumber').max = pdfDocument.numPages;
+
+          console.log('Notifying parent: pdfLoaded');
+          // Notify parent that PDF is loaded
+          window.parent.postMessage(
+            { type: 'pdfLoaded', numPages: pdfDocument.numPages },
+            '*'
+          );
+        } catch (error) {
+          console.error('Error loading PDF:', error);
+          window.parent.postMessage(
+            { type: 'error', message: error.message },
+            '*'
+          );
+        }
+      }
+
+      // Navigation controls
+      document.getElementById('previousPage').addEventListener('click', () => {
+        if (pdfViewer.currentPageNumber > 1) {
+          pdfViewer.currentPageNumber--;
+        }
+      });
+
+      document.getElementById('nextPage').addEventListener('click', () => {
+        if (pdfViewer.currentPageNumber < pdfDocument?.numPages) {
+          pdfViewer.currentPageNumber++;
+        }
+      });
+
+      document.getElementById('pageNumber').addEventListener('change', (e) => {
+        const pageNum = parseInt(e.target.value);
+        if (pageNum >= 1 && pageNum <= pdfDocument?.numPages) {
+          pdfViewer.currentPageNumber = pageNum;
+        }
+      });
+
+      // Zoom controls
+      document.getElementById('zoomIn').addEventListener('click', () => {
+        currentScale = Math.min(currentScale + 0.1, 3.0);
+        pdfViewer.currentScale = currentScale;
+        document.getElementById('scaleSelect').value = currentScale.toFixed(2);
+      });
+
+      document.getElementById('zoomOut').addEventListener('click', () => {
+        currentScale = Math.max(currentScale - 0.1, 0.1);
+        pdfViewer.currentScale = currentScale;
+        document.getElementById('scaleSelect').value = currentScale.toFixed(2);
+      });
+
+      document.getElementById('scaleSelect').addEventListener('change', (e) => {
+        const value = e.target.value;
+        if (
+          value === 'auto' ||
+          value === 'page-fit' ||
+          value === 'page-width'
+        ) {
+          pdfViewer.currentScaleValue = value;
+        } else {
+          currentScale = parseFloat(value);
+          pdfViewer.currentScale = currentScale;
+        }
+      });
+
+      // Annotation Editor Mode buttons
+      // AnnotationEditorType values from PDF.js:
+      // DISABLE: -1, NONE: 0, FREETEXT: 3, HIGHLIGHT: 9, STAMP: 13, INK: 15
+      const editorButtons = {
+        editorInk: 15, // INK - for drawing/signing
+        editorFreeText: 3, // FREETEXT - for text
+        editorStamp: 13, // STAMP - for images
+        editorNone: -1, // DISABLE editing
+      };
+
+      Object.entries(editorButtons).forEach(([buttonId, mode]) => {
+        const button = document.getElementById(buttonId);
+        if (!button) return;
+
+        button.addEventListener('click', () => {
+          console.log('Setting annotation editor mode to:', mode);
+
+          // Set the annotation editor mode
+          if (pdfViewer) {
+            pdfViewer.annotationEditorMode = mode;
+          }
+
+          // Update active state
+          document.querySelectorAll('.editor-button').forEach((btn) => {
+            btn.classList.remove('active');
+          });
+          if (mode !== -1 && mode !== 0) {
+            button.classList.add('active');
+          }
+        });
+      });
+
+      // Update page number display when page changes
+      eventBus.on('pagechanging', (evt) => {
+        document.getElementById('pageNumber').value = evt.pageNumber;
+        document.getElementById('previousPage').disabled = evt.pageNumber <= 1;
+        document.getElementById('nextPage').disabled =
+          evt.pageNumber >= pdfDocument?.numPages;
+      });
+
+      // Notify parent that viewer is ready
+      console.log('Sign viewer initialized, notifying parent: viewerReady');
+      window.parent.postMessage({ type: 'viewerReady' }, '*');
+    </script>
+  </body>
 </html>

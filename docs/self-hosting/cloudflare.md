@@ -76,3 +76,44 @@ npm run build
 ### Worker Size Limits
 
 If using Cloudflare Workers for advanced routing, note the 1 MB limit for free plans.
+
+## CORS Proxy Worker (For Digital Signatures)
+
+The Digital Signature tool requires a CORS proxy to fetch certificate chains. Deploy the included worker:
+
+```bash
+cd cloudflare
+npx wrangler login
+npx wrangler deploy
+```
+
+### Security Features
+
+| Feature | Description |
+|---------|-------------|
+| **URL Restrictions** | Only certificate URLs allowed |
+| **File Size Limit** | Max 10MB per request |
+| **Rate Limiting** | 60 req/IP/min (requires KV) |
+| **Private IP Blocking** | Blocks localhost, internal IPs |
+
+### Enable Rate Limiting
+
+```bash
+# Create KV namespace
+npx wrangler kv namespace create "RATE_LIMIT_KV"
+
+# Add to wrangler.toml with returned ID:
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "YOUR_ID"
+
+npx wrangler deploy
+```
+
+### Build with Proxy URL
+
+```bash
+VITE_CORS_PROXY_URL=https://your-worker.workers.dev npm run build
+```
+
+> **Note:** See [README](https://github.com/alam00000/bentopdf#digital-signature-cors-proxy-required) for HMAC signature setup.

@@ -2,13 +2,9 @@ import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
+import { SanitizePdfState } from '@/types';
 
-interface PageState {
-    file: File | null;
-    pdfDoc: PDFDocument | null;
-}
-
-const pageState: PageState = {
+const pageState: SanitizePdfState = {
     file: null,
     pdfDoc: null,
 };

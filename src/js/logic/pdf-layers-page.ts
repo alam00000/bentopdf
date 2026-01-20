@@ -19,7 +19,7 @@ interface LayerData {
 
 let currentFile: File | null = null;
 let currentDoc: any = null;
-let layersMap = new Map<number, LayerData>();
+const layersMap = new Map<number, LayerData>();
 let nextDisplayOrder = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            showLoader('Loading PyMuPDF...');
+            showLoader('Loading engine...');
             await pymupdf.load();
 
             showLoader(`Loading layers from ${currentFile.name}...`);

@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            showLoader('Loading PyMuPDF engine...');
+            showLoader('Loading engine...');
             const mupdf = await ensurePyMuPDF();
 
             if (state.files.length === 1) {

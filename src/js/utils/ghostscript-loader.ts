@@ -42,7 +42,7 @@ export async function convertToPdfA(
     gs = cachedGsModule;
   } else {
     const gsBaseUrl = getWasmBaseUrl('ghostscript');
-    gs = await loadWASM({
+    gs = (await loadWASM({
       locateFile: (path: string) => {
         if (path.endsWith('.wasm')) {
           return gsBaseUrl + 'gs.wasm';
@@ -51,7 +51,7 @@ export async function convertToPdfA(
       },
       print: (text: string) => console.log('[GS]', text),
       printErr: (text: string) => console.error('[GS Error]', text),
-    }) as GhostscriptModule;
+    })) as GhostscriptModule;
     cachedGsModule = gs;
   }
 
@@ -76,16 +76,24 @@ export async function convertToPdfA(
     const response = await fetchWasmFile('ghostscript', iccFileName);
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch ICC profile: ${iccFileName}. Ensure it is in your assets folder.`);
+      throw new Error(
+        `Failed to fetch ICC profile: ${iccFileName}. Ensure it is in your assets folder.`
+      );
     }
 
     const iccData = new Uint8Array(await response.arrayBuffer());
-    console.log('[Ghostscript] sRGB v2 ICC profile loaded:', iccData.length, 'bytes');
+    console.log(
+      '[Ghostscript] sRGB v2 ICC profile loaded:',
+      iccData.length,
+      'bytes'
+    );
 
     gs.FS.writeFile(iccPath, iccData);
     console.log('[Ghostscript] sRGB ICC profile written to FS:', iccPath);
 
-    const iccHex = Array.from(iccData).map(b => b.toString(16).padStart(2, '0')).join('');
+    const iccHex = Array.from(iccData)
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('');
     console.log('[Ghostscript] ICC profile hex length:', iccHex.length);
 
     const pdfaSubtype = level === 'PDF/A-1b' ? '/GTS_PDFA1' : '/GTS_PDFA';
@@ -114,7 +122,9 @@ export async function convertToPdfA(
 `;
 
     gs.FS.writeFile(pdfaDefPath, pdfaPS);
-    console.log('[Ghostscript] PDFA PostScript created with embedded ICC hex data');
+    console.log(
+      '[Ghostscript] PDFA PostScript created with embedded ICC hex data'
+    );
   } catch (e) {
     console.error('[Ghostscript] Failed to setup PDF/A assets:', e);
     throw new Error('Conversion failed: could not create PDF/A definition');
@@ -163,10 +173,26 @@ export async function convertToPdfA(
   console.log('[Ghostscript] Exit code:', exitCode);
 
   if (exitCode !== 0) {
-    try { gs.FS.unlink(inputPath); } catch { /* ignore */ }
-    try { gs.FS.unlink(outputPath); } catch { /* ignore */ }
-    try { gs.FS.unlink(iccPath); } catch { /* ignore */ }
-    try { gs.FS.unlink(pdfaDefPath); } catch { /* ignore */ }
+    try {
+      gs.FS.unlink(inputPath);
+    } catch {
+      /* ignore */
+    }
+    try {
+      gs.FS.unlink(outputPath);
+    } catch {
+      /* ignore */
+    }
+    try {
+      gs.FS.unlink(iccPath);
+    } catch {
+      /* ignore */
+    }
+    try {
+      gs.FS.unlink(pdfaDefPath);
+    } catch {
+      /* ignore */
+    }
     throw new Error(`Ghostscript conversion failed with exit code ${exitCode}`);
   }
 
@@ -182,14 +208,32 @@ export async function convertToPdfA(
   }
 
   // Cleanup
-  try { gs.FS.unlink(inputPath); } catch { /* ignore */ }
-  try { gs.FS.unlink(outputPath); } catch { /* ignore */ }
-  try { gs.FS.unlink(iccPath); } catch { /* ignore */ }
-  try { gs.FS.unlink(pdfaDefPath); } catch { /* ignore */ }
+  try {
+    gs.FS.unlink(inputPath);
+  } catch {
+    /* ignore */
+  }
+  try {
+    gs.FS.unlink(outputPath);
+  } catch {
+    /* ignore */
+  }
+  try {
+    gs.FS.unlink(iccPath);
+  } catch {
+    /* ignore */
+  }
+  try {
+    gs.FS.unlink(pdfaDefPath);
+  } catch {
+    /* ignore */
+  }
 
   if (level !== 'PDF/A-1b') {
     onProgress?.('Post-processing for transparency compliance...');
-    console.log('[Ghostscript] Adding Group dictionaries to pages for transparency compliance...');
+    console.log(
+      '[Ghostscript] Adding Group dictionaries to pages for transparency compliance...'
+    );
 
     try {
       output = await addPageGroupDictionaries(output);
@@ -202,10 +246,12 @@ export async function convertToPdfA(
   return output;
 }
 
-async function addPageGroupDictionaries(pdfData: Uint8Array): Promise<Uint8Array> {
+async function addPageGroupDictionaries(
+  pdfData: Uint8Array
+): Promise<Uint8Array> {
   const pdfDoc = await PDFDocument.load(pdfData, {
     ignoreEncryption: true,
-    updateMetadata: false
+    updateMetadata: false,
   });
 
   const catalog = pdfDoc.catalog;
@@ -227,12 +273,22 @@ async function addPageGroupDictionaries(pdfData: Uint8Array): Promise<Uint8Array
 
     if (currentCS instanceof PDFName) {
       const csName = currentCS.decodeText();
-      if (csName === 'DeviceRGB' || csName === 'DeviceGray' || csName === 'DeviceCMYK') {
-        const iccColorSpace = pdfDoc.context.obj([PDFName.of('ICCBased'), iccProfileRef]);
+      if (
+        csName === 'DeviceRGB' ||
+        csName === 'DeviceGray' ||
+        csName === 'DeviceCMYK'
+      ) {
+        const iccColorSpace = pdfDoc.context.obj([
+          PDFName.of('ICCBased'),
+          iccProfileRef,
+        ]);
         groupDict.set(PDFName.of('CS'), iccColorSpace);
       }
     } else if (!currentCS) {
-      const iccColorSpace = pdfDoc.context.obj([PDFName.of('ICCBased'), iccProfileRef]);
+      const iccColorSpace = pdfDoc.context.obj([
+        PDFName.of('ICCBased'),
+        iccProfileRef,
+      ]);
       groupDict.set(PDFName.of('CS'), iccColorSpace);
     }
   };
@@ -247,7 +303,10 @@ async function addPageGroupDictionaries(pdfData: Uint8Array): Promise<Uint8Array
         updateGroupCS(existingGroup);
       }
     } else if (iccProfileRef) {
-      const colorSpace = pdfDoc.context.obj([PDFName.of('ICCBased'), iccProfileRef]);
+      const colorSpace = pdfDoc.context.obj([
+        PDFName.of('ICCBased'),
+        iccProfileRef,
+      ]);
       const groupDict = pdfDoc.context.obj({
         Type: 'Group',
         S: 'Transparency',
@@ -261,8 +320,12 @@ async function addPageGroupDictionaries(pdfData: Uint8Array): Promise<Uint8Array
 
   if (iccProfileRef) {
     pdfDoc.context.enumerateIndirectObjects().forEach(([ref, obj]) => {
-      if (obj instanceof PDFDict || (obj && typeof obj === 'object' && 'dict' in obj)) {
-        const dict = 'dict' in obj ? (obj as { dict: PDFDict }).dict : obj as PDFDict;
+      if (
+        obj instanceof PDFDict ||
+        (obj && typeof obj === 'object' && 'dict' in obj)
+      ) {
+        const dict =
+          'dict' in obj ? (obj as { dict: PDFDict }).dict : (obj as PDFDict);
 
         const subtype = dict.get(PDFName.of('Subtype'));
         if (subtype instanceof PDFName && subtype.decodeText() === 'Form') {
@@ -290,7 +353,99 @@ export async function convertFileToPdfA(
   const arrayBuffer = await file.arrayBuffer();
   const pdfData = new Uint8Array(arrayBuffer);
   const result = await convertToPdfA(pdfData, level, onProgress);
-  // Copy to regular ArrayBuffer to avoid SharedArrayBuffer issues
+  const copy = new Uint8Array(result.length);
+  copy.set(result);
+  return new Blob([copy], { type: 'application/pdf' });
+}
+
+export async function convertFontsToOutlines(
+  pdfData: Uint8Array,
+  onProgress?: (msg: string) => void
+): Promise<Uint8Array> {
+  onProgress?.('Loading Ghostscript...');
+
+  let gs: GhostscriptModule;
+
+  if (cachedGsModule) {
+    gs = cachedGsModule;
+  } else {
+    const gsBaseUrl = getWasmBaseUrl('ghostscript');
+    gs = (await loadWASM({
+      locateFile: (path: string) => {
+        if (path.endsWith('.wasm')) {
+          return gsBaseUrl + 'gs.wasm';
+        }
+        return path;
+      },
+      print: (text: string) => console.log('[GS]', text),
+      printErr: (text: string) => console.error('[GS Error]', text),
+    })) as GhostscriptModule;
+    cachedGsModule = gs;
+  }
+
+  const inputPath = '/tmp/input.pdf';
+  const outputPath = '/tmp/output.pdf';
+
+  gs.FS.writeFile(inputPath, pdfData);
+
+  onProgress?.('Converting fonts to outlines...');
+
+  const args = [
+    '-dNOSAFER',
+    '-dBATCH',
+    '-dNOPAUSE',
+    '-sDEVICE=pdfwrite',
+    '-dNoOutputFonts',
+    '-dCompressPages=true',
+    '-dAutoRotatePages=/None',
+    `-sOutputFile=${outputPath}`,
+    inputPath,
+  ];
+
+  let exitCode: number;
+  try {
+    exitCode = gs.callMain(args);
+  } catch (e) {
+    try {
+      gs.FS.unlink(inputPath);
+    } catch {}
+    throw new Error(`Ghostscript threw an exception: ${e}`);
+  }
+
+  if (exitCode !== 0) {
+    try {
+      gs.FS.unlink(inputPath);
+    } catch {}
+    try {
+      gs.FS.unlink(outputPath);
+    } catch {}
+    throw new Error(`Ghostscript conversion failed with exit code ${exitCode}`);
+  }
+
+  let output: Uint8Array;
+  try {
+    output = gs.FS.readFile(outputPath);
+  } catch (e) {
+    throw new Error('Ghostscript did not produce output file');
+  }
+
+  try {
+    gs.FS.unlink(inputPath);
+  } catch {}
+  try {
+    gs.FS.unlink(outputPath);
+  } catch {}
+
+  return output;
+}
+
+export async function convertFileToOutlines(
+  file: File,
+  onProgress?: (msg: string) => void
+): Promise<Blob> {
+  const arrayBuffer = await file.arrayBuffer();
+  const pdfData = new Uint8Array(arrayBuffer);
+  const result = await convertFontsToOutlines(pdfData, onProgress);
   const copy = new Uint8Array(result.length);
   copy.set(result);
   return new Blob([copy], { type: 'application/pdf' });

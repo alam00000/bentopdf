@@ -1,0 +1,533 @@
+{
+  "categories": {
+    "popularTools": "Alat Populer",
+    "editAnnotate": "Edit & Anotasi",
+    "convertToPdf": "Konversi ke PDF",
+    "convertFromPdf": "Konversi dari PDF",
+    "organizeManage": "Atur & Kelola",
+    "optimizeRepair": "Optimalkan & Perbaiki",
+    "securePdf": "Amankan PDF"
+  },
+  "pdfMultiTool": {
+    "name": "Alat Multi PDF",
+    "subtitle": "Gabung, Pisah, Atur, Hapus, Putar, Tambah Halaman Kosong, Ekstrak dan Duplikat dalam antarmuka terpadu."
+  },
+  "mergePdf": {
+    "name": "Gabung PDF",
+    "subtitle": "Gabungkan beberapa PDF menjadi satu file. Mempertahankan Bookmark."
+  },
+  "splitPdf": {
+    "name": "Pisah PDF",
+    "subtitle": "Ekstrak rentang halaman ke PDF baru."
+  },
+  "compressPdf": {
+    "name": "Kompres PDF",
+    "subtitle": "Kurangi ukuran file PDF Anda.",
+    "algorithmLabel": "Algoritma Kompresi",
+    "condense": "Kondensasi (Direkomendasikan)",
+    "photon": "Photon (Untuk PDF yang penuh Foto)",
+    "condenseInfo": "Kondensasi menggunakan kompresi lanjutan: menghapus bobot mati, mengoptimalkan gambar, subset font. Terbaik untuk sebagian besar PDF.",
+    "photonInfo": "Photon mengkonversi halaman ke gambar. Gunakan untuk PDF penuh foto/terpindai.",
+    "photonWarning": "Peringatan: Teks akan menjadi tidak dapat dipilih dan tautan akan berhenti berfungsi.",
+    "levelLabel": "Tingkat Kompresi",
+    "light": "Ringan (Pertahankan Kualitas)",
+    "balanced": "Seimbang (Direkomendasikan)",
+    "aggressive": "Agresif (File Lebih Kecil)",
+    "extreme": "Ekstrem (Kompresi Maksimum)",
+    "grayscale": "Konversi ke Grayscale",
+    "grayscaleHint": "Mengurangi ukuran file dengan menghapus informasi warna",
+    "customSettings": "Pengaturan Kustom",
+    "customSettingsHint": "Sesuaikan parameter kompresi:",
+    "outputQuality": "Kualitas Output",
+    "resizeImagesTo": "Ubah Ukuran Gambar Ke",
+    "onlyProcessAbove": "Hanya Proses Di Atas",
+    "removeMetadata": "Hapus metadata",
+    "subsetFonts": "Subset font (hapus glyph yang tidak digunakan)",
+    "removeThumbnails": "Hapus thumbnail tersemat",
+    "compressButton": "Kompres PDF"
+  },
+  "pdfEditor": {
+    "name": "Editor PDF",
+    "subtitle": "Anotasi, sorot, redaksi, komentar, tambah bentuk/gambar, cari, dan lihat PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG ke PDF",
+    "subtitle": "Buat PDF dari gambar JPG, JPEG, dan JPEG2000 (JP2/JPX)."
+  },
+  "signPdf": {
+    "name": "Tanda Tangan PDF",
+    "subtitle": "Gambar, ketik, atau unggah tanda tangan Anda."
+  },
+  "cropPdf": {
+    "name": "Potong PDF",
+    "subtitle": "Potong margin setiap halaman di PDF Anda."
+  },
+  "extractPages": {
+    "name": "Ekstrak Halaman",
+    "subtitle": "Simpan pilihan halaman sebagai file baru."
+  },
+  "duplicateOrganize": {
+    "name": "Duplikat & Atur",
+    "subtitle": "Duplikat, susun ulang, dan hapus halaman."
+  },
+  "deletePages": {
+    "name": "Hapus Halaman",
+    "subtitle": "Hapus halaman tertentu dari dokumen Anda."
+  },
+  "editBookmarks": {
+    "name": "Edit Bookmark",
+    "subtitle": "Tambah, edit, impor, hapus dan ekstrak bookmark PDF."
+  },
+  "tableOfContents": {
+    "name": "Daftar Isi",
+    "subtitle": "Hasilkan halaman daftar isi dari bookmark PDF."
+  },
+  "pageNumbers": {
+    "name": "Nomor Halaman",
+    "subtitle": "Sisipkan nomor halaman ke dokumen Anda."
+  },
+  "addWatermark": {
+    "name": "Tambah Watermark",
+    "subtitle": "Cap teks atau gambar di atas halaman PDF Anda."
+  },
+  "headerFooter": {
+    "name": "Header & Footer",
+    "subtitle": "Tambah teks ke bagian atas dan bawah halaman."
+  },
+  "invertColors": {
+    "name": "Balik Warna",
+    "subtitle": "Buat versi \"mode gelap\" dari PDF Anda."
+  },
+  "backgroundColor": {
+    "name": "Warna Latar Belakang",
+    "subtitle": "Ubah warna latar belakang PDF Anda."
+  },
+  "changeTextColor": {
+    "name": "Ubah Warna Teks",
+    "subtitle": "Ubah warna teks di PDF Anda."
+  },
+  "addStamps": {
+    "name": "Tambah Stempel",
+    "subtitle": "Tambah stempel gambar ke PDF Anda menggunakan toolbar anotasi.",
+    "usernameLabel": "Nama Pengguna Stempel",
+    "usernamePlaceholder": "Masukkan nama Anda (untuk stempel)",
+    "usernameHint": "Nama ini akan muncul pada stempel yang Anda buat."
+  },
+  "removeAnnotations": {
+    "name": "Hapus Anotasi",
+    "subtitle": "Hapus komentar, sorotan, dan tautan."
+  },
+  "pdfFormFiller": {
+    "name": "Pengisi Formulir PDF",
+    "subtitle": "Isi formulir langsung di browser. Juga mendukung formulir XFA."
+  },
+  "createPdfForm": {
+    "name": "Buat Formulir PDF",
+    "subtitle": "Buat formulir PDF yang dapat diisi dengan bidang teks drag-and-drop."
+  },
+  "removeBlankPages": {
+    "name": "Hapus Halaman Kosong",
+    "subtitle": "Deteksi dan hapus halaman kosong secara otomatis."
+  },
+  "imageToPdf": {
+    "name": "Gambar ke PDF",
+    "subtitle": "Konversi JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP ke PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG ke PDF",
+    "subtitle": "Buat PDF dari satu atau lebih gambar PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP ke PDF",
+    "subtitle": "Buat PDF dari satu atau lebih gambar WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG ke PDF",
+    "subtitle": "Buat PDF dari satu atau lebih gambar SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP ke PDF",
+    "subtitle": "Buat PDF dari satu atau lebih gambar BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC ke PDF",
+    "subtitle": "Buat PDF dari satu atau lebih gambar HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF ke PDF",
+    "subtitle": "Buat PDF dari satu atau lebih gambar TIFF."
+  },
+  "textToPdf": {
+    "name": "Teks ke PDF",
+    "subtitle": "Konversi file teks biasa menjadi PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON ke PDF",
+    "subtitle": "Konversi file JSON ke format PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF ke JPG",
+    "subtitle": "Konversi setiap halaman PDF menjadi gambar JPG."
+  },
+  "pdfToPng": {
+    "name": "PDF ke PNG",
+    "subtitle": "Konversi setiap halaman PDF menjadi gambar PNG."
+  },
+  "pdfToWebp": {
+    "name": "PDF ke WebP",
+    "subtitle": "Konversi setiap halaman PDF menjadi gambar WebP."
+  },
+  "pdfToBmp": {
+    "name": "PDF ke BMP",
+    "subtitle": "Konversi setiap halaman PDF menjadi gambar BMP."
+  },
+  "pdfToTiff": {
+    "name": "PDF ke TIFF",
+    "subtitle": "Konversi setiap halaman PDF menjadi gambar TIFF."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF ke Skala Abu-abu",
+    "subtitle": "Konversi semua warna ke hitam dan putih."
+  },
+  "pdfToJson": {
+    "name": "PDF ke JSON",
+    "subtitle": "Konversi file PDF ke format JSON."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Buat PDF dapat dicari dan disalin."
+  },
+  "alternateMix": {
+    "name": "Alternatif & Campur Halaman",
+    "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF. Mempertahankan Bookmark."
+  },
+  "addAttachments": {
+    "name": "Tambah Lampiran",
+    "subtitle": "Sematkan satu atau lebih file ke PDF Anda."
+  },
+  "extractAttachments": {
+    "name": "Ekstrak Lampiran",
+    "subtitle": "Ekstrak semua file tersemat dari PDF sebagai ZIP."
+  },
+  "editAttachments": {
+    "name": "Edit Lampiran",
+    "subtitle": "Lihat atau hapus lampiran di PDF Anda."
+  },
+  "dividePages": {
+    "name": "Bagi Halaman",
+    "subtitle": "Bagi halaman secara horizontal atau vertikal."
+  },
+  "addBlankPage": {
+    "name": "Tambah Halaman Kosong",
+    "subtitle": "Sisipkan halaman kosong di mana saja di PDF Anda."
+  },
+  "reversePages": {
+    "name": "Balik Halaman",
+    "subtitle": "Balik urutan semua halaman di dokumen Anda."
+  },
+  "rotatePdf": {
+    "name": "Putar PDF",
+    "subtitle": "Putar halaman dalam kenaikan 90 derajat."
+  },
+  "rotateCustom": {
+    "name": "Putar dengan Derajat Kustom",
+    "subtitle": "Putar halaman dengan sudut kustom apa pun."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "Susun beberapa halaman ke satu lembar."
+  },
+  "combineToSinglePage": {
+    "name": "Gabung ke Halaman Tunggal",
+    "subtitle": "Jahit semua halaman menjadi satu gulungan berkelanjutan."
+  },
+  "viewMetadata": {
+    "name": "Lihat Metadata",
+    "subtitle": "Periksa properti tersembunyi PDF Anda."
+  },
+  "editMetadata": {
+    "name": "Edit Metadata",
+    "subtitle": "Ubah penulis, judul, dan properti lainnya."
+  },
+  "pdfsToZip": {
+    "name": "PDF ke ZIP",
+    "subtitle": "Paket beberapa file PDF ke arsip ZIP."
+  },
+  "comparePdfs": {
+    "name": "Bandingkan PDF",
+    "subtitle": "Bandingkan dua PDF berdampingan."
+  },
+  "posterizePdf": {
+    "name": "Posterisasi PDF",
+    "subtitle": "Pisah halaman besar menjadi beberapa halaman lebih kecil."
+  },
+  "fixPageSize": {
+    "name": "Perbaiki Ukuran Halaman",
+    "subtitle": "Standarkan semua halaman ke ukuran seragam."
+  },
+  "linearizePdf": {
+    "name": "Linierisasi PDF",
+    "subtitle": "Optimalkan PDF untuk tampilan web cepat."
+  },
+  "pageDimensions": {
+    "name": "Dimensi Halaman",
+    "subtitle": "Analisis ukuran halaman, orientasi, dan unit."
+  },
+  "removeRestrictions": {
+    "name": "Hapus Pembatasan",
+    "subtitle": "Hapus perlindungan kata sandi dan pembatasan keamanan yang terkait dengan file PDF yang ditandatangani secara digital."
+  },
+  "repairPdf": {
+    "name": "Perbaiki PDF",
+    "subtitle": "Pulihkan data dari file PDF yang rusak atau rusak."
+  },
+  "encryptPdf": {
+    "name": "Enkripsi PDF",
+    "subtitle": "Kunci PDF Anda dengan menambahkan kata sandi."
+  },
+  "sanitizePdf": {
+    "name": "Sanitasi PDF",
+    "subtitle": "Hapus metadata, anotasi, skrip, dan lainnya."
+  },
+  "decryptPdf": {
+    "name": "Dekripsi PDF",
+    "subtitle": "Buka kunci PDF dengan menghapus perlindungan kata sandi."
+  },
+  "flattenPdf": {
+    "name": "Ratakan PDF",
+    "subtitle": "Buat bidang formulir dan anotasi tidak dapat diedit."
+  },
+  "removeMetadata": {
+    "name": "Hapus Metadata",
+    "subtitle": "Hapus data tersembunyi dari PDF Anda."
+  },
+  "changePermissions": {
+    "name": "Ubah Izin",
+    "subtitle": "Atur atau ubah izin pengguna pada PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT ke PDF",
+    "subtitle": "Konversi file OpenDocument Text ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File ODT",
+    "convertButton": "Konversi ke PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV ke PDF",
+    "subtitle": "Konversi file spreadsheet CSV ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File CSV",
+    "convertButton": "Konversi ke PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF ke PDF",
+    "subtitle": "Konversi dokumen Rich Text Format ke PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File RTF",
+    "convertButton": "Konversi ke PDF"
+  },
+  "wordToPdf": {
+    "name": "Word ke PDF",
+    "subtitle": "Konversi dokumen Word (DOCX, DOC, ODT, RTF) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File DOCX, DOC, ODT, RTF",
+    "convertButton": "Konversi ke PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel ke PDF",
+    "subtitle": "Konversi spreadsheet Excel (XLSX, XLS, ODS, CSV) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File XLSX, XLS, ODS, CSV",
+    "convertButton": "Konversi ke PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint ke PDF",
+    "subtitle": "Konversi presentasi PowerPoint (PPTX, PPT, ODP) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File PPTX, PPT, ODP",
+    "convertButton": "Konversi ke PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown ke PDF",
+    "subtitle": "Tulis atau tempel Markdown dan ekspor sebagai PDF yang diformat dengan indah.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Pratinjau",
+    "btnUpload": "Unggah",
+    "btnSyncScroll": "Sinkron Gulir",
+    "btnSettings": "Pengaturan",
+    "btnExportPdf": "Ekspor PDF",
+    "settingsTitle": "Pengaturan Markdown",
+    "settingsPreset": "Preset",
+    "presetDefault": "Default (seperti GFM)",
+    "presetCommonmark": "CommonMark (ketat)",
+    "presetZero": "Minimal (tanpa fitur)",
+    "settingsOptions": "Opsi Markdown",
+    "optAllowHtml": "Izinkan tag HTML",
+    "optBreaks": "Konversi baris baru ke <br>",
+    "optLinkify": "Konversi otomatis URL ke tautan",
+    "optTypographer": "Typographer (kutipan cerdas, dll.)"
+  },
+  "pdfBooklet": {
+    "name": "Buku Kecil PDF",
+    "subtitle": "Susun ulang halaman untuk pencetakan buku kecil dua sisi. Lipat dan jahit untuk membuat buku kecil.",
+    "howItWorks": "Cara kerjanya:",
+    "step1": "Unggah file PDF.",
+    "step2": "Halaman akan disusun ulang dalam urutan buku kecil.",
+    "step3": "Cetak dua sisi, balik di tepi pendek, lipat dan jahit.",
+    "paperSize": "Ukuran Kertas",
+    "orientation": "Orientasi",
+    "portrait": "Potret",
+    "landscape": "Lanskap",
+    "pagesPerSheet": "Halaman per Lembar",
+    "createBooklet": "Buat Buku Kecil",
+    "processing": "Memproses...",
+    "pageCount": "Jumlah halaman akan diisi ke kelipatan 4 jika diperlukan."
+  },
+  "xpsToPdf": {
+    "name": "XPS ke PDF",
+    "subtitle": "Konversi dokumen XPS/OXPS ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File XPS, OXPS",
+    "convertButton": "Konversi ke PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI ke PDF",
+    "subtitle": "Konversi e-book MOBI ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File MOBI",
+    "convertButton": "Konversi ke PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB ke PDF",
+    "subtitle": "Konversi e-book EPUB ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File EPUB",
+    "convertButton": "Konversi ke PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 ke PDF",
+    "subtitle": "Konversi e-book FictionBook (FB2) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File FB2",
+    "convertButton": "Konversi ke PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ ke PDF",
+    "subtitle": "Konversi arsip buku komik (CBZ/CBR) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File CBZ, CBR",
+    "convertButton": "Konversi ke PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD ke PDF",
+    "subtitle": "Konversi dokumen WordPerfect (WPD) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File WPD",
+    "convertButton": "Konversi ke PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS ke PDF",
+    "subtitle": "Konversi dokumen WPS Office ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File WPS",
+    "convertButton": "Konversi ke PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML ke PDF",
+    "subtitle": "Konversi dokumen XML ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File XML",
+    "convertButton": "Konversi ke PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages ke PDF",
+    "subtitle": "Konversi dokumen Apple Pages ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File Pages",
+    "convertButton": "Konversi ke PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG ke PDF",
+    "subtitle": "Konversi file OpenDocument Graphics (ODG) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File ODG",
+    "convertButton": "Konversi ke PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS ke PDF",
+    "subtitle": "Konversi file OpenDocument Spreadsheet (ODS) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File ODS",
+    "convertButton": "Konversi ke PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP ke PDF",
+    "subtitle": "Konversi file OpenDocument Presentation (ODP) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File ODP",
+    "convertButton": "Konversi ke PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB ke PDF",
+    "subtitle": "Konversi file Microsoft Publisher (PUB) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File PUB",
+    "convertButton": "Konversi ke PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD ke PDF",
+    "subtitle": "Konversi file Microsoft Visio (VSD, VSDX) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File VSD, VSDX",
+    "convertButton": "Konversi ke PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD ke PDF",
+    "subtitle": "Konversi file Adobe Photoshop (PSD) ke format PDF. Mendukung beberapa file.",
+    "acceptedFormats": "File PSD",
+    "convertButton": "Konversi ke PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF ke SVG",
+    "subtitle": "Konversi setiap halaman file PDF menjadi grafik vektor skalabel (SVG) untuk kualitas sempurna di ukuran apa pun."
+  },
+  "extractTables": {
+    "name": "Ekstrak Tabel PDF",
+    "subtitle": "Ekstrak tabel dari file PDF dan ekspor sebagai CSV, JSON, atau Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF ke CSV",
+    "subtitle": "Ekstrak tabel dari PDF dan konversi ke format CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF ke Excel",
+    "subtitle": "Ekstrak tabel dari PDF dan konversi ke format Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF ke Teks",
+    "subtitle": "Ekstrak teks dari file PDF dan simpan sebagai teks biasa (.txt). Mendukung beberapa file.",
+    "note": "Alat ini bekerja HANYA dengan PDF yang dibuat secara digital. Untuk dokumen terpindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya.",
+    "convertButton": "Ekstrak Teks"
+  },
+  "digitalSignPdf": {
+    "name": "Tanda Tangan Digital PDF",
+    "pageTitle": "Tanda Tangan Digital PDF - Tambah Tanda Tangan Kriptografi | BentoPDF",
+    "subtitle": "Tambah tanda tangan digital kriptografi ke PDF Anda menggunakan sertifikat X.509. Mendukung format PKCS#12 (.pfx, .p12) dan PEM. Kunci pribadi Anda tidak pernah meninggalkan browser Anda.",
+    "certificateSection": "Sertifikat",
+    "uploadCert": "Unggah sertifikat (.pfx, .p12)",
+    "certPassword": "Kata Sandi Sertifikat",
+    "certPasswordPlaceholder": "Masukkan kata sandi sertifikat",
+    "certInfo": "Informasi Sertifikat",
+    "certSubject": "Subjek",
+    "certIssuer": "Penerbit",
+    "certValidity": "Valid",
+    "signatureDetails": "Detail Tanda Tangan (Opsional)",
+    "reason": "Alasan",
+    "reasonPlaceholder": "misalnya, Saya menyetujui dokumen ini",
+    "location": "Lokasi",
+    "locationPlaceholder": "misalnya, Jakarta, Indonesia",
+    "contactInfo": "Info Kontak",
+    "contactPlaceholder": "misalnya, email@contoh.com",
+    "applySignature": "Terapkan Tanda Tangan Digital",
+    "successMessage": "PDF berhasil ditandatangani! Tanda tangan dapat diverifikasi di pembaca PDF apa pun."
+  },
+  "validateSignaturePdf": {
+    "name": "Validasi Tanda Tangan PDF",
+    "pageTitle": "Validasi Tanda Tangan PDF - Verifikasi Tanda Tangan Digital | BentoPDF",
+    "subtitle": "Verifikasi tanda tangan digital di file PDF Anda. Periksa validitas sertifikat, lihat detail penandatangan, dan konfirmasi integritas dokumen. Semua pemrosesan terjadi di browser Anda."
+  },
+  "emailToPdf": {
+    "name": "Email ke PDF",
+    "subtitle": "Konversi file email (EML, MSG) ke format PDF. Mendukung ekspor Outlook dan format email standar.",
+    "acceptedFormats": "File EML, MSG",
+    "convertButton": "Konversi ke PDF"
+  },
+  "fontToOutline": {
+    "name": "Font ke Garis Tepi",
+    "subtitle": "Konversi semua font ke garis tepi vektor untuk tampilan konsisten di semua perangkat."
+  },
+  "deskewPdf": {
+    "name": "Luruskan PDF",
+    "subtitle": "Otomatis meluruskan halaman hasil pindai yang miring menggunakan OpenCV."
+  }
+}

@@ -27,6 +27,7 @@ concurrency:
 env:
   SIMPLE_MODE: ${{ vars.SIMPLE_MODE }}
   BASE_URL: ${{ vars.BASE_URL }}/ 
+  HUSKY: 0 
 
 jobs:
   # Single deploy job since we're just deploying
@@ -57,6 +58,9 @@ jobs:
         with:
           # Upload entire repository
           path: dist
+          name: github-pages-deployment
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages-deployment

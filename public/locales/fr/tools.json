@@ -1,0 +1,533 @@
+{
+  "categories": {
+    "popularTools": "Outils populaires",
+    "editAnnotate": "Éditer et annoter",
+    "convertToPdf": "Convertir en PDF",
+    "convertFromPdf": "Convertir depuis le PDF",
+    "organizeManage": "Organiser et gérer",
+    "optimizeRepair": "Optimiser et réparer",
+    "securePdf": "Sécuriser les PDF"
+  },
+  "pdfMultiTool": {
+    "name": "Outil PDF tout-en-un",
+    "subtitle": "Fusionner, scinder, organiser, supprimer, faire pivoter, ajouter des pages vierges, extraire et dupliquer dans une interface unifiée."
+  },
+  "mergePdf": {
+    "name": "Fusionner des PDF",
+    "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets."
+  },
+  "splitPdf": {
+    "name": "Scinder un PDF",
+    "subtitle": "Extraire une plage de pages dans un nouveau PDF."
+  },
+  "compressPdf": {
+    "name": "Compresser un PDF",
+    "subtitle": "Réduire la taille du fichier PDF.",
+    "algorithmLabel": "Algorithme de compression",
+    "condense": "Condensé (recommandé)",
+    "photon": "Photon (pour les PDF riches en photos)",
+    "condenseInfo": "Condensé utilise une compression avancée : suppression du superflu, optimisation des images, sous-ensemble des polices. Idéal pour la plupart des PDF.",
+    "photonInfo": "Photon convertit les pages en images. À utiliser pour les PDF contenant beaucoup de photos ou scannés.",
+    "photonWarning": "Attention : le texte ne sera plus sélectionnable et les liens ne fonctionneront plus.",
+    "levelLabel": "Niveau de compression",
+    "light": "Léger (préserver la qualité)",
+    "balanced": "Équilibré (recommandé)",
+    "aggressive": "Agressif (fichiers plus petits)",
+    "extreme": "Extrême (compression maximale)",
+    "grayscale": "Convertir en niveaux de gris",
+    "grayscaleHint": "Réduit la taille du fichier en supprimant les informations de couleur",
+    "customSettings": "Paramètres personnalisés",
+    "customSettingsHint": "Affiner les paramètres de compression :",
+    "outputQuality": "Qualité de sortie",
+    "resizeImagesTo": "Redimensionner les images à",
+    "onlyProcessAbove": "Traiter uniquement au-dessus de",
+    "removeMetadata": "Supprimer les métadonnées",
+    "subsetFonts": "Sous-ensemble des polices (supprimer les glyphes inutilisés)",
+    "removeThumbnails": "Supprimer les vignettes intégrées",
+    "compressButton": "Compresser le PDF"
+  },
+  "pdfEditor": {
+    "name": "Éditeur PDF",
+    "subtitle": "Annoter, surligner, masquer, commenter, ajouter des formes ou images, rechercher et afficher des PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images JPG."
+  },
+  "signPdf": {
+    "name": "Signer un PDF",
+    "subtitle": "Dessiner, saisir ou importer votre signature."
+  },
+  "cropPdf": {
+    "name": "Rogner un PDF",
+    "subtitle": "Ajuster les marges de chaque page du PDF."
+  },
+  "extractPages": {
+    "name": "Extraire des pages",
+    "subtitle": "Enregistrer une sélection de pages dans de nouveaux fichiers."
+  },
+  "duplicateOrganize": {
+    "name": "Dupliquer et organiser",
+    "subtitle": "Dupliquer, réorganiser et supprimer des pages."
+  },
+  "deletePages": {
+    "name": "Supprimer des pages",
+    "subtitle": "Retirer des pages spécifiques du document."
+  },
+  "editBookmarks": {
+    "name": "Modifier les signets",
+    "subtitle": "Ajouter, modifier, importer, supprimer et extraire des signets PDF."
+  },
+  "tableOfContents": {
+    "name": "Table des matières",
+    "subtitle": "Générer une table des matières à partir des signets du PDF."
+  },
+  "pageNumbers": {
+    "name": "Numéros de page",
+    "subtitle": "Insérer une numérotation dans le document."
+  },
+  "addWatermark": {
+    "name": "Ajouter un filigrane",
+    "subtitle": "Apposer un texte ou une image sur les pages du PDF."
+  },
+  "headerFooter": {
+    "name": "En-tête et pied de page",
+    "subtitle": "Ajouter du texte en haut et en bas des pages."
+  },
+  "invertColors": {
+    "name": "Inverser les couleurs",
+    "subtitle": "Créer une version « mode sombre » du PDF."
+  },
+  "backgroundColor": {
+    "name": "Couleur de fond",
+    "subtitle": "Modifier la couleur de fond du PDF."
+  },
+  "changeTextColor": {
+    "name": "Changer la couleur du texte",
+    "subtitle": "Modifier la couleur du texte dans le PDF."
+  },
+  "addStamps": {
+    "name": "Ajouter des tampons",
+    "subtitle": "Ajouter des tampons image via la barre d’annotations.",
+    "usernameLabel": "Nom du tampon",
+    "usernamePlaceholder": "Entrez votre nom (pour les tampons)",
+    "usernameHint": "Ce nom apparaîtra sur les tampons que vous créez."
+  },
+  "removeAnnotations": {
+    "name": "Supprimer les annotations",
+    "subtitle": "Retirer les commentaires, surlignages et liens."
+  },
+  "pdfFormFiller": {
+    "name": "Remplir un formulaire PDF",
+    "subtitle": "Remplir des formulaires directement dans le navigateur, y compris les formulaires XFA."
+  },
+  "createPdfForm": {
+    "name": "Créer un formulaire PDF",
+    "subtitle": "Créer des formulaires PDF interactifs avec des champs glisser-déposer."
+  },
+  "removeBlankPages": {
+    "name": "Supprimer les pages blanches",
+    "subtitle": "Détecter et supprimer automatiquement les pages vides."
+  },
+  "imageToPdf": {
+    "name": "Images vers PDF",
+    "subtitle": "Convertir un JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP en PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF vers PDF",
+    "subtitle": "Créer un PDF à partir d’une ou plusieurs images TIFF."
+  },
+  "textToPdf": {
+    "name": "Texte vers PDF",
+    "subtitle": "Convertir un fichier texte en PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON vers PDF",
+    "subtitle": "Convertir des fichiers JSON en PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF vers JPG",
+    "subtitle": "Convertir chaque page du PDF en image JPG."
+  },
+  "pdfToPng": {
+    "name": "PDF vers PNG",
+    "subtitle": "Convertir chaque page du PDF en image PNG."
+  },
+  "pdfToWebp": {
+    "name": "PDF vers WebP",
+    "subtitle": "Convertir chaque page du PDF en image WebP."
+  },
+  "pdfToBmp": {
+    "name": "PDF vers BMP",
+    "subtitle": "Convertir chaque page du PDF en image BMP."
+  },
+  "pdfToTiff": {
+    "name": "PDF vers TIFF",
+    "subtitle": "Convertir chaque page du PDF en image TIFF."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF en niveaux de gris",
+    "subtitle": "Convertir toutes les couleurs en noir et blanc."
+  },
+  "pdfToJson": {
+    "name": "PDF vers JSON",
+    "subtitle": "Convertir des fichiers PDF en JSON."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Rendre un PDF consultable et copiable."
+  },
+  "alternateMix": {
+    "name": "Alterner et mélanger les pages",
+    "subtitle": "Fusionner des PDF en alternant les pages de chaque fichier, tout en conservant les signets."
+  },
+  "addAttachments": {
+    "name": "Ajouter des pièces jointes",
+    "subtitle": "Intégrer un ou plusieurs fichiers dans le PDF."
+  },
+  "extractAttachments": {
+    "name": "Extraire les pièces jointes",
+    "subtitle": "Extraire tous les fichiers intégrés des PDF dans une archive ZIP."
+  },
+  "editAttachments": {
+    "name": "Gérer les pièces jointes",
+    "subtitle": "Afficher ou supprimer les pièces jointes du PDF."
+  },
+  "dividePages": {
+    "name": "Diviser les pages",
+    "subtitle": "Diviser les pages horizontalement ou verticalement."
+  },
+  "addBlankPage": {
+    "name": "Ajouter une page vierge",
+    "subtitle": "Insérer une page vide à n’importe quel endroit du PDF."
+  },
+  "reversePages": {
+    "name": "Inverser l’ordre des pages",
+    "subtitle": "Renverser l’ordre de toutes les pages du document."
+  },
+  "rotatePdf": {
+    "name": "Faire pivoter un PDF",
+    "subtitle": "Tourner les pages par incréments de 90°."
+  },
+  "rotateCustom": {
+    "name": "Rotation par angle personnalisé",
+    "subtitle": "Faire pivoter les pages selon un angle personnalisé."
+  },
+  "nUpPdf": {
+    "name": "PDF N-up",
+    "subtitle": "Afficher plusieurs pages sur une seule feuille."
+  },
+  "combineToSinglePage": {
+    "name": "Combiner en une seule page",
+    "subtitle": "Assembler toutes les pages en un défilement continu."
+  },
+  "viewMetadata": {
+    "name": "Afficher les métadonnées",
+    "subtitle": "Consulter les propriétés internes du PDF."
+  },
+  "editMetadata": {
+    "name": "Modifier les métadonnées",
+    "subtitle": "Changer l’auteur, le titre et autres propriétés."
+  },
+  "pdfsToZip": {
+    "name": "PDF vers ZIP",
+    "subtitle": "Regrouper plusieurs fichiers PDF dans une archive ZIP."
+  },
+  "comparePdfs": {
+    "name": "Comparer des PDF",
+    "subtitle": "Comparer deux PDF côte à côte."
+  },
+  "posterizePdf": {
+    "name": "Posteriser un PDF",
+    "subtitle": "Découper une grande page en plusieurs pages plus petites."
+  },
+  "fixPageSize": {
+    "name": "Uniformiser la taille des pages",
+    "subtitle": "Standardiser toutes les pages à un format identique."
+  },
+  "linearizePdf": {
+    "name": "Optimiser pour le web",
+    "subtitle": "Optimiser le PDF pour un affichage rapide en ligne."
+  },
+  "pageDimensions": {
+    "name": "Dimensions des pages",
+    "subtitle": "Analyser la taille, l’orientation et les unités des pages."
+  },
+  "removeRestrictions": {
+    "name": "Supprimer les restrictions",
+    "subtitle": "Supprimer les protections par mot de passe et restrictions de sécurité des PDF signés."
+  },
+  "repairPdf": {
+    "name": "Réparer un PDF",
+    "subtitle": "Récupérer les données de fichiers PDF corrompus ou endommagés."
+  },
+  "encryptPdf": {
+    "name": "Chiffrer un PDF",
+    "subtitle": "Protéger le PDF en ajoutant un mot de passe."
+  },
+  "sanitizePdf": {
+    "name": "Nettoyer un PDF",
+    "subtitle": "Supprimer les métadonnées, annotations, scripts et autres éléments sensibles."
+  },
+  "decryptPdf": {
+    "name": "Déverrouiller un PDF",
+    "subtitle": "Supprimer la protection par mot de passe."
+  },
+  "flattenPdf": {
+    "name": "Aplatir le PDF",
+    "subtitle": "Rendre les champs de formulaire et annotations non modifiables."
+  },
+  "removeMetadata": {
+    "name": "Supprimer les métadonnées",
+    "subtitle": "Effacer les données cachées du PDF."
+  },
+  "changePermissions": {
+    "name": "Modifier les autorisations",
+    "subtitle": "Définir ou modifier les permissions utilisateur du PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT vers PDF",
+    "subtitle": "Convertir des fichiers OpenDocument Text au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers ODT",
+    "convertButton": "Convertir en PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV vers PDF",
+    "subtitle": "Convertir des fichiers tableur CSV au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers CSV",
+    "convertButton": "Convertir en PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF vers PDF",
+    "subtitle": "Convertir des documents Rich Text Format en PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers RTF",
+    "convertButton": "Convertir en PDF"
+  },
+  "wordToPdf": {
+    "name": "Word vers PDF",
+    "subtitle": "Convertir des documents Word (DOCX, DOC, ODT, RTF) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers DOCX, DOC, ODT, RTF",
+    "convertButton": "Convertir en PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel vers PDF",
+    "subtitle": "Convertir des feuilles de calcul Excel (XLSX, XLS, ODS, CSV) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers XLSX, XLS, ODS, CSV",
+    "convertButton": "Convertir en PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint vers PDF",
+    "subtitle": "Convertir des présentations PowerPoint (PPTX, PPT, ODP) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers PPTX, PPT, ODP",
+    "convertButton": "Convertir en PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown vers PDF",
+    "subtitle": "Écrire ou coller du Markdown et l’exporter en PDF avec une mise en forme soignée.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Aperçu",
+    "btnUpload": "Téléverser",
+    "btnSyncScroll": "Synchroniser le défilement",
+    "btnSettings": "Paramètres",
+    "btnExportPdf": "Exporter en PDF",
+    "settingsTitle": "Paramètres Markdown",
+    "settingsPreset": "Préréglage",
+    "presetDefault": "Par défaut (type GFM)",
+    "presetCommonmark": "CommonMark (strict)",
+    "presetZero": "Minimal (aucune fonctionnalité)",
+    "settingsOptions": "Options Markdown",
+    "optAllowHtml": "Autoriser les balises HTML",
+    "optBreaks": "Convertir les retours à la ligne en <br>",
+    "optLinkify": "Convertir automatiquement les URL en liens",
+    "optTypographer": "Typographie (guillemets intelligents, etc.)"
+  },
+  "pdfBooklet": {
+    "name": "Livret PDF",
+    "subtitle": "Réorganiser les pages pour l’impression recto verso en livret. Pliez et agrafez pour créer un livret.",
+    "howItWorks": "Fonctionnement :",
+    "step1": "Téléversez un fichier PDF.",
+    "step2": "Les pages seront réorganisées dans l’ordre du livret.",
+    "step3": "Imprimez en recto verso, retournement sur le bord court, pliez et agrafez.",
+    "paperSize": "Format du papier",
+    "orientation": "Orientation",
+    "portrait": "Portrait",
+    "landscape": "Paysage",
+    "pagesPerSheet": "Pages par feuille",
+    "createBooklet": "Créer le livret",
+    "processing": "Traitement...",
+    "pageCount": "Le nombre de pages sera complété au multiple de 4 si nécessaire."
+  },
+  "xpsToPdf": {
+    "name": "XPS vers PDF",
+    "subtitle": "Convertir des documents XPS/OXPS au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers XPS, OXPS",
+    "convertButton": "Convertir en PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI vers PDF",
+    "subtitle": "Convertir des livres numériques MOBI au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers MOBI",
+    "convertButton": "Convertir en PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB vers PDF",
+    "subtitle": "Convertir des livres numériques EPUB au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers EPUB",
+    "convertButton": "Convertir en PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 vers PDF",
+    "subtitle": "Convertir des livres numériques FictionBook (FB2) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers FB2",
+    "convertButton": "Convertir en PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ vers PDF",
+    "subtitle": "Convertir des archives de bandes dessinées (CBZ/CBR) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers CBZ, CBR",
+    "convertButton": "Convertir en PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD vers PDF",
+    "subtitle": "Convertir des documents WordPerfect (WPD) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers WPD",
+    "convertButton": "Convertir en PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS vers PDF",
+    "subtitle": "Convertir des documents WPS Office au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers WPS",
+    "convertButton": "Convertir en PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML vers PDF",
+    "subtitle": "Convertir des documents XML au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers XML",
+    "convertButton": "Convertir en PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages vers PDF",
+    "subtitle": "Convertir des documents Apple Pages au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers Pages",
+    "convertButton": "Convertir en PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG vers PDF",
+    "subtitle": "Convertir des fichiers OpenDocument Graphics (ODG) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers ODG",
+    "convertButton": "Convertir en PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS vers PDF",
+    "subtitle": "Convertir des fichiers OpenDocument Spreadsheet (ODS) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers ODS",
+    "convertButton": "Convertir en PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP vers PDF",
+    "subtitle": "Convertir des fichiers OpenDocument Presentation (ODP) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers ODP",
+    "convertButton": "Convertir en PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB vers PDF",
+    "subtitle": "Convertir des fichiers Microsoft Publisher (PUB) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers PUB",
+    "convertButton": "Convertir en PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD vers PDF",
+    "subtitle": "Convertir des fichiers Microsoft Visio (VSD, VSDX) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers VSD, VSDX",
+    "convertButton": "Convertir en PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD vers PDF",
+    "subtitle": "Convertir des fichiers Adobe Photoshop (PSD) au format PDF. Prend en charge plusieurs fichiers.",
+    "acceptedFormats": "Fichiers PSD",
+    "convertButton": "Convertir en PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF vers SVG",
+    "subtitle": "Convertir chaque page d’un fichier PDF en graphique vectoriel évolutif (SVG) pour une qualité parfaite à toutes les tailles."
+  },
+  "extractTables": {
+    "name": "Extraire les tableaux PDF",
+    "subtitle": "Extraire les tableaux des fichiers PDF et les exporter en CSV, JSON ou Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF vers CSV",
+    "subtitle": "Extraire les tableaux d’un PDF et les convertir au format CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF vers Excel",
+    "subtitle": "Extraire les tableaux d’un PDF et les convertir au format Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF vers texte",
+    "subtitle": "Extraire le texte des fichiers PDF et l’enregistrer en texte brut (.txt). Prend en charge plusieurs fichiers.",
+    "note": "Cet outil fonctionne UNIQUEMENT avec des PDF créés numériquement. Pour les documents scannés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF.",
+    "convertButton": "Extraire le texte"
+  },
+  "digitalSignPdf": {
+    "name": "Signature numérique PDF",
+    "pageTitle": "Signature numérique PDF - Ajouter une signature cryptographique | BentoPDF",
+    "subtitle": "Ajouter une signature numérique cryptographique à votre PDF à l’aide de certificats X.509. Prend en charge les formats PKCS#12 (.pfx, .p12) et PEM. Votre clé privée ne quitte jamais votre navigateur.",
+    "certificateSection": "Certificat",
+    "uploadCert": "Téléverser un certificat (.pfx, .p12)",
+    "certPassword": "Mot de passe du certificat",
+    "certPasswordPlaceholder": "Saisissez le mot de passe du certificat",
+    "certInfo": "Informations du certificat",
+    "certSubject": "Sujet",
+    "certIssuer": "Émetteur",
+    "certValidity": "Validité",
+    "signatureDetails": "Détails de la signature (facultatif)",
+    "reason": "Motif",
+    "reasonPlaceholder": "ex. : J’approuve ce document",
+    "location": "Lieu",
+    "locationPlaceholder": "ex. : Paris, France",
+    "contactInfo": "Coordonnées",
+    "contactPlaceholder": "ex. : email@exemple.com",
+    "applySignature": "Appliquer la signature numérique",
+    "successMessage": "PDF signé avec succès ! La signature peut être vérifiée dans n’importe quel lecteur PDF."
+  },
+  "validateSignaturePdf": {
+    "name": "Valider la signature PDF",
+    "pageTitle": "Valider la signature PDF - Vérifier les signatures numériques | BentoPDF",
+    "subtitle": "Vérifier les signatures numériques de vos fichiers PDF. Contrôlez la validité du certificat, consultez les informations du signataire et confirmez l’intégrité du document. Tout le traitement s’effectue dans votre navigateur."
+  },
+  "emailToPdf": {
+    "name": "Email vers PDF",
+    "subtitle": "Convertir des fichiers email (EML, MSG) au format PDF. Prend en charge les exports Outlook et les formats email standards.",
+    "acceptedFormats": "Fichiers EML, MSG",
+    "convertButton": "Convertir en PDF"
+  },
+  "fontToOutline": {
+    "name": "Polices en contours",
+    "subtitle": "Convertir toutes les polices en contours vectoriels pour un rendu cohérent sur tous les appareils."
+  },
+  "deskewPdf": {
+    "name": "Redresser un PDF",
+    "subtitle": "Redresser automatiquement les pages scannées inclinées à l’aide d’OpenCV."
+  }
+}

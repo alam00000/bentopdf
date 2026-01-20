@@ -1,13 +1,8 @@
+import { DividePagesState } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes, parsePageRanges } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
-
-interface DividePagesState {
-    file: File | null;
-    pdfDoc: PDFLibDocument | null;
-    totalPages: number;
-}
 
 const pageState: DividePagesState = {
     file: null,

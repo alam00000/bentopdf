@@ -73,22 +73,46 @@ Create `/etc/apache2/sites-available/bentopdf.conf`:
 </VirtualHost>
 ```
 
-## Step 4: .htaccess for SPA Routing
+## Step 4: .htaccess for Routing
 
 Create `/var/www/bentopdf/.htaccess`:
 
 ```apache
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    
-    # Don't rewrite files or directories
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Rewrite everything else to index.html
-    RewriteRule ^ index.html [L]
-</IfModule>
+RewriteEngine On
+RewriteBase /
+
+# Existing files/dirs - serve directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ============================================
+# LANGUAGE ROUTES
+# ============================================
+# Supported languages: de, es, zh, zh-TW, vi, it, id, tr, fr, pt
+# English has no prefix - served from root
+
+# English prefix redirects to root
+RewriteRule ^en/?$ / [R=301,L]
+RewriteRule ^en/(.+)$ /$1 [R=301,L]
+
+# Language prefix root (e.g., /de/ -> /de/index.html)
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /$1/index.html [L]
+
+# Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
+RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+
+# ============================================
+# ADD .HTML EXTENSION (ROOT LEVEL)
+# ============================================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
+
+ErrorDocument 404 /404.html
 ```
 
 ## Step 5: Enable Required Modules
@@ -122,14 +146,31 @@ BASE_URL=/pdf/ npm run build
 2. Update `.htaccess`:
 
 ```apache
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /pdf/
-    
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.html [L]
-</IfModule>
+RewriteEngine On
+RewriteBase /pdf/
+
+# Existing files/dirs - serve directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Language routes
+RewriteRule ^en/?$ /pdf/ [R=301,L]
+RewriteRule ^en/(.+)$ /pdf/$1 [R=301,L]
+
+RewriteCond %{DOCUMENT_ROOT}/pdf/$1/index.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /pdf/$1/index.html [L]
+
+RewriteCond %{DOCUMENT_ROOT}/pdf/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /pdf/$1/$2.html [L]
+
+# Root level .html extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
+
+ErrorDocument 404 /pdf/404.html
 ```
 
 ## Troubleshooting

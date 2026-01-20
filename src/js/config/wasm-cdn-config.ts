@@ -9,12 +9,11 @@ const USE_CDN = import.meta.env.VITE_USE_CDN === 'true';
 import { CDN_URLS, PACKAGE_VERSIONS } from '../const/cdn-version';
 
 const LOCAL_PATHS = {
-    libreoffice: import.meta.env.BASE_URL + 'libreoffice-wasm/',
     ghostscript: import.meta.env.BASE_URL + 'ghostscript-wasm/',
     pymupdf: import.meta.env.BASE_URL + 'pymupdf-wasm/',
 } as const;
 
-export type WasmPackage = 'libreoffice' | 'ghostscript' | 'pymupdf';
+export type WasmPackage = 'ghostscript' | 'pymupdf';
 
 export function getWasmBaseUrl(packageName: WasmPackage): string {
     if (USE_CDN) {

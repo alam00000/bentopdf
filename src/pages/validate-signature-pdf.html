@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+      Validate PDF Signature Online Free - Verify Digital Signatures | BentoPDF
+    </title>
+    <meta
+      name="title"
+      content="Validate PDF Signature Online Free - Verify Digital Signatures | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="★ Verify PDF digital signatures online free ★ Check certificate validity ★ View signer details ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      name="keywords"
+      content="validate pdf signature, verify digital signature, check pdf certificate, signature verification, pdf security"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <link
+      rel="canonical"
+      href="https://www.bentopdf.com/validate-signature-pdf.html"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.bentopdf.com/validate-signature-pdf"
+    />
+    <meta
+      property="og:title"
+      content="Validate PDF Signature Online Free - Verify Digital Signatures | BentoPDF"
+    />
+    <meta
+      property="og:description"
+      content="★ Verify PDF digital signatures online free ★ Check certificate validity ★ View signer details ★ Privacy-first"
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-validate-signature-pdf.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://www.bentopdf.com/validate-signature-pdf"
+    />
+    <meta name="twitter:title" content="Validate PDF Signature Free" />
+    <meta
+      name="twitter:description"
+      content="★ Verify PDF digital signatures online free ★ Check certificate validity ★ Privacy-first"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.bentopdf.com/images/twitter-validate-signature-pdf.png"
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Validate Signature" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
+
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools">
+            Back to Tools
+          </span>
+        </button>
+
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:validateSignaturePdf.name"
+        >
+          Validate PDF Signature
+        </h1>
+        <p
+          class="text-gray-400 mb-6"
+          data-i18n="tools:validateSignaturePdf.subtitle"
+        >
+          Verify digital signatures in your PDF files. Check certificate
+          validity, view signer details, and confirm document integrity. All
+          processing happens in your browser.
+        </p>
+
+        <div
+          id="drop-zone"
+          class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i
+              data-lucide="cloud-upload"
+              class="w-10 h-10 mb-3 text-gray-400"
+            ></i>
+            <p class="mb-2 text-sm text-gray-400">
+              <span class="font-semibold" data-i18n="upload.clickToSelect"
+                >Click to select a file</span
+              >
+              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+            </p>
+            <p class="text-xs text-gray-500">PDF Documents</p>
+            <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+              Your files never leave your device.
+            </p>
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            accept="application/pdf"
+          />
+        </div>
+
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+        <div id="custom-cert-section" class="hidden mt-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-semibold text-gray-300">
+              Custom Certificate File X.509 (Optional)
+            </h2>
+          </div>
+          <p class="text-xs text-gray-500">
+            Upload a trusted X.509 certificate to validate against a custom
+            trust source.
+          </p>
+          <div
+            id="cert-drop-zone"
+            class="relative flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+          >
+            <div class="flex flex-col items-center justify-center py-2">
+              <i data-lucide="shield" class="w-6 h-6 mb-1 text-gray-400"></i>
+              <p class="text-xs text-gray-400">
+                Upload certificate (.pem, .crt, .cer)
+              </p>
+            </div>
+            <input
+              id="cert-input"
+              type="file"
+              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+              accept=".pem,.crt,.cer,.der"
+            />
+          </div>
+          <div id="cert-display-area" class="space-y-2"></div>
+        </div>
+
+        <div id="results-section" class="hidden mt-6">
+          <h2 class="text-lg font-semibold text-white mb-4">
+            Signature Validation Results
+          </h2>
+          <div id="results-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
+        <p id="loader-text" class="text-white text-lg font-medium">
+          Processing...
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3
+          id="alert-title"
+          class="text-xl font-bold text-white mb-2"
+          data-i18n="alert.title"
+        >
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
+        How It Works
+      </h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            1
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              Upload Your PDF
+            </h3>
+            <p class="text-gray-400">
+              Select a digitally signed PDF file from your device
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            2
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              Automatic Analysis
+            </h3>
+            <p class="text-gray-400">
+              The tool extracts and parses all digital signatures in the
+              document
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            3
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">View Results</h3>
+            <p class="text-gray-400">
+              See signer information, certificate validity, and signature status
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
+        Related PDF Tools
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <a
+          href="digital-sign-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Digital Signature</h3>
+          <p class="text-gray-400 text-sm">Add cryptographic signature</p>
+        </a>
+        <a
+          href="encrypt-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Encrypt PDF</h3>
+          <p class="text-gray-400 text-sm">Password protect PDF</p>
+        </a>
+        <a
+          href="view-metadata.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">View Metadata</h3>
+          <p class="text-gray-400 text-sm">Inspect PDF properties</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            What types of signatures can be validated?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            This tool validates PKCS#7 digital signatures created with X.509
+            certificates, the standard format used by most PDF signing tools and
+            certificate authorities.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            What does "Self-Signed Certificate" mean?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            A self-signed certificate is one where the issuer and subject are
+            the same. While the signature is technically valid, it means the
+            certificate wasn't issued by a trusted Certificate Authority (CA).
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Is my PDF uploaded to a server?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            No, all processing happens entirely in your browser. Your PDF files
+            never leave your device, ensuring complete privacy and security.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    {{> footer }}
+
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script
+      type="module"
+      src="/src/js/logic/validate-signature-pdf-page.ts"
+    ></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Validate PDF Signature - BentoPDF",
+        "applicationCategory": "PDF Signature Verification Tool",
+        "operatingSystem": "Any - Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Verify PDF digital signatures",
+          "View certificate details",
+          "Check signature validity",
+          "Extract signer information",
+          "Client-side processing"
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.bentopdf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Validate PDF Signature",
+            "item": "https://www.bentopdf.com/validate-signature-pdf"
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

@@ -1,29 +1,223 @@
-// @ts-nocheck
-// TODO: @ALAM - remove ts-nocheck and fix types later, possibly convert this into an npm package
-
-import { PDFDocument, PDFName, PDFString, PDFNumber, PDFArray, PDFHexString } from 'pdf-lib';
+import { PDFDocument, PDFName, PDFNumber, PDFHexString, PDFRef } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { PDFDocumentProxy, PageViewport } from 'pdfjs-dist';
 import Sortable from 'sortablejs';
 import { createIcons, icons } from 'lucide';
 import '../../css/bookmark.css';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
-import { truncateFilename, getPDFDocument } from '../utils/helpers.js';
+import {
+  truncateFilename,
+  getPDFDocument,
+  formatBytes,
+  downloadFile,
+  escapeHtml,
+  hexToRgb,
+} from '../utils/helpers.js';
+import {
+  BookmarkNode,
+  BookmarkTree,
+  BookmarkColor,
+  BookmarkStyle,
+  ModalField,
+  ModalResult,
+  ModalDefaultValues,
+  DestinationCallback,
+  FlattenedBookmark,
+  OutlineItem,
+  PDFOutlineItem,
+  COLOR_CLASSES,
+  TEXT_COLOR_CLASSES,
+  HEX_COLOR_MAP,
+  PDF_COLOR_MAP,
+} from '@/types';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
+const modalContainer = document.getElementById(
+  'modal-container'
+) as HTMLElement | null;
 
-const modalContainer = document.getElementById('modal-container');
-
-// Destination picking state
 let isPickingDestination = false;
-let currentPickingCallback = null;
-let destinationMarker = null;
-let savedModalOverlay = null;
-let savedModal = null;
-let currentViewport = null;
+let currentPickingCallback: DestinationCallback | null = null;
+let destinationMarker: HTMLDivElement | null = null;
+let savedModalOverlay: HTMLDivElement | null = null;
+let savedModal: HTMLDivElement | null = null;
+let currentViewport: PageViewport | null = null;
 let currentZoom = 1.0;
+const fileInput = document.getElementById(
+  'file-input'
+) as HTMLInputElement | null;
+const csvInput = document.getElementById(
+  'csv-input'
+) as HTMLInputElement | null;
+const jsonInput = document.getElementById(
+  'json-input'
+) as HTMLInputElement | null;
+const autoExtractCheckbox = document.getElementById(
+  'auto-extract-checkbox'
+) as HTMLInputElement | null;
+const appEl = document.getElementById('app') as HTMLElement | null;
+const uploaderEl = document.getElementById('uploader') as HTMLElement | null;
+const loaderModal = document.getElementById(
+  'loader-modal'
+) as HTMLElement | null;
+const fileDisplayArea = document.getElementById(
+  'file-display-area'
+) as HTMLElement | null;
+const backToToolsBtn = document.getElementById(
+  'back-to-tools'
+) as HTMLButtonElement | null;
+const closeBtn = document.getElementById(
+  'back-btn'
+) as HTMLButtonElement | null;
+const canvas = document.getElementById(
+  'pdf-canvas'
+) as HTMLCanvasElement | null;
+const ctx = canvas?.getContext('2d') ?? null;
+const pageIndicator = document.getElementById(
+  'page-indicator'
+) as HTMLElement | null;
+const prevPageBtn = document.getElementById(
+  'prev-page'
+) as HTMLButtonElement | null;
+const nextPageBtn = document.getElementById(
+  'next-page'
+) as HTMLButtonElement | null;
+const gotoPageInput = document.getElementById(
+  'goto-page'
+) as HTMLInputElement | null;
+const gotoBtn = document.getElementById('goto-btn') as HTMLButtonElement | null;
+const zoomInBtn = document.getElementById(
+  'zoom-in-btn'
+) as HTMLButtonElement | null;
+const zoomOutBtn = document.getElementById(
+  'zoom-out-btn'
+) as HTMLButtonElement | null;
+const zoomFitBtn = document.getElementById(
+  'zoom-fit-btn'
+) as HTMLButtonElement | null;
+const zoomIndicator = document.getElementById(
+  'zoom-indicator'
+) as HTMLElement | null;
+const addTopLevelBtn = document.getElementById(
+  'add-top-level-btn'
+) as HTMLButtonElement | null;
+const titleInput = document.getElementById(
+  'bookmark-title'
+) as HTMLInputElement | null;
+const treeList = document.getElementById(
+  'bookmark-tree-list'
+) as HTMLElement | null;
+const noBookmarksEl = document.getElementById(
+  'no-bookmarks'
+) as HTMLElement | null;
+const downloadBtn = document.getElementById(
+  'download-btn'
+) as HTMLButtonElement | null;
+const undoBtn = document.getElementById('undo-btn') as HTMLButtonElement | null;
+const redoBtn = document.getElementById('redo-btn') as HTMLButtonElement | null;
+const resetBtn = document.getElementById(
+  'reset-btn'
+) as HTMLButtonElement | null;
+const deleteAllBtn = document.getElementById(
+  'delete-all-btn'
+) as HTMLButtonElement | null;
+const searchInput = document.getElementById(
+  'search-bookmarks'
+) as HTMLInputElement | null;
 
-function showInputModal(title, fields = [], defaultValues = {}) {
+const importDropdownBtn = document.getElementById(
+  'import-dropdown-btn'
+) as HTMLButtonElement | null;
+const exportDropdownBtn = document.getElementById(
+  'export-dropdown-btn'
+) as HTMLButtonElement | null;
+const importDropdown = document.getElementById(
+  'import-dropdown'
+) as HTMLElement | null;
+const exportDropdown = document.getElementById(
+  'export-dropdown'
+) as HTMLElement | null;
+const importCsvBtn = document.getElementById(
+  'import-csv-btn'
+) as HTMLButtonElement | null;
+const exportCsvBtn = document.getElementById(
+  'export-csv-btn'
+) as HTMLButtonElement | null;
+const importJsonBtn = document.getElementById(
+  'import-json-btn'
+) as HTMLButtonElement | null;
+const exportJsonBtn = document.getElementById(
+  'export-json-btn'
+) as HTMLButtonElement | null;
+const csvImportHidden = document.getElementById(
+  'csv-import-hidden'
+) as HTMLInputElement | null;
+const jsonImportHidden = document.getElementById(
+  'json-import-hidden'
+) as HTMLInputElement | null;
+const extractExistingBtn = document.getElementById(
+  'extract-existing-btn'
+) as HTMLButtonElement | null;
+const currentPageDisplay = document.getElementById(
+  'current-page-display'
+) as HTMLElement | null;
+const filenameDisplay = document.getElementById(
+  'filename-display'
+) as HTMLElement | null;
+
+const batchModeCheckbox = document.getElementById(
+  'batch-mode-checkbox'
+) as HTMLInputElement | null;
+const batchOperations = document.getElementById(
+  'batch-operations'
+) as HTMLElement | null;
+const selectedCountDisplay = document.getElementById(
+  'selected-count'
+) as HTMLElement | null;
+const batchColorSelect = document.getElementById(
+  'batch-color-select'
+) as HTMLSelectElement | null;
+const batchStyleSelect = document.getElementById(
+  'batch-style-select'
+) as HTMLSelectElement | null;
+const batchDeleteBtn = document.getElementById(
+  'batch-delete-btn'
+) as HTMLButtonElement | null;
+const selectAllBtn = document.getElementById(
+  'select-all-btn'
+) as HTMLButtonElement | null;
+const deselectAllBtn = document.getElementById(
+  'deselect-all-btn'
+) as HTMLButtonElement | null;
+const expandAllBtn = document.getElementById(
+  'expand-all-btn'
+) as HTMLButtonElement | null;
+const collapseAllBtn = document.getElementById(
+  'collapse-all-btn'
+) as HTMLButtonElement | null;
+
+const showViewerBtn = document.getElementById(
+  'show-viewer-btn'
+) as HTMLButtonElement | null;
+const showBookmarksBtn = document.getElementById(
+  'show-bookmarks-btn'
+) as HTMLButtonElement | null;
+const viewerSection = document.getElementById(
+  'viewer-section'
+) as HTMLElement | null;
+const bookmarksSection = document.getElementById(
+  'bookmarks-section'
+) as HTMLElement | null;
+
+function showInputModal(
+  title: string,
+  fields: ModalField[] = [],
+  defaultValues: ModalDefaultValues = {}
+): Promise<ModalResult | null> {
   return new Promise((resolve) => {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
@@ -39,8 +233,8 @@ function showInputModal(title, fields = [], defaultValues = {}) {
           return `
   <div class="mb-4">
     <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
-      <input type="text" id="modal-${field.name}" value="${escapeHTML(defaultValues[field.name] || '')}"
-class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+      <input type="text" id="modal-${field.name}" value="${escapeHTML(String(defaultValues[field.name] || ''))}"
+class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900"
 placeholder="${field.placeholder || ''}" />
   </div>
     `;
@@ -48,17 +242,16 @@ placeholder="${field.placeholder || ''}" />
           return `
   <div class="mb-4">
     <label class="block text-sm font-medium text-gray-700 mb-2">${field.label}</label>
-      <select id="modal-${field.name}" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+      <select id="modal-${field.name}" class="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900">
         ${field.options
-              .map(
-                (opt) => `
+          .map(
+            (opt) => `
                                         <option value="${opt.value}" ${defaultValues[field.name] === opt.value ? 'selected' : ''}>
                                             ${opt.label}
                                         </option>
                                     `
-              )
-              .join('')
-            }
+          )
+          .join('')}
 </select>
                                 ${field.name === 'color' ? '<input type="color" id="modal-color-picker" class="hidden w-full h-10 mt-2 rounded cursor-pointer border border-gray-300" value="#000000" />' : ''}
 </div>
@@ -73,7 +266,7 @@ placeholder="${field.placeholder || ''}" />
         <div class="flex items-center gap-2">
           <label class="flex items-center gap-1 text-xs">
             <input type="checkbox" id="modal-use-destination" class="w-4 h-4" ${hasDestination ? 'checked' : ''}>
-              <span>Set custom destination </span>
+              <span class="text-gray-700">Set custom destination</span>
                 </label>
                 </div>
                 <div id="destination-controls" class="${hasDestination ? '' : 'hidden'} space-y-2">
@@ -81,11 +274,11 @@ placeholder="${field.placeholder || ''}" />
                     <div>
                     <label class="text-xs text-gray-600">Page</label>
                       <input type="number" id="modal-dest-page" min="1" max="${field.maxPages || 1}" value="${defaultValues.destPage || field.page || 1}"
-class="w-full px-2 py-1 border border-gray-300 rounded text-sm" step="1" />
+class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" step="1" />
   </div>
   <div>
   <label class="text-xs text-gray-600">Zoom(%)</label>
-    <select id="modal-dest-zoom" class="w-full px-2 py-1 border border-gray-300 rounded text-sm">
+    <select id="modal-dest-zoom" class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900">
       <option value="">Inherit</option>
         <option value="0">Fit Page</option>
           <option value="50">50%</option>
@@ -101,12 +294,12 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm" step="1" />
                         <div>
                         <label class="text-xs text-gray-600">X Position</label>
                           <input type="number" id="modal-dest-x" value="0" step="10"
-class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
+class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
   </div>
   <div>
   <label class="text-xs text-gray-600">Y Position</label>
     <input type="number" id="modal-dest-y" value="0" step="10"
-class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
+class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
   </div>
   </div>
   <button id="modal-pick-destination" class="w-full px-3 py-2 btn-gradient text-white rounded text-xs !flex items-center justify-center gap-1">
@@ -138,42 +331,43 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
                       ${fieldsHTML}
 </div>
   <div class="flex gap-2 justify-end">
-    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Cancel</button>
+    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">Cancel</button>
       <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">Confirm</button>
         </div>
         </div>
           `;
 
     overlay.appendChild(modal);
-    modalContainer.appendChild(overlay);
+    modalContainer?.appendChild(overlay);
 
-    function updatePreview() {
-      const previewText = modal.querySelector('#preview-text');
+    function updatePreview(): void {
+      const previewText = modal.querySelector(
+        '#preview-text'
+      ) as HTMLSpanElement | null;
       if (previewText) {
-        const titleInput = modal.querySelector('#modal-title');
-        const colorSelect = modal.querySelector('#modal-color');
-        const styleSelect = modal.querySelector('#modal-style');
-        const colorPicker = modal.querySelector('#modal-color-picker');
+        const titleInputEl = modal.querySelector(
+          '#modal-title'
+        ) as HTMLInputElement | null;
+        const colorSelectEl = modal.querySelector(
+          '#modal-color'
+        ) as HTMLSelectElement | null;
+        const styleSelectEl = modal.querySelector(
+          '#modal-style'
+        ) as HTMLSelectElement | null;
+        const colorPickerEl = modal.querySelector(
+          '#modal-color-picker'
+        ) as HTMLInputElement | null;
 
-        const title = titleInput ? titleInput.value : 'Preview Text';
-        const color = colorSelect ? colorSelect.value : '';
-        const style = styleSelect ? styleSelect.value : '';
+        const titleVal = titleInputEl ? titleInputEl.value : 'Preview Text';
+        const color = colorSelectEl ? colorSelectEl.value : '';
+        const style = styleSelectEl ? styleSelectEl.value : '';
 
-        previewText.textContent = title || 'Preview Text';
+        previewText.textContent = titleVal || 'Preview Text';
 
-        const colorMap = {
-          red: '#dc2626',
-          blue: '#2563eb',
-          green: '#16a34a',
-          yellow: '#ca8a04',
-          purple: '#9333ea',
-        };
-
-        // Handle custom color
-        if (color === 'custom' && colorPicker) {
-          previewText.style.color = colorPicker.value;
+        if (color === 'custom' && colorPickerEl) {
+          previewText.style.color = colorPickerEl.value;
         } else {
-          previewText.style.color = colorMap[color] || '#000';
+          previewText.style.color = HEX_COLOR_MAP[color] || '#000';
         }
 
         previewText.style.fontWeight =
@@ -183,87 +377,110 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
       }
     }
 
-    const titleInput = modal.querySelector('#modal-title');
-    const colorSelect = modal.querySelector('#modal-color');
-    const styleSelect = modal.querySelector('#modal-style');
+    const modalTitleInput = modal.querySelector(
+      '#modal-title'
+    ) as HTMLInputElement | null;
+    const modalColorSelect = modal.querySelector(
+      '#modal-color'
+    ) as HTMLSelectElement | null;
+    const modalStyleSelect = modal.querySelector(
+      '#modal-style'
+    ) as HTMLSelectElement | null;
 
-    if (titleInput) titleInput.addEventListener('input', updatePreview);
+    if (modalTitleInput)
+      modalTitleInput.addEventListener('input', updatePreview);
 
-    if (colorSelect) {
-      colorSelect.addEventListener('change', (e) => {
-        const colorPicker = modal.querySelector('#modal-color-picker');
-        if (e.target.value === 'custom' && colorPicker) {
-          colorPicker.classList.remove('hidden');
-          setTimeout(() => colorPicker.click(), 100);
-        } else if (colorPicker) {
-          colorPicker.classList.add('hidden');
+    if (modalColorSelect) {
+      modalColorSelect.addEventListener('change', (e: Event) => {
+        const target = e.target as HTMLSelectElement;
+        const colorPickerEl = modal.querySelector(
+          '#modal-color-picker'
+        ) as HTMLInputElement | null;
+        if (target.value === 'custom' && colorPickerEl) {
+          colorPickerEl.classList.remove('hidden');
+          setTimeout(() => colorPickerEl.click(), 100);
+        } else if (colorPickerEl) {
+          colorPickerEl.classList.add('hidden');
         }
         updatePreview();
       });
     }
 
-    const colorPicker = modal.querySelector('#modal-color-picker');
-    if (colorPicker) {
-      colorPicker.addEventListener('input', updatePreview);
+    const modalColorPicker = modal.querySelector(
+      '#modal-color-picker'
+    ) as HTMLInputElement | null;
+    if (modalColorPicker) {
+      modalColorPicker.addEventListener('input', updatePreview);
     }
 
-    if (styleSelect) styleSelect.addEventListener('change', updatePreview);
+    if (modalStyleSelect)
+      modalStyleSelect.addEventListener('change', updatePreview);
 
     // Destination toggle handler
     const useDestCheckbox = modal.querySelector('#modal-use-destination');
     const destControls = modal.querySelector('#destination-controls');
-    const pickDestBtn = modal.querySelector('#modal-pick-destination');
+    const pickDestBtn = modal.querySelector(
+      '#modal-pick-destination'
+    ) as HTMLButtonElement | null;
 
     if (useDestCheckbox && destControls) {
-      useDestCheckbox.addEventListener('change', (e) => {
-        destControls.classList.toggle('hidden', !e.target.checked);
+      useDestCheckbox.addEventListener('change', (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        destControls.classList.toggle('hidden', !target.checked);
       });
 
-      // Populate existing destination values
       if (defaultValues.destX !== null && defaultValues.destX !== undefined) {
-        const destPageInput = modal.querySelector('#modal-dest-page');
-        const destXInput = modal.querySelector('#modal-dest-x');
-        const destYInput = modal.querySelector('#modal-dest-y');
-        const destZoomSelect = modal.querySelector('#modal-dest-zoom');
+        const destPageInputEl = modal.querySelector(
+          '#modal-dest-page'
+        ) as HTMLInputElement | null;
+        const destXInputEl = modal.querySelector(
+          '#modal-dest-x'
+        ) as HTMLInputElement | null;
+        const destYInputEl = modal.querySelector(
+          '#modal-dest-y'
+        ) as HTMLInputElement | null;
+        const destZoomSelectEl = modal.querySelector(
+          '#modal-dest-zoom'
+        ) as HTMLSelectElement | null;
 
-        if (destPageInput && defaultValues.destPage !== undefined) {
-          destPageInput.value = defaultValues.destPage;
+        if (destPageInputEl && defaultValues.destPage !== undefined) {
+          destPageInputEl.value = String(defaultValues.destPage);
         }
-        if (destXInput && defaultValues.destX !== null) {
-          destXInput.value = Math.round(defaultValues.destX);
+        if (destXInputEl && defaultValues.destX !== null) {
+          destXInputEl.value = String(Math.round(defaultValues.destX));
         }
-        if (destYInput && defaultValues.destY !== null) {
-          destYInput.value = Math.round(defaultValues.destY);
+        if (destYInputEl && defaultValues.destY !== null) {
+          destYInputEl.value = String(Math.round(defaultValues.destY));
         }
-        if (destZoomSelect && defaultValues.zoom !== null) {
-          destZoomSelect.value = defaultValues.zoom || '';
+        if (destZoomSelectEl && defaultValues.zoom !== null) {
+          destZoomSelectEl.value = defaultValues.zoom || '';
         }
       }
     }
 
-    // Visual destination picker
     if (pickDestBtn) {
       pickDestBtn.addEventListener('click', () => {
-        // Store modal references
         savedModalOverlay = overlay;
         savedModal = modal;
-
-        // Hide modal completely
         overlay.style.display = 'none';
 
-        startDestinationPicking((page, pdfX, pdfY) => {
-          const destPageInput = modal.querySelector('#modal-dest-page');
-          const destXInput = modal.querySelector('#modal-dest-x');
-          const destYInput = modal.querySelector('#modal-dest-y');
+        startDestinationPicking((page: number, pdfX: number, pdfY: number) => {
+          const destPageInputEl = modal.querySelector(
+            '#modal-dest-page'
+          ) as HTMLInputElement | null;
+          const destXInputEl = modal.querySelector(
+            '#modal-dest-x'
+          ) as HTMLInputElement | null;
+          const destYInputEl = modal.querySelector(
+            '#modal-dest-y'
+          ) as HTMLInputElement | null;
 
-          if (destPageInput) destPageInput.value = page;
-          if (destXInput) destXInput.value = Math.round(pdfX);
-          if (destYInput) destYInput.value = Math.round(pdfY);
+          if (destPageInputEl) destPageInputEl.value = String(page);
+          if (destXInputEl) destXInputEl.value = String(Math.round(pdfX));
+          if (destYInputEl) destYInputEl.value = String(Math.round(pdfY));
 
-          // Restore modal
           overlay.style.display = '';
 
-          // Update preview to show the destination after a short delay to ensure modal is visible
           setTimeout(() => {
             updateDestinationPreview();
           }, 100);
@@ -271,51 +488,59 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
       });
     }
 
-    // Add validation for page input
-    const destPageInput = modal.querySelector('#modal-dest-page');
-    if (destPageInput) {
-      destPageInput.addEventListener('input', (e) => {
-        const value = parseInt(e.target.value);
-        const maxPages = parseInt(e.target.max) || 1;
+    const destPageInputEl = modal.querySelector(
+      '#modal-dest-page'
+    ) as HTMLInputElement | null;
+    if (destPageInputEl) {
+      destPageInputEl.addEventListener('input', (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const value = parseInt(target.value);
+        const maxPages = parseInt(target.max) || 1;
         if (isNaN(value) || value < 1) {
-          e.target.value = 1;
+          target.value = '1';
         } else if (value > maxPages) {
-          e.target.value = maxPages;
+          target.value = String(maxPages);
         } else {
-          e.target.value = Math.floor(value);
+          target.value = String(Math.floor(value));
         }
         updateDestinationPreview();
       });
 
-      destPageInput.addEventListener('blur', (e) => {
-        const value = parseInt(e.target.value);
-        const maxPages = parseInt(e.target.max) || 1;
+      destPageInputEl.addEventListener('blur', (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const value = parseInt(target.value);
+        const maxPages = parseInt(target.max) || 1;
         if (isNaN(value) || value < 1) {
-          e.target.value = 1;
+          target.value = '1';
         } else if (value > maxPages) {
-          e.target.value = maxPages;
+          target.value = String(maxPages);
         } else {
-          e.target.value = Math.floor(value);
+          target.value = String(Math.floor(value));
         }
         updateDestinationPreview();
       });
     }
 
-    // Function to update destination preview
-    function updateDestinationPreview() {
+    function updateDestinationPreview(): void {
       if (!pdfJsDoc) return;
 
-      const destPageInput = modal.querySelector('#modal-dest-page');
-      const destXInput = modal.querySelector('#modal-dest-x');
-      const destYInput = modal.querySelector('#modal-dest-y');
-      const destZoomSelect = modal.querySelector('#modal-dest-zoom');
+      const destPageEl = modal.querySelector(
+        '#modal-dest-page'
+      ) as HTMLInputElement | null;
+      const destXEl = modal.querySelector(
+        '#modal-dest-x'
+      ) as HTMLInputElement | null;
+      const destYEl = modal.querySelector(
+        '#modal-dest-y'
+      ) as HTMLInputElement | null;
+      const destZoomEl = modal.querySelector(
+        '#modal-dest-zoom'
+      ) as HTMLSelectElement | null;
 
-      const pageNum = destPageInput
-        ? parseInt(destPageInput.value)
-        : currentPage;
-      const x = destXInput ? parseFloat(destXInput.value) : null;
-      const y = destYInput ? parseFloat(destYInput.value) : null;
-      const zoom = destZoomSelect ? destZoomSelect.value : null;
+      const pageNum = destPageEl ? parseInt(destPageEl.value) : currentPage;
+      const x = destXEl ? parseFloat(destXEl.value) : null;
+      const y = destYEl ? parseFloat(destYEl.value) : null;
+      const zoom = destZoomEl ? destZoomEl.value : null;
 
       if (pageNum >= 1 && pageNum <= pdfJsDoc.numPages) {
         // Render the page with zoom if specified
@@ -323,58 +548,82 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
       }
     }
 
-    // Add listeners for X, Y, and zoom changes
-    const destXInput = modal.querySelector('#modal-dest-x');
-    const destYInput = modal.querySelector('#modal-dest-y');
-    const destZoomSelect = modal.querySelector('#modal-dest-zoom');
+    const destXInputListener = modal.querySelector(
+      '#modal-dest-x'
+    ) as HTMLInputElement | null;
+    const destYInputListener = modal.querySelector(
+      '#modal-dest-y'
+    ) as HTMLInputElement | null;
+    const destZoomSelectListener = modal.querySelector(
+      '#modal-dest-zoom'
+    ) as HTMLSelectElement | null;
 
-    if (destXInput) {
-      destXInput.addEventListener('input', updateDestinationPreview);
+    if (destXInputListener) {
+      destXInputListener.addEventListener('input', updateDestinationPreview);
     }
-    if (destYInput) {
-      destYInput.addEventListener('input', updateDestinationPreview);
+    if (destYInputListener) {
+      destYInputListener.addEventListener('input', updateDestinationPreview);
     }
-    if (destZoomSelect) {
-      destZoomSelect.addEventListener('change', updateDestinationPreview);
+    if (destZoomSelectListener) {
+      destZoomSelectListener.addEventListener(
+        'change',
+        updateDestinationPreview
+      );
     }
 
     updatePreview();
 
-    modal.querySelector('#modal-cancel').addEventListener('click', () => {
+    modal.querySelector('#modal-cancel')?.addEventListener('click', () => {
       cancelDestinationPicking();
-      modalContainer.removeChild(overlay);
+      modalContainer?.removeChild(overlay);
       resolve(null);
     });
 
-    modal.querySelector('#modal-confirm').addEventListener('click', () => {
-      const result = {};
+    modal.querySelector('#modal-confirm')?.addEventListener('click', () => {
+      const result: ModalResult = {};
       fields.forEach((field) => {
         if (field.type !== 'preview' && field.type !== 'destination') {
-          const input = modal.querySelector(`#modal-${field.name}`);
-          result[field.name] = input.value;
+          const input = modal.querySelector(`#modal-${field.name}`) as
+            | HTMLInputElement
+            | HTMLSelectElement
+            | null;
+          if (input) {
+            result[field.name] = input.value;
+          }
         }
       });
 
-      // Handle custom color
-      const colorSelect = modal.querySelector('#modal-color');
-      const colorPicker = modal.querySelector('#modal-color-picker');
-      if (colorSelect && colorSelect.value === 'custom' && colorPicker) {
-        result.color = colorPicker.value;
+      const colorSelectEl = modal.querySelector(
+        '#modal-color'
+      ) as HTMLSelectElement | null;
+      const colorPickerEl = modal.querySelector(
+        '#modal-color-picker'
+      ) as HTMLInputElement | null;
+      if (colorSelectEl && colorSelectEl.value === 'custom' && colorPickerEl) {
+        result.color = colorPickerEl.value;
       }
 
-      // Handle destination
-      const useDestCheckbox = modal.querySelector('#modal-use-destination');
-      if (useDestCheckbox && useDestCheckbox.checked) {
-        const destPageInput = modal.querySelector('#modal-dest-page');
-        const destXInput = modal.querySelector('#modal-dest-x');
-        const destYInput = modal.querySelector('#modal-dest-y');
-        const destZoomSelect = modal.querySelector('#modal-dest-zoom');
+      const useDestCheckboxEl = modal.querySelector(
+        '#modal-use-destination'
+      ) as HTMLInputElement | null;
+      if (useDestCheckboxEl && useDestCheckboxEl.checked) {
+        const destPageEl = modal.querySelector(
+          '#modal-dest-page'
+        ) as HTMLInputElement | null;
+        const destXEl = modal.querySelector(
+          '#modal-dest-x'
+        ) as HTMLInputElement | null;
+        const destYEl = modal.querySelector(
+          '#modal-dest-y'
+        ) as HTMLInputElement | null;
+        const destZoomEl = modal.querySelector(
+          '#modal-dest-zoom'
+        ) as HTMLSelectElement | null;
 
-        result.destPage = destPageInput ? parseInt(destPageInput.value) : null;
-        result.destX = destXInput ? parseFloat(destXInput.value) : null;
-        result.destY = destYInput ? parseFloat(destYInput.value) : null;
-        result.zoom =
-          destZoomSelect && destZoomSelect.value ? destZoomSelect.value : null;
+        result.destPage = destPageEl ? parseInt(destPageEl.value) : null;
+        result.destX = destXEl ? parseFloat(destXEl.value) : null;
+        result.destY = destYEl ? parseFloat(destYEl.value) : null;
+        result.zoom = destZoomEl && destZoomEl.value ? destZoomEl.value : null;
       } else {
         result.destPage = null;
         result.destX = null;
@@ -383,68 +632,68 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm" />
       }
 
       cancelDestinationPicking();
-      modalContainer.removeChild(overlay);
+      modalContainer?.removeChild(overlay);
       resolve(result);
     });
 
-    overlay.addEventListener('click', (e) => {
+    overlay.addEventListener('click', (e: MouseEvent) => {
       if (e.target === overlay) {
         cancelDestinationPicking();
-        modalContainer.removeChild(overlay);
+        modalContainer?.removeChild(overlay);
         resolve(null);
       }
     });
 
     setTimeout(() => {
-      const firstInput = modal.querySelector('input, select');
+      const firstInput = modal.querySelector(
+        'input, select'
+      ) as HTMLElement | null;
       if (firstInput) firstInput.focus();
     }, 0);
 
     createIcons({ icons });
   });
 }
-// Destination picking functions
-function startDestinationPicking(callback) {
+
+function startDestinationPicking(callback: DestinationCallback): void {
   isPickingDestination = true;
   currentPickingCallback = callback;
 
   const canvasWrapper = document.getElementById('pdf-canvas-wrapper');
   const pickingBanner = document.getElementById('picking-mode-banner');
 
-  canvasWrapper.classList.add('picking-mode');
-  pickingBanner.classList.remove('hidden');
+  canvasWrapper?.classList.add('picking-mode');
+  pickingBanner?.classList.remove('hidden');
 
-  // Switch to viewer on mobile
   if (window.innerWidth < 1024) {
-    document.getElementById('show-viewer-btn').click();
+    (
+      document.getElementById('show-viewer-btn') as HTMLButtonElement | null
+    )?.click();
   }
 
   createIcons({ icons });
 }
 
-function cancelDestinationPicking() {
+function cancelDestinationPicking(): void {
   isPickingDestination = false;
   currentPickingCallback = null;
 
   const canvasWrapper = document.getElementById('pdf-canvas-wrapper');
   const pickingBanner = document.getElementById('picking-mode-banner');
 
-  canvasWrapper.classList.remove('picking-mode');
-  pickingBanner.classList.add('hidden');
+  canvasWrapper?.classList.remove('picking-mode');
+  pickingBanner?.classList.add('hidden');
 
-  // Remove any existing marker
   if (destinationMarker) {
     destinationMarker.remove();
     destinationMarker = null;
   }
 
-  // Remove coordinate display
   const coordDisplay = document.getElementById('destination-coord-display');
   if (coordDisplay) {
     coordDisplay.remove();
   }
 
-  // Restore modal if it was hidden
   if (savedModalOverlay) {
     savedModalOverlay.style.display = '';
     savedModalOverlay = null;
@@ -452,29 +701,32 @@ function cancelDestinationPicking() {
   }
 }
 
-// Setup canvas click handler for destination picking
 document.addEventListener('DOMContentLoaded', () => {
   initializeGlobalShortcuts();
 
-  const canvas = document.getElementById('pdf-canvas');
-  const canvasWrapper = document.getElementById('pdf-canvas-wrapper');
-  const cancelPickingBtn = document.getElementById('cancel-picking-btn');
+  const canvasEl = document.getElementById(
+    'pdf-canvas'
+  ) as HTMLCanvasElement | null;
+  const canvasWrapperEl = document.getElementById(
+    'pdf-canvas-wrapper'
+  ) as HTMLElement | null;
+  const cancelPickingBtn = document.getElementById(
+    'cancel-picking-btn'
+  ) as HTMLButtonElement | null;
 
-  // Coordinate tooltip
-  let coordTooltip = null;
+  let coordTooltip: HTMLDivElement | null = null;
 
-  canvasWrapper.addEventListener('mousemove', (e) => {
-    if (!isPickingDestination) return;
+  canvasWrapperEl?.addEventListener('mousemove', (e: MouseEvent) => {
+    if (!isPickingDestination || !canvasEl) return;
 
-    const rect = canvas.getBoundingClientRect();
+    const rect = canvasEl.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Create or update tooltip
     if (!coordTooltip) {
       coordTooltip = document.createElement('div');
       coordTooltip.className = 'coordinate-tooltip';
-      canvasWrapper.appendChild(coordTooltip);
+      canvasWrapperEl.appendChild(coordTooltip);
     }
 
     coordTooltip.textContent = `X: ${Math.round(x)}, Y: ${Math.round(y)} `;
@@ -482,36 +734,39 @@ document.addEventListener('DOMContentLoaded', () => {
     coordTooltip.style.top = e.clientY - rect.top + 15 + 'px';
   });
 
-  canvasWrapper.addEventListener('mouseleave', () => {
+  canvasWrapperEl?.addEventListener('mouseleave', () => {
     if (coordTooltip) {
       coordTooltip.remove();
       coordTooltip = null;
     }
   });
 
-  canvas.addEventListener('click', async (e) => {
-    if (!isPickingDestination || !currentPickingCallback) return;
+  canvasEl?.addEventListener('click', async (e: MouseEvent) => {
+    if (
+      !isPickingDestination ||
+      !currentPickingCallback ||
+      !pdfJsDoc ||
+      !canvasEl ||
+      !canvasWrapperEl
+    )
+      return;
 
-    const rect = canvas.getBoundingClientRect();
+    const rect = canvasEl.getBoundingClientRect();
     const canvasX = e.clientX - rect.left;
     const canvasY = e.clientY - rect.top;
 
-    // Get viewport for coordinate conversion
     let viewport = currentViewport;
     if (!viewport) {
       const page = await pdfJsDoc.getPage(currentPage);
       viewport = page.getViewport({ scale: currentZoom });
     }
 
-    // Convert canvas pixel coordinates to PDF coordinates
-    // The canvas CSS size matches viewport dimensions, so coordinates map directly
-    // PDF uses bottom-left origin, canvas uses top-left
+    // Convert canvas pixel coordinates to PDF coordinates (PDF uses bottom-left origin)
     const scaleX = viewport.width / rect.width;
     const scaleY = viewport.height / rect.height;
     const pdfX = canvasX * scaleX;
     const pdfY = viewport.height - canvasY * scaleY;
 
-    // Remove old marker and coordinate display
     if (destinationMarker) {
       destinationMarker.remove();
     }
@@ -522,7 +777,6 @@ document.addEventListener('DOMContentLoaded', () => {
       oldCoordDisplay.remove();
     }
 
-    // Create visual marker
     destinationMarker = document.createElement('div');
     destinationMarker.className = 'destination-marker';
     destinationMarker.innerHTML = `
@@ -532,16 +786,15 @@ document.addEventListener('DOMContentLoaded', () => {
         <circle cx="12" cy="12" r="2" fill="#3b82f6" />
           </svg>
             `;
-    const canvasRect = canvas.getBoundingClientRect();
-    const wrapperRect = canvasWrapper.getBoundingClientRect();
+    const canvasRect = canvasEl.getBoundingClientRect();
+    const wrapperRect = canvasWrapperEl.getBoundingClientRect();
     destinationMarker.style.position = 'absolute';
     destinationMarker.style.left =
       canvasX + canvasRect.left - wrapperRect.left + 'px';
     destinationMarker.style.top =
       canvasY + canvasRect.top - wrapperRect.top + 'px';
-    canvasWrapper.appendChild(destinationMarker);
+    canvasWrapperEl.appendChild(destinationMarker);
 
-    // Create persistent coordinate display
     const coordDisplay = document.createElement('div');
     coordDisplay.id = 'destination-coord-display';
     coordDisplay.className =
@@ -551,12 +804,10 @@ document.addEventListener('DOMContentLoaded', () => {
     coordDisplay.style.top =
       canvasY + canvasRect.top - wrapperRect.top - 30 + 'px';
     coordDisplay.textContent = `X: ${Math.round(pdfX)}, Y: ${Math.round(pdfY)} `;
-    canvasWrapper.appendChild(coordDisplay);
+    canvasWrapperEl.appendChild(coordDisplay);
 
-    // Call callback with PDF coordinates
     currentPickingCallback(currentPage, pdfX, pdfY);
 
-    // End picking mode
     setTimeout(() => {
       cancelDestinationPicking();
     }, 500);
@@ -569,7 +820,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function showConfirmModal(message) {
+function showConfirmModal(message: string): Promise<boolean> {
   return new Promise((resolve) => {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
@@ -582,35 +833,35 @@ function showConfirmModal(message) {
     <h3 class="text-xl font-bold text-gray-800 mb-4">Confirm Action</h3>
       <p class="text-gray-600 mb-6">${message}</p>
         <div class="flex gap-2 justify-end">
-          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">Cancel</button>
+          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">Cancel</button>
             <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">Confirm</button>
               </div>
               </div>
                 `;
 
     overlay.appendChild(modal);
-    modalContainer.appendChild(overlay);
+    modalContainer?.appendChild(overlay);
 
-    modal.querySelector('#modal-cancel').addEventListener('click', () => {
-      modalContainer.removeChild(overlay);
+    modal.querySelector('#modal-cancel')?.addEventListener('click', () => {
+      modalContainer?.removeChild(overlay);
       resolve(false);
     });
 
-    modal.querySelector('#modal-confirm').addEventListener('click', () => {
-      modalContainer.removeChild(overlay);
+    modal.querySelector('#modal-confirm')?.addEventListener('click', () => {
+      modalContainer?.removeChild(overlay);
       resolve(true);
     });
 
-    overlay.addEventListener('click', (e) => {
+    overlay.addEventListener('click', (e: MouseEvent) => {
       if (e.target === overlay) {
-        modalContainer.removeChild(overlay);
+        modalContainer?.removeChild(overlay);
         resolve(false);
       }
     });
   });
 }
 
-function showAlertModal(title, message) {
+function showAlertModal(title: string, message: string): Promise<boolean> {
   return new Promise((resolve) => {
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
@@ -629,167 +880,92 @@ function showAlertModal(title, message) {
                           `;
 
     overlay.appendChild(modal);
-    modalContainer.appendChild(overlay);
+    modalContainer?.appendChild(overlay);
 
-    modal.querySelector('#modal-ok').addEventListener('click', () => {
-      modalContainer.removeChild(overlay);
+    modal.querySelector('#modal-ok')?.addEventListener('click', () => {
+      modalContainer?.removeChild(overlay);
       resolve(true);
     });
 
-    overlay.addEventListener('click', (e) => {
+    overlay.addEventListener('click', (e: MouseEvent) => {
       if (e.target === overlay) {
-        modalContainer.removeChild(overlay);
+        modalContainer?.removeChild(overlay);
         resolve(true);
       }
     });
   });
 }
 
-const fileInput = document.getElementById('file-input');
-const csvInput = document.getElementById('csv-input');
-const jsonInput = document.getElementById('json-input');
-const autoExtractCheckbox = document.getElementById('auto-extract-checkbox');
-const appEl = document.getElementById('app');
-const uploaderEl = document.getElementById('uploader');
-const fileDisplayArea = document.getElementById(
-  'file-display-area'
-) as HTMLElement;
-const backToToolsBtn = document.getElementById(
-  'back-to-tools'
-) as HTMLButtonElement;
-const closeBtn = document.getElementById(
-  'back-btn'
-) as HTMLButtonElement;
-const canvas = document.getElementById('pdf-canvas');
-const ctx = canvas.getContext('2d');
-const pageIndicator = document.getElementById('page-indicator');
-const prevPageBtn = document.getElementById('prev-page');
-const nextPageBtn = document.getElementById('next-page');
-const gotoPageInput = document.getElementById('goto-page');
-const gotoBtn = document.getElementById('goto-btn');
-const zoomInBtn = document.getElementById('zoom-in-btn');
-const zoomOutBtn = document.getElementById('zoom-out-btn');
-const zoomFitBtn = document.getElementById('zoom-fit-btn');
-const zoomIndicator = document.getElementById('zoom-indicator');
-const addTopLevelBtn = document.getElementById('add-top-level-btn');
-const titleInput = document.getElementById('bookmark-title');
-const treeList = document.getElementById('bookmark-tree-list');
-const noBookmarksEl = document.getElementById('no-bookmarks');
-const downloadBtn = document.getElementById('download-btn');
-const undoBtn = document.getElementById('undo-btn');
-const redoBtn = document.getElementById('redo-btn');
-const resetBtn = document.getElementById('reset-btn');
-const deleteAllBtn = document.getElementById('delete-all-btn');
-const searchInput = document.getElementById('search-bookmarks');
-const importDropdownBtn = document.getElementById('import-dropdown-btn');
-const exportDropdownBtn = document.getElementById('export-dropdown-btn');
-const importDropdown = document.getElementById('import-dropdown');
-const exportDropdown = document.getElementById('export-dropdown');
-const importCsvBtn = document.getElementById('import-csv-btn');
-const exportCsvBtn = document.getElementById('export-csv-btn');
-const importJsonBtn = document.getElementById('import-json-btn');
-const exportJsonBtn = document.getElementById('export-json-btn');
-const csvImportHidden = document.getElementById('csv-import-hidden');
-const jsonImportHidden = document.getElementById('json-import-hidden');
-const extractExistingBtn = document.getElementById('extract-existing-btn');
-const currentPageDisplay = document.getElementById('current-page-display');
-const filenameDisplay = document.getElementById('filename-display');
-const batchModeCheckbox = document.getElementById('batch-mode-checkbox');
-const batchOperations = document.getElementById('batch-operations');
-const selectedCountDisplay = document.getElementById('selected-count');
-const batchColorSelect = document.getElementById('batch-color-select');
-const batchStyleSelect = document.getElementById('batch-style-select');
-const batchDeleteBtn = document.getElementById('batch-delete-btn');
-const selectAllBtn = document.getElementById('select-all-btn');
-const deselectAllBtn = document.getElementById('deselect-all-btn');
-const expandAllBtn = document.getElementById('expand-all-btn');
-const collapseAllBtn = document.getElementById('collapse-all-btn');
-
-const showViewerBtn = document.getElementById('show-viewer-btn');
-const showBookmarksBtn = document.getElementById('show-bookmarks-btn');
-const viewerSection = document.getElementById('viewer-section');
-const bookmarksSection = document.getElementById('bookmarks-section');
-
-// Handle responsive view switching
-function handleResize() {
+function handleResize(): void {
   if (window.innerWidth >= 1024) {
-    viewerSection.classList.remove('hidden');
-    bookmarksSection.classList.remove('hidden');
-    showViewerBtn.classList.remove('bg-indigo-600', 'text-white');
-    showViewerBtn.classList.add('text-gray-300');
-    showBookmarksBtn.classList.remove('bg-indigo-600', 'text-white');
-    showBookmarksBtn.classList.add('text-gray-300');
+    viewerSection?.classList.remove('hidden');
+    bookmarksSection?.classList.remove('hidden');
+    showViewerBtn?.classList.remove('bg-indigo-600', 'text-white');
+    showViewerBtn?.classList.add('text-gray-300');
+    showBookmarksBtn?.classList.remove('bg-indigo-600', 'text-white');
+    showBookmarksBtn?.classList.add('text-gray-300');
   }
 }
 
 window.addEventListener('resize', handleResize);
 
-showViewerBtn.addEventListener('click', () => {
-  viewerSection.classList.remove('hidden');
-  bookmarksSection.classList.add('hidden');
-  showViewerBtn.classList.add('bg-indigo-600', 'text-white');
-  showViewerBtn.classList.remove('text-gray-300');
-  showBookmarksBtn.classList.remove('bg-indigo-600', 'text-white');
-  showBookmarksBtn.classList.add('text-gray-300');
+showViewerBtn?.addEventListener('click', () => {
+  viewerSection?.classList.remove('hidden');
+  bookmarksSection?.classList.add('hidden');
+  showViewerBtn?.classList.add('bg-indigo-600', 'text-white');
+  showViewerBtn?.classList.remove('text-gray-300');
+  showBookmarksBtn?.classList.remove('bg-indigo-600', 'text-white');
+  showBookmarksBtn?.classList.add('text-gray-300');
 });
 
-showBookmarksBtn.addEventListener('click', () => {
-  viewerSection.classList.add('hidden');
-  bookmarksSection.classList.remove('hidden');
-  showBookmarksBtn.classList.add('bg-indigo-600', 'text-white');
-  showBookmarksBtn.classList.remove('text-gray-300');
-  showViewerBtn.classList.remove('bg-indigo-600', 'text-white');
-  showViewerBtn.classList.add('text-gray-300');
+showBookmarksBtn?.addEventListener('click', () => {
+  viewerSection?.classList.add('hidden');
+  bookmarksSection?.classList.remove('hidden');
+  showBookmarksBtn?.classList.add('bg-indigo-600', 'text-white');
+  showBookmarksBtn?.classList.remove('text-gray-300');
+  showViewerBtn?.classList.remove('bg-indigo-600', 'text-white');
+  showViewerBtn?.classList.add('text-gray-300');
 });
 
-// Dropdown toggles
-importDropdownBtn.addEventListener('click', (e) => {
+importDropdownBtn?.addEventListener('click', (e: MouseEvent) => {
   e.stopPropagation();
-  importDropdown.classList.toggle('hidden');
-  exportDropdown.classList.add('hidden');
+  importDropdown?.classList.toggle('hidden');
+  exportDropdown?.classList.add('hidden');
 });
 
-exportDropdownBtn.addEventListener('click', (e) => {
+exportDropdownBtn?.addEventListener('click', (e: MouseEvent) => {
   e.stopPropagation();
-  exportDropdown.classList.toggle('hidden');
-  importDropdown.classList.add('hidden');
+  exportDropdown?.classList.toggle('hidden');
+  importDropdown?.classList.add('hidden');
 });
 
 document.addEventListener('click', () => {
-  importDropdown.classList.add('hidden');
-  exportDropdown.classList.add('hidden');
+  importDropdown?.classList.add('hidden');
+  exportDropdown?.classList.add('hidden');
 });
 
-let pdfLibDoc = null;
-let pdfJsDoc = null;
+let pdfLibDoc: PDFDocument | null = null;
+let pdfJsDoc: PDFDocumentProxy | null = null;
 let currentPage = 1;
 let originalFileName = '';
-let bookmarkTree = [];
-let history = [];
+let bookmarkTree: BookmarkTree = [];
+let history: BookmarkTree[] = [];
 let historyIndex = -1;
 let searchQuery = '';
-let csvBookmarks = null;
-let jsonBookmarks = null;
+let csvBookmarks: BookmarkTree | null = null;
+let jsonBookmarks: BookmarkTree | null = null;
 let batchMode = false;
-let selectedBookmarks = new Set();
-let collapsedNodes = new Set();
+const selectedBookmarks = new Set<number>();
+const collapsedNodes = new Set<number>();
 
-const colorClasses = {
-  red: 'bg-red-100 border-red-300',
-  blue: 'bg-blue-100 border-blue-300',
-  green: 'bg-green-100 border-green-300',
-  yellow: 'bg-yellow-100 border-yellow-300',
-  purple: 'bg-purple-100 border-purple-300',
-};
-
-function saveState() {
+function saveState(): void {
   history = history.slice(0, historyIndex + 1);
   history.push(JSON.parse(JSON.stringify(bookmarkTree)));
   historyIndex++;
   updateUndoRedoButtons();
 }
 
-function undo() {
+function undo(): void {
   if (historyIndex > 0) {
     historyIndex--;
     bookmarkTree = JSON.parse(JSON.stringify(history[historyIndex]));
@@ -798,7 +974,7 @@ function undo() {
   }
 }
 
-function redo() {
+function redo(): void {
   if (historyIndex < history.length - 1) {
     historyIndex++;
     bookmarkTree = JSON.parse(JSON.stringify(history[historyIndex]));
@@ -807,16 +983,15 @@ function redo() {
   }
 }
 
-function updateUndoRedoButtons() {
-  undoBtn.disabled = historyIndex <= 0;
-  redoBtn.disabled = historyIndex >= history.length - 1;
+function updateUndoRedoButtons(): void {
+  if (undoBtn) undoBtn.disabled = historyIndex <= 0;
+  if (redoBtn) redoBtn.disabled = historyIndex >= history.length - 1;
 }
 
-undoBtn.addEventListener('click', undo);
-redoBtn.addEventListener('click', redo);
+undoBtn?.addEventListener('click', undo);
+redoBtn?.addEventListener('click', redo);
 
-// Reset button - goes back to uploader
-resetBtn.addEventListener('click', async () => {
+resetBtn?.addEventListener('click', async () => {
   const confirmed = await showConfirmModal(
     'Reset and go back to file uploader? All unsaved changes will be lost.'
   );
@@ -825,8 +1000,7 @@ resetBtn.addEventListener('click', async () => {
   }
 });
 
-// Delete all bookmarks button
-deleteAllBtn.addEventListener('click', async () => {
+deleteAllBtn?.addEventListener('click', async () => {
   if (bookmarkTree.length === 0) {
     await showAlertModal('Info', 'No bookmarks to delete.');
     return;
@@ -844,7 +1018,7 @@ deleteAllBtn.addEventListener('click', async () => {
   }
 });
 
-function resetToUploader() {
+function resetToUploader(): void {
   pdfLibDoc = null;
   pdfJsDoc = null;
   currentPage = 1;
@@ -859,23 +1033,22 @@ function resetToUploader() {
   selectedBookmarks.clear();
   collapsedNodes.clear();
 
-  fileInput.value = '';
-  csvInput.value = '';
-  jsonInput.value = '';
+  if (fileInput) fileInput.value = '';
+  if (csvInput) csvInput.value = '';
+  if (jsonInput) jsonInput.value = '';
 
-  appEl.classList.add('hidden');
-  uploaderEl.classList.remove('hidden');
+  appEl?.classList.add('hidden');
+  uploaderEl?.classList.remove('hidden');
 
-  // Reset mobile view
-  viewerSection.classList.remove('hidden');
-  bookmarksSection.classList.add('hidden');
-  showViewerBtn.classList.add('bg-indigo-600', 'text-white');
-  showViewerBtn.classList.remove('text-gray-300');
-  showBookmarksBtn.classList.remove('bg-indigo-600', 'text-white');
-  showBookmarksBtn.classList.add('text-gray-300');
+  viewerSection?.classList.remove('hidden');
+  bookmarksSection?.classList.add('hidden');
+  showViewerBtn?.classList.add('bg-indigo-600', 'text-white');
+  showViewerBtn?.classList.remove('text-gray-300');
+  showBookmarksBtn?.classList.remove('bg-indigo-600', 'text-white');
+  showBookmarksBtn?.classList.add('text-gray-300');
 }
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e: KeyboardEvent) => {
   if (e.ctrlKey || e.metaKey) {
     if (e.key === 'z' && !e.shiftKey) {
       e.preventDefault();
@@ -887,29 +1060,31 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-batchModeCheckbox.addEventListener('change', (e) => {
-  batchMode = e.target.checked;
+batchModeCheckbox?.addEventListener('change', (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  batchMode = target.checked;
   if (!batchMode) {
     selectedBookmarks.clear();
     updateSelectedCount();
   }
-  batchOperations.classList.toggle(
+  batchOperations?.classList.toggle(
     'hidden',
     !batchMode || selectedBookmarks.size === 0
   );
   renderBookmarkTree();
 });
 
-function updateSelectedCount() {
-  selectedCountDisplay.textContent = selectedBookmarks.size;
+function updateSelectedCount(): void {
+  if (selectedCountDisplay)
+    selectedCountDisplay.textContent = String(selectedBookmarks.size);
   if (batchMode) {
-    batchOperations.classList.toggle('hidden', selectedBookmarks.size === 0);
+    batchOperations?.classList.toggle('hidden', selectedBookmarks.size === 0);
   }
 }
 
-selectAllBtn.addEventListener('click', () => {
-  const getAllIds = (nodes) => {
-    let ids = [];
+selectAllBtn?.addEventListener('click', () => {
+  const getAllIds = (nodes: BookmarkNode[]): number[] => {
+    let ids: number[] = [];
     nodes.forEach((node) => {
       ids.push(node.id);
       if (node.children.length > 0) {
@@ -924,29 +1099,32 @@ selectAllBtn.addEventListener('click', () => {
   renderBookmarkTree();
 });
 
-deselectAllBtn.addEventListener('click', () => {
+deselectAllBtn?.addEventListener('click', () => {
   selectedBookmarks.clear();
   updateSelectedCount();
   renderBookmarkTree();
 });
 
-batchColorSelect.addEventListener('change', (e) => {
-  if (e.target.value && selectedBookmarks.size > 0) {
-    const color = e.target.value === 'null' ? null : e.target.value;
+batchColorSelect?.addEventListener('change', (e: Event) => {
+  const target = e.target as HTMLSelectElement;
+  if (target.value && selectedBookmarks.size > 0) {
+    const color = target.value === 'null' ? null : target.value;
     applyToSelected((node) => (node.color = color));
-    e.target.value = '';
+    target.value = '';
   }
 });
 
-batchStyleSelect.addEventListener('change', (e) => {
-  if (e.target.value && selectedBookmarks.size > 0) {
-    const style = e.target.value === 'null' ? null : e.target.value;
+batchStyleSelect?.addEventListener('change', (e: Event) => {
+  const target = e.target as HTMLSelectElement;
+  if (target.value && selectedBookmarks.size > 0) {
+    const style =
+      target.value === 'null' ? null : (target.value as BookmarkStyle);
     applyToSelected((node) => (node.style = style));
-    e.target.value = '';
+    target.value = '';
   }
 });
 
-batchDeleteBtn.addEventListener('click', async () => {
+batchDeleteBtn?.addEventListener('click', async () => {
   if (selectedBookmarks.size === 0) return;
 
   const confirmed = await showConfirmModal(
@@ -954,7 +1132,7 @@ batchDeleteBtn.addEventListener('click', async () => {
   );
   if (!confirmed) return;
 
-  const remove = (nodes) => {
+  const remove = (nodes: BookmarkNode[]): BookmarkNode[] => {
     return nodes.filter((node) => {
       if (selectedBookmarks.has(node.id)) return false;
       node.children = remove(node.children);
@@ -969,8 +1147,8 @@ batchDeleteBtn.addEventListener('click', async () => {
   renderBookmarkTree();
 });
 
-function applyToSelected(fn) {
-  const update = (nodes) => {
+function applyToSelected(fn: (node: BookmarkNode) => void): void {
+  const update = (nodes: BookmarkNode[]): BookmarkNode[] => {
     return nodes.map((node) => {
       if (selectedBookmarks.has(node.id)) {
         fn(node);
@@ -985,13 +1163,13 @@ function applyToSelected(fn) {
   renderBookmarkTree();
 }
 
-expandAllBtn.addEventListener('click', () => {
+expandAllBtn?.addEventListener('click', () => {
   collapsedNodes.clear();
   renderBookmarkTree();
 });
 
-collapseAllBtn.addEventListener('click', () => {
-  const collapseAll = (nodes) => {
+collapseAllBtn?.addEventListener('click', () => {
+  const collapseAll = (nodes: BookmarkNode[]): void => {
     nodes.forEach((node) => {
       if (node.children.length > 0) {
         collapsedNodes.add(node.id);
@@ -1003,17 +1181,7 @@ collapseAllBtn.addEventListener('click', () => {
   renderBookmarkTree();
 });
 
-// Format bytes helper
-function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
-}
-
-// Render file display
-function renderFileDisplay(file: File) {
+function renderFileDisplay(file: File): void {
   if (!fileDisplayArea) return;
   fileDisplayArea.innerHTML = '';
   fileDisplayArea.classList.remove('hidden');
@@ -1034,14 +1202,20 @@ function renderFileDisplay(file: File) {
   fileDisplayArea.appendChild(fileDiv);
 }
 
-fileInput.addEventListener('change', loadPDF);
+fileInput?.addEventListener('change', loadPDF);
 
-async function loadPDF(e) {
-  const file = e ? e.target.files[0] : fileInput.files[0];
+async function loadPDF(e?: Event): Promise<void> {
+  const file = e
+    ? (e.target as HTMLInputElement).files?.[0]
+    : fileInput?.files?.[0];
   if (!file) return;
 
+  // Show loader
+  loaderModal?.classList.remove('hidden');
+
   originalFileName = file.name.replace('.pdf', '');
-  filenameDisplay.textContent = truncateFilename(file.name);
+  if (filenameDisplay)
+    filenameDisplay.textContent = truncateFilename(file.name);
   renderFileDisplay(file);
   const arrayBuffer = await file.arrayBuffer();
 
@@ -1059,13 +1233,13 @@ async function loadPDF(e) {
   });
   pdfJsDoc = await loadingTask.promise;
 
-  gotoPageInput.max = pdfJsDoc.numPages;
+  if (gotoPageInput) gotoPageInput.max = String(pdfJsDoc.numPages);
 
-  appEl.classList.remove('hidden');
-  uploaderEl.classList.add('hidden');
+  appEl?.classList.remove('hidden');
+  uploaderEl?.classList.add('hidden');
 
-  if (autoExtractCheckbox.checked) {
-    const extracted = await extractExistingBookmarks(pdfLibDoc);
+  if (autoExtractCheckbox?.checked) {
+    const extracted = await extractExistingBookmarks();
     if (extracted.length > 0) {
       bookmarkTree = extracted;
     }
@@ -1083,10 +1257,14 @@ async function loadPDF(e) {
   renderBookmarkTree();
   renderPage(currentPage);
   createIcons({ icons });
+
+  // Hide loader
+  loaderModal?.classList.add('hidden');
 }
 
-csvInput.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
+csvInput?.addEventListener('change', async (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
   if (!file) return;
 
   const text = await file.text();
@@ -1098,8 +1276,9 @@ csvInput.addEventListener('change', async (e) => {
   );
 });
 
-jsonInput.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
+jsonInput?.addEventListener('change', async (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
   if (!file) return;
 
   const text = await file.text();
@@ -1114,8 +1293,13 @@ jsonInput.addEventListener('change', async (e) => {
   }
 });
 
-async function renderPage(num, zoom = null, destX = null, destY = null) {
-  if (!pdfJsDoc) return;
+async function renderPage(
+  num: number,
+  zoom: string | null = null,
+  destX: number | null = null,
+  destY: number | null = null
+): Promise<void> {
+  if (!pdfJsDoc || !canvas || !ctx) return;
 
   const page = await pdfJsDoc.getPage(num);
 
@@ -1126,27 +1310,24 @@ async function renderPage(num, zoom = null, destX = null, destY = null) {
 
   const dpr = window.devicePixelRatio || 1;
 
-  let viewport = page.getViewport({ scale: zoomScale });
+  const viewport = page.getViewport({ scale: zoomScale });
   currentViewport = viewport;
 
   canvas.height = viewport.height * dpr;
   canvas.width = viewport.width * dpr;
 
-  // Set CSS size to maintain aspect ratio (this is what the browser displays)
   canvas.style.width = viewport.width + 'px';
   canvas.style.height = viewport.height + 'px';
 
-  // Scale the canvas context to match device pixel ratio
   ctx.scale(dpr, dpr);
 
-  await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+  await page.render({ canvasContext: ctx, viewport: viewport, canvas: canvas })
+    .promise;
 
-  // Draw destination marker if coordinates are provided
   if (destX !== null && destY !== null) {
     const canvasX = destX;
-    const canvasY = viewport.height - destY; // Flip Y axis (PDF bottom-left, canvas top-left)
+    const canvasY = viewport.height - destY;
 
-    // Draw marker on canvas with animation effect
     ctx.save();
     ctx.strokeStyle = '#3b82f6';
     ctx.fillStyle = '#3b82f6';
@@ -1159,7 +1340,6 @@ async function renderPage(num, zoom = null, destX = null, destY = null) {
     ctx.fill();
     ctx.shadowBlur = 0;
 
-    // Draw crosshair
     ctx.beginPath();
     ctx.moveTo(canvasX - 15, canvasY);
     ctx.lineTo(canvasX + 15, canvasY);
@@ -1167,13 +1347,11 @@ async function renderPage(num, zoom = null, destX = null, destY = null) {
     ctx.lineTo(canvasX, canvasY + 15);
     ctx.stroke();
 
-    // Draw inner circle
     ctx.beginPath();
     ctx.arc(canvasX, canvasY, 6, 0, 2 * Math.PI);
     ctx.fill();
     ctx.stroke();
 
-    // Draw coordinate text background
     const text = `X: ${Math.round(destX)}, Y: ${Math.round(destY)} `;
     ctx.font = 'bold 12px monospace';
     const textMetrics = ctx.measureText(text);
@@ -1189,70 +1367,75 @@ async function renderPage(num, zoom = null, destX = null, destY = null) {
     ctx.restore();
   }
 
-  pageIndicator.textContent = `Page ${num} / ${pdfJsDoc.numPages}`;
-  gotoPageInput.value = num;
+  pageIndicator!.textContent = `Page ${num} / ${pdfJsDoc.numPages}`;
+  if (gotoPageInput) gotoPageInput.value = String(num);
   currentPage = num;
-  currentPageDisplay.textContent = num;
+  if (currentPageDisplay) currentPageDisplay.textContent = String(num);
 }
 
-async function renderPageWithDestination(pageNum, x, y, zoom) {
+async function renderPageWithDestination(
+  pageNum: number,
+  x: number | null,
+  y: number | null,
+  zoom: string | null
+): Promise<void> {
   await renderPage(pageNum, zoom, x, y);
 }
 
-prevPageBtn.addEventListener('click', () => {
+prevPageBtn?.addEventListener('click', () => {
   if (currentPage > 1) renderPage(currentPage - 1);
 });
 
-nextPageBtn.addEventListener('click', () => {
-  if (currentPage < pdfJsDoc.numPages) renderPage(currentPage + 1);
+nextPageBtn?.addEventListener('click', () => {
+  if (pdfJsDoc && currentPage < pdfJsDoc.numPages) renderPage(currentPage + 1);
 });
 
-gotoBtn.addEventListener('click', () => {
+gotoBtn?.addEventListener('click', () => {
+  if (!pdfJsDoc || !gotoPageInput) return;
   const page = parseInt(gotoPageInput.value);
   if (page >= 1 && page <= pdfJsDoc.numPages) {
     renderPage(page);
   }
 });
 
-gotoPageInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') gotoBtn.click();
+gotoPageInput?.addEventListener('keypress', (e: KeyboardEvent) => {
+  if (e.key === 'Enter') gotoBtn?.click();
 });
 
-// Zoom controls
-function updateZoomIndicator() {
+function updateZoomIndicator(): void {
   if (zoomIndicator) {
     zoomIndicator.textContent = `${Math.round(currentZoom * 100)}%`;
   }
 }
 
-zoomInBtn.addEventListener('click', () => {
-  currentZoom = Math.min(currentZoom + 0.05, 2.0); // Max 200%, increment by 5%
+zoomInBtn?.addEventListener('click', () => {
+  currentZoom = Math.min(currentZoom + 0.05, 2.0);
   updateZoomIndicator();
   renderPage(currentPage);
 });
 
-zoomOutBtn.addEventListener('click', () => {
-  currentZoom = Math.max(currentZoom - 0.05, 0.25); // Min 25%, decrement by 5%
+zoomOutBtn?.addEventListener('click', () => {
+  currentZoom = Math.max(currentZoom - 0.05, 0.25);
   updateZoomIndicator();
   renderPage(currentPage);
 });
 
-zoomFitBtn.addEventListener('click', async () => {
+zoomFitBtn?.addEventListener('click', async () => {
   if (!pdfJsDoc) return;
   currentZoom = 1.0;
   updateZoomIndicator();
   renderPage(currentPage);
 });
 
-// Initialize zoom indicator
 updateZoomIndicator();
 
-searchInput.addEventListener('input', (e) => {
-  searchQuery = e.target.value.toLowerCase();
+searchInput?.addEventListener('input', (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  searchQuery = target.value.toLowerCase();
   renderBookmarkTree();
 });
 
-function removeNodeById(nodes, id) {
+function removeNodeById(nodes: BookmarkNode[], id: number): boolean {
   for (let i = 0; i < nodes.length; i++) {
     if (nodes[i].id === id) {
       nodes.splice(i, 1);
@@ -1263,8 +1446,11 @@ function removeNodeById(nodes, id) {
   return false;
 }
 
-function flattenBookmarks(nodes, level = 0) {
-  let result = [];
+function flattenBookmarks(
+  nodes: BookmarkNode[],
+  level = 0
+): FlattenedBookmark[] {
+  let result: FlattenedBookmark[] = [];
   for (const node of nodes) {
     result.push({ ...node, level });
     if (node.children.length > 0) {
@@ -1274,13 +1460,17 @@ function flattenBookmarks(nodes, level = 0) {
   return result;
 }
 
-function matchesSearch(node, query) {
+function matchesSearch(node: BookmarkNode, query: string): boolean {
   if (!query) return true;
   if (node.title.toLowerCase().includes(query)) return true;
   return node.children.some((child) => matchesSearch(child, query));
 }
 
-function makeSortable(element, parentNode = null, isTopLevel = false) {
+function makeSortable(
+  element: HTMLElement,
+  parentNode: BookmarkNode | null = null,
+  isTopLevel = false
+): void {
   new Sortable(element, {
     group: isTopLevel
       ? 'top-level-only'
@@ -1298,13 +1488,21 @@ function makeSortable(element, parentNode = null, isTopLevel = false) {
           return;
         }
 
-        const treeCopy = JSON.parse(JSON.stringify(bookmarkTree));
+        const treeCopy: BookmarkTree = JSON.parse(JSON.stringify(bookmarkTree));
 
-        if (isTopLevel) {
+        if (
+          isTopLevel &&
+          evt.oldIndex !== undefined &&
+          evt.newIndex !== undefined
+        ) {
           const movedItem = treeCopy.splice(evt.oldIndex, 1)[0];
           treeCopy.splice(evt.newIndex, 0, movedItem);
           bookmarkTree = treeCopy;
-        } else if (parentNode) {
+        } else if (
+          parentNode &&
+          evt.oldIndex !== undefined &&
+          evt.newIndex !== undefined
+        ) {
           const parent = findNodeInTree(treeCopy, parentNode.id);
           if (parent && parent.children) {
             const movedChild = parent.children.splice(evt.oldIndex, 1)[0];
@@ -1329,7 +1527,10 @@ function makeSortable(element, parentNode = null, isTopLevel = false) {
   });
 }
 
-function findNodeInTree(nodes, id) {
+function findNodeInTree(
+  nodes: BookmarkNode[],
+  id: number
+): BookmarkNode | null {
   if (!nodes || !Array.isArray(nodes)) return null;
 
   for (const node of nodes) {
@@ -1344,41 +1545,34 @@ function findNodeInTree(nodes, id) {
   return null;
 }
 
-function getStyleClasses(style) {
+function getStyleClasses(style: BookmarkStyle): string {
   if (style === 'bold') return 'font-bold';
   if (style === 'italic') return 'italic';
   if (style === 'bold-italic') return 'font-bold italic';
   return '';
 }
 
-function getTextColor(color) {
-  if (!color) return '';
+function getTextColor(color: BookmarkColor | string): string {
+  if (!color) return 'text-gray-700';
 
-  // Custom hex colors will use inline styles instead
-  if (color.startsWith('#')) {
+  if (typeof color === 'string' && color.startsWith('#')) {
     return '';
   }
 
-  const colorMap = {
-    red: 'text-red-600',
-    blue: 'text-blue-600',
-    green: 'text-green-600',
-    yellow: 'text-yellow-600',
-    purple: 'text-purple-600',
-  };
-  return colorMap[color] || '';
+  return TEXT_COLOR_CLASSES[color] || 'text-gray-700';
 }
 
-function renderBookmarkTree() {
+function renderBookmarkTree(): void {
+  if (!treeList) return;
   treeList.innerHTML = '';
   const filtered = searchQuery
     ? bookmarkTree.filter((n) => matchesSearch(n, searchQuery))
     : bookmarkTree;
 
   if (filtered.length === 0) {
-    noBookmarksEl.classList.remove('hidden');
+    noBookmarksEl?.classList.remove('hidden');
   } else {
-    noBookmarksEl.classList.add('hidden');
+    noBookmarksEl?.classList.add('hidden');
     for (const node of filtered) {
       treeList.appendChild(createNodeElement(node));
     }
@@ -1389,14 +1583,14 @@ function renderBookmarkTree() {
   updateSelectedCount();
 }
 
-function createNodeElement(node, level = 0) {
+function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
   if (!node || !node.id) {
     console.error('Invalid node:', node);
     return document.createElement('li');
   }
 
   const li = document.createElement('li');
-  li.dataset.bookmarkId = node.id;
+  li.dataset.bookmarkId = String(node.id);
   li.className = 'group';
 
   const hasChildren =
@@ -1406,7 +1600,10 @@ function createNodeElement(node, level = 0) {
   const isMatch =
     !searchQuery || node.title.toLowerCase().includes(searchQuery);
   const highlight = isMatch && searchQuery ? 'bg-yellow-100' : '';
-  const colorClass = node.color ? colorClasses[node.color] || '' : '';
+  const colorClass =
+    node.color && typeof node.color === 'string'
+      ? COLOR_CLASSES[node.color] || ''
+      : '';
   const styleClass = getStyleClasses(node.style);
   const textColorClass = getTextColor(node.color);
 
@@ -1418,7 +1615,7 @@ function createNodeElement(node, level = 0) {
     checkbox.type = 'checkbox';
     checkbox.checked = isSelected;
     checkbox.className = 'w-4 h-4 flex-shrink-0';
-    checkbox.addEventListener('click', (e) => {
+    checkbox.addEventListener('click', (e: MouseEvent) => {
       e.stopPropagation();
       if (selectedBookmarks.has(node.id)) {
         selectedBookmarks.delete(node.id);
@@ -1427,7 +1624,7 @@ function createNodeElement(node, level = 0) {
       }
       updateSelectedCount();
       checkbox.checked = selectedBookmarks.has(node.id);
-      batchOperations.classList.toggle(
+      batchOperations?.classList.toggle(
         'hidden',
         !batchMode || selectedBookmarks.size === 0
       );
@@ -1448,7 +1645,7 @@ function createNodeElement(node, level = 0) {
     toggleBtn.innerHTML = isCollapsed
       ? '<i data-lucide="chevron-right" class="w-4 h-4"></i>'
       : '<i data-lucide="chevron-down" class="w-4 h-4"></i>';
-    toggleBtn.addEventListener('click', (e) => {
+    toggleBtn.addEventListener('click', (e: MouseEvent) => {
       e.stopPropagation();
       if (collapsedNodes.has(node.id)) {
         collapsedNodes.delete(node.id);
@@ -1467,7 +1664,7 @@ function createNodeElement(node, level = 0) {
   const titleDiv = document.createElement('div');
   titleDiv.className = 'flex-1 min-w-0 cursor-pointer';
   const customColorStyle =
-    node.color && node.color.startsWith('#')
+    node.color && typeof node.color === 'string' && node.color.startsWith('#')
       ? `style="color: ${node.color}"`
       : '';
   const hasDestination =
@@ -1482,9 +1679,7 @@ function createNodeElement(node, level = 0) {
             `;
 
   titleDiv.addEventListener('click', async () => {
-    // Check if bookmark has a custom destination
     if (node.destX !== null || node.destY !== null || node.zoom !== null) {
-      // Render page with destination highlighted and zoom applied
       await renderPageWithDestination(
         node.page,
         node.destX,
@@ -1492,11 +1687,8 @@ function createNodeElement(node, level = 0) {
         node.zoom
       );
 
-      // Highlight the destination briefly (2 seconds)
       setTimeout(() => {
-        // Re-render without highlight but keep the zoom if it was set
         if (node.zoom !== null && node.zoom !== '' && node.zoom !== '0') {
-          // Keep the bookmark's zoom for a moment, then restore current zoom
           setTimeout(() => {
             renderPage(node.page);
           }, 1000);
@@ -1508,7 +1700,7 @@ function createNodeElement(node, level = 0) {
       renderPage(node.page);
     }
     if (window.innerWidth < 1024) {
-      showViewerBtn.click();
+      showViewerBtn?.click();
     }
   });
   div.appendChild(titleDiv);
@@ -1517,10 +1709,10 @@ function createNodeElement(node, level = 0) {
   actionsDiv.className = 'flex gap-1 flex-shrink-0';
 
   const addChildBtn = document.createElement('button');
-  addChildBtn.className = 'p-1 hover:bg-gray-200 rounded';
+  addChildBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
   addChildBtn.title = 'Add child';
   addChildBtn.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';
-  addChildBtn.addEventListener('click', async (e) => {
+  addChildBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const result = await showInputModal('Add Child Bookmark', [
       {
@@ -1533,7 +1725,7 @@ function createNodeElement(node, level = 0) {
     if (result && result.title) {
       node.children.push({
         id: Date.now() + Math.random(),
-        title: cleanTitle(result.title),
+        title: cleanTitle(String(result.title)),
         page: currentPage,
         children: [],
         color: null,
@@ -1550,10 +1742,10 @@ function createNodeElement(node, level = 0) {
   actionsDiv.appendChild(addChildBtn);
 
   const editBtn = document.createElement('button');
-  editBtn.className = 'p-1 hover:bg-gray-200 rounded';
+  editBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
   editBtn.title = 'Edit';
   editBtn.innerHTML = '<i data-lucide="edit-2" class="w-4 h-4"></i>';
-  editBtn.addEventListener('click', async (e) => {
+  editBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const result = await showInputModal(
       'Edit Bookmark',
@@ -1591,6 +1783,7 @@ function createNodeElement(node, level = 0) {
         },
         {
           type: 'destination',
+          name: 'destination',
           label: 'Destination',
           page: node.page,
           maxPages: pdfJsDoc ? pdfJsDoc.numPages : 1,
@@ -1609,16 +1802,15 @@ function createNodeElement(node, level = 0) {
     );
 
     if (result) {
-      node.title = cleanTitle(result.title);
+      node.title = cleanTitle(String(result.title || ''));
       node.color = result.color || null;
-      node.style = result.style || null;
+      node.style = (result.style as BookmarkStyle) || null;
 
-      // Update destination
       if (result.destPage !== null && result.destPage !== undefined) {
         node.page = result.destPage;
-        node.destX = result.destX;
-        node.destY = result.destY;
-        node.zoom = result.zoom;
+        node.destX = result.destX ?? null;
+        node.destY = result.destY ?? null;
+        node.zoom = result.zoom ?? null;
       }
 
       saveState();
@@ -1631,7 +1823,7 @@ function createNodeElement(node, level = 0) {
   deleteBtn.className = 'p-1 hover:bg-gray-200 rounded text-red-600';
   deleteBtn.title = 'Delete';
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-  deleteBtn.addEventListener('click', async (e) => {
+  deleteBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const confirmed = await showConfirmModal(`Delete "${node.title}"?`);
     if (confirmed) {
@@ -1649,7 +1841,7 @@ function createNodeElement(node, level = 0) {
     const childContainer = document.createElement('ul');
     childContainer.className = 'child-container space-y-2';
 
-    const nodeCopy = JSON.parse(JSON.stringify(node));
+    const nodeCopy: BookmarkNode = JSON.parse(JSON.stringify(node));
 
     for (const child of node.children) {
       if (child && child.id) {
@@ -1664,8 +1856,8 @@ function createNodeElement(node, level = 0) {
   return li;
 }
 
-addTopLevelBtn.addEventListener('click', async () => {
-  const title = titleInput.value.trim();
+addTopLevelBtn?.addEventListener('click', async () => {
+  const title = titleInput?.value.trim();
   if (!title) {
     await showAlertModal('Error', 'Please enter a title.');
     return;
@@ -1685,26 +1877,25 @@ addTopLevelBtn.addEventListener('click', async () => {
 
   saveState();
   renderBookmarkTree();
-  titleInput.value = '';
+  if (titleInput) titleInput.value = '';
 });
 
-titleInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') addTopLevelBtn.click();
+titleInput?.addEventListener('keypress', (e: KeyboardEvent) => {
+  if (e.key === 'Enter') addTopLevelBtn?.click();
 });
 
-function escapeHTML(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
+function escapeHTML(str: string): string {
+  return escapeHtml(str);
 }
 
-importCsvBtn.addEventListener('click', () => {
-  csvImportHidden.click();
-  importDropdown.classList.add('hidden');
+importCsvBtn?.addEventListener('click', () => {
+  csvImportHidden?.click();
+  importDropdown?.classList.add('hidden');
 });
 
-csvImportHidden.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
+csvImportHidden?.addEventListener('change', async (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
   if (!file) return;
 
   const text = await file.text();
@@ -1717,11 +1908,11 @@ csvImportHidden.addEventListener('change', async (e) => {
     await showAlertModal('Success', `Imported ${imported.length} bookmarks!`);
   }
 
-  csvImportHidden.value = '';
+  if (csvImportHidden) csvImportHidden.value = '';
 });
 
-exportCsvBtn.addEventListener('click', () => {
-  exportDropdown.classList.add('hidden');
+exportCsvBtn?.addEventListener('click', () => {
+  exportDropdown?.classList.add('hidden');
 
   if (bookmarkTree.length === 0) {
     showAlertModal('Error', 'No bookmarks to export!');
@@ -1736,18 +1927,15 @@ exportCsvBtn.addEventListener('click', () => {
       .join('\n');
 
   const blob = new Blob([csv], { type: 'text/csv' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${originalFileName}-bookmarks.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
+  downloadFile(blob, `${originalFileName}-bookmarks.csv`);
 });
 
-function parseCSV(text) {
+function parseCSV(text: string): BookmarkTree {
   const lines = text.trim().split('\n').slice(1);
-  const bookmarks = [];
-  const stack = [{ children: bookmarks, level: -1 }];
+  const bookmarks: BookmarkTree = [];
+  const stack: Array<{ children: BookmarkNode[]; level: number }> = [
+    { children: bookmarks, level: -1 },
+  ];
 
   for (const line of lines) {
     const match =
@@ -1755,7 +1943,7 @@ function parseCSV(text) {
     if (!match) continue;
 
     const [, title, page, level] = match;
-    const bookmark = {
+    const bookmark: BookmarkNode = {
       id: Date.now() + Math.random(),
       title: cleanTitle(title.replace(/""/g, '"')),
       page: parseInt(page),
@@ -1770,26 +1958,26 @@ function parseCSV(text) {
     const lvl = parseInt(level);
     while (stack[stack.length - 1].level >= lvl) stack.pop();
     stack[stack.length - 1].children.push(bookmark);
-    stack.push({ ...bookmark, level: lvl });
+    stack.push({ children: bookmark.children, level: lvl });
   }
 
   return bookmarks;
 }
 
-importJsonBtn.addEventListener('click', () => {
-  jsonImportHidden.click();
-  importDropdown.classList.add('hidden');
+importJsonBtn?.addEventListener('click', () => {
+  jsonImportHidden?.click();
+  importDropdown?.classList.add('hidden');
 });
 
-jsonImportHidden.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
+jsonImportHidden?.addEventListener('change', async (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
   if (!file) return;
 
   const text = await file.text();
   try {
-    const imported = JSON.parse(text);
-    // Recursively clean titles in imported JSON
-    function cleanImportedTree(nodes) {
+    const imported = JSON.parse(text) as BookmarkTree;
+    function cleanImportedTree(nodes: BookmarkNode[]): void {
       if (!nodes) return;
       for (const node of nodes) {
         if (node.title) node.title = cleanTitle(node.title);
@@ -1805,11 +1993,11 @@ jsonImportHidden.addEventListener('change', async (e) => {
     await showAlertModal('Error', 'Invalid JSON format');
   }
 
-  jsonImportHidden.value = '';
+  if (jsonImportHidden) jsonImportHidden.value = '';
 });
 
-exportJsonBtn.addEventListener('click', () => {
-  exportDropdown.classList.add('hidden');
+exportJsonBtn?.addEventListener('click', () => {
+  exportDropdown?.classList.add('hidden');
 
   if (bookmarkTree.length === 0) {
     showAlertModal('Error', 'No bookmarks to export!');
@@ -1818,18 +2006,13 @@ exportJsonBtn.addEventListener('click', () => {
 
   const json = JSON.stringify(bookmarkTree, null, 2);
   const blob = new Blob([json], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `${originalFileName}-bookmarks.json`;
-  a.click();
-  URL.revokeObjectURL(url);
+  downloadFile(blob, `${originalFileName}-bookmarks.json`);
 });
 
-extractExistingBtn.addEventListener('click', async () => {
+extractExistingBtn?.addEventListener('click', async () => {
   if (!pdfLibDoc) return;
 
-  const extracted = await extractExistingBookmarks(pdfLibDoc);
+  const extracted = await extractExistingBookmarks();
   if (extracted.length > 0) {
     const confirmed = await showConfirmModal(
       `Found ${extracted.length} existing bookmarks. Replace current bookmarks?`
@@ -1855,34 +2038,35 @@ extractExistingBtn.addEventListener('click', async () => {
 //   return title;
 // }
 
-function cleanTitle(title) {
-  // @TODO@ALAM: check for other encoding issues
+function cleanTitle(title: string): string {
   if (typeof title === 'string') {
     return title.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
   }
   return title;
 }
 
-async function extractExistingBookmarks(doc) {
+async function extractExistingBookmarks(): Promise<BookmarkTree> {
   try {
+    if (!pdfJsDoc) return [];
     const outline = await pdfJsDoc.getOutline();
-    console.log(outline);
     if (!outline) return [];
 
-    async function processOutlineItem(item) {
+    async function processOutlineItem(
+      item: PDFOutlineItem
+    ): Promise<BookmarkNode> {
       let pageIndex = 0;
-      let destX = null;
-      let destY = null;
-      let zoom = null;
+      let destX: number | null = null;
+      let destY: number | null = null;
+      let zoom: string | null = null;
 
       try {
         let dest = item.dest;
-        if (typeof dest === 'string') {
+        if (typeof dest === 'string' && pdfJsDoc) {
           dest = await pdfJsDoc.getDestination(dest);
         }
 
-        if (Array.isArray(dest)) {
-          const destRef = dest[0];
+        if (Array.isArray(dest) && pdfJsDoc) {
+          const destRef = dest[0] as { num: number; gen: number };
           pageIndex = await pdfJsDoc.getPageIndex(destRef);
 
           if (dest.length > 2) {
@@ -1899,7 +2083,7 @@ async function extractExistingBookmarks(doc) {
         console.warn('Error resolving destination:', e);
       }
 
-      let color = null;
+      let color: BookmarkColor = null;
       if (item.color) {
         const [r, g, b] = item.color;
         const rN = r / 255;
@@ -1913,13 +2097,12 @@ async function extractExistingBookmarks(doc) {
         else if (rN > 0.5 && gN < 0.5 && bN > 0.5) color = 'purple';
       }
 
-      // Map style
-      let style = null;
+      let style: BookmarkStyle = null;
       if (item.bold && item.italic) style = 'bold-italic';
       else if (item.bold) style = 'bold';
       else if (item.italic) style = 'italic';
 
-      const bookmark = {
+      const bookmark: BookmarkNode = {
         id: Date.now() + Math.random(),
         title: cleanTitle(item.title),
         page: pageIndex + 1,
@@ -1941,9 +2124,9 @@ async function extractExistingBookmarks(doc) {
       return bookmark;
     }
 
-    const result = [];
+    const result: BookmarkTree = [];
     for (const item of outline) {
-      const bookmark = await processOutlineItem(item);
+      const bookmark = await processOutlineItem(item as PDFOutlineItem);
       result.push(bookmark);
     }
 
@@ -1954,7 +2137,6 @@ async function extractExistingBookmarks(doc) {
   }
 }
 
-// Back to tools button
 if (backToToolsBtn) {
   backToToolsBtn.addEventListener('click', () => {
     window.location.href = import.meta.env.BASE_URL;
@@ -1967,87 +2149,79 @@ if (closeBtn) {
   });
 }
 
-downloadBtn.addEventListener('click', async () => {
+downloadBtn?.addEventListener('click', async () => {
+  if (!pdfLibDoc) return;
   const pages = pdfLibDoc.getPages();
   const outlinesDict = pdfLibDoc.context.obj({});
   const outlinesRef = pdfLibDoc.context.register(outlinesDict);
 
-  function createOutlineItems(nodes, parentRef) {
-    const items = [];
+  function createOutlineItems(
+    nodes: BookmarkNode[],
+    parentRef: PDFRef
+  ): OutlineItem[] {
+    const items: OutlineItem[] = [];
 
     for (let i = 0; i < nodes.length; i++) {
       const node = nodes[i];
-      const itemDict = pdfLibDoc.context.obj({});
-      const itemRef = pdfLibDoc.context.register(itemDict);
+      const itemDict = pdfLibDoc!.context.obj({}) as unknown as ReturnType<
+        typeof pdfLibDoc.context.obj
+      > & { set: (key: PDFName, value: unknown) => void };
+      const itemRef = pdfLibDoc!.context.register(
+        itemDict as unknown as Parameters<typeof pdfLibDoc.context.register>[0]
+      );
 
       itemDict.set(PDFName.of('Title'), PDFHexString.fromText(node.title));
       itemDict.set(PDFName.of('Parent'), parentRef);
 
-      // Always map bookmark page to zero-based index consistently
       const pageIndex = Math.max(0, Math.min(node.page - 1, pages.length - 1));
       const pageRef = pages[pageIndex].ref;
 
-      // Handle custom destination with zoom and position
-      let destArray;
+      let destArray: unknown;
       if (node.destX !== null || node.destY !== null || node.zoom !== null) {
         const x = node.destX !== null ? PDFNumber.of(node.destX) : null;
         const y = node.destY !== null ? PDFNumber.of(node.destY) : null;
 
         let zoom = null;
         if (node.zoom !== null && node.zoom !== '' && node.zoom !== '0') {
-          // Convert percentage to decimal (100% = 1.0)
           zoom = PDFNumber.of(parseFloat(node.zoom) / 100);
         }
 
-        destArray = pdfLibDoc.context.obj([
+        destArray = pdfLibDoc!.context.obj([
           pageRef,
           PDFName.of('XYZ'),
           x,
           y,
           zoom,
-        ]);
+        ] as (PDFRef | PDFName | PDFNumber | null)[]);
       } else {
-        destArray = pdfLibDoc.context.obj([
+        destArray = pdfLibDoc!.context.obj([
           pageRef,
           PDFName.of('XYZ'),
           null,
           null,
           null,
-        ]);
+        ] as (PDFRef | PDFName | null)[]);
       }
 
       itemDict.set(PDFName.of('Dest'), destArray);
 
-      // Add color to PDF
       if (node.color) {
-        let rgb;
+        let rgb: number[] | undefined;
+        const colorStr = node.color as string;
 
-        if (node.color.startsWith('#')) {
-          // Custom hex color - convert to RGB
-          const hex = node.color.replace('#', '');
-          const r = parseInt(hex.substr(0, 2), 16) / 255;
-          const g = parseInt(hex.substr(2, 2), 16) / 255;
-          const b = parseInt(hex.substr(4, 2), 16) / 255;
+        if (colorStr.startsWith('#')) {
+          const { r, g, b } = hexToRgb(colorStr);
           rgb = [r, g, b];
-        } else {
-          // Predefined colors
-          const colorMap = {
-            red: [1.0, 0.0, 0.0],
-            blue: [0.0, 0.0, 1.0],
-            green: [0.0, 1.0, 0.0],
-            yellow: [1.0, 1.0, 0.0],
-            purple: [0.5, 0.0, 0.5],
-          };
-          rgb = colorMap[node.color];
+        } else if (PDF_COLOR_MAP[colorStr]) {
+          rgb = PDF_COLOR_MAP[colorStr];
         }
 
         if (rgb) {
-          const colorArray = pdfLibDoc.context.obj(rgb);
+          const colorArray = pdfLibDoc!.context.obj(rgb);
           itemDict.set(PDFName.of('C'), colorArray);
         }
       }
 
-      // Add style flags to PDF
       if (node.style) {
         let flags = 0;
         if (node.style === 'italic') flags = 1;
@@ -2104,17 +2278,13 @@ downloadBtn.addEventListener('click', async () => {
     pdfLibDoc.catalog.set(PDFName.of('Outlines'), outlinesRef);
 
     const pdfBytes = await pdfLibDoc.save();
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${originalFileName}-bookmarked.pdf`;
-    a.click();
-    URL.revokeObjectURL(url);
+    const blob = new Blob([new Uint8Array(pdfBytes)], {
+      type: 'application/pdf',
+    });
+    downloadFile(blob, `${originalFileName}-bookmarked.pdf`);
 
     await showAlertModal('Success', 'PDF saved successfully!');
 
-    // Reset to uploader after successful save
     setTimeout(() => {
       resetToUploader();
     }, 500);

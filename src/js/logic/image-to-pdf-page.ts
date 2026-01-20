@@ -4,6 +4,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
 import { getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import Sortable from 'sortablejs';
+import heic2any from 'heic2any';
 
 const SUPPORTED_FORMATS = '.jpg,.jpeg,.png,.bmp,.gif,.tiff,.tif,.pnm,.pgm,.pbm,.ppm,.pam,.jxr,.jpx,.jp2,.psd,.svg,.heic,.heif,.webp';
 const SUPPORTED_FORMATS_DISPLAY = 'JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP';
@@ -209,20 +210,93 @@ async function ensurePyMuPDF(): Promise<PyMuPDF> {
     return pymupdf;
 }
 
+async function preprocessFile(file: File): Promise<File> {
+    const ext = getFileExtension(file.name);
+
+    if (ext === '.heic' || ext === '.heif') {
+        try {
+            const conversionResult = await heic2any({
+                blob: file,
+                toType: 'image/png',
+                quality: 0.9,
+            });
+
+            const blob = Array.isArray(conversionResult) ? conversionResult[0] : conversionResult;
+            return new File([blob], file.name.replace(/\.(heic|heif)$/i, '.png'), { type: 'image/png' });
+        } catch (e) {
+            console.error(`Failed to convert HEIC: ${file.name}`, e);
+            throw new Error(`Failed to process HEIC file: ${file.name}`);
+        }
+    }
+
+    if (ext === '.webp') {
+        try {
+            return await new Promise<File>((resolve, reject) => {
+                const img = new Image();
+                const url = URL.createObjectURL(file);
+
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    if (!ctx) {
+                        URL.revokeObjectURL(url);
+                        reject(new Error('Canvas context failed'));
+                        return;
+                    }
+                    ctx.drawImage(img, 0, 0);
+                    canvas.toBlob((blob) => {
+                        URL.revokeObjectURL(url);
+                        if (blob) {
+                            resolve(new File([blob], file.name.replace(/\.webp$/i, '.png'), { type: 'image/png' }));
+                        } else {
+                            reject(new Error('Canvas toBlob failed'));
+                        }
+                    }, 'image/png');
+                };
+
+                img.onerror = () => {
+                    URL.revokeObjectURL(url);
+                    reject(new Error('Failed to load WebP image'));
+                };
+
+                img.src = url;
+            });
+        } catch (e) {
+            console.error(`Failed to convert WebP: ${file.name}`, e);
+            throw new Error(`Failed to process WebP file: ${file.name}`);
+        }
+    }
+
+    return file;
+}
+
 async function convertToPdf() {
     if (files.length === 0) {
         showAlert('No Files', 'Please select at least one image file.');
         return;
     }
 
-    showLoader('Loading PyMuPDF engine...');
+    showLoader('Processing images...');
 
     try {
+        const processedFiles: File[] = [];
+        for (const file of files) {
+            try {
+                const processed = await preprocessFile(file);
+                processedFiles.push(processed);
+            } catch (error: any) {
+                console.warn(error);
+                throw error;
+            }
+        }
+
+        showLoader('Loading engine...');
         const mupdf = await ensurePyMuPDF();
 
         showLoader('Converting images to PDF...');
-
-        const pdfBlob = await mupdf.imagesToPdf(files);
+        const pdfBlob = await mupdf.imagesToPdf(processedFiles);
 
         downloadFile(pdfBlob, 'images_to_pdf.pdf');
 

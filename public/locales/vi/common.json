@@ -1,319 +1,323 @@
 {
-    "nav": {
-        "home": "Trang chủ",
-        "about": "Giới thiệu",
-        "contact": "Liên hệ",
-        "licensing": "Giấy phép",
-        "allTools": "Tất cả công cụ",
-        "openMainMenu": "Mở menu chính",
-        "language": "Ngôn ngữ"
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "licensing": "Giấy phép",
+    "allTools": "Tất cả công cụ",
+    "openMainMenu": "Mở menu chính",
+    "language": "Ngôn ngữ"
+  },
+  "donation": {
+    "message": "Bạn yêu thích BentoPDF? Hãy giúp chúng tôi giữ nó miễn phí và mã nguồn mở!",
+    "button": "Quyên góp"
+  },
+  "hero": {
+    "title": "Bộ công cụ",
+    "pdfToolkit": "PDF",
+    "builtForPrivacy": "an toàn và riêng tư",
+    "noSignups": "Không cần đăng ký",
+    "unlimitedUse": "Sử dụng không giới hạn",
+    "worksOffline": "Hoạt động offline",
+    "startUsing": "Bắt đầu sử dụng ngay"
+  },
+  "usedBy": {
+    "title": "Được sử dụng bởi các công ty và những người làm việc tại"
+  },
+  "features": {
+    "title": "Tại sao chọn",
+    "bentoPdf": "BentoPDF?",
+    "noSignup": {
+      "title": "Không cần đăng ký",
+      "description": "Bắt đầu ngay lập tức, không cần tài khoản hay email."
     },
-    "hero": {
-        "title": "Bộ công cụ",
-        "pdfToolkit": "PDF",
-        "builtForPrivacy": "an toàn và riêng tư",
-        "noSignups": "Không cần đăng ký",
-        "unlimitedUse": "Sử dụng không giới hạn",
-        "worksOffline": "Hoạt động offline",
-        "startUsing": "Bắt đầu sử dụng ngay"
+    "noUploads": {
+      "title": "Không tải lên",
+      "description": "100% xử lý phía máy khách, tệp của bạn không bao giờ rời khỏi thiết bị."
     },
-    "usedBy": {
-        "title": "Được sử dụng bởi các công ty và những người làm việc tại"
+    "foreverFree": {
+      "title": "Miễn phí mãi mãi",
+      "description": "Tất cả công cụ, không dùng thử, không có tường phí."
     },
-    "features": {
-        "title": "Tại sao chọn",
-        "bentoPdf": "BentoPDF?",
-        "noSignup": {
-            "title": "Không cần đăng ký",
-            "description": "Bắt đầu ngay lập tức, không cần tài khoản hay email."
-        },
-        "noUploads": {
-            "title": "Không tải lên",
-            "description": "100% xử lý phía máy khách, tệp của bạn không bao giờ rời khỏi thiết bị."
-        },
-        "foreverFree": {
-            "title": "Miễn phí mãi mãi",
-            "description": "Tất cả công cụ, không dùng thử, không có tường phí."
-        },
-        "noLimits": {
-            "title": "Không giới hạn",
-            "description": "Sử dụng bao nhiêu tùy thích, không có giới hạn ẩn."
-        },
-        "batchProcessing": {
-            "title": "Xử lý hàng loạt",
-            "description": "Xử lý không giới hạn PDF trong một lần."
-        },
-        "lightningFast": {
-            "title": "Cực kỳ nhanh",
-            "description": "Xử lý PDF ngay lập tức, không cần chờ đợi hay trì hoãn."
-        }
+    "noLimits": {
+      "title": "Không giới hạn",
+      "description": "Sử dụng bao nhiêu tùy thích, không có giới hạn ẩn."
     },
-    "tools": {
-        "title": "Bắt đầu với",
-        "toolsLabel": "Công cụ",
-        "subtitle": "Nhấp vào một công cụ để mở trình tải tệp lên",
-        "searchPlaceholder": "Tìm kiếm công cụ (ví dụ: 'chia', 'sắp xếp'...)",
-        "backToTools": "Quay lại Công cụ",
-        "firstLoadNotice": "Lần tải đầu tiên sẽ mất một chút thời gian vì chúng tôi đang tải xuống công cụ chuyển đổi. Sau đó, mọi lần tải sẽ ngay lập tức."
+    "batchProcessing": {
+      "title": "Xử lý hàng loạt",
+      "description": "Xử lý không giới hạn PDF trong một lần."
     },
-    "upload": {
-        "clickToSelect": "Nhấp để chọn tệp",
-        "orDragAndDrop": "hoặc kéo và thả",
-        "pdfOrImages": "PDF hoặc Hình ảnh",
-        "filesNeverLeave": "Tệp của bạn không bao giờ rời khỏi thiết bị.",
-        "addMore": "Thêm tệp",
-        "clearAll": "Xóa tất cả"
-    },
-    "loader": {
-        "processing": "Đang xử lý..."
-    },
-    "alert": {
-        "title": "Thông báo",
-        "ok": "OK"
-    },
-    "preview": {
-        "title": "Xem trước tài liệu",
-        "downloadAsPdf": "Tải xuống dưới dạng PDF",
-        "close": "Đóng"
-    },
-    "settings": {
-        "title": "Cài đặt",
-        "shortcuts": "Phím tắt",
-        "preferences": "Tùy chọn",
-        "displayPreferences": "Tùy chọn hiển thị",
-        "searchShortcuts": "Tìm kiếm phím tắt...",
-        "shortcutsInfo": "Nhấn và giữ phím để đặt phím tắt. Thay đổi được lưu tự động.",
-        "shortcutsWarning": "⚠️ Tránh các phím tắt trình duyệt phổ biến (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N, v.v.) vì chúng có thể không hoạt động đáng tin cậy.",
-        "import": "Nhập",
-        "export": "Xuất",
-        "resetToDefaults": "Đặt lại về mặc định",
-        "fullWidthMode": "Chế độ toàn chiều rộng",
-        "fullWidthDescription": "Sử dụng toàn bộ chiều rộng màn hình cho tất cả công cụ thay vì container căn giữa",
-        "settingsAutoSaved": "Cài đặt được lưu tự động",
-        "clickToSet": "Nhấp để đặt",
-        "pressKeys": "Nhấn phím...",
-        "warnings": {
-            "alreadyInUse": "Phím tắt đã được sử dụng",
-            "assignedTo": "đã được gán cho:",
-            "chooseDifferent": "Vui lòng chọn một phím tắt khác.",
-            "reserved": "Cảnh báo phím tắt dành riêng",
-            "commonlyUsed": "thường được sử dụng cho:",
-            "unreliable": "Phím tắt này có thể không hoạt động đáng tin cậy hoặc có thể xung đột với hành vi trình duyệt/hệ thống.",
-            "useAnyway": "Bạn có muốn sử dụng nó không?",
-            "resetTitle": "Đặt lại phím tắt",
-            "resetMessage": "Bạn có chắc chắn muốn đặt lại tất cả phím tắt về mặc định?<br><br>Hành động này không thể hoàn tác.",
-            "importSuccessTitle": "Nhập thành công",
-            "importSuccessMessage": "Đã nhập phím tắt thành công!",
-            "importFailTitle": "Nhập thất bại",
-            "importFailMessage": "Không thể nhập phím tắt. Định dạng tệp không hợp lệ."
-        }
-    },
-    "warning": {
-        "title": "Cảnh báo",
-        "cancel": "Hủy",
-        "proceed": "Tiếp tục"
-    },
-    "compliance": {
-        "title": "Dữ liệu của bạn không bao giờ rời khỏi thiết bị",
-        "weKeep": "Chúng tôi giữ",
-        "yourInfoSafe": "thông tin của bạn an toàn",
-        "byFollowingStandards": "bằng cách tuân theo các tiêu chuẩn bảo mật toàn cầu.",
-        "processingLocal": "Tất cả quá trình xử lý diễn ra cục bộ trên thiết bị của bạn.",
-        "gdpr": {
-            "title": "Tuân thủ GDPR",
-            "description": "Bảo vệ dữ liệu cá nhân và quyền riêng tư của các cá nhân trong Liên minh Châu Âu."
-        },
-        "ccpa": {
-            "title": "Tuân thủ CCPA",
-            "description": "Trao quyền cho cư dân California về cách thông tin cá nhân của họ được thu thập, sử dụng và chia sẻ."
-        },
-        "hipaa": {
-            "title": "Tuân thủ HIPAA",
-            "description": "Đặt ra các biện pháp bảo vệ để xử lý thông tin sức khỏe nhạy cảm trong hệ thống chăm sóc sức khỏe Hoa Kỳ."
-        }
-    },
-    "faq": {
-        "title": "Câu hỏi",
-        "questions": "Thường gặp",
-        "isFree": {
-            "question": "BentoPDF có thực sự miễn phí không?",
-            "answer": "Có, hoàn toàn miễn phí. Tất cả các công cụ trên BentoPDF đều 100% miễn phí sử dụng, không giới hạn tệp, không cần đăng ký và không có watermark. Chúng tôi tin rằng mọi người đều xứng đáng được tiếp cận với các công cụ PDF đơn giản, mạnh mẽ mà không có tường phí."
-        },
-        "areFilesSecure": {
-            "question": "Tệp của tôi có an toàn không? Chúng được xử lý ở đâu?",
-            "answer": "Tệp của bạn an toàn nhất có thể vì chúng không bao giờ rời khỏi máy tính của bạn. Tất cả quá trình xử lý diễn ra trực tiếp trong trình duyệt web của bạn (phía máy khách). Chúng tôi không bao giờ tải tệp của bạn lên máy chủ, vì vậy bạn duy trì quyền riêng tư và kiểm soát hoàn toàn đối với tài liệu của mình."
-        },
-        "platforms": {
-            "question": "Nó có hoạt động trên Mac, Windows và Mobile không?",
-            "answer": "Có! Vì BentoPDF chạy hoàn toàn trong trình duyệt của bạn, nó hoạt động trên bất kỳ hệ điều hành nào có trình duyệt web hiện đại, bao gồm Windows, macOS, Linux, iOS và Android."
-        },
-        "gdprCompliant": {
-            "question": "BentoPDF có tuân thủ GDPR không?",
-            "answer": "Có. BentoPDF hoàn toàn tuân thủ GDPR. Vì tất cả quá trình xử lý tệp diễn ra cục bộ trong trình duyệt của bạn và chúng tôi không bao giờ thu thập hoặc truyền tệp của bạn đến bất kỳ máy chủ nào, chúng tôi không có quyền truy cập vào dữ liệu của bạn. Điều này đảm bảo bạn luôn kiểm soát tài liệu của mình."
-        },
-        "dataStorage": {
-            "question": "Bạn có lưu trữ hoặc theo dõi bất kỳ tệp nào của tôi không?",
-            "answer": "Không. Chúng tôi không bao giờ lưu trữ, theo dõi hoặc ghi nhật ký tệp của bạn. Mọi thứ bạn làm trên BentoPDF diễn ra trong bộ nhớ trình duyệt của bạn và biến mất khi bạn đóng trang. Không có tải lên, không có nhật ký lịch sử và không có máy chủ liên quan."
-        },
-        "different": {
-            "question": "Điều gì làm cho BentoPDF khác biệt so với các công cụ PDF khác?",
-            "answer": "Hầu hết các công cụ PDF tải tệp của bạn lên máy chủ để xử lý. BentoPDF không bao giờ làm điều đó. Chúng tôi sử dụng công nghệ web hiện đại, an toàn để xử lý tệp của bạn trực tiếp trong trình duyệt. Điều này có nghĩa là hiệu suất nhanh hơn, quyền riêng tư mạnh mẽ hơn và hoàn toàn yên tâm."
-        },
-        "browserBased": {
-            "question": "Xử lý dựa trên trình duyệt giữ tôi an toàn như thế nào?",
-            "answer": "Bằng cách chạy hoàn toàn bên trong trình duyệt của bạn, BentoPDF đảm bảo rằng tệp của bạn không bao giờ rời khỏi thiết bị. Điều này loại bỏ các rủi ro về hack máy chủ, vi phạm dữ liệu hoặc truy cập trái phép. Tệp của bạn vẫn thuộc về bạn—luôn luôn."
-        },
-        "analytics": {
-            "question": "Bạn có sử dụng cookie hoặc phân tích để theo dõi tôi không?",
-            "answer": "Chúng tôi quan tâm đến quyền riêng tư của bạn. BentoPDF không theo dõi thông tin cá nhân. Chúng tôi chỉ sử dụng Simple Analytics để xem số lượt truy cập ẩn danh. Điều này có nghĩa là chúng tôi có thể biết có bao nhiêu người dùng truy cập trang web của chúng tôi, nhưng chúng tôi không bao giờ biết bạn là ai. Simple Analytics hoàn toàn tuân thủ GDPR và tôn trọng quyền riêng tư của bạn."
-        }
-    },
-    "testimonials": {
-        "title": "Người dùng",
-        "users": "của chúng tôi",
-        "say": "nói gì"
-    },
-    "support": {
-        "title": "Thích công việc của tôi?",
-        "description": "BentoPDF là một dự án đam mê, được xây dựng để cung cấp bộ công cụ PDF miễn phí, riêng tư và mạnh mẽ cho mọi người. Nếu bạn thấy nó hữu ích, hãy cân nhắc hỗ trợ phát triển của nó. Mỗi ly cà phê đều giúp ích!",
-        "buyMeCoffee": "Mua cho tôi một ly cà phê"
-    },
-    "footer": {
-        "copyright": "© 2025 BentoPDF. Bảo lưu mọi quyền.",
-        "version": "Phiên bản",
-        "company": "Công ty",
-        "aboutUs": "Về chúng tôi",
-        "faqLink": "FAQ",
-        "contactUs": "Liên hệ",
-        "legal": "Pháp lý",
-        "termsAndConditions": "Điều khoản và Điều kiện",
-        "privacyPolicy": "Chính sách Bảo mật",
-        "followUs": "Theo dõi chúng tôi"
-    },
-    "merge": {
-        "title": "Gộp PDF",
-        "description": "Kết hợp toàn bộ tệp hoặc chọn các trang cụ thể để gộp thành tài liệu mới.",
-        "fileMode": "Chế độ tệp",
-        "pageMode": "Chế độ trang",
-        "howItWorks": "Cách hoạt động:",
-        "fileModeInstructions": [
-            "Nhấp và kéo biểu tượng để thay đổi thứ tự các tệp.",
-            "Trong hộp \"Trang\" cho mỗi tệp, bạn có thể chỉ định phạm vi (ví dụ: \"1-3, 5\") để chỉ gộp những trang đó.",
-            "Để trống hộp \"Trang\" để bao gồm tất cả các trang từ tệp đó."
-        ],
-        "pageModeInstructions": [
-            "Tất cả các trang từ PDF đã tải lên của bạn được hiển thị bên dưới.",
-            "Chỉ cần kéo và thả các hình thu nhỏ trang riêng lẻ để tạo thứ tự chính xác bạn muốn cho tệp mới của mình."
-        ],
-        "mergePdfs": "Gộp PDF"
-    },
-    "common": {
-        "page": "Trang",
-        "pages": "Trang",
-        "of": "của",
-        "download": "Tải xuống",
-        "cancel": "Hủy",
-        "save": "Lưu",
-        "delete": "Xóa",
-        "edit": "Chỉnh sửa",
-        "add": "Thêm",
-        "remove": "Xóa",
-        "loading": "Đang tải...",
-        "error": "Lỗi",
-        "success": "Thành công",
-        "file": "Tệp",
-        "files": "Tệp"
-    },
-    "about": {
-        "hero": {
-            "title": "Chúng tôi tin rằng công cụ PDF nên",
-            "subtitle": "nhanh, riêng tư và miễn phí.",
-            "noCompromises": "Không thỏa hiệp."
-        },
-        "mission": {
-            "title": "Sứ mệnh của chúng tôi",
-            "description": "Cung cấp bộ công cụ PDF toàn diện nhất tôn trọng quyền riêng tư của bạn và không bao giờ yêu cầu thanh toán. Chúng tôi tin rằng các công cụ tài liệu thiết yếu nên có thể truy cập được cho mọi người, ở mọi nơi, không có rào cản."
-        },
-        "philosophy": {
-            "label": "Triết lý cốt lõi của chúng tôi",
-            "title": "Quyền riêng tư trước tiên. Luôn luôn.",
-            "description": "Trong thời đại mà dữ liệu là hàng hóa, chúng tôi có cách tiếp cận khác. Tất cả quá trình xử lý cho các công cụ Bentopdf diễn ra cục bộ trong trình duyệt của bạn. Điều này có nghĩa là tệp của bạn không bao giờ chạm vào máy chủ của chúng tôi, chúng tôi không bao giờ thấy tài liệu của bạn và chúng tôi không theo dõi những gì bạn làm. Tài liệu của bạn vẫn hoàn toàn và rõ ràng là riêng tư. Đó không chỉ là một tính năng; đó là nền tảng của chúng tôi."
-        },
-        "whyBentopdf": {
-            "title": "Tại sao chọn",
-            "speed": {
-                "title": "Được xây dựng cho tốc độ",
-                "description": "Không cần chờ tải lên hoặc tải xuống lên máy chủ. Bằng cách xử lý tệp trực tiếp trong trình duyệt của bạn bằng công nghệ web hiện đại như WebAssembly, chúng tôi cung cấp tốc độ vô song cho tất cả các công cụ của chúng tôi."
-            },
-            "free": {
-                "title": "Hoàn toàn miễn phí",
-                "description": "Không dùng thử, không đăng ký, không phí ẩn và không có tính năng \"premium\" bị giữ lại. Chúng tôi tin rằng các công cụ PDF mạnh mẽ nên là tiện ích công cộng, không phải trung tâm lợi nhuận."
-            },
-            "noAccount": {
-                "title": "Không cần tài khoản",
-                "description": "Bắt đầu sử dụng bất kỳ công cụ nào ngay lập tức. Chúng tôi không cần email, mật khẩu hoặc bất kỳ thông tin cá nhân nào của bạn. Quy trình làm việc của bạn nên không ma sát và ẩn danh."
-            },
-            "openSource": {
-                "title": "Tinh thần mã nguồn mở",
-                "description": "Được xây dựng với tinh thần minh bạch. Chúng tôi tận dụng các thư viện mã nguồn mở tuyệt vời như PDF-lib và PDF.js, và tin vào nỗ lực do cộng đồng thúc đẩy để làm cho các công cụ mạnh mẽ có thể truy cập được cho mọi người."
-            }
-        },
-        "cta": {
-            "title": "Sẵn sàng bắt đầu?",
-            "description": "Tham gia cùng hàng nghìn người dùng tin tưởng Bentopdf cho nhu cầu tài liệu hàng ngày của họ. Trải nghiệm sự khác biệt mà quyền riêng tư và hiệu suất có thể tạo ra.",
-            "button": "Khám phá tất cả công cụ"
-        }
-    },
-    "contact": {
-        "title": "Liên hệ",
-        "subtitle": "Chúng tôi rất muốn nghe từ bạn. Cho dù bạn có câu hỏi, phản hồi hay yêu cầu tính năng, vui lòng đừng ngần ngại liên hệ.",
-        "email": "Bạn có thể liên hệ trực tiếp với chúng tôi qua email tại:"
-    },
-    "licensing": {
-        "title": "Giấy phép cho",
-        "subtitle": "Chọn giấy phép phù hợp với nhu cầu của bạn."
-    },
-    "multiTool": {
-        "uploadPdfs": "Tải lên PDF",
-        "upload": "Tải lên",
-        "addBlankPage": "Thêm trang trống",
-        "edit": "Chỉnh sửa:",
-        "undo": "Hoàn tác",
-        "redo": "Làm lại",
-        "reset": "Đặt lại",
-        "selection": "Chọn:",
-        "selectAll": "Chọn tất cả",
-        "deselectAll": "Bỏ chọn tất cả",
-        "rotate": "Xoay:",
-        "rotateLeft": "Trái",
-        "rotateRight": "Phải",
-        "transform": "Biến đổi:",
-        "duplicate": "Nhân bản",
-        "split": "Chia",
-        "clear": "Xóa:",
-        "delete": "Xóa",
-        "download": "Tải xuống:",
-        "downloadSelected": "Tải xuống đã chọn",
-        "exportPdf": "Xuất PDF",
-        "uploadPdfFiles": "Chọn tệp PDF",
-        "dragAndDrop": "Kéo và thả tệp PDF vào đây, hoặc nhấp để chọn",
-        "selectFiles": "Chọn tệp",
-        "renderingPages": "Đang kết xuất trang...",
-        "actions": {
-            "duplicatePage": "Nhân bản trang này",
-            "deletePage": "Xóa trang này",
-            "insertPdf": "Chèn PDF sau trang này",
-            "toggleSplit": "Bật/tắt chia sau trang này"
-        },
-        "pleaseWait": "Vui lòng đợi",
-        "pagesRendering": "Các trang vẫn đang được kết xuất. Vui lòng đợi...",
-        "noPagesSelected": "Chưa chọn trang nào",
-        "selectOnePage": "Vui lòng chọn ít nhất một trang để tải xuống.",
-        "noPages": "Không có trang",
-        "noPagesToExport": "Không có trang nào để xuất.",
-        "renderingTitle": "Đang kết xuất xem trước trang",
-        "errorRendering": "Không thể kết xuất hình thu nhỏ trang",
-        "error": "Lỗi",
-        "failedToLoad": "Không thể tải"
+    "lightningFast": {
+      "title": "Cực kỳ nhanh",
+      "description": "Xử lý PDF ngay lập tức, không cần chờ đợi hay trì hoãn."
     }
+  },
+  "tools": {
+    "title": "Bắt đầu với",
+    "toolsLabel": "Công cụ",
+    "subtitle": "Nhấp vào một công cụ để mở trình tải tệp lên",
+    "searchPlaceholder": "Tìm kiếm công cụ (ví dụ: 'chia', 'sắp xếp'...)",
+    "backToTools": "Quay lại Công cụ",
+    "firstLoadNotice": "Lần tải đầu tiên sẽ mất một chút thời gian vì chúng tôi đang tải xuống công cụ chuyển đổi. Sau đó, mọi lần tải sẽ ngay lập tức."
+  },
+  "upload": {
+    "clickToSelect": "Nhấp để chọn tệp",
+    "orDragAndDrop": "hoặc kéo và thả",
+    "pdfOrImages": "PDF hoặc Hình ảnh",
+    "filesNeverLeave": "Tệp của bạn không bao giờ rời khỏi thiết bị.",
+    "addMore": "Thêm tệp",
+    "clearAll": "Xóa tất cả"
+  },
+  "loader": {
+    "processing": "Đang xử lý..."
+  },
+  "alert": {
+    "title": "Thông báo",
+    "ok": "OK"
+  },
+  "preview": {
+    "title": "Xem trước tài liệu",
+    "downloadAsPdf": "Tải xuống dưới dạng PDF",
+    "close": "Đóng"
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "shortcuts": "Phím tắt",
+    "preferences": "Tùy chọn",
+    "displayPreferences": "Tùy chọn hiển thị",
+    "searchShortcuts": "Tìm kiếm phím tắt...",
+    "shortcutsInfo": "Nhấn và giữ phím để đặt phím tắt. Thay đổi được lưu tự động.",
+    "shortcutsWarning": "⚠️ Tránh các phím tắt trình duyệt phổ biến (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N, v.v.) vì chúng có thể không hoạt động đáng tin cậy.",
+    "import": "Nhập",
+    "export": "Xuất",
+    "resetToDefaults": "Đặt lại về mặc định",
+    "fullWidthMode": "Chế độ toàn chiều rộng",
+    "fullWidthDescription": "Sử dụng toàn bộ chiều rộng màn hình cho tất cả công cụ thay vì container căn giữa",
+    "settingsAutoSaved": "Cài đặt được lưu tự động",
+    "clickToSet": "Nhấp để đặt",
+    "pressKeys": "Nhấn phím...",
+    "warnings": {
+      "alreadyInUse": "Phím tắt đã được sử dụng",
+      "assignedTo": "đã được gán cho:",
+      "chooseDifferent": "Vui lòng chọn một phím tắt khác.",
+      "reserved": "Cảnh báo phím tắt dành riêng",
+      "commonlyUsed": "thường được sử dụng cho:",
+      "unreliable": "Phím tắt này có thể không hoạt động đáng tin cậy hoặc có thể xung đột với hành vi trình duyệt/hệ thống.",
+      "useAnyway": "Bạn có muốn sử dụng nó không?",
+      "resetTitle": "Đặt lại phím tắt",
+      "resetMessage": "Bạn có chắc chắn muốn đặt lại tất cả phím tắt về mặc định?<br><br>Hành động này không thể hoàn tác.",
+      "importSuccessTitle": "Nhập thành công",
+      "importSuccessMessage": "Đã nhập phím tắt thành công!",
+      "importFailTitle": "Nhập thất bại",
+      "importFailMessage": "Không thể nhập phím tắt. Định dạng tệp không hợp lệ."
+    }
+  },
+  "warning": {
+    "title": "Cảnh báo",
+    "cancel": "Hủy",
+    "proceed": "Tiếp tục"
+  },
+  "compliance": {
+    "title": "Dữ liệu của bạn không bao giờ rời khỏi thiết bị",
+    "weKeep": "Chúng tôi giữ",
+    "yourInfoSafe": "thông tin của bạn an toàn",
+    "byFollowingStandards": "bằng cách tuân theo các tiêu chuẩn bảo mật toàn cầu.",
+    "processingLocal": "Tất cả quá trình xử lý diễn ra cục bộ trên thiết bị của bạn.",
+    "gdpr": {
+      "title": "Tuân thủ GDPR",
+      "description": "Bảo vệ dữ liệu cá nhân và quyền riêng tư của các cá nhân trong Liên minh Châu Âu."
+    },
+    "ccpa": {
+      "title": "Tuân thủ CCPA",
+      "description": "Trao quyền cho cư dân California về cách thông tin cá nhân của họ được thu thập, sử dụng và chia sẻ."
+    },
+    "hipaa": {
+      "title": "Tuân thủ HIPAA",
+      "description": "Đặt ra các biện pháp bảo vệ để xử lý thông tin sức khỏe nhạy cảm trong hệ thống chăm sóc sức khỏe Hoa Kỳ."
+    }
+  },
+  "faq": {
+    "title": "Câu hỏi",
+    "questions": "Thường gặp",
+    "isFree": {
+      "question": "BentoPDF có thực sự miễn phí không?",
+      "answer": "Có, hoàn toàn miễn phí. Tất cả các công cụ trên BentoPDF đều 100% miễn phí sử dụng, không giới hạn tệp, không cần đăng ký và không có watermark. Chúng tôi tin rằng mọi người đều xứng đáng được tiếp cận với các công cụ PDF đơn giản, mạnh mẽ mà không có tường phí."
+    },
+    "areFilesSecure": {
+      "question": "Tệp của tôi có an toàn không? Chúng được xử lý ở đâu?",
+      "answer": "Tệp của bạn an toàn nhất có thể vì chúng không bao giờ rời khỏi máy tính của bạn. Tất cả quá trình xử lý diễn ra trực tiếp trong trình duyệt web của bạn (phía máy khách). Chúng tôi không bao giờ tải tệp của bạn lên máy chủ, vì vậy bạn duy trì quyền riêng tư và kiểm soát hoàn toàn đối với tài liệu của mình."
+    },
+    "platforms": {
+      "question": "Nó có hoạt động trên Mac, Windows và Mobile không?",
+      "answer": "Có! Vì BentoPDF chạy hoàn toàn trong trình duyệt của bạn, nó hoạt động trên bất kỳ hệ điều hành nào có trình duyệt web hiện đại, bao gồm Windows, macOS, Linux, iOS và Android."
+    },
+    "gdprCompliant": {
+      "question": "BentoPDF có tuân thủ GDPR không?",
+      "answer": "Có. BentoPDF hoàn toàn tuân thủ GDPR. Vì tất cả quá trình xử lý tệp diễn ra cục bộ trong trình duyệt của bạn và chúng tôi không bao giờ thu thập hoặc truyền tệp của bạn đến bất kỳ máy chủ nào, chúng tôi không có quyền truy cập vào dữ liệu của bạn. Điều này đảm bảo bạn luôn kiểm soát tài liệu của mình."
+    },
+    "dataStorage": {
+      "question": "Bạn có lưu trữ hoặc theo dõi bất kỳ tệp nào của tôi không?",
+      "answer": "Không. Chúng tôi không bao giờ lưu trữ, theo dõi hoặc ghi nhật ký tệp của bạn. Mọi thứ bạn làm trên BentoPDF diễn ra trong bộ nhớ trình duyệt của bạn và biến mất khi bạn đóng trang. Không có tải lên, không có nhật ký lịch sử và không có máy chủ liên quan."
+    },
+    "different": {
+      "question": "Điều gì làm cho BentoPDF khác biệt so với các công cụ PDF khác?",
+      "answer": "Hầu hết các công cụ PDF tải tệp của bạn lên máy chủ để xử lý. BentoPDF không bao giờ làm điều đó. Chúng tôi sử dụng công nghệ web hiện đại, an toàn để xử lý tệp của bạn trực tiếp trong trình duyệt. Điều này có nghĩa là hiệu suất nhanh hơn, quyền riêng tư mạnh mẽ hơn và hoàn toàn yên tâm."
+    },
+    "browserBased": {
+      "question": "Xử lý dựa trên trình duyệt giữ tôi an toàn như thế nào?",
+      "answer": "Bằng cách chạy hoàn toàn bên trong trình duyệt của bạn, BentoPDF đảm bảo rằng tệp của bạn không bao giờ rời khỏi thiết bị. Điều này loại bỏ các rủi ro về hack máy chủ, vi phạm dữ liệu hoặc truy cập trái phép. Tệp của bạn vẫn thuộc về bạn—luôn luôn."
+    },
+    "analytics": {
+      "question": "Bạn có sử dụng cookie hoặc phân tích để theo dõi tôi không?",
+      "answer": "Chúng tôi quan tâm đến quyền riêng tư của bạn. BentoPDF không theo dõi thông tin cá nhân. Chúng tôi chỉ sử dụng Simple Analytics để xem số lượt truy cập ẩn danh. Điều này có nghĩa là chúng tôi có thể biết có bao nhiêu người dùng truy cập trang web của chúng tôi, nhưng chúng tôi không bao giờ biết bạn là ai. Simple Analytics hoàn toàn tuân thủ GDPR và tôn trọng quyền riêng tư của bạn."
+    }
+  },
+  "testimonials": {
+    "title": "Người dùng",
+    "users": "của chúng tôi",
+    "say": "nói gì"
+  },
+  "support": {
+    "title": "Thích công việc của tôi?",
+    "description": "BentoPDF là một dự án đam mê, được xây dựng để cung cấp bộ công cụ PDF miễn phí, riêng tư và mạnh mẽ cho mọi người. Nếu bạn thấy nó hữu ích, hãy cân nhắc hỗ trợ phát triển của nó. Mỗi ly cà phê đều giúp ích!",
+    "buyMeCoffee": "Mua cho tôi một ly cà phê"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. Bảo lưu mọi quyền.",
+    "version": "Phiên bản",
+    "company": "Công ty",
+    "aboutUs": "Về chúng tôi",
+    "faqLink": "FAQ",
+    "contactUs": "Liên hệ",
+    "legal": "Pháp lý",
+    "termsAndConditions": "Điều khoản và Điều kiện",
+    "privacyPolicy": "Chính sách Bảo mật",
+    "followUs": "Theo dõi chúng tôi"
+  },
+  "merge": {
+    "title": "Gộp PDF",
+    "description": "Kết hợp toàn bộ tệp hoặc chọn các trang cụ thể để gộp thành tài liệu mới.",
+    "fileMode": "Chế độ tệp",
+    "pageMode": "Chế độ trang",
+    "howItWorks": "Cách hoạt động:",
+    "fileModeInstructions": [
+      "Nhấp và kéo biểu tượng để thay đổi thứ tự các tệp.",
+      "Trong hộp \"Trang\" cho mỗi tệp, bạn có thể chỉ định phạm vi (ví dụ: \"1-3, 5\") để chỉ gộp những trang đó.",
+      "Để trống hộp \"Trang\" để bao gồm tất cả các trang từ tệp đó."
+    ],
+    "pageModeInstructions": [
+      "Tất cả các trang từ PDF đã tải lên của bạn được hiển thị bên dưới.",
+      "Chỉ cần kéo và thả các hình thu nhỏ trang riêng lẻ để tạo thứ tự chính xác bạn muốn cho tệp mới của mình."
+    ],
+    "mergePdfs": "Gộp PDF"
+  },
+  "common": {
+    "page": "Trang",
+    "pages": "Trang",
+    "of": "của",
+    "download": "Tải xuống",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Chỉnh sửa",
+    "add": "Thêm",
+    "remove": "Xóa",
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "file": "Tệp",
+    "files": "Tệp"
+  },
+  "about": {
+    "hero": {
+      "title": "Chúng tôi tin rằng công cụ PDF nên",
+      "subtitle": "nhanh, riêng tư và miễn phí.",
+      "noCompromises": "Không thỏa hiệp."
+    },
+    "mission": {
+      "title": "Sứ mệnh của chúng tôi",
+      "description": "Cung cấp bộ công cụ PDF toàn diện nhất tôn trọng quyền riêng tư của bạn và không bao giờ yêu cầu thanh toán. Chúng tôi tin rằng các công cụ tài liệu thiết yếu nên có thể truy cập được cho mọi người, ở mọi nơi, không có rào cản."
+    },
+    "philosophy": {
+      "label": "Triết lý cốt lõi của chúng tôi",
+      "title": "Quyền riêng tư trước tiên. Luôn luôn.",
+      "description": "Trong thời đại mà dữ liệu là hàng hóa, chúng tôi có cách tiếp cận khác. Tất cả quá trình xử lý cho các công cụ Bentopdf diễn ra cục bộ trong trình duyệt của bạn. Điều này có nghĩa là tệp của bạn không bao giờ chạm vào máy chủ của chúng tôi, chúng tôi không bao giờ thấy tài liệu của bạn và chúng tôi không theo dõi những gì bạn làm. Tài liệu của bạn vẫn hoàn toàn và rõ ràng là riêng tư. Đó không chỉ là một tính năng; đó là nền tảng của chúng tôi."
+    },
+    "whyBentopdf": {
+      "title": "Tại sao chọn",
+      "speed": {
+        "title": "Được xây dựng cho tốc độ",
+        "description": "Không cần chờ tải lên hoặc tải xuống lên máy chủ. Bằng cách xử lý tệp trực tiếp trong trình duyệt của bạn bằng công nghệ web hiện đại như WebAssembly, chúng tôi cung cấp tốc độ vô song cho tất cả các công cụ của chúng tôi."
+      },
+      "free": {
+        "title": "Hoàn toàn miễn phí",
+        "description": "Không dùng thử, không đăng ký, không phí ẩn và không có tính năng \"premium\" bị giữ lại. Chúng tôi tin rằng các công cụ PDF mạnh mẽ nên là tiện ích công cộng, không phải trung tâm lợi nhuận."
+      },
+      "noAccount": {
+        "title": "Không cần tài khoản",
+        "description": "Bắt đầu sử dụng bất kỳ công cụ nào ngay lập tức. Chúng tôi không cần email, mật khẩu hoặc bất kỳ thông tin cá nhân nào của bạn. Quy trình làm việc của bạn nên không ma sát và ẩn danh."
+      },
+      "openSource": {
+        "title": "Tinh thần mã nguồn mở",
+        "description": "Được xây dựng với tinh thần minh bạch. Chúng tôi tận dụng các thư viện mã nguồn mở tuyệt vời như PDF-lib và PDF.js, và tin vào nỗ lực do cộng đồng thúc đẩy để làm cho các công cụ mạnh mẽ có thể truy cập được cho mọi người."
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng bắt đầu?",
+      "description": "Tham gia cùng hàng nghìn người dùng tin tưởng Bentopdf cho nhu cầu tài liệu hàng ngày của họ. Trải nghiệm sự khác biệt mà quyền riêng tư và hiệu suất có thể tạo ra.",
+      "button": "Khám phá tất cả công cụ"
+    }
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Chúng tôi rất muốn nghe từ bạn. Cho dù bạn có câu hỏi, phản hồi hay yêu cầu tính năng, vui lòng đừng ngần ngại liên hệ.",
+    "email": "Bạn có thể liên hệ trực tiếp với chúng tôi qua email tại:"
+  },
+  "licensing": {
+    "title": "Giấy phép cho",
+    "subtitle": "Chọn giấy phép phù hợp với nhu cầu của bạn."
+  },
+  "multiTool": {
+    "uploadPdfs": "Tải lên PDF",
+    "upload": "Tải lên",
+    "addBlankPage": "Thêm trang trống",
+    "edit": "Chỉnh sửa:",
+    "undo": "Hoàn tác",
+    "redo": "Làm lại",
+    "reset": "Đặt lại",
+    "selection": "Chọn:",
+    "selectAll": "Chọn tất cả",
+    "deselectAll": "Bỏ chọn tất cả",
+    "rotate": "Xoay:",
+    "rotateLeft": "Trái",
+    "rotateRight": "Phải",
+    "transform": "Biến đổi:",
+    "duplicate": "Nhân bản",
+    "split": "Chia",
+    "clear": "Xóa:",
+    "delete": "Xóa",
+    "download": "Tải xuống:",
+    "downloadSelected": "Tải xuống đã chọn",
+    "exportPdf": "Xuất PDF",
+    "uploadPdfFiles": "Chọn tệp PDF",
+    "dragAndDrop": "Kéo và thả tệp PDF vào đây, hoặc nhấp để chọn",
+    "selectFiles": "Chọn tệp",
+    "renderingPages": "Đang kết xuất trang...",
+    "actions": {
+      "duplicatePage": "Nhân bản trang này",
+      "deletePage": "Xóa trang này",
+      "insertPdf": "Chèn PDF sau trang này",
+      "toggleSplit": "Bật/tắt chia sau trang này"
+    },
+    "pleaseWait": "Vui lòng đợi",
+    "pagesRendering": "Các trang vẫn đang được kết xuất. Vui lòng đợi...",
+    "noPagesSelected": "Chưa chọn trang nào",
+    "selectOnePage": "Vui lòng chọn ít nhất một trang để tải xuống.",
+    "noPages": "Không có trang",
+    "noPagesToExport": "Không có trang nào để xuất.",
+    "renderingTitle": "Đang kết xuất xem trước trang",
+    "errorRendering": "Không thể kết xuất hình thu nhỏ trang",
+    "error": "Lỗi",
+    "failedToLoad": "Không thể tải"
+  }
 }
