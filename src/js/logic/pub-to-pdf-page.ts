@@ -2,6 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
+import Sortable from 'sortablejs';
 import { getLibreOfficeConverter, type LoadProgress } from '../utils/libreoffice-loader.js';
 
 const ACCEPTED_EXTENSIONS = ['.pub'];
@@ -35,7 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let index = 0; index < state.files.length; index++) {
                     const file = state.files[index];
                     const fileDiv = document.createElement('div');
-                    fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+                    fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm draggable-file';
+                    fileDiv.setAttribute('data-index', String(index));
+                    const dragHandle = document.createElement('div');
+                    dragHandle.className = 'drag-handle cursor-grab mr-3 flex-shrink-0';
+                    dragHandle.innerHTML = '<i data-lucide="move" class="w-4 h-4"></i>';
                     const infoContainer = document.createElement('div');
                     infoContainer.className = 'flex flex-col overflow-hidden';
                     const nameSpan = document.createElement('div');
@@ -52,10 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         state.files = state.files.filter((_, i) => i !== index);
                         updateUI();
                     };
-                    fileDiv.append(infoContainer, removeBtn);
+                    fileDiv.append(dragHandle, infoContainer, removeBtn);
                     fileDisplayArea.appendChild(fileDiv);
                 }
                 createIcons({ icons });
+                setTimeout(() => initializeFileListSortable(), 0);
             }
             if (fileControls) fileControls.classList.remove('hidden');
             convertOptions.classList.remove('hidden');
@@ -64,6 +70,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (fileControls) fileControls.classList.add('hidden');
             convertOptions.classList.add('hidden');
         }
+    };
+
+    let sortable: any = null;
+    const initializeFileListSortable = () => {
+        if (!fileDisplayArea) return;
+        if (sortable) sortable.destroy();
+        sortable = Sortable.create(fileDisplayArea, {
+            animation: 150,
+            handle: '.drag-handle',
+            draggable: '.draggable-file',
+            onEnd: (evt: any) => {
+                const oldIndex = evt.oldIndex;
+                const newIndex = evt.newIndex;
+                if (oldIndex === undefined || newIndex === undefined) return;
+                const moved = state.files.splice(oldIndex, 1)[0];
+                state.files.splice(newIndex, 0, moved);
+                updateUI();
+            }
+        });
     };
 
     const resetState = () => {
