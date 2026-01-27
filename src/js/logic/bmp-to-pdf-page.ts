@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
+import Sortable from 'sortablejs';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 
 let files: File[] = [];
@@ -54,7 +55,8 @@ const updateUI = () => {
 
         files.forEach((file, index) => {
             const fileDiv = document.createElement('div');
-            fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+            fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm draggable-file';
+            fileDiv.setAttribute('data-index', index.toString());
 
             const infoContainer = document.createElement('div');
             infoContainer.className = 'flex items-center gap-2 overflow-hidden';
@@ -69,23 +71,54 @@ const updateUI = () => {
 
             infoContainer.append(nameSpan, sizeSpan);
 
+            const rightGroup = document.createElement('div');
+            rightGroup.className = 'flex items-center gap-1 ml-4';
+
+            const dragHandle = document.createElement('div');
+            dragHandle.className = 'drag-handle cursor-move text-gray-400 hover:text-white p-1 rounded transition-colors';
+            dragHandle.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/></svg>`;
+
             const removeBtn = document.createElement('button');
-            removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
+            removeBtn.className = 'text-red-400 hover:text-red-300 flex-shrink-0';
             removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
             removeBtn.onclick = () => {
                 files = files.filter((_, i) => i !== index);
                 updateUI();
             };
 
-            fileDiv.append(infoContainer, removeBtn);
+            rightGroup.append(dragHandle, removeBtn);
+            fileDiv.append(infoContainer, rightGroup);
             fileDisplayArea.appendChild(fileDiv);
         });
         createIcons({ icons });
+        initializeFileListSortable();
     } else {
         fileControls.classList.add('hidden');
         processBtn.classList.add('hidden');
     }
 };
+
+function initializeFileListSortable() {
+    const fileDisplayArea = document.getElementById('file-display-area');
+    if (!fileDisplayArea) return;
+    if ((fileDisplayArea as any)._sortableInstance) {
+        (fileDisplayArea as any)._sortableInstance.destroy();
+    }
+    (fileDisplayArea as any)._sortableInstance = Sortable.create(fileDisplayArea, {
+        handle: '.drag-handle',
+        animation: 150,
+        ghostClass: 'sortable-ghost',
+        chosenClass: 'sortable-chosen',
+        dragClass: 'sortable-drag',
+        onEnd: function (evt: any) {
+            if (evt.oldIndex !== evt.newIndex) {
+                const moved = files.splice(evt.oldIndex, 1)[0];
+                files.splice(evt.newIndex, 0, moved);
+                updateUI();
+            }
+        },
+    });
+}
 
 const resetState = () => {
     files = [];
@@ -201,4 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (processBtn) {
         processBtn.addEventListener('click', convert);
     }
+    setTimeout(() => {
+        initializeFileListSortable();
+    }, 0);
 });
