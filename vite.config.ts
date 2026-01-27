@@ -13,6 +13,7 @@ import type { OutputBundle } from 'rollup';
 
 const SUPPORTED_LANGUAGES = [
   'en',
+  'be',
   'de',
   'es',
   'zh',

@@ -20,6 +20,7 @@ This guide will help you add new languages or improve existing translations for 
 BentoPDF uses **i18next** for internationalization (i18n). Currently supported languages:
 
 - **English** (`en`) - Default
+- **Belarusian** (`be`)
 - **German** (`de`)
 - **Spanish** (`es`)
 - **French** (`fr`)

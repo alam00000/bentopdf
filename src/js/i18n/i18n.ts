@@ -4,6 +4,7 @@ import HttpBackend from 'i18next-http-backend';
 // Supported languages
 export const supportedLanguages = [
   'en',
+  'be',
   'fr',
   'de',
   'es',
@@ -20,6 +21,7 @@ export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageNames: Record<SupportedLanguage, string> = {
   en: 'English',
+  be: 'Беларуская',
   fr: 'Français',
   de: 'Deutsch',
   es: 'Español',
@@ -46,7 +48,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
   }
 
   const langMatch = path.match(
-    /^\/(en|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl)(?:\/|$)/
+    /^\/(en|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be)(?:\/|$)/
   );
   if (
     langMatch &&
@@ -209,7 +211,7 @@ export const rewriteLinks = (): void => {
     }
 
     const langPrefixRegex = new RegExp(
-      `^(${basePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})?/?(en|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl)(/|$)`
+      `^(${basePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})?/?(en|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be)(/|$)`
     );
     if (langPrefixRegex.test(href)) {
       return;
