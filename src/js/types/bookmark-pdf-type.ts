@@ -6,6 +6,9 @@ export type BookmarkColor = 'red' | 'blue' | 'green' | 'yellow' | null;
 
 // ... (skipping unchanged parts)
 
+// Color mapping types
+export type ColorClassMap = Record<string, string>;
+
 export const COLOR_CLASSES: ColorClassMap = {
   red: 'bg-red-100 border-red-300',
   blue: 'bg-blue-100 border-blue-300',
@@ -166,38 +169,3 @@ export interface OutlineItem {
     set: (key: unknown, value: unknown) => void;
   };
 }
-
-// Color mapping types
-export type ColorClassMap = Record<string, string>;
-
-export const COLOR_CLASSES: ColorClassMap = {
-  red: 'bg-red-100 border-red-300',
-  blue: 'bg-blue-100 border-blue-300',
-  green: 'bg-green-100 border-green-300',
-  yellow: 'bg-yellow-100 border-yellow-300',
-  green: 'bg-green-100 border-green-300',
-};
-
-export const TEXT_COLOR_CLASSES: ColorClassMap = {
-  red: 'text-red-600',
-  blue: 'text-blue-600',
-  green: 'text-green-600',
-  yellow: 'text-yellow-600',
-  green: 'text-green-600',
-};
-
-export const HEX_COLOR_MAP: Record<string, string> = {
-  red: '#dc2626',
-  blue: '#2563eb',
-  green: '#16a34a',
-  yellow: '#ca8a04',
-  green: '#9333ea',
-};
-
-export const PDF_COLOR_MAP: Record<string, [number, number, number]> = {
-  red: [1.0, 0.0, 0.0],
-  blue: [0.0, 0.0, 1.0],
-  green: [0.0, 1.0, 0.0],
-  yellow: [1.0, 1.0, 0.0],
-  green: [0.5, 0.0, 0.5],
-};
