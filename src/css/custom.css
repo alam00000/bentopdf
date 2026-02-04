@@ -1,0 +1,219 @@
+/* Custom Theme Customizations for iLoveHSF */
+
+@layer components {
+  /* Override Indigo Buttons */
+  .cta-button,
+  .btn-primary {
+    background-color: #65a30d !important;
+    /* lime-600 */
+  }
+
+  .cta-button:hover,
+  .btn-primary:hover {
+    background-color: #4d7c0f !important;
+    /* lime-700 */
+  }
+
+  /* Apply to Gradient buttons too if needed, or override standard indigo backgrounds */
+  .bg-indigo-600 {
+    background-color: #65a30d !important;
+    /* lime-600 */
+  }
+
+  .hover\:bg-indigo-700:hover {
+    background-color: #4d7c0f !important;
+    /* lime-700 */
+  }
+
+  .text-indigo-600 {
+    color: #65a30d !important;
+  }
+
+  .text-indigo-400 {
+    color: #a3e635 !important;
+    /* lime-400 */
+  }
+
+  .border-indigo-600 {
+    border-color: #65a30d !important;
+  }
+
+  /* Focus rings */
+  .focus\:ring-indigo-500:focus {
+    --tw-ring-color: #84cc16 !important;
+    /* lime-500 */
+  }
+
+  /* Specific overrides for styles.css classes that use hardcoded colors */
+  .btn-gradient {
+    background-image: linear-gradient(to bottom, #84cc16, #65a30d) !important;
+    /* lime-500 to lime-600 */
+  }
+
+  .btn-gradient:hover {
+    box-shadow:
+      0 10px 15px -3px rgba(101, 163, 13, 0.3),
+      0 4px 6px -4px rgba(101, 163, 13, 0.3) !important;
+  }
+
+  .solid-spinner {
+    border-bottom-color: #65a30d !important;
+  }
+
+  /* Selection highlight */
+  .saved-signature.selected {
+    border-color: #65a30d !important;
+    box-shadow: 0 0 10px rgba(101, 163, 13, 0.5) !important;
+  }
+
+  /* FAQ open state */
+  .faq-item.open .faq-question {
+    color: #a3e635 !important;
+    /* lime-400 */
+  }
+
+  /* File selector button */
+  input[type='file']::file-selector-button {
+    background-color: #65a30d !important;
+  }
+
+  input[type='file']::file-selector-button:hover {
+    background-color: #4d7c0f !important;
+  }
+
+  /* Scrollbar thumb */
+  ::-webkit-scrollbar-thumb {
+    background: #65a30d !important;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4d7c0f !important;
+  }
+
+  /* Tool card hover border */
+  .tool-card:hover {
+    border-color: #65a30d !important;
+  }
+
+  /* Section divider */
+  .section-divider {
+    background: linear-gradient(
+      to right,
+      transparent,
+      #84cc16,
+      transparent
+    ) !important;
+  }
+
+  /* Additional indigo overrides */
+  .text-indigo-500 {
+    color: #84cc16 !important;
+    /* lime-500 */
+  }
+
+  .bg-indigo-500 {
+    background-color: #84cc16 !important;
+  }
+
+  .border-indigo-500 {
+    border-color: #84cc16 !important;
+  }
+
+  /* SVG Fills and Strokes */
+  .fill-indigo-600 {
+    fill: #65a30d !important;
+  }
+
+  .stroke-indigo-600 {
+    stroke: #65a30d !important;
+  }
+
+  .fill-indigo-500 {
+    fill: #84cc16 !important;
+  }
+
+  .stroke-indigo-500 {
+    stroke: #84cc16 !important;
+  }
+
+  /* Link hovers */
+  a:hover .text-indigo-600,
+  a:hover.text-indigo-600 {
+    color: #4d7c0f !important;
+  }
+
+  /* ---------------------------------------------------- */
+  /*  SIDE-BY-SIDE LAYOUT (DESKTOP) - Split & Swapped     */
+  /* ---------------------------------------------------- */
+  @media (min-width: 900px) {
+    /* 
+       CONTAINER: Transparent & Spaced 
+       Remove the 'One Big Card' look to create two distinct areas.
+    */
+    #tool-uploader {
+      max-width: 95% !important;
+      display: grid !important;
+      /* Main Content (Left, Grow) | Sidebar (Right, Fixed) */
+      grid-template-columns: 1fr 340px !important;
+      gap: 2rem !important;
+      align-items: start !important;
+
+      /* Reset Container Styles */
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 2rem 0 !important;
+      /* Vertical spacing only */
+    }
+
+    /* 
+       RIGHT COLUMN (SIDEBAR) - Uploads & Info
+       Assign Sidebar elements to Column 2
+    */
+    #back-to-tools,
+    #tool-uploader > h1,
+    #tool-uploader > p.text-gray-400.mb-6,
+    #drop-zone,
+    #file-controls,
+    #file-display-area {
+      grid-column: 2 !important;
+    }
+
+    /* Enhance Drop Zone to look like a distinct 'Upload Box' */
+    #drop-zone {
+      background-color: #1f2937 !important;
+      /* bg-gray-800 */
+      border-color: #4b5563 !important;
+      /* border-gray-600 */
+    }
+
+    /* 
+       LEFT COLUMN (MAIN TOOL)
+       Force EVERYTHING ELSE to Column 1.
+       Apply CARD STYLING to these panels so they look like the 'Tool Box'.
+    */
+    #tool-uploader
+      > *:not(#back-to-tools):not(h1):not(p):not(#drop-zone):not(
+        #file-controls
+      ):not(#file-display-area):not(script):not(style) {
+      grid-column: 1 !important;
+      grid-row: 1 / span 20 !important;
+      width: 100% !important;
+      margin-top: 0 !important;
+
+      /* Add Card Look */
+      background-color: #1f2937 !important;
+      /* bg-gray-800 */
+      border-width: 1px !important;
+      border-color: #374151 !important;
+      /* border-gray-700 */
+      border-radius: 0.75rem !important;
+      /* rounded-xl */
+      padding: 1.5rem !important;
+      /* p-6 */
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    }
+  }
+}

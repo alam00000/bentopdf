@@ -487,7 +487,7 @@ function populateLanguageList() {
     checkbox.type = 'checkbox';
     checkbox.value = code;
     checkbox.className =
-      'lang-checkbox w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500';
+      'lang-checkbox w-4 h-4 rounded text-lime-600 bg-gray-700 border-gray-600 focus:ring-lime-500';
 
     label.append(checkbox);
     label.append(document.createTextNode(' ' + name));
