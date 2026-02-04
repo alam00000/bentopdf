@@ -74,7 +74,7 @@ function updateFileDisplay(): void {
       (file, index) => `
       <div class="flex items-center justify-between bg-gray-700 p-3 rounded-lg">
         <div class="flex items-center gap-3">
-          <i data-lucide="file-text" class="w-5 h-5 text-indigo-400"></i>
+          <i data-lucide="file-text" class="w-5 h-5 text-lime-400"></i>
           <span class="text-gray-200 truncate max-w-xs">${file.name}</span>
           <span class="text-gray-500 text-sm">(${(file.size / 1024).toFixed(1)} KB)</span>
         </div>

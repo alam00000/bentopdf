@@ -347,6 +347,9 @@ export default defineConfig(() => {
     },
     server: {
       host: true,
+      fs: {
+        allow: ['..'],
+      },
       headers: {
         'Cross-Origin-Opener-Policy': 'same-origin',
         'Cross-Origin-Embedder-Policy': 'require-corp',

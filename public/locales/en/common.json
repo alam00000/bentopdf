@@ -9,13 +9,13 @@
     "language": "Language"
   },
   "donation": {
-    "message": "Love BentoPDF? Help us keep it free and open source!",
+    "message": "Love iLoveHSF? Help us keep it free and open source!",
     "button": "Donate"
   },
   "hero": {
     "title": "The",
     "pdfToolkit": "PDF Toolkit",
-    "builtForPrivacy": "built for privacy",
+    "builtForPrivacy": "built for Healthy Space Forum",
     "noSignups": "No Signups",
     "unlimitedUse": "Unlimited Use",
     "worksOffline": "Works Offline",
@@ -26,7 +26,7 @@
   },
   "features": {
     "title": "Why choose",
-    "bentoPdf": "BentoPDF?",
+    "bentoPdf": "iLoveHSF?",
     "noSignup": {
       "title": "No Signup",
       "description": "Start instantly, no accounts or emails."
@@ -177,8 +177,8 @@
     "questions": "Questions",
     "sectionTitle": "Frequently Asked Questions",
     "isFree": {
-      "question": "Is BentoPDF really free?",
-      "answer": "Yes, absolutely. All tools on BentoPDF are 100% free to use, with no file limits, no sign-ups, and no watermarks. We believe everyone deserves access to simple, powerful PDF tools without a paywall."
+      "question": "Is iLoveHSF really free?",
+      "answer": "Yes, absolutely. All tools on iLoveHSF are 100% free to use, with no file limits, no sign-ups, and no watermarks. We believe everyone deserves access to simple, powerful PDF tools without a paywall."
     },
     "areFilesSecure": {
       "question": "Are my files secure? Where are they processed?",
@@ -186,27 +186,27 @@
     },
     "platforms": {
       "question": "Does it work on Mac, Windows, and Mobile?",
-      "answer": "Yes! Since BentoPDF runs entirely in your browser, it works on any operating system with a modern web browser, including Windows, macOS, Linux, iOS, and Android."
+      "answer": "Yes! Since iLoveHSF runs entirely in your browser, it works on any operating system with a modern web browser, including Windows, macOS, Linux, iOS, and Android."
     },
     "gdprCompliant": {
-      "question": "Is BentoPDF GDPR compliant?",
-      "answer": "Yes. BentoPDF is fully GDPR compliant. Since all file processing happens locally in your browser and we never collect or transmit your files to any server, we have no access to your data. This ensures you are always in control of your documents."
+      "question": "Is iLoveHSF GDPR compliant?",
+      "answer": "Yes. iLoveHSF is fully GDPR compliant. Since all file processing happens locally in your browser and we never collect or transmit your files to any server, we have no access to your data. This ensures you are always in control of your documents."
     },
     "dataStorage": {
       "question": "Do you store or track any of my files?",
-      "answer": "No. We never store, track, or log your files. Everything you do on BentoPDF happens in your browser memory and disappears once you close the page. There are no uploads, no history logs, and no servers involved."
+      "answer": "No. We never store, track, or log your files. Everything you do on iLoveHSF happens in your browser memory and disappears once you close the page. There are no uploads, no history logs, and no servers involved."
     },
     "different": {
-      "question": "What makes BentoPDF different from other PDF tools?",
-      "answer": "Most PDF tools upload your files to a server for processing. BentoPDF never does that. We use secure, modern web technology to process your files directly in your browser. This means faster performance, stronger privacy, and complete peace of mind."
+      "question": "What makes iLoveHSF different from other PDF tools?",
+      "answer": "Most PDF tools upload your files to a server for processing. iLoveHSF never does that. We use secure, modern web technology to process your files directly in your browser. This means faster performance, stronger privacy, and complete peace of mind."
     },
     "browserBased": {
       "question": "How does browser-based processing keep me safe?",
-      "answer": "By running entirely inside your browser, BentoPDF ensures that your files never leave your device. This eliminates the risks of server hacks, data breaches, or unauthorized access. Your files remain yours—always."
+      "answer": "By running entirely inside your browser, iLoveHSF ensures that your files never leave your device. This eliminates the risks of server hacks, data breaches, or unauthorized access. Your files remain yours—always."
     },
     "analytics": {
       "question": "Do you use cookies or analytics to track me?",
-      "answer": "We care about your privacy. BentoPDF does not track personal information. We use Simple Analytics solely to see anonymous visit counts. This means we can know how many users visit our site, but we never know who you are. Simple Analytics is fully GDPR-compliant and respects your privacy."
+      "answer": "We care about your privacy. iLoveHSF does not track personal information. We use Simple Analytics solely to see anonymous visit counts. This means we can know how many users visit our site, but we never know who you are. Simple Analytics is fully GDPR-compliant and respects your privacy."
     }
   },
   "testimonials": {
@@ -216,11 +216,11 @@
   },
   "support": {
     "title": "Like My Work?",
-    "description": "BentoPDF is a passion project, built to provide a free, private, and powerful PDF toolkit for everyone. If you find it useful, consider supporting its development. Every coffee helps!",
+    "description": "iLoveHSF is a passion project, built to provide a free, private, and powerful PDF toolkit for everyone. If you find it useful, consider supporting its development. Every coffee helps!",
     "buyMeCoffee": "Buy Me a Coffee"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. All rights reserved.",
+    "copyright": "© 2026 iLoveHSF. All rights reserved.",
     "version": "Version",
     "company": "Company",
     "aboutUs": "About Us",
@@ -279,7 +279,7 @@
     "philosophy": {
       "label": "Our Core Philosophy",
       "title": "Privacy First. Always.",
-      "description": "In an era where data is a commodity, we take a different approach. All processing for Bentopdf tools happens locally in your browser. This means your files never touch our servers, we never see your documents, and we don't track what you do. Your documents remain completely and unequivocally private. It's not just a feature; it's our foundation."
+      "description": "In an era where data is a commodity, we take a different approach. All processing for iLoveHSF tools happens locally in your browser. This means your files never touch our servers, we never see your documents, and we don't track what you do. Your documents remain completely and unequivocally private. It's not just a feature; it's our foundation."
     },
     "whyBentopdf": {
       "title": "Why",
@@ -302,7 +302,7 @@
     },
     "cta": {
       "title": "Ready to get started?",
-      "description": "Join thousands of users who trust Bentopdf for their daily document needs. Experience the difference that privacy and performance can make.",
+      "description": "Join thousands of users who trust iLoveHSF for their daily document needs. Experience the difference that privacy and performance can make.",
       "button": "Explore All Tools"
     }
   },

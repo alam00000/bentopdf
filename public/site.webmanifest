@@ -1,11 +1,11 @@
 {
-    "name": "BentoPDF",
-    "short_name": "BentoPDF",
+    "name": "iLoveHSF",
+    "short_name": "iLoveHSF",
     "description": "Free online PDF tools - Privacy-first PDF toolkit that works 100% in your browser",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#262d3b",
-    "theme_color": "#4f46e5",
+    "theme_color": "#65a30d",
     "orientation": "portrait-primary",
     "icons": [
         {

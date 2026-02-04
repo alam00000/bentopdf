@@ -2,13 +2,37 @@ import { PDFDocument as PDFLibDocument, PDFRef } from 'pdf-lib';
 import { PDFDocumentProxy, PageViewport } from 'pdfjs-dist';
 
 // Core bookmark types
-export type BookmarkColor =
-  | 'red'
-  | 'blue'
-  | 'green'
-  | 'yellow'
-  | 'purple'
-  | null;
+export type BookmarkColor = 'red' | 'blue' | 'green' | 'yellow' | null;
+
+// ... (skipping unchanged parts)
+
+export const COLOR_CLASSES: ColorClassMap = {
+  red: 'bg-red-100 border-red-300',
+  blue: 'bg-blue-100 border-blue-300',
+  green: 'bg-green-100 border-green-300',
+  yellow: 'bg-yellow-100 border-yellow-300',
+};
+
+export const TEXT_COLOR_CLASSES: ColorClassMap = {
+  red: 'text-red-600',
+  blue: 'text-blue-600',
+  green: 'text-green-600',
+  yellow: 'text-yellow-600',
+};
+
+export const HEX_COLOR_MAP: Record<string, string> = {
+  red: '#dc2626',
+  blue: '#2563eb',
+  green: '#16a34a',
+  yellow: '#ca8a04',
+};
+
+export const PDF_COLOR_MAP: Record<string, [number, number, number]> = {
+  red: [1.0, 0.0, 0.0],
+  blue: [0.0, 0.0, 1.0],
+  green: [0.0, 1.0, 0.0],
+  yellow: [1.0, 1.0, 0.0],
+};
 export type BookmarkStyle = 'bold' | 'italic' | 'bold-italic' | null;
 
 export interface BookmarkNode {
@@ -151,7 +175,7 @@ export const COLOR_CLASSES: ColorClassMap = {
   blue: 'bg-blue-100 border-blue-300',
   green: 'bg-green-100 border-green-300',
   yellow: 'bg-yellow-100 border-yellow-300',
-  purple: 'bg-purple-100 border-purple-300',
+  green: 'bg-green-100 border-green-300',
 };
 
 export const TEXT_COLOR_CLASSES: ColorClassMap = {
@@ -159,7 +183,7 @@ export const TEXT_COLOR_CLASSES: ColorClassMap = {
   blue: 'text-blue-600',
   green: 'text-green-600',
   yellow: 'text-yellow-600',
-  purple: 'text-purple-600',
+  green: 'text-green-600',
 };
 
 export const HEX_COLOR_MAP: Record<string, string> = {
@@ -167,7 +191,7 @@ export const HEX_COLOR_MAP: Record<string, string> = {
   blue: '#2563eb',
   green: '#16a34a',
   yellow: '#ca8a04',
-  purple: '#9333ea',
+  green: '#9333ea',
 };
 
 export const PDF_COLOR_MAP: Record<string, [number, number, number]> = {
@@ -175,5 +199,5 @@ export const PDF_COLOR_MAP: Record<string, [number, number, number]> = {
   blue: [0.0, 0.0, 1.0],
   green: [0.0, 1.0, 0.0],
   yellow: [1.0, 1.0, 0.0],
-  purple: [0.5, 0.0, 0.5],
+  green: [0.5, 0.0, 0.5],
 };
