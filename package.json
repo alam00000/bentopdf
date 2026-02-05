@@ -91,7 +91,7 @@
     "i18next": "^25.7.2",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
-    "jspdf": "^4.0.0",
+    "jspdf": "^4.1.0",
     "jspdf-autotable": "^5.0.2",
     "jszip": "^3.10.1",
     "lucide": "^0.546.0",
