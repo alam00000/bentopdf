@@ -1,17 +1,29 @@
 1. Get the application URL by running these commands:
 {{- if .Values.httpRoute.enabled }}
+{{- $defaultGatewayName := .Values.gateway.name -}}
+{{- if not $defaultGatewayName -}}
+{{- $defaultGatewayName = printf "%s-gateway" (include "chart.fullname" .) -}}
+{{- end -}}
+{{- $defaultGatewayNs := .Release.Namespace -}}
+{{- if .Values.gateway.enabled -}}
+{{- $defaultGatewayNs = default .Release.Namespace .Values.gateway.namespace -}}
+{{- end -}}
+{{- $gatewayName := $defaultGatewayName -}}
+{{- $gatewayNs := $defaultGatewayNs -}}
+{{- if and .Values.httpRoute.parentRefs (first .Values.httpRoute.parentRefs) -}}
+{{- $firstRef := first .Values.httpRoute.parentRefs -}}
+{{- $gatewayName = default $defaultGatewayName $firstRef.name -}}
+{{- $gatewayNs = default $defaultGatewayNs $firstRef.namespace -}}
+{{- end -}}
 {{- if .Values.httpRoute.hostnames }}
     export APP_HOSTNAME={{ .Values.httpRoute.hostnames | first }}
+    echo "Visit http://$APP_HOSTNAME to use your application"
 {{- else }}
-    export APP_HOSTNAME=$(kubectl get --namespace {{(first .Values.httpRoute.parentRefs).namespace | default .Release.Namespace }} gateway/{{ (first .Values.httpRoute.parentRefs).name }} -o jsonpath="{.spec.listeners[0].hostname}")
-  {{- end }}
-{{- if and .Values.httpRoute.rules (first .Values.httpRoute.rules).matches (first (first .Values.httpRoute.rules).matches).path.value }}
-    echo "Visit http://$APP_HOSTNAME{{ (first (first .Values.httpRoute.rules).matches).path.value }} to use your application"
-
+    echo "HTTPRoute is enabled. Configure httpRoute.hostnames to see your URL here."
+{{- end }}
     NOTE: Your HTTPRoute depends on the listener configuration of your gateway and your HTTPRoute rules.
     The rules can be set for path, method, header and query parameters.
-    You can check the gateway configuration with 'kubectl get --namespace {{(first .Values.httpRoute.parentRefs).namespace | default .Release.Namespace }} gateway/{{ (first .Values.httpRoute.parentRefs).name }} -o yaml'
-{{- end }}
+    You can check the gateway configuration with 'kubectl get --namespace {{ $gatewayNs }} gateway/{{ $gatewayName }} -o yaml'
 {{- else if .Values.ingress.enabled }}
 {{- range $host := .Values.ingress.hosts }}
   {{- range .paths }}

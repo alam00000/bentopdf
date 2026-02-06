@@ -1,9 +1,14 @@
 {{- if .Values.gateway.enabled -}}
+{{- $gatewayName := .Values.gateway.name -}}
+{{- if not $gatewayName -}}
+{{- $gatewayName = printf "%s-gateway" (include "chart.fullname" .) -}}
+{{- end -}}
+{{- $gatewayNs := default .Release.Namespace .Values.gateway.namespace -}}
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: {{ default (include "chart.fullname" .) .Values.gateway.name }}
-  namespace: {{ default .Release.Namespace .Values.gateway.namespace }}
+  name: {{ $gatewayName }}
+  namespace: {{ $gatewayNs }}
   labels:
     {{- include "chart.labels" . | nindent 4 }}
   {{- with .Values.gateway.annotations }}

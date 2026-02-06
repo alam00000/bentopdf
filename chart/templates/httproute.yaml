@@ -1,7 +1,14 @@
 {{- if .Values.httpRoute.enabled -}}
 {{- $fullName := include "chart.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- $defaultGatewayName := (default $fullName .Values.gateway.name) -}}
+{{- $defaultGatewayName := .Values.gateway.name -}}
+{{- if not $defaultGatewayName -}}
+{{- $defaultGatewayName = printf "%s-gateway" $fullName -}}
+{{- end -}}
+{{- $defaultGatewayNs := .Release.Namespace -}}
+{{- if .Values.gateway.enabled -}}
+{{- $defaultGatewayNs = default .Release.Namespace .Values.gateway.namespace -}}
+{{- end -}}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -14,13 +21,15 @@ metadata:
   {{- end }}
 spec:
   parentRefs:
+    {{- if .Values.httpRoute.parentRefs }}
     {{- range $ref := .Values.httpRoute.parentRefs }}
     - name: {{ default $defaultGatewayName $ref.name | quote }}
+      {{- $refNs := $ref.namespace | default $defaultGatewayNs -}}
+      namespace: {{ $refNs | quote }}
       {{- with $ref.sectionName }}
       sectionName: {{ . | quote }}
-      {{- end }}
-      {{- with $ref.namespace }}
-      namespace: {{ . | quote }}
+      {{- else }}
+      sectionName: "http"
       {{- end }}
       {{- with $ref.kind }}
       kind: {{ . | quote }}
@@ -29,20 +38,26 @@ spec:
       group: {{ . | quote }}
       {{- end }}
     {{- end }}
+    {{- else }}
+    # Default parentRef when parentRefs is empty or not set
+    - name: {{ $defaultGatewayName | quote }}
+      namespace: {{ $defaultGatewayNs | quote }}
+      sectionName: "http"
+    {{- end }}
   {{- with .Values.httpRoute.hostnames }}
   hostnames:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   rules:
     {{- range .Values.httpRoute.rules }}
-    {{- with .matches }}
-    - matches:
+    - {{- with .matches }}
+      matches:
       {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .filters }}
+      {{- end }}
+      {{- with .filters }}
       filters:
       {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
       backendRefs:
         - name: {{ $fullName }}
           port: {{ $svcPort }}
