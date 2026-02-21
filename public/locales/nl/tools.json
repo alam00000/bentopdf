@@ -617,7 +617,7 @@
     "workflowCompleted": "Werkproces voltooid",
     "errorDuringExecution": "Fout tijdens uitvoering",
     "addNodeError": "Voeg minimaal één knooppunt toe om het werkproces uit te voeren.",
-    "needInputOutput": "Om te kunnen functioneren heeft een werkproces heeft tenminste een invoerknoopunt en een uitvoer-knooppunt nodig.",
+    "needInputOutput": "Het werkproces heeft tenminste een invoerknoopunt en een uitvoer-knooppunt nodig.",
     "enterName": "Voer een naam in.",
     "templateExists": "Er bestaat al een sjabloon met deze naam.",
     "templateSaved": "Sjabloon \"{{name}}\" opgeslagen.",
