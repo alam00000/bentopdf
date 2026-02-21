@@ -95,6 +95,15 @@
       "webpImages": "WebP-afbeeldingen"
     }
   },
+  "howItWorks": {
+    "title": "Hoe het werkt",
+    "step1": "Klik of sleep uw bestand hierheen",
+    "step2": "Klik op de verwerkingsknop",
+    "step3": "Sla uw verwerkte bestand direct op"
+  },
+  "relatedTools": {
+    "title": "Gerelateerde PDF-tools"
+  },
   "loader": {
     "processing": "Verwerken..."
   },
@@ -166,6 +175,7 @@
   "faq": {
     "title": "Veelgestelde",
     "questions": "Vragen",
+    "sectionTitle": "Veelgestelde vragen",
     "isFree": {
       "question": "Is BentoPDF echt gratis?",
       "answer": "Ja, absoluut. Alle tools op BentoPDF zijn 100% gratis te gebruiken, zonder bestandslimieten, zonder aanmeldingen en zonder watermerken. Wij vinden dat iedereen toegang verdient tot eenvoudige, krachtige PDF-tools zonder betaalmuur."
@@ -197,8 +207,7 @@
     "analytics": {
       "question": "Gebruikt BentoPDF cookies of analytics om mij te volgen?",
       "answer": "We geven om je privacy. BentoPDF houdt geen persoonlijke gegevens bij. We gebruiken Simple Analytics alleen om anonieme bezoekersaantallen te zien. Dit betekent dat we kunnen weten hoeveel mensen onze site bezoeken, maar we weten nooit wie jij bent. Simple Analytics is volledig AVG-conform en respecteert je privacy."
-    },
-    "sectionTitle": "Veelgestelde vragen"
+    }
   },
   "testimonials": {
     "title": "Wat onze",
@@ -349,17 +358,9 @@
     "error": "Fout",
     "failedToLoad": "Laden is mislukt"
   },
-  "howItWorks": {
-    "title": "Hoe het werkt",
-    "step1": "Klik of sleep uw bestand hierheen",
-    "step2": "Klik op de verwerkingsknop",
-    "step3": "Sla uw verwerkte bestand direct op"
-  },
-  "relatedTools": {
-    "title": "Gerelateerde PDF-tools"
-  },
   "simpleMode": {
     "title": "PDF-tools",
     "subtitle": "Selecteer een tool om te beginnen"
   }
 }
+
