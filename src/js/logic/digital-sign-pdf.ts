@@ -322,20 +322,26 @@ export async function timestampPdf(
   pdfBytes: Uint8Array,
   tsaUrl: string
 ): Promise<Uint8Array> {
+  let effectiveUrl = tsaUrl;
+
+  if (CORS_PROXY_URL) {
+    const proxyBase = CORS_PROXY_URL.startsWith('http')
+      ? CORS_PROXY_URL
+      : `${window.location.origin}${CORS_PROXY_URL}`;
+    effectiveUrl = `${proxyBase}?url=${encodeURIComponent(tsaUrl)}`;
+    console.log(
+      `[Timestamp] Routing TSA request through proxy: ${tsaUrl}`
+    );
+  }
+
   const signOptions: SignOption = {
-    signdate: { url: tsaUrl },
+    signdate: { url: effectiveUrl },
   };
 
   const signer = new PdfSigner(signOptions);
 
-  const { restore } = createCorsAwareFetch();
-
-  try {
-    const timestampedPdfBytes = await signer.sign(pdfBytes);
-    return new Uint8Array(timestampedPdfBytes);
-  } finally {
-    restore();
-  }
+  const timestampedPdfBytes = await signer.sign(pdfBytes);
+  return new Uint8Array(timestampedPdfBytes);
 }
 
 export function getCertificateInfo(certificate: forge.pki.Certificate): {
