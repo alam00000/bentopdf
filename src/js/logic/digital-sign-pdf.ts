@@ -323,7 +323,7 @@ export async function timestampPdf(
   tsaUrl: string
 ): Promise<Uint8Array> {
   const signOptions: SignOption = {
-    signdate: tsaUrl,
+    signdate: { url: tsaUrl },
   };
 
   const signer = new PdfSigner(signOptions);

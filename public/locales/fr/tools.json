@@ -552,6 +552,17 @@
     "pageTitle": "Valider la signature PDF - Vérifier les signatures numériques | BentoPDF",
     "subtitle": "Vérifier les signatures numériques de vos fichiers PDF. Contrôlez la validité du certificat, consultez les informations du signataire et confirmez l’intégrité du document. Tout le traitement s’effectue dans votre navigateur."
   },
+  "timestampPdf": {
+    "name": "Horodater un PDF",
+    "pageTitle": "Horodatage PDF en ligne gratuit - Horodatage RFC 3161 | BentoPDF",
+    "subtitle": "Ajoutez un horodatage RFC 3161 à votre PDF via un serveur d'horodatage (TSA) de confiance. Prouve que votre document existait à un moment précis. Aucun certificat requis.",
+    "tsaSectionTitle": "Serveur d'horodatage (TSA)",
+    "selectTsa": "Sélectionner un serveur TSA",
+    "customUrl": "URL TSA personnalisée",
+    "customUrlPlaceholder": "https://votre-serveur-tsa.com/timestamp",
+    "applyTimestamp": "Appliquer l'horodatage",
+    "successMessage": "PDF horodaté avec succès ! L'horodatage peut être vérifié dans Adobe Acrobat et d'autres lecteurs PDF."
+  },
   "emailToPdf": {
     "name": "Email vers PDF",
     "subtitle": "Convertir des fichiers email (EML, MSG) au format PDF. Prend en charge les exports Outlook et les formats email standards.",
