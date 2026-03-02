@@ -336,10 +336,6 @@ function rewriteHtmlPathsPlugin(): Plugin {
 }
 
 export default defineConfig(() => {
-  if (!process.env.VITE_CORS_PROXY_URL) {
-    process.env.VITE_CORS_PROXY_URL = '/cors-proxy';
-  }
-
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
   if (USE_CDN) {
