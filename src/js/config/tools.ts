@@ -785,6 +785,13 @@ export const categories = [
         icon: 'ph-seal-check',
         subtitle: 'Verify digital signatures and view certificate details.',
       },
+      {
+        href: import.meta.env.BASE_URL + 'timestamp-pdf.html',
+        name: 'Timestamp PDF',
+        icon: 'ph-clock',
+        subtitle:
+          'Add an RFC 3161 document timestamp using a trusted TSA server.',
+      },
     ],
   },
 ];

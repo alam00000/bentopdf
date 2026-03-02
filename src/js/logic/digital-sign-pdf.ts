@@ -192,7 +192,23 @@ function createCorsAwareFetch(): {
           url.includes('caIssuers')) &&
         !url.startsWith(window.location.origin);
 
-      if (isExternalCertificateUrl && CORS_PROXY_URL) {
+      const isTsaRequest =
+        (init?.headers &&
+          typeof init.headers === 'object' &&
+          'Content-Type' in init.headers &&
+          (init.headers as Record<string, string>)['Content-Type'] ===
+            'application/timestamp-query') ||
+        (url.includes('timestamp') ||
+          url.includes('/tsa') ||
+          url.includes('/tsr') ||
+          url.includes('/ts01') ||
+          url.includes('RFC3161'));
+
+      const shouldProxy =
+        (isExternalCertificateUrl || isTsaRequest) &&
+        !url.startsWith(window.location.origin);
+
+      if (shouldProxy && CORS_PROXY_URL) {
         let proxyUrl = `${CORS_PROXY_URL}?url=${encodeURIComponent(url)}`;
 
         if (CORS_PROXY_SECRET) {
@@ -200,11 +216,11 @@ function createCorsAwareFetch(): {
           const signature = await generateProxySignature(url, timestamp);
           proxyUrl += `&t=${timestamp}&sig=${signature}`;
           console.log(
-            `[CORS Proxy] Routing signed certificate request through proxy: ${url}`
+            `[CORS Proxy] Routing signed request through proxy: ${url}`
           );
         } else {
           console.log(
-            `[CORS Proxy] Routing certificate request through proxy: ${url}`
+            `[CORS Proxy] Routing request through proxy: ${url}`
           );
         }
 
@@ -297,6 +313,26 @@ export async function signPdf(
   try {
     const signedPdfBytes = await signer.sign(pdfBytes);
     return new Uint8Array(signedPdfBytes);
+  } finally {
+    restore();
+  }
+}
+
+export async function timestampPdf(
+  pdfBytes: Uint8Array,
+  tsaUrl: string
+): Promise<Uint8Array> {
+  const signOptions: SignOption = {
+    signdate: tsaUrl,
+  };
+
+  const signer = new PdfSigner(signOptions);
+
+  const { restore } = createCorsAwareFetch();
+
+  try {
+    const timestampedPdfBytes = await signer.sign(pdfBytes);
+    return new Uint8Array(timestampedPdfBytes);
   } finally {
     restore();
   }

@@ -550,6 +550,10 @@ export default defineConfig(() => {
             __dirname,
             'src/pages/digital-sign-pdf.html'
           ),
+          'timestamp-pdf': resolve(
+            __dirname,
+            'src/pages/timestamp-pdf.html'
+          ),
           'validate-signature-pdf': resolve(
             __dirname,
             'src/pages/validate-signature-pdf.html'
