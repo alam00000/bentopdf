@@ -1,0 +1,79 @@
+# =============================================================================
+# CI/CD — BentoPDF (Cainmani)
+# =============================================================================
+# PR opened/updated: scans for secrets
+# PR merged to main: deploys to production (pulls latest image, restarts)
+#
+# BentoPDF uses a pre-built upstream image (no build step needed).
+# Preview deploys are not implemented — static site with no code changes expected.
+# =============================================================================
+
+name: CI/CD
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  APP_NAME: bentopdf
+  APP_DIR: /home/cainmani/cainmani/apps/bentopdf
+  SERVER_IP: ${{ secrets.SERVER_IP }}
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Secrets scan — blocks deploy if secrets are detected
+  # ---------------------------------------------------------------------------
+  secrets-scan:
+    if: github.event.action != 'closed'
+    runs-on: [self-hosted, cainmani]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets
+        uses: trufflesecurity/trufflehog@7c0734f987ad0bb30ee8da210773b800ee2016d3 # v3.93.4
+        with:
+          extra_args: --only-verified
+
+  # ---------------------------------------------------------------------------
+  # Production Deploy — runs only when PR is merged to main
+  # ---------------------------------------------------------------------------
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: [self-hosted, cainmani]
+    steps:
+      - name: Checkout latest main
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          ref: main
+
+      - name: Deploy to production
+        run: |
+          # Mark directory as safe (runner is github-runner, repo owned by cainmani)
+          git config --global --add safe.directory ${{ env.APP_DIR }}
+
+          # Copy production .env into checkout directory
+          cp ${{ env.APP_DIR }}/.env .env
+
+          # Pull latest images and restart
+          docker compose \
+            -p ${{ env.APP_NAME }} \
+            -f docker-compose.prod.yml \
+            pull
+
+          docker compose \
+            -p ${{ env.APP_NAME }} \
+            -f docker-compose.prod.yml \
+            up -d --wait

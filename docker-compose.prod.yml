@@ -1,0 +1,109 @@
+# =============================================================================
+# BentoPDF Production — Cainmani Server
+# =============================================================================
+# Deploys BentoPDF behind oauth2-proxy using Traefik's forwardAuth middleware.
+# Authentication is handled by Keycloak OIDC via oauth2-proxy.
+#
+# Usage:
+#   cp .env.example .env   # then edit .env with actual values
+#   docker compose -f docker-compose.prod.yml up -d
+#
+# Architecture:
+#   User -> Traefik --[forwardAuth]--> oauth2-proxy (static://202) -> Keycloak
+#                  \--[if authed]----> bentopdf (nginx)
+#
+# The forwardAuth middleware is reusable — future static apps can reference
+# the pdf-auth and pdf-errors middlewares (or deploy their own oauth2-proxy).
+# =============================================================================
+
+services:
+  # ---------------------------------------------------------------------------
+  # oauth2-proxy — Authentication gate (forwardAuth mode)
+  # ---------------------------------------------------------------------------
+  # Runs in static://202 mode: only makes auth decisions, does NOT proxy traffic.
+  # Traefik consults this on every request to BentoPDF. If the user has a valid
+  # session cookie, oauth2-proxy returns 202 and Traefik serves BentoPDF directly.
+  # If not, the errors middleware redirects to Keycloak login.
+  # ---------------------------------------------------------------------------
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.7.1
+    container_name: pdf-oauth2-proxy
+    restart: unless-stopped
+    environment:
+      # --- Keycloak OIDC provider ---
+      OAUTH2_PROXY_PROVIDER: keycloak-oidc
+      OAUTH2_PROXY_CLIENT_ID: ${OAUTH2_PROXY_CLIENT_ID:?Set OAUTH2_PROXY_CLIENT_ID in .env}
+      OAUTH2_PROXY_CLIENT_SECRET: ${OAUTH2_PROXY_CLIENT_SECRET:?Set OAUTH2_PROXY_CLIENT_SECRET in .env}
+      OAUTH2_PROXY_OIDC_ISSUER_URL: https://auth.${DOMAIN:?Set DOMAIN in .env}/realms/cainmani
+      OAUTH2_PROXY_REDIRECT_URL: https://pdf.${DOMAIN}/oauth2/callback
+      OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+      OAUTH2_PROXY_SCOPE: openid email profile
+
+      # --- forwardAuth mode ---
+      # static://202 = no upstream proxy, just return 202 for authenticated requests
+      OAUTH2_PROXY_UPSTREAMS: static://202
+      OAUTH2_PROXY_REVERSE_PROXY: "true"
+      OAUTH2_PROXY_SET_XAUTHREQUEST: "true"
+
+      # --- Cookie ---
+      OAUTH2_PROXY_COOKIE_SECRET: ${OAUTH2_PROXY_COOKIE_SECRET:?Set OAUTH2_PROXY_COOKIE_SECRET in .env}
+      OAUTH2_PROXY_COOKIE_DOMAINS: .${DOMAIN}
+      OAUTH2_PROXY_WHITELIST_DOMAINS: .${DOMAIN}
+
+      # --- Network ---
+      OAUTH2_PROXY_HTTP_ADDRESS: 0.0.0.0:4180
+    networks:
+      - web
+      # Needs 'internal' to reach Keycloak at http://keycloak:8080 for token exchange
+      - internal
+    labels:
+      - "traefik.enable=true"
+
+      # --- Router: handle /oauth2/* paths (callback, sign_in, sign_out) ---
+      - "traefik.http.routers.pdf-oauth.rule=Host(`pdf.${DOMAIN}`) && PathPrefix(`/oauth2/`)"
+      - "traefik.http.routers.pdf-oauth.entrypoints=web"
+      - "traefik.http.services.pdf-oauth.loadbalancer.server.port=4180"
+
+      # --- Middleware: forwardAuth (checks session cookie via oauth2-proxy) ---
+      - "traefik.http.middlewares.pdf-auth.forwardauth.address=http://pdf-oauth2-proxy:4180/oauth2/auth"
+      - "traefik.http.middlewares.pdf-auth.forwardauth.trustForwardHeader=true"
+      - "traefik.http.middlewares.pdf-auth.forwardauth.authResponseHeaders=X-Auth-Request-User,X-Auth-Request-Email,Authorization"
+
+      # --- Middleware: errors (catches 401, redirects to Keycloak login) ---
+      # Order matters: pdf-errors MUST come before pdf-auth in the middleware chain
+      - "traefik.http.middlewares.pdf-errors.errors.status=401-403"
+      - "traefik.http.middlewares.pdf-errors.errors.service=pdf-oauth"
+      - "traefik.http.middlewares.pdf-errors.errors.query=/oauth2/sign_in?rd={url}"
+
+  # ---------------------------------------------------------------------------
+  # BentoPDF — Static PDF toolkit (nginx)
+  # ---------------------------------------------------------------------------
+  # All PDF processing happens client-side in the browser.
+  # No files leave the user's machine.
+  # ---------------------------------------------------------------------------
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf:latest
+    container_name: bentopdf
+    restart: unless-stopped
+    networks:
+      - web
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pdf.rule=Host(`pdf.${DOMAIN}`)"
+      - "traefik.http.routers.pdf.entrypoints=web"
+      # Middleware chain: errors first (catches 401), then forwardAuth (checks session)
+      - "traefik.http.routers.pdf.middlewares=pdf-errors,pdf-auth"
+      - "traefik.http.services.pdf.loadbalancer.server.port=8080"
+
+# These networks are created by the infra repo's docker-compose.yml.
+# "external: true" means "don't create them, they already exist."
+networks:
+  web:
+    external: true
+  internal:
+    external: true
