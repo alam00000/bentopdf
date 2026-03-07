@@ -31,6 +31,7 @@ BentoPDF uses **i18next** for internationalization (i18n). Currently supported l
 - **Indonesian** (`id`)
 - **Chinese** (`zh`)
 - **Traditional Chinese (Taiwan)** (`zh-TW`)
+- **Korean** (`ko`)
 
 The app automatically detects the language from the URL path:
 
@@ -599,6 +600,7 @@ Current translation coverage:
 | Indonesian          | `id`    | ✅ Complete    | Community  |
 | Chinese             | `zh`    | ✅ Complete    | Community  |
 | Traditional Chinese | `zh-TW` | ✅ Complete    | Community  |
+| Korean              | `ko`    | ✅ Complete    | Community  |
 | Your Language       | `??`    | 🚧 In Progress | You?       |
 
 ---

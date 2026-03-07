@@ -1,0 +1,631 @@
+{
+  "categories": {
+    "popularTools": "인기 도구",
+    "editAnnotate": "편집 및 주석",
+    "convertToPdf": "PDF로 변환",
+    "convertFromPdf": "PDF에서 변환",
+    "organizeManage": "정리 및 관리",
+    "optimizeRepair": "최적화 및 복구",
+    "securePdf": "PDF 보안"
+  },
+  "pdfMultiTool": {
+    "name": "PDF 멀티 도구",
+    "subtitle": "병합, 분할, 정리, 삭제, 회전, 빈 페이지 추가, 추출, 복제를 하나의 화면에서."
+  },
+  "mergePdf": {
+    "name": "PDF 병합",
+    "subtitle": "여러 PDF를 하나로 합칩니다. 북마크도 유지됩니다."
+  },
+  "splitPdf": {
+    "name": "PDF 분할",
+    "subtitle": "원하는 페이지 범위를 새 PDF로 추출합니다."
+  },
+  "compressPdf": {
+    "name": "PDF 압축",
+    "subtitle": "PDF 파일 크기를 줄입니다.",
+    "algorithmLabel": "압축 알고리즘",
+    "condense": "Condense (권장)",
+    "photon": "Photon (사진이 많은 PDF용)",
+    "condenseInfo": "Condense는 불필요한 데이터 제거, 이미지 최적화, 폰트 서브셋 등 고급 압축을 적용합니다. 대부분의 PDF에 적합합니다.",
+    "photonInfo": "Photon은 페이지를 이미지로 변환합니다. 사진이 많거나 스캔된 PDF에 적합합니다.",
+    "photonWarning": "주의: 텍스트 선택이 불가능해지고 링크가 작동하지 않게 됩니다.",
+    "levelLabel": "압축 수준",
+    "light": "낮음 (품질 유지)",
+    "balanced": "보통 (권장)",
+    "aggressive": "높음 (파일 크기 우선)",
+    "extreme": "최대 (최고 압축률)",
+    "grayscale": "흑백으로 변환",
+    "grayscaleHint": "색상 정보를 제거하여 파일 크기를 줄입니다",
+    "customSettings": "사용자 설정",
+    "customSettingsHint": "압축 세부 설정을 조정합니다:",
+    "outputQuality": "출력 품질",
+    "resizeImagesTo": "이미지 크기 조정",
+    "onlyProcessAbove": "이 크기 이상만 처리",
+    "removeMetadata": "메타데이터 제거",
+    "subsetFonts": "폰트 서브셋 (미사용 글자 제거)",
+    "removeThumbnails": "내장 미리보기 이미지 제거",
+    "compressButton": "PDF 압축하기"
+  },
+  "pdfEditor": {
+    "name": "PDF 편집기",
+    "subtitle": "주석, 하이라이트, 마스킹, 댓글, 도형/이미지 추가, 검색 및 보기."
+  },
+  "jpgToPdf": {
+    "name": "JPG를 PDF로",
+    "subtitle": "JPG, JPEG, JPEG2000(JP2/JPX) 이미지로 PDF를 만듭니다."
+  },
+  "signPdf": {
+    "name": "PDF 서명",
+    "subtitle": "서명을 그리거나, 입력하거나, 이미지로 추가하세요."
+  },
+  "cropPdf": {
+    "name": "PDF 자르기",
+    "subtitle": "PDF 모든 페이지의 여백을 잘라냅니다."
+  },
+  "extractPages": {
+    "name": "페이지 추출",
+    "subtitle": "원하는 페이지를 골라 새 파일로 저장합니다."
+  },
+  "duplicateOrganize": {
+    "name": "복제 및 정리",
+    "subtitle": "페이지를 복제하고, 순서를 바꾸고, 삭제합니다."
+  },
+  "deletePages": {
+    "name": "페이지 삭제",
+    "subtitle": "문서에서 특정 페이지를 제거합니다."
+  },
+  "editBookmarks": {
+    "name": "북마크 편집",
+    "subtitle": "PDF 북마크를 추가, 편집, 가져오기, 삭제, 추출합니다."
+  },
+  "tableOfContents": {
+    "name": "목차 생성",
+    "subtitle": "PDF 북마크를 기반으로 목차 페이지를 만듭니다."
+  },
+  "pageNumbers": {
+    "name": "페이지 번호",
+    "subtitle": "문서에 페이지 번호를 삽입합니다."
+  },
+  "batesNumbering": {
+    "name": "베이츠 번호 매기기",
+    "subtitle": "하나 이상의 PDF에 순차적 베이츠 번호를 추가합니다."
+  },
+  "addWatermark": {
+    "name": "워터마크 추가",
+    "subtitle": "PDF 페이지에 텍스트 또는 이미지 워터마크를 넣습니다.",
+    "applyToAllPages": "모든 페이지에 적용"
+  },
+  "headerFooter": {
+    "name": "머리글 및 바닥글",
+    "subtitle": "페이지 상단과 하단에 텍스트를 추가합니다."
+  },
+  "invertColors": {
+    "name": "색상 반전",
+    "subtitle": "PDF를 다크 모드 버전으로 만듭니다."
+  },
+  "scannerEffect": {
+    "name": "스캔 효과",
+    "subtitle": "PDF를 스캔한 문서처럼 보이게 만듭니다.",
+    "scanSettings": "스캔 설정",
+    "colorspace": "색 공간",
+    "gray": "흑백",
+    "border": "테두리",
+    "rotate": "회전",
+    "rotateVariance": "회전 변동",
+    "brightness": "밝기",
+    "contrast": "대비",
+    "blur": "흐림",
+    "noise": "노이즈",
+    "yellowish": "누런 효과",
+    "resolution": "해상도",
+    "processButton": "스캔 효과 적용"
+  },
+  "adjustColors": {
+    "name": "색상 조정",
+    "subtitle": "PDF의 밝기, 대비, 채도 등을 세밀하게 조정합니다.",
+    "colorSettings": "색상 설정",
+    "brightness": "밝기",
+    "contrast": "대비",
+    "saturation": "채도",
+    "hueShift": "색조",
+    "temperature": "색온도",
+    "tint": "틴트",
+    "gamma": "감마",
+    "sepia": "세피아",
+    "processButton": "색상 조정 적용"
+  },
+  "backgroundColor": {
+    "name": "배경색 변경",
+    "subtitle": "PDF의 배경색을 변경합니다."
+  },
+  "changeTextColor": {
+    "name": "텍스트 색상 변경",
+    "subtitle": "PDF의 텍스트 색상을 변경합니다."
+  },
+  "addStamps": {
+    "name": "도장 추가",
+    "subtitle": "주석 도구 모음을 사용하여 PDF에 이미지 도장을 추가합니다.",
+    "usernameLabel": "도장 사용자 이름",
+    "usernamePlaceholder": "이름을 입력하세요 (도장용)",
+    "usernameHint": "이 이름이 도장에 표시됩니다."
+  },
+  "removeAnnotations": {
+    "name": "주석 제거",
+    "subtitle": "댓글, 하이라이트, 링크를 제거합니다."
+  },
+  "pdfFormFiller": {
+    "name": "PDF 양식 작성",
+    "subtitle": "브라우저에서 직접 양식을 작성합니다. XFA 양식도 지원됩니다."
+  },
+  "createPdfForm": {
+    "name": "PDF 양식 만들기",
+    "subtitle": "드래그 앤 드롭으로 작성 가능한 PDF 양식을 만듭니다."
+  },
+  "removeBlankPages": {
+    "name": "빈 페이지 제거",
+    "subtitle": "빈 페이지를 자동으로 감지하고 삭제합니다.",
+    "sensitivityHint": "높을수록 완전히 빈 페이지만 감지합니다. 낮추면 약간의 내용이 있는 페이지도 포함됩니다."
+  },
+  "imageToPdf": {
+    "name": "이미지를 PDF로",
+    "subtitle": "JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP를 PDF로 변환합니다."
+  },
+  "pngToPdf": {
+    "name": "PNG를 PDF로",
+    "subtitle": "PNG 이미지로 PDF를 만듭니다."
+  },
+  "webpToPdf": {
+    "name": "WebP를 PDF로",
+    "subtitle": "WebP 이미지로 PDF를 만듭니다."
+  },
+  "svgToPdf": {
+    "name": "SVG를 PDF로",
+    "subtitle": "SVG 이미지로 PDF를 만듭니다."
+  },
+  "bmpToPdf": {
+    "name": "BMP를 PDF로",
+    "subtitle": "BMP 이미지로 PDF를 만듭니다."
+  },
+  "heicToPdf": {
+    "name": "HEIC를 PDF로",
+    "subtitle": "HEIC 이미지로 PDF를 만듭니다."
+  },
+  "tiffToPdf": {
+    "name": "TIFF를 PDF로",
+    "subtitle": "TIFF 이미지로 PDF를 만듭니다."
+  },
+  "textToPdf": {
+    "name": "텍스트를 PDF로",
+    "subtitle": "일반 텍스트 파일을 PDF로 변환합니다."
+  },
+  "jsonToPdf": {
+    "name": "JSON을 PDF로",
+    "subtitle": "JSON 파일을 PDF 형식으로 변환합니다."
+  },
+  "pdfToJpg": {
+    "name": "PDF를 JPG로",
+    "subtitle": "PDF의 각 페이지를 JPG 이미지로 변환합니다."
+  },
+  "pdfToPng": {
+    "name": "PDF를 PNG로",
+    "subtitle": "PDF의 각 페이지를 PNG 이미지로 변환합니다."
+  },
+  "pdfToWebp": {
+    "name": "PDF를 WebP로",
+    "subtitle": "PDF의 각 페이지를 WebP 이미지로 변환합니다."
+  },
+  "pdfToBmp": {
+    "name": "PDF를 BMP로",
+    "subtitle": "PDF의 각 페이지를 BMP 이미지로 변환합니다."
+  },
+  "pdfToTiff": {
+    "name": "PDF를 TIFF로",
+    "subtitle": "PDF의 각 페이지를 TIFF 이미지로 변환합니다."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF 흑백 변환",
+    "subtitle": "모든 색상을 흑백으로 변환합니다."
+  },
+  "pdfToJson": {
+    "name": "PDF를 JSON으로",
+    "subtitle": "PDF 파일을 JSON 형식으로 변환합니다."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "PDF의 텍스트를 검색하고 복사할 수 있게 만듭니다."
+  },
+  "alternateMix": {
+    "name": "페이지 교차 병합",
+    "subtitle": "각 PDF의 페이지를 번갈아 가며 병합합니다. 북마크도 유지됩니다."
+  },
+  "addAttachments": {
+    "name": "첨부파일 추가",
+    "subtitle": "PDF에 파일을 첨부합니다."
+  },
+  "extractAttachments": {
+    "name": "첨부파일 추출",
+    "subtitle": "PDF에 첨부된 모든 파일을 ZIP으로 추출합니다."
+  },
+  "editAttachments": {
+    "name": "첨부파일 편집",
+    "subtitle": "PDF의 첨부파일을 확인하거나 제거합니다."
+  },
+  "dividePages": {
+    "name": "페이지 분할",
+    "subtitle": "페이지를 가로 또는 세로로 나눕니다."
+  },
+  "addBlankPage": {
+    "name": "빈 페이지 추가",
+    "subtitle": "PDF 원하는 위치에 빈 페이지를 삽입합니다."
+  },
+  "reversePages": {
+    "name": "페이지 역순 정렬",
+    "subtitle": "문서의 모든 페이지 순서를 뒤집습니다."
+  },
+  "rotatePdf": {
+    "name": "PDF 회전",
+    "subtitle": "페이지를 90도 단위로 회전합니다."
+  },
+  "rotateCustom": {
+    "name": "사용자 지정 각도 회전",
+    "subtitle": "원하는 각도로 페이지를 회전합니다."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "한 장에 여러 페이지를 배치합니다."
+  },
+  "combineToSinglePage": {
+    "name": "한 페이지로 합치기",
+    "subtitle": "모든 페이지를 하나의 긴 페이지로 이어 붙입니다."
+  },
+  "viewMetadata": {
+    "name": "메타데이터 보기",
+    "subtitle": "PDF에 숨겨진 속성 정보를 확인합니다."
+  },
+  "editMetadata": {
+    "name": "메타데이터 편집",
+    "subtitle": "저자, 제목 등의 속성을 변경합니다."
+  },
+  "pdfsToZip": {
+    "name": "PDF를 ZIP으로",
+    "subtitle": "여러 PDF 파일을 ZIP 파일로 묶습니다."
+  },
+  "comparePdfs": {
+    "name": "PDF 비교",
+    "subtitle": "두 PDF를 나란히 비교합니다."
+  },
+  "posterizePdf": {
+    "name": "PDF 포스터화",
+    "subtitle": "큰 페이지를 여러 작은 페이지로 나눕니다."
+  },
+  "fixPageSize": {
+    "name": "페이지 크기 통일",
+    "subtitle": "모든 페이지를 동일한 크기로 맞춥니다."
+  },
+  "linearizePdf": {
+    "name": "PDF 선형화",
+    "subtitle": "웹에서 빠르게 볼 수 있도록 PDF를 최적화합니다."
+  },
+  "pageDimensions": {
+    "name": "페이지 크기 정보",
+    "subtitle": "페이지 크기, 방향, 단위를 분석합니다."
+  },
+  "removeRestrictions": {
+    "name": "제한 해제",
+    "subtitle": "디지털 서명된 PDF의 비밀번호 보호 및 보안 제한을 해제합니다."
+  },
+  "repairPdf": {
+    "name": "PDF 복구",
+    "subtitle": "손상된 PDF 파일에서 데이터를 복구합니다."
+  },
+  "encryptPdf": {
+    "name": "PDF 암호화",
+    "subtitle": "비밀번호를 설정하여 PDF를 보호합니다."
+  },
+  "sanitizePdf": {
+    "name": "PDF 정리",
+    "subtitle": "메타데이터, 주석, 스크립트 등을 제거합니다."
+  },
+  "decryptPdf": {
+    "name": "PDF 복호화",
+    "subtitle": "비밀번호를 제거하여 PDF 잠금을 해제합니다."
+  },
+  "flattenPdf": {
+    "name": "PDF 평탄화",
+    "subtitle": "양식 필드와 주석을 편집 불가능하게 만듭니다."
+  },
+  "removeMetadata": {
+    "name": "메타데이터 제거",
+    "subtitle": "PDF에서 숨겨진 데이터를 삭제합니다."
+  },
+  "changePermissions": {
+    "name": "권한 변경",
+    "subtitle": "PDF의 사용자 권한을 설정하거나 변경합니다."
+  },
+  "odtToPdf": {
+    "name": "ODT를 PDF로",
+    "subtitle": "ODT(OpenDocument 텍스트) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "ODT 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "csvToPdf": {
+    "name": "CSV를 PDF로",
+    "subtitle": "CSV 스프레드시트 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "CSV 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "rtfToPdf": {
+    "name": "RTF를 PDF로",
+    "subtitle": "RTF(서식 있는 텍스트) 문서를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "RTF 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "wordToPdf": {
+    "name": "Word를 PDF로",
+    "subtitle": "Word 문서(DOCX, DOC, ODT, RTF)를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "excelToPdf": {
+    "name": "Excel을 PDF로",
+    "subtitle": "Excel 스프레드시트(XLSX, XLS, ODS, CSV)를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint를 PDF로",
+    "subtitle": "PowerPoint 프레젠테이션(PPTX, PPT, ODP)을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "PPTX, PPT, ODP 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "markdownToPdf": {
+    "name": "Markdown을 PDF로",
+    "subtitle": "Markdown을 작성하거나 붙여넣고 깔끔하게 서식이 적용된 PDF로 내보냅니다.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "미리보기",
+    "btnUpload": "업로드",
+    "btnSyncScroll": "스크롤 동기화",
+    "btnSettings": "설정",
+    "btnExportPdf": "PDF 내보내기",
+    "settingsTitle": "Markdown 설정",
+    "settingsPreset": "프리셋",
+    "presetDefault": "기본 (GFM 스타일)",
+    "presetCommonmark": "CommonMark (엄격)",
+    "presetZero": "최소 (기능 없음)",
+    "settingsOptions": "Markdown 옵션",
+    "optAllowHtml": "HTML 태그 허용",
+    "optBreaks": "줄바꿈을 <br>로 변환",
+    "optLinkify": "URL을 자동으로 링크로 변환",
+    "optTypographer": "타이포그래퍼 (스마트 따옴표 등)"
+  },
+  "pdfBooklet": {
+    "name": "PDF 소책자",
+    "subtitle": "양면 인쇄용으로 페이지를 재배치합니다. 접고 스테이플러로 철하면 소책자가 됩니다.",
+    "howItWorks": "이용 방법:",
+    "step1": "PDF 파일을 업로드합니다.",
+    "step2": "페이지가 소책자 순서로 재배치됩니다.",
+    "step3": "양면 인쇄 후 짧은 면을 기준으로 접어 철합니다.",
+    "paperSize": "용지 크기",
+    "orientation": "방향",
+    "portrait": "세로",
+    "landscape": "가로",
+    "pagesPerSheet": "한 면당 페이지 수",
+    "createBooklet": "소책자 만들기",
+    "processing": "처리 중...",
+    "pageCount": "필요 시 페이지 수가 4의 배수로 맞춰집니다."
+  },
+  "xpsToPdf": {
+    "name": "XPS를 PDF로",
+    "subtitle": "XPS/OXPS 문서를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "XPS, OXPS 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "mobiToPdf": {
+    "name": "MOBI를 PDF로",
+    "subtitle": "MOBI 전자책을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "MOBI 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "epubToPdf": {
+    "name": "EPUB를 PDF로",
+    "subtitle": "EPUB 전자책을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "EPUB 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "fb2ToPdf": {
+    "name": "FB2를 PDF로",
+    "subtitle": "FictionBook(FB2) 전자책을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "FB2 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "cbzToPdf": {
+    "name": "CBZ를 PDF로",
+    "subtitle": "만화 아카이브(CBZ/CBR)를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "CBZ, CBR 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "wpdToPdf": {
+    "name": "WPD를 PDF로",
+    "subtitle": "WordPerfect(WPD) 문서를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "WPD 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "wpsToPdf": {
+    "name": "WPS를 PDF로",
+    "subtitle": "WPS Office 문서를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "WPS 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "xmlToPdf": {
+    "name": "XML을 PDF로",
+    "subtitle": "XML 문서를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "XML 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "pagesToPdf": {
+    "name": "Pages를 PDF로",
+    "subtitle": "Apple Pages 문서를 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "Pages 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "odgToPdf": {
+    "name": "ODG를 PDF로",
+    "subtitle": "ODG(OpenDocument 그래픽) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "ODG 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "odsToPdf": {
+    "name": "ODS를 PDF로",
+    "subtitle": "ODS(OpenDocument 스프레드시트) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "ODS 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "odpToPdf": {
+    "name": "ODP를 PDF로",
+    "subtitle": "ODP(OpenDocument 프레젠테이션) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "ODP 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "pubToPdf": {
+    "name": "PUB를 PDF로",
+    "subtitle": "Microsoft Publisher(PUB) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "PUB 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "vsdToPdf": {
+    "name": "VSD를 PDF로",
+    "subtitle": "Microsoft Visio(VSD, VSDX) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "VSD, VSDX 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "psdToPdf": {
+    "name": "PSD를 PDF로",
+    "subtitle": "Adobe Photoshop(PSD) 파일을 PDF로 변환합니다. 여러 파일 지원.",
+    "acceptedFormats": "PSD 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "pdfToSvg": {
+    "name": "PDF를 SVG로",
+    "subtitle": "PDF의 각 페이지를 SVG(벡터 그래픽)로 변환하여 어떤 크기에서도 선명하게 볼 수 있습니다."
+  },
+  "extractTables": {
+    "name": "PDF 표 추출",
+    "subtitle": "PDF에서 표를 추출하여 CSV, JSON, Markdown으로 내보냅니다."
+  },
+  "pdfToCsv": {
+    "name": "PDF를 CSV로",
+    "subtitle": "PDF에서 표를 추출하여 CSV로 변환합니다."
+  },
+  "pdfToExcel": {
+    "name": "PDF를 Excel로",
+    "subtitle": "PDF에서 표를 추출하여 Excel(XLSX)로 변환합니다."
+  },
+  "pdfToText": {
+    "name": "PDF를 텍스트로",
+    "subtitle": "PDF에서 텍스트를 추출하여 텍스트 파일(.txt)로 저장합니다. 여러 파일 지원.",
+    "note": "이 도구는 디지털로 생성된 PDF에서만 작동합니다. 스캔 문서나 이미지 기반 PDF는 OCR PDF 도구를 사용해 주세요.",
+    "convertButton": "텍스트 추출"
+  },
+  "digitalSignPdf": {
+    "name": "PDF 디지털 서명",
+    "pageTitle": "PDF 디지털 서명 - 암호화 서명 추가 | BentoPDF",
+    "subtitle": "X.509 인증서를 사용하여 PDF에 암호화 디지털 서명을 추가합니다. PKCS#12(.pfx, .p12) 및 PEM 형식을 지원합니다. 개인키는 브라우저 밖으로 나가지 않습니다.",
+    "certificateSection": "인증서",
+    "uploadCert": "인증서 업로드 (.pfx, .p12)",
+    "certPassword": "인증서 비밀번호",
+    "certPasswordPlaceholder": "인증서 비밀번호 입력",
+    "certInfo": "인증서 정보",
+    "certSubject": "소유자",
+    "certIssuer": "발급자",
+    "certValidity": "유효 기간",
+    "signatureDetails": "서명 세부 정보 (선택 사항)",
+    "reason": "서명 사유",
+    "reasonPlaceholder": "예: 이 문서를 승인합니다",
+    "location": "위치",
+    "locationPlaceholder": "예: 서울, 대한민국",
+    "contactInfo": "연락처",
+    "contactPlaceholder": "예: email@example.com",
+    "applySignature": "디지털 서명 적용",
+    "successMessage": "PDF 서명이 완료되었습니다! 모든 PDF 뷰어에서 서명을 확인할 수 있습니다."
+  },
+  "validateSignaturePdf": {
+    "name": "PDF 서명 검증",
+    "pageTitle": "PDF 서명 검증 - 디지털 서명 확인 | BentoPDF",
+    "subtitle": "PDF의 디지털 서명을 검증합니다. 인증서 유효성 확인, 서명자 정보 조회, 문서 무결성 확인이 가능합니다. 모든 처리는 브라우저에서 이루어집니다."
+  },
+  "emailToPdf": {
+    "name": "이메일을 PDF로",
+    "subtitle": "이메일 파일(EML, MSG)을 PDF로 변환합니다. Outlook 내보내기 및 표준 이메일 형식을 지원합니다.",
+    "acceptedFormats": "EML, MSG 파일",
+    "convertButton": "PDF로 변환"
+  },
+  "fontToOutline": {
+    "name": "폰트 윤곽선 변환",
+    "subtitle": "모든 폰트를 벡터 윤곽선으로 변환하여 어떤 기기에서든 동일하게 표시됩니다."
+  },
+  "deskewPdf": {
+    "name": "PDF 기울기 보정",
+    "subtitle": "기울어진 스캔 페이지를 OpenCV로 자동 보정합니다."
+  },
+  "pdfToWord": {
+    "name": "PDF를 Word로",
+    "subtitle": "PDF를 편집 가능한 Word 문서로 변환합니다."
+  },
+  "extractImages": {
+    "name": "이미지 추출",
+    "subtitle": "PDF에 포함된 모든 이미지를 추출합니다."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF를 Markdown으로",
+    "subtitle": "PDF의 텍스트와 표를 Markdown 형식으로 변환합니다."
+  },
+  "preparePdfForAi": {
+    "name": "AI용 PDF 준비",
+    "subtitle": "RAG/LLM 파이프라인을 위해 PDF를 LlamaIndex JSON으로 추출합니다."
+  },
+  "pdfOcg": {
+    "name": "PDF OCG",
+    "subtitle": "PDF의 OCG(Optional Content Group) 레이어를 보고, 전환하고, 추가하고, 삭제합니다."
+  },
+  "pdfToPdfa": {
+    "name": "PDF를 PDF/A로",
+    "subtitle": "장기 보관을 위해 PDF를 PDF/A로 변환합니다."
+  },
+  "rasterizePdf": {
+    "name": "PDF 래스터화",
+    "subtitle": "PDF를 이미지 기반 PDF로 변환합니다. 레이어를 평탄화하고 선택 가능한 텍스트를 제거합니다."
+  },
+  "pdfWorkflow": {
+    "name": "PDF 워크플로우 빌더",
+    "subtitle": "시각적 노드 편집기로 맞춤형 PDF 처리 파이프라인을 구성합니다.",
+    "nodes": "노드",
+    "searchNodes": "노드 검색...",
+    "run": "실행",
+    "clear": "지우기",
+    "save": "저장",
+    "load": "불러오기",
+    "export": "내보내기",
+    "import": "가져오기",
+    "ready": "준비 완료",
+    "settings": "설정",
+    "processing": "처리 중...",
+    "saveTemplate": "템플릿 저장",
+    "templateName": "템플릿 이름",
+    "templatePlaceholder": "예: 청구서 워크플로우",
+    "cancel": "취소",
+    "loadTemplate": "템플릿 불러오기",
+    "noTemplates": "저장된 템플릿이 없습니다.",
+    "ok": "확인",
+    "workflowCompleted": "워크플로우가 완료되었습니다",
+    "errorDuringExecution": "실행 중 오류 발생",
+    "addNodeError": "워크플로우를 실행하려면 노드를 하나 이상 추가하세요.",
+    "needInputOutput": "워크플로우를 실행하려면 입력 노드와 출력 노드가 각각 하나 이상 필요합니다.",
+    "enterName": "이름을 입력해 주세요.",
+    "templateExists": "같은 이름의 템플릿이 이미 있습니다.",
+    "templateSaved": "템플릿 \"{{name}}\"이(가) 저장되었습니다.",
+    "templateLoaded": "템플릿 \"{{name}}\"을(를) 불러왔습니다.",
+    "failedLoadTemplate": "템플릿을 불러오지 못했습니다.",
+    "noSettings": "이 노드에는 설정할 항목이 없습니다.",
+    "advancedSettings": "고급 설정"
+  }
+}
