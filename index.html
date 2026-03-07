@@ -600,7 +600,7 @@
           >
             <h3 class="text-xl font-bold text-white flex items-center gap-2">
               <i data-lucide="settings" class="w-6 h-6 text-indigo-400"></i>
-              Settings
+              <span data-i18n="settings.title">Settings</span>
             </h3>
             <button
               id="close-shortcuts-modal"
@@ -617,7 +617,7 @@
               class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white"
             >
               <i data-lucide="keyboard" class="inline-block w-4 h-4 mr-1"></i>
-              Shortcuts
+              <span data-i18n="settings.shortcuts">Shortcuts</span>
             </button>
             <button
               id="preferences-tab-btn"
@@ -639,6 +639,7 @@
                 <input
                   type="text"
                   id="shortcut-search"
+                  data-i18n-placeholder="settings.searchShortcuts"
                   placeholder="Search shortcuts..."
                   class="w-full bg-gray-900 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
@@ -781,13 +782,15 @@
                 id="import-shortcuts-btn"
                 class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors"
               >
-                <i data-lucide="upload" class="w-4 h-4"></i> Import
+                <i data-lucide="upload" class="w-4 h-4"></i>
+                <span data-i18n="settings.import">Import</span>
               </button>
               <button
                 id="export-shortcuts-btn"
                 class="text-gray-400 hover:text-white text-sm font-medium flex items-center gap-1 transition-colors"
               >
-                <i data-lucide="download" class="w-4 h-4"></i> Export
+                <i data-lucide="download" class="w-4 h-4"></i>
+                <span data-i18n="settings.export">Export</span>
               </button>
             </div>
             <div id="preferences-tab-footer" class="hidden w-full">
@@ -802,7 +805,9 @@
               id="reset-shortcuts-btn"
               class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors"
             >
-              Reset to Defaults
+              <span data-i18n="settings.resetToDefaults"
+                >Reset to Defaults</span
+              >
             </button>
           </div>
         </div>
