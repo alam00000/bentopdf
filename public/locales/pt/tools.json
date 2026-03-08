@@ -567,6 +567,17 @@
     "pageTitle": "Validar Assinatura PDF - Verificar Assinaturas Digitais | BentoPDF",
     "subtitle": "Verifique assinaturas digitais em seus arquivos PDF. Verifique a validade do certificado e a integridade do documento."
   },
+  "timestampPdf": {
+    "name": "Carimbo de tempo PDF",
+    "pageTitle": "Carimbo de tempo PDF grátis online - RFC 3161 | BentoPDF",
+    "subtitle": "Adicione um carimbo de tempo RFC 3161 ao seu PDF usando um servidor TSA confiável. Prova que o seu documento existia num momento específico. Sem necessidade de certificado.",
+    "tsaSectionTitle": "Servidor de carimbo de tempo (TSA)",
+    "selectTsa": "Selecionar um servidor TSA",
+    "customUrl": "URL TSA personalizada",
+    "customUrlPlaceholder": "https://seu-servidor-tsa.com/timestamp",
+    "applyTimestamp": "Aplicar carimbo de tempo",
+    "successMessage": "PDF carimbado com sucesso! O carimbo pode ser verificado no Adobe Acrobat e noutros leitores de PDF."
+  },
   "pdfToWord": {
     "name": "PDF para Word",
     "subtitle": "Converter arquivos PDF em documentos Word editáveis."

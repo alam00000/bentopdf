@@ -214,6 +214,7 @@ const init = async () => {
     'Deskew PDF': 'tools:deskewPdf',
     'Digital Signature': 'tools:digitalSignPdf',
     'Validate Signature': 'tools:validateSignaturePdf',
+    'Timestamp PDF': 'tools:timestampPdf',
     'Scanner Effect': 'tools:scannerEffect',
     'Adjust Colors': 'tools:adjustColors',
     'Markdown to PDF': 'tools:markdownToPdf',

@@ -553,6 +553,17 @@
     "pageTitle": "PDF-Signatur überprüfen - Digitale Signaturen verifizieren | BentoPDF",
     "subtitle": "Überprüfen Sie digitale Signaturen in Ihren PDF-Dateien. Prüfen Sie die Zertifikatsgültigkeit, sehen Sie Unterzeichnerdetails und bestätigen Sie die Dokumentenintegrität. Die gesamte Verarbeitung erfolgt in Ihrem Browser."
   },
+  "timestampPdf": {
+    "name": "PDF mit Zeitstempel versehen",
+    "pageTitle": "PDF-Zeitstempel online kostenlos - RFC 3161 Dokumentenzeitstempel | BentoPDF",
+    "subtitle": "Fügen Sie Ihrem PDF einen RFC 3161-Zeitstempel über einen vertrauenswürdigen Zeitstempelserver (TSA) hinzu. Beweist, dass Ihr Dokument zu einem bestimmten Zeitpunkt existierte. Kein Zertifikat erforderlich.",
+    "tsaSectionTitle": "Zeitstempelserver (TSA)",
+    "selectTsa": "TSA-Server auswählen",
+    "customUrl": "Benutzerdefinierte TSA-URL",
+    "customUrlPlaceholder": "https://ihr-tsa-server.com/timestamp",
+    "applyTimestamp": "Zeitstempel anwenden",
+    "successMessage": "PDF erfolgreich mit Zeitstempel versehen! Der Zeitstempel kann in Adobe Acrobat und anderen PDF-Readern überprüft werden."
+  },
   "emailToPdf": {
     "name": "E-Mail zu PDF",
     "subtitle": "E-Mail-Dateien (EML, MSG) in PDF-Format konvertieren. Unterstützt Outlook-Exporte und Standard-E-Mail-Formate.",

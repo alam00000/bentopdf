@@ -553,6 +553,17 @@
     "pageTitle": "Validasi Tanda Tangan PDF - Verifikasi Tanda Tangan Digital | BentoPDF",
     "subtitle": "Verifikasi tanda tangan digital di file PDF Anda. Periksa validitas sertifikat, lihat detail penandatangan, dan konfirmasi integritas dokumen. Semua pemrosesan terjadi di browser Anda."
   },
+  "timestampPdf": {
+    "name": "Stempel Waktu PDF",
+    "pageTitle": "Stempel Waktu PDF Gratis Online - RFC 3161 | BentoPDF",
+    "subtitle": "Tambahkan stempel waktu RFC 3161 ke PDF Anda menggunakan server TSA tepercaya. Membuktikan dokumen Anda ada pada waktu tertentu. Tidak memerlukan sertifikat.",
+    "tsaSectionTitle": "Server Stempel Waktu (TSA)",
+    "selectTsa": "Pilih server TSA",
+    "customUrl": "URL TSA kustom",
+    "customUrlPlaceholder": "https://server-tsa-anda.com/timestamp",
+    "applyTimestamp": "Terapkan Stempel Waktu",
+    "successMessage": "PDF berhasil diberi stempel waktu! Stempel waktu dapat diverifikasi di Adobe Acrobat dan pembaca PDF lainnya."
+  },
   "emailToPdf": {
     "name": "Email ke PDF",
     "subtitle": "Konversi file email (EML, MSG) ke format PDF. Mendukung ekspor Outlook dan format email standar.",

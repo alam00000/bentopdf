@@ -553,6 +553,17 @@
     "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
     "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
   },
+  "timestampPdf": {
+    "name": "Timestamp PDF",
+    "pageTitle": "Timestamp PDF Online Free - RFC 3161 Document Timestamp | BentoPDF",
+    "subtitle": "Add an RFC 3161 document timestamp to your PDF using a trusted Time Stamp Authority (TSA) server. Proves your document existed at a specific point in time. No certificate required.",
+    "tsaSectionTitle": "Timestamp Server (TSA)",
+    "selectTsa": "Select a TSA server",
+    "customUrl": "Custom TSA URL",
+    "customUrlPlaceholder": "https://your-tsa-server.com/timestamp",
+    "applyTimestamp": "Apply Timestamp",
+    "successMessage": "PDF timestamped successfully! The timestamp can be verified in Adobe Acrobat and other PDF readers."
+  },
   "emailToPdf": {
     "name": "Email to PDF",
     "subtitle": "Convert email files (EML, MSG) to PDF format. Supports Outlook exports and standard email formats.",
