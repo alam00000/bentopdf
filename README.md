@@ -549,7 +549,7 @@ The setup script loads the Docker image, extracts WASM files, and optionally sta
 **Step 1: Download the WASM packages** (on a machine with internet)
 
 ```bash
-npm pack @bentopdf/pymupdf-wasm@0.11.14
+npm pack @bentopdf/pymupdf-wasm@0.11.16
 npm pack @bentopdf/gs-wasm
 npm pack coherentpdf
 ```
