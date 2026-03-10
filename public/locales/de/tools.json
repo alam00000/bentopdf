@@ -210,7 +210,9 @@
   },
   "pdfToPng": {
     "name": "PDF zu PNG",
-    "subtitle": "Jede PDF-Seite in ein PNG-Bild konvertieren."
+    "subtitle": "Jede PDF-Seite in ein PNG-Bild konvertieren.",
+    "imageScale": "Bildskalierung",
+    "imageScaleExplanation": "Höhere Skalierung = bessere Qualität, aber größere Dateigröße"
   },
   "pdfToWebp": {
     "name": "PDF zu WebP",
