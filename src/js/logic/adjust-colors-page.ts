@@ -124,7 +124,7 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`;
+      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
 
       infoContainer.append(nameSpan, metaSpan);
 

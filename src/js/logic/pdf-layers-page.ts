@@ -1,4 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
+import { t } from '../i18n/i18n';
 import {
   downloadFile,
   readFileAsArrayBuffer,
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(currentFile.size)} • Loading pages...`;
+      metaSpan.textContent = `${formatBytes(currentFile.size)} • ${t('common.loadingPageCount')}`;
 
       infoContainer.append(nameSpan, metaSpan);
 
