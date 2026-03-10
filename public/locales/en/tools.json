@@ -204,7 +204,9 @@
   },
   "pdfToJpg": {
     "name": "PDF to JPG",
-    "subtitle": "Convert each PDF page into a JPG image."
+    "subtitle": "Convert each PDF page into a JPG image.",
+    "imageQuality": "Image Quality",
+    "imageQualityExplanation": "Higher quality = larger file size"
   },
   "pdfToPng": {
     "name": "PDF to PNG",
