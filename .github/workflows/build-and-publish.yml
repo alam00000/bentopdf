@@ -33,7 +33,7 @@ jobs:
         run: npm run build
 
       - name: Build simple distribution
-        run: SIMPLE_MODE=true npm run build
+        run: SIMPLE_MODE=true BUILD_OUTPUT_DIR=dist-simple npm run build
 
       - name: Extract version
         id: version
