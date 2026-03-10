@@ -97,10 +97,13 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToWebp.alert.noFile'),
+      t('tools:pdfToWebp.alert.noFileExplanation')
+    );
     return;
   }
-  showLoader('Converting to WebP...');
+  showLoader(t('tools:pdfToWebp.loader.converting'));
   try {
     const pdf = await getPDFDocument(await readFileAsArrayBuffer(files[0]))
       .promise;
@@ -129,8 +132,8 @@ async function convert() {
     }
 
     showAlert(
-      'Success',
-      'PDF converted to WebPs successfully!',
+      t('common.success'),
+      t('tools:pdfToWebp.alert.conversionSuccess'),
       'success',
       () => {
         resetState();
@@ -138,10 +141,7 @@ async function convert() {
     );
   } catch (e) {
     console.error(e);
-    showAlert(
-      'Error',
-      'Failed to convert PDF to WebP. The file might be corrupted.'
-    );
+    showAlert(t('common.error'), t('tools:pdfToWebp.alert.conversionError'));
   } finally {
     hideLoader();
   }
@@ -198,7 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:pdfToWebp.alert.invalidFile'),
+        t('tools:pdfToWebp.alert.invalidFileExplanation')
+      );
       return;
     }
 

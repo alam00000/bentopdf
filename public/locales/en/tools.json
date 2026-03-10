@@ -240,7 +240,18 @@
     "name": "PDF to WebP",
     "subtitle": "Convert each PDF page into a WebP image.",
     "imageQuality": "Image Quality",
-    "imageQualityExplanation": "Higher quality = larger file size"
+    "imageQualityExplanation": "Higher quality = larger file size",
+    "alert": {
+      "invalidFile": "Invalid File",
+      "invalidFileExplanation": "Please upload a PDF file.",
+      "noFile": "No File",
+      "noFileExplanation": "Please upload a PDF file first.",
+      "conversionSuccess": "PDF converted to WebPs successfully!",
+      "conversionError": "Failed to convert PDF to WebP. The file might be corrupted."
+    },
+    "loader": {
+      "converting": "Converting to WebP..."
+    }
   },
   "pdfToBmp": {
     "name": "PDF to BMP",
