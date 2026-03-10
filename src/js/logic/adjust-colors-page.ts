@@ -10,6 +10,7 @@ import { PDFDocument } from 'pdf-lib';
 import { applyColorAdjustments } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { AdjustColorsSettings } from '../types/adjust-colors-type.js';
+import { t } from '../i18n/index.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -146,7 +147,7 @@ const updateUI = () => {
           return getPDFDocument(buffer).promise;
         })
         .then((pdf: pdfjsLib.PDFDocumentProxy) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} page${pdf.numPages !== 1 ? 's' : ''}`;
+          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
         })
         .catch(() => {
           metaSpan.textContent = formatBytes(file.size);
