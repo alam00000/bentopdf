@@ -10,7 +10,7 @@ import { PDFDocument } from 'pdf-lib';
 import { applyColorAdjustments } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { AdjustColorsSettings } from '../types/adjust-colors-type.js';
-import { t } from '../i18n/index.js';
+import { t } from '../i18n/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
