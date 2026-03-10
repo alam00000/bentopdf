@@ -206,7 +206,18 @@
     "name": "PDF to JPG",
     "subtitle": "Convert each PDF page into a JPG image.",
     "imageQuality": "Image Quality",
-    "imageQualityExplanation": "Higher quality = larger file size"
+    "imageQualityExplanation": "Higher quality = larger file size",
+    "alert": {
+      "invalidFile": "Invalid File",
+      "invalidFileExplanation": "Please upload a PDF file.",
+      "noFile": "No File",
+      "noFileExplanation": "Please upload a PDF file first.",
+      "conversionSuccess": "PDF converted to JPGs successfully!",
+      "conversionError": "Failed to convert PDF to JPG. The file might be corrupted."
+    },
+    "loader": {
+      "converting": "Converting to JPG..."
+    }
   },
   "pdfToPng": {
     "name": "PDF to PNG",
