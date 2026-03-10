@@ -255,11 +255,33 @@
   },
   "pdfToBmp": {
     "name": "PDF zu BMP",
-    "subtitle": "Jede PDF-Seite in ein BMP-Bild konvertieren."
+    "subtitle": "Jede PDF-Seite in ein BMP-Bild konvertieren.",
+    "alert": {
+      "invalidFile": "Ungültige Datei",
+      "invalidFileExplanation": "Bitte wähle eine PDF Datei aus.",
+      "noFile": "Keine Datei",
+      "noFileExplanation": "Bitte lade zuerst eine PDF-Datei hoch.",
+      "conversionSuccess": "PDF erfolgreich in BMPs konvertiert!",
+      "conversionError": "Konvertierung in BMP fehlgeschlagen. Die Datei könnte beschädigt sein."
+    },
+    "loader": {
+      "converting": "Wird in BMP konvertiert..."
+    }
   },
   "pdfToTiff": {
     "name": "PDF zu TIFF",
-    "subtitle": "Jede PDF-Seite in ein TIFF-Bild konvertieren."
+    "subtitle": "Jede PDF-Seite in ein TIFF-Bild konvertieren.",
+    "alert": {
+      "invalidFile": "Ungültige Datei",
+      "invalidFileExplanation": "Bitte wähle eine PDF Datei aus.",
+      "noFile": "Keine Datei",
+      "noFileExplanation": "Bitte lade zuerst eine PDF-Datei hoch.",
+      "conversionSuccess": "PDF erfolgreich in TIFFs konvertiert!",
+      "conversionError": "Konvertierung in TIFF fehlgeschlagen. Die Datei könnte beschädigt sein."
+    },
+    "loader": {
+      "converting": "Wird in TIFF konvertiert..."
+    }
   },
   "pdfToGreyscale": {
     "name": "PDF zu Graustufen",

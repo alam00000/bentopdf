@@ -92,10 +92,13 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToBmp.alert.noFile'),
+      t('tools:pdfToBmp.alert.noFileExplanation')
+    );
     return;
   }
-  showLoader('Converting to BMP...');
+  showLoader(t('tools:pdfToBmp.loader.converting'));
   try {
     const pdf = await getPDFDocument(await readFileAsArrayBuffer(files[0]))
       .promise;
@@ -119,8 +122,8 @@ async function convert() {
     }
 
     showAlert(
-      'Success',
-      'PDF converted to BMPs successfully!',
+      t('common.success'),
+      t('tools:pdfToBmp.alert.conversionSuccess'),
       'success',
       () => {
         resetState();
@@ -128,10 +131,7 @@ async function convert() {
     );
   } catch (e) {
     console.error(e);
-    showAlert(
-      'Error',
-      'Failed to convert PDF to BMP. The file might be corrupted.'
-    );
+    showAlert(t('common.error'), t('tools:pdfToBmp.alert.conversionError'));
   } finally {
     hideLoader();
   }
@@ -175,7 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:pdfToBmp.alert.invalidFile'),
+        t('tools:pdfToBmp.alert.invalidFileExplanation')
+      );
       return;
     }
 
