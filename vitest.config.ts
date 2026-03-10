@@ -21,6 +21,7 @@ export default defineConfig({
         'node_modules/',
         'src/tests/',
         'dist/',
+        'dist-simple/',
         '*.config.ts',
         '*.config.js',
         '**/*.d.ts',

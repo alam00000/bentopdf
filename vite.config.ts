@@ -83,6 +83,7 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
 
     const basePath = getBasePath();
     const [fullPathname, queryString] = req.url.split('?');
+    const outputDir = process.env.BUILD_OUTPUT_DIR || 'dist';
 
     let pathname = fullPathname;
     if (basePath && basePath !== '/' && pathname.startsWith(basePath)) {
@@ -114,7 +115,7 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
         if (isDev) {
           req.url = '/index.html' + (queryString ? `?${queryString}` : '');
         } else {
-          const langIndexPath = resolve(__dirname, 'dist', lang, 'index.html');
+          const langIndexPath = resolve(__dirname, outputDir, lang, 'index.html');
           if (fs.existsSync(langIndexPath)) {
             req.url =
               `/${lang}/index.html` + (queryString ? `?${queryString}` : '');
@@ -142,7 +143,7 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
         } else {
           const langPagePath = resolve(
             __dirname,
-            'dist',
+            outputDir,
             lang,
             `${pageName}.html`
           );
@@ -162,7 +163,7 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
         } else {
           const langPagePath = resolve(
             __dirname,
-            'dist',
+            outputDir,
             lang,
             `${cleanPath}.html`
           );
@@ -367,6 +368,7 @@ export default defineConfig(() => {
       },
     },
     build: {
+      outDir: process.env.BUILD_OUTPUT_DIR || 'dist',
       rollupOptions: {
         input: {
           main:
@@ -582,6 +584,7 @@ export default defineConfig(() => {
           '*.config.ts',
           '**/*.d.ts',
           'dist/',
+          'dist-simple/',
         ],
       },
     },
