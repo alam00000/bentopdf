@@ -225,7 +225,7 @@ input[type='file']::file-selector-button {
   color: #39a0ed;
 }
 
-.page-thumbnail,
+#page-organizer .page-thumbnail,
 #file-list > li {
   cursor: grab;
 }
@@ -238,19 +238,6 @@ input[type='file']::file-selector-button {
   position: relative;
   width: 100%;
   height: 75vh;
-  overflow: auto;
-  border: 2px solid #374151;
-  border-radius: 0.5rem;
-  background-color: #1f2937;
-}
-
-/* This rule now ONLY applies to canvases in overlay mode */
-.compare-viewer-wrapper.overlay-mode canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
 }
 
 .compare-viewer-wrapper.side-by-side-mode {

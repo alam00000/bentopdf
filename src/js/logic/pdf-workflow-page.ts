@@ -1133,9 +1133,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
       { label: 'Top Right', value: 'top-right' },
     ],
     orientation: [
-      { label: 'Vertical', value: 'vertical' },
-      { label: 'Horizontal', value: 'horizontal' },
-      { label: 'Auto', value: 'auto' },
+      { label: 'Auto (Keep Original)', value: 'auto' },
       { label: 'Portrait', value: 'portrait' },
       { label: 'Landscape', value: 'landscape' },
     ],
@@ -1159,6 +1157,23 @@ function showNodeSettings(node: BaseWorkflowNode) {
       { label: 'A4', value: 'a4' },
       { label: 'Letter', value: 'letter' },
       { label: 'Legal', value: 'legal' },
+    ],
+    targetSize: [
+      { label: 'A4', value: 'A4' },
+      { label: 'Letter', value: 'Letter' },
+      { label: 'Legal', value: 'Legal' },
+      { label: 'A3', value: 'A3' },
+      { label: 'A5', value: 'A5' },
+      { label: 'Tabloid', value: 'Tabloid' },
+      { label: 'Custom', value: 'Custom' },
+    ],
+    scalingMode: [
+      { label: 'Fit (keep full page visible)', value: 'fit' },
+      { label: 'Fill (cover full target page)', value: 'fill' },
+    ],
+    customUnits: [
+      { label: 'Millimeters (mm)', value: 'mm' },
+      { label: 'Inches (in)', value: 'in' },
     ],
     numberFormat: [
       { label: 'Simple (1, 2, 3)', value: 'simple' },
@@ -1293,6 +1308,9 @@ function showNodeSettings(node: BaseWorkflowNode) {
     redactMode: {
       text: ['text'],
       area: ['x0', 'y0', 'x1', 'y1'],
+    },
+    targetSize: {
+      Custom: ['customWidth', 'customHeight', 'customUnits'],
     },
   };
 

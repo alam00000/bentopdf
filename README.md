@@ -296,6 +296,7 @@ BentoPDF is available in multiple languages:
 | Portuguese          | [![Portuguese](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/pt/common.json)             |
 | Turkish             | [![Turkish](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/tr/common.json)                |
 | Vietnamese          | [![Vietnamese](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/vi/common.json)             |
+| Korean              | [![Korean](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/ko/common.json)                 |
 
 Want to help translate BentoPDF into your language? Check out our [Translation Guide](TRANSLATION.md)!
 
@@ -549,7 +550,7 @@ The setup script loads the Docker image, extracts WASM files, and optionally sta
 **Step 1: Download the WASM packages** (on a machine with internet)
 
 ```bash
-npm pack @bentopdf/pymupdf-wasm@0.11.14
+npm pack @bentopdf/pymupdf-wasm@0.11.16
 npm pack @bentopdf/gs-wasm
 npm pack coherentpdf
 ```

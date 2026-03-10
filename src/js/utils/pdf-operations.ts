@@ -1,4 +1,4 @@
-import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
+import { PDFDocument, degrees, rgb, StandardFonts, PageSizes } from 'pdf-lib';
 
 export async function mergePdfs(
   pdfBytesList: Uint8Array[]
@@ -12,7 +12,7 @@ export async function mergePdfs(
     );
     copiedPages.forEach((page) => mergedDoc.addPage(page));
   }
-  return new Uint8Array(await mergedDoc.save());
+  return new Uint8Array(await mergedDoc.save({ addDefaultPage: false }));
 }
 
 export async function splitPdf(
@@ -437,4 +437,88 @@ export async function addPageNumbers(
   }
 
   return new Uint8Array(await pdfDoc.save());
+}
+
+export interface FixPageSizeOptions {
+  targetSize: string;
+  orientation: string;
+  scalingMode: string;
+  backgroundColor: { r: number; g: number; b: number };
+  customWidth?: number;
+  customHeight?: number;
+  customUnits?: string;
+}
+
+export async function fixPageSize(
+  pdfBytes: Uint8Array,
+  options: FixPageSizeOptions
+): Promise<Uint8Array> {
+  let targetWidth: number;
+  let targetHeight: number;
+
+  if (options.targetSize.toLowerCase() === 'custom') {
+    const w = options.customWidth ?? 210;
+    const h = options.customHeight ?? 297;
+    const units = (options.customUnits ?? 'mm').toLowerCase();
+    if (units === 'in') {
+      targetWidth = w * 72;
+      targetHeight = h * 72;
+    } else {
+      targetWidth = w * (72 / 25.4);
+      targetHeight = h * (72 / 25.4);
+    }
+  } else {
+    const selected =
+      PageSizes[options.targetSize as keyof typeof PageSizes] || PageSizes.A4;
+    targetWidth = selected[0];
+    targetHeight = selected[1];
+  }
+
+  const orientation = options.orientation.toLowerCase();
+  if (orientation === 'landscape' && targetWidth < targetHeight) {
+    [targetWidth, targetHeight] = [targetHeight, targetWidth];
+  } else if (orientation === 'portrait' && targetWidth > targetHeight) {
+    [targetWidth, targetHeight] = [targetHeight, targetWidth];
+  }
+
+  const sourceDoc = await PDFDocument.load(pdfBytes);
+  const outputDoc = await PDFDocument.create();
+
+  for (const sourcePage of sourceDoc.getPages()) {
+    const { width: sourceWidth, height: sourceHeight } = sourcePage.getSize();
+    const embeddedPage = await outputDoc.embedPage(sourcePage);
+
+    const outputPage = outputDoc.addPage([targetWidth, targetHeight]);
+    outputPage.drawRectangle({
+      x: 0,
+      y: 0,
+      width: targetWidth,
+      height: targetHeight,
+      color: rgb(
+        options.backgroundColor.r,
+        options.backgroundColor.g,
+        options.backgroundColor.b
+      ),
+    });
+
+    const scaleX = targetWidth / sourceWidth;
+    const scaleY = targetHeight / sourceHeight;
+    const useFill = options.scalingMode.toLowerCase() === 'fill';
+    const scale = useFill ? Math.max(scaleX, scaleY) : Math.min(scaleX, scaleY);
+
+    const scaledWidth = sourceWidth * scale;
+    const scaledHeight = sourceHeight * scale;
+
+    const x = (targetWidth - scaledWidth) / 2;
+    const y = (targetHeight - scaledHeight) / 2;
+
+    outputPage.drawPage(embeddedPage, {
+      x,
+      y,
+      width: scaledWidth,
+      height: scaledHeight,
+    });
+  }
+
+  return new Uint8Array(await outputDoc.save());
 }

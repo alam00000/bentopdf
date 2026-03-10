@@ -12,6 +12,7 @@ import {
   renderPagesProgressively,
   cleanupLazyRendering,
 } from '../utils/render-utils.js';
+import { initPagePreview } from '../utils/page-preview.js';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import JSZip from 'jszip';
@@ -153,18 +154,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const createWrapper = (canvas: HTMLCanvasElement, pageNumber: number) => {
         const wrapper = document.createElement('div');
         wrapper.className =
-          'page-thumbnail-wrapper p-1 border-2 border-transparent rounded-lg cursor-pointer hover:border-indigo-500 relative';
+          'page-thumbnail-wrapper p-2 border-2 border-gray-600 rounded-lg cursor-pointer hover:border-indigo-500 bg-gray-700 transition-colors relative group flex flex-col items-center gap-1';
         wrapper.dataset.pageIndex = (pageNumber - 1).toString();
+        wrapper.dataset.pageNumber = pageNumber.toString();
+
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'relative';
 
         const img = document.createElement('img');
         img.src = canvas.toDataURL();
-        img.className = 'rounded-md w-full h-auto';
+        img.className = 'rounded-md shadow-md max-w-full h-auto';
 
-        const p = document.createElement('p');
-        p.className = 'text-center text-xs mt-1 text-gray-300';
-        p.textContent = `Page ${pageNumber}`;
+        const pageNumDiv = document.createElement('div');
+        pageNumDiv.className =
+          'absolute top-1 left-1 bg-indigo-600 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none';
+        pageNumDiv.textContent = pageNumber.toString();
 
-        wrapper.append(img, p);
+        imgContainer.append(img, pageNumDiv);
+        wrapper.appendChild(imgContainer);
 
         const handleSelection = (e: any) => {
           e.preventDefault();
@@ -174,10 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (isSelected) {
             wrapper.classList.remove('selected', 'border-indigo-500');
-            wrapper.classList.add('border-transparent');
+            wrapper.classList.add('border-gray-600');
           } else {
             wrapper.classList.add('selected', 'border-indigo-500');
-            wrapper.classList.remove('border-transparent');
+            wrapper.classList.remove('border-gray-600');
           }
         };
 
@@ -203,6 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
           createIcons({ icons });
         },
       });
+
+      initPagePreview(container, pdf);
     } catch (error) {
       console.error('Error rendering visual selector:', error);
       showAlert('Error', 'Failed to render page previews.');

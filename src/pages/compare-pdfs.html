@@ -72,31 +72,446 @@
     <style>
       .compare-viewer-wrapper.overlay-mode {
         position: relative;
+        background: #ffffff;
+        overflow: hidden;
+        padding: 1.5rem;
       }
 
-      .compare-viewer-wrapper.overlay-mode #panel-1,
-      .compare-viewer-wrapper.overlay-mode #panel-2 {
-        position: absolute;
-        top: 0;
-        left: 0;
+      .compare-viewer-wrapper.overlay-mode #panel-1 {
         width: 100%;
         height: 100%;
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .compare-viewer-wrapper.overlay-mode #panel-1::-webkit-scrollbar {
+        display: none;
       }
 
       .compare-viewer-wrapper.overlay-mode #panel-2 {
+        position: absolute;
+        inset: 1.5rem;
+        overflow: hidden;
         pointer-events: none;
+        background: transparent;
+      }
+
+      .compare-viewer-wrapper.overlay-mode .compare-panel-label {
+        display: none;
+      }
+
+      .compare-viewer-wrapper.overlay-mode .compare-canvas-stage canvas {
+        position: static;
+        top: auto;
+        left: auto;
+        width: auto;
+        height: auto;
+      }
+
+      .compare-viewer-wrapper.overlay-mode
+        #panel-2
+        .compare-canvas-stage
+        canvas {
+        background: transparent;
       }
 
       .compare-viewer-wrapper.side-by-side-mode {
         display: flex;
+        gap: 0;
+        padding: 0;
+        background: #ffffff;
+      }
+
+      .compare-workspace {
+        display: grid;
         gap: 1rem;
+        grid-template-columns: minmax(0, 1fr) 20rem;
+        align-items: stretch;
       }
 
       .compare-viewer-wrapper.side-by-side-mode #panel-1,
       .compare-viewer-wrapper.side-by-side-mode #panel-2 {
         flex: 1;
         overflow: auto;
-        max-height: 70vh;
+        min-height: 0;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .compare-viewer-wrapper.side-by-side-mode #panel-1 {
+        border-right: 2px solid #cbd5e1;
+      }
+
+      .compare-panel {
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+        background: #ffffff;
+      }
+
+      .compare-panel-label {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #64748b;
+        background: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid #e2e8f0;
+        backdrop-filter: blur(4px);
+      }
+
+      .compare-canvas-stage {
+        --compare-stage-pad-top: 1.5rem;
+        --compare-stage-pad-x: 1.75rem;
+        --compare-stage-pad-bottom: 1.75rem;
+        position: relative;
+        width: max-content;
+        margin: 0 auto;
+        padding: var(--compare-stage-pad-top) var(--compare-stage-pad-x)
+          var(--compare-stage-pad-bottom);
+      }
+
+      .compare-canvas-stage canvas {
+        display: block;
+        background: #ffffff;
+      }
+
+      .compare-highlight-layer {
+        position: absolute;
+        inset: var(--compare-stage-pad-top) var(--compare-stage-pad-x)
+          var(--compare-stage-pad-bottom);
+        pointer-events: none;
+      }
+
+      .compare-highlight {
+        position: absolute;
+        border-radius: 2px;
+        border: none;
+      }
+
+      .compare-highlight.added {
+        background: rgba(34, 197, 94, 0.28);
+      }
+
+      .compare-highlight.removed,
+      .compare-highlight.page-removed {
+        background: rgba(239, 68, 68, 0.28);
+      }
+
+      .compare-highlight.modified {
+        background: rgba(245, 158, 11, 0.28);
+      }
+
+      .compare-highlight.moved {
+        background: rgba(168, 85, 247, 0.28);
+      }
+
+      .compare-highlight.style-changed {
+        background: rgba(59, 130, 246, 0.28);
+      }
+
+      .compare-highlight.active {
+        outline: 2px solid rgba(99, 102, 241, 0.7);
+        outline-offset: 1px;
+      }
+
+      .compare-placeholder {
+        position: absolute;
+        inset: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+        border: 1px dashed #94a3b8;
+        border-radius: 0.75rem;
+        color: #475569;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .compare-placeholder.hidden {
+        display: none;
+      }
+
+      .compare-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+        border-radius: 0.75rem;
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      .compare-sidebar-header {
+        padding: 0.5rem 0.75rem;
+        border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      }
+
+      .compare-sidebar-filters {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+      }
+
+      .compare-filter-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.375rem 0.75rem;
+      }
+
+      .compare-filter-group + .compare-filter-group {
+        border-top: 1px solid rgba(51, 65, 85, 0.25);
+      }
+
+      .compare-filter-label {
+        width: 100%;
+        font-size: 0.5625rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #64748b;
+      }
+
+      .compare-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.1875rem;
+        border-radius: 9999px;
+        padding: 0.125rem 0.5rem;
+        font-size: 0.625rem;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: all 0.15s;
+        white-space: nowrap;
+      }
+
+      .compare-pill.removed {
+        color: #fca5a5;
+        background: rgba(239, 68, 68, 0.1);
+        border-color: rgba(239, 68, 68, 0.15);
+      }
+
+      .compare-pill.removed.active {
+        background: rgba(239, 68, 68, 0.25);
+        border-color: rgba(239, 68, 68, 0.5);
+      }
+
+      .compare-pill.modified {
+        color: #fcd34d;
+        background: rgba(245, 158, 11, 0.1);
+        border-color: rgba(245, 158, 11, 0.15);
+      }
+
+      .compare-pill.modified.active {
+        background: rgba(245, 158, 11, 0.25);
+        border-color: rgba(245, 158, 11, 0.5);
+      }
+
+      .compare-pill.added {
+        color: #86efac;
+        background: rgba(34, 197, 94, 0.1);
+        border-color: rgba(34, 197, 94, 0.15);
+      }
+
+      .compare-pill.added.active {
+        background: rgba(34, 197, 94, 0.25);
+        border-color: rgba(34, 197, 94, 0.5);
+      }
+
+      .compare-pill.moved {
+        color: #c4b5fd;
+        background: rgba(168, 85, 247, 0.1);
+        border-color: rgba(168, 85, 247, 0.15);
+      }
+
+      .compare-pill.moved.active {
+        background: rgba(168, 85, 247, 0.25);
+        border-color: rgba(168, 85, 247, 0.5);
+      }
+
+      .compare-pill.style-changed {
+        color: #93c5fd;
+        background: rgba(59, 130, 246, 0.1);
+        border-color: rgba(59, 130, 246, 0.15);
+      }
+
+      .compare-pill.style-changed.active {
+        background: rgba(59, 130, 246, 0.25);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+
+      .compare-pill.category {
+        color: #a5b4fc;
+        background: rgba(99, 102, 241, 0.1);
+        border-color: rgba(99, 102, 241, 0.15);
+      }
+
+      .compare-pill.category.active {
+        background: rgba(99, 102, 241, 0.25);
+        border-color: rgba(99, 102, 241, 0.5);
+      }
+
+      .compare-pill.category.disabled {
+        opacity: 0.35;
+        text-decoration: line-through;
+      }
+
+      .compare-change-list {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 0.75rem;
+      }
+
+      #compare-change-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .compare-change-item {
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+        transition: background 0.15s;
+        border: 1px solid rgba(51, 65, 85, 0.3);
+        border-radius: 0.5rem;
+        font-size: 0.8125rem;
+        color: #cbd5e1;
+        line-height: 1.5;
+      }
+
+      .compare-change-item:hover {
+        background: rgba(99, 102, 241, 0.06);
+        border-color: rgba(99, 102, 241, 0.2);
+      }
+
+      .compare-change-item.active {
+        background: rgba(99, 102, 241, 0.1);
+        border-color: rgba(99, 102, 241, 0.3);
+      }
+
+      .compare-section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.25rem 0;
+        margin-top: 0.25rem;
+      }
+
+      .compare-section-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .compare-section-label.added,
+      .compare-section-label.page-added {
+        color: #86efac;
+      }
+      .compare-section-label.removed,
+      .compare-section-label.page-removed {
+        color: #fca5a5;
+      }
+      .compare-section-label.modified {
+        color: #fcd34d;
+      }
+      .compare-section-label.moved {
+        color: #c4b5fd;
+      }
+      .compare-section-label.style-changed {
+        color: #93c5fd;
+      }
+
+      .compare-section-count {
+        font-size: 0.625rem;
+        font-weight: 600;
+        color: #64748b;
+      }
+
+      .compare-section-line {
+        flex: 1;
+        height: 1px;
+        background: rgba(51, 65, 85, 0.4);
+      }
+
+      .compare-change-dot {
+        width: 0.375rem;
+        height: 0.375rem;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .compare-change-dot.added {
+        background: #22c55e;
+      }
+      .compare-change-dot.removed {
+        background: #ef4444;
+      }
+      .compare-change-dot.modified {
+        background: #f59e0b;
+      }
+      .compare-change-dot.page-added {
+        background: #22c55e;
+      }
+      .compare-change-dot.page-removed {
+        background: #ef4444;
+      }
+      .compare-change-dot.moved {
+        background: #a855f7;
+      }
+      .compare-change-dot.style-changed {
+        background: #3b82f6;
+      }
+
+      .compare-change-desc {
+        font-size: 0.8125rem;
+        color: #e2e8f0;
+        overflow-wrap: anywhere;
+        white-space: pre-line;
+      }
+
+      .compare-change-empty {
+        padding: 2rem 1rem;
+        font-size: 0.8125rem;
+        color: #64748b;
+        text-align: center;
+      }
+
+      @media (max-width: 1023px) {
+        .compare-workspace {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .compare-sidebar {
+          height: auto;
+          max-height: 24rem;
+        }
+
+        .compare-viewer-wrapper.side-by-side-mode {
+          gap: 1rem;
+          padding: 1rem;
+        }
+
+        .compare-canvas-stage {
+          --compare-stage-pad-top: 1rem;
+          --compare-stage-pad-x: 1rem;
+          --compare-stage-pad-bottom: 1rem;
+        }
       }
     </style>
 
@@ -134,7 +549,7 @@
     >
       <div
         id="tool-uploader"
-        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-5xl w-full text-gray-200 border border-gray-700"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-[96rem] w-full text-gray-200 border border-gray-700"
       >
         <button
           id="back-to-tools"
@@ -150,11 +565,10 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:comparePdfs.name"
         >
-          Compare Pdfs Free Online - Fast & Secure
+          Compare PDFs
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:comparePdfs.subtitle">
-          Upload two PDF files to compare them side by side or with overlay
-          mode.
+          Compare two PDFs side by side.
         </p>
 
         <!-- File Upload Areas -->
@@ -201,69 +615,105 @@
 
         <!-- Compare Viewer (hidden until both files loaded) -->
         <div id="compare-viewer" class="hidden">
-          <!-- Unified Toolbar -->
+          <!-- Toolbar -->
           <div
-            class="flex flex-wrap items-center justify-center gap-4 mb-4 p-3 bg-gray-900 rounded-lg border border-gray-700"
+            class="flex flex-wrap items-center gap-3 mb-3 p-2 bg-gray-900 rounded-lg border border-gray-700"
           >
-            <!-- Page Navigation -->
             <button
               id="prev-page-compare"
-              class="btn p-2 rounded-full bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
+              class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
               disabled
+              title="Previous page"
             >
-              <i data-lucide="chevron-left"></i>
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
             </button>
-            <span class="text-white font-medium">
-              Page <span id="current-page-display-compare">1</span> of
+            <span class="text-sm text-white font-medium">
+              Page <span id="current-page-display-compare">1</span> /
               <span id="total-pages-display-compare">1</span>
             </span>
             <button
               id="next-page-compare"
-              class="btn p-2 rounded-full bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
+              class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
               disabled
+              title="Next page"
             >
-              <i data-lucide="chevron-right"></i>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
             </button>
 
-            <!-- Divider -->
-            <div
-              class="border-l border-gray-600 h-6 mx-2 hidden sm:block"
-            ></div>
+            <div class="border-l border-gray-700 h-5 mx-1"></div>
 
-            <!-- View Mode Buttons -->
-            <div class="bg-gray-700 p-1 rounded-md flex gap-1">
+            <div class="bg-gray-700 p-0.5 rounded flex gap-0.5">
               <button
                 id="view-mode-overlay"
-                class="btn bg-indigo-600 px-3 py-1 rounded text-sm font-semibold"
+                class="btn bg-indigo-600 px-2.5 py-1 rounded text-xs font-semibold"
               >
                 Overlay
               </button>
               <button
                 id="view-mode-side"
-                class="btn px-3 py-1 rounded text-sm font-semibold"
+                class="btn px-2.5 py-1 rounded text-xs font-semibold"
               >
                 Side-by-Side
               </button>
             </div>
 
-            <!-- Divider -->
-            <div
-              class="border-l border-gray-600 h-6 mx-2 hidden sm:block"
-            ></div>
+            <div class="border-l border-gray-700 h-5 mx-1"></div>
 
-            <!-- Overlay Controls -->
-            <div id="overlay-controls" class="flex items-center gap-2">
+            <button
+              id="prev-change-btn"
+              class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold disabled:opacity-50"
+              disabled
+              title="Previous change"
+            >
+              <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
+            </button>
+            <button
+              id="next-change-btn"
+              class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold disabled:opacity-50"
+              disabled
+              title="Next change"
+            >
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+
+            <div class="border-l border-gray-700 h-5 mx-1"></div>
+
+            <button
+              id="zoom-out-btn"
+              class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
+              title="Zoom out"
+            >
+              <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+            </button>
+            <span
+              id="zoom-level-display"
+              class="text-xs text-gray-300 font-medium min-w-[3rem] text-center select-none"
+              >100%</span
+            >
+            <button
+              id="zoom-in-btn"
+              class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
+              title="Zoom in"
+            >
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            </button>
+            <button
+              id="zoom-reset-btn"
+              class="btn px-2.5 py-1 rounded bg-gray-700 hover:bg-gray-600 text-xs font-semibold"
+              title="Reset zoom to fit"
+            >
+              Fit
+            </button>
+
+            <div class="flex-1"></div>
+
+            <div id="overlay-controls" class="hidden flex items-center gap-2">
               <button
                 id="flicker-btn"
-                class="btn bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-md text-sm font-semibold"
+                class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold"
               >
                 Flicker
               </button>
-              <label
-                for="opacity-slider"
-                class="text-sm font-medium text-gray-300"
-                >Opacity:</label
-              >
               <input
                 type="range"
                 id="opacity-slider"
@@ -271,44 +721,215 @@
                 max="1"
                 step="0.05"
                 value="0.5"
-                class="w-24 accent-indigo-500"
+                class="w-20 accent-indigo-500"
               />
             </div>
 
-            <!-- Side-by-side Controls (hidden initially) -->
-            <div
-              id="side-by-side-controls"
-              class="hidden flex items-center gap-2"
-            >
+            <div id="side-by-side-controls" class="flex items-center gap-2">
               <label
-                class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer"
+                class="flex items-center gap-1.5 text-xs text-gray-300 cursor-pointer"
               >
                 <input
                   type="checkbox"
                   id="sync-scroll-toggle"
                   checked
-                  class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500"
+                  class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-700 border-gray-600"
                 />
-                Sync Scrolling
+                Sync scroll
               </label>
+              <label
+                class="flex items-center gap-1.5 text-xs text-gray-300 cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  id="ocr-toggle"
+                  checked
+                  class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-700 border-gray-600"
+                />
+                OCR
+              </label>
+            </div>
+
+            <div class="relative" id="export-dropdown-wrapper">
+              <button
+                id="export-dropdown-btn"
+                class="btn bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 disabled:opacity-50"
+                disabled
+              >
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                Export
+                <i data-lucide="chevron-down" class="w-3 h-3"></i>
+              </button>
+              <div
+                id="export-dropdown-menu"
+                class="hidden absolute right-0 top-full mt-1 w-48 bg-gray-800 border border-gray-600 rounded-lg shadow-xl z-50 py-1"
+              >
+                <div
+                  class="px-3 py-1.5 text-[10px] font-semibold text-gray-400 uppercase tracking-wider"
+                >
+                  Export as PDF
+                </div>
+                <button
+                  data-export-mode="split"
+                  class="export-menu-item w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
+                >
+                  <i data-lucide="columns-2" class="w-4 h-4 text-gray-400"></i>
+                  Split view
+                </button>
+                <button
+                  data-export-mode="alternating"
+                  class="export-menu-item w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
+                >
+                  <i data-lucide="layers" class="w-4 h-4 text-gray-400"></i>
+                  Alternating
+                </button>
+                <button
+                  data-export-mode="left"
+                  class="export-menu-item w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
+                >
+                  <i data-lucide="columns-2" class="w-4 h-4 text-gray-400"></i>
+                  Left Document
+                </button>
+                <button
+                  data-export-mode="right"
+                  class="export-menu-item w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
+                >
+                  <i data-lucide="columns-2" class="w-4 h-4 text-gray-400"></i>
+                  Right Document
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Viewer Wrapper -->
-          <div
-            id="compare-viewer-wrapper"
-            class="compare-viewer-wrapper overlay-mode bg-gray-900 rounded-lg border border-gray-700 min-h-[400px] relative"
-          >
-            <div id="panel-1" class="overflow-auto">
-              <canvas id="canvas-compare-1" class="block mx-auto"></canvas>
+          <div class="compare-workspace">
+            <div
+              id="compare-viewer-wrapper"
+              class="compare-viewer-wrapper side-by-side-mode border border-slate-200 relative"
+            >
+              <div id="panel-1" class="compare-panel overflow-auto">
+                <div class="compare-panel-label" id="compare-panel-label-1">
+                  Original
+                </div>
+                <div class="compare-canvas-stage">
+                  <canvas id="canvas-compare-1" class="block mx-auto"></canvas>
+                  <div id="highlights-1" class="compare-highlight-layer"></div>
+                  <div
+                    id="placeholder-1"
+                    class="compare-placeholder hidden"
+                  ></div>
+                </div>
+              </div>
+              <div id="panel-2" class="compare-panel overflow-auto">
+                <div class="compare-panel-label" id="compare-panel-label-2">
+                  Modified
+                </div>
+                <div class="compare-canvas-stage">
+                  <canvas
+                    id="canvas-compare-2"
+                    class="block mx-auto"
+                    style="opacity: 1"
+                  ></canvas>
+                  <div id="highlights-2" class="compare-highlight-layer"></div>
+                  <div
+                    id="placeholder-2"
+                    class="compare-placeholder hidden"
+                  ></div>
+                </div>
+              </div>
             </div>
-            <div id="panel-2" class="overflow-auto">
-              <canvas
-                id="canvas-compare-2"
-                class="block mx-auto"
-                style="opacity: 0.5"
-              ></canvas>
-            </div>
+
+            <aside class="compare-sidebar">
+              <div class="compare-sidebar-header">
+                <div class="relative">
+                  <span
+                    class="absolute inset-y-0 left-0 flex items-center pl-3"
+                  >
+                    <i data-lucide="search" class="w-4 h-4 text-gray-400"></i>
+                  </span>
+                  <input
+                    type="text"
+                    id="compare-search-input"
+                    placeholder="Search changes..."
+                    class="w-full pl-9 pr-3 py-2 bg-gray-700 text-white text-sm border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+              </div>
+
+              <div class="compare-sidebar-filters">
+                <div class="compare-filter-group">
+                  <div class="compare-filter-label">Change Type</div>
+                  <button id="filter-removed" class="compare-pill removed">
+                    <span class="compare-change-dot removed"></span>
+                    <span id="summary-removed-count">0</span> Deleted
+                  </button>
+                  <button id="filter-added" class="compare-pill added">
+                    <span class="compare-change-dot added"></span>
+                    <span id="summary-added-count">0</span> Added
+                  </button>
+                  <button id="filter-modified" class="compare-pill modified">
+                    <span class="compare-change-dot modified"></span>
+                    <span id="summary-modified-count">0</span> Modified
+                  </button>
+                  <button id="filter-moved" class="compare-pill moved">
+                    <span class="compare-change-dot moved"></span>
+                    <span id="summary-moved-count">0</span> Moved
+                  </button>
+                  <button
+                    id="filter-style-changed"
+                    class="compare-pill style-changed"
+                  >
+                    <span class="compare-change-dot style-changed"></span>
+                    <span id="summary-style-changed-count">0</span> Style
+                  </button>
+                </div>
+                <div class="compare-filter-group">
+                  <div class="compare-filter-label">Content</div>
+                  <button
+                    id="category-text"
+                    class="compare-pill category active"
+                  >
+                    <span id="category-count-text">0</span> Text
+                  </button>
+                  <button
+                    id="category-image"
+                    class="compare-pill category active"
+                  >
+                    <span id="category-count-image">0</span> Images
+                  </button>
+                  <button
+                    id="category-header-footer"
+                    class="compare-pill category active"
+                  >
+                    <span id="category-count-header-footer">0</span> Headers
+                  </button>
+                  <button
+                    id="category-annotation"
+                    class="compare-pill category active"
+                  >
+                    <span id="category-count-annotation">0</span> Annotations
+                  </button>
+                  <button
+                    id="category-formatting"
+                    class="compare-pill category active"
+                  >
+                    <span id="category-count-formatting">0</span> Formatting
+                  </button>
+                  <button
+                    id="category-background"
+                    class="compare-pill category active"
+                  >
+                    <span id="category-count-background">0</span> Backgrounds
+                  </button>
+                </div>
+              </div>
+
+              <div class="compare-change-list">
+                <div id="change-list-empty" class="compare-change-empty">
+                  Upload two PDFs to see differences.
+                </div>
+                <div id="compare-change-list" class="hidden"></div>
+              </div>
+            </aside>
           </div>
         </div>
       </div>

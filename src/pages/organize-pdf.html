@@ -119,23 +119,13 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:duplicateOrganize.name"
         >
-          Organize PDF Pages Free - Reorder PDFs Online
+          Duplicate & Organize
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:duplicateOrganize.subtitle"
         >
-          Drag pages to reorder them. Use the
-          <i
-            data-lucide="copy-plus"
-            class="inline-block w-4 h-4 mx-1 align-text-bottom text-green-500"
-          ></i>
-          icon to duplicate a page or the
-          <i
-            data-lucide="x-circle"
-            class="inline-block w-4 h-4 mx-1 align-text-bottom text-red-400"
-          ></i>
-          icon to delete it.
+          Duplicate, reorder, and delete pages.
         </p>
 
         <!-- Drop Zone -->
@@ -182,24 +172,25 @@
         ></div>
 
         <!-- Advanced Settings -->
-        <div id="advanced-settings" class="hidden mt-6">
-          <h3 class="text-lg font-semibold text-white mb-2">
-            Advanced Settings
-          </h3>
-          <div class="bg-gray-700 p-4 rounded-lg">
+        <div id="advanced-settings" class="hidden mt-6 space-y-3">
+          <h3 class="text-lg font-semibold text-white">Advanced Settings</h3>
+          <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
             <label
               for="page-order-input"
               class="block text-sm font-medium text-gray-300 mb-2"
               >Page Order (comma-separated)</label
             >
-            <div class="flex gap-2">
+            <div class="flex gap-3">
               <input
                 type="text"
                 id="page-order-input"
-                class="w-full bg-gray-900 text-white rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 border border-gray-600"
+                class="flex-1 bg-gray-900 text-white rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-600 placeholder-gray-500"
                 placeholder="e.g., 3,1,4,2"
               />
-              <button id="apply-order-btn" class="btn-secondary">
+              <button
+                id="apply-order-btn"
+                class="btn-gradient whitespace-nowrap !px-5 !py-2.5 text-sm"
+              >
                 Apply Order
               </button>
             </div>

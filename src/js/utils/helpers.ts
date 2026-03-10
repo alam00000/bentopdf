@@ -29,7 +29,7 @@ export function getStandardPageName(width: any, height: any) {
 }
 
 export function convertPoints(points: any, unit: any) {
-  let result = 0;
+  let result: number;
   switch (unit) {
     case 'in':
       result = points / 72;
@@ -459,4 +459,23 @@ export function formatRawDate(raw: string): string {
     // Fallback to raw string if parsing fails
   }
   return raw;
+}
+
+/**
+ * Returns a sanitized PDF filename.
+ *
+ * The provided filename is processed as follows:
+ * - Removes a trailing `.pdf` file extension (case-insensitive)
+ * - Trims leading and trailing whitespace
+ * - Truncates the name to a maximum of 80 characters
+ *
+ * @param filename The original filename (including extension)
+ * @returns The sanitized filename without the `.pdf` extension, limited to 80 characters
+ */
+export function getCleanPdfFilename(filename: string): string {
+  let clean = filename.replace(/\.pdf$/i, '').trim();
+  if (clean.length > 80) {
+    clean = clean.slice(0, 80);
+  }
+  return clean;
 }

@@ -159,7 +159,7 @@ async function renderThumbnails() {
 
   for (let i = 1; i <= deleteState.totalPages; i++) {
     const page = await deleteState.pdfJsDoc.getPage(i);
-    const viewport = page.getViewport({ scale: 0.3 });
+    const viewport = page.getViewport({ scale: 1 });
 
     const canvas = document.createElement('canvas');
     canvas.width = viewport.width;

@@ -1,5 +1,5 @@
 // This file centralizes the definition of all available tools, organized by category.
-export const categories = [
+const baseCategories = [
   {
     name: 'Popular Tools',
     tools: [
@@ -795,3 +795,16 @@ export const categories = [
     ],
   },
 ];
+
+const getToolIdFromHref = (href: string): string => {
+  const match = href.match(/\/([^/]+)\.html$/);
+  return match?.[1] ?? href;
+};
+
+export const categories = baseCategories.map((category) => ({
+  ...category,
+  tools: category.tools.map((tool) => ({
+    ...tool,
+    id: getToolIdFromHref(tool.href),
+  })),
+}));

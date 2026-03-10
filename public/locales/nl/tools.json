@@ -93,7 +93,7 @@
   "addWatermark": {
     "name": "Watermerk toevoegen",
     "subtitle": "Tekst of een afbeelding over de pagina's van je PDF stempelen.",
-    "applyToAllPages": "Toepassen op alle pagina's"
+    "applyToAllPages": "Op alle pagina's toepassen"
   },
   "headerFooter": {
     "name": "Koptekst & Voettekst",
@@ -163,7 +163,8 @@
   },
   "removeBlankPages": {
     "name": "Blanco pagina's Verwijderen",
-    "subtitle": "Automatisch blanco pagina's detecteren en verwijderen."
+    "subtitle": "Automatisch blanco pagina's detecteren en verwijderen.",
+    "sensitivityHint": "Hoger = strenger, alleen volledig lege pagina's. Lager = staat pagina's met enige inhoud toe."
   },
   "imageToPdf": {
     "name": "Afbeelding naar PDF",
@@ -291,7 +292,47 @@
   },
   "comparePdfs": {
     "name": "PDF's Vergelijken",
-    "subtitle": "Twee PDF's zij-aan-zij vergelijken."
+    "subtitle": "Twee PDF's zij-aan-zij vergelijken.",
+    "firstPdf": "Eerste PDF",
+    "secondPdf": "Tweede PDF",
+    "clickOrDrop": "Klik of sleep neer",
+    "page": "Pagina",
+    "overlay": "Overlay",
+    "sideBySide": "Zij aan zij",
+    "flicker": "Flikkeren",
+    "syncScroll": "Scroll synchroniseren",
+    "export": "Exporteren",
+    "exportAsPdf": "Exporteren als PDF",
+    "splitView": "Gesplitste weergave",
+    "alternating": "Afwisselend",
+    "leftDocument": "Linkerdocument",
+    "rightDocument": "Rechterdocument",
+    "original": "Origineel",
+    "modified": "Gewijzigd",
+    "searchChanges": "Wijzigingen zoeken...",
+    "deleted": "Verwijderd",
+    "added": "Toegevoegd",
+    "prevPage": "Vorige pagina",
+    "nextPage": "Volgende pagina",
+    "prevChange": "Vorige wijziging",
+    "nextChange": "Volgende wijziging",
+    "uploadTwoPdfs": "Upload twee PDF's om de verschillen te zien.",
+    "noDifferences": "Geen verschillen gedetecteerd op deze pagina.",
+    "noMatchingChanges": "Geen wijzigingen komen overeen met het huidige filter.",
+    "pageNotExist": "Pagina {{page}} bestaat niet in deze PDF.",
+    "noPairedPage": "Geen gekoppelde pagina voor deze zijde.",
+    "buildingModel": "Model voor paginakoppeling wordt opgebouwd...",
+    "indexingPdf": "PDF {{num}}, pagina {{page}} van {{total}} wordt geïndexeerd...",
+    "loadingComparison": "Vergelijking {{current}} van {{total}} wordt geladen...",
+    "runningOcr": "OCR wordt uitgevoerd op pagina {{page}}...",
+    "preparingExport": "PDF-export wordt voorbereid...",
+    "renderingPage": "Pagina {{current}} van {{total}} wordt gerenderd...",
+    "exportError": "Exportfout",
+    "exportFailed": "Vergelijkings-PDF kon niet worden geëxporteerd.",
+    "loadingFile": "{{name}} wordt geladen...",
+    "invalidFile": "Ongeldig bestand",
+    "invalidFileMsg": "Selecteer een geldig PDF-bestand.",
+    "loadError": "Kon PDF niet laden. Het bestand kan beschadigd zijn of met een wachtwoord beveiligd zijn."
   },
   "posterizePdf": {
     "name": "PDF-Poster",

@@ -98,38 +98,40 @@ function createPageWrapper(
 
   const rotateLeftBtn = document.createElement('button');
   rotateLeftBtn.className =
-    'flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-xs';
+    'flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-xs cursor-pointer';
   rotateLeftBtn.innerHTML = '<i data-lucide="rotate-ccw" class="w-3 h-3"></i>';
-  rotateLeftBtn.onclick = function (e) {
+  rotateLeftBtn.addEventListener('click', function (e) {
     e.stopPropagation();
+    e.preventDefault();
     pageState.rotations[pageIndex] = pageState.rotations[pageIndex] - 90;
     const wrapper = container.querySelector(
       '.thumbnail-wrapper'
     ) as HTMLElement;
     if (wrapper)
       wrapper.style.transform = `rotate(${pageState.rotations[pageIndex]}deg)`;
-  };
+  });
 
   const rotateRightBtn = document.createElement('button');
   rotateRightBtn.className =
-    'flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-xs';
+    'flex items-center gap-1 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded border border-gray-600 text-xs cursor-pointer';
   rotateRightBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-3 h-3"></i>';
-  rotateRightBtn.onclick = function (e) {
+  rotateRightBtn.addEventListener('click', function (e) {
     e.stopPropagation();
+    e.preventDefault();
     pageState.rotations[pageIndex] = pageState.rotations[pageIndex] + 90;
     const wrapper = container.querySelector(
       '.thumbnail-wrapper'
     ) as HTMLElement;
     if (wrapper)
       wrapper.style.transform = `rotate(${pageState.rotations[pageIndex]}deg)`;
-  };
+  });
 
   controls.append(rotateLeftBtn, rotateRightBtn);
   container.appendChild(controls);
 
-  // Re-create icons for the new element
+  // Re-create icons scoped to this container only
   setTimeout(function () {
-    createIcons({ icons });
+    createIcons({ icons, nameAttr: 'data-lucide', attrs: {} });
   }, 0);
 
   return container;

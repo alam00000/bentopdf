@@ -24,7 +24,7 @@ export interface RenderConfig {
  */
 interface PageTask {
   pageNumber: number;
-  pdfjsDoc: any;
+  pdfjsDoc: pdfjsLib.PDFDocumentProxy;
   fileName?: string;
   container: HTMLElement;
   scale?: number;
@@ -92,9 +92,9 @@ export function createPlaceholder(
  * Renders a single page to canvas
  */
 export async function renderPageToCanvas(
-  pdfjsDoc: any,
+  pdfjsDoc: pdfjsLib.PDFDocumentProxy,
   pageNumber: number,
-  scale: number = 0.5
+  scale: number = 1
 ): Promise<HTMLCanvasElement> {
   const page = await pdfjsDoc.getPage(pageNumber);
   const viewport = page.getViewport({ scale });
@@ -260,7 +260,7 @@ function requestIdleCallbackPolyfill(callback: () => void): void {
  * Main function to render pages progressively with optional lazy loading
  */
 export async function renderPagesProgressively(
-  pdfjsDoc: any,
+  pdfjsDoc: pdfjsLib.PDFDocumentProxy,
   container: HTMLElement,
   createWrapper: (
     canvas: HTMLCanvasElement,
@@ -298,7 +298,7 @@ export async function renderPagesProgressively(
       pageNumber: i,
       pdfjsDoc,
       container,
-      scale: useLazyLoading ? 0.3 : 0.5,
+      scale: useLazyLoading ? 0.5 : 1,
       createWrapper,
       placeholderElement: placeholders[i - 1],
     });

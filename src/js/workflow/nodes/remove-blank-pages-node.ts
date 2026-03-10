@@ -23,7 +23,7 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
 
   private async isPageBlank(
     page: pdfjsLib.PDFPageProxy,
-    threshold: number
+    maxNonWhitePercent: number
   ): Promise<boolean> {
     const viewport = page.getViewport({ scale: 0.5 });
     const canvas = document.createElement('canvas');
@@ -34,12 +34,14 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
 
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
-    let totalBrightness = 0;
+    const totalPixels = data.length / 4;
+    let nonWhitePixels = 0;
     for (let i = 0; i < data.length; i += 4) {
-      totalBrightness += (data[i] + data[i + 1] + data[i + 2]) / 3;
+      const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
+      if (brightness < 240) nonWhitePixels++;
     }
-    const avgBrightness = totalBrightness / (data.length / 4);
-    return avgBrightness > threshold;
+    const nonWhitePercent = (nonWhitePixels / totalPixels) * 100;
+    return nonWhitePercent <= maxNonWhitePercent;
   }
 
   async data(
@@ -50,7 +52,10 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
     const threshCtrl = this.controls['threshold'] as
       | ClassicPreset.InputControl<'number'>
       | undefined;
-    const threshold = Math.max(200, Math.min(255, threshCtrl?.value ?? 250));
+    const maxNonWhitePercent = Math.max(
+      0.1,
+      Math.min(5, threshCtrl?.value ?? 0.5)
+    );
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
@@ -61,7 +66,7 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
 
         for (let i = 1; i <= pdfjsDoc.numPages; i++) {
           const page = await pdfjsDoc.getPage(i);
-          const blank = await this.isPageBlank(page, threshold);
+          const blank = await this.isPageBlank(page, maxNonWhitePercent);
           if (!blank) {
             nonBlankIndices.push(i - 1);
           } else {

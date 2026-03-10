@@ -261,6 +261,9 @@ async function generateI18nPages() {
       if (processed % 10 === 0 || processed === total) {
         console.log(`   Progress: ${processed}/${total} pages`);
       }
+
+      // Clean up JSDOM instances
+      await new Promise((resolve) => setImmediate(resolve));
     }
 
     updateEnglishFile(filePath, originalContent);

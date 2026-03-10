@@ -1,5 +1,18 @@
 import { afterEach, vi } from 'vitest';
 
+class TestDOMMatrix {
+  a = 1;
+  b = 0;
+  c = 0;
+  d = 1;
+  e = 0;
+  f = 0;
+}
+
+if (typeof globalThis.DOMMatrix === 'undefined') {
+  globalThis.DOMMatrix = TestDOMMatrix as unknown as typeof DOMMatrix;
+}
+
 afterEach(() => {
   document.body.innerHTML = '';
   document.head.innerHTML = '';

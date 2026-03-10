@@ -56,8 +56,9 @@ You can also host your own instance of BentoPDF using GitHub pages.  An advantag
 2. From your fork, go to `Settings->Pages`, and change the 'Source' to 'GitHub Actions'
 3. Go to `Settings->Secrets and Variables > Actions`, then select 'Variables', and add the repository variable `BASE_URL`.  Set the value to `/bentopdf`.  *If you've renamed the repo to something other than bentopdf, put that here*.
 4. Go to `Actions` in the top menu, and select 'I understand' to enable Actions
-5. Within Actions, on the left, select 'Deploy static content to Pages', and then on the right select 'Run workflow', and in the dropdown, 'Run Workflow'.  The action will not run to build BentoPDF and deploy it to GitHub Pages.
+5. Within Actions, on the left, select 'Deploy static content to Pages', and then on the right select 'Run workflow', and in the dropdown, 'Run Workflow'.  The action will now run to build BentoPDF and deploy it to GitHub Pages.
 
 When the build completes, you can find the website at `https://[your-github-username]/bentopdf`
+
 
 If/when you merge changes from the source BentoPDF repository, the build and deploy action will automatically be kicked off and the new version will be automatically deployed to GitHub Pages.

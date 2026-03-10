@@ -9,6 +9,7 @@ import {
   renderPagesProgressively,
   cleanupLazyRendering,
 } from '../utils/render-utils.js';
+import { initPagePreview } from '../utils/page-preview.js';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import {
   showWasmRequiredDialog,
@@ -210,6 +211,8 @@ async function renderPageMergeThumbnails() {
           },
         }
       );
+
+      initPagePreview(container, pdfjsDoc);
     }
 
     mergeState.cachedThumbnails = true;

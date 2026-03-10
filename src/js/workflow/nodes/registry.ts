@@ -13,6 +13,7 @@ import { ReversePagesNode } from './reverse-pages-node';
 import { AddBlankPageNode } from './add-blank-page-node';
 import { DividePagesNode } from './divide-pages-node';
 import { NUpNode } from './n-up-node';
+import { FixPageSizeNode } from './fix-page-size-node';
 import { CombineSinglePageNode } from './combine-single-page-node';
 import { CropNode } from './crop-node';
 import { GreyscaleNode } from './greyscale-node';
@@ -298,6 +299,13 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-squares-four',
     description: 'Arrange multiple pages per sheet',
     factory: () => new NUpNode(),
+  },
+  FixPageSizeNode: {
+    label: 'Fix Page Size',
+    category: 'Organize & Manage',
+    icon: 'ph-frame-corners',
+    description: 'Standardize all pages to a target size',
+    factory: () => new FixPageSizeNode(),
   },
   CombineSinglePageNode: {
     label: 'Combine to Single Page',
