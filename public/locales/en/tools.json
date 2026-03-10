@@ -223,7 +223,18 @@
     "name": "PDF to PNG",
     "subtitle": "Convert each PDF page into a PNG image.",
     "imageScale": "Image Scale",
-    "imageScaleExplanation": "Higher scale = better quality but larger file size"
+    "imageScaleExplanation": "Higher scale = better quality but larger file size",
+    "alert": {
+      "invalidFile": "Invalid File",
+      "invalidFileExplanation": "Please upload a PDF file.",
+      "noFile": "No File",
+      "noFileExplanation": "Please upload a PDF file first.",
+      "conversionSuccess": "PDF converted to PNGs successfully!",
+      "conversionError": "Failed to convert PDF to PNG. The file might be corrupted."
+    },
+    "loader": {
+      "converting": "Converting to PNG..."
+    }
   },
   "pdfToWebp": {
     "name": "PDF to WebP",
