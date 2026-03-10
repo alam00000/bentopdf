@@ -264,7 +264,8 @@
     "success": "Success",
     "file": "File",
     "files": "Files",
-    "close": "Close"
+    "close": "Close",
+    "convert": "Convert"
   },
   "about": {
     "hero": {

@@ -204,28 +204,23 @@
   },
   "pdfToJpg": {
     "name": "PDF to JPG",
-    "subtitle": "Convert each PDF page into a JPG image.",
-    "convertButton": "Convert"
+    "subtitle": "Convert each PDF page into a JPG image."
   },
   "pdfToPng": {
     "name": "PDF to PNG",
-    "subtitle": "Convert each PDF page into a PNG image.",
-    "convertButton": "Convert"
+    "subtitle": "Convert each PDF page into a PNG image."
   },
   "pdfToWebp": {
     "name": "PDF to WebP",
-    "subtitle": "Convert each PDF page into a WebP image.",
-    "convertButton": "Convert"
+    "subtitle": "Convert each PDF page into a WebP image."
   },
   "pdfToBmp": {
     "name": "PDF to BMP",
-    "subtitle": "Convert each PDF page into a BMP image.",
-    "convertButton": "Convert"
+    "subtitle": "Convert each PDF page into a BMP image."
   },
   "pdfToTiff": {
     "name": "PDF to TIFF",
-    "subtitle": "Convert each PDF page into a TIFF image.",
-    "convertButton": "Convert"
+    "subtitle": "Convert each PDF page into a TIFF image."
   },
   "pdfToGreyscale": {
     "name": "PDF to Greyscale",

@@ -255,7 +255,8 @@
     "success": "Erfolg",
     "file": "Datei",
     "files": "Dateien",
-    "close": "Schließen"
+    "close": "Schließen",
+    "convert": "Konvertieren"
   },
   "about": {
     "hero": {

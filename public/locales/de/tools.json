@@ -204,28 +204,23 @@
   },
   "pdfToJpg": {
     "name": "PDF zu JPG",
-    "subtitle": "Jede PDF-Seite in ein JPG-Bild konvertieren.",
-    "convertButton": "Konvertieren"
+    "subtitle": "Jede PDF-Seite in ein JPG-Bild konvertieren."
   },
   "pdfToPng": {
     "name": "PDF zu PNG",
-    "subtitle": "Jede PDF-Seite in ein PNG-Bild konvertieren.",
-    "convertButton": "Konvertieren"
+    "subtitle": "Jede PDF-Seite in ein PNG-Bild konvertieren."
   },
   "pdfToWebp": {
     "name": "PDF zu WebP",
-    "subtitle": "Jede PDF-Seite in ein WebP-Bild konvertieren.",
-    "convertButton": "Konvertieren"
+    "subtitle": "Jede PDF-Seite in ein WebP-Bild konvertieren."
   },
   "pdfToBmp": {
     "name": "PDF zu BMP",
-    "subtitle": "Jede PDF-Seite in ein BMP-Bild konvertieren.",
-    "convertButton": "Konvertieren"
+    "subtitle": "Jede PDF-Seite in ein BMP-Bild konvertieren."
   },
   "pdfToTiff": {
     "name": "PDF zu TIFF",
-    "subtitle": "Jede PDF-Seite in ein TIFF-Bild konvertieren.",
-    "convertButton": "Konvertieren"
+    "subtitle": "Jede PDF-Seite in ein TIFF-Bild konvertieren."
   },
   "pdfToGreyscale": {
     "name": "PDF zu Graustufen",
