@@ -212,7 +212,9 @@
   },
   "pdfToWebp": {
     "name": "PDF to WebP",
-    "subtitle": "Convert each PDF page into a WebP image."
+    "subtitle": "Convert each PDF page into a WebP image.",
+    "imageQuality": "Image Quality",
+    "imageQualityExplanation": "Higher quality = larger file size"
   },
   "pdfToBmp": {
     "name": "PDF to BMP",
