@@ -238,7 +238,8 @@ async function processTimestamp(): Promise<void> {
 
     showAlert(
       'Success',
-      'PDF timestamped successfully! The timestamp can be verified in Adobe Acrobat and other PDF readers.'
+      'PDF timestamped successfully! The timestamp can be verified in Adobe Acrobat and other PDF readers.',
+      'success'
     );
 
     resetState();

@@ -208,10 +208,12 @@ function createCorsAwareFetch(): {
 
       const isTsaRequest =
         (init?.headers &&
-          typeof init.headers === 'object' &&
-          'Content-Type' in init.headers &&
-          (init.headers as Record<string, string>)['Content-Type'] ===
-            'application/timestamp-query') ||
+          (init.headers instanceof Headers
+            ? init.headers.get('Content-Type') === 'application/timestamp-query'
+            : typeof init.headers === 'object' &&
+              !Array.isArray(init.headers) &&
+              (init.headers as Record<string, string>)['Content-Type'] ===
+                'application/timestamp-query')) ||
         url.includes('timestamp') ||
         url.includes('/tsa') ||
         url.includes('/tsr') ||
@@ -350,8 +352,14 @@ export async function timestampPdf(
 
   const signer = new PdfSigner(signOptions);
 
-  const timestampedPdfBytes = await signer.sign(pdfBytes);
-  return new Uint8Array(timestampedPdfBytes);
+  const { restore } = createCorsAwareFetch();
+
+  try {
+    const timestampedPdfBytes = await signer.sign(pdfBytes);
+    return new Uint8Array(timestampedPdfBytes);
+  } finally {
+    restore();
+  }
 }
 
 export function getCertificateInfo(certificate: forge.pki.Certificate): {

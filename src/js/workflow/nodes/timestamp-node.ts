@@ -43,9 +43,15 @@ export class TimestampNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const timestampedBytes = await timestampPdf(input.bytes, tsaUrl);
-
-        const bytes = new Uint8Array(timestampedBytes);
+        let bytes: Uint8Array;
+        try {
+          bytes = await timestampPdf(input.bytes, tsaUrl);
+        } catch (err) {
+          throw new Error(
+            `Failed to timestamp using TSA ${tsaUrl}: ${err instanceof Error ? err.message : err}`,
+            { cause: err }
+          );
+        }
         const document = await PDFDocument.load(bytes);
 
         return {
