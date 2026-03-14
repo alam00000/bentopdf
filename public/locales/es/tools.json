@@ -593,6 +593,15 @@
     "pageTitle": "Validar Firma PDF - Verificar Firmas Digitales | BentoPDF",
     "subtitle": "Verifica firmas digitales en tus archivos PDF. Comprueba la validez del certificado, ve los detalles del firmante y confirma la integridad del documento."
   },
+  "timestampPdf": {
+    "name": "Sellar PDF con marca de tiempo",
+    "pageTitle": "Marca de tiempo PDF gratis - Sello RFC 3161 | BentoPDF",
+    "subtitle": "Añade una marca de tiempo RFC 3161 a tu PDF mediante un servidor TSA de confianza. Demuestra que tu documento existía en un momento específico. No se requiere certificado.",
+    "tsaSectionTitle": "Servidor de marca de tiempo (TSA)",
+    "selectTsa": "Seleccionar un servidor TSA",
+    "applyTimestamp": "Aplicar marca de tiempo",
+    "successMessage": "¡PDF sellado con marca de tiempo! La marca puede verificarse en Adobe Acrobat y otros lectores PDF."
+  },
   "emailToPdf": {
     "name": "Email a PDF",
     "subtitle": "Convierte archivos de correo (EML, MSG) a formato PDF. Soporta exportaciones de Outlook y formatos de correo estándar.",

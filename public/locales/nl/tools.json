@@ -593,6 +593,15 @@
     "pageTitle": "PDF-handtekening valideren - Digitale handtekeningen verifiëren | BentoPDF",
     "subtitle": "Digitale handtekeningen in een PDF-bestanden verifiëren. Controleer de geldigheid van het certificaat, bekijk de gegevens van de ondertekenaar en bevestig de integriteit van het document. Alle verwerking gebeurt binnen jouw browser."
   },
+  "timestampPdf": {
+    "name": "PDF tijdstempelen",
+    "pageTitle": "PDF tijdstempel gratis online - RFC 3161 documenttijdstempel | BentoPDF",
+    "subtitle": "Voeg een RFC 3161 tijdstempel toe aan je PDF via een vertrouwde TSA-server. Bewijst dat je document op een specifiek moment bestond. Geen certificaat vereist.",
+    "tsaSectionTitle": "Tijdstempelserver (TSA)",
+    "selectTsa": "Selecteer een TSA-server",
+    "applyTimestamp": "Tijdstempel toepassen",
+    "successMessage": "PDF succesvol voorzien van tijdstempel! Het tijdstempel kan worden geverifieerd in Adobe Acrobat en andere PDF-lezers."
+  },
   "emailToPdf": {
     "name": "E-mail naar PDF",
     "subtitle": "Converteer e-mailbestanden (EML, MSG) naar PDF-formaat. Ondersteunt Outlook-exports en standaard e-mailformaten.",

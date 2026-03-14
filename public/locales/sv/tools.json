@@ -593,6 +593,15 @@
     "pageTitle": "Validera PDF-signatur - Verifiera digitala signaturer | BentoPDF",
     "subtitle": "Verifiera digitala signaturer i dina PDF-filer. Kontrollera certifikatgiltighet, visa signerardetaljer och bekräfta dokumentintegritet. All bearbetning sker i din webbläsare."
   },
+  "timestampPdf": {
+    "name": "Tidsstämpla PDF",
+    "pageTitle": "Tidsstämpla PDF gratis online - RFC 3161 dokumenttidsstämpel | BentoPDF",
+    "subtitle": "Lägg till en RFC 3161 tidsstämpel till din PDF via en betrodd TSA-server. Bevisar att ditt dokument existerade vid en specifik tidpunkt. Inget certifikat krävs.",
+    "tsaSectionTitle": "Tidsstämpelserver (TSA)",
+    "selectTsa": "Välj en TSA-server",
+    "applyTimestamp": "Tillämpa tidsstämpel",
+    "successMessage": "PDF tidsstämplad! Tidsstämpeln kan verifieras i Adobe Acrobat och andra PDF-läsare."
+  },
   "emailToPdf": {
     "name": "E-post till PDF",
     "subtitle": "Konvertera e-postfiler (EML, MSG) till PDF-format. Stöder Outlook-exporter och standard e-postformat.",

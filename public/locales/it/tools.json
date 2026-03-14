@@ -593,6 +593,15 @@
     "pageTitle": "Verifica firma PDF - Controlla firme digitali | BentoPDF",
     "subtitle": "Verifica le firme digitali nei tuoi PDF. Controlla la validità del certificato, visualizza i dati del firmatario e conferma l'integrità del documento. Tutto avviene nel tuo browser."
   },
+  "timestampPdf": {
+    "name": "Marca temporale PDF",
+    "pageTitle": "Marca temporale PDF gratuita online - RFC 3161 | BentoPDF",
+    "subtitle": "Aggiungi una marca temporale RFC 3161 al tuo PDF tramite un server TSA affidabile. Dimostra che il tuo documento esisteva in un momento specifico. Nessun certificato richiesto.",
+    "tsaSectionTitle": "Server marca temporale (TSA)",
+    "selectTsa": "Seleziona un server TSA",
+    "applyTimestamp": "Applica marca temporale",
+    "successMessage": "PDF marcato temporalmente con successo! La marca può essere verificata in Adobe Acrobat e altri lettori PDF."
+  },
   "emailToPdf": {
     "name": "Email in PDF",
     "subtitle": "Converti file email (EML, MSG) in formato PDF. Supporta esportazioni Outlook e formati email standard.",
