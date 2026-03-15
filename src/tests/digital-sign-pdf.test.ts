@@ -30,6 +30,8 @@ describe('timestampPdf', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    vi.stubEnv('VITE_CORS_PROXY_SECRET', '');
     samplePdfBytes = new Uint8Array(fs.readFileSync(SAMPLE_PDF_PATH));
   });
 

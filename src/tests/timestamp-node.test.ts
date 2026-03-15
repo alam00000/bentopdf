@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TIMESTAMP_TSA_PRESETS } from '@/js/config/timestamp-tsa';
 
 // Mock external dependencies before importing the node
@@ -74,8 +74,13 @@ vi.mock('@/js/workflow/types', () => ({
 }));
 
 import { TimestampNode } from '@/js/workflow/nodes/timestamp-node';
+import { timestampPdf } from '@/js/logic/digital-sign-pdf';
 
 describe('TimestampNode', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should be instantiable', () => {
     const node = new TimestampNode();
     expect(node).toBeDefined();
@@ -109,9 +114,41 @@ describe('TimestampNode', () => {
     expect(presets[0].url).toBe(TIMESTAMP_TSA_PRESETS[0].url);
   });
 
-  it('should generate _timestamped suffix in output filename', () => {
-    const input = 'report.pdf';
-    const output = input.replace(/\.pdf$/i, '_timestamped.pdf');
-    expect(output).toBe('report_timestamped.pdf');
+  it('should call timestampPdf with correct TSA URL via data()', async () => {
+    const node = new TimestampNode();
+    const mockInput = [
+      { bytes: new Uint8Array([1, 2, 3]), filename: 'test.pdf' },
+    ];
+
+    await node.data({ pdf: mockInput });
+
+    expect(timestampPdf).toHaveBeenCalledWith(
+      mockInput[0].bytes,
+      TIMESTAMP_TSA_PRESETS[0].url
+    );
+  });
+
+  it('should generate _timestamped suffix in output filename via data()', async () => {
+    const node = new TimestampNode();
+    const mockInput = [
+      { bytes: new Uint8Array([1, 2, 3]), filename: 'report.pdf' },
+    ];
+
+    const result = (await node.data({ pdf: mockInput })) as {
+      pdf: Array<{ filename: string }>;
+    };
+
+    expect(result.pdf[0].filename).toBe('report_timestamped.pdf');
+  });
+
+  it('should wrap errors from timestampPdf with TSA context', async () => {
+    vi.mocked(timestampPdf).mockRejectedValueOnce(new Error('Network error'));
+    const node = new TimestampNode();
+
+    await expect(
+      node.data({
+        pdf: [{ bytes: new Uint8Array([1]), filename: 'test.pdf' }],
+      })
+    ).rejects.toThrow(/Failed to timestamp using TSA/);
   });
 });
