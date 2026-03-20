@@ -142,9 +142,9 @@
       "useAnyway": "Wil je het toch gebruiken?",
       "resetTitle": "Sneltoetsen terugzetten",
       "resetMessage": "Weet je zeker dat je alle sneltoetsen wilt terugzetten naar standaard?<br><br>Deze actie kan niet ongedaan worden gemaakt.",
-      "importSuccessTitle": "Import voltooid",
+      "importSuccessTitle": "Importeren voltooid",
       "importSuccessMessage": "Sneltoetsen zijn met succes geïmporteerd!",
-      "importFailTitle": "Import mislukt",
+      "importFailTitle": "Importeren is mislukt",
       "importFailMessage": "Het importeren van sneltoetsen is mislukt. Ongeldig bestandsformaat."
     }
   },
