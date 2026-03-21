@@ -1,4 +1,3 @@
-
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
@@ -77,13 +76,13 @@ function initializePage() {
     processBtn.addEventListener('click', convertToPdf);
   }
 
-    document.getElementById('back-to-tools')?.addEventListener('click', () => {
-        window.location.href = import.meta.env.BASE_URL;
-    });
+  document.getElementById('back-to-tools')?.addEventListener('click', () => {
+    window.location.href = import.meta.env.BASE_URL;
+  });
 
-    setTimeout(() => {
-        initializeFileListSortable();
-    }, 0);
+  setTimeout(() => {
+    initializeFileListSortable();
+  }, 0);
 }
 
 function handleFileUpload(e: Event) {
@@ -127,91 +126,95 @@ const resetState = () => {
 };
 
 function updateUI() {
-    const fileDisplayArea = document.getElementById('file-display-area');
-    const fileControls = document.getElementById('file-controls');
-    const optionsDiv = document.getElementById('jpg-to-pdf-options');
+  const fileDisplayArea = document.getElementById('file-display-area');
+  const fileControls = document.getElementById('file-controls');
+  const optionsDiv = document.getElementById('jpg-to-pdf-options');
 
-    if (!fileDisplayArea || !fileControls || !optionsDiv) return;
+  if (!fileDisplayArea || !fileControls || !optionsDiv) return;
 
-    fileDisplayArea.innerHTML = '';
+  fileDisplayArea.innerHTML = '';
 
-    if (files.length > 0) {
-        fileControls.classList.remove('hidden');
-        optionsDiv.classList.remove('hidden');
+  if (files.length > 0) {
+    fileControls.classList.remove('hidden');
+    optionsDiv.classList.remove('hidden');
 
-        files.forEach((file, index) => {
-            const fileDiv = document.createElement('div');
-            fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm draggable-file';
-            fileDiv.setAttribute('data-index', index.toString());
+    files.forEach((file, index) => {
+      const fileDiv = document.createElement('div');
+      fileDiv.className =
+        'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm draggable-file';
+      fileDiv.setAttribute('data-index', index.toString());
 
-            const infoContainer = document.createElement('div');
-            infoContainer.className = 'flex items-center gap-2 overflow-hidden';
+      const infoContainer = document.createElement('div');
+      infoContainer.className = 'flex items-center gap-2 overflow-hidden';
 
-            const nameSpan = document.createElement('span');
-            nameSpan.className = 'truncate font-medium text-gray-200';
-            nameSpan.textContent = file.name;
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'truncate font-medium text-gray-200';
+      nameSpan.textContent = file.name;
 
-            const sizeSpan = document.createElement('span');
-            sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
-            sizeSpan.textContent = `(${formatBytes(file.size)})`;
+      const sizeSpan = document.createElement('span');
+      sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
+      sizeSpan.textContent = `(${formatBytes(file.size)})`;
 
-            infoContainer.append(nameSpan, sizeSpan);
+      infoContainer.append(nameSpan, sizeSpan);
 
-            const rightGroup = document.createElement('div');
-            rightGroup.className = 'flex items-center gap-1 ml-4';
+      const rightGroup = document.createElement('div');
+      rightGroup.className = 'flex items-center gap-1 ml-4';
 
-            const dragHandle = document.createElement('div');
-            dragHandle.className = 'drag-handle cursor-move text-gray-400 hover:text-white p-1 rounded transition-colors';
-            dragHandle.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/></svg>`;
+      const dragHandle = document.createElement('div');
+      dragHandle.className =
+        'drag-handle cursor-move text-gray-400 hover:text-white p-1 rounded transition-colors';
+      dragHandle.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="19" r="1"/></svg>`;
 
-            const removeBtn = document.createElement('button');
-            removeBtn.className = 'text-red-400 hover:text-red-300 flex-shrink-0';
-            removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-            removeBtn.onclick = () => {
-                files = files.filter((_, i) => i !== index);
-                updateUI();
-            };
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'text-red-400 hover:text-red-300 flex-shrink-0';
+      removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+      removeBtn.onclick = () => {
+        files = files.filter((_, i) => i !== index);
+        updateUI();
+      };
 
-            rightGroup.append(dragHandle, removeBtn);
-            fileDiv.append(infoContainer, rightGroup);
-            fileDisplayArea.appendChild(fileDiv);
-        });
-        createIcons({ icons });
-        initializeFileListSortable();
-    } else {
-        fileControls.classList.add('hidden');
-        optionsDiv.classList.add('hidden');
-    }
+      rightGroup.append(dragHandle, removeBtn);
+      fileDiv.append(infoContainer, rightGroup);
+      fileDisplayArea.appendChild(fileDiv);
+    });
+    createIcons({ icons });
+    initializeFileListSortable();
+  } else {
+    fileControls.classList.add('hidden');
+    optionsDiv.classList.add('hidden');
+  }
 }
 
 function initializeFileListSortable() {
-    const fileDisplayArea = document.getElementById('file-display-area');
-    if (!fileDisplayArea) return;
-    if ((fileDisplayArea as any)._sortableInstance) {
-        (fileDisplayArea as any)._sortableInstance.destroy();
+  const fileDisplayArea = document.getElementById('file-display-area');
+  if (!fileDisplayArea) return;
+  if ((fileDisplayArea as any)._sortableInstance) {
+    (fileDisplayArea as any)._sortableInstance.destroy();
+  }
+  (fileDisplayArea as any)._sortableInstance = Sortable.create(
+    fileDisplayArea,
+    {
+      handle: '.drag-handle',
+      animation: 150,
+      ghostClass: 'sortable-ghost',
+      chosenClass: 'sortable-chosen',
+      dragClass: 'sortable-drag',
+      onEnd: function (evt: any) {
+        if (evt.oldIndex !== evt.newIndex) {
+          const moved = files.splice(evt.oldIndex, 1)[0];
+          files.splice(evt.newIndex, 0, moved);
+          updateUI();
+        }
+      },
     }
-    (fileDisplayArea as any)._sortableInstance = Sortable.create(fileDisplayArea, {
-        handle: '.drag-handle',
-        animation: 150,
-        ghostClass: 'sortable-ghost',
-        chosenClass: 'sortable-chosen',
-        dragClass: 'sortable-drag',
-        onEnd: function (evt: any) {
-            if (evt.oldIndex !== evt.newIndex) {
-                const moved = files.splice(evt.oldIndex, 1)[0];
-                files.splice(evt.newIndex, 0, moved);
-                updateUI();
-            }
-        },
-    });
+  );
 }
 
-async function ensurePyMuPDF(): Promise<PyMuPDF> {
-    if (!pymupdf) {
-        pymupdf = new PyMuPDF(import.meta.env.BASE_URL + 'pymupdf-wasm/');
-        await pymupdf.load();
-    }
-    return pymupdf;
+async function ensurePyMuPDF(): Promise<any> {
+  if (!pymupdf) {
+    pymupdf = await loadPyMuPDF();
+  }
+  return pymupdf;
 }
 
 async function convertToPdf() {
