@@ -1,5 +1,24 @@
-const baseUrl = self.location.href.substring(0, self.location.href.lastIndexOf('/workers/') + 1);
-self.importScripts(baseUrl + 'coherentpdf.browser.min.js');
+let cpdfLoaded = false;
+
+function loadCpdf(cpdfUrl) {
+  if (cpdfLoaded) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    if (typeof coherentpdf !== 'undefined') {
+      cpdfLoaded = true;
+      resolve();
+      return;
+    }
+
+    try {
+      self.importScripts(cpdfUrl);
+      cpdfLoaded = true;
+      resolve();
+    } catch (error) {
+      reject(new Error('Failed to load CoherentPDF: ' + error.message));
+    }
+  });
+}
 
 function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
   try {
@@ -11,7 +30,7 @@ function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
     } catch (error) {
       self.postMessage({
         status: 'error',
-        message: `Failed to load PDF: ${fileName}. Error: ${error.message || error}`
+        message: `Failed to load PDF: ${fileName}. Error: ${error.message || error}`,
       });
       return;
     }
@@ -23,7 +42,7 @@ function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
       self.postMessage({
         status: 'success',
         attachments: [],
-        fileName: fileName
+        fileName: fileName,
       });
       coherentpdf.deletePdf(pdf);
       return;
@@ -37,13 +56,16 @@ function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
         const attachmentData = coherentpdf.getAttachmentData(i);
 
         const dataArray = new Uint8Array(attachmentData);
-        const buffer = dataArray.buffer.slice(dataArray.byteOffset, dataArray.byteOffset + dataArray.byteLength);
+        const buffer = dataArray.buffer.slice(
+          dataArray.byteOffset,
+          dataArray.byteOffset + dataArray.byteLength
+        );
 
         attachments.push({
           index: i,
           name: String(name),
           page: Number(page),
-          data: buffer
+          data: buffer,
         });
       } catch (error) {
         console.warn(`Failed to get attachment ${i} from ${fileName}:`, error);
@@ -56,22 +78,27 @@ function getAttachmentsFromPDFInWorker(fileBuffer, fileName) {
     const response = {
       status: 'success',
       attachments: attachments,
-      fileName: fileName
+      fileName: fileName,
     };
 
-    const transferBuffers = attachments.map(att => att.data);
+    const transferBuffers = attachments.map((att) => att.data);
     self.postMessage(response, transferBuffers);
   } catch (error) {
     self.postMessage({
       status: 'error',
-      message: error instanceof Error
-        ? error.message
-        : 'Unknown error occurred during attachment listing.'
+      message:
+        error instanceof Error
+          ? error.message
+          : 'Unknown error occurred during attachment listing.',
     });
   }
 }
 
-function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove) {
+function editAttachmentsInPDFInWorker(
+  fileBuffer,
+  fileName,
+  attachmentsToRemove
+) {
   try {
     const uint8Array = new Uint8Array(fileBuffer);
 
@@ -81,7 +108,7 @@ function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove)
     } catch (error) {
       self.postMessage({
         status: 'error',
-        message: `Failed to load PDF: ${fileName}. Error: ${error.message || error}`
+        message: `Failed to load PDF: ${fileName}. Error: ${error.message || error}`,
       });
       return;
     }
@@ -103,7 +130,7 @@ function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove)
           attachmentsToKeep.push({
             name: String(name),
             page: Number(page),
-            data: dataCopy
+            data: dataCopy,
           });
         }
       }
@@ -114,9 +141,18 @@ function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove)
 
       for (const attachment of attachmentsToKeep) {
         if (attachment.page === 0) {
-          coherentpdf.attachFileFromMemory(attachment.data, attachment.name, pdf);
+          coherentpdf.attachFileFromMemory(
+            attachment.data,
+            attachment.name,
+            pdf
+          );
         } else {
-          coherentpdf.attachFileToPageFromMemory(attachment.data, attachment.name, pdf, attachment.page);
+          coherentpdf.attachFileToPageFromMemory(
+            attachment.data,
+            attachment.name,
+            pdf,
+            attachment.page
+          );
         }
       }
     }
@@ -124,29 +160,58 @@ function editAttachmentsInPDFInWorker(fileBuffer, fileName, attachmentsToRemove)
     const modifiedBytes = coherentpdf.toMemory(pdf, false, true);
     coherentpdf.deletePdf(pdf);
 
-    const buffer = modifiedBytes.buffer.slice(modifiedBytes.byteOffset, modifiedBytes.byteOffset + modifiedBytes.byteLength);
+    const buffer = modifiedBytes.buffer.slice(
+      modifiedBytes.byteOffset,
+      modifiedBytes.byteOffset + modifiedBytes.byteLength
+    );
 
     const response = {
       status: 'success',
       modifiedPDF: buffer,
-      fileName: fileName
+      fileName: fileName,
     };
 
     self.postMessage(response, [response.modifiedPDF]);
   } catch (error) {
     self.postMessage({
       status: 'error',
-      message: error instanceof Error
-        ? error.message
-        : 'Unknown error occurred during attachment editing.'
+      message:
+        error instanceof Error
+          ? error.message
+          : 'Unknown error occurred during attachment editing.',
     });
   }
 }
 
-self.onmessage = (e) => {
+self.onmessage = async function (e) {
+  const { cpdfUrl } = e.data;
+
+  if (!cpdfUrl) {
+    self.postMessage({
+      status: 'error',
+      message:
+        'CoherentPDF URL not provided. Please configure it in WASM Settings.',
+    });
+    return;
+  }
+
+  try {
+    await loadCpdf(cpdfUrl);
+  } catch (error) {
+    self.postMessage({
+      status: 'error',
+      message: error.message,
+    });
+    return;
+  }
+
   if (e.data.command === 'get-attachments') {
     getAttachmentsFromPDFInWorker(e.data.fileBuffer, e.data.fileName);
   } else if (e.data.command === 'edit-attachments') {
-    editAttachmentsInPDFInWorker(e.data.fileBuffer, e.data.fileName, e.data.attachmentsToRemove);
+    editAttachmentsInPDFInWorker(
+      e.data.fileBuffer,
+      e.data.fileName,
+      e.data.attachmentsToRemove
+    );
   }
 };

@@ -4,6 +4,7 @@ interface ExtractAttachmentsMessage {
   command: 'extract-attachments';
   fileBuffers: ArrayBuffer[];
   fileNames: string[];
+  cpdfUrl?: string;
 }
 
 interface ExtractAttachmentSuccessResponse {
@@ -16,4 +17,6 @@ interface ExtractAttachmentErrorResponse {
   message: string;
 }
 
-type ExtractAttachmentResponse = ExtractAttachmentSuccessResponse | ExtractAttachmentErrorResponse;
+type ExtractAttachmentResponse =
+  | ExtractAttachmentSuccessResponse
+  | ExtractAttachmentErrorResponse;

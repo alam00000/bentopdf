@@ -1,12 +1,9 @@
 import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes, initializeQpdf, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
+import { RemoveRestrictionsState } from '@/types';
 
-interface PageState {
-    file: File | null;
-}
-
-const pageState: PageState = {
+const pageState: RemoveRestrictionsState = {
     file: null,
 };
 

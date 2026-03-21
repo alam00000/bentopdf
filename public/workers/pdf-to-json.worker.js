@@ -1,5 +1,24 @@
-const baseUrl = self.location.href.substring(0, self.location.href.lastIndexOf('/workers/') + 1);
-self.importScripts(baseUrl + 'coherentpdf.browser.min.js');
+let cpdfLoaded = false;
+
+function loadCpdf(cpdfUrl) {
+  if (cpdfLoaded) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    if (typeof coherentpdf !== 'undefined') {
+      cpdfLoaded = true;
+      resolve();
+      return;
+    }
+
+    try {
+      self.importScripts(cpdfUrl);
+      cpdfLoaded = true;
+      resolve();
+    } catch (error) {
+      reject(new Error('Failed to load CoherentPDF: ' + error.message));
+    }
+  });
+}
 
 function convertPDFsToJSONInWorker(fileBuffers, fileNames) {
   try {
@@ -12,8 +31,6 @@ function convertPDFsToJSONInWorker(fileBuffers, fileNames) {
       const uint8Array = new Uint8Array(buffer);
       const pdf = coherentpdf.fromMemory(uint8Array, '');
 
-      //TODO:@ALAM -> add options for users to select these settings
-      // parse_content: true, no_stream_data: false, decompress_streams: false
       const jsonData = coherentpdf.outputJSONMemory(true, false, false, pdf);
 
       const jsonBuffer = jsonData.buffer.slice(0);
@@ -44,9 +61,29 @@ function convertPDFsToJSONInWorker(fileBuffers, fileNames) {
   }
 }
 
-self.onmessage = (e) => {
+self.onmessage = async function (e) {
+  const { cpdfUrl } = e.data;
+
+  if (!cpdfUrl) {
+    self.postMessage({
+      status: 'error',
+      message:
+        'CoherentPDF URL not provided. Please configure it in WASM Settings.',
+    });
+    return;
+  }
+
+  try {
+    await loadCpdf(cpdfUrl);
+  } catch (error) {
+    self.postMessage({
+      status: 'error',
+      message: error.message,
+    });
+    return;
+  }
+
   if (e.data.command === 'convert') {
     convertPDFsToJSONInWorker(e.data.fileBuffers, e.data.fileNames);
   }
 };
-

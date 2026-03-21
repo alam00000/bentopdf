@@ -1,0 +1,365 @@
+{
+  "nav": {
+    "home": "Hjem",
+    "about": "Om",
+    "contact": "Kontakt",
+    "licensing": "licensing",
+    "allTools": "Alle værktøjer",
+    "openMainMenu": "Åbn hovedmenu",
+    "language": "Sprog"
+  },
+  "donation": {
+    "message": "Elsker du BentoPDF? Hjælp os med at holde det gratis og open source!",
+    "button": "Donér"
+  },
+  "hero": {
+    "title": "Den",
+    "pdfToolkit": "PDF-værktøjskasse",
+    "builtForPrivacy": "bygget til privatliv",
+    "noSignups": "Ingen tilmeldinger",
+    "unlimitedUse": "Ubegrænset brug",
+    "worksOffline": "Virker offline",
+    "startUsing": "Start med at bruge det nu"
+  },
+  "usedBy": {
+    "title": "Bruges af virksomheder og personer der arbejder hos"
+  },
+  "features": {
+    "title": "Hvorfor vælge",
+    "bentoPdf": "BentoPDF?",
+    "noSignup": {
+      "title": "Ingen tilmelding",
+      "description": "Start med det samme, ingen konti eller e-mails."
+    },
+    "noUploads": {
+      "title": "Ingen uploads",
+      "description": "100% klientside – dine filer forlader aldrig din enhed."
+    },
+    "foreverFree": {
+      "title": "Altid gratis",
+      "description": "Alle værktøjer, ingen prøveperioder, ingen betalingsmure."
+    },
+    "noLimits": {
+      "title": "Ingen begrænsninger",
+      "description": "Brug det så meget du vil, ingen skjulte grænser."
+    },
+    "batchProcessing": {
+      "title": "Batchbehandling",
+      "description": "Håndter ubegrænsede PDF'er på én gang."
+    },
+    "lightningFast": {
+      "title": "Lynhurtigt",
+      "description": "Behandl PDF’er øjeblikkeligt, uden ventetid eller forsinkelser."
+    }
+  },
+  "tools": {
+    "title": "Kom i gang med",
+    "toolsLabel": "Værktøjer",
+    "subtitle": "Klik på et værktøj for at åbne fil-upload",
+    "searchPlaceholder": "Søg efter et værktøj (f.eks. 'split', 'organiser'...)",
+    "backToTools": "Tilbage til værktøjer",
+    "firstLoadNotice": "Første indlæsning tager et øjeblik, mens vi downloader konverteringsmotoren. Derefter vil alt indlæses øjeblikkeligt."
+  },
+  "upload": {
+    "clickToSelect": "Klik for at vælge en fil",
+    "orDragAndDrop": "eller træk og slip",
+    "pdfOrImages": "PDF’er eller billeder",
+    "filesNeverLeave": "Dine filer forlader aldrig din enhed.",
+    "addMore": "Tilføj flere filer",
+    "clearAll": "Ryd alle",
+    "clearFiles": "Ryd filer",
+    "hints": {
+      "singlePdf": "En enkelt PDF-fil",
+      "pdfFile": "PDF-fil",
+      "multiplePdfs2": "Flere PDF-filer (mindst 2)",
+      "bmpImages": "BMP-billeder",
+      "oneOrMorePdfs": "En eller flere PDF-filer",
+      "pdfDocuments": "PDF-dokumenter",
+      "oneOrMoreCsv": "En eller flere CSV-filer",
+      "multiplePdfsSupported": "Flere PDF-filer understøttet",
+      "singleOrMultiplePdfs": "Enkelt eller flere PDF-filer understøttet",
+      "singlePdfFile": "Enkelt PDF-fil",
+      "pdfWithForms": "PDF-fil med formularfelter",
+      "heicImages": "HEIC/HEIF-billeder",
+      "jpgImages": "JPG, JPEG, JP2, JPX-billeder",
+      "pdfsOrImages": "PDF’er eller billeder",
+      "oneOrMoreOdt": "En eller flere ODT-filer",
+      "singlePdfOnly": "Kun én PDF-fil",
+      "pdfFiles": "PDF-filer",
+      "multiplePdfs": "Flere PDF-filer",
+      "pngImages": "PNG-billeder",
+      "pdfFilesOneOrMore": "PDF-filer (en eller flere)",
+      "oneOrMoreRtf": "En eller flere RTF-filer",
+      "svgGraphics": "SVG-grafik",
+      "tiffImages": "TIFF-billeder",
+      "webpImages": "WebP-billeder"
+    }
+  },
+  "howItWorks": {
+    "title": "Sådan fungerer det",
+    "step1": "Klik eller træk og slip din fil for at starte",
+    "step2": "Klik på behandl-knappen for at starte",
+    "step3": "Gem din behandlede fil med det samme"
+  },
+  "relatedTools": {
+    "title": "Relaterede PDF-værktøjer"
+  },
+  "loader": {
+    "processing": "Behandler..."
+  },
+  "alert": {
+    "title": "Advarsel",
+    "ok": "OK"
+  },
+  "preview": {
+    "title": "Dokumentforhåndsvisning",
+    "downloadAsPdf": "Download som PDF",
+    "close": "Luk"
+  },
+  "settings": {
+    "title": "Indstillinger",
+    "shortcuts": "Genveje",
+    "preferences": "Præferencer",
+    "displayPreferences": "Visningspræferencer",
+    "searchShortcuts": "Søg efter genveje...",
+    "shortcutsInfo": "Tryk og hold taster nede for at sætte en genvej. Ændringer gemmes automatisk.",
+    "shortcutsWarning": "⚠️ Undgå almindelige browsergenveje (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N osv.), da de muligvis ikke fungerer stabilt.",
+    "import": "Importér",
+    "export": "Eksportér",
+    "resetToDefaults": "Nulstil til standard",
+    "fullWidthMode": "Fuld bredde-tilstand",
+    "fullWidthDescription": "Brug hele skærmbredden til alle værktøjer i stedet for en centreret container",
+    "settingsAutoSaved": "Indstillinger gemmes automatisk",
+    "clickToSet": "Klik for at vælge",
+    "pressKeys": "Tryk på taster...",
+    "warnings": {
+      "alreadyInUse": "Genvej bruges allerede",
+      "assignedTo": "er allerede tildelt:",
+      "chooseDifferent": "Vælg venligst en anden genvej.",
+      "reserved": "Advarsel om reserveret genvej",
+      "commonlyUsed": "bruges ofte til:",
+      "unreliable": "Denne genvej fungerer muligvis ikke stabilt eller kan konfliktere med browser/system.",
+      "useAnyway": "Vil du bruge den alligevel?",
+      "resetTitle": "Nulstil genveje",
+      "resetMessage": "Er du sikker på, at du vil nulstille alle genveje til standard?<br><br>Denne handling kan ikke fortrydes.",
+      "importSuccessTitle": "Import gennemført",
+      "importSuccessMessage": "Genveje importeret!",
+      "importFailTitle": "Import mislykkedes",
+      "importFailMessage": "Kunne ikke importere genveje. Ugyldigt filformat."
+    }
+  },
+  "warning": {
+    "title": "Advarsel",
+    "cancel": "Annuller",
+    "proceed": "Fortsæt"
+  },
+  "compliance": {
+    "title": "Dine data forlader aldrig din enhed",
+    "weKeep": "Vi holder",
+    "yourInfoSafe": "dine oplysninger sikre",
+    "byFollowingStandards": "ved at følge globale sikkerhedsstandarder.",
+    "processingLocal": "Al behandling foregår lokalt på din enhed.",
+    "gdpr": {
+      "title": "GDPR-overholdelse",
+      "description": "Beskytter persondata og privatliv for personer i EU."
+    },
+    "ccpa": {
+      "title": "CCPA-overholdelse",
+      "description": "Giver Californiens borgere rettigheder over deres personlige oplysninger."
+    },
+    "hipaa": {
+      "title": "HIPAA-overholdelse",
+      "description": "Fastlægger krav til håndtering af følsomme sundhedsoplysninger i USA."
+    }
+  },
+  "faq": {
+    "title": "Ofte stillede",
+    "questions": "Spørgsmål",
+    "sectionTitle": "Ofte stillede spørgsmål",
+    "isFree": {
+      "question": "Er BentoPDF virkelig gratis?",
+      "answer": "Ja, absolut. Alle værktøjer er 100% gratis at bruge, uden filgrænser, uden tilmeldinger og uden vandmærker."
+    },
+    "areFilesSecure": {
+      "question": "Er mine filer sikre? Hvor bliver de behandlet?",
+      "answer": "Dine filer er så sikre som muligt, fordi de aldrig forlader din computer. Alt behandles direkte i din browser."
+    },
+    "platforms": {
+      "question": "Virker det på Mac, Windows og mobil?",
+      "answer": "Ja! BentoPDF virker på alle moderne browsere, uanset styresystem."
+    },
+    "gdprCompliant": {
+      "question": "Er BentoPDF GDPR-kompatibel?",
+      "answer": "Ja. Da vi ikke indsamler eller behandler dine filer på vores servere, er dine data altid under din kontrol."
+    },
+    "dataStorage": {
+      "question": "Gemmer eller sporer I mine filer?",
+      "answer": "Nej. Vi gemmer eller sporer aldrig dine filer. Alt foregår i din browser."
+    },
+    "different": {
+      "question": "Hvad gør BentoPDF anderledes?",
+      "answer": "De fleste PDF-værktøjer uploader dine filer til en server. BentoPDF gør det hele lokalt i din browser."
+    },
+    "browserBased": {
+      "question": "Hvordan gør browserbaseret behandling mig sikker?",
+      "answer": "Dine filer forlader aldrig enheden, hvilket fjerner risikoen for datalæk, hacks eller uautoriseret adgang."
+    },
+    "analytics": {
+      "question": "Bruger I cookies eller analyseværktøjer?",
+      "answer": "Vi bruger kun Simple Analytics til anonyme besøgsdata. Ingen personlige oplysninger indsamles."
+    }
+  },
+  "testimonials": {
+    "title": "Hvad vores",
+    "users": "Brugere",
+    "say": "Siger"
+  },
+  "support": {
+    "title": "Kan du lide mit arbejde?",
+    "description": "BentoPDF er et passioneret projekt, bygget for at tilbyde et gratis og privat PDF-værktøj til alle.",
+    "buyMeCoffee": "Køb en kaffe til mig"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. Alle rettigheder forbeholdes.",
+    "version": "Version",
+    "company": "Virksomhed",
+    "aboutUs": "Om os",
+    "faqLink": "FAQ",
+    "contactUs": "Kontakt os",
+    "legal": "Juridisk",
+    "termsAndConditions": "Terms and Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "followUs": "Følg os"
+  },
+  "merge": {
+    "title": "Flet PDF'er",
+    "description": "Kombinér hele filer eller vælg specifikke sider til et nyt dokument.",
+    "fileMode": "Filtilstand",
+    "pageMode": "Sidetilstand",
+    "howItWorks": "Sådan fungerer det:",
+    "fileModeInstructions": [
+      "Klik og træk ikonet for at ændre rækkefølge.",
+      "I \"Sider\"-feltet kan du angive intervaller (fx \"1-3, 5\").",
+      "Lad feltet stå tomt for at inkludere alle sider."
+    ],
+    "pageModeInstructions": [
+      "Alle sider fra dine PDF’er vises nedenfor.",
+      "Træk og slip siderne for at lave den ønskede rækkefølge."
+    ],
+    "mergePdfs": "Flet PDF'er"
+  },
+  "common": {
+    "page": "Side",
+    "pages": "Sider",
+    "of": "af",
+    "download": "Download",
+    "cancel": "Annuller",
+    "save": "Gem",
+    "delete": "Slet",
+    "edit": "Rediger",
+    "add": "Tilføj",
+    "remove": "Fjern",
+    "loading": "Indlæser...",
+    "error": "Fejl",
+    "success": "Succes",
+    "file": "Fil",
+    "files": "Filer",
+    "close": "Luk"
+  },
+  "about": {
+    "hero": {
+      "title": "Vi mener PDF-værktøjer bør være",
+      "subtitle": "hurtige, private og gratis.",
+      "noCompromises": "Ingen kompromiser."
+    },
+    "mission": {
+      "title": "Vores mission",
+      "description": "At give den mest komplette PDF-værktøjskasse uden betaling og med fuldt fokus på privatliv."
+    },
+    "philosophy": {
+      "label": "Vores kernefilosofi",
+      "title": "Privatliv først. Altid.",
+      "description": "Alt sker lokalt i din browser. Dine dokumenter er 100% private."
+    },
+    "whyBentopdf": {
+      "title": "Hvorfor",
+      "speed": {
+        "title": "Bygget til hastighed",
+        "description": "Ingen ventetid på uploads eller downloads — alt behandles lokalt."
+      },
+      "free": {
+        "title": "Fuldstændig gratis",
+        "description": "Ingen abonnementer, ingen skjulte gebyrer, ingen premiumlås."
+      },
+      "noAccount": {
+        "title": "Ingen konto nødvendig",
+        "description": "Brug værktøjerne med det samme — helt uden login."
+      },
+      "openSource": {
+        "title": "Open source-ånd",
+        "description": "Bygget med gennemsigtighed og baseret på stærke open source-biblioteker."
+      }
+    },
+    "cta": {
+      "title": "Klar til at komme i gang?",
+      "description": "Prøv selv den hurtige og private PDF-oplevelse.",
+      "button": "Udforsk alle værktøjer"
+    }
+  },
+  "contact": {
+    "title": "Kontakt os",
+    "subtitle": "Vi vil gerne høre fra dig — spørgsmål, feedback eller ønsker er velkomne.",
+    "email": "Du kan kontakte os direkte på:"
+  },
+  "licensing": {
+    "title": "licensing til",
+    "subtitle": "Vælg den licens der passer til dine behov."
+  },
+  "multiTool": {
+    "uploadPdfs": "Upload PDF'er",
+    "upload": "Upload",
+    "addBlankPage": "Tilføj tom side",
+    "edit": "Rediger:",
+    "undo": "Fortryd",
+    "redo": "Gentag",
+    "reset": "Nulstil",
+    "selection": "Markering:",
+    "selectAll": "Vælg alle",
+    "deselectAll": "Fravælg alle",
+    "rotate": "Rotér:",
+    "rotateLeft": "Venstre",
+    "rotateRight": "Højre",
+    "transform": "Transformér:",
+    "duplicate": "Duplikér",
+    "split": "Opdel",
+    "clear": "Ryd:",
+    "delete": "Slet",
+    "download": "Download:",
+    "downloadSelected": "Download valgte",
+    "exportPdf": "Eksportér PDF",
+    "uploadPdfFiles": "Vælg PDF-filer",
+    "dragAndDrop": "Træk og slip PDF-filer her, eller klik for at vælge",
+    "selectFiles": "Vælg filer",
+    "renderingPages": "Renderer sider...",
+    "actions": {
+      "duplicatePage": "Duplikér denne side",
+      "deletePage": "Slet denne side",
+      "insertPdf": "Indsæt PDF efter denne side",
+      "toggleSplit": "Slå opdeling til/fra efter denne side"
+    },
+    "pleaseWait": "Vent venligst",
+    "pagesRendering": "Siderne bliver stadig renderet. Vent venligst...",
+    "noPagesSelected": "Ingen sider valgt",
+    "selectOnePage": "Vælg mindst én side for at downloade.",
+    "noPages": "Ingen sider",
+    "noPagesToExport": "Der er ingen sider at eksportere.",
+    "renderingTitle": "Renderer side-forhåndsvisninger",
+    "errorRendering": "Kunne ikke rendere side-miniaturer",
+    "error": "Fejl",
+    "failedToLoad": "Kunne ikke indlæses"
+  },
+  "simpleMode": {
+    "title": "PDF-værktøjer",
+    "subtitle": "Vælg et værktøj for at komme i gang"
+  }
+}

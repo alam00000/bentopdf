@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>404 - Page Not Found | BentoPDF</title>
+    <meta
+      name="description"
+      content="Oops! The page you're looking for doesn't exist. Return to BentoPDF's homepage to access our free PDF tools."
+    />
+    <meta name="robots" content="noindex, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.bentopdf.com/404.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/404" />
+    <meta property="og:title" content="404 - Page Not Found | BentoPDF" />
+    <meta
+      property="og:description"
+      content="The page you're looking for doesn't exist."
+    />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="404 - Page Not Found" />
+    <meta
+      name="twitter:description"
+      content="The page you're looking for doesn't exist."
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="antialiased bg-gray-900 text-gray-300">
+    {{> navbar }}
+
+    <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
+      <section id="404-content" class="text-center py-20 md:py-32">
+        <!-- 404 Number -->
+        <div class="mb-8">
+          <h1
+            class="text-9xl md:text-[12rem] font-bold text-indigo-500 leading-none"
+          >
+            404
+          </h1>
+        </div>
+
+        <!-- Main heading -->
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+          Page Not Found
+        </h2>
+
+        <!-- Description -->
+        <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+          Oops! The page you're looking for seems to have wandered off into the
+          digital void. Don't worry though, our PDF tools are still right where
+          you left them.
+        </p>
+
+        <!-- Action buttons -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+        >
+          <a
+            href="index.html"
+            class="inline-flex items-center gap-3 pl-8 pr-2 py-2 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1"
+          >
+            <span>Back to Home</span>
+            <span class="bg-white text-indigo-600 rounded-full p-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-4 h-4"
+              >
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </span>
+          </a>
+
+          <a
+            href="/index.html#tools-header"
+            class="inline-block px-8 py-3 rounded-full bg-gray-800 text-white font-semibold border border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-700 transition-all duration-200"
+          >
+            Browse All Tools
+          </a>
+        </div>
+
+        <!-- Helpful links -->
+        <div class="mt-16">
+          <p class="text-gray-500 mb-4">Or try these popular tools:</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <a
+              href="/src/pages/merge-pdf.html"
+              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+            >
+              Merge PDF
+            </a>
+            <a
+              href="/src/pages/split-pdf.html"
+              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+            >
+              Split PDF
+            </a>
+            <a
+              href="/src/pages/compress-pdf.html"
+              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+            >
+              Compress PDF
+            </a>
+            <a
+              href="/src/pages/edit-pdf.html"
+              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+            >
+              Edit PDF
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    {{> footer }}
+
+    <script type="module" src="src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="src/version.ts"></script>
+    <script type="module" src="src/js/main.ts"></script>
+    <script type="module" src="src/js/mobileMenu.ts"></script>
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "404 - Page Not Found",
+        "description": "The page you're looking for doesn't exist on BentoPDF.",
+        "url": "https://www.bentopdf.com/404"
+      }
+    </script>
+  </body>
+</html>

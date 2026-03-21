@@ -1,0 +1,22 @@
+{{- if .Values.gateway.enabled -}}
+{{- $gatewayName := .Values.gateway.name -}}
+{{- if not $gatewayName -}}
+{{- $gatewayName = printf "%s-gateway" (include "bentopdf.name" .) -}}
+{{- end -}}
+{{- $gatewayNs := default .Release.Namespace .Values.gateway.namespace -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: {{ $gatewayName }}
+  namespace: {{ $gatewayNs }}
+  labels:
+    {{- include "bentopdf.labels" . | nindent 4 }}
+  {{- with .Values.gateway.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  gatewayClassName: {{ required "values.gateway.gatewayClassName is required when gateway.enabled=true" .Values.gateway.gatewayClassName }}
+  listeners:
+    {{- toYaml .Values.gateway.listeners | nindent 4 }}
+{{- end }}

@@ -4,6 +4,7 @@ interface ConvertPDFToJSONMessage {
   command: 'convert';
   fileBuffers: ArrayBuffer[];
   fileNames: string[];
+  cpdfUrl?: string;
 }
 
 interface PDFToJSONSuccessResponse {
@@ -17,4 +18,3 @@ interface PDFToJSONErrorResponse {
 }
 
 type PDFToJSONResponse = PDFToJSONSuccessResponse | PDFToJSONErrorResponse;
-

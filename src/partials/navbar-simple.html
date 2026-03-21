@@ -1,0 +1,22 @@
+<nav
+  class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30"
+  data-simple-nav="true"
+>
+  <div class="container mx-auto px-4">
+    <div class="flex justify-start items-center h-16">
+      <div class="flex-shrink-0 flex items-center cursor-pointer">
+        <img
+          id="nav-logo"
+          src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/favicon-no-bg.svg{{/if}}"
+          alt="{{#if brandName}}{{brandName}}{{else}}Bento PDF{{/if}} Logo"
+          class="h-8 w-8"
+        />
+        <span id="nav-brand" class="text-white font-bold text-xl ml-2">
+          <a href="{{baseUrl}}"
+            >{{#if brandName}}{{brandName}}{{else}}BentoPDF{{/if}}</a
+          >
+        </span>
+      </div>
+    </div>
+  </div>
+</nav>

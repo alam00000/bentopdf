@@ -80,7 +80,9 @@ function main() {
   execSync('npm run update-version', { stdio: 'inherit' });
 
   // 3. Add and commit changes
-  execSync('git add package.json *.html src/pages/*.html', { stdio: 'inherit' });
+  execSync('git add package.json *.html src/pages/*.html', {
+    stdio: 'inherit',
+  });
   execSync(`git commit -m "Release v${newVersion}"`, { stdio: 'inherit' });
   console.log(`💾 Committed version change`);
 
@@ -98,7 +100,7 @@ function main() {
   execSync(`git push origin ${tagName}`, { stdio: 'inherit' });
 
   console.log(`🎉 Release v${newVersion} complete!`);
-  console.log(`📦 Docker image: bentopdf/bentopdf:${newVersion}`);
+  console.log(`📦 Docker image: bentopdfteam/bentopdf:${newVersion}`);
   console.log(`📦 Distribution: dist-${newVersion}.zip`);
   console.log(
     `🏷️  GitHub release: https://github.com/alam00000/bentopdf/releases/tag/${tagName}`

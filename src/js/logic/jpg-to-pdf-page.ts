@@ -2,7 +2,11 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
-import { PyMuPDF } from '@bentopdf/pymupdf-wasm';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import {
+  getSelectedQuality,
+  compressImageFile,
+} from '../utils/image-compress.js';
 
 // @ts-ignore
 import Sortable from 'sortablejs';
@@ -11,67 +15,67 @@ const SUPPORTED_FORMATS = '.jpg,.jpeg,.jp2,.jpx';
 const SUPPORTED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/jp2'];
 
 let files: File[] = [];
-let pymupdf: PyMuPDF | null = null;
+let pymupdf: any = null;
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePage);
+  document.addEventListener('DOMContentLoaded', initializePage);
 } else {
-    initializePage();
+  initializePage();
 }
 
 function initializePage() {
-    createIcons({ icons });
+  createIcons({ icons });
 
-    const fileInput = document.getElementById('file-input') as HTMLInputElement;
-    const dropZone = document.getElementById('drop-zone');
-    const addMoreBtn = document.getElementById('add-more-btn');
-    const clearFilesBtn = document.getElementById('clear-files-btn');
-    const processBtn = document.getElementById('process-btn');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const dropZone = document.getElementById('drop-zone');
+  const addMoreBtn = document.getElementById('add-more-btn');
+  const clearFilesBtn = document.getElementById('clear-files-btn');
+  const processBtn = document.getElementById('process-btn');
 
-    if (fileInput) {
-        fileInput.addEventListener('change', handleFileUpload);
-    }
+  if (fileInput) {
+    fileInput.addEventListener('change', handleFileUpload);
+  }
 
-    if (dropZone) {
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('bg-gray-700');
-        });
+  if (dropZone) {
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('bg-gray-700');
+    });
 
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('bg-gray-700');
-        });
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('bg-gray-700');
+    });
 
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('bg-gray-700');
-            const droppedFiles = e.dataTransfer?.files;
-            if (droppedFiles && droppedFiles.length > 0) {
-                handleFiles(droppedFiles);
-            }
-        });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('bg-gray-700');
+      const droppedFiles = e.dataTransfer?.files;
+      if (droppedFiles && droppedFiles.length > 0) {
+        handleFiles(droppedFiles);
+      }
+    });
 
-        fileInput?.addEventListener('click', () => {
-            if (fileInput) fileInput.value = '';
-        });
-    }
+    fileInput?.addEventListener('click', () => {
+      if (fileInput) fileInput.value = '';
+    });
+  }
 
-    if (addMoreBtn) {
-        addMoreBtn.addEventListener('click', () => {
-            fileInput?.click();
-        });
-    }
+  if (addMoreBtn) {
+    addMoreBtn.addEventListener('click', () => {
+      fileInput?.click();
+    });
+  }
 
-    if (clearFilesBtn) {
-        clearFilesBtn.addEventListener('click', () => {
-            files = [];
-            updateUI();
-        });
-    }
+  if (clearFilesBtn) {
+    clearFilesBtn.addEventListener('click', () => {
+      files = [];
+      updateUI();
+    });
+  }
 
-    if (processBtn) {
-        processBtn.addEventListener('click', convertToPdf);
-    }
+  if (processBtn) {
+    processBtn.addEventListener('click', convertToPdf);
+  }
 
     document.getElementById('back-to-tools')?.addEventListener('click', () => {
         window.location.href = import.meta.env.BASE_URL;
@@ -83,38 +87,43 @@ function initializePage() {
 }
 
 function handleFileUpload(e: Event) {
-    const input = e.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-        handleFiles(input.files);
-    }
+  const input = e.target as HTMLInputElement;
+  if (input.files && input.files.length > 0) {
+    handleFiles(input.files);
+  }
 }
 
 function getFileExtension(filename: string): string {
-    return '.' + (filename.split('.').pop()?.toLowerCase() || '');
+  return '.' + (filename.split('.').pop()?.toLowerCase() || '');
 }
 
 function isValidImageFile(file: File): boolean {
-    const ext = getFileExtension(file.name);
-    const validExtensions = SUPPORTED_FORMATS.split(',');
-    return validExtensions.includes(ext) || SUPPORTED_MIME_TYPES.includes(file.type);
+  const ext = getFileExtension(file.name);
+  const validExtensions = SUPPORTED_FORMATS.split(',');
+  return (
+    validExtensions.includes(ext) || SUPPORTED_MIME_TYPES.includes(file.type)
+  );
 }
 
 function handleFiles(newFiles: FileList) {
-    const validFiles = Array.from(newFiles).filter(isValidImageFile);
+  const validFiles = Array.from(newFiles).filter(isValidImageFile);
 
-    if (validFiles.length < newFiles.length) {
-        showAlert('Invalid Files', 'Some files were skipped. Only JPG, JPEG, JP2, and JPX files are allowed.');
-    }
+  if (validFiles.length < newFiles.length) {
+    showAlert(
+      'Invalid Files',
+      'Some files were skipped. Only JPG, JPEG, JP2, and JPX files are allowed.'
+    );
+  }
 
-    if (validFiles.length > 0) {
-        files = [...files, ...validFiles];
-        updateUI();
-    }
+  if (validFiles.length > 0) {
+    files = [...files, ...validFiles];
+    updateUI();
+  }
 }
 
 const resetState = () => {
-    files = [];
-    updateUI();
+  files = [];
+  updateUI();
 };
 
 function updateUI() {
@@ -206,29 +215,37 @@ async function ensurePyMuPDF(): Promise<PyMuPDF> {
 }
 
 async function convertToPdf() {
-    if (files.length === 0) {
-        showAlert('No Files', 'Please select at least one JPG or JPEG2000 image.');
-        return;
+  if (files.length === 0) {
+    showAlert('No Files', 'Please select at least one JPG or JPEG2000 image.');
+    return;
+  }
+
+  showLoader('Loading engine...');
+
+  try {
+    const mupdf = await ensurePyMuPDF();
+
+    showLoader('Converting images to PDF...');
+    const quality = getSelectedQuality();
+    const compressedFiles: File[] = [];
+    for (const file of files) {
+      compressedFiles.push(await compressImageFile(file, quality));
     }
 
-    showLoader('Loading PyMuPDF engine...');
+    const pdfBlob = await mupdf.imagesToPdf(compressedFiles);
 
-    try {
-        const mupdf = await ensurePyMuPDF();
+    downloadFile(pdfBlob, 'from_jpgs.pdf');
 
-        showLoader('Converting images to PDF...');
-
-        const pdfBlob = await mupdf.imagesToPdf(files);
-
-        downloadFile(pdfBlob, 'from_jpgs.pdf');
-
-        showAlert('Success', 'PDF created successfully!', 'success', () => {
-            resetState();
-        });
-    } catch (e: any) {
-        console.error('[JpgToPdf]', e);
-        showAlert('Conversion Error', e.message || 'Failed to convert images to PDF.');
-    } finally {
-        hideLoader();
-    }
+    showAlert('Success', 'PDF created successfully!', 'success', () => {
+      resetState();
+    });
+  } catch (e: any) {
+    console.error('[JpgToPdf]', e);
+    showAlert(
+      'Conversion Error',
+      e.message || 'Failed to convert images to PDF.'
+    );
+  } finally {
+    hideLoader();
+  }
 }

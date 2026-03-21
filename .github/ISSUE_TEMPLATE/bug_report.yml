@@ -1,0 +1,122 @@
+name: 🐛 Bug Report
+description: Report a bug in BentoPDF
+title: "(Bug) "
+labels: ["bug", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ⚠️ Important Notice
+        **Bug reports without logs or a sample file demonstrating the issue will not be investigated.**
+        Please help us help you by providing the information needed to reproduce and fix the problem.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Provide a clear and concise description of the bug.
+      placeholder: What happened? What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Upload file '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: console-logs
+    attributes:
+      label: Console Logs
+      description: Open browser DevTools (F12 → Console tab) and paste any errors here.
+      placeholder: Paste console logs here...
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: sample-file
+    attributes:
+      label: Sample PDF or File
+      description: |
+        Attach a sample PDF that reproduces the issue, or describe how to create one.
+        If you cannot share the original, create a minimal example that shows the problem.
+      placeholder: Drag and drop your file here, or describe how to reproduce with any PDF...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: Which browser are you using?
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Brave
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser Version
+      description: e.g., Chrome 120, Firefox 121
+      placeholder: "120"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - iOS
+        - Android
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: bentopdf-version
+    attributes:
+      label: BentoPDF Version
+      description: Check the footer or package.json
+      placeholder: "1.15.4"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information that might help us debug this issue.
+      placeholder: Screenshots, network errors, stack traces, etc.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have included console logs from the browser DevTools
+          required: true
+        - label: I have attached a sample file or described how to reproduce the issue
+          required: true
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true

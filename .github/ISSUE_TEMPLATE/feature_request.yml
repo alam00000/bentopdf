@@ -1,0 +1,39 @@
+name: 💡 Feature Request
+description: Suggest a new feature for BentoPDF
+title: "(Feature) "
+labels: ["enhancement", "needs triage"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: What functionality are you requesting?
+      placeholder: Describe the feature you'd like to see...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Why is this feature useful? What problem does it solve?
+      placeholder: Explain why you need this feature...
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples
+      description: Any examples, mockups, or references to illustrate the feature?
+      placeholder: Links to similar features, screenshots, etc.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information about the feature request.
+    validations:
+      required: false

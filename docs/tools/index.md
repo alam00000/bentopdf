@@ -1,107 +1,181 @@
 # Tools Reference
 
-BentoPDF offers **50+ tools** for working with PDFs. All tools run entirely in your browser—your files never leave your device.
+BentoPDF offers **130+ tools** for working with PDFs. All tools run entirely in your browser — your files never leave your device.
 
-## Organize & Manage PDFs
+---
 
-| Tool Name                 | Description                                                                |
-| :------------------------ | :------------------------------------------------------------------------- |
-| **Merge PDFs**            | Combine multiple PDF files into one.                                       |
-| **Split PDFs**            | Extract specific pages or divide a document into smaller files.            |
-| **Organize Pages**        | Reorder, duplicate, or delete pages with a simple drag-and-drop interface. |
-| **Extract Pages**         | Save a specific range of pages as a new PDF.                               |
-| **Delete Pages**          | Remove unwanted pages from your document.                                  |
-| **Rotate PDF**            | Rotate individual or all pages in a document.                              |
-| **N-Up PDF**              | Combine multiple pages onto a single page.                                 |
-| **View PDF**              | A powerful, integrated PDF viewer.                                         |
-| **Alternate & Mix pages** | Merge pages by alternating pages from each PDF.                            |
-| **Posterize PDF**         | Split a PDF into multiple smaller pages for print.                         |
-| **PDF Multi Tool**        | Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface. |
-| **Add Attachments**       | Embed one or more files into your PDF.                                     |
-| **Extract Attachments**   | Extract all embedded files from PDF(s) as a ZIP.                           |
-| **Edit Attachments**      | View or remove attachments in your PDF.                                    |
-| **Divide Pages**          | Divide pages horizontally or vertically.                                   |
-| **Combine to Single Page**| Stitch all pages into one continuous scroll.                               |
-| **Add Blank Page**        | Insert an empty page anywhere in your PDF.                                 |
-| **Reverse Pages**         | Flip the order of all pages in your document.                              |
-| **View Metadata**         | Inspect the hidden properties of your PDF.                                 |
-| **PDFs to ZIP**           | Package multiple PDF files into a ZIP archive.                             |
-| **Compare PDFs**          | Compare two PDFs side by side.                                             |
+## Edit & Annotate
 
-## Edit & Modify PDFs
+Modify, mark up, and enhance your PDF documents with a full suite of editing tools.
 
-| Tool Name              | Description                                                 |
-| :--------------------- | :---------------------------------------------------------- |
-| **PDF Editor**         | A comprehensive editor to modify your PDFs.                 |
-| **Create Fillable Forms** | Create professional fillable PDF forms with text fields, checkboxes, dropdowns, radio buttons, signatures, and more. |
-| **Add Page Numbers**   | Easily add page numbers with customizable formatting.       |
-| **Add Watermark**      | Add text or image watermarks to protect your documents.     |
-| **Header & Footer**    | Add customizable headers and footers.                       |
-| **Crop PDF**           | Crop specific pages or the entire document.                 |
-| **Invert Colors**      | Invert the colors of your PDF pages for better readability. |
-| **Change Background**  | Modify the background color of your PDF.                    |
-| **Change Text Color**  | Change the color of text content within the PDF.            |
-| **Fill Forms**         | Fill out PDF forms directly in your browser.                |
-| **Flatten PDF**        | Flatten form fields and annotations into static content.    |
-| **Remove Annotations** | Remove comments, highlights, and other annotations.         |
-| **Remove Blank Pages** | Auto detect and remove blank pages in a PDF.                |
-| **Edit Bookmarks**     | Add, Edit, Create, Import and Export PDF Bookmarks.         |
-| **Add Stamps**         | Add image stamps to your PDF using the annotation toolbar.  |
-| **Table of Contents**  | Generate a table of contents page from PDF bookmarks.       |
-| **Redact Content**     | Permanently remove sensitive content from your PDFs.        |
+<div class="tool-grid">
+
+- [**PDF Editor**](./edit-pdf) — Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs.
+- [**Edit Bookmarks**](./bookmark) — Add, edit, import, delete and extract PDF bookmarks.
+- [**Table of Contents**](./table-of-contents) — Generate a table of contents page from PDF bookmarks.
+- [**Page Numbers**](./page-numbers) — Insert page numbers into your document.
+- [**Add Page Labels**](./add-page-labels) — Apply PDF page labels with Roman numerals, prefixes, and custom starts.
+- [**Bates Numbering**](./bates-numbering) — Add sequential Bates numbers across one or more PDF files.
+- [**Add Watermark**](./add-watermark) — Stamp text or an image over your PDF pages.
+- [**Header & Footer**](./header-footer) — Add text to the top and bottom of pages.
+- [**Invert Colors**](./invert-colors) — Create a dark mode version of your PDF.
+- [**Scanner Effect**](./scanner-effect) — Make your PDF look like a scanned document.
+- [**Adjust Colors**](./adjust-colors) — Fine-tune brightness, contrast, saturation and more.
+- [**Background Color**](./background-color) — Change the background color of your PDF.
+- [**Change Text Color**](./text-color) — Change the color of text in your PDF.
+- [**Sign PDF**](./sign-pdf) — Draw, type, or upload your signature.
+- [**Add Stamps**](./add-stamps) — Add image stamps to your PDF using the annotation toolbar.
+- [**Remove Annotations**](./remove-annotations) — Strip comments, highlights, and links.
+- [**Crop PDF**](./crop-pdf) — Trim the margins of every page in your PDF.
+- [**PDF Form Filler**](./form-filler) — Fill in forms directly in the browser. Also supports XFA forms.
+- [**Create PDF Form**](./form-creator) — Create fillable PDF forms with drag-and-drop text fields.
+- [**Remove Blank Pages**](./remove-blank-pages) — Automatically detect and delete blank pages.
+
+</div>
+
+---
 
 ## Convert to PDF
 
-| Tool Name           | Description                                                     |
-| :------------------ | :-------------------------------------------------------------- |
-| **Image to PDF**    | Convert JPG, PNG, WebP, SVG, BMP, HEIC, and TIFF images to PDF. |
-| **JPG to PDF**      | Convert JPG images to PDF.                                      |
-| **PNG to PDF**      | Convert PNG images to PDF.                                      |
-| **WebP to PDF**     | Convert WebP images to PDF.                                     |
-| **SVG to PDF**      | Convert SVG images to PDF.                                      |
-| **BMP to PDF**      | Convert BMP images to PDF.                                      |
-| **HEIC to PDF**     | Convert HEIC images to PDF.                                     |
-| **TIFF to PDF**     | Convert TIFF images to PDF.                                     |
-| **Markdown to PDF** | Convert `.md` files into professional PDF documents.            |
-| **Text to PDF**     | Convert plain text files into a PDF.                            |
-| **EPUB to PDF**     | Convert EPUB e-books to PDF format.                             |
-| **MOBI to PDF**     | Convert MOBI e-books to PDF format.                             |
-| **JSON to PDF**     | Convert JSON to PDF.                                            |
+Turn images, documents, e-books, and other file formats into PDF.
+
+<div class="tool-grid">
+
+- [**Images to PDF**](./image-to-pdf) — Convert JPG, PNG, BMP, GIF, TIFF, SVG, HEIC, WebP and more to PDF.
+- [**JPG to PDF**](./jpg-to-pdf) — Create a PDF from one or more JPG images.
+- [**PNG to PDF**](./png-to-pdf) — Create a PDF from one or more PNG images.
+- [**WebP to PDF**](./webp-to-pdf) — Create a PDF from one or more WebP images.
+- [**SVG to PDF**](./svg-to-pdf) — Create a PDF from one or more SVG images.
+- [**BMP to PDF**](./bmp-to-pdf) — Create a PDF from one or more BMP images.
+- [**HEIC to PDF**](./heic-to-pdf) — Create a PDF from one or more HEIC images.
+- [**TIFF to PDF**](./tiff-to-pdf) — Create a PDF from one or more TIFF images.
+- [**Text to PDF**](./txt-to-pdf) — Convert a plain text file into a PDF.
+- [**Markdown to PDF**](./markdown-to-pdf) — Convert Markdown to PDF with live preview and syntax highlighting.
+- [**JSON to PDF**](./json-to-pdf) — Convert JSON files to PDF format.
+- [**ODT to PDF**](./odt-to-pdf) — Convert ODT (OpenDocument Text) files to PDF.
+- [**CSV to PDF**](./csv-to-pdf) — Convert CSV spreadsheets to PDF.
+- [**RTF to PDF**](./rtf-to-pdf) — Convert RTF (Rich Text Format) documents to PDF.
+- [**Word to PDF**](./word-to-pdf) — Convert Word documents (DOCX, DOC, ODT) to PDF.
+- [**Excel to PDF**](./excel-to-pdf) — Convert Excel spreadsheets (XLSX, XLS, ODS) to PDF.
+- [**PowerPoint to PDF**](./powerpoint-to-pdf) — Convert PowerPoint presentations (PPTX, PPT, ODP) to PDF.
+- [**XPS to PDF**](./xps-to-pdf) — Convert XPS/OXPS documents to PDF.
+- [**MOBI to PDF**](./mobi-to-pdf) — Convert MOBI e-books to PDF.
+- [**EPUB to PDF**](./epub-to-pdf) — Convert EPUB e-books to PDF.
+- [**FB2 to PDF**](./fb2-to-pdf) — Convert FictionBook (FB2) e-books to PDF.
+- [**CBZ to PDF**](./cbz-to-pdf) — Convert comic book archives (CBZ/CBR) to PDF.
+- [**WPD to PDF**](./wpd-to-pdf) — Convert WordPerfect documents (WPD) to PDF.
+- [**WPS to PDF**](./wps-to-pdf) — Convert WPS Office documents to PDF.
+- [**XML to PDF**](./xml-to-pdf) — Convert XML documents to PDF.
+- [**ODG to PDF**](./odg-to-pdf) — Convert OpenDocument Graphics (ODG) to PDF.
+- [**ODS to PDF**](./ods-to-pdf) — Convert OpenDocument Spreadsheet (ODS) to PDF.
+- [**ODP to PDF**](./odp-to-pdf) — Convert OpenDocument Presentation (ODP) to PDF.
+- [**PUB to PDF**](./pub-to-pdf) — Convert Microsoft Publisher (PUB) to PDF.
+- [**VSD to PDF**](./vsd-to-pdf) — Convert Microsoft Visio (VSD, VSDX) to PDF.
+- [**PSD to PDF**](./psd-to-pdf) — Convert Adobe Photoshop (PSD) files to PDF.
+- [**Email to PDF**](./email-to-pdf) — Convert email files (EML, MSG) to PDF format.
+
+</div>
+
+---
 
 ## Convert from PDF
 
-| Tool Name            | Description                                                                    |
-| :------------------- | :----------------------------------------------------------------------------- |
-| **PDF to Image**     | Convert PDF pages to JPG, PNG, WebP, BMP, or TIFF formats.                     |
-| **PDF to JPG**       | Convert each PDF page into a JPG image.                                        |
-| **PDF to PNG**       | Convert each PDF page into a PNG image.                                        |
-| **PDF to WebP**      | Convert each PDF page into a WebP image.                                       |
-| **PDF to BMP**       | Convert each PDF page into a BMP image.                                        |
-| **PDF to TIFF**      | Convert each PDF page into a TIFF image.                                       |
-| **PDF to Greyscale** | Convert a color PDF into a black-and-white version.                            |
-| **PDF to Text**      | Extract text content from PDF files.                                           |
-| **PDF to Excel**     | Extract tables from PDF to XLSX format.                                        |
-| **PDF to CSV**       | Extract tables from PDF to CSV format.                                         |
-| **OCR PDF**          | Make scanned PDFs searchable and copyable using Optical Character Recognition. |
-| **PDF to JSON**      | Convert PDF files to JSON format.                                              |
-| **Extract Images**   | Pull all images from a PDF.                                                    |
-| **Extract Tables**   | Export tables as CSV, JSON, or Markdown.                                       |
+Extract content from PDFs into images, documents, and data formats.
 
-## Secure & Optimize PDFs
+<div class="tool-grid">
 
-| Tool Name              | Description                                                        |
-| :--------------------- | :----------------------------------------------------------------- |
-| **Compress PDF**       | Reduce file size while maintaining quality.                        |
-| **Repair PDF**         | Attempt to repair and recover data from a corrupted PDF.           |
-| **Encrypt PDF**        | Add a password to protect your PDF from unauthorized access.       |
-| **Decrypt PDF**        | Remove password protection from a PDF (password required).         |
-| **Change Permissions** | Set or modify user permissions for printing, copying, and editing. |
-| **Sign PDF**           | Add your digital signature to a document.                          |
-| **Redact Content**     | Permanently remove sensitive content from your PDFs.               |
-| **Edit Metadata**      | View and modify PDF metadata (author, title, keywords, etc.).      |
-| **Remove Metadata**    | Strip all metadata from your PDF for privacy.                      |
-| **Linearize PDF**      | Optimize PDF for fast web view.                                    |
-| **Sanitize PDF**       | Remove potentially unwanted or malicious files from PDF.           |
-| **Fix Page Size**      | Standardize all pages to a uniform size.                           |
-| **Page Dimensions**    | Analyze page size, orientation, and units.                         |
-| **Remove Restrictions**| Remove password protection and security restrictions.              |
+- [**PDF to JPG**](./pdf-to-jpg) — Convert each PDF page into a JPG image.
+- [**PDF to PNG**](./pdf-to-png) — Convert each PDF page into a PNG image.
+- [**PDF to WebP**](./pdf-to-webp) — Convert each PDF page into a WebP image.
+- [**PDF to BMP**](./pdf-to-bmp) — Convert each PDF page into a BMP image.
+- [**PDF to TIFF**](./pdf-to-tiff) — Convert each PDF page into a TIFF image.
+- [**PDF to SVG**](./pdf-to-svg) — Convert each PDF page into a scalable vector graphic.
+- [**PDF to CSV**](./pdf-to-csv) — Extract tables from PDF and convert to CSV format.
+- [**PDF to Excel**](./pdf-to-excel) — Extract tables from PDF and convert to Excel (XLSX).
+- [**PDF to Greyscale**](./pdf-to-greyscale) — Convert all colors to black and white.
+- [**PDF to JSON**](./pdf-to-json) — Convert PDF files to JSON format.
+- [**PDF to Word**](./pdf-to-docx) — Convert PDF files to editable Word documents.
+- [**Extract Images**](./extract-images) — Extract all embedded images from your PDF files.
+- [**PDF to Markdown**](./pdf-to-markdown) — Convert PDF text and tables to Markdown format.
+- [**Prepare PDF for AI**](./prepare-pdf-for-ai) — Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines.
+- [**PDF to Text**](./pdf-to-text) — Extract text from PDF files and save as plain text.
+- [**Extract Tables**](./extract-tables) — Extract tables from PDFs as CSV, JSON, or Markdown.
+
+</div>
+
+---
+
+## Organize & Manage
+
+Rearrange, combine, split, and manage your PDF pages and files.
+
+<div class="tool-grid">
+
+- [**PDF Workflow Builder**](./pdf-workflow) — Build custom PDF processing pipelines with a visual node editor.
+- [**PDF Multi Tool**](./pdf-multi-tool) — Full-featured PDF editor with page management.
+- [**OCR PDF**](./ocr-pdf) — Make a PDF searchable and copyable.
+- [**Merge PDF**](./merge-pdf) — Combine multiple PDFs into one file.
+- [**Alternate & Mix Pages**](./alternate-merge) — Merge PDFs by alternating pages from each PDF.
+- [**Organize & Duplicate**](./organize-pdf) — Duplicate, reorder, and delete pages.
+- [**Add Attachments**](./add-attachments) — Embed one or more files into your PDF.
+- [**Extract Attachments**](./extract-attachments) — Extract all embedded files from PDF(s) as a ZIP.
+- [**Edit Attachments**](./edit-attachments) — View or remove attachments in your PDF.
+- [**PDF OCG**](./pdf-layers) — View, toggle, add, and delete OCG layers in your PDF.
+- [**Split PDF**](./split-pdf) — Extract a range of pages into a new PDF.
+- [**Divide Pages**](./divide-pages) — Divide pages horizontally or vertically.
+- [**Extract Pages**](./extract-pages) — Save a selection of pages as new files.
+- [**Delete Pages**](./delete-pages) — Remove specific pages from your document.
+- [**Add Blank Page**](./add-blank-page) — Insert an empty page anywhere in your PDF.
+- [**Reverse Pages**](./reverse-pages) — Flip the order of all pages in your document.
+- [**Rotate PDF**](./rotate-pdf) — Turn pages in 90-degree increments.
+- [**Rotate by Custom Degrees**](./rotate-custom) — Rotate pages by any custom angle.
+- [**N-Up PDF**](./n-up-pdf) — Arrange multiple pages onto a single sheet.
+- [**PDF Booklet**](./pdf-booklet) — Rearrange pages for double-sided booklet printing.
+- [**Combine to Single Page**](./combine-single-page) — Stitch all pages into one continuous scroll.
+- [**View Metadata**](./view-metadata) — Inspect the hidden properties of your PDF.
+- [**Edit Metadata**](./edit-metadata) — Change the author, title, and other properties.
+- [**PDFs to ZIP**](./pdf-to-zip) — Package multiple PDF files into a ZIP archive.
+- [**Compare PDFs**](./compare-pdfs) — Compare two PDFs side by side.
+- [**Posterize PDF**](./posterize-pdf) — Split a large page into multiple smaller pages.
+
+</div>
+
+---
+
+## Optimize & Repair
+
+Compress, fix, and optimize your PDFs for better performance and compatibility.
+
+<div class="tool-grid">
+
+- [**Compress PDF**](./compress-pdf) — Reduce the file size of your PDF.
+- [**PDF to PDF/A**](./pdf-to-pdfa) — Convert PDF to PDF/A for long-term archiving.
+- [**Fix Page Size**](./fix-page-size) — Standardize all pages to a uniform size.
+- [**Linearize PDF**](./linearize-pdf) — Optimize PDF for fast web viewing.
+- [**Page Dimensions**](./page-dimensions) — Analyze page size, orientation, and units.
+- [**Remove Restrictions**](./remove-restrictions) — Remove password protection and security restrictions.
+- [**Repair PDF**](./repair-pdf) — Recover data from corrupted or damaged PDF files.
+- [**Rasterize PDF**](./rasterize-pdf) — Convert PDF to image-based PDF. Flatten layers and remove selectable text.
+- [**Deskew PDF**](./deskew-pdf) — Automatically straighten tilted scanned pages using OpenCV.
+- [**Font to Outline**](./font-to-outline) — Convert all fonts to vector outlines for consistent rendering.
+
+</div>
+
+---
+
+## Secure PDF
+
+Protect, encrypt, and control access to your PDF documents.
+
+<div class="tool-grid">
+
+- [**Encrypt PDF**](./encrypt-pdf) — Lock your PDF by adding a password.
+- [**Sanitize PDF**](./sanitize-pdf) — Remove metadata, annotations, scripts, and more.
+- [**Decrypt PDF**](./decrypt-pdf) — Unlock PDF by removing password protection.
+- [**Flatten PDF**](./flatten-pdf) — Make form fields and annotations non-editable.
+- [**Remove Metadata**](./remove-metadata) — Strip hidden data from your PDF.
+- [**Change Permissions**](./change-permissions) — Set or change user permissions on a PDF.
+- [**Digital Signature**](./digital-sign-pdf) — Add a cryptographic digital signature using X.509 certificates.
+- [**Validate Signature**](./validate-signature-pdf) — Verify digital signatures and view certificate details.
+
+</div>

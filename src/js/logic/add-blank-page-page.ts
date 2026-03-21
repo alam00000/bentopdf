@@ -2,11 +2,8 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { AddBlankPageState } from '@/types';
 
-interface AddBlankPageState {
-    file: File | null;
-    pdfDoc: PDFLibDocument | null;
-}
 
 const pageState: AddBlankPageState = {
     file: null,

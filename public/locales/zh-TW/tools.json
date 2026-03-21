@@ -1,0 +1,730 @@
+{
+  "categories": {
+    "popularTools": "熱門工具",
+    "editAnnotate": "編輯與註解",
+    "convertToPdf": "轉換為 PDF",
+    "convertFromPdf": "從 PDF 轉換",
+    "organizeManage": "組織與管理",
+    "optimizeRepair": "優化與修復",
+    "securePdf": "安全 PDF"
+  },
+  "pdfMultiTool": {
+    "name": "PDF 多功能工具",
+    "subtitle": "在統一的頁面中合併、分割、組織、刪除、旋轉、添加空白頁面、提取與複製。"
+  },
+  "mergePdf": {
+    "name": "合併 PDF",
+    "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。"
+  },
+  "splitPdf": {
+    "name": "分割 PDF",
+    "subtitle": "將指定範圍的頁面提取為新的 PDF。"
+  },
+  "compressPdf": {
+    "name": "壓縮 PDF",
+    "subtitle": "降低你的 PDF 檔案大小。",
+    "algorithmLabel": "壓縮演算法",
+    "condense": "Condense（推薦）",
+    "photon": "Photon（適用於圖片較多的 PDF）",
+    "condenseInfo": "Condense 使用高級壓縮：移除冗餘資料、優化圖片、精簡字型。適用於大多數 PDF。",
+    "photonInfo": "Photon 將頁面轉換為圖片。適用於圖片較多/掃描的 PDF。",
+    "photonWarning": "警告：文字將無法選取，連結將失效。",
+    "levelLabel": "壓縮等級",
+    "light": "輕度（保持品質）",
+    "balanced": "平衡（推薦）",
+    "aggressive": "積極（更小檔案）",
+    "extreme": "極限（最大壓縮）",
+    "grayscale": "轉換為灰階",
+    "grayscaleHint": "透過移除色彩資訊來縮小檔案大小",
+    "customSettings": "自訂設定",
+    "customSettingsHint": "微調壓縮參數：",
+    "outputQuality": "輸出品質",
+    "resizeImagesTo": "調整圖片至",
+    "onlyProcessAbove": "僅處理高於",
+    "removeMetadata": "移除中繼資料",
+    "subsetFonts": "精簡字型（移除未使用的字符）",
+    "removeThumbnails": "移除嵌入的縮圖",
+    "compressButton": "壓縮 PDF"
+  },
+  "pdfEditor": {
+    "name": "PDF 編輯器",
+    "subtitle": "註解、螢光、塗黑、評論、添加圖形或圖片、搜尋與查看 PDF。"
+  },
+  "jpgToPdf": {
+    "name": "JPG 轉 PDF",
+    "subtitle": "從一張或多張 JPG 圖片建立 PDF。"
+  },
+  "signPdf": {
+    "name": "簽署 PDF",
+    "subtitle": "繪製、輸入或上傳你的簽名。"
+  },
+  "cropPdf": {
+    "name": "裁切 PDF",
+    "subtitle": "修剪你的 PDF 中所有頁面的邊界。"
+  },
+  "extractPages": {
+    "name": "提取頁面",
+    "subtitle": "將選取的頁面保存為新的檔案。"
+  },
+  "duplicateOrganize": {
+    "name": "複製與組織",
+    "subtitle": "複製、重新排序與刪除頁面。"
+  },
+  "deletePages": {
+    "name": "刪除頁面",
+    "subtitle": "移除你的文件中的特定頁面。"
+  },
+  "editBookmarks": {
+    "name": "編輯書籤",
+    "subtitle": "添加、編輯、匯入、刪除與提取 PDF 書籤。"
+  },
+  "tableOfContents": {
+    "name": "目錄",
+    "subtitle": "從 PDF 書籤生成目錄頁。"
+  },
+  "pageNumbers": {
+    "name": "頁碼",
+    "subtitle": "在你的文件中插入頁碼。"
+  },
+  "addPageLabels": {
+    "name": "新增頁面標籤",
+    "subtitle": "使用羅馬數字、前綴與自訂起始值套用 PDF 頁面標籤。",
+    "uploadHint": "PDF 檔案",
+    "howLabelsWorkTitle": "頁面標籤的運作方式",
+    "howLabelsWorkStep1": "將頁面範圍留空即可為所有頁面套用標籤。",
+    "howLabelsWorkStep2": "前置頁可使用羅馬數字，正文則可使用十進位編號等樣式。",
+    "howLabelsWorkStep3": "將前綴搭配起始值 0，可建立像 A-0、A-1、A-2 這樣的標籤。",
+    "howLabelsWorkStep4": "當某條規則使用 1-9,30-40 或奇數頁等不連續範圍時，請啟用連續編號。",
+    "labelRulesTitle": "標籤規則",
+    "addRule": "新增規則",
+    "removeExistingLabels": "套用這些規則前先移除現有頁面標籤",
+    "cpdfNote": "此工具會在你的瀏覽器中使用 CoherentPDF。若 CoherentPDF 尚未設定，系統會提示你在 WASM 設定中完成設定。",
+    "processButton": "新增頁面標籤",
+    "howItWorksUploadTitle": "上傳檔案",
+    "howItWorksUploadDescription": "選擇你要重新標記的 PDF 檔案。",
+    "howItWorksDefineTitle": "定義規則",
+    "howItWorksDefineDescription": "設定一條或多條頁面標籤規則，包括頁面範圍、樣式、前綴與起始值。",
+    "howItWorksDownloadTitle": "下載",
+    "howItWorksDownloadDescription": "儲存套用新頁面標籤後的 PDF。",
+    "relatedToolsTitle": "相關 PDF 工具",
+    "faqWhatIsQuestion": "什麼是頁面標籤？",
+    "faqWhatIsAnswer": "頁面標籤是 PDF 閱讀器在縮圖、頁面導覽與列印對話框中顯示的編號。它不會在頁面本身額外列印新文字。",
+    "faqMixQuestion": "我可以混用羅馬數字和一般數字嗎？",
+    "faqMixAnswer": "可以。你可以新增多條規則，例如 1-4 使用 LowercaseRoman，5-20 使用 DecimalArabic。",
+    "faqPrivacyQuestion": "我的檔案會保持私密嗎？",
+    "faqPrivacyAnswer": "會。處理程序會在你的瀏覽器中使用 CoherentPDF WASM 完成，PDF 不會離開你的裝置。",
+    "invalidFileTitle": "無效檔案",
+    "invalidFileMessage": "請上傳有效的 PDF 檔案。",
+    "loadingPdf": "正在載入 PDF...",
+    "protectedPdfTitle": "受保護的 PDF",
+    "protectedPdfMessage": "此 PDF 受密碼保護。請先使用解密或變更權限工具。",
+    "loadErrorMessage": "無法載入 PDF 檔案。該檔案可能無效、毀損或受密碼保護。",
+    "fileMeta": "{{size}} • {{count}} 頁",
+    "ruleTitle": "標籤規則 {{number}}",
+    "pageRangeLabel": "頁面範圍",
+    "pageRangePlaceholder": "所有頁面，或例如 1-4、7、奇數頁",
+    "labelStyleLabel": "標籤樣式",
+    "labelPrefixLabel": "標籤前綴",
+    "labelPrefixPlaceholder": "可選前綴，例如 A-",
+    "startValueLabel": "起始值",
+    "continueNumbering": "在不連續範圍中持續編號",
+    "examplesNote": "例如：1-4 用於前言的羅馬數字頁碼、15-20 使用前綴 A- 且起始值為 0，或啟用連續編號的奇數頁。",
+    "uploadFirstMessage": "請先上傳 PDF 檔案。",
+    "applyingLabels": "正在套用頁面標籤...",
+    "invalidRangeMessage": "規則 {{number}} 的頁面範圍無效：{{range}}",
+    "allPages": "所有頁面",
+    "emptyOutputMessage": "CoherentPDF 產生了空白檔案。",
+    "successMessage": "頁面標籤新增成功！",
+    "processErrorMessage": "無法新增頁面標籤。",
+    "styleOptions": {
+      "DecimalArabic": "十進位數字",
+      "LowercaseRoman": "小寫羅馬數字",
+      "UppercaseRoman": "大寫羅馬數字",
+      "LowercaseLetters": "小寫字母",
+      "UppercaseLetters": "大寫字母",
+      "NoLabelPrefixOnly": "僅前綴，無編號"
+    }
+  },
+  "batesNumbering": {
+    "name": "Bates編號",
+    "subtitle": "在一個或多個PDF檔案中新增連續的Bates編號。"
+  },
+  "addWatermark": {
+    "name": "添加浮水印",
+    "subtitle": "在你的 PDF 頁面上壓印文字或圖片。",
+    "applyToAllPages": "套用至所有頁面"
+  },
+  "headerFooter": {
+    "name": "頁首與頁尾",
+    "subtitle": "在頁面的頂部與底部新增文字。"
+  },
+  "invertColors": {
+    "name": "反轉顏色",
+    "subtitle": "為你的 PDF 建立深色版本。"
+  },
+  "scannerEffect": {
+    "name": "掃描效果",
+    "subtitle": "讓你的 PDF 看起來像掃描文件。",
+    "scanSettings": "掃描設定",
+    "colorspace": "色彩空間",
+    "gray": "灰階",
+    "border": "邊框",
+    "rotate": "旋轉",
+    "rotateVariance": "旋轉變異",
+    "brightness": "亮度",
+    "contrast": "對比度",
+    "blur": "模糊",
+    "noise": "雜訊",
+    "yellowish": "泛黃",
+    "resolution": "解析度",
+    "processButton": "套用掃描效果"
+  },
+  "adjustColors": {
+    "name": "調整顏色",
+    "subtitle": "微調 PDF 的亮度、對比度、飽和度等。",
+    "colorSettings": "顏色設定",
+    "brightness": "亮度",
+    "contrast": "對比度",
+    "saturation": "飽和度",
+    "hueShift": "色相偏移",
+    "temperature": "色溫",
+    "tint": "色調",
+    "gamma": "Gamma",
+    "sepia": "復古色",
+    "processButton": "套用顏色調整"
+  },
+  "backgroundColor": {
+    "name": "背景顏色",
+    "subtitle": "更改你的 PDF 的背景顏色。"
+  },
+  "changeTextColor": {
+    "name": "更改文字顏色",
+    "subtitle": "更改你的 PDF 中的文字顏色。"
+  },
+  "addStamps": {
+    "name": "添加印章",
+    "subtitle": "使用註解工具列在你的 PDF 中添加圖片印章。",
+    "usernameLabel": "印章使用者名稱",
+    "usernamePlaceholder": "輸入你的名稱（印章用）",
+    "usernameHint": "該名稱會出現在你建立的印章上。"
+  },
+  "removeAnnotations": {
+    "name": "移除註解",
+    "subtitle": "去除留言、螢光與連結。"
+  },
+  "pdfFormFiller": {
+    "name": "PDF 表單填寫器",
+    "subtitle": "直接在你的瀏覽器中填寫表單。支援 XFA 表單。"
+  },
+  "createPdfForm": {
+    "name": "建立 PDF 表單",
+    "subtitle": "透過拖放文字框建立可填寫的 PDF 表單。"
+  },
+  "removeBlankPages": {
+    "name": "移除空白頁面",
+    "subtitle": "自動偵測並刪除空白頁面。",
+    "sensitivityHint": "越高 = 越嚴格，僅偵測純空白頁面。越低 = 允許包含少量內容的頁面。"
+  },
+  "imageToPdf": {
+    "name": "圖片轉 PDF",
+    "subtitle": "將 JPG、PNG、WebP、BMP、TIFF、SVG 與 HEIC 轉換為 PDF。"
+  },
+  "pngToPdf": {
+    "name": "PNG 轉 PDF",
+    "subtitle": "從一張或多張 PNG 圖片建立 PDF。"
+  },
+  "webpToPdf": {
+    "name": "WebP 轉 PDF",
+    "subtitle": "從一張或多張 WebP 圖片建立 PDF。"
+  },
+  "svgToPdf": {
+    "name": "SVG 轉 PDF",
+    "subtitle": "從一張或多張 SVG 圖片建立 PDF。"
+  },
+  "bmpToPdf": {
+    "name": "BMP 轉 PDF",
+    "subtitle": "從一張或多張 BMP 圖片建立 PDF。"
+  },
+  "heicToPdf": {
+    "name": "HEIC 轉 PDF",
+    "subtitle": "從一張或多張 HEIC 圖片建立 PDF。"
+  },
+  "tiffToPdf": {
+    "name": "TIFF 轉 PDF",
+    "subtitle": "從一張或多張 TIFF 圖片建立 PDF。"
+  },
+  "textToPdf": {
+    "name": "Text 轉 PDF",
+    "subtitle": "將純文字檔案轉換為 PDF。"
+  },
+  "jsonToPdf": {
+    "name": "JSON 轉 PDF",
+    "subtitle": "將 JSON 檔案轉換為 PDF 格式。"
+  },
+  "pdfToJpg": {
+    "name": "PDF 轉 JPG",
+    "subtitle": "將每個 PDF 頁面轉換為 JPG 圖片。"
+  },
+  "pdfToPng": {
+    "name": "PDF 轉 PNG",
+    "subtitle": "將每個 PDF 頁面轉換為 PNG 圖片。"
+  },
+  "pdfToWebp": {
+    "name": "PDF 轉 WebP",
+    "subtitle": "將每個 PDF 頁面轉換為 WebP 圖片。"
+  },
+  "pdfToBmp": {
+    "name": "PDF 轉 BMP",
+    "subtitle": "將每個 PDF 頁面轉換為 BMP 圖片。"
+  },
+  "pdfToTiff": {
+    "name": "PDF 轉 TIFF",
+    "subtitle": "將每個 PDF 頁面轉換為 TIFF 圖片。"
+  },
+  "pdfToGreyscale": {
+    "name": "PDF 轉灰階",
+    "subtitle": "將所有顏色轉換為黑白。"
+  },
+  "pdfToJson": {
+    "name": "PDF 轉 JSON",
+    "subtitle": "將 PDF 檔案轉換為 JSON 格式。"
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "使 PDF 可搜尋且可複製。"
+  },
+  "alternateMix": {
+    "name": "交錯混合頁面",
+    "subtitle": "將每個 PDF 的頁面交錯合併。保留書籤。"
+  },
+  "addAttachments": {
+    "name": "添加附件",
+    "subtitle": "嵌入一個或多個檔案至你的 PDF 中。"
+  },
+  "extractAttachments": {
+    "name": "提取附件",
+    "subtitle": "從 PDF 中提取所有嵌入的檔案為 ZIP。"
+  },
+  "editAttachments": {
+    "name": "編輯附件",
+    "subtitle": "查看或移除你的 PDF 中的附件。"
+  },
+  "dividePages": {
+    "name": "分割頁面",
+    "subtitle": "垂直或水平分割頁面。"
+  },
+  "addBlankPage": {
+    "name": "添加空白頁面",
+    "subtitle": "在你的 PDF 中的任一位置插入空白頁面。"
+  },
+  "reversePages": {
+    "name": "反轉頁面",
+    "subtitle": "反轉你的文件中所有頁面的順序。"
+  },
+  "rotatePdf": {
+    "name": "旋轉 PDF",
+    "subtitle": "以 90 度增量旋轉頁面。"
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "將多個頁面排列在單張紙上。"
+  },
+  "combineToSinglePage": {
+    "name": "合併為單一頁面",
+    "subtitle": "將所有頁面縫合為一個單一且連續的滾動頁面。"
+  },
+  "viewMetadata": {
+    "name": "查看元資料",
+    "subtitle": "檢視你的 PDF 中的隱藏屬性。"
+  },
+  "editMetadata": {
+    "name": "編輯元資料",
+    "subtitle": "更改作者、標題和其他屬性。"
+  },
+  "pdfsToZip": {
+    "name": "PDF 轉 ZIP",
+    "subtitle": "將多個 PDF 檔案打包為 ZIP 壓縮檔。"
+  },
+  "comparePdfs": {
+    "name": "比較 PDF",
+    "subtitle": "並排比較兩個 PDF。",
+    "firstPdf": "第一個 PDF",
+    "secondPdf": "第二個 PDF",
+    "clickOrDrop": "點擊或拖放",
+    "page": "頁面",
+    "overlay": "疊加",
+    "sideBySide": "並排",
+    "flicker": "閃爍",
+    "syncScroll": "同步捲動",
+    "export": "匯出",
+    "exportAsPdf": "匯出為 PDF",
+    "splitView": "分割檢視",
+    "alternating": "交替",
+    "leftDocument": "左側文件",
+    "rightDocument": "右側文件",
+    "original": "原始",
+    "modified": "修改後",
+    "searchChanges": "搜尋變更...",
+    "deleted": "已刪除",
+    "added": "已新增",
+    "prevPage": "上一頁",
+    "nextPage": "下一頁",
+    "prevChange": "上一個變更",
+    "nextChange": "下一個變更",
+    "uploadTwoPdfs": "上傳兩個 PDF 以查看差異。",
+    "noDifferences": "此頁面未偵測到差異。",
+    "noMatchingChanges": "沒有符合目前篩選條件的變更。",
+    "pageNotExist": "此 PDF 中不存在第 {{page}} 頁。",
+    "noPairedPage": "此側沒有配對頁面。",
+    "buildingModel": "正在建立頁面配對模型...",
+    "indexingPdf": "正在索引 PDF {{num}}，第 {{page}} / {{total}} 頁...",
+    "loadingComparison": "正在載入比較 {{current}} / {{total}}...",
+    "runningOcr": "正在對第 {{page}} 頁執行 OCR...",
+    "preparingExport": "正在準備 PDF 匯出...",
+    "renderingPage": "正在轉譯第 {{current}} / {{total}} 頁...",
+    "exportError": "匯出錯誤",
+    "exportFailed": "無法匯出比較 PDF。",
+    "loadingFile": "正在載入 {{name}}...",
+    "invalidFile": "無效檔案",
+    "invalidFileMsg": "請選擇有效的 PDF 檔案。",
+    "loadError": "無法載入 PDF。檔案可能已損毀或受密碼保護。"
+  },
+  "posterizePdf": {
+    "name": "海報化 PDF",
+    "subtitle": "將大頁面分割為多個較小的頁面。"
+  },
+  "fixPageSize": {
+    "name": "修復頁面大小",
+    "subtitle": "將所有頁面標準化為統一尺寸。"
+  },
+  "linearizePdf": {
+    "name": "線性化 PDF",
+    "subtitle": "為快速網頁瀏覽優化 PDF。"
+  },
+  "pageDimensions": {
+    "name": "頁面尺寸",
+    "subtitle": "分析頁面大小、方向和單位。"
+  },
+  "removeRestrictions": {
+    "name": "移除限制",
+    "subtitle": "移除與數位簽名的 PDF 檔案相關的密碼保護與安全限制。"
+  },
+  "repairPdf": {
+    "name": "修復 PDF",
+    "subtitle": "從受損的 PDF 檔案中復原資料。"
+  },
+  "encryptPdf": {
+    "name": "加密 PDF",
+    "subtitle": "透過添加密碼為你的 PDF 上鎖。"
+  },
+  "sanitizePdf": {
+    "name": "清理 PDF",
+    "subtitle": "移除元資料、註解、腳本與其他資料。"
+  },
+  "decryptPdf": {
+    "name": "解密 PDF",
+    "subtitle": "透過移除密碼保護解鎖 PDF。"
+  },
+  "flattenPdf": {
+    "name": "平面化 PDF",
+    "subtitle": "使表單欄位和註解不可編輯。"
+  },
+  "removeMetadata": {
+    "name": "移除元資料",
+    "subtitle": "除去你的 PDF 中的隱藏資料。"
+  },
+  "changePermissions": {
+    "name": "更改權限",
+    "subtitle": "設定或變更 PDF 上的使用者權限。"
+  },
+  "emailToPdf": {
+    "name": "Email 轉 PDF",
+    "subtitle": "將電子郵件檔案 (EML, MSG) 轉換為 PDF 格式。支援 Outlook 匯出和標準電子郵件格式。",
+    "acceptedFormats": "EML, MSG 檔案",
+    "convertButton": "轉換為 PDF"
+  },
+  "fontToOutline": {
+    "name": "字型轉外框",
+    "subtitle": "將所有字型轉換為向量外框，確保在所有裝置上呈現一致。"
+  },
+  "deskewPdf": {
+    "name": "PDF 歪斜修正",
+    "subtitle": "使用 OpenCV 自動調正傾斜的掃描頁面。"
+  },
+  "rotateCustom": {
+    "name": "Rotate by Custom Degrees",
+    "subtitle": "Rotate pages by any custom angle."
+  },
+  "odtToPdf": {
+    "name": "ODT to PDF",
+    "subtitle": "Convert OpenDocument Text files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODT files",
+    "convertButton": "Convert to PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV to PDF",
+    "subtitle": "Convert CSV spreadsheet files to PDF format. Supports multiple files.",
+    "acceptedFormats": "CSV files",
+    "convertButton": "Convert to PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF to PDF",
+    "subtitle": "Convert Rich Text Format documents to PDF. Supports multiple files.",
+    "acceptedFormats": "RTF files",
+    "convertButton": "Convert to PDF"
+  },
+  "wordToPdf": {
+    "name": "Word to PDF",
+    "subtitle": "Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files.",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF files",
+    "convertButton": "Convert to PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel to PDF",
+    "subtitle": "Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files.",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV files",
+    "convertButton": "Convert to PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint to PDF",
+    "subtitle": "Convert PowerPoint presentations (PPTX, PPT, ODP) to PDF format. Supports multiple files.",
+    "acceptedFormats": "PPTX, PPT, ODP files",
+    "convertButton": "Convert to PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown to PDF",
+    "subtitle": "Write or paste Markdown and export it as a beautifully formatted PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Preview",
+    "btnUpload": "Upload",
+    "btnSyncScroll": "Sync Scroll",
+    "btnSettings": "Settings",
+    "btnExportPdf": "Export PDF",
+    "settingsTitle": "Markdown Settings",
+    "settingsPreset": "Preset",
+    "presetDefault": "Default (GFM-like)",
+    "presetCommonmark": "CommonMark (strict)",
+    "presetZero": "Minimal (no features)",
+    "settingsOptions": "Markdown Options",
+    "optAllowHtml": "Allow HTML tags",
+    "optBreaks": "Convert newlines to <br>",
+    "optLinkify": "Auto-convert URLs to links",
+    "optTypographer": "Typographer (smart quotes, etc.)"
+  },
+  "pdfBooklet": {
+    "name": "PDF Booklet",
+    "subtitle": "Rearrange pages for double-sided booklet printing. Fold and staple to create a booklet.",
+    "howItWorks": "How it works:",
+    "step1": "Upload a PDF file.",
+    "step2": "Pages will be rearranged in booklet order.",
+    "step3": "Print double-sided, flip on short edge, fold and staple.",
+    "paperSize": "Paper Size",
+    "orientation": "Orientation",
+    "portrait": "Portrait",
+    "landscape": "Landscape",
+    "pagesPerSheet": "Pages per Sheet",
+    "createBooklet": "Create Booklet",
+    "processing": "Processing...",
+    "pageCount": "Page count will be padded to multiple of 4 if needed."
+  },
+  "xpsToPdf": {
+    "name": "XPS to PDF",
+    "subtitle": "Convert XPS/OXPS documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "XPS, OXPS files",
+    "convertButton": "Convert to PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI to PDF",
+    "subtitle": "Convert MOBI e-books to PDF format. Supports multiple files.",
+    "acceptedFormats": "MOBI files",
+    "convertButton": "Convert to PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB to PDF",
+    "subtitle": "Convert EPUB e-books to PDF format. Supports multiple files.",
+    "acceptedFormats": "EPUB files",
+    "convertButton": "Convert to PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 to PDF",
+    "subtitle": "Convert FictionBook (FB2) e-books to PDF format. Supports multiple files.",
+    "acceptedFormats": "FB2 files",
+    "convertButton": "Convert to PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ to PDF",
+    "subtitle": "Convert comic book archives (CBZ/CBR) to PDF format. Supports multiple files.",
+    "acceptedFormats": "CBZ, CBR files",
+    "convertButton": "Convert to PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD to PDF",
+    "subtitle": "Convert WordPerfect documents (WPD) to PDF format. Supports multiple files.",
+    "acceptedFormats": "WPD files",
+    "convertButton": "Convert to PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS to PDF",
+    "subtitle": "Convert WPS Office documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "WPS files",
+    "convertButton": "Convert to PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML to PDF",
+    "subtitle": "Convert XML documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "XML files",
+    "convertButton": "Convert to PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages to PDF",
+    "subtitle": "Convert Apple Pages documents to PDF format. Supports multiple files.",
+    "acceptedFormats": "Pages files",
+    "convertButton": "Convert to PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG to PDF",
+    "subtitle": "Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODG files",
+    "convertButton": "Convert to PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS to PDF",
+    "subtitle": "Convert OpenDocument Spreadsheet (ODS) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODS files",
+    "convertButton": "Convert to PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP to PDF",
+    "subtitle": "Convert OpenDocument Presentation (ODP) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "ODP files",
+    "convertButton": "Convert to PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB to PDF",
+    "subtitle": "Convert Microsoft Publisher (PUB) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "PUB files",
+    "convertButton": "Convert to PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD to PDF",
+    "subtitle": "Convert Microsoft Visio (VSD, VSDX) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "VSD, VSDX files",
+    "convertButton": "Convert to PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD to PDF",
+    "subtitle": "Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files.",
+    "acceptedFormats": "PSD files",
+    "convertButton": "Convert to PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF to SVG",
+    "subtitle": "Convert each page of a PDF file into a scalable vector graphic (SVG) for perfect quality at any size."
+  },
+  "extractTables": {
+    "name": "Extract PDF Tables",
+    "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF to CSV",
+    "subtitle": "Extract tables from PDF and convert to CSV format."
+  },
+  "pdfToExcel": {
+    "name": "PDF to Excel",
+    "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format."
+  },
+  "pdfToText": {
+    "name": "PDF to Text",
+    "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
+    "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
+    "convertButton": "Extract Text"
+  },
+  "digitalSignPdf": {
+    "name": "Digital Signature PDF",
+    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
+    "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
+    "certificateSection": "Certificate",
+    "uploadCert": "Upload certificate (.pfx, .p12)",
+    "certPassword": "Certificate Password",
+    "certPasswordPlaceholder": "Enter certificate password",
+    "certInfo": "Certificate Information",
+    "certSubject": "Subject",
+    "certIssuer": "Issuer",
+    "certValidity": "Valid",
+    "signatureDetails": "Signature Details (Optional)",
+    "reason": "Reason",
+    "reasonPlaceholder": "e.g., I approve this document",
+    "location": "Location",
+    "locationPlaceholder": "e.g., New York, USA",
+    "contactInfo": "Contact Info",
+    "contactPlaceholder": "e.g., email@example.com",
+    "applySignature": "Apply Digital Signature",
+    "successMessage": "PDF signed successfully! The signature can be verified in any PDF reader."
+  },
+  "validateSignaturePdf": {
+    "name": "Validate PDF Signature",
+    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
+    "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
+  },
+  "pdfToWord": {
+    "name": "PDF 轉 Word",
+    "subtitle": "將 PDF 檔案轉換為可編輯的 Word 文件。"
+  },
+  "extractImages": {
+    "name": "擷取圖片",
+    "subtitle": "從 PDF 檔案中擷取所有嵌入的圖片。"
+  },
+  "pdfToMarkdown": {
+    "name": "PDF 轉 Markdown",
+    "subtitle": "將 PDF 文字和表格轉換為 Markdown 格式。"
+  },
+  "preparePdfForAi": {
+    "name": "為 AI 準備 PDF",
+    "subtitle": "將 PDF 內容擷取為 LlamaIndex JSON，用於 RAG/LLM 管線。"
+  },
+  "pdfOcg": {
+    "name": "PDF 圖層 (OCG)",
+    "subtitle": "檢視、切換、新增和刪除 PDF 中的 OCG 圖層。"
+  },
+  "pdfToPdfa": {
+    "name": "PDF 轉 PDF/A",
+    "subtitle": "將 PDF 轉換為 PDF/A 格式以進行長期歸檔。"
+  },
+  "rasterizePdf": {
+    "name": "柵格化 PDF",
+    "subtitle": "將 PDF 轉換為基於影像的 PDF。展平圖層並移除可選取的文字。"
+  },
+  "pdfWorkflow": {
+    "name": "PDF 工作流程建構器",
+    "subtitle": "使用視覺化節點編輯器建構自訂 PDF 處理管線。",
+    "nodes": "節點",
+    "searchNodes": "搜尋節點...",
+    "run": "執行",
+    "clear": "清除",
+    "save": "儲存",
+    "load": "載入",
+    "export": "匯出",
+    "import": "匯入",
+    "ready": "就緒",
+    "settings": "設定",
+    "processing": "處理中...",
+    "saveTemplate": "儲存範本",
+    "templateName": "範本名稱",
+    "templatePlaceholder": "例如：發票處理工作流程",
+    "cancel": "取消",
+    "loadTemplate": "載入範本",
+    "noTemplates": "目前沒有已儲存的範本。",
+    "ok": "確定",
+    "workflowCompleted": "工作流程已完成",
+    "errorDuringExecution": "執行過程中發生錯誤",
+    "addNodeError": "請至少新增一個節點以執行工作流程。",
+    "needInputOutput": "您的工作流程至少需要一個輸入節點和一個輸出節點才能執行。",
+    "enterName": "請輸入名稱。",
+    "templateExists": "已存在相同名稱的範本。",
+    "templateSaved": "範本「{{name}}」已儲存。",
+    "templateLoaded": "範本「{{name}}」已載入。",
+    "failedLoadTemplate": "載入範本失敗。",
+    "noSettings": "此節點沒有可設定的選項。",
+    "advancedSettings": "進階設定"
+  }
+}

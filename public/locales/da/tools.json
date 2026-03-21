@@ -1,0 +1,730 @@
+{
+  "categories": {
+    "popularTools": "Populære værktøjer",
+    "editAnnotate": "Rediger og annotér",
+    "convertToPdf": "Konverter til PDF",
+    "convertFromPdf": "Konverter fra PDF",
+    "organizeManage": "Organisér og administrér",
+    "optimizeRepair": "Optimer og reparér",
+    "securePdf": "Sikre PDF"
+  },
+  "pdfMultiTool": {
+    "name": "PDF Multi-værktøj",
+    "subtitle": "Flet, opdel, organisér, slet, roter, tilføj tomme sider, udtræk og duplikér i én samlet grænseflade."
+  },
+  "mergePdf": {
+    "name": "Flet PDF",
+    "subtitle": "Kombinér flere PDF’er til én fil. Bevarer bogmærker."
+  },
+  "splitPdf": {
+    "name": "Opdel PDF",
+    "subtitle": "Udtræk et sideinterval til en ny PDF."
+  },
+  "compressPdf": {
+    "name": "Komprimér PDF",
+    "subtitle": "Reducer filstørrelsen på din PDF.",
+    "algorithmLabel": "Komprimeringsalgoritme",
+    "condense": "Kondenser (anbefalet)",
+    "photon": "Photon (til billedtunge PDF’er)",
+    "condenseInfo": "Kondenser bruger avanceret komprimering: fjerner overflødigt indhold, optimerer billeder, udvælger skrifttyper. Bedst til de fleste PDF’er.",
+    "photonInfo": "Photon konverterer sider til billeder. Bruges til billedtunge eller scannede PDF’er.",
+    "photonWarning": "Advarsel: Tekst bliver ikke valgbar, og links holder op med at virke.",
+    "levelLabel": "Komprimeringsniveau",
+    "light": "Let (bevar kvalitet)",
+    "balanced": "Balanceret (anbefalet)",
+    "aggressive": "Aggressiv (mindre filer)",
+    "extreme": "Ekstrem (maksimal komprimering)",
+    "grayscale": "Konverter til gråtoner",
+    "grayscaleHint": "Reducerer filstørrelsen ved at fjerne farveinformation",
+    "customSettings": "Brugerdefinerede indstillinger",
+    "customSettingsHint": "Finjustér komprimeringsparametre:",
+    "outputQuality": "Outputkvalitet",
+    "resizeImagesTo": "Skalér billeder til",
+    "onlyProcessAbove": "Behandl kun over",
+    "removeMetadata": "Fjern metadata",
+    "subsetFonts": "Delvis skrifttypeindlæsning (fjern ubrugte tegn)",
+    "removeThumbnails": "Fjern indlejrede miniaturer",
+    "compressButton": "Komprimér PDF"
+  },
+  "pdfEditor": {
+    "name": "PDF-editor",
+    "subtitle": "Annotér, fremhæv, redigér, kommentér, tilføj former/billeder, søg og vis PDF’er."
+  },
+  "jpgToPdf": {
+    "name": "JPG til PDF",
+    "subtitle": "Opret en PDF fra JPG, JPEG og JPEG2000 (JP2/JPX) billeder."
+  },
+  "signPdf": {
+    "name": "Underskriv PDF",
+    "subtitle": "Tegn, skriv eller upload din signatur."
+  },
+  "cropPdf": {
+    "name": "Beskær PDF",
+    "subtitle": "Trim margenerne på alle sider i din PDF."
+  },
+  "extractPages": {
+    "name": "Udtræk sider",
+    "subtitle": "Gem et udvalg af sider som nye filer."
+  },
+  "duplicateOrganize": {
+    "name": "Duplikér og organisér",
+    "subtitle": "Duplikér, omorganisér og slet sider."
+  },
+  "deletePages": {
+    "name": "Slet sider",
+    "subtitle": "Fjern specifikke sider fra dokumentet."
+  },
+  "editBookmarks": {
+    "name": "Redigér bogmærker",
+    "subtitle": "Tilføj, redigér, importér, slet og udtræk PDF-bogmærker."
+  },
+  "tableOfContents": {
+    "name": "Indholdsfortegnelse",
+    "subtitle": "Generér en indholdsfortegnelse ud fra PDF-bogmærker."
+  },
+  "pageNumbers": {
+    "name": "Sidetal",
+    "subtitle": "Indsæt sidetal i dokumentet."
+  },
+  "addPageLabels": {
+    "name": "Tilføj sideetiketter",
+    "subtitle": "Anvend PDF-sideetiketter med romertal, præfikser og brugerdefinerede startværdier.",
+    "uploadHint": "PDF-fil",
+    "howLabelsWorkTitle": "Sådan virker etiketter",
+    "howLabelsWorkStep1": "Lad sideområde stå tomt for at mærke alle sider.",
+    "howLabelsWorkStep2": "Brug stilarter som romertal til forord og decimalnummerering til hovedindholdet.",
+    "howLabelsWorkStep3": "Brug præfiks med startværdi 0 for at lave etiketter som A-0, A-1, A-2.",
+    "howLabelsWorkStep4": "Aktivér fortsættelse, når én regel bruger et usammenhængende område som 1-9,30-40 eller ulige sider.",
+    "labelRulesTitle": "Etiketregler",
+    "addRule": "Tilføj regel",
+    "removeExistingLabels": "Fjern eksisterende sideetiketter, før disse regler anvendes",
+    "cpdfNote": "Dette værktøj bruger CoherentPDF i din browser. Hvis CoherentPDF ikke er konfigureret, bliver du bedt om at sætte det op i WASM-indstillinger.",
+    "processButton": "Tilføj sideetiketter",
+    "howItWorksUploadTitle": "Upload fil",
+    "howItWorksUploadDescription": "Vælg den PDF, du vil ommærke.",
+    "howItWorksDefineTitle": "Definér regler",
+    "howItWorksDefineDescription": "Opsæt en eller flere regler for sideetiketter med sideområder, stilarter, præfikser og startværdier.",
+    "howItWorksDownloadTitle": "Download",
+    "howItWorksDownloadDescription": "Gem den opdaterede PDF med sine nye sideetiketter.",
+    "relatedToolsTitle": "Relaterede PDF-værktøjer",
+    "faqWhatIsQuestion": "Hvad er en sideetiket?",
+    "faqWhatIsAnswer": "En sideetiket er den nummerering, som PDF-læsere viser i miniaturevisninger, sidenavigation og udskriftsdialoger. Den tilføjer ikke ny tekst på selve siden.",
+    "faqMixQuestion": "Kan jeg blande romertal og almindelige tal?",
+    "faqMixAnswer": "Ja. Tilføj flere regler, f.eks. 1-4 med LowercaseRoman og 5-20 med DecimalArabic.",
+    "faqPrivacyQuestion": "Forbliver mine filer private?",
+    "faqPrivacyAnswer": "Ja. Behandlingen sker i din browser med CoherentPDF WASM. Din PDF forlader ikke din enhed.",
+    "invalidFileTitle": "Ugyldig fil",
+    "invalidFileMessage": "Upload venligst en gyldig PDF-fil.",
+    "loadingPdf": "Indlæser PDF...",
+    "protectedPdfTitle": "Beskyttet PDF",
+    "protectedPdfMessage": "Denne PDF er adgangskodebeskyttet. Brug først værktøjet Dekryptér eller Ændr tilladelser.",
+    "loadErrorMessage": "PDF-filen kunne ikke indlæses. Filen kan være ugyldig, beskadiget eller adgangskodebeskyttet.",
+    "fileMeta": "{{size}} • {{count}} sider",
+    "ruleTitle": "Etiketregel {{number}}",
+    "pageRangeLabel": "Sideområde",
+    "pageRangePlaceholder": "Alle sider, eller f.eks. 1-4, 7, ulige",
+    "labelStyleLabel": "Etiketstil",
+    "labelPrefixLabel": "Etiketpræfiks",
+    "labelPrefixPlaceholder": "Valgfrit præfiks, f.eks. A-",
+    "startValueLabel": "Startværdi",
+    "continueNumbering": "Fortsæt nummerering på tværs af usammenhængende områder",
+    "examplesNote": "Eksempler: 1-4 til romertal i forord, 15-20 med præfikset A- og startværdi 0, eller ulige sider med fortsættelse aktiveret.",
+    "uploadFirstMessage": "Upload først en PDF-fil.",
+    "applyingLabels": "Anvender sideetiketter...",
+    "invalidRangeMessage": "Regel {{number}} har et ugyldigt sideområde: {{range}}",
+    "allPages": "alle sider",
+    "emptyOutputMessage": "CoherentPDF producerede en tom fil.",
+    "successMessage": "Sideetiketter blev tilføjet!",
+    "processErrorMessage": "Kunne ikke tilføje sideetiketter.",
+    "styleOptions": {
+      "DecimalArabic": "Decimaltal",
+      "LowercaseRoman": "Små romertal",
+      "UppercaseRoman": "Store romertal",
+      "LowercaseLetters": "Små bogstaver",
+      "UppercaseLetters": "Store bogstaver",
+      "NoLabelPrefixOnly": "Kun præfiks uden nummer"
+    }
+  },
+  "batesNumbering": {
+    "name": "Bates-nummerering",
+    "subtitle": "Tilføj sekventielle Bates-numre på tværs af en eller flere PDF-filer."
+  },
+  "addWatermark": {
+    "name": "Tilføj vandmærke",
+    "subtitle": "Placer tekst eller et billede oven på dine PDF-sider.",
+    "applyToAllPages": "Anvend på alle sider"
+  },
+  "headerFooter": {
+    "name": "Sidehoved og sidefod",
+    "subtitle": "Tilføj tekst øverst og nederst på siderne."
+  },
+  "invertColors": {
+    "name": "Invertér farver",
+    "subtitle": "Lav en slags “dark mode”-version af din PDF."
+  },
+  "scannerEffect": {
+    "name": "Scannereffekt",
+    "subtitle": "Få din PDF til at ligne et scannet dokument.",
+    "scanSettings": "Scanneindstillinger",
+    "colorspace": "Farverum",
+    "gray": "Grå",
+    "border": "Kant",
+    "rotate": "Rotér",
+    "rotateVariance": "Rotationsvariation",
+    "brightness": "Lysstyrke",
+    "contrast": "Kontrast",
+    "blur": "Sløring",
+    "noise": "Støj",
+    "yellowish": "Gulskær",
+    "resolution": "Opløsning",
+    "processButton": "Anvend scannereffekt"
+  },
+  "adjustColors": {
+    "name": "Justér farver",
+    "subtitle": "Finjustér lysstyrke, kontrast, mætning og mere i din PDF.",
+    "colorSettings": "Farveindstillinger",
+    "brightness": "Lysstyrke",
+    "contrast": "Kontrast",
+    "saturation": "Mætning",
+    "hueShift": "Farvetonejustering",
+    "temperature": "Temperatur",
+    "tint": "Farvetone",
+    "gamma": "Gamma",
+    "sepia": "Sepia",
+    "processButton": "Anvend farvejusteringer"
+  },
+  "backgroundColor": {
+    "name": "Baggrundsfarve",
+    "subtitle": "Skift baggrundsfarven på din PDF."
+  },
+  "changeTextColor": {
+    "name": "Skift tekstfarve",
+    "subtitle": "Ændr tekstfarven i din PDF."
+  },
+  "addStamps": {
+    "name": "Tilføj stempler",
+    "subtitle": "Tilføj billedstempler til din PDF via annoteringsværktøjet.",
+    "usernameLabel": "Stempelbrugernavn",
+    "usernamePlaceholder": "Indtast dit navn (til stempler)",
+    "usernameHint": "Dette navn vises på de stempler du opretter."
+  },
+  "removeAnnotations": {
+    "name": "Fjern annotationer",
+    "subtitle": "Fjern kommentarer, markeringer og links."
+  },
+  "pdfFormFiller": {
+    "name": "PDF-formularudfylder",
+    "subtitle": "Udfyld formularer direkte i browseren. Understøtter også XFA-formularer."
+  },
+  "createPdfForm": {
+    "name": "Opret PDF-formular",
+    "subtitle": "Lav udfyldelige PDF-formularer med træk-og-slip tekstfelter."
+  },
+  "removeBlankPages": {
+    "name": "Fjern tomme sider",
+    "subtitle": "Find og fjern automatisk tomme sider.",
+    "sensitivityHint": "Højere = strengere, kun helt tomme sider. Lavere = tillader sider med noget indhold."
+  },
+  "imageToPdf": {
+    "name": "Billeder til PDF",
+    "subtitle": "Konverter JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC og WebP til PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG til PDF",
+    "subtitle": "Opret en PDF fra en eller flere PNG-billeder."
+  },
+  "webpToPdf": {
+    "name": "WebP til PDF",
+    "subtitle": "Opret en PDF fra en eller flere WebP-billeder."
+  },
+  "svgToPdf": {
+    "name": "SVG til PDF",
+    "subtitle": "Opret en PDF fra en eller flere SVG-billeder."
+  },
+  "bmpToPdf": {
+    "name": "BMP til PDF",
+    "subtitle": "Opret en PDF fra en eller flere BMP-billeder."
+  },
+  "heicToPdf": {
+    "name": "HEIC til PDF",
+    "subtitle": "Opret en PDF fra en eller flere HEIC-billeder."
+  },
+  "tiffToPdf": {
+    "name": "TIFF til PDF",
+    "subtitle": "Opret en PDF fra en eller flere TIFF-billeder."
+  },
+  "textToPdf": {
+    "name": "Tekst til PDF",
+    "subtitle": "Konverter en almindelig tekstfil til PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON til PDF",
+    "subtitle": "Konverter JSON-filer til PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF til JPG",
+    "subtitle": "Konverter hver PDF-side til en JPG-billedfil."
+  },
+  "pdfToPng": {
+    "name": "PDF til PNG",
+    "subtitle": "Konverter hver PDF-side til en PNG-billedfil."
+  },
+  "pdfToWebp": {
+    "name": "PDF til WebP",
+    "subtitle": "Konverter hver PDF-side til en WebP-billedfil."
+  },
+  "pdfToBmp": {
+    "name": "PDF til BMP",
+    "subtitle": "Konverter hver PDF-side til en BMP-billedfil."
+  },
+  "pdfToTiff": {
+    "name": "PDF til TIFF",
+    "subtitle": "Konverter hver PDF-side til en TIFF-billedfil."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF til gråtoner",
+    "subtitle": "Konverter alle farver til sort/hvid."
+  },
+  "pdfToJson": {
+    "name": "PDF til JSON",
+    "subtitle": "Konverter PDF-filer til JSON-format."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Gør PDF’en søgbar og kopierbar."
+  },
+  "alternateMix": {
+    "name": "Alternér og miks sider",
+    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil. Bevarer bogmærker."
+  },
+  "addAttachments": {
+    "name": "Tilføj vedhæftninger",
+    "subtitle": "Indlejr en eller flere filer i din PDF."
+  },
+  "extractAttachments": {
+    "name": "Udtræk vedhæftninger",
+    "subtitle": "Udtræk alle indlejrede filer som en ZIP."
+  },
+  "editAttachments": {
+    "name": "Redigér vedhæftninger",
+    "subtitle": "Se eller fjern vedhæftninger i din PDF."
+  },
+  "dividePages": {
+    "name": "Opdel sider",
+    "subtitle": "Opdel sider vandret eller lodret."
+  },
+  "addBlankPage": {
+    "name": "Tilføj tom side",
+    "subtitle": "Indsæt en tom side hvor som helst i din PDF."
+  },
+  "reversePages": {
+    "name": "Vend sider",
+    "subtitle": "Vend rækkefølgen på alle sider."
+  },
+  "rotatePdf": {
+    "name": "Roter PDF",
+    "subtitle": "Drej sider i intervaller på 90 grader."
+  },
+  "rotateCustom": {
+    "name": "Roter med brugerdefineret vinkel",
+    "subtitle": "Roter sider med en valgfri vinkel."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "Arrangér flere sider på ét ark."
+  },
+  "combineToSinglePage": {
+    "name": "Kombinér til én side",
+    "subtitle": "Sy alle sider sammen til én lang rulle."
+  },
+  "viewMetadata": {
+    "name": "Vis metadata",
+    "subtitle": "Inspektér skjulte PDF-egenskaber."
+  },
+  "editMetadata": {
+    "name": "Redigér metadata",
+    "subtitle": "Redigér forfatter, titel og andre egenskaber."
+  },
+  "pdfsToZip": {
+    "name": "PDF’er til ZIP",
+    "subtitle": "Pak flere PDF-filer i et ZIP-arkiv."
+  },
+  "comparePdfs": {
+    "name": "Sammenlign PDF’er",
+    "subtitle": "Sammenlign to PDF’er side om side.",
+    "firstPdf": "Første PDF",
+    "secondPdf": "Anden PDF",
+    "clickOrDrop": "Klik eller slip",
+    "page": "Side",
+    "overlay": "Overlejring",
+    "sideBySide": "Side om side",
+    "flicker": "Blink",
+    "syncScroll": "Synkroniser rulning",
+    "export": "Eksportér",
+    "exportAsPdf": "Eksportér som PDF",
+    "splitView": "Opdelt visning",
+    "alternating": "Skiftevis",
+    "leftDocument": "Venstre dokument",
+    "rightDocument": "Højre dokument",
+    "original": "Original",
+    "modified": "Ændret",
+    "searchChanges": "Søg ændringer...",
+    "deleted": "Slettet",
+    "added": "Tilføjet",
+    "prevPage": "Forrige side",
+    "nextPage": "Næste side",
+    "prevChange": "Forrige ændring",
+    "nextChange": "Næste ændring",
+    "uploadTwoPdfs": "Upload to PDF’er for at se forskellene.",
+    "noDifferences": "Ingen forskelle fundet på denne side.",
+    "noMatchingChanges": "Ingen ændringer matcher det aktuelle filter.",
+    "pageNotExist": "Side {{page}} findes ikke i denne PDF.",
+    "noPairedPage": "Ingen parret side for denne side.",
+    "buildingModel": "Opbygger sideparringsmodel...",
+    "indexingPdf": "Indekserer PDF {{num}}, side {{page}} af {{total}}...",
+    "loadingComparison": "Indlæser sammenligning {{current}} af {{total}}...",
+    "runningOcr": "Kører OCR på side {{page}}...",
+    "preparingExport": "Forbereder PDF-eksport...",
+    "renderingPage": "Renderer side {{current}} af {{total}}...",
+    "exportError": "Eksportfejl",
+    "exportFailed": "Kunne ikke eksportere sammenlignings-PDF.",
+    "loadingFile": "Indlæser {{name}}...",
+    "invalidFile": "Ugyldig fil",
+    "invalidFileMsg": "Vælg venligst en gyldig PDF-fil.",
+    "loadError": "Kunne ikke indlæse PDF. Den kan være beskadiget eller beskyttet med adgangskode."
+  },
+  "posterizePdf": {
+    "name": "Posterisér PDF",
+    "subtitle": "Opdel en stor side i flere mindre sider."
+  },
+  "fixPageSize": {
+    "name": "Ret sidestørrelse",
+    "subtitle": "Standardisér alle sider til samme størrelse."
+  },
+  "linearizePdf": {
+    "name": "Lineariser PDF",
+    "subtitle": "Optimer PDF til hurtig visning på nettet."
+  },
+  "pageDimensions": {
+    "name": "Sidestørrelser",
+    "subtitle": "Analysér sidestørrelse, orientering og enheder."
+  },
+  "removeRestrictions": {
+    "name": "Fjern begrænsninger",
+    "subtitle": "Fjern adgangskoder og sikkerhedsbegrænsninger fra digitalt signerede PDF’er."
+  },
+  "repairPdf": {
+    "name": "Reparér PDF",
+    "subtitle": "Gendan data fra beskadigede eller korrupte PDF’er."
+  },
+  "encryptPdf": {
+    "name": "Kryptér PDF",
+    "subtitle": "Lås din PDF med en adgangskode."
+  },
+  "sanitizePdf": {
+    "name": "Rens PDF",
+    "subtitle": "Fjern metadata, annotationer, scripts og mere."
+  },
+  "decryptPdf": {
+    "name": "Dekryptér PDF",
+    "subtitle": "Fjern adgangskodebeskyttelse."
+  },
+  "flattenPdf": {
+    "name": "Flatten PDF",
+    "subtitle": "Gør formularfelter og annotationer ikke-redigerbare."
+  },
+  "removeMetadata": {
+    "name": "Fjern metadata",
+    "subtitle": "Fjern skjulte data fra PDF’en."
+  },
+  "changePermissions": {
+    "name": "Skift tilladelser",
+    "subtitle": "Konfigurer brugerrettigheder i PDF’en."
+  },
+  "odtToPdf": {
+    "name": "ODT til PDF",
+    "subtitle": "Konverter ODT-dokumenter til PDF. Understøtter flere filer.",
+    "acceptedFormats": "ODT-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV til PDF",
+    "subtitle": "Konverter CSV-regneark til PDF. Understøtter flere filer.",
+    "acceptedFormats": "CSV-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF til PDF",
+    "subtitle": "Konverter RTF-dokumenter til PDF. Understøtter flere filer.",
+    "acceptedFormats": "RTF-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "wordToPdf": {
+    "name": "Word til PDF",
+    "subtitle": "Konverter Word-dokumenter (DOCX, DOC, ODT, RTF) til PDF.",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel til PDF",
+    "subtitle": "Konverter Excel-filer (XLSX, XLS, ODS, CSV) til PDF.",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint til PDF",
+    "subtitle": "Konverter PowerPoint-presentationer (PPTX, PPT, ODP) til PDF.",
+    "acceptedFormats": "PPTX, PPT, ODP-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown til PDF",
+    "subtitle": "Skriv eller indsæt Markdown og eksportér som en flot formateret PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Forhåndsvisning",
+    "btnUpload": "Upload",
+    "btnSyncScroll": "Synkron rulning",
+    "btnSettings": "Indstillinger",
+    "btnExportPdf": "Eksportér PDF",
+    "settingsTitle": "Markdown-indstillinger",
+    "settingsPreset": "Forudindstilling",
+    "presetDefault": "Standard (GFM-lignende)",
+    "presetCommonmark": "CommonMark (striks)",
+    "presetZero": "Minimal (ingen funktioner)",
+    "settingsOptions": "Markdown-muligheder",
+    "optAllowHtml": "Tillad HTML-tags",
+    "optBreaks": "Konverter linjeskift til <br>",
+    "optLinkify": "Lav automatisk URL’er om til links",
+    "optTypographer": "Typograf (smart anførselstegn m.m.)"
+  },
+  "pdfBooklet": {
+    "name": "PDF-hæfte",
+    "subtitle": "Arrangér sider til dobbeltsidet hæfteudskrivning. Fold og hæft for at skabe et hæfte.",
+    "howItWorks": "Sådan fungerer det:",
+    "step1": "Upload en PDF-fil.",
+    "step2": "Siderne bliver omarrangeret i hæfterækkefølge.",
+    "step3": "Udskriv dobbeltsidet, vend på kort kant, fold og hæft.",
+    "paperSize": "Papirstørrelse",
+    "orientation": "Retning",
+    "portrait": "Portræt",
+    "landscape": "Landskab",
+    "pagesPerSheet": "Sider pr. ark",
+    "createBooklet": "Opret hæfte",
+    "processing": "Behandler...",
+    "pageCount": "Sidetal bliver justeret til et multiplum af 4 om nødvendigt."
+  },
+  "xpsToPdf": {
+    "name": "XPS til PDF",
+    "subtitle": "Konverter XPS/OXPS-dokumenter til PDF. Understøtter flere filer.",
+    "acceptedFormats": "XPS, OXPS-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI til PDF",
+    "subtitle": "Konverter MOBI e-bøger til PDF. Understøtter flere filer.",
+    "acceptedFormats": "MOBI-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB til PDF",
+    "subtitle": "Konverter EPUB e-bøger til PDF. Understøtter flere filer.",
+    "acceptedFormats": "EPUB-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 til PDF",
+    "subtitle": "Konverter FictionBook (FB2) e-bøger til PDF. Understøtter flere filer.",
+    "acceptedFormats": "FB2-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ til PDF",
+    "subtitle": "Konverter tegneseriearkiver (CBZ/CBR) til PDF. Understøtter flere filer.",
+    "acceptedFormats": "CBZ, CBR-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD til PDF",
+    "subtitle": "Konverter WordPerfect-dokumenter (WPD) til PDF.",
+    "acceptedFormats": "WPD-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS til PDF",
+    "subtitle": "Konverter WPS Office-dokumenter til PDF.",
+    "acceptedFormats": "WPS-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML til PDF",
+    "subtitle": "Konverter XML-dokumenter til PDF. Understøtter flere filer.",
+    "acceptedFormats": "XML-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages til PDF",
+    "subtitle": "Konverter Apple Pages-dokumenter til PDF.",
+    "acceptedFormats": "Pages-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG til PDF",
+    "subtitle": "Konverter OpenDocument Graphics (ODG) filer til PDF.",
+    "acceptedFormats": "ODG-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS til PDF",
+    "subtitle": "Konverter OpenDocument Spreadsheet (ODS) filer til PDF.",
+    "acceptedFormats": "ODS-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP til PDF",
+    "subtitle": "Konverter OpenDocument Presentation (ODP) filer til PDF.",
+    "acceptedFormats": "ODP-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB til PDF",
+    "subtitle": "Konverter Microsoft Publisher (PUB) filer til PDF.",
+    "acceptedFormats": "PUB-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD til PDF",
+    "subtitle": "Konverter Microsoft Visio (VSD, VSDX) filer til PDF.",
+    "acceptedFormats": "VSD, VSDX-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD til PDF",
+    "subtitle": "Konverter Adobe Photoshop (PSD) filer til PDF.",
+    "acceptedFormats": "PSD-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF til SVG",
+    "subtitle": "Konverter hver side i en PDF til en skalerbar vektorgrafik (SVG) med perfekt kvalitet i alle størrelser."
+  },
+  "extractTables": {
+    "name": "Udtræk PDF-tabeller",
+    "subtitle": "Udtræk tabeller fra PDF og eksportér som CSV, JSON eller Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF til CSV",
+    "subtitle": "Udtræk tabeller fra PDF og konverter til CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF til Excel",
+    "subtitle": "Udtræk tabeller fra PDF og konverter til Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF til tekst",
+    "subtitle": "Udtræk tekst fra PDF og gem som almindelig tekst (.txt). Understøtter flere filer.",
+    "note": "Dette værktøj virker KUN med digitalt oprettede PDF’er. Brug OCR PDF til scannede dokumenter.",
+    "convertButton": "Udtræk tekst"
+  },
+  "digitalSignPdf": {
+    "name": "Digital signatur PDF",
+    "pageTitle": "Digital signatur PDF - Tilføj kryptografisk signatur | BentoPDF",
+    "subtitle": "Tilføj en digital signatur til din PDF med X.509-certifikater. Understøtter PKCS#12 (.pfx, .p12) og PEM. Din private nøgle forlader aldrig browseren.",
+    "certificateSection": "Certifikat",
+    "uploadCert": "Upload certifikat (.pfx, .p12)",
+    "certPassword": "Certifikatkodeord",
+    "certPasswordPlaceholder": "Indtast kodeord til certifikat",
+    "certInfo": "Certifikatinformation",
+    "certSubject": "Emne",
+    "certIssuer": "Udsteder",
+    "certValidity": "Gyldighed",
+    "signatureDetails": "Signaturdetaljer (valgfrit)",
+    "reason": "Årsag",
+    "reasonPlaceholder": "Fx: Jeg godkender dette dokument",
+    "location": "Lokation",
+    "locationPlaceholder": "Fx: København, Danmark",
+    "contactInfo": "Kontaktinfo",
+    "contactPlaceholder": "Fx: email@example.com",
+    "applySignature": "Anvend digital signatur",
+    "successMessage": "PDF signeret! Signaturen kan verificeres i enhver PDF-læser."
+  },
+  "validateSignaturePdf": {
+    "name": "Validér PDF-signatur",
+    "pageTitle": "Validér PDF-signatur - Verificér digitale signaturer | BentoPDF",
+    "subtitle": "Tjek digitale signaturer i dine PDF’er. Verificér certifikater, se underskriverdetaljer og bekræft dokumentintegritet."
+  },
+  "emailToPdf": {
+    "name": "Email til PDF",
+    "subtitle": "Konverter e-mailfiler (EML, MSG) til PDF. Understøtter Outlook-formater.",
+    "acceptedFormats": "EML, MSG-filer",
+    "convertButton": "Konverter til PDF"
+  },
+  "fontToOutline": {
+    "name": "Skrifttype til kontur",
+    "subtitle": "Konverter alle skrifttyper til vektorkonturer for ensartet visning."
+  },
+  "deskewPdf": {
+    "name": "Ret skæve sider",
+    "subtitle": "Ret automatisk skæve scannede sider med OpenCV."
+  },
+  "pdfToWord": {
+    "name": "PDF til Word",
+    "subtitle": "Konverter PDF-filer til redigerbare Word-dokumenter."
+  },
+  "extractImages": {
+    "name": "Udtræk billeder",
+    "subtitle": "Udtræk alle indlejrede billeder fra PDF-filer."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF til Markdown",
+    "subtitle": "Konverter PDF-tekst og tabeller til Markdown."
+  },
+  "preparePdfForAi": {
+    "name": "Forbered PDF til AI",
+    "subtitle": "Udtræk PDF-indhold som LlamaIndex JSON til RAG/LLM workflows."
+  },
+  "pdfOcg": {
+    "name": "PDF OCG",
+    "subtitle": "Se, skift, tilføj og slet OCG-lag i din PDF."
+  },
+  "pdfToPdfa": {
+    "name": "PDF til PDF/A",
+    "subtitle": "Konverter PDF til PDF/A til langtidsarkivering."
+  },
+  "rasterizePdf": {
+    "name": "Rasterisér PDF",
+    "subtitle": "Konverter PDF til en billedbaseret PDF. Flatten lag og fjern valgbare tekster."
+  },
+  "pdfWorkflow": {
+    "name": "PDF Workflow-bygger",
+    "subtitle": "Byg tilpassede PDF-behandlingspipelines med en visuel nodeeditor.",
+    "nodes": "Noder",
+    "searchNodes": "Søg noder...",
+    "run": "Kør",
+    "clear": "Ryd",
+    "save": "Gem",
+    "load": "Indlæs",
+    "export": "Eksportér",
+    "import": "Importér",
+    "ready": "Klar",
+    "settings": "Indstillinger",
+    "processing": "Behandler...",
+    "saveTemplate": "Gem skabelon",
+    "templateName": "Skabelonnavn",
+    "templatePlaceholder": "f.eks. Faktura-workflow",
+    "cancel": "Annuller",
+    "loadTemplate": "Indlæs skabelon",
+    "noTemplates": "Ingen gemte skabeloner endnu.",
+    "ok": "OK",
+    "workflowCompleted": "Workflow fuldført",
+    "errorDuringExecution": "Fejl under udførelse",
+    "addNodeError": "Tilføj mindst én node for at køre workflowet.",
+    "needInputOutput": "Dit workflow skal have mindst én inputnode og én outputnode for at kunne køre.",
+    "enterName": "Indtast venligst et navn.",
+    "templateExists": "En skabelon med dette navn findes allerede.",
+    "templateSaved": "Skabelon \"{{name}}\" gemt.",
+    "templateLoaded": "Skabelon \"{{name}}\" indlæst.",
+    "failedLoadTemplate": "Kunne ikke indlæse skabelon.",
+    "noSettings": "Ingen konfigurerbare indstillinger for denne node.",
+    "advancedSettings": "Avancerede indstillinger"
+  }
+}

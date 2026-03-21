@@ -1,0 +1,52 @@
+{{- if .Values.httpRoute.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "bentopdf.name" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "bentopdf.labels" . | nindent 4 }}
+  {{- with .Values.httpRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  parentRefs:
+    {{- if .Values.httpRoute.parentRefs }}
+    {{- range $ref := .Values.httpRoute.parentRefs }}
+    - name: {{ $.Values.gateway.name | default $ref.name | quote }}
+      namespace: {{ $ref.namespace | default (default $.Release.Namespace $.Values.gateway.namespace) | quote }}
+      sectionName: {{ $ref.sectionName | default "http" | quote }}
+      {{- with $ref.kind }}
+      kind: {{ . | quote }}
+      {{- end }}
+      {{- with $ref.group }}
+      group: {{ . | quote }}
+      {{- end }}
+    {{- end }}
+    {{- else }}
+    # Default parentRef when parentRefs is empty or not set
+    - name: {{ .Values.gateway.name | default (printf "%s-gateway" (include "bentopdf.name" $)) | quote }}
+      namespace: {{ .Values.gateway.namespace | default .Release.Namespace | quote }}
+      sectionName: "http"
+    {{- end }}
+  {{- with .Values.httpRoute.hostnames }}
+  hostnames:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  rules:
+    {{- range .Values.httpRoute.rules }}
+    - {{- with .matches }}
+      matches:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .filters }}
+      filters:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      backendRefs:
+        - name: {{ include "bentopdf.name" $ }}
+          port: {{ $.Values.service.port }}
+          weight: 1
+    {{- end }}
+{{- end }}

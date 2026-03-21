@@ -1,5 +1,24 @@
-const baseUrl = self.location.href.substring(0, self.location.href.lastIndexOf('/workers/') + 1);
-self.importScripts(baseUrl + 'coherentpdf.browser.min.js');
+let cpdfLoaded = false;
+
+function loadCpdf(cpdfUrl) {
+  if (cpdfLoaded) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    if (typeof coherentpdf !== 'undefined') {
+      cpdfLoaded = true;
+      resolve();
+      return;
+    }
+
+    try {
+      self.importScripts(cpdfUrl);
+      cpdfLoaded = true;
+      resolve();
+    } catch (error) {
+      reject(new Error('Failed to load CoherentPDF: ' + error.message));
+    }
+  });
+}
 
 function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
   try {
@@ -37,7 +56,7 @@ function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
 
           let uniqueName = attachmentName;
           let counter = 1;
-          while (allAttachments.some(att => att.name === uniqueName)) {
+          while (allAttachments.some((att) => att.name === uniqueName)) {
             const nameParts = attachmentName.split('.');
             if (nameParts.length > 1) {
               const extension = nameParts.pop();
@@ -56,10 +75,13 @@ function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
 
           allAttachments.push({
             name: uniqueName,
-            data: attachmentData.buffer.slice(0)
+            data: attachmentData.buffer.slice(0),
           });
         } catch (error) {
-          console.warn(`Failed to extract attachment ${j} from ${fileName}:`, error);
+          console.warn(
+            `Failed to extract attachment ${j} from ${fileName}:`,
+            error
+          );
         }
       }
 
@@ -70,21 +92,21 @@ function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
     if (allAttachments.length === 0) {
       self.postMessage({
         status: 'error',
-        message: 'No attachments were found in the selected PDF(s).'
+        message: 'No attachments were found in the selected PDF(s).',
       });
       return;
     }
 
     const response = {
       status: 'success',
-      attachments: []
+      attachments: [],
     };
 
     const transferBuffers = [];
     for (const attachment of allAttachments) {
       response.attachments.push({
         name: attachment.name,
-        data: attachment.data
+        data: attachment.data,
       });
       transferBuffers.push(attachment.data);
     }
@@ -93,14 +115,36 @@ function extractAttachmentsFromPDFsInWorker(fileBuffers, fileNames) {
   } catch (error) {
     self.postMessage({
       status: 'error',
-      message: error instanceof Error
-        ? error.message
-        : 'Unknown error occurred during attachment extraction.'
+      message:
+        error instanceof Error
+          ? error.message
+          : 'Unknown error occurred during attachment extraction.',
     });
   }
 }
 
-self.onmessage = (e) => {
+self.onmessage = async function (e) {
+  const { cpdfUrl } = e.data;
+
+  if (!cpdfUrl) {
+    self.postMessage({
+      status: 'error',
+      message:
+        'CoherentPDF URL not provided. Please configure it in WASM Settings.',
+    });
+    return;
+  }
+
+  try {
+    await loadCpdf(cpdfUrl);
+  } catch (error) {
+    self.postMessage({
+      status: 'error',
+      message: error.message,
+    });
+    return;
+  }
+
   if (e.data.command === 'extract-attachments') {
     extractAttachmentsFromPDFsInWorker(e.data.fileBuffers, e.data.fileNames);
   }

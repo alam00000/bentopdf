@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+      Digital Signature PDF Online Free - Add Cryptographic Signature | BentoPDF
+    </title>
+    <meta
+      name="title"
+      content="Digital Signature PDF Online Free - Add Cryptographic Signature | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="★ Add digital signature to PDF online free ★ Use X.509 certificates ★ PKCS#7 signatures ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      name="keywords"
+      content="digital signature pdf, pkcs7 signature, x509 certificate, sign pdf certificate, cryptographic signature"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <link
+      rel="canonical"
+      href="https://www.bentopdf.com/digital-sign-pdf.html"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.bentopdf.com/digital-sign-pdf"
+    />
+    <meta
+      property="og:title"
+      content="Digital Signature PDF Online Free - Add Cryptographic Signature | BentoPDF"
+    />
+    <meta
+      property="og:description"
+      content="★ Add digital signature to PDF online free ★ Use X.509 certificates ★ PKCS#7 signatures ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-digital-sign-pdf.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://www.bentopdf.com/digital-sign-pdf"
+    />
+    <meta name="twitter:title" content="Digital Signature PDF Free" />
+    <meta
+      name="twitter:description"
+      content="★ Add digital signature to PDF online free ★ Use X.509 certificates ★ PKCS#7 signatures ★ Privacy-first"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.bentopdf.com/images/twitter-digital-sign-pdf.png"
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Digital Sign PDF" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
+
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools">
+            Back to Tools
+          </span>
+        </button>
+
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:digitalSignPdf.name"
+        >
+          Digital Signature PDF
+        </h1>
+        <p class="text-gray-400 mb-4" data-i18n="tools:digitalSignPdf.subtitle">
+          Add a cryptographic digital signature to your PDF using X.509
+          certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your
+          private key never leaves your browser.
+        </p>
+
+        <div
+          class="bg-blue-900/30 border border-blue-700 rounded-lg p-3 mb-6 flex items-start gap-3"
+        >
+          <i
+            data-lucide="wifi"
+            class="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5"
+          ></i>
+          <div class="text-sm">
+            <p class="text-blue-300 font-medium">
+              Internet connection required
+            </p>
+            <p class="text-blue-400/80 mt-1">
+              Signing may need to fetch certificate chain information from your
+              certificate issuer's server to validate the signature.
+            </p>
+          </div>
+        </div>
+
+        <div
+          id="drop-zone"
+          class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i
+              data-lucide="upload-cloud"
+              class="w-10 h-10 mb-3 text-gray-400"
+            ></i>
+            <p class="mb-2 text-sm text-gray-400">
+              <span class="font-semibold" data-i18n="upload.clickToSelect"
+                >Click to select a file</span
+              >
+              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+            </p>
+            <p
+              class="text-xs text-gray-500"
+              data-i18n="upload.hints.pdfDocuments"
+            >
+              PDF Documents
+            </p>
+            <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+              Your files never leave your device.
+            </p>
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            accept="application/pdf"
+          />
+        </div>
+
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+        <div id="certificate-section" class="hidden mt-6 space-y-4">
+          <h2 class="text-lg font-semibold text-white">Certificate</h2>
+
+          <div
+            id="cert-drop-zone"
+            class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+          >
+            <div class="flex flex-col items-center justify-center py-4">
+              <i data-lucide="key" class="w-8 h-8 mb-2 text-gray-400"></i>
+              <p class="text-sm text-gray-400">
+                Upload certificate (.pfx, .p12, .pem)
+              </p>
+            </div>
+            <input
+              id="cert-input"
+              type="file"
+              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+              accept=".pfx,.p12,.pem"
+            />
+          </div>
+
+          <div id="cert-display-area" class="space-y-2"></div>
+
+          <div id="cert-password-section" class="hidden">
+            <label
+              for="cert-password"
+              class="block text-sm font-medium text-gray-300 mb-2"
+              >Certificate Password</label
+            >
+            <input
+              type="password"
+              id="cert-password"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="Enter certificate password"
+            />
+          </div>
+
+          <div id="cert-info" class="hidden bg-gray-700 rounded-lg p-4">
+            <h3 class="text-sm font-semibold text-white mb-2">
+              Certificate Information
+            </h3>
+            <div class="text-sm text-gray-300 space-y-1">
+              <p>
+                <span class="text-gray-400">Subject:</span>
+                <span id="cert-subject">-</span>
+              </p>
+              <p>
+                <span class="text-gray-400">Issuer:</span>
+                <span id="cert-issuer">-</span>
+              </p>
+              <p>
+                <span class="text-gray-400">Valid:</span>
+                <span id="cert-validity">-</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="signature-options" class="hidden mt-6 space-y-4">
+          <h2 class="text-lg font-semibold text-white">
+            Signature Details (Optional)
+          </h2>
+
+          <div>
+            <label
+              for="sign-reason"
+              class="block text-sm font-medium text-gray-300 mb-2"
+              >Reason</label
+            >
+            <input
+              type="text"
+              id="sign-reason"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="e.g., I approve this document"
+            />
+          </div>
+
+          <div>
+            <label
+              for="sign-location"
+              class="block text-sm font-medium text-gray-300 mb-2"
+              >Location</label
+            >
+            <input
+              type="text"
+              id="sign-location"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="e.g., New York, USA"
+            />
+          </div>
+
+          <div>
+            <label
+              for="sign-contact"
+              class="block text-sm font-medium text-gray-300 mb-2"
+              >Contact Info</label
+            >
+            <input
+              type="text"
+              id="sign-contact"
+              class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="e.g., email@example.com"
+            />
+          </div>
+        </div>
+
+        <div id="visible-signature-section" class="hidden mt-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-semibold text-white">Visible Signature</h2>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                id="enable-visible-sig"
+                class="sr-only peer"
+              />
+              <div
+                class="w-11 h-6 bg-gray-600 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-500 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"
+              ></div>
+            </label>
+          </div>
+          <p class="text-xs text-gray-500">
+            When enabled, a visible signature box appears on the PDF. You can
+            upload an image/logo or add text. If neither is provided, the
+            signer's name from the certificate will be shown automatically.
+          </p>
+
+          <div id="visible-sig-options" class="hidden space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-300 mb-2"
+                >Signature Image/Logo (Optional)</label
+              >
+              <div
+                id="sig-image-drop-zone"
+                class="relative flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+              >
+                <div class="flex flex-col items-center justify-center py-2">
+                  <i data-lucide="image" class="w-6 h-6 mb-1 text-gray-400"></i>
+                  <p class="text-xs text-gray-400">
+                    Upload image (PNG, JPG, WebP)
+                  </p>
+                </div>
+                <input
+                  id="sig-image-input"
+                  type="file"
+                  class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                  accept="image/png,image/jpeg,image/webp"
+                />
+              </div>
+              <div
+                id="sig-image-preview"
+                class="hidden mt-2 flex items-center gap-2"
+              >
+                <img
+                  id="sig-image-thumb"
+                  class="h-12 w-auto rounded border border-gray-600"
+                  alt="Signature preview"
+                />
+                <button
+                  id="remove-sig-image"
+                  class="text-red-400 hover:text-red-300 text-sm"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="sig-page"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Page</label
+                >
+                <select
+                  id="sig-page"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                >
+                  <option value="0">First page</option>
+                  <option value="last">Last page</option>
+                  <option value="all">All pages</option>
+                  <option value="custom">Custom page #</option>
+                </select>
+              </div>
+              <div id="custom-page-wrapper" class="hidden">
+                <label
+                  for="sig-custom-page"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Page #</label
+                >
+                <input
+                  type="number"
+                  id="sig-custom-page"
+                  min="1"
+                  value="1"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="sig-x"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >X Position (left)</label
+                >
+                <input
+                  type="number"
+                  id="sig-x"
+                  min="0"
+                  value="25"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label
+                  for="sig-y"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Y Position (top)</label
+                >
+                <input
+                  type="number"
+                  id="sig-y"
+                  min="0"
+                  value="700"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="sig-width"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Width</label
+                >
+                <input
+                  type="number"
+                  id="sig-width"
+                  min="20"
+                  value="150"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label
+                  for="sig-height"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Height</label
+                >
+                <input
+                  type="number"
+                  id="sig-height"
+                  min="20"
+                  value="70"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div class="border-t border-gray-700 pt-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="enable-sig-text"
+                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
+                />
+                <span class="text-sm font-medium text-gray-300"
+                  >Add text overlay</span
+                >
+              </label>
+            </div>
+
+            <div id="sig-text-options" class="hidden space-y-4">
+              <div>
+                <label
+                  for="sig-text"
+                  class="block text-sm font-medium text-gray-300 mb-2"
+                  >Text</label
+                >
+                <input
+                  type="text"
+                  id="sig-text"
+                  class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="e.g., Digitally signed by John Doe"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="sig-text-color"
+                    class="block text-sm font-medium text-gray-300 mb-2"
+                    >Text Color</label
+                  >
+                  <input type="color" id="sig-text-color" value="#000000" />
+                </div>
+                <div>
+                  <label
+                    for="sig-text-size"
+                    class="block text-sm font-medium text-gray-300 mb-2"
+                    >Font Size</label
+                  >
+                  <input
+                    type="number"
+                    id="sig-text-size"
+                    min="6"
+                    max="72"
+                    value="12"
+                    class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          id="process-btn"
+          class="btn-gradient w-full mt-6"
+          style="display: none"
+        >
+          Apply Digital Signature
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
+        <p id="loader-text" class="text-white text-lg font-medium">
+          Processing...
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3
+          id="alert-title"
+          class="text-xl font-bold text-white mb-2"
+          data-i18n="alert.title"
+        >
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
+        data-i18n="howItWorks.title"
+      >
+        How It Works
+      </h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            1
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">Upload PDF</h3>
+            <p class="text-gray-400">
+              Select the PDF document you want to sign
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            2
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              Upload Certificate
+            </h3>
+            <p class="text-gray-400">
+              Provide your .pfx or .p12 certificate file and password
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            3
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              Sign & Download
+            </h3>
+            <p class="text-gray-400">
+              Apply the digital signature and download your signed PDF
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="relatedTools.title"
+      >
+        Related PDF Tools
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <a
+          href="encrypt-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Encrypt PDF</h3>
+          <p class="text-gray-400 text-sm">Password protect your PDF</p>
+        </a>
+        <a
+          href="decrypt-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Decrypt PDF</h3>
+          <p class="text-gray-400 text-sm">Remove PDF password</p>
+        </a>
+        <a
+          href="flatten-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Flatten PDF</h3>
+          <p class="text-gray-400 text-sm">Make annotations permanent</p>
+        </a>
+        <a
+          href="sanitize-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Sanitize PDF</h3>
+          <p class="text-gray-400 text-sm">Remove hidden data</p>
+        </a>
+        <a
+          href="change-permissions.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Change Permissions</h3>
+          <p class="text-gray-400 text-sm">Set PDF permissions</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="faq.sectionTitle"
+      >
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            What is a digital signature?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            A digital signature is a cryptographic mechanism that verifies the
+            authenticity and integrity of a document. Unlike a drawn signature,
+            it uses public key cryptography (X.509 certificates) to prove the
+            signer's identity.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            What certificate formats are supported?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            We support PKCS#12 format certificates (.pfx, .p12) which contain
+            both your certificate and private key in a single encrypted file.
+            These are commonly issued by certificate authorities.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Is my private key safe?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            Yes! All processing happens entirely in your browser. Your
+            certificate, private key, and PDF files never leave your device or
+            get uploaded to any server.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Will the signature be valid in PDF readers?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            Yes, the tool creates standard PKCS#7 detached signatures that are
+            recognized by all major PDF viewers. For full validation, use a
+            certificate from a trusted Certificate Authority.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    {{> footer }}
+
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module" src="/src/js/logic/digital-sign-pdf-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Digital Signature PDF - BentoPDF",
+        "applicationCategory": "PDF Tool",
+        "operatingSystem": "Any - Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "2150"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to add digital signature to PDF",
+        "description": "Learn how to add a cryptographic digital signature to PDF using BentoPDF",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload PDF",
+            "text": "Select the PDF document you want to sign"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Upload Certificate",
+            "text": "Provide your .pfx or .p12 certificate file and password"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Sign & Download",
+            "text": "Apply the digital signature and download your signed PDF"
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.bentopdf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Digital Signature PDF",
+            "item": "https://www.bentopdf.com/digital-sign-pdf"
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

@@ -16,6 +16,7 @@ import go from 'highlight.js/lib/languages/go';
 import rust from 'highlight.js/lib/languages/rust';
 import yaml from 'highlight.js/lib/languages/yaml';
 import 'highlight.js/styles/github.css';
+import mermaid from 'mermaid';
 import sub from 'markdown-it-sub';
 import sup from 'markdown-it-sup';
 import footnote from 'markdown-it-footnote';
@@ -130,6 +131,111 @@ def fibonacci(n):
 | Code | ✓ | With highlighting |
 | Tables | ✓ | With alignment |
 | Emoji | ✓ | :white_check_mark: |
+| Mermaid | ✓ | Diagrams! |
+
+## Mermaid Diagrams
+
+### Flowchart
+
+\`\`\`mermaid
+graph TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[OK]
+    B -->|No| D[Cancel]
+\`\`\`
+
+### Sequence Diagram
+
+\`\`\`mermaid
+sequenceDiagram
+    participant User
+    participant BentoPDF
+    participant Server
+    User->>BentoPDF: Upload PDF
+    BentoPDF->>BentoPDF: Process locally
+    BentoPDF-->>User: Download result
+    Note over BentoPDF: No server needed!
+\`\`\`
+
+### Pie Chart
+
+\`\`\`mermaid
+pie title PDF Tools Usage
+    "Merge" : 35
+    "Compress" : 25
+    "Convert" : 20
+    "Edit" : 15
+    "Other" : 5
+\`\`\`
+
+### Class Diagram
+
+\`\`\`mermaid
+classDiagram
+    class PDFDocument {
+        +String title
+        +int pageCount
+        +merge()
+        +split()
+        +compress()
+    }
+    class Page {
+        +int number
+        +rotate()
+        +crop()
+    }
+    PDFDocument "1" --> "*" Page
+\`\`\`
+
+### Gantt Chart
+
+\`\`\`mermaid
+gantt
+    title Project Timeline
+    dateFormat YYYY-MM-DD
+    section Planning
+        Research      :a1, 2024-01-01, 7d
+        Design        :a2, after a1, 5d
+    section Development
+        Implementation :a3, after a2, 14d
+        Testing       :a4, after a3, 7d
+\`\`\`
+
+### Entity Relationship
+
+\`\`\`mermaid
+erDiagram
+    USER ||--o{ DOCUMENT : uploads
+    DOCUMENT ||--|{ PAGE : contains
+    DOCUMENT {
+        string id
+        string name
+        date created
+    }
+    PAGE {
+        int number
+        string content
+    }
+\`\`\`
+
+### Mindmap
+
+\`\`\`mermaid
+mindmap
+    root((BentoPDF))
+        Convert
+            Word to PDF
+            Excel to PDF
+            Image to PDF
+        Edit
+            Merge
+            Split
+            Compress
+        Secure
+            Encrypt
+            Sign
+            Watermark
+\`\`\`
 
 ## Footnotes
 
@@ -166,6 +272,7 @@ export class MarkdownEditor {
   private onBack?: () => void;
   private syncScroll: boolean = false;
   private isSyncing: boolean = false;
+  private mermaidInitialized: boolean = false;
   private mdOptions: MarkdownItOptions = {
     html: true,
     breaks: false,
@@ -177,6 +284,7 @@ export class MarkdownEditor {
     this.container = container;
     this.onBack = options.onBack;
 
+    this.initMermaid();
     this.md = this.createMarkdownIt();
     this.configureLinkRenderer();
 
@@ -186,6 +294,18 @@ export class MarkdownEditor {
       this.setContent(options.initialContent);
     } else {
       this.setContent(DEFAULT_MARKDOWN);
+    }
+  }
+
+  private initMermaid(): void {
+    if (!this.mermaidInitialized) {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'default',
+        securityLevel: 'loose',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+      });
+      this.mermaidInitialized = true;
     }
   }
 
@@ -524,6 +644,38 @@ export class MarkdownEditor {
     const markdown = this.editor.value;
     const html = this.md.render(markdown);
     this.preview.innerHTML = html;
+    this.renderMermaidDiagrams();
+  }
+
+  private async renderMermaidDiagrams(): Promise<void> {
+    if (!this.preview) return;
+
+    const mermaidBlocks = this.preview.querySelectorAll('pre > code.language-mermaid');
+
+    for (let i = 0; i < mermaidBlocks.length; i++) {
+      const block = mermaidBlocks[i] as HTMLElement;
+      const code = block.textContent || '';
+      const pre = block.parentElement;
+
+      if (pre && code.trim()) {
+        try {
+          const id = `mermaid-diagram-${i}-${Date.now()}`;
+          const { svg } = await mermaid.render(id, code.trim());
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid-diagram';
+          wrapper.innerHTML = svg;
+
+          pre.replaceWith(wrapper);
+        } catch (error) {
+          console.error('Mermaid rendering error:', error);
+          const errorDiv = document.createElement('div');
+          errorDiv.className = 'mermaid-error';
+          errorDiv.textContent = `Mermaid Error: ${(error as Error).message}`;
+          pre.replaceWith(errorDiv);
+        }
+      }
+    }
   }
 
   public setContent(content: string): void {
@@ -761,6 +913,27 @@ export class MarkdownEditor {
     }
     .table-of-contents li {
       margin: 0.25em 0;
+    }
+    /* Mermaid diagrams */
+    .mermaid-diagram {
+      display: flex;
+      justify-content: center;
+      margin: 1.5em 0;
+      padding: 1em;
+      background: #f6f8fa;
+      border-radius: 6px;
+    }
+    .mermaid-diagram svg {
+      max-width: 100%;
+      height: auto;
+    }
+    .mermaid-error {
+      color: #cb2431;
+      background: #ffeef0;
+      padding: 1em;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9em;
     }
   </style>
 </head>

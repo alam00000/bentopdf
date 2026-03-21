@@ -1,320 +1,531 @@
 <!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Pdf Layers Online Free - Pdf Layers Tool | BentoPDF</title>
+    <meta
+      name="title"
+      content="Pdf Layers Online Free - Pdf Layers Tool | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="★ Pdf Layers online free - Pdf layers PDFs easily ★ No signup ★ Unlimited files ★ Privacy-first ★ Works in browser ★ Fast & secure"
+    />
+    <meta name="keywords" content="pdf layers, pdf layers, online pdf" />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.bentopdf.com/pdf-layers.html" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/pdf-layers" />
+    <meta
+      property="og:title"
+      content="Pdf Layers Online Free - Pdf Layers Tool | BentoPDF"
+    />
+    <meta
+      property="og:description"
+      content="★ Pdf Layers online free - Pdf layers PDFs easily ★ No signup ★ Unlimited files ★ Privacy-first ★ Works in browser ★ Fast & secure"
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-pdf-layers.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.bentopdf.com/pdf-layers" />
+    <meta name="twitter:title" content="Pdf Layers Free" />
+    <meta
+      name="twitter:description"
+      content="★ Pdf Layers online free - Pdf layers PDFs easily ★ No signup ★ Unlimited files ★ Privacy-first ★ Works in browser ★ Fas"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.bentopdf.com/images/twitter-pdf-layers.png"
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <!-- Mobile Web App -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Pdf Layers" />
+
     <title>PDF Layers - Manage OCG Layers - BentoPDF</title>
-    <meta name="description"
-        content="View, toggle, add, and delete Optional Content Groups (OCG) in your PDF files. Free, secure, and runs entirely in your browser.">
-    <link rel="icon" type="image/png" href="/images/favicon.svg" />
+    <meta
+      name="description"
+      content="View, toggle, add, and delete Optional Content Groups (OCG) in your PDF files. Free, secure, and runs entirely in your browser."
+    />
+
     <link href="/src/css/styles.css" rel="stylesheet" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+
     <style>
-        .layers-container {
-            background: #374151;
-            border-radius: 0.75rem;
-            padding: 1rem;
-            margin-top: 1.5rem;
-        }
+      .layers-container {
+        background: #374151;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-top: 1.5rem;
+      }
 
-        .layers-list {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-bottom: 1rem;
-        }
+      .layers-list {
+        max-height: 400px;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+      }
 
-        .layer-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 0.5rem;
-            border-bottom: 1px solid #4B5563;
-        }
+      .layer-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 0.5rem;
+        border-bottom: 1px solid #4b5563;
+      }
 
-        .layer-item:last-child {
-            border-bottom: none;
-        }
+      .layer-item:last-child {
+        border-bottom: none;
+      }
 
-        .layer-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            cursor: pointer;
-            flex: 1;
-        }
+      .layer-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        cursor: pointer;
+        flex: 1;
+      }
 
-        .layer-toggle input[type="checkbox"] {
-            width: 1.25rem;
-            height: 1.25rem;
-            accent-color: #6366F1;
-        }
+      .layer-toggle input[type='checkbox'] {
+        width: 1.25rem;
+        height: 1.25rem;
+        accent-color: #6366f1;
+      }
 
-        .layer-name {
-            color: #E5E7EB;
-            font-size: 0.875rem;
-        }
+      .layer-name {
+        color: #e5e7eb;
+        font-size: 0.875rem;
+      }
 
-        .layer-locked {
-            font-size: 0.75rem;
-            margin-left: 0.5rem;
-        }
+      .layer-locked {
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+      }
 
-        .layer-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
+      .layer-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
 
-        .layer-actions button {
-            background: #4B5563;
-            border: none;
-            color: #9CA3AF;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            font-size: 0.75rem;
-        }
+      .layer-actions button {
+        background: #4b5563;
+        border: none;
+        color: #9ca3af;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        font-size: 0.75rem;
+      }
 
-        .layer-actions button:hover {
-            background: #6B7280;
-            color: #fff;
-        }
+      .layer-actions button:hover {
+        background: #6b7280;
+        color: #fff;
+      }
 
-        .layer-delete:hover {
-            background: #DC2626 !important;
-        }
+      .layer-delete:hover {
+        background: #dc2626 !important;
+      }
 
-        .layers-empty {
-            text-align: center;
-            padding: 2rem;
-            color: #9CA3AF;
-        }
+      .layers-empty {
+        text-align: center;
+        padding: 2rem;
+        color: #9ca3af;
+      }
 
-        .add-layer-form {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
+      .add-layer-form {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
 
-        .add-layer-form input {
-            flex: 1;
-            min-width: 200px;
-            background: #1F2937;
-            border: 1px solid #4B5563;
-            border-radius: 0.5rem;
-            padding: 0.625rem;
-            color: #fff;
-        }
+      .add-layer-form input {
+        flex: 1;
+        min-width: 200px;
+        background: #1f2937;
+        border: 1px solid #4b5563;
+        border-radius: 0.5rem;
+        padding: 0.625rem;
+        color: #fff;
+      }
 
+      .add-layer-form button {
+        background: #6366f1;
+        border: none;
+        color: #fff;
+        padding: 0.625rem 1rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 640px) {
         .add-layer-form button {
-            background: #6366F1;
-            border: none;
-            color: #fff;
-            padding: 0.625rem 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            white-space: nowrap;
+          width: 100%;
         }
+      }
 
-        @media (max-width: 640px) {
-            .add-layer-form button {
-                width: 100%;
-            }
-        }
-
-
-
-        .add-layer-form button:hover {
-            background: #4F46E5;
-        }
+      .add-layer-form button:hover {
+        background: #4f46e5;
+      }
     </style>
-</head>
 
-<body class="antialiased bg-gray-900">
-    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-30">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0 flex items-center cursor-pointer" id="home-logo">
-                    <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-8 w-8" />
-                    <span class="text-white font-bold text-xl ml-2">
-                        <a href="/">BentoPDF</a>
-                    </span>
-                </div>
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
 
-                <div class="hidden md:flex items-center space-x-8 text-white">
-                    <a href="/" class="nav-link">Home</a>
-                    <a href="/about.html" class="nav-link">About</a>
-                    <a href="/contact.html" class="nav-link">Contact</a>
-                    <a href="/" class="nav-link">All Tools</a>
-                </div>
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
 
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" type="button"
-                        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 transition-colors"
-                        aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
-                        <svg id="menu-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                        <svg id="close-icon" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
 
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1 text-center">
-                <a href="/" class="mobile-nav-link">Home</a>
-                <a href="/about.html" class="mobile-nav-link">About</a>
-                <a href="/contact.html" class="mobile-nav-link">Contact</a>
-                <a href="/" class="mobile-nav-link">All Tools</a>
-            </div>
-        </div>
-    </nav>
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >Back to Tools</span
+          >
+        </button>
 
-    <div id="uploader" class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900">
-        <div id="tool-uploader"
-            class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700">
-            <button id="back-to-tools"
-                class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold">
-                <i data-lucide="arrow-left" class="cursor-pointer"></i>
-                <span class="cursor-pointer">Back to Tools</span>
-            </button>
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:pdfOcg.name"
+        >
+          PDF OCG
+        </h1>
+        <p class="text-gray-400 mb-6" data-i18n="tools:pdfOcg.subtitle">
+          View, toggle, add, and delete OCG layers in your PDF.
+        </p>
 
-            <h1 class="text-2xl font-bold text-white mb-2">PDF Layers</h1>
-            <p class="text-gray-400 mb-6">
-                Manage Optional Content Groups (OCG) in your PDF. View, toggle visibility, add new layers, or delete
-                existing ones.
+        <div
+          id="drop-zone"
+          class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i
+              data-lucide="upload-cloud"
+              class="w-10 h-10 mb-3 text-gray-400"
+            ></i>
+            <p class="mb-2 text-sm text-gray-400">
+              <span class="font-semibold" data-i18n="upload.clickToSelect"
+                >Click to select a PDF</span
+              >
+              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
             </p>
-
-            <div id="drop-zone"
-                class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
-                    <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">Click to select a PDF</span> or
-                        drag and drop</p>
-                    <p class="text-xs text-gray-500">Single PDF file only</p>
-                    <p class="text-xs text-gray-500">Your files never leave your device.</p>
-                </div>
-                <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-                    accept="application/pdf">
-            </div>
-
-            <div id="file-display-area" class="mt-4 space-y-2"></div>
-
-            <div id="process-btn-container" class="hidden mt-6">
-                <button id="process-btn" class="btn-gradient w-full">Load Layers</button>
-            </div>
-
-            <div id="layers-container" class="hidden">
-                <div class="layers-container">
-                    <div class="add-layer-form">
-                        <input type="text" id="new-layer-name" placeholder="Enter new layer name..." />
-                        <button id="add-layer-btn">Add Layer</button>
-                    </div>
-                    <div id="layers-list" class="layers-list">
-                        <div class="layers-empty">
-                            <p>Loading layers...</p>
-                        </div>
-                    </div>
-                    <button id="save-layers-btn" class="btn-gradient w-full mt-4">Download Modified PDF</button>
-                </div>
-            </div>
-
+            <p
+              class="text-xs text-gray-500"
+              data-i18n="upload.hints.singlePdfOnly"
+            >
+              Single PDF file only
+            </p>
+            <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+              Your files never leave your device.
+            </p>
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            accept="application/pdf"
+          />
         </div>
+
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+        <div id="process-btn-container" class="hidden mt-6">
+          <button id="process-btn" class="btn-gradient w-full">
+            Load Layers
+          </button>
+        </div>
+
+        <div id="layers-container" class="hidden">
+          <div class="layers-container">
+            <div class="add-layer-form">
+              <input
+                type="text"
+                id="new-layer-name"
+                placeholder="Enter new layer name..."
+              />
+              <button id="add-layer-btn">Add Layer</button>
+            </div>
+            <div id="layers-list" class="layers-list">
+              <div class="layers-empty">
+                <p>Loading layers...</p>
+              </div>
+            </div>
+            <button id="save-layers-btn" class="btn-gradient w-full mt-4">
+              Download Modified PDF
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div id="loader-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-        <div class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl">
-            <div class="solid-spinner"></div>
-            <p id="loader-text" class="text-white text-lg font-medium">
-                Processing...
-            </p>
-        </div>
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
+        <p id="loader-text" class="text-white text-lg font-medium">
+          Processing...
+        </p>
+      </div>
     </div>
 
     <!-- Custom Input Modal -->
-    <div id="input-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50">
-        <div class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700">
-            <h3 id="input-title" class="text-xl font-bold text-white mb-2">Add Layer</h3>
-            <p id="input-message" class="text-gray-300 mb-4">Enter name for the new layer:</p>
-            <input type="text" id="input-value"
-                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4 focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Layer Name">
-            <div class="flex justify-end gap-3">
-                <button id="input-cancel"
-                    class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg transition-colors">Cancel</button>
-                <button id="input-confirm"
-                    class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors">Add</button>
-            </div>
+    <div
+      id="input-modal"
+      class="hidden fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3 id="input-title" class="text-xl font-bold text-white mb-2">
+          Add Layer
+        </h3>
+        <p id="input-message" class="text-gray-300 mb-4">
+          Enter name for the new layer:
+        </p>
+        <input
+          type="text"
+          id="input-value"
+          class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4 focus:ring-indigo-500 focus:border-indigo-500"
+          placeholder="Layer Name"
+        />
+        <div class="flex justify-end gap-3">
+          <button
+            id="input-cancel"
+            class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            id="input-confirm"
+            class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
+          >
+            Add
+          </button>
         </div>
+      </div>
     </div>
 
-    <div id="alert-modal" class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden">
-        <div class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700">
-            <h3 id="alert-title" class="text-xl font-bold text-white mb-2">Alert</h3>
-            <p id="alert-message" class="text-gray-300 mb-6"></p>
-            <button id="alert-ok"
-                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
-                OK
-            </button>
-        </div>
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          OK
+        </button>
+      </div>
     </div>
 
-    <footer class="mt-16 border-t-2 border-gray-700 py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center justify-center md:justify-start mb-4">
-                        <img src="/images/favicon.svg" alt="Bento PDF Logo" class="h-10 w-10 mr-3" />
-                        <span class="text-xl font-bold text-white">BentoPDF</span>
-                    </div>
-                    <p class="text-gray-400 text-sm">
-                        &copy; 2025 BentoPDF. All rights reserved.
-                    </p>
-                    <p class="text-gray-500 text-xs mt-2">
-                        Version <span id="app-version"></span>
-                    </p>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Company</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="/about.html" class="hover:text-indigo-400">About Us</a></li>
-                        <li><a href="/faq.html" class="hover:text-indigo-400">FAQ</a></li>
-                        <li><a href="/contact.html" class="hover:text-indigo-400">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Legal</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="/licensing.html" class="hover:text-indigo-400">Licensing</a></li>
-                        <li><a href="/terms.html" class="hover:text-indigo-400">Terms and Conditions</a></li>
-                        <li><a href="/privacy.html" class="hover:text-indigo-400">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="font-bold text-white mb-4">Follow Us</h3>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                        <a href="https://github.com/alam00000/bentopdf" target="_blank" rel="noopener noreferrer"
-                            class="text-gray-400 hover:text-indigo-400" title="GitHub">
-                            <i data-lucide="github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <!-- How It Works Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
+        data-i18n="howItWorks.title"
+      >
+        How It Works
+      </h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            1
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <p class="text-gray-400" data-i18n="howItWorks.step1">
+              Click or drag and drop your file to begin
+            </p>
+          </div>
         </div>
-    </footer>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            2
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <p class="text-gray-400" data-i18n="howItWorks.step2">
+              Click the process button to start
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            3
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <p class="text-gray-400" data-i18n="howItWorks.step3">
+              Save your processed file instantly
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Tools Section -->
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="relatedTools.title"
+      >
+        Related PDF Tools
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <a
+          href="merge-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Merge Pdf</h3>
+          <p class="text-gray-400 text-sm">Free online merge pdf tool</p>
+        </a>
+        <a
+          href="compress-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Compress Pdf</h3>
+          <p class="text-gray-400 text-sm">Free online compress pdf tool</p>
+        </a>
+        <a
+          href="split-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Split Pdf</h3>
+          <p class="text-gray-400 text-sm">Free online split pdf tool</p>
+        </a>
+        <a
+          href="edit-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Edit Pdf</h3>
+          <p class="text-gray-400 text-sm">Free online edit pdf tool</p>
+        </a>
+        <a
+          href="rotate-pdf.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Rotate Pdf</h3>
+          <p class="text-gray-400 text-sm">Free online rotate pdf tool</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="faq.sectionTitle"
+      >
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Is pdf layers really free?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            Yes! BentoPDF is 100% free with no hidden fees, no signup required,
+            and unlimited file processing.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Are my files private and secure?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            Absolutely! All processing happens in your browser. Your files never
+            leave your device, ensuring complete privacy.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Is there a file size limit?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            No! Process files of any size, as many times as you want, completely
+            free.
+          </p>
+        </details>
+      </div>
+    </section>
+    {{> footer }}
     <script type="module" src="/src/js/utils/lucide-init.ts"></script>
     <script type="module" src="/src/js/utils/full-width.ts"></script>
     <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
@@ -322,6 +533,76 @@
     <script type="module" src="/src/js/logic/pdf-layers-page.ts"></script>
     <script type="module" src="/src/js/mobileMenu.ts"></script>
     <script type="module" src="/src/js/main.ts"></script>
-</body>
 
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Pdf Layers - BentoPDF",
+        "applicationCategory": "PDF Tool",
+        "operatingSystem": "Any - Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "ratingCount": "1593"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to pdf layers online",
+        "description": "Learn how to pdf layers using BentoPDF",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload File",
+            "text": "Click or drag and drop your file"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Process",
+            "text": "Click the process button"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download",
+            "text": "Download your processed file"
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.bentopdf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Pdf Layers",
+            "item": "https://www.bentopdf.com/pdf-layers"
+          }
+        ]
+      }
+    </script>
+  </body>
 </html>

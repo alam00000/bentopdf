@@ -170,14 +170,14 @@ async function handleSinglePdfUpload(toolId, file) {
 
           if (rotateAllDecrementBtn) {
             rotateAllDecrementBtn.onclick = () => {
-              let current = parseInt(rotateAllCustomInput.value) || 0;
+              const current = parseInt(rotateAllCustomInput.value) || 0;
               rotateAllCustomInput.value = (current - 1).toString();
             };
           }
 
           if (rotateAllIncrementBtn) {
             rotateAllIncrementBtn.onclick = () => {
-              let current = parseInt(rotateAllCustomInput.value) || 0;
+              const current = parseInt(rotateAllCustomInput.value) || 0;
               rotateAllCustomInput.value = (current + 1).toString();
             };
           }
@@ -262,7 +262,7 @@ async function handleSinglePdfUpload(toolId, file) {
         const infoSection = createSection('Info Dictionary');
         if (info && Object.keys(info).length > 0) {
           for (const key in info) {
-            let value = info[key];
+            const value = info[key];
             let displayValue;
 
             if (value === null || typeof value === 'undefined') {

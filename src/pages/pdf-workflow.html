@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PDF Workflow Builder - Visual Pipeline | BentoPDF</title>
+    <meta
+      name="title"
+      content="PDF Workflow Builder - Visual Pipeline | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="Build custom PDF processing pipelines visually. Drag, connect, and execute PDF tools in sequence. Free, secure, runs entirely in your browser."
+    />
+    <meta
+      name="keywords"
+      content="pdf workflow, pdf automation, pdf pipeline, visual pdf editor, node editor"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <link rel="canonical" href="https://www.bentopdf.com/pdf-workflow.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/pdf-workflow" />
+    <meta
+      property="og:title"
+      content="PDF Workflow Builder - Visual Pipeline | BentoPDF"
+    />
+    <meta
+      property="og:description"
+      content="Build custom PDF processing pipelines visually. Drag, connect, and execute PDF tools in sequence."
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-pdf-workflow.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.bentopdf.com/pdf-workflow" />
+    <meta name="twitter:title" content="PDF Workflow Builder" />
+    <meta
+      name="twitter:description"
+      content="Build custom PDF processing pipelines visually."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.bentopdf.com/images/twitter-pdf-workflow.png"
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PDF Workflow" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+    <style>
+      #rete-container {
+        background-image: radial-gradient(circle, #374151 1px, transparent 1px);
+        background-size: 20px 20px;
+        cursor: default;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      #toolbox-sidebar {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      #rete-container.is-panning {
+        cursor: grabbing;
+      }
+
+      #rete-container [data-testid='node'] {
+        cursor: pointer;
+      }
+
+      #rete-container [data-testid='node']:active {
+        cursor: grabbing;
+      }
+
+      .wf-node {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 280px;
+      }
+
+      .wf-card {
+        background: #1f2937;
+        border: 2px solid var(--cat-color, #6b7280);
+        border-radius: 12px;
+        width: 100%;
+        overflow: hidden;
+        transition: box-shadow 0.2s;
+      }
+
+      .wf-selected .wf-card {
+        box-shadow: 0 0 0 3px
+          color-mix(in srgb, var(--cat-color) 40%, transparent);
+      }
+
+      .wf-header {
+        padding: 8px 14px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .wf-cat {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--cat-color, #9ca3af);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .wf-divider {
+        height: 1px;
+        background: #374151;
+        margin: 0 14px;
+      }
+
+      .wf-body {
+        padding: 10px 14px 12px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .wf-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--cat-color, #9ca3af);
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .wf-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .wf-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: #f3f4f6;
+        line-height: 1.3;
+      }
+
+      .wf-desc {
+        font-size: 11px;
+        color: #9ca3af;
+        margin-top: 2px;
+        line-height: 1.3;
+      }
+
+      .wf-tag {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: color-mix(in srgb, var(--cat-color) 15%, transparent);
+        color: var(--cat-color, #9ca3af);
+        font-weight: 500;
+        white-space: nowrap;
+        flex-shrink: 0;
+        align-self: center;
+      }
+
+      .wf-sockets {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .wf-sockets-top {
+        margin-bottom: -7px;
+      }
+
+      .wf-sockets-bottom {
+        margin-top: -7px;
+      }
+
+      .wf-socket-slot {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wf-socket {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--socket-color, #6366f1);
+        border: 2px solid #1f2937;
+        box-shadow: 0 0 0 1px var(--socket-color, #6366f1);
+        cursor: crosshair;
+        transition: transform 0.15s;
+      }
+
+      .wf-socket:hover {
+        transform: scale(1.3);
+      }
+
+      .connection .main-path {
+        stroke: #6366f1;
+        stroke-width: 2px;
+        fill: none;
+      }
+
+      @keyframes wf-bar-slide {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      @keyframes wf-dot-pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.75);
+        }
+      }
+
+      .wf-bar-slide {
+        animation: wf-bar-slide 1.5s ease-in-out infinite;
+      }
+
+      .wf-dot-pulse {
+        animation: wf-dot-pulse 1.2s ease-in-out infinite;
+      }
+    </style>
+  </head>
+
+  <body class="antialiased bg-gray-900 h-screen flex flex-col overflow-hidden">
+    {{> navbar }}
+
+    <!-- Main Workflow Layout -->
+    <div id="workflow-app" class="flex flex-1 min-h-0">
+      <!-- LEFT SIDEBAR: Node Toolbox -->
+      <aside
+        id="toolbox-sidebar"
+        class="w-60 bg-gray-800 border-r border-gray-700 flex-col overflow-y-auto flex-shrink-0 hidden md:flex max-md:fixed max-md:inset-y-0 max-md:left-0 max-md:z-40 max-md:shadow-2xl"
+      >
+        <div class="p-3 border-b border-gray-700">
+          <h2 class="text-white font-bold text-sm mb-2">Nodes</h2>
+          <input
+            id="node-search"
+            type="text"
+            placeholder="Search nodes..."
+            class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-2 py-1.5 text-xs focus:border-indigo-500 focus:outline-none"
+          />
+        </div>
+
+        <div id="toolbox-categories" class="flex-1 p-2 space-y-2 text-sm"></div>
+      </aside>
+      <div
+        id="toolbox-backdrop"
+        class="hidden max-md:fixed max-md:inset-0 max-md:bg-black/40 max-md:z-30"
+      ></div>
+
+      <!-- CENTER: Canvas + Toolbar -->
+      <main class="flex-1 flex flex-col min-w-0">
+        <!-- Top Toolbar -->
+        <div
+          id="workflow-toolbar"
+          class="h-11 bg-gray-800 border-b border-gray-700 flex items-center px-2 md:px-4 gap-1.5 md:gap-2 flex-shrink-0"
+        >
+          <button
+            id="toolbox-toggle"
+            class="md:hidden bg-gray-700 hover:bg-gray-600 text-white p-1.5 rounded-lg transition-colors"
+          >
+            <i class="ph ph-plus-circle text-lg"></i>
+          </button>
+          <button
+            id="run-btn"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-3 md:px-4 py-1.5 rounded-lg flex items-center gap-1.5 text-sm transition-colors"
+          >
+            <i class="ph ph-play text-base"></i>
+            <span class="hidden md:inline">Run</span>
+          </button>
+          <button
+            id="clear-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
+          >
+            <i class="ph ph-trash text-base md:hidden"></i>
+            <span class="hidden md:inline">Clear</span>
+          </button>
+          <div class="flex-1"></div>
+          <button
+            id="save-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
+          >
+            <i class="ph ph-floppy-disk text-sm"></i>
+            <span class="hidden md:inline">Save</span>
+          </button>
+          <button
+            id="load-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
+          >
+            <i class="ph ph-folder-open text-sm"></i>
+            <span class="hidden md:inline">Load</span>
+          </button>
+          <button
+            id="export-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
+          >
+            <i class="ph ph-export text-sm"></i>
+            <span class="hidden md:inline">Export</span>
+          </button>
+          <button
+            id="import-btn"
+            class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
+          >
+            <i class="ph ph-download-simple text-sm"></i>
+            <span class="hidden md:inline">Import</span>
+          </button>
+        </div>
+
+        <!-- Rete.js Canvas -->
+        <div id="rete-container" class="flex-1 relative"></div>
+
+        <!-- Bottom Status Bar -->
+        <div
+          id="status-bar"
+          class="h-7 bg-gray-800 border-t border-gray-700 hidden md:flex items-center px-4 text-xs text-gray-400"
+        >
+          <span id="status-text">Ready</span>
+          <div class="flex-1"></div>
+          <span id="node-count">0 nodes</span>
+        </div>
+      </main>
+
+      <!-- RIGHT SIDEBAR: Selected Node Settings -->
+      <aside
+        id="settings-sidebar"
+        class="w-64 bg-gray-800 border-l border-gray-700 flex flex-col overflow-y-auto flex-shrink-0 hidden max-md:fixed max-md:inset-y-0 max-md:right-0 max-md:z-40 max-md:shadow-2xl"
+      >
+        <div
+          class="p-3 border-b border-gray-700 flex items-center justify-between"
+        >
+          <h2 id="settings-title" class="text-white font-bold text-sm">
+            Settings
+          </h2>
+          <button
+            id="close-settings"
+            class="text-gray-400 hover:text-white transition-colors"
+          >
+            <i class="ph ph-x text-base"></i>
+          </button>
+        </div>
+        <div id="settings-content" class="flex-1 p-3 space-y-3"></div>
+      </aside>
+    </div>
+
+    <!-- Loader Modal -->
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800/95 p-8 rounded-2xl flex flex-col items-center gap-4 border border-gray-600/50 shadow-2xl"
+      >
+        <div class="solid-spinner"></div>
+        <p id="loader-text" class="text-white text-lg font-medium">
+          Processing...
+        </p>
+      </div>
+    </div>
+
+    <!-- Save Template Modal -->
+    <div
+      id="save-template-modal"
+      class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800/95 rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-4 border border-gray-600/50"
+      >
+        <div class="flex items-center gap-3 mb-5">
+          <div
+            class="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center"
+          >
+            <i class="ph ph-floppy-disk text-lg text-indigo-400"></i>
+          </div>
+          <h3 class="text-base font-semibold text-white">Save Template</h3>
+        </div>
+        <label class="block text-xs font-medium text-gray-400 mb-1.5"
+          >Template Name</label
+        >
+        <input
+          id="save-template-name"
+          type="text"
+          placeholder="e.g. Invoice Workflow"
+          class="w-full bg-gray-900/80 border border-gray-600/60 text-white rounded-lg px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 focus:outline-none placeholder-gray-500 mb-1"
+        />
+        <p
+          id="save-template-error"
+          class="text-red-400 text-xs mb-4 hidden"
+        ></p>
+        <div class="flex gap-2 mt-4">
+          <button
+            id="save-template-cancel"
+            class="flex-1 bg-gray-700/80 hover:bg-gray-600 text-gray-300 font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
+          >
+            Cancel
+          </button>
+          <button
+            id="save-template-confirm"
+            class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load Template Modal -->
+    <div
+      id="load-template-modal"
+      class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800/95 rounded-2xl shadow-2xl p-6 max-w-md w-full mx-4 border border-gray-600/50"
+      >
+        <div class="flex items-center gap-3 mb-5">
+          <div
+            class="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center"
+          >
+            <i class="ph ph-folder-open text-lg text-indigo-400"></i>
+          </div>
+          <h3 class="text-base font-semibold text-white">Load Template</h3>
+        </div>
+        <div
+          id="load-template-list"
+          class="space-y-1.5 max-h-64 overflow-y-auto mb-4"
+        ></div>
+        <p
+          id="load-template-empty"
+          class="text-gray-500 text-sm text-center py-6 hidden"
+        >
+          No saved templates yet.
+        </p>
+        <button
+          id="load-template-cancel"
+          class="w-full bg-gray-700/80 hover:bg-gray-600 text-gray-300 font-medium py-2.5 px-4 rounded-lg transition-colors text-sm mt-2"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800/95 rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-4 border border-gray-600/50"
+      >
+        <h3 id="alert-title" class="text-lg font-semibold text-white mb-2">
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 text-sm mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <!-- PDF Password Modal -->
+    <div
+      id="pdf-password-modal"
+      class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800/95 rounded-2xl shadow-2xl border border-gray-600/50 p-5 w-80 mx-4"
+      >
+        <h3 class="text-white font-semibold text-sm mb-1">
+          <i class="ph ph-lock text-sm"></i> Protected PDF
+        </h3>
+        <p
+          id="pdf-password-filename"
+          class="text-gray-400 text-xs mb-3 truncate"
+        ></p>
+        <input
+          type="password"
+          id="pdf-password-input"
+          placeholder="Enter password"
+          class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-3 py-2 text-xs focus:border-indigo-500 focus:outline-none mb-1"
+        />
+        <p id="pdf-password-error" class="text-red-400 text-xs mb-3 hidden">
+          Incorrect password
+        </p>
+        <div class="flex gap-2">
+          <button
+            id="pdf-password-skip"
+            class="flex-1 bg-gray-700/80 hover:bg-gray-600 text-gray-300 text-xs py-2 rounded-lg transition-colors"
+          >
+            Skip
+          </button>
+          <button
+            id="pdf-password-unlock"
+            class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-xs py-2 rounded-lg transition-colors"
+          >
+            Unlock
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import '@phosphor-icons/web/regular';
+    </script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module" src="/src/js/logic/pdf-workflow-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PDF Workflow Builder - BentoPDF",
+        "applicationCategory": "PDF Tool",
+        "operatingSystem": "Any - Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+  </body>
+</html>

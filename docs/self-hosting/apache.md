@@ -11,10 +11,16 @@ Host BentoPDF using Apache HTTP Server.
 ## Step 1: Build the Project
 
 ```bash
-git clone https://github.com/bentopdf/bentopdf.git
+git clone https://github.com/alam00000/bentopdf.git
 cd bentopdf
 npm install
 npm run build
+```
+
+To customize branding, set environment variables before building:
+
+```bash
+VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ```
 
 ## Step 2: Copy Files
@@ -52,6 +58,9 @@ Create `/etc/apache2/sites-available/bentopdf.conf`:
     # WASM MIME type
     AddType application/wasm .wasm
 
+    # Prevent double-compression of pre-compressed files
+    SetEnvIfNoCase Request_URI "\.gz$" no-gzip
+
     # Compression
     <IfModule mod_deflate.c>
         AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json application/wasm
@@ -67,28 +76,67 @@ Create `/etc/apache2/sites-available/bentopdf.conf`:
         ExpiresByType image/svg+xml "access plus 1 year"
     </IfModule>
 
+    # Required headers for SharedArrayBuffer (LibreOffice WASM)
+    Header always set Cross-Origin-Embedder-Policy "require-corp"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "cross-origin"
+
     # Security headers
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
+
+    # Pre-compressed LibreOffice WASM files
+    <FilesMatch "soffice\.wasm\.gz$">
+        ForceType application/wasm
+        Header set Content-Encoding "gzip"
+    </FilesMatch>
+    <FilesMatch "soffice\.data\.gz$">
+        ForceType application/octet-stream
+        Header set Content-Encoding "gzip"
+    </FilesMatch>
 </VirtualHost>
 ```
 
-## Step 4: .htaccess for SPA Routing
+## Step 4: .htaccess for Routing
 
 Create `/var/www/bentopdf/.htaccess`:
 
 ```apache
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    
-    # Don't rewrite files or directories
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Rewrite everything else to index.html
-    RewriteRule ^ index.html [L]
-</IfModule>
+RewriteEngine On
+RewriteBase /
+
+# Existing files/dirs - serve directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ============================================
+# LANGUAGE ROUTES
+# ============================================
+# Supported languages: de, es, zh, zh-TW, vi, it, id, tr, fr, pt
+# English has no prefix - served from root
+
+# English prefix redirects to root
+RewriteRule ^en/?$ / [R=301,L]
+RewriteRule ^en/(.+)$ /$1 [R=301,L]
+
+# Language prefix root (e.g., /de/ -> /de/index.html)
+RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /$1/index.html [L]
+
+# Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
+RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+
+# ============================================
+# ADD .HTML EXTENSION (ROOT LEVEL)
+# ============================================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
+
+ErrorDocument 404 /404.html
 ```
 
 ## Step 5: Enable Required Modules
@@ -122,14 +170,31 @@ BASE_URL=/pdf/ npm run build
 2. Update `.htaccess`:
 
 ```apache
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /pdf/
-    
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^ index.html [L]
-</IfModule>
+RewriteEngine On
+RewriteBase /pdf/
+
+# Existing files/dirs - serve directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Language routes
+RewriteRule ^en/?$ /pdf/ [R=301,L]
+RewriteRule ^en/(.+)$ /pdf/$1 [R=301,L]
+
+RewriteCond %{DOCUMENT_ROOT}/pdf/$1/index.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /pdf/$1/index.html [L]
+
+RewriteCond %{DOCUMENT_ROOT}/pdf/$1/$2.html -f
+RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /pdf/$1/$2.html [L]
+
+# Root level .html extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [L]
+
+ErrorDocument 404 /pdf/404.html
 ```
 
 ## Troubleshooting
@@ -149,6 +214,32 @@ Check that mod_rewrite is enabled:
 ```bash
 sudo a2enmod rewrite
 ```
+
+### Word/ODT/Excel to PDF Not Working
+
+LibreOffice WASM requires `SharedArrayBuffer`, which needs these headers:
+
+```apache
+Header always set Cross-Origin-Embedder-Policy "require-corp"
+Header always set Cross-Origin-Opener-Policy "same-origin"
+```
+
+It also needs a secure context. `http://localhost` works for local testing, but `http://192.168.x.x` or other LAN IPs usually require HTTPS. If the headers are present but `window.crossOriginIsolated` is still `false`, check whether the page is being opened over plain HTTP on a non-loopback origin.
+
+The pre-compressed `.wasm.gz` and `.data.gz` files also need correct `Content-Encoding`:
+
+```apache
+<FilesMatch "soffice\.wasm\.gz$">
+    ForceType application/wasm
+    Header set Content-Encoding "gzip"
+</FilesMatch>
+<FilesMatch "soffice\.data\.gz$">
+    ForceType application/octet-stream
+    Header set Content-Encoding "gzip"
+</FilesMatch>
+```
+
+Ensure `mod_headers` is enabled: `sudo a2enmod headers`
 
 ### Permission Denied
 

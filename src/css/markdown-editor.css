@@ -424,6 +424,43 @@
   border-color: rgb(229, 231, 235);
 }
 
+/* Mermaid Diagrams */
+.md-editor-preview .mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+  padding: 1em;
+  background: rgb(17, 24, 39);
+  border-radius: 0.5rem;
+  border: 1px solid rgb(55, 65, 81);
+}
+
+.md-editor-preview .mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.md-editor.light-mode .md-editor-preview .mermaid-diagram {
+  background: rgb(249, 250, 251);
+  border-color: rgb(229, 231, 235);
+}
+
+.md-editor-preview .mermaid-error {
+  color: rgb(248, 113, 113);
+  background: rgba(239, 68, 68, 0.1);
+  padding: 1em;
+  border-radius: 0.5rem;
+  font-family: monospace;
+  font-size: 0.9em;
+  border: 1px solid rgb(239, 68, 68);
+}
+
+.md-editor.light-mode .md-editor-preview .mermaid-error {
+  color: rgb(185, 28, 28);
+  background: rgb(254, 242, 242);
+  border-color: rgb(252, 165, 165);
+}
+
 /* Settings Modal */
 .md-editor-modal-overlay {
   position: fixed;
@@ -545,8 +582,32 @@
   .md-editor-pane:first-child,
   header,
   nav,
-  footer {
+  footer,
+  #back-to-tools,
+  .bg-gray-800>h1.text-2xl,
+  .bg-gray-800>p.text-gray-400,
+  #markdown-editor-container~h1,
+  #markdown-editor-container~p {
     display: none !important;
+  }
+
+  .min-h-screen,
+  .max-w-7xl,
+  .bg-gray-800,
+  .rounded-xl,
+  .shadow-xl,
+  .p-6,
+  .py-8,
+  .px-4,
+  #markdown-editor-container,
+  [class*="container"] {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+    background-color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
   }
 
   /* Reset container backgrounds and layouts */
@@ -597,6 +658,11 @@
     page-break-after: avoid;
   }
 
+  .md-editor-preview>h1:first-child,
+  .md-editor-preview>*:first-child {
+    margin-top: 0 !important;
+  }
+
   .md-editor-preview p,
   .md-editor-preview li,
   .md-editor-preview span {
@@ -643,6 +709,16 @@
 
   .md-editor-preview tr:nth-child(even) {
     background: #f6f8fa !important;
+  }
+
+  .md-editor-preview .mermaid-diagram {
+    background: #f6f8fa !important;
+    border: 1px solid #e1e4e8 !important;
+    page-break-inside: avoid;
+  }
+
+  .md-editor-preview .mermaid-diagram svg {
+    max-width: 100% !important;
   }
 }
 

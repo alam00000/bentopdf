@@ -1,0 +1,365 @@
+{
+  "nav": {
+    "home": "Hem",
+    "about": "Om",
+    "contact": "Kontakt",
+    "licensing": "Licensiering",
+    "allTools": "Alla verktyg",
+    "openMainMenu": "Öppna huvudmenyn",
+    "language": "Språk"
+  },
+  "donation": {
+    "message": "Gillar du BentoPDF? Hjälp oss att hålla det gratis och öppen källkod!",
+    "button": "Donera"
+  },
+  "hero": {
+    "title": " ",
+    "pdfToolkit": "PDF-verktygslådan",
+    "builtForPrivacy": "byggd för integritet",
+    "noSignups": "Inga konton",
+    "unlimitedUse": "Obegränsad användning",
+    "worksOffline": "Fungerar offline",
+    "startUsing": "Börja använda nu"
+  },
+  "usedBy": {
+    "title": "Används av företag och personer som arbetar på"
+  },
+  "features": {
+    "title": "Varför välja",
+    "bentoPdf": "BentoPDF?",
+    "noSignup": {
+      "title": "Ingen registrering",
+      "description": "Börja direkt, inga konton eller e-postadresser."
+    },
+    "noUploads": {
+      "title": "Inga uppladdningar",
+      "description": "100% på klientsidan, dina filer lämnar aldrig din enhet."
+    },
+    "foreverFree": {
+      "title": "Gratis för alltid",
+      "description": "Alla verktyg, inga provperioder, inga betalväggar."
+    },
+    "noLimits": {
+      "title": "Inga begränsningar",
+      "description": "Använd så mycket du vill, inga dolda gränser."
+    },
+    "batchProcessing": {
+      "title": "Batchbearbetning",
+      "description": "Hantera obegränsade PDF-filer på en gång."
+    },
+    "lightningFast": {
+      "title": "Blixtrande snabb",
+      "description": "Bearbeta PDF-filer direkt, utan väntan eller förseningar."
+    }
+  },
+  "tools": {
+    "title": "Kom igång med",
+    "toolsLabel": "verktyg",
+    "subtitle": "Klicka på ett verktyg för att öppna filväljaren",
+    "searchPlaceholder": "Sök efter ett verktyg (t.ex. 'dela', 'organisera'...)",
+    "backToTools": "Tillbaka till verktyg",
+    "firstLoadNotice": "Första laddningen tar ett ögonblick eftersom vi hämtar vår konverteringsmotor. Därefter blir alla laddningar omedelbara."
+  },
+  "upload": {
+    "clickToSelect": "Klicka för att välja en fil",
+    "orDragAndDrop": "eller dra och släpp",
+    "pdfOrImages": "PDF-filer eller bilder",
+    "filesNeverLeave": "Dina filer lämnar aldrig din enhet.",
+    "addMore": "Lägg till fler filer",
+    "clearAll": "Rensa allt",
+    "clearFiles": "Rensa filer",
+    "hints": {
+      "singlePdf": "Ett enskilt PDF-dokument",
+      "pdfFile": "PDF-fil",
+      "multiplePdfs2": "Flera PDF-filer (minst 2)",
+      "bmpImages": "BMP-bilder",
+      "oneOrMorePdfs": "En eller flera PDF-filer",
+      "pdfDocuments": "PDF-dokument",
+      "oneOrMoreCsv": "En eller flera CSV-filer",
+      "multiplePdfsSupported": "Flera PDF-filer stöds",
+      "singleOrMultiplePdfs": "Enskild eller flera PDF-filer stöds",
+      "singlePdfFile": "Enskild PDF-fil",
+      "pdfWithForms": "PDF-fil med formulärfält",
+      "heicImages": "HEIC/HEIF-bilder",
+      "jpgImages": "JPG, JPEG, JP2, JPX-bilder",
+      "pdfsOrImages": "PDF-filer eller bilder",
+      "oneOrMoreOdt": "En eller flera ODT-filer",
+      "singlePdfOnly": "Endast enskild PDF-fil",
+      "pdfFiles": "PDF-filer",
+      "multiplePdfs": "Flera PDF-filer",
+      "pngImages": "PNG-bilder",
+      "pdfFilesOneOrMore": "PDF-filer (en eller flera)",
+      "oneOrMoreRtf": "En eller flera RTF-filer",
+      "svgGraphics": "SVG-grafik",
+      "tiffImages": "TIFF-bilder",
+      "webpImages": "WebP-bilder"
+    }
+  },
+  "howItWorks": {
+    "title": "Så här fungerar det",
+    "step1": "Klicka eller dra och släpp din fil för att börja",
+    "step2": "Klicka på bearbeta-knappen för att starta",
+    "step3": "Spara din bearbetade fil direkt"
+  },
+  "relatedTools": {
+    "title": "Relaterade PDF-verktyg"
+  },
+  "loader": {
+    "processing": "Bearbetar..."
+  },
+  "alert": {
+    "title": "Varning",
+    "ok": "OK"
+  },
+  "preview": {
+    "title": "Förhandsvisning",
+    "downloadAsPdf": "Ladda ner som PDF",
+    "close": "Stäng"
+  },
+  "settings": {
+    "title": "Inställningar",
+    "shortcuts": "Genvägar",
+    "preferences": "Inställningar",
+    "displayPreferences": "Visningsinställningar",
+    "searchShortcuts": "Sök genvägar...",
+    "shortcutsInfo": "Håll ned tangenterna för att ställa in en genväg. Ändringar sparas automatiskt.",
+    "shortcutsWarning": "⚠️ Undvik vanliga webbläsargenvägar (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N osv.) eftersom de kanske inte fungerar tillförlitligt.",
+    "import": "Importera",
+    "export": "Exportera",
+    "resetToDefaults": "Återställ till standard",
+    "fullWidthMode": "Fullbreddsläge",
+    "fullWidthDescription": "Använd hela skärmbredden för alla verktyg istället för en centrerad behållare",
+    "settingsAutoSaved": "Inställningar sparas automatiskt",
+    "clickToSet": "Klicka för att ställa in",
+    "pressKeys": "Tryck tangenter...",
+    "warnings": {
+      "alreadyInUse": "Genvägen används redan",
+      "assignedTo": "är redan tilldelad till:",
+      "chooseDifferent": "Välj en annan genväg.",
+      "reserved": "Reserverad genvägsvarning",
+      "commonlyUsed": "används vanligtvis för:",
+      "unreliable": "Den här genvägen fungerar kanske inte tillförlitligt eller kan komma i konflikt med webbläsarens/systemets beteende.",
+      "useAnyway": "Vill du använda den ändå?",
+      "resetTitle": "Återställ genvägar",
+      "resetMessage": "Är du säker på att du vill återställa alla genvägar till standard?<br><br>Den här åtgärden kan inte ångras.",
+      "importSuccessTitle": "Import lyckades",
+      "importSuccessMessage": "Genvägar importerades!",
+      "importFailTitle": "Import misslyckades",
+      "importFailMessage": "Det gick inte att importera genvägar. Ogiltigt filformat."
+    }
+  },
+  "warning": {
+    "title": "Varning",
+    "cancel": "Avbryt",
+    "proceed": "Fortsätt"
+  },
+  "compliance": {
+    "title": "Dina data lämnar aldrig din enhet",
+    "weKeep": "Vi håller",
+    "yourInfoSafe": "din information säker",
+    "byFollowingStandards": "genom att följa globala säkerhetsstandarder.",
+    "processingLocal": "All bearbetning sker lokalt på din enhet.",
+    "gdpr": {
+      "title": "GDPR-efterlevnad",
+      "description": "Skyddar personuppgifter och integritet för individer inom Europeiska unionen."
+    },
+    "ccpa": {
+      "title": "CCPA-efterlevnad",
+      "description": "Ger Kaliforniens residenter rättigheter över hur deras personliga information samlas in, används och delas."
+    },
+    "hipaa": {
+      "title": "HIPAA-efterlevnad",
+      "description": "Fastställer skyddsåtgärder för hantering av känslig hälsoinformation i det amerikanska sjukvårdssystemet."
+    }
+  },
+  "faq": {
+    "title": "Vanliga",
+    "questions": "frågor",
+    "sectionTitle": "Vanliga frågor och svar",
+    "isFree": {
+      "question": "Är BentoPDF verkligen gratis?",
+      "answer": "Ja, absolut. Alla verktyg på BentoPDF är 100% gratis att använda, utan filgränser, utan registreringar och utan vattenstämplar. Vi tror att alla förtjänar tillgång till enkla, kraftfulla PDF-verktyg utan en betalvägg."
+    },
+    "areFilesSecure": {
+      "question": "Är mina filer säkra? Var bearbetas de?",
+      "answer": "Dina filer är så säkra som möjligt eftersom de aldrig lämnar din dator. All bearbetning sker direkt i din webbläsare (klientsida). Vi laddar aldrig upp dina filer till en server, så du har fullständig integritet och kontroll över dina dokument."
+    },
+    "platforms": {
+      "question": "Fungerar det på Mac, Windows och mobil?",
+      "answer": "Ja! Eftersom BentoPDF körs helt i din webbläsare fungerar det på alla operativsystem med en modern webbläsare, inklusive Windows, macOS, Linux, iOS och Android."
+    },
+    "gdprCompliant": {
+      "question": "Är BentoPDF GDPR-kompatibelt?",
+      "answer": "Ja. BentoPDF är fullt GDPR-kompatibelt. Eftersom all filbearbetning sker lokalt i din webbläsare och vi aldrig samlar in eller överför dina filer till någon server, har vi ingen tillgång till dina data. Detta säkerställer att du alltid har kontroll över dina dokument."
+    },
+    "dataStorage": {
+      "question": "Lagrar eller spårar ni några av mina filer?",
+      "answer": "Nej. Vi lagrar, spårar eller loggar aldrig dina filer. Allt du gör på BentoPDF händer i din webbläsares minne och försvinner när du stänger sidan. Det finns inga uppladdningar, inga historikloggar och inga servrar inblandade."
+    },
+    "different": {
+      "question": "Vad gör BentoPDF annorlunda från andra PDF-verktyg?",
+      "answer": "De flesta PDF-verktyg laddar upp dina filer till en server för bearbetning. BentoPDF gör aldrig det. Vi använder säker, modern webbteknik för att bearbeta dina filer direkt i din webbläsare. Detta innebär snabbare prestanda, starkare integritet och fullständig trygghet."
+    },
+    "browserBased": {
+      "question": "Hur håller webbläsarbaserad bearbetning mig säker?",
+      "answer": "Genom att köras helt inne i din webbläsare säkerställer BentoPDF att dina filer aldrig lämnar din enhet. Detta eliminerar riskerna för serverhack, dataintrång eller obehörig åtkomst. Dina filer förblir dina - alltid."
+    },
+    "analytics": {
+      "question": "Använder ni cookies eller analys för att spåra mig?",
+      "answer": "Vi bryr oss om din integritet. BentoPDF spårar inte personlig information. Vi använder Simple Analytics enbart för att se anonyma besöksantal. Det betyder att vi kan se hur många användare som besöker vår site, men vi vet aldrig vem du är. Simple Analytics är fullt GDPR-kompatibelt och respekterar din integritet."
+    }
+  },
+  "testimonials": {
+    "title": "Vad våra",
+    "users": "användare",
+    "say": "säger"
+  },
+  "support": {
+    "title": "Gillar du mitt arbete?",
+    "description": "BentoPDF är ett passionerat projekt, byggt för att erbjuda en gratis, privat och kraftfull PDF-verktygslåda för alla. Om du tycker det är användbart, överväg att stödja utvecklingen. Varje kaffe hjälper!",
+    "buyMeCoffee": "Buy Me a Coffee"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. Alla rättigheter reserverade.",
+    "version": "Version",
+    "company": "Företag",
+    "aboutUs": "Om oss",
+    "faqLink": "FAQ",
+    "contactUs": "Kontakta oss",
+    "legal": "Juridiskt",
+    "termsAndConditions": "Villkor",
+    "privacyPolicy": "Integritetspolicy",
+    "followUs": "Följ oss"
+  },
+  "merge": {
+    "title": "Sammanfoga PDF:er",
+    "description": "Kombinera hela filer eller välj specifika sidor att sammanfoga till ett nytt dokument.",
+    "fileMode": "Filläge",
+    "pageMode": "Sidoläge",
+    "howItWorks": "Så här fungerar det:",
+    "fileModeInstructions": [
+      "Klicka och dra ikonen för att ändra ordningen på filerna.",
+      "I rutan \"Sidor\" för varje fil kan du ange intervall (t.ex. \"1-3, 5\") för att sammanfoga endast de sidorna.",
+      "Lämna rutan \"Sidor\" tom för att inkludera alla sidor från den filen."
+    ],
+    "pageModeInstructions": [
+      "Alla sidor från dina uppladdade PDF:er visas nedan.",
+      "Dra och släpp sidminiyrbilderna för att skapa den ordning du vill ha för din nya fil."
+    ],
+    "mergePdfs": "Sammanfoga PDF:er"
+  },
+  "common": {
+    "page": "Sida",
+    "pages": "Sidor",
+    "of": "av",
+    "download": "Ladda ner",
+    "cancel": "Avbryt",
+    "save": "Spara",
+    "delete": "Ta bort",
+    "edit": "Redigera",
+    "add": "Lägg till",
+    "remove": "Ta bort",
+    "loading": "Laddar...",
+    "error": "Fel",
+    "success": "Klart",
+    "file": "Fil",
+    "files": "Filer",
+    "close": "Stäng"
+  },
+  "about": {
+    "hero": {
+      "title": "Vi tror att PDF-verktyg ska vara",
+      "subtitle": "snabba, privata och gratis.",
+      "noCompromises": "Inga kompromisser."
+    },
+    "mission": {
+      "title": "Vårt uppdrag",
+      "description": "Att tillhandahålla den mest omfattande PDF-verktygslådan som respekterar din integritet och aldrig ber om betalning. Vi tycker att viktiga dokumentverktyg ska vara tillgängliga för alla, överallt, utan hinder."
+    },
+    "philosophy": {
+      "label": "Vår kärnfilosofi",
+      "title": "Integritet först. Alltid.",
+      "description": "I en tid där data är en handelsvara tar vi en annan väg. All bearbetning i BentoPDF sker lokalt i din webbläsare. Detta dina filer betyder att aldrig rör våra servrar, vi ser aldrig dina dokument och vi spårar inte vad du gör. Dina dokument förblir helt och hållet privata. Det är inte bara en funktion - det är vår grund."
+    },
+    "whyBentopdf": {
+      "title": "Varför",
+      "speed": {
+        "title": "Byggd för hastighet",
+        "description": "Ingen väntan på uppladdningar eller nedladdningar till en server. Genom att bearbeta filer direkt i din webbläsare med moderna webbteknologier som WebAssembly erbjuder vi oöverträffad hastighet för alla våra verktyg."
+      },
+      "free": {
+        "title": "Helt gratis",
+        "description": "Inga provperioder, inga prenumerationer, inga dolda avgifter och inga \"premium\"-funktioner bakom en spärr. Vi tycker att kraftfulla PDF-verktyg ska vara en allmän nyttighet, inte en vinstmaskin."
+      },
+      "noAccount": {
+        "title": "Inget konto krävs",
+        "description": "Börja använda vilket verktyg som helst direkt. Vi behöver inte din e-post, ett lösenord eller någon personlig information. Ditt arbetsflöde ska vara friktionsfritt och anonymt."
+      },
+      "openSource": {
+        "title": "Öppen källkod-anda",
+        "description": "Byggd med transparens i åtanke. Vi använder fantastiska öppna källkodsbibliotek som PDF-lib och PDF.js, och tror på community-driven utveckling för att göra kraftfulla verktyg tillgängliga för alla."
+      }
+    },
+    "cta": {
+      "title": "Redo att komma igång?",
+      "description": "Gå med i tusentals användare som litar på Bentopdf för sina dagliga dokumentbehov. Upplev skillnaden som integritet och prestanda kan göra.",
+      "button": "Utforska alla verktyg"
+    }
+  },
+  "contact": {
+    "title": "Kontakta oss",
+    "subtitle": "Vi vill gärna höra från dig. Oavsett om du har frågor, feedback eller funktionsförslag - tveka inte att höra av dig.",
+    "email": "Du kan nå oss direkt via e-post på:"
+  },
+  "licensing": {
+    "title": "Licenser för",
+    "subtitle": "Välj den licens som passar dina behov."
+  },
+  "multiTool": {
+    "uploadPdfs": "Ladda upp PDF:er",
+    "upload": "Ladda upp",
+    "addBlankPage": "Lägg till tom sida",
+    "edit": "Redigera:",
+    "undo": "Ångra",
+    "redo": "Gör om",
+    "reset": "Återställ",
+    "selection": "Markering:",
+    "selectAll": "Markera alla",
+    "deselectAll": "Avmarkera alla",
+    "rotate": "Rotera:",
+    "rotateLeft": "Vänster",
+    "rotateRight": "Höger",
+    "transform": "Transformera:",
+    "duplicate": "Duplicera",
+    "split": "Dela",
+    "clear": "Rensa:",
+    "delete": "Ta bort",
+    "download": "Ladda ner:",
+    "downloadSelected": "Ladda ner markerade",
+    "exportPdf": "Exportera PDF",
+    "uploadPdfFiles": "Välj PDF-filer",
+    "dragAndDrop": "Dra och släpp PDF-filer här, eller klicka för att välja",
+    "selectFiles": "Välj filer",
+    "renderingPages": "Renderar sidor...",
+    "actions": {
+      "duplicatePage": "Duplicera denna sida",
+      "deletePage": "Ta bort denna sida",
+      "insertPdf": "Infoga PDF efter denna sida",
+      "toggleSplit": "Växla delning efter denna sida"
+    },
+    "pleaseWait": "Vänligen vänta",
+    "pagesRendering": "Sidor renderas fortfarande. Vänligen vänta...",
+    "noPagesSelected": "Inga sidor markerade",
+    "selectOnePage": "Vänligen välj minst en sida att ladda ner.",
+    "noPages": "Inga sidor",
+    "noPagesToExport": "Det finns inga sidor att exportera.",
+    "renderingTitle": "Renderar sidförhandsvisningar",
+    "errorRendering": "Det gick inte att rendera sidminiatyrer",
+    "error": "Fel",
+    "failedToLoad": "Det gick inte att ladda"
+  },
+  "simpleMode": {
+    "title": "PDF-verktyg",
+    "subtitle": "Välj ett verktyg för att komma igång"
+  }
+}

@@ -1,12 +1,8 @@
+import { EditMetadataState } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument, PDFName, PDFString } from 'pdf-lib';
-
-interface EditMetadataState {
-    file: File | null;
-    pdfDoc: PDFLibDocument | null;
-}
 
 const pageState: EditMetadataState = {
     file: null,

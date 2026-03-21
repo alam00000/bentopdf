@@ -20,13 +20,34 @@ This guide will help you add new languages or improve existing translations for 
 BentoPDF uses **i18next** for internationalization (i18n). Currently supported languages:
 
 - **English** (`en`) - Default
+- **Belarusian** (`be`)
 - **German** (`de`)
+- **Spanish** (`es`)
+- **French** (`fr`)
+- **Italian** (`it`)
+- **Portuguese** (`pt`)
+- **Turkish** (`tr`)
 - **Vietnamese** (`vi`)
+- **Indonesian** (`id`)
+- **Chinese** (`zh`)
+- **Traditional Chinese (Taiwan)** (`zh-TW`)
+- **Korean** (`ko`)
+- **Russian** (`ru`)
 
 The app automatically detects the language from the URL path:
-- `/en/` → English
+
+- `/` or `/en/` → English (default)
 - `/de/` → German
-- `/vi/` → Vietnamese
+- `/fr/` → French
+- etc.
+
+### Architecture
+
+BentoPDF uses a **static pre-rendering** approach for SEO-optimized i18n:
+
+1. **Build time**: `scripts/generate-i18n-pages.mjs` generates localized HTML files in `dist/{lang}/`
+2. **Dev/Preview**: `languageRouterPlugin` in `vite.config.ts` handles URL rewriting
+3. **Production**: Nginx serves static files directly from language directories
 
 ---
 
@@ -34,50 +55,52 @@ The app automatically detects the language from the URL path:
 
 **To improve existing translations:**
 
-1. Navigate to `public/locales/{language}/common.json`
+1. Navigate to `public/locales/{language}/common.json` and `public/locales/{language}/tools.json`
 2. Find the key you want to update
 3. Change the translation value
 4. Save and test
 
-**To add a new language (e.g., Spanish):**
+**To add a new language (e.g., Japanese `ja`):**
 
-1. Copy `public/locales/en/common.json` to `public/locales/es/common.json`
-2. Translate all values in `es/common.json`
-3. Add Spanish to `supportedLanguages` in `src/js/i18n/i18n.ts`
-4. Add Spanish name to `languageNames` in `src/js/i18n/i18n.ts`
-5. Test thoroughly
+1. Copy `public/locales/en/` to `public/locales/ja/`
+2. Translate all values in both `ja/common.json` and `ja/tools.json`
+3. Add Japanese to `supportedLanguages` and `languageNames` in `src/js/i18n/i18n.ts`
+4. Add `'ja'` to `SUPPORTED_LANGUAGES` in `vite.config.ts`
+5. Restart the dev server
+6. Run `npm run build` to generate static language pages
+7. Test thoroughly
 
 ---
 
 ## Adding a New Language
 
-Let's add **French** as an example:
+Let's add **Spanish** as an example:
 
-### Step 1: Create Translation File
+### Step 1: Create Translation Files
 
 ```bash
 # Create the directory
-mkdir -p public/locales/fr
+mkdir -p public/locales/es
 
 # Copy the English template
-cp public/locales/en/common.json public/locales/fr/common.json
+cp public/locales/en/common.json public/locales/es/common.json
 ```
 
-### Step 2: Translate the JSON File
+### Step 2: Translate the JSON Files
 
-Open `public/locales/fr/common.json` and translate all the values:
+Open `public/locales/es/common.json` and translate all the values:
 
 ```json
 {
   "nav": {
-    "home": "Accueil",
-    "about": "À propos",
-    "contact": "Contact",
-    "allTools": "Tous les outils"
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "allTools": "Todas las herramientas"
   },
   "hero": {
-    "title": "Votre boîte à outils PDF gratuite et sécurisée",
-    "subtitle": "Fusionnez, divisez, compressez et modifiez des PDF directement dans votre navigateur."
+    "title": "Tu conjunto de herramientas PDF gratuito y seguro",
+    "subtitle": "Combina, divide, comprime y edita archivos PDF directamente en tu navegador."
   }
   // ... continue translating all keys
 }
@@ -86,14 +109,18 @@ Open `public/locales/fr/common.json` and translate all the values:
 ⚠️ **Important**: Only translate the **values**, NOT the keys!
 
 ✅ **Correct:**
+
 ```json
-"home": "Accueil"
+"home": "Inicio"
 ```
 
 ❌ **Wrong:**
+
 ```json
-"accueil": "Accueil"
+"inicio": "Inicio"
 ```
+
+Then do the same for `public/locales/es/tools.json` to translate all tool names and descriptions.
 
 ### Step 3: Register the Language
 
@@ -101,25 +128,59 @@ Edit `src/js/i18n/i18n.ts`:
 
 ```typescript
 // Add 'fr' to supported languages
-export const supportedLanguages = ['en', 'de', 'fr'] as const;
+export const supportedLanguages = ['en', 'de', 'es', 'fr', 'zh', 'vi'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 // Add French display name
 export const languageNames: Record<SupportedLanguage, string> = {
-    en: 'English',
-    de: 'Deutsch',
-    fr: 'Français',  // ← Add this
+  en: 'English',
+  de: 'Deutsch',
+  fr: 'Français', // ← Add this
 };
 ```
 
-### Step 4: Test Your Translation
+### Step 4: Update Vite Configuration
+
+In `vite.config.ts`, add your language to the `SUPPORTED_LANGUAGES` array:
+
+```typescript
+const SUPPORTED_LANGUAGES = [
+  'en',
+  'de',
+  'es',
+  'zh',
+  'zh-TW',
+  'vi',
+  'it',
+  'id',
+  'tr',
+  'fr',
+  'pt',
+  'ja',
+] as const;
+```
+
+> **Important**: This is required for both dev server routing and the build-time i18n generation.
+
+### Step 5: Test Your Translation
 
 ```bash
-# Start the dev server
+# Restart the dev server
 npm run dev
 
-# Visit the French version
-# http://localhost:5173/fr/
+# Visit the Japanese version
+# http://localhost:5173/ja/
+```
+
+### Step 6: Build and Verify Static Files
+
+```bash
+# Run build (includes i18n page generation)
+npm run build
+
+# Verify files were created
+ls dist/ja/
+# Should show: index.html, merge-pdf.html, etc.
 ```
 
 ---
@@ -207,6 +268,7 @@ Tool names and descriptions are defined in `src/js/config/tools.ts` and use a sp
 ```
 
 In translations:
+
 ```json
 {
   "tools": {
@@ -234,14 +296,15 @@ console.log(message); // "Error" or "Fehler" depending on language
 For input placeholders:
 
 ```html
-<input 
-  type="text" 
-  placeholder="Search for a tool..." 
+<input
+  type="text"
+  placeholder="Search for a tool..."
   data-i18n-placeholder="tools.searchPlaceholder"
 />
 ```
 
 In `common.json`:
+
 ```json
 {
   "tools": {
@@ -257,6 +320,7 @@ In `common.json`:
 ### Manual Testing
 
 1. **Start development server:**
+
    ```bash
    npm run dev
    ```
@@ -265,7 +329,11 @@ In `common.json`:
    - English: `http://localhost:5173/en/`
    - German: `http://localhost:5173/de/`
    - Vietnamese: `http://localhost:5173/vi/`
-   - Your new language: `http://localhost:5173/fr/`
+   - Indonesian: `http://localhost:5173/id/`
+   - Chinese: `http://localhost:5173/zh/`
+   - Traditional Chinese (Taiwan): `http://localhost:5173/zh-TW/`
+   - French: `http://localhost:5173/fr/`
+   - Your new language: `http://localhost:5173/es/`
 
 3. **Check these pages:**
    - Homepage (`/`)
@@ -289,11 +357,12 @@ Check for missing translations:
 node scripts/check-translations.js
 ```
 
-*(If this script doesn't exist, you may need to create it or manually compare JSON files)*
+_(If this script doesn't exist, you may need to create it or manually compare JSON files)_
 
 ### Browser Testing
 
 Test in different browsers:
+
 - Chrome/Edge
 - Firefox
 - Safari
@@ -307,11 +376,13 @@ Test in different browsers:
 BentoPDF is **friendly, clear, and professional**. Match this tone in your translations.
 
 ✅ **Good:**
+
 ```json
 "hero.title": "Ihr kostenloses und sicheres PDF-Toolkit"
 ```
 
 ❌ **Too formal:**
+
 ```json
 "hero.title": "Ihr gebührenfreies und gesichertes Werkzeug für PDF-Dokumente"
 ```
@@ -339,6 +410,7 @@ When translating, **keep the HTML tags intact**:
 If your language has complex plural rules or gender distinctions, consult the [i18next pluralization guide](https://www.i18next.com/translation-function/plurals).
 
 Example:
+
 ```json
 {
   "pages": "page",
@@ -349,6 +421,7 @@ Example:
 ### 4. Don't Translate Brand Names or Legal Terms
 
 Keep these as-is:
+
 - BentoPDF
 - PDF
 - GitHub
@@ -361,6 +434,7 @@ Keep these as-is:
 ### 5. Technical Terms
 
 For technical terms, use commonly accepted translations in your language:
+
 - "Merge" → "Fusionner" (French), "Zusammenführen" (German)
 - "Split" → "Diviser" (French), "Teilen" (German)
 - "Compress" → "Compresser" (French), "Komprimieren" (German)
@@ -380,6 +454,7 @@ If a translation is much longer, test it visually to ensure it doesn't break the
 ### Issue: Translations Not Showing Up
 
 **Solution:**
+
 1. Clear your browser cache
 2. Hard refresh (Ctrl+F5 or Cmd+Shift+R)
 3. Check browser console for errors
@@ -388,22 +463,26 @@ If a translation is much longer, test it visually to ensure it doesn't break the
 ### Issue: Some Text Still in English
 
 **Possible causes:**
+
 1. Missing translation key in your language file
 2. Missing `data-i18n` attribute in HTML
 3. Hardcoded text in JavaScript
 
 **Solution:**
+
 - Compare your language file with `en/common.json` to find missing keys
 - Search the codebase for hardcoded strings
 
 ### Issue: JSON Syntax Error
 
 **Symptoms:**
+
 ```
 SyntaxError: Unexpected token } in JSON at position 1234
 ```
 
 **Solution:**
+
 - Use a JSON validator: https://jsonlint.com/
 - Common mistakes:
   - Trailing comma after last item
@@ -414,13 +493,48 @@ SyntaxError: Unexpected token } in JSON at position 1234
 
 **Solution:**
 Make sure you added the language to both arrays in `i18n.ts`:
+
 ```typescript
-export const supportedLanguages = ['en', 'de', 'fr']; // ← Add here
+export const supportedLanguages = ['en', 'de', 'es', 'fr', 'zh', 'vi']; // ← Add here
 export const languageNames = {
-    en: 'English',
-    de: 'Deutsch',
-    fr: 'Français', // ← And here
+  en: 'English',
+  de: 'Deutsch',
+  es: 'Español',
+  fr: 'Français', // ← And here
+  zh: '中文',
+  vi: 'Tiếng Việt',
 };
+```
+
+### Issue: 404 Error When Accessing Language Pages
+
+**Symptoms:**
+Visiting `http://localhost:5173/ja/about.html` shows a 404 error page.
+
+**Solution:**
+You need to add your language code to `SUPPORTED_LANGUAGES` in `vite.config.ts`:
+
+```typescript
+const SUPPORTED_LANGUAGES = [
+  'en',
+  'de',
+  'es',
+  'zh',
+  'zh-TW',
+  'vi',
+  'it',
+  'id',
+  'tr',
+  'fr',
+  'pt',
+  'ja',
+] as const;
+```
+
+After updating, restart the dev server:
+
+```bash
+npm run dev
 ```
 
 ---
@@ -430,11 +544,15 @@ export const languageNames = {
 When adding a new language, make sure these files are updated:
 
 - [ ] `public/locales/{lang}/common.json` - Main translation file
+- [ ] `public/locales/{lang}/tools.json` - Tools translation file
 - [ ] `src/js/i18n/i18n.ts` - Add to `supportedLanguages` and `languageNames`
+- [ ] `vite.config.ts` - Add to `SUPPORTED_LANGUAGES` array
 - [ ] Test all pages: homepage, about, contact, FAQ, tool pages
 - [ ] Test settings modal and shortcuts
 - [ ] Test language switcher in footer
 - [ ] Verify URL routing works (`/{lang}/`)
+- [ ] Run `npm run build` and verify `dist/{lang}/` folder is created
+- [ ] Test that all tools load correctly
 
 ---
 
@@ -470,13 +588,23 @@ Thank you for contributing to BentoPDF! 🎉
 
 Current translation coverage:
 
-| Language | Code | Status | Maintainer |
-|----------|------|--------|------------|
-| English  | `en` | ✅ Complete | Core team |
-| German   | `de` | 🚧 In Progress | Core team |
-| Vietnamese | `vi` | ✅ Complete | Community |
-| Your Language | `??` | 🚧 In Progress | You? |
+| Language            | Code    | Status         | Maintainer |
+| ------------------- | ------- | -------------- | ---------- |
+| English             | `en`    | ✅ Complete    | Core team  |
+| German              | `de`    | ✅ Complete    | Community  |
+| Spanish             | `es`    | ✅ Complete    | Community  |
+| French              | `fr`    | ✅ Complete    | Community  |
+| Italian             | `it`    | ✅ Complete    | Community  |
+| Portuguese          | `pt`    | ✅ Complete    | Community  |
+| Turkish             | `tr`    | ✅ Complete    | Community  |
+| Vietnamese          | `vi`    | ✅ Complete    | Community  |
+| Indonesian          | `id`    | ✅ Complete    | Community  |
+| Chinese             | `zh`    | ✅ Complete    | Community  |
+| Traditional Chinese | `zh-TW` | ✅ Complete    | Community  |
+| Korean              | `ko`    | ✅ Complete    | Community  |
+| Russian             | `ru`    | ✅ Complete    | Community  |
+| Your Language       | `??`    | 🚧 In Progress | You?       |
 
 ---
 
-**Last Updated**: December 2025
+**Last Updated**: January 2026

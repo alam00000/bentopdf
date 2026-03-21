@@ -1,0 +1,365 @@
+{
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "contact": "문의",
+    "licensing": "라이선스",
+    "allTools": "모든 도구",
+    "openMainMenu": "메인 메뉴 열기",
+    "language": "언어"
+  },
+  "donation": {
+    "message": "BentoPDF가 마음에 드셨나요? 무료 오픈소스로 유지될 수 있도록 도와주세요!",
+    "button": "후원하기"
+  },
+  "hero": {
+    "title": "개인정보 보호를 위해 만든",
+    "pdfToolkit": "PDF 도구 모음",
+    "builtForPrivacy": " ",
+    "noSignups": "회원가입 불필요",
+    "unlimitedUse": "무제한 사용",
+    "worksOffline": "오프라인 지원",
+    "startUsing": "지금 시작하기"
+  },
+  "usedBy": {
+    "title": "다양한 기업과 사용자들이 함께하고 있습니다"
+  },
+  "features": {
+    "title": "왜",
+    "bentoPdf": "BentoPDF일까요?",
+    "noSignup": {
+      "title": "회원가입 불필요",
+      "description": "계정이나 이메일 없이 바로 시작하세요."
+    },
+    "noUploads": {
+      "title": "파일 업로드 없음",
+      "description": "100% 브라우저에서 처리되어 파일이 기기 밖으로 나가지 않습니다."
+    },
+    "foreverFree": {
+      "title": "영원히 무료",
+      "description": "모든 도구를 무료로, 체험판도 유료 기능도 없습니다."
+    },
+    "noLimits": {
+      "title": "사용 제한 없음",
+      "description": "원하는 만큼 자유롭게 사용하세요."
+    },
+    "batchProcessing": {
+      "title": "일괄 처리",
+      "description": "여러 PDF를 한 번에 처리할 수 있습니다."
+    },
+    "lightningFast": {
+      "title": "빠른 처리 속도",
+      "description": "기다릴 필요 없이 PDF를 즉시 처리합니다."
+    }
+  },
+  "tools": {
+    "title": "시작하기",
+    "toolsLabel": "도구",
+    "subtitle": "도구를 클릭하면 파일 업로더가 열립니다",
+    "searchPlaceholder": "도구 검색 (예: '분할', '병합'...)",
+    "backToTools": "도구 목록으로 돌아가기",
+    "firstLoadNotice": "처음에는 변환 엔진을 다운로드하느라 시간이 조금 걸릴 수 있습니다. 이후에는 바로 실행됩니다."
+  },
+  "upload": {
+    "clickToSelect": "클릭하여 파일 선택",
+    "orDragAndDrop": "또는 파일을 끌어다 놓으세요",
+    "pdfOrImages": "PDF 또는 이미지",
+    "filesNeverLeave": "파일이 기기 밖으로 나가지 않습니다.",
+    "addMore": "파일 추가",
+    "clearAll": "모두 지우기",
+    "clearFiles": "파일 지우기",
+    "hints": {
+      "singlePdf": "PDF 파일 1개",
+      "pdfFile": "PDF 파일",
+      "multiplePdfs2": "PDF 파일 2개 이상",
+      "bmpImages": "BMP 이미지",
+      "oneOrMorePdfs": "PDF 파일 1개 이상",
+      "pdfDocuments": "PDF 문서",
+      "oneOrMoreCsv": "CSV 파일 1개 이상",
+      "multiplePdfsSupported": "여러 PDF 파일 지원",
+      "singleOrMultiplePdfs": "PDF 파일 1개 또는 여러 개",
+      "singlePdfFile": "PDF 파일 1개",
+      "pdfWithForms": "양식이 포함된 PDF 파일",
+      "heicImages": "HEIC/HEIF 이미지",
+      "jpgImages": "JPG, JPEG, JP2, JPX 이미지",
+      "pdfsOrImages": "PDF 또는 이미지",
+      "oneOrMoreOdt": "ODT 파일 1개 이상",
+      "singlePdfOnly": "PDF 파일 1개만",
+      "pdfFiles": "PDF 파일",
+      "multiplePdfs": "여러 PDF 파일",
+      "pngImages": "PNG 이미지",
+      "pdfFilesOneOrMore": "PDF 파일 (1개 이상)",
+      "oneOrMoreRtf": "RTF 파일 1개 이상",
+      "svgGraphics": "SVG 그래픽",
+      "tiffImages": "TIFF 이미지",
+      "webpImages": "WebP 이미지"
+    }
+  },
+  "howItWorks": {
+    "title": "이용 방법",
+    "step1": "파일을 클릭하거나 끌어다 놓아 시작하세요",
+    "step2": "처리 버튼을 눌러 변환을 시작하세요",
+    "step3": "완성된 파일을 바로 저장하세요"
+  },
+  "relatedTools": {
+    "title": "관련 PDF 도구"
+  },
+  "loader": {
+    "processing": "처리 중..."
+  },
+  "alert": {
+    "title": "알림",
+    "ok": "확인"
+  },
+  "preview": {
+    "title": "문서 미리보기",
+    "downloadAsPdf": "PDF로 다운로드",
+    "close": "닫기"
+  },
+  "settings": {
+    "title": "설정",
+    "shortcuts": "단축키",
+    "preferences": "환경설정",
+    "displayPreferences": "화면 설정",
+    "searchShortcuts": "단축키 검색...",
+    "shortcutsInfo": "키를 길게 눌러 단축키를 설정할 수 있습니다. 변경 사항은 자동 저장됩니다.",
+    "shortcutsWarning": "⚠️ 브라우저 기본 단축키(Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N 등)는 제대로 작동하지 않을 수 있으니 피해 주세요.",
+    "import": "가져오기",
+    "export": "내보내기",
+    "resetToDefaults": "기본값으로 초기화",
+    "fullWidthMode": "전체 너비 모드",
+    "fullWidthDescription": "가운데 정렬 대신 화면 전체 너비를 사용합니다",
+    "settingsAutoSaved": "설정은 자동으로 저장됩니다",
+    "clickToSet": "클릭하여 설정",
+    "pressKeys": "키를 누르세요...",
+    "warnings": {
+      "alreadyInUse": "이미 사용 중인 단축키",
+      "assignedTo": "다음 항목에 이미 지정되어 있습니다:",
+      "chooseDifferent": "다른 단축키를 선택해 주세요.",
+      "reserved": "예약된 단축키 경고",
+      "commonlyUsed": "일반적으로 다음 용도로 사용됩니다:",
+      "unreliable": "이 단축키는 브라우저나 시스템 동작과 충돌할 수 있습니다.",
+      "useAnyway": "그래도 사용하시겠습니까?",
+      "resetTitle": "단축키 초기화",
+      "resetMessage": "모든 단축키를 기본값으로 초기화할까요?<br><br>이 작업은 되돌릴 수 없습니다.",
+      "importSuccessTitle": "가져오기 완료",
+      "importSuccessMessage": "단축키를 가져왔습니다!",
+      "importFailTitle": "가져오기 실패",
+      "importFailMessage": "단축키를 가져올 수 없습니다. 파일 형식이 올바르지 않습니다."
+    }
+  },
+  "warning": {
+    "title": "경고",
+    "cancel": "취소",
+    "proceed": "계속"
+  },
+  "compliance": {
+    "title": "데이터가 기기 밖으로 나가지 않습니다",
+    "weKeep": "글로벌 보안 표준을 준수하여",
+    "yourInfoSafe": "여러분의 정보를",
+    "byFollowingStandards": "안전하게 보호합니다.",
+    "processingLocal": "모든 처리는 사용자의 기기에서 직접 이루어집니다.",
+    "gdpr": {
+      "title": "GDPR 준수",
+      "description": "유럽연합 내 개인정보 및 프라이버시를 보호합니다."
+    },
+    "ccpa": {
+      "title": "CCPA 준수",
+      "description": "캘리포니아 주민의 개인정보 수집, 사용, 공유에 대한 권리를 보장합니다."
+    },
+    "hipaa": {
+      "title": "HIPAA 준수",
+      "description": "미국 의료 시스템에서 민감한 건강 정보를 안전하게 보호합니다."
+    }
+  },
+  "faq": {
+    "title": "자주 묻는",
+    "questions": "질문",
+    "sectionTitle": "자주 묻는 질문",
+    "isFree": {
+      "question": "BentoPDF는 정말 무료인가요?",
+      "answer": "네, 완전히 무료입니다. BentoPDF의 모든 도구는 파일 수 제한, 회원가입, 워터마크 없이 자유롭게 사용할 수 있습니다. 누구나 비용 걱정 없이 편리한 PDF 도구를 쓸 수 있어야 한다고 생각합니다."
+    },
+    "areFilesSecure": {
+      "question": "파일이 안전한가요? 어디에서 처리되나요?",
+      "answer": "파일은 여러분의 컴퓨터를 절대 떠나지 않기 때문에 최대한 안전합니다. 모든 작업은 웹 브라우저 안에서 직접 처리되며, 서버에 파일을 업로드하지 않으므로 문서의 프라이버시를 완벽하게 지킬 수 있습니다."
+    },
+    "platforms": {
+      "question": "Mac, Windows, 모바일에서도 되나요?",
+      "answer": "네! BentoPDF는 브라우저에서 실행되므로 Windows, macOS, Linux, iOS, Android 등 최신 웹 브라우저가 있는 어떤 기기에서든 사용할 수 있습니다."
+    },
+    "gdprCompliant": {
+      "question": "BentoPDF는 GDPR을 준수하나요?",
+      "answer": "네, 완전히 준수합니다. 모든 파일 처리가 브라우저에서 이루어지고 서버로 파일을 전송하지 않기 때문에, 저희는 여러분의 데이터에 접근할 수 없습니다. 문서에 대한 통제권은 항상 여러분에게 있습니다."
+    },
+    "dataStorage": {
+      "question": "파일을 저장하거나 추적하나요?",
+      "answer": "아니요. 파일을 저장하거나 추적하거나 기록하지 않습니다. BentoPDF에서 하는 모든 작업은 브라우저 메모리에서 처리되며, 페이지를 닫으면 모두 사라집니다. 업로드도, 이용 기록도, 서버도 관여하지 않습니다."
+    },
+    "different": {
+      "question": "BentoPDF가 다른 PDF 도구와 다른 점은 뭔가요?",
+      "answer": "대부분의 PDF 도구는 파일을 서버에 업로드해서 처리합니다. BentoPDF는 그렇게 하지 않습니다. 최신 웹 기술을 활용해 브라우저에서 바로 처리하기 때문에 더 빠르고, 더 안전하며, 걱정 없이 사용할 수 있습니다."
+    },
+    "browserBased": {
+      "question": "브라우저 기반 처리가 왜 안전한가요?",
+      "answer": "BentoPDF는 브라우저 안에서만 실행되기 때문에 파일이 기기 밖으로 나가지 않습니다. 서버 해킹, 데이터 유출, 무단 접근 같은 위험이 원천적으로 차단됩니다. 파일은 언제나 여러분만의 것입니다."
+    },
+    "analytics": {
+      "question": "쿠키나 분석 도구로 사용자를 추적하나요?",
+      "answer": "여러분의 프라이버시를 소중히 여깁니다. BentoPDF는 개인정보를 추적하지 않으며, 익명 방문 수 확인만을 위해 Simple Analytics를 사용합니다. 방문자 수는 알 수 있지만 누가 방문했는지는 절대 알 수 없습니다. Simple Analytics는 GDPR을 완전히 준수합니다."
+    }
+  },
+  "testimonials": {
+    "title": "사용자",
+    "users": "후기",
+    "say": ""
+  },
+  "support": {
+    "title": "도움이 되셨나요?",
+    "description": "BentoPDF는 누구나 무료로, 안전하게, 강력한 PDF 도구를 사용할 수 있도록 만든 프로젝트입니다. 유용하게 쓰고 계시다면 개발을 응원해 주세요. 작은 후원이 큰 힘이 됩니다!",
+    "buyMeCoffee": "커피 한 잔 사주기"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. All rights reserved.",
+    "version": "버전",
+    "company": "회사",
+    "aboutUs": "소개",
+    "faqLink": "FAQ",
+    "contactUs": "문의하기",
+    "legal": "법적 고지",
+    "termsAndConditions": "이용약관",
+    "privacyPolicy": "개인정보처리방침",
+    "followUs": "팔로우"
+  },
+  "merge": {
+    "title": "PDF 병합",
+    "description": "여러 파일을 합치거나, 원하는 페이지만 골라 새 문서로 만들 수 있습니다.",
+    "fileMode": "파일 모드",
+    "pageMode": "페이지 모드",
+    "howItWorks": "이용 방법:",
+    "fileModeInstructions": [
+      "아이콘을 드래그하여 파일 순서를 변경할 수 있습니다.",
+      "각 파일의 \"페이지\" 란에 원하는 범위를 입력하세요 (예: \"1-3, 5\").",
+      "\"페이지\" 란을 비워두면 해당 파일의 전체 페이지가 포함됩니다."
+    ],
+    "pageModeInstructions": [
+      "업로드한 PDF의 모든 페이지가 아래에 나타납니다.",
+      "페이지 미리보기를 드래그하여 원하는 순서로 배치하세요."
+    ],
+    "mergePdfs": "PDF 병합하기"
+  },
+  "common": {
+    "page": "페이지",
+    "pages": "페이지",
+    "of": "/",
+    "download": "다운로드",
+    "cancel": "취소",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "add": "추가",
+    "remove": "제거",
+    "loading": "불러오는 중...",
+    "error": "오류",
+    "success": "완료",
+    "file": "파일",
+    "files": "파일",
+    "close": "닫기"
+  },
+  "about": {
+    "hero": {
+      "title": "PDF 도구는 마땅히",
+      "subtitle": "빠르고, 안전하고, 무료여야 합니다.",
+      "noCompromises": "타협 없이."
+    },
+    "mission": {
+      "title": "우리의 목표",
+      "description": "프라이버시를 지키면서도 비용 부담 없는, 가장 완벽한 PDF 도구를 만드는 것입니다. 꼭 필요한 문서 도구는 누구나, 어디서든 자유롭게 쓸 수 있어야 합니다."
+    },
+    "philosophy": {
+      "label": "핵심 철학",
+      "title": "개인정보 보호가 최우선. 언제나.",
+      "description": "데이터가 곧 상품인 시대에, 우리는 다른 길을 걷습니다. BentoPDF의 모든 처리는 브라우저에서 직접 이루어집니다. 파일이 서버로 전송되지 않고, 문서를 들여다보지 않으며, 사용 내역을 추적하지 않습니다. 여러분의 문서는 철저하게 비공개로 유지됩니다. 이것은 하나의 기능이 아니라 우리의 근본입니다."
+    },
+    "whyBentopdf": {
+      "title": "왜",
+      "speed": {
+        "title": "속도에 최적화",
+        "description": "서버로 파일을 올리고 내려받을 필요가 없습니다. WebAssembly 등 최신 웹 기술로 브라우저에서 바로 처리하여 압도적인 속도를 제공합니다."
+      },
+      "free": {
+        "title": "완전 무료",
+        "description": "체험판, 구독, 숨겨진 요금, 잠긴 \"프리미엄\" 기능이 없습니다. 강력한 PDF 도구는 돈을 내야 쓸 수 있는 것이 아니라 누구에게나 열려 있어야 합니다."
+      },
+      "noAccount": {
+        "title": "계정 없이 바로 사용",
+        "description": "이메일도, 비밀번호도, 개인정보도 필요 없습니다. 원하는 도구를 바로 사용하세요."
+      },
+      "openSource": {
+        "title": "오픈소스 정신",
+        "description": "투명성을 바탕으로 만들어졌습니다. PDF-lib, PDF.js 등 뛰어난 오픈소스 라이브러리를 활용하며, 좋은 도구를 누구나 쓸 수 있게 만드는 커뮤니티의 힘을 믿습니다."
+      }
+    },
+    "cta": {
+      "title": "시작할 준비가 되셨나요?",
+      "description": "수많은 사용자가 일상적인 문서 작업에 BentoPDF를 활용하고 있습니다. 프라이버시와 빠른 성능이 가져다주는 차이를 직접 느껴보세요.",
+      "button": "모든 도구 둘러보기"
+    }
+  },
+  "contact": {
+    "title": "문의하기",
+    "subtitle": "질문, 피드백, 기능 요청 등 무엇이든 편하게 연락해 주세요.",
+    "email": "아래 이메일로 직접 연락하실 수 있습니다:"
+  },
+  "licensing": {
+    "title": "라이선스",
+    "subtitle": "필요에 맞는 라이선스를 선택하세요."
+  },
+  "multiTool": {
+    "uploadPdfs": "PDF 업로드",
+    "upload": "업로드",
+    "addBlankPage": "빈 페이지 추가",
+    "edit": "편집:",
+    "undo": "실행 취소",
+    "redo": "다시 실행",
+    "reset": "초기화",
+    "selection": "선택:",
+    "selectAll": "모두 선택",
+    "deselectAll": "선택 해제",
+    "rotate": "회전:",
+    "rotateLeft": "왼쪽",
+    "rotateRight": "오른쪽",
+    "transform": "변환:",
+    "duplicate": "복제",
+    "split": "분할",
+    "clear": "지우기:",
+    "delete": "삭제",
+    "download": "다운로드:",
+    "downloadSelected": "선택 항목 다운로드",
+    "exportPdf": "PDF 내보내기",
+    "uploadPdfFiles": "PDF 파일 선택",
+    "dragAndDrop": "PDF 파일을 여기에 끌어다 놓거나 클릭하여 선택하세요",
+    "selectFiles": "파일 선택",
+    "renderingPages": "페이지 렌더링 중...",
+    "actions": {
+      "duplicatePage": "이 페이지 복제",
+      "deletePage": "이 페이지 삭제",
+      "insertPdf": "이 페이지 뒤에 PDF 삽입",
+      "toggleSplit": "이 페이지 뒤에서 분할"
+    },
+    "pleaseWait": "잠시만요",
+    "pagesRendering": "페이지를 렌더링하는 중입니다. 잠시만 기다려 주세요...",
+    "noPagesSelected": "선택된 페이지 없음",
+    "selectOnePage": "다운로드할 페이지를 하나 이상 선택해 주세요.",
+    "noPages": "페이지 없음",
+    "noPagesToExport": "내보낼 페이지가 없습니다.",
+    "renderingTitle": "페이지 미리보기 생성 중",
+    "errorRendering": "페이지 미리보기를 만들지 못했습니다",
+    "error": "오류",
+    "failedToLoad": "불러오기 실패"
+  },
+  "simpleMode": {
+    "title": "PDF 도구",
+    "subtitle": "사용할 도구를 선택하세요"
+  }
+}

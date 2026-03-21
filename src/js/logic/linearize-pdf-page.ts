@@ -2,12 +2,9 @@ import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes, initializeQpdf, readFileAsArrayBuffer } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
+import { LinearizePdfState } from '@/types';
 
-interface PageState {
-    files: File[];
-}
-
-const pageState: PageState = {
+const pageState: LinearizePdfState = {
     files: [],
 };
 

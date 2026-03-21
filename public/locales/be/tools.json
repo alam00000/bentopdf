@@ -1,0 +1,730 @@
+{
+  "categories": {
+    "popularTools": "Папулярныя інструменты",
+    "editAnnotate": "Рэдагаванне і анатацыі",
+    "convertToPdf": "Канвертацыя ў PDF",
+    "convertFromPdf": "Канвертацыя з PDF",
+    "organizeManage": "Арганізацыя і кіраванне",
+    "optimizeRepair": "Аптымізацыя і аднаўленне",
+    "securePdf": "Бяспека PDF"
+  },
+  "pdfMultiTool": {
+    "name": "Мультыінструмент PDF",
+    "subtitle": "Аб'яднаць, Падзяліць, Арганізаваць, Выдаліць, Павярнуць, Дадаць пустыя старонкі, Выняць і Дубляваць у адзіным інтэрфейсе."
+  },
+  "mergePdf": {
+    "name": "Аб'яднаць PDF",
+    "subtitle": "Аб'яднаць некалькі PDF у адзін файл. Закладкі захоўваюцца."
+  },
+  "splitPdf": {
+    "name": "Падзяліць PDF",
+    "subtitle": "Выняць дыяпазон старонак у новы PDF."
+  },
+  "compressPdf": {
+    "name": "Сціснуць PDF",
+    "subtitle": "Зменшыць памер файла PDF.",
+    "algorithmLabel": "Алгарытм сціскання",
+    "condense": "Condense (Рэкамендуецца)",
+    "photon": "Photon (Для PDF з вялікай колькасцю фота)",
+    "condenseInfo": "Condense выкарыстоўвае прасунутае сцісканне: выдаляе лішняе, аптымізуе відарысы, паднаборы шрыфтоў. Найлепш пасуе для большасці PDF.",
+    "photonInfo": "Photon ператварае старонкі ў відарысы. Для PDF з вялікай колькасцю фота або сканіраваных PDF.",
+    "photonWarning": "Папярэджанне: стане немагчыма вылучыць тэкст, і перастануць працаваць спасылкі.",
+    "levelLabel": "Узровень сціскання",
+    "light": "Лёгкі (Захаванне якасці)",
+    "balanced": "Збалансаваны (Рэкамендуецца)",
+    "aggressive": "Агрэсіўны (Меншыя файлы)",
+    "extreme": "Экстрэмальны (Максімальнае сцісканне)",
+    "grayscale": "Канвертаваць у градацыі шэрага",
+    "grayscaleHint": "Памяншае памер файла, выдаляючы інфармацыю пра колер",
+    "customSettings": "Карыстальніцкія налады",
+    "customSettingsHint": "Дакладная настройка параметраў сціскання:",
+    "outputQuality": "Якасць вываду",
+    "resizeImagesTo": "Змяніць памер відарысаў да",
+    "onlyProcessAbove": "Апрацоўваць толькі большыя за",
+    "removeMetadata": "Выдаліць метаданыя",
+    "subsetFonts": "Паднабор шрыфтоў (выдаліць сімвалы, якія не выкарыстоўваюцца)",
+    "removeThumbnails": "Выдаліць убудаваныя мініяцюры",
+    "compressButton": "Сціснуць PDF"
+  },
+  "pdfEditor": {
+    "name": "Рэдактар PDF",
+    "subtitle": "Анатаваць, вылучыць, зацямніць, дадаць фігуры/відарысы, каментарыі, пошук і прагляд PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG у PDF",
+    "subtitle": "Стварыць PDF з відарысаў JPG, JPEG і JPEG2000 (JP2/JPX)."
+  },
+  "signPdf": {
+    "name": "Падпісаць PDF",
+    "subtitle": "Нарысаваць, набраць або запампаваць свой подпіс."
+  },
+  "cropPdf": {
+    "name": "Абрэзаць PDF",
+    "subtitle": "Абрэзаць палі кожнай старонкі PDF."
+  },
+  "extractPages": {
+    "name": "Выняць старонкі",
+    "subtitle": "Захаваць выбраныя старонкі ў новым файле."
+  },
+  "duplicateOrganize": {
+    "name": "Дубляваць і арганізаваць",
+    "subtitle": "Дубляваць, змяніць парадак і выдаліць старонкі."
+  },
+  "deletePages": {
+    "name": "Выдаліць старонкі",
+    "subtitle": "Выдаліць з дакумента пэўныя старонкі."
+  },
+  "editBookmarks": {
+    "name": "Рэдагаваць закладкі",
+    "subtitle": "Дадаць, рэдагаваць, імпартаваць, выдаліць і выняць закладкі PDF."
+  },
+  "tableOfContents": {
+    "name": "Змест",
+    "subtitle": "Стварыць з закладак PDF старонку зместу."
+  },
+  "pageNumbers": {
+    "name": "Нумары старонак",
+    "subtitle": "Уставіць у дакумент нумары старонак."
+  },
+  "addPageLabels": {
+    "name": "Дадаць пазнакі старонак",
+    "subtitle": "Ужывайце пазнакі старонак PDF з рымскімі лічбамі, прэфіксамі і карыстальніцкім пачаткам.",
+    "uploadHint": "PDF-файл",
+    "howLabelsWorkTitle": "Як працуюць пазнакі",
+    "howLabelsWorkStep1": "Пакіньце дыяпазон старонак пустым, каб пазначыць усе старонкі.",
+    "howLabelsWorkStep2": "Выкарыстоўвайце стылі, напрыклад рымскія лічбы для ўступных старонак і дзесятковую нумарацыю для асноўнай часткі.",
+    "howLabelsWorkStep3": "Выкарыстоўвайце прэфікс са значэннем пачатку 0, каб стварыць пазнакі накшталт A-0, A-1, A-2.",
+    "howLabelsWorkStep4": "Уключыце працяг нумарацыі, калі адно правіла выкарыстоўвае разарваны дыяпазон, напрыклад 1-9,30-40 або няцотныя старонкі.",
+    "labelRulesTitle": "Правілы пазнак",
+    "addRule": "Дадаць правіла",
+    "removeExistingLabels": "Выдаліць існуючыя пазнакі старонак перад ужываннем гэтых правіл",
+    "cpdfNote": "Гэты інструмент выкарыстоўвае CoherentPDF у вашым браўзеры. Калі CoherentPDF не настроены, вам будзе прапанавана наладзіць яго ў наладах WASM.",
+    "processButton": "Дадаць пазнакі старонак",
+    "howItWorksUploadTitle": "Загрузіць файл",
+    "howItWorksUploadDescription": "Выберыце PDF, які хочаце перапазначыць.",
+    "howItWorksDefineTitle": "Вызначыць правілы",
+    "howItWorksDefineDescription": "Наладзьце адно або некалькі правіл пазнак старонак з дыяпазонамі, стылямі, прэфіксамі і пачатковымі значэннямі.",
+    "howItWorksDownloadTitle": "Спампаваць",
+    "howItWorksDownloadDescription": "Захавайце абноўлены PDF з новымі пазнакамі старонак.",
+    "relatedToolsTitle": "Звязаныя інструменты PDF",
+    "faqWhatIsQuestion": "Што такое пазнака старонкі?",
+    "faqWhatIsAnswer": "Пазнака старонкі - гэта нумарацыя, якую чытачы PDF паказваюць у мініяцюрах, навігацыі па старонках і дыялогах друку. Яна не друкуе новы тэкст на самой старонцы.",
+    "faqMixQuestion": "Ці можна спалучаць рымскія і звычайныя лічбы?",
+    "faqMixAnswer": "Так. Дадайце некалькі правіл, напрыклад 1-4 з LowercaseRoman і 5-20 з DecimalArabic.",
+    "faqPrivacyQuestion": "Ці застаюцца мае файлы прыватнымі?",
+    "faqPrivacyAnswer": "Так. Апрацоўка адбываецца ў вашым браўзеры з дапамогай CoherentPDF WASM. Ваш PDF не пакідае прыладу.",
+    "invalidFileTitle": "Няправільны файл",
+    "invalidFileMessage": "Калі ласка, загрузіце сапраўдны PDF-файл.",
+    "loadingPdf": "Загрузка PDF...",
+    "protectedPdfTitle": "Абаронены PDF",
+    "protectedPdfMessage": "Гэты PDF абаронены паролем. Спачатку выкарыстайце інструмент расшыфроўкі або змены дазволаў.",
+    "loadErrorMessage": "Не ўдалося загрузіць PDF. Файл можа быць няправільным, пашкоджаным або абароненым паролем.",
+    "fileMeta": "{{size}} • {{count}} старонак",
+    "ruleTitle": "Правіла пазнакі {{number}}",
+    "pageRangeLabel": "Дыяпазон старонак",
+    "pageRangePlaceholder": "Усе старонкі, або напр. 1-4, 7, няцотныя",
+    "labelStyleLabel": "Стыль пазнакі",
+    "labelPrefixLabel": "Прэфікс пазнакі",
+    "labelPrefixPlaceholder": "Неабавязковы прэфікс, напр. A-",
+    "startValueLabel": "Пачатковае значэнне",
+    "continueNumbering": "Працягваць нумарацыю праз разарваныя дыяпазоны",
+    "examplesNote": "Прыклады: 1-4 для рымскай нумарацыі ўступных старонак, 15-20 з прэфіксам A- і пачаткам 0, або няцотныя старонкі з уключаным працягам.",
+    "uploadFirstMessage": "Спачатку загрузіце PDF-файл.",
+    "applyingLabels": "Ужыванне пазнак старонак...",
+    "invalidRangeMessage": "Правіла {{number}} мае няправільны дыяпазон старонак: {{range}}",
+    "allPages": "усе старонкі",
+    "emptyOutputMessage": "CoherentPDF стварыў пусты файл.",
+    "successMessage": "Пазнакі старонак паспяхова дададзены!",
+    "processErrorMessage": "Не ўдалося дадаць пазнакі старонак.",
+    "styleOptions": {
+      "DecimalArabic": "Дзесятковыя лічбы",
+      "LowercaseRoman": "Малыя рымскія лічбы",
+      "UppercaseRoman": "Вялікія рымскія лічбы",
+      "LowercaseLetters": "Малыя літары",
+      "UppercaseLetters": "Вялікія літары",
+      "NoLabelPrefixOnly": "Толькі прэфікс без нумара"
+    }
+  },
+  "batesNumbering": {
+    "name": "Нумарацыя Бейтса",
+    "subtitle": "Дадаць паслядоўныя нумары Бейтса да аднаго або некалькіх файлаў PDF."
+  },
+  "addWatermark": {
+    "name": "Дадаць вадзяны знак",
+    "subtitle": "Накласці на старонкі PDF тэкст або відарыс.",
+    "applyToAllPages": "Прымяніць да ўсіх старонак"
+  },
+  "headerFooter": {
+    "name": "Верхні і ніжні калантытул",
+    "subtitle": "Дадаць тэкст уверсе і ўнізе старонак."
+  },
+  "invertColors": {
+    "name": "Інвертаваць колеры",
+    "subtitle": "Стварыць версію PDF у \"цёмнай тэме\"."
+  },
+  "scannerEffect": {
+    "name": "Эфект сканера",
+    "subtitle": "Зрабіць PDF падобным да адсканаванага дакумента.",
+    "scanSettings": "Налады сканіравання",
+    "colorspace": "Каляровая прастора",
+    "gray": "Градацыі шэрага",
+    "border": "Рамка",
+    "rotate": "Паварот",
+    "rotateVariance": "Варыяцыя павароту",
+    "brightness": "Яркасць",
+    "contrast": "Кантраст",
+    "blur": "Размытасць",
+    "noise": "Шум",
+    "yellowish": "Жаўтаватасць",
+    "resolution": "Раздзяляльнасць",
+    "processButton": "Ужыць эфект сканера"
+  },
+  "adjustColors": {
+    "name": "Наладзіць колеры",
+    "subtitle": "Наладзіць яркасць, кантраст, насычанасць і іншае ў PDF.",
+    "colorSettings": "Налады колеру",
+    "brightness": "Яркасць",
+    "contrast": "Кантраст",
+    "saturation": "Насычанасць",
+    "hueShift": "Зрух адцення",
+    "temperature": "Тэмпература",
+    "tint": "Адценне",
+    "gamma": "Гама",
+    "sepia": "Сэпія",
+    "processButton": "Ужыць рэгуліроўкі колеру"
+  },
+  "backgroundColor": {
+    "name": "Колер фону",
+    "subtitle": "Змяніць колер фону PDF."
+  },
+  "changeTextColor": {
+    "name": "Змяніць колер тэксту",
+    "subtitle": "Змяніць колер тэксту ў PDF."
+  },
+  "addStamps": {
+    "name": "Дадаць штампы",
+    "subtitle": "Дадаць у PDF штампы-відарысы праз панэль анатацый.",
+    "usernameLabel": "Імя для штампа",
+    "usernamePlaceholder": "Увядзіце сваё імя (для штампаў)",
+    "usernameHint": "Гэта імя з'явіцца на створаных вамі штампах."
+  },
+  "removeAnnotations": {
+    "name": "Выдаліць анатацыі",
+    "subtitle": "Выдаліць каментарыі, вылучэнні і спасылкі."
+  },
+  "pdfFormFiller": {
+    "name": "Запоўніць форму PDF",
+    "subtitle": "Запоўніць форму непасрэдна ў браўзеры. Таксама падтрымліваюцца формы XFA."
+  },
+  "createPdfForm": {
+    "name": "Стварыць форму PDF",
+    "subtitle": "Стварыць запаўняльныя формы PDF з тэкставымі палямі, якія можна перацягваць."
+  },
+  "removeBlankPages": {
+    "name": "Выдаліць пустыя старонкі",
+    "subtitle": "Аўтаматычна выявіць і выдаліць пустыя старонкі.",
+    "sensitivityHint": "Вышэй = больш строга, толькі цалкам пустыя старонкі. Ніжэй = дапускае старонкі з нейкім змесцівам."
+  },
+  "imageToPdf": {
+    "name": "Відарысы ў PDF",
+    "subtitle": "Канвертаваць JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP у PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG у PDF",
+    "subtitle": "Стварыць PDF з аднаго або некалькіх відарысаў PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP у PDF",
+    "subtitle": "Стварыць PDF з аднаго або некалькіх відарысаў WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG у PDF",
+    "subtitle": "Стварыць PDF з аднаго або некалькіх відарысаў SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP у PDF",
+    "subtitle": "Стварыць PDF з аднаго або некалькіх відарысаў BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC у PDF",
+    "subtitle": "Стварыць PDF з аднаго або некалькіх відарысаў HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF у PDF",
+    "subtitle": "Стварыць PDF з аднаго або некалькіх відарысаў TIFF."
+  },
+  "textToPdf": {
+    "name": "Тэкст у PDF",
+    "subtitle": "Канвертаваць звычайны тэкставы файл у PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON у PDF",
+    "subtitle": "Канвертаваць файлы JSON у фармат PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF у JPG",
+    "subtitle": "Канвертаваць кожную старонку PDF у відарыс JPG."
+  },
+  "pdfToPng": {
+    "name": "PDF у PNG",
+    "subtitle": "Канвертаваць кожную старонку PDF у відарыс PNG."
+  },
+  "pdfToWebp": {
+    "name": "PDF у WebP",
+    "subtitle": "Канвертаваць кожную старонку PDF у відарыс WebP."
+  },
+  "pdfToBmp": {
+    "name": "PDF у BMP",
+    "subtitle": "Канвертаваць кожную старонку PDF у відарыс BMP."
+  },
+  "pdfToTiff": {
+    "name": "PDF у TIFF",
+    "subtitle": "Канвертаваць кожную старонку PDF у відарыс TIFF."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF у градацыі шэрага",
+    "subtitle": "Канвертаваць усе колеры ў чорна-белыя."
+  },
+  "pdfToJson": {
+    "name": "PDF у JSON",
+    "subtitle": "Канвертаваць файлы PDF у фармат JSON."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Дадаць у PDF магчымасці пошуку і капіравання."
+  },
+  "alternateMix": {
+    "name": "Чаргаваць і змяшаць старонкі",
+    "subtitle": "Аб'яднаць PDF, чаргуючы старонкі з асобных PDF. Закладкі захоўваюцца."
+  },
+  "addAttachments": {
+    "name": "Дадаць далучэнні",
+    "subtitle": "Убудаваць адзін або некалькі файлаў у PDF."
+  },
+  "extractAttachments": {
+    "name": "Выняць далучэнні",
+    "subtitle": "Выняць усе ўбудаваныя файлы з PDF як ZIP."
+  },
+  "editAttachments": {
+    "name": "Рэдагаваць далучэнні",
+    "subtitle": "Прагледзець або выдаліць далучэнні ў PDF."
+  },
+  "dividePages": {
+    "name": "Падзяліць старонкі",
+    "subtitle": "Падзяліць старонкі гарызантальна або вертыкальна."
+  },
+  "addBlankPage": {
+    "name": "Дадаць пустую старонку",
+    "subtitle": "Уставіць пустую старонку ў любым месцы PDF."
+  },
+  "reversePages": {
+    "name": "Адваротны парадак старонак",
+    "subtitle": "Змяніць парадак усіх старонак у дакуменце на адваротны."
+  },
+  "rotatePdf": {
+    "name": "Павярнуць PDF",
+    "subtitle": "Павярнуць старонкі на 90 градусаў."
+  },
+  "rotateCustom": {
+    "name": "Павярнуць на зададзены вугал",
+    "subtitle": "Павярнуць старонкі на любы вугал."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "Размясціць некалькі старонак на адным аркушы."
+  },
+  "combineToSinglePage": {
+    "name": "Аб'яднаць у адну старонку",
+    "subtitle": "Сшыць усе старонкі ў адну бесперапынную прагортку."
+  },
+  "viewMetadata": {
+    "name": "Праглядзець метаданыя",
+    "subtitle": "Праглядзець схаваныя ўласцівасці PDF."
+  },
+  "editMetadata": {
+    "name": "Рэдагаваць метаданыя",
+    "subtitle": "Змяніць аўтара, назву і іншыя ўласцівасці."
+  },
+  "pdfsToZip": {
+    "name": "PDF у ZIP",
+    "subtitle": "Запакаваць некалькі файлаў PDF у ZIP-архіў."
+  },
+  "comparePdfs": {
+    "name": "Параўнаць PDF",
+    "subtitle": "Параўнаць два PDF побач.",
+    "firstPdf": "Першы PDF",
+    "secondPdf": "Другі PDF",
+    "clickOrDrop": "Націсніце або перацягніце",
+    "page": "Старонка",
+    "overlay": "Накладанне",
+    "sideBySide": "Побач",
+    "flicker": "Мігценне",
+    "syncScroll": "Сінхранізаваць пракрутку",
+    "export": "Экспарт",
+    "exportAsPdf": "Экспартаваць як PDF",
+    "splitView": "Падзелены выгляд",
+    "alternating": "Чаргаванне",
+    "leftDocument": "Левы дакумент",
+    "rightDocument": "Правы дакумент",
+    "original": "Арыгінал",
+    "modified": "Зменены",
+    "searchChanges": "Шукаць змены...",
+    "deleted": "Выдалена",
+    "added": "Дададзена",
+    "prevPage": "Папярэдняя старонка",
+    "nextPage": "Наступная старонка",
+    "prevChange": "Папярэдняя змена",
+    "nextChange": "Наступная змена",
+    "uploadTwoPdfs": "Загрузіце два PDF, каб убачыць адрозненні.",
+    "noDifferences": "На гэтай старонцы адрозненняў не выяўлена.",
+    "noMatchingChanges": "Няма змен, што адпавядаюць бягучаму фільтру.",
+    "pageNotExist": "Старонка {{page}} не існуе ў гэтым PDF.",
+    "noPairedPage": "Для гэтага боку няма спаранай старонкі.",
+    "buildingModel": "Стварэнне мадэлі супастаўлення старонак...",
+    "indexingPdf": "Індэксацыя PDF {{num}}, старонка {{page}} з {{total}}...",
+    "loadingComparison": "Загрузка параўнання {{current}} з {{total}}...",
+    "runningOcr": "Запуск OCR на старонцы {{page}}...",
+    "preparingExport": "Падрыхтоўка экспарту PDF...",
+    "renderingPage": "Адмалёўка старонкі {{current}} з {{total}}...",
+    "exportError": "Памылка экспарту",
+    "exportFailed": "Не ўдалося экспартаваць PDF параўнання.",
+    "loadingFile": "Загрузка {{name}}...",
+    "invalidFile": "Няправільны файл",
+    "invalidFileMsg": "Калі ласка, абярыце сапраўдны PDF-файл.",
+    "loadError": "Не ўдалося загрузіць PDF. Магчыма, ён пашкоджаны або абаронены паролем."
+  },
+  "posterizePdf": {
+    "name": "Пераўтварыць у постэр",
+    "subtitle": "Разбіць вялікую старонку на некалькі меншых."
+  },
+  "fixPageSize": {
+    "name": "Уніфікаваць памер старонак",
+    "subtitle": "Уніфікаваць памер усіх старонак."
+  },
+  "linearizePdf": {
+    "name": "Зрабіць лінейны PDF",
+    "subtitle": "Аптымізаваць PDF для хуткага прагляду ў інтэрнэце."
+  },
+  "pageDimensions": {
+    "name": "Памеры старонкі",
+    "subtitle": "Аналізаваць памер старонкі, арыентацыю і адзінкі."
+  },
+  "removeRestrictions": {
+    "name": "Выдаліць абмежаванні",
+    "subtitle": "Выдаліць ахову паролем і абмежаванні бяспекі, звязаныя з лічбавымі подпісамі PDF."
+  },
+  "repairPdf": {
+    "name": "Аднавіць PDF",
+    "subtitle": "Аднавіць даныя з пашкоджаных файлаў PDF."
+  },
+  "encryptPdf": {
+    "name": "Зашыфраваць PDF",
+    "subtitle": "Заблакіраваць PDF, дадаўшы пароль."
+  },
+  "sanitizePdf": {
+    "name": "Ачысціць PDF",
+    "subtitle": "Выдаліць метаданыя, анатацыі, скрыпты і іншае."
+  },
+  "decryptPdf": {
+    "name": "Расшыфраваць PDF",
+    "subtitle": "Разблакіраваць PDF, выдаліўшы пароль."
+  },
+  "flattenPdf": {
+    "name": "Звесці PDF",
+    "subtitle": "Зрабіць палі формы і анатацыі толькі для чытання."
+  },
+  "removeMetadata": {
+    "name": "Выдаліць метаданыя",
+    "subtitle": "Выдаліць схаваныя даныя з PDF."
+  },
+  "changePermissions": {
+    "name": "Змяніць дазволы",
+    "subtitle": "Задаць або змяніць правы карыстальнікаў для PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT у PDF",
+    "subtitle": "Канвертаваць файлы OpenDocument Text у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы ODT",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV у PDF",
+    "subtitle": "Канвертаваць табліцы CSV у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы CSV",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF у PDF",
+    "subtitle": "Канвертаваць дакументы Rich Text Format у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы RTF",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "wordToPdf": {
+    "name": "Word у PDF",
+    "subtitle": "Канвертаваць дакументы Word (DOCX, DOC, ODT, RTF) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы DOCX, DOC, ODT, RTF",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel у PDF",
+    "subtitle": "Канвертаваць табліцы Excel (XLSX, XLS, ODS, CSV) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы XLSX, XLS, ODS, CSV",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint у PDF",
+    "subtitle": "Канвертаваць прэзентацыі PowerPoint (PPTX, PPT, ODP) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы PPTX, PPT, ODP",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown у PDF",
+    "subtitle": "Напісаць або ўставіць Markdown і экспартаваць яго ў прыгожа аформлены PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Папярэдні прагляд",
+    "btnUpload": "Запампаваць",
+    "btnSyncScroll": "Сінхранізацыя пракруткі",
+    "btnSettings": "Налады",
+    "btnExportPdf": "Экспартаваць PDF",
+    "settingsTitle": "Налады Markdown",
+    "settingsPreset": "Набор налад",
+    "presetDefault": "Прадвызначаны (як GFM)",
+    "presetCommonmark": "CommonMark (строгі)",
+    "presetZero": "Мінімальны (без функцый)",
+    "settingsOptions": "Параметры Markdown",
+    "optAllowHtml": "Дазволіць HTML-тэгі",
+    "optBreaks": "Пераўтвараць пераносы радкоў у <br>",
+    "optLinkify": "Аўтаматычна пераўтвараць URL-адрасы ў спасылкі",
+    "optTypographer": "Тыпограф (разумныя двукоссі і інш.)"
+  },
+  "pdfBooklet": {
+    "name": "Буклет PDF",
+    "subtitle": "Змяніць парадак старонак для друку двухбаковага буклета. Складзіце і счапіце аркушы, каб атрымаўся буклет.",
+    "howItWorks": "Як гэта працуе:",
+    "step1": "Запампуйце файл PDF.",
+    "step2": "Парадак старонак будзе зменены для буклета.",
+    "step3": "Надрукуйце з двух бакоў, перавярніце па кароткім краі, складзіце і сшыйце.",
+    "paperSize": "Памер паперы",
+    "orientation": "Арыентацыя",
+    "portrait": "Кніжная",
+    "landscape": "Альбомная",
+    "pagesPerSheet": "Старонак на аркуш",
+    "createBooklet": "Стварыць буклет",
+    "processing": "Апрацоўка...",
+    "pageCount": "Колькасць старонак будзе дапоўнена да кратнай 4 пры неабходнасці."
+  },
+  "xpsToPdf": {
+    "name": "XPS у PDF",
+    "subtitle": "Канвертаваць дакументы XPS/OXPS у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы XPS, OXPS",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI у PDF",
+    "subtitle": "Канвертаваць электронныя кнігі MOBI у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы MOBI",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB у PDF",
+    "subtitle": "Канвертаваць электронныя кнігі EPUB у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы EPUB",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 у PDF",
+    "subtitle": "Канвертаваць электронныя кнігі FictionBook (FB2) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы FB2",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ у PDF",
+    "subtitle": "Канвертаваць архівы коміксаў (CBZ/CBR) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы CBZ, CBR",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD у PDF",
+    "subtitle": "Канвертаваць дакументы WordPerfect (WPD) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы WPD",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS у PDF",
+    "subtitle": "Канвертаваць дакументы WPS Office у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы WPS",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML у PDF",
+    "subtitle": "Канвертаваць дакументы XML у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы XML",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages у PDF",
+    "subtitle": "Канвертаваць дакументы Apple Pages у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы Pages",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG у PDF",
+    "subtitle": "Канвертаваць файлы OpenDocument Graphics (ODG) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы ODG",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS у PDF",
+    "subtitle": "Канвертаваць файлы OpenDocument Spreadsheet (ODS) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы ODS",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP у PDF",
+    "subtitle": "Канвертаваць файлы OpenDocument Presentation (ODP) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы ODP",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB у PDF",
+    "subtitle": "Канвертаваць файлы Microsoft Publisher (PUB) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы PUB",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD у PDF",
+    "subtitle": "Канвертаваць файлы Microsoft Visio (VSD, VSDX) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы VSD, VSDX",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD у PDF",
+    "subtitle": "Канвертаваць файлы Adobe Photoshop (PSD) у PDF. Падтрымлівае некалькі файлаў.",
+    "acceptedFormats": "файлы PSD",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF у SVG",
+    "subtitle": "Канвертаваць кожную старонку PDF у маштабаваную вектарную графіку (SVG) для ідэальнай якасці на любым памеры."
+  },
+  "extractTables": {
+    "name": "Выняць табліцы з PDF",
+    "subtitle": "Выняць табліцы з PDF і экспартаваць у CSV, JSON або Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF у CSV",
+    "subtitle": "Выняць табліцы з PDF і канвертаваць у CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF у Excel",
+    "subtitle": "Выняць табліцы з PDF і канвертаваць у Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF у тэкст",
+    "subtitle": "Выняць тэкст з файлаў PDF і захаваць як тэкставы файл (.txt). Падтрымлівае некалькі файлаў.",
+    "note": "Гэты інструмент працуе ТОЛЬКІ з PDF, створанымі лічбавым спосабам. Для сканіраваных дакументаў або PDF на аснове відарысаў выкарыстоўвайце інструмент OCR PDF.",
+    "convertButton": "Выняць тэкст"
+  },
+  "digitalSignPdf": {
+    "name": "Лічбавы подпіс PDF",
+    "pageTitle": "Лічбавы подпіс PDF - Дадаць крыптаграфічны подпіс | BentoPDF",
+    "subtitle": "Дадаць крыптаграфічны лічбавы подпіс да PDF з выкарыстаннем сертыфікатаў X.509. Падтрымлівае фарматы PKCS#12 (.pfx, .p12) і PEM. Ваш прыватны ключ ніколі не пакідае ваш браўзер.",
+    "certificateSection": "Сертыфікат",
+    "uploadCert": "Запампаваць сертыфікат (.pfx, .p12)",
+    "certPassword": "Пароль сертыфіката",
+    "certPasswordPlaceholder": "Увядзіце пароль сертыфіката",
+    "certInfo": "Інфармацыя пра сертыфікат",
+    "certSubject": "Суб'ект",
+    "certIssuer": "Выдавец",
+    "certValidity": "Дзейсны",
+    "signatureDetails": "Дэталі подпісу (неабавязкова)",
+    "reason": "Прычына",
+    "reasonPlaceholder": "напрыклад, я ўхваляю гэты дакумент",
+    "location": "Месцазнаходжанне",
+    "locationPlaceholder": "напрыклад, Мінск, Беларусь",
+    "contactInfo": "Кантактная інфармацыя",
+    "contactPlaceholder": "напрыклад, email@example.com",
+    "applySignature": "Ужыць лічбавы подпіс",
+    "successMessage": "PDF паспяхова падпісаны! Подпіс можна праверыць у любым PDF-чытальніку."
+  },
+  "validateSignaturePdf": {
+    "name": "Праверыць подпіс PDF",
+    "pageTitle": "Праверыць подпіс PDF - Верыфікацыя лічбавых подпісаў | BentoPDF",
+    "subtitle": "Праверыць лічбавыя подпісы ў PDF. Праверыць сапраўднасць сертыфіката, паглядзець дэталі падпісанта і пацвердзіць надзейнасць дакумента. Уся апрацоўка адбываецца ў вашым браўзеры."
+  },
+  "emailToPdf": {
+    "name": "Email у PDF",
+    "subtitle": "Канвертаваць файлы email (EML, MSG) у PDF. Падтрымлівае экспарты Outlook і стандартныя email-фарматы.",
+    "acceptedFormats": "файлы EML, MSG",
+    "convertButton": "Канвертаваць у PDF"
+  },
+  "fontToOutline": {
+    "name": "Шрыфт у контуры",
+    "subtitle": "Ператварыць усе шрыфты ў вектарныя контуры для стабільнага адлюстравання на ўсіх прыладах."
+  },
+  "deskewPdf": {
+    "name": "Выпрастаць PDF",
+    "subtitle": "Аўтаматычна выраўняць нахіленыя адсканіраваныя старонкі з дапамогай OpenCV."
+  },
+  "pdfToWord": {
+    "name": "PDF у Word",
+    "subtitle": "Канвертаваць файлы PDF у дакументы Word, якія можна рэдагаваць."
+  },
+  "extractImages": {
+    "name": "Выняць відарысы",
+    "subtitle": "Выняць усе ўбудаваныя відарысы з файлаў PDF."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF у Markdown",
+    "subtitle": "Канвертаваць тэкст і табліцы PDF у фармат Markdown."
+  },
+  "preparePdfForAi": {
+    "name": "Падрыхтаваць PDF для ШI",
+    "subtitle": "Выняць змесціва PDF як JSON LlamaIndex для канвеераў RAG/LLM."
+  },
+  "pdfOcg": {
+    "name": "PDF OCG",
+    "subtitle": "Праглядзець, пераключыць, дадаць і выдаліць слаі OCG у PDF."
+  },
+  "pdfToPdfa": {
+    "name": "PDF у PDF/A",
+    "subtitle": "Канвертаваць PDF у PDF/A для доўгатэрміновага архівавання."
+  },
+  "rasterizePdf": {
+    "name": "Растарызаваць PDF",
+    "subtitle": "Канвертаваць PDF у PDF на аснове відарысаў. Звесці слаі і выдаліць тэкст, які можна вылучыць."
+  },
+  "pdfWorkflow": {
+    "name": "Канструктар рабочага працэсу PDF",
+    "subtitle": "Стварыць уласныя канвееры апрацоўкі PDF з дапамогай візуальнага рэдактара.",
+    "nodes": "Вузлы",
+    "searchNodes": "Пошук вузлоў...",
+    "run": "Запусціць",
+    "clear": "Ачысціць",
+    "save": "Захаваць",
+    "load": "Загрузіць",
+    "export": "Экспартаваць",
+    "import": "Імпартаваць",
+    "ready": "Гатова",
+    "settings": "Налады",
+    "processing": "Апрацоўка...",
+    "saveTemplate": "Захаваць шаблон",
+    "templateName": "Назва шаблону",
+    "templatePlaceholder": "напрыклад, Праца з накладнымі",
+    "cancel": "Скасаваць",
+    "loadTemplate": "Загрузіць шаблон",
+    "noTemplates": "Пакуль няма захаваных шаблонаў.",
+    "ok": "OK",
+    "workflowCompleted": "Рабочы працэс завершаны",
+    "errorDuringExecution": "Памылка падчас выканання",
+    "addNodeError": "Дадайце хаця б адзін вузел для запуску рабочага працэсу.",
+    "needInputOutput": "Для працы рабочага працэсу патрэбен хаця б адзін вузел уводу і адзін вузел вываду.",
+    "enterName": "Увядзіце назву.",
+    "templateExists": "Шаблон з такой назвай ужо існуе.",
+    "templateSaved": "Шаблон \"{{name}}\" захаваны.",
+    "templateLoaded": "Шаблон \"{{name}}\" загружаны.",
+    "failedLoadTemplate": "Не ўдалося загрузіць шаблон.",
+    "noSettings": "Няма налад для гэтага вузла.",
+    "advancedSettings": "Пашыраныя налады"
+  }
+}

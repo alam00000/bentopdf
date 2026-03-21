@@ -1,0 +1,730 @@
+{
+  "categories": {
+    "popularTools": "Ferramentas Populares",
+    "editAnnotate": "Editar e Anotar",
+    "convertToPdf": "Converter para PDF",
+    "convertFromPdf": "Converter de PDF",
+    "organizeManage": "Organizar e Gerenciar",
+    "optimizeRepair": "Otimizar e Reparar",
+    "securePdf": "Segurança de PDF"
+  },
+  "pdfMultiTool": {
+    "name": "Multiferramenta PDF",
+    "subtitle": "Mesclar, dividir, organizar, excluir, girar, adicionar páginas em branco, extrair e duplicar em uma única interface."
+  },
+  "mergePdf": {
+    "name": "Mesclar PDF",
+    "subtitle": "Combine vários PDFs em um único arquivo. Preserva os favoritos (bookmarks)."
+  },
+  "splitPdf": {
+    "name": "Dividir PDF",
+    "subtitle": "Extraia um intervalo de páginas para um novo PDF."
+  },
+  "compressPdf": {
+    "name": "Comprimir PDF",
+    "subtitle": "Reduza o tamanho do arquivo do seu PDF.",
+    "algorithmLabel": "Algoritmo de Compressão",
+    "condense": "Condense (Recomendado)",
+    "photon": "Photon (Para PDFs com Muitas Fotos)",
+    "condenseInfo": "Condense usa compressão avançada: remove dados desnecessários, otimiza imagens, subconjunta fontes. Ideal para a maioria dos PDFs.",
+    "photonInfo": "Photon converte páginas em imagens. Use para PDFs com muitas fotos/digitalizados.",
+    "photonWarning": "Aviso: O texto ficará não selecionável e os links deixarão de funcionar.",
+    "levelLabel": "Nível de Compressão",
+    "light": "Leve (Preservar Qualidade)",
+    "balanced": "Equilibrado (Recomendado)",
+    "aggressive": "Agressivo (Arquivos Menores)",
+    "extreme": "Extremo (Compressão Máxima)",
+    "grayscale": "Converter para Escala de Cinza",
+    "grayscaleHint": "Reduz o tamanho do arquivo removendo informações de cor",
+    "customSettings": "Configurações Personalizadas",
+    "customSettingsHint": "Ajuste fino dos parâmetros de compressão:",
+    "outputQuality": "Qualidade de Saída",
+    "resizeImagesTo": "Redimensionar Imagens Para",
+    "onlyProcessAbove": "Processar Apenas Acima de",
+    "removeMetadata": "Remover metadados",
+    "subsetFonts": "Subconjunto de fontes (remover glifos não utilizados)",
+    "removeThumbnails": "Remover miniaturas incorporadas",
+    "compressButton": "Comprimir PDF"
+  },
+  "pdfEditor": {
+    "name": "Editor de PDF",
+    "subtitle": "Anotar, destacar, redigir, comentar, adicionar formas/imagens, pesquisar e visualizar PDFs."
+  },
+  "jpgToPdf": {
+    "name": "JPG para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens JPG."
+  },
+  "signPdf": {
+    "name": "Assinar PDF",
+    "subtitle": "Desenhe, digite ou faça upload da sua assinatura."
+  },
+  "cropPdf": {
+    "name": "Cortar PDF",
+    "subtitle": "Corte as margens de cada página do seu PDF."
+  },
+  "extractPages": {
+    "name": "Extrair Páginas",
+    "subtitle": "Salve uma seleção de páginas como novos arquivos."
+  },
+  "duplicateOrganize": {
+    "name": "Duplicar e Organizar",
+    "subtitle": "Duplique, reordene e exclua páginas."
+  },
+  "deletePages": {
+    "name": "Excluir Páginas",
+    "subtitle": "Remova páginas específicas do seu documento."
+  },
+  "editBookmarks": {
+    "name": "Editar Favoritos",
+    "subtitle": "Adicione, edite, importe, exclua e extraia favoritos de PDF."
+  },
+  "tableOfContents": {
+    "name": "Sumário",
+    "subtitle": "Gere uma página de sumário a partir dos favoritos do PDF."
+  },
+  "pageNumbers": {
+    "name": "Números de Página",
+    "subtitle": "Insira números de página no seu documento."
+  },
+  "addPageLabels": {
+    "name": "Adicionar rótulos de página",
+    "subtitle": "Aplique rótulos de página PDF com números romanos, prefixos e valores iniciais personalizados.",
+    "uploadHint": "Arquivo PDF",
+    "howLabelsWorkTitle": "Como os rótulos funcionam",
+    "howLabelsWorkStep1": "Deixe Intervalo de páginas vazio para rotular todas as páginas.",
+    "howLabelsWorkStep2": "Use estilos como números romanos para as páginas iniciais e numeração decimal para o corpo principal.",
+    "howLabelsWorkStep3": "Use Prefixo com Valor inicial 0 para criar rótulos como A-0, A-1 e A-2.",
+    "howLabelsWorkStep4": "Ative a progressão quando uma regra usar um intervalo descontínuo como 1-9,30-40 ou páginas ímpares.",
+    "labelRulesTitle": "Regras de rótulo",
+    "addRule": "Adicionar regra",
+    "removeExistingLabels": "Remover rótulos de página existentes antes de aplicar estas regras",
+    "cpdfNote": "Esta ferramenta usa o CoherentPDF no seu navegador. Se o CoherentPDF não estiver configurado, você será solicitado a configurá-lo nas Configurações WASM.",
+    "processButton": "Adicionar rótulos de página",
+    "howItWorksUploadTitle": "Enviar arquivo",
+    "howItWorksUploadDescription": "Escolha o PDF que você deseja rotular novamente.",
+    "howItWorksDefineTitle": "Definir regras",
+    "howItWorksDefineDescription": "Configure uma ou mais regras de rótulo de página com intervalos de páginas, estilos, prefixos e valores iniciais.",
+    "howItWorksDownloadTitle": "Baixar",
+    "howItWorksDownloadDescription": "Salve o PDF atualizado com seus novos rótulos de página.",
+    "relatedToolsTitle": "Ferramentas PDF relacionadas",
+    "faqWhatIsQuestion": "O que é um rótulo de página?",
+    "faqWhatIsAnswer": "Um rótulo de página é a numeração mostrada pelos leitores de PDF nas miniaturas, na navegação de páginas e nas caixas de diálogo de impressão. Ele não imprime novo texto na própria página.",
+    "faqMixQuestion": "Posso misturar números romanos e números normais?",
+    "faqMixAnswer": "Sim. Adicione várias regras, como 1-4 com LowercaseRoman e 5-20 com DecimalArabic.",
+    "faqPrivacyQuestion": "Meus arquivos permanecem privados?",
+    "faqPrivacyAnswer": "Sim. O processamento acontece no seu navegador usando CoherentPDF WASM. Seu PDF não sai do seu dispositivo.",
+    "invalidFileTitle": "Arquivo inválido",
+    "invalidFileMessage": "Envie um arquivo PDF válido.",
+    "loadingPdf": "Carregando PDF...",
+    "protectedPdfTitle": "PDF protegido",
+    "protectedPdfMessage": "Este PDF está protegido por senha. Use primeiro a ferramenta Descriptografar ou Alterar permissões.",
+    "loadErrorMessage": "Falha ao carregar o arquivo PDF. O arquivo pode ser inválido, estar corrompido ou protegido por senha.",
+    "fileMeta": "{{size}} • {{count}} páginas",
+    "ruleTitle": "Regra de rótulo {{number}}",
+    "pageRangeLabel": "Intervalo de páginas",
+    "pageRangePlaceholder": "Todas as páginas, ou por ex. 1-4, 7, ímpares",
+    "labelStyleLabel": "Estilo do rótulo",
+    "labelPrefixLabel": "Prefixo do rótulo",
+    "labelPrefixPlaceholder": "Prefixo opcional, ex. A-",
+    "startValueLabel": "Valor inicial",
+    "continueNumbering": "Continuar a numeração em intervalos descontínuos",
+    "examplesNote": "Exemplos: 1-4 para páginas iniciais em algarismos romanos, 15-20 com prefixo A- e valor inicial 0, ou páginas ímpares com progressão ativada.",
+    "uploadFirstMessage": "Envie primeiro um arquivo PDF.",
+    "applyingLabels": "Aplicando rótulos de página...",
+    "invalidRangeMessage": "A regra {{number}} tem um intervalo de páginas inválido: {{range}}",
+    "allPages": "todas as páginas",
+    "emptyOutputMessage": "O CoherentPDF produziu um arquivo vazio.",
+    "successMessage": "Rótulos de página adicionados com sucesso!",
+    "processErrorMessage": "Não foi possível adicionar os rótulos de página.",
+    "styleOptions": {
+      "DecimalArabic": "Números decimais",
+      "LowercaseRoman": "Números romanos minúsculos",
+      "UppercaseRoman": "Números romanos maiúsculos",
+      "LowercaseLetters": "Letras minúsculas",
+      "UppercaseLetters": "Letras maiúsculas",
+      "NoLabelPrefixOnly": "Somente prefixo sem numeração"
+    }
+  },
+  "batesNumbering": {
+    "name": "Numeração Bates",
+    "subtitle": "Adicionar números Bates sequenciais em um ou mais arquivos PDF."
+  },
+  "addWatermark": {
+    "name": "Adicionar Marca d'Água",
+    "subtitle": "Carimbe texto ou uma imagem sobre as páginas do seu PDF.",
+    "applyToAllPages": "Aplicar a todas as páginas"
+  },
+  "headerFooter": {
+    "name": "Cabeçalho e Rodapé",
+    "subtitle": "Adicione texto no topo e no final das páginas."
+  },
+  "invertColors": {
+    "name": "Inverter Cores",
+    "subtitle": "Crie uma versão em \"modo escuro\" do seu PDF."
+  },
+  "scannerEffect": {
+    "name": "Efeito Scanner",
+    "subtitle": "Faça seu PDF parecer um documento digitalizado.",
+    "scanSettings": "Configurações de Digitalização",
+    "colorspace": "Espaço de Cor",
+    "gray": "Cinza",
+    "border": "Borda",
+    "rotate": "Rotação",
+    "rotateVariance": "Variação de Rotação",
+    "brightness": "Brilho",
+    "contrast": "Contraste",
+    "blur": "Desfoque",
+    "noise": "Ruído",
+    "yellowish": "Amarelado",
+    "resolution": "Resolução",
+    "processButton": "Aplicar Efeito Scanner"
+  },
+  "adjustColors": {
+    "name": "Ajustar Cores",
+    "subtitle": "Ajuste brilho, contraste, saturação e mais no seu PDF.",
+    "colorSettings": "Configurações de Cor",
+    "brightness": "Brilho",
+    "contrast": "Contraste",
+    "saturation": "Saturação",
+    "hueShift": "Matiz",
+    "temperature": "Temperatura",
+    "tint": "Tonalidade",
+    "gamma": "Gamma",
+    "sepia": "Sépia",
+    "processButton": "Aplicar Ajustes de Cor"
+  },
+  "backgroundColor": {
+    "name": "Cor de Fundo",
+    "subtitle": "Altere a cor de fundo do seu PDF."
+  },
+  "changeTextColor": {
+    "name": "Alterar Cor do Texto",
+    "subtitle": "Altere a cor do texto no seu PDF."
+  },
+  "addStamps": {
+    "name": "Adicionar Carimbos",
+    "subtitle": "Adicione carimbos de imagem ao seu PDF usando a barra de ferramentas de anotação.",
+    "usernameLabel": "Nome do Usuário no Carimbo",
+    "usernamePlaceholder": "Digite seu nome (para os carimbos)",
+    "usernameHint": "Este nome aparecerá nos carimbos que você criar."
+  },
+  "removeAnnotations": {
+    "name": "Remover Anotações",
+    "subtitle": "Remova comentários, destaques e links."
+  },
+  "pdfFormFiller": {
+    "name": "Preenchimento de Formulário",
+    "subtitle": "Preencha formulários diretamente no navegador. Também suporta formulários XFA."
+  },
+  "createPdfForm": {
+    "name": "Criar Formulário PDF",
+    "subtitle": "Crie formulários PDF preenchíveis com campos de texto de arrastar e soltar."
+  },
+  "removeBlankPages": {
+    "name": "Remover Páginas em Branco",
+    "subtitle": "Detecte e exclua automaticamente páginas em branco.",
+    "sensitivityHint": "Maior = mais rigoroso, apenas páginas totalmente em branco. Menor = permite páginas com algum conteúdo."
+  },
+  "imageToPdf": {
+    "name": "Imagem para PDF",
+    "subtitle": "Converta JPG, PNG, WebP, BMP, TIFF, SVG, HEIC para PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF para PDF",
+    "subtitle": "Crie um PDF a partir de uma ou mais imagens TIFF."
+  },
+  "textToPdf": {
+    "name": "Texto para PDF",
+    "subtitle": "Converta um arquivo de texto simples (.txt) em PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON para PDF",
+    "subtitle": "Converta arquivos JSON para o formato PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF para JPG",
+    "subtitle": "Converta cada página do PDF em uma imagem JPG."
+  },
+  "pdfToPng": {
+    "name": "PDF para PNG",
+    "subtitle": "Converta cada página do PDF em uma imagem PNG."
+  },
+  "pdfToWebp": {
+    "name": "PDF para WebP",
+    "subtitle": "Converta cada página do PDF em uma imagem WebP."
+  },
+  "pdfToBmp": {
+    "name": "PDF para BMP",
+    "subtitle": "Converta cada página do PDF em uma imagem BMP."
+  },
+  "pdfToTiff": {
+    "name": "PDF para TIFF",
+    "subtitle": "Converta cada página do PDF em uma imagem TIFF."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF para Tons de Cinza",
+    "subtitle": "Converta todas as cores para preto e branco."
+  },
+  "pdfToJson": {
+    "name": "PDF para JSON",
+    "subtitle": "Converta arquivos PDF para o formato JSON."
+  },
+  "ocrPdf": {
+    "name": "OCR para PDF",
+    "subtitle": "Torne um PDF pesquisável e copiável (reconhecimento de texto)."
+  },
+  "alternateMix": {
+    "name": "Alternar e Misturar Páginas",
+    "subtitle": "Mescle PDFs alternando as páginas de cada arquivo. Preserva os favoritos."
+  },
+  "addAttachments": {
+    "name": "Adicionar Anexos",
+    "subtitle": "Incorpore um ou mais arquivos dentro do seu PDF."
+  },
+  "extractAttachments": {
+    "name": "Extrair Anexos",
+    "subtitle": "Extraia todos os arquivos incorporados de PDF(s) como um ZIP."
+  },
+  "editAttachments": {
+    "name": "Editar Anexos",
+    "subtitle": "Visualize ou remova anexos do seu PDF."
+  },
+  "dividePages": {
+    "name": "Dividir Páginas",
+    "subtitle": "Divida as páginas horizontalmente ou verticalmente."
+  },
+  "addBlankPage": {
+    "name": "Adicionar Página em Branco",
+    "subtitle": "Insira uma página vazia em qualquer lugar do seu PDF."
+  },
+  "reversePages": {
+    "name": "Inverter Páginas",
+    "subtitle": "Inverta a ordem de todas as páginas do seu documento."
+  },
+  "rotatePdf": {
+    "name": "Girar PDF",
+    "subtitle": "Gire as páginas em incrementos de 90 graus."
+  },
+  "nUpPdf": {
+    "name": "PDF N-Up",
+    "subtitle": "Organize várias páginas em uma única folha de impressão."
+  },
+  "combineToSinglePage": {
+    "name": "Combinar em Página Única",
+    "subtitle": "Costure todas as páginas em um único fluxo contínuo."
+  },
+  "viewMetadata": {
+    "name": "Ver Metadados",
+    "subtitle": "Inspecione as propriedades ocultas do seu PDF."
+  },
+  "editMetadata": {
+    "name": "Editar Metadados",
+    "subtitle": "Altere o autor, título e outras propriedades."
+  },
+  "pdfsToZip": {
+    "name": "PDFs para ZIP",
+    "subtitle": "Empacote vários arquivos PDF em um arquivo compactado ZIP."
+  },
+  "comparePdfs": {
+    "name": "Comparar PDFs",
+    "subtitle": "Compare dois PDFs lado a lado.",
+    "firstPdf": "Primeiro PDF",
+    "secondPdf": "Segundo PDF",
+    "clickOrDrop": "Clique ou solte",
+    "page": "Página",
+    "overlay": "Sobreposição",
+    "sideBySide": "Lado a lado",
+    "flicker": "Alternância rápida",
+    "syncScroll": "Sincronizar rolagem",
+    "export": "Exportar",
+    "exportAsPdf": "Exportar como PDF",
+    "splitView": "Visualização dividida",
+    "alternating": "Alternado",
+    "leftDocument": "Documento esquerdo",
+    "rightDocument": "Documento direito",
+    "original": "Original",
+    "modified": "Modificado",
+    "searchChanges": "Pesquisar alterações...",
+    "deleted": "Excluído",
+    "added": "Adicionado",
+    "prevPage": "Página anterior",
+    "nextPage": "Próxima página",
+    "prevChange": "Alteração anterior",
+    "nextChange": "Próxima alteração",
+    "uploadTwoPdfs": "Envie dois PDFs para ver as diferenças.",
+    "noDifferences": "Nenhuma diferença detectada nesta página.",
+    "noMatchingChanges": "Nenhuma alteração corresponde ao filtro atual.",
+    "pageNotExist": "A página {{page}} não existe neste PDF.",
+    "noPairedPage": "Não há página pareada para este lado.",
+    "buildingModel": "Criando modelo de pareamento de páginas...",
+    "indexingPdf": "Indexando PDF {{num}}, página {{page}} de {{total}}...",
+    "loadingComparison": "Carregando comparação {{current}} de {{total}}...",
+    "runningOcr": "Executando OCR na página {{page}}...",
+    "preparingExport": "Preparando exportação em PDF...",
+    "renderingPage": "Renderizando página {{current}} de {{total}}...",
+    "exportError": "Erro de exportação",
+    "exportFailed": "Não foi possível exportar o PDF de comparação.",
+    "loadingFile": "Carregando {{name}}...",
+    "invalidFile": "Arquivo inválido",
+    "invalidFileMsg": "Selecione um arquivo PDF válido.",
+    "loadError": "Não foi possível carregar o PDF. Ele pode estar corrompido ou protegido por senha."
+  },
+  "posterizePdf": {
+    "name": "Posterizar PDF",
+    "subtitle": "Divida uma página grande em várias páginas menores."
+  },
+  "fixPageSize": {
+    "name": "Ajustar Tamanho da Página",
+    "subtitle": "Padronize todas as páginas para um tamanho uniforme."
+  },
+  "linearizePdf": {
+    "name": "Linearizar PDF",
+    "subtitle": "Otimize o PDF para visualização rápida na web."
+  },
+  "pageDimensions": {
+    "name": "Dimensões da Página",
+    "subtitle": "Analise o tamanho, orientação e unidades das páginas."
+  },
+  "removeRestrictions": {
+    "name": "Remover Restrições",
+    "subtitle": "Remova proteção por senha e restrições de segurança de arquivos assinados digitalmente."
+  },
+  "repairPdf": {
+    "name": "Reparar PDF",
+    "subtitle": "Recupere dados de arquivos PDF corrompidos ou danificados."
+  },
+  "encryptPdf": {
+    "name": "Criptografar PDF",
+    "subtitle": "Bloqueie seu PDF adicionando uma senha."
+  },
+  "sanitizePdf": {
+    "name": "Sanitizar PDF",
+    "subtitle": "Remova metadados, anotações, scripts e outros dados ocultos."
+  },
+  "decryptPdf": {
+    "name": "Descriptografar PDF",
+    "subtitle": "Desbloqueie o PDF removendo a proteção por senha."
+  },
+  "flattenPdf": {
+    "name": "Achatar PDF (Flatten)",
+    "subtitle": "Torne os campos de formulário e anotações não editáveis."
+  },
+  "removeMetadata": {
+    "name": "Remover Metadados",
+    "subtitle": "Limpe dados ocultos do seu PDF."
+  },
+  "changePermissions": {
+    "name": "Alterar Permissões",
+    "subtitle": "Defina ou altere as permissões de usuário em um PDF."
+  },
+  "emailToPdf": {
+    "name": "Email para PDF",
+    "subtitle": "Converta arquivos de email (EML, MSG) para PDF. Suporta exportações do Outlook e formatos de email padrão.",
+    "acceptedFormats": "Arquivos EML, MSG",
+    "convertButton": "Converter para PDF"
+  },
+  "fontToOutline": {
+    "name": "Fonte para Contorno",
+    "subtitle": "Converta todas as fontes em contornos vetoriais para renderização consistente em todos os dispositivos."
+  },
+  "deskewPdf": {
+    "name": "Desinclinar PDF",
+    "subtitle": "Endireite automaticamente páginas digitalizadas inclinadas usando OpenCV."
+  },
+  "rotateCustom": {
+    "name": "Rotacionar em Graus Customizáveis",
+    "subtitle": "Rotaciona páginas em qualquer ângulo customizado."
+  },
+  "odtToPdf": {
+    "name": "ODT para PDF",
+    "subtitle": "Converte arquivos em formato OpenDocument Text para PDF. Suporta multiplos arquivos.",
+    "acceptedFormats": "Arquivos ODT",
+    "convertButton": "Converter para PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV para PDF",
+    "subtitle": "Converte arquivos de planilhas CSV para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos CSV",
+    "convertButton": "Converter para PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF para PDF",
+    "subtitle": "Converte documentos Rich Text Format para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos RTF",
+    "convertButton": "Converter para PDF"
+  },
+  "wordToPdf": {
+    "name": "Word para PDF",
+    "subtitle": "Converte documentos Word documents (DOCX, DOC, ODT, RTF) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos DOCX, DOC, ODT, RTF",
+    "convertButton": "Converter para PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel para PDF",
+    "subtitle": "Converte planilhas Excel (XLSX, XLS, ODS, CSV) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos XLSX, XLS, ODS, CSV",
+    "convertButton": "Converter para PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint para PDF",
+    "subtitle": "Converte apresentações PowerPoint (PPTX, PPT, ODP) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos PPTX, PPT, ODP",
+    "convertButton": "Converter para PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown para PDF",
+    "subtitle": "Escreva ou cole Markdown e exporte como um belo formato PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Pré-visualizar",
+    "btnUpload": "Upload",
+    "btnSyncScroll": "Sincronizar Scroll",
+    "btnSettings": "Configurações",
+    "btnExportPdf": "Exportar PDF",
+    "settingsTitle": "Configurações Markdown",
+    "settingsPreset": "Predefinição",
+    "presetDefault": "Padrão (tipo GFM)",
+    "presetCommonmark": "CommonMark (extrito)",
+    "presetZero": "Mínimo (sem features)",
+    "settingsOptions": "Opções de Markdown",
+    "optAllowHtml": "Permitir tags HTML",
+    "optBreaks": "Converter novas linhas em <br>",
+    "optLinkify": "Auto-converter URLs para links",
+    "optTypographer": "Tipógrafo (aspas inteligentes, etc.)"
+  },
+  "pdfBooklet": {
+    "name": "PDF Booklet",
+    "subtitle": "Reordena páginas para impressão de livreto frente e verso. Dobre e grampeie para criar um livreto.",
+    "howItWorks": "Como funciona:",
+    "step1": "Faça o upload de um arquivo PDF.",
+    "step2": "As páginas serão reordenadas na ordem de livretos.",
+    "step3": "Imprima frente e verso, vire pelo topo, dobre e grampeie.",
+    "paperSize": "Tamanho do Papel",
+    "orientation": "Orientação",
+    "portrait": "Retrato",
+    "landscape": "Paisagem",
+    "pagesPerSheet": "Páginas por Folha",
+    "createBooklet": "Criar Livreto",
+    "processing": "Processando...",
+    "pageCount": "A contagem de páginas será ajustada para um múltiplo de 4, caso necessário."
+  },
+  "xpsToPdf": {
+    "name": "XPS para PDF",
+    "subtitle": "Converte XPS/OXPS para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos XPS, OXPS",
+    "convertButton": "Converter para PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI para PDF",
+    "subtitle": "Converte e-books MOBI para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos MOBI",
+    "convertButton": "Converter para PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB para PDF",
+    "subtitle": "Converte e-books EPUB para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos EPUB",
+    "convertButton": "Converter para PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 para PDF",
+    "subtitle": "Converte e-books FictionBook (FB2) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos FB2",
+    "convertButton": "Converter para PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ para PDF",
+    "subtitle": "Converte comic book archives (CBZ/CBR) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos CBZ, CBR",
+    "convertButton": "Converter para PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD para PDF",
+    "subtitle": "Converte WordPerfect (WPD) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos WPD",
+    "convertButton": "Converter para PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS para PDF",
+    "subtitle": "Converte WPS Office para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos WPS",
+    "convertButton": "Converter para PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML para PDF",
+    "subtitle": "Converte XML para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos XML",
+    "convertButton": "Converter para PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages para PDF",
+    "subtitle": "Converte Apple Pages para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos Pages",
+    "convertButton": "Converter para PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG para PDF",
+    "subtitle": "Converte OpenDocument Graphics (ODG) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos ODG",
+    "convertButton": "Converter para PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS para PDF",
+    "subtitle": "Converte OpenDocument Spreadsheet (ODS) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos ODS",
+    "convertButton": "Converter para PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP para PDF",
+    "subtitle": "Converte OpenDocument Presentation (ODP) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos ODP",
+    "convertButton": "Converter para PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB para PDF",
+    "subtitle": "Converte Microsoft Publisher (PUB) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos PUB",
+    "convertButton": "Converter para PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD para PDF",
+    "subtitle": "Converte Microsoft Visio (VSD, VSDX) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos VSD, VSDX",
+    "convertButton": "Converter para PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD para PDF",
+    "subtitle": "Converte Adobe Photoshop (PSD) para PDF. Suporta múltiplos arquivos.",
+    "acceptedFormats": "Arquivos PSD",
+    "convertButton": "Converter para PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF para SVG",
+    "subtitle": "Converte cada página de um arquivo PDF em um scalable vector graphic (SVG) para qualidade perfeita em qualquer tamanho."
+  },
+  "extractTables": {
+    "name": "Extrair Tabelas PDF",
+    "subtitle": "Extrai tabelas de arquivos PDF e exporta como CSV, JSON, ou Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF para CSV",
+    "subtitle": "Extrai tabelas do PDF e converte em CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF para Excel",
+    "subtitle": "Extrai tabelas do PDF e converte em Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF para Texto",
+    "subtitle": "Extrai texto de arquivos PDF e salva como texto simples (.txt). Suporta múltiplos arquivos.",
+    "note": "Esta ferrament funciona SOMENTE com PDFs criados digitalmente. Para documentos escaneados ou PDFs baseados em imagens, use nossa ferramenta OCR para PDF no lugar.",
+    "convertButton": "Extrair Texto"
+  },
+  "digitalSignPdf": {
+    "name": "Assinatura Digital PDF",
+    "pageTitle": "Assinatura Digital PDF - Adicionar Assinatura Criptográfica | BentoPDF",
+    "subtitle": "Adicione uma assinatura digital criptográfica ao seu PDF usando certificados X.509. Suporta formatos PKCS#12 (.pfx, .p12) e PEM. Sua chave privada nunca sai do seu navegador.",
+    "certificateSection": "Certificado",
+    "uploadCert": "Carregar certificado (.pfx, .p12)",
+    "certPassword": "Senha do Certificado",
+    "certPasswordPlaceholder": "Digite a senha",
+    "certInfo": "Informações do Certificado",
+    "certSubject": "Assunto",
+    "certIssuer": "Emissor",
+    "certValidity": "Válido",
+    "signatureDetails": "Detalhes da Assinatura (Opcional)",
+    "reason": "Razão",
+    "reasonPlaceholder": "ex: Eu aprovo este documento",
+    "location": "Localização",
+    "locationPlaceholder": "ex: Lisboa, Portugal",
+    "contactInfo": "Contato",
+    "contactPlaceholder": "ex: email@exemplo.com",
+    "applySignature": "Aplicar Assinatura",
+    "successMessage": "PDF assinado com sucesso! A assinatura pode ser verificada em qualquer leitor de PDF."
+  },
+  "validateSignaturePdf": {
+    "name": "Validar Assinatura PDF",
+    "pageTitle": "Validar Assinatura PDF - Verificar Assinaturas Digitais | BentoPDF",
+    "subtitle": "Verifique assinaturas digitais em seus arquivos PDF. Verifique a validade do certificado e a integridade do documento."
+  },
+  "pdfToWord": {
+    "name": "PDF para Word",
+    "subtitle": "Converter arquivos PDF em documentos Word editáveis."
+  },
+  "extractImages": {
+    "name": "Extrair Imagens",
+    "subtitle": "Extrair todas as imagens incorporadas dos seus arquivos PDF."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF para Markdown",
+    "subtitle": "Converter texto e tabelas de PDF para formato Markdown."
+  },
+  "preparePdfForAi": {
+    "name": "Preparar PDF para IA",
+    "subtitle": "Extrair conteúdo PDF como JSON LlamaIndex para pipelines RAG/LLM."
+  },
+  "pdfOcg": {
+    "name": "Camadas PDF (OCG)",
+    "subtitle": "Visualizar, alternar, adicionar e excluir camadas OCG no seu PDF."
+  },
+  "pdfToPdfa": {
+    "name": "PDF para PDF/A",
+    "subtitle": "Converter PDF em PDF/A para arquivamento de longo prazo."
+  },
+  "rasterizePdf": {
+    "name": "Rasterizar PDF",
+    "subtitle": "Converter PDF em PDF baseado em imagens. Achatar camadas e remover texto selecionável."
+  },
+  "pdfWorkflow": {
+    "name": "Construtor de fluxo de trabalho PDF",
+    "subtitle": "Crie pipelines de processamento PDF personalizados com um editor visual de nós.",
+    "nodes": "Nós",
+    "searchNodes": "Pesquisar nós...",
+    "run": "Executar",
+    "clear": "Limpar",
+    "save": "Salvar",
+    "load": "Carregar",
+    "export": "Exportar",
+    "import": "Importar",
+    "ready": "Pronto",
+    "settings": "Configurações",
+    "processing": "Processando...",
+    "saveTemplate": "Salvar modelo",
+    "templateName": "Nome do modelo",
+    "templatePlaceholder": "ex. Fluxo de trabalho de faturamento",
+    "cancel": "Cancelar",
+    "loadTemplate": "Carregar modelo",
+    "noTemplates": "Nenhum modelo salvo ainda.",
+    "ok": "OK",
+    "workflowCompleted": "Fluxo de trabalho concluído",
+    "errorDuringExecution": "Erro durante a execução",
+    "addNodeError": "Adicione pelo menos um nó para executar o fluxo de trabalho.",
+    "needInputOutput": "Seu fluxo de trabalho precisa de pelo menos um nó de entrada e um nó de saída para ser executado.",
+    "enterName": "Por favor, insira um nome.",
+    "templateExists": "Já existe um modelo com este nome.",
+    "templateSaved": "Modelo \"{{name}}\" salvo.",
+    "templateLoaded": "Modelo \"{{name}}\" carregado.",
+    "failedLoadTemplate": "Falha ao carregar o modelo.",
+    "noSettings": "Nenhuma configuração disponível para este nó.",
+    "advancedSettings": "Configurações avançadas"
+  }
+}

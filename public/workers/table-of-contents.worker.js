@@ -1,5 +1,24 @@
-const baseUrl = self.location.href.substring(0, self.location.href.lastIndexOf('/workers/') + 1);
-self.importScripts(baseUrl + 'coherentpdf.browser.min.js');
+let cpdfLoaded = false;
+
+function loadCpdf(cpdfUrl) {
+  if (cpdfLoaded) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    if (typeof coherentpdf !== 'undefined') {
+      cpdfLoaded = true;
+      resolve();
+      return;
+    }
+
+    try {
+      self.importScripts(cpdfUrl);
+      cpdfLoaded = true;
+      resolve();
+    } catch (error) {
+      reject(new Error('Failed to load CoherentPDF: ' + error.message));
+    }
+  });
+}
 
 function generateTableOfContentsInWorker(
   pdfData,
@@ -49,7 +68,28 @@ function generateTableOfContentsInWorker(
   }
 }
 
-self.onmessage = (e) => {
+self.onmessage = async function (e) {
+  const { cpdfUrl } = e.data;
+
+  if (!cpdfUrl) {
+    self.postMessage({
+      status: 'error',
+      message:
+        'CoherentPDF URL not provided. Please configure it in WASM Settings.',
+    });
+    return;
+  }
+
+  try {
+    await loadCpdf(cpdfUrl);
+  } catch (error) {
+    self.postMessage({
+      status: 'error',
+      message: error.message,
+    });
+    return;
+  }
+
   if (e.data.command === 'generate-toc') {
     generateTableOfContentsInWorker(
       e.data.pdfData,

@@ -1,0 +1,45 @@
+name = "bentopdf-cors-proxy"
+main = "cors-proxy-worker.js"
+compatibility_date = "2024-01-01"
+
+# Deploy to Cloudflare's global network
+# If you are self hosting change the name to your worker name
+# Run: npx wrangler deploy
+
+# =============================================================================
+# SECURITY FEATURES
+# =============================================================================
+#
+# 1. SIGNATURE VERIFICATION (Optional - for anti-spoofing)
+#    - Generate secret: openssl rand -hex 32
+#    - Set secret: npx wrangler secret put PROXY_SECRET
+#    - Note: Secret is visible in frontend JS, so provides limited protection
+#
+# 2. RATE LIMITING (Recommended - requires KV)
+#    - Create KV namespace: npx wrangler kv namespace create "RATE_LIMIT_KV"
+#    - Uncomment the kv_namespaces section below with the returned ID
+#    - Limits: 60 requests per IP per minute
+#
+# 3. FILE SIZE LIMIT
+#    - Automatic: Rejects files larger than 1MB
+#    - Certificates are typically <10KB, so this prevents abuse
+#
+# 4. URL RESTRICTIONS
+#    - Only certificate URLs allowed (*.crt, *.cer, *.pem, /certs/, etc.)
+#    - Blocks private IPs (localhost, 10.x, 192.168.x, 172.16-31.x)
+
+# =============================================================================
+# KV NAMESPACE FOR RATE LIMITING
+# =============================================================================
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "b88e030b308941118cd484e3fcb3ae49"
+
+# Optional: Custom domain routing
+# routes = [
+#   { pattern = "cors-proxy.bentopdf.com/*", zone_name = "bentopdf.com" }
+# ]
+
+# Optional: Environment variables (for non-secret config)
+# [vars]
+# ALLOWED_ORIGINS = "https://www.bentopdf.com,https://bentopdf.com"

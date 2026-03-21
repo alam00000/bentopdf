@@ -23,27 +23,35 @@ When enabled, Simple Mode will:
 
 Use the pre-built Simple Mode image directly:
 
+**Using GitHub Container Registry (Recommended):**
+
+```bash
+# Docker
+docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+
+# Podman
+podman run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+```
+
 **Using Docker Hub:**
 
 ```bash
-docker run -p 3000:8080 bentopdf/bentopdf-simple:latest
+# Docker
+docker run -p 3000:8080 bentopdfteam/bentopdf-simple:latest
+
+# Podman
+podman run -p 3000:8080 docker.io/bentopdfteam/bentopdf-simple:latest
 ```
 
-**Using GitHub Container Registry:**
-
-```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
-```
-
-Or with Docker Compose:
+Or with Docker Compose / Podman Compose:
 
 ```yaml
 services:
   bentopdf:
-    # Using Docker Hub
-    image: bentopdf/bentopdf-simple:latest
-    # Or using GitHub Container Registry
-    # image: ghcr.io/alam00000/bentopdf-simple:latest
+    # Using GitHub Container Registry (Recommended)
+    image: ghcr.io/alam00000/bentopdf-simple:latest
+    # Or using Docker Hub
+    # image: bentopdfteam/bentopdf-simple:latest
     container_name: bentopdf
     restart: unless-stopped
     ports:
@@ -105,9 +113,13 @@ This automatically builds and serves Simple Mode on `http://localhost:3000`.
 ### Method 2: Using Pre-built Image (Easiest for Production)
 
 ```bash
-# Pull and run the Simple Mode image
-docker pull bentopdf/bentopdf-simple:latest
-docker run -p 3000:8080 bentopdf/bentopdf-simple:latest
+# Docker - Pull and run the Simple Mode image
+docker pull ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+
+# Podman
+podman pull ghcr.io/alam00000/bentopdf-simple:latest
+podman run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
 ```
 
 Open `http://localhost:3000` in your browser.
@@ -127,11 +139,13 @@ Open `http://localhost:3000` in your browser.
 ### Method 4: Compare Both Modes
 
 ```bash
-# Test Normal Mode
-docker run -p 3000:8080 bentopdf/bentopdf:latest
+# Test Normal Mode (Docker)
+docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
 
-# Test Simple Mode
-docker run -p 3001:8080 bentopdf/bentopdf-simple:latest
+# Test Simple Mode (Docker)
+docker run -p 3001:8080 ghcr.io/alam00000/bentopdf-simple:latest
+
+# Podman users: replace 'docker' with 'podman'
 ```
 
 - Normal Mode: `http://localhost:3000`
@@ -149,52 +163,82 @@ When Simple Mode is working correctly, you should see:
 - ❌ No hero section with "The PDF Toolkit built for privacy"
 - ❌ No features, FAQ, testimonials, or footer sections
 
-## 📦 Available Docker Images
+## 📦 Available Container Images
 
 ### Normal Mode (Full Branding)
 
-**Docker Hub:**
-
-- `bentopdf/bentopdf:latest`
-- `bentopdf/bentopdf:v1.0.0` (versioned)
-
-**GitHub Container Registry:**
+**GitHub Container Registry (Recommended):**
 
 - `ghcr.io/alam00000/bentopdf:latest`
 - `ghcr.io/alam00000/bentopdf:v1.0.0` (versioned)
 
-### Simple Mode (Clean Interface)
-
 **Docker Hub:**
 
-- `bentopdf/bentopdf-simple:latest`
-- `bentopdf/bentopdf-simple:v1.0.0` (versioned)
+- `bentopdfteam/bentopdf:latest`
+- `bentopdfteam/bentopdf:v1.0.0` (versioned)
 
-**GitHub Container Registry:**
+### Simple Mode (Clean Interface)
+
+**GitHub Container Registry (Recommended):**
 
 - `ghcr.io/alam00000/bentopdf-simple:latest`
 - `ghcr.io/alam00000/bentopdf-simple:v1.0.0` (versioned)
 
+**Docker Hub:**
+
+- `bentopdfteam/bentopdf-simple:latest`
+- `bentopdfteam/bentopdf-simple:v1.0.0` (versioned)
+
 ## 🚀 Production Deployment Examples
 
-### Internal Company Tool
+### Docker Compose / Podman Compose
 
 ```yaml
 services:
   bentopdf:
-    image: bentopdf/bentopdf-simple:latest
+    image: ghcr.io/alam00000/bentopdf-simple:latest # Recommended
+    # image: bentopdfteam/bentopdf-simple:latest     # Alternative: Docker Hub
     container_name: bentopdf
     restart: unless-stopped
     ports:
-      - '80:80'
+      - '80:8080'
     environment:
       - PUID=1000
       - PGID=1000
 ```
 
+### Podman Quadlet (Linux Systemd)
+
+Create `~/.config/containers/systemd/bentopdf-simple.container`:
+
+```ini
+[Unit]
+Description=BentoPDF Simple Mode
+After=network-online.target
+
+[Container]
+Image=ghcr.io/alam00000/bentopdf-simple:latest
+ContainerName=bentopdf-simple
+PublishPort=80:8080
+AutoUpdate=registry
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
+```
+
+Enable and start:
+
+```bash
+systemctl --user daemon-reload
+systemctl --user enable --now bentopdf-simple
+```
+
 ## ⚠️ Important Notes
 
-- **Pre-built images**: Use `bentopdf/bentopdf-simple:latest` for Simple Mode
+- **Pre-built images**: Use `ghcr.io/alam00000/bentopdf-simple:latest` for Simple Mode (recommended)
 - **Environment variables**: `SIMPLE_MODE=true` only works during build, not runtime
 - **Build-time optimization**: Simple Mode uses dead code elimination for smaller bundles
 - **Same functionality**: All PDF tools work identically in both modes

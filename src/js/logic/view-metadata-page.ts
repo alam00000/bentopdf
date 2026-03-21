@@ -1,11 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { formatBytes, formatIsoDate, getPDFDocument } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
-
-interface ViewMetadataState {
-    file: File | null;
-    metadata: Record<string, unknown>;
-}
+import { ViewMetadataState } from '@/types';
 
 const pageState: ViewMetadataState = {
     file: null,

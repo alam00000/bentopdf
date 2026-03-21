@@ -2,13 +2,9 @@ import { showAlert } from '../ui.js';
 import { formatBytes, getStandardPageName, convertPoints } from '../utils/helpers.js';
 import { PDFDocument } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
+import { PageDimensionsState } from '@/types';
 
-interface PageState {
-    file: File | null;
-    pdfDoc: PDFDocument | null;
-}
-
-const pageState: PageState = {
+const pageState: PageDimensionsState = {
     file: null,
     pdfDoc: null,
 };

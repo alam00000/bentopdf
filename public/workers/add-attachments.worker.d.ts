@@ -5,6 +5,7 @@ interface AddAttachmentsMessage {
   pdfBuffer: ArrayBuffer;
   attachmentBuffers: ArrayBuffer[];
   attachmentNames: string[];
+  cpdfUrl?: string;
 }
 
 interface AddAttachmentsSuccessResponse {
@@ -17,4 +18,6 @@ interface AddAttachmentsErrorResponse {
   message: string;
 }
 
-type AddAttachmentsResponse = AddAttachmentsSuccessResponse | AddAttachmentsErrorResponse;
+type AddAttachmentsResponse =
+  | AddAttachmentsSuccessResponse
+  | AddAttachmentsErrorResponse;

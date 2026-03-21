@@ -1,0 +1,730 @@
+{
+  "categories": {
+    "popularTools": "Populära verktyg",
+    "editAnnotate": "Redigera & Kommentera",
+    "convertToPdf": "Konvertera till PDF",
+    "convertFromPdf": "Konvertera från PDF",
+    "organizeManage": "Organisera & Hantera",
+    "optimizeRepair": "Optimera & Reparera",
+    "securePdf": "Säkra PDF"
+  },
+  "pdfMultiTool": {
+    "name": "PDF multiverktyg",
+    "subtitle": "Sammanfoga, dela, organisera, ta bort, rotera, lägg till tomma sidor, extrahera och duplicera i ett enhetligt gränssnitt."
+  },
+  "mergePdf": {
+    "name": "Sammanfoga PDF",
+    "subtitle": "Kombinera flera PDF-filer till en fil. Bevarar bokmärken."
+  },
+  "splitPdf": {
+    "name": "Dela PDF",
+    "subtitle": "Extrahera ett intervall av sidor till en ny PDF."
+  },
+  "compressPdf": {
+    "name": "Komprimera PDF",
+    "subtitle": "Minska filstorleken på din PDF.",
+    "algorithmLabel": "Komprimeringsalgoritm",
+    "condense": "Kondensera (Rekommenderas)",
+    "photon": "Foton (För foto-tunga PDF:er)",
+    "condenseInfo": "Kondensera använder avancerad komprimering: tar bort död vikt, optimerar bilder, undergrupperar typsnitt. Bäst för de flesta PDF:er.",
+    "photonInfo": "Foton konverterar sidor till bilder. Använd för foto-tunga/scannade PDF:er.",
+    "photonWarning": "Varning: Text blir icke-valbar och länkarna slutar fungera.",
+    "levelLabel": "Komprimeringsnivå",
+    "light": "Lätt (Bevara kvalitet)",
+    "balanced": "Balanserad (Rekommenderas)",
+    "aggressive": "Aggressiv (Mindre filer)",
+    "extreme": "Extreme (Maximal komprimering)",
+    "grayscale": "Konvertera till gråskala",
+    "grayscaleHint": "Minskar filstorleken genom att ta bort färginformation",
+    "customSettings": "Anpassade inställningar",
+    "customSettingsHint": "Finjustera komprimeringsparametrar:",
+    "outputQuality": "Utdatakvalitet",
+    "resizeImagesTo": "Ändra bildstorlek till",
+    "onlyProcessAbove": "Bearbeta endast över",
+    "removeMetadata": "Ta bort metadata",
+    "subsetFonts": "Undergruppera typsnitt (ta bort oanvända glyfer)",
+    "removeThumbnails": "Ta bort inbäddade miniatyrer",
+    "compressButton": "Komprimera PDF"
+  },
+  "pdfEditor": {
+    "name": "PDF-redigerare",
+    "subtitle": "Kommentera, markera, redigera, kommentera, lägg till former/bilder, sök och visa PDF:er."
+  },
+  "jpgToPdf": {
+    "name": "JPG till PDF",
+    "subtitle": "Skapa en PDF från JPG, JPEG och JPEG2000 (JP2/JPX)-bilder."
+  },
+  "signPdf": {
+    "name": "Signera PDF",
+    "subtitle": "Rita, skriv eller ladda upp din signatur."
+  },
+  "cropPdf": {
+    "name": "Beskär PDF",
+    "subtitle": "Beskär marginalerna på varje sida i din PDF."
+  },
+  "extractPages": {
+    "name": "Extrahera sidor",
+    "subtitle": "Spara ett urval av sidor som nya filer."
+  },
+  "duplicateOrganize": {
+    "name": "Duplicera & organisera",
+    "subtitle": "Duplicera, ordna om och ta bort sidor."
+  },
+  "deletePages": {
+    "name": "Ta bort sidor",
+    "subtitle": "Ta bort specifika sidor från ditt dokument."
+  },
+  "editBookmarks": {
+    "name": "Redigera bokmärken",
+    "subtitle": "Lägg till, redigera, importera, ta bort och extrahera PDF-bokmärken."
+  },
+  "tableOfContents": {
+    "name": "Innehållsförteckning",
+    "subtitle": "Generera en innehållsförteckningssida från PDF-bokmärken."
+  },
+  "pageNumbers": {
+    "name": "Sidnummer",
+    "subtitle": "Infoga sidnummer i ditt dokument."
+  },
+  "addPageLabels": {
+    "name": "Lägg till sidetiketter",
+    "subtitle": "Använd PDF-sidetiketter med romerska siffror, prefix och anpassade startvärden.",
+    "uploadHint": "PDF-fil",
+    "howLabelsWorkTitle": "Så fungerar etiketter",
+    "howLabelsWorkStep1": "Lämna Sidintervall tomt för att märka alla sidor.",
+    "howLabelsWorkStep2": "Använd stilar som romerska siffror för inledningen och decimalnumrering för huvuddelen.",
+    "howLabelsWorkStep3": "Använd Prefix med Startvärde 0 för att skapa etiketter som A-0, A-1 och A-2.",
+    "howLabelsWorkStep4": "Aktivera fortlöpning när en regel använder ett osammanhängande intervall som 1-9,30-40 eller udda sidor.",
+    "labelRulesTitle": "Etikettregler",
+    "addRule": "Lägg till regel",
+    "removeExistingLabels": "Ta bort befintliga sidetiketter innan dessa regler tillämpas",
+    "cpdfNote": "Det här verktyget använder CoherentPDF i din webbläsare. Om CoherentPDF inte är konfigurerat blir du ombedd att ställa in det i WASM-inställningar.",
+    "processButton": "Lägg till sidetiketter",
+    "howItWorksUploadTitle": "Ladda upp fil",
+    "howItWorksUploadDescription": "Välj PDF-filen du vill märka om.",
+    "howItWorksDefineTitle": "Definiera regler",
+    "howItWorksDefineDescription": "Ställ in en eller flera regler för sidetiketter med sidintervall, stilar, prefix och startvärden.",
+    "howItWorksDownloadTitle": "Ladda ner",
+    "howItWorksDownloadDescription": "Spara den uppdaterade PDF-filen med sina nya sidetiketter.",
+    "relatedToolsTitle": "Relaterade PDF-verktyg",
+    "faqWhatIsQuestion": "Vad är en sidetikett?",
+    "faqWhatIsAnswer": "En sidetikett är den numrering som PDF-läsare visar i miniatyrer, sidnavigering och utskriftsdialoger. Den skriver inte ut ny text på själva sidan.",
+    "faqMixQuestion": "Kan jag blanda romerska siffror och vanliga siffror?",
+    "faqMixAnswer": "Ja. Lägg till flera regler, till exempel 1-4 med LowercaseRoman och 5-20 med DecimalArabic.",
+    "faqPrivacyQuestion": "Förblir mina filer privata?",
+    "faqPrivacyAnswer": "Ja. Bearbetningen sker i din webbläsare med CoherentPDF WASM. Din PDF lämnar inte din enhet.",
+    "invalidFileTitle": "Ogiltig fil",
+    "invalidFileMessage": "Ladda upp en giltig PDF-fil.",
+    "loadingPdf": "Läser in PDF...",
+    "protectedPdfTitle": "Skyddad PDF",
+    "protectedPdfMessage": "Den här PDF-filen är lösenordsskyddad. Använd först verktyget Dekryptera eller Ändra behörigheter.",
+    "loadErrorMessage": "Det gick inte att läsa in PDF-filen. Filen kan vara ogiltig, skadad eller lösenordsskyddad.",
+    "fileMeta": "{{size}} • {{count}} sidor",
+    "ruleTitle": "Etikettregel {{number}}",
+    "pageRangeLabel": "Sidintervall",
+    "pageRangePlaceholder": "Alla sidor, eller t.ex. 1-4, 7, udda",
+    "labelStyleLabel": "Etikettstil",
+    "labelPrefixLabel": "Etikettprefix",
+    "labelPrefixPlaceholder": "Valfritt prefix, t.ex. A-",
+    "startValueLabel": "Startvärde",
+    "continueNumbering": "Fortsätt numreringen över osammanhängande intervall",
+    "examplesNote": "Exempel: 1-4 för inledande sidor med romerska siffror, 15-20 med prefixet A- och startvärde 0, eller udda sidor med fortlöpning aktiverad.",
+    "uploadFirstMessage": "Ladda först upp en PDF-fil.",
+    "applyingLabels": "Tillämpa sidetiketter...",
+    "invalidRangeMessage": "Regel {{number}} har ett ogiltigt sidintervall: {{range}}",
+    "allPages": "alla sidor",
+    "emptyOutputMessage": "CoherentPDF skapade en tom fil.",
+    "successMessage": "Sidetiketter lades till!",
+    "processErrorMessage": "Det gick inte att lägga till sidetiketter.",
+    "styleOptions": {
+      "DecimalArabic": "Decimala siffror",
+      "LowercaseRoman": "Små romerska siffror",
+      "UppercaseRoman": "Stora romerska siffror",
+      "LowercaseLetters": "Små bokstäver",
+      "UppercaseLetters": "Stora bokstäver",
+      "NoLabelPrefixOnly": "Endast prefix utan nummer"
+    }
+  },
+  "batesNumbering": {
+    "name": "Bates-numrering",
+    "subtitle": "Lägg till sekventiella Bates-nummer över en eller flera PDF-filer."
+  },
+  "addWatermark": {
+    "name": "Lägg till vattenstämpel",
+    "subtitle": "Stämpla text eller en bild över dina PDF-sidor.",
+    "applyToAllPages": "Applicera på alla sidor"
+  },
+  "headerFooter": {
+    "name": "Sidhuvud & sidfot",
+    "subtitle": "Lägg till text överst och längst ner på sidor."
+  },
+  "invertColors": {
+    "name": "Invertera färger",
+    "subtitle": "Skapa en \"mörkt läge\"-version av din PDF."
+  },
+  "scannerEffect": {
+    "name": "Skannereffekt",
+    "subtitle": "Få din PDF att se ut som ett scannat dokument.",
+    "scanSettings": "Skannerinställningar",
+    "colorspace": "Färgrymd",
+    "gray": "Grå",
+    "border": "Kant",
+    "rotate": "Rotera",
+    "rotateVariance": "Rotationsvarians",
+    "brightness": "Ljushet",
+    "contrast": "Kontrast",
+    "blur": "Oskärpa",
+    "noise": "Brus",
+    "yellowish": "Gulaktig",
+    "resolution": "Upplösning",
+    "processButton": "Applicera skannereffekt"
+  },
+  "adjustColors": {
+    "name": "Justera färger",
+    "subtitle": "Finjustera ljusstyrka, kontrast, mättnad och mer i din PDF.",
+    "colorSettings": "Färginställningar",
+    "brightness": "Ljushet",
+    "contrast": "Kontrast",
+    "saturation": "Mättnad",
+    "hueShift": "Nyansskift",
+    "temperature": "Temperatur",
+    "tint": "Ton",
+    "gamma": "Gamma",
+    "sepia": "Sepia",
+    "processButton": "Applicera färgjusteringar"
+  },
+  "backgroundColor": {
+    "name": "Bakgrundsfärg",
+    "subtitle": "Ändra bakgrundsfärgen på din PDF."
+  },
+  "changeTextColor": {
+    "name": "Ändra textfärg",
+    "subtitle": "Ändra färgen på text i din PDF."
+  },
+  "addStamps": {
+    "name": "Lägg till stämplar",
+    "subtitle": "Lägg till bildstämplar på din PDF med kommentarsverktygsfältet.",
+    "usernameLabel": "Stämpelanvändarnamn",
+    "usernamePlaceholder": "Ange ditt namn (för stämplar)",
+    "usernameHint": "Detta namn kommer att visas på stämplar du skapar."
+  },
+  "removeAnnotations": {
+    "name": "Ta bort anteckningar",
+    "subtitle": "Ta bort kommentarer, markeringar och länkade."
+  },
+  "pdfFormFiller": {
+    "name": "PDF-formulärifyllare",
+    "subtitle": "Fyll i formulär direkt i webbläsaren. Stöder även XFA-formulär."
+  },
+  "createPdfForm": {
+    "name": "Skapa PDF-formulär",
+    "subtitle": "Skapa ifyllbara PDF-formulär med dra-och-släpp textfält."
+  },
+  "removeBlankPages": {
+    "name": "Ta bort tomma sidor",
+    "subtitle": "Automatiskt identifiera och ta bort tomma sidor.",
+    "sensitivityHint": "Högre = striktare, bara helt tomma sidor. Lägre = tillåter sidor med visst innehåll."
+  },
+  "imageToPdf": {
+    "name": "Bilder till PDF",
+    "subtitle": "Konvertera JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP till PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG till PDF",
+    "subtitle": "Skapa en PDF från en eller flera PNG-bilder."
+  },
+  "webpToPdf": {
+    "name": "WebP till PDF",
+    "subtitle": "Skapa en PDF från en eller flera WebP-bilder."
+  },
+  "svgToPdf": {
+    "name": "SVG till PDF",
+    "subtitle": "Skapa en PDF från en eller flera SVG-bilder."
+  },
+  "bmpToPdf": {
+    "name": "BMP till PDF",
+    "subtitle": "Skapa en PDF från en eller flera BMP-bilder."
+  },
+  "heicToPdf": {
+    "name": "HEIC till PDF",
+    "subtitle": "Skapa en PDF från en eller flera HEIC-bilder."
+  },
+  "tiffToPdf": {
+    "name": "TIFF till PDF",
+    "subtitle": "Skapa en PDF från en eller flera TIFF-bilder."
+  },
+  "textToPdf": {
+    "name": "Text till PDF",
+    "subtitle": "Konvertera en vanlig textfil till en PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON till PDF",
+    "subtitle": "Konvertera JSON-filer till PDF-format."
+  },
+  "pdfToJpg": {
+    "name": "PDF till JPG",
+    "subtitle": "Konvertera varje PDF-sida till en JPG-bild."
+  },
+  "pdfToPng": {
+    "name": "PDF till PNG",
+    "subtitle": "Konvertera varje PDF-sida till en PNG-bild."
+  },
+  "pdfToWebp": {
+    "name": "PDF till WebP",
+    "subtitle": "Konvertera varje PDF-sida till en WebP-bild."
+  },
+  "pdfToBmp": {
+    "name": "PDF till BMP",
+    "subtitle": "Konvertera varje PDF-sida till en BMP-bild."
+  },
+  "pdfToTiff": {
+    "name": "PDF till TIFF",
+    "subtitle": "Konvertera varje PDF-sida till en TIFF-bild."
+  },
+  "pdfToGreyscale": {
+    "name": "PDF till gråskala",
+    "subtitle": "Konvertera alla färger till svart och vitt."
+  },
+  "pdfToJson": {
+    "name": "PDF till JSON",
+    "subtitle": "Konvertera PDF-filer till JSON-format."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Gör en PDF sökbar och kopiaerbar."
+  },
+  "alternateMix": {
+    "name": "Alternera & blanda sidor",
+    "subtitle": "Sammanfoga PDF:er genom att alternera sidor från varje PDF. Bevarar bokmärken."
+  },
+  "addAttachments": {
+    "name": "Lägg till bilagor",
+    "subtitle": "Bädda in en eller flera filer i din PDF."
+  },
+  "extractAttachments": {
+    "name": "Extrahera bilagor",
+    "subtitle": "Extrahera alla inbäddade filer från PDF(er) som en ZIP."
+  },
+  "editAttachments": {
+    "name": "Redigera bilagor",
+    "subtitle": "Visa eller ta bort bilagor i din PDF."
+  },
+  "dividePages": {
+    "name": "Dela sidor",
+    "subtitle": "Dela sidor horisontellt eller vertikalt."
+  },
+  "addBlankPage": {
+    "name": "Lägg till tom sida",
+    "subtitle": "Infoga en tom sida var som helst i din PDF."
+  },
+  "reversePages": {
+    "name": "Omvänd sidor",
+    "subtitle": "Vänd ordningen på alla sidor i ditt dokument."
+  },
+  "rotatePdf": {
+    "name": "Rotera PDF",
+    "subtitle": "Vrid sidor i 90-graderssteg."
+  },
+  "rotateCustom": {
+    "name": "Rotera efter anpassade grader",
+    "subtitle": "Rotera sidor efter valfri vinkel."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "Ordna flera sidor på ett enda ark."
+  },
+  "combineToSinglePage": {
+    "name": "Kombinera till enskild sida",
+    "subtitle": "Sy ihop alla sidor till en kontinuerlig rullning."
+  },
+  "viewMetadata": {
+    "name": "Visa metadata",
+    "subtitle": "Granska de dolda egenskaperna i din PDF."
+  },
+  "editMetadata": {
+    "name": "Redigera metadata",
+    "subtitle": "Ändra författaren, titeln och andra egenskaper."
+  },
+  "pdfsToZip": {
+    "name": "PDF:er till ZIP",
+    "subtitle": "Paketera flera PDF-filer till ett ZIP-arkiv."
+  },
+  "comparePdfs": {
+    "name": "Jämför PDF:er",
+    "subtitle": "Jämför två PDF:er bredvid varandra.",
+    "firstPdf": "Första PDF",
+    "secondPdf": "Andra PDF",
+    "clickOrDrop": "Klicka eller släpp",
+    "page": "Sida",
+    "overlay": "Överlägg",
+    "sideBySide": "Sida vid sida",
+    "flicker": "Flimmer",
+    "syncScroll": "Synkronisera rullning",
+    "export": "Exportera",
+    "exportAsPdf": "Exportera som PDF",
+    "splitView": "Delad vy",
+    "alternating": "Växlande",
+    "leftDocument": "Vänster dokument",
+    "rightDocument": "Höger dokument",
+    "original": "Original",
+    "modified": "Ändrad",
+    "searchChanges": "Sök ändringar...",
+    "deleted": "Borttagen",
+    "added": "Tillagd",
+    "prevPage": "Föregående sida",
+    "nextPage": "Nästa sida",
+    "prevChange": "Föregående ändring",
+    "nextChange": "Nästa ändring",
+    "uploadTwoPdfs": "Ladda upp två PDF:er för att se skillnaderna.",
+    "noDifferences": "Inga skillnader upptäcktes på denna sida.",
+    "noMatchingChanges": "Inga ändringar matchar det aktuella filtret.",
+    "pageNotExist": "Sidan {{page}} finns inte i denna PDF.",
+    "noPairedPage": "Ingen matchad sida för denna sida.",
+    "buildingModel": "Bygger sidparningsmodell...",
+    "indexingPdf": "Indexerar PDF {{num}}, sida {{page}} av {{total}}...",
+    "loadingComparison": "Läser in jämförelse {{current}} av {{total}}...",
+    "runningOcr": "Kör OCR på sida {{page}}...",
+    "preparingExport": "Förbereder PDF-export...",
+    "renderingPage": "Renderar sida {{current}} av {{total}}...",
+    "exportError": "Exportfel",
+    "exportFailed": "Kunde inte exportera jämförelse-PDF.",
+    "loadingFile": "Läser in {{name}}...",
+    "invalidFile": "Ogiltig fil",
+    "invalidFileMsg": "Välj en giltig PDF-fil.",
+    "loadError": "Kunde inte läsa in PDF. Den kan vara skadad eller lösenordsskyddad."
+  },
+  "posterizePdf": {
+    "name": "Postera PDF",
+    "subtitle": "Dela en stor sida i flera mindre sidor."
+  },
+  "fixPageSize": {
+    "name": "Fixa sidstorlek",
+    "subtitle": "Standardisera alla sidor till en enhetlig storlek."
+  },
+  "linearizePdf": {
+    "name": "Linearizera PDF",
+    "subtitle": "Optimera PDF för snabb webbvisning."
+  },
+  "pageDimensions": {
+    "name": "Sidmått",
+    "subtitle": "Analysera sidstorlek, orientering och enheter."
+  },
+  "removeRestrictions": {
+    "name": "Ta bort begränsningar",
+    "subtitle": "Ta bort lösenordsskydd och säkerhetsbegränsningar associerade med digitalt signerade PDF-filer."
+  },
+  "repairPdf": {
+    "name": "Reparera PDF",
+    "subtitle": "Återställ data från skadade eller korrupta PDF-filer."
+  },
+  "encryptPdf": {
+    "name": "Kryptera PDF",
+    "subtitle": "Lås din PDF genom att lägga till ett lösenord."
+  },
+  "sanitizePdf": {
+    "name": "Sanera PDF",
+    "subtitle": "Ta bort metadata, anteckningar, skript och mer."
+  },
+  "decryptPdf": {
+    "name": "Dekryptera PDF",
+    "subtitle": "Lås upp PDF genom att ta bort lösenordsskydd."
+  },
+  "flattenPdf": {
+    "name": "Platta till PDF",
+    "subtitle": "Gör formulärfält och anteckningar icke-redigerbara."
+  },
+  "removeMetadata": {
+    "name": "Ta bort metadata",
+    "subtitle": "Ta bort dold data från din PDF."
+  },
+  "changePermissions": {
+    "name": "Ändra behörigheter",
+    "subtitle": "Ställ in eller ändra användarbehörigheter på en PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT till PDF",
+    "subtitle": "Konvertera OpenDocument Text-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "ODT-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV till PDF",
+    "subtitle": "Konvertera CSV-kalkylarksfiler till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "CSV-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF till PDF",
+    "subtitle": "Konvertera Rich Text Format-dokument till PDF. Stöder flera filer.",
+    "acceptedFormats": "RTF-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "wordToPdf": {
+    "name": "Word till PDF",
+    "subtitle": "Konvertera Word-dokument (DOCX, DOC, ODT, RTF) till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel till PDF",
+    "subtitle": "Konvertera Excel-kalkylark (XLSX, XLS, ODS, CSV) till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint till PDF",
+    "subtitle": "Konvertera PowerPoint-presentationer (PPTX, PPT, ODP) till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "PPTX, PPT, ODP-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown till PDF",
+    "subtitle": "Skriv eller klistra in Markdown och exportera som en vackert formaterad PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Förhandsvisning",
+    "btnUpload": "Ladda upp",
+    "btnSyncScroll": "Synkronisera scroll",
+    "btnSettings": "Inställningar",
+    "btnExportPdf": "Exportera PDF",
+    "settingsTitle": "Markdown-inställningar",
+    "settingsPreset": "Förinställning",
+    "presetDefault": "Standard (GFM-liknande)",
+    "presetCommonmark": "CommonMark (strikt)",
+    "presetZero": "Minimal (inga funktioner)",
+    "settingsOptions": "Markdown-alternativ",
+    "optAllowHtml": "Tillåt HTML-taggar",
+    "optBreaks": "Konvertera radbrytningar till <br>",
+    "optLinkify": "Auto-konvertera URL:er till länkade",
+    "optTypographer": "Typograf (smarta citattecken, etc.)"
+  },
+  "pdfBooklet": {
+    "name": "PDF-broschyr",
+    "subtitle": "Ordna om sidor för dubbelsidig broschyutskrift. Vik och häfta för att skapa en broschyr.",
+    "howItWorks": "Så här fungerar det:",
+    "step1": "Ladda upp en PDF-fil.",
+    "step2": "Sidor kommer att ordnas om i broschyrordning.",
+    "step3": "Skriv ut dubbelsidigt, vik på kort kant, vik och häfta.",
+    "paperSize": "Pappersstorlek",
+    "orientation": "Orientering",
+    "portrait": "Stående",
+    "landscape": "Liggande",
+    "pagesPerSheet": "Sidor per ark",
+    "createBooklet": "Skapa broschyr",
+    "processing": "Bearbetar...",
+    "pageCount": "Sidantal kommer att fyllas ut till multipel av 4 om det behövs."
+  },
+  "xpsToPdf": {
+    "name": "XPS till PDF",
+    "subtitle": "Konvertera XPS/OXPS-dokument till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "XPS, OXPS-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI till PDF",
+    "subtitle": "Konvertera MOBI e-böcker till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "MOBI-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB till PDF",
+    "subtitle": "Konvertera EPUB e-böcker till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "EPUB-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 till PDF",
+    "subtitle": "Konvertera FictionBook (FB2) e-böcker till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "FB2-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ till PDF",
+    "subtitle": "Konvertera serietidshäften (CBZ/CBR) till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "CBZ, CBR-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD till PDF",
+    "subtitle": "Konvertera WordPerfect-dokument (WPD) till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "WPD-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS till PDF",
+    "subtitle": "Konvertera WPS Office-dokument till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "WPS-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML till PDF",
+    "subtitle": "Konvertera XML-dokument till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "XML-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages till PDF",
+    "subtitle": "Konvertera Apple Pages-dokument till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "Pages-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG till PDF",
+    "subtitle": "Konvertera OpenDocument Graphics (ODG)-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "ODG-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS till PDF",
+    "subtitle": "Konvertera OpenDocument Spreadsheet (ODS)-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "ODS-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP till PDF",
+    "subtitle": "Konvertera OpenDocument Presentation (ODP)-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "ODP-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB till PDF",
+    "subtitle": "Konvertera Microsoft Publisher (PUB)-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "PUB-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD till PDF",
+    "subtitle": "Konvertera Microsoft Visio (VSD, VSDX)-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "VSD, VSDX-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD till PDF",
+    "subtitle": "Konvertera Adobe Photoshop (PSD)-filer till PDF-format. Stöder flera filer.",
+    "acceptedFormats": "PSD-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF till SVG",
+    "subtitle": "Konvertera varje sida i en PDF till en skalbar vektorgrafik (SVG) för perfekt kvalitet i valfri storlek."
+  },
+  "extractTables": {
+    "name": "Extrahera PDF-tabeller",
+    "subtitle": "Extrahera tabeller från PDF-filer och exportera som CSV, JSON eller Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF till CSV",
+    "subtitle": "Extrahera tabeller från PDF och konvertera till CSV-format."
+  },
+  "pdfToExcel": {
+    "name": "PDF till Excel",
+    "subtitle": "Extrahera tabeller från PDF och konvertera till Excel (XLSX)-format."
+  },
+  "pdfToText": {
+    "name": "PDF till text",
+    "subtitle": "Extrahera text från PDF-filer och spara som vanlig text (.txt). Stöder flera filer.",
+    "note": "Detta verktyg fungerar ENDAST med digitalt skapade PDF:er. För scannade dokument eller bildbaserade PDF:er, använd vårt OCR PDF-verktyg istället.",
+    "convertButton": "Extrahera text"
+  },
+  "digitalSignPdf": {
+    "name": "Digital signatur PDF",
+    "pageTitle": "Digital signatur PDF - Lägg till kryptografisk signatur | BentoPDF",
+    "subtitle": "Lägg till en kryptografisk digital signatur på din PDF med X.509-certifikat. Stöder PKCS#12 (.pfx, .p12) och PEM-format. Din privata nyckel lämnar aldrig din webbläsare.",
+    "certificateSection": "Certifikat",
+    "uploadCert": "Ladda upp certifikat (.pfx, .p12)",
+    "certPassword": "Certifikatlösenord",
+    "certPasswordPlaceholder": "Ange certifikatlösenord",
+    "certInfo": "Certifikatinformation",
+    "certSubject": "Ämne",
+    "certIssuer": "Utfärdare",
+    "certValidity": "Giltig",
+    "signatureDetails": "Signaturdetaljer (Valfritt)",
+    "reason": "Anledning",
+    "reasonPlaceholder": "t.ex. Jag godkänner detta dokument",
+    "location": "Plats",
+    "locationPlaceholder": "t.ex. Stockholm, Sverige",
+    "contactInfo": "Kontaktinformation",
+    "contactPlaceholder": "t.ex. email@example.com",
+    "applySignature": "Applicera digital signatur",
+    "successMessage": "PDF signerad framgångsrikt! Signaturen kan verifieras i vilken PDF-läsare som helst."
+  },
+  "validateSignaturePdf": {
+    "name": "Validera PDF-signatur",
+    "pageTitle": "Validera PDF-signatur - Verifiera digitala signaturer | BentoPDF",
+    "subtitle": "Verifiera digitala signaturer i dina PDF-filer. Kontrollera certifikatgiltighet, visa signerardetaljer och bekräfta dokumentintegritet. All bearbetning sker i din webbläsare."
+  },
+  "emailToPdf": {
+    "name": "E-post till PDF",
+    "subtitle": "Konvertera e-postfiler (EML, MSG) till PDF-format. Stöder Outlook-exporter och standard e-postformat.",
+    "acceptedFormats": "EML, MSG-filer",
+    "convertButton": "Konvertera till PDF"
+  },
+  "fontToOutline": {
+    "name": "Typsnitt till kontur",
+    "subtitle": "Konvertera alla typsnitt till vektorkonturer för konsekvent rendering på alla enheter."
+  },
+  "deskewPdf": {
+    "name": "Räta upp PDF",
+    "subtitle": "Automatiskt räta upp snedvinklade scannade sidor med OpenCV."
+  },
+  "pdfToWord": {
+    "name": "PDF till Word",
+    "subtitle": "Konvertera PDF-filer till redigerbara Word-dokument."
+  },
+  "extractImages": {
+    "name": "Extrahera bilder",
+    "subtitle": "Extrahera alla inbäddade bilder från dina PDF-filer."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF till Markdown",
+    "subtitle": "Konvertera PDF-text och tabeller till Markdown-format."
+  },
+  "preparePdfForAi": {
+    "name": "Förbered PDF för AI",
+    "subtitle": "Extrahera PDF-innehåll som LlamaIndex JSON för RAG/LLM-pipelines."
+  },
+  "pdfOcg": {
+    "name": "PDF OCG",
+    "subtitle": "Visa, växla, lägg till och ta bort OCG-lager i din PDF."
+  },
+  "pdfToPdfa": {
+    "name": "PDF till PDF/A",
+    "subtitle": "Konvertera PDF till PDF/A för långtidsarkivering."
+  },
+  "rasterizePdf": {
+    "name": "Rasterisera PDF",
+    "subtitle": "Konvertera PDF till bildbaserad PDF. Platta till lager och ta bort valbar text."
+  },
+  "pdfWorkflow": {
+    "name": "PDF-arbetsflödesbyggare",
+    "subtitle": "Bygg anpassade PDF-bearbetningspipelines med en visuell nodredigerare.",
+    "nodes": "Noder",
+    "searchNodes": "Sök noder...",
+    "run": "Kör",
+    "clear": "Rensa",
+    "save": "Spara",
+    "load": "Ladda",
+    "export": "Exportera",
+    "import": "Importera",
+    "ready": "Redo",
+    "settings": "Inställningar",
+    "processing": "Bearbetar...",
+    "saveTemplate": "Spara mall",
+    "templateName": "Mallnamn",
+    "templatePlaceholder": "t.ex. Faktura-arbetsflöde",
+    "cancel": "Avbryt",
+    "loadTemplate": "Ladda mall",
+    "noTemplates": "Inga sparade mallar ännu.",
+    "ok": "OK",
+    "workflowCompleted": "Arbetsflöde klart",
+    "errorDuringExecution": "Fel under körning",
+    "addNodeError": "Lägg till minst en nod för att köra arbetsflödet.",
+    "needInputOutput": "Ditt arbetsflöde behöver minst en inmatningsnod och en utmatningsnod för att köra.",
+    "enterName": "Vänligen ange ett namn.",
+    "templateExists": "En mall med detta namn finns redan.",
+    "templateSaved": "Mallen \"{{name}}\" sparad.",
+    "templateLoaded": "Mallen \"{{name}}\" laddad.",
+    "failedLoadTemplate": "Det gick inte att ladda mallen.",
+    "noSettings": "Inga konfigurerbara inställningar för denna nod.",
+    "advancedSettings": "Avancerade inställningar"
+  }
+}

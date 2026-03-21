@@ -1,160 +1,271 @@
 // Logic for PDF Editor Page
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
-import { formatBytes } from '../utils/helpers.js';
+import { formatBytes, downloadFile } from '../utils/helpers.js';
 
 const embedPdfWasmUrl = new URL(
-    'embedpdf-snippet/dist/pdfium.wasm',
-    import.meta.url
+  'embedpdf-snippet/dist/pdfium.wasm',
+  import.meta.url
 ).href;
 
-let currentPdfUrl: string | null = null;
+let viewerInstance: any = null;
+let docManagerPlugin: any = null;
+let isViewerInitialized = false;
+const fileEntryMap = new Map<string, HTMLElement>();
+
+function resetViewer() {
+  const pdfWrapper = document.getElementById('embed-pdf-wrapper');
+  const pdfContainer = document.getElementById('embed-pdf-container');
+  const downloadBtn = document.getElementById('download-edited-pdf');
+  const fileDisplayArea = document.getElementById('file-display-area');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  if (pdfContainer) pdfContainer.textContent = '';
+  if (pdfWrapper) pdfWrapper.classList.add('hidden');
+  if (downloadBtn) downloadBtn.classList.add('hidden');
+  if (fileDisplayArea) fileDisplayArea.innerHTML = '';
+  if (fileInput) fileInput.value = '';
+  viewerInstance = null;
+  docManagerPlugin = null;
+  isViewerInitialized = false;
+  fileEntryMap.clear();
+}
+
+function removeFileEntry(documentId: string) {
+  const entry = fileEntryMap.get(documentId);
+  if (entry) {
+    entry.remove();
+    fileEntryMap.delete(documentId);
+  }
+  if (fileEntryMap.size === 0) {
+    resetViewer();
+  }
+}
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePage);
+  document.addEventListener('DOMContentLoaded', initializePage);
 } else {
-    initializePage();
+  initializePage();
 }
 
 function initializePage() {
-    createIcons({ icons });
+  createIcons({ icons });
 
-    const fileInput = document.getElementById('file-input') as HTMLInputElement;
-    const dropZone = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const dropZone = document.getElementById('drop-zone');
 
-    if (fileInput) {
-        fileInput.addEventListener('change', handleFileUpload);
-    }
+  if (fileInput) {
+    fileInput.addEventListener('change', handleFileUpload);
+  }
 
-    if (dropZone) {
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('border-indigo-500');
-        });
-
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('border-indigo-500');
-        });
-
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('border-indigo-500');
-            const files = e.dataTransfer?.files;
-            if (files && files.length > 0) {
-                handleFiles(files);
-            }
-        });
-
-        fileInput?.addEventListener('click', () => {
-            if (fileInput) fileInput.value = '';
-        });
-    }
-
-    document.getElementById('back-to-tools')?.addEventListener('click', () => {
-        window.location.href = import.meta.env.BASE_URL;
+  if (dropZone) {
+    dropZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropZone.classList.add('border-indigo-500');
     });
+
+    dropZone.addEventListener('dragleave', () => {
+      dropZone.classList.remove('border-indigo-500');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('border-indigo-500');
+      const files = e.dataTransfer?.files;
+      if (files && files.length > 0) {
+        handleFiles(files);
+      }
+    });
+
+    fileInput?.addEventListener('click', () => {
+      if (fileInput) fileInput.value = '';
+    });
+  }
+
+  document.getElementById('back-to-tools')?.addEventListener('click', () => {
+    window.location.href = import.meta.env.BASE_URL;
+  });
 }
 
 async function handleFileUpload(e: Event) {
-    const input = e.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-        await handleFiles(input.files);
-    }
+  const input = e.target as HTMLInputElement;
+  if (input.files && input.files.length > 0) {
+    await handleFiles(input.files);
+  }
 }
 
 async function handleFiles(files: FileList) {
-    const file = files[0];
-    if (!file || file.type !== 'application/pdf') {
-        showAlert('Invalid File', 'Please upload a valid PDF file.');
-        return;
-    }
+  const pdfFiles = Array.from(files).filter(
+    (f) => f.type === 'application/pdf'
+  );
+  if (pdfFiles.length === 0) {
+    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    return;
+  }
 
-    showLoader('Loading PDF Editor...');
+  showLoader('Loading PDF Editor...');
 
-    try {
-        const pdfWrapper = document.getElementById('embed-pdf-wrapper');
-        const pdfContainer = document.getElementById('embed-pdf-container');
-        const uploader = document.getElementById('tool-uploader');
-        const dropZone = document.getElementById('drop-zone');
-        const fileDisplayArea = document.getElementById('file-display-area');
+  try {
+    const pdfWrapper = document.getElementById('embed-pdf-wrapper');
+    const pdfContainer = document.getElementById('embed-pdf-container');
+    const fileDisplayArea = document.getElementById('file-display-area');
 
-        if (!pdfWrapper || !pdfContainer || !uploader || !dropZone || !fileDisplayArea) return;
+    if (!pdfWrapper || !pdfContainer || !fileDisplayArea) return;
 
+    if (!isViewerInitialized) {
+      const firstFile = pdfFiles[0];
+      const firstBuffer = await firstFile.arrayBuffer();
 
-        fileDisplayArea.innerHTML = '';
-        const fileDiv = document.createElement('div');
-        fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg';
+      pdfContainer.textContent = '';
+      pdfWrapper.classList.remove('hidden');
 
-        const infoContainer = document.createElement('div');
-        infoContainer.className = 'flex flex-col flex-1 min-w-0';
+      const { default: EmbedPDF } = await import('embedpdf-snippet');
+      viewerInstance = EmbedPDF.init({
+        type: 'container',
+        target: pdfContainer,
+        worker: true,
+        wasmUrl: embedPdfWasmUrl,
+        export: {
+          defaultFileName: firstFile.name,
+        },
+        documentManager: {
+          maxDocuments: 10,
+        },
+        tabBar: 'always',
+      });
 
-        const nameSpan = document.createElement('div');
-        nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
-        nameSpan.textContent = file.name;
+      const registry = await viewerInstance.registry;
+      docManagerPlugin = registry.getPlugin('document-manager').provides();
 
-        const metaSpan = document.createElement('div');
-        metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = formatBytes(file.size);
+      docManagerPlugin.onDocumentClosed((data: any) => {
+        const docId = data?.id || data;
+        removeFileEntry(docId);
+      });
 
-        infoContainer.append(nameSpan, metaSpan);
-
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
-        removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-        removeBtn.onclick = () => {
-            if (currentPdfUrl) {
-                URL.revokeObjectURL(currentPdfUrl);
-                currentPdfUrl = null;
-            }
-            pdfContainer.textContent = '';
-            pdfWrapper.classList.add('hidden');
-            fileDisplayArea.innerHTML = '';
-            const fileInput = document.getElementById('file-input') as HTMLInputElement;
-            if (fileInput) fileInput.value = '';
-        };
-
-        fileDiv.append(infoContainer, removeBtn);
-        fileDisplayArea.appendChild(fileDiv);
-        createIcons({ icons });
-
-        pdfContainer.textContent = '';
-        if (currentPdfUrl) {
-            URL.revokeObjectURL(currentPdfUrl);
+      docManagerPlugin.onDocumentOpened((data: any) => {
+        const docId = data?.id;
+        const docName = data?.name;
+        if (!docId) return;
+        const pendingEntry = fileDisplayArea.querySelector(
+          `[data-pending-name="${CSS.escape(docName)}"]`
+        ) as HTMLElement;
+        if (pendingEntry) {
+          pendingEntry.removeAttribute('data-pending-name');
+          fileEntryMap.set(docId, pendingEntry);
+          const removeBtn = pendingEntry.querySelector(
+            '[data-remove-btn]'
+          ) as HTMLElement;
+          if (removeBtn) {
+            removeBtn.onclick = () => {
+              docManagerPlugin.closeDocument(docId);
+            };
+          }
         }
-        pdfWrapper.classList.remove('hidden');
+      });
 
-        const fileURL = URL.createObjectURL(file);
-        currentPdfUrl = fileURL;
+      addFileEntries(fileDisplayArea, pdfFiles);
 
-        const { default: EmbedPDF } = await import('embedpdf-snippet');
-        EmbedPDF.init({
-            type: 'container',
-            target: pdfContainer,
-            src: fileURL,
-            worker: true,
-            wasmUrl: embedPdfWasmUrl,
+      docManagerPlugin.openDocumentBuffer({
+        buffer: firstBuffer,
+        name: firstFile.name,
+        autoActivate: true,
+      });
+
+      for (let i = 1; i < pdfFiles.length; i++) {
+        const buffer = await pdfFiles[i].arrayBuffer();
+        docManagerPlugin.openDocumentBuffer({
+          buffer,
+          name: pdfFiles[i].name,
+          autoActivate: false,
         });
+      }
 
-        // Update back button to reset state
-        const backBtn = document.getElementById('back-to-tools');
-        if (backBtn) {
-            // Clone to remove old listeners
-            const newBackBtn = backBtn.cloneNode(true);
-            backBtn.parentNode?.replaceChild(newBackBtn, backBtn);
+      isViewerInitialized = true;
 
-            newBackBtn.addEventListener('click', () => {
-                if (currentPdfUrl) {
-                    URL.revokeObjectURL(currentPdfUrl);
-                    currentPdfUrl = null;
-                }
-                window.location.href = import.meta.env.BASE_URL;
-            });
+      let downloadBtn = document.getElementById('download-edited-pdf');
+      if (!downloadBtn) {
+        downloadBtn = document.createElement('button');
+        downloadBtn.id = 'download-edited-pdf';
+        downloadBtn.className = 'btn-gradient w-full mt-6';
+        downloadBtn.textContent = 'Download Edited PDF';
+        pdfWrapper.appendChild(downloadBtn);
+      }
+      downloadBtn.classList.remove('hidden');
+
+      downloadBtn.onclick = async () => {
+        try {
+          const exportPlugin = registry.getPlugin('export').provides();
+          const arrayBuffer = await exportPlugin.saveAsCopy().toPromise();
+          const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+          downloadFile(blob, 'edited-document.pdf');
+        } catch (err) {
+          console.error('Error downloading PDF:', err);
+          showAlert('Error', 'Failed to download the edited PDF.');
         }
+      };
 
-    } catch (error) {
-        console.error('Error loading PDF Editor:', error);
-        showAlert('Error', 'Failed to load the PDF Editor.');
-    } finally {
-        hideLoader();
+      const backBtn = document.getElementById('back-to-tools');
+      if (backBtn) {
+        const newBackBtn = backBtn.cloneNode(true);
+        backBtn.parentNode?.replaceChild(newBackBtn, backBtn);
+
+        newBackBtn.addEventListener('click', () => {
+          window.location.href = import.meta.env.BASE_URL;
+        });
+      }
+    } else {
+      addFileEntries(fileDisplayArea, pdfFiles);
+
+      for (const file of pdfFiles) {
+        const buffer = await file.arrayBuffer();
+        docManagerPlugin.openDocumentBuffer({
+          buffer,
+          name: file.name,
+          autoActivate: true,
+        });
+      }
     }
+  } catch (error) {
+    console.error('Error loading PDF Editor:', error);
+    showAlert('Error', 'Failed to load the PDF Editor.');
+  } finally {
+    hideLoader();
+  }
+}
+
+function addFileEntries(fileDisplayArea: HTMLElement, files: File[]) {
+  for (const file of files) {
+    const fileDiv = document.createElement('div');
+    fileDiv.className =
+      'flex items-center justify-between bg-gray-700 p-3 rounded-lg';
+    fileDiv.setAttribute('data-pending-name', file.name);
+
+    const infoContainer = document.createElement('div');
+    infoContainer.className = 'flex flex-col flex-1 min-w-0';
+
+    const nameSpan = document.createElement('div');
+    nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
+    nameSpan.textContent = file.name;
+
+    const metaSpan = document.createElement('div');
+    metaSpan.className = 'text-xs text-gray-400';
+    metaSpan.textContent = formatBytes(file.size);
+
+    infoContainer.append(nameSpan, metaSpan);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
+    removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+    removeBtn.setAttribute('data-remove-btn', 'true');
+    removeBtn.onclick = () => {
+      fileDiv.remove();
+      if (fileDisplayArea.children.length === 0) {
+        resetViewer();
+      }
+    };
+
+    fileDiv.append(infoContainer, removeBtn);
+    fileDisplayArea.appendChild(fileDiv);
+  }
+
+  createIcons({ icons });
 }

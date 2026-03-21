@@ -1,0 +1,69 @@
+name = "bentopdf-wasm-proxy"
+main = "wasm-proxy-worker.js"
+compatibility_date = "2024-01-01"
+
+# =============================================================================
+# DEPLOYMENT
+# =============================================================================
+# Deploy this worker:
+#   cd cloudflare
+#   npx wrangler deploy -c wasm-wrangler.toml
+#
+# Set environment secrets (one of the following methods):
+#   Option A: Cloudflare Dashboard
+#     Go to Workers & Pages > bentopdf-wasm-proxy > Settings > Variables
+#     Add: PYMUPDF_SOURCE, GS_SOURCE, CPDF_SOURCE
+#
+#   Option B: Wrangler CLI
+#     npx wrangler secret put PYMUPDF_SOURCE -c wasm-wrangler.toml
+#     npx wrangler secret put GS_SOURCE -c wasm-wrangler.toml
+#     npx wrangler secret put CPDF_SOURCE -c wasm-wrangler.toml
+
+# =============================================================================
+# WASM SOURCE URLS
+# =============================================================================
+# Set these as secrets in the Cloudflare dashboard or via wrangler:
+#
+# PYMUPDF_SOURCE: Base URL to PyMuPDF WASM files
+#   Example: https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm/assets
+#            https://your-bucket.r2.cloudflarestorage.com/pymupdf
+#
+# GS_SOURCE: Base URL to Ghostscript WASM files
+#   Example: https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm/assets
+#            https://your-bucket.r2.cloudflarestorage.com/gs
+#
+# CPDF_SOURCE: Base URL to CoherentPDF files
+#   Example: https://cdn.jsdelivr.net/npm/coherentpdf/cpdf
+#            https://your-bucket.r2.cloudflarestorage.com/cpdf
+
+# =============================================================================
+# USAGE FROM BENTOPDF
+# =============================================================================
+# In BentoPDF's WASM Settings page, configure URLs like:
+#   PyMuPDF: https://wasm.bentopdf.com/pymupdf/
+#   Ghostscript: https://wasm.bentopdf.com/gs/
+#   CoherentPDF: https://wasm.bentopdf.com/cpdf/
+
+# =============================================================================
+# RATE LIMITING (Optional but recommended)
+# =============================================================================
+# Create KV namespace:
+#   npx wrangler kv namespace create "RATE_LIMIT_KV"
+#
+# Then uncomment and update the ID below:
+# [[kv_namespaces]]
+# binding = "RATE_LIMIT_KV"
+# id = "<YOUR_KV_NAMESPACE_ID>"
+
+# Use the same KV namespace as the CORS proxy if you want shared rate limiting
+[[kv_namespaces]]
+binding = "RATE_LIMIT_KV"
+id = "b88e030b308941118cd484e3fcb3ae49"
+
+# =============================================================================
+# CUSTOM DOMAIN (Optional)
+# =============================================================================
+# If you want a custom domain like wasm.bentopdf.com:
+# routes = [
+#   { pattern = "wasm.bentopdf.com/*", zone_name = "bentopdf.com" }
+# ]

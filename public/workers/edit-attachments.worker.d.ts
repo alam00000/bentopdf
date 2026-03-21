@@ -4,6 +4,7 @@ interface GetAttachmentsMessage {
   command: 'get-attachments';
   fileBuffer: ArrayBuffer;
   fileName: string;
+  cpdfUrl?: string;
 }
 
 interface EditAttachmentsMessage {
@@ -11,13 +12,21 @@ interface EditAttachmentsMessage {
   fileBuffer: ArrayBuffer;
   fileName: string;
   attachmentsToRemove: number[];
+  cpdfUrl?: string;
 }
 
-type EditAttachmentsWorkerMessage = GetAttachmentsMessage | EditAttachmentsMessage;
+type EditAttachmentsWorkerMessage =
+  | GetAttachmentsMessage
+  | EditAttachmentsMessage;
 
 interface GetAttachmentsSuccessResponse {
   status: 'success';
-  attachments: Array<{ index: number; name: string; page: number; data: ArrayBuffer }>;
+  attachments: Array<{
+    index: number;
+    name: string;
+    page: number;
+    data: ArrayBuffer;
+  }>;
   fileName: string;
 }
 
@@ -37,6 +46,12 @@ interface EditAttachmentsErrorResponse {
   message: string;
 }
 
-type GetAttachmentsResponse = GetAttachmentsSuccessResponse | GetAttachmentsErrorResponse;
-type EditAttachmentsResponse = EditAttachmentsSuccessResponse | EditAttachmentsErrorResponse;
-type EditAttachmentsWorkerResponse = GetAttachmentsResponse | EditAttachmentsResponse;
+type GetAttachmentsResponse =
+  | GetAttachmentsSuccessResponse
+  | GetAttachmentsErrorResponse;
+type EditAttachmentsResponse =
+  | EditAttachmentsSuccessResponse
+  | EditAttachmentsErrorResponse;
+type EditAttachmentsWorkerResponse =
+  | GetAttachmentsResponse
+  | EditAttachmentsResponse;

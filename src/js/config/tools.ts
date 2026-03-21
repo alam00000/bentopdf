@@ -1,13 +1,21 @@
 // This file centralizes the definition of all available tools, organized by category.
-export const categories = [
+const baseCategories = [
   {
     name: 'Popular Tools',
     tools: [
       {
+        href: import.meta.env.BASE_URL + 'pdf-workflow.html',
+        name: 'PDF Workflow Builder',
+        icon: 'ph-tree-structure',
+        subtitle:
+          'Build custom PDF processing pipelines with a visual node editor.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'pdf-multi-tool.html',
         name: 'PDF Multi Tool',
         icon: 'ph-pencil-ruler',
-        subtitle: 'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface.',
+        subtitle:
+          'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface.',
       },
       {
         href: import.meta.env.BASE_URL + 'merge-pdf.html',
@@ -101,6 +109,19 @@ export const categories = [
         subtitle: 'Insert page numbers into your document.',
       },
       {
+        href: import.meta.env.BASE_URL + 'add-page-labels.html',
+        name: 'Add Page Labels',
+        icon: 'ph-text-aa',
+        subtitle:
+          'Apply PDF page labels with Roman numerals, prefixes, and custom starts.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'bates-numbering.html',
+        name: 'Bates Numbering',
+        icon: 'ph-hash',
+        subtitle: 'Add sequential Bates numbers across one or more PDF files.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'add-watermark.html',
         name: 'Add Watermark',
         icon: 'ph-drop',
@@ -117,6 +138,18 @@ export const categories = [
         name: 'Invert Colors',
         icon: 'ph-circle-half',
         subtitle: 'Create a "dark mode" version of your PDF.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'scanner-effect.html',
+        name: 'Scanner Effect',
+        icon: 'ph-scan',
+        subtitle: 'Make your PDF look like a scanned document.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'adjust-colors.html',
+        name: 'Adjust Colors',
+        icon: 'ph-sliders-horizontal',
+        subtitle: 'Fine-tune brightness, contrast, saturation and more.',
       },
       {
         href: import.meta.env.BASE_URL + 'background-color.html',
@@ -158,7 +191,8 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'form-filler.html',
         name: 'PDF Form Filler',
         icon: 'ph-pencil-line',
-        subtitle: 'Fill in forms directly in the browser. Also supports XFA forms.',
+        subtitle:
+          'Fill in forms directly in the browser. Also supports XFA forms.',
       },
       {
         href: import.meta.env.BASE_URL + 'form-creator.html',
@@ -181,7 +215,8 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'image-to-pdf.html',
         name: 'Images to PDF',
         icon: 'ph-images',
-        subtitle: 'Convert JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP to PDF.',
+        subtitle:
+          'Convert JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP to PDF.',
       },
       {
         href: import.meta.env.BASE_URL + 'jpg-to-pdf.html',
@@ -235,7 +270,8 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'markdown-to-pdf.html',
         name: 'Markdown to PDF',
         icon: 'ph-markdown-logo',
-        subtitle: 'Convert Markdown to PDF with live preview and syntax highlighting.',
+        subtitle:
+          'Convert Markdown to PDF with live preview and syntax highlighting.',
       },
       {
         href: import.meta.env.BASE_URL + 'json-to-pdf.html',
@@ -367,7 +403,14 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'psd-to-pdf.html',
         name: 'PSD to PDF',
         icon: 'ph-image',
-        subtitle: 'Convert Adobe Photoshop (PSD) files to PDF. Multiple files supported.',
+        subtitle:
+          'Convert Adobe Photoshop (PSD) files to PDF. Multiple files supported.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'email-to-pdf.html',
+        name: 'Email to PDF',
+        icon: 'ph-envelope',
+        subtitle: 'Convert email files (EML, MSG) to PDF format.',
       },
     ],
   },
@@ -456,7 +499,8 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'prepare-pdf-for-ai.html',
         name: 'Prepare PDF for AI',
         icon: 'ph-sparkle',
-        subtitle: 'Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines.',
+        subtitle:
+          'Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines.',
       },
       {
         href: import.meta.env.BASE_URL + 'pdf-to-text.html',
@@ -485,7 +529,8 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'alternate-merge.html',
         name: 'Alternate & Mix Pages',
         icon: 'ph-shuffle',
-        subtitle: 'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks',
+        subtitle:
+          'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks',
       },
       {
         href: import.meta.env.BASE_URL + 'organize-pdf.html',
@@ -677,7 +722,21 @@ export const categories = [
         href: import.meta.env.BASE_URL + 'rasterize-pdf.html',
         name: 'Rasterize PDF',
         icon: 'ph-image',
-        subtitle: 'Convert PDF to image-based PDF. Flatten layers and remove selectable text.',
+        subtitle:
+          'Convert PDF to image-based PDF. Flatten layers and remove selectable text.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'deskew-pdf.html',
+        name: 'Deskew PDF',
+        icon: 'ph-perspective',
+        subtitle: 'Automatically straighten tilted scanned pages using OpenCV.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'font-to-outline.html',
+        name: 'Font to Outline',
+        icon: 'ph-text-outdent',
+        subtitle:
+          'Convert all fonts to vector outlines for consistent rendering.',
       },
     ],
   },
@@ -720,6 +779,32 @@ export const categories = [
         icon: 'ph-shield-check',
         subtitle: 'Set or change user permissions on a PDF.',
       },
+      {
+        href: import.meta.env.BASE_URL + 'digital-sign-pdf.html',
+        name: 'Digital Signature',
+        icon: 'ph-certificate',
+        subtitle:
+          'Add a cryptographic digital signature using X.509 certificates.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'validate-signature-pdf.html',
+        name: 'Validate Signature',
+        icon: 'ph-seal-check',
+        subtitle: 'Verify digital signatures and view certificate details.',
+      },
     ],
   },
 ];
+
+const getToolIdFromHref = (href: string): string => {
+  const match = href.match(/\/([^/]+)\.html$/);
+  return match?.[1] ?? href;
+};
+
+export const categories = baseCategories.map((category) => ({
+  ...category,
+  tools: category.tools.map((tool) => ({
+    ...tool,
+    id: getToolIdFromHref(tool.href),
+  })),
+}));

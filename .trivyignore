@@ -1,0 +1,3 @@
+# Dockerfile.nonroot intentionally starts as root to support PUID/PGID (LSIO pattern).
+# The entrypoint.sh creates the user at runtime and drops privileges via su-exec.
+DS-0002

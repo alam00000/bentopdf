@@ -3,16 +3,9 @@ import { downloadFile, parsePageRanges, getPDFDocument, formatBytes } from '../u
 import { PDFDocument, PageSizes } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { createIcons, icons } from 'lucide';
+import { PosterizeState } from '@/types';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
-
-interface PosterizeState {
-    file: File | null;
-    pdfJsDoc: pdfjsLib.PDFDocumentProxy | null;
-    pdfBytes: Uint8Array | null;
-    pageSnapshots: Record<number, ImageData>;
-    currentPage: number;
-}
 
 const pageState: PosterizeState = {
     file: null,
@@ -143,7 +136,7 @@ async function posterize() {
         const rows = parseInt((document.getElementById('posterize-rows') as HTMLInputElement).value) || 1;
         const cols = parseInt((document.getElementById('posterize-cols') as HTMLInputElement).value) || 1;
         const pageSizeKey = (document.getElementById('output-page-size') as HTMLSelectElement).value as keyof typeof PageSizes;
-        let orientation = (document.getElementById('output-orientation') as HTMLSelectElement).value;
+        const orientation = (document.getElementById('output-orientation') as HTMLSelectElement).value;
         const scalingMode = (document.querySelector('input[name="scaling-mode"]:checked') as HTMLInputElement).value;
         const overlap = parseFloat((document.getElementById('overlap') as HTMLInputElement).value) || 0;
         const overlapUnits = (document.getElementById('overlap-units') as HTMLSelectElement).value;

@@ -1,8 +1,14 @@
-import { downloadFile, formatBytes } from "../utils/helpers";
-import { initializeGlobalShortcuts } from "../utils/shortcuts-init.js";
+import { downloadFile, formatBytes } from '../utils/helpers';
+import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
+import { isCpdfAvailable } from '../utils/cpdf-helper.js';
+import {
+  showWasmRequiredDialog,
+  WasmProvider,
+} from '../utils/wasm-provider.js';
 
-
-const worker = new Worker(import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js');
+const worker = new Worker(
+  import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js'
+);
 
 let pdfFile: File | null = null;
 
@@ -55,12 +61,13 @@ function showStatus(
   type: 'success' | 'error' | 'info' = 'info'
 ) {
   statusMessage.textContent = message;
-  statusMessage.className = `mt-4 p-3 rounded-lg text-sm ${type === 'success'
-    ? 'bg-green-900 text-green-200'
-    : type === 'error'
-      ? 'bg-red-900 text-red-200'
-      : 'bg-blue-900 text-blue-200'
-    }`;
+  statusMessage.className = `mt-4 p-3 rounded-lg text-sm ${
+    type === 'success'
+      ? 'bg-green-900 text-green-200'
+      : type === 'error'
+        ? 'bg-red-900 text-red-200'
+        : 'bg-blue-900 text-blue-200'
+  }`;
   statusMessage.classList.remove('hidden');
 }
 
@@ -130,6 +137,12 @@ async function generateTableOfContents() {
     return;
   }
 
+  // Check if CPDF is configured
+  if (!isCpdfAvailable()) {
+    showWasmRequiredDialog('cpdf');
+    return;
+  }
+
   try {
     generateBtn.disabled = true;
     showStatus('Reading file (Main Thread)...', 'info');
@@ -143,13 +156,14 @@ async function generateTableOfContents() {
     const fontFamily = parseInt(fontFamilySelect.value, 10);
     const addBookmark = addBookmarkCheckbox.checked;
 
-    const message: GenerateTOCMessage = {
+    const message = {
       command: 'generate-toc',
       pdfData: arrayBuffer,
       title,
       fontSize,
       fontFamily,
       addBookmark,
+      cpdfUrl: WasmProvider.getUrl('cpdf')! + 'coherentpdf.browser.min.js',
     };
 
     worker.postMessage(message, [arrayBuffer]);
@@ -171,7 +185,10 @@ worker.onmessage = (e: MessageEvent<TOCWorkerResponse>) => {
     const pdfBytes = new Uint8Array(pdfBytesBuffer);
 
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    downloadFile(blob, pdfFile?.name.replace('.pdf', '_with_toc.pdf') || 'output_with_toc.pdf');
+    downloadFile(
+      blob,
+      pdfFile?.name.replace('.pdf', '_with_toc.pdf') || 'output_with_toc.pdf'
+    );
 
     showStatus(
       'Table of contents generated successfully! Download started.',
