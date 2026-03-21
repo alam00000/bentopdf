@@ -87,7 +87,7 @@
     "bwip-js": "^4.8.0",
     "cropperjs": "^1.6.2",
     "diff": "^8.0.3",
-    "embedpdf-snippet": "file:vendor/embedpdf/embedpdf-snippet-2.3.0.tgz",
+    "embedpdf-snippet": "file:vendor/embedpdf/embedpdf-snippet-2.9.1.tgz",
     "heic2any": "^0.0.4",
     "highlight.js": "^11.11.1",
     "html2canvas": "^1.4.1",
