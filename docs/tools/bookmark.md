@@ -28,6 +28,7 @@ The bookmark editor gives you full control over PDF navigation bookmarks (also c
 - Import bookmarks from CSV (title, page, level) or JSON files
 - Export bookmarks to CSV or JSON for external editing
 - Bookmark styling: color (red, blue, green, yellow, purple) and font style (bold, italic, bold italic)
+- Quick navigation: scroll through pages with page up/down keys
 
 ## Options
 

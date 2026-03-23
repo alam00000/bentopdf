@@ -1057,6 +1057,12 @@ document.addEventListener('keydown', (e: KeyboardEvent) => {
       e.preventDefault();
       redo();
     }
+  } else if (e.key === 'PageUp') {
+    e.preventDefault();
+    prevPageBtn?.click();
+  } else if (e.key === 'PageDown') {
+    e.preventDefault();
+    nextPageBtn?.click();
   }
 });
 
