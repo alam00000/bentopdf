@@ -47,7 +47,7 @@ services:
       - '3000:8080'
     restart: unless-stopped
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:8080']
+      test: ['CMD', 'wget', '--spider', '-q', 'http://localhost:8080']
       interval: 30s
       timeout: 10s
       retries: 3
@@ -423,7 +423,7 @@ Image=ghcr.io/alam00000/bentopdf:latest
 ContainerName=bentopdf
 PublishPort=3000:8080
 AutoUpdate=registry
-HealthCmd=curl -f http://localhost:8080 || exit 1
+HealthCmd=wget --spider -q http://localhost:8080 || exit 1
 HealthInterval=30s
 HealthTimeout=10s
 HealthRetries=3
