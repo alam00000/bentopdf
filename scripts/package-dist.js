@@ -26,12 +26,12 @@ import { pipeline } from 'stream';
 import { promisify } from 'util';
 import archiver from 'archiver';
 
-const buildOutputDir = path.resolve('./${buildOutputDirName}');
+const buildOutputDir = path.resolve(`./${buildOutputDirName}`);
 const zipPath = path.resolve(`./${buildOutputDirName}-${version}.zip`);
 
 // Check if dist directory exists
 if (!existsSync(buildOutputDir)) {
-  console.error('❌ ${buildOutputDirName} directory does not exist. Please run build first.');
+  console.error(`❌ ${buildOutputDirName} directory does not exist. Please run build first.`);
   process.exit(1);
 }
 
