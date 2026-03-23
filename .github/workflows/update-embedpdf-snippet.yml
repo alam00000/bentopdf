@@ -53,7 +53,7 @@ jobs:
 
       - name: Clone upstream embed-pdf-viewer
         if: steps.gate.outputs.run == 'true'
-        run: git clone --depth 1 --branch main https://github.com/alam00000/bentopdf-embed-pdf-viewer ./_upstream/embed-pdf-viewer
+        run: git clone --depth 1 --branch main https://github.com/embedpdf/embed-pdf-viewer ./_upstream/embed-pdf-viewer
 
       - name: Setup Node
         if: steps.gate.outputs.run == 'true'
