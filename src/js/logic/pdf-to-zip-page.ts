@@ -2,159 +2,173 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 interface PdfToZipState {
-    files: File[];
+  files: File[];
 }
 
 const pageState: PdfToZipState = {
-    files: [],
+  files: [],
 };
 
 function resetState() {
-    pageState.files = [];
+  pageState.files = [];
 
-    const fileDisplayArea = document.getElementById('file-display-area');
-    if (fileDisplayArea) fileDisplayArea.innerHTML = '';
+  const fileDisplayArea = document.getElementById('file-display-area');
+  if (fileDisplayArea) fileDisplayArea.innerHTML = '';
 
-    const toolOptions = document.getElementById('tool-options');
-    if (toolOptions) toolOptions.classList.add('hidden');
+  const toolOptions = document.getElementById('tool-options');
+  if (toolOptions) toolOptions.classList.add('hidden');
 
-    const fileInput = document.getElementById('file-input') as HTMLInputElement;
-    if (fileInput) fileInput.value = '';
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  if (fileInput) fileInput.value = '';
 }
 
 function updateUI() {
-    const fileDisplayArea = document.getElementById('file-display-area');
-    const toolOptions = document.getElementById('tool-options');
+  const fileDisplayArea = document.getElementById('file-display-area');
+  const toolOptions = document.getElementById('tool-options');
 
-    if (!fileDisplayArea) return;
+  if (!fileDisplayArea) return;
 
-    fileDisplayArea.innerHTML = '';
+  fileDisplayArea.innerHTML = '';
 
-    if (pageState.files.length > 0) {
-        pageState.files.forEach(function (file, index) {
-            const fileDiv = document.createElement('div');
-            fileDiv.className = 'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+  if (pageState.files.length > 0) {
+    pageState.files.forEach(function (file, index) {
+      const fileDiv = document.createElement('div');
+      fileDiv.className =
+        'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
 
-            const infoContainer = document.createElement('div');
-            infoContainer.className = 'flex flex-col overflow-hidden';
+      const infoContainer = document.createElement('div');
+      infoContainer.className = 'flex flex-col overflow-hidden';
 
-            const nameSpan = document.createElement('div');
-            nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
-            nameSpan.textContent = file.name;
+      const nameSpan = document.createElement('div');
+      nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
+      nameSpan.textContent = file.name;
 
-            const metaSpan = document.createElement('div');
-            metaSpan.className = 'text-xs text-gray-400';
-            metaSpan.textContent = formatBytes(file.size);
+      const metaSpan = document.createElement('div');
+      metaSpan.className = 'text-xs text-gray-400';
+      metaSpan.textContent = formatBytes(file.size);
 
-            infoContainer.append(nameSpan, metaSpan);
+      infoContainer.append(nameSpan, metaSpan);
 
-            const removeBtn = document.createElement('button');
-            removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
-            removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-            removeBtn.onclick = function () {
-                pageState.files = pageState.files.filter(function (_, i) { return i !== index; });
-                updateUI();
-            };
-
-            fileDiv.append(infoContainer, removeBtn);
-            fileDisplayArea.appendChild(fileDiv);
+      const removeBtn = document.createElement('button');
+      removeBtn.className =
+        'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
+      removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
+      removeBtn.onclick = function () {
+        pageState.files = pageState.files.filter(function (_, i) {
+          return i !== index;
         });
+        updateUI();
+      };
 
-        createIcons({ icons });
+      fileDiv.append(infoContainer, removeBtn);
+      fileDisplayArea.appendChild(fileDiv);
+    });
 
-        if (toolOptions) toolOptions.classList.remove('hidden');
-    } else {
-        if (toolOptions) toolOptions.classList.add('hidden');
-    }
+    createIcons({ icons });
+
+    if (toolOptions) toolOptions.classList.remove('hidden');
+  } else {
+    if (toolOptions) toolOptions.classList.add('hidden');
+  }
 }
 
 async function createZipArchive() {
-    if (pageState.files.length === 0) {
-        showAlert('No Files', 'Please select PDF files to create a ZIP archive.');
-        return;
+  if (pageState.files.length === 0) {
+    showAlert('No Files', 'Please select PDF files to create a ZIP archive.');
+    return;
+  }
+
+  showLoader('Creating ZIP archive...');
+
+  try {
+    const zip = new JSZip();
+    const usedNames = new Set<string>();
+
+    for (let i = 0; i < pageState.files.length; i++) {
+      const file = pageState.files[i];
+      showLoader(`Adding ${file.name} (${i + 1}/${pageState.files.length})...`);
+      const arrayBuffer = await file.arrayBuffer();
+      const zipEntryName = deduplicateFileName(file.name, usedNames);
+      zip.file(zipEntryName, arrayBuffer);
     }
 
-    showLoader('Creating ZIP archive...');
+    showLoader('Generating ZIP file...');
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
 
-    try {
-        const zip = new JSZip();
+    downloadFile(zipBlob, 'pdfs_archive.zip');
 
-        for (let i = 0; i < pageState.files.length; i++) {
-            const file = pageState.files[i];
-            showLoader(`Adding ${file.name} (${i + 1}/${pageState.files.length})...`);
-            const arrayBuffer = await file.arrayBuffer();
-            zip.file(file.name, arrayBuffer);
-        }
-
-        showLoader('Generating ZIP file...');
-        const zipBlob = await zip.generateAsync({ type: 'blob' });
-
-        downloadFile(zipBlob, 'pdfs_archive.zip');
-
-        showAlert('Success', 'ZIP archive created successfully!', 'success', function () {
-            resetState();
-        });
-    } catch (e) {
-        console.error(e);
-        showAlert('Error', 'Could not create ZIP archive.');
-    } finally {
-        hideLoader();
-    }
+    showAlert(
+      'Success',
+      'ZIP archive created successfully!',
+      'success',
+      function () {
+        resetState();
+      }
+    );
+  } catch (e) {
+    console.error(e);
+    showAlert('Error', 'Could not create ZIP archive.');
+  } finally {
+    hideLoader();
+  }
 }
 
 function handleFileSelect(files: FileList | null) {
-    if (files && files.length > 0) {
-        const pdfFiles = Array.from(files).filter(function (f) {
-            return f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf');
-        });
-        if (pdfFiles.length > 0) {
-            pageState.files = [...pageState.files, ...pdfFiles];
-            updateUI();
-        }
+  if (files && files.length > 0) {
+    const pdfFiles = Array.from(files).filter(function (f) {
+      return (
+        f.type === 'application/pdf' || f.name.toLowerCase().endsWith('.pdf')
+      );
+    });
+    if (pdfFiles.length > 0) {
+      pageState.files = [...pageState.files, ...pdfFiles];
+      updateUI();
     }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const fileInput = document.getElementById('file-input') as HTMLInputElement;
-    const dropZone = document.getElementById('drop-zone');
-    const processBtn = document.getElementById('process-btn');
-    const backBtn = document.getElementById('back-to-tools');
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const dropZone = document.getElementById('drop-zone');
+  const processBtn = document.getElementById('process-btn');
+  const backBtn = document.getElementById('back-to-tools');
 
-    if (backBtn) {
-        backBtn.addEventListener('click', function () {
-            window.location.href = import.meta.env.BASE_URL;
-        });
-    }
+  if (backBtn) {
+    backBtn.addEventListener('click', function () {
+      window.location.href = import.meta.env.BASE_URL;
+    });
+  }
 
-    if (fileInput && dropZone) {
-        fileInput.addEventListener('change', function (e) {
-            handleFileSelect((e.target as HTMLInputElement).files);
-        });
+  if (fileInput && dropZone) {
+    fileInput.addEventListener('change', function (e) {
+      handleFileSelect((e.target as HTMLInputElement).files);
+    });
 
-        dropZone.addEventListener('dragover', function (e) {
-            e.preventDefault();
-            dropZone.classList.add('bg-gray-700');
-        });
+    dropZone.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      dropZone.classList.add('bg-gray-700');
+    });
 
-        dropZone.addEventListener('dragleave', function (e) {
-            e.preventDefault();
-            dropZone.classList.remove('bg-gray-700');
-        });
+    dropZone.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      dropZone.classList.remove('bg-gray-700');
+    });
 
-        dropZone.addEventListener('drop', function (e) {
-            e.preventDefault();
-            dropZone.classList.remove('bg-gray-700');
-            handleFileSelect(e.dataTransfer?.files || null);
-        });
+    dropZone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dropZone.classList.remove('bg-gray-700');
+      handleFileSelect(e.dataTransfer?.files || null);
+    });
 
-        fileInput.addEventListener('click', function () {
-            fileInput.value = '';
-        });
-    }
+    fileInput.addEventListener('click', function () {
+      fileInput.value = '';
+    });
+  }
 
-    if (processBtn) {
-        processBtn.addEventListener('click', createZipArchive);
-    }
+  if (processBtn) {
+    processBtn.addEventListener('click', createZipArchive);
+  }
 });

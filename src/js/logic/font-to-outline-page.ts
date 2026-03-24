@@ -5,6 +5,7 @@ import { isGhostscriptAvailable } from '../utils/ghostscript-dynamic-loader.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 interface FontToOutlineState {
   files: File[];
@@ -128,6 +129,7 @@ async function processFiles() {
       if (loaderText) loaderText.textContent = 'Processing multiple PDFs...';
 
       const zip = new JSZip();
+      const usedNames = new Set<string>();
       let processedCount = 0;
 
       for (let i = 0; i < pageState.files.length; i++) {
@@ -139,7 +141,11 @@ async function processFiles() {
           const resultBlob = await convertFileToOutlines(file, () => {});
           const arrayBuffer = await resultBlob.arrayBuffer();
           const baseName = file.name.replace(/\.pdf$/i, '');
-          zip.file(`${baseName}_outlined.pdf`, arrayBuffer);
+          const zipEntryName = deduplicateFileName(
+            `${baseName}_outlined.pdf`,
+            usedNames
+          );
+          zip.file(zipEntryName, arrayBuffer);
           processedCount++;
         } catch (e) {
           console.error(`Error processing ${file.name}:`, e);

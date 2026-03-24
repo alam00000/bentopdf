@@ -4,6 +4,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 let files: File[] = [];
 let pymupdf: any = null;
@@ -196,6 +197,7 @@ async function extractText() {
 
       const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
+      const usedNames = new Set<string>();
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
@@ -206,7 +208,8 @@ async function extractText() {
         const fullText = await mupdf.pdfToText(file);
 
         const baseName = file.name.replace(/\.pdf$/i, '');
-        zip.file(`${baseName}.txt`, fullText);
+        const zipEntryName = deduplicateFileName(`${baseName}.txt`, usedNames);
+        zip.file(zipEntryName, fullText);
       }
 
       const zipBlob = await zip.generateAsync({ type: 'blob' });

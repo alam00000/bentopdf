@@ -4,6 +4,7 @@ import {
   formatBytes,
   readFileAsArrayBuffer,
 } from '../utils/helpers';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import {
@@ -144,10 +145,12 @@ worker.onmessage = async (e: MessageEvent) => {
       showStatus('Creating ZIP file...', 'info');
 
       const zip = new JSZip();
+      const usedNames = new Set<string>();
       jsonFiles.forEach(({ name, data }) => {
         const jsonName = name.replace(/\.pdf$/i, '.json');
         const uint8Array = new Uint8Array(data);
-        zip.file(jsonName, uint8Array);
+        const zipEntryName = deduplicateFileName(jsonName, usedNames);
+        zip.file(zipEntryName, uint8Array);
       });
 
       const zipBlob = await zip.generateAsync({ type: 'blob' });

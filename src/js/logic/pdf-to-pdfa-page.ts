@@ -11,6 +11,7 @@ import { createIcons, icons } from 'lucide';
 import { convertFileToPdfA, type PdfALevel } from '../utils/ghostscript-loader';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -169,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoader('Converting multiple PDFs to PDF/A...');
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
+        const usedNames = new Set<string>();
 
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
@@ -182,7 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
           const baseName = file.name.replace(/\.pdf$/i, '');
           const blobBuffer = await convertedBlob.arrayBuffer();
-          zip.file(`${baseName}_pdfa.pdf`, blobBuffer);
+          const zipEntryName = deduplicateFileName(
+            `${baseName}_pdfa.pdf`,
+            usedNames
+          );
+          zip.file(zipEntryName, blobBuffer);
         }
 
         const zipBlob = await zip.generateAsync({ type: 'blob' });

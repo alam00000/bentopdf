@@ -8,9 +8,8 @@ import {
 } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -132,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Multiple files - create ZIP
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
+        const usedNames = new Set<string>();
 
         for (const file of state.files) {
           try {
@@ -142,7 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const llamaDocs = await (pymupdf as any).pdfToLlamaIndex(file);
             const outName = file.name.replace(/\.pdf$/i, '') + '_llm.json';
             const jsonContent = JSON.stringify(llamaDocs, null, 2);
-            zip.file(outName, jsonContent);
+            const zipEntryName = deduplicateFileName(outName, usedNames);
+            zip.file(zipEntryName, jsonContent);
 
             completed++;
           } catch (error) {

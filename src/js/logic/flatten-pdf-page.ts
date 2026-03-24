@@ -8,6 +8,7 @@ import { PDFDocument } from 'pdf-lib';
 import { flattenAnnotations } from '../utils/flatten-annotations.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { FlattenPdfState } from '@/types';
 
 const pageState: FlattenPdfState = {
@@ -138,7 +139,7 @@ async function flattenPdf() {
 
       const newPdfBytes = await pdfDoc.save();
       downloadFile(
-        new Blob([newPdfBytes as BlobPart], { type: 'application/pdf' }),
+        new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
         `flattened_${file.name}`
       );
       if (loaderModal) loaderModal.classList.add('hidden');
@@ -147,6 +148,7 @@ async function flattenPdf() {
       if (loaderText) loaderText.textContent = 'Flattening multiple PDFs...';
 
       const zip = new JSZip();
+      const usedNames = new Set<string>();
       let processedCount = 0;
 
       for (let i = 0; i < pageState.files.length; i++) {
@@ -178,7 +180,11 @@ async function flattenPdf() {
           }
 
           const flattenedBytes = await pdfDoc.save();
-          zip.file(`flattened_${file.name}`, flattenedBytes);
+          const zipEntryName = deduplicateFileName(
+            `flattened_${file.name}`,
+            usedNames
+          );
+          zip.file(zipEntryName, flattenedBytes);
           processedCount++;
         } catch (e) {
           console.error(`Error processing ${file.name}:`, e);

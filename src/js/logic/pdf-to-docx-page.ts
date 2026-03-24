@@ -11,6 +11,7 @@ import { createIcons, icons } from 'lucide';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -124,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoader('Converting multiple PDFs...');
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
+        const usedNames = new Set<string>();
 
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
@@ -134,7 +136,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const docxBlob = await pymupdf.pdfToDocx(file);
           const baseName = file.name.replace(/\.pdf$/i, '');
           const arrayBuffer = await docxBlob.arrayBuffer();
-          zip.file(`${baseName}.docx`, arrayBuffer);
+          const zipEntryName = deduplicateFileName(
+            `${baseName}.docx`,
+            usedNames
+          );
+          zip.file(zipEntryName, arrayBuffer);
         }
 
         showLoader('Creating ZIP archive...');

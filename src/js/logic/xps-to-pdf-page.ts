@@ -5,6 +5,7 @@ import { createIcons, icons } from 'lucide';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 const FILETYPE = 'xps';
 const EXTENSIONS = ['.xps', '.oxps'];
@@ -114,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoader('Converting files...');
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
+        const usedNames = new Set<string>();
 
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
@@ -126,7 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           const baseName = file.name.replace(/\.[^.]+$/, '');
           const pdfBuffer = await pdfBlob.arrayBuffer();
-          zip.file(`${baseName}.pdf`, pdfBuffer);
+          const zipEntryName = deduplicateFileName(
+            `${baseName}.pdf`,
+            usedNames
+          );
+          zip.file(zipEntryName, pdfBuffer);
         }
 
         const zipBlob = await zip.generateAsync({ type: 'blob' });

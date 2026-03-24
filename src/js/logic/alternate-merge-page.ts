@@ -4,6 +4,7 @@ import { downloadFile, formatBytes, getPDFDocument } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import Sortable from 'sortablejs';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
+import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import {
   showWasmRequiredDialog,
   WasmProvider,
@@ -72,19 +73,21 @@ async function updateUI() {
     fileList.innerHTML = '';
 
     try {
-      for (const file of pageState.files) {
+      for (let i = 0; i < pageState.files.length; i++) {
+        const file = pageState.files[i];
+        const fileKey = makeUniqueFileKey(i, file.name);
         const arrayBuffer = await file.arrayBuffer();
-        pageState.pdfBytes.set(file.name, arrayBuffer);
+        pageState.pdfBytes.set(fileKey, arrayBuffer);
 
         const bytesForPdfJs = arrayBuffer.slice(0);
         const pdfjsDoc = await getPDFDocument({ data: bytesForPdfJs }).promise;
-        pageState.pdfDocs.set(file.name, pdfjsDoc);
+        pageState.pdfDocs.set(fileKey, pdfjsDoc);
         const pageCount = pdfjsDoc.numPages;
 
         const li = document.createElement('li');
         li.className =
           'bg-gray-700 p-3 rounded-lg border border-gray-600 flex items-center justify-between';
-        li.dataset.fileName = file.name;
+        li.dataset.fileName = fileKey;
 
         const infoDiv = document.createElement('div');
         infoDiv.className = 'flex items-center gap-2 truncate flex-1';
