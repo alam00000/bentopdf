@@ -289,6 +289,36 @@
     "loadingVips": "Beeldprocessor laden...",
     "converting": "Converteren naar TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF naar CBZ",
+    "subtitle": "Converteer een PDF naar een CBZ (Comic Book Archive) bestand voor striplezers.",
+    "imageFormat": "Afbeeldingsformaat",
+    "quality": "Beeldkwaliteit",
+    "qualityExplanation": "Hogere kwaliteit = groter bestandsformaat",
+    "scale": "Schaal",
+    "scaleExplanation": "Hogere schaal = betere kwaliteit voor hoge-resolutieschermen",
+    "grayscale": "Converteren naar grijswaarden",
+    "manga": "Mangamodus (rechts-naar-links)",
+    "includeMetadata": "ComicInfo.xml-metadata opnemen",
+    "titleLabel": "Titel",
+    "seriesLabel": "Serie",
+    "authorLabel": "Auteur(s)",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Uitgever",
+    "tagsLabel": "Tags / Genre",
+    "yearLabel": "Publicatiejaar",
+    "ratingLabel": "Beoordeling (0-5)",
+    "converting": "Converteren naar CBZ...",
+    "alert": {
+      "invalidFile": "Ongeldig bestand",
+      "invalidFileExplanation": "Upload een PDF-bestand.",
+      "noFile": "Geen bestand",
+      "noFileExplanation": "Upload eerst een PDF-bestand.",
+      "conversionSuccess": "PDF succesvol geconverteerd naar CBZ!",
+      "conversionError": "Kan PDF niet converteren naar CBZ. Het bestand is mogelijk beschadigd."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF naar Grijswaarden",
     "subtitle": "Converteer alle kleuren naar zwart-wit."

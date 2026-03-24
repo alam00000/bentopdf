@@ -289,6 +289,36 @@
     "loadingVips": "Görüntü işlemci yükleniyor...",
     "converting": "TIFF'e dönüştürülüyor..."
   },
+  "pdfToCbz": {
+    "name": "PDF'den CBZ'ye",
+    "subtitle": "Çizgi roman okuyucuları için bir PDF'yi CBZ (Çizgi Roman Arşivi) dosyasına dönüştürün.",
+    "imageFormat": "Görüntü Formatı",
+    "quality": "Görüntü Kalitesi",
+    "qualityExplanation": "Daha yüksek kalite = daha büyük dosya boyutu",
+    "scale": "Ölçek",
+    "scaleExplanation": "Daha yüksek ölçek = yüksek çözünürlüklü ekranlar için daha iyi kalite",
+    "grayscale": "Gri tonlamaya dönüştür",
+    "manga": "Manga modu (sağdan sola)",
+    "includeMetadata": "ComicInfo.xml meta verilerini dahil et",
+    "titleLabel": "Başlık",
+    "seriesLabel": "Seri",
+    "authorLabel": "Yazar(lar)",
+    "numberLabel": "#",
+    "volumeLabel": "Cilt",
+    "publisherLabel": "Yayıncı",
+    "tagsLabel": "Etiketler / Tür",
+    "yearLabel": "Yayın Yılı",
+    "ratingLabel": "Puan (0-5)",
+    "converting": "CBZ'ye dönüştürülüyor...",
+    "alert": {
+      "invalidFile": "Geçersiz Dosya",
+      "invalidFileExplanation": "Lütfen bir PDF dosyası yükleyin.",
+      "noFile": "Dosya Yok",
+      "noFileExplanation": "Lütfen önce bir PDF dosyası yükleyin.",
+      "conversionSuccess": "PDF başarıyla CBZ'ye dönüştürüldü!",
+      "conversionError": "PDF, CBZ'ye dönüştürülemedi. Dosya bozuk olabilir."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF'yi Gri Tonlamaya Çevir",
     "subtitle": "Tüm renkleri siyah beyaza çevirin."

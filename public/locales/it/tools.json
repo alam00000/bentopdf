@@ -289,6 +289,36 @@
     "loadingVips": "Caricamento processore immagini...",
     "converting": "Conversione in TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF in CBZ",
+    "subtitle": "Converti un PDF in un file CBZ (Archivio Fumetti) per lettori di fumetti.",
+    "imageFormat": "Formato Immagine",
+    "quality": "Qualità Immagine",
+    "qualityExplanation": "Qualità più alta = dimensione file più grande",
+    "scale": "Scala",
+    "scaleExplanation": "Scala più alta = migliore qualità per schermi ad alta risoluzione",
+    "grayscale": "Converti in scala di grigi",
+    "manga": "Modalità manga (da destra a sinistra)",
+    "includeMetadata": "Includi metadati ComicInfo.xml",
+    "titleLabel": "Titolo",
+    "seriesLabel": "Serie",
+    "authorLabel": "Autore/i",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Editore",
+    "tagsLabel": "Tag / Genere",
+    "yearLabel": "Anno di pubblicazione",
+    "ratingLabel": "Valutazione (0-5)",
+    "converting": "Conversione in CBZ...",
+    "alert": {
+      "invalidFile": "File Non Valido",
+      "invalidFileExplanation": "Carica un file PDF.",
+      "noFile": "Nessun File",
+      "noFileExplanation": "Carica prima un file PDF.",
+      "conversionSuccess": "PDF convertito in CBZ con successo!",
+      "conversionError": "Impossibile convertire il PDF in CBZ. Il file potrebbe essere danneggiato."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF in Scala di Grigi",
     "subtitle": "Converti tutti i colori in scala di grigi."

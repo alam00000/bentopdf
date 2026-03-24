@@ -179,6 +179,7 @@ const init = async () => {
     'PDF to WebP': 'tools:pdfToWebp',
     'PDF to BMP': 'tools:pdfToBmp',
     'PDF to TIFF': 'tools:pdfToTiff',
+    'PDF to CBZ': 'tools:pdfToCbz',
     'PDF to Greyscale': 'tools:pdfToGreyscale',
     'PDF to JSON': 'tools:pdfToJson',
     'OCR PDF': 'tools:ocrPdf',

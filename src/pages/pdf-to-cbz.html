@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+      PDF to CBZ Converter Free Online - Comic Book Archive | BentoPDF
+    </title>
+    <meta
+      name="title"
+      content="PDF to CBZ Converter Free Online - Comic Book Archive | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="★ Convert PDF to CBZ (Comic Book Archive) online free ★ No signup ★ Unlimited files ★ Privacy-first ★ Works in browser ★ Fast & secure"
+    />
+    <meta
+      name="keywords"
+      content="pdf to cbz, pdf to comic book, comic book archive, cbz converter, manga converter"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <link rel="canonical" href="https://www.bentopdf.com/pdf-to-cbz.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/pdf-to-cbz" />
+    <meta
+      property="og:title"
+      content="PDF to CBZ Converter Free Online - Comic Book Archive | BentoPDF"
+    />
+    <meta
+      property="og:description"
+      content="★ Convert PDF to CBZ online free ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-pdf-to-cbz.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.bentopdf.com/pdf-to-cbz" />
+    <meta name="twitter:title" content="PDF to CBZ Free" />
+    <meta
+      name="twitter:description"
+      content="★ Convert PDF to CBZ online free ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.bentopdf.com/images/twitter-pdf-to-cbz.png"
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PDF to CBZ" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
+
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools">
+            Back to Tools
+          </span>
+        </button>
+
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:pdfToCbz.name"
+        >
+          PDF to CBZ
+        </h1>
+        <p class="text-gray-400 mb-6" data-i18n="tools:pdfToCbz.subtitle">
+          Convert a PDF into a CBZ (Comic Book Archive) file for comic readers.
+        </p>
+
+        <div
+          id="drop-zone"
+          class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i
+              data-lucide="upload-cloud"
+              class="w-10 h-10 mb-3 text-gray-400"
+            ></i>
+            <p class="mb-2 text-sm text-gray-400">
+              <span class="font-semibold" data-i18n="upload.clickToSelect"
+                >Click to select a file</span
+              >
+              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+            </p>
+            <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
+              A single PDF file
+            </p>
+            <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+              Your files never leave your device.
+            </p>
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            accept="application/pdf"
+          />
+        </div>
+
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+        <div id="options-panel" class="hidden mt-6 space-y-4">
+          <div>
+            <label
+              for="cbz-format"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToCbz.imageFormat"
+              >Image Format</label
+            >
+            <select
+              id="cbz-format"
+              class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            >
+              <option value="jpeg">JPEG</option>
+              <option value="png">PNG</option>
+              <option value="webp">WebP</option>
+            </select>
+          </div>
+
+          <div id="quality-section">
+            <label
+              for="cbz-quality"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToCbz.quality"
+              >Image Quality</label
+            >
+            <div class="flex items-center gap-4">
+              <input
+                type="range"
+                id="cbz-quality"
+                min="50"
+                max="100"
+                step="1"
+                value="85"
+                class="flex-1"
+              />
+              <span
+                id="cbz-quality-value"
+                class="text-white font-medium w-16 text-right"
+                >85%</span
+              >
+            </div>
+            <p
+              class="mt-1 text-xs text-gray-400"
+              data-i18n="tools:pdfToCbz.qualityExplanation"
+            >
+              Higher quality = larger file size
+            </p>
+          </div>
+
+          <div>
+            <label
+              for="cbz-scale"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToCbz.scale"
+              >Scale</label
+            >
+            <div class="flex items-center gap-4">
+              <input
+                type="range"
+                id="cbz-scale"
+                min="1.0"
+                max="4.0"
+                step="0.1"
+                value="2.0"
+                class="flex-1"
+              />
+              <span
+                id="cbz-scale-value"
+                class="text-white font-medium w-16 text-right"
+                >2.0x</span
+              >
+            </div>
+            <p
+              class="mt-1 text-xs text-gray-400"
+              data-i18n="tools:pdfToCbz.scaleExplanation"
+            >
+              Higher scale = better quality for high-res screens
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="cbz-grayscale"
+              class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500"
+            />
+            <label
+              for="cbz-grayscale"
+              class="text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToCbz.grayscale"
+              >Convert to grayscale</label
+            >
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="cbz-manga"
+              class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500"
+            />
+            <label
+              for="cbz-manga"
+              class="text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToCbz.manga"
+              >Manga mode (right-to-left)</label
+            >
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="cbz-metadata"
+              class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500"
+              checked
+            />
+            <label
+              for="cbz-metadata"
+              class="text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToCbz.includeMetadata"
+              >Include ComicInfo.xml metadata</label
+            >
+          </div>
+
+          <div id="metadata-section" class="space-y-3 pl-7">
+            <div>
+              <label
+                for="cbz-title"
+                class="block mb-1 text-xs font-medium text-gray-400"
+                data-i18n="tools:pdfToCbz.titleLabel"
+                >Title</label
+              >
+              <input
+                type="text"
+                id="cbz-title"
+                class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                placeholder="Auto-detected from filename"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label
+                  for="cbz-series"
+                  class="block mb-1 text-xs font-medium text-gray-400"
+                  data-i18n="tools:pdfToCbz.seriesLabel"
+                  >Series</label
+                >
+                <input
+                  type="text"
+                  id="cbz-series"
+                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label
+                    for="cbz-number"
+                    class="block mb-1 text-xs font-medium text-gray-400"
+                    data-i18n="tools:pdfToCbz.numberLabel"
+                    >#</label
+                  >
+                  <input
+                    type="number"
+                    id="cbz-number"
+                    min="0"
+                    step="0.1"
+                    class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="1"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="cbz-volume"
+                    class="block mb-1 text-xs font-medium text-gray-400"
+                    data-i18n="tools:pdfToCbz.volumeLabel"
+                    >Vol.</label
+                  >
+                  <input
+                    type="number"
+                    id="cbz-volume"
+                    min="1"
+                    step="1"
+                    class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="1"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label
+                  for="cbz-author"
+                  class="block mb-1 text-xs font-medium text-gray-400"
+                  data-i18n="tools:pdfToCbz.authorLabel"
+                  >Author(s)</label
+                >
+                <input
+                  type="text"
+                  id="cbz-author"
+                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label
+                  for="cbz-publisher"
+                  class="block mb-1 text-xs font-medium text-gray-400"
+                  data-i18n="tools:pdfToCbz.publisherLabel"
+                  >Publisher</label
+                >
+                <input
+                  type="text"
+                  id="cbz-publisher"
+                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                for="cbz-tags"
+                class="block mb-1 text-xs font-medium text-gray-400"
+                data-i18n="tools:pdfToCbz.tagsLabel"
+                >Tags / Genre</label
+              >
+              <input
+                type="text"
+                id="cbz-tags"
+                class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                placeholder="Action, Adventure, Sci-Fi"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label
+                  for="cbz-year"
+                  class="block mb-1 text-xs font-medium text-gray-400"
+                  data-i18n="tools:pdfToCbz.yearLabel"
+                  >Published Year</label
+                >
+                <input
+                  type="number"
+                  id="cbz-year"
+                  min="1900"
+                  max="2100"
+                  step="1"
+                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="2024"
+                />
+              </div>
+              <div>
+                <label
+                  for="cbz-rating"
+                  class="block mb-1 text-xs font-medium text-gray-400"
+                  data-i18n="tools:pdfToCbz.ratingLabel"
+                  >Rating (0-5)</label
+                >
+                <input
+                  type="number"
+                  id="cbz-rating"
+                  min="0"
+                  max="5"
+                  step="0.5"
+                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            id="process-btn"
+            class="btn-gradient w-full"
+            data-i18n="common.convert"
+          >
+            Convert
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
+        <p id="loader-text" class="text-white text-lg font-medium">
+          Processing...
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3
+          id="alert-title"
+          class="text-xl font-bold text-white mb-2"
+          data-i18n="alert.title"
+        >
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
+        data-i18n="howItWorks.title"
+      >
+        How It Works
+      </h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            1
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">Upload PDF</h3>
+            <p class="text-gray-400">
+              Select the PDF you want to convert to a comic book archive
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            2
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">
+              Choose Settings
+            </h3>
+            <p class="text-gray-400">
+              Pick image format, quality, and optional metadata
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            3
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-white mb-1">Download CBZ</h3>
+            <p class="text-gray-400">
+              Get your .cbz file ready for any comic book reader
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="relatedTools.title"
+      >
+        Related PDF Tools
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <a
+          href="pdf-to-jpg.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">PDF to JPG</h3>
+          <p class="text-gray-400 text-sm">Convert PDF pages to JPG images</p>
+        </a>
+        <a
+          href="pdf-to-png.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">PDF to PNG</h3>
+          <p class="text-gray-400 text-sm">Convert PDF pages to PNG images</p>
+        </a>
+        <a
+          href="pdf-to-tiff.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">PDF to TIFF</h3>
+          <p class="text-gray-400 text-sm">Convert PDF pages to TIFF images</p>
+        </a>
+        <a
+          href="extract-images.html"
+          class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
+        >
+          <h3 class="text-white font-semibold mb-1">Extract Images</h3>
+          <p class="text-gray-400 text-sm">Extract all images from a PDF</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="faq.sectionTitle"
+      >
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            What is a CBZ file?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            CBZ (Comic Book ZIP) is a popular format for digital comics and
+            manga. It's simply a ZIP archive containing page images, supported
+            by most comic book readers like Komga, Kavita, and CDisplayEx.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            Which image format should I use?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            JPEG is best for color comics (smaller files). PNG is ideal for
+            black-and-white manga (lossless quality). WebP offers the best
+            compression but may not work in older readers.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            What is ComicInfo.xml?
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p class="mt-3 text-gray-400">
+            ComicInfo.xml is a metadata file embedded in the CBZ that stores
+            information like title, author, and reading direction. Comic library
+            managers like Komga and Kavita use it to organize your collection.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    {{> footer }}
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module" src="/src/js/logic/pdf-to-cbz-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PDF to CBZ - BentoPDF",
+        "applicationCategory": "PDF Tool",
+        "operatingSystem": "Any - Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.bentopdf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF to CBZ",
+            "item": "https://www.bentopdf.com/pdf-to-cbz"
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

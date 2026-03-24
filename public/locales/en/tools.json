@@ -347,6 +347,36 @@
       "conversionError": "Failed to convert PDF to TIFF. The file might be corrupted."
     }
   },
+  "pdfToCbz": {
+    "name": "PDF to CBZ",
+    "subtitle": "Convert a PDF into a CBZ (Comic Book Archive) file for comic readers.",
+    "imageFormat": "Image Format",
+    "quality": "Image Quality",
+    "qualityExplanation": "Higher quality = larger file size",
+    "scale": "Scale",
+    "scaleExplanation": "Higher scale = better quality for high-res screens",
+    "grayscale": "Convert to grayscale",
+    "manga": "Manga mode (right-to-left)",
+    "includeMetadata": "Include ComicInfo.xml metadata",
+    "titleLabel": "Title",
+    "seriesLabel": "Series",
+    "authorLabel": "Author(s)",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Publisher",
+    "tagsLabel": "Tags / Genre",
+    "yearLabel": "Published Year",
+    "ratingLabel": "Rating (0-5)",
+    "converting": "Converting to CBZ...",
+    "alert": {
+      "invalidFile": "Invalid File",
+      "invalidFileExplanation": "Please upload a PDF file.",
+      "noFile": "No File",
+      "noFileExplanation": "Please upload a PDF file first.",
+      "conversionSuccess": "PDF converted to CBZ successfully!",
+      "conversionError": "Failed to convert PDF to CBZ. The file might be corrupted."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF to Greyscale",
     "subtitle": "Convert all colors to black and white."

@@ -289,6 +289,36 @@
     "loadingVips": "Đang tải bộ xử lý hình ảnh...",
     "converting": "Đang chuyển đổi sang TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF sang CBZ",
+    "subtitle": "Chuyển đổi PDF thành tệp CBZ (Kho lưu trữ truyện tranh) cho trình đọc truyện tranh.",
+    "imageFormat": "Định dạng hình ảnh",
+    "quality": "Chất lượng hình ảnh",
+    "qualityExplanation": "Chất lượng cao hơn = kích thước tệp lớn hơn",
+    "scale": "Tỷ lệ",
+    "scaleExplanation": "Tỷ lệ cao hơn = chất lượng tốt hơn cho màn hình độ phân giải cao",
+    "grayscale": "Chuyển sang thang xám",
+    "manga": "Chế độ manga (phải sang trái)",
+    "includeMetadata": "Bao gồm siêu dữ liệu ComicInfo.xml",
+    "titleLabel": "Tiêu đề",
+    "seriesLabel": "Bộ truyện",
+    "authorLabel": "Tác giả",
+    "numberLabel": "#",
+    "volumeLabel": "Tập",
+    "publisherLabel": "Nhà xuất bản",
+    "tagsLabel": "Thẻ / Thể loại",
+    "yearLabel": "Năm xuất bản",
+    "ratingLabel": "Đánh giá (0-5)",
+    "converting": "Đang chuyển đổi sang CBZ...",
+    "alert": {
+      "invalidFile": "Tệp không hợp lệ",
+      "invalidFileExplanation": "Vui lòng tải lên tệp PDF.",
+      "noFile": "Không có tệp",
+      "noFileExplanation": "Vui lòng tải lên tệp PDF trước.",
+      "conversionSuccess": "Chuyển đổi PDF sang CBZ thành công!",
+      "conversionError": "Không thể chuyển đổi PDF sang CBZ. Tệp có thể bị hỏng."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF sang thang xám",
     "subtitle": "Chuyển đổi tất cả màu sắc sang đen trắng."

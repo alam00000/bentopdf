@@ -289,6 +289,36 @@
     "loadingVips": "Carregando processador de imagem...",
     "converting": "Convertendo para TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF para CBZ",
+    "subtitle": "Converta um PDF em um arquivo CBZ (Comic Book Archive) para leitores de quadrinhos.",
+    "imageFormat": "Formato de Imagem",
+    "quality": "Qualidade da Imagem",
+    "qualityExplanation": "Maior qualidade = maior tamanho de arquivo",
+    "scale": "Escala",
+    "scaleExplanation": "Maior escala = melhor qualidade para telas de alta resolução",
+    "grayscale": "Converter para tons de cinza",
+    "manga": "Modo mangá (direita para esquerda)",
+    "includeMetadata": "Incluir metadados ComicInfo.xml",
+    "titleLabel": "Título",
+    "seriesLabel": "Série",
+    "authorLabel": "Autor(es)",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Editora",
+    "tagsLabel": "Tags / Gênero",
+    "yearLabel": "Ano de publicação",
+    "ratingLabel": "Avaliação (0-5)",
+    "converting": "Convertendo para CBZ...",
+    "alert": {
+      "invalidFile": "Arquivo Inválido",
+      "invalidFileExplanation": "Envie um arquivo PDF.",
+      "noFile": "Nenhum Arquivo",
+      "noFileExplanation": "Envie um arquivo PDF primeiro.",
+      "conversionSuccess": "PDF convertido para CBZ com sucesso!",
+      "conversionError": "Falha ao converter PDF para CBZ. O arquivo pode estar corrompido."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF para Tons de Cinza",
     "subtitle": "Converta todas as cores para preto e branco."

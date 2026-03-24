@@ -248,6 +248,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **PDF to WebP**      | Convert each PDF page into a WebP image.                                       |
 | **PDF to BMP**       | Convert each PDF page into a BMP image.                                        |
 | **PDF to TIFF**      | Convert each PDF page into a TIFF image.                                       |
+| **PDF to CBZ**       | Convert a PDF into a CBZ (Comic Book Archive) for comic readers and Calibre.   |
 | **PDF to SVG**       | Convert each page into a scalable vector graphic (SVG) for perfect quality.    |
 | **PDF to Greyscale** | Convert a color PDF into a black-and-white version.                            |
 | **PDF to Text**      | Extract text from PDF files and save as plain text (.txt).                     |

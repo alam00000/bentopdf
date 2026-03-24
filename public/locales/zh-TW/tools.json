@@ -289,6 +289,36 @@
     "loadingVips": "正在載入影像處理器...",
     "converting": "正在轉換為 TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF 轉 CBZ",
+    "subtitle": "將 PDF 轉換為 CBZ (漫畫書封存) 檔案，適用於漫畫閱讀器。",
+    "imageFormat": "圖像格式",
+    "quality": "圖像品質",
+    "qualityExplanation": "品質越高 = 檔案越大",
+    "scale": "縮放",
+    "scaleExplanation": "縮放越高 = 高解析度螢幕上品質越好",
+    "grayscale": "轉換為灰階",
+    "manga": "漫畫模式 (從右到左)",
+    "includeMetadata": "包含 ComicInfo.xml 中繼資料",
+    "titleLabel": "標題",
+    "seriesLabel": "系列",
+    "authorLabel": "作者",
+    "numberLabel": "#",
+    "volumeLabel": "卷",
+    "publisherLabel": "出版社",
+    "tagsLabel": "標籤 / 類型",
+    "yearLabel": "出版年份",
+    "ratingLabel": "評分 (0-5)",
+    "converting": "正在轉換為 CBZ...",
+    "alert": {
+      "invalidFile": "無效檔案",
+      "invalidFileExplanation": "請上傳 PDF 檔案。",
+      "noFile": "沒有檔案",
+      "noFileExplanation": "請先上傳 PDF 檔案。",
+      "conversionSuccess": "PDF 已成功轉換為 CBZ!",
+      "conversionError": "無法將 PDF 轉換為 CBZ。檔案可能已損壞。"
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF 轉灰階",
     "subtitle": "將所有顏色轉換為黑白。"

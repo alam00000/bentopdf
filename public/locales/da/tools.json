@@ -289,6 +289,36 @@
     "loadingVips": "Indlæser billedprocessor...",
     "converting": "Konverterer til TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF til CBZ",
+    "subtitle": "Konverter en PDF til en CBZ-fil (tegneseriearkiv) til tegneserielæsere.",
+    "imageFormat": "Billedformat",
+    "quality": "Billedkvalitet",
+    "qualityExplanation": "Højere kvalitet = større filstørrelse",
+    "scale": "Skalering",
+    "scaleExplanation": "Højere skalering = bedre kvalitet til højopløsningsskærme",
+    "grayscale": "Konverter til gråtoner",
+    "manga": "Manga-tilstand (højre-til-venstre)",
+    "includeMetadata": "Inkluder ComicInfo.xml-metadata",
+    "titleLabel": "Titel",
+    "seriesLabel": "Serie",
+    "authorLabel": "Forfatter(e)",
+    "numberLabel": "#",
+    "volumeLabel": "Bind",
+    "publisherLabel": "Udgiver",
+    "tagsLabel": "Tags / Genre",
+    "yearLabel": "Udgivelsesår",
+    "ratingLabel": "Bedømmelse (0-5)",
+    "converting": "Konverterer til CBZ...",
+    "alert": {
+      "invalidFile": "Ugyldig fil",
+      "invalidFileExplanation": "Upload venligst en PDF-fil.",
+      "noFile": "Ingen fil",
+      "noFileExplanation": "Upload venligst en PDF-fil først.",
+      "conversionSuccess": "PDF konverteret til CBZ!",
+      "conversionError": "Kunne ikke konvertere PDF til CBZ. Filen kan være beskadiget."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF til gråtoner",
     "subtitle": "Konverter alle farver til sort/hvid."

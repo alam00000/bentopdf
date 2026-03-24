@@ -89,6 +89,7 @@ Extract content from PDFs into images, documents, and data formats.
 - [**PDF to WebP**](./pdf-to-webp) — Convert each PDF page into a WebP image.
 - [**PDF to BMP**](./pdf-to-bmp) — Convert each PDF page into a BMP image.
 - [**PDF to TIFF**](./pdf-to-tiff) — Convert each PDF page into a TIFF image.
+- [**PDF to CBZ**](./pdf-to-cbz) — Convert a PDF into a CBZ (Comic Book Archive) for comic readers and Calibre.
 - [**PDF to SVG**](./pdf-to-svg) — Convert each PDF page into a scalable vector graphic.
 - [**PDF to CSV**](./pdf-to-csv) — Extract tables from PDF and convert to CSV format.
 - [**PDF to Excel**](./pdf-to-excel) — Extract tables from PDF and convert to Excel (XLSX).

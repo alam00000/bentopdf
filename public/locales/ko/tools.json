@@ -289,6 +289,36 @@
     "loadingVips": "이미지 프로세서 로드 중...",
     "converting": "TIFF로 변환 중..."
   },
+  "pdfToCbz": {
+    "name": "PDF를 CBZ로",
+    "subtitle": "PDF를 만화 리더용 CBZ(만화책 아카이브) 파일로 변환합니다.",
+    "imageFormat": "이미지 형식",
+    "quality": "이미지 품질",
+    "qualityExplanation": "품질이 높을수록 파일 크기가 커집니다",
+    "scale": "배율",
+    "scaleExplanation": "배율이 높을수록 고해상도 화면에서 품질이 좋아집니다",
+    "grayscale": "흑백으로 변환",
+    "manga": "만화 모드 (오른쪽에서 왼쪽으로)",
+    "includeMetadata": "ComicInfo.xml 메타데이터 포함",
+    "titleLabel": "제목",
+    "seriesLabel": "시리즈",
+    "authorLabel": "저자",
+    "numberLabel": "#",
+    "volumeLabel": "권",
+    "publisherLabel": "출판사",
+    "tagsLabel": "태그 / 장르",
+    "yearLabel": "출판 연도",
+    "ratingLabel": "평점 (0-5)",
+    "converting": "CBZ로 변환 중...",
+    "alert": {
+      "invalidFile": "잘못된 파일",
+      "invalidFileExplanation": "PDF 파일을 업로드해 주세요.",
+      "noFile": "파일 없음",
+      "noFileExplanation": "먼저 PDF 파일을 업로드해 주세요.",
+      "conversionSuccess": "PDF가 CBZ로 성공적으로 변환되었습니다!",
+      "conversionError": "PDF를 CBZ로 변환하지 못했습니다. 파일이 손상되었을 수 있습니다."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF 흑백 변환",
     "subtitle": "모든 색상을 흑백으로 변환합니다."

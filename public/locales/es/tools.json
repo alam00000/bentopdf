@@ -289,6 +289,36 @@
     "loadingVips": "Cargando procesador de imágenes...",
     "converting": "Convirtiendo a TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF a CBZ",
+    "subtitle": "Convierte un PDF en un archivo CBZ (archivo de cómics) para lectores de cómics.",
+    "imageFormat": "Formato de imagen",
+    "quality": "Calidad de imagen",
+    "qualityExplanation": "Mayor calidad = mayor tamaño de archivo",
+    "scale": "Escala",
+    "scaleExplanation": "Mayor escala = mejor calidad para pantallas de alta resolución",
+    "grayscale": "Convertir a escala de grises",
+    "manga": "Modo manga (derecha a izquierda)",
+    "includeMetadata": "Incluir metadatos ComicInfo.xml",
+    "titleLabel": "Título",
+    "seriesLabel": "Serie",
+    "authorLabel": "Autor(es)",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Editorial",
+    "tagsLabel": "Etiquetas / Género",
+    "yearLabel": "Año de publicación",
+    "ratingLabel": "Calificación (0-5)",
+    "converting": "Convirtiendo a CBZ...",
+    "alert": {
+      "invalidFile": "Archivo no válido",
+      "invalidFileExplanation": "Por favor, suba un archivo PDF.",
+      "noFile": "Sin archivo",
+      "noFileExplanation": "Por favor, suba un archivo PDF primero.",
+      "conversionSuccess": "¡PDF convertido a CBZ exitosamente!",
+      "conversionError": "Error al convertir PDF a CBZ. El archivo podría estar dañado."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF a Escala de Grises",
     "subtitle": "Convierte todos los colores a blanco y negro."

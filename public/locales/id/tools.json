@@ -289,6 +289,36 @@
     "loadingVips": "Memuat prosesor gambar...",
     "converting": "Mengonversi ke TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF ke CBZ",
+    "subtitle": "Konversi PDF menjadi file CBZ (Arsip Buku Komik) untuk pembaca komik.",
+    "imageFormat": "Format Gambar",
+    "quality": "Kualitas Gambar",
+    "qualityExplanation": "Kualitas lebih tinggi = ukuran file lebih besar",
+    "scale": "Skala",
+    "scaleExplanation": "Skala lebih tinggi = kualitas lebih baik untuk layar resolusi tinggi",
+    "grayscale": "Konversi ke skala abu-abu",
+    "manga": "Mode manga (kanan-ke-kiri)",
+    "includeMetadata": "Sertakan metadata ComicInfo.xml",
+    "titleLabel": "Judul",
+    "seriesLabel": "Seri",
+    "authorLabel": "Penulis",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Penerbit",
+    "tagsLabel": "Tag / Genre",
+    "yearLabel": "Tahun Terbit",
+    "ratingLabel": "Peringkat (0-5)",
+    "converting": "Mengonversi ke CBZ...",
+    "alert": {
+      "invalidFile": "File Tidak Valid",
+      "invalidFileExplanation": "Silakan unggah file PDF.",
+      "noFile": "Tidak Ada File",
+      "noFileExplanation": "Silakan unggah file PDF terlebih dahulu.",
+      "conversionSuccess": "PDF berhasil dikonversi ke CBZ!",
+      "conversionError": "Gagal mengonversi PDF ke CBZ. File mungkin rusak."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF ke Skala Abu-abu",
     "subtitle": "Konversi semua warna ke hitam dan putih."

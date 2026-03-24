@@ -98,6 +98,7 @@ export default defineConfig({
                         { text: 'PDF to WebP', link: '/tools/pdf-to-webp' },
                         { text: 'PDF to BMP', link: '/tools/pdf-to-bmp' },
                         { text: 'PDF to TIFF', link: '/tools/pdf-to-tiff' },
+                        { text: 'PDF to CBZ', link: '/tools/pdf-to-cbz' },
                         { text: 'PDF to SVG', link: '/tools/pdf-to-svg' },
                         { text: 'PDF to CSV', link: '/tools/pdf-to-csv' },
                         { text: 'PDF to Excel', link: '/tools/pdf-to-excel' },

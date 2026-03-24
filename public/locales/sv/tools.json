@@ -289,6 +289,36 @@
     "loadingVips": "Laddar bildprocessor...",
     "converting": "Konverterar till TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF till CBZ",
+    "subtitle": "Konvertera en PDF till en CBZ-fil (serietidningsarkiv) för serieläsare.",
+    "imageFormat": "Bildformat",
+    "quality": "Bildkvalitet",
+    "qualityExplanation": "Högre kvalitet = större filstorlek",
+    "scale": "Skala",
+    "scaleExplanation": "Högre skala = bättre kvalitet för högupplösta skärmar",
+    "grayscale": "Konvertera till gråskala",
+    "manga": "Manga-läge (höger till vänster)",
+    "includeMetadata": "Inkludera ComicInfo.xml-metadata",
+    "titleLabel": "Titel",
+    "seriesLabel": "Serie",
+    "authorLabel": "Författare",
+    "numberLabel": "#",
+    "volumeLabel": "Vol.",
+    "publisherLabel": "Förlag",
+    "tagsLabel": "Taggar / Genre",
+    "yearLabel": "Utgivningsår",
+    "ratingLabel": "Betyg (0-5)",
+    "converting": "Konverterar till CBZ...",
+    "alert": {
+      "invalidFile": "Ogiltig fil",
+      "invalidFileExplanation": "Vänligen ladda upp en PDF-fil.",
+      "noFile": "Ingen fil",
+      "noFileExplanation": "Vänligen ladda upp en PDF-fil först.",
+      "conversionSuccess": "PDF konverterad till CBZ framgångsrikt!",
+      "conversionError": "Kunde inte konvertera PDF till CBZ. Filen kan vara skadad."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF till gråskala",
     "subtitle": "Konvertera alla färger till svart och vitt."

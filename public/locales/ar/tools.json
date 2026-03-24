@@ -289,6 +289,36 @@
     "loadingVips": "جارٍ تحميل معالج الصور...",
     "converting": "جارٍ التحويل إلى TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF إلى CBZ",
+    "subtitle": "تحويل ملف PDF إلى ملف CBZ (أرشيف الكتب المصورة) لقارئات القصص المصورة.",
+    "imageFormat": "تنسيق الصورة",
+    "quality": "جودة الصورة",
+    "qualityExplanation": "جودة أعلى = حجم ملف أكبر",
+    "scale": "المقياس",
+    "scaleExplanation": "مقياس أعلى = جودة أفضل للشاشات عالية الدقة",
+    "grayscale": "تحويل إلى تدرج الرمادي",
+    "manga": "وضع المانغا (من اليمين إلى اليسار)",
+    "includeMetadata": "تضمين بيانات ComicInfo.xml الوصفية",
+    "titleLabel": "العنوان",
+    "seriesLabel": "السلسلة",
+    "authorLabel": "المؤلف(ون)",
+    "numberLabel": "#",
+    "volumeLabel": "المجلد",
+    "publisherLabel": "الناشر",
+    "tagsLabel": "الوسوم / النوع",
+    "yearLabel": "سنة النشر",
+    "ratingLabel": "التقييم (0-5)",
+    "converting": "جارٍ التحويل إلى CBZ...",
+    "alert": {
+      "invalidFile": "ملف غير صالح",
+      "invalidFileExplanation": "يرجى تحميل ملف PDF.",
+      "noFile": "لا يوجد ملف",
+      "noFileExplanation": "يرجى تحميل ملف PDF أولاً.",
+      "conversionSuccess": "تم تحويل PDF إلى CBZ بنجاح!",
+      "conversionError": "فشل تحويل PDF إلى CBZ. قد يكون الملف تالفاً."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF إلى تدرج الرمادي",
     "subtitle": "تحويل جميع الألوان إلى أبيض وأسود."

@@ -448,6 +448,13 @@ const baseCategories = [
         subtitle: 'Convert each PDF page into a TIFF image.',
       },
       {
+        href: import.meta.env.BASE_URL + 'pdf-to-cbz.html',
+        name: 'PDF to CBZ',
+        icon: 'ph-book-open',
+        subtitle:
+          'Convert a PDF into a CBZ (Comic Book Archive) file for comic readers.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'pdf-to-svg.html',
         name: 'PDF to SVG',
         icon: 'ph-file-code',

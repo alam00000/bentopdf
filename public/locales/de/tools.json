@@ -339,6 +339,36 @@
     "loadingVips": "Bildprozessor wird geladen...",
     "converting": "Wird in TIFF konvertiert..."
   },
+  "pdfToCbz": {
+    "name": "PDF zu CBZ",
+    "subtitle": "Konvertieren Sie ein PDF in eine CBZ-Datei (Comic-Bucharchiv) für Comic-Reader.",
+    "imageFormat": "Bildformat",
+    "quality": "Bildqualität",
+    "qualityExplanation": "Höhere Qualität = größere Dateigröße",
+    "scale": "Skalierung",
+    "scaleExplanation": "Höhere Skalierung = bessere Qualität für hochauflösende Bildschirme",
+    "grayscale": "In Graustufen konvertieren",
+    "manga": "Manga-Modus (rechts nach links)",
+    "includeMetadata": "ComicInfo.xml-Metadaten einschließen",
+    "titleLabel": "Titel",
+    "seriesLabel": "Serie",
+    "authorLabel": "Autor(en)",
+    "numberLabel": "#",
+    "volumeLabel": "Bd.",
+    "publisherLabel": "Verlag",
+    "tagsLabel": "Tags / Genre",
+    "yearLabel": "Erscheinungsjahr",
+    "ratingLabel": "Bewertung (0-5)",
+    "converting": "Wird in CBZ konvertiert...",
+    "alert": {
+      "invalidFile": "Ungültige Datei",
+      "invalidFileExplanation": "Bitte laden Sie eine PDF-Datei hoch.",
+      "noFile": "Keine Datei",
+      "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
+      "conversionSuccess": "PDF erfolgreich in CBZ konvertiert!",
+      "conversionError": "PDF konnte nicht in CBZ konvertiert werden. Die Datei ist möglicherweise beschädigt."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF zu Graustufen",
     "subtitle": "Alle Farben in Schwarz-Weiß konvertieren."

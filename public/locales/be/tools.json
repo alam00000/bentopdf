@@ -289,6 +289,36 @@
     "loadingVips": "Загрузка апрацоўшчыка відарысаў...",
     "converting": "Канвертаванне ў TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF у CBZ",
+    "subtitle": "Канвертаваць PDF у файл CBZ (архіў коміксаў) для чытачоў коміксаў.",
+    "imageFormat": "Фармат выявы",
+    "quality": "Якасць выявы",
+    "qualityExplanation": "Вышэйшая якасць = большы памер файла",
+    "scale": "Маштаб",
+    "scaleExplanation": "Вышэйшы маштаб = лепшая якасць для экранаў высокай раздзяляльнасці",
+    "grayscale": "Канвертаваць у градацыі шэрага",
+    "manga": "Рэжым манга (справа налева)",
+    "includeMetadata": "Уключыць метаданыя ComicInfo.xml",
+    "titleLabel": "Назва",
+    "seriesLabel": "Серыя",
+    "authorLabel": "Аўтар(ы)",
+    "numberLabel": "#",
+    "volumeLabel": "Том",
+    "publisherLabel": "Выдавец",
+    "tagsLabel": "Тэгі / Жанр",
+    "yearLabel": "Год выдання",
+    "ratingLabel": "Рэйтынг (0-5)",
+    "converting": "Канвертаванне ў CBZ...",
+    "alert": {
+      "invalidFile": "Няправільны файл",
+      "invalidFileExplanation": "Калі ласка, загрузіце файл PDF.",
+      "noFile": "Няма файла",
+      "noFileExplanation": "Калі ласка, спачатку загрузіце файл PDF.",
+      "conversionSuccess": "PDF паспяхова канвертаваны ў CBZ!",
+      "conversionError": "Не ўдалося канвертаваць PDF у CBZ. Файл можа быць пашкоджаны."
+    }
+  },
   "pdfToGreyscale": {
     "name": "PDF у градацыі шэрага",
     "subtitle": "Канвертаваць усе колеры ў чорна-белыя."

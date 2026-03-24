@@ -508,6 +508,7 @@ export default defineConfig(() => {
           'pdf-to-jpg': resolve(__dirname, 'src/pages/pdf-to-jpg.html'),
           'pdf-to-png': resolve(__dirname, 'src/pages/pdf-to-png.html'),
           'pdf-to-tiff': resolve(__dirname, 'src/pages/pdf-to-tiff.html'),
+          'pdf-to-cbz': resolve(__dirname, 'src/pages/pdf-to-cbz.html'),
           'pdf-to-webp': resolve(__dirname, 'src/pages/pdf-to-webp.html'),
           'pdf-to-docx': resolve(__dirname, 'src/pages/pdf-to-docx.html'),
           'extract-images': resolve(__dirname, 'src/pages/extract-images.html'),

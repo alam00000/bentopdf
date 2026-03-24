@@ -283,6 +283,36 @@
     "loadingVips": "Загрузка обработчика изображений...",
     "converting": "Конвертация в TIFF..."
   },
+  "pdfToCbz": {
+    "name": "PDF в CBZ",
+    "subtitle": "Конвертируйте PDF в файл CBZ (Comic Book Archive) для чтения комиксов.",
+    "imageFormat": "Формат изображения",
+    "quality": "Качество изображения",
+    "qualityExplanation": "Выше качество = больше размер файла",
+    "scale": "Масштаб",
+    "scaleExplanation": "Больше масштаб = лучшее качество для экранов с высоким разрешением",
+    "grayscale": "Конвертировать в оттенки серого",
+    "manga": "Режим манги (справа налево)",
+    "includeMetadata": "Включить метаданные ComicInfo.xml",
+    "titleLabel": "Название",
+    "seriesLabel": "Серия",
+    "authorLabel": "Автор(ы)",
+    "numberLabel": "#",
+    "volumeLabel": "Том",
+    "publisherLabel": "Издатель",
+    "tagsLabel": "Теги / Жанр",
+    "yearLabel": "Год издания",
+    "ratingLabel": "Рейтинг (0-5)",
+    "converting": "Конвертация в CBZ...",
+    "alert": {
+      "invalidFile": "Недопустимый файл",
+      "invalidFileExplanation": "Пожалуйста, загрузите PDF-файл.",
+      "noFile": "Нет файла",
+      "noFileExplanation": "Сначала загрузите PDF-файл.",
+      "conversionSuccess": "PDF успешно конвертирован в CBZ!",
+      "conversionError": "Не удалось конвертировать PDF в CBZ. Файл может быть повреждён."
+    }
+  },
   "pdfToGreyscale": {
     "name": "Градации серого",
     "subtitle": "Преобразовать все цвета в градации серого."
