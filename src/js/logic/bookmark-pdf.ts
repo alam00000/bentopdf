@@ -822,7 +822,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showConfirmModal(message: string): Promise<boolean> {
   return new Promise((resolve) => {
-    const previousActiveEl = document.activeElement as HTMLButtonElement | null;
+    const previousActiveEl = document.activeElement as HTMLElement | null;
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
 
@@ -875,7 +875,7 @@ function showConfirmModal(message: string): Promise<boolean> {
 
 function showAlertModal(title: string, message: string): Promise<boolean> {
   return new Promise((resolve) => {
-    const previousActiveEl = document.activeElement as HTMLButtonElement | null;
+    const previousActiveEl = document.activeElement as HTMLElement | null;
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
 
