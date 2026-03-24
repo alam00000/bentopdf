@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF sang TIFF",
-    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh TIFF."
+    "subtitle": "Chuyển đổi mỗi trang PDF thành hình ảnh TIFF.",
+    "dpi": "DPI (Độ phân giải)",
+    "dpiExplanation": "DPI cao hơn = chất lượng in tốt hơn, kích thước tệp lớn hơn",
+    "compression": "Nén",
+    "compressionExplanation": "LZW và Deflate là nén không mất dữ liệu. CCITT Nhóm 4 phù hợp nhất cho tài liệu quét đen trắng.",
+    "colorMode": "Chế độ màu",
+    "multiPage": "Lưu dưới dạng TIFF nhiều trang (một tệp)",
+    "loadingVips": "Đang tải bộ xử lý hình ảnh...",
+    "converting": "Đang chuyển đổi sang TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF sang thang xám",

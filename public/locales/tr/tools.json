@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF'den TIFF'e",
-    "subtitle": "Her PDF sayfasını TIFF görseline dönüştürün."
+    "subtitle": "Her PDF sayfasını TIFF görseline dönüştürün.",
+    "dpi": "DPI (Çözünürlük)",
+    "dpiExplanation": "Daha yüksek DPI = baskı için daha iyi kalite, daha büyük dosya boyutu",
+    "compression": "Sıkıştırma",
+    "compressionExplanation": "LZW ve Deflate kayıpsızdır. CCITT Grup 4, siyah beyaz taranmış belgeler için en iyisidir.",
+    "colorMode": "Renk Modu",
+    "multiPage": "Çok sayfalı TIFF olarak kaydet (tek dosya)",
+    "loadingVips": "Görüntü işlemci yükleniyor...",
+    "converting": "TIFF'e dönüştürülüyor..."
   },
   "pdfToGreyscale": {
     "name": "PDF'yi Gri Tonlamaya Çevir",

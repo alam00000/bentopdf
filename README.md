@@ -1160,6 +1160,10 @@ BentoPDF wouldn't be possible without the amazing open-source tools and librarie
 - **[Tailwind CSS](https://tailwindcss.com/)** – For rapid, flexible, and beautiful UI styling.
 - **[qpdf](https://github.com/qpdf/qpdf)** and **[qpdf-wasm](https://github.com/neslinesli93/qpdf-wasm)** – For inspecting, repairing, and transforming PDF files.
 - **[LibreOffice](https://www.libreoffice.org/)** – For powerful document conversion capabilities.
+- **[wasm-vips](https://github.com/kleisauke/wasm-vips)** – For advanced TIFF encoding with compression (LZW, Deflate, CCITT Group 4).
+- **[pixelmatch](https://github.com/mapbox/pixelmatch)** – For fast, accurate image comparison and diff detection.
+- **[diff](https://github.com/kpdecker/jsdiff)** – For computing text differences.
+- **[microdiff](https://github.com/AsyncBanana/microdiff)** – For lightweight, fast object diffing.
 
 **AGPL Libraries (Pre-configured via CDN):**
 

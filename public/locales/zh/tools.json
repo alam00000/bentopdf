@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF 转 TIFF",
-    "subtitle": "将每一页 PDF 转换为 TIFF 图片。"
+    "subtitle": "将每一页 PDF 转换为 TIFF 图片。",
+    "dpi": "DPI (分辨率)",
+    "dpiExplanation": "DPI 越高 = 打印质量越好，文件越大",
+    "compression": "压缩方式",
+    "compressionExplanation": "LZW 和 Deflate 为无损压缩。CCITT Group 4 最适合黑白扫描文档。",
+    "colorMode": "色彩模式",
+    "multiPage": "保存为多页 TIFF (单个文件)",
+    "loadingVips": "正在加载图像处理器...",
+    "converting": "正在转换为 TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF 转 灰度",

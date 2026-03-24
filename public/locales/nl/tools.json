@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF naar TIFF",
-    "subtitle": "Converteer elke PDF-pagina naar een TIFF-afbeelding."
+    "subtitle": "Converteer elke PDF-pagina naar een TIFF-afbeelding.",
+    "dpi": "DPI (Resolutie)",
+    "dpiExplanation": "Hogere DPI = betere kwaliteit voor afdrukken, groter bestand",
+    "compression": "Compressie",
+    "compressionExplanation": "LZW en Deflate zijn verliesvrij. CCITT Groep 4 is het beste voor zwart-wit gescande documenten.",
+    "colorMode": "Kleurmodus",
+    "multiPage": "Opslaan als meerpagina-TIFF (één bestand)",
+    "loadingVips": "Beeldprocessor laden...",
+    "converting": "Converteren naar TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF naar Grijswaarden",

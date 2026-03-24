@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF إلى TIFF",
-    "subtitle": "تحويل كل صفحة PDF إلى صورة TIFF."
+    "subtitle": "تحويل كل صفحة PDF إلى صورة TIFF.",
+    "dpi": "DPI (الدقة)",
+    "dpiExplanation": "DPI أعلى = جودة أفضل للطباعة، حجم ملف أكبر",
+    "compression": "الضغط",
+    "compressionExplanation": "LZW و Deflate بدون فقدان. CCITT Group 4 هو الأفضل للمستندات الممسوحة ضوئيًا بالأبيض والأسود.",
+    "colorMode": "وضع الألوان",
+    "multiPage": "حفظ كملف TIFF متعدد الصفحات (ملف واحد)",
+    "loadingVips": "جارٍ تحميل معالج الصور...",
+    "converting": "جارٍ التحويل إلى TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF إلى تدرج الرمادي",

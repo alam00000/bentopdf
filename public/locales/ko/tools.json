@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF를 TIFF로",
-    "subtitle": "PDF의 각 페이지를 TIFF 이미지로 변환합니다."
+    "subtitle": "PDF의 각 페이지를 TIFF 이미지로 변환합니다.",
+    "dpi": "DPI (해상도)",
+    "dpiExplanation": "DPI가 높을수록 인쇄 품질이 좋아지지만 파일 크기가 커집니다",
+    "compression": "압축",
+    "compressionExplanation": "LZW와 Deflate는 무손실 압축입니다. CCITT Group 4는 흑백 스캔 문서에 가장 적합합니다.",
+    "colorMode": "색상 모드",
+    "multiPage": "다중 페이지 TIFF로 저장 (단일 파일)",
+    "loadingVips": "이미지 프로세서 로드 중...",
+    "converting": "TIFF로 변환 중..."
   },
   "pdfToGreyscale": {
     "name": "PDF 흑백 변환",

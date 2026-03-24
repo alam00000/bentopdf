@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF till TIFF",
-    "subtitle": "Konvertera varje PDF-sida till en TIFF-bild."
+    "subtitle": "Konvertera varje PDF-sida till en TIFF-bild.",
+    "dpi": "DPI (Upplösning)",
+    "dpiExplanation": "Högre DPI = bättre kvalitet för utskrift, större filstorlek",
+    "compression": "Komprimering",
+    "compressionExplanation": "LZW och Deflate är förlustfria. CCITT Grupp 4 är bäst för svartvita skannade dokument.",
+    "colorMode": "Färgläge",
+    "multiPage": "Spara som flersidig TIFF (en fil)",
+    "loadingVips": "Laddar bildprocessor...",
+    "converting": "Konverterar till TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF till gråskala",

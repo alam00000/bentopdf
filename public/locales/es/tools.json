@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF a TIFF",
-    "subtitle": "Convierte cada página PDF en una imagen TIFF."
+    "subtitle": "Convierte cada página PDF en una imagen TIFF.",
+    "dpi": "PPP (Resolución)",
+    "dpiExplanation": "Mayor PPP = mejor calidad para impresión, mayor tamaño de archivo",
+    "compression": "Compresión",
+    "compressionExplanation": "LZW y Deflate son sin pérdida. CCITT Grupo 4 es ideal para documentos escaneados en B/N.",
+    "colorMode": "Modo de color",
+    "multiPage": "Guardar como TIFF multipágina (archivo único)",
+    "loadingVips": "Cargando procesador de imágenes...",
+    "converting": "Convirtiendo a TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF a Escala de Grises",

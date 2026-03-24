@@ -52,3 +52,4 @@ export * from './adjust-colors-type.ts';
 export * from './bates-numbering-type.ts';
 export * from './page-preview-type.ts';
 export * from './add-page-labels-type.ts';
+export * from './pdf-to-tiff-type.ts';

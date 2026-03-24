@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF ke TIFF",
-    "subtitle": "Konversi setiap halaman PDF menjadi gambar TIFF."
+    "subtitle": "Konversi setiap halaman PDF menjadi gambar TIFF.",
+    "dpi": "DPI (Resolusi)",
+    "dpiExplanation": "DPI lebih tinggi = kualitas lebih baik untuk cetak, ukuran file lebih besar",
+    "compression": "Kompresi",
+    "compressionExplanation": "LZW dan Deflate adalah lossless. CCITT Group 4 paling cocok untuk dokumen pindaian hitam putih.",
+    "colorMode": "Mode Warna",
+    "multiPage": "Simpan sebagai TIFF multi-halaman (satu file)",
+    "loadingVips": "Memuat prosesor gambar...",
+    "converting": "Mengonversi ke TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF ke Skala Abu-abu",

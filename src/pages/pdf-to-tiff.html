@@ -153,7 +153,96 @@
           />
         </div>
         <div id="file-display-area" class="mt-4 space-y-2"></div>
-        <div id="options-panel" class="hidden mt-6">
+        <div id="options-panel" class="hidden mt-6 space-y-4">
+          <div>
+            <label
+              for="tiff-dpi"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToTiff.dpi"
+              >DPI (Resolution)</label
+            >
+            <div class="flex items-center gap-4">
+              <input
+                type="range"
+                id="tiff-dpi"
+                min="72"
+                max="600"
+                step="1"
+                value="300"
+                class="flex-1"
+              />
+              <span
+                id="tiff-dpi-value"
+                class="text-white font-medium w-16 text-right"
+                >300</span
+              >
+            </div>
+            <p
+              class="mt-1 text-xs text-gray-400"
+              data-i18n="tools:pdfToTiff.dpiExplanation"
+            >
+              Higher DPI = better quality for printing, larger file size
+            </p>
+          </div>
+
+          <div>
+            <label
+              for="tiff-compression"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToTiff.compression"
+              >Compression</label
+            >
+            <select
+              id="tiff-compression"
+              class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            >
+              <option value="lzw">LZW (Lossless)</option>
+              <option value="deflate">Deflate / ZIP (Lossless)</option>
+              <option value="ccittfax4">CCITT Group 4 (B&W documents)</option>
+              <option value="jpeg">JPEG (Lossy)</option>
+              <option value="packbits">PackBits</option>
+              <option value="none">None (Uncompressed)</option>
+            </select>
+            <p
+              class="mt-1 text-xs text-gray-400"
+              data-i18n="tools:pdfToTiff.compressionExplanation"
+            >
+              LZW and Deflate are lossless. CCITT Group 4 is best for B&W
+              scanned documents.
+            </p>
+          </div>
+
+          <div>
+            <label
+              for="tiff-color-mode"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToTiff.colorMode"
+              >Color Mode</label
+            >
+            <select
+              id="tiff-color-mode"
+              class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            >
+              <option value="rgb">Color (RGB)</option>
+              <option value="greyscale">Greyscale</option>
+              <option value="bw">Black & White (1-bit)</option>
+            </select>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="tiff-multipage"
+              class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500"
+            />
+            <label
+              for="tiff-multipage"
+              class="text-sm font-medium text-gray-300"
+              data-i18n="tools:pdfToTiff.multiPage"
+              >Save as multi-page TIFF (single file)</label
+            >
+          </div>
+
           <button
             id="process-btn"
             class="btn-gradient w-full"

@@ -330,6 +330,14 @@
   "pdfToTiff": {
     "name": "PDF to TIFF",
     "subtitle": "Convert each PDF page into a TIFF image.",
+    "dpi": "DPI (Resolution)",
+    "dpiExplanation": "Higher DPI = better quality for printing, larger file size",
+    "compression": "Compression",
+    "compressionExplanation": "LZW and Deflate are lossless. CCITT Group 4 is best for B&W scanned documents.",
+    "colorMode": "Color Mode",
+    "multiPage": "Save as multi-page TIFF (single file)",
+    "loadingVips": "Loading image processor...",
+    "converting": "Converting to TIFF...",
     "alert": {
       "invalidFile": "Invalid File",
       "invalidFileExplanation": "Please upload a PDF file.",
@@ -337,9 +345,6 @@
       "noFileExplanation": "Please upload a PDF file first.",
       "conversionSuccess": "PDF converted to TIFFs successfully!",
       "conversionError": "Failed to convert PDF to TIFF. The file might be corrupted."
-    },
-    "loader": {
-      "converting": "Converting to TIFF..."
     }
   },
   "pdfToGreyscale": {

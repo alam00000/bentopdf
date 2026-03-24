@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF til TIFF",
-    "subtitle": "Konverter hver PDF-side til en TIFF-billedfil."
+    "subtitle": "Konverter hver PDF-side til en TIFF-billedfil.",
+    "dpi": "DPI (Opløsning)",
+    "dpiExplanation": "Højere DPI = bedre kvalitet til print, større filstørrelse",
+    "compression": "Komprimering",
+    "compressionExplanation": "LZW og Deflate er tabsfri. CCITT Group 4 er bedst til sort/hvide skannede dokumenter.",
+    "colorMode": "Farvetilstand",
+    "multiPage": "Gem som flersidet TIFF (én fil)",
+    "loadingVips": "Indlæser billedprocessor...",
+    "converting": "Konverterer til TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF til gråtoner",

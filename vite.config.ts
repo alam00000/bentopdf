@@ -1,7 +1,7 @@
 import { defineConfig, Plugin } from 'vitest/config';
 import type { IncomingMessage, ServerResponse } from 'http';
 import type { Connect } from 'vite';
-import basicSsl from '@vitejs/plugin-basic-ssl';
+// import basicSsl from '@vitejs/plugin-basic-ssl';
 import tailwindcss from '@tailwindcss/vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -352,7 +352,7 @@ export default defineConfig(() => {
     },
     optimizeDeps: {
       include: ['pdfkit', 'blob-stream'],
-      exclude: ['coherentpdf'],
+      exclude: ['coherentpdf', 'wasm-vips'],
     },
     server: {
       host: true,

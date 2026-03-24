@@ -279,7 +279,15 @@
   },
   "pdfToTiff": {
     "name": "PDF у TIFF",
-    "subtitle": "Канвертаваць кожную старонку PDF у відарыс TIFF."
+    "subtitle": "Канвертаваць кожную старонку PDF у відарыс TIFF.",
+    "dpi": "DPI (Разрашэнне)",
+    "dpiExplanation": "Вышэйшы DPI = лепшая якасць для друку, большы памер файла",
+    "compression": "Сціск",
+    "compressionExplanation": "LZW і Deflate — без страт. CCITT Group 4 лепш за ўсё падыходзіць для чорна-белых сканаваных дакументаў.",
+    "colorMode": "Каляровы рэжым",
+    "multiPage": "Захаваць як шматстаронкавы TIFF (адзін файл)",
+    "loadingVips": "Загрузка апрацоўшчыка відарысаў...",
+    "converting": "Канвертаванне ў TIFF..."
   },
   "pdfToGreyscale": {
     "name": "PDF у градацыі шэрага",
