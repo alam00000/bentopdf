@@ -11,6 +11,7 @@ import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
 import UTIF from 'utif';
 import { PDFPageProxy } from 'pdfjs-dist';
+import { t } from '../i18n/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -45,7 +46,7 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`; // Initial state
+      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`; // Initial state
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -67,7 +68,7 @@ const updateUI = () => {
           return getPDFDocument(buffer).promise;
         })
         .then((pdf) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} page${pdf.numPages !== 1 ? 's' : ''}`;
+          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
         })
         .catch((e) => {
           console.warn('Error loading PDF page count:', e);
@@ -91,10 +92,13 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToTiff.alert.noFile'),
+      t('tools:pdfToTiff.alert.noFileExplanation')
+    );
     return;
   }
-  showLoader('Converting to TIFF...');
+  showLoader(t('tools:pdfToTiff.loader.converting'));
   try {
     const pdf = await getPDFDocument(await readFileAsArrayBuffer(files[0]))
       .promise;
@@ -121,8 +125,8 @@ async function convert() {
     }
 
     showAlert(
-      'Success',
-      'PDF converted to TIFFs successfully!',
+      t('common.success'),
+      t('tools:pdfToTiff.alert.conversionSuccess'),
       'success',
       () => {
         resetState();
@@ -130,10 +134,7 @@ async function convert() {
     );
   } catch (e) {
     console.error(e);
-    showAlert(
-      'Error',
-      'Failed to convert PDF to TIFF. The file might be corrupted.'
-    );
+    showAlert(t('common.error'), t('tools:pdfToTiff.alert.conversionError'));
   } finally {
     hideLoader();
   }
@@ -211,7 +212,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:pdfToTiff.alert.invalidFile'),
+        t('tools:pdfToTiff.alert.invalidFileExplanation')
+      );
       return;
     }
 

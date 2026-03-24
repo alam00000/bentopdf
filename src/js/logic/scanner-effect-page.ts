@@ -10,6 +10,7 @@ import { PDFDocument } from 'pdf-lib';
 import { applyScannerEffect } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { ScanSettings } from '../types/scanner-effect-type.js';
+import { t } from '../i18n/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -129,7 +130,7 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`;
+      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -152,7 +153,7 @@ const updateUI = () => {
           return getPDFDocument(buffer).promise;
         })
         .then((pdf: pdfjsLib.PDFDocumentProxy) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} page${pdf.numPages !== 1 ? 's' : ''}`;
+          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
         })
         .catch(() => {
           metaSpan.textContent = formatBytes(file.size);

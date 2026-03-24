@@ -1,6 +1,7 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { readFileAsArrayBuffer, formatBytes, downloadFile, getPDFDocument } from '../utils/helpers.js';
+import { t } from '../i18n/i18n';
 import {
     signPdf,
     parsePfxFile,
@@ -253,7 +254,7 @@ async function updatePdfDisplay(): Promise<void> {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(state.pdfFile.size)} • Loading pages...`;
+    metaSpan.textContent = `${formatBytes(state.pdfFile.size)} • ${t('common.loadingPageCount')}`;
 
     infoContainer.append(nameSpan, metaSpan);
 

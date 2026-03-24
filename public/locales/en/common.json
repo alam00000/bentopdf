@@ -260,11 +260,13 @@
     "add": "Add",
     "remove": "Remove",
     "loading": "Loading...",
+    "loadingPageCount": "Loading pages...",
     "error": "Error",
     "success": "Success",
     "file": "File",
     "files": "Files",
-    "close": "Close"
+    "close": "Close",
+    "convert": "Convert"
   },
   "about": {
     "hero": {

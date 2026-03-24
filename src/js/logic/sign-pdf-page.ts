@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { readFileAsArrayBuffer, formatBytes, downloadFile, getPDFDocument } from '../utils/helpers.js';
 import { PDFDocument } from 'pdf-lib';
+import { t } from '../i18n/i18n';
 
 interface SignState {
     file: File | null;
@@ -108,7 +109,7 @@ async function updateFileDisplay() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(signState.file.size)} • Loading pages...`;
+    metaSpan.textContent = `${formatBytes(signState.file.size)} • ${t('common.loadingPageCount')}`;
 
     infoContainer.append(nameSpan, metaSpan);
 

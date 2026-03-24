@@ -9,6 +9,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFDocument } from 'pdf-lib';
 import { applyGreyscale } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
+import { t } from '../i18n/i18n';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -44,7 +45,7 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • Loading pages...`; // Initial state
+      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`; // Initial state
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -66,7 +67,7 @@ const updateUI = () => {
           return getPDFDocument(buffer).promise;
         })
         .then((pdf) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} page${pdf.numPages !== 1 ? 's' : ''}`;
+          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
         })
         .catch((e) => {
           console.warn('Error loading PDF page count:', e);
