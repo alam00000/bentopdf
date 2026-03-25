@@ -263,19 +263,69 @@
   },
   "pdfToJpg": {
     "name": "PDF naar JPG",
-    "subtitle": "Converteer elke PDF-pagina naar een JPG-afbeelding."
+    "subtitle": "Converteer elke PDF-pagina naar een JPG-afbeelding.",
+    "imageQuality": "Beeldkwaliteit",
+    "imageQualityExplanation": "Hogere kwaliteit = grotere bestanden",
+    "alert": {
+      "invalidFile": "Ongeldig bestand",
+      "invalidFileExplanation": "Laad een PDF-bestand.",
+      "noFile": "Geen bestand",
+      "noFileExplanation": "Laad eerst een PDF-bestand.",
+      "conversionSuccess": "PDF met succes omgezet naar JPG's!",
+      "conversionError": "Conversie van PDF naar JPG is mislukt. Het bestand kan beschadigd zijn."
+    },
+    "loader": {
+      "converting": "Converteren naar JPG..."
+    }
   },
   "pdfToPng": {
     "name": "PDF naar PNG",
-    "subtitle": "Converteer elke PDF-pagina naar een PNG-afbeelding."
+    "subtitle": "Converteer elke PDF-pagina naar een PNG-afbeelding.",
+    "imageScale": "Schaal",
+    "imageScaleExplanation": "Hogere schaal = beter kwaliteit en grotere bestanden",
+    "alert": {
+      "invalidFile": "Ongeldig bestand",
+      "invalidFileExplanation": "Laad een PDF-bestand.",
+      "noFile": "No File",
+      "noFileExplanation": "Laad eerst een PDF-bestand.",
+      "conversionSuccess": "PDF met succes omgezet naar PNG's!",
+      "conversionError": "Conversie van PDF naar PNG is mislukt. Het bestand kan beschadigd zijn."
+    },
+    "loader": {
+      "converting": "Converteren naar PNG..."
+    }
   },
   "pdfToWebp": {
     "name": "PDF naar WebP",
-    "subtitle": "Converteer elke PDF-pagina naar een WebP-afbeelding."
+    "subtitle": "Converteer elke PDF-pagina naar een WebP-afbeelding.",
+    "imageQuality": "Beeldkwaliteit",
+    "imageQualityExplanation": "Hogere kwaliteit = grotere bestanden",
+    "alert": {
+      "invalidFile": "Ongeldig bestand",
+      "invalidFileExplanation": "Laad een PDF-bestand.",
+      "noFile": "Geen bestand",
+      "noFileExplanation": "Laad eerst een PDF-bestand.",
+      "conversionSuccess": "PDF met succes omgezet naar WebP's!",
+      "conversionError": "Conversie van PDF naar WebP is mislukt. Het bestand kan beschadigd zijn."
+    },
+    "loader": {
+      "converting": "Converteren naar WebP..."
+    }
   },
   "pdfToBmp": {
     "name": "PDF naar BMP",
-    "subtitle": "Converteer elke PDF-pagina naar een BMP-afbeelding."
+    "subtitle": "Converteer elke PDF-pagina naar een BMP-afbeelding.",
+    "alert": {
+      "invalidFile": "Ongeldig bestand",
+      "invalidFileExplanation": "Laad een PDF-bestand.",
+      "noFile": "Geen bestand",
+      "noFileExplanation": "Laad eerst een PDF-bestand.",
+      "conversionSuccess": "PDF met succes omgezet naar BMP's!",
+      "conversionError": "Conversie van PDF naar BMP is mislukt. Het bestand kan beschadigd zijn."
+    },
+    "loader": {
+      "converting": "Converteren naar BMP..."
+    }
   },
   "pdfToTiff": {
     "name": "PDF naar TIFF",
@@ -287,7 +337,15 @@
     "colorMode": "Kleurmodus",
     "multiPage": "Opslaan als meerpagina-TIFF (één bestand)",
     "loadingVips": "Beeldprocessor laden...",
-    "converting": "Converteren naar TIFF..."
+    "converting": "Converteren naar TIFF...",
+    "alert": {
+      "invalidFile": "Ongeldig bestand File",
+      "invalidFileExplanation": "Laad een PDF-bestand.",
+      "noFile": "Geen bestand",
+      "noFileExplanation": "Laad eerst een PDF-bestand.",
+      "conversionSuccess": "PDF met succes omgezet naar TIFF's!",
+      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn."
+    }
   },
   "pdfToCbz": {
     "name": "PDF naar CBZ",
@@ -306,7 +364,7 @@
     "numberLabel": "#",
     "volumeLabel": "Vol.",
     "publisherLabel": "Uitgever",
-    "tagsLabel": "Tags / Genre",
+    "tagsLabel": "Labels / Genre",
     "yearLabel": "Publicatiejaar",
     "ratingLabel": "Beoordeling (0-5)",
     "converting": "Converteren naar CBZ...",
