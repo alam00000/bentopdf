@@ -282,11 +282,11 @@
     "name": "PDF naar PNG",
     "subtitle": "Converteer elke PDF-pagina naar een PNG-afbeelding.",
     "imageScale": "Schaal",
-    "imageScaleExplanation": "Hogere schaal = beter kwaliteit en grotere bestanden",
+    "imageScaleExplanation": "Hogere schaal = betere kwaliteit en grotere bestanden",
     "alert": {
       "invalidFile": "Ongeldig bestand",
       "invalidFileExplanation": "Laad een PDF-bestand.",
-      "noFile": "No File",
+      "noFile": "Geen bestand",
       "noFileExplanation": "Laad eerst een PDF-bestand.",
       "conversionSuccess": "PDF met succes omgezet naar PNG's!",
       "conversionError": "Conversie van PDF naar PNG is mislukt. Het bestand kan beschadigd zijn."
@@ -339,7 +339,7 @@
     "loadingVips": "Beeldprocessor laden...",
     "converting": "Converteren naar TIFF...",
     "alert": {
-      "invalidFile": "Ongeldig bestand File",
+      "invalidFile": "Ongeldig bestand",
       "invalidFileExplanation": "Laad een PDF-bestand.",
       "noFile": "Geen bestand",
       "noFileExplanation": "Laad eerst een PDF-bestand.",
