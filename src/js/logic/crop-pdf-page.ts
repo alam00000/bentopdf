@@ -306,9 +306,7 @@ async function performCrop() {
 async function performMetadataCrop(
   cropData: Record<number, any>
 ): Promise<Uint8Array> {
-  const pdfToModify = await loadPdfDocument(cropperState.originalPdfBytes!, {
-    throwOnInvalidObject: false,
-  });
+  const pdfToModify = await loadPdfDocument(cropperState.originalPdfBytes!);
 
   for (const pageNum in cropData) {
     const pdfJsPage = await cropperState.pdfDoc.getPage(Number(pageNum));
@@ -350,8 +348,7 @@ async function performFlatteningCrop(
 ): Promise<Uint8Array> {
   const newPdfDoc = await PDFLibDocument.create();
   const sourcePdfDocForCopying = await loadPdfDocument(
-    cropperState.originalPdfBytes!,
-    { throwOnInvalidObject: false }
+    cropperState.originalPdfBytes!
   );
   const totalPages = cropperState.pdfDoc.numPages;
 

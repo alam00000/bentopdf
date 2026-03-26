@@ -31,16 +31,14 @@ export class PDFInputNode extends BaseWorkflowNode {
 
     let isEncrypted = false;
     try {
-      await loadPdfDocument(bytes, { throwOnInvalidObject: false });
+      await loadPdfDocument(bytes);
     } catch {
       isEncrypted = true;
     }
 
     if (isEncrypted) {
       try {
-        await loadPdfDocument(bytes, {
-          throwOnInvalidObject: false,
-        });
+        await loadPdfDocument(bytes);
       } catch {
         throw new Error(
           `Failed to load "${file.name}" - file may be corrupted`
@@ -49,9 +47,7 @@ export class PDFInputNode extends BaseWorkflowNode {
       throw new EncryptedPDFError(file.name);
     }
 
-    const document = await loadPdfDocument(bytes, {
-      throwOnInvalidObject: false,
-    });
+    const document = await loadPdfDocument(bytes);
     this.files.push({
       type: 'pdf',
       document,
@@ -64,9 +60,7 @@ export class PDFInputNode extends BaseWorkflowNode {
     const arrayBuffer = await readFileAsArrayBuffer(file);
     const bytes = new Uint8Array(arrayBuffer as ArrayBuffer);
     const { bytes: decryptedBytes } = await decryptPdfBytes(bytes, password);
-    const document = await loadPdfDocument(decryptedBytes, {
-      throwOnInvalidObject: false,
-    });
+    const document = await loadPdfDocument(decryptedBytes);
     this.files.push({
       type: 'pdf',
       document,

@@ -90,19 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Load PDF Document
         try {
-          if (!state.pdfDoc) {
-            const result = await loadPdfWithPasswordPrompt(file);
-            if (!result) {
-              state.files = [];
-              updateUI();
-              return;
-            }
-            result.pdf.destroy();
-            state.files[0] = result.file;
-            state.pdfDoc = await loadPdfDocument(result.bytes);
+          const result = await loadPdfWithPasswordPrompt(file);
+          if (!result) {
+            state.files = [];
+            updateUI();
+            return;
           }
-          // Update page count
-          metaSpan.textContent = `${formatBytes(file.size)} • ${state.pdfDoc.getPageCount()} pages`;
+          const pageCount = result.pdf.numPages;
+          result.pdf.destroy();
+          state.files[0] = result.file;
+          state.pdfDoc = await loadPdfDocument(result.bytes);
+          metaSpan.textContent = `${formatBytes(file.size)} • ${pageCount} pages`;
         } catch (error) {
           console.error('Error loading PDF:', error);
           showAlert('Error', 'Failed to load PDF file.');

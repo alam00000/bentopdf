@@ -174,9 +174,7 @@ async function handleFiles(files: FileList) {
   showLoader(translate('tools:addPageLabels.loadingPdf', 'Loading PDF...'));
   try {
     const arrayBuffer = await readFileAsArrayBuffer(file);
-    const pdfDoc = await loadPdfDocument(arrayBuffer as ArrayBuffer, {
-      throwOnInvalidObject: false,
-    });
+    const pdfDoc = await loadPdfDocument(arrayBuffer as ArrayBuffer);
 
     if (pdfDoc.isEncrypted) {
       showAlert(

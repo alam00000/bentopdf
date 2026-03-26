@@ -49,9 +49,7 @@ export class RepairNode extends BaseWorkflowNode {
         }
 
         const resultBytes = new Uint8Array(repairedData);
-        const resultDoc = await loadPdfDocument(resultBytes, {
-          throwOnInvalidObject: false,
-        });
+        const resultDoc = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

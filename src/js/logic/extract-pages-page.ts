@@ -100,9 +100,7 @@ async function handleFile(file: File) {
     showLoader('Loading PDF...');
     extractState.file = result.file;
     result.pdf.destroy();
-    extractState.pdfDoc = await loadPdfDocument(result.bytes, {
-      throwOnInvalidObject: false,
-    });
+    extractState.pdfDoc = await loadPdfDocument(result.bytes);
     extractState.totalPages = extractState.pdfDoc.getPageCount();
 
     updateFileDisplay();

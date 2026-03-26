@@ -99,9 +99,7 @@ async function updateUI() {
       pageState.pdfBytes = new Uint8Array(result.bytes);
       pageState.pdfjsDoc = result.pdf;
 
-      pageState.pdfDoc = await loadPdfDocument(pageState.pdfBytes, {
-        throwOnInvalidObject: false,
-      });
+      pageState.pdfDoc = await loadPdfDocument(pageState.pdfBytes);
 
       hideLoader();
 

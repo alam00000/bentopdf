@@ -208,9 +208,7 @@ async function updateUI() {
       }
       showLoader('Loading PDF...');
 
-      pageState.pdfDoc = await loadPdfDocument(result.bytes, {
-        throwOnInvalidObject: false,
-      });
+      pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
       pageState.pdfJsDoc = result.pdf;
 

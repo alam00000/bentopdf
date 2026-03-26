@@ -82,9 +82,7 @@ async function updateUI() {
       showLoader('Loading PDF...');
       result.pdf.destroy();
       pageState.file = result.file;
-      pageState.pdfDoc = await loadPdfDocument(result.bytes, {
-        throwOnInvalidObject: false,
-      });
+      pageState.pdfDoc = await loadPdfDocument(result.bytes);
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();

@@ -94,9 +94,7 @@ async function handleFile(file: File) {
     }
     showLoader('Loading PDF...');
     deleteState.file = result.file;
-    deleteState.pdfDoc = await loadPdfDocument(result.bytes, {
-      throwOnInvalidObject: false,
-    });
+    deleteState.pdfDoc = await loadPdfDocument(result.bytes);
     deleteState.pdfJsDoc = result.pdf;
     deleteState.totalPages = deleteState.pdfDoc.getPageCount();
     deleteState.pagesToDelete = new Set();

@@ -37,9 +37,7 @@ export class DecryptNode extends BaseWorkflowNode {
           input.bytes,
           password
         );
-        const document = await loadPdfDocument(resultBytes, {
-          throwOnInvalidObject: false,
-        });
+        const document = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

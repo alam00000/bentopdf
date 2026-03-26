@@ -436,9 +436,7 @@ async function loadPdfs(files: File[]) {
         pwResult.pdf.destroy();
         arrayBuffer = pwResult.bytes as ArrayBuffer;
 
-        const pdfDoc = await loadPdfDocument(arrayBuffer, {
-          throwOnInvalidObject: false,
-        });
+        const pdfDoc = await loadPdfDocument(arrayBuffer);
         currentPdfDocs.push(pdfDoc);
         const pdfIndex = currentPdfDocs.length - 1;
 
@@ -859,9 +857,7 @@ async function handleInsertPdf(e: Event) {
     if (!pwResult) return;
     pwResult.pdf.destroy();
 
-    const pdfDoc = await loadPdfDocument(pwResult.bytes, {
-      throwOnInvalidObject: false,
-    });
+    const pdfDoc = await loadPdfDocument(pwResult.bytes);
     currentPdfDocs.push(pdfDoc);
     const pdfIndex = currentPdfDocs.length - 1;
 

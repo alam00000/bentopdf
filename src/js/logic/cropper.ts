@@ -188,8 +188,7 @@ async function performFlatteningCrop(cropData: any) {
 
   // Load the original PDF with pdf-lib to copy un-cropped pages from
   const sourcePdfDocForCopying = await loadPdfDocument(
-    cropperState.originalPdfBytes,
-    { ignoreEncryption: true, throwOnInvalidObject: false }
+    cropperState.originalPdfBytes
   );
   const totalPages = cropperState.pdfDoc.numPages;
 
@@ -332,8 +331,7 @@ export async function setupCropperTool() {
         finalPdfBytes = await newPdfDoc.save();
       } else {
         const pdfToModify = await loadPdfDocument(
-          cropperState.originalPdfBytes,
-          { ignoreEncryption: true, throwOnInvalidObject: false }
+          cropperState.originalPdfBytes
         );
         await performMetadataCrop(pdfToModify, finalCropData);
         finalPdfBytes = await pdfToModify.save();

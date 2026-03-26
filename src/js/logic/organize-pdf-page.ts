@@ -177,9 +177,7 @@ async function handleFile(file: File) {
     if (!result) return;
     showLoader('Loading PDF...');
 
-    organizeState.pdfDoc = await loadPdfDocument(result.bytes, {
-      throwOnInvalidObject: false,
-    });
+    organizeState.pdfDoc = await loadPdfDocument(result.bytes);
     organizeState.pdfJsDoc = result.pdf;
     organizeState.file = result.file;
     organizeState.totalPages = organizeState.pdfDoc.getPageCount();
