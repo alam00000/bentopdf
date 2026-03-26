@@ -5,6 +5,7 @@ import type { SocketData, PDFData } from '../types';
 import { requirePdfInput, extractAllPdfs } from '../types';
 import { downloadFile } from '../../utils/helpers.js';
 import * as pdfjsLib from 'pdfjs-dist';
+import type JSZip from 'jszip';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 
 export class PdfToImagesNode extends BaseWorkflowNode {
@@ -31,7 +32,7 @@ export class PdfToImagesNode extends BaseWorkflowNode {
 
   private async addPdfPages(
     pdf: PDFData,
-    zip: any,
+    zip: JSZip,
     format: string,
     mimeType: string,
     quality: number,
@@ -59,7 +60,10 @@ export class PdfToImagesNode extends BaseWorkflowNode {
     }
   }
 
-  private async addPdfPagesAsSvg(allPdfs: PDFData[], zip: any): Promise<void> {
+  private async addPdfPagesAsSvg(
+    allPdfs: PDFData[],
+    zip: JSZip
+  ): Promise<void> {
     const pymupdf = await loadPyMuPDF();
     for (const pdf of allPdfs) {
       const blob = new Blob([new Uint8Array(pdf.bytes)], {

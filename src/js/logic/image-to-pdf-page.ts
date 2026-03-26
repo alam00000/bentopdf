@@ -203,7 +203,9 @@ async function preprocessFile(file: File): Promise<File> {
       });
     } catch (e) {
       console.error(`Failed to convert HEIC: ${file.name}`, e);
-      throw new Error(`Failed to process HEIC file: ${file.name}`);
+      throw new Error(`Failed to process HEIC file: ${file.name}`, {
+        cause: e,
+      });
     }
   }
 
@@ -247,7 +249,9 @@ async function preprocessFile(file: File): Promise<File> {
       });
     } catch (e) {
       console.error(`Failed to convert WebP: ${file.name}`, e);
-      throw new Error(`Failed to process WebP file: ${file.name}`);
+      throw new Error(`Failed to process WebP file: ${file.name}`, {
+        cause: e,
+      });
     }
   }
 

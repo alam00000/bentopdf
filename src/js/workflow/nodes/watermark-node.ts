@@ -7,6 +7,7 @@ import { addTextWatermark, parsePageRange } from '../../utils/pdf-operations';
 import { PDFDocument } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
 import * as pdfjsLib from 'pdfjs-dist';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class WatermarkNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -100,7 +101,7 @@ export class WatermarkNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const totalPages = srcDoc.getPageCount();
 
         const pageIndices =
@@ -163,7 +164,7 @@ export class WatermarkNode extends BaseWorkflowNode {
           resultBytes = new Uint8Array(await flattenedDoc.save());
         }
 
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

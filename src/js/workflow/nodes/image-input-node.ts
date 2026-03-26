@@ -2,8 +2,8 @@ import { ClassicPreset } from 'rete';
 import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class ImageInputNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -57,7 +57,7 @@ export class ImageInputNode extends BaseWorkflowNode {
     const pymupdf = await loadPyMuPDF();
     const pdfBlob = await pymupdf.imagesToPdf(this.files);
     const bytes = new Uint8Array(await pdfBlob.arrayBuffer());
-    const document = await PDFDocument.load(bytes);
+    const document = await loadPdfDocument(bytes);
 
     const result: PDFData = {
       type: 'pdf',

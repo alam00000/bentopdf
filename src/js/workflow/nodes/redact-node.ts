@@ -3,9 +3,9 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import { hexToRgb } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class RedactNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -106,7 +106,7 @@ export class RedactNode extends BaseWorkflowNode {
         const resultBytes = new Uint8Array(doc.save());
         doc.close();
 
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

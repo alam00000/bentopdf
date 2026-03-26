@@ -2,9 +2,9 @@ import { ClassicPreset } from 'rete';
 import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { readFileAsArrayBuffer } from '../../utils/helpers.js';
 import { decryptPdfBytes } from '../../utils/pdf-decrypt.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class EncryptedPDFError extends Error {
   constructor(public readonly filename: string) {
@@ -31,15 +31,14 @@ export class PDFInputNode extends BaseWorkflowNode {
 
     let isEncrypted = false;
     try {
-      await PDFDocument.load(bytes, { throwOnInvalidObject: false });
+      await loadPdfDocument(bytes, { throwOnInvalidObject: false });
     } catch {
       isEncrypted = true;
     }
 
     if (isEncrypted) {
       try {
-        await PDFDocument.load(bytes, {
-          ignoreEncryption: true,
+        await loadPdfDocument(bytes, {
           throwOnInvalidObject: false,
         });
       } catch {
@@ -50,7 +49,7 @@ export class PDFInputNode extends BaseWorkflowNode {
       throw new EncryptedPDFError(file.name);
     }
 
-    const document = await PDFDocument.load(bytes, {
+    const document = await loadPdfDocument(bytes, {
       throwOnInvalidObject: false,
     });
     this.files.push({
@@ -65,7 +64,7 @@ export class PDFInputNode extends BaseWorkflowNode {
     const arrayBuffer = await readFileAsArrayBuffer(file);
     const bytes = new Uint8Array(arrayBuffer as ArrayBuffer);
     const { bytes: decryptedBytes } = await decryptPdfBytes(bytes, password);
-    const document = await PDFDocument.load(decryptedBytes, {
+    const document = await loadPdfDocument(decryptedBytes, {
       throwOnInvalidObject: false,
     });
     this.files.push({

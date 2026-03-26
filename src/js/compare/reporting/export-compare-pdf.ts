@@ -15,6 +15,7 @@ import {
 import { downloadFile } from '../../utils/helpers.ts';
 import { computeComparisonForPair } from '../../logic/compare-render.ts';
 import { LRUCache } from '../lru-cache.ts';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 const HIGHLIGHT_COLORS: Record<
   string,
@@ -112,8 +113,8 @@ export async function exportComparePdf(
   ]);
 
   const [libDoc1, libDoc2] = await Promise.all([
-    bytes1 ? PDFDocument.load(bytes1, { ignoreEncryption: true }) : null,
-    bytes2 ? PDFDocument.load(bytes2, { ignoreEncryption: true }) : null,
+    bytes1 ? loadPdfDocument(bytes1, { ignoreEncryption: true }) : null,
+    bytes2 ? loadPdfDocument(bytes2, { ignoreEncryption: true }) : null,
   ]);
 
   const includeChange = options?.includeChange ?? (() => true);

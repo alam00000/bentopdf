@@ -247,7 +247,8 @@ async function convertToPdf() {
       } catch (error) {
         console.error(`Failed to process ${file.name}:`, error);
         throw new Error(
-          `Could not process "${file.name}". The file may be corrupted.`
+          `Could not process "${file.name}". The file may be corrupted.`,
+          { cause: error }
         );
       }
     }

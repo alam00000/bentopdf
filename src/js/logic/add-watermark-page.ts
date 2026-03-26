@@ -15,6 +15,7 @@ import {
 import { AddWatermarkState, PageWatermarkConfig } from '@/types';
 import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -121,7 +122,7 @@ async function handleFiles(files: FileList) {
     if (!result) return;
     showLoader('Loading PDF...');
     const pdfBytes = new Uint8Array(result.bytes);
-    pageState.pdfDoc = await PDFLibDocument.load(pdfBytes);
+    pageState.pdfDoc = await loadPdfDocument(pdfBytes);
     pageState.file = result.file;
     pageState.pdfBytes = pdfBytes;
 

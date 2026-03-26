@@ -1,6 +1,7 @@
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { createIcons, icons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 // State management
 const pageState: { pdfDoc: PDFDocument | null; file: File | null } = {
@@ -108,9 +109,7 @@ async function handleFileUpload(file: File) {
     if (!result) return;
     showLoader('Loading PDF...');
     result.pdf.destroy();
-    pageState.pdfDoc = await PDFDocument.load(result.bytes, {
-      ignoreEncryption: true,
-    });
+    pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
     updateFileDisplay();
     document.getElementById('options-panel')?.classList.remove('hidden');

@@ -4,6 +4,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { AddBlankPageState } from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: AddBlankPageState = {
   file: null,
@@ -84,8 +85,7 @@ async function updateUI() {
       }
       showLoader('Loading PDF...');
       pageState.file = result.file;
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-        ignoreEncryption: true,
+      pageState.pdfDoc = await loadPdfDocument(result.bytes, {
         throwOnInvalidObject: false,
       });
       result.pdf.destroy();

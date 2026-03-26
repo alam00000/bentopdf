@@ -4,7 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { rotatePdfUniform } from '../../utils/pdf-operations';
-import { PDFDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class RotateNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -33,7 +33,7 @@ export class RotateNode extends BaseWorkflowNode {
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
         const resultBytes = await rotatePdfUniform(input.bytes, angle);
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
         return {
           type: 'pdf',
           document: resultDoc,

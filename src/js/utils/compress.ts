@@ -97,7 +97,9 @@ export async function performCondenseCompression(
       return { ...result, usedFallback: true };
     } catch (fallbackError: any) {
       const msg = fallbackError?.message || String(fallbackError);
-      throw new Error(`PDF compression failed: ${msg}`);
+      throw new Error(`PDF compression failed: ${msg}`, {
+        cause: fallbackError,
+      });
     }
   }
 }

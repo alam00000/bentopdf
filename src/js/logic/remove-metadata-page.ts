@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface PageState {
   file: File | null;
@@ -150,9 +151,7 @@ async function removeMetadata() {
     if (loaderModal) loaderModal.classList.remove('hidden');
     if (loaderText) loaderText.textContent = 'Removing all metadata...';
     result.pdf.destroy();
-    const pdfDoc = await PDFDocument.load(result.bytes, {
-      ignoreEncryption: true,
-    });
+    const pdfDoc = await loadPdfDocument(result.bytes);
 
     removeMetadataFromDoc(pdfDoc);
 

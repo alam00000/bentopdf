@@ -3,8 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { initializeQpdf } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class RepairNode extends BaseWorkflowNode {
   readonly category = 'Optimize & Repair' as const;
@@ -49,8 +49,7 @@ export class RepairNode extends BaseWorkflowNode {
         }
 
         const resultBytes = new Uint8Array(repairedData);
-        const resultDoc = await PDFDocument.load(resultBytes, {
-          ignoreEncryption: true,
+        const resultDoc = await loadPdfDocument(resultBytes, {
           throwOnInvalidObject: false,
         });
 

@@ -2,13 +2,13 @@ import { AddAttachmentState } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
-import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/add-attachments.worker.js'
@@ -139,9 +139,7 @@ async function updateUI() {
       pageState.file = result.file;
       showLoader('Loading PDF...');
 
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-        ignoreEncryption: true,
-      });
+      pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
       const pageCount = pageState.pdfDoc.getPageCount();
       metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;

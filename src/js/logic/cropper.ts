@@ -1,11 +1,19 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
+import {
+  downloadFile,
+  readFileAsArrayBuffer,
+  getPDFDocument,
+} from '../utils/helpers.js';
 import { state } from '../state.js';
 import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url
+).toString();
 
 // --- Global State for the Cropper Tool ---
 const cropperState = {
@@ -145,21 +153,21 @@ async function performMetadataCrop(pdfToModify: any, cropData: any) {
 
     // Define the 4 corners of the crop rectangle in visual coordinates (Top-Left origin)
     const visualCorners = [
-      { x: cropX, y: cropY },                   // TL
-      { x: cropX + cropW, y: cropY },           // TR
-      { x: cropX + cropW, y: cropY + cropH },   // BR
-      { x: cropX, y: cropY + cropH },           // BL
+      { x: cropX, y: cropY }, // TL
+      { x: cropX + cropW, y: cropY }, // TR
+      { x: cropX + cropW, y: cropY + cropH }, // BR
+      { x: cropX, y: cropY + cropH }, // BL
     ];
 
     // This handles rotation, media box offsets, and coordinate system flips automatically
-    const pdfCorners = visualCorners.map(p => {
+    const pdfCorners = visualCorners.map((p) => {
       return viewport.convertToPdfPoint(p.x, p.y);
     });
 
     // Find the bounding box of the converted points in PDF coordinates
     // convertToPdfPoint returns [x, y] arrays
-    const pdfXs = pdfCorners.map(p => p[0]);
-    const pdfYs = pdfCorners.map(p => p[1]);
+    const pdfXs = pdfCorners.map((p) => p[0]);
+    const pdfYs = pdfCorners.map((p) => p[1]);
 
     const minX = Math.min(...pdfXs);
     const maxX = Math.max(...pdfXs);
@@ -179,9 +187,9 @@ async function performFlatteningCrop(cropData: any) {
   const newPdfDoc = await PDFLibDocument.create();
 
   // Load the original PDF with pdf-lib to copy un-cropped pages from
-  const sourcePdfDocForCopying = await PDFLibDocument.load(
-    cropperState.originalPdfBytes, 
-    {ignoreEncryption: true, throwOnInvalidObject: false}
+  const sourcePdfDocForCopying = await loadPdfDocument(
+    cropperState.originalPdfBytes,
+    { ignoreEncryption: true, throwOnInvalidObject: false }
   );
   const totalPages = cropperState.pdfDoc.numPages;
 
@@ -224,7 +232,11 @@ async function performFlatteningCrop(cropData: any) {
       const jpegQuality = 0.9;
 
       const jpegBytes = await new Promise((res) =>
-        finalCanvas.toBlob((blob) => blob.arrayBuffer().then(res), 'image/jpeg', jpegQuality)
+        finalCanvas.toBlob(
+          (blob) => blob.arrayBuffer().then(res),
+          'image/jpeg',
+          jpegQuality
+        )
       );
       const embeddedImage = await newPdfDoc.embedJpg(jpegBytes as ArrayBuffer);
       const newPage = newPdfDoc.addPage([finalWidth, finalHeight]);
@@ -273,80 +285,73 @@ export async function setupCropperTool() {
     .getElementById('next-page')
     .addEventListener('click', () => changePage(1));
 
-  document
-    .getElementById('crop-button')
-    .addEventListener('click', async () => {
-      // Get the last known crop from the active page before processing
-      saveCurrentCrop();
+  document.getElementById('crop-button').addEventListener('click', async () => {
+    // Get the last known crop from the active page before processing
+    saveCurrentCrop();
 
-      const isDestructive = (
-        document.getElementById('destructive-crop-toggle') as HTMLInputElement
-      ).checked;
-      const isApplyToAll = (
-        document.getElementById('apply-to-all-toggle') as HTMLInputElement
-      ).checked;
+    const isDestructive = (
+      document.getElementById('destructive-crop-toggle') as HTMLInputElement
+    ).checked;
+    const isApplyToAll = (
+      document.getElementById('apply-to-all-toggle') as HTMLInputElement
+    ).checked;
 
-      let finalCropData = {};
-      if (isApplyToAll) {
-        const currentCrop =
-          cropperState.pageCrops[cropperState.currentPageNum];
-        if (!currentCrop) {
-          showAlert('No Crop Area', 'Please select an area to crop first.');
-          return;
-        }
-        // Apply the active page's crop to all pages
-        for (let i = 1; i <= cropperState.pdfDoc.numPages; i++) {
-          finalCropData[i] = currentCrop;
-        }
-      } else {
-        // If not applying to all, only process pages with saved crops
-        finalCropData = Object.keys(cropperState.pageCrops).reduce(
-          (obj, key) => {
-            obj[key] = cropperState.pageCrops[key];
-            return obj;
-          },
-          {}
-        );
-      }
-
-      if (Object.keys(finalCropData).length === 0) {
-        showAlert(
-          'No Crop Area',
-          'Please select an area on at least one page to crop.'
-        );
+    let finalCropData = {};
+    if (isApplyToAll) {
+      const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
+      if (!currentCrop) {
+        showAlert('No Crop Area', 'Please select an area to crop first.');
         return;
       }
-
-      showLoader('Applying crop...');
-
-      try {
-        let finalPdfBytes;
-        if (isDestructive) {
-          const newPdfDoc = await performFlatteningCrop(finalCropData);
-          finalPdfBytes = await newPdfDoc.save();
-        } else {
-          const pdfToModify = await PDFLibDocument.load(
-            cropperState.originalPdfBytes,
-            {ignoreEncryption: true, throwOnInvalidObject: false}
-          );
-          await performMetadataCrop(pdfToModify, finalCropData);
-          finalPdfBytes = await pdfToModify.save();
-        }
-
-        const fileName = isDestructive
-          ? 'flattened_crop.pdf'
-          : 'standard_crop.pdf';
-        downloadFile(
-          new Blob([finalPdfBytes], { type: 'application/pdf' }),
-          fileName
-        );
-        showAlert('Success', 'Crop complete! Your download has started.');
-      } catch (e) {
-        console.error(e);
-        showAlert('Error', 'An error occurred during cropping.');
-      } finally {
-        hideLoader();
+      // Apply the active page's crop to all pages
+      for (let i = 1; i <= cropperState.pdfDoc.numPages; i++) {
+        finalCropData[i] = currentCrop;
       }
-    });
+    } else {
+      // If not applying to all, only process pages with saved crops
+      finalCropData = Object.keys(cropperState.pageCrops).reduce((obj, key) => {
+        obj[key] = cropperState.pageCrops[key];
+        return obj;
+      });
+    }
 
+    if (Object.keys(finalCropData).length === 0) {
+      showAlert(
+        'No Crop Area',
+        'Please select an area on at least one page to crop.'
+      );
+      return;
+    }
+
+    showLoader('Applying crop...');
+
+    try {
+      let finalPdfBytes;
+      if (isDestructive) {
+        const newPdfDoc = await performFlatteningCrop(finalCropData);
+        finalPdfBytes = await newPdfDoc.save();
+      } else {
+        const pdfToModify = await loadPdfDocument(
+          cropperState.originalPdfBytes,
+          { ignoreEncryption: true, throwOnInvalidObject: false }
+        );
+        await performMetadataCrop(pdfToModify, finalCropData);
+        finalPdfBytes = await pdfToModify.save();
+      }
+
+      const fileName = isDestructive
+        ? 'flattened_crop.pdf'
+        : 'standard_crop.pdf';
+      downloadFile(
+        new Blob([finalPdfBytes], { type: 'application/pdf' }),
+        fileName
+      );
+      showAlert('Success', 'Crop complete! Your download has started.');
+    } catch (e) {
+      console.error(e);
+      showAlert('Error', 'An error occurred during cropping.');
+    } finally {
+      hideLoader();
+    }
+  });
 }

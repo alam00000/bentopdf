@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class ReversePagesNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -23,7 +24,7 @@ export class ReversePagesNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const pageCount = srcDoc.getPageCount();
         const newDoc = await PDFDocument.create();
         const reversedIndices = Array.from(

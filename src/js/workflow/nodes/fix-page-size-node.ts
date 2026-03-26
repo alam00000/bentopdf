@@ -4,8 +4,8 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { fixPageSize } from '../../utils/pdf-operations';
-import { PDFDocument } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class FixPageSizeNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -90,7 +90,7 @@ export class FixPageSizeNode extends BaseWorkflowNode {
           customUnits,
         });
 
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

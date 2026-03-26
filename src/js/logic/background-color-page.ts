@@ -4,6 +4,7 @@ import { downloadFile, hexToRgb, formatBytes } from '../utils/helpers.js';
 import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
 import { BackgroundColorState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: BackgroundColorState = { file: null, pdfDoc: null };
 
@@ -63,9 +64,7 @@ async function handleFiles(files: FileList) {
     if (!result) return;
     showLoader('Loading PDF...');
     result.pdf.destroy();
-    pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-      ignoreEncryption: true,
-    });
+    pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
     updateFileDisplay();
     document.getElementById('options-panel')?.classList.remove('hidden');

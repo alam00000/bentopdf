@@ -3,7 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument, PDFName } from 'pdf-lib';
+import { PDFName } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class RemoveAnnotationsNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -23,7 +24,7 @@ export class RemoveAnnotationsNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const pdfDoc = await PDFDocument.load(input.bytes);
+        const pdfDoc = await loadPdfDocument(input.bytes);
         const pages = pdfDoc.getPages();
 
         for (const page of pages) {

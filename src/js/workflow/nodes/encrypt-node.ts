@@ -3,8 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { initializeQpdf } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class EncryptNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -90,9 +90,7 @@ export class EncryptNode extends BaseWorkflowNode {
         }
 
         const resultBytes = new Uint8Array(encryptedData);
-        const document = await PDFDocument.load(resultBytes, {
-          ignoreEncryption: true,
-        });
+        const document = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

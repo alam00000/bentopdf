@@ -2,8 +2,9 @@ import { EditMetadataState } from '@/types';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
-import { PDFDocument as PDFLibDocument, PDFName, PDFString } from 'pdf-lib';
+import { PDFName, PDFString } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: EditMetadataState = {
   file: null,
@@ -228,8 +229,7 @@ async function updateUI() {
       showLoader('Loading PDF...');
       result.pdf.destroy();
       pageState.file = result.file;
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-        ignoreEncryption: true,
+      pageState.pdfDoc = await loadPdfDocument(result.bytes, {
         throwOnInvalidObject: false,
       });
       hideLoader();

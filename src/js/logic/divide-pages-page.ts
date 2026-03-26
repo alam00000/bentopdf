@@ -8,6 +8,7 @@ import {
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: DividePagesState = {
   file: null,
@@ -87,9 +88,7 @@ async function updateUI() {
       pageState.file = result.file;
       showLoader('Loading PDF...');
 
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-        ignoreEncryption: true,
-      });
+      pageState.pdfDoc = await loadPdfDocument(result.bytes);
       pageState.totalPages = pageState.pdfDoc.getPageCount();
       hideLoader();
 

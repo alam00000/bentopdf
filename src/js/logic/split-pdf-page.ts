@@ -14,6 +14,7 @@ import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import JSZip from 'jszip';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 // @ts-ignore
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
@@ -98,9 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             result.pdf.destroy();
             state.files[0] = result.file;
-            state.pdfDoc = await PDFLibDocument.load(result.bytes, {
-              ignoreEncryption: true,
-            });
+            state.pdfDoc = await loadPdfDocument(result.bytes);
           }
           // Update page count
           metaSpan.textContent = `${formatBytes(file.size)} • ${state.pdfDoc.getPageCount()} pages`;
@@ -148,9 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           result.pdf.destroy();
           state.files[0] = result.file;
-          state.pdfDoc = await PDFLibDocument.load(result.bytes, {
-            ignoreEncryption: true,
-          });
+          state.pdfDoc = await loadPdfDocument(result.bytes);
           showLoader('Rendering page previews...');
         } else {
           throw new Error('No PDF document loaded');

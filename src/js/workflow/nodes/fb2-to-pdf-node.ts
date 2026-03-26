@@ -2,8 +2,8 @@ import { ClassicPreset } from 'rete';
 import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class Fb2ToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -54,7 +54,7 @@ export class Fb2ToPdfNode extends BaseWorkflowNode {
     for (const file of this.files) {
       const blob = await pymupdf.convertToPdf(file, { filetype: 'fb2' });
       const bytes = new Uint8Array(await blob.arrayBuffer());
-      const document = await PDFDocument.load(bytes);
+      const document = await loadPdfDocument(bytes);
       results.push({
         type: 'pdf',
         document,

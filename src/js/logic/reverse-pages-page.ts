@@ -5,6 +5,7 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface ReverseState {
   files: File[];
@@ -79,7 +80,7 @@ function updateUI() {
 
 async function reverseSingleFile(file: File): Promise<Uint8Array> {
   const arrayBuffer = await file.arrayBuffer();
-  const pdfDoc = await PDFLibDocument.load(arrayBuffer);
+  const pdfDoc = await loadPdfDocument(arrayBuffer);
 
   const newPdf = await PDFLibDocument.create();
   const pageCount = pdfDoc.getPageCount();

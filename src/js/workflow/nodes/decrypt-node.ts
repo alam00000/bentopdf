@@ -3,8 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { decryptPdfBytes } from '../../utils/pdf-decrypt.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class DecryptNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -37,7 +37,7 @@ export class DecryptNode extends BaseWorkflowNode {
           input.bytes,
           password
         );
-        const document = await PDFDocument.load(resultBytes, {
+        const document = await loadPdfDocument(resultBytes, {
           throwOnInvalidObject: false,
         });
 

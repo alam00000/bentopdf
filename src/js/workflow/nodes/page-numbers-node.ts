@@ -8,8 +8,8 @@ import {
   type PageNumberPosition,
   type PageNumberFormat,
 } from '../../utils/pdf-operations';
-import { PDFDocument } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class PageNumbersNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -68,7 +68,7 @@ export class PageNumbersNode extends BaseWorkflowNode {
           color: { r: c.r, g: c.g, b: c.b },
         });
 
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
 
         return {
           type: 'pdf',

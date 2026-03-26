@@ -185,7 +185,8 @@ export function saveWorkflow(
       delete templates[name];
     }
     throw new Error(
-      'Failed to save workflow: storage quota exceeded. Try deleting old templates.'
+      'Failed to save workflow: storage quota exceeded. Try deleting old templates.',
+      { cause: e }
     );
   }
 }

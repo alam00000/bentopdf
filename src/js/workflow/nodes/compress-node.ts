@@ -3,13 +3,13 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import {
   performCondenseCompression,
   performPhotonCompression,
 } from '../../utils/compress.js';
 import type { CondenseCustomSettings } from '../../utils/compress.js';
 import { isPyMuPDFAvailable } from '../../utils/pymupdf-loader.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class CompressNode extends BaseWorkflowNode {
   readonly category = 'Optimize & Repair' as const;
@@ -115,7 +115,7 @@ export class CompressNode extends BaseWorkflowNode {
           pdfBytes = await performPhotonCompression(arrayBuffer, level);
         }
 
-        const document = await PDFDocument.load(pdfBytes);
+        const document = await loadPdfDocument(pdfBytes);
 
         return {
           type: 'pdf',

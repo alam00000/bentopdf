@@ -6,9 +6,10 @@ import {
   formatBytes,
   parsePageRanges,
 } from '../utils/helpers.js';
-import { PDFDocument as PDFLibDocument, rgb, StandardFonts } from 'pdf-lib';
+import { rgb, StandardFonts } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { HeaderFooterState } from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: HeaderFooterState = { file: null, pdfDoc: null };
 
@@ -68,9 +69,7 @@ async function handleFiles(files: FileList) {
     if (!result) return;
     showLoader('Loading PDF...');
 
-    pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-      ignoreEncryption: true,
-    });
+    pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
     result.pdf.destroy();
 
@@ -253,9 +252,12 @@ async function addHeaderFooter() {
         resetState();
       }
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error(e);
-    showAlert('Error', e.message || 'Could not add header or footer.');
+    showAlert(
+      'Error',
+      e instanceof Error ? e.message : 'Could not add header or footer.'
+    );
   } finally {
     hideLoader();
   }

@@ -3,8 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { flattenAnnotations } from '../../utils/flatten-annotations.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class FlattenNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -24,7 +24,7 @@ export class FlattenNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const pdfDoc = await PDFDocument.load(input.bytes);
+        const pdfDoc = await loadPdfDocument(input.bytes);
 
         try {
           const form = pdfDoc.getForm();

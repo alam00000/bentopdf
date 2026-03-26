@@ -8,6 +8,7 @@ import {
 import { PDFDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import JSZip from 'jszip';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface ExtractState {
   file: File | null;
@@ -99,8 +100,7 @@ async function handleFile(file: File) {
     showLoader('Loading PDF...');
     extractState.file = result.file;
     result.pdf.destroy();
-    extractState.pdfDoc = await PDFDocument.load(result.bytes, {
-      ignoreEncryption: true,
+    extractState.pdfDoc = await loadPdfDocument(result.bytes, {
       throwOnInvalidObject: false,
     });
     extractState.totalPages = extractState.pdfDoc.getPageCount();

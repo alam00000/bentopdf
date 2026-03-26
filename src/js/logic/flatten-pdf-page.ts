@@ -7,6 +7,7 @@ import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { FlattenPdfState } from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: FlattenPdfState = {
   files: [],
@@ -115,7 +116,7 @@ async function flattenPdf() {
 
       const file = pageState.files[0];
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const pdfDoc = await loadPdfDocument(arrayBuffer);
 
       try {
         flattenFormsInDoc(pdfDoc);
@@ -154,7 +155,7 @@ async function flattenPdf() {
 
         try {
           const arrayBuffer = await file.arrayBuffer();
-          const pdfDoc = await PDFDocument.load(arrayBuffer);
+          const pdfDoc = await loadPdfDocument(arrayBuffer);
 
           try {
             flattenFormsInDoc(pdfDoc);

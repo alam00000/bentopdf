@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class BackgroundColorNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -34,7 +35,7 @@ export class BackgroundColorNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const newDoc = await PDFDocument.create();
 
         for (let i = 0; i < srcDoc.getPageCount(); i++) {

@@ -5,16 +5,20 @@ import {
   convertPoints,
 } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { PDFDocument } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
-import { PageDimensionsState } from '@/types';
+import {
+  PageDimensionsState,
+  AnalyzedPageData,
+  UniqueSizeEntry,
+} from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 const pageState: PageDimensionsState = {
   file: null,
   pdfDoc: null,
 };
 
-let analyzedPagesData: any[] = [];
+let analyzedPagesData: AnalyzedPageData[] = [];
 
 function calculateAspectRatio(width: number, height: number): string {
   const ratio = width / height;
@@ -35,11 +39,12 @@ function calculateArea(width: number, height: number, unit: string): string {
       convertedArea = (areaInPoints / (72 * 72)) * (25.4 * 25.4);
       unitSuffix = 'mm²';
       break;
-    case 'px':
+    case 'px': {
       const pxPerPoint = 96 / 72;
       convertedArea = areaInPoints * (pxPerPoint * pxPerPoint);
       unitSuffix = 'px²';
       break;
+    }
     default:
       convertedArea = areaInPoints;
       unitSuffix = 'pt²';
@@ -52,8 +57,8 @@ function calculateArea(width: number, height: number, unit: string): string {
 function getSummaryStats() {
   const totalPages = analyzedPagesData.length;
 
-  const uniqueSizes = new Map();
-  analyzedPagesData.forEach((pageData: any) => {
+  const uniqueSizes = new Map<string, UniqueSizeEntry>();
+  analyzedPagesData.forEach((pageData) => {
     const key = `${pageData.width.toFixed(2)}x${pageData.height.toFixed(2)}`;
     const label = `${pageData.standardSize} (${pageData.orientation})`;
     uniqueSizes.set(key, {
@@ -110,7 +115,7 @@ function renderSummary() {
             <ul class="space-y-1 text-sm text-gray-300">
               ${stats.uniqueSizes
                 .map(
-                  (size: any) => `
+                  (size: UniqueSizeEntry) => `
                 <li>• ${size.label}: ${size.count} page${size.count > 1 ? 's' : ''}</li>
               `
                 )
@@ -145,7 +150,7 @@ function renderTable(unit: string) {
 
     const pageNumCell = document.createElement('td');
     pageNumCell.className = 'px-4 py-3 text-white';
-    pageNumCell.textContent = pageData.pageNum;
+    pageNumCell.textContent = String(pageData.pageNum);
 
     const dimensionsCell = document.createElement('td');
     dimensionsCell.className = 'px-4 py-3 text-gray-300';
@@ -202,7 +207,7 @@ function exportToCSV() {
   ];
   const csvRows = [headers.join(',')];
 
-  analyzedPagesData.forEach((pageData: any) => {
+  analyzedPagesData.forEach((pageData) => {
     const width = convertPoints(pageData.width, unit);
     const height = convertPoints(pageData.height, unit);
     const aspectRatio = calculateAspectRatio(pageData.width, pageData.height);
@@ -239,7 +244,7 @@ function analyzeAndDisplayDimensions() {
   analyzedPagesData = [];
   const pages = pageState.pdfDoc.getPages();
 
-  pages.forEach((page: any, index: number) => {
+  pages.forEach((page, index) => {
     const { width, height } = page.getSize();
     const rotation = page.getRotation().angle || 0;
 
@@ -341,9 +346,7 @@ async function handleFileSelect(files: FileList | null) {
         result.pdf.destroy();
 
         pageState.file = result.file;
-        pageState.pdfDoc = await PDFDocument.load(result.bytes, {
-          ignoreEncryption: true,
-        });
+        pageState.pdfDoc = await loadPdfDocument(result.bytes);
         updateUI();
         analyzeAndDisplayDimensions();
       } catch (e) {

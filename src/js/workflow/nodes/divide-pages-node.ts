@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument } from 'pdf-lib';
 import { parsePageRange } from '../../utils/pdf-operations';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class DividePagesNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -42,7 +43,7 @@ export class DividePagesNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const newDoc = await PDFDocument.create();
         const totalPages = srcDoc.getPageCount();
 

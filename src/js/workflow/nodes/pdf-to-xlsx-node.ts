@@ -36,7 +36,7 @@ export class PdfToXlsxNode extends BaseWorkflowNode {
       for (let i = 0; i < pageCount; i++) {
         const page = doc.getPage(i);
         const tables = page.findTables();
-        tables.forEach((table: any) => {
+        tables.forEach((table: { rows: (string | null)[][] }) => {
           allTables.push({ page: i + 1, rows: table.rows });
         });
       }

@@ -67,7 +67,9 @@ export async function loadPyMuPDF(): Promise<any> {
       return cachedPyMuPDF;
     } catch (error: any) {
       loadPromise = null;
-      throw new Error(`Failed to load PyMuPDF from CDN: ${error.message}`);
+      throw new Error(`Failed to load PyMuPDF from CDN: ${error.message}`, {
+        cause: error,
+      });
     }
   })();
 

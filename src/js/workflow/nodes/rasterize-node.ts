@@ -3,8 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class RasterizeNode extends BaseWorkflowNode {
   readonly category = 'Optimize & Repair' as const;
@@ -65,7 +65,7 @@ export class RasterizeNode extends BaseWorkflowNode {
         });
 
         const bytes = new Uint8Array(await rasterizedBlob.arrayBuffer());
-        const document = await PDFDocument.load(bytes);
+        const document = await loadPdfDocument(bytes);
 
         return {
           type: 'pdf',

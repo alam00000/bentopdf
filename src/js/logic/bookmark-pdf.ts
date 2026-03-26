@@ -14,6 +14,7 @@ import {
   hexToRgb,
 } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import {
   BookmarkNode,
   BookmarkTree,
@@ -1240,7 +1241,7 @@ async function loadPDF(e?: Event): Promise<void> {
   selectedBookmarks.clear();
   collapsedNodes.clear();
 
-  pdfLibDoc = await PDFDocument.load(result.bytes, { ignoreEncryption: true });
+  pdfLibDoc = await loadPdfDocument(result.bytes, { ignoreEncryption: true });
   pdfJsDoc = result.pdf;
 
   if (gotoPageInput) gotoPageInput.max = String(pdfJsDoc.numPages);

@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument, PageSizes } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 const paperSizeLookup: Record<string, [number, number]> = {
   Letter: PageSizes.Letter,
@@ -88,7 +89,7 @@ export class BookletNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const sourceDoc = await PDFDocument.load(input.bytes);
+        const sourceDoc = await loadPdfDocument(input.bytes);
         const totalPages = sourceDoc.getPageCount();
         const pagesPerSheet = rows * cols;
         const outputDoc = await PDFDocument.create();

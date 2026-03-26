@@ -3,6 +3,7 @@ import { downloadFile, formatBytes, hexToRgb } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument, rgb, PageSizes } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface NUpState {
   file: File | null;
@@ -74,8 +75,7 @@ async function updateUI() {
       showLoader('Loading PDF...');
       result.pdf.destroy();
       pageState.file = result.file;
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-        ignoreEncryption: true,
+      pageState.pdfDoc = await loadPdfDocument(result.bytes, {
         throwOnInvalidObject: false,
       });
       hideLoader();

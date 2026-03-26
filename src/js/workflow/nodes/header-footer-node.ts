@@ -3,8 +3,9 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { StandardFonts, rgb } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class HeaderFooterNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -89,7 +90,7 @@ export class HeaderFooterNode extends BaseWorkflowNode {
       pdf: await processBatch(pdfInputs, async (input) => {
         if (!hasAny) return input;
 
-        const pdfDoc = await PDFDocument.load(input.bytes);
+        const pdfDoc = await loadPdfDocument(input.bytes);
         const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
         const pages = pdfDoc.getPages();
         const totalPages = pages.length;

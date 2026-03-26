@@ -1,11 +1,12 @@
 import { PDFDocument, degrees, rgb, StandardFonts, PageSizes } from 'pdf-lib';
+import { loadPdfDocument } from './load-pdf-document.js';
 
 export async function mergePdfs(
   pdfBytesList: Uint8Array[]
 ): Promise<Uint8Array> {
   const mergedDoc = await PDFDocument.create();
   for (const bytes of pdfBytesList) {
-    const srcDoc = await PDFDocument.load(bytes);
+    const srcDoc = await loadPdfDocument(bytes);
     const copiedPages = await mergedDoc.copyPages(
       srcDoc,
       srcDoc.getPageIndices()
@@ -19,7 +20,7 @@ export async function splitPdf(
   pdfBytes: Uint8Array,
   pageIndices: number[]
 ): Promise<Uint8Array> {
-  const srcDoc = await PDFDocument.load(pdfBytes);
+  const srcDoc = await loadPdfDocument(pdfBytes);
   const newPdf = await PDFDocument.create();
   const copiedPages = await newPdf.copyPages(srcDoc, pageIndices);
   copiedPages.forEach((page) => newPdf.addPage(page));
@@ -30,7 +31,7 @@ export async function rotatePdfUniform(
   pdfBytes: Uint8Array,
   angle: number
 ): Promise<Uint8Array> {
-  const srcDoc = await PDFDocument.load(pdfBytes);
+  const srcDoc = await loadPdfDocument(pdfBytes);
   const newPdfDoc = await PDFDocument.create();
   const pageCount = srcDoc.getPageCount();
 
@@ -75,7 +76,7 @@ export async function rotatePdfPages(
   pdfBytes: Uint8Array,
   rotations: number[]
 ): Promise<Uint8Array> {
-  const srcDoc = await PDFDocument.load(pdfBytes);
+  const srcDoc = await loadPdfDocument(pdfBytes);
   const newPdfDoc = await PDFDocument.create();
   const pageCount = srcDoc.getPageCount();
 
@@ -121,7 +122,7 @@ export async function deletePdfPages(
   pdfBytes: Uint8Array,
   pagesToDelete: Set<number>
 ): Promise<Uint8Array> {
-  const srcDoc = await PDFDocument.load(pdfBytes);
+  const srcDoc = await loadPdfDocument(pdfBytes);
   const totalPages = srcDoc.getPageCount();
 
   const pagesToKeep: number[] = [];
@@ -196,7 +197,7 @@ export async function addTextWatermark(
   pdfBytes: Uint8Array,
   options: TextWatermarkOptions
 ): Promise<Uint8Array> {
-  const pdfDoc = await PDFDocument.load(pdfBytes);
+  const pdfDoc = await loadPdfDocument(pdfBytes);
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -274,7 +275,7 @@ export async function addImageWatermark(
   pdfBytes: Uint8Array,
   options: ImageWatermarkOptions
 ): Promise<Uint8Array> {
-  const pdfDoc = await PDFDocument.load(pdfBytes);
+  const pdfDoc = await loadPdfDocument(pdfBytes);
   const image =
     options.imageType === 'png'
       ? await pdfDoc.embedPng(options.imageBytes)
@@ -330,7 +331,7 @@ export async function addPageNumbers(
   pdfBytes: Uint8Array,
   options: PageNumberOptions
 ): Promise<Uint8Array> {
-  const pdfDoc = await PDFDocument.load(pdfBytes);
+  const pdfDoc = await loadPdfDocument(pdfBytes);
   const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const pages = pdfDoc.getPages();
   const totalPages = pages.length;
@@ -481,7 +482,7 @@ export async function fixPageSize(
     [targetWidth, targetHeight] = [targetHeight, targetWidth];
   }
 
-  const sourceDoc = await PDFDocument.load(pdfBytes);
+  const sourceDoc = await loadPdfDocument(pdfBytes);
   const outputDoc = await PDFDocument.create();
 
   for (const sourcePage of sourceDoc.getPages()) {

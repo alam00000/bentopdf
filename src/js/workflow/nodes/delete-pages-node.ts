@@ -4,7 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { deletePdfPages, parseDeletePages } from '../../utils/pdf-operations';
-import { PDFDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class DeletePagesNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -32,11 +32,11 @@ export class DeletePagesNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const totalPages = srcDoc.getPageCount();
         const pagesToDelete = parseDeletePages(deleteStr, totalPages);
         const resultBytes = await deletePdfPages(input.bytes, pagesToDelete);
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
         return {
           type: 'pdf',
           document: resultDoc,

@@ -175,7 +175,9 @@ async function loadPdfInViewer(file: File) {
       enablePermissions: false,
     };
     localStorage.setItem('pdfjs.preferences', JSON.stringify(newPrefs));
-  } catch {}
+  } catch (e) {
+    console.warn('Failed to update pdfjs.preferences in localStorage', e);
+  }
 
   const iframe = document.createElement('iframe');
   iframe.className = 'w-full h-full border-0';
@@ -221,7 +223,12 @@ function setupAnnotationViewer(iframe: HTMLIFrameElement) {
                 'editorStampButton'
               ) as HTMLButtonElement | null;
               stampBtn?.click();
-            } catch {}
+            } catch (e) {
+              console.warn(
+                'Failed to auto-click stamp button in annotation editor',
+                e
+              );
+            }
           });
         }
 

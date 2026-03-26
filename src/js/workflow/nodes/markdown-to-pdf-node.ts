@@ -2,9 +2,9 @@ import { ClassicPreset } from 'rete';
 import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import MarkdownIt from 'markdown-it';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 
@@ -65,11 +65,15 @@ export class MarkdownToPdfNode extends BaseWorkflowNode {
         blockquote { border-left: 3px solid #ccc; margin-left: 0; padding-left: 12px; color: #555; }
         table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #ccc; padding: 6px 12px; }
       </style></head><body>${md.render(textContent)}</body></html>`;
-      const pdfBlob = await (pymupdf as any).htmlToPdf(htmlContent, {
+      const pdfBlob = await (
+        pymupdf as unknown as {
+          htmlToPdf(html: string, options: unknown): Promise<Blob>;
+        }
+      ).htmlToPdf(htmlContent, {
         pageSize: 'a4',
       });
       const bytes = new Uint8Array(await pdfBlob.arrayBuffer());
-      const pdfDoc = await PDFDocument.load(bytes);
+      const pdfDoc = await loadPdfDocument(bytes);
       results.push({
         type: 'pdf',
         document: pdfDoc,

@@ -3,6 +3,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { createIcons, icons } from 'lucide';
 import { initPagePreview } from '../utils/page-preview.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -122,9 +123,7 @@ async function handleFileUpload(file: File) {
     if (!result) return;
     showLoader('Loading PDF...');
     result.pdf.destroy();
-    pageState.pdfDoc = await PDFDocument.load(result.bytes, {
-      ignoreEncryption: true,
-    });
+    pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
     pageState.detectedBlankPages = [];
     updateFileDisplay();

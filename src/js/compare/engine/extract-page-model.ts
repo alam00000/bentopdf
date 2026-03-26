@@ -653,7 +653,9 @@ export async function extractPageModel(
           fontNameMap.set(internalName, fontObj.name);
         }
       }
-    } catch {}
+    } catch (e) {
+      console.warn(`Failed to resolve font name for "${internalName}"`, e);
+    }
   }
 
   const rawItems = sortCompareTextItems(

@@ -15,7 +15,6 @@ import {
 import { setupCanvasEditor } from '../canvasEditor.js';
 import { toolLogic } from '../logic/index.js';
 import { renderDuplicateOrganizeThumbnails } from '../logic/duplicate-organize.js';
-import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
 import Sortable from 'sortablejs';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
@@ -29,6 +28,7 @@ import {
   singlePdfLoadTools,
 } from '../config/pdf-tools.js';
 import * as pdfjsLib from 'pdfjs-dist';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -71,9 +71,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
     }
 
     const pdfBytes = await readFileAsArrayBuffer(file);
-    state.pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
-      ignoreEncryption: true,
-    });
+    state.pdfDoc = await loadPdfDocument(pdfBytes as ArrayBuffer);
     hideLoader();
 
     if (
@@ -88,7 +86,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
         return;
       }
       const decryptedBytes = await readFileAsArrayBuffer(decryptedFile);
-      state.pdfDoc = await PDFLibDocument.load(decryptedBytes as ArrayBuffer);
+      state.pdfDoc = await loadPdfDocument(decryptedBytes as ArrayBuffer);
       state.files = [decryptedFile];
     }
 
@@ -603,9 +601,7 @@ async function handleMultiFileUpload(toolId: string) {
     const pdfFilesLoaded = await Promise.all(
       pdfFilesUnloaded.map(async (file) => {
         const pdfBytes = await readFileAsArrayBuffer(file);
-        const pdfDoc = await PDFLibDocument.load(pdfBytes as ArrayBuffer, {
-          ignoreEncryption: true,
-        });
+        const pdfDoc = await loadPdfDocument(pdfBytes as ArrayBuffer);
 
         return {
           file,

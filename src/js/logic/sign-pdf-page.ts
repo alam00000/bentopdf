@@ -6,16 +6,9 @@ import {
   downloadFile,
 } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { PDFDocument } from 'pdf-lib';
 import { t } from '../i18n/i18n';
-
-interface SignState {
-  file: File | null;
-  pdfDoc: any;
-  viewerIframe: HTMLIFrameElement | null;
-  viewerReady: boolean;
-  blobUrl: string | null;
-}
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import type { SignState, PDFViewerWindow } from '@/types';
 
 const signState: SignState = {
   file: null,
@@ -124,7 +117,7 @@ async function updateFileDisplay() {
 
   const removeBtn = document.createElement('button');
   removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
-  removeBtn.innerHTML = '<i data-lucide=\"trash-2\" class=\"w-4 h-4\"></i>';
+  removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   removeBtn.onclick = () => {
     signState.file = null;
     signState.pdfDoc = null;
@@ -180,20 +173,26 @@ async function setupSignTool() {
   signState.viewerIframe = iframe;
 
   const pdfBytes = await readFileAsArrayBuffer(signState.file);
-  const blob = new Blob([pdfBytes as BlobPart], { type: 'application/pdf' });
+  const blob = new Blob([new Uint8Array(pdfBytes as ArrayBuffer)], {
+    type: 'application/pdf',
+  });
   signState.blobUrl = URL.createObjectURL(blob);
 
   try {
     const existingPrefsRaw = localStorage.getItem('pdfjs.preferences');
-    const existingPrefs = existingPrefsRaw ? JSON.parse(existingPrefsRaw) : {};
-    delete (existingPrefs as any).annotationEditorMode;
+    const existingPrefs: Record<string, unknown> = existingPrefsRaw
+      ? JSON.parse(existingPrefsRaw)
+      : {};
+    delete existingPrefs.annotationEditorMode;
     const newPrefs = {
       ...existingPrefs,
       enableSignatureEditor: true,
       enablePermissions: false,
     };
     localStorage.setItem('pdfjs.preferences', JSON.stringify(newPrefs));
-  } catch {}
+  } catch (e) {
+    console.warn('Failed to update pdfjs.preferences in localStorage', e);
+  }
 
   const viewerUrl = new URL(
     `${import.meta.env.BASE_URL}pdfjs-viewer/viewer.html`,
@@ -206,7 +205,7 @@ async function setupSignTool() {
     hideLoader();
     signState.viewerReady = true;
     try {
-      const viewerWindow: any = iframe.contentWindow;
+      const viewerWindow = iframe.contentWindow as PDFViewerWindow | null;
       if (viewerWindow && viewerWindow.PDFViewerApplication) {
         const app = viewerWindow.PDFViewerApplication;
         const doc = viewerWindow.document;
@@ -235,7 +234,12 @@ async function setupSignTool() {
               'editorHighlightButton'
             ) as HTMLButtonElement | null;
             highlightBtn?.click();
-          } catch {}
+          } catch (e) {
+            console.warn(
+              'Failed to auto-click highlight button in PDF viewer',
+              e
+            );
+          }
         });
       }
     } catch (e) {
@@ -258,7 +262,8 @@ async function applyAndSaveSignatures() {
   }
 
   try {
-    const viewerWindow: any = signState.viewerIframe.contentWindow;
+    const viewerWindow = signState.viewerIframe
+      .contentWindow as PDFViewerWindow | null;
     if (!viewerWindow || !viewerWindow.PDFViewerApplication) {
       showAlert('Viewer not ready', 'The PDF viewer is still initializing.');
       return;
@@ -277,11 +282,11 @@ async function applyAndSaveSignatures() {
         app.pdfDocument.annotationStorage
       );
       const pdfBytes = new Uint8Array(rawPdfBytes);
-      const pdfDoc = await PDFDocument.load(pdfBytes);
+      const pdfDoc = await loadPdfDocument(pdfBytes);
       pdfDoc.getForm().flatten();
       const flattenedPdfBytes = await pdfDoc.save();
 
-      const blob = new Blob([flattenedPdfBytes as BlobPart], {
+      const blob = new Blob([new Uint8Array(flattenedPdfBytes)], {
         type: 'application/pdf',
       });
       downloadFile(

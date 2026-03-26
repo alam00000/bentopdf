@@ -10,6 +10,7 @@ import { PDFDocument as PDFLibDocument, rgb } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { CombineSinglePageState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -81,8 +82,7 @@ async function updateUI() {
       showLoader('Loading PDF...');
       result.pdf.destroy();
       pageState.file = result.file;
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-        ignoreEncryption: true,
+      pageState.pdfDoc = await loadPdfDocument(result.bytes, {
         throwOnInvalidObject: false,
       });
       hideLoader();

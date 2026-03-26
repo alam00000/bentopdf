@@ -49,6 +49,7 @@ import {
   PageData,
 } from '@/types';
 import { extractExistingFields as extractExistingPdfFields } from './form-creator-extraction.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 let fields: FormField[] = [];
 let selectedField: FormField | null = null;
@@ -3140,9 +3141,7 @@ async function handlePdfUpload(file: File) {
     if (!result) return;
     const arrayBuffer = result.bytes;
     uploadedPdfjsDoc = result.pdf;
-    uploadedPdfDoc = await PDFDocument.load(arrayBuffer, {
-      ignoreEncryption: true,
-    });
+    uploadedPdfDoc = await loadPdfDocument(arrayBuffer);
 
     // Check for existing fields and update counter
     existingFieldNames.clear();

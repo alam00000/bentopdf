@@ -6,6 +6,7 @@ import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { CropperState } from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -305,10 +306,9 @@ async function performCrop() {
 async function performMetadataCrop(
   cropData: Record<number, any>
 ): Promise<Uint8Array> {
-  const pdfToModify = await PDFLibDocument.load(
-    cropperState.originalPdfBytes!,
-    { throwOnInvalidObject: false }
-  );
+  const pdfToModify = await loadPdfDocument(cropperState.originalPdfBytes!, {
+    throwOnInvalidObject: false,
+  });
 
   for (const pageNum in cropData) {
     const pdfJsPage = await cropperState.pdfDoc.getPage(Number(pageNum));
@@ -349,7 +349,7 @@ async function performFlatteningCrop(
   cropData: Record<number, any>
 ): Promise<Uint8Array> {
   const newPdfDoc = await PDFLibDocument.create();
-  const sourcePdfDocForCopying = await PDFLibDocument.load(
+  const sourcePdfDocForCopying = await loadPdfDocument(
     cropperState.originalPdfBytes!,
     { throwOnInvalidObject: false }
   );

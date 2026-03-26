@@ -4,7 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { splitPdf, parsePageRange } from '../../utils/pdf-operations';
-import { PDFDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class SplitNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -32,11 +32,11 @@ export class SplitNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const totalPages = srcDoc.getPageCount();
         const indices = parsePageRange(rangeStr, totalPages);
         const resultBytes = await splitPdf(input.bytes, indices);
-        const resultDoc = await PDFDocument.load(resultBytes);
+        const resultDoc = await loadPdfDocument(resultBytes);
         return {
           type: 'pdf',
           document: resultDoc,

@@ -5,11 +5,11 @@ import {
   downloadFile,
   parsePageRanges,
 } from '../utils/helpers.js';
-import { PDFDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { deletePdfPages } from '../utils/pdf-operations.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import { DeletePagesState } from '@/types';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -94,8 +94,7 @@ async function handleFile(file: File) {
     }
     showLoader('Loading PDF...');
     deleteState.file = result.file;
-    deleteState.pdfDoc = await PDFDocument.load(result.bytes, {
-      ignoreEncryption: true,
+    deleteState.pdfDoc = await loadPdfDocument(result.bytes, {
       throwOnInvalidObject: false,
     });
     deleteState.pdfJsDoc = result.pdf;
@@ -272,7 +271,7 @@ async function deletePages() {
     );
     const baseName = deleteState.file?.name.replace('.pdf', '') || 'document';
     downloadFile(
-      new Blob([resultBytes as unknown as BlobPart], {
+      new Blob([new Uint8Array(resultBytes)], {
         type: 'application/pdf',
       }),
       `${baseName}_pages_removed.pdf`

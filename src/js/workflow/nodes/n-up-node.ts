@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument, rgb } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class NUpNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -73,7 +74,7 @@ export class NUpNode extends BaseWorkflowNode {
         };
         const [cols, rows] = gridDims[n];
 
-        const srcDoc = await PDFDocument.load(input.bytes);
+        const srcDoc = await loadPdfDocument(input.bytes);
         const newDoc = await PDFDocument.create();
         const pageCount = srcDoc.getPageCount();
         const firstPage = srcDoc.getPages()[0];

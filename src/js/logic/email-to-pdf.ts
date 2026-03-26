@@ -207,7 +207,7 @@ export function renderEmailToHtml(
 ): string {
   const { includeCcBcc = true, includeAttachments = true } = options;
 
-  let processedHtml = '';
+  let processedHtml: string;
   if (email.htmlBody) {
     const sanitizedHtml = sanitizeEmailHtml(email.htmlBody);
     processedHtml = processInlineImages(sanitizedHtml, email.attachments);

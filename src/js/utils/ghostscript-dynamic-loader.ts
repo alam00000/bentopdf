@@ -52,7 +52,8 @@ export async function loadGhostscript(): Promise<GhostscriptInterface> {
     } catch (error: any) {
       loadPromise = null;
       throw new Error(
-        `Failed to load Ghostscript from ${normalizedUrl}: ${error.message}`
+        `Failed to load Ghostscript from ${normalizedUrl}: ${error.message}`,
+        { cause: error }
       );
     }
   })();

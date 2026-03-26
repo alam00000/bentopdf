@@ -5,6 +5,7 @@ import type { SocketData, MultiPDFData } from '../types';
 import { requirePdfInput, extractAllPdfs } from '../types';
 import { PDFDocument } from 'pdf-lib';
 import { parsePageRange } from '../../utils/pdf-operations';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class ExtractPagesNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -37,7 +38,7 @@ export class ExtractPagesNode extends BaseWorkflowNode {
 
     const allItems = [];
     for (const input of allPdfs) {
-      const srcDoc = await PDFDocument.load(input.bytes);
+      const srcDoc = await loadPdfDocument(input.bytes);
       const totalPages = srcDoc.getPageCount();
       const indices = parsePageRange(rangeStr, totalPages);
 

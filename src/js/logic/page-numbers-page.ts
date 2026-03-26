@@ -8,6 +8,7 @@ import {
   type PageNumberPosition,
   type PageNumberFormat,
 } from '../utils/pdf-operations.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface PageState {
   file: File | null;
@@ -89,9 +90,7 @@ async function handleFiles(files: FileList) {
     if (!result) return;
     showLoader('Loading PDF...');
 
-    pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
-      ignoreEncryption: true,
-    });
+    pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
     result.pdf.destroy();
 

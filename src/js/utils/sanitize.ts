@@ -1,4 +1,5 @@
 import { PDFDocument, PDFName } from 'pdf-lib';
+import { loadPdfDocument } from './load-pdf-document.js';
 
 export interface SanitizeOptions {
   flattenForms: boolean;
@@ -503,7 +504,7 @@ export async function sanitizePdf(
   pdfBytes: Uint8Array,
   options: SanitizeOptions
 ): Promise<{ pdfDoc: PDFDocument; bytes: Uint8Array }> {
-  const pdfDoc = await PDFDocument.load(pdfBytes);
+  const pdfDoc = await loadPdfDocument(pdfBytes);
 
   if (options.flattenForms) {
     try {

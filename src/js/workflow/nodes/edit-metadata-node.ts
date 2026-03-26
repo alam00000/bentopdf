@@ -3,7 +3,7 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class EditMetadataNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -61,7 +61,7 @@ export class EditMetadataNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const pdfDoc = await PDFDocument.load(input.bytes);
+        const pdfDoc = await loadPdfDocument(input.bytes);
 
         if (title) pdfDoc.setTitle(title);
         if (author) pdfDoc.setAuthor(author);

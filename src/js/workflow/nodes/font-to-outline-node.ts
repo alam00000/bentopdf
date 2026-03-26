@@ -3,8 +3,8 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { convertFontsToOutlines } from '../../utils/ghostscript-loader.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class FontToOutlineNode extends BaseWorkflowNode {
   readonly category = 'Optimize & Repair' as const;
@@ -28,7 +28,7 @@ export class FontToOutlineNode extends BaseWorkflowNode {
           new Uint8Array(input.bytes)
         );
         const bytes = new Uint8Array(resultBytes);
-        const document = await PDFDocument.load(bytes);
+        const document = await loadPdfDocument(bytes);
 
         return {
           type: 'pdf',

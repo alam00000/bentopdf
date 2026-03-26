@@ -1,5 +1,4 @@
 import { createIcons, icons } from 'lucide';
-import { PDFDocument } from 'pdf-lib';
 import type {
   AddPageLabelsState,
   LabelRule,
@@ -19,6 +18,7 @@ import {
   normalizePageLabelStartValue,
   resolvePageLabelStyle,
 } from '../utils/page-labels.js';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 type AddPageLabelsCpdf = {
   setSlow?: () => void;
@@ -174,8 +174,7 @@ async function handleFiles(files: FileList) {
   showLoader(translate('tools:addPageLabels.loadingPdf', 'Loading PDF...'));
   try {
     const arrayBuffer = await readFileAsArrayBuffer(file);
-    const pdfDoc = await PDFDocument.load(arrayBuffer as ArrayBuffer, {
-      ignoreEncryption: true,
+    const pdfDoc = await loadPdfDocument(arrayBuffer as ArrayBuffer, {
       throwOnInvalidObject: false,
     });
 

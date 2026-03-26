@@ -20,6 +20,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 import { t } from '../i18n/i18n';
+import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface PageData {
   id: string; // Unique ID for DOM reconciliation
@@ -435,8 +436,7 @@ async function loadPdfs(files: File[]) {
         pwResult.pdf.destroy();
         arrayBuffer = pwResult.bytes as ArrayBuffer;
 
-        const pdfDoc = await PDFLibDocument.load(arrayBuffer, {
-          ignoreEncryption: true,
+        const pdfDoc = await loadPdfDocument(arrayBuffer, {
           throwOnInvalidObject: false,
         });
         currentPdfDocs.push(pdfDoc);
@@ -859,8 +859,7 @@ async function handleInsertPdf(e: Event) {
     if (!pwResult) return;
     pwResult.pdf.destroy();
 
-    const pdfDoc = await PDFLibDocument.load(pwResult.bytes, {
-      ignoreEncryption: true,
+    const pdfDoc = await loadPdfDocument(pwResult.bytes, {
       throwOnInvalidObject: false,
     });
     currentPdfDocs.push(pdfDoc);

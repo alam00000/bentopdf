@@ -2,9 +2,9 @@ import { ClassicPreset } from 'rete';
 import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { parseEmailFile, renderEmailToHtml } from '../../logic/email-to-pdf.js';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class EmailToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -87,7 +87,11 @@ export class EmailToPdfNode extends BaseWorkflowNode {
         pageSize,
       });
 
-      const pdfBlob = await (pymupdf as any).htmlToPdf(htmlContent, {
+      const pdfBlob = await (
+        pymupdf as unknown as {
+          htmlToPdf(html: string, options: unknown): Promise<Blob>;
+        }
+      ).htmlToPdf(htmlContent, {
         pageSize,
         margins: { top: 50, right: 50, bottom: 50, left: 50 },
         attachments: email.attachments
@@ -99,7 +103,7 @@ export class EmailToPdfNode extends BaseWorkflowNode {
       });
 
       const bytes = new Uint8Array(await pdfBlob.arrayBuffer());
-      const document = await PDFDocument.load(bytes);
+      const document = await loadPdfDocument(bytes);
       results.push({
         type: 'pdf',
         document,
