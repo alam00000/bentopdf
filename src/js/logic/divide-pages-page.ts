@@ -87,7 +87,9 @@ async function updateUI() {
       pageState.file = result.file;
       showLoader('Loading PDF...');
 
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
+      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
+        ignoreEncryption: true,
+      });
       pageState.totalPages = pageState.pdfDoc.getPageCount();
       hideLoader();
 

@@ -122,7 +122,9 @@ async function handleFileUpload(file: File) {
     if (!result) return;
     showLoader('Loading PDF...');
     result.pdf.destroy();
-    pageState.pdfDoc = await PDFDocument.load(result.bytes);
+    pageState.pdfDoc = await PDFDocument.load(result.bytes, {
+      ignoreEncryption: true,
+    });
     pageState.file = result.file;
     pageState.detectedBlankPages = [];
     updateFileDisplay();

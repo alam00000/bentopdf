@@ -341,7 +341,9 @@ async function handleFileSelect(files: FileList | null) {
         result.pdf.destroy();
 
         pageState.file = result.file;
-        pageState.pdfDoc = await PDFDocument.load(result.bytes);
+        pageState.pdfDoc = await PDFDocument.load(result.bytes, {
+          ignoreEncryption: true,
+        });
         updateUI();
         analyzeAndDisplayDimensions();
       } catch (e) {

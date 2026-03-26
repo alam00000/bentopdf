@@ -82,6 +82,7 @@ async function updateUI() {
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
+        ignoreEncryption: true,
         throwOnInvalidObject: false,
       });
       hideLoader();

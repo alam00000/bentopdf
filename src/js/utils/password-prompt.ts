@@ -792,7 +792,7 @@ export async function loadPdfWithPasswordPrompt(
   let currentFile = file;
 
   try {
-    const pdf = await getPDFDocument(bytes).promise;
+    const pdf = await getPDFDocument(bytes.slice(0)).promise;
     return { pdf, bytes, file: currentFile };
   } catch (err: unknown) {
     if (
@@ -808,7 +808,7 @@ export async function loadPdfWithPasswordPrompt(
         files[index] = decryptedFile;
       }
       bytes = (await readFileAsArrayBuffer(decryptedFile)) as ArrayBuffer;
-      const pdf = await getPDFDocument(bytes).promise;
+      const pdf = await getPDFDocument(bytes.slice(0)).promise;
       return { pdf, bytes, file: currentFile };
     }
     throw err;

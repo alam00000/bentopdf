@@ -139,7 +139,9 @@ async function updateUI() {
       pageState.file = result.file;
       showLoader('Loading PDF...');
 
-      pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
+      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
+        ignoreEncryption: true,
+      });
 
       const pageCount = pageState.pdfDoc.getPageCount();
       metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;

@@ -98,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             result.pdf.destroy();
             state.files[0] = result.file;
-            state.pdfDoc = await PDFLibDocument.load(result.bytes);
+            state.pdfDoc = await PDFLibDocument.load(result.bytes, {
+              ignoreEncryption: true,
+            });
           }
           // Update page count
           metaSpan.textContent = `${formatBytes(file.size)} • ${state.pdfDoc.getPageCount()} pages`;
@@ -146,7 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           result.pdf.destroy();
           state.files[0] = result.file;
-          state.pdfDoc = await PDFLibDocument.load(result.bytes);
+          state.pdfDoc = await PDFLibDocument.load(result.bytes, {
+            ignoreEncryption: true,
+          });
           showLoader('Rendering page previews...');
         } else {
           throw new Error('No PDF document loaded');

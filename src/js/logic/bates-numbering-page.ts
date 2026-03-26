@@ -184,7 +184,9 @@ async function handleFiles(fileList: FileList) {
       if (!result) continue;
       showLoader('Loading PDFs...');
       result.pdf.destroy();
-      const pdfDoc = await PDFDocument.load(result.bytes);
+      const pdfDoc = await PDFDocument.load(result.bytes, {
+        ignoreEncryption: true,
+      });
       files.push({ file: result.file, pageCount: pdfDoc.getPageCount() });
     }
 

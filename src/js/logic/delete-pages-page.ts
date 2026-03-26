@@ -95,6 +95,7 @@ async function handleFile(file: File) {
     showLoader('Loading PDF...');
     deleteState.file = result.file;
     deleteState.pdfDoc = await PDFDocument.load(result.bytes, {
+      ignoreEncryption: true,
       throwOnInvalidObject: false,
     });
     deleteState.pdfJsDoc = result.pdf;

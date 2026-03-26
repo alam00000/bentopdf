@@ -70,7 +70,9 @@ async function handleFiles(files: FileList) {
     if (!result) return;
     showLoader('Loading PDF...');
     result.pdf.destroy();
-    pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
+    pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
+      ignoreEncryption: true,
+    });
     pageState.file = result.file;
     updateFileDisplay();
     document.getElementById('options-panel')?.classList.remove('hidden');

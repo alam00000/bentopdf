@@ -236,6 +236,7 @@ async function updateUI() {
       showLoader('Loading PDF...');
 
       pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
+        ignoreEncryption: true,
         throwOnInvalidObject: false,
       });
 

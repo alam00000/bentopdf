@@ -150,7 +150,9 @@ async function removeMetadata() {
     if (loaderModal) loaderModal.classList.remove('hidden');
     if (loaderText) loaderText.textContent = 'Removing all metadata...';
     result.pdf.destroy();
-    const pdfDoc = await PDFDocument.load(result.bytes);
+    const pdfDoc = await PDFDocument.load(result.bytes, {
+      ignoreEncryption: true,
+    });
 
     removeMetadataFromDoc(pdfDoc);
 

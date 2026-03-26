@@ -100,6 +100,7 @@ async function handleFile(file: File) {
     extractState.file = result.file;
     result.pdf.destroy();
     extractState.pdfDoc = await PDFDocument.load(result.bytes, {
+      ignoreEncryption: true,
       throwOnInvalidObject: false,
     });
     extractState.totalPages = extractState.pdfDoc.getPageCount();

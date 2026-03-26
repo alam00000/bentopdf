@@ -3140,7 +3140,9 @@ async function handlePdfUpload(file: File) {
     if (!result) return;
     const arrayBuffer = result.bytes;
     uploadedPdfjsDoc = result.pdf;
-    uploadedPdfDoc = await PDFDocument.load(arrayBuffer);
+    uploadedPdfDoc = await PDFDocument.load(arrayBuffer, {
+      ignoreEncryption: true,
+    });
 
     // Check for existing fields and update counter
     existingFieldNames.clear();

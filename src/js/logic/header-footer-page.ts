@@ -68,7 +68,9 @@ async function handleFiles(files: FileList) {
     if (!result) return;
     showLoader('Loading PDF...');
 
-    pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
+    pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
+      ignoreEncryption: true,
+    });
     pageState.file = result.file;
     result.pdf.destroy();
 

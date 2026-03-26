@@ -177,6 +177,7 @@ async function handleFile(file: File) {
     showLoader('Loading PDF...');
 
     organizeState.pdfDoc = await PDFDocument.load(result.bytes, {
+      ignoreEncryption: true,
       throwOnInvalidObject: false,
     });
     organizeState.pdfJsDoc = result.pdf;
