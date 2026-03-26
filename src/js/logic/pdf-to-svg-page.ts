@@ -5,6 +5,7 @@ import JSZip from 'jszip';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 let pymupdf: any = null;
 let files: File[] = [];
@@ -86,6 +87,10 @@ async function convert() {
     if (!pymupdf) {
       pymupdf = await loadPyMuPDF();
     }
+
+    hideLoader();
+    files = await batchDecryptIfNeeded(files);
+    showLoader('Converting to SVG...');
 
     const isSingleFile = files.length === 1;
 

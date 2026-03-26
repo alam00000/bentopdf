@@ -10,6 +10,7 @@ import { createIcons, icons } from 'lucide';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 interface LayerData {
   number: number;
@@ -416,14 +417,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const handleFileSelect = (files: FileList | null) => {
+  const handleFileSelect = async (files: FileList | null) => {
     if (files && files.length > 0) {
       const file = files[0];
       if (
         file.type === 'application/pdf' ||
         file.name.toLowerCase().endsWith('.pdf')
       ) {
-        currentFile = file;
+        const result = await loadPdfWithPasswordPrompt(file);
+        if (!result) return;
+        result.pdf.destroy();
+        currentFile = result.file;
         updateUI();
       } else {
         showAlert('Invalid File', 'Please select a PDF file.');

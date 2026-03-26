@@ -1,13 +1,12 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import {
-  readFileAsArrayBuffer,
   formatBytes,
   downloadFile,
-  getPDFDocument,
   parsePageRanges,
 } from '../utils/helpers.js';
 import { PDFDocument } from 'pdf-lib';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { deletePdfPages } from '../utils/pdf-operations.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import { DeletePagesState } from '@/types';
@@ -85,18 +84,20 @@ async function handleFile(file: File) {
     return;
   }
 
-  showLoader('Loading PDF...');
   deleteState.file = file;
 
   try {
-    const arrayBuffer = await readFileAsArrayBuffer(file);
-    deleteState.pdfDoc = await PDFDocument.load(arrayBuffer as ArrayBuffer, {
-      ignoreEncryption: true,
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) {
+      deleteState.file = null;
+      return;
+    }
+    showLoader('Loading PDF...');
+    deleteState.file = result.file;
+    deleteState.pdfDoc = await PDFDocument.load(result.bytes, {
       throwOnInvalidObject: false,
     });
-    deleteState.pdfJsDoc = await getPDFDocument({
-      data: (arrayBuffer as ArrayBuffer).slice(0),
-    }).promise;
+    deleteState.pdfJsDoc = result.pdf;
     deleteState.totalPages = deleteState.pdfDoc.getPageCount();
     deleteState.pagesToDelete = new Set();
 

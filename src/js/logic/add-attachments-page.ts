@@ -8,6 +8,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/add-attachments.worker.js'
@@ -129,13 +130,16 @@ async function updateUI() {
     createIcons({ icons });
 
     try {
+      const result = await loadPdfWithPasswordPrompt(pageState.file);
+      if (!result) {
+        resetState();
+        return;
+      }
+      result.pdf.destroy();
+      pageState.file = result.file;
       showLoader('Loading PDF...');
-      const arrayBuffer = await pageState.file.arrayBuffer();
 
-      pageState.pdfDoc = await PDFLibDocument.load(arrayBuffer, {
-        ignoreEncryption: true,
-        throwOnInvalidObject: false,
-      });
+      pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
 
       const pageCount = pageState.pdfDoc.getPageCount();
       metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;
@@ -269,10 +273,13 @@ async function addAttachments() {
 
     const transferables = [pdfBuffer, ...attachmentBuffers];
     worker.postMessage(message, transferables);
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error attaching files:', error);
     hideLoader();
-    showAlert('Error', `Failed to attach files: ${error.message}`);
+    showAlert(
+      'Error',
+      `Failed to attach files: ${error instanceof Error ? error.message : 'Unknown error'}`
+    );
   }
 }
 

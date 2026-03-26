@@ -17,6 +17,7 @@ import {
   generateComicBookInfoJson,
 } from '../utils/comic-info.js';
 import type { CbzOptions, ComicMetadata } from '@/types';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -229,8 +230,11 @@ async function convert() {
 
   try {
     const options = getOptions();
-    const pdf = await getPDFDocument(await readFileAsArrayBuffer(files[0]))
-      .promise;
+    hideLoader();
+    const result = await loadPdfWithPasswordPrompt(files[0], files, 0);
+    if (!result) return;
+    showLoader(t('tools:pdfToCbz.converting'));
+    const { pdf } = result;
 
     if (pdf.numPages === 0) {
       throw new Error('PDF has no pages');

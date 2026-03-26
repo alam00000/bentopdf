@@ -14,6 +14,7 @@ import {
 } from '../utils/pdf-operations.js';
 import { AddWatermarkState, PageWatermarkConfig } from '@/types';
 import * as pdfjsLib from 'pdfjs-dist';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -115,16 +116,16 @@ async function handleFiles(files: FileList) {
     showAlert('Invalid File', 'Please upload a valid PDF file.');
     return;
   }
-  showLoader('Loading PDF...');
   try {
-    const arrayBuffer = await file.arrayBuffer();
-    const pdfBytes = new Uint8Array(arrayBuffer);
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) return;
+    showLoader('Loading PDF...');
+    const pdfBytes = new Uint8Array(result.bytes);
     pageState.pdfDoc = await PDFLibDocument.load(pdfBytes);
-    pageState.file = file;
+    pageState.file = result.file;
     pageState.pdfBytes = pdfBytes;
 
-    cachedPdfjsDoc = await pdfjsLib.getDocument({ data: pdfBytes.slice() })
-      .promise;
+    cachedPdfjsDoc = result.pdf;
     totalPageCount = cachedPdfjsDoc.numPages;
     currentPageNum = 1;
     pageWatermarks.clear();

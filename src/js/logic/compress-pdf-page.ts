@@ -5,12 +5,14 @@ import {
   formatBytes,
   getPDFDocument,
 } from '../utils/helpers.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { state } from '../state.js';
 import { PDFDocument } from 'pdf-lib';
 import { createIcons, icons } from 'lucide';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
 import * as pdfjsLib from 'pdfjs-dist';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -120,15 +122,27 @@ async function performCondenseCompression(
       return { ...result, usedFallback: true };
     }
 
-    throw new Error(`PDF compression failed: ${errorMessage}`);
+    throw new Error(`PDF compression failed: ${errorMessage}`, {
+      cause: error,
+    });
   }
 }
 
 async function performPhotonCompression(
   arrayBuffer: ArrayBuffer,
-  level: string
+  level: string,
+  file?: File
 ) {
-  const pdfJsDoc = await getPDFDocument({ data: arrayBuffer }).promise;
+  let pdfJsDoc: PDFDocumentProxy;
+  if (file) {
+    hideLoader();
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) return null;
+    showLoader('Running Photon compression...');
+    pdfJsDoc = result.pdf;
+  } else {
+    pdfJsDoc = await getPDFDocument({ data: arrayBuffer }).promise;
+  }
   const newPdfDoc = await PDFDocument.create();
   const settings =
     PHOTON_PRESETS[level as keyof typeof PHOTON_PRESETS] ||
@@ -429,8 +443,10 @@ document.addEventListener('DOMContentLoaded', () => {
           )) as ArrayBuffer;
           const resultBytes = await performPhotonCompression(
             arrayBuffer,
-            level
+            level,
+            originalFile
           );
+          if (!resultBytes) return;
           const buffer = resultBytes.buffer.slice(
             resultBytes.byteOffset,
             resultBytes.byteOffset + resultBytes.byteLength
@@ -494,7 +510,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const arrayBuffer = (await readFileAsArrayBuffer(
               file
             )) as ArrayBuffer;
-            resultBytes = await performPhotonCompression(arrayBuffer, level);
+            const photonResult = await performPhotonCompression(
+              arrayBuffer,
+              level,
+              file
+            );
+            if (!photonResult) return;
+            resultBytes = photonResult;
           }
 
           totalCompressedSize += resultBytes.length;

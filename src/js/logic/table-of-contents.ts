@@ -5,6 +5,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js'
@@ -95,15 +96,18 @@ function renderFileDisplay(file: File) {
   fileDisplayArea.appendChild(fileDiv);
 }
 
-function handleFileSelect(file: File) {
+async function handleFileSelect(file: File) {
   if (file.type !== 'application/pdf') {
     showStatus('Please select a PDF file.', 'error');
     return;
   }
 
-  pdfFile = file;
+  const result = await loadPdfWithPasswordPrompt(file);
+  if (!result) return;
+  result.pdf.destroy();
+  pdfFile = result.file;
   generateBtn.disabled = false;
-  renderFileDisplay(file);
+  renderFileDisplay(pdfFile);
 }
 
 dropZone.addEventListener('dragover', (e) => {

@@ -11,6 +11,7 @@ import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFPageProxy } from 'pdfjs-dist';
 import { t } from '../i18n/i18n';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -101,10 +102,11 @@ async function convert() {
     );
     return;
   }
-  showLoader(t('tools:pdfToPng.loader.converting'));
   try {
-    const pdf = await getPDFDocument(await readFileAsArrayBuffer(files[0]))
-      .promise;
+    const result = await loadPdfWithPasswordPrompt(files[0], files, 0);
+    if (!result) return;
+    showLoader(t('tools:pdfToPng.loader.converting'));
+    const { pdf } = result;
 
     const scaleInput = document.getElementById('png-scale') as HTMLInputElement;
     const scale = scaleInput ? parseFloat(scaleInput.value) : 2.0;

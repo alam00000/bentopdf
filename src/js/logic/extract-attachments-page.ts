@@ -1,4 +1,4 @@
-import { showAlert } from '../ui.js';
+import { showAlert, showLoader } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
@@ -7,6 +7,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/extract-attachments.worker.js'
@@ -198,6 +199,9 @@ async function extractAttachments() {
   showStatus('Reading files...', 'info');
 
   try {
+    pageState.files = await batchDecryptIfNeeded(pageState.files);
+    showLoader('Reading files...');
+
     const fileBuffers: ArrayBuffer[] = [];
     const fileNames: string[] = [];
 
@@ -205,6 +209,14 @@ async function extractAttachments() {
       const buffer = await file.arrayBuffer();
       fileBuffers.push(buffer);
       fileNames.push(file.name);
+    }
+
+    if (fileBuffers.length === 0) {
+      if (processBtn) {
+        processBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        processBtn.removeAttribute('disabled');
+      }
+      return;
     }
 
     showStatus(

@@ -1,10 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import {
-  downloadFile,
-  readFileAsArrayBuffer,
-  getPDFDocument,
-} from '../utils/helpers.js';
+import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import {
   renderPagesProgressively,
   cleanupLazyRendering,
@@ -453,15 +450,23 @@ export async function refreshMergeUI() {
     mergeState.pdfDocs = {};
     mergeState.pdfBytes = {};
 
+    hideLoader();
+    state.files = await batchDecryptIfNeeded(state.files);
+    showLoader('Loading PDF documents...');
+
     for (let i = 0; i < state.files.length; i++) {
       const file = state.files[i];
       const fileKey = `${i}_${file.name}`;
-      const pdfBytes = await readFileAsArrayBuffer(file);
-      mergeState.pdfBytes[fileKey] = pdfBytes as ArrayBuffer;
 
-      const bytesForPdfJs = (pdfBytes as ArrayBuffer).slice(0);
-      const pdfjsDoc = await getPDFDocument({ data: bytesForPdfJs }).promise;
-      mergeState.pdfDocs[fileKey] = pdfjsDoc;
+      const bytes = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+      mergeState.pdfBytes[fileKey] = bytes;
+      mergeState.pdfDocs[fileKey] = pdf;
+    }
+
+    if (state.files.length === 0) {
+      hideLoader();
+      return;
     }
   } catch (error) {
     console.error('Error loading PDFs:', error);

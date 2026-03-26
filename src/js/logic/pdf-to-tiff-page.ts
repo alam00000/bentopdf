@@ -14,6 +14,7 @@ import { t } from '../i18n/i18n';
 import type Vips from 'wasm-vips';
 import wasmUrl from 'wasm-vips/vips.wasm?url';
 import type { TiffOptions } from '@/types';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -229,8 +230,11 @@ async function convert() {
 
   try {
     const options = getOptions();
-    const pdf = await getPDFDocument(await readFileAsArrayBuffer(files[0]))
-      .promise;
+    hideLoader();
+    const result = await loadPdfWithPasswordPrompt(files[0], files, 0);
+    if (!result) return;
+    showLoader(t('tools:pdfToTiff.converting'));
+    const { pdf } = result;
 
     if (options.multiPage && pdf.numPages > 1) {
       const pages: Vips.Image[] = [];

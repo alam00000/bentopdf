@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument, degrees, PageSizes } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.mjs',
@@ -87,18 +88,19 @@ async function updateUI() {
     createIcons({ icons });
 
     try {
+      const result = await loadPdfWithPasswordPrompt(pageState.file);
+      if (!result) {
+        resetState();
+        return;
+      }
       showLoader('Loading PDF...');
-      const arrayBuffer = await pageState.file.arrayBuffer();
-      pageState.pdfBytes = new Uint8Array(arrayBuffer);
+      pageState.file = result.file;
+      pageState.pdfBytes = new Uint8Array(result.bytes);
+      pageState.pdfjsDoc = result.pdf;
 
       pageState.pdfDoc = await PDFLibDocument.load(pageState.pdfBytes, {
-        ignoreEncryption: true,
         throwOnInvalidObject: false,
       });
-
-      pageState.pdfjsDoc = await pdfjsLib.getDocument({
-        data: pageState.pdfBytes.slice(),
-      }).promise;
 
       hideLoader();
 

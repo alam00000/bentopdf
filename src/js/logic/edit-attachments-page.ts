@@ -7,6 +7,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/edit-attachments.worker.js'
@@ -327,14 +328,17 @@ async function updateUI() {
   }
 }
 
-function handleFileSelect(files: FileList | null) {
+async function handleFileSelect(files: FileList | null) {
   if (files && files.length > 0) {
     const file = files[0];
     if (
       file.type === 'application/pdf' ||
       file.name.toLowerCase().endsWith('.pdf')
     ) {
-      pageState.file = file;
+      const result = await loadPdfWithPasswordPrompt(file);
+      if (!result) return;
+      result.pdf.destroy();
+      pageState.file = result.file;
       updateUI();
     }
   }

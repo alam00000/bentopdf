@@ -5,6 +5,7 @@ import JSZip from 'jszip';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 let file: File | null = null;
 
 const updateUI = () => {
@@ -86,6 +87,13 @@ async function convert() {
 
   try {
     const pymupdf = await loadPyMuPDF();
+
+    hideLoader();
+    const pwResult = await loadPdfWithPasswordPrompt(file);
+    if (!pwResult) return;
+    pwResult.pdf.destroy();
+    file = pwResult.file;
+
     showLoader('Extracting tables...');
 
     const doc = await pymupdf.open(file);

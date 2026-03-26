@@ -11,6 +11,7 @@ import { createIcons, icons } from 'lucide';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 interface ExtractedImage {
   data: Uint8Array;
@@ -158,7 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const decryptedFiles = await batchDecryptIfNeeded(state.files);
       showLoader('Loading PDF processor...');
+      state.files = decryptedFiles;
       const pymupdf = await loadPyMuPDF();
 
       extractedImages = [];

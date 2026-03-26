@@ -3,6 +3,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { formatBytes, downloadFile } from '../utils/helpers.js';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 const embedPdfWasmUrl = new URL(
   'embedpdf-snippet/dist/pdfium.wasm',
@@ -112,8 +113,17 @@ async function handleFiles(files: FileList) {
 
     if (!pdfWrapper || !pdfContainer || !fileDisplayArea) return;
 
+    hideLoader();
+    const decryptedFiles = await batchDecryptIfNeeded(pdfFiles);
+    showLoader('Loading PDF Editor...');
+
+    if (decryptedFiles.length === 0) {
+      hideLoader();
+      return;
+    }
+
     if (!isViewerInitialized) {
-      const firstFile = pdfFiles[0];
+      const firstFile = decryptedFiles[0];
       const firstBuffer = await firstFile.arrayBuffer();
 
       pdfContainer.textContent = '';
@@ -163,7 +173,7 @@ async function handleFiles(files: FileList) {
         }
       });
 
-      addFileEntries(fileDisplayArea, pdfFiles);
+      addFileEntries(fileDisplayArea, decryptedFiles);
 
       docManagerPlugin.openDocumentBuffer({
         buffer: firstBuffer,
@@ -171,11 +181,11 @@ async function handleFiles(files: FileList) {
         autoActivate: true,
       });
 
-      for (let i = 1; i < pdfFiles.length; i++) {
-        const buffer = await pdfFiles[i].arrayBuffer();
+      for (let i = 1; i < decryptedFiles.length; i++) {
+        const buffer = await decryptedFiles[i].arrayBuffer();
         docManagerPlugin.openDocumentBuffer({
           buffer,
-          name: makeUniqueFileKey(i, pdfFiles[i].name),
+          name: makeUniqueFileKey(i, decryptedFiles[i].name),
           autoActivate: false,
         });
       }
@@ -214,13 +224,13 @@ async function handleFiles(files: FileList) {
         });
       }
     } else {
-      addFileEntries(fileDisplayArea, pdfFiles);
+      addFileEntries(fileDisplayArea, decryptedFiles);
 
-      for (let i = 0; i < pdfFiles.length; i++) {
-        const buffer = await pdfFiles[i].arrayBuffer();
+      for (let i = 0; i < decryptedFiles.length; i++) {
+        const buffer = await decryptedFiles[i].arrayBuffer();
         docManagerPlugin.openDocumentBuffer({
           buffer,
-          name: makeUniqueFileKey(i, pdfFiles[i].name),
+          name: makeUniqueFileKey(i, decryptedFiles[i].name),
           autoActivate: true,
         });
       }

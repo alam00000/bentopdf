@@ -4,6 +4,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 let files: File[] = [];
@@ -175,6 +176,10 @@ async function extractText() {
 
   try {
     const mupdf = await ensurePyMuPDF();
+
+    hideLoader();
+    files = await batchDecryptIfNeeded(files);
+    showLoader('Extracting text...');
 
     if (files.length === 1) {
       const file = files[0];

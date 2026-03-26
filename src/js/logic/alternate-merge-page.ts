@@ -9,6 +9,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 const pageState: AlternateMergeState = {
   files: [],
@@ -69,20 +70,21 @@ async function updateUI() {
     createIcons({ icons });
 
     // Load PDFs and populate list
+    hideLoader();
+    pageState.files = await batchDecryptIfNeeded(pageState.files);
     showLoader('Loading PDF files...');
     fileList.innerHTML = '';
 
     try {
       for (let i = 0; i < pageState.files.length; i++) {
         const file = pageState.files[i];
-        const fileKey = makeUniqueFileKey(i, file.name);
-        const arrayBuffer = await file.arrayBuffer();
-        pageState.pdfBytes.set(fileKey, arrayBuffer);
 
-        const bytesForPdfJs = arrayBuffer.slice(0);
-        const pdfjsDoc = await getPDFDocument({ data: bytesForPdfJs }).promise;
-        pageState.pdfDocs.set(fileKey, pdfjsDoc);
-        const pageCount = pdfjsDoc.numPages;
+        const fileKey = makeUniqueFileKey(i, file.name);
+        const bytes = await file.arrayBuffer();
+        const pdf = await getPDFDocument({ data: bytes.slice(0) }).promise;
+        pageState.pdfBytes.set(fileKey, bytes);
+        pageState.pdfDocs.set(fileKey, pdf);
+        const pageCount = pdf.numPages;
 
         const li = document.createElement('li');
         li.className =

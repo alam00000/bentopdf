@@ -10,6 +10,7 @@ import { PDFDocument } from 'pdf-lib';
 import { applyGreyscale } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import { t } from '../i18n/i18n';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -94,13 +95,11 @@ async function convert() {
     showAlert('No File', 'Please upload a PDF file first.');
     return;
   }
-  showLoader('Converting to greyscale...');
   try {
-    const pdfBytes = (await readFileAsArrayBuffer(files[0])) as ArrayBuffer;
-    const pdfDoc = await PDFDocument.load(pdfBytes);
-    const pages = pdfDoc.getPages();
-
-    const pdfjsDoc = await getPDFDocument({ data: pdfBytes }).promise;
+    const result = await loadPdfWithPasswordPrompt(files[0], files, 0);
+    if (!result) return;
+    showLoader('Converting to greyscale...');
+    const { pdf: pdfjsDoc } = result;
     const newPdfDoc = await PDFDocument.create();
 
     for (let i = 1; i <= pdfjsDoc.numPages; i++) {

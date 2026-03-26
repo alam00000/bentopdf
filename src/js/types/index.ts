@@ -54,3 +54,4 @@ export * from './page-preview-type.ts';
 export * from './add-page-labels-type.ts';
 export * from './pdf-to-tiff-type.ts';
 export * from './pdf-to-cbz-type.ts';
+export * from './password-prompt-type.ts';

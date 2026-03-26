@@ -4,6 +4,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 interface ReverseState {
   files: File[];
@@ -76,75 +77,61 @@ function updateUI() {
   }
 }
 
+async function reverseSingleFile(file: File): Promise<Uint8Array> {
+  const arrayBuffer = await file.arrayBuffer();
+  const pdfDoc = await PDFLibDocument.load(arrayBuffer);
+
+  const newPdf = await PDFLibDocument.create();
+  const pageCount = pdfDoc.getPageCount();
+  const reversedIndices = Array.from({ length: pageCount }, function (_, i) {
+    return pageCount - 1 - i;
+  });
+
+  const copiedPages = await newPdf.copyPages(pdfDoc, reversedIndices);
+  copiedPages.forEach(function (page) {
+    newPdf.addPage(page);
+  });
+
+  return newPdf.save();
+}
+
 async function reversePages() {
   if (reverseState.files.length === 0) {
     showAlert('No Files', 'Please select one or more PDF files.');
     return;
   }
 
-  showLoader('Reversing page order...');
-
   try {
+    const decryptedFiles = await batchDecryptIfNeeded(reverseState.files);
+    showLoader('Reversing page order...');
+    reverseState.files = decryptedFiles;
+
+    const validFiles = reverseState.files.filter(function (f) {
+      return f !== null;
+    });
+
+    if (validFiles.length === 0) {
+      hideLoader();
+      return;
+    }
+
     const zip = new JSZip();
     const usedNames = new Set<string>();
 
-    for (let j = 0; j < reverseState.files.length; j++) {
-      const file = reverseState.files[j];
-      showLoader(
-        `Processing ${file.name} (${j + 1}/${reverseState.files.length})...`
-      );
+    for (let j = 0; j < validFiles.length; j++) {
+      const file = validFiles[j];
+      showLoader(`Reversing ${file.name} (${j + 1}/${validFiles.length})...`);
 
-      const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFLibDocument.load(arrayBuffer, {
-        ignoreEncryption: true,
-        throwOnInvalidObject: false,
-      });
-
-      const newPdf = await PDFLibDocument.create();
-      const pageCount = pdfDoc.getPageCount();
-      const reversedIndices = Array.from(
-        { length: pageCount },
-        function (_, i) {
-          return pageCount - 1 - i;
-        }
-      );
-
-      const copiedPages = await newPdf.copyPages(pdfDoc, reversedIndices);
-      copiedPages.forEach(function (page) {
-        newPdf.addPage(page);
-      });
-
-      const newPdfBytes = await newPdf.save();
+      const newPdfBytes = await reverseSingleFile(file);
       const originalName = file.name.replace(/\.pdf$/i, '');
       const fileName = `${originalName}_reversed.pdf`;
       const zipEntryName = deduplicateFileName(fileName, usedNames);
       zip.file(zipEntryName, newPdfBytes);
     }
 
-    if (reverseState.files.length === 1) {
-      // Single file: download directly
-      const file = reverseState.files[0];
-      const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFLibDocument.load(arrayBuffer, {
-        ignoreEncryption: true,
-        throwOnInvalidObject: false,
-      });
-
-      const newPdf = await PDFLibDocument.create();
-      const pageCount = pdfDoc.getPageCount();
-      const reversedIndices = Array.from(
-        { length: pageCount },
-        function (_, i) {
-          return pageCount - 1 - i;
-        }
-      );
-
-      const copiedPages = await newPdf.copyPages(pdfDoc, reversedIndices);
-      copiedPages.forEach(function (page) {
-        newPdf.addPage(page);
-      });
-
-      const newPdfBytes = await newPdf.save();
+    if (validFiles.length === 1) {
+      const file = validFiles[0];
+      const newPdfBytes = await reverseSingleFile(file);
       const originalName = file.name.replace(/\.pdf$/i, '');
 
       downloadFile(
@@ -152,7 +139,6 @@ async function reversePages() {
         `${originalName}_reversed.pdf`
       );
     } else {
-      // Multiple files: download as ZIP
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, 'reversed_pdfs.zip');
     }

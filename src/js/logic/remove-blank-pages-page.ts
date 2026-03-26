@@ -2,6 +2,7 @@ import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { createIcons, icons } from 'lucide';
 import { initPagePreview } from '../utils/page-preview.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -116,11 +117,13 @@ async function handleFileUpload(file: File) {
     showAlert('Error', 'Please upload a valid PDF file.');
     return;
   }
-  showLoader('Loading PDF...');
   try {
-    const buf = await file.arrayBuffer();
-    pageState.pdfDoc = await PDFDocument.load(buf);
-    pageState.file = file;
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) return;
+    showLoader('Loading PDF...');
+    result.pdf.destroy();
+    pageState.pdfDoc = await PDFDocument.load(result.bytes);
+    pageState.file = result.file;
     pageState.detectedBlankPages = [];
     updateFileDisplay();
     document.getElementById('options-panel')?.classList.remove('hidden');

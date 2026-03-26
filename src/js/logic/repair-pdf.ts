@@ -7,6 +7,7 @@ import {
 import { state } from '../state.js';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 export async function repairPdfFile(file: File): Promise<Uint8Array | null> {
   const inputPath = '/input.pdf';
@@ -67,7 +68,9 @@ export async function repairPdf() {
   const failedRepairs: string[] = [];
 
   try {
+    const decryptedFiles = await batchDecryptIfNeeded(state.files);
     showLoader('Initializing repair engine...');
+    state.files = decryptedFiles;
 
     for (let i = 0; i < state.files.length; i++) {
       const file = state.files[i];
@@ -105,7 +108,9 @@ export async function repairPdf() {
 
     if (successfulRepairs.length === 1) {
       const file = successfulRepairs[0];
-      const blob = new Blob([file.data as any], { type: 'application/pdf' });
+      const blob = new Blob([new Uint8Array(file.data)], {
+        type: 'application/pdf',
+      });
       downloadFile(blob, file.name);
     } else {
       showLoader('Creating ZIP archive...');
@@ -124,7 +129,7 @@ export async function repairPdf() {
     if (failedRepairs.length === 0) {
       showAlert('Success', 'All files repaired successfully!');
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Critical error during repair:', error);
     hideLoader();
     showAlert(

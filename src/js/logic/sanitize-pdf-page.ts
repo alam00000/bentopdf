@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import { SanitizePdfState } from '@/types';
 import { sanitizePdf } from '../utils/sanitize.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 const pageState: SanitizePdfState = {
   file: null,
@@ -132,8 +133,17 @@ async function runSanitize() {
       return;
     }
 
-    const arrayBuffer = await pageState.file.arrayBuffer();
-    const result = await sanitizePdf(new Uint8Array(arrayBuffer), options);
+    if (loaderModal) loaderModal.classList.add('hidden');
+    const loaded = await loadPdfWithPasswordPrompt(pageState.file);
+    if (!loaded) {
+      if (loaderModal) loaderModal.classList.add('hidden');
+      return;
+    }
+    if (loaderModal) loaderModal.classList.remove('hidden');
+    if (loaderText) loaderText.textContent = 'Sanitizing PDF...';
+    loaded.pdf.destroy();
+    pageState.file = loaded.file;
+    const result = await sanitizePdf(new Uint8Array(loaded.bytes), options);
 
     downloadFile(
       new Blob([new Uint8Array(result.bytes)], { type: 'application/pdf' }),
@@ -147,9 +157,10 @@ async function runSanitize() {
         resetState();
       }
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error('Sanitization Error:', e);
-    showAlert('Error', `An error occurred during sanitization: ${e.message}`);
+    const msg = e instanceof Error ? e.message : String(e);
+    showAlert('Error', `An error occurred during sanitization: ${msg}`);
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }

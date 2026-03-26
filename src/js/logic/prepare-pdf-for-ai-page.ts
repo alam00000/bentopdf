@@ -9,6 +9,7 @@ import {
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -104,6 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
       showLoader('Loading engine...');
       const pymupdf = await loadPyMuPDF();
 
+      hideLoader();
+      state.files = await batchDecryptIfNeeded(state.files);
+      showLoader('Extracting...');
+
       const total = state.files.length;
       let completed = 0;
       let failed = 0;
@@ -128,13 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       } else {
-        // Multiple files - create ZIP
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
 
-        for (const file of state.files) {
+        for (let fi = 0; fi < state.files.length; fi++) {
           try {
+            const file = state.files[fi];
             showLoader(
               `Extracting ${file.name} for AI (${completed + 1}/${total})...`
             );
@@ -147,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             completed++;
           } catch (error) {
-            console.error(`Failed to extract ${file.name}:`, error);
+            console.error(`Failed to extract ${state.files[fi].name}:`, error);
             failed++;
           }
         }

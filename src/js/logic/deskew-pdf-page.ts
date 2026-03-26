@@ -1,6 +1,7 @@
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { createIcons, icons } from 'lucide';
 import { downloadFile } from '../utils/helpers';
 
@@ -150,6 +151,8 @@ async function processDeskew(): Promise<void> {
 
   const threshold = parseFloat(thresholdSelect?.value || '0.5');
   const dpi = parseInt(dpiSelect?.value || '150', 10);
+
+  selectedFiles = await batchDecryptIfNeeded(selectedFiles);
 
   showLoader('Initializing PyMuPDF...');
 

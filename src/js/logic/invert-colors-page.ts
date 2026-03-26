@@ -5,6 +5,7 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { applyInvertColors } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import { InvertColorsState } from '@/types';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -64,11 +65,13 @@ async function handleFiles(files: FileList) {
     showAlert('Invalid File', 'Please upload a valid PDF file.');
     return;
   }
-  showLoader('Loading PDF...');
   try {
-    const arrayBuffer = await file.arrayBuffer();
-    pageState.pdfDoc = await PDFLibDocument.load(arrayBuffer);
-    pageState.file = file;
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) return;
+    showLoader('Loading PDF...');
+    result.pdf.destroy();
+    pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
+    pageState.file = result.file;
     updateFileDisplay();
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {

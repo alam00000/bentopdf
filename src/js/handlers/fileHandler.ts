@@ -20,6 +20,10 @@ import { icons, createIcons } from 'lucide';
 import Sortable from 'sortablejs';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import {
+  promptAndDecryptFile,
+  handleEncryptedFiles,
+} from '../utils/password-prompt.js';
+import {
   multiFileTools,
   simpleTools,
   singlePdfLoadTools,
@@ -31,7 +35,6 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString();
 
-// Re-export rotation state utilities
 export {
   getRotationState,
   updateRotationState,
@@ -43,10 +46,9 @@ const rotationState: number[] = [];
 let imageSortableInstance: Sortable | null = null;
 const activeImageUrls = new Map<File, string>();
 
-async function handleSinglePdfUpload(toolId, file) {
+async function handleSinglePdfUpload(toolId: string, file: File) {
   showLoader('Loading PDF...');
   try {
-    // For form-filler, bypass pdf-lib (can't handle XFA) and use PDF.js
     if (toolId === 'form-filler') {
       hideLoader();
 
@@ -80,12 +82,14 @@ async function handleSinglePdfUpload(toolId, file) {
       toolId !== 'change-permissions' &&
       toolId !== 'remove-restrictions'
     ) {
-      showAlert(
-        'Protected PDF',
-        'This PDF is password-protected. Please use the Decrypt or Change Permissions tool first.'
-      );
-      switchView('grid');
-      return;
+      const decryptedFile = await promptAndDecryptFile(file);
+      if (!decryptedFile) {
+        switchView('grid');
+        return;
+      }
+      const decryptedBytes = await readFileAsArrayBuffer(decryptedFile);
+      state.pdfDoc = await PDFLibDocument.load(decryptedBytes as ArrayBuffer);
+      state.files = [decryptedFile];
     }
 
     const optionsDiv = document.querySelector(
@@ -127,7 +131,6 @@ async function handleSinglePdfUpload(toolId, file) {
       await renderPageThumbnails(toolId, state.pdfDoc);
 
       if (toolId === 'rotate') {
-        // Initialize rotation state for all pages
         rotationState.length = 0;
         for (let i = 0; i < state.pdfDoc.getPageCount(); i++) {
           rotationState.push(0);
@@ -157,12 +160,10 @@ async function handleSinglePdfUpload(toolId, file) {
         createIcons({ icons });
 
         const rotateAll = (angle: number) => {
-          // Update rotation state for ALL pages (including unrendered ones)
           for (let i = 0; i < rotationState.length; i++) {
             rotationState[i] = rotationState[i] + angle;
           }
 
-          // Update DOM for currently rendered pages
           document.querySelectorAll('.page-rotator-item').forEach((item) => {
             const pageIndex = parseInt(
               (item as HTMLElement).dataset.pageIndex || '0'
@@ -236,7 +237,7 @@ async function handleSinglePdfUpload(toolId, file) {
 
         resultsDiv.textContent = ''; // Clear safely
 
-        const createSection = (title) => {
+        const createSection = (title: string) => {
           const wrapper = document.createElement('div');
           wrapper.className = 'mb-4';
           const h3 = document.createElement('h3');
@@ -249,7 +250,7 @@ async function handleSinglePdfUpload(toolId, file) {
           return { wrapper, ul };
         };
 
-        const createListItem = (key, value) => {
+        const createListItem = (key: string, value: string) => {
           const li = document.createElement('li');
           li.className = 'flex flex-col sm:flex-row';
           const strong = document.createElement('strong');
@@ -262,13 +263,8 @@ async function handleSinglePdfUpload(toolId, file) {
           return li;
         };
 
-        const parsePdfDate = (pdfDate) => {
-          if (
-            !pdfDate ||
-            typeof pdfDate !== 'string' ||
-            !pdfDate.startsWith('D:')
-          )
-            return pdfDate;
+        const parsePdfDate = (pdfDate: string): string => {
+          if (!pdfDate || !pdfDate.startsWith('D:')) return pdfDate;
           try {
             const year = pdfDate.substring(2, 6);
             const month = pdfDate.substring(6, 8);
@@ -319,8 +315,8 @@ async function handleSinglePdfUpload(toolId, file) {
         const fieldsSection = createSection('Interactive Form Fields');
         if (fieldObjects && Object.keys(fieldObjects).length > 0) {
           for (const fieldName in fieldObjects) {
-            const field = fieldObjects[fieldName][0];
-            const value = (field as any).fieldValue || '- Not Set -';
+            const field = fieldObjects[fieldName][0] as Record<string, unknown>;
+            const value = field.fieldValue || '- Not Set -';
             fieldsSection.ul.appendChild(
               createListItem(fieldName, String(value))
             );
@@ -330,7 +326,7 @@ async function handleSinglePdfUpload(toolId, file) {
         }
         resultsDiv.appendChild(fieldsSection.wrapper);
 
-        const createXmpListItem = (key, value, indent = 0) => {
+        const createXmpListItem = (key: string, value: string, indent = 0) => {
           const li = document.createElement('li');
           li.className = 'flex flex-col sm:flex-row';
 
@@ -347,7 +343,7 @@ async function handleSinglePdfUpload(toolId, file) {
           return li;
         };
 
-        const createXmpHeaderItem = (key, indent = 0) => {
+        const createXmpHeaderItem = (key: string, indent = 0) => {
           const li = document.createElement('li');
           li.className = 'flex pt-2';
           const strong = document.createElement('strong');
@@ -358,7 +354,11 @@ async function handleSinglePdfUpload(toolId, file) {
           return li;
         };
 
-        const appendXmpNodes = (xmlNode, ulElement, indentLevel) => {
+        const appendXmpNodes = (
+          xmlNode: Element,
+          ulElement: HTMLUListElement,
+          indentLevel: number
+        ) => {
           const xmpDateKeys = [
             'xap:CreateDate',
             'xap:ModifyDate',
@@ -368,12 +368,12 @@ async function handleSinglePdfUpload(toolId, file) {
           const childNodes = Array.from(xmlNode.children);
 
           for (const child of childNodes) {
-            if ((child as Element).nodeType !== 1) continue;
+            if (child.nodeType !== 1) continue;
 
-            let key = (child as Element).tagName;
-            const elementChildren = Array.from(
-              (child as Element).children
-            ).filter((c) => c.nodeType === 1);
+            let key = child.tagName;
+            const elementChildren = Array.from(child.children).filter(
+              (c) => c.nodeType === 1
+            );
 
             if (key === 'rdf:li') {
               appendXmpNodes(child, ulElement, indentLevel);
@@ -384,7 +384,7 @@ async function handleSinglePdfUpload(toolId, file) {
             }
 
             if (
-              (child as Element).getAttribute('rdf:parseType') === 'Resource' &&
+              child.getAttribute('rdf:parseType') === 'Resource' &&
               elementChildren.length === 0
             ) {
               ulElement.appendChild(
@@ -397,7 +397,7 @@ async function handleSinglePdfUpload(toolId, file) {
               ulElement.appendChild(createXmpHeaderItem(key, indentLevel));
               appendXmpNodes(child, ulElement, indentLevel + 1);
             } else {
-              let value = (child as Element).textContent.trim();
+              let value = (child.textContent ?? '').trim();
               if (value) {
                 if (xmpDateKeys.includes(key)) {
                   value = formatIsoDate(value);
@@ -462,9 +462,9 @@ async function handleSinglePdfUpload(toolId, file) {
       const container = document.getElementById('custom-metadata-container');
       const addBtn = document.getElementById('add-custom-meta-btn');
 
-      const formatDateForInput = (date) => {
+      const formatDateForInput = (date: Date | undefined) => {
         if (!date) return '';
-        const pad = (num) => num.toString().padStart(2, '0');
+        const pad = (num: number) => num.toString().padStart(2, '0');
         return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
       };
 
@@ -529,7 +529,6 @@ async function handleSinglePdfUpload(toolId, file) {
       toolLogic['page-dimensions']();
     }
 
-    // Setup quality sliders for image conversion tools
     if (toolId === 'pdf-to-jpg') {
       const qualitySlider = document.getElementById(
         'jpg-quality'
@@ -585,7 +584,7 @@ async function handleSinglePdfUpload(toolId, file) {
   }
 }
 
-async function handleMultiFileUpload(toolId) {
+async function handleMultiFileUpload(toolId: string) {
   if (
     toolId === 'merge' ||
     toolId === 'alternate-merge' ||
@@ -615,24 +614,44 @@ async function handleMultiFileUpload(toolId) {
       })
     );
 
-    const foundEncryptedPDFs = pdfFilesLoaded.filter(
-      (pdf) => pdf.pdfDoc.isEncrypted
-    );
+    const encryptedIndices: number[] = [];
+    pdfFilesLoaded.forEach((pdf, index) => {
+      if (pdf.pdfDoc.isEncrypted) {
+        encryptedIndices.push(index);
+      }
+    });
 
-    if (foundEncryptedPDFs.length > 0) {
-      const encryptedPDFFileNames = [];
-      foundEncryptedPDFs.forEach((encryptedPDF) => {
-        encryptedPDFFileNames.push(encryptedPDF.file.name);
-      });
+    if (encryptedIndices.length > 0) {
+      hideLoader();
+      const decryptedFiles = await handleEncryptedFiles(
+        pdfFilesUnloaded,
+        encryptedIndices
+      );
 
-      const errorMessage = `PDFs found that are password-protected\n\nPlease use the Decrypt or Change Permissions tool on these files first:\n\n${encryptedPDFFileNames.join('\n')}`;
+      for (const [index, decryptedFile] of decryptedFiles) {
+        const originalIndex = state.files.indexOf(pdfFilesUnloaded[index]);
+        if (originalIndex !== -1) {
+          state.files[originalIndex] = decryptedFile;
+        }
+      }
 
-      hideLoader(); // Hide loader before showing alert
-      showAlert('Protected PDFs', errorMessage);
+      const skippedFiles = new Set(
+        encryptedIndices
+          .filter((i) => !decryptedFiles.has(i))
+          .map((i) => pdfFilesUnloaded[i])
+      );
+      if (skippedFiles.size > 0) {
+        state.files = state.files.filter((f) => !skippedFiles.has(f));
+      }
 
-      switchView('grid');
+      if (
+        state.files.filter((f) => f.type === 'application/pdf').length === 0
+      ) {
+        switchView('grid');
+        return;
+      }
 
-      return;
+      showLoader('Loading PDF documents...');
     }
   }
 
@@ -645,10 +664,6 @@ async function handleMultiFileUpload(toolId) {
       processBtn.onclick = func;
     }
   }
-
-  // if (toolId === 'merge') {
-  //   toolLogic.merge.setup();
-  // }
 
   if (toolId === 'alternate-merge') {
     toolLogic['alternate-merge'].setup();
@@ -791,12 +806,12 @@ async function handleMultiFileUpload(toolId) {
   }
 }
 
-export function setupFileInputHandler(toolId) {
+export function setupFileInputHandler(toolId: string) {
   const fileInput = document.getElementById('file-input');
   const isMultiFileTool = multiFileTools.includes(toolId);
   let isFirstUpload = true;
 
-  const processFiles = async (newFiles) => {
+  const processFiles = async (newFiles: File[]) => {
     if (newFiles.length === 0) return;
 
     if (toolId === 'image-to-pdf') {

@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { convertFileToOutlines } from '../utils/ghostscript-loader.js';
 import { isGhostscriptAvailable } from '../utils/ghostscript-dynamic-loader.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
@@ -106,6 +107,8 @@ async function processFiles() {
     showWasmRequiredDialog('ghostscript');
     return;
   }
+
+  pageState.files = await batchDecryptIfNeeded(pageState.files);
 
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');

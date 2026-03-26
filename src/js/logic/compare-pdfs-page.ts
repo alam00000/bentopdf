@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.ts';
-import { getPDFDocument } from '../utils/helpers.ts';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { icons, createIcons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import { CompareState } from '@/types';
@@ -745,9 +745,11 @@ async function handleFileInput(
     }
 
     try {
-      showLoader(`Loading ${file.name}...`);
-      const arrayBuffer = await file.arrayBuffer();
-      pageState[docKey] = await getPDFDocument({ data: arrayBuffer }).promise;
+      hideLoader();
+      const result = await loadPdfWithPasswordPrompt(file);
+      if (!result) return;
+      showLoader(`Loading ${result.file.name}...`);
+      pageState[docKey] = result.pdf;
       caches.pageModelCache.clear();
       caches.comparisonCache.clear();
       caches.comparisonResultsCache.clear();

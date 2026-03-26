@@ -11,6 +11,7 @@ import { createIcons, icons } from 'lucide';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -123,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('rasterize-grayscale') as HTMLInputElement
       ).checked;
 
+      hideLoader();
+      state.files = await batchDecryptIfNeeded(state.files);
+      showLoader('Rasterizing...');
+
       const total = state.files.length;
       let completed = 0;
       let failed = 0;
@@ -149,13 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       } else {
-        // Multiple files - create ZIP
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
 
-        for (const file of state.files) {
+        for (let fi = 0; fi < state.files.length; fi++) {
           try {
+            const file = state.files[fi];
             showLoader(
               `Rasterizing ${file.name} (${completed + 1}/${total})...`
             );
@@ -174,7 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             completed++;
           } catch (error) {
-            console.error(`Failed to rasterize ${file.name}:`, error);
+            console.error(
+              `Failed to rasterize ${state.files[fi].name}:`,
+              error
+            );
             failed++;
           }
         }

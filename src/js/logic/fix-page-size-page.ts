@@ -1,6 +1,7 @@
 import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes, hexToRgb } from '../utils/helpers.js';
 import { fixPageSize as fixPageSizeCore } from '../utils/pdf-operations';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { icons, createIcons } from 'lucide';
 import { FixPageSizeState } from '@/types';
 
@@ -64,14 +65,17 @@ async function updateUI() {
   }
 }
 
-function handleFileSelect(files: FileList | null) {
+async function handleFileSelect(files: FileList | null) {
   if (files && files.length > 0) {
     const file = files[0];
     if (
       file.type === 'application/pdf' ||
       file.name.toLowerCase().endsWith('.pdf')
     ) {
-      pageState.file = file;
+      const result = await loadPdfWithPasswordPrompt(file);
+      if (!result) return;
+      result.pdf.destroy();
+      pageState.file = result.file;
       updateUI();
     }
   }

@@ -11,6 +11,7 @@ import { applyScannerEffect } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { ScanSettings } from '../types/scanner-effect-type.js';
 import { t } from '../i18n/i18n';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -402,13 +403,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    files = [validFiles[0]];
-    updateUI();
-
-    showLoader('Loading preview...');
     try {
-      const buffer = await readFileAsArrayBuffer(validFiles[0]);
-      pdfjsDoc = await getPDFDocument({ data: buffer }).promise;
+      const result = await loadPdfWithPasswordPrompt(validFiles[0]);
+      if (!result) return;
+      showLoader('Loading preview...');
+      files = [result.file];
+      updateUI();
+      pdfjsDoc = result.pdf;
       await renderPreview();
     } catch (e) {
       console.error(e);

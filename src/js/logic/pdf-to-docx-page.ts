@@ -11,6 +11,7 @@ import { createIcons, icons } from 'lucide';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -105,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
       showLoader('Loading PDF converter...');
       const pymupdf = await loadPyMuPDF();
 
+      hideLoader();
+      state.files = await batchDecryptIfNeeded(state.files);
+      showLoader('Converting...');
+
       if (state.files.length === 1) {
         const file = state.files[0];
         showLoader(`Converting ${file.name}...`);
@@ -122,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple PDFs...');
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();

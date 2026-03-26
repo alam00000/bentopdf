@@ -863,6 +863,73 @@
         </div>
       </div>
 
+      <div
+        id="password-modal"
+        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
+      >
+        <div
+          class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl max-w-md w-full overflow-hidden"
+        >
+          <div class="p-6">
+            <div class="flex items-start gap-4 mb-4">
+              <div
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-500/10 flex-shrink-0"
+              >
+                <i data-lucide="lock" class="w-6 h-6 text-indigo-400"></i>
+              </div>
+              <div class="flex-1">
+                <h3
+                  id="password-modal-title"
+                  class="text-xl font-bold text-white mb-1"
+                >
+                  Password Required
+                </h3>
+                <p
+                  id="password-modal-filename"
+                  class="text-gray-400 text-sm truncate"
+                ></p>
+              </div>
+            </div>
+            <div class="mt-4">
+              <div class="relative">
+                <input
+                  type="password"
+                  id="password-modal-input"
+                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  placeholder="Enter password"
+                  autocomplete="off"
+                />
+                <button
+                  id="password-modal-toggle"
+                  type="button"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
+                >
+                  <i data-lucide="eye" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <p
+                id="password-modal-error"
+                class="text-xs text-red-400 mt-2 hidden"
+              ></p>
+            </div>
+          </div>
+          <div class="flex gap-3 p-4 border-t border-gray-700">
+            <button
+              id="password-modal-cancel"
+              class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+            >
+              Skip
+            </button>
+            <button
+              id="password-modal-submit"
+              class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
+            >
+              Unlock
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="section-divider hide-section mb-20 mt-10"></div>
 
       <!-- COMPLIANCE SECTION START -->

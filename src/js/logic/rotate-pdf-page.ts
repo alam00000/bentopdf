@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes, getPDFDocument } from '../utils/helpers.js';
+import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import {
@@ -7,6 +7,7 @@ import {
   cleanupLazyRendering,
 } from '../utils/render-utils.js';
 import { rotatePdfPages } from '../utils/pdf-operations.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import * as pdfjsLib from 'pdfjs-dist';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
@@ -199,16 +200,18 @@ async function updateUI() {
     createIcons({ icons });
 
     try {
+      const result = await loadPdfWithPasswordPrompt(pageState.file);
+      if (!result) {
+        resetState();
+        return;
+      }
       showLoader('Loading PDF...');
-      const arrayBuffer = await pageState.file.arrayBuffer();
 
-      pageState.pdfDoc = await PDFLibDocument.load(arrayBuffer.slice(0), {
-        ignoreEncryption: true,
+      pageState.pdfDoc = await PDFLibDocument.load(result.bytes, {
         throwOnInvalidObject: false,
       });
 
-      pageState.pdfJsDoc = await getPDFDocument({ data: arrayBuffer.slice(0) })
-        .promise;
+      pageState.pdfJsDoc = result.pdf;
 
       const pageCount = pageState.pdfDoc.getPageCount();
       pageState.rotations = new Array(pageCount).fill(0);

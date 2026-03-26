@@ -1,11 +1,7 @@
 import { createIcons, icons } from 'lucide';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import {
-  downloadFile,
-  readFileAsArrayBuffer,
-  formatBytes,
-  getPDFDocument,
-} from '../utils/helpers.js';
+import { downloadFile, formatBytes } from '../utils/helpers.js';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
@@ -88,16 +84,19 @@ async function handleFile(file: File) {
     return;
   }
 
-  showLoader('Loading PDF...');
   cropperState.file = file;
   cropperState.pageCrops = {};
 
   try {
-    const arrayBuffer = await readFileAsArrayBuffer(file);
-    cropperState.originalPdfBytes = arrayBuffer as ArrayBuffer;
-    cropperState.pdfDoc = await getPDFDocument({
-      data: (arrayBuffer as ArrayBuffer).slice(0),
-    }).promise;
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) {
+      cropperState.file = null;
+      return;
+    }
+    showLoader('Loading PDF...');
+    cropperState.file = result.file;
+    cropperState.originalPdfBytes = result.bytes;
+    cropperState.pdfDoc = result.pdf;
     cropperState.currentPageNum = 1;
 
     updateFileDisplay();
@@ -308,7 +307,7 @@ async function performMetadataCrop(
 ): Promise<Uint8Array> {
   const pdfToModify = await PDFLibDocument.load(
     cropperState.originalPdfBytes!,
-    { ignoreEncryption: true, throwOnInvalidObject: false }
+    { throwOnInvalidObject: false }
   );
 
   for (const pageNum in cropData) {
@@ -352,7 +351,7 @@ async function performFlatteningCrop(
   const newPdfDoc = await PDFLibDocument.create();
   const sourcePdfDocForCopying = await PDFLibDocument.load(
     cropperState.originalPdfBytes!,
-    { ignoreEncryption: true, throwOnInvalidObject: false }
+    { throwOnInvalidObject: false }
   );
   const totalPages = cropperState.pdfDoc.numPages;
 

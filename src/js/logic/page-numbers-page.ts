@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, hexToRgb, formatBytes } from '../utils/helpers.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import {
   addPageNumbers as addPageNumbersToPdf,
   type PageNumberPosition,
@@ -83,11 +84,14 @@ async function handleFiles(files: FileList) {
     return;
   }
 
-  showLoader('Loading PDF...');
   try {
-    const arrayBuffer = await file.arrayBuffer();
-    pageState.pdfDoc = await PDFLibDocument.load(arrayBuffer);
-    pageState.file = file;
+    const result = await loadPdfWithPasswordPrompt(file);
+    if (!result) return;
+    showLoader('Loading PDF...');
+
+    pageState.pdfDoc = await PDFLibDocument.load(result.bytes);
+    pageState.file = result.file;
+    result.pdf.destroy();
 
     updateFileDisplay();
     document.getElementById('options-panel')?.classList.remove('hidden');

@@ -11,6 +11,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/pdf-to-json.worker.js'
@@ -105,6 +106,10 @@ async function convertPDFsToJSON() {
 
   try {
     convertBtn.disabled = true;
+    showStatus('Checking for encrypted PDFs...', 'info');
+
+    selectedFiles = await batchDecryptIfNeeded(selectedFiles);
+
     showStatus('Reading files (Main Thread)...', 'info');
 
     const fileBuffers = await Promise.all(

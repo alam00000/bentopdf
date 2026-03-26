@@ -11,6 +11,7 @@ import { createIcons, icons } from 'lucide';
 import { convertFileToPdfA, type PdfALevel } from '../utils/ghostscript-loader';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -108,9 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (state.files.length === 0) {
         showAlert('No Files', 'Please select at least one PDF file.');
-        hideLoader();
         return;
       }
+
+      state.files = await batchDecryptIfNeeded(state.files);
 
       if (state.files.length === 1) {
         const originalFile = state.files[0];
@@ -125,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (shouldPreFlatten) {
           if (!isPyMuPDFAvailable()) {
             showWasmRequiredDialog('pymupdf');
-            hideLoader();
             return;
           }
 

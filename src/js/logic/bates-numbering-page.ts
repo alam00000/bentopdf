@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, hexToRgb, formatBytes } from '../utils/helpers.js';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import JSZip from 'jszip';
 import Sortable from 'sortablejs';
 import { FileEntry, Position, StylePreset } from '@/types';
@@ -178,9 +179,13 @@ async function handleFiles(fileList: FileList) {
   try {
     for (const file of Array.from(fileList)) {
       if (file.type !== 'application/pdf') continue;
-      const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-      files.push({ file, pageCount: pdfDoc.getPageCount() });
+      hideLoader();
+      const result = await loadPdfWithPasswordPrompt(file);
+      if (!result) continue;
+      showLoader('Loading PDFs...');
+      result.pdf.destroy();
+      const pdfDoc = await PDFDocument.load(result.bytes);
+      files.push({ file: result.file, pageCount: pdfDoc.getPageCount() });
     }
 
     if (files.length === 0) {
