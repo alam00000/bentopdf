@@ -47,10 +47,8 @@ vi.mock('@/js/workflow/nodes/base-node', () => ({
   },
 }));
 
-vi.mock('pdf-lib', () => ({
-  PDFDocument: {
-    load: vi.fn().mockResolvedValue({}),
-  },
+vi.mock('@/js/utils/load-pdf-document', () => ({
+  loadPdfDocument: vi.fn().mockResolvedValue({}),
 }));
 
 vi.mock('@/js/logic/digital-sign-pdf', () => ({
@@ -117,7 +115,12 @@ describe('TimestampNode', () => {
   it('should call timestampPdf with correct TSA URL via data()', async () => {
     const node = new TimestampNode();
     const mockInput = [
-      { bytes: new Uint8Array([1, 2, 3]), filename: 'test.pdf' },
+      {
+        type: 'pdf' as const,
+        document: {} as never,
+        bytes: new Uint8Array([1, 2, 3]),
+        filename: 'test.pdf',
+      },
     ];
 
     await node.data({ pdf: mockInput });
@@ -131,10 +134,15 @@ describe('TimestampNode', () => {
   it('should generate _timestamped suffix in output filename via data()', async () => {
     const node = new TimestampNode();
     const mockInput = [
-      { bytes: new Uint8Array([1, 2, 3]), filename: 'report.pdf' },
+      {
+        type: 'pdf' as const,
+        document: {} as never,
+        bytes: new Uint8Array([1, 2, 3]),
+        filename: 'report.pdf',
+      },
     ];
 
-    const result = (await node.data({ pdf: mockInput })) as {
+    const result = (await node.data({ pdf: mockInput })) as unknown as {
       pdf: Array<{ filename: string }>;
     };
 
@@ -147,7 +155,14 @@ describe('TimestampNode', () => {
 
     await expect(
       node.data({
-        pdf: [{ bytes: new Uint8Array([1]), filename: 'test.pdf' }],
+        pdf: [
+          {
+            type: 'pdf' as const,
+            document: {} as never,
+            bytes: new Uint8Array([1]),
+            filename: 'test.pdf',
+          },
+        ],
       })
     ).rejects.toThrow(/Failed to timestamp using TSA/);
   });

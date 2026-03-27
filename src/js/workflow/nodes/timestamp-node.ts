@@ -3,9 +3,9 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { PDFDocument } from 'pdf-lib';
 import { TIMESTAMP_TSA_PRESETS } from '../../config/timestamp-tsa.js';
 import { timestampPdf } from '../../logic/digital-sign-pdf.js';
+import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 
 export class TimestampNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -52,7 +52,7 @@ export class TimestampNode extends BaseWorkflowNode {
             { cause: err }
           );
         }
-        const document = await PDFDocument.load(bytes);
+        const document = await loadPdfDocument(bytes);
 
         return {
           type: 'pdf',
