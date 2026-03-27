@@ -19,7 +19,10 @@ const SAMPLE_PDF_SHA256 =
   '229defbb0cee6f02673a5cde290d0673e75a0dc31cec43989c8ab2a4eca7e1bb';
 
 async function sha256(data: Uint8Array): Promise<string> {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashBuffer = await crypto.subtle.digest(
+    'SHA-256',
+    new Uint8Array(data)
+  );
   return Array.from(new Uint8Array(hashBuffer))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
