@@ -704,6 +704,15 @@
     "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
     "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
   },
+  "timestampPdf": {
+    "name": "PDF 時間戳記",
+    "pageTitle": "免費線上 PDF 時間戳記 - RFC 3161 文件時間戳記 | BentoPDF",
+    "subtitle": "透過可信賴的 TSA 伺服器為您的 PDF 新增 RFC 3161 時間戳記。證明您的文件在特定時間點存在。無需憑證。",
+    "tsaSectionTitle": "時間戳記伺服器 (TSA)",
+    "selectTsa": "選擇 TSA 伺服器",
+    "applyTimestamp": "套用時間戳記",
+    "successMessage": "PDF 時間戳記新增成功！時間戳記可在 Adobe Acrobat 和其他 PDF 閱讀器中驗證。"
+  },
   "pdfToWord": {
     "name": "PDF 轉 Word",
     "subtitle": "將 PDF 檔案轉換為可編輯的 Word 文件。"

@@ -704,6 +704,15 @@
     "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
     "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
   },
+  "timestampPdf": {
+    "name": "PDF Zaman Damgası",
+    "pageTitle": "PDF Zaman Damgası Ücretsiz - RFC 3161 Belge Zaman Damgası | BentoPDF",
+    "subtitle": "Güvenilir bir TSA sunucusu aracılığıyla PDF'nize RFC 3161 zaman damgası ekleyin. Belgenizin belirli bir zamanda var olduğunu kanıtlar. Sertifika gerekmez.",
+    "tsaSectionTitle": "Zaman Damgası Sunucusu (TSA)",
+    "selectTsa": "Bir TSA sunucusu seçin",
+    "applyTimestamp": "Zaman Damgası Uygula",
+    "successMessage": "PDF başarıyla zaman damgalandı! Zaman damgası Adobe Acrobat ve diğer PDF okuyucularda doğrulanabilir."
+  },
   "pdfToWord": {
     "name": "PDF'den Word'e",
     "subtitle": "PDF dosyalarını düzenlenebilir Word belgelerine dönüştürün."

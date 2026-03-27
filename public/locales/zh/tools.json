@@ -690,6 +690,15 @@
     "pageTitle": "验证 PDF 签名 - 验证数字签名 | BentoPDF",
     "subtitle": "验证您的 PDF 文件中的数字签名。检查证书有效性、查看签名者详情并确认文档完整性。所有处理都在您的浏览器中进行。"
   },
+  "timestampPdf": {
+    "name": "PDF 时间戳",
+    "pageTitle": "免费在线 PDF 时间戳 - RFC 3161 文档时间戳 | BentoPDF",
+    "subtitle": "通过可信的 TSA 服务器为您的 PDF 添加 RFC 3161 时间戳。证明您的文档在特定时间点存在。无需证书。",
+    "tsaSectionTitle": "时间戳服务器 (TSA)",
+    "selectTsa": "选择 TSA 服务器",
+    "applyTimestamp": "应用时间戳",
+    "successMessage": "PDF 时间戳添加成功！时间戳可在 Adobe Acrobat 和其他 PDF 阅读器中验证。"
+  },
   "emailToPdf": {
     "name": "邮件转 PDF",
     "subtitle": "将电子邮件文件 (EML, MSG) 转换为 PDF 格式。支持 Outlook 导出和标准邮件格式。",

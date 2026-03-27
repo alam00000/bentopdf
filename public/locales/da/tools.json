@@ -688,7 +688,16 @@
   "validateSignaturePdf": {
     "name": "Validér PDF-signatur",
     "pageTitle": "Validér PDF-signatur - Verificér digitale signaturer | BentoPDF",
-    "subtitle": "Tjek digitale signaturer i dine PDF’er. Verificér certifikater, se underskriverdetaljer og bekræft dokumentintegritet."
+    "subtitle": "Tjek digitale signaturer i dine PDF'er. Verificér certifikater, se underskriverdetaljer og bekræft dokumentintegritet."
+  },
+  "timestampPdf": {
+    "name": "Tidsstempl PDF",
+    "pageTitle": "Tidsstempl PDF gratis online - RFC 3161 dokumenttidsstempel | BentoPDF",
+    "subtitle": "Tilføj et RFC 3161 tidsstempel til din PDF via en betroet TSA-server. Beviser at dit dokument eksisterede på et bestemt tidspunkt. Intet certifikat påkrævet.",
+    "tsaSectionTitle": "Tidsstempelserver (TSA)",
+    "selectTsa": "Vælg en TSA-server",
+    "applyTimestamp": "Anvend tidsstempel",
+    "successMessage": "PDF tidsstemplet med succes! Tidsstemplet kan verificeres i Adobe Acrobat og andre PDF-læsere."
   },
   "emailToPdf": {
     "name": "Email til PDF",

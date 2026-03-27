@@ -690,6 +690,15 @@
     "pageTitle": "Xác minh chữ ký PDF - Xác thực chữ ký số | BentoPDF",
     "subtitle": "Xác minh chữ ký số trong tệp PDF của bạn. Kiểm tra hiệu lực chứng chỉ, xem thông tin người ký và xác nhận tính toàn vẹn tài liệu. Tất cả xử lý diễn ra trong trình duyệt của bạn."
   },
+  "timestampPdf": {
+    "name": "Đóng dấu thời gian PDF",
+    "pageTitle": "Đóng dấu thời gian PDF miễn phí - RFC 3161 | BentoPDF",
+    "subtitle": "Thêm dấu thời gian RFC 3161 vào PDF của bạn thông qua máy chủ TSA đáng tin cậy. Chứng minh tài liệu của bạn tồn tại tại một thời điểm cụ thể. Không cần chứng chỉ.",
+    "tsaSectionTitle": "Máy chủ dấu thời gian (TSA)",
+    "selectTsa": "Chọn máy chủ TSA",
+    "applyTimestamp": "Áp dụng dấu thời gian",
+    "successMessage": "PDF đã được đóng dấu thời gian thành công! Dấu thời gian có thể được xác minh trong Adobe Acrobat và các trình đọc PDF khác."
+  },
   "emailToPdf": {
     "name": "Email sang PDF",
     "subtitle": "Chuyển đổi tệp email (EML, MSG) sang định dạng PDF. Hỗ trợ xuất Outlook và định dạng email tiêu chuẩn.",
