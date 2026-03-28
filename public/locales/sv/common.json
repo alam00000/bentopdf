@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "PDF-verktyg",
     "subtitle": "Välj ett verktyg för att komma igång"
+  },
+  "disabledTool": {
+    "title": "Verktyget är inte tillgängligt",
+    "heading": "Det här verktyget har inaktiverats",
+    "message": "Det här verktyget är inte tillgängligt i din installation. Kontakta din administratör för mer information.",
+    "backHome": "Tillbaka till startsidan"
   }
 }

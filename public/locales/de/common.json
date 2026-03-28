@@ -362,5 +362,11 @@
   "simpleMode": {
     "title": "PDF-Werkzeuge",
     "subtitle": "Wählen Sie ein Werkzeug aus, um zu beginnen"
+  },
+  "disabledTool": {
+    "title": "Werkzeug nicht verfügbar",
+    "heading": "Dieses Werkzeug wurde deaktiviert",
+    "message": "Dieses Werkzeug ist in Ihrer Installation nicht verfügbar. Wenden Sie sich an Ihren Administrator, um weitere Informationen zu erhalten.",
+    "backHome": "Zurück zur Startseite"
   }
 }

@@ -106,6 +106,7 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_BRAND_NAME`                    | Custom brand name                           | `BentoPDF`                                                     |
 | `VITE_BRAND_LOGO`                    | Logo path relative to `public/`             | `images/favicon-no-bg.svg`                                     |
 | `VITE_FOOTER_TEXT`                   | Custom footer/copyright text                | `© 2026 BentoPDF. All rights reserved.`                        |
+| `DISABLE_TOOLS`                      | Comma-separated tool IDs to hide            | _(empty; all tools enabled)_                                   |
 
 WASM module URLs are pre-configured with CDN defaults — all advanced features work out of the box. Override these for air-gapped or self-hosted deployments.
 
@@ -134,6 +135,74 @@ docker build \
 ```
 
 Branding works in both full mode and Simple Mode, and can be combined with all other build-time options.
+
+### Disabling Specific Tools
+
+Hide tools from the UI for compliance or security requirements. Disabled tools are removed from the homepage, search results, keyboard shortcuts, and the workflow builder. Direct URL access shows a "tool unavailable" page.
+
+Tool IDs are the page URL without `.html`. For example, if the tool lives at `bentopdf.com/edit-pdf.html`, the ID is `edit-pdf`.
+
+#### Finding Tool IDs
+
+The easiest way: open any tool in BentoPDF and look at the URL. The last part of the path (without `.html`) is the tool ID.
+
+<details>
+<summary>Full list of tool IDs</summary>
+
+**Edit & Annotate:** `edit-pdf`, `bookmark`, `table-of-contents`, `page-numbers`, `add-page-labels`, `bates-numbering`, `add-watermark`, `header-footer`, `invert-colors`, `scanner-effect`, `adjust-colors`, `background-color`, `text-color`, `sign-pdf`, `add-stamps`, `remove-annotations`, `crop-pdf`, `form-filler`, `form-creator`, `remove-blank-pages`
+
+**Convert to PDF:** `image-to-pdf`, `jpg-to-pdf`, `png-to-pdf`, `webp-to-pdf`, `svg-to-pdf`, `bmp-to-pdf`, `heic-to-pdf`, `tiff-to-pdf`, `txt-to-pdf`, `markdown-to-pdf`, `json-to-pdf`, `csv-to-pdf`, `rtf-to-pdf`, `odt-to-pdf`, `word-to-pdf`, `excel-to-pdf`, `powerpoint-to-pdf`, `xps-to-pdf`, `mobi-to-pdf`, `epub-to-pdf`, `fb2-to-pdf`, `cbz-to-pdf`, `wpd-to-pdf`, `wps-to-pdf`, `xml-to-pdf`, `pages-to-pdf`, `odg-to-pdf`, `ods-to-pdf`, `odp-to-pdf`, `pub-to-pdf`, `vsd-to-pdf`, `psd-to-pdf`, `email-to-pdf`
+
+**Convert from PDF:** `pdf-to-jpg`, `pdf-to-png`, `pdf-to-webp`, `pdf-to-bmp`, `pdf-to-tiff`, `pdf-to-cbz`, `pdf-to-svg`, `pdf-to-csv`, `pdf-to-excel`, `pdf-to-greyscale`, `pdf-to-json`, `pdf-to-docx`, `extract-images`, `pdf-to-markdown`, `prepare-pdf-for-ai`, `pdf-to-text`
+
+**Organize & Manage:** `ocr-pdf`, `merge-pdf`, `alternate-merge`, `organize-pdf`, `add-attachments`, `extract-attachments`, `edit-attachments`, `pdf-multi-tool`, `pdf-layers`, `extract-tables`, `split-pdf`, `divide-pages`, `extract-pages`, `delete-pages`, `add-blank-page`, `reverse-pages`, `rotate-pdf`, `rotate-custom`, `n-up-pdf`, `pdf-booklet`, `combine-single-page`, `view-metadata`, `edit-metadata`, `pdf-to-zip`, `compare-pdfs`, `posterize-pdf`, `page-dimensions`
+
+**Optimize & Repair:** `compress-pdf`, `pdf-to-pdfa`, `fix-page-size`, `linearize-pdf`, `remove-restrictions`, `repair-pdf`, `rasterize-pdf`, `deskew-pdf`, `font-to-outline`
+
+**Security:** `encrypt-pdf`, `sanitize-pdf`, `decrypt-pdf`, `flatten-pdf`, `remove-metadata`, `change-permissions`, `digital-sign-pdf`, `validate-signature-pdf`, `timestamp-pdf`
+
+</details>
+
+#### Option 1: Build-time (Docker build arg)
+
+```bash
+docker build \
+  --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" \
+  -t bentopdf .
+```
+
+This bakes the disabled list into the JavaScript bundle. Requires a rebuild to change.
+
+#### Option 2: Runtime (config.json)
+
+Mount a `config.json` file into the served directory — no rebuild needed:
+
+```json
+{
+  "disabledTools": ["edit-pdf", "sign-pdf", "encrypt-pdf"]
+}
+```
+
+```bash
+docker run -d \
+  -p 3000:8080 \
+  -v ./config.json:/usr/share/nginx/html/config.json:ro \
+  ghcr.io/alam00000/bentopdf:latest
+```
+
+Or with Docker Compose:
+
+```yaml
+services:
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf:latest
+    ports:
+      - '3000:8080'
+    volumes:
+      - ./config.json:/usr/share/nginx/html/config.json:ro
+```
+
+Both methods can be combined — the lists are merged. If a tool appears in either, it is disabled.
 
 ### Custom WASM URLs (Air-Gapped / Self-Hosted)
 

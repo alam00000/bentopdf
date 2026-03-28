@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "PDF-værktøjer",
     "subtitle": "Vælg et værktøj for at komme i gang"
+  },
+  "disabledTool": {
+    "title": "Værktøj utilgængeligt",
+    "heading": "Dette værktøj er deaktiveret",
+    "message": "Dette værktøj er ikke tilgængeligt i din installation. Kontakt din administrator for yderligere oplysninger.",
+    "backHome": "Tilbage til forsiden"
   }
 }

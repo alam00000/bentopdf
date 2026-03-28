@@ -7,6 +7,7 @@ import {
   getNodesByCategory,
   createNodeByType,
 } from '../workflow/nodes/registry';
+import { isToolDisabled } from '../utils/disabled-tools.js';
 import type { BaseWorkflowNode } from '../workflow/nodes/base-node';
 import type { WorkflowEditor } from '../workflow/editor';
 import {
@@ -447,7 +448,9 @@ function buildToolbox() {
   ];
 
   for (const cat of categoryOrder) {
-    const entries = categorized[cat.key as keyof typeof categorized] ?? [];
+    const entries = (
+      categorized[cat.key as keyof typeof categorized] ?? []
+    ).filter((entry) => !entry.toolPageId || !isToolDisabled(entry.toolPageId));
     if (entries.length === 0) continue;
 
     const section = document.createElement('div');

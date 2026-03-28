@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "PDF 工具",
     "subtitle": "选择一个工具开始使用"
+  },
+  "disabledTool": {
+    "title": "工具不可用",
+    "heading": "此工具已被禁用",
+    "message": "此工具在您的部署环境中不可用。请联系管理员以获取更多信息。",
+    "backHome": "返回首页"
   }
 }

@@ -4,11 +4,12 @@ Kubernetes may be overkill for a static site, but it can be a great fit if you a
 
 > [!IMPORTANT]
 > **Required Headers for Office File Conversion**
-> 
+>
 > LibreOffice-based tools (Word, Excel, PowerPoint conversion) require these HTTP headers for `SharedArrayBuffer` support:
+>
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
-> 
+>
 > The official BentoPDF nginx images include these headers. In Kubernetes, **Ingress/Gateway controllers are also reverse proxies**, so ensure these headers are preserved (or add them at the edge).
 
 ## Prereqs
@@ -155,3 +156,39 @@ httpRoute:
 ```
 
 Support for specific filters depends on your Gateway controller; if a filter is ignored, add headers at the edge/controller layer instead.
+
+## Disabling Specific Tools
+
+Use a ConfigMap to disable tools at runtime without rebuilding the image:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bentopdf-config
+  namespace: bentopdf
+data:
+  config.json: |
+    {
+      "disabledTools": ["edit-pdf", "sign-pdf", "encrypt-pdf"]
+    }
+```
+
+Mount it into the served directory:
+
+```yaml
+spec:
+  containers:
+    - name: bentopdf
+      volumeMounts:
+        - name: config
+          mountPath: /usr/share/nginx/html/config.json
+          subPath: config.json
+          readOnly: true
+  volumes:
+    - name: config
+      configMap:
+        name: bentopdf-config
+```
+
+Tool IDs are the page URL without `.html` — open any tool and look at the URL (e.g., `edit-pdf`, `merge-pdf`, `compress-pdf`). Disabled tools are hidden from the homepage, search, shortcuts, workflow builder, and direct URL access. See the [Docker guide](/self-hosting/docker#disabling-specific-tools) for the full list of options.

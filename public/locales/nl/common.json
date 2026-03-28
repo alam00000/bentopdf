@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "PDF-tools",
     "subtitle": "Selecteer een tool om te beginnen"
+  },
+  "disabledTool": {
+    "title": "Tool Niet Beschikbaar",
+    "heading": "Deze tool is uitgeschakeld",
+    "message": "Deze tool is niet beschikbaar in uw implementatie. Neem contact op met uw beheerder voor meer informatie.",
+    "backHome": "Terug naar Home"
   }
 }

@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "Herramientas PDF",
     "subtitle": "Selecciona una herramienta para comenzar"
+  },
+  "disabledTool": {
+    "title": "Herramienta no disponible",
+    "heading": "Esta herramienta ha sido desactivada",
+    "message": "Esta herramienta no está disponible en tu instalación. Contacta con tu administrador para obtener más información.",
+    "backHome": "Volver al inicio"
   }
 }

@@ -55,3 +55,4 @@ export * from './add-page-labels-type.ts';
 export * from './pdf-to-tiff-type.ts';
 export * from './pdf-to-cbz-type.ts';
 export * from './password-prompt-type.ts';
+export * from './config-types.ts';

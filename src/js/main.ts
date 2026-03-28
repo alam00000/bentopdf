@@ -15,12 +15,37 @@ import {
   createLanguageSwitcher,
   t,
 } from './i18n/index.js';
+import {
+  loadRuntimeConfig,
+  isToolDisabled,
+  isCurrentPageDisabled,
+} from './utils/disabled-tools.js';
 declare const __BRAND_NAME__: string;
 
 const init = async () => {
   await initI18n();
+  await loadRuntimeConfig();
   injectLanguageSwitcher();
   applyTranslations();
+
+  if (isCurrentPageDisabled()) {
+    document.title = t('disabledTool.title') || 'Tool Unavailable';
+    const main = document.querySelector('main') || document.body;
+    const heading = t('disabledTool.heading') || 'This tool has been disabled';
+    const message =
+      t('disabledTool.message') ||
+      'This tool is not available in your deployment. Contact your administrator for more information.';
+    const backHome = t('disabledTool.backHome') || 'Back to Home';
+    main.innerHTML = `
+      <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+        <i class="ph ph-prohibit text-6xl text-gray-500 mb-4"></i>
+        <h1 class="text-2xl font-bold text-white mb-2">${heading}</h1>
+        <p class="text-gray-400 mb-6">${message}</p>
+        <a href="${import.meta.env.BASE_URL}" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">${backHome}</a>
+      </div>
+    `;
+    return;
+  }
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -275,7 +300,14 @@ const init = async () => {
       );
     }
 
-    categories.forEach((category) => {
+    const filteredCategories = categories
+      .map((category) => ({
+        ...category,
+        tools: category.tools.filter((tool) => !isToolDisabled(tool.id)),
+      }))
+      .filter((category) => category.tools.length > 0);
+
+    filteredCategories.forEach((category) => {
       const categoryGroup = document.createElement('div');
       categoryGroup.className = 'category-group col-span-full';
 
@@ -872,16 +904,21 @@ const init = async () => {
 
     const allShortcuts = ShortcutsManager.getAllShortcuts();
     const isMac = navigator.userAgent.toUpperCase().includes('MAC');
-    const allTools = categories.flatMap((c) => c.tools);
+    const shortcutCategories = categories
+      .map((category) => ({
+        ...category,
+        tools: category.tools.filter((tool) => !isToolDisabled(tool.id)),
+      }))
+      .filter((category) => category.tools.length > 0);
+    const allTools = shortcutCategories.flatMap((c) => c.tools);
 
-    categories.forEach((category) => {
+    shortcutCategories.forEach((category) => {
       const section = document.createElement('div');
       section.className = 'category-section mb-6 last:mb-0';
 
       const header = document.createElement('h3');
       header.className =
         'text-gray-400 text-xs font-bold uppercase tracking-wider mb-3 pl-1';
-      // Translate category name
       const categoryKey = categoryTranslationKeys[category.name];
       header.textContent = categoryKey ? t(categoryKey) : category.name;
       section.appendChild(header);

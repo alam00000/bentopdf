@@ -80,6 +80,7 @@ export interface NodeRegistryEntry {
   description: string;
   factory: () => BaseWorkflowNode;
   hidden?: boolean;
+  toolPageId?: string;
 }
 
 export const nodeRegistry: Record<string, NodeRegistryEntry> = {
@@ -96,6 +97,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-image',
     description: 'Upload images and convert to PDF',
     factory: () => new ImageInputNode(),
+    toolPageId: 'image-to-pdf',
   },
   WordToPdfNode: {
     label: 'Word to PDF',
@@ -103,6 +105,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-microsoft-word-logo',
     description: 'Convert Word documents to PDF',
     factory: () => new WordToPdfNode(),
+    toolPageId: 'word-to-pdf',
   },
   ExcelToPdfNode: {
     label: 'Excel to PDF',
@@ -110,6 +113,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-microsoft-excel-logo',
     description: 'Convert Excel spreadsheets to PDF',
     factory: () => new ExcelToPdfNode(),
+    toolPageId: 'excel-to-pdf',
   },
   PowerPointToPdfNode: {
     label: 'PowerPoint to PDF',
@@ -117,6 +121,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-microsoft-powerpoint-logo',
     description: 'Convert PowerPoint presentations to PDF',
     factory: () => new PowerPointToPdfNode(),
+    toolPageId: 'powerpoint-to-pdf',
   },
   TextToPdfNode: {
     label: 'Text to PDF',
@@ -124,6 +129,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-text-t',
     description: 'Convert plain text to PDF',
     factory: () => new TextToPdfNode(),
+    toolPageId: 'txt-to-pdf',
   },
   SvgToPdfNode: {
     label: 'SVG to PDF',
@@ -131,6 +137,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-svg',
     description: 'Convert SVG files to PDF',
     factory: () => new SvgToPdfNode(),
+    toolPageId: 'svg-to-pdf',
   },
   EpubToPdfNode: {
     label: 'EPUB to PDF',
@@ -138,6 +145,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-book-open-text',
     description: 'Convert EPUB ebooks to PDF',
     factory: () => new EpubToPdfNode(),
+    toolPageId: 'epub-to-pdf',
   },
   EmailToPdfNode: {
     label: 'Email to PDF',
@@ -145,6 +153,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-envelope',
     description: 'Convert email files (.eml, .msg) to PDF',
     factory: () => new EmailToPdfNode(),
+    toolPageId: 'email-to-pdf',
   },
   XpsToPdfNode: {
     label: 'XPS to PDF',
@@ -152,6 +161,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-scan',
     description: 'Convert XPS/OXPS documents to PDF',
     factory: () => new XpsToPdfNode(),
+    toolPageId: 'xps-to-pdf',
   },
   MobiToPdfNode: {
     label: 'MOBI to PDF',
@@ -159,6 +169,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-book-open-text',
     description: 'Convert MOBI e-books to PDF',
     factory: () => new MobiToPdfNode(),
+    toolPageId: 'mobi-to-pdf',
   },
   Fb2ToPdfNode: {
     label: 'FB2 to PDF',
@@ -166,6 +177,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-book-bookmark',
     description: 'Convert FB2 e-books to PDF',
     factory: () => new Fb2ToPdfNode(),
+    toolPageId: 'fb2-to-pdf',
   },
   CbzToPdfNode: {
     label: 'CBZ to PDF',
@@ -173,6 +185,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-book-open',
     description: 'Convert comic book archives (CBZ/CBR) to PDF',
     factory: () => new CbzToPdfNode(),
+    toolPageId: 'cbz-to-pdf',
   },
   MarkdownToPdfNode: {
     label: 'Markdown to PDF',
@@ -180,6 +193,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-markdown-logo',
     description: 'Convert Markdown files to PDF',
     factory: () => new MarkdownToPdfNode(),
+    toolPageId: 'markdown-to-pdf',
   },
   JsonToPdfNode: {
     label: 'JSON to PDF',
@@ -187,6 +201,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-code',
     description: 'Convert JSON files to PDF',
     factory: () => new JsonToPdfNode(),
+    toolPageId: 'json-to-pdf',
   },
   XmlToPdfNode: {
     label: 'XML to PDF',
@@ -194,6 +209,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-code',
     description: 'Convert XML documents to PDF',
     factory: () => new XmlToPdfNode(),
+    toolPageId: 'xml-to-pdf',
   },
   WpdToPdfNode: {
     label: 'WPD to PDF',
@@ -201,6 +217,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-text',
     description: 'Convert WordPerfect documents to PDF',
     factory: () => new WpdToPdfNode(),
+    toolPageId: 'wpd-to-pdf',
   },
   WpsToPdfNode: {
     label: 'WPS to PDF',
@@ -208,6 +225,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-text',
     description: 'Convert WPS Office documents to PDF',
     factory: () => new WpsToPdfNode(),
+    toolPageId: 'wps-to-pdf',
   },
   PagesToPdfNode: {
     label: 'Pages to PDF',
@@ -215,6 +233,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-text',
     description: 'Convert Apple Pages documents to PDF',
     factory: () => new PagesToPdfNode(),
+    toolPageId: 'pages-to-pdf',
   },
   OdgToPdfNode: {
     label: 'ODG to PDF',
@@ -222,6 +241,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-image',
     description: 'Convert OpenDocument Graphics to PDF',
     factory: () => new OdgToPdfNode(),
+    toolPageId: 'odg-to-pdf',
   },
   PubToPdfNode: {
     label: 'PUB to PDF',
@@ -229,6 +249,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-book-open',
     description: 'Convert Microsoft Publisher to PDF',
     factory: () => new PubToPdfNode(),
+    toolPageId: 'pub-to-pdf',
   },
   VsdToPdfNode: {
     label: 'VSD to PDF',
@@ -236,6 +257,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-git-branch',
     description: 'Convert Visio diagrams (VSD/VSDX) to PDF',
     factory: () => new VsdToPdfNode(),
+    toolPageId: 'vsd-to-pdf',
   },
   MergeNode: {
     label: 'Merge PDFs',
@@ -243,6 +265,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-browsers',
     description: 'Combine multiple PDFs into one',
     factory: () => new MergeNode(),
+    toolPageId: 'merge-pdf',
   },
   SplitNode: {
     label: 'Split PDF',
@@ -250,6 +273,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-scissors',
     description: 'Extract a range of pages',
     factory: () => new SplitNode(),
+    toolPageId: 'split-pdf',
   },
   ExtractPagesNode: {
     label: 'Extract Pages',
@@ -257,6 +281,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-squares-four',
     description: 'Extract pages as separate PDFs',
     factory: () => new ExtractPagesNode(),
+    toolPageId: 'extract-pages',
   },
   RotateNode: {
     label: 'Rotate',
@@ -264,6 +289,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-arrow-clockwise',
     description: 'Rotate all pages',
     factory: () => new RotateNode(),
+    toolPageId: 'rotate-pdf',
   },
   DeletePagesNode: {
     label: 'Delete Pages',
@@ -271,6 +297,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-trash',
     description: 'Remove specific pages',
     factory: () => new DeletePagesNode(),
+    toolPageId: 'delete-pages',
   },
   ReversePagesNode: {
     label: 'Reverse Pages',
@@ -278,6 +305,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-sort-descending',
     description: 'Reverse page order',
     factory: () => new ReversePagesNode(),
+    toolPageId: 'reverse-pages',
   },
   AddBlankPageNode: {
     label: 'Add Blank Page',
@@ -285,6 +313,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-plus',
     description: 'Insert blank pages',
     factory: () => new AddBlankPageNode(),
+    toolPageId: 'add-blank-page',
   },
   DividePagesNode: {
     label: 'Divide Pages',
@@ -292,6 +321,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-columns',
     description: 'Split pages vertically or horizontally',
     factory: () => new DividePagesNode(),
+    toolPageId: 'divide-pages',
   },
   NUpNode: {
     label: 'N-Up',
@@ -299,6 +329,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-squares-four',
     description: 'Arrange multiple pages per sheet',
     factory: () => new NUpNode(),
+    toolPageId: 'n-up-pdf',
   },
   FixPageSizeNode: {
     label: 'Fix Page Size',
@@ -306,6 +337,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-frame-corners',
     description: 'Standardize all pages to a target size',
     factory: () => new FixPageSizeNode(),
+    toolPageId: 'fix-page-size',
   },
   CombineSinglePageNode: {
     label: 'Combine to Single Page',
@@ -313,6 +345,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-arrows-out-line-vertical',
     description: 'Stitch all pages into one continuous page',
     factory: () => new CombineSinglePageNode(),
+    toolPageId: 'combine-single-page',
   },
   BookletNode: {
     label: 'Booklet',
@@ -320,6 +353,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-book-open',
     description: 'Arrange pages for booklet printing',
     factory: () => new BookletNode(),
+    toolPageId: 'pdf-booklet',
   },
   PosterizeNode: {
     label: 'Posterize',
@@ -327,6 +361,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-notepad',
     description: 'Split pages into tile grid for poster printing',
     factory: () => new PosterizeNode(),
+    toolPageId: 'posterize-pdf',
   },
   EditMetadataNode: {
     label: 'Edit Metadata',
@@ -334,6 +369,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-code',
     description: 'Edit PDF metadata',
     factory: () => new EditMetadataNode(),
+    toolPageId: 'edit-metadata',
   },
   TableOfContentsNode: {
     label: 'Table of Contents',
@@ -341,6 +377,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-list',
     description: 'Generate table of contents from bookmarks',
     factory: () => new TableOfContentsNode(),
+    toolPageId: 'table-of-contents',
   },
   OCRNode: {
     label: 'OCR',
@@ -348,6 +385,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-barcode',
     description: 'Add searchable text layer via OCR',
     factory: () => new OCRNode(),
+    toolPageId: 'ocr-pdf',
   },
   CropNode: {
     label: 'Crop',
@@ -355,6 +393,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-crop',
     description: 'Trim margins from all pages',
     factory: () => new CropNode(),
+    toolPageId: 'crop-pdf',
   },
   GreyscaleNode: {
     label: 'Greyscale',
@@ -362,6 +401,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-palette',
     description: 'Convert to greyscale',
     factory: () => new GreyscaleNode(),
+    toolPageId: 'pdf-to-greyscale',
   },
   InvertColorsNode: {
     label: 'Invert Colors',
@@ -369,6 +409,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-circle-half',
     description: 'Invert all colors',
     factory: () => new InvertColorsNode(),
+    toolPageId: 'invert-colors',
   },
   ScannerEffectNode: {
     label: 'Scanner Effect',
@@ -376,6 +417,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-scan',
     description: 'Apply scanner simulation effect',
     factory: () => new ScannerEffectNode(),
+    toolPageId: 'scanner-effect',
   },
   AdjustColorsNode: {
     label: 'Adjust Colors',
@@ -383,6 +425,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-sliders-horizontal',
     description: 'Adjust brightness, contrast, and colors',
     factory: () => new AdjustColorsNode(),
+    toolPageId: 'adjust-colors',
   },
   BackgroundColorNode: {
     label: 'Background Color',
@@ -390,6 +433,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-palette',
     description: 'Change background color',
     factory: () => new BackgroundColorNode(),
+    toolPageId: 'background-color',
   },
   WatermarkNode: {
     label: 'Watermark',
@@ -397,6 +441,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-drop',
     description: 'Add text watermark',
     factory: () => new WatermarkNode(),
+    toolPageId: 'add-watermark',
   },
   PageNumbersNode: {
     label: 'Page Numbers',
@@ -404,6 +449,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-list-numbers',
     description: 'Add page numbers',
     factory: () => new PageNumbersNode(),
+    toolPageId: 'page-numbers',
   },
   HeaderFooterNode: {
     label: 'Header & Footer',
@@ -411,6 +457,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-paragraph',
     description: 'Add header and footer text',
     factory: () => new HeaderFooterNode(),
+    toolPageId: 'header-footer',
   },
   RemoveBlankPagesNode: {
     label: 'Remove Blank Pages',
@@ -418,6 +465,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-minus',
     description: 'Remove blank pages automatically',
     factory: () => new RemoveBlankPagesNode(),
+    toolPageId: 'remove-blank-pages',
   },
   RemoveAnnotationsNode: {
     label: 'Remove Annotations',
@@ -425,6 +473,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-eraser',
     description: 'Strip all annotations',
     factory: () => new RemoveAnnotationsNode(),
+    toolPageId: 'remove-annotations',
   },
   CompressNode: {
     label: 'Compress',
@@ -432,6 +481,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-lightning',
     description: 'Reduce PDF file size',
     factory: () => new CompressNode(),
+    toolPageId: 'compress-pdf',
   },
   RasterizeNode: {
     label: 'Rasterize',
@@ -439,6 +489,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-image',
     description: 'Convert to image-based PDF',
     factory: () => new RasterizeNode(),
+    toolPageId: 'rasterize-pdf',
   },
   LinearizeNode: {
     label: 'Linearize',
@@ -446,6 +497,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-gauge',
     description: 'Optimize PDF for fast web viewing',
     factory: () => new LinearizeNode(),
+    toolPageId: 'linearize-pdf',
   },
   DeskewNode: {
     label: 'Deskew',
@@ -453,6 +505,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-perspective',
     description: 'Straighten skewed PDF pages',
     factory: () => new DeskewNode(),
+    toolPageId: 'deskew-pdf',
   },
   PdfToPdfANode: {
     label: 'PDF to PDF/A',
@@ -460,6 +513,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-archive',
     description: 'Convert PDF to PDF/A for archiving',
     factory: () => new PdfToPdfANode(),
+    toolPageId: 'pdf-to-pdfa',
   },
   FontToOutlineNode: {
     label: 'Font to Outline',
@@ -467,6 +521,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-text-outdent',
     description: 'Convert fonts to vector outlines',
     factory: () => new FontToOutlineNode(),
+    toolPageId: 'font-to-outline',
   },
   RepairNode: {
     label: 'Repair',
@@ -474,6 +529,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-wrench',
     description: 'Repair corrupted PDF',
     factory: () => new RepairNode(),
+    toolPageId: 'repair-pdf',
   },
   EncryptNode: {
     label: 'Encrypt',
@@ -481,6 +537,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-lock',
     description: 'Encrypt PDF with password',
     factory: () => new EncryptNode(),
+    toolPageId: 'encrypt-pdf',
   },
   DecryptNode: {
     label: 'Decrypt',
@@ -488,6 +545,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-lock-open',
     description: 'Remove PDF password protection',
     factory: () => new DecryptNode(),
+    toolPageId: 'decrypt-pdf',
   },
   SanitizeNode: {
     label: 'Sanitize',
@@ -495,6 +553,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-broom',
     description: 'Remove metadata, scripts, and hidden data',
     factory: () => new SanitizeNode(),
+    toolPageId: 'sanitize-pdf',
   },
   FlattenNode: {
     label: 'Flatten',
@@ -502,6 +561,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-stack',
     description: 'Flatten forms and annotations',
     factory: () => new FlattenNode(),
+    toolPageId: 'flatten-pdf',
   },
   DigitalSignNode: {
     label: 'Digital Sign',
@@ -509,6 +569,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-certificate',
     description: 'Apply a digital signature to PDF',
     factory: () => new DigitalSignNode(),
+    toolPageId: 'digital-sign-pdf',
   },
   TimestampNode: {
     label: 'Timestamp',
@@ -516,6 +577,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-clock',
     description: 'Add an RFC 3161 document timestamp',
     factory: () => new TimestampNode(),
+    toolPageId: 'timestamp-pdf',
   },
   RedactNode: {
     label: 'Redact',
@@ -523,6 +585,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-eye-slash',
     description: 'Redact text from PDF',
     factory: () => new RedactNode(),
+    toolPageId: 'edit-pdf',
   },
   DownloadNode: {
     label: 'Download',
@@ -554,6 +617,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-image',
     description: 'Convert PDF pages to images (ZIP)',
     factory: () => new PdfToImagesNode(),
+    toolPageId: 'pdf-to-jpg',
   },
   PdfToTextNode: {
     label: 'PDF to Text',
@@ -561,6 +625,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-text-aa',
     description: 'Extract text from PDF',
     factory: () => new PdfToTextNode(),
+    toolPageId: 'pdf-to-text',
   },
   PdfToDocxNode: {
     label: 'PDF to DOCX',
@@ -568,6 +633,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-microsoft-word-logo',
     description: 'Convert PDF to Word document',
     factory: () => new PdfToDocxNode(),
+    toolPageId: 'pdf-to-docx',
   },
   PdfToXlsxNode: {
     label: 'PDF to XLSX',
@@ -575,6 +641,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-microsoft-excel-logo',
     description: 'Convert PDF tables to Excel',
     factory: () => new PdfToXlsxNode(),
+    toolPageId: 'pdf-to-excel',
   },
   PdfToCsvNode: {
     label: 'PDF to CSV',
@@ -582,6 +649,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-csv',
     description: 'Convert PDF tables to CSV',
     factory: () => new PdfToCsvNode(),
+    toolPageId: 'pdf-to-csv',
   },
   PdfToSvgNode: {
     label: 'PDF to SVG',
@@ -589,6 +657,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-file-code',
     description: 'Convert PDF pages to SVG',
     factory: () => new PdfToSvgNode(),
+    toolPageId: 'pdf-to-svg',
   },
   PdfToMarkdownNode: {
     label: 'PDF to Markdown',
@@ -596,6 +665,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-markdown-logo',
     description: 'Convert PDF to Markdown text',
     factory: () => new PdfToMarkdownNode(),
+    toolPageId: 'pdf-to-markdown',
   },
   ExtractImagesNode: {
     label: 'Extract Images',
@@ -603,6 +673,7 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     icon: 'ph-download-simple',
     description: 'Extract all images from PDF',
     factory: () => new ExtractImagesNode(),
+    toolPageId: 'extract-images',
   },
 };
 

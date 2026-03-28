@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "Strumenti PDF",
     "subtitle": "Seleziona uno strumento per iniziare"
+  },
+  "disabledTool": {
+    "title": "Strumento Non Disponibile",
+    "heading": "Questo strumento è stato disabilitato",
+    "message": "Questo strumento non è disponibile nella tua distribuzione. Contatta il tuo amministratore per ulteriori informazioni.",
+    "backHome": "Torna alla Home"
   }
 }

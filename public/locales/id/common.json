@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "Alat PDF",
     "subtitle": "Pilih alat untuk memulai"
+  },
+  "disabledTool": {
+    "title": "Alat Tidak Tersedia",
+    "heading": "Alat ini telah dinonaktifkan",
+    "message": "Alat ini tidak tersedia dalam penerapan Anda. Hubungi administrator Anda untuk informasi lebih lanjut.",
+    "backHome": "Kembali ke Beranda"
   }
 }

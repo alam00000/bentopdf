@@ -363,5 +363,11 @@
   "simpleMode": {
     "title": "PDF Tools",
     "subtitle": "Select a tool to get started"
+  },
+  "disabledTool": {
+    "title": "Tool Unavailable",
+    "heading": "This tool has been disabled",
+    "message": "This tool is not available in your deployment. Contact your administrator for more information.",
+    "backHome": "Back to Home"
   }
 }

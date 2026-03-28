@@ -361,5 +361,11 @@
   "simpleMode": {
     "title": "Công cụ PDF",
     "subtitle": "Chọn một công cụ để bắt đầu"
+  },
+  "disabledTool": {
+    "title": "Công cụ không khả dụng",
+    "heading": "Công cụ này đã bị vô hiệu hóa",
+    "message": "Công cụ này không có sẵn trong môi trường triển khai của bạn. Vui lòng liên hệ quản trị viên để biết thêm thông tin.",
+    "backHome": "Quay về trang chủ"
   }
 }
