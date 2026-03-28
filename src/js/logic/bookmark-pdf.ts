@@ -824,6 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showConfirmModal(message: string): Promise<boolean> {
   return new Promise((resolve) => {
+    const previousActiveEl = document.activeElement as HTMLElement | null;
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
 
@@ -844,19 +845,30 @@ function showConfirmModal(message: string): Promise<boolean> {
     overlay.appendChild(modal);
     modalContainer?.appendChild(overlay);
 
-    modal.querySelector('#modal-cancel')?.addEventListener('click', () => {
+    const modalCancelBtn = modal.querySelector(
+      '#modal-cancel'
+    ) as HTMLButtonElement | null;
+    const modalConfirmBtn = modal.querySelector(
+      '#modal-confirm'
+    ) as HTMLButtonElement | null;
+    modalCancelBtn?.focus();
+
+    modalCancelBtn?.addEventListener('click', () => {
       modalContainer?.removeChild(overlay);
+      previousActiveEl?.focus();
       resolve(false);
     });
 
-    modal.querySelector('#modal-confirm')?.addEventListener('click', () => {
+    modalConfirmBtn?.addEventListener('click', () => {
       modalContainer?.removeChild(overlay);
+      previousActiveEl?.focus();
       resolve(true);
     });
 
     overlay.addEventListener('click', (e: MouseEvent) => {
       if (e.target === overlay) {
         modalContainer?.removeChild(overlay);
+        previousActiveEl?.focus();
         resolve(false);
       }
     });
@@ -865,6 +877,7 @@ function showConfirmModal(message: string): Promise<boolean> {
 
 function showAlertModal(title: string, message: string): Promise<boolean> {
   return new Promise((resolve) => {
+    const previousActiveEl = document.activeElement as HTMLElement | null;
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
 
@@ -884,14 +897,19 @@ function showAlertModal(title: string, message: string): Promise<boolean> {
     overlay.appendChild(modal);
     modalContainer?.appendChild(overlay);
 
-    modal.querySelector('#modal-ok')?.addEventListener('click', () => {
+    const okBtn = modal.querySelector('#modal-ok') as HTMLButtonElement | null;
+    okBtn?.focus();
+
+    okBtn?.addEventListener('click', () => {
       modalContainer?.removeChild(overlay);
+      previousActiveEl?.focus();
       resolve(true);
     });
 
     overlay.addEventListener('click', (e: MouseEvent) => {
       if (e.target === overlay) {
         modalContainer?.removeChild(overlay);
+        previousActiveEl?.focus();
         resolve(true);
       }
     });
