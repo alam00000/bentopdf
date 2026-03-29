@@ -1,4 +1,3 @@
-import { APP_VERSION } from '../../version.js';
 import { createLanguageSwitcher } from '../i18n/language-switcher.js';
 
 // Handle simple mode adjustments for tool pages
