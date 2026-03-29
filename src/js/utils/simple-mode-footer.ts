@@ -20,11 +20,6 @@ if (__SIMPLE_MODE__) {
     }
   });
 
-  const versionElement = document.getElementById('app-version-simple');
-  if (versionElement) {
-    versionElement.textContent = APP_VERSION;
-  }
-
   const langContainer = document.getElementById('simple-mode-lang-switcher');
   if (langContainer) {
     const switcher = createLanguageSwitcher();
