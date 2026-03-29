@@ -8,6 +8,7 @@ import {
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { t } from '../i18n/i18n';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { flattenAnnotations } from '../utils/flatten-annotations.js';
 import type { SignState, PDFViewerWindow } from '@/types';
 
 const signState: SignState = {
@@ -283,7 +284,20 @@ async function applyAndSaveSignatures() {
       );
       const pdfBytes = new Uint8Array(rawPdfBytes);
       const pdfDoc = await loadPdfDocument(pdfBytes);
-      pdfDoc.getForm().flatten();
+      try {
+        pdfDoc.getForm().flatten();
+      } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : String(e);
+        if (!msg.includes('getForm')) {
+          throw e;
+        }
+      }
+      try {
+        flattenAnnotations(pdfDoc);
+      } catch (e: unknown) {
+        const msg = e instanceof Error ? e.message : String(e);
+        console.warn('Could not flatten annotations:', msg);
+      }
       const flattenedPdfBytes = await pdfDoc.save();
 
       const blob = new Blob([new Uint8Array(flattenedPdfBytes)], {
