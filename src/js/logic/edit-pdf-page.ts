@@ -4,6 +4,7 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { formatBytes, downloadFile } from '../utils/helpers.js';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import { getEditorDisabledCategories } from '../utils/disabled-tools.js';
 
 const embedPdfWasmUrl = new URL(
   'embedpdf-snippet/dist/pdfium.wasm',
@@ -130,7 +131,9 @@ async function handleFiles(files: FileList) {
       pdfWrapper.classList.remove('hidden');
 
       const { default: EmbedPDF } = await import('embedpdf-snippet');
+      const disabledCategories = getEditorDisabledCategories();
       viewerInstance = EmbedPDF.init({
+        disabledCategories,
         type: 'container',
         target: pdfContainer,
         worker: true,

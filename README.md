@@ -871,6 +871,16 @@ docker run -d -p 3000:8080 \
 
 Both methods can be combined — the lists are merged. For the full list of tool IDs, see the [self-hosting docs](https://bentopdf.com/docs/self-hosting/docker#disabling-specific-tools).
 
+You can also disable specific features inside the PDF Editor (e.g., redaction, forms) without disabling the entire editor. Add `editorDisabledCategories` to your `config.json`:
+
+```json
+{
+  "editorDisabledCategories": ["redaction"]
+}
+```
+
+For the full list of editor categories, see the [self-hosting docs](https://bentopdf.com/docs/self-hosting/docker#disabling-editor-features).
+
 ### 🔒 Security Features
 
 BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:

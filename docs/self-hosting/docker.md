@@ -204,6 +204,45 @@ services:
 
 Both methods can be combined — the lists are merged. If a tool appears in either, it is disabled.
 
+#### Disabling Editor Features
+
+You can also disable specific features inside the PDF Editor (e.g., redaction, annotations, forms) without disabling the entire editor tool. Add `editorDisabledCategories` to your `config.json`:
+
+```json
+{
+  "editorDisabledCategories": ["redaction", "annotation-stamp"]
+}
+```
+
+<details>
+<summary>Full list of editor categories</summary>
+
+**Zoom:** `zoom`, `zoom-in`, `zoom-out`, `zoom-fit-page`, `zoom-fit-width`, `zoom-marquee`, `zoom-level`
+
+**Annotation:** `annotation`, `annotation-markup`, `annotation-highlight`, `annotation-underline`, `annotation-strikeout`, `annotation-squiggly`, `annotation-ink`, `annotation-text`, `annotation-stamp`
+
+**Shapes:** `annotation-shape`, `annotation-rectangle`, `annotation-circle`, `annotation-line`, `annotation-arrow`, `annotation-polygon`, `annotation-polyline`
+
+**Form:** `form`, `form-textfield`, `form-checkbox`, `form-radio`, `form-select`, `form-listbox`, `form-fill-mode`
+
+**Redaction:** `redaction`, `redaction-area`, `redaction-text`, `redaction-apply`, `redaction-clear`
+
+**Document:** `document`, `document-open`, `document-close`, `document-print`, `document-capture`, `document-export`, `document-fullscreen`, `document-protect`
+
+**Page:** `page`, `spread`, `rotate`, `scroll`, `navigation`
+
+**Panel:** `panel`, `panel-sidebar`, `panel-search`, `panel-comment`
+
+**Tools:** `tools`, `pan`, `pointer`, `capture`
+
+**Selection:** `selection`, `selection-copy`
+
+**History:** `history`, `history-undo`, `history-redo`
+
+</details>
+
+Categories are hierarchical — disabling a parent (e.g., `annotation`) disables all its children.
+
 ### Custom WASM URLs (Air-Gapped / Self-Hosted)
 
 > [!IMPORTANT]

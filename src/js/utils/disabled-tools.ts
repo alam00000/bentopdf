@@ -2,6 +2,7 @@ import type { AppConfig } from '@/types';
 
 const disabledToolsSet = new Set<string>(__DISABLED_TOOLS__);
 let runtimeConfigLoaded = false;
+let editorDisabledCategories: string[] = [];
 
 export async function loadRuntimeConfig(): Promise<void> {
   if (runtimeConfigLoaded) return;
@@ -21,6 +22,11 @@ export async function loadRuntimeConfig(): Promise<void> {
         }
       }
     }
+    if (Array.isArray(config.editorDisabledCategories)) {
+      editorDisabledCategories = config.editorDisabledCategories.filter(
+        (c): c is string => typeof c === 'string'
+      );
+    }
   } catch {}
 }
 
@@ -34,6 +40,10 @@ export function getToolIdFromPath(): string | null {
   if (withExt) return withExt[1];
   const withoutExt = path.match(/\/([^/]+)\/?$/);
   return withoutExt?.[1] ?? null;
+}
+
+export function getEditorDisabledCategories(): string[] {
+  return editorDisabledCategories;
 }
 
 export function isCurrentPageDisabled(): boolean {

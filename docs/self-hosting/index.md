@@ -164,7 +164,9 @@ docker run -d -p 3000:8080 \
   ghcr.io/alam00000/bentopdf:latest
 ```
 
-Both methods can be combined — the lists are merged. See the [Docker guide](/self-hosting/docker#disabling-specific-tools) for full details.
+Both methods can be combined — the lists are merged.
+
+You can also disable specific features inside the PDF Editor (e.g., redaction) without disabling the entire tool by adding `editorDisabledCategories` to `config.json`. See the [Docker guide](/self-hosting/docker#disabling-editor-features) for the full list of categories.
 
 ## Deployment Guides
 
