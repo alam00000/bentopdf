@@ -54,7 +54,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { state } from '../state.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Your tool logic here
+  // Your tool logic here
 });
 ```
 
@@ -131,6 +131,6 @@ Before your PR can be merged, you'll need to sign our CLA:
 BentoPDF is dual-licensed:
 
 - **AGPL-3.0** for open-source projects where you share your full source code publicly
-- **Commercial License** for proprietary/closed-source applications - [Get Lifetime License for $49](https://ko-fi.com/s/f32ca4cb75)
+- **Commercial License** for proprietary/closed-source applications - [Get Lifetime License for $79](https://ko-fi.com/s/f32ca4cb75)
 
 By contributing, you agree that your contributions will be licensed under these terms.
