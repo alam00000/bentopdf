@@ -260,11 +260,13 @@
     "add": "Toevoegen",
     "remove": "Verwijderen",
     "loading": "Laden...",
+    "loadingPageCount": "Pagina's laden...",
     "error": "Fout",
     "success": "Succes",
     "file": "Bestand",
     "files": "Bestanden",
-    "close": "Sluiten"
+    "close": "Sluiten",
+    "convert": "Converteren"
   },
   "about": {
     "hero": {
