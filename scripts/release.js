@@ -76,7 +76,7 @@ function main() {
   console.log(`📦 Updated version to ${newVersion}`);
 
   // 2. Add and commit changes
-  execSync('git add package.json *.html src/pages/*.html', {
+  execSync('git add package.json', {
     stdio: 'inherit',
   });
   execSync(`git commit -m "Release v${newVersion}"`, { stdio: 'inherit' });
