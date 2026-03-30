@@ -75,26 +75,22 @@ function main() {
   const newVersion = updateVersion(type);
   console.log(`📦 Updated version to ${newVersion}`);
 
-  // 2. Update version in HTML files
-  console.log(`📝 Updating version in HTML files...`);
-  execSync('npm run update-version', { stdio: 'inherit' });
-
-  // 3. Add and commit changes
+  // 2. Add and commit changes
   execSync('git add package.json *.html src/pages/*.html', {
     stdio: 'inherit',
   });
   execSync(`git commit -m "Release v${newVersion}"`, { stdio: 'inherit' });
   console.log(`💾 Committed version change`);
 
-  // 4. Create git tag
+  // 3. Create git tag
   const tagName = createGitTag(newVersion);
 
-  // 5. Build and package the distribution files
+  // 4. Build and package the distribution files
   console.log(`📦 Building and packaging distribution files...`);
   execSync('npm run package', { stdio: 'inherit' });
   console.log(`📦 Distribution files packaged successfully`);
 
-  // 6. Push everything to main
+  // 5. Push everything to main
   console.log(`📤 Pushing to main...`);
   execSync('git push origin main', { stdio: 'inherit' });
   execSync(`git push origin ${tagName}`, { stdio: 'inherit' });
