@@ -89,7 +89,7 @@ describe('image-effects', () => {
     });
 
     it('should handle light colors (l > 0.5)', () => {
-      const [h, s, l] = rgbToHsl(255, 128, 128);
+      const [_h, s, l] = rgbToHsl(255, 128, 128);
       expect(l).toBeGreaterThan(0.5);
       expect(s).toBeGreaterThan(0);
     });

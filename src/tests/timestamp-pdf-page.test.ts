@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { TIMESTAMP_TSA_PRESETS } from '@/js/config/timestamp-tsa';
 
 /**

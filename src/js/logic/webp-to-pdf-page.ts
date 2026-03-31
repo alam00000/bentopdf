@@ -160,9 +160,13 @@ function updateUI() {
   }
 }
 
-function sanitizeImageAsJpeg(imageBytes: any) {
+function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
   return new Promise((resolve, reject) => {
-    const blob = new Blob([imageBytes]);
+    const blob = new Blob([
+      imageBytes instanceof Uint8Array
+        ? new Uint8Array(imageBytes)
+        : imageBytes,
+    ]);
     const imageUrl = URL.createObjectURL(blob);
     const img = new Image();
 
@@ -248,9 +252,9 @@ async function convertToPdf() {
     showAlert('Success', 'PDF created successfully!', 'success', () => {
       resetState();
     });
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error(e);
-    showAlert('Conversion Error', e.message);
+    showAlert('Conversion Error', e instanceof Error ? e.message : String(e));
   } finally {
     hideLoader();
   }

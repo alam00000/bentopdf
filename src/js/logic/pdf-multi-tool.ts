@@ -9,7 +9,6 @@ import {
   renderPagesProgressively,
   cleanupLazyRendering,
   renderPageToCanvas,
-  createPlaceholder,
 } from '../utils/render-utils';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { repairPdfFile } from './repair-pdf.js';
@@ -841,7 +840,7 @@ function deletePage(index: number) {
 
 async function insertPdfAfter(index: number) {
   document.getElementById('insert-pdf-input')?.click();
-  (window as any).__insertAfterIndex = index;
+  (window as unknown as Record<string, unknown>).__insertAfterIndex = index;
 }
 
 async function handleInsertPdf(e: Event) {
@@ -849,7 +848,8 @@ async function handleInsertPdf(e: Event) {
   const file = input.files?.[0];
   if (!file) return;
 
-  const insertAfterIndex = (window as any).__insertAfterIndex;
+  const insertAfterIndex = (window as unknown as Record<string, unknown>)
+    .__insertAfterIndex as number | undefined;
   if (insertAfterIndex === undefined) return;
 
   try {
@@ -974,7 +974,7 @@ function addBlankPage() {
     rotation: 0,
     visualRotation: 0,
     canvas,
-    pdfDoc: null as any,
+    pdfDoc: null!,
     originalPageIndex: -1,
     fileName: '', // Blank page has no file
   };

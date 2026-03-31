@@ -170,7 +170,7 @@ async function decryptPdf() {
 
           zip.file(`unlocked-${file.name}`, decryptedBytes, { binary: true });
           successCount++;
-        } catch (fileError: any) {
+        } catch (fileError: unknown) {
           errorCount++;
           console.error(`Failed to decrypt ${file.name}:`, fileError);
         }
@@ -194,15 +194,16 @@ async function decryptPdf() {
         resetState();
       });
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error during PDF decryption:', error);
 
-    if (error.message === 'INVALID_PASSWORD') {
+    const errorMessage = error instanceof Error ? error.message : '';
+    if (errorMessage === 'INVALID_PASSWORD') {
       showAlert(
         'Incorrect Password',
         'The password you entered is incorrect. Please try again.'
       );
-    } else if (error.message?.includes('password')) {
+    } else if (errorMessage.includes('password')) {
       showAlert(
         'Password Error',
         'Unable to decrypt the PDF with the provided password.'
@@ -210,7 +211,7 @@ async function decryptPdf() {
     } else {
       showAlert(
         'Decryption Failed',
-        `An error occurred: ${error.message || 'The password you entered is wrong or the file is corrupted.'}`
+        `An error occurred: ${errorMessage || 'The password you entered is wrong or the file is corrupted.'}`
       );
     }
   } finally {

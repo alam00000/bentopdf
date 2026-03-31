@@ -21,7 +21,9 @@ describe('State Management', () => {
       // 1. Modify the state properties to non-default values
       state.activeTool = 'merge';
       state.files = [{ name: 'dummy.pdf', size: 1234 } as File];
-      state.pdfDoc = { numPages: 5 }; // Mock PDF document object
+      state.pdfDoc = {
+        numPages: 5,
+      } as unknown as import('pdf-lib').PDFDocument;
       state.pdfPages = [{}, {}]; // Mock page objects
       state.currentPdfUrl = 'blob:http://localhost/some-uuid';
 

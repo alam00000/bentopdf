@@ -13,6 +13,10 @@
 
 ![BentoPDF Tools](public/images/bentopdf-tools.png)
 
+### FOSS Hack 2026
+
+[![Watch Demo](https://img.shields.io/badge/Watch%20Demo-FOSS%20Hack%202026-red?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/14Vf62PvHiuf1RKFKtMlAzpbf4QQPLpRF/view?usp=sharing)
+
 ---
 
 ## Table of Contents
@@ -82,11 +86,11 @@ BentoPDF is **dual-licensed** to fit your needs:
 | License        | Best For                                     | Price              |
 | -------------- | -------------------------------------------- | ------------------ |
 | **AGPL-3.0**   | Open-source projects with public source code | **Free**           |
-| **Commercial** | Proprietary / closed-source applications     | **$49** (lifetime) |
+| **Commercial** | Proprietary / closed-source applications     | **$79** (lifetime) |
 
 <p align="center">
   <a href="https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd">
-    <img src="https://img.shields.io/badge/🚀_Get_Commercial_License-$49_Lifetime-6366f1?style=for-the-badge&labelColor=1f2937" alt="Get Commercial License">
+    <img src="https://img.shields.io/badge/🚀_Get_Commercial_License-$79_Lifetime-6366f1?style=for-the-badge&labelColor=1f2937" alt="Get Commercial License">
   </a>
 </p>
 

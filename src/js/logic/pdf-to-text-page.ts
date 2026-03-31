@@ -1,14 +1,13 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
 let files: File[] = [];
-let pymupdf: any = null;
+let pymupdf: PyMuPDFInstance | null = null;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializePage);
@@ -159,9 +158,9 @@ function updateUI() {
   }
 }
 
-async function ensurePyMuPDF(): Promise<any> {
+async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
   if (!pymupdf) {
-    pymupdf = await loadPyMuPDF();
+    pymupdf = (await loadPyMuPDF()) as PyMuPDFInstance;
   }
   return pymupdf;
 }
@@ -230,12 +229,12 @@ async function extractText() {
         }
       );
     }
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error('[PDFToText]', e);
     hideLoader();
     showAlert(
       'Extraction Error',
-      e.message || 'Failed to extract text from PDF.'
+      e instanceof Error ? e.message : 'Failed to extract text from PDF.'
     );
   }
 }

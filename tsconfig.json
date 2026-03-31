@@ -42,7 +42,7 @@
     "noFallthroughCasesInSwitch": false,
     "noUncheckedSideEffectImports": false,
     /* Fix for ArrayBuffer type issues */
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     /* Quality-of-life options */
     "isolatedModules": true,
     "esModuleInterop": true,

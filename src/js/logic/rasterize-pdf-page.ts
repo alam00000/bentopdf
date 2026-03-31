@@ -8,11 +8,11 @@ import {
 } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -136,12 +136,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = state.files[0];
         showLoader(`Rasterizing ${file.name}...`);
 
-        const rasterizedBlob = await (pymupdf as any).rasterizePdf(file, {
-          dpi,
-          format,
-          grayscale,
-          quality: 95,
-        });
+        const rasterizedBlob = await (pymupdf as PyMuPDFInstance).rasterizePdf(
+          file,
+          {
+            dpi,
+            format,
+            grayscale,
+            quality: 95,
+          }
+        );
 
         const outName = file.name.replace(/\.pdf$/i, '') + '_rasterized.pdf';
         downloadFile(rasterizedBlob, outName);
@@ -165,7 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
               `Rasterizing ${file.name} (${completed + 1}/${total})...`
             );
 
-            const rasterizedBlob = await (pymupdf as any).rasterizePdf(file, {
+            const rasterizedBlob = await (
+              pymupdf as PyMuPDFInstance
+            ).rasterizePdf(file, {
               dpi,
               format,
               grayscale,
@@ -210,11 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
           );
         }
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during rasterization. Error: ${e.message}`
+        `An error occurred during rasterization. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

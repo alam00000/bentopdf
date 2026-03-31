@@ -10,7 +10,6 @@ import { DataflowEngine } from 'rete-engine';
 import type { DataflowEngineScheme } from 'rete-engine';
 import { LitElement, html } from 'lit';
 import type { BaseWorkflowNode } from './nodes/base-node';
-// @ts-ignore -- Vite ?inline import for injecting into Shadow DOM
 import phosphorCSS from '@phosphor-icons/web/regular?inline';
 
 // Shared stylesheet for Phosphor icons (font-face already loaded globally, strip it)
@@ -305,8 +304,8 @@ export async function createWorkflowEditor(
 
   // Override connection path to use vertical bezier curves (top-to-bottom flow)
   litPlugin.addPipe((context) => {
-    if ((context as any).type === 'connectionpath') {
-      const { points } = (context as any).data;
+    if ('type' in context && context.type === 'connectionpath') {
+      const { points } = context.data;
       const [start, end] = points as [
         { x: number; y: number },
         { x: number; y: number },
@@ -318,7 +317,7 @@ export async function createWorkflowEditor(
       const path = `M ${start.x} ${start.y} C ${start.x} ${start.y + dy} ${end.x} ${end.y - dy} ${end.x} ${end.y}`;
       return {
         ...context,
-        data: { ...(context as any).data, path },
+        data: { ...context.data, path },
       } as typeof context;
     }
     return context;

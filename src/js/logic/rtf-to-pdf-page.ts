@@ -1,9 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import {
-  downloadFile,
-  readFileAsArrayBuffer,
-  formatBytes,
-} from '../utils/helpers.js';
+import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import {
@@ -158,11 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e.message}`
+        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

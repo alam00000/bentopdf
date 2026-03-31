@@ -1,4 +1,12 @@
-export const state = {
+import type { PDFDocument } from 'pdf-lib';
+
+export const state: {
+  activeTool: string | null;
+  files: File[];
+  pdfDoc: PDFDocument | null;
+  pdfPages: unknown[];
+  currentPdfUrl: string | null;
+} = {
   activeTool: null,
   files: [],
   pdfDoc: null,

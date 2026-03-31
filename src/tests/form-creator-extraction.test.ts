@@ -285,7 +285,7 @@ describe('form creator extraction regression', () => {
   });
 
   it('skips fields whose widgets cannot be resolved to any page', async () => {
-    const { pdfDoc, page1Field, page2Field } = await buildTwoPageTextFieldPdf();
+    const { pdfDoc, page2Field } = await buildTwoPageTextFieldPdf();
 
     const page2Widget = page2Field.acroField.getWidgets()[0];
     const page2WidgetRef = getWidgetRef(page2Widget, pdfDoc);

@@ -8,7 +8,7 @@ For complete licensing information, delivery details, AGPL component notices, an
 
 ## Get a Commercial License
 
-**[Get Lifetime License for $49](https://ko-fi.com/s/f32ca4cb75)** — A one-time purchase that includes all future updates forever.
+**[Get Lifetime License for $79](https://ko-fi.com/s/f32ca4cb75)** — A one-time purchase that includes all future updates forever.
 
 ## When Do You Need a Commercial License?
 

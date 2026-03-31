@@ -11,7 +11,6 @@ import {
   applyTranslations,
   rewriteLinks,
   injectLanguageSwitcher,
-  createLanguageSwitcher,
   t,
 } from './i18n/index.js';
 import {
@@ -500,7 +499,7 @@ const init = async () => {
       }
     });
 
-    dom.toolGrid.addEventListener('click', (e) => {
+    dom.toolGrid.addEventListener('click', () => {
       // All tools now use href and navigate directly - no modal handling needed
     });
   }
@@ -888,7 +887,7 @@ const init = async () => {
     });
   }
 
-  function getToolId(tool: any): string {
+  function getToolId(tool: { id?: string; href?: string }): string {
     if (tool.id) return tool.id;
     if (tool.href) {
       const match = tool.href.match(/\/([^/]+)\.html$/);

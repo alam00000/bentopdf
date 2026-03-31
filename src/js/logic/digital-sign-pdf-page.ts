@@ -400,7 +400,7 @@ async function handleCertFile(file: File): Promise<void> {
           certStatus.className = 'text-xs text-green-400';
         }
       }
-    } catch (error) {
+    } catch {
       const certStatus = getElement<HTMLDivElement>('cert-status');
       if (certStatus) {
         certStatus.textContent = 'Failed to parse PEM file';

@@ -100,7 +100,13 @@ export function validateSignature(
       Array.from(signature.contents)
     );
     const asn1 = forge.asn1.fromDer(binaryString);
-    const p7 = forge.pkcs7.messageFromAsn1(asn1) as any;
+    const p7 = forge.pkcs7.messageFromAsn1(
+      asn1
+    ) as forge.pkcs7.PkcsSignedData & {
+      rawCapture?: {
+        authenticatedAttributes?: Array<{ type: string; value: Date }>;
+      };
+    };
 
     if (!p7.certificates || p7.certificates.length === 0) {
       result.errorMessage = 'No certificates found in signature';
@@ -166,10 +172,8 @@ export function validateSignature(
     } else {
       // Try to extract from authenticated attributes
       try {
-        const signedData = p7 as any;
-        if (signedData.rawCapture?.authenticatedAttributes) {
-          // Look for signing time attribute
-          for (const attr of signedData.rawCapture.authenticatedAttributes) {
+        if (p7.rawCapture?.authenticatedAttributes) {
+          for (const attr of p7.rawCapture.authenticatedAttributes) {
             if (attr.type === forge.pki.oids.signingTime) {
               result.signatureDate = attr.value;
               break;
@@ -185,7 +189,7 @@ export function validateSignature(
     }
 
     if (signature.byteRange && signature.byteRange.length === 4) {
-      const [start1, len1, start2, len2] = signature.byteRange;
+      const [, len1, start2, len2] = signature.byteRange;
       const totalCovered = len1 + len2;
       const expectedEnd = start2 + len2;
 

@@ -8,9 +8,7 @@ import {
 } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
 interface ExtractedImage {
@@ -88,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
           metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
-        } catch (error) {
+        } catch {
           metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
         }
       }
@@ -118,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!imagesGrid || !imagesContainer) return;
     imagesGrid.innerHTML = '';
 
-    extractedImages.forEach((img, index) => {
+    extractedImages.forEach((img) => {
       const blob = new Blob([new Uint8Array(img.data)]);
       const url = URL.createObjectURL(blob);
 
@@ -212,11 +210,11 @@ document.addEventListener('DOMContentLoaded', () => {
           'success'
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during extraction. Error: ${e.message}`
+        `An error occurred during extraction. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

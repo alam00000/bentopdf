@@ -27,7 +27,9 @@ export async function loadRuntimeConfig(): Promise<void> {
         (c): c is string => typeof c === 'string'
       );
     }
-  } catch {}
+  } catch {
+    console.error('[LOAD_RUNTIME_CONFIG] Failed to load runtime configuration');
+  }
 }
 
 export function isToolDisabled(toolId: string): boolean {

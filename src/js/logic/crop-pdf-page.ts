@@ -5,7 +5,7 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import Cropper from 'cropperjs';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
-import { CropperState } from '@/types';
+import { CropperState, CropPercentages } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
@@ -167,7 +167,11 @@ async function displayPageAsImage(num: number) {
     const tempCtx = tempCanvas.getContext('2d');
     tempCanvas.width = viewport.width;
     tempCanvas.height = viewport.height;
-    await page.render({ canvasContext: tempCtx, viewport: viewport }).promise;
+    await page.render({
+      canvas: null,
+      canvasContext: tempCtx,
+      viewport: viewport,
+    }).promise;
 
     if (cropperState.cropper) cropperState.cropper.destroy();
 
@@ -251,7 +255,7 @@ async function performCrop() {
     document.getElementById('apply-to-all-toggle') as HTMLInputElement
   )?.checked;
 
-  let finalCropData: Record<number, any> = {};
+  let finalCropData: Record<number, CropPercentages> = {};
 
   if (isApplyToAll) {
     const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
@@ -286,7 +290,7 @@ async function performCrop() {
 
     const fileName = isDestructive ? 'flattened_crop.pdf' : 'standard_crop.pdf';
     downloadFile(
-      new Blob([finalPdfBytes], { type: 'application/pdf' }),
+      new Blob([new Uint8Array(finalPdfBytes)], { type: 'application/pdf' }),
       fileName
     );
     showAlert(
@@ -304,7 +308,7 @@ async function performCrop() {
 }
 
 async function performMetadataCrop(
-  cropData: Record<number, any>
+  cropData: Record<number, CropPercentages>
 ): Promise<Uint8Array> {
   const pdfToModify = await loadPdfDocument(cropperState.originalPdfBytes!);
 
@@ -344,7 +348,7 @@ async function performMetadataCrop(
 }
 
 async function performFlatteningCrop(
-  cropData: Record<number, any>
+  cropData: Record<number, CropPercentages>
 ): Promise<Uint8Array> {
   const newPdfDoc = await PDFLibDocument.create();
   const sourcePdfDocForCopying = await loadPdfDocument(
@@ -364,7 +368,11 @@ async function performFlatteningCrop(
       const tempCtx = tempCanvas.getContext('2d');
       tempCanvas.width = viewport.width;
       tempCanvas.height = viewport.height;
-      await page.render({ canvasContext: tempCtx, viewport: viewport }).promise;
+      await page.render({
+        canvas: null,
+        canvasContext: tempCtx,
+        viewport: viewport,
+      }).promise;
 
       const finalCanvas = document.createElement('canvas');
       const finalCtx = finalCanvas.getContext('2d');

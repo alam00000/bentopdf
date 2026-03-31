@@ -2,9 +2,8 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import type { PyMuPDFInstance } from '@/types';
 import JSZip from 'jszip';
 import { PDFDocument } from 'pdf-lib';
 
@@ -176,8 +175,8 @@ async function convertCbzToPdf(file: File): Promise<Blob> {
 }
 
 async function convertCbrToPdf(file: File): Promise<Blob> {
-  const pymupdf = await loadPyMuPDF();
-  return await (pymupdf as any).convertToPdf(file, { filetype: 'cbz' });
+  const pymupdf = (await loadPyMuPDF()) as PyMuPDFInstance;
+  return await pymupdf.convertToPdf(file, { filetype: 'cbz' });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -314,12 +313,12 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e.message}`
+        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

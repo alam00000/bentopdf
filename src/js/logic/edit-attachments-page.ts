@@ -44,7 +44,11 @@ worker.onmessage = function (e) {
   const data = e.data;
 
   if (data.status === 'success' && data.attachments !== undefined) {
-    pageState.allAttachments = data.attachments.map(function (att: any) {
+    pageState.allAttachments = data.attachments.map(function (att: {
+      data: ArrayBuffer;
+      filename: string;
+      description: string;
+    }) {
       return {
         ...att,
         data: new Uint8Array(att.data),

@@ -58,13 +58,13 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       const processBtn = document.getElementById('process-btn');
       if (processBtn) {
         const logic = toolLogic[toolId];
-        if (logic && logic.process) {
+        if (logic && typeof logic === 'object' && logic.process) {
           processBtn.onclick = logic.process;
         }
       }
 
       const logic = toolLogic[toolId];
-      if (logic && logic.setup) {
+      if (logic && typeof logic === 'object' && logic.setup) {
         await logic.setup();
       }
       return;
@@ -102,8 +102,12 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       const logic = toolLogic[toolId];
       if (logic) {
         const func =
-          typeof logic.process === 'function' ? logic.process : logic;
-        processBtn.onclick = func;
+          typeof logic === 'object' && typeof logic.process === 'function'
+            ? logic.process
+            : typeof logic === 'function'
+              ? logic
+              : null;
+        if (func) processBtn.onclick = func;
       }
     }
 
@@ -281,13 +285,17 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
         const infoSection = createSection('Info Dictionary');
         if (info && Object.keys(info).length > 0) {
           for (const key in info) {
-            const value = info[key];
-            let displayValue;
+            const value = (info as Record<string, unknown>)[key];
+            let displayValue: string;
 
             if (value === null || typeof value === 'undefined') {
               displayValue = '- Not Set -';
-            } else if (typeof value === 'object' && value.name) {
-              displayValue = value.name;
+            } else if (
+              typeof value === 'object' &&
+              'name' in (value as object) &&
+              (value as Record<string, unknown>).name
+            ) {
+              displayValue = String((value as Record<string, unknown>).name);
             } else if (typeof value === 'object') {
               try {
                 displayValue = JSON.stringify(value);
@@ -524,7 +532,8 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
     }
 
     if (toolId === 'page-dimensions') {
-      toolLogic['page-dimensions']();
+      const pageDimLogic = toolLogic['page-dimensions'];
+      if (typeof pageDimLogic === 'function') pageDimLogic();
     }
 
     if (toolId === 'pdf-to-jpg') {
@@ -569,8 +578,13 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       }
     }
 
-    if (toolLogic[toolId] && typeof toolLogic[toolId].setup === 'function') {
-      toolLogic[toolId].setup();
+    const setupLogic = toolLogic[toolId];
+    if (
+      setupLogic &&
+      typeof setupLogic === 'object' &&
+      typeof setupLogic.setup === 'function'
+    ) {
+      setupLogic.setup();
     }
   } catch (e) {
     hideLoader();
@@ -656,13 +670,19 @@ async function handleMultiFileUpload(toolId: string) {
     (processBtn as HTMLButtonElement).disabled = false;
     const logic = toolLogic[toolId];
     if (logic) {
-      const func = typeof logic.process === 'function' ? logic.process : logic;
-      processBtn.onclick = func;
+      const func =
+        typeof logic === 'object' && typeof logic.process === 'function'
+          ? logic.process
+          : typeof logic === 'function'
+            ? logic
+            : null;
+      if (func) processBtn.onclick = func;
     }
   }
 
   if (toolId === 'alternate-merge') {
-    toolLogic['alternate-merge'].setup();
+    const altMerge = toolLogic['alternate-merge'];
+    if (typeof altMerge === 'object' && altMerge.setup) altMerge.setup();
   } else if (toolId === 'image-to-pdf') {
     const imageList = document.getElementById('image-list');
 
@@ -869,9 +889,8 @@ export function setupFileInputHandler(toolId: string) {
           processBtn.onclick = () => {
             const logic = toolLogic[toolId];
             if (logic) {
-              const func =
-                typeof logic.process === 'function' ? logic.process : logic;
-              func();
+              if (typeof logic === 'function') logic();
+              else if (logic.process) logic.process();
             }
           };
         }
@@ -893,9 +912,8 @@ export function setupFileInputHandler(toolId: string) {
         processBtn.onclick = () => {
           const logic = toolLogic[toolId];
           if (logic) {
-            const func =
-              typeof logic.process === 'function' ? logic.process : logic;
-            func();
+            if (typeof logic === 'function') logic();
+            else if (logic.process) logic.process();
           }
         };
       }

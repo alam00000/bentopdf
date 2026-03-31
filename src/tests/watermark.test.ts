@@ -61,7 +61,7 @@ describe('Watermark Feature', () => {
     });
 
     it('should reset pdfDoc to null', () => {
-      state.pdfDoc = {} as any;
+      state.pdfDoc = {} as unknown as typeof state.pdfDoc;
 
       resetState();
 
@@ -69,7 +69,7 @@ describe('Watermark Feature', () => {
     });
 
     it('should reset pdfPages array', () => {
-      state.pdfPages = [1, 2, 3] as any;
+      state.pdfPages = [1, 2, 3] as unknown as typeof state.pdfPages;
 
       resetState();
 

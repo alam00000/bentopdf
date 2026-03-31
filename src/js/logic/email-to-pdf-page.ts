@@ -3,9 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { parseEmailFile, renderEmailToHtml } from './email-to-pdf.js';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 
 const EXTENSIONS = ['.eml', '.msg'];
 const TOOL_NAME = 'Email';
@@ -125,7 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
           pageSize,
         });
 
-        const pdfBlob = await (pymupdf as any).htmlToPdf(htmlContent, {
+        const pdfBlob = await (
+          pymupdf as unknown as {
+            htmlToPdf: (html: string, options: unknown) => Promise<Blob>;
+          }
+        ).htmlToPdf(htmlContent, {
           pageSize,
           margins: { top: 50, right: 50, bottom: 50, left: 50 },
           attachments: email.attachments
@@ -166,7 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
               pageSize,
             });
 
-            const pdfBlob = await (pymupdf as any).htmlToPdf(htmlContent, {
+            const pdfBlob = await (
+              pymupdf as unknown as {
+                htmlToPdf: (html: string, options: unknown) => Promise<Blob>;
+              }
+            ).htmlToPdf(htmlContent, {
               pageSize,
               margins: { top: 50, right: 50, bottom: 50, left: 50 },
               attachments: email.attachments
@@ -179,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const baseName = file.name.replace(/\.[^.]+$/, '');
             const pdfBuffer = await pdfBlob.arrayBuffer();
             zip.file(`${baseName}.pdf`, pdfBuffer);
-          } catch (e: any) {
+          } catch (e: unknown) {
             console.error(`Failed to convert ${file.name}:`, e);
           }
         }
@@ -196,12 +202,12 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e.message}`
+        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

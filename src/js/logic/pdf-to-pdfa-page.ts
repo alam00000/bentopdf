@@ -10,6 +10,7 @@ import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { convertFileToPdfA, type PdfALevel } from '../utils/ghostscript-loader';
 import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import type { PyMuPDFInstance } from '@/types';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
@@ -134,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const pymupdf = await loadPyMuPDF();
 
           // Rasterize PDF to images and back to PDF (300 DPI for quality)
-          const flattenedBlob = await (pymupdf as any).rasterizePdf(
+          const flattenedBlob = await (pymupdf as PyMuPDFInstance).rasterizePdf(
             originalFile,
             {
               dpi: 300,
@@ -205,11 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
           () => resetState()
         );
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e.message}`
+        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

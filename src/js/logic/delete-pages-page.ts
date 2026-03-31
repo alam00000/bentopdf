@@ -164,7 +164,7 @@ async function renderThumbnails() {
     canvas.width = viewport.width;
     canvas.height = viewport.height;
     const ctx = canvas.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport }).promise;
+    await page.render({ canvas: null, canvasContext: ctx, viewport }).promise;
 
     const wrapper = document.createElement('div');
     wrapper.className = 'relative cursor-pointer group';

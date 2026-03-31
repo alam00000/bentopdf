@@ -6,7 +6,7 @@ import {
   readFileAsArrayBuffer,
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
-import { ChangePermissionsState } from '@/types';
+import { ChangePermissionsState, QpdfInstanceExtended } from '@/types';
 
 const pageState: ChangePermissionsState = {
   file: null,
@@ -114,7 +114,7 @@ async function changePermissions() {
 
   const inputPath = '/input.pdf';
   const outputPath = '/output.pdf';
-  let qpdf: any;
+  let qpdf: QpdfInstanceExtended;
 
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
@@ -187,10 +187,10 @@ async function changePermissions() {
     args.push('--', outputPath);
     try {
       qpdf.callMain(args);
-    } catch (qpdfError: any) {
+    } catch (qpdfError: unknown) {
       console.error('qpdf execution error:', qpdfError);
 
-      const errorMsg = qpdfError.message || '';
+      const errorMsg = qpdfError instanceof Error ? qpdfError.message : '';
 
       if (
         errorMsg.includes('invalid password') ||
@@ -219,7 +219,9 @@ async function changePermissions() {
       throw new Error('Processing resulted in an empty file.');
     }
 
-    const blob = new Blob([outputFile], { type: 'application/pdf' });
+    const blob = new Blob([new Uint8Array(outputFile)], {
+      type: 'application/pdf',
+    });
     downloadFile(blob, `permissions-changed-${pageState.file.name}`);
 
     if (loaderModal) loaderModal.classList.add('hidden');
@@ -233,16 +235,17 @@ async function changePermissions() {
     showAlert('Success', successMessage, 'success', () => {
       resetState();
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error during PDF permission change:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
 
-    if (error.message === 'INVALID_PASSWORD') {
+    const errorMessage = error instanceof Error ? error.message : '';
+    if (errorMessage === 'INVALID_PASSWORD') {
       showAlert(
         'Incorrect Password',
         'The current password you entered is incorrect. Please try again.'
       );
-    } else if (error.message === 'PASSWORD_REQUIRED') {
+    } else if (errorMessage === 'PASSWORD_REQUIRED') {
       showAlert(
         'Password Required',
         'This PDF is password-protected. Please enter the current password to proceed.'
@@ -250,7 +253,7 @@ async function changePermissions() {
     } else {
       showAlert(
         'Processing Failed',
-        `An error occurred: ${error.message || 'The PDF might be corrupted or password protected.'}`
+        `An error occurred: ${errorMessage || 'The PDF might be corrupted or password protected.'}`
       );
     }
   } finally {

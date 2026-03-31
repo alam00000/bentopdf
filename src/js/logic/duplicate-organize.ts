@@ -16,7 +16,9 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url
 ).toString();
 
-const duplicateOrganizeState = {
+const duplicateOrganizeState: {
+  sortableInstances: { pageGrid?: Sortable };
+} = {
   sortableInstances: {},
 };
 
@@ -24,13 +26,10 @@ function initializePageGridSortable() {
   const grid = document.getElementById('page-grid');
   if (!grid) return;
 
-  // @ts-expect-error TS(2339) FIXME: Property 'pageGrid' does not exist on type '{}'.
   if (duplicateOrganizeState.sortableInstances.pageGrid) {
-    // @ts-expect-error TS(2339) FIXME: Property 'pageGrid' does not exist on type '{}'.
     duplicateOrganizeState.sortableInstances.pageGrid.destroy();
   }
 
-  // @ts-expect-error TS(2339) FIXME: Property 'pageGrid' does not exist on type '{}'.
   duplicateOrganizeState.sortableInstances.pageGrid = Sortable.create(grid, {
     animation: 150,
     ghostClass: 'sortable-ghost',
@@ -38,10 +37,10 @@ function initializePageGridSortable() {
     dragClass: 'sortable-drag',
     filter: '.duplicate-btn, .delete-btn',
     preventOnFilter: true,
-    onStart: function (evt: any) {
+    onStart: function (evt: Sortable.SortableEvent) {
       evt.item.style.opacity = '0.5';
     },
-    onEnd: function (evt: any) {
+    onEnd: function (evt: Sortable.SortableEvent) {
       evt.item.style.opacity = '1';
     },
   });
@@ -51,7 +50,7 @@ function initializePageGridSortable() {
  * Attaches event listeners for duplicate and delete to a page thumbnail element.
  * @param {HTMLElement} element The thumbnail element to attach listeners to.
  */
-function attachEventListeners(element: any) {
+function attachEventListeners(element: HTMLElement) {
   // Re-number all visible page labels
   const renumberPages = () => {
     const grid = document.getElementById('page-grid');
@@ -65,16 +64,16 @@ function attachEventListeners(element: any) {
   // Duplicate button listener
   element
     .querySelector('.duplicate-btn')
-    .addEventListener('click', (e: any) => {
+    .addEventListener('click', (e: Event) => {
       e.stopPropagation();
-      const clone = element.cloneNode(true);
+      const clone = element.cloneNode(true) as HTMLElement;
       element.after(clone);
       attachEventListeners(clone);
       renumberPages();
       initializePageGridSortable();
     });
 
-  element.querySelector('.delete-btn').addEventListener('click', (e: any) => {
+  element.querySelector('.delete-btn').addEventListener('click', (e: Event) => {
     e.stopPropagation();
     if (document.getElementById('page-grid').children.length > 1) {
       element.remove();
@@ -218,7 +217,7 @@ export async function processAndSave() {
     }
 
     const copiedPages = await newPdfDoc.copyPages(state.pdfDoc, finalIndices);
-    copiedPages.forEach((page: any) => newPdfDoc.addPage(page));
+    copiedPages.forEach((page) => newPdfDoc.addPage(page));
 
     const newPdfBytes = await newPdfDoc.save();
     downloadFile(

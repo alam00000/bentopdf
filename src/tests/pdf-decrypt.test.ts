@@ -230,6 +230,7 @@ describe('pdf decrypt', () => {
     expect(mockPdfDocumentLoad).toHaveBeenCalledWith(
       new Uint8Array([8, 8, 8]),
       {
+        ignoreEncryption: true,
         throwOnInvalidObject: false,
       }
     );
@@ -267,6 +268,7 @@ describe('pdf decrypt', () => {
     expect(mockPdfDocumentLoad).toHaveBeenCalledWith(
       new Uint8Array([6, 6, 6]),
       {
+        ignoreEncryption: true,
         throwOnInvalidObject: false,
       }
     );

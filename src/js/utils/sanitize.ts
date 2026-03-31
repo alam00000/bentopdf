@@ -1,5 +1,34 @@
-import { PDFDocument, PDFName } from 'pdf-lib';
+import { PDFDocument, PDFName, PDFDict, PDFArray } from 'pdf-lib';
 import { loadPdfDocument } from './load-pdf-document.js';
+import type { PDFDocumentInternal } from '@/types';
+
+function getCatalogDict(pdfDoc: PDFDocument): PDFDict {
+  return pdfDoc.catalog;
+}
+
+function lookupAsDict(
+  pdfDoc: PDFDocument,
+  ref: ReturnType<PDFDict['get']>
+): PDFDict | undefined {
+  if (!ref) return undefined;
+  const result = pdfDoc.context.lookup(ref);
+  if (result instanceof PDFDict) return result;
+  return undefined;
+}
+
+function lookupAsArray(
+  pdfDoc: PDFDocument,
+  ref: ReturnType<PDFDict['get']>
+): PDFArray | undefined {
+  if (!ref) return undefined;
+  const result = pdfDoc.context.lookup(ref);
+  if (result instanceof PDFArray) return result;
+  return undefined;
+}
+
+function getErrorMessage(e: unknown): string {
+  return e instanceof Error ? e.message : String(e);
+}
 
 export interface SanitizeOptions {
   flattenForms: boolean;
@@ -28,9 +57,9 @@ export const defaultSanitizeOptions: SanitizeOptions = {
 };
 
 function removeMetadataFromDoc(pdfDoc: PDFDocument) {
-  const infoDict = (pdfDoc as any).getInfoDict();
+  const infoDict = (pdfDoc as unknown as PDFDocumentInternal).getInfoDict();
   const allKeys = infoDict.keys();
-  allKeys.forEach((key: any) => {
+  allKeys.forEach((key: PDFName) => {
     infoDict.delete(key);
   });
 
@@ -42,30 +71,30 @@ function removeMetadataFromDoc(pdfDoc: PDFDocument) {
   pdfDoc.setProducer('');
 
   try {
-    const catalogDict = (pdfDoc.catalog as any).dict;
+    const catalogDict = getCatalogDict(pdfDoc);
     if (catalogDict.has(PDFName.of('Metadata'))) {
       catalogDict.delete(PDFName.of('Metadata'));
     }
-  } catch (e: any) {
-    console.warn('Could not remove XMP metadata:', e.message);
+  } catch (e: unknown) {
+    console.warn('Could not remove XMP metadata:', getErrorMessage(e));
   }
 
   try {
     const context = pdfDoc.context;
-    if ((context as any).trailerInfo) {
-      delete (context as any).trailerInfo.ID;
+    if (context.trailerInfo) {
+      delete context.trailerInfo.ID;
     }
-  } catch (e: any) {
-    console.warn('Could not remove document IDs:', e.message);
+  } catch (e: unknown) {
+    console.warn('Could not remove document IDs:', getErrorMessage(e));
   }
 
   try {
-    const catalogDict = (pdfDoc.catalog as any).dict;
+    const catalogDict = getCatalogDict(pdfDoc);
     if (catalogDict.has(PDFName.of('PieceInfo'))) {
       catalogDict.delete(PDFName.of('PieceInfo'));
     }
-  } catch (e: any) {
-    console.warn('Could not remove PieceInfo:', e.message);
+  } catch (e: unknown) {
+    console.warn('Could not remove PieceInfo:', getErrorMessage(e));
   }
 }
 
@@ -74,8 +103,11 @@ function removeAnnotationsFromDoc(pdfDoc: PDFDocument) {
   for (const page of pages) {
     try {
       page.node.delete(PDFName.of('Annots'));
-    } catch (e: any) {
-      console.warn('Could not remove annotations from page:', e.message);
+    } catch (e: unknown) {
+      console.warn(
+        'Could not remove annotations from page:',
+        getErrorMessage(e)
+      );
     }
   }
 }
@@ -86,21 +118,22 @@ function flattenFormsInDoc(pdfDoc: PDFDocument) {
 }
 
 function removeJavascriptFromDoc(pdfDoc: PDFDocument) {
-  if ((pdfDoc as any).javaScripts && (pdfDoc as any).javaScripts.length > 0) {
-    (pdfDoc as any).javaScripts = [];
+  const pdfDocInternal = pdfDoc as unknown as PDFDocumentInternal;
+  if (pdfDocInternal.javaScripts && pdfDocInternal.javaScripts.length > 0) {
+    pdfDocInternal.javaScripts = [];
   }
 
-  const catalogDict = (pdfDoc.catalog as any).dict;
+  const catalogDict = getCatalogDict(pdfDoc);
 
   const namesRef = catalogDict.get(PDFName.of('Names'));
   if (namesRef) {
     try {
-      const namesDict = pdfDoc.context.lookup(namesRef) as any;
-      if (namesDict.has(PDFName.of('JavaScript'))) {
+      const namesDict = lookupAsDict(pdfDoc, namesRef);
+      if (namesDict?.has(PDFName.of('JavaScript'))) {
         namesDict.delete(PDFName.of('JavaScript'));
       }
-    } catch (e: any) {
-      console.warn('Could not access Names/JavaScript:', e.message);
+    } catch (e: unknown) {
+      console.warn('Could not access Names/JavaScript:', getErrorMessage(e));
     }
   }
 
@@ -124,50 +157,55 @@ function removeJavascriptFromDoc(pdfDoc: PDFDocument) {
       const annotRefs = pageDict.Annots()?.asArray() || [];
       for (const annotRef of annotRefs) {
         try {
-          const annot = pdfDoc.context.lookup(annotRef) as any;
+          const annot = lookupAsDict(pdfDoc, annotRef);
+          if (!annot) continue;
 
           if (annot.has(PDFName.of('A'))) {
             const actionRef = annot.get(PDFName.of('A'));
             try {
-              const actionDict = pdfDoc.context.lookup(actionRef) as any;
+              const actionDict = lookupAsDict(pdfDoc, actionRef);
               const actionType = actionDict
-                .get(PDFName.of('S'))
+                ?.get(PDFName.of('S'))
                 ?.toString()
                 .substring(1);
 
               if (actionType === 'JavaScript') {
                 annot.delete(PDFName.of('A'));
               }
-            } catch (e: any) {
-              console.warn('Could not read action:', e.message);
+            } catch (e: unknown) {
+              console.warn('Could not read action:', getErrorMessage(e));
             }
           }
 
           if (annot.has(PDFName.of('AA'))) {
             annot.delete(PDFName.of('AA'));
           }
-        } catch (e: any) {
-          console.warn('Could not process annotation for JS:', e.message);
+        } catch (e: unknown) {
+          console.warn(
+            'Could not process annotation for JS:',
+            getErrorMessage(e)
+          );
         }
       }
-    } catch (e: any) {
-      console.warn('Could not remove page actions:', e.message);
+    } catch (e: unknown) {
+      console.warn('Could not remove page actions:', getErrorMessage(e));
     }
   }
 
   try {
     const acroFormRef = catalogDict.get(PDFName.of('AcroForm'));
     if (acroFormRef) {
-      const acroFormDict = pdfDoc.context.lookup(acroFormRef) as any;
-      const fieldsRef = acroFormDict.get(PDFName.of('Fields'));
+      const acroFormDict = lookupAsDict(pdfDoc, acroFormRef);
+      const fieldsRef = acroFormDict?.get(PDFName.of('Fields'));
 
       if (fieldsRef) {
-        const fieldsArray = pdfDoc.context.lookup(fieldsRef) as any;
-        const fields = fieldsArray.asArray();
+        const fieldsArray = lookupAsArray(pdfDoc, fieldsRef);
+        const fields = fieldsArray?.asArray() || [];
 
         for (const fieldRef of fields) {
           try {
-            const field = pdfDoc.context.lookup(fieldRef) as any;
+            const field = lookupAsDict(pdfDoc, fieldRef);
+            if (!field) continue;
 
             if (field.has(PDFName.of('A'))) {
               field.delete(PDFName.of('A'));
@@ -176,29 +214,29 @@ function removeJavascriptFromDoc(pdfDoc: PDFDocument) {
             if (field.has(PDFName.of('AA'))) {
               field.delete(PDFName.of('AA'));
             }
-          } catch (e: any) {
-            console.warn('Could not process field for JS:', e.message);
+          } catch (e: unknown) {
+            console.warn('Could not process field for JS:', getErrorMessage(e));
           }
         }
       }
     }
-  } catch (e: any) {
-    console.warn('Could not process form fields for JS:', e.message);
+  } catch (e: unknown) {
+    console.warn('Could not process form fields for JS:', getErrorMessage(e));
   }
 }
 
 function removeEmbeddedFilesFromDoc(pdfDoc: PDFDocument) {
-  const catalogDict = (pdfDoc.catalog as any).dict;
+  const catalogDict = getCatalogDict(pdfDoc);
 
   const namesRef = catalogDict.get(PDFName.of('Names'));
   if (namesRef) {
     try {
-      const namesDict = pdfDoc.context.lookup(namesRef) as any;
-      if (namesDict.has(PDFName.of('EmbeddedFiles'))) {
+      const namesDict = lookupAsDict(pdfDoc, namesRef);
+      if (namesDict?.has(PDFName.of('EmbeddedFiles'))) {
         namesDict.delete(PDFName.of('EmbeddedFiles'));
       }
-    } catch (e: any) {
-      console.warn('Could not access Names/EmbeddedFiles:', e.message);
+    } catch (e: unknown) {
+      console.warn('Could not access Names/EmbeddedFiles:', getErrorMessage(e));
     }
   }
 
@@ -214,16 +252,16 @@ function removeEmbeddedFilesFromDoc(pdfDoc: PDFDocument) {
 
       for (const ref of annotRefs) {
         try {
-          const annot = pdfDoc.context.lookup(ref) as any;
+          const annot = lookupAsDict(pdfDoc, ref);
           const subtype = annot
-            .get(PDFName.of('Subtype'))
+            ?.get(PDFName.of('Subtype'))
             ?.toString()
             .substring(1);
 
           if (subtype !== 'FileAttachment') {
             annotsToKeep.push(ref);
           }
-        } catch (e) {
+        } catch {
           annotsToKeep.push(ref);
         }
       }
@@ -236,18 +274,16 @@ function removeEmbeddedFilesFromDoc(pdfDoc: PDFDocument) {
           page.node.delete(PDFName.of('Annots'));
         }
       }
-    } catch (pageError: any) {
+    } catch (pageError: unknown) {
       console.warn(
-        `Could not process page for attachments: ${pageError.message}`
+        `Could not process page for attachments: ${getErrorMessage(pageError)}`
       );
     }
   }
 
-  if (
-    (pdfDoc as any).embeddedFiles &&
-    (pdfDoc as any).embeddedFiles.length > 0
-  ) {
-    (pdfDoc as any).embeddedFiles = [];
+  const pdfDocInternal = pdfDoc as unknown as PDFDocumentInternal;
+  if (pdfDocInternal.embeddedFiles && pdfDocInternal.embeddedFiles.length > 0) {
+    pdfDocInternal.embeddedFiles = [];
   }
 
   if (catalogDict.has(PDFName.of('Collection'))) {
@@ -256,7 +292,7 @@ function removeEmbeddedFilesFromDoc(pdfDoc: PDFDocument) {
 }
 
 function removeLayersFromDoc(pdfDoc: PDFDocument) {
-  const catalogDict = (pdfDoc.catalog as any).dict;
+  const catalogDict = getCatalogDict(pdfDoc);
 
   if (catalogDict.has(PDFName.of('OCProperties'))) {
     catalogDict.delete(PDFName.of('OCProperties'));
@@ -274,16 +310,16 @@ function removeLayersFromDoc(pdfDoc: PDFDocument) {
       const resourcesRef = pageDict.get(PDFName.of('Resources'));
       if (resourcesRef) {
         try {
-          const resourcesDict = pdfDoc.context.lookup(resourcesRef) as any;
-          if (resourcesDict.has(PDFName.of('Properties'))) {
+          const resourcesDict = lookupAsDict(pdfDoc, resourcesRef);
+          if (resourcesDict?.has(PDFName.of('Properties'))) {
             resourcesDict.delete(PDFName.of('Properties'));
           }
-        } catch (e: any) {
-          console.warn('Could not access Resources:', e.message);
+        } catch (e: unknown) {
+          console.warn('Could not access Resources:', getErrorMessage(e));
         }
       }
-    } catch (e: any) {
-      console.warn('Could not remove page layers:', e.message);
+    } catch (e: unknown) {
+      console.warn('Could not remove page layers:', getErrorMessage(e));
     }
   }
 }
@@ -299,8 +335,9 @@ function removeLinksFromDoc(pdfDoc: PDFDocument) {
       const annotsRef = pageDict.get(PDFName.of('Annots'));
       if (!annotsRef) continue;
 
-      const annotsArray = pdfDoc.context.lookup(annotsRef) as any;
-      const annotRefs = annotsArray.asArray();
+      const annotsArrayObj = lookupAsArray(pdfDoc, annotsRef);
+      if (!annotsArrayObj) continue;
+      const annotRefs = annotsArrayObj.asArray();
 
       if (annotRefs.length === 0) continue;
 
@@ -309,7 +346,11 @@ function removeLinksFromDoc(pdfDoc: PDFDocument) {
 
       for (const ref of annotRefs) {
         try {
-          const annot = pdfDoc.context.lookup(ref) as any;
+          const annot = lookupAsDict(pdfDoc, ref);
+          if (!annot) {
+            annotsToKeep.push(ref);
+            continue;
+          }
           const subtype = annot
             .get(PDFName.of('Subtype'))
             ?.toString()
@@ -324,9 +365,9 @@ function removeLinksFromDoc(pdfDoc: PDFDocument) {
             const actionRef = annot.get(PDFName.of('A'));
             if (actionRef) {
               try {
-                const actionDict = pdfDoc.context.lookup(actionRef) as any;
+                const actionDict = lookupAsDict(pdfDoc, actionRef);
                 const actionType = actionDict
-                  .get(PDFName.of('S'))
+                  ?.get(PDFName.of('S'))
                   ?.toString()
                   .substring(1);
 
@@ -339,8 +380,8 @@ function removeLinksFromDoc(pdfDoc: PDFDocument) {
                   isLink = true;
                   linksRemoved++;
                 }
-              } catch (e: any) {
-                console.warn('Could not read action:', e.message);
+              } catch (e: unknown) {
+                console.warn('Could not read action:', getErrorMessage(e));
               }
             }
 
@@ -354,8 +395,8 @@ function removeLinksFromDoc(pdfDoc: PDFDocument) {
           if (!isLink) {
             annotsToKeep.push(ref);
           }
-        } catch (e: any) {
-          console.warn('Could not process annotation:', e.message);
+        } catch (e: unknown) {
+          console.warn('Could not process annotation:', getErrorMessage(e));
           annotsToKeep.push(ref);
         }
       }
@@ -368,37 +409,37 @@ function removeLinksFromDoc(pdfDoc: PDFDocument) {
           pageDict.delete(PDFName.of('Annots'));
         }
       }
-    } catch (pageError: any) {
+    } catch (pageError: unknown) {
       console.warn(
-        `Could not process page ${pageIndex + 1} for links: ${pageError.message}`
+        `Could not process page ${pageIndex + 1} for links: ${getErrorMessage(pageError)}`
       );
     }
   }
 
   try {
-    const catalogDict = (pdfDoc.catalog as any).dict;
+    const catalogDict = getCatalogDict(pdfDoc);
     const namesRef = catalogDict.get(PDFName.of('Names'));
     if (namesRef) {
       try {
-        const namesDict = pdfDoc.context.lookup(namesRef) as any;
-        if (namesDict.has(PDFName.of('Dests'))) {
+        const namesDict = lookupAsDict(pdfDoc, namesRef);
+        if (namesDict?.has(PDFName.of('Dests'))) {
           namesDict.delete(PDFName.of('Dests'));
         }
-      } catch (e: any) {
-        console.warn('Could not access Names/Dests:', e.message);
+      } catch (e: unknown) {
+        console.warn('Could not access Names/Dests:', getErrorMessage(e));
       }
     }
 
     if (catalogDict.has(PDFName.of('Dests'))) {
       catalogDict.delete(PDFName.of('Dests'));
     }
-  } catch (e: any) {
-    console.warn('Could not remove named destinations:', e.message);
+  } catch (e: unknown) {
+    console.warn('Could not remove named destinations:', getErrorMessage(e));
   }
 }
 
 function removeStructureTreeFromDoc(pdfDoc: PDFDocument) {
-  const catalogDict = (pdfDoc.catalog as any).dict;
+  const catalogDict = getCatalogDict(pdfDoc);
 
   if (catalogDict.has(PDFName.of('StructTreeRoot'))) {
     catalogDict.delete(PDFName.of('StructTreeRoot'));
@@ -411,8 +452,8 @@ function removeStructureTreeFromDoc(pdfDoc: PDFDocument) {
       if (pageDict.has(PDFName.of('StructParents'))) {
         pageDict.delete(PDFName.of('StructParents'));
       }
-    } catch (e: any) {
-      console.warn('Could not remove page StructParents:', e.message);
+    } catch (e: unknown) {
+      console.warn('Could not remove page StructParents:', getErrorMessage(e));
     }
   }
 
@@ -422,7 +463,7 @@ function removeStructureTreeFromDoc(pdfDoc: PDFDocument) {
 }
 
 function removeMarkInfoFromDoc(pdfDoc: PDFDocument) {
-  const catalogDict = (pdfDoc.catalog as any).dict;
+  const catalogDict = getCatalogDict(pdfDoc);
 
   if (catalogDict.has(PDFName.of('MarkInfo'))) {
     catalogDict.delete(PDFName.of('MarkInfo'));
@@ -444,29 +485,29 @@ function removeFontsFromDoc(pdfDoc: PDFDocument) {
 
       if (resourcesRef) {
         try {
-          const resourcesDict = pdfDoc.context.lookup(resourcesRef) as any;
+          const resourcesDict = lookupAsDict(pdfDoc, resourcesRef);
+          if (!resourcesDict) continue;
 
           if (resourcesDict.has(PDFName.of('Font'))) {
             const fontRef = resourcesDict.get(PDFName.of('Font'));
 
             try {
-              const fontDict = pdfDoc.context.lookup(fontRef) as any;
+              const fontDict = lookupAsDict(pdfDoc, fontRef);
+              if (!fontDict) continue;
               const fontKeys = fontDict.keys();
 
               for (const fontKey of fontKeys) {
                 try {
                   const specificFontRef = fontDict.get(fontKey);
-                  const specificFont = pdfDoc.context.lookup(
-                    specificFontRef
-                  ) as any;
+                  const specificFont = lookupAsDict(pdfDoc, specificFontRef);
+                  if (!specificFont) continue;
 
                   if (specificFont.has(PDFName.of('FontDescriptor'))) {
                     const descriptorRef = specificFont.get(
                       PDFName.of('FontDescriptor')
                     );
-                    const descriptor = pdfDoc.context.lookup(
-                      descriptorRef
-                    ) as any;
+                    const descriptor = lookupAsDict(pdfDoc, descriptorRef);
+                    if (!descriptor) continue;
 
                     const fontFileKeys = ['FontFile', 'FontFile2', 'FontFile3'];
                     for (const key of fontFileKeys) {
@@ -475,28 +516,38 @@ function removeFontsFromDoc(pdfDoc: PDFDocument) {
                       }
                     }
                   }
-                } catch (e: any) {
-                  console.warn(`Could not process font ${fontKey}:`, e.message);
+                } catch (e: unknown) {
+                  console.warn(
+                    `Could not process font ${fontKey}:`,
+                    getErrorMessage(e)
+                  );
                 }
               }
-            } catch (e: any) {
-              console.warn('Could not access font dictionary:', e.message);
+            } catch (e: unknown) {
+              console.warn(
+                'Could not access font dictionary:',
+                getErrorMessage(e)
+              );
             }
           }
-        } catch (e: any) {
-          console.warn('Could not access Resources for fonts:', e.message);
+        } catch (e: unknown) {
+          console.warn(
+            'Could not access Resources for fonts:',
+            getErrorMessage(e)
+          );
         }
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       console.warn(
         `Could not remove fonts from page ${pageIndex + 1}:`,
-        e.message
+        getErrorMessage(e)
       );
     }
   }
 
-  if ((pdfDoc as any).fonts && (pdfDoc as any).fonts.length > 0) {
-    (pdfDoc as any).fonts = [];
+  const pdfDocInternal = pdfDoc as unknown as PDFDocumentInternal;
+  if (pdfDocInternal.fonts && pdfDocInternal.fonts.length > 0) {
+    pdfDocInternal.fonts = [];
   }
 }
 
@@ -509,15 +560,18 @@ export async function sanitizePdf(
   if (options.flattenForms) {
     try {
       flattenFormsInDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not flatten forms: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not flatten forms: ${getErrorMessage(e)}`);
       try {
-        const catalogDict = (pdfDoc.catalog as any).dict;
+        const catalogDict = getCatalogDict(pdfDoc);
         if (catalogDict.has(PDFName.of('AcroForm'))) {
           catalogDict.delete(PDFName.of('AcroForm'));
         }
-      } catch (removeError: any) {
-        console.warn('Could not remove AcroForm:', removeError.message);
+      } catch (removeError: unknown) {
+        console.warn(
+          'Could not remove AcroForm:',
+          getErrorMessage(removeError)
+        );
       }
     }
   }
@@ -533,56 +587,56 @@ export async function sanitizePdf(
   if (options.removeJavascript) {
     try {
       removeJavascriptFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove JavaScript: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove JavaScript: ${getErrorMessage(e)}`);
     }
   }
 
   if (options.removeEmbeddedFiles) {
     try {
       removeEmbeddedFilesFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove embedded files: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove embedded files: ${getErrorMessage(e)}`);
     }
   }
 
   if (options.removeLayers) {
     try {
       removeLayersFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove layers: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove layers: ${getErrorMessage(e)}`);
     }
   }
 
   if (options.removeLinks) {
     try {
       removeLinksFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove links: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove links: ${getErrorMessage(e)}`);
     }
   }
 
   if (options.removeStructureTree) {
     try {
       removeStructureTreeFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove structure tree: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove structure tree: ${getErrorMessage(e)}`);
     }
   }
 
   if (options.removeMarkInfo) {
     try {
       removeMarkInfoFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove MarkInfo: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove MarkInfo: ${getErrorMessage(e)}`);
     }
   }
 
   if (options.removeFonts) {
     try {
       removeFontsFromDoc(pdfDoc);
-    } catch (e: any) {
-      console.warn(`Could not remove fonts: ${e.message}`);
+    } catch (e: unknown) {
+      console.warn(`Could not remove fonts: ${getErrorMessage(e)}`);
     }
   }
 

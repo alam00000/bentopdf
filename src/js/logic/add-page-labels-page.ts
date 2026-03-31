@@ -3,6 +3,7 @@ import type {
   AddPageLabelsState,
   LabelRule,
   PageLabelStyleName,
+  CpdfInstance,
 } from '@/types';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { t } from '../i18n/index.js';
@@ -19,30 +20,6 @@ import {
   resolvePageLabelStyle,
 } from '../utils/page-labels.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
-
-type AddPageLabelsCpdf = {
-  setSlow?: () => void;
-  fromMemory(data: Uint8Array, userpw: string): CoherentPdf;
-  removePageLabels(pdf: CoherentPdf): void;
-  parsePagespec(pdf: CoherentPdf, pagespec: string): CpdfPageRange;
-  all(pdf: CoherentPdf): CpdfPageRange;
-  addPageLabels(
-    pdf: CoherentPdf,
-    style: CpdfLabelStyle,
-    prefix: string,
-    offset: number,
-    range: CpdfPageRange,
-    progress: boolean
-  ): void;
-  toMemory(pdf: CoherentPdf, linearize: boolean, makeId: boolean): Uint8Array;
-  deletePdf(pdf: CoherentPdf): void;
-  decimalArabic: CpdfLabelStyle;
-  lowercaseRoman: CpdfLabelStyle;
-  uppercaseRoman: CpdfLabelStyle;
-  lowercaseLetters: CpdfLabelStyle;
-  uppercaseLetters: CpdfLabelStyle;
-  noLabelPrefixOnly?: CpdfLabelStyle;
-};
 
 let labelRuleCounter = 0;
 
@@ -464,8 +441,8 @@ async function addPageLabels() {
       ) as HTMLInputElement | null
     )?.checked ?? true;
 
-  let cpdf: AddPageLabelsCpdf | null = null;
-  let pdf: CoherentPdf | null = null;
+  let cpdf: CpdfInstance | null = null;
+  let pdf: unknown = null;
 
   try {
     cpdf = await getCpdf();
@@ -482,7 +459,7 @@ async function addPageLabels() {
       const rule = pageState.rules[index];
       const trimmedRange = rule.pageRange.trim();
 
-      let range: CpdfPageRange;
+      let range: unknown;
       try {
         range = trimmedRange
           ? cpdf.parsePagespec(pdf, trimmedRange)

@@ -7,7 +7,6 @@ import '../../css/bookmark.css';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import {
   truncateFilename,
-  getPDFDocument,
   formatBytes,
   downloadFile,
   escapeHtml,
@@ -46,7 +45,6 @@ let isPickingDestination = false;
 let currentPickingCallback: DestinationCallback | null = null;
 let destinationMarker: HTMLDivElement | null = null;
 let savedModalOverlay: HTMLDivElement | null = null;
-let savedModal: HTMLDivElement | null = null;
 let currentViewport: PageViewport | null = null;
 let currentZoom = 1.0;
 const fileInput = document.getElementById(
@@ -463,7 +461,6 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
     if (pickDestBtn) {
       pickDestBtn.addEventListener('click', () => {
         savedModalOverlay = overlay;
-        savedModal = modal;
         overlay.style.display = 'none';
 
         startDestinationPicking((page: number, pdfX: number, pdfY: number) => {
@@ -699,7 +696,6 @@ function cancelDestinationPicking(): void {
   if (savedModalOverlay) {
     savedModalOverlay.style.display = '';
     savedModalOverlay = null;
-    savedModal = null;
   }
 }
 
@@ -1317,7 +1313,7 @@ jsonInput?.addEventListener('change', async (e: Event) => {
       'JSON Loaded',
       'Loaded bookmarks from JSON. Now upload your PDF.'
     );
-  } catch (err) {
+  } catch {
     await showAlertModal('Error', 'Invalid JSON format');
   }
 });
@@ -2018,7 +2014,7 @@ jsonImportHidden?.addEventListener('change', async (e: Event) => {
     saveState();
     renderBookmarkTree();
     await showAlertModal('Success', 'Bookmarks imported from JSON!');
-  } catch (err) {
+  } catch {
     await showAlertModal('Error', 'Invalid JSON format');
   }
 
