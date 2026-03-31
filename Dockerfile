@@ -71,7 +71,7 @@ RUN --mount=type=secret,id=VITE_CORS_PROXY_URL \
     npm run build:with-docs
 
 # Production stage
-FROM quay.io/nginx/nginx-unprivileged:stable-alpine-slim
+FROM quay.io/nginx/nginx-unprivileged:1.28.3-alpine-slim
 
 LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
 LABEL org.opencontainers.image.url="https://github.com/alam00000/bentopdf"
