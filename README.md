@@ -13,6 +13,10 @@
 
 ![BentoPDF Tools](public/images/bentopdf-tools.png)
 
+### FOSS Hack 2026
+
+[![Watch Demo](https://img.shields.io/badge/Watch%20Demo-FOSS%20Hack%202026-red?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/14Vf62PvHiuf1RKFKtMlAzpbf4QQPLpRF/view?usp=sharing)
+
 ---
 
 ## Table of Contents
