@@ -5,7 +5,7 @@ import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
     { files: ["**/*.{js,mjs,cjs,ts}"] },
-    { ignores: ["dist/**", "coverage/**", "node_modules/**", "**/.vitepress/cache/**", "public/**/*.min.js"] },
+    { ignores: ["dist/**", "dist-simple/**", "coverage/**", "node_modules/**", "**/.vitepress/cache/**", "public/**/*.min.js"] },
     { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,

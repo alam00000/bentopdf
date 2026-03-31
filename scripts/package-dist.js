@@ -8,11 +8,14 @@ import { execSync } from 'child_process';
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 const version = packageJson.version;
 
-console.log(`📦 Building dist folder for version ${version}...`);
+const buildOutputDirName = process.env.BUILD_OUTPUT_DIR || 'dist';
+console.log(`📦 Building ${buildOutputDirName} folder for version ${version}...`);
+
+const isSimpleMode = (buildOutputDirName === "dist-simple") ? true : false;
 
 // Run the build command
 try {
-  execSync('npm run build', { stdio: 'inherit' });
+  execSync(`SIMPLE_MODE=${isSimpleMode} npm run build`, { stdio: 'inherit' });
   console.log('✅ Build completed successfully');
 } catch (error) {
   console.error('❌ Build failed:', error.message);
@@ -25,12 +28,12 @@ import { pipeline } from 'stream';
 import { promisify } from 'util';
 import archiver from 'archiver';
 
-const distDir = path.resolve('./dist');
-const zipPath = path.resolve(`./dist-${version}.zip`);
+const buildOutputDir = path.resolve(`./${buildOutputDirName}`);
+const zipPath = path.resolve(`./${buildOutputDirName}-${version}.zip`);
 
 // Check if dist directory exists
-if (!existsSync(distDir)) {
-  console.error('❌ dist directory does not exist. Please run build first.');
+if (!existsSync(buildOutputDir)) {
+  console.error(`❌ ${buildOutputDirName} directory does not exist. Please run build first.`);
   process.exit(1);
 }
 
@@ -55,7 +58,7 @@ archive.on('error', (err) => {
 archive.pipe(output);
 
 // Append the dist directory to the archive
-archive.directory(distDir, false);
+archive.directory(buildOutputDir, false);
 
 // Finalize the archive
 archive.finalize();

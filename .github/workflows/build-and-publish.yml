@@ -29,8 +29,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build distribution
+      - name: Build full distribution
         run: npm run build
+
+      - name: Build simple distribution
+        run: SIMPLE_MODE=true BUILD_OUTPUT_DIR=dist-simple npm run build
 
       - name: Extract version
         id: version
@@ -38,13 +41,18 @@ jobs:
           VERSION=${GITHUB_REF#refs/tags/v}
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
-      - name: Package distribution
+      - name: Package full distribution
         run: npm run package
+
+      - name: Package simple distribution
+        run: BUILD_OUTPUT_DIR=dist-simple npm run package
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist-${{ steps.version.outputs.version }}.zip
+          files: |
+            dist-${{ steps.version.outputs.version }}.zip
+            dist-simple-${{ steps.version.outputs.version }}.zip
           generate_release_notes: true
           draft: false
           prerelease: false
