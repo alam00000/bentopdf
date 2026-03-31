@@ -36,7 +36,7 @@ function hideLoader() {
 function showAlert(
   title: string,
   msg: string,
-  type = 'error',
+  _type = 'error',
   cb?: () => void
 ) {
   const modal = document.getElementById('alert-modal');
@@ -138,7 +138,7 @@ async function handleFileUpload(file: File) {
 }
 
 async function isPageBlank(
-  page: any,
+  page: pdfjsLib.PDFPageProxy,
   maxNonWhitePercent = 0.5
 ): Promise<boolean> {
   const viewport = page.getViewport({ scale: 0.5 });
@@ -149,7 +149,7 @@ async function isPageBlank(
   canvas.width = viewport.width;
   canvas.height = viewport.height;
 
-  await page.render({ canvasContext: ctx, viewport }).promise;
+  await page.render({ canvas: null, canvasContext: ctx, viewport }).promise;
 
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const data = imageData.data;
@@ -165,7 +165,7 @@ async function isPageBlank(
   return nonWhitePercent <= maxNonWhitePercent;
 }
 
-async function generateThumbnail(page: any): Promise<string> {
+async function generateThumbnail(page: pdfjsLib.PDFPageProxy): Promise<string> {
   const viewport = page.getViewport({ scale: 1 });
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
@@ -174,7 +174,7 @@ async function generateThumbnail(page: any): Promise<string> {
   canvas.width = viewport.width;
   canvas.height = viewport.height;
 
-  await page.render({ canvasContext: ctx, viewport }).promise;
+  await page.render({ canvas: null, canvasContext: ctx, viewport }).promise;
   return canvas.toDataURL('image/jpeg', 0.7);
 }
 

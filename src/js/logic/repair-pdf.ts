@@ -8,11 +8,12 @@ import { state } from '../state.js';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import type { QpdfInstanceExtended } from '@/types';
 
 export async function repairPdfFile(file: File): Promise<Uint8Array | null> {
   const inputPath = '/input.pdf';
   const outputPath = '/repaired_form.pdf';
-  let qpdf: any;
+  let qpdf: QpdfInstanceExtended;
 
   try {
     qpdf = await initializeQpdf();

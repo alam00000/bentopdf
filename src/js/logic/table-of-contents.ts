@@ -36,15 +36,6 @@ const backToToolsBtn = document.getElementById(
   'back-to-tools'
 ) as HTMLButtonElement;
 
-interface GenerateTOCMessage {
-  command: 'generate-toc';
-  pdfData: ArrayBuffer;
-  title: string;
-  fontSize: number;
-  fontFamily: number;
-  addBookmark: boolean;
-}
-
 interface TOCSuccessResponse {
   status: 'success';
   pdfBytes: ArrayBuffer;

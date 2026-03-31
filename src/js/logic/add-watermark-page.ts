@@ -1013,9 +1013,12 @@ async function applyWatermark() {
       'watermarked.pdf'
     );
     showAlert('Success', 'Watermark added successfully!', 'success');
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error(e);
-    showAlert('Error', e.message || 'Could not add the watermark.');
+    showAlert(
+      'Error',
+      e instanceof Error ? e.message : 'Could not add the watermark.'
+    );
   } finally {
     hideLoader();
   }

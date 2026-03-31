@@ -4,25 +4,14 @@ import type { ClassicScheme, LitArea2D } from '@retejs/lit-plugin';
 import type { BaseWorkflowNode } from './nodes/base-node';
 import { createNodeByType } from './nodes/registry';
 import { ClassicPreset } from 'rete';
-import type { SerializedWorkflow } from './types';
+import type {
+  SerializedWorkflow,
+  SerializedNode,
+  SerializedConnection,
+} from './types';
 import { WORKFLOW_VERSION } from './types';
 
 type AreaExtra = LitArea2D<ClassicScheme>;
-
-interface SerializedNode {
-  id: string;
-  type: string;
-  position: { x: number; y: number };
-  controls: Record<string, unknown>;
-}
-
-interface SerializedConnection {
-  id: string;
-  source: string;
-  sourceOutput: string;
-  target: string;
-  targetInput: string;
-}
 
 function getNodeType(node: BaseWorkflowNode): string | null {
   return node.nodeType || null;
@@ -78,19 +67,15 @@ async function deserializeWorkflow(
   editor: NodeEditor<ClassicScheme>,
   area: AreaPlugin<ClassicScheme, AreaExtra>
 ): Promise<void> {
-  if (
-    !data ||
-    !Array.isArray((data as any).nodes) ||
-    !Array.isArray((data as any).connections)
-  ) {
+  if (!data || !Array.isArray(data.nodes) || !Array.isArray(data.connections)) {
     throw new Error(
       'Invalid workflow file: missing nodes or connections array.'
     );
   }
 
-  if ((data as any).version !== WORKFLOW_VERSION) {
+  if (data.version !== WORKFLOW_VERSION) {
     console.warn(
-      `Workflow version mismatch: expected ${WORKFLOW_VERSION}, got ${(data as any).version}. Attempting load anyway.`
+      `Workflow version mismatch: expected ${WORKFLOW_VERSION}, got ${data.version}. Attempting load anyway.`
     );
   }
 
@@ -104,7 +89,7 @@ async function deserializeWorkflow(
   const idMap = new Map<string, string>();
   const skippedTypes: string[] = [];
 
-  for (const serializedNode of (data as any).nodes) {
+  for (const serializedNode of data.nodes) {
     const node = createNodeByType(serializedNode.type);
     if (!node) {
       skippedTypes.push(serializedNode.type);
@@ -114,17 +99,17 @@ async function deserializeWorkflow(
     for (const [key, value] of Object.entries(serializedNode.controls || {})) {
       const control = node.controls[key];
       if (control && 'value' in control) {
-        (control as any).value = value;
+        (control as { value: unknown }).value = value;
       }
     }
 
-    await editor.addNode(node as any);
+    await editor.addNode(node as ClassicScheme['Node']);
     idMap.set(serializedNode.id, node.id);
 
     await area.translate(node.id, serializedNode.position);
   }
 
-  for (const serializedConn of (data as any).connections) {
+  for (const serializedConn of data.connections) {
     const sourceId = idMap.get(serializedConn.source);
     const targetId = idMap.get(serializedConn.target);
     if (!sourceId || !targetId) continue;
@@ -139,7 +124,7 @@ async function deserializeWorkflow(
       targetNode,
       serializedConn.targetInput
     );
-    await editor.addConnection(conn as any);
+    await editor.addConnection(conn as ClassicScheme['Connection']);
   }
 
   if (skippedTypes.length > 0) {

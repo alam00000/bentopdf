@@ -1,5 +1,6 @@
 import { getCpdf, isCpdfAvailable } from './cpdf-helper';
 import { isPyMuPDFAvailable, loadPyMuPDF } from './pymupdf-loader';
+import type { CpdfInstance } from '@/types';
 
 export type PdfDecryptEngine = 'cpdf' | 'pymupdf';
 
@@ -37,13 +38,13 @@ function copyBytes(bytes: Uint8Array): Uint8Array {
   return Uint8Array.from(bytes);
 }
 
-function cleanupCpdfDocument(cpdf: unknown, pdf: unknown): void {
-  if (!cpdf || !pdf || typeof cpdf !== 'object' || !('deletePdf' in cpdf)) {
+function cleanupCpdfDocument(cpdf: CpdfInstance, pdf: unknown): void {
+  if (!cpdf || !pdf) {
     return;
   }
 
   try {
-    (cpdf as { deletePdf: (document: unknown) => void }).deletePdf(pdf);
+    cpdf.deletePdf(pdf);
   } catch (cleanupError) {
     console.warn(
       `${DECRYPT_LOG_PREFIX} Failed to cleanup CoherentPDF document: ${normalizeErrorMessage(cleanupError)}`

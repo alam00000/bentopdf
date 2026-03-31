@@ -16,7 +16,17 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 // --- Global State for the Cropper Tool ---
-const cropperState = {
+import type { CropPercentages } from '@/types';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
+
+const cropperState: {
+  pdfDoc: PDFDocumentProxy | null;
+  currentPageNum: number;
+  cropper: Cropper | null;
+  originalPdfBytes: Uint8Array | null;
+  cropperImageElement: HTMLImageElement | null;
+  pageCrops: Record<number, CropPercentages>;
+} = {
   pdfDoc: null,
   currentPageNum: 1,
   cropper: null,
@@ -46,7 +56,8 @@ function saveCurrentCrop() {
  * Renders a PDF page to the Cropper UI as an image.
  * @param {number} num The page number to render.
  */
-async function displayPageAsImage(num: any) {
+
+async function displayPageAsImage(num: number) {
   showLoader(`Rendering Page ${num}...`);
 
   try {
@@ -57,7 +68,11 @@ async function displayPageAsImage(num: any) {
     const tempCtx = tempCanvas.getContext('2d');
     tempCanvas.width = viewport.width;
     tempCanvas.height = viewport.height;
-    await page.render({ canvasContext: tempCtx, viewport: viewport }).promise;
+    await page.render({
+      canvas: null,
+      canvasContext: tempCtx,
+      viewport: viewport,
+    }).promise;
 
     if (cropperState.cropper) {
       cropperState.cropper.destroy();
@@ -107,7 +122,7 @@ async function displayPageAsImage(num: any) {
  * Handles page navigation.
  * @param {number} offset -1 for previous, 1 for next.
  */
-async function changePage(offset: any) {
+async function changePage(offset: number) {
   // Save the current page's crop before changing
   saveCurrentCrop();
 
@@ -137,7 +152,13 @@ function enableControls() {
 /**
  * Performs a non-destructive crop by updating the page's crop box.
  */
-async function performMetadataCrop(pdfToModify: any, cropData: any) {
+async function performMetadataCrop(
+  pdfToModify: PDFLibDocument,
+  cropData: Record<
+    string,
+    { x: number; y: number; width: number; height: number }
+  >
+) {
   for (const pageNum in cropData) {
     const pdfJsPage = await cropperState.pdfDoc.getPage(Number(pageNum));
     const viewport = pdfJsPage.getViewport({ scale: 1 });
@@ -183,7 +204,12 @@ async function performMetadataCrop(pdfToModify: any, cropData: any) {
 /**
  * Performs a destructive crop by flattening the selected area to an image.
  */
-async function performFlatteningCrop(cropData: any) {
+async function performFlatteningCrop(
+  cropData: Record<
+    string,
+    { x: number; y: number; width: number; height: number }
+  >
+) {
   const newPdfDoc = await PDFLibDocument.create();
 
   // Load the original PDF with pdf-lib to copy un-cropped pages from
@@ -204,7 +230,11 @@ async function performFlatteningCrop(cropData: any) {
       const tempCtx = tempCanvas.getContext('2d');
       tempCanvas.width = viewport.width;
       tempCanvas.height = viewport.height;
-      await page.render({ canvasContext: tempCtx, viewport: viewport }).promise;
+      await page.render({
+        canvas: null,
+        canvasContext: tempCtx,
+        viewport: viewport,
+      }).promise;
 
       const finalCanvas = document.createElement('canvas');
       const finalCtx = finalCanvas.getContext('2d');
@@ -264,7 +294,7 @@ export async function setupCropperTool() {
     cropperState.pageCrops = {};
 
     const arrayBuffer = await readFileAsArrayBuffer(state.files[0]);
-    cropperState.originalPdfBytes = arrayBuffer;
+    cropperState.originalPdfBytes = new Uint8Array(arrayBuffer as ArrayBuffer);
     const arrayBufferForPdfJs = (arrayBuffer as ArrayBuffer).slice(0);
     const loadingTask = getPDFDocument({ data: arrayBufferForPdfJs });
 
@@ -295,7 +325,7 @@ export async function setupCropperTool() {
       document.getElementById('apply-to-all-toggle') as HTMLInputElement
     ).checked;
 
-    let finalCropData = {};
+    let finalCropData: Record<number, CropPercentages> = {};
     if (isApplyToAll) {
       const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
       if (!currentCrop) {
@@ -308,10 +338,13 @@ export async function setupCropperTool() {
       }
     } else {
       // If not applying to all, only process pages with saved crops
-      finalCropData = Object.keys(cropperState.pageCrops).reduce((obj, key) => {
-        obj[key] = cropperState.pageCrops[key];
-        return obj;
-      });
+      finalCropData = Object.keys(cropperState.pageCrops).reduce(
+        (obj, key) => {
+          obj[Number(key)] = cropperState.pageCrops[Number(key)];
+          return obj;
+        },
+        {} as Record<number, CropPercentages>
+      );
     }
 
     if (Object.keys(finalCropData).length === 0) {
@@ -341,7 +374,7 @@ export async function setupCropperTool() {
         ? 'flattened_crop.pdf'
         : 'standard_crop.pdf';
       downloadFile(
-        new Blob([finalPdfBytes], { type: 'application/pdf' }),
+        new Blob([new Uint8Array(finalPdfBytes)], { type: 'application/pdf' }),
         fileName
       );
       showAlert('Success', 'Crop complete! Your download has started.');

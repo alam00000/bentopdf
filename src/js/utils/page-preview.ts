@@ -154,7 +154,7 @@ document.addEventListener('keydown', handleKeydown);
 export function initPagePreview(
   container: HTMLElement,
   pdfjsDoc: PDFDocumentProxy,
-  options: { pageAttr?: string } = {}
+  _options: { pageAttr?: string } = {}
 ): void {
   const totalPages = pdfjsDoc.numPages;
 

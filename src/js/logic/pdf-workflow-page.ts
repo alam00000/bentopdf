@@ -913,8 +913,15 @@ function showNodeSettings(node: BaseWorkflowNode) {
     content.appendChild(divider);
   }
 
+  interface FileInputNode extends BaseWorkflowNode {
+    hasFile(): boolean;
+    getFilenames(): string[];
+    removeFile(index: number): void;
+    addFiles(files: File[]): Promise<void>;
+  }
+
   const fileInputConfigs: {
-    cls: any;
+    cls: new (...args: unknown[]) => FileInputNode;
     label: string;
     accept: string;
     btnLabel: string;
@@ -1534,7 +1541,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
     }
   }
 
-  for (const [dropdownKey, mapping] of Object.entries(conditionalVisibility)) {
+  for (const [dropdownKey] of Object.entries(conditionalVisibility)) {
     const ctrl = controlEntries.find(([k]) => k === dropdownKey)?.[1] as
       | { value?: unknown }
       | undefined;

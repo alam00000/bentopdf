@@ -69,7 +69,10 @@ export async function performCondenseCompression(
     scrub: {
       metadata: customSettings?.removeMetadata ?? preset.scrub.metadata,
       thumbnails: customSettings?.removeThumbnails ?? preset.scrub.thumbnails,
-      xmlMetadata: (preset.scrub as any).xmlMetadata ?? false,
+      xmlMetadata:
+        ('xmlMetadata' in preset.scrub
+          ? (preset.scrub as { xmlMetadata?: boolean }).xmlMetadata
+          : undefined) ?? false,
     },
     subsetFonts: customSettings?.subsetFonts ?? preset.subsetFonts,
     save: {
@@ -95,8 +98,11 @@ export async function performCondenseCompression(
     try {
       const result = await pymupdf.compressPdf(fileBlob, fallbackOptions);
       return { ...result, usedFallback: true };
-    } catch (fallbackError: any) {
-      const msg = fallbackError?.message || String(fallbackError);
+    } catch (fallbackError: unknown) {
+      const msg =
+        fallbackError instanceof Error
+          ? fallbackError.message
+          : String(fallbackError);
       throw new Error(`PDF compression failed: ${msg}`, {
         cause: fallbackError,
       });

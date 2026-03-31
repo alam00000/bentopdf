@@ -6,7 +6,7 @@ import {
   readFileAsArrayBuffer,
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
-import { RemoveRestrictionsState } from '@/types';
+import { RemoveRestrictionsState, QpdfInstanceExtended } from '@/types';
 
 const pageState: RemoveRestrictionsState = {
   file: null,
@@ -98,7 +98,7 @@ async function removeRestrictions() {
 
   const inputPath = '/input.pdf';
   const outputPath = '/output.pdf';
-  let qpdf: any;
+  let qpdf: QpdfInstanceExtended;
 
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
@@ -127,12 +127,10 @@ async function removeRestrictions() {
 
     try {
       qpdf.callMain(args);
-    } catch (qpdfError: any) {
+    } catch (qpdfError: unknown) {
       console.error('qpdf execution error:', qpdfError);
-      if (
-        qpdfError.message?.includes('password') ||
-        qpdfError.message?.includes('encrypt')
-      ) {
+      const qpdfMsg = qpdfError instanceof Error ? qpdfError.message : '';
+      if (qpdfMsg.includes('password') || qpdfMsg.includes('encrypt')) {
         throw new Error(
           'Failed to remove restrictions. The PDF may require the correct owner password.',
           { cause: qpdfError }
@@ -140,8 +138,7 @@ async function removeRestrictions() {
       }
 
       throw new Error(
-        'Failed to remove restrictions: ' +
-          (qpdfError.message || 'Unknown error'),
+        'Failed to remove restrictions: ' + (qpdfMsg || 'Unknown error'),
         { cause: qpdfError }
       );
     }
@@ -153,7 +150,9 @@ async function removeRestrictions() {
       throw new Error('Operation resulted in an empty file.');
     }
 
-    const blob = new Blob([outputFile], { type: 'application/pdf' });
+    const blob = new Blob([new Uint8Array(outputFile)], {
+      type: 'application/pdf',
+    });
     downloadFile(blob, `unrestricted-${pageState.file.name}`);
 
     if (loaderModal) loaderModal.classList.add('hidden');
@@ -166,12 +165,12 @@ async function removeRestrictions() {
         resetState();
       }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error during restriction removal:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
       'Operation Failed',
-      `An error occurred: ${error.message || 'The PDF might be corrupted or password-protected.'}`
+      `An error occurred: ${error instanceof Error ? error.message : 'The PDF might be corrupted or password-protected.'}`
     );
   } finally {
     try {

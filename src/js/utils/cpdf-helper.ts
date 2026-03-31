@@ -1,4 +1,5 @@
 import { WasmProvider } from './wasm-provider';
+import type { WindowWithCoherentPdf, CpdfInstance } from '@/types';
 
 let cpdfLoaded = false;
 let cpdfLoadPromise: Promise<void> | null = null;
@@ -31,7 +32,7 @@ export async function isCpdfLoaded(): Promise<void> {
   }
 
   cpdfLoadPromise = new Promise((resolve, reject) => {
-    if (typeof (window as any).coherentpdf !== 'undefined') {
+    if (typeof (window as WindowWithCoherentPdf).coherentpdf !== 'undefined') {
       cpdfLoaded = true;
       resolve();
       return;
@@ -53,7 +54,7 @@ export async function isCpdfLoaded(): Promise<void> {
   return cpdfLoadPromise;
 }
 
-export async function getCpdf(): Promise<any> {
+export async function getCpdf(): Promise<CpdfInstance> {
   await isCpdfLoaded();
-  return (window as any).coherentpdf;
+  return (window as WindowWithCoherentPdf).coherentpdf as CpdfInstance;
 }

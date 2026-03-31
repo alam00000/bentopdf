@@ -1,9 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 
 let files: File[] = [];
 let currentMode: 'upload' | 'text' = 'upload';
@@ -140,9 +138,12 @@ async function convert() {
         resetState();
       }
     );
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error('[TxtToPDF] Error:', e);
-    showAlert('Error', `Failed to convert text to PDF. ${e.message || ''}`);
+    showAlert(
+      'Error',
+      `Failed to convert text to PDF. ${e instanceof Error ? e.message : ''}`
+    );
   } finally {
     hideLoader();
   }

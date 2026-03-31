@@ -15,10 +15,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 
 interface OrganizeState {
   file: File | null;
-  pdfDoc: any;
-  pdfJsDoc: any;
+  pdfDoc: PDFDocument | null;
+  pdfJsDoc: pdfjsLib.PDFDocumentProxy | null;
   totalPages: number;
-  sortableInstance: any;
+  sortableInstance: Sortable | null;
 }
 
 const organizeState: OrganizeState = {
@@ -282,7 +282,7 @@ async function renderThumbnails() {
     canvas.width = viewport.width;
     canvas.height = viewport.height;
     const ctx = canvas.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport }).promise;
+    await page.render({ canvas: null, canvasContext: ctx, viewport }).promise;
 
     const wrapper = document.createElement('div');
     wrapper.className =

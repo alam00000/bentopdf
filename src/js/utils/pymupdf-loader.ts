@@ -1,25 +1,34 @@
 import { WasmProvider } from './wasm-provider.js';
+import type {
+  PyMuPDFInstance,
+  PyMuPDFCompressOptions,
+  PyMuPDFExtractTextOptions,
+  PyMuPDFRasterizeOptions,
+} from '@/types';
 
-let cachedPyMuPDF: any = null;
-let loadPromise: Promise<any> | null = null;
+let cachedPyMuPDF: PyMuPDFInstance | null = null;
+let loadPromise: Promise<PyMuPDFInstance> | null = null;
 
 export interface PyMuPDFInterface {
   load(): Promise<void>;
   compressPdf(
     file: Blob,
-    options: any
+    options: PyMuPDFCompressOptions
   ): Promise<{ blob: Blob; compressedSize: number }>;
   convertToPdf(file: Blob, ext: string): Promise<Blob>;
-  extractText(file: Blob, options?: any): Promise<string>;
+  extractText(file: Blob, options?: PyMuPDFExtractTextOptions): Promise<string>;
   extractImages(file: Blob): Promise<Array<{ data: Uint8Array; ext: string }>>;
-  extractTables(file: Blob): Promise<any[]>;
+  extractTables(file: Blob): Promise<unknown[]>;
   toSvg(file: Blob, pageNum: number): Promise<string>;
   renderPageToImage(file: Blob, pageNum: number, scale: number): Promise<Blob>;
   getPageCount(file: Blob): Promise<number>;
-  rasterizePdf(file: Blob | File, options: any): Promise<Blob>;
+  rasterizePdf(
+    file: Blob | File,
+    options: PyMuPDFRasterizeOptions
+  ): Promise<Blob>;
 }
 
-export async function loadPyMuPDF(): Promise<any> {
+export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
   if (cachedPyMuPDF) {
     return cachedPyMuPDF;
   }
@@ -65,9 +74,10 @@ export async function loadPyMuPDF(): Promise<any> {
 
       console.log('[PyMuPDF Loader] Successfully loaded from CDN');
       return cachedPyMuPDF;
-    } catch (error: any) {
+    } catch (error: unknown) {
       loadPromise = null;
-      throw new Error(`Failed to load PyMuPDF from CDN: ${error.message}`, {
+      const msg = error instanceof Error ? error.message : String(error);
+      throw new Error(`Failed to load PyMuPDF from CDN: ${msg}`, {
         cause: error,
       });
     }

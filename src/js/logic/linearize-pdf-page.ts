@@ -8,7 +8,7 @@ import {
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
-import { LinearizePdfState } from '@/types';
+import { LinearizePdfState, QpdfInstanceExtended } from '@/types';
 
 const pageState: LinearizePdfState = {
   files: [],
@@ -111,7 +111,7 @@ async function linearizePdf() {
 
   const zip = new JSZip();
   const usedNames = new Set<string>();
-  let qpdf: any;
+  let qpdf: QpdfInstanceExtended;
   let successCount = 0;
   let errorCount = 0;
 
@@ -150,7 +150,7 @@ async function linearizePdf() {
         );
         zip.file(zipEntryName, outputFile, { binary: true });
         successCount++;
-      } catch (fileError: any) {
+      } catch (fileError: unknown) {
         errorCount++;
         console.error(`Failed to linearize ${file.name}:`, fileError);
       } finally {
@@ -187,11 +187,11 @@ async function linearizePdf() {
     showAlert('Processing Complete', alertMessage, 'success', () => {
       resetState();
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Linearization process error:', error);
     showAlert(
       'Linearization Failed',
-      `An error occurred: ${error.message || 'Unknown error'}.`
+      `An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}.`
     );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');

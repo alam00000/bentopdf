@@ -1,4 +1,3 @@
-import { getLibreOfficeConverter } from './libreoffice-loader.js';
 import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
 
 export enum PreloadStatus {
@@ -77,7 +76,7 @@ async function preloadGhostscript(): Promise<void> {
       await import('./ghostscript-loader.js');
 
     const gsModule = await loadGsModule();
-    setCachedGsModule(gsModule as any);
+    setCachedGsModule(gsModule);
     preloadState.ghostscript = PreloadStatus.READY;
     console.log('[Preloader] Ghostscript WASM ready');
   } catch (e) {

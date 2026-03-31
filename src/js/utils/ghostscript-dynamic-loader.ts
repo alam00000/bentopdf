@@ -1,7 +1,11 @@
 import { WasmProvider } from './wasm-provider.js';
+import type {
+  GlobalScopeWithGhostscript,
+  GhostscriptDynamicInstance,
+} from '@/types';
 
-let cachedGS: any = null;
-let loadPromise: Promise<any> | null = null;
+let cachedGS: GhostscriptInterface | null = null;
+let loadPromise: Promise<GhostscriptInterface> | null = null;
 
 export interface GhostscriptInterface {
   convertToPDFA(pdfBuffer: ArrayBuffer, profile: string): Promise<ArrayBuffer>;
@@ -32,16 +36,20 @@ export async function loadGhostscript(): Promise<GhostscriptInterface> {
 
       await loadScript(wrapperUrl);
 
-      const globalScope =
-        typeof globalThis !== 'undefined' ? globalThis : window;
+      const globalScope = (
+        typeof globalThis !== 'undefined' ? globalThis : window
+      ) as typeof globalThis & GlobalScopeWithGhostscript;
 
-      if (typeof (globalScope as any).loadGS === 'function') {
-        cachedGS = await (globalScope as any).loadGS({
+      if (typeof globalScope.loadGS === 'function') {
+        const instance = await globalScope.loadGS({
           baseUrl: normalizedUrl,
         });
-      } else if (typeof (globalScope as any).GhostscriptWASM === 'function') {
-        cachedGS = new (globalScope as any).GhostscriptWASM(normalizedUrl);
-        await cachedGS.init?.();
+        cachedGS = instance as unknown as GhostscriptInterface;
+      } else if (typeof globalScope.GhostscriptWASM === 'function') {
+        const instance: GhostscriptDynamicInstance =
+          new globalScope.GhostscriptWASM(normalizedUrl);
+        await instance.init?.();
+        cachedGS = instance as unknown as GhostscriptInterface;
       } else {
         throw new Error(
           'Ghostscript wrapper did not expose expected interface. Expected loadGS() or GhostscriptWASM class.'
@@ -49,10 +57,11 @@ export async function loadGhostscript(): Promise<GhostscriptInterface> {
       }
 
       return cachedGS;
-    } catch (error: any) {
+    } catch (error: unknown) {
       loadPromise = null;
+      const msg = error instanceof Error ? error.message : String(error);
       throw new Error(
-        `Failed to load Ghostscript from ${normalizedUrl}: ${error.message}`,
+        `Failed to load Ghostscript from ${normalizedUrl}: ${msg}`,
         { cause: error }
       );
     }

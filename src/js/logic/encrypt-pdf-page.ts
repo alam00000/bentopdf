@@ -6,7 +6,7 @@ import {
   readFileAsArrayBuffer,
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
-import { EncryptPdfState } from '@/types';
+import { EncryptPdfState, QpdfInstanceExtended } from '@/types';
 
 const pageState: EncryptPdfState = {
   file: null,
@@ -114,7 +114,7 @@ async function encryptPdf() {
 
   const inputPath = '/input.pdf';
   const outputPath = '/output.pdf';
-  let qpdf: any;
+  let qpdf: QpdfInstanceExtended;
 
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
@@ -154,10 +154,11 @@ async function encryptPdf() {
 
     try {
       qpdf.callMain(args);
-    } catch (qpdfError: any) {
+    } catch (qpdfError: unknown) {
       console.error('qpdf execution error:', qpdfError);
       throw new Error(
-        'Encryption failed: ' + (qpdfError.message || 'Unknown error'),
+        'Encryption failed: ' +
+          (qpdfError instanceof Error ? qpdfError.message : 'Unknown error'),
         { cause: qpdfError }
       );
     }
@@ -169,7 +170,9 @@ async function encryptPdf() {
       throw new Error('Encryption resulted in an empty file.');
     }
 
-    const blob = new Blob([outputFile], { type: 'application/pdf' });
+    const blob = new Blob([new Uint8Array(outputFile)], {
+      type: 'application/pdf',
+    });
     downloadFile(blob, `encrypted-${pageState.file.name}`);
 
     if (loaderModal) loaderModal.classList.add('hidden');
@@ -183,12 +186,12 @@ async function encryptPdf() {
     showAlert('Success', successMessage, 'success', () => {
       resetState();
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error during PDF encryption:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
       'Encryption Failed',
-      `An error occurred: ${error.message || 'The PDF might be corrupted.'}`
+      `An error occurred: ${error instanceof Error ? error.message : 'The PDF might be corrupted.'}`
     );
   } finally {
     try {

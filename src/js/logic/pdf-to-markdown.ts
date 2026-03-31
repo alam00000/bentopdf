@@ -1,5 +1,9 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, readFileAsArrayBuffer, getPDFDocument } from '../utils/helpers.js';
+import {
+  downloadFile,
+  readFileAsArrayBuffer,
+  getPDFDocument,
+} from '../utils/helpers.js';
 import { state } from '../state.js';
 
 export async function pdfToMarkdown() {
@@ -14,7 +18,9 @@ export async function pdfToMarkdown() {
       const page = await pdf.getPage(i);
       const content = await page.getTextContent();
       // This is a simple text extraction. For more advanced formatting, more complex logic is needed.
-      const text = content.items.map((item: any) => item.str).join(' ');
+      const text = content.items
+        .map((item) => ('str' in item ? item.str : ''))
+        .join(' ');
       markdown += text + '\n\n'; // Add double newline for paragraph breaks between pages
     }
 

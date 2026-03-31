@@ -9,6 +9,7 @@ import {
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
@@ -117,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const file = state.files[0];
         showLoader(`Extracting ${file.name} for AI...`);
 
-        const llamaDocs = await (pymupdf as any).pdfToLlamaIndex(file);
+        const llamaDocs = await (pymupdf as PyMuPDFInstance).pdfToLlamaIndex(
+          file
+        );
         const outName = file.name.replace(/\.pdf$/i, '') + '_llm.json';
         const jsonContent = JSON.stringify(llamaDocs, null, 2);
         downloadFile(
@@ -144,7 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
               `Extracting ${file.name} for AI (${completed + 1}/${total})...`
             );
 
-            const llamaDocs = await (pymupdf as any).pdfToLlamaIndex(file);
+            const llamaDocs = await (
+              pymupdf as PyMuPDFInstance
+            ).pdfToLlamaIndex(file);
             const outName = file.name.replace(/\.pdf$/i, '') + '_llm.json';
             const jsonContent = JSON.stringify(llamaDocs, null, 2);
             const zipEntryName = deduplicateFileName(outName, usedNames);
@@ -180,11 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
           );
         }
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during extraction. Error: ${e.message}`
+        `An error occurred during extraction. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
   };

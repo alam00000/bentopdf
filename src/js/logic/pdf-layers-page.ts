@@ -7,9 +7,7 @@ import {
   getPDFDocument,
 } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
-import { isWasmAvailable, getWasmBaseUrl } from '../config/wasm-cdn-config.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
-import { loadPyMuPDF, isPyMuPDFAvailable } from '../utils/pymupdf-loader.js';
+import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 interface LayerData {
@@ -24,7 +22,21 @@ interface LayerData {
 }
 
 let currentFile: File | null = null;
-let currentDoc: any = null;
+interface PyMuPDFDocument {
+  getLayerConfig: () => LayerData[];
+  addLayer: (name: string) => { number: number; xref: number };
+  setLayerConfig: (layers: LayerData[]) => void;
+  setLayerVisibility: (xref: number, visible: boolean) => void;
+  deleteOCG: (xref: number) => void;
+  addOCGWithParent: (
+    name: string,
+    parentXref: number
+  ) => { number: number; xref: number };
+  addOCG: (name: string) => { number: number; xref: number };
+  save: () => Uint8Array;
+}
+
+let currentDoc: PyMuPDFDocument | null = null;
 const layersMap = new Map<number, LayerData>();
 let nextDisplayOrder = 0;
 
@@ -274,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!childName || !childName.trim()) return;
 
         try {
-          const childXref = currentDoc.addOCGWithParent(
+          const childResult = currentDoc.addOCGWithParent(
             childName.trim(),
             parentXref
           );
@@ -285,9 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           });
 
-          layersMap.set(childXref, {
-            number: childXref,
-            xref: childXref,
+          layersMap.set(childResult.xref, {
+            number: childResult.number,
+            xref: childResult.xref,
             text: childName.trim(),
             on: true,
             locked: false,
@@ -316,16 +328,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const pymupdf = await loadPyMuPDF();
 
       showLoader(`Loading layers from ${currentFile.name}...`);
-      currentDoc = await pymupdf.open(currentFile);
+      currentDoc = await (
+        pymupdf as { open: (file: File) => Promise<PyMuPDFDocument> }
+      ).open(currentFile);
 
       showLoader('Reading layer configuration...');
       const existingLayers = currentDoc.getLayerConfig();
 
-      // Reset and populate layers map
       layersMap.clear();
       nextDisplayOrder = 0;
 
-      existingLayers.forEach((layer: any) => {
+      existingLayers.forEach((layer: LayerData) => {
         layersMap.set(layer.number, {
           number: layer.number,
           xref: layer.xref ?? layer.number,
@@ -350,9 +363,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       renderLayers();
       setupLayerHandlers();
-    } catch (error: any) {
+    } catch (error: unknown) {
       hideLoader();
-      showAlert('Error', error.message || 'Failed to load PDF layers');
+      showAlert(
+        'Error',
+        error instanceof Error ? error.message : 'Failed to load PDF layers'
+      );
       console.error('Layers error:', error);
     }
   };
@@ -373,13 +389,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-          const xref = currentDoc.addOCG(name);
+          const layerResult = currentDoc.addOCG(name);
           newLayerInput.value = '';
 
           const newDisplayOrder = nextDisplayOrder++;
-          layersMap.set(xref, {
-            number: xref,
-            xref: xref,
+          layersMap.set(layerResult.xref, {
+            number: layerResult.number,
+            xref: layerResult.xref,
             text: name,
             on: true,
             locked: false,
@@ -389,8 +405,12 @@ document.addEventListener('DOMContentLoaded', () => {
           });
 
           renderLayers();
-        } catch (err: any) {
-          showAlert('Error', 'Failed to add layer: ' + err.message);
+        } catch (err: unknown) {
+          showAlert(
+            'Error',
+            'Failed to add layer: ' +
+              (err instanceof Error ? err.message : String(err))
+          );
         }
       };
     }
@@ -409,9 +429,13 @@ document.addEventListener('DOMContentLoaded', () => {
           hideLoader();
           resetState();
           showAlert('Success', 'PDF with layer changes saved!', 'success');
-        } catch (err: any) {
+        } catch (err: unknown) {
           hideLoader();
-          showAlert('Error', 'Failed to save PDF: ' + err.message);
+          showAlert(
+            'Error',
+            'Failed to save PDF: ' +
+              (err instanceof Error ? err.message : String(err))
+          );
         }
       };
     }

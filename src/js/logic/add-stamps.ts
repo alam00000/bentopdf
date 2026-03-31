@@ -9,7 +9,6 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 let selectedFile: File | null = null;
 let viewerIframe: HTMLIFrameElement | null = null;
-let viewerReady = false;
 let currentBlobUrl: string | null = null;
 
 const pdfInput = document.getElementById('pdfFile') as HTMLInputElement;
@@ -47,7 +46,7 @@ function resetState() {
     viewerContainer.removeChild(viewerIframe);
   }
   viewerIframe = null;
-  viewerReady = false;
+
   if (viewerCard) viewerCard.classList.add('hidden');
   if (saveStampedBtn) saveStampedBtn.classList.add('hidden');
 
@@ -157,7 +156,6 @@ async function loadPdfInViewer(file: File) {
     currentBlobUrl = null;
   }
   viewerIframe = null;
-  viewerReady = false;
 
   // Calculate and apply dynamic height
   await adjustViewerHeight(file);
@@ -169,7 +167,7 @@ async function loadPdfInViewer(file: File) {
   try {
     const existingPrefsRaw = localStorage.getItem('pdfjs.preferences');
     const existingPrefs = existingPrefsRaw ? JSON.parse(existingPrefsRaw) : {};
-    delete (existingPrefs as any).annotationEditorMode;
+    delete (existingPrefs as Record<string, unknown>).annotationEditorMode;
     const newPrefs = {
       ...existingPrefs,
       enablePermissions: false,
@@ -204,7 +202,14 @@ async function loadPdfInViewer(file: File) {
 
 function setupAnnotationViewer(iframe: HTMLIFrameElement) {
   try {
-    const win = iframe.contentWindow as any;
+    const win = iframe.contentWindow as
+      | (Window & {
+          PDFViewerApplication?: {
+            initializedPromise?: Promise<void>;
+            eventBus?: { _on?: (event: string, callback: () => void) => void };
+          };
+        })
+      | null;
     const doc = win?.document as Document | null;
     if (!win || !doc) return;
 
@@ -238,8 +243,6 @@ function setupAnnotationViewer(iframe: HTMLIFrameElement) {
         if (root) {
           root.classList.add('PdfjsAnnotationExtension_Comment_hidden');
         }
-
-        viewerReady = true;
       } catch (e) {
         console.error(
           'Failed to initialize annotation viewer for Add Stamps:',
@@ -304,8 +307,14 @@ if (saveStampedBtn) {
     }
 
     try {
-      const win = viewerIframe.contentWindow as any;
-      const extensionInstance = win?.pdfjsAnnotationExtensionInstance as any;
+      const win = viewerIframe.contentWindow as
+        | (Window & {
+            pdfjsAnnotationExtensionInstance?: {
+              exportPdf?: () => Promise<void>;
+            };
+          })
+        | null;
+      const extensionInstance = win?.pdfjsAnnotationExtensionInstance;
 
       if (
         extensionInstance &&

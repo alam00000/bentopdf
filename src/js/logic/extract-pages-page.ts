@@ -12,7 +12,7 @@ import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
 interface ExtractState {
   file: File | null;
-  pdfDoc: any;
+  pdfDoc: PDFDocument | null;
   totalPages: number;
 }
 

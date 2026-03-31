@@ -4,7 +4,6 @@ import type {
   CompareTextItem,
   ComparePageSignature,
   ComparePagePair,
-  ComparePageResult,
   CompareChangeSummary,
   CompareTextChange,
 } from '../types.ts';
@@ -43,8 +42,6 @@ interface ErrorResult {
   id: number;
   message: string;
 }
-
-type WorkerResult = DiffResult | PairResult | ErrorResult;
 
 self.onmessage = function (e: MessageEvent<WorkerMessage>) {
   const msg = e.data;

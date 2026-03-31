@@ -15,13 +15,18 @@ export async function wordToPdf() {
   try {
     const mammothOptions = {
       // @ts-expect-error TS(2304) FIXME: Cannot find name 'mammoth'.
-      convertImage: mammoth.images.inline((element: any) => {
-        return element.read('base64').then((imageBuffer: any) => {
-          return {
-            src: `data:${element.contentType};base64,${imageBuffer}`,
-          };
-        });
-      }),
+      convertImage: mammoth.images.inline(
+        (element: {
+          read: (encoding: string) => Promise<string>;
+          contentType: string;
+        }) => {
+          return element.read('base64').then((imageBuffer: string) => {
+            return {
+              src: `data:${element.contentType};base64,${imageBuffer}`,
+            };
+          });
+        }
+      ),
     };
     const arrayBuffer = await readFileAsArrayBuffer(file);
     // @ts-expect-error TS(2304) FIXME: Cannot find name 'mammoth'.
@@ -77,7 +82,18 @@ export async function wordToPdf() {
       });
 
       await doc.html(previewContent, {
-        callback: function (doc: any) {
+        callback: function (doc: {
+          internal: { pageSize: { getHeight: () => number } };
+          link: (
+            x: number,
+            y: number,
+            w: number,
+            h: number,
+            opts: { url: string }
+          ) => void;
+          save: (name: string) => void;
+          setPage: (page: number) => void;
+        }) {
           const links = previewContent.querySelectorAll('a');
           const pageHeight = doc.internal.pageSize.getHeight();
           const containerRect = previewContent.getBoundingClientRect(); // Get container's position
