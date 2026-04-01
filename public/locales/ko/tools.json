@@ -764,5 +764,32 @@
     "failedLoadTemplate": "템플릿을 불러오지 못했습니다.",
     "noSettings": "이 노드에는 설정할 항목이 없습니다.",
     "advancedSettings": "고급 설정"
+  },
+  "pdfOverlay": {
+    "name": "PDF 오버레이",
+    "subtitle": "한 PDF의 페이지를 다른 PDF 위 또는 아래에 겹칩니다.",
+    "basePdfLabel": "기본 PDF",
+    "uploadBasePdf": "기본 PDF 업로드",
+    "overlayPdfLabel": "오버레이 / 언더레이 PDF",
+    "uploadOverlayPdf": "오버레이/언더레이 PDF 업로드",
+    "modeLabel": "모드",
+    "overlayOption": "오버레이 (페이지 위에)",
+    "underlayOption": "언더레이 (페이지 뒤에)",
+    "pageRangeLabel": "페이지에 적용 (선택사항)",
+    "pageRangeHint": "마지막 페이지는 \"z\"를 사용하세요. 모든 페이지에 적용하려면 비워두세요.",
+    "repeatLabel": "기본 문서가 더 길면 오버레이/언더레이 페이지 반복",
+    "processButton": "오버레이 / 언더레이 적용",
+    "howItWorksUploadTitle": "두 개의 PDF 업로드",
+    "howItWorksUploadDescription": "기본 PDF와 오버레이 또는 언더레이할 PDF를 업로드하세요.",
+    "howItWorksModeTitle": "모드 선택",
+    "howItWorksModeDescription": "오버레이(위) 또는 언더레이(뒤)를 선택하세요. 선택적으로 페이지 범위와 반복을 설정할 수 있습니다.",
+    "howItWorksDownloadTitle": "다운로드",
+    "howItWorksDownloadDescription": "오버레이 또는 언더레이가 적용된 PDF를 다운로드하세요.",
+    "faqDifferenceQuestion": "오버레이와 언더레이의 차이점은 무엇인가요?",
+    "faqDifferenceAnswer": "오버레이는 기본 PDF 위에 페이지를 배치합니다(워터마크처럼). 언더레이는 기본 PDF 뒤에 페이지를 배치합니다(레터헤드나 배경처럼).",
+    "faqSinglePageQuestion": "단일 페이지 PDF를 모든 페이지의 오버레이로 사용할 수 있나요?",
+    "faqSinglePageAnswer": "네! \"반복\" 옵션을 활성화하면 오버레이 페이지가 모든 기본 페이지에 반복됩니다. 단일 페이지 워터마크가 모든 페이지에 적용됩니다.",
+    "faqPrivacyQuestion": "내 파일은 비공개이고 안전한가요?",
+    "faqPrivacyAnswer": "물론입니다! 모든 처리는 브라우저에서 이루어집니다. 파일이 기기를 떠나지 않아 완전한 개인정보 보호가 보장됩니다."
   }
 }

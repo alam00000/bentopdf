@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Gagal memuat template.",
     "noSettings": "Tidak ada pengaturan yang dapat dikonfigurasi untuk node ini.",
     "advancedSettings": "Pengaturan Lanjutan"
+  },
+  "pdfOverlay": {
+    "name": "Overlay PDF",
+    "subtitle": "Tumpangkan atau sisipkan halaman dari satu PDF ke PDF lainnya.",
+    "basePdfLabel": "PDF Dasar",
+    "uploadBasePdf": "Unggah PDF dasar",
+    "overlayPdfLabel": "PDF Overlay / Underlay",
+    "uploadOverlayPdf": "Unggah PDF overlay/underlay",
+    "modeLabel": "Mode",
+    "overlayOption": "Overlay (di atas halaman)",
+    "underlayOption": "Underlay (di belakang halaman)",
+    "pageRangeLabel": "Terapkan ke halaman (opsional)",
+    "pageRangeHint": "Gunakan \"z\" untuk halaman terakhir. Kosongkan untuk menerapkan ke semua halaman.",
+    "repeatLabel": "Ulangi halaman overlay/underlay jika dasar lebih panjang",
+    "processButton": "Terapkan Overlay / Underlay",
+    "howItWorksUploadTitle": "Unggah Dua PDF",
+    "howItWorksUploadDescription": "Unggah PDF dasar Anda dan PDF yang ingin Anda tumpangkan atau sisipkan.",
+    "howItWorksModeTitle": "Pilih Mode",
+    "howItWorksModeDescription": "Pilih overlay (di atas) atau underlay (di belakang). Atur rentang halaman dan pengulangan secara opsional.",
+    "howItWorksDownloadTitle": "Unduh",
+    "howItWorksDownloadDescription": "Unduh PDF Anda dengan overlay atau underlay yang diterapkan.",
+    "faqDifferenceQuestion": "Apa perbedaan antara overlay dan underlay?",
+    "faqDifferenceAnswer": "Overlay menempatkan halaman di atas PDF dasar Anda (seperti watermark). Underlay menempatkan halaman di belakang PDF dasar Anda (seperti kop surat atau latar belakang).",
+    "faqSinglePageQuestion": "Bisakah saya menggunakan PDF satu halaman sebagai overlay untuk semua halaman?",
+    "faqSinglePageAnswer": "Ya! Aktifkan opsi \"Ulangi\" dan halaman overlay Anda akan berulang di semua halaman dasar. Watermark satu halaman akan diterapkan ke setiap halaman.",
+    "faqPrivacyQuestion": "Apakah file saya pribadi dan aman?",
+    "faqPrivacyAnswer": "Tentu saja! Semua pemrosesan terjadi di browser Anda. File Anda tidak pernah meninggalkan perangkat Anda, memastikan privasi penuh."
   }
 }

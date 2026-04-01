@@ -56,6 +56,7 @@ import { DeskewNode } from './deskew-node';
 import { PdfToPdfANode } from './pdf-to-pdfa-node';
 import { PosterizeNode } from './posterize-node';
 import { BookletNode } from './booklet-node';
+import { OverlayNode } from './overlay-node';
 import { FontToOutlineNode } from './font-to-outline-node';
 import { TableOfContentsNode } from './table-of-contents-node';
 import { EmailToPdfNode } from './email-to-pdf-node';
@@ -354,6 +355,14 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     description: 'Arrange pages for booklet printing',
     factory: () => new BookletNode(),
     toolPageId: 'pdf-booklet',
+  },
+  OverlayNode: {
+    label: 'Overlay',
+    category: 'Organize & Manage',
+    icon: 'ph-stack-simple',
+    description: 'Overlay or underlay pages from one PDF onto another',
+    factory: () => new OverlayNode(),
+    toolPageId: 'overlay-pdf',
   },
   PosterizeNode: {
     label: 'Posterize',

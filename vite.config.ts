@@ -493,6 +493,7 @@ export default defineConfig(() => {
           'extract-pages': resolve(__dirname, 'src/pages/extract-pages.html'),
           'delete-pages': resolve(__dirname, 'src/pages/delete-pages.html'),
           'organize-pdf': resolve(__dirname, 'src/pages/organize-pdf.html'),
+          'overlay-pdf': resolve(__dirname, 'src/pages/overlay-pdf.html'),
           'page-numbers': resolve(__dirname, 'src/pages/page-numbers.html'),
           'add-page-labels': resolve(
             __dirname,

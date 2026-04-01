@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Không thể tải mẫu.",
     "noSettings": "Không có cài đặt nào có thể cấu hình cho nút này.",
     "advancedSettings": "Cài đặt nâng cao"
+  },
+  "pdfOverlay": {
+    "name": "Chồng PDF",
+    "subtitle": "Chồng hoặc lót các trang từ một PDF lên PDF khác.",
+    "basePdfLabel": "PDF gốc",
+    "uploadBasePdf": "Tải lên PDF gốc",
+    "overlayPdfLabel": "PDF chồng / lót",
+    "uploadOverlayPdf": "Tải lên PDF chồng/lót",
+    "modeLabel": "Chế độ",
+    "overlayOption": "Chồng lên (trên các trang)",
+    "underlayOption": "Lót dưới (sau các trang)",
+    "pageRangeLabel": "Áp dụng cho trang (tùy chọn)",
+    "pageRangeHint": "Dùng \"z\" cho trang cuối. Để trống để áp dụng cho tất cả các trang.",
+    "repeatLabel": "Lặp lại các trang chồng/lót nếu tài liệu gốc dài hơn",
+    "processButton": "Áp dụng chồng / lót",
+    "howItWorksUploadTitle": "Tải lên hai PDF",
+    "howItWorksUploadDescription": "Tải lên PDF gốc và PDF bạn muốn chồng hoặc lót.",
+    "howItWorksModeTitle": "Chọn chế độ",
+    "howItWorksModeDescription": "Chọn chồng lên (phía trên) hoặc lót dưới (phía sau). Tùy chọn đặt phạm vi trang và lặp lại.",
+    "howItWorksDownloadTitle": "Tải xuống",
+    "howItWorksDownloadDescription": "Tải xuống PDF của bạn với phần chồng hoặc lót đã được áp dụng.",
+    "faqDifferenceQuestion": "Sự khác biệt giữa chồng lên và lót dưới là gì?",
+    "faqDifferenceAnswer": "Chồng lên đặt các trang lên trên PDF gốc (như hình mờ). Lót dưới đặt các trang phía sau PDF gốc (như tiêu đề thư hoặc nền).",
+    "faqSinglePageQuestion": "Tôi có thể dùng PDF một trang làm chồng cho tất cả các trang không?",
+    "faqSinglePageAnswer": "Có! Bật tùy chọn \"Lặp lại\" và các trang chồng sẽ lặp lại trên tất cả các trang gốc. Hình mờ một trang sẽ được áp dụng cho mọi trang.",
+    "faqPrivacyQuestion": "Tệp của tôi có được bảo mật không?",
+    "faqPrivacyAnswer": "Chắc chắn! Toàn bộ quá trình xử lý diễn ra trong trình duyệt của bạn. Tệp của bạn không bao giờ rời khỏi thiết bị, đảm bảo quyền riêng tư hoàn toàn."
   }
 }

@@ -831,5 +831,32 @@
     "failedLoadTemplate": "Sjabloon laden mislukt.",
     "noSettings": "Geen configureerbare instellingen voor deze node.",
     "advancedSettings": "Geavanceerde instellingen"
+  },
+  "pdfOverlay": {
+    "name": "PDF-overlay",
+    "subtitle": "Pagina's van een PDF over of onder een andere PDF plaatsen.",
+    "basePdfLabel": "Basis-PDF",
+    "uploadBasePdf": "Basis-PDF uploaden",
+    "overlayPdfLabel": "Overlay / Underlay PDF",
+    "uploadOverlayPdf": "Overlay/underlay PDF uploaden",
+    "modeLabel": "Modus",
+    "overlayOption": "Overlay (boven de pagina's)",
+    "underlayOption": "Underlay (achter de pagina's)",
+    "pageRangeLabel": "Toepassen op pagina's (optioneel)",
+    "pageRangeHint": "Gebruik \"z\" voor de laatste pagina. Laat leeg om op alle pagina's toe te passen.",
+    "repeatLabel": "Overlay/underlay-pagina's herhalen als basis langer is",
+    "processButton": "Overlay / underlay toepassen",
+    "howItWorksUploadTitle": "Twee PDF's uploaden",
+    "howItWorksUploadDescription": "Upload uw basis-PDF en de PDF die u wilt overleggen of onderleggen.",
+    "howItWorksModeTitle": "Kies modus",
+    "howItWorksModeDescription": "Selecteer overlay (erboven) of underlay (erachter). Stel optioneel een paginabereik en herhaling in.",
+    "howItWorksDownloadTitle": "Downloaden",
+    "howItWorksDownloadDescription": "Download uw PDF met de overlay of underlay toegepast.",
+    "faqDifferenceQuestion": "Wat is het verschil tussen overlay en underlay?",
+    "faqDifferenceAnswer": "Overlay plaatst pagina's boven uw basis-PDF (zoals een watermerk). Underlay plaatst pagina's achter uw basis-PDF (zoals een briefhoofd of achtergrond).",
+    "faqSinglePageQuestion": "Kan ik een enkele pagina PDF als overlay voor alle pagina's gebruiken?",
+    "faqSinglePageAnswer": "Ja! Schakel de optie \"Herhalen\" in en uw overlay-pagina's worden herhaald over alle basispagina's. Een watermerk van één pagina wordt op elke pagina toegepast.",
+    "faqPrivacyQuestion": "Zijn mijn bestanden privé en veilig?",
+    "faqPrivacyAnswer": "Absoluut! Alle verwerking vindt plaats in uw browser. Uw bestanden verlaten nooit uw apparaat, wat volledige privacy garandeert."
   }
 }

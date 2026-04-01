@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Şablon yüklenemedi.",
     "noSettings": "Bu düğüm için yapılandırılabilir ayar yok.",
     "advancedSettings": "Gelişmiş Ayarlar"
+  },
+  "pdfOverlay": {
+    "name": "PDF Katmanlama",
+    "subtitle": "Bir PDF'in sayfalarını başka bir PDF'in üzerine veya altına yerleştirin.",
+    "basePdfLabel": "Temel PDF",
+    "uploadBasePdf": "Temel PDF yükle",
+    "overlayPdfLabel": "Üst Katman / Alt Katman PDF",
+    "uploadOverlayPdf": "Üst katman/alt katman PDF yükle",
+    "modeLabel": "Mod",
+    "overlayOption": "Üst katman (sayfaların üzerinde)",
+    "underlayOption": "Alt katman (sayfaların arkasında)",
+    "pageRangeLabel": "Sayfalara uygula (isteğe bağlı)",
+    "pageRangeHint": "Son sayfa için \"z\" kullanın. Tüm sayfalara uygulamak için boş bırakın.",
+    "repeatLabel": "Temel daha uzunsa üst/alt katman sayfalarını tekrarla",
+    "processButton": "Üst Katman / Alt Katman Uygula",
+    "howItWorksUploadTitle": "İki PDF Yükle",
+    "howItWorksUploadDescription": "Temel PDF'inizi ve üst katman veya alt katman yapmak istediğiniz PDF'i yükleyin.",
+    "howItWorksModeTitle": "Mod Seçin",
+    "howItWorksModeDescription": "Üst katman (üzerine) veya alt katman (arkasına) seçin. İsteğe bağlı olarak sayfa aralığı ve tekrar ayarlayın.",
+    "howItWorksDownloadTitle": "İndir",
+    "howItWorksDownloadDescription": "Üst katman veya alt katman uygulanmış PDF'inizi indirin.",
+    "faqDifferenceQuestion": "Üst katman ile alt katman arasındaki fark nedir?",
+    "faqDifferenceAnswer": "Üst katman, sayfaları temel PDF'inizin üzerine yerleştirir (filigran gibi). Alt katman, sayfaları temel PDF'inizin arkasına yerleştirir (antetli kağıt veya arka plan gibi).",
+    "faqSinglePageQuestion": "Tek sayfalık bir PDF'i tüm sayfalar için üst katman olarak kullanabilir miyim?",
+    "faqSinglePageAnswer": "Evet! \"Tekrarla\" seçeneğini etkinleştirin ve üst katman sayfalarınız tüm temel sayfalarda tekrarlanır. Tek sayfalık bir filigran her sayfaya uygulanır.",
+    "faqPrivacyQuestion": "Dosyalarım gizli ve güvende mi?",
+    "faqPrivacyAnswer": "Kesinlikle! Tüm işleme tarayıcınızda gerçekleşir. Dosyalarınız cihazınızı asla terk etmez, tam gizlilik sağlanır."
   }
 }

@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Det gick inte att ladda mallen.",
     "noSettings": "Inga konfigurerbara inställningar för denna nod.",
     "advancedSettings": "Avancerade inställningar"
+  },
+  "pdfOverlay": {
+    "name": "PDF-överlägg",
+    "subtitle": "Lägg sidor från en PDF ovanpå eller under en annan PDF.",
+    "basePdfLabel": "Bas-PDF",
+    "uploadBasePdf": "Ladda upp bas-PDF",
+    "overlayPdfLabel": "Överlägg / Underlägg PDF",
+    "uploadOverlayPdf": "Ladda upp överlägg/underlägg PDF",
+    "modeLabel": "Läge",
+    "overlayOption": "Överlägg (ovanpå sidor)",
+    "underlayOption": "Underlägg (bakom sidor)",
+    "pageRangeLabel": "Tillämpa på sidor (valfritt)",
+    "pageRangeHint": "Använd \"z\" för sista sidan. Lämna tomt för att tillämpa på alla sidor.",
+    "repeatLabel": "Upprepa överlägg/underlägg-sidor om basen är längre",
+    "processButton": "Tillämpa överlägg / underlägg",
+    "howItWorksUploadTitle": "Ladda upp två PDF:er",
+    "howItWorksUploadDescription": "Ladda upp din bas-PDF och den PDF du vill lägga som överlägg eller underlägg.",
+    "howItWorksModeTitle": "Välj läge",
+    "howItWorksModeDescription": "Välj överlägg (ovanpå) eller underlägg (bakom). Ställ valfritt in sidintervall och upprepning.",
+    "howItWorksDownloadTitle": "Ladda ner",
+    "howItWorksDownloadDescription": "Ladda ner din PDF med överlägg eller underlägg tillämpat.",
+    "faqDifferenceQuestion": "Vad är skillnaden mellan överlägg och underlägg?",
+    "faqDifferenceAnswer": "Överlägg placerar sidor ovanpå din bas-PDF (som en vattenstämpel). Underlägg placerar sidor bakom din bas-PDF (som ett brevhuvud eller bakgrund).",
+    "faqSinglePageQuestion": "Kan jag använda en ensidig PDF som överlägg för alla sidor?",
+    "faqSinglePageAnswer": "Ja! Aktivera alternativet \"Upprepa\" och dina överläggsidor upprepas på alla bassidor. En ensidig vattenstämpel tillämpas på varje sida.",
+    "faqPrivacyQuestion": "Är mina filer privata och säkra?",
+    "faqPrivacyAnswer": "Absolut! All bearbetning sker i din webbläsare. Dina filer lämnar aldrig din enhet, vilket garanterar fullständig integritet."
   }
 }

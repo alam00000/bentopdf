@@ -773,5 +773,32 @@
     "failedLoadTemplate": "加载模板失败。",
     "noSettings": "此节点没有可配置的设置。",
     "advancedSettings": "高级设置"
+  },
+  "pdfOverlay": {
+    "name": "PDF 叠加",
+    "subtitle": "将一个 PDF 的页面叠加或衬垫到另一个 PDF 上。",
+    "basePdfLabel": "基础 PDF",
+    "uploadBasePdf": "上传基础 PDF",
+    "overlayPdfLabel": "叠加 / 衬底 PDF",
+    "uploadOverlayPdf": "上传叠加/衬底 PDF",
+    "modeLabel": "模式",
+    "overlayOption": "叠加（在页面上方）",
+    "underlayOption": "衬底（在页面下方）",
+    "pageRangeLabel": "应用到页面（可选）",
+    "pageRangeHint": "使用 \"z\" 表示最后一页。留空则应用到所有页面。",
+    "repeatLabel": "如果基础文件更长，则循环叠加/衬底页面",
+    "processButton": "应用叠加 / 衬底",
+    "howItWorksUploadTitle": "上传两个 PDF",
+    "howItWorksUploadDescription": "上传您的基础 PDF 和要叠加或衬底的 PDF。",
+    "howItWorksModeTitle": "选择模式",
+    "howItWorksModeDescription": "选择叠加（上方）或衬底（下方）。可选设置页面范围和重复。",
+    "howItWorksDownloadTitle": "下载",
+    "howItWorksDownloadDescription": "下载应用了叠加或衬底的 PDF。",
+    "faqDifferenceQuestion": "叠加和衬底有什么区别？",
+    "faqDifferenceAnswer": "叠加将页面放在基础 PDF 上方（如水印）。衬底将页面放在基础 PDF 下方（如信头或背景）。",
+    "faqSinglePageQuestion": "我可以使用单页 PDF 作为所有页面的叠加吗？",
+    "faqSinglePageAnswer": "可以！启用\"循环\"选项，叠加页面将在所有基础页面上重复。单页水印将应用到每一页。",
+    "faqPrivacyQuestion": "我的文件是否私密安全？",
+    "faqPrivacyAnswer": "当然！所有处理都在您的浏览器中进行。您的文件永远不会离开您的设备，确保完全隐私。"
   }
 }

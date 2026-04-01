@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Error al cargar la plantilla.",
     "noSettings": "No hay opciones configurables para este nodo.",
     "advancedSettings": "Configuración avanzada"
+  },
+  "pdfOverlay": {
+    "name": "Superposición de PDF",
+    "subtitle": "Superponer o colocar como fondo páginas de un PDF sobre otro.",
+    "basePdfLabel": "PDF base",
+    "uploadBasePdf": "Subir PDF base",
+    "overlayPdfLabel": "PDF de superposición / fondo",
+    "uploadOverlayPdf": "Subir PDF de superposición/fondo",
+    "modeLabel": "Modo",
+    "overlayOption": "Superposición (encima de las páginas)",
+    "underlayOption": "Fondo (detrás de las páginas)",
+    "pageRangeLabel": "Aplicar a páginas (opcional)",
+    "pageRangeHint": "Use \"z\" para la última página. Deje vacío para aplicar a todas las páginas.",
+    "repeatLabel": "Repetir páginas de superposición/fondo si el base es más largo",
+    "processButton": "Aplicar superposición / fondo",
+    "howItWorksUploadTitle": "Subir dos PDFs",
+    "howItWorksUploadDescription": "Suba su PDF base y el PDF que desea superponer o colocar como fondo.",
+    "howItWorksModeTitle": "Elegir modo",
+    "howItWorksModeDescription": "Seleccione superposición (encima) o fondo (detrás). Opcionalmente establezca un rango de páginas y repetición.",
+    "howItWorksDownloadTitle": "Descargar",
+    "howItWorksDownloadDescription": "Descargue su PDF con la superposición o fondo aplicado.",
+    "faqDifferenceQuestion": "¿Cuál es la diferencia entre superposición y fondo?",
+    "faqDifferenceAnswer": "La superposición coloca páginas encima de su PDF base (como una marca de agua). El fondo coloca páginas detrás de su PDF base (como un membrete o fondo).",
+    "faqSinglePageQuestion": "¿Puedo usar un PDF de una sola página como superposición para todas las páginas?",
+    "faqSinglePageAnswer": "¡Sí! Active la opción \"Repetir\" y las páginas de superposición se repetirán en todas las páginas base. Una marca de agua de una página se aplicará a cada página.",
+    "faqPrivacyQuestion": "¿Mis archivos son privados y seguros?",
+    "faqPrivacyAnswer": "¡Por supuesto! Todo el procesamiento ocurre en su navegador. Sus archivos nunca abandonan su dispositivo, garantizando total privacidad."
   }
 }

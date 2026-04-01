@@ -546,6 +546,12 @@ const baseCategories = [
         subtitle: 'Duplicate, reorder, and delete pages.',
       },
       {
+        href: import.meta.env.BASE_URL + 'overlay-pdf.html',
+        name: 'PDF Overlay',
+        icon: 'ph-stack-simple',
+        subtitle: 'Overlay or underlay pages from one PDF onto another.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'add-attachments.html',
         name: 'Add Attachments',
         icon: 'ph-paperclip',

@@ -831,5 +831,32 @@
     "failedLoadTemplate": "Failed to load template.",
     "noSettings": "No configurable settings for this node.",
     "advancedSettings": "Advanced Settings"
+  },
+  "pdfOverlay": {
+    "name": "PDF Overlay",
+    "subtitle": "Overlay or underlay pages from one PDF onto another.",
+    "basePdfLabel": "Base PDF",
+    "uploadBasePdf": "Upload base PDF",
+    "overlayPdfLabel": "Overlay / Underlay PDF",
+    "uploadOverlayPdf": "Upload overlay/underlay PDF",
+    "modeLabel": "Mode",
+    "overlayOption": "Overlay (on top of pages)",
+    "underlayOption": "Underlay (behind pages)",
+    "pageRangeLabel": "Apply to pages (optional)",
+    "pageRangeHint": "Use \"z\" for the last page. Leave empty to apply to all pages.",
+    "repeatLabel": "Loop overlay/underlay pages if base is longer",
+    "processButton": "Apply Overlay / Underlay",
+    "howItWorksUploadTitle": "Upload Two PDFs",
+    "howItWorksUploadDescription": "Upload your base PDF and the PDF you want to overlay or underlay.",
+    "howItWorksModeTitle": "Choose Mode",
+    "howItWorksModeDescription": "Select overlay (on top) or underlay (behind). Optionally set a page range and repeat.",
+    "howItWorksDownloadTitle": "Download",
+    "howItWorksDownloadDescription": "Download your PDF with the overlay or underlay applied.",
+    "faqDifferenceQuestion": "What is the difference between overlay and underlay?",
+    "faqDifferenceAnswer": "Overlay places pages on top of your base PDF (like a watermark). Underlay places pages behind your base PDF (like a letterhead or background).",
+    "faqSinglePageQuestion": "Can I use a single-page PDF as overlay for all pages?",
+    "faqSinglePageAnswer": "Yes! Enable the \"Loop\" option and your overlay PDF pages will repeat across all base pages. A single-page watermark will apply to every page.",
+    "faqPrivacyQuestion": "Are my files private and secure?",
+    "faqPrivacyAnswer": "Absolutely! All processing happens in your browser. Your files never leave your device, ensuring complete privacy."
   }
 }

@@ -773,5 +773,32 @@
     "failedLoadTemplate": "فشل تحميل القالب.",
     "noSettings": "لا توجد إعدادات قابلة للتخصيص لهذه العقدة.",
     "advancedSettings": "إعدادات متقدمة"
+  },
+  "pdfOverlay": {
+    "name": "تراكب PDF",
+    "subtitle": "وضع صفحات من ملف PDF فوق أو تحت صفحات ملف PDF آخر.",
+    "basePdfLabel": "ملف PDF الأساسي",
+    "uploadBasePdf": "رفع ملف PDF الأساسي",
+    "overlayPdfLabel": "ملف PDF للتراكب / التبطين",
+    "uploadOverlayPdf": "رفع ملف PDF للتراكب/التبطين",
+    "modeLabel": "الوضع",
+    "overlayOption": "تراكب (فوق الصفحات)",
+    "underlayOption": "تبطين (خلف الصفحات)",
+    "pageRangeLabel": "تطبيق على الصفحات (اختياري)",
+    "pageRangeHint": "استخدم \"z\" للصفحة الأخيرة. اتركه فارغاً للتطبيق على جميع الصفحات.",
+    "repeatLabel": "تكرار صفحات التراكب/التبطين إذا كان الملف الأساسي أطول",
+    "processButton": "تطبيق التراكب / التبطين",
+    "howItWorksUploadTitle": "رفع ملفي PDF",
+    "howItWorksUploadDescription": "ارفع ملف PDF الأساسي والملف الذي تريد تراكبه أو تبطينه.",
+    "howItWorksModeTitle": "اختر الوضع",
+    "howItWorksModeDescription": "اختر التراكب (فوق) أو التبطين (خلف). يمكنك تحديد نطاق صفحات والتكرار اختيارياً.",
+    "howItWorksDownloadTitle": "تنزيل",
+    "howItWorksDownloadDescription": "قم بتنزيل ملف PDF مع التراكب أو التبطين المطبق.",
+    "faqDifferenceQuestion": "ما الفرق بين التراكب والتبطين؟",
+    "faqDifferenceAnswer": "التراكب يضع الصفحات فوق ملف PDF الأساسي (مثل العلامة المائية). التبطين يضع الصفحات خلف ملف PDF الأساسي (مثل الترويسة أو الخلفية).",
+    "faqSinglePageQuestion": "هل يمكنني استخدام ملف PDF من صفحة واحدة كتراكب لجميع الصفحات؟",
+    "faqSinglePageAnswer": "نعم! فعّل خيار \"التكرار\" وستتكرر صفحات التراكب على جميع صفحات الملف الأساسي. العلامة المائية ذات الصفحة الواحدة ستُطبق على كل صفحة.",
+    "faqPrivacyQuestion": "هل ملفاتي خاصة وآمنة؟",
+    "faqPrivacyAnswer": "بالتأكيد! تتم جميع المعالجة في متصفحك. لا تغادر ملفاتك جهازك أبداً، مما يضمن خصوصية كاملة."
   }
 }
