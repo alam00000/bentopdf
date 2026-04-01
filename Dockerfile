@@ -88,7 +88,7 @@ RUN apk upgrade --no-cache
 COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html${BASE_URL%/}
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:nginx --chmod=755 nginx-ipv6.sh /docker-entrypoint.d/99-disable-ipv6.sh
-RUN mkdir -p /etc/nginx/tmp && chown -R nginx:nginx /etc/nginx/tmp
+RUN mkdir -p /etc/nginx/tmp /var/cache/nginx && chown -R nginx:nginx /etc/nginx/tmp /var/cache/nginx
 
 USER nginx
 
