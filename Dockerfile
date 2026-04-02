@@ -71,7 +71,8 @@ RUN --mount=type=secret,id=VITE_CORS_PROXY_URL \
     npm run build:with-docs
 
 # Production stage
-FROM quay.io/nginx/nginx-unprivileged:stable-alpine-slim
+# TODO@ALAM: Change to quay/nginxinc-unprivileged once 1.28.3 is available
+FROM nginx:1.28.3-alpine-slim
 
 LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
 LABEL org.opencontainers.image.url="https://github.com/alam00000/bentopdf"
@@ -82,14 +83,14 @@ ARG BASE_URL
 # Set this to "true" to disable Nginx listening on IPv6
 ENV DISABLE_IPV6=false
 
-USER root
 RUN apk upgrade --no-cache
-USER nginx
 
 COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html${BASE_URL%/}
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:nginx --chmod=755 nginx-ipv6.sh /docker-entrypoint.d/99-disable-ipv6.sh
-RUN mkdir -p /etc/nginx/tmp && chown -R nginx:nginx /etc/nginx/tmp
+RUN mkdir -p /etc/nginx/tmp /var/cache/nginx && chown -R nginx:nginx /etc/nginx /var/cache/nginx
+
+USER nginx
 
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]

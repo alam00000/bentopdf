@@ -1,7 +1,7 @@
 {
   "name": "bento-pdf",
   "private": true,
-  "version": "2.7.0",
+  "version": "2.8.1",
   "license": "AGPL-3.0-only",
   "type": "module",
   "scripts": {

@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Falha ao carregar o modelo.",
     "noSettings": "Nenhuma configuração disponível para este nó.",
     "advancedSettings": "Configurações avançadas"
+  },
+  "pdfOverlay": {
+    "name": "Sobreposição de PDF",
+    "subtitle": "Sobrepor ou subjacente páginas de um PDF em outro.",
+    "basePdfLabel": "PDF base",
+    "uploadBasePdf": "Carregar PDF base",
+    "overlayPdfLabel": "PDF de sobreposição / fundo",
+    "uploadOverlayPdf": "Carregar PDF de sobreposição/fundo",
+    "modeLabel": "Modo",
+    "overlayOption": "Sobreposição (acima das páginas)",
+    "underlayOption": "Fundo (atrás das páginas)",
+    "pageRangeLabel": "Aplicar às páginas (opcional)",
+    "pageRangeHint": "Use \"z\" para a última página. Deixe vazio para aplicar a todas as páginas.",
+    "repeatLabel": "Repetir páginas de sobreposição/fundo se a base for mais longa",
+    "processButton": "Aplicar sobreposição / fundo",
+    "howItWorksUploadTitle": "Carregar dois PDFs",
+    "howItWorksUploadDescription": "Carregue o seu PDF base e o PDF que deseja sobrepor ou colocar como fundo.",
+    "howItWorksModeTitle": "Escolher modo",
+    "howItWorksModeDescription": "Selecione sobreposição (acima) ou fundo (atrás). Defina opcionalmente um intervalo de páginas e repetição.",
+    "howItWorksDownloadTitle": "Baixar",
+    "howItWorksDownloadDescription": "Baixe o seu PDF com a sobreposição ou fundo aplicado.",
+    "faqDifferenceQuestion": "Qual é a diferença entre sobreposição e fundo?",
+    "faqDifferenceAnswer": "A sobreposição coloca páginas acima do seu PDF base (como uma marca d'água). O fundo coloca páginas atrás do seu PDF base (como um cabeçalho ou fundo).",
+    "faqSinglePageQuestion": "Posso usar um PDF de uma única página como sobreposição para todas as páginas?",
+    "faqSinglePageAnswer": "Sim! Ative a opção \"Repetir\" e as páginas de sobreposição se repetirão em todas as páginas base. Uma marca d'água de uma página será aplicada a cada página.",
+    "faqPrivacyQuestion": "Os meus ficheiros são privados e seguros?",
+    "faqPrivacyAnswer": "Com certeza! Todo o processamento acontece no seu navegador. Os seus ficheiros nunca saem do seu dispositivo, garantindo total privacidade."
   }
 }

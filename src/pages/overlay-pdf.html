@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>PDF Overlay & Underlay Online Free | BentoPDF</title>
+    <meta
+      name="title"
+      content="PDF Overlay & Underlay Online Free | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="★ Overlay or underlay PDF pages online free ★ Add watermarks, letterheads, backgrounds ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      name="keywords"
+      content="pdf overlay, pdf underlay, pdf watermark, pdf background, overlay pages"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <link rel="canonical" href="https://www.bentopdf.com/overlay-pdf.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/overlay-pdf" />
+    <meta
+      property="og:title"
+      content="PDF Overlay & Underlay Online Free | BentoPDF"
+    />
+    <meta
+      property="og:description"
+      content="★ Overlay or underlay PDF pages online free ★ Add watermarks, letterheads, backgrounds ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-overlay-pdf.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="BentoPDF" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.bentopdf.com/overlay-pdf" />
+    <meta name="twitter:title" content="PDF Overlay & Underlay Free" />
+    <meta
+      name="twitter:description"
+      content="★ Overlay or underlay PDF pages online free ★ No signup ★ Privacy-first ★ Works in browser"
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.bentopdf.com/images/twitter-overlay-pdf.png"
+    />
+    <meta name="twitter:site" content="@BentoPDF" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PDF Overlay" />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
+
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools">
+            Back to Tools
+          </span>
+        </button>
+
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:pdfOverlay.name"
+        >
+          PDF Overlay
+        </h1>
+        <p class="text-gray-400 mb-6" data-i18n="tools:pdfOverlay.subtitle">
+          Overlay or underlay pages from one PDF onto another.
+        </p>
+
+        <div class="space-y-4">
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-300 mb-2"
+              data-i18n="tools:pdfOverlay.basePdfLabel"
+              >Base PDF</label
+            >
+            <div
+              id="base-drop-zone"
+              class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+            >
+              <div class="flex flex-col items-center justify-center py-4">
+                <i
+                  data-lucide="file-text"
+                  class="w-8 h-8 mb-2 text-gray-400"
+                ></i>
+                <p class="text-sm text-gray-400">
+                  <span
+                    class="font-semibold"
+                    data-i18n="tools:pdfOverlay.uploadBasePdf"
+                    >Upload base PDF</span
+                  >
+                </p>
+              </div>
+              <input
+                id="base-file-input"
+                type="file"
+                class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                accept="application/pdf"
+              />
+            </div>
+            <div id="base-file-display" class="mt-2"></div>
+          </div>
+
+          <div>
+            <label
+              class="block text-sm font-medium text-gray-300 mb-2"
+              data-i18n="tools:pdfOverlay.overlayPdfLabel"
+              >Overlay / Underlay PDF</label
+            >
+            <div
+              id="overlay-drop-zone"
+              class="relative flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+            >
+              <div class="flex flex-col items-center justify-center py-4">
+                <i data-lucide="layers" class="w-8 h-8 mb-2 text-gray-400"></i>
+                <p class="text-sm text-gray-400">
+                  <span
+                    class="font-semibold"
+                    data-i18n="tools:pdfOverlay.uploadOverlayPdf"
+                    >Upload overlay/underlay PDF</span
+                  >
+                </p>
+              </div>
+              <input
+                id="overlay-file-input"
+                type="file"
+                class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                accept="application/pdf"
+              />
+            </div>
+            <div id="overlay-file-display" class="mt-2"></div>
+          </div>
+        </div>
+
+        <p
+          class="text-xs text-gray-500 mt-3"
+          data-i18n="upload.filesNeverLeave"
+        >
+          Your files never leave your device.
+        </p>
+
+        <div id="tool-options" class="hidden mt-6 space-y-4">
+          <div
+            class="p-4 bg-gray-900 rounded-lg border border-gray-700 space-y-4"
+          >
+            <div>
+              <label
+                for="mode-select"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                data-i18n="tools:pdfOverlay.modeLabel"
+                >Mode</label
+              >
+              <select
+                id="mode-select"
+                class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              >
+                <option
+                  value="overlay"
+                  data-i18n="tools:pdfOverlay.overlayOption"
+                >
+                  Overlay (on top of pages)
+                </option>
+                <option
+                  value="underlay"
+                  data-i18n="tools:pdfOverlay.underlayOption"
+                >
+                  Underlay (behind pages)
+                </option>
+              </select>
+            </div>
+
+            <div>
+              <label
+                for="page-range"
+                class="block text-sm font-medium text-gray-300 mb-1"
+                data-i18n="tools:pdfOverlay.pageRangeLabel"
+                >Apply to pages (optional)</label
+              >
+              <input
+                id="page-range"
+                type="text"
+                placeholder="e.g. 1-5, 8, 10-z (leave empty for all)"
+                class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              />
+              <p
+                class="text-xs text-gray-500 mt-1"
+                data-i18n="tools:pdfOverlay.pageRangeHint"
+              >
+                Use "z" for the last page. Leave empty to apply to all pages.
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <input
+                id="repeat-toggle"
+                type="checkbox"
+                checked
+                class="w-4 h-4 rounded border-gray-600 bg-gray-800 text-indigo-600 focus:ring-indigo-500"
+              />
+              <label
+                for="repeat-toggle"
+                class="text-sm text-gray-300"
+                data-i18n="tools:pdfOverlay.repeatLabel"
+                >Loop overlay/underlay pages if base is longer</label
+              >
+            </div>
+          </div>
+
+          <button
+            id="process-btn"
+            class="btn-gradient w-full"
+            data-i18n="tools:pdfOverlay.processButton"
+          >
+            Apply Overlay / Underlay
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
+        <p
+          id="loader-text"
+          class="text-white text-lg font-medium"
+          data-i18n="loader.processing"
+        >
+          Processing...
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
+        data-i18n="howItWorks.title"
+      >
+        How It Works
+      </h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            1
+          </div>
+          <div class="flex-1">
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="tools:pdfOverlay.howItWorksUploadTitle"
+            >
+              Upload Two PDFs
+            </h3>
+            <p
+              class="text-gray-400"
+              data-i18n="tools:pdfOverlay.howItWorksUploadDescription"
+            >
+              Upload your base PDF and the PDF you want to overlay or underlay.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            2
+          </div>
+          <div class="flex-1">
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="tools:pdfOverlay.howItWorksModeTitle"
+            >
+              Choose Mode
+            </h3>
+            <p
+              class="text-gray-400"
+              data-i18n="tools:pdfOverlay.howItWorksModeDescription"
+            >
+              Select overlay (on top) or underlay (behind). Optionally set a
+              page range and repeat.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div
+            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
+          >
+            3
+          </div>
+          <div class="flex-1">
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="tools:pdfOverlay.howItWorksDownloadTitle"
+            >
+              Download
+            </h3>
+            <p
+              class="text-gray-400"
+              data-i18n="tools:pdfOverlay.howItWorksDownloadDescription"
+            >
+              Download your PDF with the overlay or underlay applied.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-4 py-12">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
+        data-i18n="faq.sectionTitle"
+      >
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-4">
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            <span data-i18n="tools:pdfOverlay.faqDifferenceQuestion"
+              >What is the difference between overlay and underlay?</span
+            >
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:pdfOverlay.faqDifferenceAnswer"
+          >
+            Overlay places pages on top of your base PDF (like a watermark).
+            Underlay places pages behind your base PDF (like a letterhead or
+            background).
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            <span data-i18n="tools:pdfOverlay.faqSinglePageQuestion"
+              >Can I use a single-page PDF as overlay for all pages?</span
+            >
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:pdfOverlay.faqSinglePageAnswer"
+          >
+            Yes! Enable the "Loop" option and your overlay PDF pages will repeat
+            across all base pages. A single-page watermark will apply to every
+            page.
+          </p>
+        </details>
+        <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
+          <summary
+            class="cursor-pointer font-semibold text-white flex items-center justify-between"
+          >
+            <span data-i18n="tools:pdfOverlay.faqPrivacyQuestion"
+              >Are my files private and secure?</span
+            >
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </summary>
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:pdfOverlay.faqPrivacyAnswer"
+          >
+            Absolutely! All processing happens in your browser. Your files never
+            leave your device, ensuring complete privacy.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    {{> footer }}
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/version.ts"></script>
+    <script type="module" src="/src/js/logic/overlay-pdf-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PDF Overlay - BentoPDF",
+        "applicationCategory": "PDF Tool",
+        "operatingSystem": "Any - Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to overlay or underlay PDF pages",
+        "description": "Learn how to overlay or underlay pages from one PDF onto another using BentoPDF",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "Upload Two PDFs",
+            "text": "Upload your base PDF and the overlay/underlay PDF"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Choose Mode",
+            "text": "Select overlay or underlay mode and configure options"
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Download",
+            "text": "Download your processed PDF"
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.bentopdf.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "PDF Overlay",
+            "item": "https://www.bentopdf.com/overlay-pdf"
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

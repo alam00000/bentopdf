@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Impossibile caricare il modello.",
     "noSettings": "Nessuna impostazione configurabile per questo nodo.",
     "advancedSettings": "Impostazioni avanzate"
+  },
+  "pdfOverlay": {
+    "name": "Sovrapposizione PDF",
+    "subtitle": "Sovrapponi o posiziona in sottofondo le pagine di un PDF su un altro.",
+    "basePdfLabel": "PDF di base",
+    "uploadBasePdf": "Carica PDF di base",
+    "overlayPdfLabel": "PDF di sovrapposizione / sottofondo",
+    "uploadOverlayPdf": "Carica PDF di sovrapposizione/sottofondo",
+    "modeLabel": "Modalità",
+    "overlayOption": "Sovrapposizione (sopra le pagine)",
+    "underlayOption": "Sottofondo (dietro le pagine)",
+    "pageRangeLabel": "Applica alle pagine (opzionale)",
+    "pageRangeHint": "Usa \"z\" per l'ultima pagina. Lascia vuoto per applicare a tutte le pagine.",
+    "repeatLabel": "Ripeti le pagine di sovrapposizione/sottofondo se la base è più lunga",
+    "processButton": "Applica sovrapposizione / sottofondo",
+    "howItWorksUploadTitle": "Carica due PDF",
+    "howItWorksUploadDescription": "Carica il tuo PDF di base e il PDF che vuoi sovrapporre o mettere in sottofondo.",
+    "howItWorksModeTitle": "Scegli la modalità",
+    "howItWorksModeDescription": "Seleziona sovrapposizione (sopra) o sottofondo (dietro). Imposta facoltativamente un intervallo di pagine e la ripetizione.",
+    "howItWorksDownloadTitle": "Scarica",
+    "howItWorksDownloadDescription": "Scarica il tuo PDF con la sovrapposizione o il sottofondo applicato.",
+    "faqDifferenceQuestion": "Qual è la differenza tra sovrapposizione e sottofondo?",
+    "faqDifferenceAnswer": "La sovrapposizione posiziona le pagine sopra il PDF di base (come una filigrana). Il sottofondo posiziona le pagine dietro il PDF di base (come un'intestazione o uno sfondo).",
+    "faqSinglePageQuestion": "Posso usare un PDF di una sola pagina come sovrapposizione per tutte le pagine?",
+    "faqSinglePageAnswer": "Sì! Attiva l'opzione \"Ripeti\" e le pagine di sovrapposizione si ripeteranno su tutte le pagine base. Una filigrana di una pagina verrà applicata a ogni pagina.",
+    "faqPrivacyQuestion": "I miei file sono privati e sicuri?",
+    "faqPrivacyAnswer": "Assolutamente! Tutta l'elaborazione avviene nel tuo browser. I tuoi file non lasciano mai il tuo dispositivo, garantendo la massima privacy."
   }
 }

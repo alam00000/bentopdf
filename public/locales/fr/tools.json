@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Échec du chargement du modèle.",
     "noSettings": "Aucun paramètre configurable pour ce nœud.",
     "advancedSettings": "Paramètres avancés"
+  },
+  "pdfOverlay": {
+    "name": "Superposition PDF",
+    "subtitle": "Superposer ou placer en arrière-plan les pages d'un PDF sur un autre.",
+    "basePdfLabel": "PDF de base",
+    "uploadBasePdf": "Télécharger le PDF de base",
+    "overlayPdfLabel": "PDF de superposition / arrière-plan",
+    "uploadOverlayPdf": "Télécharger le PDF de superposition/arrière-plan",
+    "modeLabel": "Mode",
+    "overlayOption": "Superposition (au-dessus des pages)",
+    "underlayOption": "Arrière-plan (derrière les pages)",
+    "pageRangeLabel": "Appliquer aux pages (optionnel)",
+    "pageRangeHint": "Utilisez \"z\" pour la dernière page. Laissez vide pour appliquer à toutes les pages.",
+    "repeatLabel": "Répéter les pages de superposition/arrière-plan si la base est plus longue",
+    "processButton": "Appliquer superposition / arrière-plan",
+    "howItWorksUploadTitle": "Télécharger deux PDFs",
+    "howItWorksUploadDescription": "Téléchargez votre PDF de base et le PDF que vous souhaitez superposer ou placer en arrière-plan.",
+    "howItWorksModeTitle": "Choisir le mode",
+    "howItWorksModeDescription": "Sélectionnez superposition (au-dessus) ou arrière-plan (derrière). Définissez optionnellement une plage de pages et la répétition.",
+    "howItWorksDownloadTitle": "Télécharger",
+    "howItWorksDownloadDescription": "Téléchargez votre PDF avec la superposition ou l'arrière-plan appliqué.",
+    "faqDifferenceQuestion": "Quelle est la différence entre superposition et arrière-plan ?",
+    "faqDifferenceAnswer": "La superposition place les pages au-dessus de votre PDF de base (comme un filigrane). L'arrière-plan place les pages derrière votre PDF de base (comme un en-tête ou un fond).",
+    "faqSinglePageQuestion": "Puis-je utiliser un PDF d'une seule page comme superposition pour toutes les pages ?",
+    "faqSinglePageAnswer": "Oui ! Activez l'option \"Répéter\" et vos pages de superposition se répéteront sur toutes les pages de base. Un filigrane d'une seule page s'appliquera à chaque page.",
+    "faqPrivacyQuestion": "Mes fichiers sont-ils privés et sécurisés ?",
+    "faqPrivacyAnswer": "Absolument ! Tout le traitement se fait dans votre navigateur. Vos fichiers ne quittent jamais votre appareil, garantissant une confidentialité totale."
   }
 }

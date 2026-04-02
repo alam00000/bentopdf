@@ -773,5 +773,32 @@
     "failedLoadTemplate": "Kunne ikke indlæse skabelon.",
     "noSettings": "Ingen konfigurerbare indstillinger for denne node.",
     "advancedSettings": "Avancerede indstillinger"
+  },
+  "pdfOverlay": {
+    "name": "PDF-overlejring",
+    "subtitle": "Læg sider fra én PDF oven på eller under sider i en anden PDF.",
+    "basePdfLabel": "Basis-PDF",
+    "uploadBasePdf": "Upload basis-PDF",
+    "overlayPdfLabel": "Overlejring / Underlag PDF",
+    "uploadOverlayPdf": "Upload overlejring/underlag PDF",
+    "modeLabel": "Tilstand",
+    "overlayOption": "Overlejring (oven på sider)",
+    "underlayOption": "Underlag (bag sider)",
+    "pageRangeLabel": "Anvend på sider (valgfrit)",
+    "pageRangeHint": "Brug \"z\" for den sidste side. Lad feltet stå tomt for at anvende på alle sider.",
+    "repeatLabel": "Gentag overlejring/underlag-sider hvis basis er længere",
+    "processButton": "Anvend overlejring / underlag",
+    "howItWorksUploadTitle": "Upload to PDF'er",
+    "howItWorksUploadDescription": "Upload din basis-PDF og den PDF, du vil overlejre eller underlægge.",
+    "howItWorksModeTitle": "Vælg tilstand",
+    "howItWorksModeDescription": "Vælg overlejring (oven på) eller underlag (bagved). Indstil eventuelt et sideinterval og gentagelse.",
+    "howItWorksDownloadTitle": "Download",
+    "howItWorksDownloadDescription": "Download din PDF med overlejring eller underlag anvendt.",
+    "faqDifferenceQuestion": "Hvad er forskellen mellem overlejring og underlag?",
+    "faqDifferenceAnswer": "Overlejring placerer sider oven på din basis-PDF (som et vandmærke). Underlag placerer sider bag din basis-PDF (som brevhoved eller baggrund).",
+    "faqSinglePageQuestion": "Kan jeg bruge en enkeltsidet PDF som overlejring på alle sider?",
+    "faqSinglePageAnswer": "Ja! Aktivér \"Gentag\"-indstillingen, og dine overlejringssider vil gentage sig på alle basis-sider. Et enkeltsidigt vandmærke vil blive anvendt på hver side.",
+    "faqPrivacyQuestion": "Er mine filer private og sikre?",
+    "faqPrivacyAnswer": "Absolut! Al behandling sker i din browser. Dine filer forlader aldrig din enhed, hvilket sikrer fuldstændig privatliv."
   }
 }

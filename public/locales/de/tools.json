@@ -823,5 +823,32 @@
     "failedLoadTemplate": "Vorlage konnte nicht geladen werden.",
     "noSettings": "Keine konfigurierbaren Einstellungen für diesen Node.",
     "advancedSettings": "Erweiterte Einstellungen"
+  },
+  "pdfOverlay": {
+    "name": "PDF-Überlagerung",
+    "subtitle": "Seiten eines PDFs über oder unter die Seiten eines anderen PDFs legen.",
+    "basePdfLabel": "Basis-PDF",
+    "uploadBasePdf": "Basis-PDF hochladen",
+    "overlayPdfLabel": "Überlagerungs- / Unterlagerungs-PDF",
+    "uploadOverlayPdf": "Überlagerungs-/Unterlagerungs-PDF hochladen",
+    "modeLabel": "Modus",
+    "overlayOption": "Überlagerung (über den Seiten)",
+    "underlayOption": "Unterlagerung (hinter den Seiten)",
+    "pageRangeLabel": "Auf Seiten anwenden (optional)",
+    "pageRangeHint": "Verwenden Sie \"z\" für die letzte Seite. Leer lassen, um auf alle Seiten anzuwenden.",
+    "repeatLabel": "Überlagerungs-/Unterlagerungsseiten wiederholen, wenn Basis länger ist",
+    "processButton": "Überlagerung / Unterlagerung anwenden",
+    "howItWorksUploadTitle": "Zwei PDFs hochladen",
+    "howItWorksUploadDescription": "Laden Sie Ihr Basis-PDF und das PDF hoch, das Sie überlagern oder unterlagern möchten.",
+    "howItWorksModeTitle": "Modus wählen",
+    "howItWorksModeDescription": "Wählen Sie Überlagerung (darüber) oder Unterlagerung (dahinter). Optional Seitenbereich und Wiederholung festlegen.",
+    "howItWorksDownloadTitle": "Herunterladen",
+    "howItWorksDownloadDescription": "Laden Sie Ihr PDF mit angewandter Überlagerung oder Unterlagerung herunter.",
+    "faqDifferenceQuestion": "Was ist der Unterschied zwischen Überlagerung und Unterlagerung?",
+    "faqDifferenceAnswer": "Überlagerung platziert Seiten über Ihr Basis-PDF (wie ein Wasserzeichen). Unterlagerung platziert Seiten hinter Ihr Basis-PDF (wie ein Briefkopf oder Hintergrund).",
+    "faqSinglePageQuestion": "Kann ich ein einseitiges PDF als Überlagerung für alle Seiten verwenden?",
+    "faqSinglePageAnswer": "Ja! Aktivieren Sie die Option \"Wiederholen\" und Ihre Überlagerungsseiten werden auf allen Basisseiten wiederholt. Ein einseitiges Wasserzeichen wird auf jeder Seite angewendet.",
+    "faqPrivacyQuestion": "Sind meine Dateien privat und sicher?",
+    "faqPrivacyAnswer": "Absolut! Die gesamte Verarbeitung findet in Ihrem Browser statt. Ihre Dateien verlassen niemals Ihr Gerät, was vollständige Privatsphäre gewährleistet."
   }
 }

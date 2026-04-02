@@ -773,5 +773,32 @@
     "failedLoadTemplate": "載入範本失敗。",
     "noSettings": "此節點沒有可設定的選項。",
     "advancedSettings": "進階設定"
+  },
+  "pdfOverlay": {
+    "name": "PDF 疊加",
+    "subtitle": "將一個 PDF 的頁面疊加或墊於另一個 PDF 之上或之下。",
+    "basePdfLabel": "基礎 PDF",
+    "uploadBasePdf": "上傳基礎 PDF",
+    "overlayPdfLabel": "疊加 / 襯底 PDF",
+    "uploadOverlayPdf": "上傳疊加/襯底 PDF",
+    "modeLabel": "模式",
+    "overlayOption": "疊加（在頁面上方）",
+    "underlayOption": "襯底（在頁面下方）",
+    "pageRangeLabel": "套用到頁面（選填）",
+    "pageRangeHint": "使用 \"z\" 表示最後一頁。留空則套用到所有頁面。",
+    "repeatLabel": "如果基礎文件較長，則循環疊加/襯底頁面",
+    "processButton": "套用疊加 / 襯底",
+    "howItWorksUploadTitle": "上傳兩個 PDF",
+    "howItWorksUploadDescription": "上傳您的基礎 PDF 和要疊加或襯底的 PDF。",
+    "howItWorksModeTitle": "選擇模式",
+    "howItWorksModeDescription": "選擇疊加（上方）或襯底（下方）。可選設定頁面範圍和重複。",
+    "howItWorksDownloadTitle": "下載",
+    "howItWorksDownloadDescription": "下載套用了疊加或襯底的 PDF。",
+    "faqDifferenceQuestion": "疊加和襯底有什麼區別？",
+    "faqDifferenceAnswer": "疊加將頁面放在基礎 PDF 上方（如浮水印）。襯底將頁面放在基礎 PDF 下方（如信頭或背景）。",
+    "faqSinglePageQuestion": "我可以使用單頁 PDF 作為所有頁面的疊加嗎？",
+    "faqSinglePageAnswer": "可以！啟用「循環」選項，疊加頁面將在所有基礎頁面上重複。單頁浮水印將套用到每一頁。",
+    "faqPrivacyQuestion": "我的檔案是否私密安全？",
+    "faqPrivacyAnswer": "當然！所有處理都在您的瀏覽器中進行。您的檔案永遠不會離開您的裝置，確保完全隱私。"
   }
 }
