@@ -71,7 +71,7 @@ RUN --mount=type=secret,id=VITE_CORS_PROXY_URL \
     npm run build:with-docs
 
 # Production stage
-# TODO@ALAM: Change to quay once fixed
+# TODO@ALAM: Change to quay/nginxinc-unprivileged once 1.28.3 is available
 FROM nginx:1.28.3-alpine-slim
 
 LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
@@ -88,7 +88,7 @@ RUN apk upgrade --no-cache
 COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html${BASE_URL%/}
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:nginx --chmod=755 nginx-ipv6.sh /docker-entrypoint.d/99-disable-ipv6.sh
-RUN mkdir -p /etc/nginx/tmp /var/cache/nginx && chown -R nginx:nginx /etc/nginx/tmp /var/cache/nginx
+RUN mkdir -p /etc/nginx/tmp /var/cache/nginx && chown -R nginx:nginx /etc/nginx /var/cache/nginx
 
 USER nginx
 
