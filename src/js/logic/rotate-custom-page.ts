@@ -149,7 +149,9 @@ function createPageWrapper(
     const input = document.getElementById(
       `page-angle-${pageIndex}`
     ) as HTMLInputElement;
-    const angle = parseFloat(input.value) || 0;
+    const parsed = parseFloat(input.value);
+    const angle = Number.isFinite(parsed) ? Math.round(parsed * 10) / 10 : 0;
+    input.value = angle.toString();
     pageState.rotations[pageIndex] = angle;
     const wrapper = container.querySelector(
       '.thumbnail-wrapper'
@@ -390,7 +392,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (batchApply && batchAngleInput) {
     batchApply.addEventListener('click', function () {
-      const angle = parseFloat(batchAngleInput.value) || 0;
+      const parsed = parseFloat(batchAngleInput.value);
+      const angle = Number.isFinite(parsed) ? Math.round(parsed * 10) / 10 : 0;
+      batchAngleInput.value = angle.toString();
       for (let i = 0; i < pageState.rotations.length; i++) {
         pageState.rotations[i] = angle;
       }
