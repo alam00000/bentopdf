@@ -722,8 +722,8 @@
     "convertButton": "Tekst extraheren"
   },
   "digitalSignPdf": {
-    "name": "Digitale handtekening PDF",
-    "pageTitle": "Digitale handtekening PDF - Cryptografische handtekening toevoegen | BentoPDF",
+    "name": "Digitale handtekening",
+    "pageTitle": "Digitale handtekening - Cryptografische handtekening toevoegen | BentoPDF",
     "subtitle": "Een cryptografische digitale handtekening toevoegen aan een PDF met behulp van X.509-certificaten. Ondersteunt PKCS#12 (.pfx, .p12) en PEM-formaten. Jouw privésleutel verlaat jouw browser nooit.",
     "certificateSection": "Certificaat",
     "uploadCert": "Certificaat laden (.pfx, .p12)",
@@ -733,7 +733,7 @@
     "certSubject": "Onderwerp",
     "certIssuer": "Uitgever",
     "certValidity": "Geldigheid",
-    "signatureDetails": "Signature Details (Optioneel)",
+    "signatureDetails": "Details (Optioneel)",
     "reason": "Reden",
     "reasonPlaceholder": "bijv., Ik keur dit document goed",
     "location": "Plaats",
@@ -744,12 +744,12 @@
     "successMessage": "PDF is ondertekend! De handtekening kan in elke PDF-lezer worden geverifieerd."
   },
   "validateSignaturePdf": {
-    "name": "PDF-handtekening valideren",
+    "name": "PDF-handtekening Valideren",
     "pageTitle": "PDF-handtekening valideren - Digitale handtekeningen verifiëren | BentoPDF",
     "subtitle": "Digitale handtekeningen in een PDF-bestanden verifiëren. Controleer de geldigheid van het certificaat, bekijk de gegevens van de ondertekenaar en bevestig de integriteit van het document. Alle verwerking gebeurt binnen jouw browser."
   },
   "timestampPdf": {
-    "name": "PDF tijdstempelen",
+    "name": "PDF Tijdstempelen",
     "pageTitle": "PDF tijdstempel gratis online - RFC 3161 documenttijdstempel | BentoPDF",
     "subtitle": "Voeg een RFC 3161 tijdstempel toe aan je PDF via een vertrouwde TSA-server. Bewijst dat je document op een specifiek moment bestond. Geen certificaat vereist.",
     "tsaSectionTitle": "Tijdstempelserver (TSA)",
