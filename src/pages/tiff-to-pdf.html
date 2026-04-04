@@ -179,6 +179,27 @@
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
+        <div id="tiff-options" class="hidden mt-6">
+          <div class="mb-4">
+            <label
+              for="tiff-pdf-quality"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              >PDF Quality</label
+            >
+            <select
+              id="tiff-pdf-quality"
+              class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            >
+              <option value="high">High Quality (Larger file)</option>
+              <option value="medium" selected>Medium Quality (Balanced)</option>
+              <option value="low">Low Quality (Smaller file)</option>
+            </select>
+            <p class="mt-1 text-xs text-gray-400">
+              Controls image compression when embedding into PDF
+            </p>
+          </div>
+        </div>
+
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">
           Convert to PDF
         </button>
