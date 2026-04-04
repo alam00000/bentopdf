@@ -3,11 +3,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 const {
   createConfiguredTesseractWorker,
   getPDFDocument,
+  loadPdfDocument,
   getFontForLanguage,
   parseHocrDocument,
 } = vi.hoisted(() => ({
   createConfiguredTesseractWorker: vi.fn(),
   getPDFDocument: vi.fn(),
+  loadPdfDocument: vi.fn(),
   getFontForLanguage: vi.fn(),
   parseHocrDocument: vi.fn(),
 }));
@@ -25,13 +27,17 @@ const mockPdfPage = {
 
 const mockPdfOutputPage = {
   drawImage: vi.fn(),
+  drawPage: vi.fn(),
   drawText: vi.fn(),
+  setRotation: vi.fn(),
 };
 
 const mockPdfDoc = {
   registerFontkit: vi.fn(),
   embedFont: vi.fn(async () => ({ widthOfTextAtSize: vi.fn(() => 12) })),
   addPage: vi.fn(() => mockPdfOutputPage),
+  copyPages: vi.fn(async () => [mockPdfOutputPage]),
+  embedPage: vi.fn(async () => ({ width: 200, height: 100 })),
   embedPng: vi.fn(async () => ({ id: 'png' })),
   save: vi.fn(async () => new Uint8Array([1, 2, 3])),
 };
@@ -42,6 +48,10 @@ vi.mock('../js/utils/tesseract-runtime', () => ({
 
 vi.mock('../js/utils/helpers.js', () => ({
   getPDFDocument,
+}));
+
+vi.mock('../js/utils/load-pdf-document.js', () => ({
+  loadPdfDocument,
 }));
 
 vi.mock('../js/utils/font-loader.js', () => ({
@@ -77,6 +87,7 @@ describe('performOcr', () => {
   beforeEach(() => {
     createConfiguredTesseractWorker.mockReset();
     getPDFDocument.mockReset();
+    loadPdfDocument.mockReset();
     getFontForLanguage.mockReset();
     parseHocrDocument.mockReset();
 
@@ -90,10 +101,17 @@ describe('performOcr', () => {
     mockPdfDoc.registerFontkit.mockClear();
     mockPdfDoc.embedFont.mockClear();
     mockPdfDoc.addPage.mockClear();
+    mockPdfDoc.embedPage.mockClear();
     mockPdfDoc.embedPng.mockClear();
     mockPdfDoc.save.mockClear();
 
     createConfiguredTesseractWorker.mockResolvedValue(mockWorker);
+    loadPdfDocument.mockResolvedValue({
+      getPage: vi.fn(() => ({
+        width: 200,
+        height: 100,
+      })),
+    });
     getPDFDocument.mockReturnValue({
       promise: Promise.resolve({
         numPages: 1,

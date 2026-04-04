@@ -9,6 +9,7 @@ import {
   calculateSpaceTransform,
 } from './hocr-transform.js';
 import { getPDFDocument } from './helpers.js';
+import { loadPdfDocument } from './load-pdf-document.js';
 import { createConfiguredTesseractWorker } from './tesseract-runtime.js';
 
 export interface OcrOptions {
@@ -161,6 +162,7 @@ export async function performOcr(
     });
   }
 
+  const sourcePdfDoc = await loadPdfDocument(pdfBytes);
   const pdf = await getPDFDocument({ data: pdfBytes }).promise;
   const newPdfDoc = await PDFDocument.create();
 
@@ -255,44 +257,16 @@ export async function performOcr(
       );
       const data = result.data;
 
-      const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
-
-      const pngImageBytes = await new Promise<Uint8Array>(function (
-        resolve,
-        reject
-      ) {
-        canvas.toBlob(function (blob) {
-          if (!blob) {
-            reject(new Error('Failed to create image blob'));
-            return;
-          }
-          const reader = new FileReader();
-          reader.onload = function () {
-            resolve(new Uint8Array(reader.result as ArrayBuffer));
-          };
-          reader.onerror = function () {
-            reject(new Error('Failed to read image data'));
-          };
-          reader.readAsArrayBuffer(blob);
-        }, 'image/png');
-      });
-
-      // Release canvas memory
       canvas.width = 0;
       canvas.height = 0;
 
-      const pngImage = await newPdfDoc.embedPng(pngImageBytes);
-      newPage.drawImage(pngImage, {
-        x: 0,
-        y: 0,
-        width: viewport.width,
-        height: viewport.height,
-      });
+      const [copiedPage] = await newPdfDoc.copyPages(sourcePdfDoc, [i - 1]);
+      newPdfDoc.addPage(copiedPage);
 
       if (data.hocr) {
         const ocrPage = parseHocrDocument(data.hocr);
         drawOcrTextLayer(
-          newPage,
+          copiedPage,
           ocrPage,
           viewport.height,
           primaryFont,
