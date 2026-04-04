@@ -64,7 +64,7 @@ RUN --mount=type=secret,id=VITE_CORS_PROXY_URL \
     npm run build:with-docs
 
 # Production stage — uses standard nginx (starts as root, drops to PUID/PGID)
-FROM nginx:1.28.3-alpine-slim
+FROM nginx:alpine-slim
 
 LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
 LABEL org.opencontainers.image.url="https://github.com/alam00000/bentopdf"
