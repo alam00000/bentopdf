@@ -489,12 +489,26 @@ export async function fixPageSize(
     const { width: sourceWidth, height: sourceHeight } = sourcePage.getSize();
     const embeddedPage = await outputDoc.embedPage(sourcePage);
 
-    const outputPage = outputDoc.addPage([targetWidth, targetHeight]);
+    let pageTargetWidth = targetWidth;
+    let pageTargetHeight = targetHeight;
+
+    if (orientation === 'auto') {
+      const isSourceLandscape = sourceWidth > sourceHeight;
+      const isTargetLandscape = pageTargetWidth > pageTargetHeight;
+      if (isSourceLandscape !== isTargetLandscape) {
+        [pageTargetWidth, pageTargetHeight] = [
+          pageTargetHeight,
+          pageTargetWidth,
+        ];
+      }
+    }
+
+    const outputPage = outputDoc.addPage([pageTargetWidth, pageTargetHeight]);
     outputPage.drawRectangle({
       x: 0,
       y: 0,
-      width: targetWidth,
-      height: targetHeight,
+      width: pageTargetWidth,
+      height: pageTargetHeight,
       color: rgb(
         options.backgroundColor.r,
         options.backgroundColor.g,
@@ -502,16 +516,16 @@ export async function fixPageSize(
       ),
     });
 
-    const scaleX = targetWidth / sourceWidth;
-    const scaleY = targetHeight / sourceHeight;
+    const scaleX = pageTargetWidth / sourceWidth;
+    const scaleY = pageTargetHeight / sourceHeight;
     const useFill = options.scalingMode.toLowerCase() === 'fill';
     const scale = useFill ? Math.max(scaleX, scaleY) : Math.min(scaleX, scaleY);
 
     const scaledWidth = sourceWidth * scale;
     const scaledHeight = sourceHeight * scale;
 
-    const x = (targetWidth - scaledWidth) / 2;
-    const y = (targetHeight - scaledHeight) / 2;
+    const x = (pageTargetWidth - scaledWidth) / 2;
+    const y = (pageTargetHeight - scaledHeight) / 2;
 
     outputPage.drawPage(embeddedPage, {
       x,
