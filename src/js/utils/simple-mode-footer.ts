@@ -1,4 +1,3 @@
-import { APP_VERSION } from '../../version.js';
 import { createLanguageSwitcher } from '../i18n/language-switcher.js';
 
 // Handle simple mode adjustments for tool pages
@@ -19,11 +18,6 @@ if (__SIMPLE_MODE__) {
       }
     }
   });
-
-  const versionElement = document.getElementById('app-version-simple');
-  if (versionElement) {
-    versionElement.textContent = APP_VERSION;
-  }
 
   const langContainer = document.getElementById('simple-mode-lang-switcher');
   if (langContainer) {
