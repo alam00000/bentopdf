@@ -98,11 +98,9 @@ function main() {
   console.log(`🎉 Release v${newVersion} complete!`);
   console.log(`📦 Docker image: bentopdfteam/bentopdf:${newVersion}`);
   console.log(`📦 Distribution: dist-${newVersion}.zip`);
+  console.log(`📦 Distribution (simple): dist-simple-${newVersion}.zip`);
   console.log(
     `🏷️  GitHub release: https://github.com/alam00000/bentopdf/releases/tag/${tagName}`
-  );
-  console.log(
-    `💡 Download dist-${newVersion}.zip from the release page for self-hosting.`
   );
 }
 
