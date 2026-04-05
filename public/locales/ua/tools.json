@@ -1,0 +1,862 @@
+{
+  "categories": {
+    "popularTools": "Популярні інструменти",
+    "editAnnotate": "Редагування та анотації",
+    "convertToPdf": "Конвертація у PDF",
+    "convertFromPdf": "Конвертація з PDF",
+    "organizeManage": "Організація та керування",
+    "optimizeRepair": "Оптимізація та відновлення",
+    "securePdf": "Захист PDF"
+  },
+  "pdfMultiTool": {
+    "name": "PDF мультиінструмент",
+    "subtitle": "Об’єднання, розділення, впорядкування, видалення, обертання, додавання порожніх сторінок, витяг та дублювання — все в одному інтерфейсі."
+  },
+  "mergePdf": {
+    "name": "Об’єднати PDF",
+    "subtitle": "Об’єднати кілька PDF у один файл. Закладки зберігаються."
+  },
+  "splitPdf": {
+    "name": "Розділити PDF",
+    "subtitle": "Витягнути діапазон сторінок у новий PDF."
+  },
+  "compressPdf": {
+    "name": "Стиснення PDF",
+    "subtitle": "Зменшити розмір PDF-файлу.",
+    "algorithmLabel": "Алгоритм стиснення",
+    "condense": "Condense (Рекомендовано)",
+    "photon": "Photon (Для PDF із великою кількістю зображень)",
+    "condenseInfo": "Condense використовує розширене стиснення: видаляє зайві дані, оптимізує зображення та шрифти. Найкращий варіант для більшості PDF.",
+    "photonInfo": "Photon перетворює сторінки на зображення. Використовуйте для сканованих PDF або документів із великою кількістю фото.",
+    "photonWarning": "Увага: текст стане недоступним для виділення, а посилання перестануть працювати.",
+    "levelLabel": "Рівень стиснення",
+    "light": "Легке (Збереження якості)",
+    "balanced": "Збалансоване (Рекомендовано)",
+    "aggressive": "Агресивне (Менший розмір)",
+    "extreme": "Максимальне (Найсильніше стиснення)",
+    "grayscale": "Перетворити у відтінки сірого",
+    "grayscaleHint": "Зменшує розмір файлу шляхом видалення кольорової інформації",
+    "customSettings": "Користувацькі налаштування",
+    "customSettingsHint": "Тонке налаштування параметрів стиснення:",
+    "outputQuality": "Якість виходу",
+    "resizeImagesTo": "Змінити розмір зображень до",
+    "onlyProcessAbove": "Обробляти лише файли більше ніж",
+    "removeMetadata": "Видалити метадані",
+    "subsetFonts": "Оптимізувати шрифти (видалити невикористані символи)",
+    "removeThumbnails": "Видалити вбудовані мініатюри",
+    "compressButton": "Стиснути PDF"
+  },
+  "pdfEditor": {
+    "name": "Редактор PDF",
+    "subtitle": "Додавати анотації, виділяти, редагувати, коментувати, додавати фігури/зображення, шукати та переглядати PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG у PDF",
+    "subtitle": "Створити PDF із зображень JPG, JPEG та JPEG2000 (JP2/JPX)."
+  },
+  "signPdf": {
+    "name": "Підписати PDF",
+    "subtitle": "Намалювати, ввести або завантажити свій підпис."
+  },
+  "cropPdf": {
+    "name": "Обрізати PDF",
+    "subtitle": "Обрізати поля кожної сторінки у PDF."
+  },
+  "extractPages": {
+    "name": "Витяг сторінок",
+    "subtitle": "Зберегти вибрані сторінки як нові файли."
+  },
+  "duplicateOrganize": {
+    "name": "Дублювати та впорядкувати",
+    "subtitle": "Дублювати, змінювати порядок і видаляти сторінки."
+  },
+  "deletePages": {
+    "name": "Видалити сторінки",
+    "subtitle": "Видалити вибрані сторінки з документа."
+  },
+  "editBookmarks": {
+    "name": "Редагувати закладки",
+    "subtitle": "Додавати, змінювати, імпортувати, видаляти та витягувати закладки PDF."
+  },
+  "tableOfContents": {
+    "name": "Зміст",
+    "subtitle": "Створити сторінку змісту на основі закладок PDF."
+  },
+  "pageNumbers": {
+    "name": "Нумерація сторінок",
+    "subtitle": "Додати номери сторінок у документ."
+  },
+  "addPageLabels": {
+    "name": "Додати нумерацію сторінок",
+    "subtitle": "Застосувати мітки сторінок PDF із римськими цифрами, префіксами та власними початковими значеннями.",
+    "uploadHint": "PDF-файл",
+    "howLabelsWorkTitle": "Як працюють мітки",
+    "howLabelsWorkStep1": "Залиште «Діапазон сторінок» порожнім, щоб застосувати до всіх сторінок.",
+    "howLabelsWorkStep2": "Використовуйте стилі, наприклад римські цифри для вступної частини та звичайну нумерацію для основного тексту.",
+    "howLabelsWorkStep3": "Використовуйте префікс із початковим значенням 0, щоб отримати мітки на кшталт A-0, A-1, A-2.",
+    "howLabelsWorkStep4": "Увімкніть продовження нумерації, якщо правило має розриви, наприклад 1-9,30-40 або odd.",
+    "labelRulesTitle": "Правила нумерації",
+    "addRule": "Додати правило",
+    "removeExistingLabels": "Видалити існуючі мітки сторінок перед застосуванням нових правил",
+    "cpdfNote": "Цей інструмент використовує CoherentPDF у браузері. Якщо CoherentPDF не налаштований, з’явиться запит на налаштування у WASM Settings.",
+    "processButton": "Додати мітки сторінок",
+    "howItWorksUploadTitle": "Завантаження файлу",
+    "howItWorksUploadDescription": "Оберіть PDF, для якого потрібно змінити нумерацію.",
+    "howItWorksDefineTitle": "Налаштування правил",
+    "howItWorksDefineDescription": "Створіть одне або кілька правил нумерації з діапазонами, стилями, префіксами та початковими значеннями.",
+    "howItWorksDownloadTitle": "Завантаження",
+    "howItWorksDownloadDescription": "Збережіть оновлений PDF із новими мітками сторінок.",
+    "relatedToolsTitle": "Схожі інструменти PDF",
+    "faqWhatIsQuestion": "Що таке мітка сторінки?",
+    "faqWhatIsAnswer": "Мітка сторінки — це нумерація, яка відображається у переглядачі PDF (мініатюри, навігація, друк). Вона не додає текст безпосередньо на сторінку.",
+    "faqMixQuestion": "Чи можна поєднувати римські та звичайні цифри?",
+    "faqMixAnswer": "Так. Додайте кілька правил, наприклад 1-4 з LowercaseRoman і 5-20 з DecimalArabic.",
+    "faqPrivacyQuestion": "Чи залишаються мої файли приватними?",
+    "faqPrivacyAnswer": "Так. Обробка відбувається у вашому браузері через CoherentPDF WASM. Файл не покидає ваш пристрій.",
+    "invalidFileTitle": "Невірний файл",
+    "invalidFileMessage": "Будь ласка, завантажте коректний PDF-файл.",
+    "loadingPdf": "Завантаження PDF...",
+    "protectedPdfTitle": "Захищений PDF",
+    "protectedPdfMessage": "Цей PDF захищений паролем. Спочатку скористайтесь інструментом розблокування або зміни прав доступу.",
+    "loadErrorMessage": "Не вдалося завантажити PDF. Можливо, файл пошкоджений або захищений.",
+    "fileMeta": "{{size}} • {{count}} сторінок",
+    "ruleTitle": "Правило {{number}}",
+    "pageRangeLabel": "Діапазон сторінок",
+    "pageRangePlaceholder": "Усі сторінки або, наприклад, 1-4, 7, odd",
+    "labelStyleLabel": "Стиль нумерації",
+    "labelPrefixLabel": "Префікс",
+    "labelPrefixPlaceholder": "Необов’язково, наприклад A-",
+    "startValueLabel": "Початкове значення",
+    "continueNumbering": "Продовжувати нумерацію між розірваними діапазонами",
+    "examplesNote": "Приклади: 1-4 для римської нумерації вступу, 15-20 з префіксом A- і стартом 0, або odd з увімкненим продовженням.",
+    "uploadFirstMessage": "Спочатку завантажте PDF-файл.",
+    "applyingLabels": "Застосування міток сторінок...",
+    "invalidRangeMessage": "Правило {{number}} має некоректний діапазон: {{range}}",
+    "allPages": "усі сторінки",
+    "emptyOutputMessage": "CoherentPDF створив порожній файл.",
+    "successMessage": "Мітки сторінок успішно додано!",
+    "processErrorMessage": "Не вдалося додати мітки сторінок.",
+    "styleOptions": {
+      "DecimalArabic": "Арабські цифри",
+      "LowercaseRoman": "Римські (малі)",
+      "UppercaseRoman": "Римські (великі)",
+      "LowercaseLetters": "Літери (малі)",
+      "UppercaseLetters": "Літери (великі)",
+      "NoLabelPrefixOnly": "Тільки префікс (без нумерації)"
+    }
+  },
+  "batesNumbering": {
+    "name": "Нумерація Bates",
+    "subtitle": "Додати послідовну нумерацію Bates до одного або кількох PDF-файлів."
+  },
+  "addWatermark": {
+    "name": "Додати водяний знак",
+    "subtitle": "Накласти текст або зображення поверх сторінок PDF.",
+    "applyToAllPages": "Застосувати до всіх сторінок"
+  },
+  "headerFooter": {
+    "name": "Колонтитули",
+    "subtitle": "Додати текст у верхній та нижній частині сторінок."
+  },
+  "invertColors": {
+    "name": "Інвертувати кольори",
+    "subtitle": "Створити «темний режим» для PDF."
+  },
+  "scannerEffect": {
+    "name": "Ефект сканера",
+    "subtitle": "Зробити PDF схожим на сканований документ.",
+    "scanSettings": "Налаштування сканування",
+    "colorspace": "Колірний простір",
+    "gray": "Сірий",
+    "border": "Рамка",
+    "rotate": "Обертання",
+    "rotateVariance": "Варіація обертання",
+    "brightness": "Яскравість",
+    "contrast": "Контраст",
+    "blur": "Розмиття",
+    "noise": "Шум",
+    "yellowish": "Жовтуватий відтінок",
+    "resolution": "Роздільна здатність",
+    "processButton": "Застосувати ефект сканера"
+  },
+  "adjustColors": {
+    "name": "Корекція кольору",
+    "subtitle": "Тонке налаштування яскравості, контрасту, насиченості та інших параметрів у PDF.",
+    "colorSettings": "Налаштування кольору",
+    "brightness": "Яскравість",
+    "contrast": "Контраст",
+    "saturation": "Насиченість",
+    "hueShift": "Зсув відтінку",
+    "temperature": "Температура",
+    "tint": "Тон",
+    "gamma": "Гамма",
+    "sepia": "Сепія",
+    "processButton": "Застосувати корекцію кольору"
+  },
+  "backgroundColor": {
+    "name": "Колір фону",
+    "subtitle": "Змінити колір фону PDF."
+  },
+  "changeTextColor": {
+    "name": "Змінити колір тексту",
+    "subtitle": "Змінити колір тексту у PDF."
+  },
+  "addStamps": {
+    "name": "Додати штампи",
+    "subtitle": "Додати графічні штампи до PDF через панель анотацій.",
+    "usernameLabel": "Ім’я для штампу",
+    "usernamePlaceholder": "Введіть ваше ім’я (для штампів)",
+    "usernameHint": "Це ім’я буде відображатися на створених штампах."
+  },
+  "removeAnnotations": {
+    "name": "Видалити анотації",
+    "subtitle": "Видалити коментарі, виділення та посилання."
+  },
+  "pdfFormFiller": {
+    "name": "Заповнення PDF-форм",
+    "subtitle": "Заповнювати форми прямо в браузері. Підтримуються також XFA-форми."
+  },
+  "createPdfForm": {
+    "name": "Створити PDF-форму",
+    "subtitle": "Створювати заповнювані PDF-форми за допомогою drag-and-drop полів."
+  },
+  "removeBlankPages": {
+    "name": "Видалити порожні сторінки",
+    "subtitle": "Автоматично визначати та видаляти порожні сторінки.",
+    "sensitivityHint": "Вище значення — суворіше визначення (лише повністю порожні сторінки). Нижче — допускаються сторінки з невеликим вмістом."
+  },
+  "imageToPdf": {
+    "name": "Зображення у PDF",
+    "subtitle": "Конвертувати JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP у PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG у PDF",
+    "subtitle": "Створити PDF із одного або кількох PNG-зображень."
+  },
+  "webpToPdf": {
+    "name": "WebP у PDF",
+    "subtitle": "Створити PDF із одного або кількох WebP-зображень."
+  },
+  "svgToPdf": {
+    "name": "SVG у PDF",
+    "subtitle": "Створити PDF із одного або кількох SVG-зображень."
+  },
+  "bmpToPdf": {
+    "name": "BMP у PDF",
+    "subtitle": "Створити PDF із одного або кількох BMP-зображень."
+  },
+  "heicToPdf": {
+    "name": "HEIC у PDF",
+    "subtitle": "Створити PDF із одного або кількох HEIC-зображень."
+  },
+  "tiffToPdf": {
+    "name": "TIFF у PDF",
+    "subtitle": "Створити PDF із одного або кількох TIFF-зображень."
+  },
+  "textToPdf": {
+    "name": "Текст у PDF",
+    "subtitle": "Конвертувати текстовий файл у PDF."
+  },
+  "jsonToPdf": {
+    "name": "JSON у PDF",
+    "subtitle": "Конвертувати JSON-файли у формат PDF."
+  },
+  "pdfToJpg": {
+    "name": "PDF у JPG",
+    "subtitle": "Конвертувати кожну сторінку PDF у зображення JPG.",
+    "imageQuality": "Якість зображення",
+    "imageQualityExplanation": "Вища якість = більший розмір файлу",
+    "alert": {
+      "invalidFile": "Невірний файл",
+      "invalidFileExplanation": "Будь ласка, завантажте PDF-файл.",
+      "noFile": "Файл відсутній",
+      "noFileExplanation": "Спочатку завантажте PDF-файл.",
+      "conversionSuccess": "PDF успішно конвертовано у JPG!",
+      "conversionError": "Не вдалося конвертувати PDF у JPG. Можливо, файл пошкоджений."
+    },
+    "loader": {
+      "converting": "Конвертація у JPG..."
+    }
+  },
+  "pdfToPng": {
+    "name": "PDF у PNG",
+    "subtitle": "Конвертувати кожну сторінку PDF у зображення PNG.",
+    "imageScale": "Масштаб зображення",
+    "imageScaleExplanation": "Більший масштаб = краща якість, але більший розмір файлу",
+    "alert": {
+      "invalidFile": "Невірний файл",
+      "invalidFileExplanation": "Будь ласка, завантажте PDF-файл.",
+      "noFile": "Файл відсутній",
+      "noFileExplanation": "Спочатку завантажте PDF-файл.",
+      "conversionSuccess": "PDF успішно конвертовано у PNG!",
+      "conversionError": "Не вдалося конвертувати PDF у PNG. Можливо, файл пошкоджений."
+    },
+    "loader": {
+      "converting": "Конвертація у PNG..."
+    }
+  },
+  "pdfToWebp": {
+    "name": "PDF у WebP",
+    "subtitle": "Конвертувати кожну сторінку PDF у зображення WebP.",
+    "imageQuality": "Якість зображення",
+    "imageQualityExplanation": "Вища якість = більший розмір файлу",
+    "alert": {
+      "invalidFile": "Невірний файл",
+      "invalidFileExplanation": "Будь ласка, завантажте PDF-файл.",
+      "noFile": "Файл відсутній",
+      "noFileExplanation": "Спочатку завантажте PDF-файл.",
+      "conversionSuccess": "PDF успішно конвертовано у WebP!",
+      "conversionError": "Не вдалося конвертувати PDF у WebP. Можливо, файл пошкоджений."
+    },
+    "loader": {
+      "converting": "Конвертація у WebP..."
+    }
+  },
+  "pdfToBmp": {
+    "name": "PDF у BMP",
+    "subtitle": "Конвертувати кожну сторінку PDF у зображення BMP.",
+    "alert": {
+      "invalidFile": "Невірний файл",
+      "invalidFileExplanation": "Будь ласка, завантажте PDF-файл.",
+      "noFile": "Файл відсутній",
+      "noFileExplanation": "Спочатку завантажте PDF-файл.",
+      "conversionSuccess": "PDF успішно конвертовано у BMP!",
+      "conversionError": "Не вдалося конвертувати PDF у BMP. Можливо, файл пошкоджений."
+    },
+    "loader": {
+      "converting": "Конвертація у BMP..."
+    }
+  },
+  "pdfToTiff": {
+    "name": "PDF у TIFF",
+    "subtitle": "Конвертувати кожну сторінку PDF у зображення TIFF.",
+    "dpi": "DPI (роздільна здатність)",
+    "dpiExplanation": "Вищий DPI = краща якість для друку, але більший розмір файлу",
+    "compression": "Стиснення",
+    "compressionExplanation": "LZW і Deflate — без втрат. CCITT Group 4 — найкращий для чорно-білих сканованих документів.",
+    "colorMode": "Колірний режим",
+    "multiPage": "Зберегти як багатосторінковий TIFF (один файл)",
+    "loadingVips": "Завантаження обробника зображень...",
+    "converting": "Конвертація у TIFF...",
+    "alert": {
+      "invalidFile": "Невірний файл",
+      "invalidFileExplanation": "Будь ласка, завантажте PDF-файл.",
+      "noFile": "Файл відсутній",
+      "noFileExplanation": "Спочатку завантажте PDF-файл.",
+      "conversionSuccess": "PDF успішно конвертовано у TIFF!",
+      "conversionError": "Не вдалося конвертувати PDF у TIFF. Можливо, файл пошкоджений."
+    }
+  },
+  "pdfToCbz": {
+    "name": "PDF у CBZ",
+    "subtitle": "Конвертувати PDF у файл CBZ (архів коміксів) для читання у відповідних програмах.",
+    "imageFormat": "Формат зображення",
+    "quality": "Якість зображення",
+    "qualityExplanation": "Вища якість = більший розмір файлу",
+    "scale": "Масштаб",
+    "scaleExplanation": "Більший масштаб = краща якість для екранів з високою роздільною здатністю",
+    "grayscale": "Перетворити у відтінки сірого",
+    "manga": "Режим манґи (справа наліво)",
+    "includeMetadata": "Додати метадані ComicInfo.xml",
+    "titleLabel": "Назва",
+    "seriesLabel": "Серія",
+    "authorLabel": "Автор(и)",
+    "numberLabel": "№",
+    "volumeLabel": "Том",
+    "publisherLabel": "Видавець",
+    "tagsLabel": "Теги / Жанр",
+    "yearLabel": "Рік видання",
+    "ratingLabel": "Оцінка (0-5)",
+    "converting": "Конвертація у CBZ...",
+    "alert": {
+      "invalidFile": "Невірний файл",
+      "invalidFileExplanation": "Будь ласка, завантажте PDF-файл.",
+      "noFile": "Файл відсутній",
+      "noFileExplanation": "Спочатку завантажте PDF-файл.",
+      "conversionSuccess": "PDF успішно конвертовано у CBZ!",
+      "conversionError": "Не вдалося конвертувати PDF у CBZ. Можливо, файл пошкоджений."
+    }
+  },
+  "pdfToGreyscale": {
+    "name": "PDF у відтінки сірого",
+    "subtitle": "Перетворити всі кольори у чорно-білий формат."
+  },
+  "pdfToJson": {
+    "name": "PDF у JSON",
+    "subtitle": "Конвертувати PDF-файли у формат JSON."
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Зробити PDF доступним для пошуку та копіювання тексту."
+  },
+  "alternateMix": {
+    "name": "Чергування та змішування сторінок",
+    "subtitle": "Об’єднати PDF, чергуючи сторінки з кожного файлу. Закладки зберігаються."
+  },
+  "addAttachments": {
+    "name": "Додати вкладення",
+    "subtitle": "Вбудувати один або кілька файлів у PDF."
+  },
+  "extractAttachments": {
+    "name": "Витяг вкладень",
+    "subtitle": "Витягнути всі вкладені файли з PDF у ZIP-архів."
+  },
+  "editAttachments": {
+    "name": "Редагувати вкладення",
+    "subtitle": "Переглядати або видаляти вкладення у PDF."
+  },
+  "dividePages": {
+    "name": "Розділити сторінки",
+    "subtitle": "Розділити сторінки горизонтально або вертикально."
+  },
+  "addBlankPage": {
+    "name": "Додати порожню сторінку",
+    "subtitle": "Вставити порожню сторінку в будь-яке місце PDF."
+  },
+  "reversePages": {
+    "name": "Зворотний порядок сторінок",
+    "subtitle": "Змінити порядок усіх сторінок на зворотний."
+  },
+  "rotatePdf": {
+    "name": "Повернути PDF",
+    "subtitle": "Повернути сторінки на 90 градусів."
+  },
+  "rotateCustom": {
+    "name": "Повернути на довільний кут",
+    "subtitle": "Повернути сторінки на будь-який кут."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "Розмістити кілька сторінок на одному аркуші."
+  },
+  "combineToSinglePage": {
+    "name": "Об’єднати в одну сторінку",
+    "subtitle": "Зшити всі сторінки в один безперервний документ."
+  },
+  "viewMetadata": {
+    "name": "Перегляд метаданих",
+    "subtitle": "Переглянути приховані властивості PDF."
+  },
+  "editMetadata": {
+    "name": "Редагувати метадані",
+    "subtitle": "Змінити автора, назву та інші властивості."
+  },
+  "pdfsToZip": {
+    "name": "PDF у ZIP",
+    "subtitle": "Запакувати кілька PDF-файлів у ZIP-архів."
+  },
+  "comparePdfs": {
+    "name": "Порівняти PDF",
+    "subtitle": "Порівняти два PDF поруч.",
+    "firstPdf": "Перший PDF",
+    "secondPdf": "Другий PDF",
+    "clickOrDrop": "Натисніть або перетягніть",
+    "page": "Сторінка",
+    "overlay": "Накладання",
+    "sideBySide": "Поруч",
+    "flicker": "Миготіння",
+    "syncScroll": "Синхронізація прокрутки",
+    "export": "Експортувати",
+    "exportAsPdf": "Експортувати у PDF",
+    "splitView": "Розділений перегляд",
+    "alternating": "Чергування",
+    "leftDocument": "Лівий документ",
+    "rightDocument": "Правий документ",
+    "original": "Оригінал",
+    "modified": "Змінений",
+    "searchChanges": "Пошук змін...",
+    "deleted": "Видалено",
+    "added": "Додано",
+    "prevPage": "Попередня сторінка",
+    "nextPage": "Наступна сторінка",
+    "prevChange": "Попередня зміна",
+    "nextChange": "Наступна зміна",
+    "uploadTwoPdfs": "Завантажте два PDF для порівняння.",
+    "noDifferences": "На цій сторінці відмінностей не знайдено.",
+    "noMatchingChanges": "Немає змін, що відповідають фільтру.",
+    "pageNotExist": "Сторінка {{page}} не існує у цьому PDF.",
+    "noPairedPage": "Немає відповідної сторінки для цього боку.",
+    "buildingModel": "Формування моделі відповідності сторінок...",
+    "indexingPdf": "Індексація PDF {{num}}, сторінка {{page}} з {{total}}...",
+    "loadingComparison": "Завантаження порівняння {{current}} з {{total}}...",
+    "runningOcr": "Виконання OCR для сторінки {{page}}...",
+    "preparingExport": "Підготовка експорту PDF...",
+    "renderingPage": "Рендеринг сторінки {{current}} з {{total}}...",
+    "exportError": "Помилка експорту",
+    "exportFailed": "Не вдалося експортувати PDF порівняння.",
+    "loadingFile": "Завантаження {{name}}...",
+    "invalidFile": "Невірний файл",
+    "invalidFileMsg": "Будь ласка, виберіть коректний PDF-файл.",
+    "loadError": "Не вдалося завантажити PDF. Можливо, файл пошкоджений або захищений."
+  },
+  "posterizePdf": {
+    "name": "Постеризація PDF",
+    "subtitle": "Розділити велику сторінку на кілька менших."
+  },
+  "fixPageSize": {
+    "name": "Вирівняти розмір сторінок",
+    "subtitle": "Привести всі сторінки до єдиного розміру."
+  },
+  "linearizePdf": {
+    "name": "Лінеаризація PDF",
+    "subtitle": "Оптимізувати PDF для швидкого перегляду в браузері."
+  },
+  "pageDimensions": {
+    "name": "Розміри сторінок",
+    "subtitle": "Аналіз розміру, орієнтації та одиниць виміру сторінок."
+  },
+  "removeRestrictions": {
+    "name": "Зняти обмеження",
+    "subtitle": "Видалити пароль та обмеження доступу, пов’язані з підписаними PDF."
+  },
+  "repairPdf": {
+    "name": "Відновити PDF",
+    "subtitle": "Відновити дані з пошкоджених PDF-файлів."
+  },
+  "encryptPdf": {
+    "name": "Зашифрувати PDF",
+    "subtitle": "Захистити PDF паролем."
+  },
+  "sanitizePdf": {
+    "name": "Очистити PDF",
+    "subtitle": "Видалити метадані, анотації, скрипти та інше."
+  },
+  "decryptPdf": {
+    "name": "Розблокувати PDF",
+    "subtitle": "Видалити пароль і зняти захист PDF."
+  },
+  "flattenPdf": {
+    "name": "Сплющити PDF",
+    "subtitle": "Зробити поля форм і анотації нередагованими."
+  },
+  "removeMetadata": {
+    "name": "Видалити метадані",
+    "subtitle": "Видалити приховану інформацію з PDF."
+  },
+  "changePermissions": {
+    "name": "Змінити дозволи",
+    "subtitle": "Налаштувати або змінити права доступу до PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT у PDF",
+    "subtitle": "Конвертувати текстові файли OpenDocument (ODT) у PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли ODT",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV у PDF",
+    "subtitle": "Конвертувати CSV-файли у PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли CSV",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF у PDF",
+    "subtitle": "Конвертувати документи Rich Text Format у PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли RTF",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "wordToPdf": {
+    "name": "Word у PDF",
+    "subtitle": "Конвертувати документи Word (DOCX, DOC, ODT, RTF) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли DOCX, DOC, ODT, RTF",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel у PDF",
+    "subtitle": "Конвертувати електронні таблиці Excel (XLSX, XLS, ODS, CSV) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли XLSX, XLS, ODS, CSV",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint у PDF",
+    "subtitle": "Конвертувати презентації PowerPoint (PPTX, PPT, ODP) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли PPTX, PPT, ODP",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown у PDF",
+    "subtitle": "Напишіть або вставте Markdown і експортуйте його у красиво оформлений PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Попередній перегляд",
+    "btnUpload": "Завантажити",
+    "btnSyncScroll": "Синхронізувати прокрутку",
+    "btnSettings": "Налаштування",
+    "btnExportPdf": "Експортувати у PDF",
+    "settingsTitle": "Налаштування Markdown",
+    "settingsPreset": "Пресет",
+    "presetDefault": "За замовчуванням (як GFM)",
+    "presetCommonmark": "CommonMark (строгий режим)",
+    "presetZero": "Мінімальний (без додаткових можливостей)",
+    "settingsOptions": "Параметри Markdown",
+    "optAllowHtml": "Дозволити HTML-теги",
+    "optBreaks": "Перетворювати нові рядки на <br>",
+    "optLinkify": "Автоматично перетворювати URL на посилання",
+    "optTypographer": "Типографіка (розумні лапки тощо)"
+  },
+  "pdfBooklet": {
+    "name": "PDF-буклет",
+    "subtitle": "Переставити сторінки для двостороннього друку буклету. Складіть і скріпіть, щоб отримати буклет.",
+    "howItWorks": "Як це працює:",
+    "step1": "Завантажте PDF-файл.",
+    "step2": "Сторінки будуть впорядковані у форматі буклету.",
+    "step3": "Друкуйте з двох сторін, перевертайте по короткому краю, складіть і скріпіть.",
+    "paperSize": "Розмір паперу",
+    "orientation": "Орієнтація",
+    "portrait": "Книжкова",
+    "landscape": "Альбомна",
+    "pagesPerSheet": "Сторінок на аркуші",
+    "createBooklet": "Створити буклет",
+    "processing": "Обробка...",
+    "pageCount": "Кількість сторінок буде доповнено до кратності 4 за потреби."
+  },
+  "xpsToPdf": {
+    "name": "XPS у PDF",
+    "subtitle": "Конвертувати документи XPS/OXPS у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли XPS, OXPS",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI у PDF",
+    "subtitle": "Конвертувати електронні книги MOBI у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли MOBI",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB у PDF",
+    "subtitle": "Конвертувати електронні книги EPUB у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли EPUB",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 у PDF",
+    "subtitle": "Конвертувати електронні книги FictionBook (FB2) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли FB2",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ у PDF",
+    "subtitle": "Конвертувати архіви коміксів (CBZ/CBR) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли CBZ, CBR",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD у PDF",
+    "subtitle": "Конвертувати документи WordPerfect (WPD) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли WPD",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS у PDF",
+    "subtitle": "Конвертувати документи WPS Office у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли WPS",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML у PDF",
+    "subtitle": "Конвертувати документи XML у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли XML",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages у PDF",
+    "subtitle": "Конвертувати документи Apple Pages у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли Pages",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG у PDF",
+    "subtitle": "Конвертувати графічні файли OpenDocument (ODG) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли ODG",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS у PDF",
+    "subtitle": "Конвертувати електронні таблиці OpenDocument (ODS) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли ODS",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP у PDF",
+    "subtitle": "Конвертувати презентації OpenDocument (ODP) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли ODP",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB у PDF",
+    "subtitle": "Конвертувати файли Microsoft Publisher (PUB) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли PUB",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD у PDF",
+    "subtitle": "Конвертувати файли Microsoft Visio (VSD, VSDX) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли VSD, VSDX",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD у PDF",
+    "subtitle": "Конвертувати файли Adobe Photoshop (PSD) у формат PDF. Підтримується обробка кількох файлів.",
+    "acceptedFormats": "Файли PSD",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF у SVG",
+    "subtitle": "Конвертувати кожну сторінку PDF у векторне зображення (SVG) із ідеальною якістю при будь-якому масштабі."
+  },
+  "extractTables": {
+    "name": "Витяг таблиць з PDF",
+    "subtitle": "Витягувати таблиці з PDF та експортувати у CSV, JSON або Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF у CSV",
+    "subtitle": "Витягувати таблиці з PDF та конвертувати у формат CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF у Excel",
+    "subtitle": "Витягувати таблиці з PDF та конвертувати у формат Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF у текст",
+    "subtitle": "Витягувати текст із PDF та зберігати як звичайний текст (.txt). Підтримується обробка кількох файлів.",
+    "note": "Цей інструмент працює ТІЛЬКИ з PDF, створеними у цифровому вигляді. Для сканованих документів використовуйте OCR PDF.",
+    "convertButton": "Витягти текст"
+  },
+  "digitalSignPdf": {
+    "name": "Цифровий підпис PDF",
+    "pageTitle": "Цифровий підпис PDF — Додати криптографічний підпис | BentoPDF",
+    "subtitle": "Додайте криптографічний цифровий підпис до PDF за допомогою сертифікатів X.509. Підтримуються формати PKCS#12 (.pfx, .p12) та PEM. Ваш приватний ключ не покидає браузер.",
+    "certificateSection": "Сертифікат",
+    "uploadCert": "Завантажити сертифікат (.pfx, .p12)",
+    "certPassword": "Пароль сертифіката",
+    "certPasswordPlaceholder": "Введіть пароль сертифіката",
+    "certInfo": "Інформація про сертифікат",
+    "certSubject": "Власник",
+    "certIssuer": "Видавець",
+    "certValidity": "Термін дії",
+    "signatureDetails": "Деталі підпису (необов’язково)",
+    "reason": "Причина",
+    "reasonPlaceholder": "наприклад: Я погоджую цей документ",
+    "location": "Місце",
+    "locationPlaceholder": "наприклад: Київ, Україна",
+    "contactInfo": "Контактна інформація",
+    "contactPlaceholder": "наприклад: email@example.com",
+    "applySignature": "Застосувати цифровий підпис",
+    "successMessage": "PDF успішно підписано! Підпис можна перевірити у будь-якому PDF-переглядачі."
+  },
+  "validateSignaturePdf": {
+    "name": "Перевірка підпису PDF",
+    "pageTitle": "Перевірка підпису PDF — Перевірити цифрові підписи | BentoPDF",
+    "subtitle": "Перевіряйте цифрові підписи у PDF-файлах. Перевірка дійсності сертифіката, перегляд даних підписанта та підтвердження цілісності документа. Уся обробка відбувається у вашому браузері."
+  },
+  "timestampPdf": {
+    "name": "Мітка часу PDF",
+    "pageTitle": "Мітка часу PDF онлайн безкоштовно — RFC 3161 | BentoPDF",
+    "subtitle": "Додайте мітку часу RFC 3161 до PDF за допомогою довіреного сервера TSA (Time Stamp Authority). Підтверджує, що документ існував у певний момент часу. Сертифікат не потрібен.",
+    "tsaSectionTitle": "Сервер мітки часу (TSA)",
+    "selectTsa": "Оберіть TSA сервер",
+    "applyTimestamp": "Додати мітку часу",
+    "successMessage": "Мітку часу успішно додано! Її можна перевірити в Adobe Acrobat та інших PDF-переглядачах."
+  },
+  "emailToPdf": {
+    "name": "Email у PDF",
+    "subtitle": "Конвертувати файли електронної пошти (EML, MSG) у формат PDF. Підтримуються файли Outlook та стандартні формати email.",
+    "acceptedFormats": "Файли EML, MSG",
+    "convertButton": "Конвертувати у PDF"
+  },
+  "fontToOutline": {
+    "name": "Шрифти у контури",
+    "subtitle": "Перетворити всі шрифти у векторні контури для коректного відображення на будь-яких пристроях."
+  },
+  "deskewPdf": {
+    "name": "Вирівнювання PDF",
+    "subtitle": "Автоматично вирівнювати нахилені скановані сторінки за допомогою OpenCV."
+  },
+  "pdfToWord": {
+    "name": "PDF у Word",
+    "subtitle": "Конвертувати PDF у редаговані документи Word."
+  },
+  "extractImages": {
+    "name": "Витяг зображень",
+    "subtitle": "Витягнути всі вбудовані зображення з PDF-файлів."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF у Markdown",
+    "subtitle": "Конвертувати текст і таблиці з PDF у формат Markdown."
+  },
+  "preparePdfForAi": {
+    "name": "Підготовка PDF для AI",
+    "subtitle": "Експортувати вміст PDF у формат LlamaIndex JSON для RAG/LLM пайплайнів."
+  },
+  "pdfOcg": {
+    "name": "PDF OCG",
+    "subtitle": "Переглядати, перемикати, додавати та видаляти шари OCG у PDF."
+  },
+  "pdfToPdfa": {
+    "name": "PDF у PDF/A",
+    "subtitle": "Конвертувати PDF у PDF/A для довготривалого архівування."
+  },
+  "rasterizePdf": {
+    "name": "Растеризація PDF",
+    "subtitle": "Перетворити PDF у PDF на основі зображень. Об'єднує шари та прибирає можливість виділення тексту."
+  },
+  "pdfWorkflow": {
+    "name": "Конструктор PDF-процесів",
+    "subtitle": "Створюйте власні пайплайни обробки PDF за допомогою візуального редактора вузлів.",
+    "nodes": "Вузли",
+    "searchNodes": "Пошук вузлів...",
+    "run": "Запустити",
+    "clear": "Очистити",
+    "save": "Зберегти",
+    "load": "Завантажити",
+    "export": "Експортувати",
+    "import": "Імпортувати",
+    "ready": "Готово",
+    "settings": "Налаштування",
+    "processing": "Обробка...",
+    "saveTemplate": "Зберегти шаблон",
+    "templateName": "Назва шаблону",
+    "templatePlaceholder": "наприклад: Обробка рахунків",
+    "cancel": "Скасувати",
+    "loadTemplate": "Завантажити шаблон",
+    "noTemplates": "Збережених шаблонів поки немає.",
+    "ok": "ОК",
+    "workflowCompleted": "Процес виконано",
+    "errorDuringExecution": "Помилка під час виконання",
+    "addNodeError": "Додайте хоча б один вузол для запуску процесу.",
+    "needInputOutput": "Процес має містити принаймні один вхідний та один вихідний вузол.",
+    "enterName": "Будь ласка, введіть назву.",
+    "templateExists": "Шаблон із такою назвою вже існує.",
+    "templateSaved": "Шаблон \"{{name}}\" збережено.",
+    "templateLoaded": "Шаблон \"{{name}}\" завантажено.",
+    "failedLoadTemplate": "Не вдалося завантажити шаблон.",
+    "noSettings": "Для цього вузла немає налаштувань.",
+    "advancedSettings": "Додаткові налаштування"
+  },
+  "pdfOverlay": {
+    "name": "Накладання PDF",
+    "subtitle": "Накласти або розмістити підкладкою сторінки одного PDF на інший.",
+    "basePdfLabel": "Основний PDF",
+    "uploadBasePdf": "Завантажити основний PDF",
+    "overlayPdfLabel": "PDF для накладання / підкладки",
+    "uploadOverlayPdf": "Завантажити PDF для накладання/підкладки",
+    "modeLabel": "Режим",
+    "overlayOption": "Накладання (поверх сторінок)",
+    "underlayOption": "Підкладка (під сторінками)",
+    "pageRangeLabel": "Застосувати до сторінок (необов’язково)",
+    "pageRangeHint": "Використовуйте \"z\" для останньої сторінки. Залиште порожнім для всіх сторінок.",
+    "repeatLabel": "Повторювати сторінки накладання/підкладки, якщо основний PDF довший",
+    "processButton": "Застосувати накладання / підкладку",
+    "howItWorksUploadTitle": "Завантажте два PDF",
+    "howItWorksUploadDescription": "Завантажте основний PDF і PDF, який потрібно накласти або використати як підкладку.",
+    "howItWorksModeTitle": "Оберіть режим",
+    "howItWorksModeDescription": "Оберіть накладання (поверх) або підкладку (під). За потреби задайте діапазон сторінок і повторення.",
+    "howItWorksDownloadTitle": "Завантаження",
+    "howItWorksDownloadDescription": "Завантажте PDF із застосованим накладанням або підкладкою.",
+    "faqDifferenceQuestion": "У чому різниця між накладанням і підкладкою?",
+    "faqDifferenceAnswer": "Накладання розміщує сторінки поверх основного PDF (як водяний знак). Підкладка — під основним PDF (як бланк або фон).",
+    "faqSinglePageQuestion": "Чи можна використати односторінковий PDF для всіх сторінок?",
+    "faqSinglePageAnswer": "Так! Увімкніть опцію «Повторювати», і сторінки накладання будуть застосовані до всіх сторінок. Один водяний знак — на всі сторінки.",
+    "faqPrivacyQuestion": "Чи безпечні мої файли?",
+    "faqPrivacyAnswer": "Так! Уся обробка відбувається у вашому браузері. Файли не покидають ваш пристрій."
+  }
+}
