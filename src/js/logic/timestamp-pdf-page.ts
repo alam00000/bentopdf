@@ -227,14 +227,10 @@ async function processTimestamp(): Promise<void> {
   try {
     const timestampedBytes = await timestampPdf(state.pdfBytes, tsaUrl);
 
-    const outputFilename = state.pdfFile.name.replace(
-      /\.pdf$/i,
-      '_timestamped.pdf'
-    );
     const blob = new Blob([new Uint8Array(timestampedBytes)], {
       type: 'application/pdf',
     });
-    downloadFile(blob, outputFilename);
+    downloadFile(blob, state.pdfFile.name);
 
     showAlert(
       'Success',

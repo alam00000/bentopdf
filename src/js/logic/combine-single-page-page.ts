@@ -243,11 +243,9 @@ async function combineToSinglePage() {
     }
 
     const newPdfBytes = await newDoc.save();
-    const originalName = pageState.file.name.replace(/\.pdf$/i, '');
-
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      `${originalName}_combined.pdf`
+      pageState.file.name
     );
 
     showAlert(

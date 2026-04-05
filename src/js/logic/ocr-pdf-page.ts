@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function () {
           new Blob([new Uint8Array(pageState.searchablePdfBytes)], {
             type: 'application/pdf',
           }),
-          'searchable.pdf'
+          pageState.file?.name || 'document.pdf'
         );
       }
     });

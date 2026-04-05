@@ -144,7 +144,7 @@ async function processRemoveAnnotations() {
     const newPdfBytes = await pageState.pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'annotations-removed.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Annotations removed successfully!', 'success', () => {
       resetState();

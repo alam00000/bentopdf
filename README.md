@@ -890,7 +890,7 @@ For the full list of editor categories, see the [self-hosting docs](https://bent
 BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:
 
 - **Non-Root Execution**: Container runs with minimal privileges using nginx-unprivileged
-- **Port 8080**: Uses high port number to avoid requiring root privileges
+- **Port 8080**: Uses high port number to avoid requiring root privileges (configurable via `PORT` env var)
 - **Security Best Practices**: Follows Principle of Least Privilege
 
 #### Basic Usage
@@ -899,6 +899,18 @@ BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:
 docker build -t bentopdf .
 docker run -p 8080:8080 bentopdf
 ```
+
+#### Custom Port
+
+By default, BentoPDF listens on port `8080` inside the container. To change this, set the `PORT` environment variable:
+
+```bash
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf:latest
+```
+
+| Variable | Description                    | Default |
+| -------- | ------------------------------ | ------- |
+| `PORT`   | Nginx listen port in container | `8080`  |
 
 #### Custom User ID (PUID/PGID)
 

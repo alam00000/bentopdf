@@ -307,6 +307,20 @@ Use the codes printed by `bash scripts/prepare-airgap.sh --list-ocr-languages`, 
 
 Set a variable to empty string to disable that module (users must configure manually via Advanced Settings).
 
+## Custom Port
+
+By default, BentoPDF listens on port `8080` inside the container. To change this, set the `PORT` environment variable at runtime:
+
+```bash
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf:latest
+```
+
+| Variable | Description                    | Default |
+| -------- | ------------------------------ | ------- |
+| `PORT`   | Nginx listen port in container | `8080`  |
+
+This works with both the standard and nonroot Dockerfiles.
+
 ## Custom User ID (PUID/PGID)
 
 For environments that require running as a specific non-root user (NAS devices, Kubernetes with security contexts, organizational policies), BentoPDF provides a separate Dockerfile with LSIO-style PUID/PGID support.
@@ -333,6 +347,7 @@ docker run -d \
 | -------------- | --------------------- | ------- |
 | `PUID`         | User ID to run as     | `1000`  |
 | `PGID`         | Group ID to run as    | `1000`  |
+| `PORT`         | Nginx listen port     | `8080`  |
 | `DISABLE_IPV6` | Disable IPv6 listener | `false` |
 
 ### Docker Compose

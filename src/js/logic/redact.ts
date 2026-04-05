@@ -35,7 +35,7 @@ export async function redact(redactions: RedactionRect[], canvasScale: number) {
     const redactedBytes = await state.pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(redactedBytes)], { type: 'application/pdf' }),
-      'redacted.pdf'
+      state.files[0]?.name || 'document.pdf'
     );
   } catch (e) {
     console.error(e);

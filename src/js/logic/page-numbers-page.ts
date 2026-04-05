@@ -181,7 +181,7 @@ async function addPageNumbers() {
       new Blob([resultBytes as unknown as BlobPart], {
         type: 'application/pdf',
       }),
-      'paginated.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Page numbers added successfully!', 'success', () => {
       resetState();

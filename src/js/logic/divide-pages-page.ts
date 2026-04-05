@@ -177,11 +177,9 @@ async function dividePages() {
     }
 
     const newPdfBytes = await newPdfDoc.save();
-    const originalName = pageState.file.name.replace(/\.pdf$/i, '');
-
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      `${originalName}_divided.pdf`
+      pageState.file.name
     );
 
     showAlert(

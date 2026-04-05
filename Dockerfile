@@ -81,6 +81,7 @@ ARG BASE_URL
 
 # Set this to "true" to disable Nginx listening on IPv6
 ENV DISABLE_IPV6=false
+ENV PORT=8080
 
 USER root
 RUN apk upgrade --no-cache

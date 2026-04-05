@@ -288,10 +288,9 @@ async function performCrop() {
       finalPdfBytes = await performMetadataCrop(finalCropData);
     }
 
-    const fileName = isDestructive ? 'flattened_crop.pdf' : 'standard_crop.pdf';
     downloadFile(
       new Blob([new Uint8Array(finalPdfBytes)], { type: 'application/pdf' }),
-      fileName
+      cropperState.file?.name || 'document.pdf'
     );
     showAlert(
       'Success',

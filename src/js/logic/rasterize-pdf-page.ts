@@ -146,8 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         );
 
-        const outName = file.name.replace(/\.pdf$/i, '') + '_rasterized.pdf';
-        downloadFile(rasterizedBlob, outName);
+        downloadFile(rasterizedBlob, file.name);
 
         hideLoader();
         showAlert(
@@ -177,9 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
               quality: 95,
             });
 
-            const outName =
-              file.name.replace(/\.pdf$/i, '') + '_rasterized.pdf';
-            const zipEntryName = deduplicateFileName(outName, usedNames);
+            const zipEntryName = deduplicateFileName(file.name, usedNames);
             zip.file(zipEntryName, rasterizedBlob);
 
             completed++;

@@ -242,7 +242,7 @@ async function addHeaderFooter() {
     const newPdfBytes = await pageState.pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'header-footer-added.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert(
       'Success',

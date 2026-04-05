@@ -465,10 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const savingsPercent =
           savings > 0 ? ((savings / originalFile.size) * 100).toFixed(1) : 0;
 
-        downloadFile(
-          resultBlob,
-          originalFile.name.replace(/\.pdf$/i, '') + '_compressed.pdf'
-        );
+        downloadFile(resultBlob, originalFile.name);
 
         hideLoader();
 
@@ -523,8 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           totalCompressedSize += resultBytes.length;
-          const baseName = file.name.replace(/\.pdf$/i, '');
-          zip.file(`${baseName}_compressed.pdf`, resultBytes);
+          zip.file(file.name, resultBytes);
         }
 
         const zipBlob = await zip.generateAsync({ type: 'blob' });

@@ -310,7 +310,7 @@ async function posterize() {
     const newPdfBytes = await newDoc.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'posterized.pdf'
+      pageState.file?.name || 'document.pdf'
     );
 
     showAlert('Success', 'Your PDF has been posterized.');

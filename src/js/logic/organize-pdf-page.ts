@@ -380,10 +380,9 @@ async function saveChanges() {
     copiedPages.forEach((page) => newPdf.addPage(page));
 
     const pdfBytes = await newPdf.save();
-    const baseName = organizeState.file?.name.replace('.pdf', '') || 'document';
     downloadFile(
       new Blob([pdfBytes as BlobPart], { type: 'application/pdf' }),
-      `${baseName}_organized.pdf`
+      organizeState.file?.name || 'document.pdf'
     );
 
     hideLoader();

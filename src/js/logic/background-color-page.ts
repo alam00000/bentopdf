@@ -140,7 +140,7 @@ async function changeBackgroundColor() {
     const newPdfBytes = await newPdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'background-changed.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert(
       'Success',

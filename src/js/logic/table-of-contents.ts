@@ -180,10 +180,7 @@ worker.onmessage = (e: MessageEvent<TOCWorkerResponse>) => {
     const pdfBytes = new Uint8Array(pdfBytesBuffer);
 
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    downloadFile(
-      blob,
-      pdfFile?.name.replace('.pdf', '_with_toc.pdf') || 'output_with_toc.pdf'
-    );
+    downloadFile(blob, pdfFile?.name || 'document.pdf');
 
     showStatus(
       'Table of contents generated successfully! Download started.',

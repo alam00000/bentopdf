@@ -74,6 +74,7 @@ ARG BASE_URL
 ENV PUID=1000
 ENV PGID=1000
 ENV DISABLE_IPV6=false
+ENV PORT=8080
 
 RUN apk upgrade --no-cache && apk add --no-cache su-exec
 

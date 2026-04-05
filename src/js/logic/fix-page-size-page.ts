@@ -135,7 +135,7 @@ async function fixPageSize() {
 
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'standardized.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert(
       'Success',

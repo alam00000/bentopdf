@@ -177,12 +177,9 @@ async function processOverlay() {
     }
 
     const modeLabel = mode.replace('--', '');
-    const baseName = pageState.baseFile.name.replace(/\.pdf$/i, '');
-    const fileName = `${baseName}_${modeLabel}.pdf`;
-
     downloadFile(
       new Blob([new Uint8Array(outputFile)], { type: 'application/pdf' }),
-      fileName
+      pageState.baseFile.name
     );
 
     showAlert(

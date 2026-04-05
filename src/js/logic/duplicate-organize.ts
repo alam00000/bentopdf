@@ -222,7 +222,7 @@ export async function processAndSave() {
     const newPdfBytes = await newPdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'organized.pdf'
+      state.files[0]?.name || 'document.pdf'
     );
   } catch (e) {
     console.error('Save error:', e);

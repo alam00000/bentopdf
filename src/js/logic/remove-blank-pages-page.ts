@@ -313,7 +313,7 @@ async function processRemoveBlankPages() {
     const newPdfBytes = await newPdf.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'blank-pages-removed.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert(
       'Success',

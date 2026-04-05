@@ -186,7 +186,7 @@ async function changeTextColor() {
     const newPdfBytes = await newPdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      'text-color-changed.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Text color changed successfully!', 'success', () => {
       resetState();

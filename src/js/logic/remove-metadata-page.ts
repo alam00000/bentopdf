@@ -158,7 +158,7 @@ async function removeMetadata() {
     const newPdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([newPdfBytes as BlobPart], { type: 'application/pdf' }),
-      'metadata-removed.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Metadata removed successfully!', 'success', () => {
       resetState();

@@ -267,12 +267,11 @@ async function deletePages() {
       new Uint8Array(srcBytes),
       deleteState.pagesToDelete
     );
-    const baseName = deleteState.file?.name.replace('.pdf', '') || 'document';
     downloadFile(
       new Blob([new Uint8Array(resultBytes)], {
         type: 'application/pdf',
       }),
-      `${baseName}_pages_removed.pdf`
+      deleteState.file?.name || 'document.pdf'
     );
 
     hideLoader();

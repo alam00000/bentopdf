@@ -65,6 +65,7 @@ let pages: PageData[] = [];
 let currentPageIndex = 0;
 let uploadedPdfDoc: PDFDocument | null = null;
 let uploadedPdfjsDoc: PDFDocumentProxy | null = null;
+let uploadedFileName: string | null = null;
 let pageSize: { width: number; height: number } = { width: 612, height: 792 };
 let currentScale = 1.333;
 let pdfViewerOffset = { x: 0, y: 0 };
@@ -2717,7 +2718,7 @@ downloadBtn.addEventListener('click', async () => {
     const blob = new Blob([new Uint8Array(pdfBytes)], {
       type: 'application/pdf',
     });
-    downloadFile(blob, 'fillable-form.pdf');
+    downloadFile(blob, uploadedFileName || 'document.pdf');
     showModal(
       'Success',
       'Your PDF has been downloaded successfully.',
@@ -3141,6 +3142,7 @@ async function handlePdfUpload(file: File) {
     const arrayBuffer = result.bytes;
     uploadedPdfjsDoc = result.pdf;
     uploadedPdfDoc = await loadPdfDocument(arrayBuffer);
+    uploadedFileName = file.name;
 
     // Check for existing fields and update counter
     existingFieldNames.clear();

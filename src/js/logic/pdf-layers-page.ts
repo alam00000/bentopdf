@@ -423,9 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const blob = new Blob([new Uint8Array(pdfBytes)], {
             type: 'application/pdf',
           });
-          const outName =
-            currentFile!.name.replace(/\.pdf$/i, '') + '_layers.pdf';
-          downloadFile(blob, outName);
+          downloadFile(blob, currentFile!.name);
           hideLoader();
           resetState();
           showAlert('Success', 'PDF with layer changes saved!', 'success');

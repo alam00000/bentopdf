@@ -2306,7 +2306,7 @@ downloadBtn?.addEventListener('click', async () => {
     const blob = new Blob([new Uint8Array(pdfBytes)], {
       type: 'application/pdf',
     });
-    downloadFile(blob, `${originalFileName}-bookmarked.pdf`);
+    downloadFile(blob, `${originalFileName}.pdf`);
 
     await showAlertModal('Success', 'PDF saved successfully!');
 

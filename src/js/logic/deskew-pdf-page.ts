@@ -171,8 +171,7 @@ async function processDeskew(): Promise<void> {
 
       displayResults(result);
 
-      const filename = file.name.replace('.pdf', '_deskewed.pdf');
-      downloadFile(resultPdf, filename);
+      downloadFile(resultPdf, file.name);
     }
 
     hideLoader();

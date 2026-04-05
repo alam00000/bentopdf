@@ -516,7 +516,7 @@ async function applyBatesNumbers() {
       fileCounter++;
       const pdfBytes = await pdfDoc.save();
       results.push({
-        name: `bates_${entry.file.name}`,
+        name: entry.file.name,
         bytes: new Uint8Array(pdfBytes),
       });
     }

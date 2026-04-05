@@ -17,6 +17,7 @@ import type { DocManagerPlugin } from '@/types';
 let viewerInstance: EmbedPdfContainer | null = null;
 let docManagerPlugin: DocManagerPlugin | null = null;
 let isViewerInitialized = false;
+let currentFileName = 'document.pdf';
 const fileEntryMap = new Map<string, HTMLElement>();
 
 function resetViewer() {
@@ -128,6 +129,7 @@ async function handleFiles(files: FileList) {
 
     if (!isViewerInitialized) {
       const firstFile = decryptedFiles[0];
+      currentFileName = firstFile.name;
       const firstBuffer = await firstFile.arrayBuffer();
 
       pdfContainer.textContent = '';
@@ -217,7 +219,7 @@ async function handleFiles(files: FileList) {
           const exportPlugin = registry.getPlugin('export').provides();
           const arrayBuffer = await exportPlugin.saveAsCopy().toPromise();
           const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
-          downloadFile(blob, 'edited-document.pdf');
+          downloadFile(blob, currentFileName);
         } catch (err) {
           console.error('Error downloading PDF:', err);
           showAlert('Error', 'Failed to download the edited PDF.');

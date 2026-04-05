@@ -137,7 +137,7 @@ async function decryptPdf() {
       const blob = new Blob([decryptedBytes.slice().buffer], {
         type: 'application/pdf',
       });
-      downloadFile(blob, `unlocked-${file.name}`);
+      downloadFile(blob, file.name);
 
       if (loaderModal) loaderModal.classList.add('hidden');
       showAlert(
@@ -168,7 +168,7 @@ async function decryptPdf() {
             password
           );
 
-          zip.file(`unlocked-${file.name}`, decryptedBytes, { binary: true });
+          zip.file(file.name, decryptedBytes, { binary: true });
           successCount++;
         } catch (fileError: unknown) {
           errorCount++;

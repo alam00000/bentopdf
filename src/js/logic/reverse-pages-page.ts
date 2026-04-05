@@ -124,20 +124,16 @@ async function reversePages() {
       showLoader(`Reversing ${file.name} (${j + 1}/${validFiles.length})...`);
 
       const newPdfBytes = await reverseSingleFile(file);
-      const originalName = file.name.replace(/\.pdf$/i, '');
-      const fileName = `${originalName}_reversed.pdf`;
-      const zipEntryName = deduplicateFileName(fileName, usedNames);
+      const zipEntryName = deduplicateFileName(file.name, usedNames);
       zip.file(zipEntryName, newPdfBytes);
     }
 
     if (validFiles.length === 1) {
       const file = validFiles[0];
       const newPdfBytes = await reverseSingleFile(file);
-      const originalName = file.name.replace(/\.pdf$/i, '');
-
       downloadFile(
         new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-        `${originalName}_reversed.pdf`
+        file.name
       );
     } else {
       const zipBlob = await zip.generateAsync({ type: 'blob' });

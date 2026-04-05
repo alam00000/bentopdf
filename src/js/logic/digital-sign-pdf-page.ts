@@ -739,10 +739,7 @@ async function processSignature(): Promise<void> {
     const blob = new Blob([signedPdfBytes.slice().buffer], {
       type: 'application/pdf',
     });
-    const originalName = state.pdfFile?.name ?? 'document.pdf';
-    const signedName = originalName.replace(/\.pdf$/i, '_signed.pdf');
-
-    downloadFile(blob, signedName);
+    downloadFile(blob, state.pdfFile?.name ?? 'document.pdf');
 
     hideLoader();
     showAlert(

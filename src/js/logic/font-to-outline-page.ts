@@ -124,8 +124,7 @@ async function processFiles() {
         if (loaderText) loaderText.textContent = msg;
       });
 
-      const baseName = file.name.replace(/\.pdf$/i, '');
-      downloadFile(resultBlob, `${baseName}_outlined.pdf`);
+      downloadFile(resultBlob, file.name);
       if (loaderModal) loaderModal.classList.add('hidden');
     } else {
       if (loaderModal) loaderModal.classList.remove('hidden');
@@ -143,11 +142,7 @@ async function processFiles() {
         try {
           const resultBlob = await convertFileToOutlines(file, () => {});
           const arrayBuffer = await resultBlob.arrayBuffer();
-          const baseName = file.name.replace(/\.pdf$/i, '');
-          const zipEntryName = deduplicateFileName(
-            `${baseName}_outlined.pdf`,
-            usedNames
-          );
+          const zipEntryName = deduplicateFileName(file.name, usedNames);
           zip.file(zipEntryName, arrayBuffer);
           processedCount++;
         } catch (e) {

@@ -303,10 +303,7 @@ async function applyAndSaveSignatures() {
       const blob = new Blob([new Uint8Array(flattenedPdfBytes)], {
         type: 'application/pdf',
       });
-      downloadFile(
-        blob,
-        `signed_flattened_${signState.file?.name || 'document.pdf'}`
-      );
+      downloadFile(blob, signState.file?.name || 'document.pdf');
 
       hideLoader();
       showAlert('Success', 'Signed PDF saved successfully!', 'success', () => {

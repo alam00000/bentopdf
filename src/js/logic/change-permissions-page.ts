@@ -222,7 +222,7 @@ async function changePermissions() {
     const blob = new Blob([new Uint8Array(outputFile)], {
       type: 'application/pdf',
     });
-    downloadFile(blob, `permissions-changed-${pageState.file.name}`);
+    downloadFile(blob, pageState.file.name);
 
     if (loaderModal) loaderModal.classList.add('hidden');
 

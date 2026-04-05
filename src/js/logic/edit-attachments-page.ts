@@ -60,11 +60,9 @@ worker.onmessage = function (e) {
   } else if (data.status === 'success' && data.modifiedPDF !== undefined) {
     hideLoader();
 
-    const originalName =
-      pageState.file?.name.replace(/\.pdf$/i, '') || 'document';
     downloadFile(
       new Blob([new Uint8Array(data.modifiedPDF)], { type: 'application/pdf' }),
-      `${originalName}_edited.pdf`
+      pageState.file?.name || 'document.pdf'
     );
 
     showAlert(

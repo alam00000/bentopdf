@@ -1010,7 +1010,7 @@ async function applyWatermark() {
 
     downloadFile(
       new Blob([new Uint8Array(resultBytes)], { type: 'application/pdf' }),
-      'watermarked.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Watermark added successfully!', 'success');
   } catch (e: unknown) {

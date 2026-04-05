@@ -178,11 +178,9 @@ async function addBlankPages() {
     }
 
     const newPdfBytes = await newPdf.save();
-    const originalName = pageState.file.name.replace(/\.pdf$/i, '');
-
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
-      `${originalName}_blank-pages-added.pdf`
+      pageState.file.name
     );
 
     showAlert(

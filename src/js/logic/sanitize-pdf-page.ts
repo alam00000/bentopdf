@@ -147,7 +147,7 @@ async function runSanitize() {
 
     downloadFile(
       new Blob([new Uint8Array(result.bytes)], { type: 'application/pdf' }),
-      'sanitized.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert(
       'Success',

@@ -246,13 +246,11 @@ async function applyRotations() {
       new Uint8Array(pdfBytes),
       pageState.rotations
     );
-    const originalName = pageState.file.name.replace(/\.pdf$/i, '');
-
     downloadFile(
       new Blob([rotatedPdfBytes as unknown as BlobPart], {
         type: 'application/pdf',
       }),
-      `${originalName}_rotated.pdf`
+      pageState.file.name
     );
 
     showAlert(

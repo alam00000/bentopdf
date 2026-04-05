@@ -142,7 +142,7 @@ async function convert() {
     const resultBytes = await newPdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(resultBytes)], { type: 'application/pdf' }),
-      'greyscale.pdf'
+      files[0]?.name || 'document.pdf'
     );
     showAlert(
       'Success',

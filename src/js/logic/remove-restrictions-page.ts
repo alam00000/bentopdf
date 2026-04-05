@@ -153,7 +153,7 @@ async function removeRestrictions() {
     const blob = new Blob([new Uint8Array(outputFile)], {
       type: 'application/pdf',
     });
-    downloadFile(blob, `unrestricted-${pageState.file.name}`);
+    downloadFile(blob, pageState.file.name);
 
     if (loaderModal) loaderModal.classList.add('hidden');
 

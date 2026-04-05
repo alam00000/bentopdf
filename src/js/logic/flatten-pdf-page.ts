@@ -174,10 +174,7 @@ async function flattenPdf() {
           }
 
           const flattenedBytes = await pdfDoc.save();
-          const zipEntryName = deduplicateFileName(
-            `flattened_${file.name}`,
-            usedNames
-          );
+          const zipEntryName = deduplicateFileName(file.name, usedNames);
           zip.file(zipEntryName, flattenedBytes);
           processedCount++;
         } catch (e) {

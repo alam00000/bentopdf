@@ -502,7 +502,7 @@ async function addPageLabels() {
 
     downloadFile(
       new Blob([outputBytes], { type: 'application/pdf' }),
-      'page-labels-added.pdf'
+      pageState.file?.name || 'document.pdf'
     );
     showAlert(
       translate('common.success', 'Success'),

@@ -524,12 +524,9 @@ async function createBooklet() {
     }
 
     const pdfBytes = await outputDoc.save();
-    const originalName =
-      pageState.file?.name.replace(/\.pdf$/i, '') || 'document';
-
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
-      `${originalName}_booklet.pdf`
+      pageState.file?.name || 'document.pdf'
     );
 
     showAlert(
