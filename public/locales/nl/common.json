@@ -366,9 +366,9 @@
     "subtitle": "Selecteer een tool om te beginnen"
   },
   "disabledTool": {
-    "title": "Tool Niet Beschikbaar",
+    "title": "Tool niet beschikbaar",
     "heading": "Deze tool is uitgeschakeld",
-    "message": "Deze tool is niet beschikbaar in uw implementatie. Neem contact op met uw beheerder voor meer informatie.",
-    "backHome": "Terug naar Home"
+    "message": "Deze tool is niet beschikbaar in jouw implementatie. Neem contact op met je beheerder voor meer informatie.",
+    "backHome": "Terug naar Thuis"
   }
 }
