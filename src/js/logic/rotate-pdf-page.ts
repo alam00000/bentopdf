@@ -77,7 +77,7 @@ function createPageWrapper(
 
   const canvasWrapper = document.createElement('div');
   canvasWrapper.className =
-    'thumbnail-wrapper flex items-center justify-center p-2 h-36';
+    'thumbnail-wrapper flex items-center justify-center p-2 h-36 pointer-events-none';
   canvasWrapper.style.transition = 'transform 0.3s ease';
   // Apply initial rotation if it exists
   const initialRotation = pageState.rotations[pageIndex] || 0;
