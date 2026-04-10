@@ -1,0 +1,862 @@
+{
+  "categories": {
+    "popularTools": "人気のツール",
+    "editAnnotate": "編集と注釈",
+    "convertToPdf": "PDFに変換",
+    "convertFromPdf": "PDFから変換",
+    "organizeManage": "整理と管理",
+    "optimizeRepair": "最適化と修復",
+    "securePdf": "安全なPDF"
+  },
+  "pdfMultiTool": {
+    "name": "PDFマルチツール",
+    "subtitle": "統合インターフェースで結合、分割、整理、削除、回転、空白ページの追加、抽出、複製を行えます。"
+  },
+  "mergePdf": {
+    "name": "PDFの結合",
+    "subtitle": "複数のPDFを1つのファイルに結合します。しおりを保存します。"
+  },
+  "splitPdf": {
+    "name": "PDFの分割",
+    "subtitle": "一定範囲のページを新しいPDFに抽出します。"
+  },
+  "compressPdf": {
+    "name": "PDFの圧縮",
+    "subtitle": "PDFのファイルサイズを小さくします。",
+    "algorithmLabel": "圧縮アルゴリズム",
+    "condense": "コンデンス（推奨）",
+    "photon": "フォトン（写真を多く含むPDF用）",
+    "condenseInfo": "コンデンスは高度な圧縮技術を採用しています: 不要なデータを削除、画像を最適化しフォントをサブセット化します。ほとんどのPDFに最適です。",
+    "photonInfo": "フォトンはページを画像に変換します。写真が多いPDFやスキャンしたPDFにおすすめです。",
+    "photonWarning": "警告: テキストは選択できなくなり、リンクは機能しなくなります。",
+    "levelLabel": "圧縮レベル",
+    "light": "ライト（品質維持）",
+    "balanced": "バランス（推奨）",
+    "aggressive": "アグレッシブ（ファイルをより小さく）",
+    "extreme": "エクストリーム（最大圧縮）",
+    "grayscale": "グレースケールに変換",
+    "grayscaleHint": "カラー情報を削除してファイルサイズを削減します。",
+    "customSettings": "カスタム設定",
+    "customSettingsHint": "圧縮パラメータの微調整:",
+    "outputQuality": "出力品質",
+    "resizeImagesTo": "画像のリサイズ",
+    "onlyProcessAbove": "上記の処理のみ",
+    "removeMetadata": "メタデータを削除する",
+    "subsetFonts": "サブセットフォント (未使用のグリフの削除)",
+    "removeThumbnails": "埋め込みサムネイルを削除する",
+    "compressButton": "PDFを圧縮"
+  },
+  "pdfEditor": {
+    "name": "PDFエディター",
+    "subtitle": "PDFへの注釈追加、ハイライト、黒塗り、コメント、図形や画像の挿入、検索、および表示が可能です。"
+  },
+  "jpgToPdf": {
+    "name": "JPGからPDF",
+    "subtitle": "JPG、JPEG、およびJPEG2000(JP2/JPX)形式の画像からPDFを作成します。"
+  },
+  "signPdf": {
+    "name": "PDFへ署名",
+    "subtitle": "署名を描く、入力、またはアップロードします。"
+  },
+  "cropPdf": {
+    "name": "PDFのトリミング",
+    "subtitle": "PDFのすべてのページの余白をトリミングします。"
+  },
+  "extractPages": {
+    "name": "ページの抽出",
+    "subtitle": "選択したページを新しいファイルとして保存します。"
+  },
+  "duplicateOrganize": {
+    "name": "複製と整理",
+    "subtitle": "ページを複製、並べ替え、削除します。"
+  },
+  "deletePages": {
+    "name": "ページの削除",
+    "subtitle": "文書から特定のページを削除します。"
+  },
+  "editBookmarks": {
+    "name": "しおりの編集",
+    "subtitle": "PDFのしおりを追加、編集、インポート、削除、抽出します。"
+  },
+  "tableOfContents": {
+    "name": "目次",
+    "subtitle": "PDFのしおりから目次ページを生成します。"
+  },
+  "pageNumbers": {
+    "name": "ページ番号",
+    "subtitle": "文書にページ番号を挿入します。"
+  },
+  "addPageLabels": {
+    "name": "ページラベルの追加",
+    "subtitle": "ローマ数字、プレフィックス、カスタム開始を使用してPDFページラベルを適用します。",
+    "uploadHint": "PDFファイル",
+    "howLabelsWorkTitle": "ラベルの仕組み",
+    "howLabelsWorkStep1": "すべてのページにラベルを付けるには、ページ範囲を空のままにします。",
+    "howLabelsWorkStep2": "前付にはローマ数字、本文には10進数などのスタイルを使用します。",
+    "howLabelsWorkStep3": "A-0、A-1、A-2 などのラベルを作成するには、開始値0のプレフィックスを使用します。",
+    "howLabelsWorkStep4": "1つのルールが1-9、30-40または奇数などの互いに素な範囲を使用する場合に進行状況を有効にします。",
+    "labelRulesTitle": "ラベルのルール",
+    "addRule": "ルールの追加",
+    "removeExistingLabels": "これらのルールを適用する前に既存のページラベルを削除してください",
+    "cpdfNote": "このツールはブラウザでCoherentPDFを使用します。CoherentPDFが設定されていない場合は、WASM設定で設定するように求められます。",
+    "processButton": "ページラベルの追加",
+    "howItWorksUploadTitle": "ファイルをアップロードする",
+    "howItWorksUploadDescription": "ラベルを再設定するPDFを選択します。",
+    "howItWorksDefineTitle": "ルールの定義",
+    "howItWorksDefineDescription": "ページ範囲、スタイル、プレフィックス、開始値を含む1つ以上のページラベルのルールを設定します。",
+    "howItWorksDownloadTitle": "ダウンロード",
+    "howItWorksDownloadDescription": "更新されたPDFを新しいページラベルとともに保存します。",
+    "relatedToolsTitle": "関連するPDFツール",
+    "faqWhatIsQuestion": "ページラベルとは何ですか?",
+    "faqWhatIsAnswer": "ページラベルとはPDFリーダーによってサムネイル、ページ ナビゲーション、および印刷ダイアログに表示される番号です。ページ自体に新しいテキストは印刷されません。",
+    "faqMixQuestion": "ローマ数字と普通の数字を混ぜてもいいですか？",
+    "faqMixAnswer": "はい。小文字ローマ数字では1～4、十進アラビア語では5～20など、複数のルールを追加します。",
+    "faqPrivacyQuestion": "私のファイルは非公開のままですか?",
+    "faqPrivacyAnswer": "はい。処理はCoherentPDF WASMを使用してブラウザで行われます。PDFはデバイスの外に送信されません。",
+    "invalidFileTitle": "無効なファイル",
+    "invalidFileMessage": "有効なPDFファイルをアップロードしてください。",
+    "loadingPdf": "PDFを読み込んでいます...",
+    "protectedPdfTitle": "保護されたPDF",
+    "protectedPdfMessage": "このPDFはパスワードで保護されています。まず、復号化または権限変更ツールを使用してください。",
+    "loadErrorMessage": "PDFファイルの読み込みに失敗しました。ファイルが無効であるか、破損しているか、パスワードで保護されている可能性があります。",
+    "fileMeta": "{{size}} • {{count}} ページ",
+    "ruleTitle": "ラベルルール{{number}}",
+    "pageRangeLabel": "ページ範囲",
+    "pageRangePlaceholder": "すべてのページ、またはたとえば1-4、7、odd（奇数）",
+    "labelStyleLabel": "ラベルのスタイル",
+    "labelPrefixLabel": "ラベルプレフィックス",
+    "labelPrefixPlaceholder": "オプションのプレフィックス、例:A-",
+    "startValueLabel": "開始値",
+    "continueNumbering": "互いに素な範囲にわたって番号付けを続ける",
+    "examplesNote": "例: ローマ数字の前付の場合は1～4、プレフィックスA-と開始値0の場合は15～20、または進行状況が有効な場合はodd（奇数）です。",
+    "uploadFirstMessage": "まずはPDFファイルをアップロードしてください。",
+    "applyingLabels": "ページラベルを適用しています...",
+    "invalidRangeMessage": "ルール{{number}}には無効なページ範囲があります: {{range}}",
+    "allPages": "すべてのページ",
+    "emptyOutputMessage": "CoherentPDFは空のファイルを生成しました。",
+    "successMessage": "ページラベルが正常に追加されました。",
+    "processErrorMessage": "ページラベルを追加できませんでした。",
+    "styleOptions": {
+      "DecimalArabic": "10進アラビア数字",
+      "LowercaseRoman": "小文字のローマ数字",
+      "UppercaseRoman": "大文字のローマ数字",
+      "LowercaseLetters": "小文字",
+      "UppercaseLetters": "大文字",
+      "NoLabelPrefixOnly": "ラベルなしプレフィックスのみ"
+    }
+  },
+  "batesNumbering": {
+    "name": "通し番号付け",
+    "subtitle": "1つ以上のPDFファイルに連続した通し番号を追加します。"
+  },
+  "addWatermark": {
+    "name": "透かしの追加",
+    "subtitle": "PDFページにテキストまたは画像をスタンプします。",
+    "applyToAllPages": "すべてのページに適用"
+  },
+  "headerFooter": {
+    "name": "ヘッダーとフッター",
+    "subtitle": "ページの上部と下部にテキストを追加します。"
+  },
+  "invertColors": {
+    "name": "色の反転",
+    "subtitle": "PDFの「ダークモード」バージョンを作成します。"
+  },
+  "scannerEffect": {
+    "name": "スキャナー効果",
+    "subtitle": "PDFをスキャンしたドキュメントのように見せます。",
+    "scanSettings": "スキャン設定",
+    "colorspace": "色空間",
+    "gray": "グレー",
+    "border": "境界線",
+    "rotate": "回転",
+    "rotateVariance": "回転分散",
+    "brightness": "輝度",
+    "contrast": "コントラスト",
+    "blur": "ぼかし",
+    "noise": "ノイズ",
+    "yellowish": "黄ばみ",
+    "resolution": "解像度",
+    "processButton": "スキャナー効果を適用"
+  },
+  "adjustColors": {
+    "name": "色の調整",
+    "subtitle": "PDFの明るさ、コントラスト、彩度などを微調整します。",
+    "colorSettings": "カラー設定",
+    "brightness": "輝度",
+    "contrast": "コントラスト",
+    "saturation": "飽和",
+    "hueShift": "色相シフト",
+    "temperature": "色温度",
+    "tint": "色合い",
+    "gamma": "ガンマ",
+    "sepia": "セピア",
+    "processButton": "色調整を適用する"
+  },
+  "backgroundColor": {
+    "name": "背景色",
+    "subtitle": "PDFの背景色を変更します。"
+  },
+  "changeTextColor": {
+    "name": "テキストの色の変更",
+    "subtitle": "PDF内のテキストの色を変更します。"
+  },
+  "addStamps": {
+    "name": "スタンプの追加",
+    "subtitle": "注釈ツールバーを使用して、画像スタンプをPDFに追加します。",
+    "usernameLabel": "スタンプユーザー名",
+    "usernamePlaceholder": "名前を入力してください（スタンプ用）",
+    "usernameHint": "この名前は作成したスタンプに表示されます。"
+  },
+  "removeAnnotations": {
+    "name": "注釈の削除",
+    "subtitle": "コメント、ハイライト、リンクを削除します。"
+  },
+  "pdfFormFiller": {
+    "name": "PDFフォーム入力機能",
+    "subtitle": "ブラウザでフォームに直接入力します。XFAフォームもサポートします。"
+  },
+  "createPdfForm": {
+    "name": "PDFフォームの作成",
+    "subtitle": "ドラッグ&ドロップでテキストフィールドを追加できる入力可能なPDFフォームを作成します。"
+  },
+  "removeBlankPages": {
+    "name": "空白ページの削除",
+    "subtitle": "空白ページを自動的に検出して削除します。",
+    "sensitivityHint": "高い = 厳密で純粋な空白のページのみです。低い = 一部のコンテンツを含むページを許可します。"
+  },
+  "imageToPdf": {
+    "name": "画像からPDF",
+    "subtitle": "JPG、PNG、BMP、GIF、TIFF、PNM、PGM、PBM、PPM、PAM、JXR、JPX、JP2、PSD、SVG、HEIC、WebP をPDFに変換します。"
+  },
+  "pngToPdf": {
+    "name": "PNGからPDF",
+    "subtitle": "1つ以上のPNG画像からPDFを作成します。"
+  },
+  "webpToPdf": {
+    "name": "WebPからPDF",
+    "subtitle": "1つ以上のWebP画像からPDFを作成します。"
+  },
+  "svgToPdf": {
+    "name": "SVGからPDF",
+    "subtitle": "1つ以上のSVG画像からPDFを作成します。"
+  },
+  "bmpToPdf": {
+    "name": "BMPからPDF",
+    "subtitle": "1つ以上のBMP画像からPDFを作成します。"
+  },
+  "heicToPdf": {
+    "name": "HEICからPDF",
+    "subtitle": "1つ以上のHEIC画像からPDFを作成します。"
+  },
+  "tiffToPdf": {
+    "name": "TIFFからPDFへ",
+    "subtitle": "1つ以上の TIFF 画像からPDFを作成します。"
+  },
+  "textToPdf": {
+    "name": "テキストからPDF",
+    "subtitle": "プレーンテキストファイルをPDFに変換します。"
+  },
+  "jsonToPdf": {
+    "name": "JSONからPDF",
+    "subtitle": "JSONファイルをPDF形式に変換します。"
+  },
+  "pdfToJpg": {
+    "name": "PDFからJPG",
+    "subtitle": "各PDFページをJPG画像に変換します。",
+    "imageQuality": "画質",
+    "imageQualityExplanation": "品質が高い = ファイルサイズが大きくなる",
+    "alert": {
+      "invalidFile": "無効なファイルです",
+      "invalidFileExplanation": "PDFファイルをアップロードしてください。",
+      "noFile": "ファイルがありません",
+      "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
+      "conversionSuccess": "PDFからJPGへの変換に成功しました。",
+      "conversionError": "PDFからJPGへの変換に失敗しました。ファイルが破損している可能性があります。"
+    },
+    "loader": {
+      "converting": "JPGに変換中..."
+    }
+  },
+  "pdfToPng": {
+    "name": "PDFからPNG",
+    "subtitle": "各PDFページをPNG画像に変換します。",
+    "imageScale": "画像スケール",
+    "imageScaleExplanation": "スケールが大きい = 品質は向上しますがファイルサイズは大きくなります",
+    "alert": {
+      "invalidFile": "無効なファイル",
+      "invalidFileExplanation": "PDFファイルをアップロードしてください。",
+      "noFile": "ファイルがありません",
+      "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
+      "conversionSuccess": "PDFからPNGへの変換に成功しました。",
+      "conversionError": "PDFからPNGへの変換に失敗しました。ファイルが破損している可能性があります。"
+    },
+    "loader": {
+      "converting": "PNGに変換中..."
+    }
+  },
+  "pdfToWebp": {
+    "name": "PDFからWebP",
+    "subtitle": "各PDFページをWebP画像に変換します。",
+    "imageQuality": "画質",
+    "imageQualityExplanation": "品質が高い = ファイルサイズが大きくなります",
+    "alert": {
+      "invalidFile": "無効なファイル",
+      "invalidFileExplanation": "PDFファイルをアップロードしてください。",
+      "noFile": "ファイルがありません",
+      "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
+      "conversionSuccess": "PDFからWebPへの変換に成功しました。",
+      "conversionError": "PDFからWebPへの変換に失敗しました。ファイルが破損している可能性があります。"
+    },
+    "loader": {
+      "converting": "WebPに変換中..."
+    }
+  },
+  "pdfToBmp": {
+    "name": "PDFからBMP",
+    "subtitle": "各PDFページをBMP画像に変換します。",
+    "alert": {
+      "invalidFile": "無効なファイル",
+      "invalidFileExplanation": "PDFファイルをアップロードしてください。",
+      "noFile": "ファイルがありません",
+      "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
+      "conversionSuccess": "PDFからBMPへの変換に成功しました。",
+      "conversionError": "PDFからBMPへの変換に失敗しました。ファイルが破損している可能性があります。"
+    },
+    "loader": {
+      "converting": "BMPに変換中..."
+    }
+  },
+  "pdfToTiff": {
+    "name": "PDFからTIFF",
+    "subtitle": "各PDFページをTIFF画像に変換します。",
+    "dpi": "DPI (解像度)",
+    "dpiExplanation": "DPIが高い = 印刷品質が向上しファイルサイズが大きくなります",
+    "compression": "圧縮",
+    "compressionExplanation": "LZWとDeflateはロスレスです。CCITTグループ4は白黒でスキャンしたドキュメントに最適です。",
+    "colorMode": "カラーモード",
+    "multiPage": "マルチページTIFF（単一ファイル）として保存",
+    "loadingVips": "画像プロセッサをロード中...",
+    "converting": "TIFFに変換しています...",
+    "alert": {
+      "invalidFile": "無効なファイル",
+      "invalidFileExplanation": "PDFファイルをアップロードしてください。",
+      "noFile": "ファイルがありません",
+      "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
+      "conversionSuccess": "PDFからTIFFへの変換に成功しました。",
+      "conversionError": "PDFからTIFFへの変換に失敗しました。ファイルが破損している可能性があります。"
+    }
+  },
+  "pdfToCbz": {
+    "name": "PDFからCBZへ",
+    "subtitle": "PDFをコミックリーダー用のCBZ (Comic Book Archive)ファイルに変換します。",
+    "imageFormat": "画像フォーマット",
+    "quality": "画質",
+    "qualityExplanation": "品質が高い = ファイルサイズが大きくなります",
+    "scale": "スケール",
+    "scaleExplanation": "スケールが大きい = 高解像度画面の品質が高い",
+    "grayscale": "グレースケールに変換する",
+    "manga": "マンガモード（右から左）",
+    "includeMetadata": "ComicInfo.xml メタデータを含める",
+    "titleLabel": "タイトル",
+    "seriesLabel": "シリーズ",
+    "authorLabel": "著者",
+    "numberLabel": "#",
+    "volumeLabel": "ボリューム",
+    "publisherLabel": "出版社",
+    "tagsLabel": "タグ / ジャンル",
+    "yearLabel": "出版年",
+    "ratingLabel": "評価 (0-5)",
+    "converting": "CBZに変換中...",
+    "alert": {
+      "invalidFile": "無効なファイルです",
+      "invalidFileExplanation": "PDFファイルをアップロードしてください。",
+      "noFile": "ファイルがありません",
+      "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
+      "conversionSuccess": "PDFからCBZへの変換に成功しました。",
+      "conversionError": "PDFからCBZへの変換に失敗しました。ファイルが破損している可能性があります。"
+    }
+  },
+  "pdfToGreyscale": {
+    "name": "PDFのグレースケール化",
+    "subtitle": "すべての色を白黒に変換します。"
+  },
+  "pdfToJson": {
+    "name": "PDFからJSON",
+    "subtitle": "PDFファイルをJSON形式に変換します。"
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "PDFを検索およびコピー可能にします。"
+  },
+  "alternateMix": {
+    "name": "代替ページと混合ページ",
+    "subtitle": "各PDFのページを交互に配置してPDFを結合します。ブックマークを保存します。"
+  },
+  "addAttachments": {
+    "name": "添付ファイルの追加",
+    "subtitle": "1つ以上のファイルをPDFに埋め込みます。"
+  },
+  "extractAttachments": {
+    "name": "添付ファイルの抽出",
+    "subtitle": "PDFからすべての埋め込みファイルをZIPとして抽出します。"
+  },
+  "editAttachments": {
+    "name": "添付ファイルの編集",
+    "subtitle": "PDF内の添付ファイルを表示または削除します。"
+  },
+  "dividePages": {
+    "name": "ページの分割",
+    "subtitle": "ページを水平または垂直に分割します。"
+  },
+  "addBlankPage": {
+    "name": "空白ページの追加",
+    "subtitle": "PDF内の任意の場所に空のページを挿入します。"
+  },
+  "reversePages": {
+    "name": "ページの反転",
+    "subtitle": "文書内のすべてのページの順序を反転します。"
+  },
+  "rotatePdf": {
+    "name": "PDFの回転",
+    "subtitle": "ページを90度ずつ回転します。"
+  },
+  "rotateCustom": {
+    "name": "任意の角度で回転",
+    "subtitle": "任意の角度でページを回転します。"
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF",
+    "subtitle": "複数のページを1枚のシートに配置します。"
+  },
+  "combineToSinglePage": {
+    "name": "単一ページに結合",
+    "subtitle": "すべてのページを1つの連続したスクロールにつなぎ合わせます。"
+  },
+  "viewMetadata": {
+    "name": "メタデータの表示",
+    "subtitle": "PDFの非表示のプロパティを調べます。"
+  },
+  "editMetadata": {
+    "name": "メタデータの編集",
+    "subtitle": "著者、タイトル、その他のプロパティを変更します。"
+  },
+  "pdfsToZip": {
+    "name": "PDFからZIP",
+    "subtitle": "複数のPDFファイルをZIPアーカイブにパッケージ化します。"
+  },
+  "comparePdfs": {
+    "name": "PDFの比較",
+    "subtitle": "2つのPDFを並べて比較します。",
+    "firstPdf": "最初のPDF",
+    "secondPdf": "2番目のPDF",
+    "clickOrDrop": "クリックまたはドロップ",
+    "page": "ページ",
+    "overlay": "かぶせる",
+    "sideBySide": "サイドバイサイド",
+    "flicker": "ちらつき",
+    "syncScroll": "同期スクロール",
+    "export": "エクスポート",
+    "exportAsPdf": "PDFとしてエクスポート",
+    "splitView": "分割ビュー",
+    "alternating": "交互に",
+    "leftDocument": "左の文書",
+    "rightDocument": "正しい文書",
+    "original": "オリジナル",
+    "modified": "修正済み",
+    "searchChanges": "検索の変更...",
+    "deleted": "削除されました",
+    "added": "追加されました",
+    "prevPage": "前のページ",
+    "nextPage": "次のページ",
+    "prevChange": "前の変更",
+    "nextChange": "次の変更",
+    "uploadTwoPdfs": "2つのPDFをアップロードして違いを確認します。",
+    "noDifferences": "このページでは相違点は検出されませんでした。",
+    "noMatchingChanges": "現在のフィルターに一致する変更はありません。",
+    "pageNotExist": "このPDFにはページ{{page}}が存在しません。",
+    "noPairedPage": "こちら側にはペアのページがありません。",
+    "buildingModel": "ページ ペアリング モデルを構築しています...",
+    "indexingPdf": "PDF{{num}}ページ {{page}}/{{total}} のインデックスを作成しています...",
+    "loadingComparison": "{{total}} の比較 {{current}} を読み込み中...",
+    "runningOcr": "ページ {{page}} でOCRを実行しています...",
+    "preparingExport": "PDFエクスポートを準備しています...",
+    "renderingPage": "ページ {{current}} / {{total}} をレンダリング中...",
+    "exportError": "エクスポートエラー",
+    "exportFailed": "比較PDFをエクスポートできませんでした。",
+    "loadingFile": "{{name}}を読み込んでいます...",
+    "invalidFile": "無効なファイル",
+    "invalidFileMsg": "有効なPDFファイルを選択してください。",
+    "loadError": "PDFを読み込めませんでした。破損しているか、パスワードで保護されている可能性があります。"
+  },
+  "posterizePdf": {
+    "name": "PDFのポスタライズ",
+    "subtitle": "大きなページを複数の小さなページに分割します。"
+  },
+  "fixPageSize": {
+    "name": "ページサイズを固定",
+    "subtitle": "すべてのページを均一なサイズに標準化します。"
+  },
+  "linearizePdf": {
+    "name": "PDFの線形化",
+    "subtitle": "Web上で高速に表示できるようにPDFを最適化します。"
+  },
+  "pageDimensions": {
+    "name": "ページ寸法",
+    "subtitle": "ページのサイズ、方向、単位を分析します。"
+  },
+  "removeRestrictions": {
+    "name": "制限の解除",
+    "subtitle": "デジタル署名されたPDFファイルに関連付けられたパスワード保護とセキュリティ制限を削除します。"
+  },
+  "repairPdf": {
+    "name": "PDFの修復",
+    "subtitle": "破損したPDFファイルからデータを回復します。"
+  },
+  "encryptPdf": {
+    "name": "PDFの暗号化",
+    "subtitle": "パスワードを追加してPDFをロックします。"
+  },
+  "sanitizePdf": {
+    "name": "PDFをサニタイズ",
+    "subtitle": "メタデータ、注釈、スクリプトなどを削除します。"
+  },
+  "decryptPdf": {
+    "name": "PDFの復号化",
+    "subtitle": "パスワード保護を解除してPDFのロックを解除します。"
+  },
+  "flattenPdf": {
+    "name": "PDFの平坦化",
+    "subtitle": "フォームフィールドと注釈を編集不可にします。"
+  },
+  "removeMetadata": {
+    "name": "メタデータの削除",
+    "subtitle": "PDFから非表示のデータを削除します。"
+  },
+  "changePermissions": {
+    "name": "権限の変更",
+    "subtitle": "PDF に対するユーザー権限を設定または変更します。"
+  },
+  "odtToPdf": {
+    "name": "ODTからPDF",
+    "subtitle": "OpenDocumentテキストファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "ODTファイル",
+    "convertButton": "PDFに変換"
+  },
+  "csvToPdf": {
+    "name": "CSVからPDF",
+    "subtitle": "CSVスプレッドシートファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "CSVファイル",
+    "convertButton": "PDFに変換"
+  },
+  "rtfToPdf": {
+    "name": "RTFからPDF",
+    "subtitle": "リッチテキスト形式のドキュメントをPDFに変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "RTFファイル",
+    "convertButton": "PDFに変換"
+  },
+  "wordToPdf": {
+    "name": "WordからPDF",
+    "subtitle": "Word 文書 (DOCX, DOC, ODT, RTF) をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "DOCX, DOC, ODT, RTFファイル",
+    "convertButton": "PDFに変換"
+  },
+  "excelToPdf": {
+    "name": "ExcelからPDF",
+    "subtitle": "Excelスプレッドシート (XLSX, XLS, ODS, CSV) をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "XLSX, XLS, ODS, CSVファイル",
+    "convertButton": "PDFに変換"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPointからPDF",
+    "subtitle": "PowerPointプレゼンテーション (PPTX, PPT, ODP) をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "PPTX, PPT, ODPファイル",
+    "convertButton": "PDFに変換"
+  },
+  "markdownToPdf": {
+    "name": "マークダウンからPDF",
+    "subtitle": "Markdownを記述または貼り付けて、見栄えの良いPDFとしてエクスポートします。",
+    "paneMarkdown": "マークダウン",
+    "panePreview": "プレビュー",
+    "btnUpload": "アップロード",
+    "btnSyncScroll": "同期スクロール",
+    "btnSettings": "設定",
+    "btnExportPdf": "PDFをエクスポート",
+    "settingsTitle": "マークダウン設定",
+    "settingsPreset": "プリセット",
+    "presetDefault": "デフォルト（GFMライク）",
+    "presetCommonmark": "CommonMark（厳密）",
+    "presetZero": "最小限（機能なし）",
+    "settingsOptions": "マークダウンオプション",
+    "optAllowHtml": "HTMLタグを許可",
+    "optBreaks": "改行を<br>に変換",
+    "optLinkify": "URLをリンクに自動変換",
+    "optTypographer": "タイポグラフィ（スマートクォートなど）"
+  },
+  "pdfBooklet": {
+    "name": "PDFブックレット",
+    "subtitle": "両面小冊子印刷用にページを並べ替えます。折りたたんでホッチキスで留めて小冊子を作成します。",
+    "howItWorks": "仕組み:",
+    "step1": "PDFファイルをアップロードします。",
+    "step2": "ページは冊子順に並​​べ替えられます。",
+    "step3": "両面印刷し、短辺を裏返して折り、ホチキスで留めます。",
+    "paperSize": "用紙サイズ",
+    "orientation": "用紙の向き",
+    "portrait": "縦向き",
+    "landscape": "横向き",
+    "pagesPerSheet": "シートあたりのページ数",
+    "createBooklet": "小冊子の作成",
+    "processing": "処理中...",
+    "pageCount": "必要に応じてページ数が4の倍数にパディングされます。"
+  },
+  "xpsToPdf": {
+    "name": "XPSからPDF",
+    "subtitle": "XPS/OXPSドキュメントをPDF形式に変換します。複数のファイルをサポートします",
+    "acceptedFormats": "XPS、OXPS ファイル",
+    "convertButton": "PDFに変換"
+  },
+  "mobiToPdf": {
+    "name": "MOBIからPDFへの変換",
+    "subtitle": "MOBI電子書籍をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "MOBIファイル",
+    "convertButton": "PDFに変換"
+  },
+  "epubToPdf": {
+    "name": "EPUBからPDF",
+    "subtitle": "EPUB電子書籍をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "EPUBファイル",
+    "convertButton": "PDFに変換"
+  },
+  "fb2ToPdf": {
+    "name": "FB2からPDF",
+    "subtitle": "FictionBook(FB2)電子書籍をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "FB2ファイル",
+    "convertButton": "PDFに変換"
+  },
+  "cbzToPdf": {
+    "name": "CBZからPDF",
+    "subtitle": "コミックのアーカイブファイル(CBZ/CBR)をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "CBZ, CBRファイル",
+    "convertButton": "PDFに変換"
+  },
+  "wpdToPdf": {
+    "name": "WPDからPDF",
+    "subtitle": "WordPerfectドキュメント(WPD)をPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "WPDファイル",
+    "convertButton": "PDFに変換"
+  },
+  "wpsToPdf": {
+    "name": "WPSからPDF",
+    "subtitle": "WPS OfficeドキュメントをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "WPSファイル",
+    "convertButton": "PDFに変換"
+  },
+  "xmlToPdf": {
+    "name": "XMLからPDF",
+    "subtitle": "XMLドキュメントをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "XMLファイル",
+    "convertButton": "PDFに変換"
+  },
+  "pagesToPdf": {
+    "name": "PagesをPDFに変換",
+    "subtitle": "Apple PagesドキュメントをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "Pagesファイル",
+    "convertButton": "PDFに変換"
+  },
+  "odgToPdf": {
+    "name": "ODGからPDF",
+    "subtitle": "OpenDocument Graphics(ODG)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "ODGファイル",
+    "convertButton": "PDFに変換"
+  },
+  "odsToPdf": {
+    "name": "ODSからPDF",
+    "subtitle": "OpenDocumentスプレッドシート(ODS)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "ODSファイル",
+    "convertButton": "PDFに変換"
+  },
+  "odpToPdf": {
+    "name": "ODPからPDF",
+    "subtitle": "OpenDocumentプレゼンテーション(ODP)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "ODPファイル",
+    "convertButton": "PDFに変換"
+  },
+  "pubToPdf": {
+    "name": "PUBからPDF",
+    "subtitle": "Microsoft Publisher(PUB)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "PUBファイル",
+    "convertButton": "PDFに変換"
+  },
+  "vsdToPdf": {
+    "name": "VSDからPDFへのファイル変換",
+    "subtitle": "Microsoft Visio(VSD, VSDX)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "VSD, VSDXファイル",
+    "convertButton": "PDFに変換"
+  },
+  "psdToPdf": {
+    "name": "PSDからPDF",
+    "subtitle": "Adobe Photoshop(PSD)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
+    "acceptedFormats": "PSDファイル",
+    "convertButton": "PDFに変換"
+  },
+  "pdfToSvg": {
+    "name": "PDFからSVG",
+    "subtitle": "PDFファイルの各ページをスケーラブルベクターグラフィック(SVG)に変換し、どのサイズでも完璧な品質を実現します。"
+  },
+  "extractTables": {
+    "name": "PDFテーブルの抽出",
+    "subtitle": "PDFファイルからテーブルを抽出しCSV、JSON、またはマークダウンとしてエクスポートします。"
+  },
+  "pdfToCsv": {
+    "name": "PDFからCSV",
+    "subtitle": "PDFから表を抽出し、CSV形式に変換します。"
+  },
+  "pdfToExcel": {
+    "name": "PDFからExcel",
+    "subtitle": "PDFから表を抽出し、Excel(XLSX)形式に変換します。"
+  },
+  "pdfToText": {
+    "name": "PDFからテキスト",
+    "subtitle": "PDFファイルからテキストを抽出し、プレーンテキスト (.txt) として保存します。複数のファイルをサポートします。",
+    "note": "このツールはデジタルで作成されたPDFでのみ機能します。スキャンされたドキュメントまたは画像ベースのPDFの場合は、代わりにOCR PDFツールを使用してください。",
+    "convertButton": "テキストの抽出"
+  },
+  "digitalSignPdf": {
+    "name": "PDFへの電子署名",
+    "pageTitle": "デジタル署名PDF - 暗号化署名の追加 | BentoPDF",
+    "subtitle": "X.509証明書を使用してPDFに暗号デジタル署名を追加します。 PKCS#12(.pfx, .p12)およびPEM形式をサポートします。秘密キーがブラウザから離れることはありません。",
+    "certificateSection": "証明書",
+    "uploadCert": "証明書のアップロード (.pfx, .p12)",
+    "certPassword": "証明書のパスワード",
+    "certPasswordPlaceholder": "証明書のパスワードを入力してください",
+    "certInfo": "証明書情報",
+    "certSubject": "証明書の所有者",
+    "certIssuer": "発行者",
+    "certValidity": "有効期間",
+    "signatureDetails": "署名の詳細（オプション）",
+    "reason": "署名理由",
+    "reasonPlaceholder": "例: この文書を承認します",
+    "location": "地域",
+    "locationPlaceholder": "例: アメリカ、ニューヨーク",
+    "contactInfo": "連絡先情報",
+    "contactPlaceholder": "例: email@example.com",
+    "applySignature": "デジタル署名を適用する",
+    "successMessage": "PDFは正常に署名されました。署名は任意のPDFリーダーで検証できます。"
+  },
+  "validateSignaturePdf": {
+    "name": "PDF署名を検証する",
+    "pageTitle": "PDF 署名を検証する - デジタル署名を検証する | BentoPDF",
+    "subtitle": "PDFファイルのデジタル署名を検証します。証明書の有効性を確認、署名者の詳細を表示し、文書の整合性を確認します。すべての処理はブラウザ内で行われます。"
+  },
+  "timestampPdf": {
+    "name": "タイムスタンプPDF",
+    "pageTitle": "タイムスタンプPDFオンライン無料 - RFC 3161ドキュメント タイムスタンプ | BentoPDF",
+    "subtitle": "信頼できる Time Stamp Authority(TSA) サーバーを使用して、RFC 3161ドキュメントのタイムスタンプをPDFに追加します。文書が特定の時点で存在していたことを証明します。証明書は必要ありません。",
+    "tsaSectionTitle": "タイムスタンプサーバー(TSA)",
+    "selectTsa": "TSAサーバーを選択してください",
+    "applyTimestamp": "タイムスタンプを適用する",
+    "successMessage": "PDFにタイムスタンプが正常に記録されました。タイムスタンプは、Adobe Acrobatおよびその他のPDFリーダーで確認できます。"
+  },
+  "emailToPdf": {
+    "name": "電子メールからPDF",
+    "subtitle": "電子メールファイル(EML, MSG)をPDF形式に変換します。 Outlookのエクスポートと標準の電子メール形式をサポートします。",
+    "acceptedFormats": "EML, MSGファイル",
+    "convertButton": "PDFに変換"
+  },
+  "fontToOutline": {
+    "name": "フォントをアウトライン化",
+    "subtitle": "すべてのデバイス間で一貫したレンダリングを行うために、すべてのフォントをベクターアウトラインに変換します。"
+  },
+  "deskewPdf": {
+    "name": "PDFの傾き補正",
+    "subtitle": "OpenCVを使用して傾いたスキャンページを自動的にまっすぐにします。"
+  },
+  "pdfToWord": {
+    "name": "PDFからWord",
+    "subtitle": "PDFファイルを編集可能なWordドキュメントに変換します。"
+  },
+  "extractImages": {
+    "name": "画像の抽出",
+    "subtitle": "PDFファイルからすべての埋め込み画像を抽出します。"
+  },
+  "pdfToMarkdown": {
+    "name": "PDFからマークダウン",
+    "subtitle": "PDFのテキストと表をMarkdown形式に変換します。"
+  },
+  "preparePdfForAi": {
+    "name": "AI用のPDFを準備する",
+    "subtitle": "RAG/LLMパイプライン向けにPDFコンテンツをLlamaIndex JSON形式で抽出する。"
+  },
+  "pdfOcg": {
+    "name": "PDF OCG",
+    "subtitle": "PDF内のOCGレイヤーを表示、切り替え、追加、削除します。"
+  },
+  "pdfToPdfa": {
+    "name": "PDFからPDF/A",
+    "subtitle": "長期保存のためにPDFをPDF/A形式に変換します。"
+  },
+  "rasterizePdf": {
+    "name": "PDFの画像化",
+    "subtitle": "PDFを画像ベースのPDFに変換します。レイヤーを平坦化し選択可能なテキストを削除します。"
+  },
+  "pdfWorkflow": {
+    "name": "PDFワークフロービルダー",
+    "subtitle": "ビジュアル ノード エディターを使用してカスタムPDF処理パイプラインを構築します。",
+    "nodes": "ノード",
+    "searchNodes": "ノードを検索...",
+    "run": "実行",
+    "clear": "クリア",
+    "save": "保存",
+    "load": "読み込む",
+    "export": "エクスポート",
+    "import": "インポート",
+    "ready": "準備完了",
+    "settings": "設定",
+    "processing": "処理中...",
+    "saveTemplate": "テンプレートの保存",
+    "templateName": "テンプレート名",
+    "templatePlaceholder": "例: 請求書のワークフロー",
+    "cancel": "キャンセル",
+    "loadTemplate": "テンプレートのロード",
+    "noTemplates": "まだテンプレートが保存されていません。",
+    "ok": "OK",
+    "workflowCompleted": "ワークフローが完了しました",
+    "errorDuringExecution": "実行中のエラー",
+    "addNodeError": "ワークフローを実行するには1つ以上のノードを追加します。",
+    "needInputOutput": "ワークフローを実行するには1つ以上の入力ノードと1つの出力ノードが必要です。",
+    "enterName": "名前を入力してください。",
+    "templateExists": "この名前のテンプレートはすでに存在します。",
+    "templateSaved": "テンプレート「{{name}}」が保存されました。",
+    "templateLoaded": "テンプレート「{{name}}」がロードされました。",
+    "failedLoadTemplate": "テンプレートの読み込みに失敗しました。",
+    "noSettings": "このノードには構成可能な設定がありません。",
+    "advancedSettings": "詳細設定"
+  },
+  "pdfOverlay": {
+    "name": "PDFオーバーレイ",
+    "subtitle": "あるPDFから別のPDFにページをオーバーレイまたはアンダーレイします。",
+    "basePdfLabel": "基準PDF",
+    "uploadBasePdf": "基準PDFをアップロードする",
+    "overlayPdfLabel": "オーバーレイ / アンダーレイPDF",
+    "uploadOverlayPdf": "オーバーレイ / アンダーレイPDFのアップロード",
+    "modeLabel": "モード",
+    "overlayOption": "オーバーレイ（ページの上部）",
+    "underlayOption": "アンダーレイ（ページの裏）",
+    "pageRangeLabel": "ページに適用（オプション）",
+    "pageRangeHint": "最後のページには「z」を使用します。すべてのページに適用するには、空のままにします。",
+    "repeatLabel": "基準が長い場合は、ループのオーバーレイ／アンダーレイページを繰り返し表示する",
+    "processButton": "オーバーレイ / アンダーレイの適用",
+    "howItWorksUploadTitle": "2つのPDFをアップロードする",
+    "howItWorksUploadDescription": "基準PDFとオーバーレイまたはアンダーレイしたいPDFをアップロードします。",
+    "howItWorksModeTitle": "モードの選択",
+    "howItWorksModeDescription": "オーバーレイ（上）またはアンダーレイ（下）を選択します。必要に応じてページ範囲を設定し繰り返します。",
+    "howItWorksDownloadTitle": "ダウンロード",
+    "howItWorksDownloadDescription": "オーバーレイまたはアンダーレイを適用したPDFをダウンロードします。",
+    "faqDifferenceQuestion": "オーバーレイとアンダーレイの違いは何ですか？",
+    "faqDifferenceAnswer": "オーバーレイは、基準PDFの上にページを配置します (透かしのように)。アンダーレイは、基準PDF（レターヘッドや背景など）の後ろにページを配置します。",
+    "faqSinglePageQuestion": "単一ページのPDFをすべてのページのオーバーレイとして使用できますか？",
+    "faqSinglePageAnswer": "はい！ 「ループ」オプションを有効にすると、オーバーレイPDFページがすべてのベース ページにわたって繰り返されます。単一ページのウォーターマークはすべてのページに適用されます。",
+    "faqPrivacyQuestion": "私のファイルは非公開で安全ですか？",
+    "faqPrivacyAnswer": "絶対に！すべての処理はブラウザ内で行われます。ファイルがデバイスの外に出ることはなく、完全なプライバシーが確保されます。"
+  }
+}
