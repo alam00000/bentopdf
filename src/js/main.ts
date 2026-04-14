@@ -845,10 +845,10 @@ const init = async () => {
 
       if (confirmMode) {
         dom.warningCancelBtn.style.display = '';
-        dom.warningConfirmBtn.textContent = 'Proceed';
+        dom.warningConfirmBtn.textContent = t('warning.proceed');
       } else {
         dom.warningCancelBtn.style.display = 'none';
-        dom.warningConfirmBtn.textContent = 'OK';
+        dom.warningConfirmBtn.textContent = t('alert.ok');
       }
 
       const handleConfirm = () => {
