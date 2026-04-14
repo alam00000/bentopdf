@@ -206,54 +206,7 @@
       {{> settings-modal }}
 
       <!-- Warning Modal -->
-      <div
-        id="warning-modal"
-        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
-      >
-        <div
-          class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl max-w-md w-full overflow-hidden animate-scale-in"
-        >
-          <div class="p-6">
-            <div class="flex items-start gap-4 mb-4">
-              <div
-                id="warning-icon"
-                class="w-12 h-12 flex items-center justify-center rounded-full bg-yellow-500/10 flex-shrink-0"
-              >
-                <i
-                  data-lucide="alert-triangle"
-                  class="w-6 h-6 text-yellow-500"
-                ></i>
-              </div>
-              <div class="flex-1">
-                <h3
-                  id="warning-title"
-                  class="text-xl font-bold text-white mb-2"
-                >
-                  Warning
-                </h3>
-                <p
-                  id="warning-message"
-                  class="text-gray-300 text-sm leading-relaxed"
-                ></p>
-              </div>
-            </div>
-          </div>
-          <div class="flex gap-3 p-4 bg-gray-850 border-t border-gray-700">
-            <button
-              id="warning-cancel-btn"
-              class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              id="warning-confirm-btn"
-              class="flex-1 px-4 py-2.5 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-medium transition-colors"
-            >
-              Proceed
-            </button>
-          </div>
-        </div>
-      </div>
+      {{> warning-modal }}
 
       <div id="signature-ghost" class="hidden"></div>
 
