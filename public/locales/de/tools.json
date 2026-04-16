@@ -87,7 +87,7 @@
   "tableOfContents": {
     "name": "Inhaltsverzeichnis",
     "subtitle": "Ein Inhaltsverzeichnis aus PDF-Lesezeichen generieren.",
-    "titleLabel": "IV-Titel",
+    "titleLabel": "Inhaltsverzeichnis-Titel",
     "fontSize": "Schriftgröße",
     "fontFamily": "Schriftfamilie",
     "addBookmark": "Lesezeichen für IV-Seite hinzufügen",
