@@ -257,7 +257,8 @@
     "file": "Datei",
     "files": "Dateien",
     "close": "Schließen",
-    "convert": "Konvertieren"
+    "convert": "Konvertieren",
+    "unknownError": "Unbekannter Fehler"
   },
   "about": {
     "hero": {

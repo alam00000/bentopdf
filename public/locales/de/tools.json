@@ -422,7 +422,7 @@
       "selectedReady": "{{count}} Datei(en) ausgewählt. Bereit zur Konvertierung!",
       "checkingEncrypted": "Es wird auf verschlüsselte PDFs geprüft...",
       "readingFiles": "Dateien werden gelesen (Haupt-Thread)...",
-      "converting": "PDFs werden in JSON konvertiert..",
+      "converting": "PDFs werden in JSON konvertiert...",
       "readError": "Fehler beim Lesen der Dateien: {{message}}",
       "creatingZip": "ZIP-Datei wird erstellt...",
       "success": "PDFs erfolgreich in JSON konvertiert! ZIP-Download wurde gestartet.",

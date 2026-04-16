@@ -128,7 +128,8 @@ async function convertJSONsToPDF() {
     console.error('Error reading files:', error);
     showStatus(
       t('tools:jsonToPdf.status.readError', {
-        message: error instanceof Error ? error.message : 'Unknown error',
+        message:
+          error instanceof Error ? error.message : t('common.unknownError'),
       }),
       'error'
     );
@@ -177,13 +178,14 @@ worker.onmessage = async (e: MessageEvent) => {
       console.error('Error creating ZIP:', error);
       showStatus(
         t('tools:jsonToPdf.status.zipError', {
-          message: error instanceof Error ? error.message : 'Unknown error',
+          message:
+            error instanceof Error ? error.message : t('common.unknownError'),
         }),
         'error'
       );
     }
   } else if (e.data.status === 'error') {
-    const errorMessage = e.data.message || 'Unknown error occurred in worker.';
+    const errorMessage = e.data.message || t('common.unknownError');
     console.error('Worker Error:', errorMessage);
     showStatus(
       t('tools:jsonToPdf.status.workerError', { message: errorMessage }),

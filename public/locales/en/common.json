@@ -267,7 +267,8 @@
     "file": "File",
     "files": "Files",
     "close": "Close",
-    "convert": "Convert"
+    "convert": "Convert",
+    "unknownError": "Unknown error"
   },
   "about": {
     "hero": {

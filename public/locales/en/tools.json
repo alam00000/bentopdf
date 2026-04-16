@@ -430,7 +430,7 @@
       "selectedReady": "{{count}} file(s) selected. Ready to convert!",
       "checkingEncrypted": "Checking for encrypted PDFs...",
       "readingFiles": "Reading files (Main Thread)...",
-      "converting": "Converting PDFs to JSON..",
+      "converting": "Converting PDFs to JSON...",
       "readError": "Error reading files: {{message}}",
       "creatingZip": "Creating ZIP file...",
       "success": "PDFs converted to JSON successfully! ZIP download started.",
