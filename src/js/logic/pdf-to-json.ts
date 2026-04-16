@@ -12,6 +12,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/pdf-to-json.worker.js'
@@ -82,10 +83,12 @@ pdfFilesInput.addEventListener('change', (e) => {
     updateFileList();
 
     if (selectedFiles.length === 0) {
-      showStatus('Please select at least 1 PDF file', 'info');
+      showStatus(t('tools:pdfToJson.status.selectAtLeastOne'), 'info');
     } else {
       showStatus(
-        `${selectedFiles.length} file(s) selected. Ready to convert!`,
+        t('tools:pdfToJson.status.selectedReady', {
+          count: selectedFiles.length,
+        }),
         'info'
       );
     }
@@ -94,7 +97,7 @@ pdfFilesInput.addEventListener('change', (e) => {
 
 async function convertPDFsToJSON() {
   if (selectedFiles.length === 0) {
-    showStatus('Please select at least 1 PDF file', 'error');
+    showStatus(t('tools:pdfToJson.status.selectAtLeastOne'), 'error');
     return;
   }
 
@@ -106,17 +109,17 @@ async function convertPDFsToJSON() {
 
   try {
     convertBtn.disabled = true;
-    showStatus('Checking for encrypted PDFs...', 'info');
+    showStatus(t('tools:pdfToJson.status.checkingEncrypted'), 'info');
 
     selectedFiles = await batchDecryptIfNeeded(selectedFiles);
 
-    showStatus('Reading files (Main Thread)...', 'info');
+    showStatus(t('tools:pdfToJson.status.readingFiles'), 'info');
 
     const fileBuffers = await Promise.all(
       selectedFiles.map((file) => readFileAsArrayBuffer(file))
     );
 
-    showStatus('Converting PDFs to JSON..', 'info');
+    showStatus(t('tools:pdfToJson.status.converting'), 'info');
 
     worker.postMessage(
       {
@@ -130,7 +133,9 @@ async function convertPDFsToJSON() {
   } catch (error) {
     console.error('Error reading files:', error);
     showStatus(
-      `❌ Error reading files: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      t('tools:pdfToJson.status.readError', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+      }),
       'error'
     );
     convertBtn.disabled = false;
@@ -147,7 +152,7 @@ worker.onmessage = async (e: MessageEvent) => {
     }>;
 
     try {
-      showStatus('Creating ZIP file...', 'info');
+      showStatus(t('tools:pdfToJson.status.creatingZip'), 'info');
 
       const zip = new JSZip();
       const usedNames = new Set<string>();
@@ -161,10 +166,7 @@ worker.onmessage = async (e: MessageEvent) => {
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, 'pdfs-to-json.zip');
 
-      showStatus(
-        '✅ PDFs converted to JSON successfully! ZIP download started.',
-        'success'
-      );
+      showStatus(t('tools:pdfToJson.status.success'), 'success');
 
       selectedFiles = [];
       pdfFilesInput.value = '';
@@ -178,14 +180,19 @@ worker.onmessage = async (e: MessageEvent) => {
     } catch (error) {
       console.error('Error creating ZIP:', error);
       showStatus(
-        `❌ Error creating ZIP: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        t('tools:pdfToJson.status.zipError', {
+          message: error instanceof Error ? error.message : 'Unknown error',
+        }),
         'error'
       );
     }
   } else if (e.data.status === 'error') {
     const errorMessage = e.data.message || 'Unknown error occurred in worker.';
     console.error('Worker Error:', errorMessage);
-    showStatus(`❌ Worker Error: ${errorMessage}`, 'error');
+    showStatus(
+      t('tools:pdfToJson.status.workerError', { message: errorMessage }),
+      'error'
+    );
   }
 };
 
@@ -197,5 +204,5 @@ if (backToToolsBtn) {
 
 convertBtn.addEventListener('click', convertPDFsToJSON);
 
-showStatus('Select PDF files to get started', 'info');
+showStatus(t('tools:pdfToJson.status.getStarted'), 'info');
 initializeGlobalShortcuts();

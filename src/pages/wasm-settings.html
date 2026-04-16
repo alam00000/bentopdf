@@ -79,10 +79,16 @@
           </span>
         </button>
 
-        <h1 class="text-2xl font-bold text-white mb-2">
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:wasmSettings.title"
+        >
           Advanced Features Settings
         </h1>
-        <p class="text-gray-400 mb-6">
+        <p
+          class="text-gray-400 mb-6"
+          data-i18n="tools:wasmSettings.description"
+        >
           Configure external processing modules to enable advanced PDF features.
           These modules are optional and licensed separately.
         </p>
@@ -98,10 +104,15 @@
             ></i>
             <div>
               <p class="text-green-200 text-sm">
-                <strong>Pre-configured and ready to use.</strong> Advanced
-                processing modules are loaded automatically from CDN. You can
-                override the URLs below if you need to use a custom source
-                (e.g., for air-gapped or self-hosted deployments).
+                <strong data-i18n="tools:wasmSettings.preconfiguredTitle"
+                  >Pre-configured and ready to use.</strong
+                >
+                <span data-i18n="tools:wasmSettings.preconfiguredDescription"
+                  >Advanced processing modules are loaded automatically from
+                  CDN. You can override the URLs below if you need to use a
+                  custom source (e.g., for air-gapped or self-hosted
+                  deployments).</span
+                >
               </p>
             </div>
           </div>
@@ -113,16 +124,25 @@
             <div class="flex items-center justify-between mb-3">
               <div>
                 <h3 class="font-semibold text-white">PyMuPDF</h3>
-                <p class="text-xs text-gray-400">Document Processing Engine</p>
+                <p
+                  class="text-xs text-gray-400"
+                  data-i18n="tools:wasmSettings.pymupdfSubtitle"
+                >
+                  Document Processing Engine
+                </p>
               </div>
               <span
                 id="pymupdf-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
+                data-i18n="tools:wasmSettings.notConfigured"
               >
                 Not Configured
               </span>
             </div>
-            <p class="text-sm text-gray-400 mb-3">
+            <p
+              class="text-sm text-gray-400 mb-3"
+              data-i18n="tools:wasmSettings.pymupdfFeatures"
+            >
               Enables: PDF to Text, Markdown, SVG, DOCX, Excel • Extract
               Images/Tables • Format Conversion
             </p>
@@ -136,12 +156,17 @@
               <button
                 id="pymupdf-test"
                 class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors"
+                data-i18n="tools:wasmSettings.testButton"
               >
                 Test
               </button>
             </div>
             <div class="flex items-center gap-2 mt-2">
-              <span class="text-xs text-gray-500">Recommended:</span>
+              <span
+                class="text-xs text-gray-500"
+                data-i18n="tools:wasmSettings.recommendedLabel"
+                >Recommended:</span
+              >
               <code
                 class="text-xs text-indigo-400 bg-gray-800 px-2 py-1 rounded flex-1 truncate"
                 >https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/</code
@@ -150,6 +175,7 @@
                 data-copy="https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/"
                 class="copy-btn p-1.5 bg-gray-600 hover:bg-gray-500 rounded text-gray-300 hover:text-white transition-colors"
                 title="Copy to clipboard"
+                data-i18n-title="tools:wasmSettings.copyTitle"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
@@ -161,16 +187,25 @@
             <div class="flex items-center justify-between mb-3">
               <div>
                 <h3 class="font-semibold text-white">Ghostscript</h3>
-                <p class="text-xs text-gray-400">PDF/A Conversion Engine</p>
+                <p
+                  class="text-xs text-gray-400"
+                  data-i18n="tools:wasmSettings.ghostscriptSubtitle"
+                >
+                  PDF/A Conversion Engine
+                </p>
               </div>
               <span
                 id="ghostscript-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
+                data-i18n="tools:wasmSettings.notConfigured"
               >
                 Not Configured
               </span>
             </div>
-            <p class="text-sm text-gray-400 mb-3">
+            <p
+              class="text-sm text-gray-400 mb-3"
+              data-i18n="tools:wasmSettings.ghostscriptFeatures"
+            >
               Enables: PDF/A-1b, PDF/A-2b, PDF/A-3b Conversion • Font to Outline
             </p>
             <div class="flex gap-2">
@@ -183,12 +218,17 @@
               <button
                 id="ghostscript-test"
                 class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors"
+                data-i18n="tools:wasmSettings.testButton"
               >
                 Test
               </button>
             </div>
             <div class="flex items-center gap-2 mt-2">
-              <span class="text-xs text-gray-500">Recommended:</span>
+              <span
+                class="text-xs text-gray-500"
+                data-i18n="tools:wasmSettings.recommendedLabel"
+                >Recommended:</span
+              >
               <code
                 class="text-xs text-indigo-400 bg-gray-800 px-2 py-1 rounded flex-1 truncate"
                 >https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm/assets/</code
@@ -197,6 +237,7 @@
                 data-copy="https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm/assets/"
                 class="copy-btn p-1.5 bg-gray-600 hover:bg-gray-500 rounded text-gray-300 hover:text-white transition-colors"
                 title="Copy to clipboard"
+                data-i18n-title="tools:wasmSettings.copyTitle"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
@@ -208,16 +249,25 @@
             <div class="flex items-center justify-between mb-3">
               <div>
                 <h3 class="font-semibold text-white">CoherentPDF</h3>
-                <p class="text-xs text-gray-400">Bookmarks & Metadata Engine</p>
+                <p
+                  class="text-xs text-gray-400"
+                  data-i18n="tools:wasmSettings.cpdfSubtitle"
+                >
+                  Bookmarks & Metadata Engine
+                </p>
               </div>
               <span
                 id="cpdf-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
+                data-i18n="tools:wasmSettings.notConfigured"
               >
                 Not Configured
               </span>
             </div>
-            <p class="text-sm text-gray-400 mb-3">
+            <p
+              class="text-sm text-gray-400 mb-3"
+              data-i18n="tools:wasmSettings.cpdfFeatures"
+            >
               Enables: Split by Bookmarks • Edit Bookmarks • PDF Metadata
             </p>
             <div class="flex gap-2">
@@ -230,12 +280,17 @@
               <button
                 id="cpdf-test"
                 class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors"
+                data-i18n="tools:wasmSettings.testButton"
               >
                 Test
               </button>
             </div>
             <div class="flex items-center gap-2 mt-2">
-              <span class="text-xs text-gray-500">Recommended:</span>
+              <span
+                class="text-xs text-gray-500"
+                data-i18n="tools:wasmSettings.recommendedLabel"
+                >Recommended:</span
+              >
               <code
                 class="text-xs text-indigo-400 bg-gray-800 px-2 py-1 rounded flex-1 truncate"
                 >https://cdn.jsdelivr.net/npm/coherentpdf/dist/</code
@@ -244,6 +299,7 @@
                 data-copy="https://cdn.jsdelivr.net/npm/coherentpdf/dist/"
                 class="copy-btn p-1.5 bg-gray-600 hover:bg-gray-500 rounded text-gray-300 hover:text-white transition-colors"
                 title="Copy to clipboard"
+                data-i18n-title="tools:wasmSettings.copyTitle"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
               </button>
@@ -253,12 +309,17 @@
 
         <!-- Action Buttons -->
         <div class="flex gap-3 mt-6">
-          <button id="save-btn" class="btn-gradient flex-1">
+          <button
+            id="save-btn"
+            class="btn-gradient flex-1"
+            data-i18n="tools:wasmSettings.saveConfiguration"
+          >
             Save Configuration
           </button>
           <button
             id="clear-btn"
             class="px-6 py-2.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-medium transition-colors border border-red-600/50"
+            data-i18n="tools:wasmSettings.resetDefaults"
           >
             Reset to Defaults
           </button>
@@ -269,12 +330,19 @@
           class="mt-6 p-4 bg-gray-700/30 rounded-lg border border-gray-600/50"
         >
           <p class="text-xs text-gray-500">
-            <strong class="text-gray-400">License Notice:</strong> The external
-            modules (PyMuPDF, Ghostscript, CoherentPDF) are licensed under
-            AGPL-3.0 or similar copyleft licenses. By configuring and using
-            these modules, you agree to their respective license terms. BentoPDF
-            is compatible with any Ghostscript WASM and PyMuPDF WASM
-            implementation that follows the expected interface.
+            <strong
+              class="text-gray-400"
+              data-i18n="tools:wasmSettings.licenseTitle"
+              >License Notice:</strong
+            >
+            <span data-i18n="tools:wasmSettings.licenseDescription"
+              >The external modules (PyMuPDF, Ghostscript, CoherentPDF) are
+              licensed under AGPL-3.0 or similar copyleft licenses. By
+              configuring and using these modules, you agree to their respective
+              license terms. BentoPDF is compatible with any Ghostscript WASM
+              and PyMuPDF WASM implementation that follows the expected
+              interface.</span
+            >
           </p>
         </div>
       </div>

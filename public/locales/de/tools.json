@@ -8,6 +8,7 @@
     "optimizeRepair": "Optimieren & Reparieren",
     "securePdf": "PDF sichern"
   },
+  "convertToPdf": "In PDF konvertieren",
   "pdfMultiTool": {
     "name": "PDF Multi-Werkzeug",
     "subtitle": "Zusammenführen, Teilen, Organisieren, Löschen, Drehen, Leere Seiten hinzufügen, Extrahieren und Duplizieren in einer einheitlichen Oberfläche."
@@ -68,7 +69,8 @@
   },
   "duplicateOrganize": {
     "name": "Duplizieren & Organisieren",
-    "subtitle": "Seiten duplizieren, neu anordnen und löschen."
+    "subtitle": "Seiten duplizieren, neu anordnen und löschen.",
+    "saveChanges": "Änderungen speichern"
   },
   "deletePages": {
     "name": "Seiten löschen",
@@ -76,11 +78,20 @@
   },
   "editBookmarks": {
     "name": "Lesezeichen bearbeiten",
-    "subtitle": "PDF-Lesezeichen hinzufügen, bearbeiten, importieren, löschen und extrahieren."
+    "subtitle": "PDF-Lesezeichen hinzufügen, bearbeiten, importieren, löschen und extrahieren.",
+    "importSectionTitle": "Oder Lesezeichen importieren",
+    "uploadCsvAction": "Klicken, um CSV hochzuladen",
+    "uploadJsonAction": "Klicken, um JSON hochzuladen",
+    "orDragHere": "oder hierher ziehen"
   },
   "tableOfContents": {
     "name": "Inhaltsverzeichnis",
-    "subtitle": "Ein Inhaltsverzeichnis aus PDF-Lesezeichen generieren."
+    "subtitle": "Ein Inhaltsverzeichnis aus PDF-Lesezeichen generieren.",
+    "titleLabel": "IV-Titel",
+    "fontSize": "Schriftgröße",
+    "fontFamily": "Schriftfamilie",
+    "addBookmark": "Lesezeichen für IV-Seite hinzufügen",
+    "generateButton": "Inhaltsverzeichnis generieren"
   },
   "pageNumbers": {
     "name": "Seitenzahlen",
@@ -206,7 +217,8 @@
     "subtitle": "Bildstempel zu Ihrer PDF über die Annotations-Symbolleiste hinzufügen.",
     "usernameLabel": "Stempel-Benutzername",
     "usernamePlaceholder": "Geben Sie Ihren Namen ein (für Stempel)",
-    "usernameHint": "Dieser Name erscheint auf von Ihnen erstellten Stempeln."
+    "usernameHint": "Dieser Name erscheint auf von Ihnen erstellten Stempeln.",
+    "saveButton": "Gestempelte PDF speichern"
   },
   "removeAnnotations": {
     "name": "Annotationen entfernen",
@@ -214,11 +226,16 @@
   },
   "pdfFormFiller": {
     "name": "PDF-Formular ausfüllen",
-    "subtitle": "Formulare direkt im Browser ausfüllen. Unterstützt auch XFA-Formulare."
+    "subtitle": "Formulare direkt im Browser ausfüllen. Unterstützt auch XFA-Formulare.",
+    "uploadHint": "Laden Sie eine PDF mit Formularfeldern hoch. Füllen Sie sie direkt im untenstehenden Viewer aus und klicken Sie dann auf die Schaltfläche, um das ausgefüllte Formular zu speichern und herunterzuladen. Unterstützt auch XFA-Formulare.",
+    "xfaNoteTitle": "Hinweis zu XFA-Formularen:",
+    "xfaNoteDescription": "XFA (XML Forms Architecture) ist ein älteres Format, das nur von bestimmten PDF-Viewern wie BentoPDF und Firefox unterstützt wird. Wenn Sie eine XFA-PDF in anderer Software öffnen und leere Seiten oder keine Formularfelder sehen, bedeutet das, dass dieser Viewer XFA nicht unterstützt. Um XFA-Formulare korrekt anzuzeigen und auszufüllen, verwenden Sie Firefox oder den Formular-Ausfüller von BentoPDF."
   },
   "createPdfForm": {
     "name": "PDF-Formular erstellen",
-    "subtitle": "Ausfüllbare PDF-Formulare mit Drag-and-Drop-Textfeldern erstellen."
+    "subtitle": "Ausfüllbare PDF-Formulare mit Drag-and-Drop-Textfeldern erstellen.",
+    "orSeparator": "ODER",
+    "createBlankPdf": "Leere PDF erstellen"
   },
   "removeBlankPages": {
     "name": "Leere Seiten entfernen",
@@ -255,11 +272,34 @@
   },
   "textToPdf": {
     "name": "Text zu PDF",
-    "subtitle": "Eine Textdatei in eine PDF konvertieren."
+    "subtitle": "Eine Textdatei in eine PDF konvertieren.",
+    "uploadFiles": "Dateien hochladen",
+    "typeText": "Text eingeben",
+    "acceptedFormats": "Textdateien (.txt)",
+    "fontFamily": "Schriftfamilie",
+    "fontSize": "Schriftgröße",
+    "textColor": "Textfarbe",
+    "pageSize": "Seitengröße",
+    "createButton": "PDF erstellen"
   },
   "jsonToPdf": {
     "name": "JSON zu PDF",
-    "subtitle": "JSON-Dateien in PDF-Format konvertieren."
+    "subtitle": "JSON-Dateien in PDF-Format konvertieren.",
+    "noteLabel": "Hinweis:",
+    "noteText": "Es werden nur JSON-Dateien unterstützt, die mit dem PDF-zu-JSON-Konverter erstellt wurden. Normale JSON-Dateien aus anderen Tools funktionieren nicht.",
+    "acceptedFormats": "Mehrere JSON-Dateien",
+    "status": {
+      "selectAtLeastOne": "Bitte wählen Sie mindestens 1 JSON-Datei aus",
+      "selectedReady": "{{count}} Datei(en) ausgewählt. Bereit zur Konvertierung!",
+      "readingFiles": "Dateien werden gelesen (Haupt-Thread)...",
+      "converting": "JSON-Dateien werden in PDFs konvertiert...",
+      "readError": "Fehler beim Lesen der Dateien: {{message}}",
+      "creatingZip": "ZIP-Datei wird erstellt...",
+      "success": "JSON-Dateien erfolgreich in PDF konvertiert! ZIP-Download wurde gestartet.",
+      "zipError": "Fehler beim Erstellen der ZIP-Datei: {{message}}",
+      "workerError": "Worker-Fehler: {{message}}",
+      "getStarted": "Wählen Sie JSON-Dateien aus, um zu starten"
+    }
   },
   "pdfToJpg": {
     "name": "PDF zu JPG",
@@ -375,11 +415,34 @@
   },
   "pdfToJson": {
     "name": "PDF zu JSON",
-    "subtitle": "PDF-Dateien in JSON-Format konvertieren."
+    "subtitle": "PDF-Dateien in JSON-Format konvertieren.",
+    "convertButton": "In JSON konvertieren",
+    "status": {
+      "selectAtLeastOne": "Bitte wählen Sie mindestens 1 PDF-Datei aus",
+      "selectedReady": "{{count}} Datei(en) ausgewählt. Bereit zur Konvertierung!",
+      "checkingEncrypted": "Es wird auf verschlüsselte PDFs geprüft...",
+      "readingFiles": "Dateien werden gelesen (Haupt-Thread)...",
+      "converting": "PDFs werden in JSON konvertiert..",
+      "readError": "Fehler beim Lesen der Dateien: {{message}}",
+      "creatingZip": "ZIP-Datei wird erstellt...",
+      "success": "PDFs erfolgreich in JSON konvertiert! ZIP-Download wurde gestartet.",
+      "zipError": "Fehler beim Erstellen der ZIP-Datei: {{message}}",
+      "workerError": "Worker-Fehler: {{message}}",
+      "getStarted": "Wählen Sie PDF-Dateien aus, um zu starten"
+    }
   },
   "ocrPdf": {
     "name": "OCR PDF",
-    "subtitle": "Eine PDF durchsuchbar und kopierbar machen."
+    "subtitle": "Eine PDF durchsuchbar und kopierbar machen.",
+    "howItWorksTitle": "So funktioniert es:",
+    "extractTextLabel": "Text extrahieren:",
+    "extractTextDescription": "Verwendet Tesseract OCR, um Text aus gescannten Bildern oder PDFs zu erkennen.",
+    "searchableOutputLabel": "Durchsuchbare Ausgabe:",
+    "searchableOutputDescription": "Erstellt eine neue PDF mit einer unsichtbaren Textebene, sodass Ihr Dokument vollständig durchsuchbar wird, während das ursprüngliche Erscheinungsbild erhalten bleibt.",
+    "characterFilteringLabel": "Zeichenfilterung:",
+    "characterFilteringDescription": "Verwenden Sie Whitelists, um unerwünschte Zeichen herauszufiltern und die Genauigkeit für bestimmte Dokumenttypen zu verbessern (Rechnungen, Formulare usw.).",
+    "multiLanguageSupportLabel": "Mehrsprachige Unterstützung:",
+    "multiLanguageSupportDescription": "Wählen Sie mehrere Sprachen für Dokumente mit gemischten Sprachinhalten aus."
   },
   "alternateMix": {
     "name": "Seiten abwechselnd mischen",
@@ -711,6 +774,9 @@
     "name": "PDF zu Text",
     "subtitle": "Text aus PDF-Dateien extrahieren und als Textdatei (.txt) speichern. Unterstützt mehrere Dateien.",
     "note": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser OCR PDF-Tool.",
+    "noteLabel": "Hinweis:",
+    "notePrefix": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser",
+    "noteSuffix": "-Tool.",
     "convertButton": "Text extrahieren"
   },
   "digitalSignPdf": {
@@ -733,7 +799,9 @@
     "contactInfo": "Kontaktdaten",
     "contactPlaceholder": "z.B. email@beispiel.de",
     "applySignature": "Digitale Signatur anwenden",
-    "successMessage": "PDF erfolgreich signiert! Die Signatur kann in jedem PDF-Reader überprüft werden."
+    "successMessage": "PDF erfolgreich signiert! Die Signatur kann in jedem PDF-Reader überprüft werden.",
+    "internetRequiredTitle": "Internetverbindung erforderlich",
+    "internetRequiredDescription": "Beim Signieren müssen möglicherweise Informationen zur Zertifikatskette vom Server Ihres Zertifikatsausstellers abgerufen werden, um die Signatur zu validieren."
   },
   "validateSignaturePdf": {
     "name": "PDF-Signatur überprüfen",
@@ -823,6 +891,26 @@
     "failedLoadTemplate": "Vorlage konnte nicht geladen werden.",
     "noSettings": "Keine konfigurierbaren Einstellungen für diesen Node.",
     "advancedSettings": "Erweiterte Einstellungen"
+  },
+  "wasmSettings": {
+    "title": "Erweiterte Feature-Einstellungen",
+    "description": "Konfigurieren Sie externe Verarbeitungsmodule, um erweiterte PDF-Funktionen zu aktivieren. Diese Module sind optional und separat lizenziert.",
+    "preconfiguredTitle": "Vorkonfiguriert und einsatzbereit.",
+    "preconfiguredDescription": "Erweiterte Verarbeitungsmodule werden automatisch über ein CDN geladen. Sie können die untenstehenden URLs überschreiben, wenn Sie eine benutzerdefinierte Quelle verwenden möchten (z. B. für Air-Gap- oder Self-Hosting-Bereitstellungen).",
+    "pymupdfSubtitle": "Dokumentenverarbeitungs-Engine",
+    "notConfigured": "Nicht konfiguriert",
+    "pymupdfFeatures": "Aktiviert: PDF zu Text, Markdown, SVG, DOCX, Excel • Bilder/Tabellen extrahieren • Formatkonvertierung",
+    "testButton": "Testen",
+    "recommendedLabel": "Empfohlen:",
+    "copyTitle": "In Zwischenablage kopieren",
+    "ghostscriptSubtitle": "PDF/A-Konvertierungs-Engine",
+    "ghostscriptFeatures": "Aktiviert: PDF/A-1b-, PDF/A-2b-, PDF/A-3b-Konvertierung • Schriftarten in Pfade umwandeln",
+    "cpdfSubtitle": "Lesezeichen- & Metadaten-Engine",
+    "cpdfFeatures": "Aktiviert: Nach Lesezeichen aufteilen • Lesezeichen bearbeiten • PDF-Metadaten",
+    "saveConfiguration": "Konfiguration speichern",
+    "resetDefaults": "Auf Standard zurücksetzen",
+    "licenseTitle": "Lizenzhinweis:",
+    "licenseDescription": "Die externen Module (PyMuPDF, Ghostscript, CoherentPDF) sind unter AGPL-3.0 oder ähnlichen Copyleft-Lizenzen lizenziert. Durch das Konfigurieren und Verwenden dieser Module stimmen Sie den jeweiligen Lizenzbedingungen zu. BentoPDF ist mit jeder Ghostscript-WASM- und PyMuPDF-WASM-Implementierung kompatibel, die der erwarteten Schnittstelle folgt."
   },
   "pdfOverlay": {
     "name": "PDF-Überlagerung",
