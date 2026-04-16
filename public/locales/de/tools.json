@@ -281,6 +281,7 @@
     "fontSize": "Schriftgröße",
     "textColor": "Textfarbe",
     "pageSize": "Seitengröße",
+    "rtlAutoDetectNote": "RTL-Sprachen (Arabisch, Urdu, Persisch usw.) werden automatisch erkannt und die Textrichtung wird entsprechend angepasst.",
     "createButton": "PDF erstellen"
   },
   "jsonToPdf": {
