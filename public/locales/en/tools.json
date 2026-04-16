@@ -79,6 +79,7 @@
   "editBookmarks": {
     "name": "Edit Bookmarks",
     "subtitle": "Add, edit, import, delete and extract PDF bookmarks.",
+    "autoExtractExisting": "Auto-extract existing bookmarks",
     "importSectionTitle": "Or Import Bookmarks",
     "uploadCsvAction": "Click to upload CSV",
     "uploadJsonAction": "Click to upload JSON",

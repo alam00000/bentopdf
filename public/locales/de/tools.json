@@ -79,6 +79,7 @@
   "editBookmarks": {
     "name": "Lesezeichen bearbeiten",
     "subtitle": "PDF-Lesezeichen hinzufügen, bearbeiten, importieren, löschen und extrahieren.",
+    "autoExtractExisting": "Vorhandene Lesezeichen automatisch extrahieren",
     "importSectionTitle": "Oder Lesezeichen importieren",
     "uploadCsvAction": "Klicken, um CSV hochzuladen",
     "uploadJsonAction": "Klicken, um JSON hochzuladen",
