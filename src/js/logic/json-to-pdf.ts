@@ -10,7 +10,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
-import { t } from '../i18n/i18n';
+import { initI18n, t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/json-to-pdf.worker.js'
@@ -202,6 +202,9 @@ if (backToToolsBtn) {
 
 convertBtn.addEventListener('click', convertJSONsToPDF);
 
-// Initialize
-showStatus(t('tools:jsonToPdf.status.getStarted'), 'info');
-initializeGlobalShortcuts();
+// Initialize after i18n is ready so the default status is translated.
+void (async () => {
+  await initI18n();
+  showStatus(t('tools:jsonToPdf.status.getStarted'), 'info');
+  initializeGlobalShortcuts();
+})();
