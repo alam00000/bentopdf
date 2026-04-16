@@ -12,7 +12,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
-import { t } from '../i18n/i18n';
+import { initI18n, t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/pdf-to-json.worker.js'
@@ -206,5 +206,8 @@ if (backToToolsBtn) {
 
 convertBtn.addEventListener('click', convertPDFsToJSON);
 
-showStatus(t('tools:pdfToJson.status.getStarted'), 'info');
-initializeGlobalShortcuts();
+void (async () => {
+  await initI18n();
+  showStatus(t('tools:pdfToJson.status.getStarted'), 'info');
+  initializeGlobalShortcuts();
+})();
