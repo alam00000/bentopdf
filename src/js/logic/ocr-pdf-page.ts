@@ -10,7 +10,7 @@ import {
   resolveConfiguredTesseractAvailableLanguages,
   UnsupportedOcrLanguageError,
 } from '../utils/tesseract-language-availability.js';
-import { t } from '../i18n/index.js';
+import { initI18n, t } from '../i18n/index.js';
 
 const pageState: OcrState = {
   file: null,
@@ -285,7 +285,7 @@ function populateLanguageList() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById(
@@ -307,6 +307,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const downloadTxtBtn = document.getElementById('download-txt-btn');
   const downloadPdfBtn = document.getElementById('download-searchable-pdf');
 
+  await initI18n();
   populateLanguageList();
   updateLanguageAvailabilityNotice();
 
