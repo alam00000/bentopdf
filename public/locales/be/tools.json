@@ -264,8 +264,8 @@
   "pdfToJpg": {
     "name": "PDF у JPG",
     "subtitle": "Канвертаваць кожную старонку PDF у відарыс JPG.",
-    "imageQuality": "Image Quality",
-    "imageQualityExplanation": "Higher quality = larger file size",
+    "imageQuality": "Якасць відарыса",
+    "imageQualityExplanation": "Вышэйшая якасць = большы памер файла",
     "alert": {
       "invalidFile": "Памылковы файл",
       "invalidFileExplanation": "Запампуйце файл PDF.",
@@ -275,14 +275,14 @@
       "conversionError": "Не ўдалося канвертаваць PDF у JPG. Файл можа быць пашкоджаны."
     },
     "loader": {
-      "converting": "Converting to JPG..."
+      "converting": "Канвертацыя ў JPG..."
     }
   },
   "pdfToPng": {
     "name": "PDF у PNG",
     "subtitle": "Канвертаваць кожную старонку PDF у відарыс PNG.",
-    "imageScale": "Image Scale",
-    "imageScaleExplanation": "Higher scale = better quality but larger file size",
+    "imageScale": "Маштаб відарыса",
+    "imageScaleExplanation": "Большы маштаб = лепшая якасць, але большы памер файла",
     "alert": {
       "invalidFile": "Памылковы файл",
       "invalidFileExplanation": "Запампуйце файл PDF.",
@@ -298,8 +298,8 @@
   "pdfToWebp": {
     "name": "PDF у WebP",
     "subtitle": "Канвертаваць кожную старонку PDF у відарыс WebP.",
-    "imageQuality": "Image Quality",
-    "imageQualityExplanation": "Higher quality = larger file size",
+    "imageQuality": "Якасць відарыса",
+    "imageQualityExplanation": "Вышэйшая якасць = большы памер файла",
     "alert": {
       "invalidFile": "Памылковы файл",
       "invalidFileExplanation": "Запампуйце файл PDF.",
@@ -458,7 +458,7 @@
     "syncScroll": "Сінхранізаваць пракрутку",
     "export": "Экспарт",
     "exportAsPdf": "Экспартаваць як PDF",
-    "splitView": "Падзелены экран'",
+    "splitView": "Падзелены экран",
     "alternating": "Чаргаванне",
     "leftDocument": "Левы дакумент",
     "rightDocument": "Правы дакумент",
@@ -836,7 +836,7 @@
     "name": "Накладанне PDF",
     "subtitle": "Накласці або падкласці старонкі аднаго PDF на іншы.",
     "basePdfLabel": "Базавы PDF",
-    "uploadBasePdf": "Запаспаваць базавы PDF",
+    "uploadBasePdf": "Запампаваць базавы PDF",
     "overlayPdfLabel": "PDF для накладання / падкладання",
     "uploadOverlayPdf": "Запампаваць PDF для накладання/падкладання",
     "modeLabel": "Рэжым",

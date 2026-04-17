@@ -103,7 +103,7 @@
     "step3": "Імгненна захавайце апрацаваны файл"
   },
   "relatedTools": {
-    "title": "Related PDF Tools"
+    "title": "Звязаныя інструменты PDF"
   },
   "loader": {
     "processing": "Апрацоўка..."
@@ -267,7 +267,7 @@
     "file": "Файл",
     "files": "Файлы",
     "close": "Закрыць",
-    "convert": "Карвертаваць"
+    "convert": "Канвертаваць"
   },
   "about": {
     "hero": {
