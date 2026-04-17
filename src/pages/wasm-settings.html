@@ -134,7 +134,7 @@
               <span
                 id="pymupdf-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
-                data-i18n="tools:wasmSettings.notConfigured"
+                data-i18n="tools:wasmSettings.status.notConfigured"
               >
                 Not Configured
               </span>
@@ -197,7 +197,7 @@
               <span
                 id="ghostscript-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
-                data-i18n="tools:wasmSettings.notConfigured"
+                data-i18n="tools:wasmSettings.status.notConfigured"
               >
                 Not Configured
               </span>
@@ -259,7 +259,7 @@
               <span
                 id="cpdf-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
-                data-i18n="tools:wasmSettings.notConfigured"
+                data-i18n="tools:wasmSettings.status.notConfigured"
               >
                 Not Configured
               </span>
@@ -375,13 +375,18 @@
       <div
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
-        <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
+        <h3
+          id="alert-title"
+          class="text-xl font-bold text-white mb-2"
+          data-i18n="alert.title"
+        >
           Alert
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          data-i18n="common.ok"
         >
           OK
         </button>

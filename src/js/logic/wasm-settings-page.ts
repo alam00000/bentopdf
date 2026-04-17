@@ -3,6 +3,7 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { WasmProvider, type WasmPackage } from '../utils/wasm-provider.js';
 import { clearPyMuPDFCache } from '../utils/pymupdf-loader.js';
 import { clearGhostscriptCache } from '../utils/ghostscript-dynamic-loader.js';
+import { initI18n, t } from '../i18n/index.js';
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializePage);
@@ -10,8 +11,14 @@ if (document.readyState === 'loading') {
   initializePage();
 }
 
-function initializePage() {
+async function initializePage() {
   createIcons({ icons });
+
+  try {
+    await initI18n();
+  } catch (error) {
+    console.warn('WASM settings i18n initialization failed:', error);
+  }
 
   document.querySelectorAll('.copy-btn').forEach((btn) => {
     btn.addEventListener('click', async () => {
@@ -90,7 +97,7 @@ function initializePage() {
         input.value = url;
       } else {
         input.value = '';
-        input.placeholder = `Using default: ${url}`;
+        input.placeholder = t('tools:wasmSettings.usingDefault', { url });
       }
       updateStatus(name, true);
     }
@@ -111,19 +118,19 @@ function initializePage() {
     if (!statusEl) return;
 
     if (testing) {
-      statusEl.textContent = 'Testing...';
+      statusEl.textContent = t('tools:wasmSettings.status.testing');
       statusEl.className =
         'text-xs px-2 py-1 rounded-full bg-yellow-600/30 text-yellow-300';
     } else if (configured && WasmProvider.isUserConfigured(packageName)) {
-      statusEl.textContent = 'Custom Override';
+      statusEl.textContent = t('tools:wasmSettings.status.customOverride');
       statusEl.className =
         'text-xs px-2 py-1 rounded-full bg-blue-600/30 text-blue-300';
     } else if (configured || WasmProvider.hasEnvDefault(packageName)) {
-      statusEl.textContent = 'Pre-configured';
+      statusEl.textContent = t('tools:wasmSettings.status.preConfigured');
       statusEl.className =
         'text-xs px-2 py-1 rounded-full bg-green-600/30 text-green-300';
     } else {
-      statusEl.textContent = 'Not Configured';
+      statusEl.textContent = t('tools:wasmSettings.status.notConfigured');
       statusEl.className =
         'text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300';
     }
@@ -131,7 +138,10 @@ function initializePage() {
 
   async function testConnection(packageName: WasmPackage, url: string) {
     if (!url.trim()) {
-      showAlert('Empty URL', 'Please enter a URL to test.');
+      showAlert(
+        t('tools:wasmSettings.emptyUrlTitle'),
+        t('tools:wasmSettings.emptyUrlMessage')
+      );
       return;
     }
 
@@ -142,15 +152,17 @@ function initializePage() {
     if (result.valid) {
       updateStatus(packageName, true);
       showAlert(
-        'Success',
-        `Connection to ${WasmProvider.getPackageDisplayName(packageName)} successful!`,
+        t('tools:wasmSettings.testSuccessTitle'),
+        t('tools:wasmSettings.connectionSuccess', {
+          package: WasmProvider.getPackageDisplayName(packageName),
+        }),
         'success'
       );
     } else {
       updateStatus(packageName, false);
       showAlert(
-        'Connection Failed',
-        result.error || 'Could not connect to the URL.'
+        t('tools:wasmSettings.connectionFailedTitle'),
+        result.error || t('tools:wasmSettings.connectionFailedMessage')
       );
     }
   }
@@ -168,7 +180,7 @@ function initializePage() {
   });
 
   saveBtn?.addEventListener('click', async () => {
-    showLoader('Saving configuration...');
+    showLoader(t('tools:wasmSettings.savingConfiguration'));
 
     try {
       if (pymupdfUrl.value.trim()) {
@@ -196,11 +208,19 @@ function initializePage() {
       }
 
       hideLoader();
-      showAlert('Saved', 'Configuration saved successfully!', 'success');
+      showAlert(
+        t('tools:wasmSettings.savedTitle'),
+        t('tools:wasmSettings.savedMessage'),
+        'success'
+      );
     } catch (e: unknown) {
       hideLoader();
-      const errorMessage = e instanceof Error ? e.message : 'Unknown error';
-      showAlert('Error', `Failed to save configuration: ${errorMessage}`);
+      const errorMessage =
+        e instanceof Error ? e.message : t('tools:wasmSettings.unknownError');
+      showAlert(
+        t('tools:wasmSettings.errorTitle'),
+        t('tools:wasmSettings.failedSave', { message: errorMessage })
+      );
     }
   });
 
@@ -225,10 +245,10 @@ function initializePage() {
       WasmProvider.hasEnvDefault('cpdf');
 
     showAlert(
-      'Reset',
+      t('tools:wasmSettings.resetTitle'),
       hasDefaults
-        ? 'Custom overrides cleared. Pre-configured defaults are active.'
-        : 'All configurations and cached modules have been cleared.',
+        ? t('tools:wasmSettings.resetWithDefaults')
+        : t('tools:wasmSettings.resetNoDefaults'),
       'success'
     );
   });
