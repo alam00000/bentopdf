@@ -92,7 +92,14 @@
     "fontSize": "Schriftgröße",
     "fontFamily": "Schriftfamilie",
     "addBookmark": "Lesezeichen für Inhaltsverzeichnis-Seite hinzufügen",
-    "generateButton": "Inhaltsverzeichnis generieren"
+    "generateButton": "Inhaltsverzeichnis generieren",
+    "selectPdfFirst": "Bitte wählen Sie zuerst eine PDF-Datei aus.",
+    "statusReadingFileMainThread": "Datei wird gelesen (Haupt-Thread)...",
+    "statusGenerating": "Inhaltsverzeichnis wird generiert...",
+    "errorReadingFileWithMessage": "Fehler beim Lesen der Datei: {{message}}",
+    "successGeneratedDownloadStarted": "Inhaltsverzeichnis erfolgreich generiert! Download gestartet.",
+    "workerErrorWithMessage": "Fehler: {{message}}",
+    "workerErrorOccurred": "Worker-Fehler aufgetreten. Details in der Konsole."
   },
   "pageNumbers": {
     "name": "Seitenzahlen",

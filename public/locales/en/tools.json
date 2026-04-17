@@ -92,7 +92,14 @@
     "fontSize": "Font Size",
     "fontFamily": "Font Family",
     "addBookmark": "Add bookmark for TOC page",
-    "generateButton": "Generate Table of Contents"
+    "generateButton": "Generate Table of Contents",
+    "selectPdfFirst": "Please select a PDF file first.",
+    "statusReadingFileMainThread": "Reading file (Main Thread)...",
+    "statusGenerating": "Generating table of contents...",
+    "errorReadingFileWithMessage": "Error reading file: {{message}}",
+    "successGeneratedDownloadStarted": "Table of contents generated successfully! Download started.",
+    "workerErrorWithMessage": "Error: {{message}}",
+    "workerErrorOccurred": "Worker error occurred. Check console for details."
   },
   "pageNumbers": {
     "name": "Page Numbers",
