@@ -81,6 +81,8 @@
     "subtitle": "Add, edit, import, delete and extract PDF bookmarks.",
     "autoExtractExisting": "Auto-extract existing bookmarks",
     "importSectionTitle": "Or Import Bookmarks",
+    "csvFormat": "CSV format: title,page,level",
+    "jsonFormat": "JSON format",
     "uploadCsvAction": "Click to upload CSV",
     "uploadJsonAction": "Click to upload JSON",
     "orDragHere": "or drag here"

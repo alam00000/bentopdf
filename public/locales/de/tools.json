@@ -81,6 +81,8 @@
     "subtitle": "PDF-Lesezeichen hinzufügen, bearbeiten, importieren, löschen und extrahieren.",
     "autoExtractExisting": "Vorhandene Lesezeichen automatisch extrahieren",
     "importSectionTitle": "Oder Lesezeichen importieren",
+    "csvFormat": "CSV-Format: Titel,Seite,Ebene",
+    "jsonFormat": "JSON-Format",
     "uploadCsvAction": "Klicken, um CSV hochzuladen",
     "uploadJsonAction": "Klicken, um JSON hochzuladen",
     "orDragHere": "oder hierher ziehen"
