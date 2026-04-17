@@ -18,8 +18,8 @@ const worker = new Worker(
 
 let selectedFiles: File[] = [];
 
-const jsonFilesInput = document.getElementById('jsonFiles') as HTMLInputElement;
-const convertBtn = document.getElementById('convertBtn') as HTMLButtonElement;
+let jsonFilesInput!: HTMLInputElement;
+let convertBtn!: HTMLButtonElement;
 const statusMessage = document.getElementById(
   'status-message'
 ) as HTMLDivElement;
@@ -72,26 +72,6 @@ function updateFileList() {
     fileListDiv.appendChild(fileDiv);
   });
 }
-
-jsonFilesInput.addEventListener('change', (e) => {
-  const target = e.target as HTMLInputElement;
-  if (target.files && target.files.length > 0) {
-    selectedFiles = Array.from(target.files);
-    convertBtn.disabled = selectedFiles.length === 0;
-    updateFileList();
-
-    if (selectedFiles.length === 0) {
-      showStatus(t('tools:jsonToPdf.status.selectAtLeastOne'), 'info');
-    } else {
-      showStatus(
-        t('tools:jsonToPdf.status.selectedReady', {
-          count: selectedFiles.length,
-        }),
-        'info'
-      );
-    }
-  }
-});
 
 async function convertJSONsToPDF() {
   if (selectedFiles.length === 0) {
@@ -200,11 +180,35 @@ if (backToToolsBtn) {
   });
 }
 
-convertBtn.addEventListener('click', convertJSONsToPDF);
-
 // Initialize after i18n is ready so the default status is translated.
 void (async () => {
   await initI18n();
+
+  jsonFilesInput = document.getElementById('jsonFiles') as HTMLInputElement;
+  convertBtn = document.getElementById('convertBtn') as HTMLButtonElement;
+
+  jsonFilesInput.addEventListener('change', (e) => {
+    const target = e.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      selectedFiles = Array.from(target.files);
+      convertBtn.disabled = selectedFiles.length === 0;
+      updateFileList();
+
+      if (selectedFiles.length === 0) {
+        showStatus(t('tools:jsonToPdf.status.selectAtLeastOne'), 'info');
+      } else {
+        showStatus(
+          t('tools:jsonToPdf.status.selectedReady', {
+            count: selectedFiles.length,
+          }),
+          'info'
+        );
+      }
+    }
+  });
+
+  convertBtn.addEventListener('click', convertJSONsToPDF);
+
   showStatus(t('tools:jsonToPdf.status.getStarted'), 'info');
   initializeGlobalShortcuts();
 })();
