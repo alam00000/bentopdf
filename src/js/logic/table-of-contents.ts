@@ -6,6 +6,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { initI18n, t } from '../i18n/index.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js'
@@ -146,7 +147,7 @@ async function generateTableOfContents() {
 
     showStatus('Generating table of contents...', 'info');
 
-    const title = tocTitleInput.value || 'Table of Contents';
+    const title = tocTitleInput.value || t('tools:tableOfContents.name');
     const fontSize = parseInt(fontSizeSelect.value, 10);
     const fontFamily = parseInt(fontFamilySelect.value, 10);
     const addBookmark = addBookmarkCheckbox.checked;
