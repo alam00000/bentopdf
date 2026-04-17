@@ -758,9 +758,7 @@ async function processSignature(): Promise<void> {
     hideLoader();
     console.error('Signing error:', error);
     const errorMessage =
-      error instanceof Error
-        ? error.message
-        : t('tools:digitalSignPdf.unknownError');
+      error instanceof Error ? error.message : t('common.unknownError');
 
     // Check if this is a CORS/network error from certificate chain fetching
     if (

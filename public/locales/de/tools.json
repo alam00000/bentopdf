@@ -816,10 +816,8 @@
   "pdfToText": {
     "name": "PDF zu Text",
     "subtitle": "Text aus PDF-Dateien extrahieren und als Textdatei (.txt) speichern. Unterstützt mehrere Dateien.",
-    "note": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser OCR PDF-Tool.",
     "noteLabel": "Hinweis:",
-    "notePrefix": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser",
-    "noteSuffix": "-Tool.",
+    "noteText": "Dieses Tool funktioniert NUR mit digital erstellten PDFs. Für gescannte Dokumente oder bildbasierte PDFs verwenden Sie stattdessen unser OCR PDF-Tool.",
     "convertButton": "Text extrahieren"
   },
   "digitalSignPdf": {
@@ -883,7 +881,6 @@
     "signingFailedTitle": "Signieren fehlgeschlagen",
     "chainFetchFailed": "Die Zertifikatskette konnte nicht abgerufen werden. Dies kann an Netzwerkproblemen oder einem nicht verfügbaren Zertifikats-Proxy liegen. Bitte prüfen Sie Ihre Internetverbindung und versuchen Sie es erneut. Wenn das Problem weiterhin besteht, kontaktieren Sie den Support.",
     "failedToSignPdf": "PDF konnte nicht signiert werden: {{message}}",
-    "unknownError": "Unbekannter Fehler aufgetreten",
     "defaultSignatureText": "Digital signiert von {{signer}}\n{{date}}",
     "pageCount": "{{count}} Seiten",
     "howToStep1Title": "PDF hochladen",
@@ -1026,7 +1023,6 @@
     "savedMessage": "Konfiguration erfolgreich gespeichert!",
     "errorTitle": "Fehler",
     "failedSave": "Konfiguration konnte nicht gespeichert werden: {{message}}",
-    "unknownError": "Unbekannter Fehler",
     "emptyUrlTitle": "Leere URL",
     "emptyUrlMessage": "Bitte geben Sie eine URL zum Testen ein.",
     "testSuccessTitle": "Erfolg",

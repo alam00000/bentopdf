@@ -216,7 +216,7 @@ async function initializePage() {
     } catch (e: unknown) {
       hideLoader();
       const errorMessage =
-        e instanceof Error ? e.message : t('tools:wasmSettings.unknownError');
+        e instanceof Error ? e.message : t('common.unknownError');
       showAlert(
         t('tools:wasmSettings.errorTitle'),
         t('tools:wasmSettings.failedSave', { message: errorMessage })

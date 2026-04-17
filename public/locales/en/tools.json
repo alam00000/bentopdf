@@ -824,10 +824,8 @@
   "pdfToText": {
     "name": "PDF to Text",
     "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
-    "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
     "noteLabel": "Note:",
-    "notePrefix": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our",
-    "noteSuffix": "tool instead.",
+    "noteText": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
     "convertButton": "Extract Text"
   },
   "digitalSignPdf": {
@@ -891,7 +889,6 @@
     "signingFailedTitle": "Signing Failed",
     "chainFetchFailed": "Failed to fetch certificate chain. This may be due to network issues or the certificate proxy being unavailable. Please check your internet connection and try again. If the issue persists, contact support.",
     "failedToSignPdf": "Failed to sign PDF: {{message}}",
-    "unknownError": "Unknown error occurred",
     "defaultSignatureText": "Digitally signed by {{signer}}\n{{date}}",
     "pageCount": "{{count}} pages",
     "howToStep1Title": "Upload PDF",
@@ -1034,7 +1031,6 @@
     "savedMessage": "Configuration saved successfully!",
     "errorTitle": "Error",
     "failedSave": "Failed to save configuration: {{message}}",
-    "unknownError": "Unknown error",
     "emptyUrlTitle": "Empty URL",
     "emptyUrlMessage": "Please enter a URL to test.",
     "testSuccessTitle": "Success",
