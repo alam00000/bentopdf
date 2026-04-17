@@ -445,7 +445,7 @@
     "resolutionStandard": "Standard (192 DPI)",
     "resolutionHigh": "Hoch (288 DPI)",
     "resolutionUltra": "Ultra (384 DPI)",
-    "binarizeLabel": "Bild binarisieren (Kontrast für saubere Scans verbessern)",
+    "binarizeLabel": "In Schwarz-Weiß umwandeln (Kontrast für saubere Scans verbessern)",
     "embedFullFontsLabel": "Vollständige Schriftarten einbetten (größere Datei, bessere Kompatibilität)",
     "whitelistPresetLabel": "Zeichen-Whitelist-Voreinstellung",
     "whitelistNone": "Keine (alle Zeichen)",
