@@ -33,6 +33,7 @@ const SUPPORTED_LANGUAGES = [
   'zh',
   'zh-TW',
   'ko',
+  'ja',
   'ua',
 ] as const;
 const LANG_REGEX = new RegExp(

@@ -1,0 +1,374 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "about": "BentoPDFについて",
+    "contact": "コンタクト",
+    "licensing": "ライセンス",
+    "allTools": "すべてのツール",
+    "docs": "ドキュメント",
+    "openMainMenu": "メインメニューを開く",
+    "language": "言語"
+  },
+  "donation": {
+    "message": "BentoPDFは好きですか？無料かつオープンソースを維持するためにご協力ください！",
+    "button": "寄付する"
+  },
+  "hero": {
+    "title": "プライバシーのために作られた",
+    "pdfToolkit": "PDFツールキット",
+    "builtForPrivacy": " ",
+    "noSignups": "登録不要",
+    "unlimitedUse": "無制限の利用",
+    "worksOffline": "オフラインでも動作",
+    "startUsing": "今すぐ使い始めよう"
+  },
+  "usedBy": {
+    "title": "これらの企業や従業員に利用されています"
+  },
+  "features": {
+    "title": "選ぶ理由",
+    "bentoPdf": "BentoPDFとは？",
+    "noSignup": {
+      "title": "登録不要",
+      "description": "アカウントやメールは不要ですぐに始められます。"
+    },
+    "noUploads": {
+      "title": "アップロード不要",
+      "description": "100%クライアント側で行われるためファイルがデバイスの外に流出することはありません。"
+    },
+    "foreverFree": {
+      "title": "永久に無料",
+      "description": "すべてのツールに試用版、ペイウォールはありません。"
+    },
+    "noLimits": {
+      "title": "制限なし",
+      "description": "隠れた制限はなく、必要なだけ使用できます。"
+    },
+    "batchProcessing": {
+      "title": "バッチ処理",
+      "description": "無制限なくPDFを一度に処理します。"
+    },
+    "lightningFast": {
+      "title": "超高速処理",
+      "description": "待つことも遅れたりすることもなくPDFを瞬時に処理します。"
+    }
+  },
+  "tools": {
+    "title": "始めましょう",
+    "toolsLabel": "ツール",
+    "subtitle": "ツールをクリックしてファイルアップローダーを開きます",
+    "searchPlaceholder": "ツールを検索します（例: 「分割」、「整理」など）",
+    "backToTools": "ツールに戻る",
+    "firstLoadNotice": "変換エンジンをダウンロードするため最初の読み込みには少し時間がかかります。その後、すべての読み込みは瞬時に行われます。"
+  },
+  "upload": {
+    "clickToSelect": "クリックしてファイルを選択します",
+    "orDragAndDrop": "またはドラッグ&ドロップ",
+    "pdfOrImages": "PDFまたは画像",
+    "filesNeverLeave": "ファイルがデバイスの外に出ることはありません。",
+    "addMore": "さらにファイルを追加する",
+    "clearAll": "すべてクリア",
+    "clearFiles": "ファイルをクリア",
+    "hints": {
+      "singlePdf": "単一のPDFファイル",
+      "pdfFile": "PDFファイル",
+      "multiplePdfs2": "複数のPDFファイル（2つ以上）",
+      "bmpImages": "BMP画像",
+      "oneOrMorePdfs": "1つ以上のPDFファイル",
+      "pdfDocuments": "PDFドキュメント",
+      "oneOrMoreCsv": "1つ以上のCSVファイル",
+      "multiplePdfsSupported": "複数のPDFファイルをサポート",
+      "singleOrMultiplePdfs": "単一または複数のPDFファイルをサポート",
+      "singlePdfFile": "単一のPDFファイル",
+      "pdfWithForms": "フォームフィールドを含むPDFファイル",
+      "heicImages": "HEIC/HEIF画像",
+      "jpgImages": "JPG、JPEG、JP2、JPX画像",
+      "pdfsOrImages": "PDFまたは画像",
+      "oneOrMoreOdt": "1つ以上のODTファイル",
+      "singlePdfOnly": "単一のPDFファイルのみ",
+      "pdfFiles": "PDFファイル",
+      "multiplePdfs": "複数のPDFファイル",
+      "pngImages": "PNG画像",
+      "pdfFilesOneOrMore": "PDFファイル（1つ以上）",
+      "oneOrMoreRtf": "1つ以上のRTFファイル",
+      "svgGraphics": "SVGグラフィック",
+      "tiffImages": "TIFF画像",
+      "webpImages": "WebP 画像"
+    }
+  },
+  "howItWorks": {
+    "title": "仕組み",
+    "step1": "ファイルをクリックまたはドラッグ&ドロップして始めます",
+    "step2": "プロセスボタンをクリックしてスタートします",
+    "step3": "処理したファイルをすぐに保存します"
+  },
+  "relatedTools": {
+    "title": "関連するPDFツール"
+  },
+  "loader": {
+    "processing": "処理中..."
+  },
+  "alert": {
+    "title": "注意",
+    "ok": "OK"
+  },
+  "preview": {
+    "title": "ドキュメントのプレビュー",
+    "downloadAsPdf": "PDFとしてダウンロード",
+    "close": "閉じる"
+  },
+  "settings": {
+    "title": "設定",
+    "shortcuts": "ショートカット",
+    "preferences": "環境設定",
+    "displayPreferences": "表示設定",
+    "searchShortcuts": "ショートカットを検索...",
+    "shortcutsInfo": "キーを押したままにしてショートカットを設定します。変更は自動保存されます。",
+    "shortcutsWarning": "⚠️ 一般的なブラウザショートカット（Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N など）は正常に動作しない可能性があるので避けてください。",
+    "import": "インポート",
+    "export": "エクスポート",
+    "resetToDefaults": "初期値にリセット",
+    "fullWidthMode": "全幅モード",
+    "fullWidthDescription": "すべてのツールでコンテナを中央に配置するのではなく、全画面幅を使用します。",
+    "settingsAutoSaved": "設定は自動的に保存されます",
+    "clickToSet": "クリックして設定します",
+    "pressKeys": "キーを押してください...",
+    "warnings": {
+      "alreadyInUse": "ショートカットはすでに使用されています",
+      "assignedTo": "はすでに以下に割り当てられています:",
+      "chooseDifferent": "別のショートカットを選択してください。",
+      "reserved": "予約済みショートカットの警告",
+      "commonlyUsed": "一般的に次の目的で使用されます。",
+      "unreliable": "このショートカットは正常に動作しない場合やブラウザ／システムの動作と競合する可能性があります。",
+      "useAnyway": "どうしても使いたいですか？",
+      "resetTitle": "ショートカットをリセットする",
+      "resetMessage": "すべてのショートカットを初期値にリセットしてもよろしいですか？<br><br>この操作は元に戻すことができません。",
+      "importSuccessTitle": "インポート成功",
+      "importSuccessMessage": "ショートカットが正常にインポートされました。",
+      "importFailTitle": "インポートに失敗しました",
+      "importFailMessage": "ショートカットのインポートに失敗しました。無効なファイル形式です。"
+    }
+  },
+  "warning": {
+    "title": "警告",
+    "cancel": "キャンセル",
+    "proceed": "進む"
+  },
+  "compliance": {
+    "title": "データがデバイスから離れることはありません",
+    "weKeep": "私たちは世界的な基準に従って",
+    "yourInfoSafe": "あなたの情報の安全",
+    "byFollowingStandards": "を保護しています。",
+    "processingLocal": "すべての処理はデバイス上でローカルに行われます。",
+    "gdpr": {
+      "title": "GDPR準拠",
+      "description": "欧州連合内の個人データとプライバシーを保護します。"
+    },
+    "ccpa": {
+      "title": "CCPA準拠",
+      "description": "カリフォルニア州の住民に、個人情報の収集、使用、共有方法についての権利を与えます。"
+    },
+    "hipaa": {
+      "title": "HIPAA準拠",
+      "description": "米国の医療システムで機密の医療情報を扱うための保護措置を設定します。"
+    }
+  },
+  "faq": {
+    "title": "よくある",
+    "questions": "質問",
+    "sectionTitle": "よくある質問",
+    "isFree": {
+      "question": "BentoPDFは本当に無料ですか？",
+      "answer": "はい、絶対に。BentoPDFのすべてのツールは完全に無料で使用でき、ファイル制限、サインアップ、ウォーターマークはありません。私たちは誰もがペイウォールなしでシンプルで強力なPDFツールにアクセスする権利があると信じています。"
+    },
+    "areFilesSecure": {
+      "question": "私のファイルは安全ですか？どこで処理されますか？",
+      "answer": "ファイルはコンピュータから外部に流出することがないため可能な限り安全に保たれます。すべての処理はWebブラウザ（クライアント側）で直接行われます。ファイルをサーバーにアップロードすることはありません。そのため完全なプライバシーとドキュメントの管理が維持されます。"
+    },
+    "platforms": {
+      "question": "Mac、Windows、モバイルで動作しますか？",
+      "answer": "はい！BentoPDFは完全にブラウザ内で実行されるため、Windows, macOS, Linux, iOS,やAndroidなど、最新のWebブラウザを備えたあらゆるOSで動作します。"
+    },
+    "gdprCompliant": {
+      "question": "BentoPDFはGDPRに準拠していますか？",
+      "answer": "はい。BentoPDFはGDPRに完全に準拠しています。すべてのファイル処理はブラウザ内でローカルに行われ、私たちがファイルを収集したりサーバーに送信したりすることはないため、私たちはお客様のデータにアクセスすることはできません。これによりドキュメントを常に管理できるようになります。"
+    },
+    "dataStorage": {
+      "question": "私のファイルを保存または追跡しますか？",
+      "answer": "いいえ。私たちはあなたのファイルを保存、追跡、または記録することはありません。BentoPDFで行うことはすべてブラウザのメモリ内で行われ、ページを閉じると消えます。アップロード、履歴ログ、サーバーの関与はありません。"
+    },
+    "different": {
+      "question": "BentoPDFは他のPDFツールと何が違うのですか？",
+      "answer": "ほとんどのPDFツールは処理のためにファイルをサーバーにアップロードします。BentoPDFではそんなことはありません。私たちは安全な最新のWebテクノロジーを使用してブラウザでファイルを直接処理します。これはより高速なパフォーマンス、より強力なプライバシー、そして完全な安心感を意味します。"
+    },
+    "browserBased": {
+      "question": "ブラウザベースの処理はどのようにして安全を確保しますか？",
+      "answer": "BentoPDFは完全にブラウザ内で実行されるため、ファイルがデバイスの外に流出することはありません。これによりサーバーのハッキング、データ侵害、不正アクセスのリスクが排除されます。ファイルは常にあなたのものになります。"
+    },
+    "analytics": {
+      "question": "私を追跡するためにCookieまたは分析を使用しますか？",
+      "answer": "私たちはあなたのプライバシーを大切にしています。BentoPDFは個人情報を追跡しません。私たちは匿名の訪問数を確認するためにのみSimple Analyticsを使用します。これは私たちのサイトにアクセスしたユーザーの数を知ることはできますが、あなたが誰であるかは決して分からないことを意味します。 Simple AnalyticsはGDPRに完全に準拠しており、プライバシーを尊重します。"
+    }
+  },
+  "testimonials": {
+    "title": " ",
+    "users": "利用者",
+    "say": "の声"
+  },
+  "support": {
+    "title": "私の作品が好きですか？",
+    "description": "BentoPDFは情熱を注いだプロジェクトで、無料、プライベート、そして強力なPDFツールキットをすべての人に提供するために構築されました。役立つと思われる場合は、その開発をサポートすることを検討してください。どのコーヒーも役に立ちます！",
+    "buyMeCoffee": "コーヒーを買ってください"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF。無断転載を禁じます。",
+    "version": "バージョン",
+    "company": "会社",
+    "aboutUs": "当社について",
+    "faqLink": "よくある質問",
+    "contactUs": "お問い合わせ",
+    "legal": "法的情報",
+    "termsAndConditions": "利用規約",
+    "privacyPolicy": "プライバシーポリシー",
+    "followUs": "フォローする"
+  },
+  "merge": {
+    "title": "PDFの結合",
+    "description": "ファイル全体を結合するか、特定のページを選択して新しいドキュメントに結合します。",
+    "fileMode": "ファイルモード",
+    "pageMode": "ページモード",
+    "howItWorks": "仕組み:",
+    "fileModeInstructions": [
+      "ファイルの順序を変更するには、アイコンをクリックしてドラッグします。",
+      "各ファイルの「ページ」ボックスで範囲（「1-3,5」など）を指定して、それらのページのみを結合できます。",
+      "そのファイルのすべてのページを含めるには「ページ」ボックスを空白のままにします。"
+    ],
+    "pageModeInstructions": [
+      "アップロードしたPDFのすべてのページが以下に表示されます。",
+      "個々のページのサムネイルをドラッグ&ドロップするだけで、新しいファイルに希望どおりの順序を作成できます。"
+    ],
+    "mergePdfs": "PDFを結合する"
+  },
+  "common": {
+    "page": "ページ",
+    "pages": "ページ",
+    "of": "の",
+    "download": "ダウンロード",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "delete": "消去",
+    "edit": "編集",
+    "add": "追加",
+    "remove": "取り除く",
+    "loading": "読み込み中...",
+    "loadingPageCount": "ページを読み込んでいます...",
+    "error": "エラー",
+    "success": "成功",
+    "file": "ファイル",
+    "files": "ファイル",
+    "close": "閉じる",
+    "convert": "変換"
+  },
+  "about": {
+    "hero": {
+      "title": "私たちはPDFツールは次のようにあるべきだと考えています。",
+      "subtitle": "高速、プライベート、そして無料。",
+      "noCompromises": "妥協はありません。"
+    },
+    "mission": {
+      "title": "私たちの使命",
+      "description": "あなたのプライバシーを尊重し、決して支払いを要求しない、最も包括的なPDFツールボックスを提供すること。私たちは必須のドキュメントツールは誰でも、どこでも、障壁なくアクセスできるべきだと考えています。"
+    },
+    "philosophy": {
+      "label": "私たちの基本理念",
+      "title": "プライバシー第一。常に。",
+      "description": "データが商品である時代において私たちは異なるアプローチを採用しています。BentoPDFツールのすべての処理はブラウザ内でローカルに行われます。これはあなたのファイルが私たちのサーバーにアクセスすることはなく、あなたの文書を見ることも、あなたの行動を追跡することもありません。あなたの文書は完全かつ明確に非公開のままです。それは単なる機能ではありません。それは私たちの基盤です。"
+    },
+    "whyBentopdf": {
+      "title": "なぜ",
+      "speed": {
+        "title": "スピードを追求した設計",
+        "description": "サーバーへのアップロードやダウンロードを待つ必要はありません。WebAssemblyなどの最新のWebテクノロジーを使用してブラウザでファイルを直接処理することで、すべてのツールで比類のない速度を実現します。"
+      },
+      "free": {
+        "title": "完全に無料",
+        "description": "トライアル、サブスクリプション、隠れた料金はなく、人質に取られる「プレミアム」機能もありません。私たちは、強力なPDFツールは利益センターではなく公共事業であるべきだと考えています。"
+      },
+      "noAccount": {
+        "title": "アカウントは必要ありません",
+        "description": "どのツールでもすぐに使い始めてください。メールアドレス、パスワード、その他の個人情報は必要ありません。ワークフローはスムーズかつ匿名である必要があります。"
+      },
+      "openSource": {
+        "title": "オープンソースの精神",
+        "description": "透明性を念頭に置いて構築されています。私たちはPDF-libやPDF.jsなどの素晴らしいオープンソースライブラリを活用し、強力なツールを誰もが利用できるようにするためのコミュニティ主導の取り組みを信じています。"
+      }
+    },
+    "cta": {
+      "title": "始める準備はできましたか？",
+      "description": "毎日のドキュメントのニーズにBentoPDFを信頼している何千人ものユーザーに加わりましょう。プライバシーとパフォーマンスがもたらす違いを体験してください。",
+      "button": "すべてのツールを探索する"
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "subtitle": "ぜひご意見をお待ちしております。ご質問、フィードバック、機能リクエストなどがありましたらお気軽にお問い合わせください。",
+    "email": "次のアドレスにメールで直接ご連絡ください。"
+  },
+  "licensing": {
+    "title": "ライセンス",
+    "subtitle": "ニーズに合ったライセンスを選択してください。"
+  },
+  "multiTool": {
+    "uploadPdfs": "PDFをアップロード",
+    "upload": "アップロード",
+    "addBlankPage": "空白ページを追加",
+    "edit": "編集:",
+    "undo": "元に戻す",
+    "redo": "やり直し",
+    "reset": "リセット",
+    "selection": "選択:",
+    "selectAll": "すべて選択",
+    "deselectAll": "すべての選択を解除",
+    "rotate": "回転:",
+    "rotateLeft": "左",
+    "rotateRight": "右",
+    "transform": "操作:",
+    "duplicate": "複製",
+    "split": "分割",
+    "clear": "クリア:",
+    "delete": "消去",
+    "download": "ダウンロード:",
+    "downloadSelected": "選択したものをダウンロード",
+    "exportPdf": "PDFをエクスポート",
+    "uploadPdfFiles": "PDFファイルを選択",
+    "dragAndDrop": "ここにPDFファイルをドラッグ&ドロップするかクリックして選択します",
+    "selectFiles": "ファイルの選択",
+    "renderingPages": "ページをレンダリング中...",
+    "actions": {
+      "duplicatePage": "このページを複製",
+      "deletePage": "このページを削除",
+      "insertPdf": "このページの後にPDFを挿入",
+      "toggleSplit": "このページの後の分割を切り替え"
+    },
+    "pleaseWait": "お待ちください",
+    "pagesRendering": "ページはまだレンダリング中です。お待ちください...",
+    "noPagesSelected": "ページが選択されていません",
+    "selectOnePage": "ダウンロードするページを1つ以上選択してください。",
+    "noPages": "ページがありません",
+    "noPagesToExport": "エクスポートするページがありません。",
+    "renderingTitle": "ページのプレビューをレンダリングする",
+    "errorRendering": "ページのサムネイルのレンダリングに失敗しました",
+    "error": "エラー",
+    "failedToLoad": "ロードに失敗しました"
+  },
+  "simpleMode": {
+    "title": "PDFツール",
+    "subtitle": "開始するにはツールを選択してください"
+  },
+  "disabledTool": {
+    "title": "ツールが使用できません",
+    "heading": "このツールは無効になっています",
+    "message": "このツールは、ご使用の環境では使用できません。詳細については、管理者にお問い合わせください。",
+    "backHome": "ホームに戻る"
+  }
+}
