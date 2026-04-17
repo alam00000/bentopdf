@@ -6,7 +6,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { initI18n, t } from '../i18n/index.js';
+import { t } from '../i18n/index.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js'
