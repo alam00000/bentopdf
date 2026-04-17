@@ -10,6 +10,7 @@ import {
   resolveConfiguredTesseractAvailableLanguages,
   UnsupportedOcrLanguageError,
 } from '../utils/tesseract-language-availability.js';
+import { t } from '../i18n/index.js';
 
 const pageState: OcrState = {
   file: null,
@@ -37,7 +38,7 @@ function updateProgress(status: string, progress: number) {
   progressStatus.textContent = status;
   progressBar.style.width = `${Math.min(100, progress * 100)}%`;
 
-  const logMessage = `Status: ${status}`;
+  const logMessage = t('tools:ocrPdf.statusPrefix', { status });
   progressLog.textContent += logMessage + '\n';
   progressLog.scrollTop = progressLog.scrollHeight;
 }
@@ -78,7 +79,9 @@ function resetState() {
   const selectedLangsDisplay = document.getElementById(
     'selected-langs-display'
   );
-  if (selectedLangsDisplay) selectedLangsDisplay.textContent = 'None';
+  if (selectedLangsDisplay) {
+    selectedLangsDisplay.textContent = t('tools:ocrPdf.none');
+  }
 
   const processBtn = document.getElementById(
     'process-btn'
@@ -100,14 +103,15 @@ function updateLanguageAvailabilityNotice() {
   const availableEntries = getAvailableTesseractLanguageEntries();
   if (availableEntries.length === 0) {
     notice.classList.remove('hidden');
-    notice.textContent =
-      'This deployment does not expose any valid OCR languages. Rebuild it with VITE_TESSERACT_AVAILABLE_LANGUAGES set to valid Tesseract codes.';
+    notice.textContent = t('tools:ocrPdf.availabilityInvalidConfig');
     return;
   }
 
   const availableNames = availableEntries.map(([, name]) => name).join(', ');
   notice.classList.remove('hidden');
-  notice.textContent = `This deployment bundles OCR for: ${availableNames}.`;
+  notice.textContent = t('tools:ocrPdf.availabilityBundles', {
+    languages: availableNames,
+  });
 }
 
 async function runOCR() {
@@ -131,14 +135,14 @@ async function runOCR() {
 
   if (selectedLangs.length === 0) {
     showAlert(
-      'No Languages Selected',
-      'Please select at least one language for OCR.'
+      t('tools:ocrPdf.noLanguagesTitle'),
+      t('tools:ocrPdf.noLanguagesMessage')
     );
     return;
   }
 
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(t('tools:ocrPdf.noFileTitle'), t('tools:ocrPdf.noFileMessage'));
     return;
   }
 
@@ -177,11 +181,11 @@ async function runOCR() {
   } catch (e) {
     console.error(e);
     if (e instanceof UnsupportedOcrLanguageError) {
-      showAlert('OCR Language Not Available', e.message);
+      showAlert(t('tools:ocrPdf.languageUnavailableTitle'), e.message);
     } else {
       showAlert(
-        'OCR Error',
-        'An error occurred during the OCR process. The worker may have failed to load. Please try again.'
+        t('tools:ocrPdf.ocrErrorTitle'),
+        t('tools:ocrPdf.ocrErrorMessage')
       );
     }
     if (toolOptions) toolOptions.classList.remove('hidden');
@@ -258,8 +262,7 @@ function populateLanguageList() {
   if (availableEntries.length === 0) {
     const emptyState = document.createElement('p');
     emptyState.className = 'text-sm text-yellow-300 p-2';
-    emptyState.textContent =
-      'No OCR languages are available in this deployment.';
+    emptyState.textContent = t('tools:ocrPdf.noLanguagesAvailable');
     langList.appendChild(emptyState);
     return;
   }
@@ -376,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (selectedLangsDisplay) {
         selectedLangsDisplay.textContent =
-          selected.length > 0 ? selected.join(', ') : 'None';
+          selected.length > 0 ? selected.join(', ') : t('tools:ocrPdf.none');
       }
 
       if (processBtn) {
