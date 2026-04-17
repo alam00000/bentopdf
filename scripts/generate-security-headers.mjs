@@ -55,14 +55,12 @@ const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
 
 const directives = [
   `default-src 'self'`,
-  `script-src 'self' 'wasm-unsafe-eval' ${scriptOrigins.join(' ')}`.trim(),
+  `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval' ${scriptOrigins.join(' ')}`.trim(),
   `worker-src 'self' blob:`,
-  `style-src 'self' 'unsafe-inline'`,
+  `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `img-src 'self' data: blob: https:`,
-  fontOrigins.length
-    ? `font-src 'self' data: ${fontOrigins.join(' ')}`
-    : `font-src 'self' data:`,
-  `connect-src 'self' ${connectOrigins.join(' ')}`.trim(),
+  `font-src 'self' data: https://fonts.gstatic.com ${fontOrigins.join(' ')}`.trim(),
+  `connect-src 'self' https://api.github.com https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
   `frame-ancestors 'self'`,

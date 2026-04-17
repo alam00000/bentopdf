@@ -120,6 +120,8 @@ As a result:
 - If you configure custom WASM URLs at _runtime_ via the in-app Advanced Settings page, those origins are **not** in the CSP and the browser will block fetches to them. Runtime configuration is intended for experimentation; for permanent custom URLs set the matching `VITE_*` build arg.
 - Air-gapped deployments that override all three `VITE_WASM_*_URL` values also get the public `cdn.jsdelivr.net` removed from CSP (each default is replaced, not appended). Similarly, setting `VITE_CORS_PROXY_URL` replaces the public `bentopdf-cors-proxy.bentopdf.workers.dev` default.
 
+The CSP includes `'unsafe-eval'` in `script-src` because the LibreOffice WASM runtime (used by Word/Excel/PowerPoint conversion tools) compiles internal dispatch code via `new Function()`. Removing it would break all LibreOffice-backed tools. If you build in `SIMPLE_MODE` (without LibreOffice), you can manually edit the generated `security-headers.conf` to drop `'unsafe-eval'` for a stricter policy.
+
 For OCR, leave the `VITE_TESSERACT_*` variables empty to use the default online assets, or set all three together for self-hosted/offline OCR. Partial OCR overrides are rejected because the worker, core runtime, and traineddata directory must match. For fully offline searchable PDF output, also set `VITE_OCR_FONT_BASE_URL` so the OCR text-layer fonts are loaded from your internal server instead of the public Noto font URLs.
 
 `VITE_DEFAULT_LANGUAGE` sets the UI language for first-time visitors. Supported values: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Users can still switch languages — this only changes the default.
