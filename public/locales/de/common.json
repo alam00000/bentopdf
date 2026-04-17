@@ -354,8 +354,11 @@
   },
   "howItWorks": {
     "title": "So funktioniert's",
+    "step1Title": "Datei hochladen",
     "step1": "Klicken oder Datei hierher ziehen",
+    "step2Title": "Verarbeiten",
     "step2": "Klicken Sie auf die Verarbeitungsschaltfläche",
+    "step3Title": "Herunterladen",
     "step3": "Speichern Sie Ihre verarbeitete Datei sofort"
   },
   "relatedTools": {
