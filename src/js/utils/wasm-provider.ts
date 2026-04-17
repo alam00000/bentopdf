@@ -10,8 +10,8 @@ const STORAGE_KEY = 'bentopdf:wasm-providers';
 
 const CDN_DEFAULTS: Record<WasmPackage, string> = {
   pymupdf: 'https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/',
-  ghostscript: 'https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm/assets/',
-  cpdf: 'https://cdn.jsdelivr.net/npm/coherentpdf/dist/',
+  ghostscript: 'https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/',
+  cpdf: 'https://cdn.jsdelivr.net/npm/coherentpdf@2.5.5/dist/',
 };
 
 function envOrDefault(envVar: string | undefined, fallback: string): string {
@@ -30,20 +30,77 @@ const ENV_DEFAULTS: Record<WasmPackage, string> = {
   cpdf: envOrDefault(import.meta.env.VITE_WASM_CPDF_URL, CDN_DEFAULTS.cpdf),
 };
 
+function hostnameOf(url: string): string | null {
+  try {
+    return new URL(url).hostname;
+  } catch {
+    return null;
+  }
+}
+
+function collectBuiltinTrustedHosts(): Set<string> {
+  const hosts = new Set<string>();
+  if (typeof location !== 'undefined' && location.hostname) {
+    hosts.add(location.hostname);
+  }
+  for (const url of Object.values(CDN_DEFAULTS)) {
+    const h = hostnameOf(url);
+    if (h) hosts.add(h);
+  }
+  for (const url of Object.values(ENV_DEFAULTS)) {
+    const h = hostnameOf(url);
+    if (h) hosts.add(h);
+  }
+  return hosts;
+}
+
+const BUILTIN_TRUSTED_HOSTS = collectBuiltinTrustedHosts();
+
 class WasmProviderManager {
   private config: WasmProviderConfig;
   private validationCache: Map<WasmPackage, boolean> = new Map();
+  private trustedHosts: Set<string> = new Set<string>(BUILTIN_TRUSTED_HOSTS);
 
   constructor() {
     this.config = this.loadConfig();
   }
 
+  private isTrustedUrl(url: string): boolean {
+    const host = hostnameOf(url);
+    return !!host && this.trustedHosts.has(host);
+  }
+
   private loadConfig(): WasmProviderConfig {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        return JSON.parse(stored);
+      if (!stored) return {};
+      const parsed = JSON.parse(stored) as WasmProviderConfig;
+      const safe: WasmProviderConfig = {};
+      let dropped = false;
+      for (const key of ['pymupdf', 'ghostscript', 'cpdf'] as WasmPackage[]) {
+        const url = parsed[key];
+        if (typeof url !== 'string') continue;
+        if (this.isTrustedUrl(url)) {
+          safe[key] = url;
+        } else {
+          dropped = true;
+          console.warn(
+            `[WasmProvider] Ignoring untrusted stored URL for ${key}: ${url}. ` +
+              'Reconfigure via Advanced Settings to re-enable.'
+          );
+        }
       }
+      if (dropped) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(safe));
+        } catch (e) {
+          console.error(
+            '[WasmProvider] Failed to scrub untrusted config from localStorage:',
+            e
+          );
+        }
+      }
+      return safe;
     } catch (e) {
       console.warn(
         '[WasmProvider] Failed to load config from localStorage:',
@@ -66,11 +123,23 @@ class WasmProviderManager {
   }
 
   getUrl(packageName: WasmPackage): string | undefined {
-    return this.config[packageName] || this.getEnvDefault(packageName);
+    const stored = this.config[packageName];
+    if (stored) {
+      if (this.isTrustedUrl(stored)) return stored;
+      console.warn(
+        `[WasmProvider] Refusing to use untrusted URL for ${packageName}; falling back to env default.`
+      );
+    }
+    return this.getEnvDefault(packageName);
   }
 
   setUrl(packageName: WasmPackage, url: string): void {
     const normalizedUrl = url.endsWith('/') ? url : `${url}/`;
+    const host = hostnameOf(normalizedUrl);
+    if (!host) {
+      throw new Error('Invalid URL');
+    }
+    this.trustedHosts.add(host);
     this.config[packageName] = normalizedUrl;
     this.validationCache.delete(packageName);
     this.saveConfig();
@@ -219,6 +288,7 @@ class WasmProviderManager {
   clearAll(): void {
     this.config = {};
     this.validationCache.clear();
+    this.trustedHosts = new Set<string>(BUILTIN_TRUSTED_HOSTS);
     try {
       localStorage.removeItem(STORAGE_KEY);
     } catch (e) {

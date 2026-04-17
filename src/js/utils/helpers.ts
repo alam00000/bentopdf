@@ -4,6 +4,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { createIcons } from 'lucide';
 import { state, resetState } from '../state.js';
 import * as pdfjsLib from 'pdfjs-dist';
+import DOMPurify from 'dompurify';
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
 
 const STANDARD_SIZES = {
@@ -319,19 +320,12 @@ export function uint8ArrayToBase64(bytes: Uint8Array): string {
 export function sanitizeEmailHtml(html: string): string {
   if (!html) return html;
 
-  let sanitized = html;
+  let sanitized = DOMPurify.sanitize(html, {
+    FORBID_TAGS: ['style', 'link', 'script', 'iframe', 'object', 'embed'],
+    FORBID_ATTR: ['style'],
+    ALLOW_DATA_ATTR: false,
+  });
 
-  sanitized = sanitized.replace(/<head[^>]*>[\s\S]*?<\/head>/gi, '');
-  sanitized = sanitized.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
-  sanitized = sanitized.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
-  sanitized = sanitized.replace(/<link[^>]*>/gi, '');
-  sanitized = sanitized.replace(/\s+style=["'][^"']*["']/gi, '');
-  sanitized = sanitized.replace(/\s+class=["'][^"']*["']/gi, '');
-  sanitized = sanitized.replace(/\s+data-[a-z-]+=["'][^"']*["']/gi, '');
-  sanitized = sanitized.replace(
-    /<img[^>]*(?:width=["']1["'][^>]*height=["']1["']|height=["']1["'][^>]*width=["']1["'])[^>]*\/?>/gi,
-    ''
-  );
   sanitized = sanitized.replace(
     /href=["']https?:\/\/[^"']*safelinks\.protection\.outlook\.com[^"']*url=([^&"']+)[^"']*["']/gi,
     (match, encodedUrl) => {
@@ -343,10 +337,9 @@ export function sanitizeEmailHtml(html: string): string {
       }
     }
   );
-  sanitized = sanitized.replace(/\s+originalsrc=["'][^"']*["']/gi, '');
   sanitized = sanitized.replace(
     /href=["']([^"']{500,})["']/gi,
-    (match, url) => {
+    (_match, url: string) => {
       const baseUrl = url.split('?')[0];
       if (baseUrl && baseUrl.length < 200) {
         return `href="${baseUrl}"`;
@@ -354,15 +347,12 @@ export function sanitizeEmailHtml(html: string): string {
       return `href="${url.substring(0, 200)}"`;
     }
   );
-
   sanitized = sanitized.replace(
-    /\s+(cellpadding|cellspacing|bgcolor|border|valign|align|width|height|role|dir|id)=["'][^"']*["']/gi,
+    /<img[^>]*(?:width=["']1["'][^>]*height=["']1["']|height=["']1["'][^>]*width=["']1["'])[^>]*\/?>/gi,
     ''
   );
   sanitized = sanitized.replace(/<\/?table[^>]*>/gi, '<div>');
-  sanitized = sanitized.replace(/<\/?tbody[^>]*>/gi, '');
-  sanitized = sanitized.replace(/<\/?thead[^>]*>/gi, '');
-  sanitized = sanitized.replace(/<\/?tfoot[^>]*>/gi, '');
+  sanitized = sanitized.replace(/<\/?(tbody|thead|tfoot)[^>]*>/gi, '');
   sanitized = sanitized.replace(/<tr[^>]*>/gi, '<div>');
   sanitized = sanitized.replace(/<\/tr>/gi, '</div>');
   sanitized = sanitized.replace(/<td[^>]*>/gi, '<span> ');
@@ -373,10 +363,6 @@ export function sanitizeEmailHtml(html: string): string {
   sanitized = sanitized.replace(/<span>\s*<\/span>/gi, '');
   sanitized = sanitized.replace(/(<div>)+/gi, '<div>');
   sanitized = sanitized.replace(/(<\/div>)+/gi, '</div>');
-  sanitized = sanitized.replace(
-    /<a[^>]*href=["']\s*["'][^>]*>([^<]*)<\/a>/gi,
-    '$1'
-  );
 
   const MAX_HTML_SIZE = 100000;
   if (sanitized.length > MAX_HTML_SIZE) {

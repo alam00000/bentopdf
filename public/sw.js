@@ -5,8 +5,10 @@
  * Version: 1.1.0
  */
 
-const CACHE_VERSION = 'bentopdf-v10';
+const CACHE_VERSION = 'bentopdf-v11';
 const CACHE_NAME = `${CACHE_VERSION}-static`;
+
+const trustedCdnOrigins = new Set(['https://cdn.jsdelivr.net']);
 
 const getBasePath = () => {
   const scope = self.registration?.scope || self.location.href;
@@ -67,7 +69,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  const isCDN = url.hostname === 'cdn.jsdelivr.net';
+  const isCDN = trustedCdnOrigins.has(url.origin);
   const isLocal = url.origin === location.origin;
 
   if (!isLocal && !isCDN) {
@@ -220,11 +222,9 @@ async function removeDuplicateCache(cache, fileName, isCDN) {
   for (const req of requests) {
     const reqUrl = new URL(req.url);
     if (reqUrl.pathname.endsWith(fileName)) {
-      // If caching CDN version, remove local version (and vice versa)
-      const reqIsCDN = reqUrl.hostname === 'cdn.jsdelivr.net';
+      const reqIsCDN = trustedCdnOrigins.has(reqUrl.origin);
       if (reqIsCDN !== isCDN) {
         await cache.delete(req);
-        // console.log(`[Dedup] Removed ${reqIsCDN ? 'CDN' : 'local'} version of:`, fileName);
       }
     }
   }
@@ -280,13 +280,16 @@ function getLocalPathForCDNUrl(pathname) {
  * Determine if a URL should be cached
  * Handles both local and CDN URLs
  */
+const CACHEABLE_EXTENSIONS =
+  /\.(js|mjs|css|wasm|whl|zip|json|png|jpg|jpeg|gif|svg|woff|woff2|ttf|gz|br)$/;
+
 function shouldCache(pathname, isCDN = false) {
   if (isCDN) {
     return (
       pathname.includes('/@bentopdf/pymupdf-wasm') ||
       pathname.includes('/@bentopdf/gs-wasm') ||
       pathname.includes('/@matbee/libreoffice-converter') ||
-      pathname.match(/\.(wasm|whl|zip|json|js|gz)$/)
+      CACHEABLE_EXTENSIONS.test(pathname)
     );
   }
 
@@ -294,9 +297,7 @@ function shouldCache(pathname, isCDN = false) {
     pathname.includes('/libreoffice-wasm/') ||
     pathname.includes('/embedpdf/') ||
     pathname.includes('/assets/') ||
-    pathname.match(
-      /\.(js|mjs|css|wasm|whl|zip|json|png|jpg|jpeg|gif|svg|woff|woff2|ttf|gz|br)$/
-    )
+    CACHEABLE_EXTENSIONS.test(pathname)
   );
 }
 
@@ -327,16 +328,42 @@ async function cacheInBatches(cache, urls, batchSize = 5) {
 }
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+  if (!event.data) return;
+
+  if (event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
+    return;
   }
 
-  if (event.data && event.data.type === 'CLEAR_CACHE') {
+  if (event.data.type === 'CLEAR_CACHE') {
     event.waitUntil(
       caches.delete(CACHE_NAME).then(() => {
         console.log('[ServiceWorker] Cache cleared');
       })
     );
+    return;
+  }
+
+  if (
+    event.data.type === 'SET_TRUSTED_CDN_HOSTS' &&
+    Array.isArray(event.data.hosts)
+  ) {
+    for (const origin of event.data.hosts) {
+      if (typeof origin !== 'string') continue;
+      try {
+        const parsed = new URL(origin);
+        if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') {
+          continue;
+        }
+        trustedCdnOrigins.add(parsed.origin);
+      } catch (e) {
+        console.warn(
+          '[ServiceWorker] Ignoring malformed trusted-host origin:',
+          origin,
+          e
+        );
+      }
+    }
   }
 });
 

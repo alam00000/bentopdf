@@ -202,6 +202,47 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
   };
 }
 
+function buildCorsProxyAllowedHosts(): Set<string> {
+  const hosts = new Set<string>([
+    'cdn.jsdelivr.net',
+    'fonts.googleapis.com',
+    'fonts.gstatic.com',
+    'bentopdf-cors-proxy.bentopdf.workers.dev',
+  ]);
+
+  const envHostSources = [
+    process.env.VITE_CORS_PROXY_URL,
+    process.env.VITE_WASM_PYMUPDF_URL,
+    process.env.VITE_WASM_GS_URL,
+    process.env.VITE_WASM_CPDF_URL,
+    process.env.VITE_TESSERACT_WORKER_URL,
+    process.env.VITE_TESSERACT_CORE_URL,
+    process.env.VITE_TESSERACT_LANG_URL,
+    process.env.VITE_OCR_FONT_BASE_URL,
+  ];
+  for (const raw of envHostSources) {
+    if (!raw) continue;
+    try {
+      hosts.add(new URL(raw).hostname);
+    } catch {
+      console.warn(
+        `[vite] Ignoring malformed VITE_* URL in dev CORS proxy allowlist: ${raw}`
+      );
+    }
+  }
+
+  const extra = process.env.VITE_DEV_CORS_PROXY_EXTRA_HOSTS;
+  if (extra) {
+    for (const host of extra.split(',').map((s) => s.trim())) {
+      if (host) hosts.add(host);
+    }
+  }
+
+  return hosts;
+}
+
+const CORS_PROXY_ALLOWED_HOSTS = buildCorsProxyAllowedHosts();
+
 function createCorsProxyMiddleware(): Connect.NextHandleFunction {
   return (
     req: IncomingMessage,
@@ -224,6 +265,31 @@ function createCorsProxyMiddleware(): Connect.NextHandleFunction {
     if (!targetUrl) {
       res.statusCode = 400;
       res.end('Missing url parameter');
+      return;
+    }
+
+    let targetHost: string;
+    let targetProtocol: string;
+    try {
+      const parsedTarget = new URL(targetUrl);
+      targetHost = parsedTarget.hostname;
+      targetProtocol = parsedTarget.protocol;
+    } catch {
+      res.statusCode = 400;
+      res.end('Invalid url parameter');
+      return;
+    }
+
+    if (targetProtocol !== 'https:' && targetProtocol !== 'http:') {
+      res.statusCode = 400;
+      res.end('Unsupported protocol');
+      return;
+    }
+
+    if (!CORS_PROXY_ALLOWED_HOSTS.has(targetHost)) {
+      console.warn(`[CORS Proxy] Blocked disallowed host: ${targetHost}`);
+      res.statusCode = 403;
+      res.end(`Host not allowed: ${targetHost}`);
       return;
     }
 
@@ -442,7 +508,7 @@ export default defineConfig(() => {
       exclude: ['coherentpdf', 'wasm-vips'],
     },
     server: {
-      host: true,
+      host: process.env.VITE_DEV_HOST || 'localhost',
       headers: {
         'Cross-Origin-Opener-Policy': 'same-origin',
         'Cross-Origin-Embedder-Policy': 'require-corp',

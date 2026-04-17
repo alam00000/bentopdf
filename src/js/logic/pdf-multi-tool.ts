@@ -193,6 +193,15 @@ function initializeTool() {
   document
     .getElementById('pdf-file-input')
     ?.addEventListener('change', handlePdfUpload);
+  document.getElementById('upload-area')?.addEventListener('click', () => {
+    document.getElementById('pdf-file-input')?.click();
+  });
+  document
+    .getElementById('pdf-file-input-select-btn')
+    ?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('pdf-file-input')?.click();
+    });
   document
     .getElementById('insert-pdf-input')
     ?.addEventListener('change', handleInsertPdf);

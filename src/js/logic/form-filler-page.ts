@@ -54,19 +54,42 @@ function updateFileDisplay() {
       ? `${(currentFile.size / 1024).toFixed(1)} KB`
       : `${(currentFile.size / 1024 / 1024).toFixed(2)} MB`;
 
-  displayArea.innerHTML = `
-        <div class="bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors">
-            <div class="flex items-center justify-between">
-                <div class="flex-1 min-w-0">
-                    <p class="truncate font-medium text-white">${currentFile.name}</p>
-                    <p class="text-gray-400 text-sm">${fileSize}</p>
-                </div>
-                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="Remove file">
-                    <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
-            </div>
-        </div>
-    `;
+  displayArea.textContent = '';
+
+  const card = document.createElement('div');
+  card.className =
+    'bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors';
+
+  const row = document.createElement('div');
+  row.className = 'flex items-center justify-between';
+
+  const info = document.createElement('div');
+  info.className = 'flex-1 min-w-0';
+
+  const nameP = document.createElement('p');
+  nameP.className = 'truncate font-medium text-white';
+  nameP.textContent = currentFile.name;
+
+  const sizeP = document.createElement('p');
+  sizeP.className = 'text-gray-400 text-sm';
+  sizeP.textContent = fileSize;
+
+  info.append(nameP, sizeP);
+
+  const removeBtn = document.createElement('button');
+  removeBtn.id = 'remove-file';
+  removeBtn.className =
+    'text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2';
+  removeBtn.title = 'Remove file';
+
+  const removeIcon = document.createElement('i');
+  removeIcon.setAttribute('data-lucide', 'trash-2');
+  removeIcon.className = 'w-4 h-4';
+  removeBtn.appendChild(removeIcon);
+
+  row.append(info, removeBtn);
+  card.appendChild(row);
+  displayArea.appendChild(card);
 
   createIcons({ icons });
 

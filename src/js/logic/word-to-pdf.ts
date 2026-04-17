@@ -1,4 +1,5 @@
 // NOTE: This is a work in progress and does not work correctly as of yet
+import DOMPurify from 'dompurify';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
@@ -41,17 +42,20 @@ export async function wordToPdf() {
     const downloadBtn = document.getElementById('preview-download-btn');
     const closeBtn = document.getElementById('preview-close-btn');
 
-    const styledHtml = `
-            <style>
-                #preview-content { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
-                #preview-content table { border-collapse: collapse; width: 100%; }
-                #preview-content td, #preview-content th { border: 1px solid #dddddd; text-align: left; padding: 8px; }
-                #preview-content img { max-width: 100%; height: auto; }
-                #preview-content a { color: #0000ee; text-decoration: underline; }
-            </style>
-            ${html}
-        `;
-    previewContent.innerHTML = styledHtml;
+    const STYLE_ID = 'word-to-pdf-preview-style';
+    if (!document.getElementById(STYLE_ID)) {
+      const styleEl = document.createElement('style');
+      styleEl.id = STYLE_ID;
+      styleEl.textContent = `
+        #preview-content { font-family: 'Times New Roman', Times, serif; font-size: 12pt; line-height: 1.5; color: black; }
+        #preview-content table { border-collapse: collapse; width: 100%; }
+        #preview-content td, #preview-content th { border: 1px solid #dddddd; text-align: left; padding: 8px; }
+        #preview-content img { max-width: 100%; height: auto; }
+        #preview-content a { color: #0000ee; text-decoration: underline; }
+      `;
+      document.head.appendChild(styleEl);
+    }
+    previewContent.innerHTML = DOMPurify.sanitize(html);
 
     const marginDiv = document.createElement('div');
     marginDiv.style.height = '100px';

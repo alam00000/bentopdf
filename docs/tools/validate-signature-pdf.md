@@ -26,6 +26,31 @@ The tool extracts PKCS#7 signature objects from the PDF, decodes the ASN.1 struc
 - **Self-signed detection**: Is the certificate its own issuer?
 - **Trust chain**: When a trusted certificate is provided, does the signer's certificate chain back to it?
 
+### Cryptographic Verification
+
+- The tool reconstructs the bytes covered by the signature's `/ByteRange`, hashes them with the algorithm the signer declared, and compares the result against the `messageDigest` attribute inside the signature.
+- It then re-serializes the signed attributes as a DER SET and verifies the signature against the signer certificate's public key.
+- **A signature is reported as valid only when all of these pass.** If the PDF bytes were modified after signing, or the embedded signature does not match the signer's key, the status shows "Invalid — Cryptographic Verification Failed" with the specific reason.
+
+#### Supported Signature Algorithms
+
+| Algorithm               | Verification path                                                                      |
+| ----------------------- | -------------------------------------------------------------------------------------- |
+| RSA (PKCS#1 v1.5)       | node-forge `publicKey.verify`, with Web Crypto fallback                                |
+| RSA-PSS (RSASSA-PSS)    | Web Crypto `verify({name: 'RSA-PSS', saltLength})`                                     |
+| ECDSA P-256/P-384/P-521 | Web Crypto `verify({name: 'ECDSA', hash})` after DER → IEEE P1363 signature conversion |
+
+If a signature uses an algorithm outside this list (for example Ed25519, SM2, or RSA with an unusual digest OID), the card shows **"Unverified — Unsupported Signature Algorithm"** in yellow, along with the specific OID or reason. This is a deliberate three-state distinction:
+
+- **Valid** — signature cryptographically verified against the signer's public key.
+- **Invalid** — verification ran and produced a negative result (bytes changed, key mismatch).
+- **Unverified** — the tool could not run verification for this algorithm. The certificate metadata is still shown, but you should treat the signature as "unknown" and verify it with Adobe Acrobat or `openssl cms -verify`.
+
+### Insecure Digest Algorithms
+
+- Signatures using **MD5 or SHA-1** are rejected as invalid and flagged with "Insecure Digest" status. Both algorithms have published collision attacks, so a signature over a SHA-1 or MD5 hash offers no integrity guarantee.
+- SHA-224, SHA-256, SHA-384, and SHA-512 are all accepted.
+
 ### Document Coverage
 
 - **Full coverage**: The signature covers the entire PDF file, meaning no bytes were added or changed after signing.

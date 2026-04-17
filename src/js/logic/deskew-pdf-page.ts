@@ -71,22 +71,41 @@ function updateFileDisplay(): void {
   fileControls.classList.remove('hidden');
   deskewOptions.classList.remove('hidden');
 
-  fileDisplayArea.innerHTML = selectedFiles
-    .map(
-      (file, index) => `
-      <div class="flex items-center justify-between bg-gray-700 p-3 rounded-lg">
-        <div class="flex items-center gap-3">
-          <i data-lucide="file-text" class="w-5 h-5 text-indigo-400"></i>
-          <span class="text-gray-200 truncate max-w-xs">${file.name}</span>
-          <span class="text-gray-500 text-sm">(${(file.size / 1024).toFixed(1)} KB)</span>
-        </div>
-        <button class="remove-file text-gray-400 hover:text-red-400" data-index="${index}">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-    `
-    )
-    .join('');
+  fileDisplayArea.textContent = '';
+  selectedFiles.forEach((file, index) => {
+    const row = document.createElement('div');
+    row.className =
+      'flex items-center justify-between bg-gray-700 p-3 rounded-lg';
+
+    const info = document.createElement('div');
+    info.className = 'flex items-center gap-3';
+
+    const fileIcon = document.createElement('i');
+    fileIcon.setAttribute('data-lucide', 'file-text');
+    fileIcon.className = 'w-5 h-5 text-indigo-400';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'text-gray-200 truncate max-w-xs';
+    nameSpan.textContent = file.name;
+
+    const sizeSpan = document.createElement('span');
+    sizeSpan.className = 'text-gray-500 text-sm';
+    sizeSpan.textContent = `(${(file.size / 1024).toFixed(1)} KB)`;
+
+    info.append(fileIcon, nameSpan, sizeSpan);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'remove-file text-gray-400 hover:text-red-400';
+    removeBtn.dataset.index = String(index);
+
+    const removeIcon = document.createElement('i');
+    removeIcon.setAttribute('data-lucide', 'x');
+    removeIcon.className = 'w-5 h-5';
+    removeBtn.appendChild(removeIcon);
+
+    row.append(info, removeBtn);
+    fileDisplayArea.appendChild(row);
+  });
 
   createIcons({ icons });
 

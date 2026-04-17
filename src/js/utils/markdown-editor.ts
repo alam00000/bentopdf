@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it';
+import DOMPurify from 'dompurify';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import typescript from 'highlight.js/lib/languages/typescript';
@@ -297,7 +298,7 @@ export class MarkdownEditor {
       mermaid.initialize({
         startOnLoad: false,
         theme: 'default',
-        securityLevel: 'loose',
+        securityLevel: 'strict',
         fontFamily:
           '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       });
@@ -691,7 +692,9 @@ export class MarkdownEditor {
 
     const markdown = this.editor.value;
     const html = this.md.render(markdown);
-    this.preview.innerHTML = html;
+    this.preview.innerHTML = DOMPurify.sanitize(html, {
+      ADD_ATTR: ['target'],
+    });
     this.renderMermaidDiagrams();
   }
 
@@ -714,7 +717,9 @@ export class MarkdownEditor {
 
           const wrapper = document.createElement('div');
           wrapper.className = 'mermaid-diagram';
-          wrapper.innerHTML = svg;
+          wrapper.innerHTML = DOMPurify.sanitize(svg, {
+            USE_PROFILES: { svg: true, svgFilters: true },
+          });
 
           pre.replaceWith(wrapper);
         } catch (error) {
@@ -740,7 +745,9 @@ export class MarkdownEditor {
   }
 
   public getHtml(): string {
-    return this.md.render(this.getContent());
+    return DOMPurify.sanitize(this.md.render(this.getContent()), {
+      ADD_ATTR: ['target'],
+    });
   }
 
   private exportPdf(): void {

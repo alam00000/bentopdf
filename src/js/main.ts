@@ -5,7 +5,11 @@ import { createIcons, icons } from 'lucide';
 import '@phosphor-icons/web/regular';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
-import { formatShortcutDisplay, formatStars } from './utils/helpers.js';
+import {
+  escapeHtml,
+  formatShortcutDisplay,
+  formatStars,
+} from './utils/helpers.js';
 import {
   initI18n,
   applyTranslations,
@@ -1051,8 +1055,8 @@ const init = async () => {
 
               await showWarningModal(
                 t('settings.warnings.alreadyInUse'),
-                `<strong>${displayCombo}</strong> ${t('settings.warnings.assignedTo')}<br><br>` +
-                  `<em>"${translatedToolName}"</em><br><br>` +
+                `<strong>${escapeHtml(displayCombo)}</strong> ${t('settings.warnings.assignedTo')}<br><br>` +
+                  `<em>"${escapeHtml(translatedToolName)}"</em><br><br>` +
                   t('settings.warnings.chooseDifferent'),
                 false
               );
@@ -1071,8 +1075,8 @@ const init = async () => {
               const displayCombo = formatShortcutDisplay(combo, isMac);
               const shouldProceed = await showWarningModal(
                 t('settings.warnings.reserved'),
-                `<strong>${displayCombo}</strong> ${t('settings.warnings.commonlyUsed')}<br><br>` +
-                  `"<em>${reservedWarning}</em>"<br><br>` +
+                `<strong>${escapeHtml(displayCombo)}</strong> ${t('settings.warnings.commonlyUsed')}<br><br>` +
+                  `"<em>${escapeHtml(reservedWarning)}</em>"<br><br>` +
                   `${t('settings.warnings.unreliable')}<br><br>` +
                   t('settings.warnings.useAnyway')
               );
