@@ -668,7 +668,7 @@
     "pageTitle": "Firma Digital PDF - Agregar Firma Criptográfica | BentoPDF",
     "subtitle": "Agrega una firma digital criptográfica a tu PDF usando certificados X.509. Soporta formatos PKCS#12 (.pfx, .p12) y PEM. Tu clave privada nunca sale de tu navegador.",
     "certificateSection": "Certificado",
-    "uploadCert": "Cargar certificado (.pfx, .p12)",
+    "uploadCert": "Cargar certificado (.pfx, .p12, .pem)",
     "certPassword": "Contraseña del Certificado",
     "certPasswordPlaceholder": "Ingresa la contraseña del certificado",
     "certInfo": "Información del Certificado",

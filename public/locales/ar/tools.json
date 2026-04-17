@@ -668,7 +668,7 @@
     "pageTitle": "توقيع رقمي لـ PDF - إضافة توقيع تشفيري | BentoPDF",
     "subtitle": "إضافة توقيع رقمي تشفيري إلى PDF باستخدام شهادات X.509. يدعم تنسيقات PKCS#12 (.pfx، .p12) وPEM. مفتاحك الخاص لا يغادر متصفحك أبدًا.",
     "certificateSection": "الشهادة",
-    "uploadCert": "رفع شهادة (.pfx، .p12)",
+    "uploadCert": "رفع شهادة (.pfx, .p12, .pem)",
     "certPassword": "كلمة مرور الشهادة",
     "certPasswordPlaceholder": "أدخل كلمة مرور الشهادة",
     "certInfo": "معلومات الشهادة",
