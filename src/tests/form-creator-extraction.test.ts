@@ -13,9 +13,11 @@ import {
 import { extractExistingFields } from '../js/logic/form-creator-extraction.ts';
 import type { ExtractedFieldLike } from '@/types';
 
+const FORM_CREATOR_SCALE = 1.333;
+
 const TEST_EXTRACTION_METRICS = {
   pdfViewerOffset: { x: 0, y: 0 },
-  pdfViewerScale: 1,
+  pdfViewerScale: FORM_CREATOR_SCALE,
 };
 
 function extractFieldsForTest(pdfDoc: PDFDocument): ExtractedFieldLike[] {
@@ -377,12 +379,13 @@ describe('form creator extraction regression', () => {
     const field = extracted.find((entry) => entry.name === 'page2TextField');
 
     expect(field).toBeDefined();
+    const pageHeight = pdfDoc.getPages()[1].getSize().height;
     expect(field).toMatchObject({
       pageIndex: 1,
-      x: rect.x,
-      y: pdfDoc.getPages()[1].getSize().height - rect.y - rect.height,
-      width: rect.width,
-      height: rect.height,
+      x: rect.x * FORM_CREATOR_SCALE,
+      y: (pageHeight - rect.y - rect.height) * FORM_CREATOR_SCALE,
+      width: rect.width * FORM_CREATOR_SCALE,
+      height: rect.height * FORM_CREATOR_SCALE,
     });
   });
 
@@ -410,5 +413,35 @@ describe('form creator extraction regression', () => {
     expect(pageMap.get('page1TextField')).toBe(0);
     expect(pageMap.get('page1ExtraField')).toBe(0);
     expect(pageMap.get('page2TextField')).toBe(1);
+  });
+
+  it('round-trips extracted canvas coords back to original PDF coords within 1pt', async () => {
+    const { pdfDoc } = await buildTwoPageTextFieldPdf();
+
+    const page = pdfDoc.getPages()[0];
+    const { height: pageHeight } = page.getSize();
+
+    const originalWidget = pdfDoc
+      .getForm()
+      .getTextField('page1TextField')
+      .acroField.getWidgets()[0];
+    const originalRect = originalWidget.getRectangle();
+
+    const extracted = extractFieldsForTest(pdfDoc);
+    const field = extracted.find((f) => f.name === 'page1TextField');
+    expect(field).toBeDefined();
+
+    const pdfX = field!.x / FORM_CREATOR_SCALE;
+    const pdfY =
+      pageHeight -
+      field!.y / FORM_CREATOR_SCALE -
+      field!.height / FORM_CREATOR_SCALE;
+    const pdfW = field!.width / FORM_CREATOR_SCALE;
+    const pdfH = field!.height / FORM_CREATOR_SCALE;
+
+    expect(pdfX).toBeCloseTo(originalRect.x, 0);
+    expect(pdfY).toBeCloseTo(originalRect.y, 0);
+    expect(pdfW).toBeCloseTo(originalRect.width, 0);
+    expect(pdfH).toBeCloseTo(originalRect.height, 0);
   });
 });

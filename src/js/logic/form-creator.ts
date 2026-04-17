@@ -18,14 +18,6 @@ type LucideWindow = Window & {
     createIcons(): void;
   };
 };
-type PdfViewerApplicationLike = {
-  pdfViewer?: {
-    pagesCount: number;
-  };
-};
-type PdfViewerWindow = Window & {
-  PDFViewerApplication?: PdfViewerApplicationLike;
-};
 
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { downloadFile, hexToRgb } from '../utils/helpers.js';
@@ -68,8 +60,6 @@ let uploadedPdfjsDoc: PDFDocumentProxy | null = null;
 let uploadedFileName: string | null = null;
 let pageSize: { width: number; height: number } = { width: 612, height: 792 };
 let currentScale = 1.333;
-let pdfViewerOffset = { x: 0, y: 0 };
-let pdfViewerScale = 1.333;
 
 let resizing = false;
 let resizeField: FormField | null = null;
@@ -2228,23 +2218,11 @@ downloadBtn.addEventListener('click', async () => {
       const pdfPage = pdfDoc.getPage(field.pageIndex);
       const { height: pageHeight } = pdfPage.getSize();
 
-      const scaleX = 1 / pdfViewerScale;
-      const scaleY = 1 / pdfViewerScale;
-
-      const adjustedX = field.x - pdfViewerOffset.x;
-      const adjustedY = field.y - pdfViewerOffset.y;
-
-      const x = adjustedX * scaleX;
-      const y = pageHeight - adjustedY * scaleY - field.height * scaleY;
-      const width = field.width * scaleX;
-      const height = field.height * scaleY;
-
-      console.log(`Field "${field.name}":`, {
-        screenPos: { x: field.x, y: field.y },
-        adjustedPos: { x: adjustedX, y: adjustedY },
-        pdfPos: { x, y, width, height },
-        metrics: { offset: pdfViewerOffset, scale: pdfViewerScale },
-      });
+      const x = field.x / currentScale;
+      const y =
+        pageHeight - field.y / currentScale - field.height / currentScale;
+      const width = field.width / currentScale;
+      const height = field.height / currentScale;
 
       if (field.type === 'text') {
         const textField = form.createTextField(field.name);
@@ -2862,181 +2840,53 @@ async function renderCanvas(): Promise<void> {
 
   canvas.innerHTML = '';
 
-  if (uploadedPdfDoc) {
+  if (uploadedPdfjsDoc) {
     try {
-      const arrayBuffer = await uploadedPdfDoc.save();
-      const blob = new Blob([arrayBuffer.buffer as ArrayBuffer], {
-        type: 'application/pdf',
-      });
-      const blobUrl = URL.createObjectURL(blob);
+      const pdfjsPage = await uploadedPdfjsDoc.getPage(currentPageIndex + 1);
+      const viewport = pdfjsPage.getViewport({ scale: currentScale });
 
-      const iframe = document.createElement('iframe');
-      iframe.src = `${import.meta.env.BASE_URL}pdfjs-viewer/viewer.html?file=${encodeURIComponent(blobUrl)}#page=${currentPageIndex + 1}&toolbar=0`;
-      iframe.style.width = '100%';
-      iframe.style.height = `${canvasHeight}px`;
-      iframe.style.border = 'none';
-      iframe.style.position = 'absolute';
-      iframe.style.top = '0';
-      iframe.style.left = '0';
-      iframe.style.pointerEvents = 'none';
-      iframe.style.opacity = '0.8';
+      const pageCanvas = document.createElement('canvas');
+      pageCanvas.width = viewport.width;
+      pageCanvas.height = viewport.height;
+      pageCanvas.style.position = 'absolute';
+      pageCanvas.style.top = '0';
+      pageCanvas.style.left = '0';
+      pageCanvas.style.pointerEvents = 'none';
 
-      iframe.onload = () => {
-        try {
-          const viewerWindow = iframe.contentWindow as PdfViewerWindow | null;
-          if (viewerWindow && viewerWindow.PDFViewerApplication) {
-            const app = viewerWindow.PDFViewerApplication;
+      const ctx = pageCanvas.getContext('2d');
+      if (ctx) {
+        await pdfjsPage.render({
+          canvasContext: ctx,
+          viewport,
+          canvas: pageCanvas,
+        }).promise;
+      }
 
-            const style = viewerWindow.document.createElement('style');
-            style.textContent = `
-                            * {
-                                margin: 0 !important;
-                                padding: 0 !important;
-                            }
-                            html, body {
-                                margin: 0 !important;
-                                padding: 0 !important;
-                                background-color: transparent !important;
-                                overflow: hidden !important;
-                            }
-                            #toolbarContainer {
-                                display: none !important;
-                            }
-                            #mainContainer {
-                                top: 0 !important;
-                                position: absolute !important;
-                                left: 0 !important;
-                                margin: 0 !important;
-                                padding: 0 !important;
-                            }
-                            #outerContainer {
-                                background-color: transparent !important;
-                                margin: 0 !important;
-                                padding: 0 !important;
-                            }
-                            #viewerContainer {
-                                top: 0 !important;
-                                background-color: transparent !important;
-                                overflow: hidden !important;
-                                margin: 0 !important;
-                                padding: 0 !important;
-                            }
-                            .toolbar {
-                                display: none !important;
-                            }
-                            .pdfViewer {
-                                padding: 0 !important;
-                                margin: 0 !important;
-                            }
-                            .page {
-                                margin: 0 !important;
-                                padding: 0 !important;
-                                border: none !important;
-                                box-shadow: none !important;
-                            }
-                        `;
-            viewerWindow.document.head.appendChild(style);
+      canvas.appendChild(pageCanvas);
 
-            const checkRender = setInterval(() => {
-              if (app.pdfViewer && app.pdfViewer.pagesCount > 0) {
-                clearInterval(checkRender);
+      if (pendingFieldExtraction && uploadedPdfDoc) {
+        pendingFieldExtraction = false;
+        extractExistingFields(uploadedPdfDoc);
+        extractedFieldNames.forEach((name) => existingFieldNames.delete(name));
 
-                const pageContainer =
-                  viewerWindow.document.querySelector<HTMLElement>('.page');
-                if (pageContainer) {
-                  const initialRect = pageContainer.getBoundingClientRect();
-
-                  const offsetX = -initialRect.left;
-                  const offsetY = -initialRect.top;
-                  pageContainer.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-
-                  setTimeout(() => {
-                    const rect = pageContainer.getBoundingClientRect();
-                    const style = viewerWindow.getComputedStyle(pageContainer);
-
-                    const borderLeft = parseFloat(style.borderLeftWidth) || 0;
-                    const borderTop = parseFloat(style.borderTopWidth) || 0;
-                    const borderRight = parseFloat(style.borderRightWidth) || 0;
-
-                    pdfViewerOffset = {
-                      x: rect.left + borderLeft,
-                      y: rect.top + borderTop,
-                    };
-
-                    const contentWidth = rect.width - borderLeft - borderRight;
-                    pdfViewerScale = contentWidth / currentPage.width;
-
-                    console.log('📏 Calibrated Metrics (force positioned):', {
-                      initialPosition: {
-                        left: initialRect.left,
-                        top: initialRect.top,
-                      },
-                      appliedTransform: { x: offsetX, y: offsetY },
-                      finalRect: {
-                        left: rect.left,
-                        top: rect.top,
-                        width: rect.width,
-                        height: rect.height,
-                      },
-                      computedBorders: {
-                        left: borderLeft,
-                        top: borderTop,
-                        right: borderRight,
-                      },
-                      finalOffset: pdfViewerOffset,
-                      finalScale: pdfViewerScale,
-                      pdfDimensions: {
-                        width: currentPage.width,
-                        height: currentPage.height,
-                      },
-                    });
-
-                    if (pendingFieldExtraction && uploadedPdfDoc) {
-                      pendingFieldExtraction = false;
-                      extractExistingFields(uploadedPdfDoc);
-                      extractedFieldNames.forEach((name) =>
-                        existingFieldNames.delete(name)
-                      );
-
-                      const form = uploadedPdfDoc.getForm();
-                      for (const name of extractedFieldNames) {
-                        try {
-                          const existingField = form.getFieldMaybe(name);
-                          if (existingField) {
-                            form.removeField(existingField);
-                          }
-                        } catch (error) {
-                          console.warn(
-                            `Failed to remove extracted field "${name}" after import:`,
-                            error
-                          );
-                        }
-                      }
-
-                      renderCanvas();
-                      updateFieldCount();
-                    }
-                  }, 50);
-                }
-              }
-            }, 100);
+        const form = uploadedPdfDoc.getForm();
+        for (const name of extractedFieldNames) {
+          try {
+            const existingField = form.getFieldMaybe(name);
+            if (existingField) {
+              form.removeField(existingField);
+            }
+          } catch (error) {
+            console.warn(
+              `Failed to remove extracted field "${name}" after import:`,
+              error
+            );
           }
-        } catch (e) {
-          console.error('Error accessing iframe content:', e);
         }
-      };
 
-      canvas.appendChild(iframe);
-
-      console.log('Canvas dimensions:', {
-        width: canvasWidth,
-        height: canvasHeight,
-        scale: currentScale,
-      });
-      console.log('PDF page dimensions:', {
-        width: currentPage.width,
-        height: currentPage.height,
-      });
+        renderCanvas();
+        updateFieldCount();
+      }
     } catch (error) {
       console.error('Error rendering PDF:', error);
     }
@@ -3115,8 +2965,8 @@ function extractExistingFields(pdfDoc: PDFDocument): void {
         pdfDoc,
         fieldCounterStart: fieldCounter,
         metrics: {
-          pdfViewerOffset,
-          pdfViewerScale,
+          pdfViewerOffset: { x: 0, y: 0 },
+          pdfViewerScale: currentScale,
         },
       });
 
