@@ -294,10 +294,10 @@
       "selectAtLeastOne": "Please select at least 1 JSON file",
       "selectedReady": "{{count}} file(s) selected. Ready to convert!",
       "readingFiles": "Reading files (Main Thread)...",
-      "converting": "Converting JSONs to PDFs...",
+      "converting": "Converting JSON files to PDFs...",
       "readError": "Error reading files: {{message}}",
       "creatingZip": "Creating ZIP file...",
-      "success": "JSONs converted to PDF successfully! ZIP download started.",
+      "success": "JSON files converted to PDF successfully! ZIP download started.",
       "zipError": "Error creating ZIP: {{message}}",
       "workerError": "Worker Error: {{message}}",
       "getStarted": "Select JSON files to get started"
