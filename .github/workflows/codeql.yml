@@ -32,26 +32,8 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-          queries: security-extended,security-and-quality
-          config: |
-            paths-ignore:
-              - dist
-              - dist-test
-              - coverage
-              - node_modules
-              - vendor
-              - bentopdf-pymupdf-wasm
-              - libreoffice-wasm-package
-              - bentopdf-airgap-bundle
-              - public/pdfjs-viewer
-              - public/pdfjs-annotation-viewer
-              - public/libreoffice-wasm
-              - public/coherentpdf.browser.min.js
-              - public/workers
-              - public/embedpdf
-              - docs/.vitepress
-              - '**/*.min.js'
-              - '**/*.d.ts'
+          queries: security-extended
+          config-file: ./.github/codeql-config.yml
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3

@@ -40,7 +40,7 @@ export class OverlayNode extends BaseWorkflowNode {
     const mode = modeControl?.value === 'underlay' ? '--underlay' : '--overlay';
 
     const qpdf = await initializeQpdf();
-    const uid = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+    const uid = `${Date.now()}_${crypto.randomUUID().slice(0, 7)}`;
     const inputPath = `/tmp/input_overlay_${uid}.pdf`;
     const overlayPath = `/tmp/overlay_${uid}.pdf`;
     const outputPath = `/tmp/output_overlay_${uid}.pdf`;

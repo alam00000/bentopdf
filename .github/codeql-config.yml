@@ -1,0 +1,28 @@
+name: BentoPDF CodeQL config
+
+paths-ignore:
+  - dist
+  - dist-test
+  - coverage
+  - node_modules
+  - vendor
+  - bentopdf-pymupdf-wasm
+  - libreoffice-wasm-package
+  - bentopdf-airgap-bundle
+  - public/pdfjs-viewer
+  - public/pdfjs-annotation-viewer
+  - public/libreoffice-wasm
+  - public/coherentpdf.browser.min.js
+  - public/workers
+  - public/embedpdf
+  - docs/.vitepress
+  - '**/*.min.js'
+  - '**/*.d.ts'
+
+query-filters:
+  - exclude:
+      id: js/log-injection
+  - exclude:
+      id: js/tainted-format-string
+  - exclude:
+      id: js/file-system-race

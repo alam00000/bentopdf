@@ -328,9 +328,10 @@ function createCorsProxyMiddleware(): Connect.NextHandleFunction {
       );
 
       proxyReq.on('error', (err) => {
-        console.error('[CORS Proxy] Error:', err.message);
+        const msg = String(err.message).replace(/[\r\n]+/g, ' ');
+        console.error('[CORS Proxy] Error:', msg);
         res.statusCode = 502;
-        res.end(`Proxy error: ${err.message}`);
+        res.end(`Proxy error: ${msg}`);
       });
 
       if (body.length > 0) {

@@ -554,7 +554,10 @@ async function addNodeToCanvas(
   try {
     const node = createNodeByType(type);
     if (!node) {
-      console.error('Node type not found in registry:', type);
+      console.error(
+        'Node type not found in registry:',
+        String(type).replace(/[\r\n]+/g, ' ')
+      );
       return;
     }
     await editor.addNode(node);

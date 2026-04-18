@@ -28,7 +28,7 @@ export class LinearizeNode extends BaseWorkflowNode {
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
         const qpdf = await initializeQpdf();
-        const uid = `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+        const uid = `${Date.now()}_${crypto.randomUUID().slice(0, 7)}`;
         const inputPath = `/tmp/input_linearize_${uid}.pdf`;
         const outputPath = `/tmp/output_linearize_${uid}.pdf`;
 
