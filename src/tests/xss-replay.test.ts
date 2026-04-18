@@ -203,7 +203,13 @@ describe('XSS replay — CDN URL version pinning', () => {
     const urls = WasmProvider.getAllProviders();
     for (const [pkg, url] of Object.entries(urls)) {
       if (!url) continue;
-      if (!url.includes('cdn.jsdelivr.net')) continue;
+      let hostname: string;
+      try {
+        hostname = new URL(url).hostname;
+      } catch {
+        continue;
+      }
+      if (hostname !== 'cdn.jsdelivr.net') continue;
       expect(
         /@\d+\.\d+\.\d+/.test(url),
         `${pkg} URL "${url}" must be pinned to an exact version (e.g. pkg@1.2.3)`

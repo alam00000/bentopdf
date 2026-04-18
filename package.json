@@ -33,6 +33,10 @@
     "docs:preview": "vitepress preview docs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:security": "eslint . --no-inline-config --rule 'no-unsanitized/method:error' --rule 'no-unsanitized/property:error' --rule 'security/detect-eval-with-expression:error'",
+    "security:codeql": "codeql database create ./codeql-db --language=javascript-typescript --source-root=. --overwrite --threads=0 && codeql database analyze ./codeql-db --format=sarif-latest --output=codeql-results.sarif --threads=0 codeql/javascript-queries:codeql-suites/javascript-security-extended.qls",
+    "security:codeql:quick": "codeql database analyze ./codeql-db --format=csv --output=codeql-results.csv --threads=0 codeql/javascript-queries:codeql-suites/javascript-security-extended.qls",
+    "security:audit": "npm audit --audit-level=high && npm run lint:security",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -48,6 +52,8 @@
     "@vitest/ui": "^4.0.18",
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-no-unsanitized": "^4.1.5",
+    "eslint-plugin-security": "^4.0.0",
     "globals": "^17.4.0",
     "husky": "^9.1.7",
     "jsdom": "^28.1.0",

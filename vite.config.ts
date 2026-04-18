@@ -12,7 +12,6 @@ import handlebars from 'vite-plugin-handlebars';
 import { resolve } from 'path';
 import fs from 'fs';
 import { constants as zlibConstants } from 'zlib';
-import type { OutputBundle } from 'rollup';
 
 const SUPPORTED_LANGUAGES = [
   'en',
@@ -360,19 +359,41 @@ function flattenPagesPlugin(): Plugin {
   return {
     name: 'flatten-pages',
     enforce: 'post',
-    generateBundle(_: unknown, bundle: OutputBundle): void {
+    writeBundle(options, bundle) {
+      const outDir = options.dir;
+      if (!outDir) return;
+
+      const moves: Array<{ from: string; to: string }> = [];
+
       for (const fileName of Object.keys(bundle)) {
         if (fileName.startsWith('src/pages/') && fileName.endsWith('.html')) {
-          const newFileName = fileName.replace('src/pages/', '');
-          bundle[newFileName] = bundle[fileName];
-          bundle[newFileName].fileName = newFileName;
-          delete bundle[fileName];
+          moves.push({
+            from: fileName,
+            to: fileName.replace('src/pages/', ''),
+          });
         }
       }
+
       if (process.env.SIMPLE_MODE === 'true' && bundle['simple-index.html']) {
-        bundle['index.html'] = bundle['simple-index.html'];
-        bundle['index.html'].fileName = 'index.html';
-        delete bundle['simple-index.html'];
+        moves.push({ from: 'simple-index.html', to: 'index.html' });
+      }
+
+      for (const { from, to } of moves) {
+        const oldPath = resolve(outDir, from);
+        const newPath = resolve(outDir, to);
+        if (!fs.existsSync(oldPath)) continue;
+        fs.mkdirSync(resolve(newPath, '..'), { recursive: true });
+        if (fs.existsSync(newPath)) fs.rmSync(newPath, { force: true });
+        fs.renameSync(oldPath, newPath);
+      }
+
+      const pagesDir = resolve(outDir, 'src/pages');
+      if (fs.existsSync(pagesDir) && fs.readdirSync(pagesDir).length === 0) {
+        fs.rmdirSync(pagesDir);
+      }
+      const srcDir = resolve(outDir, 'src');
+      if (fs.existsSync(srcDir) && fs.readdirSync(srcDir).length === 0) {
+        fs.rmdirSync(srcDir);
       }
     },
   };
@@ -387,31 +408,35 @@ function rewriteHtmlPathsPlugin(): Plugin {
   return {
     name: 'rewrite-html-paths',
     enforce: 'post',
-    generateBundle(_: unknown, bundle: OutputBundle): void {
+    writeBundle(options, bundle) {
       if (normalizedBase === '/') return;
+      const outDir = options.dir;
+      if (!outDir) return;
+
+      const hrefRegex = new RegExp(
+        `href="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`,
+        'g'
+      );
+      const srcRegex = new RegExp(
+        `src="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`,
+        'g'
+      );
+      const contentRegex = new RegExp(
+        `content="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`,
+        'g'
+      );
 
       for (const fileName of Object.keys(bundle)) {
-        if (fileName.endsWith('.html')) {
-          const asset = bundle[fileName];
-          if (asset.type === 'asset' && typeof asset.source === 'string') {
-            const hrefRegex = new RegExp(
-              `href="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`,
-              'g'
-            );
-            const srcRegex = new RegExp(
-              `src="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`,
-              'g'
-            );
-            const contentRegex = new RegExp(
-              `content="\\/(?!${escapedBase.slice(1)}|test\\/|http|\\/\\/)`,
-              'g'
-            );
-
-            asset.source = asset.source
-              .replace(hrefRegex, `href="${normalizedBase}`)
-              .replace(srcRegex, `src="${normalizedBase}`)
-              .replace(contentRegex, `content="${normalizedBase}`);
-          }
+        if (!fileName.endsWith('.html')) continue;
+        const diskPath = resolve(outDir, fileName);
+        if (!fs.existsSync(diskPath)) continue;
+        const source = fs.readFileSync(diskPath, 'utf8');
+        const updated = source
+          .replace(hrefRegex, `href="${normalizedBase}`)
+          .replace(srcRegex, `src="${normalizedBase}`)
+          .replace(contentRegex, `content="${normalizedBase}`);
+        if (updated !== source) {
+          fs.writeFileSync(diskPath, updated);
         }
       }
     },

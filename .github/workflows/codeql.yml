@@ -1,0 +1,59 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended,security-and-quality
+          config: |
+            paths-ignore:
+              - dist
+              - dist-test
+              - coverage
+              - node_modules
+              - vendor
+              - bentopdf-pymupdf-wasm
+              - libreoffice-wasm-package
+              - bentopdf-airgap-bundle
+              - public/pdfjs-viewer
+              - public/pdfjs-annotation-viewer
+              - public/libreoffice-wasm
+              - public/coherentpdf.browser.min.js
+              - public/workers
+              - public/embedpdf
+              - docs/.vitepress
+              - '**/*.min.js'
+              - '**/*.d.ts'
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: /language:${{ matrix.language }}

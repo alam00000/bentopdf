@@ -2,6 +2,8 @@ import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
+import security from 'eslint-plugin-security';
+import noUnsanitized from 'eslint-plugin-no-unsanitized';
 
 export default [
   { files: ['**/*.{js,mjs,cjs,ts}'] },
@@ -12,14 +14,41 @@ export default [
       'node_modules/**',
       '**/.vitepress/cache/**',
       'public/**/*.min.js',
+      'vendor/**',
+      'bentopdf-pymupdf-wasm/**',
+      'libreoffice-wasm-package/**',
+      'bentopdf-airgap-bundle/**',
+      'public/pdfjs-viewer/**',
+      'public/pdfjs-annotation-viewer/**',
+      'public/coherentpdf.browser.min.js',
+      'public/libreoffice-wasm/**',
+      'public/workers/**',
     ],
   },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
+  security.configs.recommended,
+  noUnsanitized.configs.recommended,
   {
     rules: {
+      'no-unsanitized/method': 'warn',
+      'no-unsanitized/property': 'warn',
+      'security/detect-eval-with-expression': 'error',
+      'security/detect-new-buffer': 'error',
+      'security/detect-unsafe-regex': 'warn',
+      'security/detect-pseudoRandomBytes': 'error',
+      'security/detect-bidi-characters': 'error',
+      'security/detect-disable-mustache-escape': 'error',
+      'security/detect-possible-timing-attacks': 'off',
+      'security/detect-object-injection': 'off',
+      'security/detect-non-literal-fs-filename': 'off',
+      'security/detect-non-literal-regexp': 'off',
+      'security/detect-non-literal-require': 'off',
+      'security/detect-child-process': 'off',
+      'security/detect-no-csrf-before-method-override': 'off',
+      'security/detect-buffer-noassert': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': [
         'warn',
