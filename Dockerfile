@@ -64,8 +64,8 @@ ENV DISABLE_TOOLS=$DISABLE_TOOLS
 
 ENV NODE_OPTIONS="--max-old-space-size=3072"
 
-RUN --mount=type=secret,id=VITE_CORS_PROXY_URL \
-    --mount=type=secret,id=VITE_CORS_PROXY_SECRET \
+RUN --mount=type=secret,id=VITE_CORS_PROXY_URL,required=false \
+    --mount=type=secret,id=VITE_CORS_PROXY_SECRET,required=false \
     VITE_CORS_PROXY_URL=$(cat /run/secrets/VITE_CORS_PROXY_URL 2>/dev/null || echo "") \
     VITE_CORS_PROXY_SECRET=$(cat /run/secrets/VITE_CORS_PROXY_SECRET 2>/dev/null || echo "") \
     npm run build:with-docs

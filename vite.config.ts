@@ -1,8 +1,8 @@
-import { defineConfig, Plugin } from 'vitest/config';
+import { defineConfig } from 'vitest/config';
 import type { IncomingMessage, ServerResponse } from 'http';
 import http from 'http';
 import https from 'https';
-import type { Connect } from 'vite';
+import type { Connect, Plugin } from 'vite';
 // import basicSsl from '@vitejs/plugin-basic-ssl';
 import tailwindcss from '@tailwindcss/vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
