@@ -330,6 +330,22 @@ async function cacheInBatches(cache, urls, batchSize = 5) {
 self.addEventListener('message', (event) => {
   if (!event.data) return;
 
+  if (event.origin && event.origin !== self.location.origin) {
+    return;
+  }
+
+  const source = event.source;
+  if (source && typeof source === 'object' && 'url' in source) {
+    try {
+      const sourceOrigin = new URL(source.url).origin;
+      if (sourceOrigin !== self.location.origin) {
+        return;
+      }
+    } catch (e) {
+      return;
+    }
+  }
+
   if (event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
     return;

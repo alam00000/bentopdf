@@ -19,6 +19,7 @@ type LucideWindow = Window & {
   };
 };
 
+import DOMPurify from 'dompurify';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { downloadFile, escapeHtml, hexToRgb } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
@@ -1327,7 +1328,7 @@ function showProperties(field: FormField): void {
         `;
   }
 
-  propertiesPanel.innerHTML = `
+  const propertiesHtml = `
     <div class="space-y-3">
       <div>
         <label class="block text-xs font-semibold text-gray-300 mb-1">Field Name ${field.type === 'radio' ? '(Group Name)' : ''}</label>
@@ -1398,6 +1399,10 @@ function showProperties(field: FormField): void {
       </button>
     </div>
   `;
+
+  propertiesPanel.innerHTML = DOMPurify.sanitize(propertiesHtml, {
+    ADD_ATTR: ['target'],
+  });
 
   // Common listeners
   const propName = document.getElementById('propName') as HTMLInputElement;

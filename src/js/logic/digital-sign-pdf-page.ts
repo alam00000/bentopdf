@@ -203,8 +203,15 @@ function initializePage(): void {
 
         if (sigImageThumb && sigImagePreview) {
           const url = URL.createObjectURL(file);
-          sigImageThumb.src = url;
-          sigImagePreview.classList.remove('hidden');
+          try {
+            const parsed = new URL(url);
+            if (parsed.protocol === 'blob:') {
+              sigImageThumb.src = parsed.href;
+              sigImagePreview.classList.remove('hidden');
+            }
+          } catch {
+            console.warn('Invalid blob URL for signature preview');
+          }
         }
       }
     });

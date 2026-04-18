@@ -720,7 +720,14 @@ async function handleMultiFileUpload(toolId: string) {
         'w-full h-36 sm:h-40 md:h-44 bg-gray-900 rounded-md border-2 border-gray-600 flex items-center justify-center overflow-hidden';
 
       const img = document.createElement('img');
-      img.src = url;
+      try {
+        const parsed = new URL(url);
+        if (parsed.protocol === 'blob:') {
+          img.src = parsed.href;
+        }
+      } catch {
+        console.warn('Invalid blob URL for preview');
+      }
       img.className = 'max-w-full max-h-full object-contain';
 
       const p = document.createElement('p');

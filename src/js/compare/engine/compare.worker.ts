@@ -43,7 +43,26 @@ interface ErrorResult {
   message: string;
 }
 
-self.onmessage = function (e: MessageEvent<WorkerMessage>) {
+function isValidMessage(data: unknown): data is WorkerMessage {
+  if (!data || typeof data !== 'object') return false;
+  const m = data as Record<string, unknown>;
+  if (typeof m.id !== 'number') return false;
+  if (m.type === 'diff') {
+    return Array.isArray(m.beforeItems) && Array.isArray(m.afterItems);
+  }
+  if (m.type === 'pair') {
+    return Array.isArray(m.leftPages) && Array.isArray(m.rightPages);
+  }
+  return false;
+}
+
+self.onmessage = function (e: MessageEvent<unknown>) {
+  if (e.origin && e.origin !== '' && e.origin !== self.location.origin) {
+    return;
+  }
+  if (!isValidMessage(e.data)) {
+    return;
+  }
   const msg = e.data;
   try {
     if (msg.type === 'diff') {
