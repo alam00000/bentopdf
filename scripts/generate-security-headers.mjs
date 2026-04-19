@@ -65,7 +65,6 @@ const directives = [
   `base-uri 'self'`,
   `frame-ancestors 'self'`,
   `form-action 'self'`,
-  `upgrade-insecure-requests`,
 ];
 
 const csp = directives.join('; ');
