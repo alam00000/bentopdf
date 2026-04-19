@@ -77,7 +77,7 @@ add_header X-XSS-Protection "1; mode=block" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 add_header Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()" always;
 add_header Cross-Origin-Opener-Policy "same-origin" always;
-add_header Cross-Origin-Embedder-Policy "require-corp" always;
+add_header Cross-Origin-Embedder-Policy "credentialless" always;
 add_header Cross-Origin-Resource-Policy "cross-origin" always;
 `;
 
