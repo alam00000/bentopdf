@@ -63,14 +63,28 @@ const directives = [
   `connect-src 'self' blob: https://api.github.com https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
+  `frame-src 'self' blob:`,
+  `frame-ancestors 'self'`,
+  `form-action 'self'`,
+];
+
+const docsDirectives = [
+  `default-src 'self'`,
+  `script-src 'self' 'unsafe-inline' ${scriptOrigins.join(' ')}`.trim(),
+  `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
+  `img-src 'self' data: blob: https:`,
+  `font-src 'self' data: https://fonts.gstatic.com ${fontOrigins.join(' ')}`.trim(),
+  `connect-src 'self' https://api.github.com https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
+  `object-src 'none'`,
+  `base-uri 'self'`,
   `frame-ancestors 'self'`,
   `form-action 'self'`,
 ];
 
 const csp = directives.join('; ');
+const docsCsp = docsDirectives.join('; ');
 
-const contents = `add_header Content-Security-Policy "${csp}" always;
-add_header X-Frame-Options "SAMEORIGIN" always;
+const commonHeaders = `add_header X-Frame-Options "SAMEORIGIN" always;
 add_header X-Content-Type-Options "nosniff" always;
 add_header X-XSS-Protection "1; mode=block" always;
 add_header Referrer-Policy "strict-origin-when-cross-origin" always;
@@ -80,8 +94,17 @@ add_header Cross-Origin-Embedder-Policy "credentialless" always;
 add_header Cross-Origin-Resource-Policy "cross-origin" always;
 `;
 
+const contents = `add_header Content-Security-Policy "${csp}" always;
+${commonHeaders}`;
+
+const docsContents = `add_header Content-Security-Policy "${docsCsp}" always;
+${commonHeaders}`;
+
 const outPath = join(repoRoot, 'security-headers.conf');
+const docsOutPath = join(repoRoot, 'security-headers-docs.conf');
 writeFileSync(outPath, contents);
+writeFileSync(docsOutPath, docsContents);
 console.log(
   `[security-headers] wrote ${outPath} with ${scriptOrigins.length} script-src / ${connectOrigins.length} connect-src origin(s)`
 );
+console.log(`[security-headers] wrote ${docsOutPath} (docs CSP)`);
