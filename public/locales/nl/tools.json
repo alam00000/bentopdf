@@ -726,7 +726,7 @@
     "pageTitle": "Digitale handtekening - Cryptografische handtekening toevoegen | BentoPDF",
     "subtitle": "Een cryptografische digitale handtekening toevoegen aan een PDF met behulp van X.509-certificaten. Ondersteunt PKCS#12 (.pfx, .p12) en PEM-formaten. Jouw privésleutel verlaat jouw browser nooit.",
     "certificateSection": "Certificaat",
-    "uploadCert": "Certificaat laden (.pfx, .p12)",
+    "uploadCert": "Certificaat laden (.pfx, .p12, .pem)",
     "certPassword": "Certificaatwachtwoord",
     "certPasswordPlaceholder": "Voer het wachtwoord van het certificaat in",
     "certInfo": "Certificaatinformatie",

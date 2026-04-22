@@ -668,7 +668,7 @@
     "pageTitle": "PDF 数字签名 - 添加加密签名 | BentoPDF",
     "subtitle": "使用 X.509 证书为您的 PDF 添加加密数字签名。支持 PKCS#12 (.pfx, .p12) 和 PEM 格式。您的私钥永远不会离开您的浏览器。",
     "certificateSection": "证书",
-    "uploadCert": "上传证书 (.pfx, .p12)",
+    "uploadCert": "上传证书 (.pfx, .p12, .pem)",
     "certPassword": "证书密码",
     "certPasswordPlaceholder": "输入证书密码",
     "certInfo": "证书信息",

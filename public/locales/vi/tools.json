@@ -668,7 +668,7 @@
     "pageTitle": "Chữ ký số PDF - Thêm chữ ký mật mã | BentoPDF",
     "subtitle": "Thêm chữ ký số mật mã vào PDF của bạn bằng chứng chỉ X.509. Hỗ trợ định dạng PKCS#12 (.pfx, .p12) và PEM. Khóa riêng của bạn không bao giờ rời khỏi trình duyệt.",
     "certificateSection": "Chứng chỉ",
-    "uploadCert": "Tải lên chứng chỉ (.pfx, .p12)",
+    "uploadCert": "Tải lên chứng chỉ (.pfx, .p12, .pem)",
     "certPassword": "Mật khẩu chứng chỉ",
     "certPasswordPlaceholder": "Nhập mật khẩu chứng chỉ",
     "certInfo": "Thông tin chứng chỉ",

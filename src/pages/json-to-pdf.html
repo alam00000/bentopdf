@@ -121,9 +121,12 @@
           class="bg-yellow-900/30 border border-yellow-700 rounded-lg p-3 mb-6"
         >
           <p class="text-yellow-200 text-sm">
-            <strong>Note:</strong> Only JSON files created by the PDF-to-JSON
-            converter tool are supported. Standard JSON files from other tools
-            will not work.
+            <strong data-i18n="tools:jsonToPdf.noteLabel">Note:</strong>
+            <span data-i18n="tools:jsonToPdf.noteText"
+              >Only JSON files created by the PDF-to-JSON converter tool are
+              supported. Standard JSON files from other tools will not
+              work.</span
+            >
           </p>
         </div>
 
@@ -142,7 +145,12 @@
                 >
                 <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
               </p>
-              <p class="text-xs text-gray-500">Multiple JSON files</p>
+              <p
+                class="text-xs text-gray-500"
+                data-i18n="tools:jsonToPdf.acceptedFormats"
+              >
+                Multiple JSON files
+              </p>
               <p
                 class="text-xs text-gray-500"
                 data-i18n="upload.filesNeverLeave"
@@ -162,7 +170,12 @@
           <!-- File Display Area -->
           <div id="fileList" class="mt-4 hidden"></div>
 
-          <button id="convertBtn" disabled class="btn-gradient w-full mt-6">
+          <button
+            id="convertBtn"
+            disabled
+            class="btn-gradient w-full mt-6"
+            data-i18n="tools:convertToPdf"
+          >
             Convert to PDF
           </button>
         </div>
