@@ -45,4 +45,8 @@ if [ "$DISABLE_IPV6" = "true" ]; then
     sed -i '/^[[:space:]]*listen[[:space:]]*\[::\]:[0-9]*/s/^/#/' /etc/nginx/nginx.conf
 fi
 
+if [ "${ROBOTS_NOINDEX:-false}" = "true" ] && [ -x /usr/local/bin/bentopdf-noindex.sh ]; then
+    NOINDEX_HTML_ROOT=/usr/share/nginx/html /usr/local/bin/bentopdf-noindex.sh || true
+fi
+
 exec su-exec "$PUID:$PGID" "$@"

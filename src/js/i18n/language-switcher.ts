@@ -3,6 +3,7 @@ import {
   languageNames,
   getLanguageFromUrl,
   changeLanguage,
+  t,
 } from './i18n';
 
 export const createLanguageSwitcher = (): HTMLElement => {
@@ -39,24 +40,63 @@ export const createLanguageSwitcher = (): HTMLElement => {
 
   const dropdown = document.createElement('div');
   dropdown.className = `
-    hidden absolute right-0 mt-2 w-40 rounded-lg
-    bg-gray-800 border border-gray-700 shadow-xl
-    py-1 z-50
+    hidden absolute right-0 mt-2 z-50
+    w-64 max-w-[calc(100vw-2rem)]
+    rounded-lg bg-gray-800 border border-gray-700 shadow-xl
+    flex flex-col overflow-hidden
   `.trim();
   dropdown.setAttribute('role', 'menu');
 
+  const searchWrapper = document.createElement('div');
+  searchWrapper.className =
+    'p-2 border-b border-gray-700 bg-gray-800 flex-shrink-0';
+
+  const searchPlaceholder =
+    t('nav.searchLanguage') !== 'nav.searchLanguage'
+      ? t('nav.searchLanguage')
+      : 'Search language…';
+
+  const searchInput = document.createElement('input');
+  searchInput.type = 'search';
+  searchInput.placeholder = searchPlaceholder;
+  searchInput.className = `
+    w-full px-3 py-1.5 text-sm
+    bg-gray-900 text-gray-200
+    border border-gray-700 rounded-md
+    focus:outline-none focus:border-indigo-500
+    placeholder-gray-500
+  `.trim();
+  searchInput.setAttribute('aria-label', searchPlaceholder);
+  searchWrapper.appendChild(searchInput);
+  dropdown.appendChild(searchWrapper);
+
+  const list = document.createElement('div');
+  list.className = 'max-h-64 overflow-y-auto py-1';
+  list.setAttribute('role', 'none');
+
+  const emptyState = document.createElement('p');
+  emptyState.className = 'hidden px-4 py-3 text-sm text-gray-400 text-center';
+  const emptyText =
+    t('nav.noLanguagesFound') !== 'nav.noLanguagesFound'
+      ? t('nav.noLanguagesFound')
+      : 'No languages found';
+  emptyState.textContent = emptyText;
+
+  const options: HTMLButtonElement[] = [];
   supportedLanguages.forEach((lang) => {
     const option = document.createElement('button');
+    option.type = 'button';
     option.className = `
       w-full px-4 py-2 text-left text-sm text-gray-200
-      hover:bg-gray-700 flex items-center gap-2
+      hover:bg-gray-700 flex items-center gap-2 transition-colors
       ${lang === currentLang ? 'bg-gray-700' : ''}
     `.trim();
     option.setAttribute('role', 'menuitem');
+    option.dataset.lang = lang;
+    option.dataset.searchKey = `${languageNames[lang]} ${lang}`.toLowerCase();
 
     const name = document.createElement('span');
     name.textContent = languageNames[lang];
-
     option.appendChild(name);
 
     option.addEventListener('click', () => {
@@ -65,7 +105,37 @@ export const createLanguageSwitcher = (): HTMLElement => {
       }
     });
 
-    dropdown.appendChild(option);
+    options.push(option);
+    list.appendChild(option);
+  });
+
+  list.appendChild(emptyState);
+  dropdown.appendChild(list);
+
+  const filterOptions = () => {
+    const query = searchInput.value.trim().toLowerCase();
+    let visible = 0;
+    options.forEach((option) => {
+      const key = option.dataset.searchKey || '';
+      const match = !query || key.includes(query);
+      option.classList.toggle('hidden', !match);
+      if (match) visible++;
+    });
+    emptyState.classList.toggle('hidden', visible > 0);
+  };
+
+  searchInput.addEventListener('input', filterOptions);
+  dropdown.addEventListener('click', (e) => {
+    if (e.target instanceof HTMLButtonElement && e.target.dataset.lang) return;
+    e.stopPropagation();
+  });
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      dropdown.classList.add('hidden');
+      button.setAttribute('aria-expanded', 'false');
+      button.focus();
+    }
   });
 
   container.appendChild(button);
@@ -74,8 +144,15 @@ export const createLanguageSwitcher = (): HTMLElement => {
   button.addEventListener('click', (e) => {
     e.stopPropagation();
     const isExpanded = button.getAttribute('aria-expanded') === 'true';
-    button.setAttribute('aria-expanded', (!isExpanded).toString());
-    dropdown.classList.toggle('hidden');
+    const nextOpen = !isExpanded;
+    button.setAttribute('aria-expanded', nextOpen.toString());
+    dropdown.classList.toggle('hidden', !nextOpen);
+    if (nextOpen) {
+      searchInput.value = '';
+      filterOptions();
+      list.scrollTop = 0;
+      requestAnimationFrame(() => searchInput.focus());
+    }
   });
 
   document.addEventListener('click', () => {
@@ -117,7 +194,7 @@ export const injectLanguageSwitcher = (): void => {
 
     if (socialIconsContainer) {
       const wrapper = document.createElement('div');
-      wrapper.className = 'inline-flex flex-col gap-4'; // gap-4 adds space between icons and switcher
+      wrapper.className = 'inline-flex flex-col gap-4';
 
       socialIconsContainer.parentNode?.insertBefore(
         wrapper,
@@ -139,9 +216,11 @@ export const injectLanguageSwitcher = (): void => {
                 `.trim();
       }
 
-      const dropdown = switcher.querySelector('div[role="menu"]');
+      const dropdown = switcher.querySelector(
+        'div[role="menu"]'
+      ) as HTMLElement | null;
       if (dropdown) {
-        dropdown.classList.remove('mt-2', 'w-40');
+        dropdown.classList.remove('mt-2', 'w-64');
         dropdown.classList.add('bottom-full', 'mb-2', 'w-full');
       }
 

@@ -26,8 +26,9 @@ concurrency:
 # You will likely need to set BASE_URL to be the name of your repo eg 'bentopdf'
 env:
   SIMPLE_MODE: ${{ vars.SIMPLE_MODE }}
-  BASE_URL: ${{ vars.BASE_URL }}/ 
-  HUSKY: 0 
+  BASE_URL: ${{ vars.BASE_URL }}/
+  SITE_URL: ${{ vars.SITE_URL }}
+  HUSKY: 0
 
 jobs:
   # Single deploy job since we're just deploying

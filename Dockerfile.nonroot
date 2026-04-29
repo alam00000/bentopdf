@@ -55,6 +55,10 @@ ENV VITE_BRAND_NAME=$VITE_BRAND_NAME
 ENV VITE_BRAND_LOGO=$VITE_BRAND_LOGO
 ENV VITE_FOOTER_TEXT=$VITE_FOOTER_TEXT
 
+# Public-facing canonical site URL. See Dockerfile for details.
+ARG SITE_URL=https://www.bentopdf.com
+ENV SITE_URL=$SITE_URL
+
 ENV NODE_OPTIONS="--max-old-space-size=3072"
 
 RUN --mount=type=secret,id=VITE_CORS_PROXY_URL,required=false \
@@ -83,6 +87,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=builder /app/security-headers-docs.conf /etc/nginx/security-headers-docs.conf
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
+COPY --chmod=755 nginx-noindex.sh /usr/local/bin/bentopdf-noindex.sh
 
 RUN mkdir -p /etc/nginx/tmp \
              /var/cache/nginx/client_temp \

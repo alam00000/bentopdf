@@ -8,7 +8,10 @@ const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const LOCALES_DIR = path.resolve(__dirname, '../public/locales');
-const SITE_URL = process.env.SITE_URL || 'https://bentopdf.com';
+const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+  /\/+$/,
+  ''
+);
 const BASE_PATH = (process.env.BASE_URL || '/').replace(/\/$/, '');
 
 const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
@@ -42,6 +45,14 @@ function loadAllTranslations() {
   return translations;
 }
 
+function loadEnglishTools() {
+  const toolsPath = path.join(LOCALES_DIR, 'en/tools.json');
+  if (!fs.existsSync(toolsPath)) return {};
+  return JSON.parse(fs.readFileSync(toolsPath, 'utf-8'));
+}
+
+const ENGLISH_TOOLS = loadEnglishTools();
+
 // TODO@ALAM: Let users build only a single language
 function buildUrl(langPrefix, pagePath) {
   const parts = [SITE_URL];
@@ -49,6 +60,109 @@ function buildUrl(langPrefix, pagePath) {
   if (langPrefix) parts.push(langPrefix);
   if (pagePath) parts.push(pagePath.replace(/^\//, ''));
   return parts.filter(Boolean).join('/').replace(/\/+$/, '') || SITE_URL;
+}
+
+const ORGANIZATION_LD_MARKER = 'data-bentopdf-organization';
+
+function injectOrganizationLd(document) {
+  if (document.querySelector(`script[${ORGANIZATION_LD_MARKER}]`)) return;
+  const existing = document.querySelectorAll(
+    'script[type="application/ld+json"]'
+  );
+  for (const node of existing) {
+    try {
+      const parsed = JSON.parse(node.textContent || '');
+      if (parsed && parsed['@type'] === 'Organization') return;
+    } catch {
+      continue;
+    }
+  }
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'BentoPDF',
+    url: SITE_URL,
+    logo: `${SITE_URL}/images/favicon.svg`,
+    sameAs: [
+      'https://github.com/alam00000/bentopdf',
+      'https://x.com/BentoPDF',
+      'https://www.linkedin.com/company/bentopdf/',
+      'https://www.instagram.com/thebentopdf/',
+    ],
+  };
+  const script = document.createElement('script');
+  script.setAttribute('type', 'application/ld+json');
+  script.setAttribute(ORGANIZATION_LD_MARKER, '');
+  script.textContent = JSON.stringify(data, null, 2);
+  document.body.appendChild(script);
+}
+
+const BREADCRUMB_MARKER = 'data-bentopdf-breadcrumb';
+
+function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
+  const h1 = document.querySelector('h1[data-i18n^="tools:"]');
+  if (!h1) return;
+  if (document.querySelector(`[${BREADCRUMB_MARKER}]`)) return;
+
+  const homeUrl = buildUrl(lang === 'en' ? '' : lang, '');
+
+  const nav = document.createElement('nav');
+  nav.setAttribute('aria-label', 'Breadcrumb');
+  nav.setAttribute(BREADCRUMB_MARKER, '');
+  nav.className = 'text-sm text-gray-400 mb-4';
+
+  const homeLink = document.createElement('a');
+  homeLink.href = homeUrl;
+  homeLink.className = 'hover:text-indigo-300';
+  homeLink.textContent = 'BentoPDF';
+
+  const sep = document.createElement('span');
+  sep.setAttribute('aria-hidden', 'true');
+  sep.className = 'mx-2';
+  sep.textContent = '›';
+
+  const current = document.createElement('span');
+  current.className = 'text-gray-300';
+  current.setAttribute('aria-current', 'page');
+  current.textContent = toolName;
+
+  nav.appendChild(homeLink);
+  nav.appendChild(sep);
+  nav.appendChild(current);
+
+  h1.parentNode.insertBefore(nav, h1);
+
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'BentoPDF',
+        item: homeUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: toolName,
+        item: toolUrl,
+      },
+    ],
+  };
+
+  const script = document.createElement('script');
+  script.setAttribute('type', 'application/ld+json');
+  script.setAttribute(BREADCRUMB_MARKER, '');
+  script.textContent = JSON.stringify(ld, null, 2);
+  document.body.appendChild(script);
+}
+
+function resolveToolName(translationKey, langTools) {
+  const langEntry = langTools && langTools[translationKey];
+  if (langEntry && langEntry.name) return langEntry.name;
+  const enEntry = ENGLISH_TOOLS[translationKey];
+  return enEntry && enEntry.name ? enEntry.name : null;
 }
 
 function processFileForLanguage(
@@ -126,13 +240,26 @@ function processFileForLanguage(
   defaultLink.href = buildUrl('', pagePath);
   document.head.appendChild(defaultLink);
 
+  const canonicalUrl = buildUrl(lang, pagePath);
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.rel = 'canonical';
     document.head.appendChild(canonical);
   }
-  canonical.href = buildUrl(lang, pagePath);
+  canonical.href = canonicalUrl;
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.content = canonicalUrl;
+  const twitterUrl = document.querySelector('meta[name="twitter:url"]');
+  if (twitterUrl) twitterUrl.content = canonicalUrl;
+
+  injectOrganizationLd(document);
+
+  const localizedToolName = resolveToolName(translationKey, tools);
+  if (localizedToolName) {
+    injectToolBreadcrumb(document, lang, localizedToolName, canonicalUrl);
+  }
 
   const links = document.querySelectorAll('a[href]');
   links.forEach((link) => {
@@ -189,6 +316,7 @@ function updateEnglishFile(filePath, originalContent) {
     .forEach((el) => el.remove());
 
   const pagePath = filenameNoExt === 'index' ? '' : filenameNoExt;
+  const canonicalUrl = buildUrl('', pagePath);
 
   languages.forEach((l) => {
     const link = document.createElement('link');
@@ -201,8 +329,30 @@ function updateEnglishFile(filePath, originalContent) {
   const defaultLink = document.createElement('link');
   defaultLink.rel = 'alternate';
   defaultLink.hreflang = 'x-default';
-  defaultLink.href = buildUrl('', pagePath);
+  defaultLink.href = canonicalUrl;
   document.head.appendChild(defaultLink);
+
+  let canonical = document.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    document.head.appendChild(canonical);
+  }
+  canonical.href = canonicalUrl;
+
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.content = canonicalUrl;
+  const twitterUrl = document.querySelector('meta[name="twitter:url"]');
+  if (twitterUrl) twitterUrl.content = canonicalUrl;
+
+  injectOrganizationLd(document);
+
+  const enTranslationKey =
+    KEY_MAPPING[filenameNoExt] || toCamelCase(filenameNoExt);
+  const enToolName = resolveToolName(enTranslationKey, ENGLISH_TOOLS);
+  if (enToolName) {
+    injectToolBreadcrumb(document, 'en', enToolName, canonicalUrl);
+  }
 
   const result = dom.serialize();
 

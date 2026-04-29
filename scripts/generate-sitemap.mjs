@@ -7,7 +7,11 @@ const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const LOCALES_DIR = path.resolve(__dirname, '../public/locales');
-const SITE_URL = process.env.SITE_URL || 'https://www.bentopdf.com';
+const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+  /\/+$/,
+  ''
+);
+const EXCLUDED_PAGES = new Set(['404', 'wasm-settings']);
 
 const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
   return fs.statSync(path.join(LOCALES_DIR, file)).isDirectory();
@@ -37,7 +41,6 @@ const PRIORITY_MAP = {
   privacy: 0.5,
   terms: 0.5,
   licensing: 0.5,
-  404: 0.1,
 };
 
 function getPriority(pageName) {
@@ -57,13 +60,30 @@ function generateSitemap() {
   console.log(`   SITE_URL: ${SITE_URL}`);
   console.log(`   Languages: ${languages.join(', ')}`);
 
-  // Get all HTML files from dist root (English pages)
   const htmlFiles = fs
     .readdirSync(DIST_DIR)
     .filter((file) => file.endsWith('.html'))
-    .map((file) => file.replace('.html', ''));
+    .map((file) => file.replace('.html', ''))
+    .filter((name) => !EXCLUDED_PAGES.has(name));
 
-  const today = new Date().toISOString().split('T')[0];
+  const lastModCache = new Map();
+  const getLastMod = (lang, pageName) => {
+    const cacheKey = `${lang}::${pageName}`;
+    if (lastModCache.has(cacheKey)) return lastModCache.get(cacheKey);
+    const fileName = `${pageName}.html`;
+    const filePath =
+      lang === 'en'
+        ? path.join(DIST_DIR, fileName)
+        : path.join(DIST_DIR, lang, fileName);
+    let iso;
+    try {
+      iso = fs.statSync(filePath).mtime.toISOString().slice(0, 10);
+    } catch {
+      iso = new Date().toISOString().slice(0, 10);
+    }
+    lastModCache.set(cacheKey, iso);
+    return iso;
+  };
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -73,13 +93,13 @@ function generateSitemap() {
   for (const pageName of htmlFiles) {
     const priority = getPriority(pageName);
 
-    // Generate entry for each language
     for (const lang of languages) {
       const url = buildUrl(lang, pageName);
+      const lastmod = getLastMod(lang, pageName);
 
       sitemap += `  <url>
     <loc>${url}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${priority}</priority>
 `;

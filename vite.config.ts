@@ -33,7 +33,7 @@ const SUPPORTED_LANGUAGES = [
   'zh-TW',
   'ko',
   'ja',
-  'ua',
+  'uk',
 ] as const;
 const LANG_REGEX = new RegExp(
   `^/(${SUPPORTED_LANGUAGES.join('|')})(?:/(.*))?$`

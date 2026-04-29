@@ -26,15 +26,10 @@ Disallow: /uploads/
 # Disallow docs internal files (but allow /docs/ pages)
 Disallow: /docs/assets/
 
-# Crawl delay for polite crawling
-Crawl-delay: 1
-
 # Google-specific
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
 
-# Bing-specific  
+# Bing-specific
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1

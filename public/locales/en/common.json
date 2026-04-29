@@ -7,7 +7,9 @@
     "allTools": "All Tools",
     "docs": "Docs",
     "openMainMenu": "Open main menu",
-    "language": "Language"
+    "language": "Language",
+    "searchLanguage": "Search language…",
+    "noLanguagesFound": "No languages found"
   },
   "donation": {
     "message": "Love BentoPDF? Help us keep it free and open source!",

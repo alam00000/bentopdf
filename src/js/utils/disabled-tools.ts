@@ -14,6 +14,11 @@ export async function loadRuntimeConfig(): Promise<void> {
     });
     if (!response.ok) return;
 
+    const contentType = response.headers.get('content-type') || '';
+    if (!contentType.toLowerCase().includes('application/json')) {
+      return;
+    }
+
     const config: AppConfig = await response.json();
     if (Array.isArray(config.disabledTools)) {
       for (const toolId of config.disabledTools) {
@@ -27,8 +32,8 @@ export async function loadRuntimeConfig(): Promise<void> {
         (c): c is string => typeof c === 'string'
       );
     }
-  } catch {
-    console.error('[LOAD_RUNTIME_CONFIG] Failed to load runtime configuration');
+  } catch (err) {
+    console.warn('[LOAD_RUNTIME_CONFIG] Skipped runtime config:', err);
   }
 }
 
