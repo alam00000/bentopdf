@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class TextToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -58,8 +59,7 @@ export class TextToPdfNode extends BaseWorkflowNode {
   async data(
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
-    if (this.files.length === 0)
-      throw new Error('No text files uploaded in Text Input node');
+    if (this.files.length === 0) throw new Error(wfError('noTextUploaded'));
 
     const fontSizeCtrl = this.controls['fontSize'] as
       | ClassicPreset.InputControl<'number'>

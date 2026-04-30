@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, extractAllPdfs } from '../types';
 import { downloadFile } from '../../utils/helpers.js';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { wfError } from '../errors';
 
 function tableToCsv(rows: (string | null)[][]): string {
   return rows
@@ -63,7 +64,7 @@ export class PdfToCsvNode extends BaseWorkflowNode {
     if (allPdfs.length === 1) {
       const allRows = await this.extractTables(allPdfs[0].bytes);
       if (allRows.length === 0) {
-        throw new Error('No tables found in PDF');
+        throw new Error(wfError('pdfToCsvNoTables'));
       }
       const csv = tableToCsv(allRows);
       const csvBlob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });

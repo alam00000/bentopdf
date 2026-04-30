@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { applyGreyscale } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { wfError } from '../errors';
 
 export class GreyscaleNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -38,7 +39,7 @@ export class GreyscaleNode extends BaseWorkflowNode {
           canvas.height = viewport.height;
           const ctx = canvas.getContext('2d');
           if (!ctx)
-            throw new Error(`Failed to get canvas context for page ${i}`);
+            throw new Error(wfError('failedToGetCanvasContext', { page: i }));
           await page.render({ canvasContext: ctx, viewport, canvas }).promise;
 
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -49,7 +50,8 @@ export class GreyscaleNode extends BaseWorkflowNode {
             canvas.toBlob(resolve, 'image/jpeg', 0.9)
           );
 
-          if (!jpegBlob) throw new Error(`Failed to render page ${i} to image`);
+          if (!jpegBlob)
+            throw new Error(wfError('failedToRenderPageToImage', { page: i }));
           const jpegBytes = await jpegBlob.arrayBuffer();
           const jpegImage = await newPdfDoc.embedJpg(jpegBytes);
           const newPage = newPdfDoc.addPage([viewport.width, viewport.height]);
@@ -62,7 +64,7 @@ export class GreyscaleNode extends BaseWorkflowNode {
         }
 
         if (newPdfDoc.getPageCount() === 0)
-          throw new Error('No pages were processed');
+          throw new Error(wfError('noPagesProcessed'));
         const pdfBytes = await newPdfDoc.save();
         return {
           type: 'pdf',

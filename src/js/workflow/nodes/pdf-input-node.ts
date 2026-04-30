@@ -5,6 +5,7 @@ import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { readFileAsArrayBuffer } from '../../utils/helpers.js';
 import { decryptPdfBytes } from '../../utils/pdf-decrypt.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class EncryptedPDFError extends Error {
   constructor(public readonly filename: string) {
@@ -40,9 +41,7 @@ export class PDFInputNode extends BaseWorkflowNode {
       try {
         await loadPdfDocument(bytes);
       } catch {
-        throw new Error(
-          `Failed to load "${file.name}" - file may be corrupted`
-        );
+        throw new Error(wfError('failedToLoadFile', { file: file.name }));
       }
       throw new EncryptedPDFError(file.name);
     }
@@ -107,7 +106,7 @@ export class PDFInputNode extends BaseWorkflowNode {
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
     if (this.files.length === 0) {
-      throw new Error('No PDF files uploaded in PDF Input node');
+      throw new Error(wfError('noPdfFilesUploaded'));
     }
 
     if (this.files.length === 1) {

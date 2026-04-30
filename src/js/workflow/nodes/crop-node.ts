@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class CropNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -59,9 +60,7 @@ export class CropNode extends BaseWorkflowNode {
           const cropWidth = width - left - right;
           const cropHeight = height - top - bottom;
           if (cropWidth <= 0 || cropHeight <= 0) {
-            throw new Error(
-              'Crop margins exceed page dimensions. Reduce crop values.'
-            );
+            throw new Error(wfError('cropMarginsExceed'));
           }
           page.setCropBox(left, bottom, cropWidth, cropHeight);
         }

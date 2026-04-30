@@ -10,6 +10,8 @@ import {
 import { isToolDisabled } from '../utils/disabled-tools.js';
 import type { BaseWorkflowNode } from '../workflow/nodes/base-node';
 import type { WorkflowEditor } from '../workflow/editor';
+import { translateCategory, translateNodeLabel } from '../workflow/i18n';
+import type { NodeCategory } from '../workflow/types';
 import {
   PDFInputNode,
   EncryptedPDFError,
@@ -426,31 +428,22 @@ function buildToolbox() {
   if (!container) return;
 
   const categorized = getNodesByCategory();
-  const categoryOrder: Array<{ key: string; label: string; color: string }> = [
-    { key: 'Input', label: 'Input', color: 'text-blue-400' },
-    {
-      key: 'Edit & Annotate',
-      label: 'Edit & Annotate',
-      color: 'text-indigo-300',
-    },
-    {
-      key: 'Organize & Manage',
-      label: 'Organize & Manage',
-      color: 'text-violet-300',
-    },
-    {
-      key: 'Optimize & Repair',
-      label: 'Optimize & Repair',
-      color: 'text-amber-300',
-    },
-    { key: 'Secure PDF', label: 'Secure PDF', color: 'text-rose-300' },
-    { key: 'Output', label: 'Output', color: 'text-teal-300' },
+  const categoryOrder: Array<{
+    key: NodeCategory;
+    color: string;
+  }> = [
+    { key: 'Input', color: 'text-blue-400' },
+    { key: 'Edit & Annotate', color: 'text-indigo-300' },
+    { key: 'Organize & Manage', color: 'text-violet-300' },
+    { key: 'Optimize & Repair', color: 'text-amber-300' },
+    { key: 'Secure PDF', color: 'text-rose-300' },
+    { key: 'Output', color: 'text-teal-300' },
   ];
 
   for (const cat of categoryOrder) {
-    const entries = (
-      categorized[cat.key as keyof typeof categorized] ?? []
-    ).filter((entry) => !entry.toolPageId || !isToolDisabled(entry.toolPageId));
+    const entries = (categorized[cat.key] ?? []).filter(
+      (entry) => !entry.toolPageId || !isToolDisabled(entry.toolPageId)
+    );
     if (entries.length === 0) continue;
 
     const section = document.createElement('div');
@@ -461,7 +454,7 @@ function buildToolbox() {
     header.type = 'button';
 
     const headerLabel = document.createElement('span');
-    headerLabel.textContent = cat.label;
+    headerLabel.textContent = translateCategory(cat.key);
     header.appendChild(headerLabel);
 
     const chevronWrap = document.createElement('span');
@@ -485,17 +478,19 @@ function buildToolbox() {
       const item = document.createElement('button');
       item.className =
         'toolbox-node-item w-full text-left px-2 py-1.5 rounded-md text-gray-300 hover:bg-gray-700 hover:text-white transition-colors text-xs flex items-center gap-2';
-      item.dataset.label = entry.label;
-      item.dataset.type = Object.keys(nodeRegistry).find(
+      const nodeType = Object.keys(nodeRegistry).find(
         (k) => nodeRegistry[k] === entry
       )!;
+      const translatedLabel = translateNodeLabel(nodeType, entry);
+      item.dataset.label = translatedLabel;
+      item.dataset.type = nodeType;
 
       const iconEl = document.createElement('i');
       iconEl.className = `ph ${entry.icon} text-sm flex-shrink-0`;
       item.appendChild(iconEl);
 
       const labelEl = document.createElement('span');
-      labelEl.textContent = entry.label;
+      labelEl.textContent = translatedLabel;
       item.appendChild(labelEl);
 
       item.addEventListener('click', () => {

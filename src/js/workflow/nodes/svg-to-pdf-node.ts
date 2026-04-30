@@ -3,6 +3,7 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData } from '../types';
 import { PDFDocument } from 'pdf-lib';
+import { wfError } from '../errors';
 
 export class SvgToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -56,7 +57,7 @@ export class SvgToPdfNode extends BaseWorkflowNode {
         URL.revokeObjectURL(url);
         canvas.toBlob(async (blob) => {
           if (!blob) {
-            reject(new Error('Failed to convert SVG'));
+            reject(new Error(wfError('svgFailedToConvert')));
             return;
           }
           resolve(new Uint8Array(await blob.arrayBuffer()));
@@ -64,7 +65,7 @@ export class SvgToPdfNode extends BaseWorkflowNode {
       };
       img.onerror = () => {
         URL.revokeObjectURL(url);
-        reject(new Error('Failed to load SVG'));
+        reject(new Error(wfError('svgFailedToLoad')));
       };
       img.src = url;
     });
@@ -73,8 +74,7 @@ export class SvgToPdfNode extends BaseWorkflowNode {
   async data(
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
-    if (this.files.length === 0)
-      throw new Error('No SVG files uploaded in SVG Input node');
+    if (this.files.length === 0) throw new Error(wfError('noSvgUploaded'));
 
     const doc = await PDFDocument.create();
 

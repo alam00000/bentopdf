@@ -8,6 +8,7 @@ import { PDFDocument } from 'pdf-lib';
 import { hexToRgb } from '../../utils/helpers.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class WatermarkNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -142,7 +143,9 @@ export class WatermarkNode extends BaseWorkflowNode {
                   (blob) =>
                     blob
                       ? blob.arrayBuffer().then(resolve)
-                      : reject(new Error(`Failed to rasterize page ${i}`)),
+                      : reject(
+                          new Error(wfError('failedToRenderPage', { page: i }))
+                        ),
                   'image/jpeg',
                   0.92
                 )

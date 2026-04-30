@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import { hexToRgb } from '../../utils/helpers.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class RedactNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -70,7 +71,7 @@ export class RedactNode extends BaseWorkflowNode {
     const fill = hexToRgb(this.getText('fillColor', '#000000'));
 
     if (mode === 'text' && !searchText) {
-      throw new Error('Redact: No text specified to redact');
+      throw new Error(wfError('redactNoText'));
     }
 
     const areaRect = {

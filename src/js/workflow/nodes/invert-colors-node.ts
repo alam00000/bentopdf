@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { applyInvertColors } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { wfError } from '../errors';
 
 export class InvertColorsNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -38,7 +39,7 @@ export class InvertColorsNode extends BaseWorkflowNode {
           canvas.height = viewport.height;
           const ctx = canvas.getContext('2d');
           if (!ctx)
-            throw new Error(`Failed to get canvas context for page ${i}`);
+            throw new Error(wfError('failedToGetCanvasContext', { page: i }));
           await page.render({ canvasContext: ctx, viewport, canvas }).promise;
 
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -48,14 +49,14 @@ export class InvertColorsNode extends BaseWorkflowNode {
           const pngBytes = await new Promise<Uint8Array>((resolve, reject) =>
             canvas.toBlob((blob) => {
               if (!blob) {
-                reject(new Error(`Failed to render page ${i}`));
+                reject(new Error(wfError('failedToRenderPage', { page: i })));
                 return;
               }
               const reader = new FileReader();
               reader.onload = () =>
                 resolve(new Uint8Array(reader.result as ArrayBuffer));
               reader.onerror = () =>
-                reject(new Error('Failed to read image data'));
+                reject(new Error(wfError('invertColorsFailedReadImage')));
               reader.readAsArrayBuffer(blob);
             }, 'image/png')
           );

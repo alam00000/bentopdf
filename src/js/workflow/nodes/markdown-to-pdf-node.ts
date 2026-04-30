@@ -5,6 +5,7 @@ import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import MarkdownIt from 'markdown-it';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
 
@@ -50,8 +51,7 @@ export class MarkdownToPdfNode extends BaseWorkflowNode {
   async data(
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
-    if (this.files.length === 0)
-      throw new Error('No Markdown files uploaded in Markdown Input node');
+    if (this.files.length === 0) throw new Error(wfError('noMarkdownUploaded'));
 
     const pymupdf = await loadPyMuPDF();
     const results: PDFData[] = [];

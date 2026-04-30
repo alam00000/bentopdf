@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class ImageInputNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -51,7 +52,7 @@ export class ImageInputNode extends BaseWorkflowNode {
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
     if (this.files.length === 0) {
-      throw new Error('No images uploaded in Image Input node');
+      throw new Error(wfError('noImagesUploaded'));
     }
 
     const pymupdf = await loadPyMuPDF();

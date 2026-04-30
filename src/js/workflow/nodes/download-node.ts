@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { extractAllPdfs } from '../types';
 import { downloadFile } from '../../utils/helpers.js';
+import { wfError } from '../errors';
 
 export class DownloadNode extends BaseWorkflowNode {
   readonly category = 'Output' as const;
@@ -27,7 +28,7 @@ export class DownloadNode extends BaseWorkflowNode {
     const allInputs = Object.values(inputs).flat();
     const allPdfs = extractAllPdfs(allInputs);
     if (allPdfs.length === 0)
-      throw new Error('No PDFs connected to Download node');
+      throw new Error(wfError('noPdfsConnected', { node: 'Download' }));
 
     const filenameControl = this.controls['filename'] as
       | ClassicPreset.InputControl<'text'>

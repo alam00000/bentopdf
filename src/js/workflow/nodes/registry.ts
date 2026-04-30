@@ -1,10 +1,12 @@
 import type { BaseWorkflowNode } from './base-node';
 import type { NodeCategory } from '../types';
+import { translateNodeLabel, translateNodeDescription } from '../i18n';
 import { PDFInputNode } from './pdf-input-node';
 import { ImageInputNode } from './image-input-node';
 import { DownloadNode } from './download-node';
 import { PdfToImagesNode } from './pdf-to-images-node';
 import { MergeNode } from './merge-node';
+import { AlternateMergeNode } from './alternate-merge-node';
 import { SplitNode } from './split-node';
 import { ExtractPagesNode } from './extract-pages-node';
 import { RotateNode } from './rotate-node';
@@ -267,6 +269,15 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     description: 'Combine multiple PDFs into one',
     factory: () => new MergeNode(),
     toolPageId: 'merge-pdf',
+  },
+  AlternateMergeNode: {
+    label: 'Alternate Merge',
+    category: 'Organize & Manage',
+    icon: 'ph-shuffle',
+    description:
+      'Interleave pages from multiple PDFs (e.g. odd + reversed even from a single-sided scan)',
+    factory: () => new AlternateMergeNode(),
+    toolPageId: 'alternate-merge',
   },
   SplitNode: {
     label: 'Split PDF',
@@ -691,6 +702,8 @@ export function createNodeByType(type: string): BaseWorkflowNode | null {
   if (!entry) return null;
   const node = entry.factory();
   node.nodeType = type;
+  node.label = translateNodeLabel(type, entry);
+  node.description = translateNodeDescription(type, entry);
   return node;
 }
 

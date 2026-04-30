@@ -7,6 +7,7 @@ import { applyScannerEffect } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { ScanSettings } from '../../types/scanner-effect-type';
+import { wfError } from '../errors';
 
 export class ScannerEffectNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -107,7 +108,7 @@ export class ScannerEffectNode extends BaseWorkflowNode {
           renderCanvas.height = viewport.height;
           const renderCtx = renderCanvas.getContext('2d');
           if (!renderCtx)
-            throw new Error(`Failed to get canvas context for page ${i}`);
+            throw new Error(wfError('failedToGetCanvasContext', { page: i }));
           await page.render({
             canvasContext: renderCtx,
             viewport,
@@ -133,7 +134,8 @@ export class ScannerEffectNode extends BaseWorkflowNode {
             outputCanvas.toBlob(resolve, 'image/jpeg', 0.85)
           );
 
-          if (!jpegBlob) throw new Error(`Failed to render page ${i} to image`);
+          if (!jpegBlob)
+            throw new Error(wfError('failedToRenderPageToImage', { page: i }));
 
           const jpegBytes = await jpegBlob.arrayBuffer();
           const jpegImage = await newPdfDoc.embedJpg(jpegBytes);
@@ -150,7 +152,7 @@ export class ScannerEffectNode extends BaseWorkflowNode {
         }
 
         if (newPdfDoc.getPageCount() === 0)
-          throw new Error('No pages were processed');
+          throw new Error(wfError('noPagesProcessed'));
         const pdfBytes = await newPdfDoc.save();
         return {
           type: 'pdf',

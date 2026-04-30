@@ -1,4 +1,5 @@
 import type { PDFDocument } from 'pdf-lib';
+import { wfError } from './errors';
 
 export interface PDFData {
   type: 'pdf';
@@ -28,10 +29,10 @@ export function extractSinglePdf(input: SocketData): PDFData {
   if (input.type === 'pdf') return clonePdf(input as PDFData);
   if (input.type === 'multi-pdf') {
     const items = (input as MultiPDFData).items;
-    if (items.length === 0) throw new Error('No PDFs in input');
+    if (items.length === 0) throw new Error(wfError('noPdfInputs'));
     return clonePdf(items[0]);
   }
-  throw new Error('Expected PDF input');
+  throw new Error(wfError('expectedPdfInput'));
 }
 
 export function extractAllPdfs(inputs: SocketData[]): PDFData[] {
@@ -114,7 +115,7 @@ export async function processBatch(
   fn: (pdf: PDFData) => Promise<PDFData>
 ): Promise<SocketData> {
   const allPdfs = extractAllPdfs(pdfInputs);
-  if (allPdfs.length === 0) throw new Error('No PDFs in input');
+  if (allPdfs.length === 0) throw new Error(wfError('noPdfInputs'));
   if (allPdfs.length === 1) return fn(allPdfs[0]);
   const results: PDFData[] = [];
   for (const pdf of allPdfs) {

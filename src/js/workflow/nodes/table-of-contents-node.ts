@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { WasmProvider } from '../../utils/wasm-provider.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class TableOfContentsNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -57,10 +58,7 @@ export class TableOfContentsNode extends BaseWorkflowNode {
     const addBookmark = (addBookmarkCtrl?.value ?? 'true') === 'true';
 
     const cpdfUrl = WasmProvider.getUrl('cpdf');
-    if (!cpdfUrl)
-      throw new Error(
-        'CoherentPDF is not configured. Please configure it in Advanced Settings.'
-      );
+    if (!cpdfUrl) throw new Error(wfError('cpdfNotConfigured'));
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
@@ -84,7 +82,7 @@ export class TableOfContentsNode extends BaseWorkflowNode {
 
           worker.onerror = (err) => {
             worker.terminate();
-            reject(new Error('Worker error: ' + err.message));
+            reject(new Error(wfError('workerError', { message: err.message })));
           };
 
           const arrayBuffer = input.bytes.buffer.slice(

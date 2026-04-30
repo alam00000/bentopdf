@@ -4,7 +4,7 @@ import type { NodeCategory, NodeMeta, SocketData } from '../types';
 export abstract class BaseWorkflowNode extends ClassicPreset.Node {
   abstract readonly category: NodeCategory;
   abstract readonly icon: string;
-  abstract readonly description: string;
+  abstract description: string;
 
   width = 280;
   height = 140;

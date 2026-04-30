@@ -7,6 +7,7 @@ import type { BaseWorkflowNode } from './nodes/base-node';
 import { WorkflowError } from './types';
 import type { ExecutionProgress } from './types';
 import { updateNodeDisplay } from './editor';
+import { wfError } from './errors';
 
 type AreaExtra = LitArea2D<ClassicScheme>;
 
@@ -61,9 +62,7 @@ function topologicalSort(
     }
   }
   if (sorted.length < nodeIds.size) {
-    throw new WorkflowError(
-      'Circular dependency detected in workflow. Please remove any loops between nodes.'
-    );
+    throw new WorkflowError(wfError('circularDependency'));
   }
 
   return sorted;
@@ -85,7 +84,7 @@ function validateEncryptOrdering(
     for (const conn of outConns) {
       const target = editor.getNode(conn.target) as BaseWorkflowNode;
       if (target && target.category !== 'Output') {
-        return `The Encrypt node feeds into "${target.label}", which may fail on encrypted data. Move Encrypt to just before the output node.`;
+        return wfError('encryptOrdering', { target: target.label });
       }
     }
   }
@@ -107,9 +106,7 @@ export async function executeWorkflow(
   );
 
   if (terminalNodes.length === 0) {
-    throw new Error(
-      'No output nodes found. Add a Download node to complete your workflow.'
-    );
+    throw new Error(wfError('noOutputNodes'));
   }
 
   const pipelineNodes = new Set<string>();

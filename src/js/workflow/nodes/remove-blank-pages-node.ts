@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class RemoveBlankPagesNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -76,7 +77,7 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
         }
 
         if (nonBlankIndices.length === 0) {
-          throw new Error('All pages are blank');
+          throw new Error(wfError('removeBlankPagesAllBlank'));
         }
 
         const newDoc = await PDFDocument.create();

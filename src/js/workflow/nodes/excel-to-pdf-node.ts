@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { getLibreOfficeConverter } from '../../utils/libreoffice-loader.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class ExcelToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -52,8 +53,7 @@ export class ExcelToPdfNode extends BaseWorkflowNode {
   async data(
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
-    if (this.files.length === 0)
-      throw new Error('No spreadsheets uploaded in Excel Input node');
+    if (this.files.length === 0) throw new Error(wfError('noExcelUploaded'));
 
     const converter = getLibreOfficeConverter();
     await converter.initialize();

@@ -6,7 +6,9 @@
     "convertFromPdf": "Конвертация из PDF",
     "organizeManage": "Организация и управление",
     "optimizeRepair": "Оптимизация и восстановление",
-    "securePdf": "Защита PDF"
+    "securePdf": "Защита PDF",
+    "input": "Ввод",
+    "output": "Вывод"
   },
   "pdfMultiTool": {
     "name": "PDF мультиинструмент",

@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class XpsToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -47,8 +48,7 @@ export class XpsToPdfNode extends BaseWorkflowNode {
   async data(
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
-    if (this.files.length === 0)
-      throw new Error('No XPS files uploaded in XPS Input node');
+    if (this.files.length === 0) throw new Error(wfError('noXpsUploaded'));
 
     const pymupdf = await loadPyMuPDF();
     const results: PDFData[] = [];

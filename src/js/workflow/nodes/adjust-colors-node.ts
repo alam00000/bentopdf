@@ -7,6 +7,7 @@ import { applyColorAdjustments } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { AdjustColorsSettings } from '../../types/adjust-colors-type';
+import { wfError } from '../errors';
 
 export class AdjustColorsNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -89,7 +90,7 @@ export class AdjustColorsNode extends BaseWorkflowNode {
           renderCanvas.height = viewport.height;
           const renderCtx = renderCanvas.getContext('2d');
           if (!renderCtx)
-            throw new Error(`Failed to get canvas context for page ${i}`);
+            throw new Error(wfError('failedToGetCanvasContext', { page: i }));
           await page.render({
             canvasContext: renderCtx,
             viewport,
@@ -109,7 +110,8 @@ export class AdjustColorsNode extends BaseWorkflowNode {
             outputCanvas.toBlob(resolve, 'image/png')
           );
 
-          if (!pngBlob) throw new Error(`Failed to render page ${i} to image`);
+          if (!pngBlob)
+            throw new Error(wfError('failedToRenderPageToImage', { page: i }));
 
           const pngBytes = await pngBlob.arrayBuffer();
           const pngImage = await newPdfDoc.embedPng(pngBytes);
@@ -127,7 +129,7 @@ export class AdjustColorsNode extends BaseWorkflowNode {
         }
 
         if (newPdfDoc.getPageCount() === 0)
-          throw new Error('No pages were processed');
+          throw new Error(wfError('noPagesProcessed'));
         const pdfBytes = await newPdfDoc.save();
         return {
           type: 'pdf',

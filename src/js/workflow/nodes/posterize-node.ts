@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { wfError } from '../errors';
 
 export class PosterizeNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -57,7 +58,7 @@ export class PosterizeNode extends BaseWorkflowNode {
           canvas.height = viewport.height;
           const ctx = canvas.getContext('2d');
           if (!ctx)
-            throw new Error(`Failed to get canvas context for page ${i}`);
+            throw new Error(wfError('failedToGetCanvasContext', { page: i }));
           await page.render({ canvasContext: ctx, viewport, canvas }).promise;
 
           const tileW = viewport.width / cols;
@@ -70,7 +71,7 @@ export class PosterizeNode extends BaseWorkflowNode {
               tileCanvas.height = tileH;
               const tileCtx = tileCanvas.getContext('2d');
               if (!tileCtx)
-                throw new Error('Failed to get tile canvas context');
+                throw new Error(wfError('posterizeFailedTileCanvas'));
               tileCtx.drawImage(
                 canvas,
                 c * tileW,

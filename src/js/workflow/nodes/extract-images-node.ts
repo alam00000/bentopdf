@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, extractAllPdfs } from '../types';
 import { downloadFile } from '../../utils/helpers.js';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { wfError } from '../errors';
 
 export class ExtractImagesNode extends BaseWorkflowNode {
   readonly category = 'Output' as const;
@@ -59,7 +60,7 @@ export class ExtractImagesNode extends BaseWorkflowNode {
     }
 
     if (totalImages === 0) {
-      throw new Error('No images found in any of the connected PDFs');
+      throw new Error(wfError('extractImagesNoneFound'));
     }
 
     const zipBlob = await zip.generateAsync({ type: 'blob' });

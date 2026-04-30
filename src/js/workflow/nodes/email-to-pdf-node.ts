@@ -5,6 +5,7 @@ import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { parseEmailFile, renderEmailToHtml } from '../../logic/email-to-pdf.js';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { wfError } from '../errors';
 
 export class EmailToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;
@@ -60,8 +61,7 @@ export class EmailToPdfNode extends BaseWorkflowNode {
   async data(
     _inputs: Record<string, SocketData[]>
   ): Promise<Record<string, SocketData>> {
-    if (this.files.length === 0)
-      throw new Error('No email files uploaded in Email Input node');
+    if (this.files.length === 0) throw new Error(wfError('noEmailUploaded'));
 
     const pageSizeCtrl = this.controls['pageSize'] as
       | ClassicPreset.InputControl<'text'>

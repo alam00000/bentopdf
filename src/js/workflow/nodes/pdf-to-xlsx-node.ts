@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, extractAllPdfs } from '../types';
 import { downloadFile } from '../../utils/helpers.js';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { wfError } from '../errors';
 
 export class PdfToXlsxNode extends BaseWorkflowNode {
   readonly category = 'Output' as const;
@@ -45,7 +46,7 @@ export class PdfToXlsxNode extends BaseWorkflowNode {
     }
 
     if (allTables.length === 0) {
-      throw new Error(`No tables found in ${filename}`);
+      throw new Error(wfError('pdfToXlsxNoTables', { file: filename }));
     }
 
     const XLSX = await import('xlsx');

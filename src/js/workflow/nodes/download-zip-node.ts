@@ -4,6 +4,7 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { extractAllPdfs } from '../types';
 import { downloadFile } from '../../utils/helpers.js';
+import { wfError } from '../errors';
 
 export class DownloadZipNode extends BaseWorkflowNode {
   readonly category = 'Output' as const;
@@ -25,7 +26,7 @@ export class DownloadZipNode extends BaseWorkflowNode {
     const allInputs = Object.values(inputs).flat();
     const allPdfs = extractAllPdfs(allInputs);
     if (allPdfs.length === 0)
-      throw new Error('No PDFs connected to Download ZIP node');
+      throw new Error(wfError('noPdfsConnected', { node: 'Download ZIP' }));
 
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();

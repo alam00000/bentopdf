@@ -3,19 +3,22 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { extractAllPdfs } from '../types';
-import { mergePdfs } from '../../utils/pdf-operations';
+import { interleavePdfs } from '../../utils/alternate-merge.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 import { wfError } from '../errors';
 
-export class MergeNode extends BaseWorkflowNode {
+export class AlternateMergeNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
-  readonly icon = 'ph-browsers';
-  readonly description = 'Combine multiple PDFs into one';
+  readonly icon = 'ph-shuffle';
+  readonly description = 'Interleave pages from multiple PDFs';
 
   constructor() {
-    super('Merge PDFs');
+    super('Alternate Merge');
     this.addInput('pdf', new ClassicPreset.Input(pdfSocket, 'PDFs', true));
-    this.addOutput('pdf', new ClassicPreset.Output(pdfSocket, 'Merged PDF'));
+    this.addOutput(
+      'pdf',
+      new ClassicPreset.Output(pdfSocket, 'Interleaved PDF')
+    );
   }
 
   async data(
@@ -23,18 +26,24 @@ export class MergeNode extends BaseWorkflowNode {
   ): Promise<Record<string, SocketData>> {
     const allInputs = Object.values(inputs).flat();
     const allPdfs = extractAllPdfs(allInputs);
-    if (allPdfs.length === 0)
-      throw new Error(wfError('noPdfsConnected', { node: 'Merge' }));
+    if (allPdfs.length < 2) {
+      throw new Error(wfError('alternateMergeNeedsTwo'));
+    }
 
-    const mergedBytes = await mergePdfs(allPdfs.map((p) => p.bytes));
-    const mergedDoc = await loadPdfDocument(mergedBytes);
+    const filesToMerge = allPdfs.map((p) => ({
+      name: p.filename,
+      data: p.bytes.slice().buffer as ArrayBuffer,
+    }));
+
+    const mergedBytes = await interleavePdfs(filesToMerge);
+    const document = await loadPdfDocument(mergedBytes);
 
     return {
       pdf: {
         type: 'pdf',
-        document: mergedDoc,
+        document,
         bytes: mergedBytes,
-        filename: 'merged.pdf',
+        filename: 'alternated-mixed.pdf',
       },
     };
   }

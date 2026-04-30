@@ -5,21 +5,15 @@ import { createIcons, icons } from 'lucide';
 import Sortable from 'sortablejs';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
-import {
-  showWasmRequiredDialog,
-  WasmProvider,
-} from '../utils/wasm-provider.js';
+import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import { interleavePdfs } from '../utils/alternate-merge.js';
 
 const pageState: AlternateMergeState = {
   files: [],
   pdfBytes: new Map(),
   pdfDocs: new Map(),
 };
-
-const alternateMergeWorker = new Worker(
-  import.meta.env.BASE_URL + 'workers/alternate-merge.worker.js'
-);
 
 function resetState() {
   pageState.files = [];
@@ -180,47 +174,28 @@ async function mixPages() {
       return;
     }
 
-    const message = {
-      command: 'interleave',
-      files: filesToMerge,
-      cpdfUrl: WasmProvider.getUrl('cpdf')! + 'coherentpdf.browser.min.js',
-    };
-
-    alternateMergeWorker.postMessage(
-      message,
-      filesToMerge.map(function (f) {
-        return f.data;
-      })
-    );
-
-    alternateMergeWorker.onmessage = function (e: MessageEvent) {
-      hideLoader();
-      if (e.data.status === 'success') {
-        const blob = new Blob([e.data.pdfBytes], { type: 'application/pdf' });
-        downloadFile(blob, 'alternated-mixed.pdf');
-        showAlert(
-          'Success',
-          'PDFs have been mixed successfully!',
-          'success',
-          function () {
-            resetState();
-          }
-        );
-      } else {
-        console.error('Worker interleave error:', e.data.message);
-        showAlert('Error', e.data.message || 'Failed to interleave PDFs.');
-      }
-    };
-
-    alternateMergeWorker.onerror = function (e) {
-      hideLoader();
-      console.error('Worker error:', e);
-      showAlert('Error', 'An unexpected error occurred in the merge worker.');
-    };
-  } catch (e) {
-    console.error('Alternate Merge error:', e);
-    showAlert('Error', 'An error occurred while mixing the PDFs.');
+    const mergedBytes = await interleavePdfs(filesToMerge);
     hideLoader();
+    const blob = new Blob([new Uint8Array(mergedBytes)], {
+      type: 'application/pdf',
+    });
+    downloadFile(blob, 'alternated-mixed.pdf');
+    showAlert(
+      'Success',
+      'PDFs have been mixed successfully!',
+      'success',
+      function () {
+        resetState();
+      }
+    );
+  } catch (e) {
+    hideLoader();
+    console.error('Alternate Merge error:', e);
+    const message =
+      e instanceof Error
+        ? e.message
+        : 'An error occurred while mixing the PDFs.';
+    showAlert('Error', message);
   }
 }
 

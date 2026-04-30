@@ -6,6 +6,7 @@ import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument, rgb } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import { hexToRgb } from '../../utils/helpers.js';
+import { wfError } from '../errors';
 
 export class CombineSinglePageNode extends BaseWorkflowNode {
   readonly category = 'Organize & Manage' as const;
@@ -112,13 +113,14 @@ export class CombineSinglePageNode extends BaseWorkflowNode {
           canvas.height = viewport.height;
           const ctx = canvas.getContext('2d');
           if (!ctx)
-            throw new Error(`Failed to get canvas context for page ${i}`);
+            throw new Error(wfError('failedToGetCanvasContext', { page: i }));
           await page.render({ canvasContext: ctx, viewport, canvas }).promise;
 
           const pngBlob = await new Promise<Blob | null>((resolve) =>
             canvas.toBlob(resolve, 'image/png')
           );
-          if (!pngBlob) throw new Error(`Failed to render page ${i} to image`);
+          if (!pngBlob)
+            throw new Error(wfError('failedToRenderPageToImage', { page: i }));
 
           const pngBytes = await pngBlob.arrayBuffer();
           const pngImage = await newDoc.embedPng(pngBytes);
