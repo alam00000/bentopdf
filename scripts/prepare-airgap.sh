@@ -885,13 +885,13 @@ rm -rf "\${TEMP_CPDF}"
 # Tesseract worker: browser expects a single worker.min.js file
 echo "  Extracting Tesseract worker..."
 TEMP_TESS="\$(mktemp -d)"
-tar xzf "\${SCRIPT_DIR}"/tesseract.js-*.tgz -C "\${TEMP_TESS}"
+tar xzf "\${SCRIPT_DIR}/tesseract.js-${TESSERACT_VERSION}.tgz" -C "\${TEMP_TESS}"
 cp "\${TEMP_TESS}/package/dist/worker.min.js" "\${WASM_DIR}/ocr/worker.min.js"
 rm -rf "\${TEMP_TESS}"
 
 # Tesseract core: browser expects the full tesseract.js-core directory
 echo "  Extracting Tesseract core..."
-tar xzf "\${SCRIPT_DIR}"/tesseract.js-core-*.tgz -C "\${WASM_DIR}/ocr/core" --strip-components=1
+tar xzf "\${SCRIPT_DIR}/tesseract.js-core-${TESSERACT_CORE_VERSION}.tgz" -C "\${WASM_DIR}/ocr/core" --strip-components=1
 
 # OCR language data: copy the bundled traineddata files
 echo "  Installing OCR language data..."
