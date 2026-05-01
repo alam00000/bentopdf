@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Server Stempel Waktu (TSA)",
     "selectTsa": "Pilih server TSA",
     "applyTimestamp": "Terapkan Stempel Waktu",
-    "successMessage": "PDF berhasil diberi stempel waktu! Stempel waktu dapat diverifikasi di Adobe Acrobat dan pembaca PDF lainnya."
+    "successMessage": "PDF berhasil diberi stempel waktu! Stempel waktu dapat diverifikasi di pembaca PDF apa pun."
   },
   "emailToPdf": {
     "name": "Email ke PDF",

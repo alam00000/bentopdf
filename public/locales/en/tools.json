@@ -757,7 +757,7 @@
     "tsaSectionTitle": "Timestamp Server (TSA)",
     "selectTsa": "Select a TSA server",
     "applyTimestamp": "Apply Timestamp",
-    "successMessage": "PDF timestamped successfully! The timestamp can be verified in Adobe Acrobat and other PDF readers."
+    "successMessage": "PDF timestamped successfully! The timestamp can be verified in any PDF reader."
   },
   "emailToPdf": {
     "name": "Email to PDF",

@@ -1,5 +1,6 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
+import { t } from '../i18n/i18n';
 import {
   readFileAsArrayBuffer,
   formatBytes,
@@ -197,13 +198,7 @@ function updateProcessButton(): void {
   const processBtn = getElement<HTMLButtonElement>('process-btn');
   if (!processBtn) return;
 
-  if (state.pdfBytes) {
-    processBtn.classList.remove('hidden');
-    processBtn.disabled = false;
-  } else {
-    processBtn.classList.add('hidden');
-    processBtn.disabled = true;
-  }
+  processBtn.disabled = !state.pdfBytes;
 }
 
 function getTsaUrl(): string | null {
@@ -233,8 +228,8 @@ async function processTimestamp(): Promise<void> {
     downloadFile(blob, state.pdfFile.name);
 
     showAlert(
-      'Success',
-      'PDF timestamped successfully! The timestamp can be verified in Adobe Acrobat and other PDF readers.',
+      t('common.success'),
+      t('tools:timestampPdf.successMessage'),
       'success'
     );
 

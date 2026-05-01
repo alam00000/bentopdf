@@ -207,6 +207,11 @@ function buildCorsProxyAllowedHosts(): Set<string> {
     'fonts.googleapis.com',
     'fonts.gstatic.com',
     'bentopdf-cors-proxy.bentopdf.workers.dev',
+    'timestamp.digicert.com',
+    'timestamp.sectigo.com',
+    'ts.ssl.com',
+    'freetsa.org',
+    'tsa.mesign.com',
   ]);
 
   const envHostSources = [

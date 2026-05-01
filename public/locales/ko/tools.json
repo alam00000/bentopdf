@@ -859,5 +859,14 @@
     "faqSinglePageAnswer": "네! \"반복\" 옵션을 활성화하면 오버레이 페이지가 모든 기본 페이지에 반복됩니다. 단일 페이지 워터마크가 모든 페이지에 적용됩니다.",
     "faqPrivacyQuestion": "내 파일은 비공개이고 안전한가요?",
     "faqPrivacyAnswer": "물론입니다! 모든 처리는 브라우저에서 이루어집니다. 파일이 기기를 떠나지 않아 완전한 개인정보 보호가 보장됩니다."
+  },
+  "timestampPdf": {
+    "name": "PDF 타임스탬프",
+    "pageTitle": "PDF 타임스탬프 무료 온라인 - RFC 3161 문서 타임스탬프 | BentoPDF",
+    "subtitle": "신뢰할 수 있는 타임스탬프 기관(TSA) 서버를 사용하여 PDF에 RFC 3161 문서 타임스탬프를 추가합니다. 문서가 특정 시점에 존재했음을 증명합니다. 인증서가 필요하지 않습니다.",
+    "tsaSectionTitle": "타임스탬프 서버 (TSA)",
+    "selectTsa": "TSA 서버 선택",
+    "applyTimestamp": "타임스탬프 적용",
+    "successMessage": "PDF 타임스탬프가 성공적으로 추가되었습니다! 타임스탬프는 모든 PDF 뷰어에서 확인할 수 있습니다."
   }
 }

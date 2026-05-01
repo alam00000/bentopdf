@@ -757,7 +757,7 @@
     "tsaSectionTitle": "Сервер мітки часу (TSA)",
     "selectTsa": "Оберіть TSA сервер",
     "applyTimestamp": "Додати мітку часу",
-    "successMessage": "Мітку часу успішно додано! Її можна перевірити в Adobe Acrobat та інших PDF-переглядачах."
+    "successMessage": "Мітку часу успішно додано! Її можна перевірити в будь-якому PDF-переглядачі."
   },
   "emailToPdf": {
     "name": "Email у PDF",

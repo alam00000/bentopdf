@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Servidor de marca de tiempo (TSA)",
     "selectTsa": "Seleccionar un servidor TSA",
     "applyTimestamp": "Aplicar marca de tiempo",
-    "successMessage": "¡PDF sellado con marca de tiempo! La marca puede verificarse en Adobe Acrobat y otros lectores PDF."
+    "successMessage": "¡PDF sellado con marca de tiempo correctamente! La marca puede verificarse en cualquier lector de PDF."
   },
   "emailToPdf": {
     "name": "Email a PDF",

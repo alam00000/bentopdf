@@ -713,7 +713,7 @@
     "tsaSectionTitle": "Zaman Damgası Sunucusu (TSA)",
     "selectTsa": "Bir TSA sunucusu seçin",
     "applyTimestamp": "Zaman Damgası Uygula",
-    "successMessage": "PDF başarıyla zaman damgalandı! Zaman damgası Adobe Acrobat ve diğer PDF okuyucularda doğrulanabilir."
+    "successMessage": "PDF başarıyla zaman damgalandı! Zaman damgası herhangi bir PDF okuyucuda doğrulanabilir."
   },
   "pdfToWord": {
     "name": "PDF'den Word'e",

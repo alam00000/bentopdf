@@ -194,41 +194,41 @@
               class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             ></select>
           </div>
-        </div>
 
-        <button
-          id="process-btn"
-          class="hidden w-full mt-6 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
-          disabled
-        >
-          <i data-lucide="clock" class="w-5 h-5"></i>
-          <span data-i18n="tools:timestampPdf.applyTimestamp"
-            >Apply Timestamp</span
+          <button
+            id="process-btn"
+            class="btn-gradient w-full mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+            data-i18n="tools:timestampPdf.applyTimestamp"
           >
-        </button>
+            Apply Timestamp
+          </button>
+        </div>
       </div>
     </div>
 
+    <!-- Loader Modal -->
     <div
-      id="loader-overlay"
-      class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center"
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
     >
-      <div class="text-center">
-        <div
-          class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-400 border-t-transparent mb-4"
-        ></div>
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
           Processing...
         </p>
       </div>
     </div>
 
+    <!-- Alert Modal -->
     <div
-      id="alert-overlay"
-      class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center"
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
     >
       <div
-        class="bg-gray-800 rounded-xl shadow-xl p-6 max-w-md w-full mx-4 border border-gray-700"
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3
           id="alert-title"

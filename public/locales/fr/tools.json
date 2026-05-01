@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Serveur d'horodatage (TSA)",
     "selectTsa": "Sélectionner un serveur TSA",
     "applyTimestamp": "Appliquer l'horodatage",
-    "successMessage": "PDF horodaté avec succès ! L'horodatage peut être vérifié dans Adobe Acrobat et d'autres lecteurs PDF."
+    "successMessage": "PDF horodaté avec succès ! L'horodatage peut être vérifié dans n'importe quel lecteur PDF."
   },
   "emailToPdf": {
     "name": "Email vers PDF",

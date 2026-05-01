@@ -713,7 +713,7 @@
     "tsaSectionTitle": "Servidor de carimbo de tempo (TSA)",
     "selectTsa": "Selecionar um servidor TSA",
     "applyTimestamp": "Aplicar carimbo de tempo",
-    "successMessage": "PDF carimbado com sucesso! O carimbo pode ser verificado no Adobe Acrobat e noutros leitores de PDF."
+    "successMessage": "PDF carimbado com sucesso! O carimbo de hora pode ser verificado em qualquer leitor de PDF."
   },
   "pdfToWord": {
     "name": "PDF para Word",

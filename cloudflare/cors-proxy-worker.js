@@ -22,6 +22,14 @@ const ALLOWED_PATH_PATTERNS = [
   /caIssuers/i,
 ];
 
+const ALLOWED_TSA_HOSTS = new Set([
+  'timestamp.digicert.com',
+  'timestamp.sectigo.com',
+  'ts.ssl.com',
+  'freetsa.org',
+  'tsa.mesign.com',
+]);
+
 const ALLOWED_ORIGINS = ['https://www.bentopdf.com', 'https://bentopdf.com'];
 
 const SAFE_CONTENT_TYPES = [
@@ -30,6 +38,7 @@ const SAFE_CONTENT_TYPES = [
   'application/x-pem-file',
   'application/pkcs7-mime',
   'application/octet-stream',
+  'application/timestamp-reply',
   'text/plain',
 ];
 
@@ -132,6 +141,17 @@ function isValidCertificateUrl(urlString) {
   }
 }
 
+function isValidTsaUrl(urlString) {
+  try {
+    const url = new URL(urlString);
+    if (!['http:', 'https:'].includes(url.protocol)) return false;
+    if (isPrivateOrReservedHost(url.hostname)) return false;
+    return ALLOWED_TSA_HOSTS.has(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
 function getSafeContentType(upstreamContentType) {
   if (!upstreamContentType) return 'application/octet-stream';
   const match = SAFE_CONTENT_TYPES.find((ct) =>
@@ -143,7 +163,7 @@ function getSafeContentType(upstreamContentType) {
 function corsHeaders(origin) {
   return {
     'Access-Control-Allow-Origin': origin,
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
   };
@@ -185,7 +205,7 @@ export default {
       );
     }
 
-    if (request.method !== 'GET') {
+    if (request.method !== 'GET' && request.method !== 'POST') {
       return new Response('Method not allowed', {
         status: 405,
         headers: corsHeaders(origin),
@@ -198,7 +218,7 @@ export default {
       return new Response(
         JSON.stringify({
           error: 'Missing url parameter',
-          usage: 'GET /?url=<certificate_url>',
+          usage: 'GET /?url=<certificate_url> or POST /?url=<tsa_url>',
         }),
         {
           status: 400,
@@ -210,7 +230,28 @@ export default {
       );
     }
 
-    if (!isValidCertificateUrl(targetUrl)) {
+    const requestContentType = request.headers.get('Content-Type') || '';
+    const isTsaQuery =
+      request.method === 'POST' &&
+      requestContentType === 'application/timestamp-query';
+
+    if (isTsaQuery) {
+      if (!isValidTsaUrl(targetUrl)) {
+        return new Response(
+          JSON.stringify({
+            error: 'Disallowed TSA host',
+            message: `Only known RFC 3161 TSA hosts are accepted: ${[...ALLOWED_TSA_HOSTS].join(', ')}`,
+          }),
+          {
+            status: 403,
+            headers: {
+              ...corsHeaders(origin),
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+      }
+    } else if (!isValidCertificateUrl(targetUrl)) {
       return new Response(
         JSON.stringify({
           error: 'Invalid or disallowed URL',
@@ -344,11 +385,19 @@ export default {
     }
 
     try {
-      const response = await fetch(targetUrl, {
+      const upstreamInit = {
+        method: request.method,
         headers: {
           'User-Agent': 'BentoPDF-CertProxy/1.0',
         },
-      });
+      };
+
+      if (isTsaQuery) {
+        upstreamInit.headers['Content-Type'] = 'application/timestamp-query';
+        upstreamInit.body = await request.arrayBuffer();
+      }
+
+      const response = await fetch(targetUrl, upstreamInit);
 
       if (!response.ok) {
         return new Response(

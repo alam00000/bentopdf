@@ -713,7 +713,7 @@
     "tsaSectionTitle": "時間戳記伺服器 (TSA)",
     "selectTsa": "選擇 TSA 伺服器",
     "applyTimestamp": "套用時間戳記",
-    "successMessage": "PDF 時間戳記新增成功！時間戳記可在 Adobe Acrobat 和其他 PDF 閱讀器中驗證。"
+    "successMessage": "PDF 時間戳記新增成功！時間戳記可在任何 PDF 閱讀器中驗證。"
   },
   "pdfToWord": {
     "name": "PDF 轉 Word",

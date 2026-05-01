@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Máy chủ dấu thời gian (TSA)",
     "selectTsa": "Chọn máy chủ TSA",
     "applyTimestamp": "Áp dụng dấu thời gian",
-    "successMessage": "PDF đã được đóng dấu thời gian thành công! Dấu thời gian có thể được xác minh trong Adobe Acrobat và các trình đọc PDF khác."
+    "successMessage": "PDF đã được đóng dấu thời gian thành công! Dấu thời gian có thể được xác minh trong bất kỳ trình đọc PDF nào."
   },
   "emailToPdf": {
     "name": "Email sang PDF",

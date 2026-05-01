@@ -749,7 +749,7 @@
     "tsaSectionTitle": "Zeitstempelserver (TSA)",
     "selectTsa": "TSA-Server auswählen",
     "applyTimestamp": "Zeitstempel anwenden",
-    "successMessage": "PDF erfolgreich mit Zeitstempel versehen! Der Zeitstempel kann in Adobe Acrobat und anderen PDF-Readern überprüft werden."
+    "successMessage": "PDF erfolgreich mit Zeitstempel versehen! Der Zeitstempel kann in jedem PDF-Reader überprüft werden."
   },
   "emailToPdf": {
     "name": "E-Mail zu PDF",

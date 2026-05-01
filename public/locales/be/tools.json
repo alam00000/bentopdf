@@ -757,7 +757,7 @@
     "tsaSectionTitle": "Сервер пазнак часу (TSA)",
     "selectTsa": "Выбраць сервер TSA",
     "applyTimestamp": "Прымяніць пазнаку часу",
-    "successMessage": "PDF паспяхова атрымаў пазнаку часу! Пазнаку можна праверыць у Adobe Acrobat і іншых PDF-праглядчыках."
+    "successMessage": "PDF паспяхова атрымаў пазнаку часу! Пазнаку можна праверыць у любым PDF-чытальніку."
   },
   "emailToPdf": {
     "name": "Email у PDF",

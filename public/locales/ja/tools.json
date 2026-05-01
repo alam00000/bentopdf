@@ -757,7 +757,7 @@
     "tsaSectionTitle": "タイムスタンプサーバー(TSA)",
     "selectTsa": "TSAサーバーを選択してください",
     "applyTimestamp": "タイムスタンプを適用する",
-    "successMessage": "PDFにタイムスタンプが正常に記録されました。タイムスタンプは、Adobe Acrobatおよびその他のPDFリーダーで確認できます。"
+    "successMessage": "PDFにタイムスタンプが正常に記録されました。タイムスタンプは任意のPDFリーダーで確認できます。"
   },
   "emailToPdf": {
     "name": "電子メールからPDF",

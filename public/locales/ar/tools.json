@@ -699,7 +699,7 @@
     "tsaSectionTitle": "خادم الختم الزمني (TSA)",
     "selectTsa": "اختر خادم TSA",
     "applyTimestamp": "تطبيق الختم الزمني",
-    "successMessage": "تم ختم PDF بالوقت بنجاح! يمكن التحقق من الختم في Adobe Acrobat وقارئات PDF الأخرى."
+    "successMessage": "تم ختم PDF بالوقت بنجاح! يمكن التحقق من الختم في أي قارئ PDF."
   },
   "emailToPdf": {
     "name": "بريد إلكتروني إلى PDF",

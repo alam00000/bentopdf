@@ -699,7 +699,7 @@
     "tsaSectionTitle": "时间戳服务器 (TSA)",
     "selectTsa": "选择 TSA 服务器",
     "applyTimestamp": "应用时间戳",
-    "successMessage": "PDF 时间戳添加成功！时间戳可在 Adobe Acrobat 和其他 PDF 阅读器中验证。"
+    "successMessage": "PDF 时间戳添加成功！时间戳可在任何 PDF 阅读器中验证。"
   },
   "emailToPdf": {
     "name": "邮件转 PDF",

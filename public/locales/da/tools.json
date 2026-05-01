@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Tidsstempelserver (TSA)",
     "selectTsa": "Vælg en TSA-server",
     "applyTimestamp": "Anvend tidsstempel",
-    "successMessage": "PDF tidsstemplet med succes! Tidsstemplet kan verificeres i Adobe Acrobat og andre PDF-læsere."
+    "successMessage": "PDF tidsstemplet med succes! Tidsstemplet kan verificeres i enhver PDF-læser."
   },
   "emailToPdf": {
     "name": "Email til PDF",

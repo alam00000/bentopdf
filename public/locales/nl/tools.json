@@ -757,7 +757,7 @@
     "tsaSectionTitle": "Tijdstempelserver (TSA)",
     "selectTsa": "Selecteer een TSA-server",
     "applyTimestamp": "Tijdstempel toepassen",
-    "successMessage": "PDF succesvol voorzien van tijdstempel! Het tijdstempel kan worden geverifieerd in Adobe Acrobat en andere PDF-lezers."
+    "successMessage": "PDF succesvol voorzien van tijdstempel! Het tijdstempel kan in elke PDF-lezer worden geverifieerd."
   },
   "emailToPdf": {
     "name": "E-mail naar PDF",

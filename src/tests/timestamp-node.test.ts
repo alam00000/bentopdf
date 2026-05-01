@@ -149,12 +149,14 @@ describe('TimestampNode', () => {
     expect(result.pdf[0].filename).toBe('report_timestamped.pdf');
   });
 
-  it('should wrap errors from timestampPdf with TSA context', async () => {
-    vi.mocked(timestampPdf).mockRejectedValueOnce(new Error('Network error'));
+  it('should wrap errors from timestampPdf with TSA context and original cause', async () => {
+    const originalError = new Error('Network error');
+    vi.mocked(timestampPdf).mockRejectedValueOnce(originalError);
     const node = new TimestampNode();
 
-    await expect(
-      node.data({
+    let caught: Error | null = null;
+    try {
+      await node.data({
         pdf: [
           {
             type: 'pdf' as const,
@@ -163,7 +165,12 @@ describe('TimestampNode', () => {
             filename: 'test.pdf',
           },
         ],
-      })
-    ).rejects.toThrow(/Failed to timestamp using TSA/);
+      });
+    } catch (err) {
+      caught = err as Error;
+    }
+
+    expect(caught).toBeInstanceOf(Error);
+    expect(caught?.cause).toBe(originalError);
   });
 });

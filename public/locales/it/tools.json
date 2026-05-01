@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Server marca temporale (TSA)",
     "selectTsa": "Seleziona un server TSA",
     "applyTimestamp": "Applica marca temporale",
-    "successMessage": "PDF marcato temporalmente con successo! La marca può essere verificata in Adobe Acrobat e altri lettori PDF."
+    "successMessage": "PDF marcato temporalmente con successo! La marca temporale può essere verificata in qualsiasi lettore PDF."
   },
   "emailToPdf": {
     "name": "Email in PDF",

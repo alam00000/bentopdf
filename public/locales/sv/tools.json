@@ -699,7 +699,7 @@
     "tsaSectionTitle": "Tidsstämpelserver (TSA)",
     "selectTsa": "Välj en TSA-server",
     "applyTimestamp": "Tillämpa tidsstämpel",
-    "successMessage": "PDF tidsstämplad! Tidsstämpeln kan verifieras i Adobe Acrobat och andra PDF-läsare."
+    "successMessage": "PDF tidsstämplad! Tidsstämpeln kan verifieras i vilken PDF-läsare som helst."
   },
   "emailToPdf": {
     "name": "E-post till PDF",
