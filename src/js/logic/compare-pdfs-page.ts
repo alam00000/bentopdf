@@ -1183,11 +1183,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 pageState.viewMode === 'overlay'
                   ? Number.parseFloat(opacitySlider?.value || '0.5')
                   : undefined,
-              includeChange:
-                pageState.viewMode === 'overlay'
-                  ? (change) =>
-                      shouldIncludeChange(change, { includeSearch: false })
-                  : undefined,
+              includeChange: (change) =>
+                shouldIncludeChange(change, { includeSearch: false }),
             }
           );
         } catch (e) {
