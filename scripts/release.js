@@ -10,6 +10,7 @@ const __dirname = path.dirname(__filename);
 
 const packageJsonPath = path.join(__dirname, '../package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+const chartYamlPath = path.join(__dirname, '../chart/Chart.yaml');
 
 function getCurrentVersion() {
   return packageJson.version;
@@ -39,6 +40,33 @@ function updateVersion(type) {
     JSON.stringify(packageJson, null, 2) + '\n'
   );
   return newVersion;
+}
+
+function updateHelmChart(newAppVersion) {
+  const chartYaml = fs.readFileSync(chartYamlPath, 'utf8');
+
+  const appVersionMatch = chartYaml.match(
+    /^appVersion:\s*['"]?([^'"\n]+)['"]?/m
+  );
+  const chartVersionMatch = chartYaml.match(/^version:\s*([^\s\n]+)/m);
+  if (!appVersionMatch || !chartVersionMatch) {
+    throw new Error('Could not parse version fields in chart/Chart.yaml');
+  }
+
+  const [chartMajor, chartMinor, chartPatch] = chartVersionMatch[1]
+    .split('.')
+    .map(Number);
+  const newChartVersion = `${chartMajor}.${chartMinor}.${chartPatch + 1}`;
+
+  const updated = chartYaml
+    .replace(/^version:\s*[^\s\n]+/m, `version: ${newChartVersion}`)
+    .replace(
+      /^appVersion:\s*['"]?[^'"\n]+['"]?/m,
+      `appVersion: '${newAppVersion}'`
+    );
+
+  fs.writeFileSync(chartYamlPath, updated);
+  return { chartVersion: newChartVersion, appVersion: newAppVersion };
 }
 
 function createGitTag(version) {
@@ -75,8 +103,14 @@ function main() {
   const newVersion = updateVersion(type);
   console.log(`📦 Updated version to ${newVersion}`);
 
-  // 2. Add and commit changes
-  execSync('git add package.json', {
+  // 2. Bump Helm chart appVersion + chart version
+  const chart = updateHelmChart(newVersion);
+  console.log(
+    `⚓ Updated chart version to ${chart.chartVersion}, appVersion to ${chart.appVersion}`
+  );
+
+  // 3. Add and commit changes
+  execSync('git add package.json chart/Chart.yaml', {
     stdio: 'inherit',
   });
   execSync(`git commit -m "Release v${newVersion}"`, { stdio: 'inherit' });
