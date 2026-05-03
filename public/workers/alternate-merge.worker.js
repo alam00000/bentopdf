@@ -21,7 +21,7 @@ function loadCpdf(cpdfUrl) {
 }
 
 self.onmessage = async function (e) {
-  const { command, files, cpdfUrl } = e.data;
+  const { command, files, cpdfUrl, retainPageLabels } = e.data;
 
   if (!cpdfUrl) {
     self.postMessage({
@@ -43,11 +43,11 @@ self.onmessage = async function (e) {
   }
 
   if (command === 'interleave') {
-    interleavePDFs(files);
+    interleavePDFs(files, retainPageLabels === true);
   }
 };
 
-function interleavePDFs(files) {
+function interleavePDFs(files, retainPageLabels) {
   try {
     const loadedPdfs = [];
     const pageCounts = [];
@@ -83,7 +83,7 @@ function interleavePDFs(files) {
 
     const mergedPdf = coherentpdf.mergeSame(
       pdfsToMerge,
-      true,
+      retainPageLabels,
       true,
       rangesToMerge
     );

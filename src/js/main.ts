@@ -210,7 +210,7 @@ const init = async () => {
     'PDF to Greyscale': 'tools:pdfToGreyscale',
     'PDF to JSON': 'tools:pdfToJson',
     'OCR PDF': 'tools:ocrPdf',
-    'Alternate & Mix Pages': 'tools:alternateMix',
+    'Alternate & Mix Pages': 'tools:alternateMerge',
     'PDF Overlay': 'tools:pdfOverlay',
     'Organize & Duplicate': 'tools:duplicateOrganize',
     'Add Attachments': 'tools:addAttachments',

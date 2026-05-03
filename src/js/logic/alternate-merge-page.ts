@@ -174,7 +174,12 @@ async function mixPages() {
       return;
     }
 
-    const mergedBytes = await interleavePdfs(filesToMerge);
+    const retainCheckbox = document.getElementById(
+      'retain-page-labels'
+    ) as HTMLInputElement | null;
+    const mergedBytes = await interleavePdfs(filesToMerge, {
+      retainPageLabels: retainCheckbox?.checked ?? false,
+    });
     hideLoader();
     const blob = new Blob([new Uint8Array(mergedBytes)], {
       type: 'application/pdf',

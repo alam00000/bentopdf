@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Flet PDF",
-    "subtitle": "Kombinér flere PDF’er til én fil. Bevarer bogmærker."
+    "subtitle": "Kombinér flere PDF’er til én fil. Bevarer bogmærker.",
+    "retainPageLabels": "Behold de oprindelige sideetiketter fra hver fil",
+    "retainPageLabelsHint": "Fra (standard): den sammenflettede PDF bruger naturlig sidenummerering 1–N. Til: hver fils oprindelige sideetiketter bevares (kan give dublerede etiketter)."
   },
   "splitPdf": {
     "name": "Opdel PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Gør PDF’en søgbar og kopierbar."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alternér og miks sider",
-    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil. Bevarer bogmærker."
+    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil. Bevarer bogmærker.",
+    "retainPageLabels": "Behold de oprindelige sideetiketter fra hver fil",
+    "retainPageLabelsHint": "Fra (standard): den sammenflettede PDF bruger naturlig sidenummerering 1–N. Til: hver fils oprindelige sideetiketter bevares (kan give dublerede etiketter)."
   },
   "addAttachments": {
     "name": "Tilføj vedhæftninger",

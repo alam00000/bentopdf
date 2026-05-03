@@ -19,6 +19,10 @@ export class AlternateMergeNode extends BaseWorkflowNode {
       'pdf',
       new ClassicPreset.Output(pdfSocket, 'Interleaved PDF')
     );
+    this.addControl(
+      'retainPageLabels',
+      new ClassicPreset.InputControl('text', { initial: 'false' })
+    );
   }
 
   async data(
@@ -35,7 +39,14 @@ export class AlternateMergeNode extends BaseWorkflowNode {
       data: p.bytes.slice().buffer as ArrayBuffer,
     }));
 
-    const mergedBytes = await interleavePdfs(filesToMerge);
+    const retainCtrl = this.controls['retainPageLabels'] as
+      | ClassicPreset.InputControl<'text'>
+      | undefined;
+    const retainPageLabels = (retainCtrl?.value ?? 'false') === 'true';
+
+    const mergedBytes = await interleavePdfs(filesToMerge, {
+      retainPageLabels,
+    });
     const document = await loadPdfDocument(mergedBytes);
 
     return {

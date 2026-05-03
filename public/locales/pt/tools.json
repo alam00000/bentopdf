@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Mesclar PDF",
-    "subtitle": "Combine vários PDFs em um único arquivo. Preserva os favoritos (bookmarks)."
+    "subtitle": "Combine vários PDFs em um único arquivo. Preserva os favoritos (bookmarks).",
+    "retainPageLabels": "Manter os rótulos de página originais de cada ficheiro",
+    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada ficheiro são preservados (pode produzir rótulos duplicados)."
   },
   "splitPdf": {
     "name": "Dividir PDF",
@@ -333,9 +335,11 @@
     "name": "OCR para PDF",
     "subtitle": "Torne um PDF pesquisável e copiável (reconhecimento de texto)."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alternar e Misturar Páginas",
-    "subtitle": "Mescle PDFs alternando as páginas de cada arquivo. Preserva os favoritos."
+    "subtitle": "Mescle PDFs alternando as páginas de cada arquivo. Preserva os favoritos.",
+    "retainPageLabels": "Manter os rótulos de página originais de cada ficheiro",
+    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada ficheiro são preservados (pode produzir rótulos duplicados)."
   },
   "addAttachments": {
     "name": "Adicionar Anexos",

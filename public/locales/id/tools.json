@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Gabung PDF",
-    "subtitle": "Gabungkan beberapa PDF menjadi satu file. Mempertahankan Bookmark."
+    "subtitle": "Gabungkan beberapa PDF menjadi satu file. Mempertahankan Bookmark.",
+    "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
+    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
   },
   "splitPdf": {
     "name": "Pisah PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Buat PDF dapat dicari dan disalin."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alternatif & Campur Halaman",
-    "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF. Mempertahankan Bookmark."
+    "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF. Mempertahankan Bookmark.",
+    "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
+    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
   },
   "addAttachments": {
     "name": "Tambah Lampiran",

@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Unisci PDF",
-    "subtitle": "Unisci più PDF in un unico file. Conserva i segnalibri."
+    "subtitle": "Unisci più PDF in un unico file. Conserva i segnalibri.",
+    "retainPageLabels": "Mantieni le etichette di pagina originali di ogni file",
+    "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate)."
   },
   "splitPdf": {
     "name": "Dividi PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Rendi un PDF ricercabile e copiabile."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alterna e Riordina Pagine",
-    "subtitle": "Unisci i PDF alternando le pagine di ogni file. Conserva i segnalibri."
+    "subtitle": "Unisci i PDF alternando le pagine di ogni file. Conserva i segnalibri.",
+    "retainPageLabels": "Mantieni le etichette di pagina originali di ogni file",
+    "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate)."
   },
   "addAttachments": {
     "name": "Aggiungi Allegati",

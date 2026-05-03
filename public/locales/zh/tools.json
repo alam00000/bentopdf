@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "合并 PDF",
-    "subtitle": "将多个 PDF 合并为一个文件。保留书签。"
+    "subtitle": "将多个 PDF 合并为一个文件。保留书签。",
+    "retainPageLabels": "保留每个文件的原始页面标签",
+    "retainPageLabelsHint": "关闭（默认）：合并后的 PDF 使用自然页码 1–N。开启：保留每个文件的原始页面标签（可能产生重复标签）。"
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "使 PDF 可搜索和可复制。"
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "交替混合页面",
-    "subtitle": "通过交替每个 PDF 的页面来合并 PDF。保留书签。"
+    "subtitle": "通过交替每个 PDF 的页面来合并 PDF。保留书签。",
+    "retainPageLabels": "保留每个文件的原始页面标签",
+    "retainPageLabelsHint": "关闭（默认）：合并后的 PDF 使用自然页码 1–N。开启：保留每个文件的原始页面标签（可能产生重复标签）。"
   },
   "addAttachments": {
     "name": "添加附件",

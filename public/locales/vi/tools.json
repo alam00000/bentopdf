@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Gộp PDF",
-    "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark."
+    "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark.",
+    "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
+    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
   },
   "splitPdf": {
     "name": "Chia PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Làm cho PDF có thể tìm kiếm và sao chép được."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Xen kẽ & Trộn trang",
-    "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark."
+    "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark.",
+    "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
+    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
   },
   "addAttachments": {
     "name": "Thêm tệp đính kèm",

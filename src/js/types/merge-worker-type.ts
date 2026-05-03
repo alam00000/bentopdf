@@ -17,6 +17,7 @@ export interface MergeMessage {
   files: MergeFile[];
   jobs: MergeJob[];
   cpdfUrl?: string;
+  retainPageLabels?: boolean;
 }
 
 export interface MergeSuccessResponse {

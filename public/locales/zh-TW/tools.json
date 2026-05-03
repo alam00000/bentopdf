@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "合併 PDF",
-    "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。"
+    "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。",
+    "retainPageLabels": "保留每個檔案的原始頁面標籤",
+    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "使 PDF 可搜尋且可複製。"
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "交錯混合頁面",
-    "subtitle": "將每個 PDF 的頁面交錯合併。保留書籤。"
+    "subtitle": "將每個 PDF 的頁面交錯合併。保留書籤。",
+    "retainPageLabels": "保留每個檔案的原始頁面標籤",
+    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
   },
   "addAttachments": {
     "name": "添加附件",

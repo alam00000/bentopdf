@@ -126,11 +126,11 @@
 
         <h1
           class="text-2xl font-bold text-white mb-2"
-          data-i18n="tools:alternateMix.name"
+          data-i18n="tools:alternateMerge.name"
         >
           Alternate & Mix Pages
         </h1>
-        <p class="text-gray-400 mb-6" data-i18n="tools:alternateMix.subtitle">
+        <p class="text-gray-400 mb-6" data-i18n="tools:alternateMerge.subtitle">
           Merge PDFs by alternating pages from each PDF. Preserves Bookmarks.
         </p>
 
@@ -177,6 +177,32 @@
           </p>
 
           <ul id="file-list" class="space-y-2 mb-4"></ul>
+
+          <label
+            class="flex items-start gap-2 text-sm text-gray-300 cursor-pointer mb-4"
+          >
+            <input
+              type="checkbox"
+              id="retain-page-labels"
+              class="mt-0.5 w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600"
+            />
+            <span>
+              <span
+                class="font-medium"
+                data-i18n="tools:alternateMerge.retainPageLabels"
+              >
+                Keep original page labels from each file
+              </span>
+              <span
+                class="block text-xs text-gray-400 mt-0.5"
+                data-i18n="tools:alternateMerge.retainPageLabelsHint"
+              >
+                Off (default): the merged PDF uses natural page numbering 1–N.
+                On: each file's original page labels are preserved (may produce
+                duplicate labels).
+              </span>
+            </span>
+          </label>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
             Mix Pages

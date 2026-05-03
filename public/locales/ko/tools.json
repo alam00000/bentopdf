@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "PDF 병합",
-    "subtitle": "여러 PDF를 하나로 합칩니다. 북마크도 유지됩니다."
+    "subtitle": "여러 PDF를 하나로 합칩니다. 북마크도 유지됩니다.",
+    "retainPageLabels": "각 파일의 원래 페이지 레이블 유지",
+    "retainPageLabelsHint": "꺼짐(기본): 병합된 PDF는 1–N의 자연스러운 페이지 번호를 사용합니다. 켜짐: 각 파일의 원래 페이지 레이블이 유지됩니다(중복 레이블이 발생할 수 있음)."
   },
   "splitPdf": {
     "name": "PDF 분할",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "PDF의 텍스트를 검색하고 복사할 수 있게 만듭니다."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "페이지 교차 병합",
-    "subtitle": "각 PDF의 페이지를 번갈아 가며 병합합니다. 북마크도 유지됩니다."
+    "subtitle": "각 PDF의 페이지를 번갈아 가며 병합합니다. 북마크도 유지됩니다.",
+    "retainPageLabels": "각 파일의 원래 페이지 레이블 유지",
+    "retainPageLabelsHint": "꺼짐(기본): 병합된 PDF는 1–N의 자연스러운 페이지 번호를 사용합니다. 켜짐: 각 파일의 원래 페이지 레이블이 유지됩니다(중복 레이블이 발생할 수 있음)."
   },
   "addAttachments": {
     "name": "첨부파일 추가",

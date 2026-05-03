@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "PDFの結合",
-    "subtitle": "複数のPDFを1つのファイルに結合します。しおりを保存します。"
+    "subtitle": "複数のPDFを1つのファイルに結合します。しおりを保存します。",
+    "retainPageLabels": "各ファイルの元のページラベルを保持する",
+    "retainPageLabelsHint": "オフ（デフォルト）: マージされたPDFは1–Nの自然なページ番号を使用します。オン: 各ファイルの元のページラベルが保持されます（ラベルが重複する可能性があります）。"
   },
   "splitPdf": {
     "name": "PDFの分割",
@@ -391,9 +393,11 @@
     "name": "OCR PDF",
     "subtitle": "PDFを検索およびコピー可能にします。"
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "代替ページと混合ページ",
-    "subtitle": "各PDFのページを交互に配置してPDFを結合します。ブックマークを保存します。"
+    "subtitle": "各PDFのページを交互に配置してPDFを結合します。ブックマークを保存します。",
+    "retainPageLabels": "各ファイルの元のページラベルを保持する",
+    "retainPageLabelsHint": "オフ（デフォルト）: マージされたPDFは1–Nの自然なページ番号を使用します。オン: 各ファイルの元のページラベルが保持されます（ラベルが重複する可能性があります）。"
   },
   "addAttachments": {
     "name": "添付ファイルの追加",

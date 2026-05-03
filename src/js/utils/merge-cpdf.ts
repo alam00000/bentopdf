@@ -1,17 +1,17 @@
 import { WasmProvider } from './wasm-provider';
 import { wfError } from '../workflow/errors';
 
-export interface InterleaveFile {
+export interface MergeFile {
   name: string;
   data: ArrayBuffer;
 }
 
-export async function interleavePdfs(
-  files: InterleaveFile[],
+export async function mergePdfsCpdf(
+  files: MergeFile[],
   options?: { retainPageLabels?: boolean }
 ): Promise<Uint8Array> {
-  if (files.length < 2) {
-    throw new Error(wfError('alternateMergeNeedsTwo'));
+  if (files.length === 0) {
+    throw new Error(wfError('noPdfsConnected', { node: 'Merge' }));
   }
 
   const cpdfBaseUrl = WasmProvider.getUrl('cpdf');
@@ -19,9 +19,14 @@ export async function interleavePdfs(
     throw new Error(wfError('cpdfNotConfigured'));
   }
 
+  const jobs = files.map((f) => ({
+    fileName: f.name,
+    rangeType: 'all' as const,
+  }));
+
   return new Promise<Uint8Array>((resolve, reject) => {
     const worker = new Worker(
-      import.meta.env.BASE_URL + 'workers/alternate-merge.worker.js'
+      import.meta.env.BASE_URL + 'workers/merge.worker.js'
     );
 
     worker.onmessage = (e: MessageEvent) => {
@@ -39,17 +44,14 @@ export async function interleavePdfs(
 
     worker.onerror = (err) => {
       worker.terminate();
-      reject(
-        new Error(
-          wfError('alternateMergeWorkerError', { message: err.message })
-        )
-      );
+      reject(new Error(wfError('workerError', { message: err.message })));
     };
 
     worker.postMessage(
       {
-        command: 'interleave',
+        command: 'merge',
         files,
+        jobs,
         cpdfUrl: cpdfBaseUrl + 'coherentpdf.browser.min.js',
         retainPageLabels: options?.retainPageLabels === true,
       },

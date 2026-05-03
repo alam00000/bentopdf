@@ -244,6 +244,32 @@
             ></div>
           </div>
 
+          <label
+            class="mt-4 flex items-start gap-2 text-sm text-gray-300 cursor-pointer"
+          >
+            <input
+              type="checkbox"
+              id="retain-page-labels"
+              class="mt-0.5 w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600"
+            />
+            <span>
+              <span
+                class="font-medium"
+                data-i18n="tools:mergePdf.retainPageLabels"
+              >
+                Keep original page labels from each file
+              </span>
+              <span
+                class="block text-xs text-gray-400 mt-0.5"
+                data-i18n="tools:mergePdf.retainPageLabelsHint"
+              >
+                Off (default): the merged PDF uses natural page numbering 1–N.
+                On: each file's original page labels are preserved (may produce
+                duplicate labels).
+              </span>
+            </span>
+          </label>
+
           <button id="process-btn" class="btn-gradient w-full mt-6">
             Merge PDFs
           </button>

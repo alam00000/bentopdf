@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "PDF Birleştir",
-    "subtitle": "Birden fazla PDF'yi tek bir dosyada birleştirin. Yer imlerini korur."
+    "subtitle": "Birden fazla PDF'yi tek bir dosyada birleştirin. Yer imlerini korur.",
+    "retainPageLabels": "Her dosyanın orijinal sayfa etiketlerini koru",
+    "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir)."
   },
   "splitPdf": {
     "name": "PDF Böl",
@@ -333,9 +335,11 @@
     "name": "PDF'de OCR",
     "subtitle": "PDF'yi aranabilir ve kopyalanabilir hale getirin."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Sayfaları Karıştır & Birleştir",
-    "subtitle": "PDF'leri her birinden sayfaları sırayla birleştirin. Yer imlerini korur."
+    "subtitle": "PDF'leri her birinden sayfaları sırayla birleştirin. Yer imlerini korur.",
+    "retainPageLabels": "Her dosyanın orijinal sayfa etiketlerini koru",
+    "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir)."
   },
   "addAttachments": {
     "name": "Ek Dosya Ekle",

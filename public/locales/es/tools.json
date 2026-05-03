@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Fusionar PDF",
-    "subtitle": "Combina múltiples PDFs en un solo archivo. Preserva Marcadores."
+    "subtitle": "Combina múltiples PDFs en un solo archivo. Preserva Marcadores.",
+    "retainPageLabels": "Conservar las etiquetas de página originales de cada archivo",
+    "retainPageLabelsHint": "Desactivado (predeterminado): el PDF combinado usa numeración natural 1–N. Activado: se conservan las etiquetas de página originales de cada archivo (puede producir etiquetas duplicadas)."
   },
   "splitPdf": {
     "name": "Dividir PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Hace que un PDF sea buscable y copiable."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alternar y Mezclar Páginas",
-    "subtitle": "Fusiona PDFs alternando páginas de cada PDF. Preserva Marcadores."
+    "subtitle": "Fusiona PDFs alternando páginas de cada PDF. Preserva Marcadores.",
+    "retainPageLabels": "Conservar las etiquetas de página originales de cada archivo",
+    "retainPageLabelsHint": "Desactivado (predeterminado): el PDF combinado usa numeración natural 1–N. Activado: se conservan las etiquetas de página originales de cada archivo (puede producir etiquetas duplicadas)."
   },
   "addAttachments": {
     "name": "Agregar Adjuntos",

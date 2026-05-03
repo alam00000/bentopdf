@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Sammanfoga PDF",
-    "subtitle": "Kombinera flera PDF-filer till en fil. Bevarar bokmärken."
+    "subtitle": "Kombinera flera PDF-filer till en fil. Bevarar bokmärken.",
+    "retainPageLabels": "Behåll de ursprungliga sidetiketterna från varje fil",
+    "retainPageLabelsHint": "Av (standard): den sammanslagna PDF:en använder naturlig sidnumrering 1–N. På: varje fils ursprungliga sidetiketter bevaras (kan ge duplicerade etiketter)."
   },
   "splitPdf": {
     "name": "Dela PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Gör en PDF sökbar och kopiaerbar."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alternera & blanda sidor",
-    "subtitle": "Sammanfoga PDF:er genom att alternera sidor från varje PDF. Bevarar bokmärken."
+    "subtitle": "Sammanfoga PDF:er genom att alternera sidor från varje PDF. Bevarar bokmärken.",
+    "retainPageLabels": "Behåll de ursprungliga sidetiketterna från varje fil",
+    "retainPageLabelsHint": "Av (standard): den sammanslagna PDF:en använder naturlig sidnumrering 1–N. På: varje fils ursprungliga sidetiketter bevaras (kan ge duplicerade etiketter)."
   },
   "addAttachments": {
     "name": "Lägg till bilagor",

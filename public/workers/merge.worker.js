@@ -21,7 +21,7 @@ function loadCpdf(cpdfUrl) {
 }
 
 self.onmessage = async function (e) {
-  const { command, files, jobs, cpdfUrl } = e.data;
+  const { command, files, jobs, cpdfUrl, retainPageLabels } = e.data;
 
   if (!cpdfUrl) {
     self.postMessage({
@@ -43,11 +43,11 @@ self.onmessage = async function (e) {
   }
 
   if (command === 'merge') {
-    mergePDFs(files, jobs);
+    mergePDFs(files, jobs, retainPageLabels === true);
   }
 };
 
-function mergePDFs(files, jobs) {
+function mergePDFs(files, jobs, retainPageLabels) {
   try {
     const loadedPdfs = {};
     const pdfsToMerge = [];
@@ -89,7 +89,7 @@ function mergePDFs(files, jobs) {
 
     const mergedPdf = coherentpdf.mergeSame(
       pdfsToMerge,
-      true,
+      retainPageLabels,
       true,
       rangesToMerge
     );

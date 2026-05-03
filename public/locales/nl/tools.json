@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "PDF Samenvoegen",
-    "subtitle": "Meerdere PDF's combineren tot één bestand. Bladwijzers behouden."
+    "subtitle": "Meerdere PDF's combineren tot één bestand. Bladwijzers behouden.",
+    "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
+    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
   },
   "splitPdf": {
     "name": "PDF Splitsen",
@@ -391,9 +393,11 @@
     "name": "OCR PDF",
     "subtitle": "Maak een PDF doorzoekbaar en kopieerbaar."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Pagina's Afwisselen & Mixen",
-    "subtitle": "PDF's samenvoegen met afwisselende pagina's vanuit elke PDF. Bladwijzers behouden."
+    "subtitle": "PDF's samenvoegen met afwisselende pagina's vanuit elke PDF. Bladwijzers behouden.",
+    "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
+    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
   },
   "addAttachments": {
     "name": "Bijlagen Toevoegen",

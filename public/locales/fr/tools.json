@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "Fusionner des PDF",
-    "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets."
+    "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets.",
+    "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
+    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
   },
   "splitPdf": {
     "name": "Scinder un PDF",
@@ -333,9 +335,11 @@
     "name": "OCR PDF",
     "subtitle": "Rendre un PDF consultable et copiable."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Alterner et mélanger les pages",
-    "subtitle": "Fusionner des PDF en alternant les pages de chaque fichier, tout en conservant les signets."
+    "subtitle": "Fusionner des PDF en alternant les pages de chaque fichier, tout en conservant les signets.",
+    "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
+    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
   },
   "addAttachments": {
     "name": "Ajouter des pièces jointes",

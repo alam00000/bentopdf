@@ -16,7 +16,9 @@
   },
   "mergePdf": {
     "name": "PDF zusammenführen",
-    "subtitle": "Mehrere PDFs zu einer Datei kombinieren. Lesezeichen werden beibehalten."
+    "subtitle": "Mehrere PDFs zu einer Datei kombinieren. Lesezeichen werden beibehalten.",
+    "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
+    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
   },
   "splitPdf": {
     "name": "PDF teilen",
@@ -383,9 +385,11 @@
     "name": "OCR PDF",
     "subtitle": "Eine PDF durchsuchbar und kopierbar machen."
   },
-  "alternateMix": {
+  "alternateMerge": {
     "name": "Seiten abwechselnd mischen",
-    "subtitle": "PDFs durch abwechselnde Seiten aus jedem PDF zusammenführen. Lesezeichen werden beibehalten."
+    "subtitle": "PDFs durch abwechselnde Seiten aus jedem PDF zusammenführen. Lesezeichen werden beibehalten.",
+    "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
+    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
   },
   "addAttachments": {
     "name": "Anhänge hinzufügen",
