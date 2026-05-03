@@ -7,7 +7,9 @@
     "allTools": "Alle Tools",
     "docs": "Docs",
     "openMainMenu": "Hoofdmenu openen",
-    "language": "Taal"
+    "language": "Taal",
+    "searchLanguage": "Taal zoeken…",
+    "noLanguagesFound": "Geen talen gevonden"
   },
   "donation": {
     "message": "Vind je BentoPDF geweldig? Help ons het gratis en open source te houden!",
@@ -34,7 +36,7 @@
     },
     "noUploads": {
       "title": "Geen uploads",
-      "description": "100% client-side, je bestanden blijven op jouw apparaat."
+      "description": "100% client-side, jouw bestanden blijven op jouw apparaat."
     },
     "foreverFree": {
       "title": "Voor altijd gratis",
@@ -57,15 +59,15 @@
     "title": "Aan de slag met",
     "toolsLabel": "Tools",
     "subtitle": "Klik een tool om de bestandslader te openen",
-    "searchPlaceholder": "Zoek een tool (bijv. 'splitsen', 'organiseren', ...)",
+    "searchPlaceholder": "Zoek een tool (bijv. 'splitsen', 'organiseren',…)",
     "backToTools": "Terug naar Tools",
-    "firstLoadNotice": "De eerste keer duurt het even om onze machinerie te laden. Daarna gaat laadt alles direct."
+    "firstLoadNotice": "De eerste keer duurt het even om onze machinerie te laden. Daarna laadt alles direct."
   },
   "upload": {
     "clickToSelect": "Klik om een bestand te selecteren",
     "orDragAndDrop": "of sleep er een hierheen",
     "pdfOrImages": "PDF's of afbeeldingen",
-    "filesNeverLeave": "Je bestanden blijven op jouw apparaat.",
+    "filesNeverLeave": "Jouw bestanden blijven op jouw apparaat.",
     "addMore": "Meer bestanden toevoegen",
     "clearAll": "Alles wissen",
     "clearFiles": "Bestanden wissen",
@@ -84,7 +86,7 @@
       "heicImages": "HEIC/HEIF-afbeeldingen",
       "jpgImages": "JPG, JPEG, JP2, JPX afbeeldingen",
       "pdfsOrImages": "PDF's of afbeeldingen",
-      "oneOrMoreOdt": "Eén of meer ODT-bestanden",
+      "oneOrMoreOdt": "Een of meer ODT-bestanden",
       "singlePdfOnly": "Alleen een enkel PDF-bestand",
       "pdfFiles": "PDF-bestanden",
       "multiplePdfs": "Meerdere PDF-bestanden",
@@ -98,15 +100,15 @@
   },
   "howItWorks": {
     "title": "Hoe het werkt",
-    "step1": "Klik of sleep uw bestand hierheen",
+    "step1": "Klik of sleep je bestand hierheen",
     "step2": "Klik op de verwerkingsknop",
-    "step3": "Sla uw verwerkte bestand direct op"
+    "step3": "Sla je verwerkte bestand direct op"
   },
   "relatedTools": {
     "title": "Gerelateerde PDF-tools"
   },
   "loader": {
-    "processing": "Verwerken..."
+    "processing": "Verwerken…"
   },
   "alert": {
     "title": "Let op",
@@ -122,9 +124,9 @@
     "shortcuts": "Sneltoetsen",
     "preferences": "Voorkeuren",
     "displayPreferences": "Voorkeuren weergeven",
-    "searchShortcuts": "Sneltoetsen zoeken...",
+    "searchShortcuts": "Sneltoetsen zoeken…",
     "shortcutsInfo": "Houd toetsen ingedrukt om deze in te stellen als sneltoets. Aanpassingen worden automatisch opgeslagen.",
-    "shortcutsWarning": "⚠️ Vermijd algemene sneltoetsen voor browsers (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N etc.) aangezien deze niet betrouwbaar kunnen functioneren.",
+    "shortcutsWarning": "⚠️ Voorkom algemene sneltoetsen voor browsers (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N etc.) aangezien deze niet betrouwbaar kunnen functioneren.",
     "import": "Importeren",
     "export": "Exporteren",
     "resetToDefaults": "Terugzetten naar standaard",
@@ -132,7 +134,7 @@
     "fullWidthDescription": "Gebruik de volledige breedte van het scherm in plaats van een gecentreerde kolom",
     "settingsAutoSaved": "Instellingen worden automatisch opgeslagen",
     "clickToSet": "Klik om in te stellen",
-    "pressKeys": "Druk toetsen...",
+    "pressKeys": "Druk toetsen…",
     "warnings": {
       "alreadyInUse": "Sneltoets al in gebruik",
       "assignedTo": "is al toegewezen aan:",
@@ -143,7 +145,7 @@
       "useAnyway": "Wil je het toch gebruiken?",
       "resetTitle": "Sneltoetsen terugzetten",
       "resetMessage": "Weet je zeker dat je alle sneltoetsen wilt terugzetten naar standaard?<br><br>Deze actie kan niet ongedaan worden gemaakt.",
-      "importSuccessTitle": "Importeren voltooid",
+      "importSuccessTitle": "Importeren is voltooid",
       "importSuccessMessage": "Sneltoetsen zijn met succes geïmporteerd!",
       "importFailTitle": "Importeren is mislukt",
       "importFailMessage": "Het importeren van sneltoetsen is mislukt. Ongeldig bestandsformaat."
@@ -260,8 +262,8 @@
     "edit": "Bewerken",
     "add": "Toevoegen",
     "remove": "Verwijderen",
-    "loading": "Laden...",
-    "loadingPageCount": "Pagina's laden...",
+    "loading": "Laden…",
+    "loadingPageCount": "Pagina's laden…",
     "error": "Fout",
     "success": "Succes",
     "file": "Bestand",
@@ -343,7 +345,7 @@
     "uploadPdfFiles": "PDF-bestanden selecteren",
     "dragAndDrop": "Klik om een bestand te selecteren, of sleep er een hierheen",
     "selectFiles": "Bestanden selecteren",
-    "renderingPages": "Pagina's vewerken...",
+    "renderingPages": "Pagina's verwerken…",
     "actions": {
       "duplicatePage": "Deze pagina dupliceren",
       "deletePage": "Deze pagina verwijderen",
@@ -351,7 +353,7 @@
       "toggleSplit": "Splitsing maken na deze pagina"
     },
     "pleaseWait": "Even geduld",
-    "pagesRendering": "Pagina's worden nog verwerkt. Even geduld...",
+    "pagesRendering": "Pagina's worden nog verwerkt. Even geduld…",
     "noPagesSelected": "Geen pagina's geselecteerd",
     "selectOnePage": "Kies tenminste een pagina om te laden.",
     "noPages": "Geen pagina's",
@@ -368,7 +370,7 @@
   "disabledTool": {
     "title": "Tool niet beschikbaar",
     "heading": "Deze tool is uitgeschakeld",
-    "message": "Deze tool is niet beschikbaar in jouw implementatie. Neem contact op met je beheerder voor meer informatie.",
+    "message": "Deze tool is niet beschikbaar in deze implementatie. Neem contact op met de beheerder voor meer informatie.",
     "backHome": "Terug naar Thuis"
   }
 }

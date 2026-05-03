@@ -730,7 +730,7 @@
   "digitalSignPdf": {
     "name": "Digitale handtekening",
     "pageTitle": "Digitale handtekening - Cryptografische handtekening toevoegen | BentoPDF",
-    "subtitle": "Een cryptografische digitale handtekening toevoegen aan een PDF met behulp van X.509-certificaten. Ondersteunt PKCS#12 (.pfx, .p12) en PEM-formaten. Jouw privésleutel verlaat jouw browser nooit.",
+    "subtitle": "Een cryptografische digitale handtekening toevoegen aan een PDF met behulp van X.509-certificaten. Ondersteunt PKCS#12 (.pfx, .p12) en PEM-formaten. Jouw privésleutel blijft in jouw browser.",
     "certificateSection": "Certificaat",
     "uploadCert": "Certificaat laden (.pfx, .p12)",
     "certPassword": "Certificaatwachtwoord",
@@ -925,10 +925,10 @@
     "howItWorksDownloadTitle": "Downloaden",
     "howItWorksDownloadDescription": "Download uw PDF met de overlay of underlay toegepast.",
     "faqDifferenceQuestion": "Wat is het verschil tussen overlay en underlay?",
-    "faqDifferenceAnswer": "Overlay plaatst pagina's boven uw basis-PDF (zoals een watermerk). Underlay plaatst pagina's achter uw basis-PDF (zoals een briefhoofd of achtergrond).",
+    "faqDifferenceAnswer": "Overlay plaatst pagina's boven de basis-PDF (zoals een watermerk). Underlay plaatst pagina's achter de basis-PDF (zoals een briefhoofd of achtergrond).",
     "faqSinglePageQuestion": "Kan ik een enkele pagina PDF als overlay voor alle pagina's gebruiken?",
-    "faqSinglePageAnswer": "Ja! Schakel de optie \"Herhalen\" in en uw overlay-pagina's worden herhaald over alle basispagina's. Een watermerk van één pagina wordt op elke pagina toegepast.",
+    "faqSinglePageAnswer": "Ja! Schakel de optie \"Herhalen\" in en de overlay-pagina's worden herhaald over alle basispagina's. Een watermerk van één pagina wordt op elke pagina toegepast.",
     "faqPrivacyQuestion": "Zijn mijn bestanden privé en veilig?",
-    "faqPrivacyAnswer": "Absoluut! Alle verwerking vindt plaats in uw browser. Uw bestanden verlaten nooit uw apparaat, wat volledige privacy garandeert."
+    "faqPrivacyAnswer": "Absoluut! Alle verwerking vindt plaats in jouw browser. Jouw bestanden worden lokaal verwerkt en verlaten jouw apparaat niet via deze tool."
   }
 }
