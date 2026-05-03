@@ -43,29 +43,30 @@ function updateVersion(type) {
 }
 
 function updateHelmChart(newAppVersion) {
-  const chartYaml = fs.readFileSync(chartYamlPath, 'utf8');
+  const lines = fs.readFileSync(chartYamlPath, 'utf8').split('\n');
+  let newChartVersion = null;
 
-  const appVersionMatch = chartYaml.match(
-    /^appVersion:\s*['"]?([^'"\n]+)['"]?/m
-  );
-  const chartVersionMatch = chartYaml.match(/^version:\s*([^\s\n]+)/m);
-  if (!appVersionMatch || !chartVersionMatch) {
-    throw new Error('Could not parse version fields in chart/Chart.yaml');
+  const updated = lines.map((line) => {
+    if (line.startsWith('version:')) {
+      const [maj, min, patch] = line
+        .slice('version:'.length)
+        .trim()
+        .split('.')
+        .map(Number);
+      newChartVersion = `${maj}.${min}.${patch + 1}`;
+      return `version: ${newChartVersion}`;
+    }
+    if (line.startsWith('appVersion:')) {
+      return `appVersion: '${newAppVersion}'`;
+    }
+    return line;
+  });
+
+  if (!newChartVersion) {
+    throw new Error('Could not find chart version line in chart/Chart.yaml');
   }
 
-  const [chartMajor, chartMinor, chartPatch] = chartVersionMatch[1]
-    .split('.')
-    .map(Number);
-  const newChartVersion = `${chartMajor}.${chartMinor}.${chartPatch + 1}`;
-
-  const updated = chartYaml
-    .replace(/^version:\s*[^\s\n]+/m, `version: ${newChartVersion}`)
-    .replace(
-      /^appVersion:\s*['"]?[^'"\n]+['"]?/m,
-      `appVersion: '${newAppVersion}'`
-    );
-
-  fs.writeFileSync(chartYamlPath, updated);
+  fs.writeFileSync(chartYamlPath, updated.join('\n'));
   return { chartVersion: newChartVersion, appVersion: newAppVersion };
 }
 
