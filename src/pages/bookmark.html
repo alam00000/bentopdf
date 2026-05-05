@@ -162,19 +162,26 @@
               id="auto-extract-checkbox"
               class="w-4 h-4 accent-blue-500"
             />
-            <span>Auto-extract existing bookmarks</span>
+            <span data-i18n="tools:editBookmarks.autoExtractExisting"
+              >Auto-extract existing bookmarks</span
+            >
           </label>
         </div>
 
         <!-- Import Bookmarks Section -->
         <div class="mt-8 pt-6 border-t border-gray-700">
-          <h3 class="text-sm font-semibold text-gray-300 mb-4">
+          <h3
+            class="text-sm font-semibold text-gray-300 mb-4"
+            data-i18n="tools:editBookmarks.importSectionTitle"
+          >
             Or Import Bookmarks
           </h3>
 
           <!-- CSV Upload -->
           <label class="block mb-4">
-            <span class="text-xs text-gray-500"
+            <span
+              class="text-xs text-gray-500"
+              data-i18n="tools:editBookmarks.csvFormat"
               >CSV format: title,page,level</span
             >
             <div
@@ -183,8 +190,14 @@
               <div class="flex flex-col items-center justify-center pt-4 pb-4">
                 <i data-lucide="sheet" class="w-8 h-8 mb-2 text-gray-400"></i>
                 <p class="text-xs text-gray-400">
-                  <span class="font-semibold">Click to upload CSV</span> or drag
-                  here
+                  <span
+                    class="font-semibold"
+                    data-i18n="tools:editBookmarks.uploadCsvAction"
+                    >Click to upload CSV</span
+                  >
+                  <span data-i18n="tools:editBookmarks.orDragHere"
+                    >or drag here</span
+                  >
                 </p>
               </div>
               <input
@@ -198,15 +211,25 @@
 
           <!-- JSON Upload -->
           <label class="block">
-            <span class="text-xs text-gray-500">JSON format</span>
+            <span
+              class="text-xs text-gray-500"
+              data-i18n="tools:editBookmarks.jsonFormat"
+              >JSON format</span
+            >
             <div
               class="relative flex flex-col items-center justify-center w-full h-32 mt-2 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
             >
               <div class="flex flex-col items-center justify-center pt-4 pb-4">
                 <i data-lucide="braces" class="w-8 h-8 mb-2 text-gray-400"></i>
                 <p class="text-xs text-gray-400">
-                  <span class="font-semibold">Click to upload JSON</span> or
-                  drag here
+                  <span
+                    class="font-semibold"
+                    data-i18n="tools:editBookmarks.uploadJsonAction"
+                    >Click to upload JSON</span
+                  >
+                  <span data-i18n="tools:editBookmarks.orDragHere"
+                    >or drag here</span
+                  >
                 </p>
               </div>
               <input
@@ -659,7 +682,12 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="howItWorks.step1Title"
+            >
+              Upload File
+            </h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
               Click or drag and drop your file to begin
             </p>
@@ -672,7 +700,12 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="howItWorks.step2Title"
+            >
+              Process
+            </h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
               Click the process button to start
             </p>
@@ -685,7 +718,12 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="howItWorks.step3Title"
+            >
+              Download
+            </h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
               Save your processed file instantly
             </p>

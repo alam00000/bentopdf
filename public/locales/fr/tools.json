@@ -674,7 +674,7 @@
     "pageTitle": "Signature numérique PDF - Ajouter une signature cryptographique | BentoPDF",
     "subtitle": "Ajouter une signature numérique cryptographique à votre PDF à l’aide de certificats X.509. Prend en charge les formats PKCS#12 (.pfx, .p12) et PEM. Votre clé privée ne quitte jamais votre navigateur.",
     "certificateSection": "Certificat",
-    "uploadCert": "Téléverser un certificat (.pfx, .p12)",
+    "uploadCert": "Téléverser un certificat (.pfx, .p12, .pem)",
     "certPassword": "Mot de passe du certificat",
     "certPasswordPlaceholder": "Saisissez le mot de passe du certificat",
     "certInfo": "Informations du certificat",

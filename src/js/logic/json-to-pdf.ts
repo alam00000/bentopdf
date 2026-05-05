@@ -10,6 +10,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { initI18n, t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/json-to-pdf.worker.js'
@@ -17,8 +18,8 @@ const worker = new Worker(
 
 let selectedFiles: File[] = [];
 
-const jsonFilesInput = document.getElementById('jsonFiles') as HTMLInputElement;
-const convertBtn = document.getElementById('convertBtn') as HTMLButtonElement;
+let jsonFilesInput!: HTMLInputElement;
+let convertBtn!: HTMLButtonElement;
 const statusMessage = document.getElementById(
   'status-message'
 ) as HTMLDivElement;
@@ -72,27 +73,9 @@ function updateFileList() {
   });
 }
 
-jsonFilesInput.addEventListener('change', (e) => {
-  const target = e.target as HTMLInputElement;
-  if (target.files && target.files.length > 0) {
-    selectedFiles = Array.from(target.files);
-    convertBtn.disabled = selectedFiles.length === 0;
-    updateFileList();
-
-    if (selectedFiles.length === 0) {
-      showStatus('Please select at least 1 JSON file', 'info');
-    } else {
-      showStatus(
-        `${selectedFiles.length} file(s) selected. Ready to convert!`,
-        'info'
-      );
-    }
-  }
-});
-
 async function convertJSONsToPDF() {
   if (selectedFiles.length === 0) {
-    showStatus('Please select at least 1 JSON file', 'error');
+    showStatus(t('tools:jsonToPdf.status.selectAtLeastOne'), 'error');
     return;
   }
 
@@ -104,13 +87,13 @@ async function convertJSONsToPDF() {
 
   try {
     convertBtn.disabled = true;
-    showStatus('Reading files (Main Thread)...', 'info');
+    showStatus(t('tools:jsonToPdf.status.readingFiles'), 'info');
 
     const fileBuffers = await Promise.all(
       selectedFiles.map((file) => readFileAsArrayBuffer(file))
     );
 
-    showStatus('Converting JSONs to PDFs...', 'info');
+    showStatus(t('tools:jsonToPdf.status.converting'), 'info');
 
     worker.postMessage(
       {
@@ -124,7 +107,10 @@ async function convertJSONsToPDF() {
   } catch (error) {
     console.error('Error reading files:', error);
     showStatus(
-      `❌ Error reading files: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      t('tools:jsonToPdf.status.readError', {
+        message:
+          error instanceof Error ? error.message : t('common.unknownError'),
+      }),
       'error'
     );
     convertBtn.disabled = false;
@@ -141,7 +127,7 @@ worker.onmessage = async (e: MessageEvent) => {
     }>;
 
     try {
-      showStatus('Creating ZIP file...', 'info');
+      showStatus(t('tools:jsonToPdf.status.creatingZip'), 'info');
 
       const zip = new JSZip();
       pdfFiles.forEach(({ name, data }) => {
@@ -157,10 +143,7 @@ worker.onmessage = async (e: MessageEvent) => {
       a.download = 'jsons-to-pdf.zip';
       downloadFile(zipBlob, 'jsons-to-pdf.zip');
 
-      showStatus(
-        '✅ JSONs converted to PDF successfully! ZIP download started.',
-        'success'
-      );
+      showStatus(t('tools:jsonToPdf.status.success'), 'success');
 
       selectedFiles = [];
       jsonFilesInput.value = '';
@@ -174,14 +157,20 @@ worker.onmessage = async (e: MessageEvent) => {
     } catch (error) {
       console.error('Error creating ZIP:', error);
       showStatus(
-        `❌ Error creating ZIP: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        t('tools:jsonToPdf.status.zipError', {
+          message:
+            error instanceof Error ? error.message : t('common.unknownError'),
+        }),
         'error'
       );
     }
   } else if (e.data.status === 'error') {
-    const errorMessage = e.data.message || 'Unknown error occurred in worker.';
+    const errorMessage = e.data.message || t('common.unknownError');
     console.error('Worker Error:', errorMessage);
-    showStatus(`❌ Worker Error: ${errorMessage}`, 'error');
+    showStatus(
+      t('tools:jsonToPdf.status.workerError', { message: errorMessage }),
+      'error'
+    );
   }
 };
 
@@ -191,8 +180,35 @@ if (backToToolsBtn) {
   });
 }
 
-convertBtn.addEventListener('click', convertJSONsToPDF);
+// Initialize after i18n is ready so the default status is translated.
+void (async () => {
+  await initI18n();
 
-// Initialize
-showStatus('Select JSON files to get started', 'info');
-initializeGlobalShortcuts();
+  jsonFilesInput = document.getElementById('jsonFiles') as HTMLInputElement;
+  convertBtn = document.getElementById('convertBtn') as HTMLButtonElement;
+
+  jsonFilesInput.addEventListener('change', (e) => {
+    const target = e.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      selectedFiles = Array.from(target.files);
+      convertBtn.disabled = selectedFiles.length === 0;
+      updateFileList();
+
+      if (selectedFiles.length === 0) {
+        showStatus(t('tools:jsonToPdf.status.selectAtLeastOne'), 'info');
+      } else {
+        showStatus(
+          t('tools:jsonToPdf.status.selectedReady', {
+            count: selectedFiles.length,
+          }),
+          'info'
+        );
+      }
+    }
+  });
+
+  convertBtn.addEventListener('click', convertJSONsToPDF);
+
+  showStatus(t('tools:jsonToPdf.status.getStarted'), 'info');
+  initializeGlobalShortcuts();
+})();

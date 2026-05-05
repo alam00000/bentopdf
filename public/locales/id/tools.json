@@ -674,7 +674,7 @@
     "pageTitle": "Tanda Tangan Digital PDF - Tambah Tanda Tangan Kriptografi | BentoPDF",
     "subtitle": "Tambah tanda tangan digital kriptografi ke PDF Anda menggunakan sertifikat X.509. Mendukung format PKCS#12 (.pfx, .p12) dan PEM. Kunci pribadi Anda tidak pernah meninggalkan browser Anda.",
     "certificateSection": "Sertifikat",
-    "uploadCert": "Unggah sertifikat (.pfx, .p12)",
+    "uploadCert": "Unggah sertifikat (.pfx, .p12, .pem)",
     "certPassword": "Kata Sandi Sertifikat",
     "certPasswordPlaceholder": "Masukkan kata sandi sertifikat",
     "certInfo": "Informasi Sertifikat",

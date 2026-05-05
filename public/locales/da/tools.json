@@ -674,7 +674,7 @@
     "pageTitle": "Digital signatur PDF - Tilføj kryptografisk signatur | BentoPDF",
     "subtitle": "Tilføj en digital signatur til din PDF med X.509-certifikater. Understøtter PKCS#12 (.pfx, .p12) og PEM. Din private nøgle forlader aldrig browseren.",
     "certificateSection": "Certifikat",
-    "uploadCert": "Upload certifikat (.pfx, .p12)",
+    "uploadCert": "Upload certifikat (.pfx, .p12, .pem)",
     "certPassword": "Certifikatkodeord",
     "certPasswordPlaceholder": "Indtast kodeord til certifikat",
     "certInfo": "Certifikatinformation",

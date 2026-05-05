@@ -674,7 +674,7 @@
     "pageTitle": "PDF 디지털 서명 - 암호화 서명 추가 | BentoPDF",
     "subtitle": "X.509 인증서를 사용하여 PDF에 암호화 디지털 서명을 추가합니다. PKCS#12(.pfx, .p12) 및 PEM 형식을 지원합니다. 개인키는 브라우저 밖으로 나가지 않습니다.",
     "certificateSection": "인증서",
-    "uploadCert": "인증서 업로드 (.pfx, .p12)",
+    "uploadCert": "인증서 업로드 (.pfx, .p12, .pem)",
     "certPassword": "인증서 비밀번호",
     "certPasswordPlaceholder": "인증서 비밀번호 입력",
     "certInfo": "인증서 정보",

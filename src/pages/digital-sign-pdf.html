@@ -134,10 +134,16 @@
             class="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5"
           ></i>
           <div class="text-sm">
-            <p class="text-blue-300 font-medium">
+            <p
+              class="text-blue-300 font-medium"
+              data-i18n="tools:digitalSignPdf.internetRequiredTitle"
+            >
               Internet connection required
             </p>
-            <p class="text-blue-400/80 mt-1">
+            <p
+              class="text-blue-400/80 mt-1"
+              data-i18n="tools:digitalSignPdf.internetRequiredDescription"
+            >
               Signing may need to fetch certificate chain information from your
               certificate issuer's server to validate the signature.
             </p>
@@ -180,7 +186,12 @@
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="certificate-section" class="hidden mt-6 space-y-4">
-          <h2 class="text-lg font-semibold text-white">Certificate</h2>
+          <h2
+            class="text-lg font-semibold text-white"
+            data-i18n="tools:digitalSignPdf.certificateSection"
+          >
+            Certificate
+          </h2>
 
           <div
             id="cert-drop-zone"
@@ -188,7 +199,10 @@
           >
             <div class="flex flex-col items-center justify-center py-4">
               <i data-lucide="key" class="w-8 h-8 mb-2 text-gray-400"></i>
-              <p class="text-sm text-gray-400">
+              <p
+                class="text-sm text-gray-400"
+                data-i18n="tools:digitalSignPdf.uploadCert"
+              >
                 Upload certificate (.pfx, .p12, .pem)
               </p>
             </div>
@@ -206,6 +220,7 @@
             <label
               for="cert-password"
               class="block text-sm font-medium text-gray-300 mb-2"
+              data-i18n="tools:digitalSignPdf.certPassword"
               >Certificate Password</label
             >
             <input
@@ -213,24 +228,40 @@
               id="cert-password"
               class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               placeholder="Enter certificate password"
+              data-i18n-placeholder="tools:digitalSignPdf.certPasswordPlaceholder"
             />
           </div>
 
           <div id="cert-info" class="hidden bg-gray-700 rounded-lg p-4">
-            <h3 class="text-sm font-semibold text-white mb-2">
+            <h3
+              class="text-sm font-semibold text-white mb-2"
+              data-i18n="tools:digitalSignPdf.certInfo"
+            >
               Certificate Information
             </h3>
             <div class="text-sm text-gray-300 space-y-1">
               <p>
-                <span class="text-gray-400">Subject:</span>
+                <span
+                  class="text-gray-400"
+                  data-i18n="tools:digitalSignPdf.certSubject"
+                  >Subject:</span
+                >
                 <span id="cert-subject">-</span>
               </p>
               <p>
-                <span class="text-gray-400">Issuer:</span>
+                <span
+                  class="text-gray-400"
+                  data-i18n="tools:digitalSignPdf.certIssuer"
+                  >Issuer:</span
+                >
                 <span id="cert-issuer">-</span>
               </p>
               <p>
-                <span class="text-gray-400">Valid:</span>
+                <span
+                  class="text-gray-400"
+                  data-i18n="tools:digitalSignPdf.certValidity"
+                  >Valid:</span
+                >
                 <span id="cert-validity">-</span>
               </p>
             </div>
@@ -238,7 +269,10 @@
         </div>
 
         <div id="signature-options" class="hidden mt-6 space-y-4">
-          <h2 class="text-lg font-semibold text-white">
+          <h2
+            class="text-lg font-semibold text-white"
+            data-i18n="tools:digitalSignPdf.signatureDetails"
+          >
             Signature Details (Optional)
           </h2>
 
@@ -246,6 +280,7 @@
             <label
               for="sign-reason"
               class="block text-sm font-medium text-gray-300 mb-2"
+              data-i18n="tools:digitalSignPdf.reason"
               >Reason</label
             >
             <input
@@ -253,6 +288,7 @@
               id="sign-reason"
               class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               placeholder="e.g., I approve this document"
+              data-i18n-placeholder="tools:digitalSignPdf.reasonPlaceholder"
             />
           </div>
 
@@ -260,6 +296,7 @@
             <label
               for="sign-location"
               class="block text-sm font-medium text-gray-300 mb-2"
+              data-i18n="tools:digitalSignPdf.location"
               >Location</label
             >
             <input
@@ -267,6 +304,7 @@
               id="sign-location"
               class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               placeholder="e.g., New York, USA"
+              data-i18n-placeholder="tools:digitalSignPdf.locationPlaceholder"
             />
           </div>
 
@@ -274,6 +312,7 @@
             <label
               for="sign-contact"
               class="block text-sm font-medium text-gray-300 mb-2"
+              data-i18n="tools:digitalSignPdf.contactInfo"
               >Contact Info</label
             >
             <input
@@ -281,13 +320,19 @@
               id="sign-contact"
               class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               placeholder="e.g., email@example.com"
+              data-i18n-placeholder="tools:digitalSignPdf.contactPlaceholder"
             />
           </div>
         </div>
 
         <div id="visible-signature-section" class="hidden mt-6 space-y-4">
           <div class="flex items-center justify-between">
-            <h2 class="text-lg font-semibold text-white">Visible Signature</h2>
+            <h2
+              class="text-lg font-semibold text-white"
+              data-i18n="tools:digitalSignPdf.visibleSignature"
+            >
+              Visible Signature
+            </h2>
             <label class="relative inline-flex items-center cursor-pointer">
               <input
                 type="checkbox"
@@ -299,7 +344,10 @@
               ></div>
             </label>
           </div>
-          <p class="text-xs text-gray-500">
+          <p
+            class="text-xs text-gray-500"
+            data-i18n="tools:digitalSignPdf.visibleSignatureDescription"
+          >
             When enabled, a visible signature box appears on the PDF. You can
             upload an image/logo or add text. If neither is provided, the
             signer's name from the certificate will be shown automatically.
@@ -307,7 +355,9 @@
 
           <div id="visible-sig-options" class="hidden space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2"
+              <label
+                class="block text-sm font-medium text-gray-300 mb-2"
+                data-i18n="tools:digitalSignPdf.signatureImage"
                 >Signature Image/Logo (Optional)</label
               >
               <div
@@ -316,7 +366,10 @@
               >
                 <div class="flex flex-col items-center justify-center py-2">
                   <i data-lucide="image" class="w-6 h-6 mb-1 text-gray-400"></i>
-                  <p class="text-xs text-gray-400">
+                  <p
+                    class="text-xs text-gray-400"
+                    data-i18n="tools:digitalSignPdf.uploadSignatureImage"
+                  >
                     Upload image (PNG, JPG, WebP)
                   </p>
                 </div>
@@ -339,6 +392,7 @@
                 <button
                   id="remove-sig-image"
                   class="text-red-400 hover:text-red-300 text-sm"
+                  data-i18n="tools:digitalSignPdf.remove"
                 >
                   Remove
                 </button>
@@ -350,22 +404,38 @@
                 <label
                   for="sig-page"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.page"
                   >Page</label
                 >
                 <select
                   id="sig-page"
                   class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                 >
-                  <option value="0">First page</option>
-                  <option value="last">Last page</option>
-                  <option value="all">All pages</option>
-                  <option value="custom">Custom page #</option>
+                  <option value="0" data-i18n="tools:digitalSignPdf.firstPage">
+                    First page
+                  </option>
+                  <option
+                    value="last"
+                    data-i18n="tools:digitalSignPdf.lastPage"
+                  >
+                    Last page
+                  </option>
+                  <option value="all" data-i18n="tools:digitalSignPdf.allPages">
+                    All pages
+                  </option>
+                  <option
+                    value="custom"
+                    data-i18n="tools:digitalSignPdf.customPage"
+                  >
+                    Custom page #
+                  </option>
                 </select>
               </div>
               <div id="custom-page-wrapper" class="hidden">
                 <label
                   for="sig-custom-page"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.pageNumber"
                   >Page #</label
                 >
                 <input
@@ -383,6 +453,7 @@
                 <label
                   for="sig-x"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.xPosition"
                   >X Position (left)</label
                 >
                 <input
@@ -397,6 +468,7 @@
                 <label
                   for="sig-y"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.yPosition"
                   >Y Position (top)</label
                 >
                 <input
@@ -414,6 +486,7 @@
                 <label
                   for="sig-width"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.width"
                   >Width</label
                 >
                 <input
@@ -428,6 +501,7 @@
                 <label
                   for="sig-height"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.height"
                   >Height</label
                 >
                 <input
@@ -447,7 +521,9 @@
                   id="enable-sig-text"
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm font-medium text-gray-300"
+                <span
+                  class="text-sm font-medium text-gray-300"
+                  data-i18n="tools:digitalSignPdf.addTextOverlay"
                   >Add text overlay</span
                 >
               </label>
@@ -458,6 +534,7 @@
                 <label
                   for="sig-text"
                   class="block text-sm font-medium text-gray-300 mb-2"
+                  data-i18n="tools:digitalSignPdf.text"
                   >Text</label
                 >
                 <input
@@ -465,6 +542,7 @@
                   id="sig-text"
                   class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   placeholder="e.g., Digitally signed by John Doe"
+                  data-i18n-placeholder="tools:digitalSignPdf.textPlaceholder"
                 />
               </div>
               <div class="grid grid-cols-2 gap-4">
@@ -472,6 +550,7 @@
                   <label
                     for="sig-text-color"
                     class="block text-sm font-medium text-gray-300 mb-2"
+                    data-i18n="tools:digitalSignPdf.textColor"
                     >Text Color</label
                   >
                   <input type="color" id="sig-text-color" value="#000000" />
@@ -480,6 +559,7 @@
                   <label
                     for="sig-text-size"
                     class="block text-sm font-medium text-gray-300 mb-2"
+                    data-i18n="tools:digitalSignPdf.fontSize"
                     >Font Size</label
                   >
                   <input
@@ -500,6 +580,7 @@
           id="process-btn"
           class="btn-gradient w-full mt-6"
           style="display: none"
+          data-i18n="tools:digitalSignPdf.applySignature"
         >
           Apply Digital Signature
         </button>
@@ -514,7 +595,11 @@
         class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
       >
         <div class="solid-spinner"></div>
-        <p id="loader-text" class="text-white text-lg font-medium">
+        <p
+          id="loader-text"
+          class="text-white text-lg font-medium"
+          data-i18n="loader.processing"
+        >
           Processing...
         </p>
       </div>
@@ -538,6 +623,7 @@
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          data-i18n="common.ok"
         >
           OK
         </button>
@@ -559,8 +645,16 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload PDF</h3>
-            <p class="text-gray-400">
+            <h3
+              class="text-lg font-semibold text-white mb-1"
+              data-i18n="tools:digitalSignPdf.howToStep1Title"
+            >
+              Upload PDF
+            </h3>
+            <p
+              class="text-gray-400"
+              data-i18n="tools:digitalSignPdf.howToStep1Text"
+            >
               Select the PDF document you want to sign
             </p>
           </div>
@@ -573,9 +667,14 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Upload Certificate
+              <span data-i18n="tools:digitalSignPdf.howToStep2Title">
+                Upload Certificate
+              </span>
             </h3>
-            <p class="text-gray-400">
+            <p
+              class="text-gray-400"
+              data-i18n="tools:digitalSignPdf.howToStep2Text"
+            >
               Provide your .pfx or .p12 certificate file and password
             </p>
           </div>
@@ -588,9 +687,14 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Sign & Download
+              <span data-i18n="tools:digitalSignPdf.howToStep3Title">
+                Sign & Download
+              </span>
             </h3>
-            <p class="text-gray-400">
+            <p
+              class="text-gray-400"
+              data-i18n="tools:digitalSignPdf.howToStep3Text"
+            >
               Apply the digital signature and download your signed PDF
             </p>
           </div>
@@ -610,36 +714,86 @@
           href="encrypt-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Encrypt PDF</h3>
-          <p class="text-gray-400 text-sm">Password protect your PDF</p>
+          <h3
+            class="text-white font-semibold mb-1"
+            data-i18n="tools:encryptPdf.name"
+          >
+            Encrypt PDF
+          </h3>
+          <p
+            class="text-gray-400 text-sm"
+            data-i18n="tools:digitalSignPdf.relatedEncryptDesc"
+          >
+            Password protect your PDF
+          </p>
         </a>
         <a
           href="decrypt-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Decrypt PDF</h3>
-          <p class="text-gray-400 text-sm">Remove PDF password</p>
+          <h3
+            class="text-white font-semibold mb-1"
+            data-i18n="tools:decryptPdf.name"
+          >
+            Decrypt PDF
+          </h3>
+          <p
+            class="text-gray-400 text-sm"
+            data-i18n="tools:digitalSignPdf.relatedDecryptDesc"
+          >
+            Remove PDF password
+          </p>
         </a>
         <a
           href="flatten-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Flatten PDF</h3>
-          <p class="text-gray-400 text-sm">Make annotations permanent</p>
+          <h3
+            class="text-white font-semibold mb-1"
+            data-i18n="tools:flattenPdf.name"
+          >
+            Flatten PDF
+          </h3>
+          <p
+            class="text-gray-400 text-sm"
+            data-i18n="tools:digitalSignPdf.relatedFlattenDesc"
+          >
+            Make annotations permanent
+          </p>
         </a>
         <a
           href="sanitize-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Sanitize PDF</h3>
-          <p class="text-gray-400 text-sm">Remove hidden data</p>
+          <h3
+            class="text-white font-semibold mb-1"
+            data-i18n="tools:sanitizePdf.name"
+          >
+            Sanitize PDF
+          </h3>
+          <p
+            class="text-gray-400 text-sm"
+            data-i18n="tools:digitalSignPdf.relatedSanitizeDesc"
+          >
+            Remove hidden data
+          </p>
         </a>
         <a
           href="change-permissions.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Change Permissions</h3>
-          <p class="text-gray-400 text-sm">Set PDF permissions</p>
+          <h3
+            class="text-white font-semibold mb-1"
+            data-i18n="tools:changePermissions.name"
+          >
+            Change Permissions
+          </h3>
+          <p
+            class="text-gray-400 text-sm"
+            data-i18n="tools:digitalSignPdf.relatedPermissionsDesc"
+          >
+            Set PDF permissions
+          </p>
         </a>
       </div>
     </section>
@@ -655,11 +809,15 @@
         <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
           <summary
             class="cursor-pointer font-semibold text-white flex items-center justify-between"
+            data-i18n="tools:digitalSignPdf.faqWhatIsQuestion"
           >
             What is a digital signature?
             <i data-lucide="chevron-down" class="w-5 h-5"></i>
           </summary>
-          <p class="mt-3 text-gray-400">
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:digitalSignPdf.faqWhatIsAnswer"
+          >
             A digital signature is a cryptographic mechanism that verifies the
             authenticity and integrity of a document. Unlike a drawn signature,
             it uses public key cryptography (X.509 certificates) to prove the
@@ -669,11 +827,15 @@
         <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
           <summary
             class="cursor-pointer font-semibold text-white flex items-center justify-between"
+            data-i18n="tools:digitalSignPdf.faqFormatsQuestion"
           >
             What certificate formats are supported?
             <i data-lucide="chevron-down" class="w-5 h-5"></i>
           </summary>
-          <p class="mt-3 text-gray-400">
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:digitalSignPdf.faqFormatsAnswer"
+          >
             We support PKCS#12 format certificates (.pfx, .p12) which contain
             both your certificate and private key in a single encrypted file.
             These are commonly issued by certificate authorities.
@@ -682,11 +844,15 @@
         <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
           <summary
             class="cursor-pointer font-semibold text-white flex items-center justify-between"
+            data-i18n="tools:digitalSignPdf.faqPrivateKeyQuestion"
           >
             Is my private key safe?
             <i data-lucide="chevron-down" class="w-5 h-5"></i>
           </summary>
-          <p class="mt-3 text-gray-400">
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:digitalSignPdf.faqPrivateKeyAnswer"
+          >
             Yes! All processing happens entirely in your browser. Your
             certificate, private key, and PDF files never leave your device or
             get uploaded to any server.
@@ -695,11 +861,15 @@
         <details class="bg-gray-800 p-5 rounded-lg border border-gray-700">
           <summary
             class="cursor-pointer font-semibold text-white flex items-center justify-between"
+            data-i18n="tools:digitalSignPdf.faqValidReadersQuestion"
           >
             Will the signature be valid in PDF readers?
             <i data-lucide="chevron-down" class="w-5 h-5"></i>
           </summary>
-          <p class="mt-3 text-gray-400">
+          <p
+            class="mt-3 text-gray-400"
+            data-i18n="tools:digitalSignPdf.faqValidReadersAnswer"
+          >
             Yes, the tool creates standard PKCS#7 detached signatures that are
             recognized by all major PDF viewers. For full validation, use a
             certificate from a trusted Certificate Authority.

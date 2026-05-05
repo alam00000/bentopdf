@@ -133,12 +133,14 @@
             <button
               id="txt-mode-upload-btn"
               class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md"
+              data-i18n="tools:textToPdf.uploadFiles"
             >
               Upload Files
             </button>
             <button
               id="txt-mode-text-btn"
               class="flex-1 btn bg-gray-700 text-gray-300 font-semibold py-2 rounded-md"
+              data-i18n="tools:textToPdf.typeText"
             >
               Type Text
             </button>
@@ -161,7 +163,12 @@
                   >
                   <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
                 </p>
-                <p class="text-xs text-gray-500">Text files (.txt)</p>
+                <p
+                  class="text-xs text-gray-500"
+                  data-i18n="tools:textToPdf.acceptedFormats"
+                >
+                  Text files (.txt)
+                </p>
                 <p
                   class="text-xs text-gray-500"
                   data-i18n="upload.filesNeverLeave"
@@ -215,6 +222,7 @@
             <label
               for="font-family"
               class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:textToPdf.fontFamily"
               >Font Family</label
             >
             <select
@@ -231,6 +239,7 @@
             <label
               for="font-size"
               class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:textToPdf.fontSize"
               >Font Size</label
             >
             <input
@@ -246,6 +255,7 @@
             <label
               for="text-color"
               class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:textToPdf.textColor"
               >Text Color</label
             >
             <input type="color" id="text-color" value="#000000" />
@@ -254,6 +264,7 @@
             <label
               for="page-size"
               class="block mb-2 text-sm font-medium text-gray-300"
+              data-i18n="tools:textToPdf.pageSize"
               >Page Size</label
             >
             <select
@@ -312,11 +323,17 @@
 
         <p class="text-xs text-gray-500 mt-3">
           <i data-lucide="info" class="inline w-3 h-3"></i>
-          RTL languages (Arabic, Urdu, Persian, etc.) are automatically detected
-          and text direction is adjusted.
+          <span data-i18n="tools:textToPdf.rtlAutoDetectNote"
+            >RTL languages (Arabic, Urdu, Persian, etc.) are automatically
+            detected and text direction is adjusted.</span
+          >
         </p>
 
-        <button id="process-btn" class="btn-gradient w-full mt-6">
+        <button
+          id="process-btn"
+          class="btn-gradient w-full mt-6"
+          data-i18n="tools:textToPdf.createButton"
+        >
           Create PDF
         </button>
       </div>

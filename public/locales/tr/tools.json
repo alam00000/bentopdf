@@ -688,7 +688,7 @@
     "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
     "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
     "certificateSection": "Certificate",
-    "uploadCert": "Upload certificate (.pfx, .p12)",
+    "uploadCert": "Upload certificate (.pfx, .p12, .pem)",
     "certPassword": "Certificate Password",
     "certPasswordPlaceholder": "Enter certificate password",
     "certInfo": "Certificate Information",

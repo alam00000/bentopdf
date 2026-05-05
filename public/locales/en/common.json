@@ -100,8 +100,11 @@
   },
   "howItWorks": {
     "title": "How It Works",
+    "step1Title": "Upload File",
     "step1": "Click or drag and drop your file to begin",
+    "step2Title": "Process",
     "step2": "Click the process button to start",
+    "step3Title": "Download",
     "step3": "Save your processed file instantly"
   },
   "relatedTools": {
@@ -269,7 +272,8 @@
     "file": "File",
     "files": "Files",
     "close": "Close",
-    "convert": "Convert"
+    "convert": "Convert",
+    "unknownError": "Unknown error"
   },
   "about": {
     "hero": {
