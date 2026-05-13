@@ -112,4 +112,4 @@ If a discovery does not fit an existing knowledge file, create a new `.agent/kno
 
 ## PR Comments
 
-- make sure to check inline review comments when looking for comments in PR reviews.
+- Make sure to check inline review comments when looking for comments in PR reviews.
