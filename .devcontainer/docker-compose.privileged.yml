@@ -1,0 +1,11 @@
+services:
+  app:
+    # Opt-in only: this is for nested sandbox tooling inside the devcontainer,
+    # such as agent/debug environments that launch their own sandbox layer.
+    # Keep this out of the default devcontainer because it meaningfully
+    # increases container privileges for normal contributors.
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+      - seccomp:unconfined

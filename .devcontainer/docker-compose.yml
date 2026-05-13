@@ -1,0 +1,9 @@
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/javascript-node:22
+    user: vscode
+    volumes:
+      - ..:/workspaces/paperbridge:cached
+    command: sleep infinity
+    environment:
+      HOST: 0.0.0.0
