@@ -81,7 +81,7 @@ docker run -p 3000:8080 bentopdf-simple
 Use the built-in npm script that handles everything:
 
 ```bash
-npm run serve:simple
+npm run serve
 ```
 
 This command automatically:
@@ -105,7 +105,7 @@ npx serve dist -p 3000
 ### Method 1: Using npm Script (Easiest for Development)
 
 ```bash
-npm run serve:simple
+npm run serve
 ```
 
 This automatically builds and serves Simple Mode on `http://localhost:3000`.

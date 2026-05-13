@@ -73,6 +73,31 @@ function loadPages(): Set<string> {
 }
 
 const PAGES = loadPages();
+const PAPERBRIDGE_INPUT_NAMES = new Set(['main', 'create-assignment']);
+
+function selectBuildInputs(
+  inputs: Record<string, string>
+): Record<string, string> {
+  const target = process.env.BUILD_TARGET ?? 'all';
+
+  if (target === 'paperbridge') {
+    return Object.fromEntries(
+      Object.entries(inputs).filter(([name]) =>
+        PAPERBRIDGE_INPUT_NAMES.has(name)
+      )
+    );
+  }
+
+  if (target === 'tools') {
+    return Object.fromEntries(
+      Object.entries(inputs).filter(
+        ([name]) => !PAPERBRIDGE_INPUT_NAMES.has(name)
+      )
+    );
+  }
+
+  return inputs;
+}
 
 function applyModeEnv(mode: string): void {
   const env = loadEnv(mode, process.cwd(), '');
@@ -627,7 +652,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       rollupOptions: {
-        input: {
+        input: selectBuildInputs({
           main: resolve(__dirname, 'index.html'),
           'create-assignment': resolve(__dirname, 'create-assignment.html'),
           about: resolve(__dirname, 'about.html'),
@@ -830,7 +855,7 @@ export default defineConfig(({ mode }) => {
             __dirname,
             'src/pages/bates-numbering.html'
           ),
-        },
+        }),
         output: {
           assetFileNames: (assetInfo) => {
             const name = assetInfo.names?.[0] ?? '';

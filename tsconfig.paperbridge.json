@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/js/paperbridge/**/*.ts",
+    "src/tests/paperbridge-*.test.ts",
+    "vitest.paperbridge.config.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
