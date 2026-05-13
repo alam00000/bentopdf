@@ -23,6 +23,9 @@ npm run dev
 ```
 
 The app is available at `http://localhost:5173` by default.
+`npm run preview` uses `http://localhost:4173` by default.
+
+If you need different local ports, set `VITE_DEV_PORT` or `VITE_PREVIEW_PORT` in your shell or `.env.development.local` before starting Vite.
 
 ## Validation Commands
 
