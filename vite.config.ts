@@ -107,6 +107,23 @@ function applyModeEnv(mode: string): void {
   }
 }
 
+function parseConfiguredPort(envName: string, fallback: number): number {
+  const rawValue = process.env[envName]?.trim();
+
+  if (!rawValue) {
+    return fallback;
+  }
+
+  const port = Number(rawValue);
+  if (!Number.isInteger(port) || port < 1 || port > 65535) {
+    throw new Error(
+      `[vite] ${envName} must be an integer between 1 and 65535. Received: ${rawValue}`
+    );
+  }
+
+  return port;
+}
+
 function getBasePath(): string {
   return (process.env.BASE_URL || '/').replace(/\/$/, '');
 }
@@ -553,8 +570,8 @@ export default defineConfig(({ mode }) => {
   // - VITE_PREVIEW_PORT controls the Vite preview server port (default: 4173).
   //   Preview is pinned to 4173 unless explicitly overridden so local preview
   //   runs consistently on a predictable URL.
-  const devPort = Number(process.env.VITE_DEV_PORT || 5173);
-  const previewPort = Number(process.env.VITE_PREVIEW_PORT || 4173);
+  const devPort = parseConfiguredPort('VITE_DEV_PORT', 5173);
+  const previewPort = parseConfiguredPort('VITE_PREVIEW_PORT', 4173);
 
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
