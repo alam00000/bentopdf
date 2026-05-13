@@ -49,7 +49,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     /* Path aliases (optional but helpful) */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/types": ["./src/js/types/index.ts"]
