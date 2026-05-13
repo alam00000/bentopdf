@@ -548,6 +548,11 @@ function rewriteHtmlPathsPlugin(): Plugin {
 export default defineConfig(({ mode }) => {
   applyModeEnv(mode);
 
+  // Local port overrides:
+  // - VITE_DEV_PORT controls the Vite dev server port (default: 5173).
+  // - VITE_PREVIEW_PORT controls the Vite preview server port (default: 4173).
+  //   Preview is pinned to 4173 unless explicitly overridden so local preview
+  //   runs consistently on a predictable URL.
   const devPort = Number(process.env.VITE_DEV_PORT || 5173);
   const previewPort = Number(process.env.VITE_PREVIEW_PORT || 4173);
 
