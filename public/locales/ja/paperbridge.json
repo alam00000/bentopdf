@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "dashboard": "ダッシュボード",
+    "newAssignment": "新しい課題",
+    "pdfTools": "PDFツール",
+    "themeLight": "ライトモードに切り替え",
+    "themeDark": "ダークモードに切り替え",
+    "backToDashboard": "ダッシュボード",
+    "menuOpen": "メニューを開く",
+    "menuClose": "メニューを閉じる"
+  },
+  "dashboard": {
+    "title": "課題一覧",
+    "subtitle_one": "{{count}}件の課題",
+    "subtitle_other": "{{count}}件の課題",
+    "stats": {
+      "assignments": "課題数",
+      "packetsGenerated": "生成済みパケット数",
+      "submissions": "提出数"
+    },
+    "empty": {
+      "title": "PaperBridgeへようこそ",
+      "description": "課題を作成し、QRコード付きのパケットを生成して生徒に配布し、スキャンしたPDFをアップロードすると提出物を自動的に整理できます。",
+      "cta": "最初の課題を作成する"
+    },
+    "card": {
+      "pages_one": "{{count}}ページ",
+      "pages_other": "{{count}}ページ",
+      "packets_one": "{{count}}パケット",
+      "packets_other": "{{count}}パケット",
+      "created": "作成日：{{date}}",
+      "downloadPackets": "パケット",
+      "delete": "課題を削除",
+      "deleteConfirm": "「{{title}}」を削除しますか？この操作は元に戻せません。"
+    },
+    "mode": {
+      "anonymous": "パケットQR",
+      "generic": "汎用QR"
+    }
+  },
+  "create": {
+    "pageTitle": "課題を作成",
+    "steps": {
+      "upload": "PDFをアップロード",
+      "details": "詳細と配置",
+      "download": "ダウンロード"
+    },
+    "step1": {
+      "heading": "課題のPDFをアップロード",
+      "description": "QRコード付きパケットのベースとして使用します。ファイルはブラウザ外に送信されません。",
+      "dropHere": "PDFをここにドロップ",
+      "dropOr": "またはクリックして参照",
+      "browse": "ファイルを参照",
+      "next": "次へ：詳細と配置"
+    },
+    "step2": {
+      "heading": "課題の詳細",
+      "description": "課題を設定し、各ページにQRコードを配置してください。",
+      "titleLabel": "課題タイトル",
+      "titlePlaceholder": "例：EX10 リレー ノート",
+      "classLabel": "クラス / 時限",
+      "classPlaceholder": "例：4時限",
+      "optional": "（任意）",
+      "qrModeLabel": "QRモード",
+      "modeAnonymousTitle": "匿名パケット",
+      "modeAnonymousDesc": "各コピーに固有のパケットIDが付与されます。複数の生徒のページをまとめてスキャンできます。",
+      "modeGenericTitle": "汎用課題",
+      "modeGenericDesc": "すべてのコピーに同じQRコードが付きます。メモや非公式な作業に適しています。",
+      "packetCountLabel": "生成するパケット数",
+      "packetCountHint": "生徒1人につき1枚のPDFです。印刷して1パケットずつ配布してください。",
+      "placementLabel": "QRコードの配置",
+      "placementApplyAll": "1ページ目の位置をすべてに適用",
+      "placementHint": "各サムネイルのQRマーカーをドラッグして位置を調整できます。デフォルトは印刷マージンを考慮した右上です。",
+      "back": "戻る",
+      "generate": "パケットを生成"
+    },
+    "step3": {
+      "heading": "パケットをダウンロード",
+      "description": "各パケットPDFにはQRコードがスタンプされており、印刷準備が完了しています。",
+      "generating": "パケットを生成中…",
+      "generatingPacket": "パケット {{current}} / {{total}} を生成中…",
+      "successPackets_one": "「{{title}}」のパケットを{{count}}件生成しました。",
+      "successPackets_other": "「{{title}}」のパケットを{{count}}件生成しました。",
+      "successGeneric": "「{{title}}」のQRコード付きPDFを生成しました。",
+      "savedNote": "課題をダッシュボードに保存しました。",
+      "downloadZipTitle": "ZIPをダウンロード",
+      "downloadZipSub": "すべてのパケットを1ファイルに",
+      "downloadZipCount": "ZIPをダウンロード（{{count}}パケット）",
+      "combinedTitle": "結合PDF",
+      "combinedSub": "すべてのパケットを1回の印刷で",
+      "combinedCount": "結合PDF（{{count}}パケット）",
+      "individualLabel": "または個別にダウンロード：",
+      "newAssignment": "新しい課題",
+      "backToDashboard": "ダッシュボード"
+    }
+  }
+}

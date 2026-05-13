@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "newAssignment": "Neue Aufgabe",
+    "pdfTools": "PDF-Werkzeuge",
+    "themeLight": "Zu hellem Modus wechseln",
+    "themeDark": "Zu dunklem Modus wechseln",
+    "backToDashboard": "Dashboard",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen"
+  },
+  "dashboard": {
+    "title": "Aufgaben",
+    "subtitle_one": "{{count}} Aufgabe",
+    "subtitle_other": "{{count}} Aufgaben",
+    "stats": {
+      "assignments": "Aufgaben",
+      "packetsGenerated": "Generierte Pakete",
+      "submissions": "Einreichungen"
+    },
+    "empty": {
+      "title": "Willkommen bei PaperBridge",
+      "description": "Erstellen Sie Aufgaben, generieren Sie QR-gestempelte Pakete für Schülerinnen und Schüler, und laden Sie gescannte PDFs hoch, um Einreichungen automatisch zu sortieren und zu organisieren.",
+      "cta": "Erste Aufgabe erstellen"
+    },
+    "card": {
+      "pages_one": "{{count}} Seite",
+      "pages_other": "{{count}} Seiten",
+      "packets_one": "{{count}} Paket",
+      "packets_other": "{{count}} Pakete",
+      "created": "Erstellt am {{date}}",
+      "downloadPackets": "Pakete",
+      "delete": "Aufgabe löschen",
+      "deleteConfirm": "„{{title}}“ löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+    },
+    "mode": {
+      "anonymous": "Paket-QR",
+      "generic": "Generischer QR"
+    }
+  },
+  "create": {
+    "pageTitle": "Aufgabe erstellen",
+    "steps": {
+      "upload": "PDF hochladen",
+      "details": "Details & Platzierung",
+      "download": "Herunterladen"
+    },
+    "step1": {
+      "heading": "Aufgaben-PDF hochladen",
+      "description": "Wird als Basis für QR-gestempelte Pakete verwendet. Keine Datei verlässt Ihren Browser.",
+      "dropHere": "PDF hier ablegen",
+      "dropOr": "oder klicken zum Durchsuchen",
+      "browse": "Dateien durchsuchen",
+      "next": "Weiter: Details & Platzierung"
+    },
+    "step2": {
+      "heading": "Aufgabendetails",
+      "description": "Konfigurieren Sie die Aufgabe und positionieren Sie dann den QR-Code auf jeder Seite.",
+      "titleLabel": "Aufgabentitel",
+      "titlePlaceholder": "z. B. EX10 Relais Mitschrift",
+      "classLabel": "Klasse / Periode",
+      "classPlaceholder": "z. B. Periode 4",
+      "optional": "(optional)",
+      "qrModeLabel": "QR-Modus",
+      "modeAnonymousTitle": "Anonymes Paket",
+      "modeAnonymousDesc": "Jede Kopie erhält eine eindeutige Paket-ID. Seiten mehrerer Schüler können zusammen gescannt werden.",
+      "modeGenericTitle": "Generische Aufgabe",
+      "modeGenericDesc": "Alle Kopien haben denselben QR-Code. Ideal für Mitschriften und informelle Arbeiten.",
+      "packetCountLabel": "Zu generierende Pakete",
+      "packetCountHint": "Ein PDF pro Schüler. Drucken und verteilen Sie ein Paket pro Person.",
+      "placementLabel": "QR-Code-Platzierung",
+      "placementApplyAll": "Position von Seite 1 auf alle anwenden",
+      "placementHint": "Ziehen Sie die QR-Markierung auf jedes Miniaturbild, um sie neu zu positionieren. Standard ist unten rechts mit drucksicherem Rand.",
+      "back": "Zurück",
+      "generate": "Pakete generieren"
+    },
+    "step3": {
+      "heading": "Pakete herunterladen",
+      "description": "Jedes Paket-PDF ist QR-gestempelt und druckbereit.",
+      "generating": "Pakete werden generiert…",
+      "generatingPacket": "Paket {{current}} von {{total}} wird generiert…",
+      "successPackets_one": "{{count}} Paket für „{{title}}“ generiert.",
+      "successPackets_other": "{{count}} Pakete für „{{title}}“ generiert.",
+      "successGeneric": "QR-gestempeltes PDF für „{{title}}“ generiert.",
+      "savedNote": "Aufgabe im Dashboard gespeichert.",
+      "downloadZipTitle": "ZIP herunterladen",
+      "downloadZipSub": "Alle Pakete in einer Datei",
+      "downloadZipCount": "ZIP herunterladen ({{count}} Pakete)",
+      "combinedTitle": "Kombiniertes PDF",
+      "combinedSub": "Alle Pakete, ein Druckauftrag",
+      "combinedCount": "Kombiniertes PDF ({{count}} Pakete)",
+      "individualLabel": "Oder einzelne Pakete herunterladen:",
+      "newAssignment": "Neue Aufgabe",
+      "backToDashboard": "Dashboard"
+    }
+  }
+}

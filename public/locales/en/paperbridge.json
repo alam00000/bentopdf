@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "newAssignment": "New Assignment",
+    "pdfTools": "PDF Tools",
+    "themeLight": "Switch to light mode",
+    "themeDark": "Switch to dark mode",
+    "backToDashboard": "Dashboard",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "dashboard": {
+    "title": "Assignments",
+    "subtitle_one": "{{count}} assignment",
+    "subtitle_other": "{{count}} assignments",
+    "stats": {
+      "assignments": "Assignments",
+      "packetsGenerated": "Packets Generated",
+      "submissions": "Submissions"
+    },
+    "empty": {
+      "title": "Welcome to PaperBridge",
+      "description": "Create assignments, generate QR-stamped packets for students, then upload scanned PDFs to automatically sort and organize submissions.",
+      "cta": "Create Your First Assignment"
+    },
+    "card": {
+      "pages_one": "{{count}} page",
+      "pages_other": "{{count}} pages",
+      "packets_one": "{{count}} packet",
+      "packets_other": "{{count}} packets",
+      "created": "Created {{date}}",
+      "downloadPackets": "Packets",
+      "delete": "Delete assignment",
+      "deleteConfirm": "Delete \"{{title}}\"? This cannot be undone."
+    },
+    "mode": {
+      "anonymous": "Packet QR",
+      "generic": "Generic QR"
+    }
+  },
+  "create": {
+    "pageTitle": "Create Assignment",
+    "steps": {
+      "upload": "Upload PDF",
+      "details": "Details & Placement",
+      "download": "Download"
+    },
+    "step1": {
+      "heading": "Upload your assignment PDF",
+      "description": "Used as the base for QR-stamped packets. No file leaves your browser.",
+      "dropHere": "Drop your PDF here",
+      "dropOr": "or click to browse",
+      "browse": "Browse files",
+      "next": "Next: Details & Placement"
+    },
+    "step2": {
+      "heading": "Assignment details",
+      "description": "Configure the assignment then position the QR code on each page.",
+      "titleLabel": "Assignment Title",
+      "titlePlaceholder": "e.g. EX10 Relays Note Catcher",
+      "classLabel": "Class / Period",
+      "classPlaceholder": "e.g. Period 4",
+      "optional": "(optional)",
+      "qrModeLabel": "QR Mode",
+      "modeAnonymousTitle": "Anonymous Packet",
+      "modeAnonymousDesc": "Each copy gets a unique packet ID. Pages from multiple students can be scanned together.",
+      "modeGenericTitle": "Generic Assignment",
+      "modeGenericDesc": "Every copy has the same QR code. Good for note catchers and informal work.",
+      "packetCountLabel": "Packets to generate",
+      "packetCountHint": "One PDF per student. Print and distribute one packet each.",
+      "placementLabel": "QR Code Placement",
+      "placementApplyAll": "Apply page 1 to all pages",
+      "placementHint": "Drag the teal QR marker on each thumbnail to reposition. Default is top-right with a 0.5\" print-safe margin.",
+      "back": "Back",
+      "generate": "Generate Packets"
+    },
+    "step3": {
+      "heading": "Download packets",
+      "description": "Each packet PDF is QR-stamped and ready to print.",
+      "generating": "Generating packets…",
+      "generatingPacket": "Generating packet {{current}} of {{total}}…",
+      "successPackets_one": "{{count}} packet generated for \"{{title}}\".",
+      "successPackets_other": "{{count}} packets generated for \"{{title}}\".",
+      "successGeneric": "QR-stamped PDF generated for \"{{title}}\".",
+      "savedNote": "Assignment saved to your dashboard.",
+      "downloadZipTitle": "Download ZIP",
+      "downloadZipSub": "All packets in one file",
+      "downloadZipCount": "Download ZIP ({{count}} packets)",
+      "combinedTitle": "Combined PDF",
+      "combinedSub": "All packets, one print job",
+      "combinedCount": "Combined PDF ({{count}} packets)",
+      "individualLabel": "Or download individual packets:",
+      "newAssignment": "New Assignment",
+      "backToDashboard": "Dashboard"
+    }
+  }
+}

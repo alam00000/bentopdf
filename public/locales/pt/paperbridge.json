@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "dashboard": "Painel",
+    "newAssignment": "Nova tarefa",
+    "pdfTools": "Ferramentas PDF",
+    "themeLight": "Mudar para modo claro",
+    "themeDark": "Mudar para modo escuro",
+    "backToDashboard": "Painel",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu"
+  },
+  "dashboard": {
+    "title": "Tarefas",
+    "subtitle_one": "{{count}} tarefa",
+    "subtitle_other": "{{count}} tarefas",
+    "stats": {
+      "assignments": "Tarefas",
+      "packetsGenerated": "Pacotes gerados",
+      "submissions": "Submissões"
+    },
+    "empty": {
+      "title": "Bem-vindo ao PaperBridge",
+      "description": "Crie tarefas, gere pacotes com códigos QR para os alunos e carregue PDFs digitalizados para organizar automaticamente as submissões.",
+      "cta": "Criar a sua primeira tarefa"
+    },
+    "card": {
+      "pages_one": "{{count}} página",
+      "pages_other": "{{count}} páginas",
+      "packets_one": "{{count}} pacote",
+      "packets_other": "{{count}} pacotes",
+      "created": "Criado em {{date}}",
+      "downloadPackets": "Pacotes",
+      "delete": "Eliminar tarefa",
+      "deleteConfirm": "Eliminar «{{title}}»? Esta ação não pode ser desfeita."
+    },
+    "mode": {
+      "anonymous": "QR de pacote",
+      "generic": "QR genérico"
+    }
+  },
+  "create": {
+    "pageTitle": "Criar tarefa",
+    "steps": {
+      "upload": "Carregar PDF",
+      "details": "Detalhes e posição",
+      "download": "Transferir"
+    },
+    "step1": {
+      "heading": "Carregue o PDF da sua tarefa",
+      "description": "Usado como base para os pacotes com códigos QR. Nenhum ficheiro sai do seu navegador.",
+      "dropHere": "Arraste o seu PDF para aqui",
+      "dropOr": "ou clique para procurar",
+      "browse": "Procurar ficheiros",
+      "next": "Seguinte: Detalhes e posição"
+    },
+    "step2": {
+      "heading": "Detalhes da tarefa",
+      "description": "Configure a tarefa e posicione o código QR em cada página.",
+      "titleLabel": "Título da tarefa",
+      "titlePlaceholder": "ex. Ficha de notas EX10 Relés",
+      "classLabel": "Turma / Período",
+      "classPlaceholder": "ex. Período 4",
+      "optional": "(opcional)",
+      "qrModeLabel": "Modo QR",
+      "modeAnonymousTitle": "Pacote anónimo",
+      "modeAnonymousDesc": "Cada cópia tem um ID de pacote único. Páginas de vários alunos podem ser digitalizadas juntas.",
+      "modeGenericTitle": "Tarefa genérica",
+      "modeGenericDesc": "Todas as cópias têm o mesmo código QR. Ideal para anotações e trabalho informal.",
+      "packetCountLabel": "Pacotes a gerar",
+      "packetCountHint": "Um PDF por aluno. Imprima e distribua um pacote por pessoa.",
+      "placementLabel": "Posição do código QR",
+      "placementApplyAll": "Aplicar posição da pág. 1 a todas",
+      "placementHint": "Arraste o marcador QR em cada miniatura para reposicioná-lo. Por predefinição, está no canto superior direito com margem de impressão segura.",
+      "back": "Voltar",
+      "generate": "Gerar pacotes"
+    },
+    "step3": {
+      "heading": "Transferir pacotes",
+      "description": "Cada PDF de pacote tem o código QR carimbado e está pronto para imprimir.",
+      "generating": "A gerar pacotes…",
+      "generatingPacket": "A gerar pacote {{current}} de {{total}}…",
+      "successPackets_one": "{{count}} pacote gerado para «{{title}}».",
+      "successPackets_other": "{{count}} pacotes gerados para «{{title}}».",
+      "successGeneric": "PDF com código QR gerado para «{{title}}».",
+      "savedNote": "Tarefa guardada no seu painel.",
+      "downloadZipTitle": "Transferir ZIP",
+      "downloadZipSub": "Todos os pacotes num único ficheiro",
+      "downloadZipCount": "Transferir ZIP ({{count}} pacotes)",
+      "combinedTitle": "PDF combinado",
+      "combinedSub": "Todos os pacotes, uma impressão",
+      "combinedCount": "PDF combinado ({{count}} pacotes)",
+      "individualLabel": "Ou transfira pacotes individuais:",
+      "newAssignment": "Nova tarefa",
+      "backToDashboard": "Painel"
+    }
+  }
+}

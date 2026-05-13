@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "newAssignment": "Nouveau devoir",
+    "pdfTools": "Outils PDF",
+    "themeLight": "Passer en mode clair",
+    "themeDark": "Passer en mode sombre",
+    "backToDashboard": "Tableau de bord",
+    "menuOpen": "Ouvrir le menu",
+    "menuClose": "Fermer le menu"
+  },
+  "dashboard": {
+    "title": "Devoirs",
+    "subtitle_one": "{{count}} devoir",
+    "subtitle_other": "{{count}} devoirs",
+    "stats": {
+      "assignments": "Devoirs",
+      "packetsGenerated": "Paquets générés",
+      "submissions": "Soumissions"
+    },
+    "empty": {
+      "title": "Bienvenue sur PaperBridge",
+      "description": "Créez des devoirs, générez des paquets estampillés QR pour les élèves, puis importez des PDFs scannés pour trier et organiser automatiquement les soumissions.",
+      "cta": "Créer votre premier devoir"
+    },
+    "card": {
+      "pages_one": "{{count}} page",
+      "pages_other": "{{count}} pages",
+      "packets_one": "{{count}} paquet",
+      "packets_other": "{{count}} paquets",
+      "created": "Créé le {{date}}",
+      "downloadPackets": "Paquets",
+      "delete": "Supprimer le devoir",
+      "deleteConfirm": "Supprimer « {{title}} » ? Cette action est irréversible."
+    },
+    "mode": {
+      "anonymous": "QR paquet",
+      "generic": "QR générique"
+    }
+  },
+  "create": {
+    "pageTitle": "Créer un devoir",
+    "steps": {
+      "upload": "Importer le PDF",
+      "details": "Détails et placement",
+      "download": "Télécharger"
+    },
+    "step1": {
+      "heading": "Importez votre PDF de devoir",
+      "description": "Utilisé comme base pour les paquets estampillés QR. Aucun fichier ne quitte votre navigateur.",
+      "dropHere": "Déposez votre PDF ici",
+      "dropOr": "ou cliquez pour parcourir",
+      "browse": "Parcourir les fichiers",
+      "next": "Suivant : Détails et placement"
+    },
+    "step2": {
+      "heading": "Détails du devoir",
+      "description": "Configurez le devoir puis positionnez le code QR sur chaque page.",
+      "titleLabel": "Titre du devoir",
+      "titlePlaceholder": "ex. Fiche de notes EX10 Relais",
+      "classLabel": "Classe / Période",
+      "classPlaceholder": "ex. Période 4",
+      "optional": "(facultatif)",
+      "qrModeLabel": "Mode QR",
+      "modeAnonymousTitle": "Paquet anonyme",
+      "modeAnonymousDesc": "Chaque copie a un identifiant de paquet unique. Les pages de plusieurs élèves peuvent être scannées ensemble.",
+      "modeGenericTitle": "Devoir générique",
+      "modeGenericDesc": "Toutes les copies ont le même code QR. Idéal pour les prises de notes et le travail informel.",
+      "packetCountLabel": "Paquets à générer",
+      "packetCountHint": "Un PDF par élève. Imprimez et distribuez un paquet par élève.",
+      "placementLabel": "Placement du code QR",
+      "placementApplyAll": "Appliquer la position de la page 1 à toutes",
+      "placementHint": "Faites glisser le marqueur QR sur chaque miniature pour le repositionner. Par défaut, il est en haut à droite avec une marge d'impression sécurisée.",
+      "back": "Retour",
+      "generate": "Générer les paquets"
+    },
+    "step3": {
+      "heading": "Télécharger les paquets",
+      "description": "Chaque PDF de paquet est estampillé QR et prêt à imprimer.",
+      "generating": "Génération des paquets…",
+      "generatingPacket": "Génération du paquet {{current}} sur {{total}}…",
+      "successPackets_one": "{{count}} paquet généré pour « {{title}} ».",
+      "successPackets_other": "{{count}} paquets générés pour « {{title}} ».",
+      "successGeneric": "PDF avec code QR généré pour « {{title}} ».",
+      "savedNote": "Devoir enregistré dans votre tableau de bord.",
+      "downloadZipTitle": "Télécharger le ZIP",
+      "downloadZipSub": "Tous les paquets en un seul fichier",
+      "downloadZipCount": "Télécharger le ZIP ({{count}} paquets)",
+      "combinedTitle": "PDF combiné",
+      "combinedSub": "Tous les paquets, une seule impression",
+      "combinedCount": "PDF combiné ({{count}} paquets)",
+      "individualLabel": "Ou téléchargez des paquets individuels :",
+      "newAssignment": "Nouveau devoir",
+      "backToDashboard": "Tableau de bord"
+    }
+  }
+}

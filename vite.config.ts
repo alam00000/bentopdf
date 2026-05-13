@@ -628,10 +628,8 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         input: {
-          main:
-            process.env.SIMPLE_MODE === 'true'
-              ? resolve(__dirname, 'simple-index.html')
-              : resolve(__dirname, 'index.html'),
+          main: resolve(__dirname, 'index.html'),
+          'create-assignment': resolve(__dirname, 'create-assignment.html'),
           about: resolve(__dirname, 'about.html'),
           contact: resolve(__dirname, 'contact.html'),
           faq: resolve(__dirname, 'faq.html'),

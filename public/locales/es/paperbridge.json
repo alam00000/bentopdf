@@ -1,0 +1,97 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "newAssignment": "Nueva tarea",
+    "pdfTools": "Herramientas PDF",
+    "themeLight": "Cambiar a modo claro",
+    "themeDark": "Cambiar a modo oscuro",
+    "backToDashboard": "Panel",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú"
+  },
+  "dashboard": {
+    "title": "Tareas",
+    "subtitle_one": "{{count}} tarea",
+    "subtitle_other": "{{count}} tareas",
+    "stats": {
+      "assignments": "Tareas",
+      "packetsGenerated": "Paquetes generados",
+      "submissions": "Entregas"
+    },
+    "empty": {
+      "title": "Bienvenido a PaperBridge",
+      "description": "Crea tareas, genera paquetes con códigos QR para los estudiantes y sube PDFs escaneados para organizar automáticamente las entregas.",
+      "cta": "Crear tu primera tarea"
+    },
+    "card": {
+      "pages_one": "{{count}} página",
+      "pages_other": "{{count}} páginas",
+      "packets_one": "{{count}} paquete",
+      "packets_other": "{{count}} paquetes",
+      "created": "Creado el {{date}}",
+      "downloadPackets": "Paquetes",
+      "delete": "Eliminar tarea",
+      "deleteConfirm": "¿Eliminar «{{title}}»? Esta acción no se puede deshacer."
+    },
+    "mode": {
+      "anonymous": "QR de paquete",
+      "generic": "QR genérico"
+    }
+  },
+  "create": {
+    "pageTitle": "Crear tarea",
+    "steps": {
+      "upload": "Subir PDF",
+      "details": "Detalles y posición",
+      "download": "Descargar"
+    },
+    "step1": {
+      "heading": "Sube el PDF de tu tarea",
+      "description": "Se usa como base para los paquetes con códigos QR. Ningún archivo sale de tu navegador.",
+      "dropHere": "Arrastra tu PDF aquí",
+      "dropOr": "o haz clic para buscar",
+      "browse": "Buscar archivos",
+      "next": "Siguiente: Detalles y posición"
+    },
+    "step2": {
+      "heading": "Detalles de la tarea",
+      "description": "Configura la tarea y luego posiciona el código QR en cada página.",
+      "titleLabel": "Título de la tarea",
+      "titlePlaceholder": "Ej: Apuntes de Relés EX10",
+      "classLabel": "Clase / Período",
+      "classPlaceholder": "Ej: Período 4",
+      "optional": "(opcional)",
+      "qrModeLabel": "Modo QR",
+      "modeAnonymousTitle": "Paquete anónimo",
+      "modeAnonymousDesc": "Cada copia tiene un ID de paquete único. Las páginas de varios estudiantes se pueden escanear juntas.",
+      "modeGenericTitle": "Tarea genérica",
+      "modeGenericDesc": "Todas las copias tienen el mismo código QR. Ideal para apuntes y trabajo informal.",
+      "packetCountLabel": "Paquetes a generar",
+      "packetCountHint": "Un PDF por estudiante. Imprime y distribuye un paquete por persona.",
+      "placementLabel": "Posición del código QR",
+      "placementApplyAll": "Aplicar la posición de la pág. 1 a todas",
+      "placementHint": "Arrastra el marcador QR en cada miniatura para reposicionarlo. Por defecto está en la esquina superior derecha con margen de impresión seguro.",
+      "back": "Atrás",
+      "generate": "Generar paquetes"
+    },
+    "step3": {
+      "heading": "Descargar paquetes",
+      "description": "Cada PDF de paquete tiene el código QR estampado y está listo para imprimir.",
+      "generating": "Generando paquetes…",
+      "generatingPacket": "Generando paquete {{current}} de {{total}}…",
+      "successPackets_one": "{{count}} paquete generado para «{{title}}».",
+      "successPackets_other": "{{count}} paquetes generados para «{{title}}».",
+      "successGeneric": "PDF con código QR generado para «{{title}}».",
+      "savedNote": "Tarea guardada en tu panel.",
+      "downloadZipTitle": "Descargar ZIP",
+      "downloadZipSub": "Todos los paquetes en un archivo",
+      "downloadZipCount": "Descargar ZIP ({{count}} paquetes)",
+      "combinedTitle": "PDF combinado",
+      "combinedSub": "Todos los paquetes, una sola impresión",
+      "combinedCount": "PDF combinado ({{count}} paquetes)",
+      "individualLabel": "O descarga paquetes individuales:",
+      "newAssignment": "Nueva tarea",
+      "backToDashboard": "Panel"
+    }
+  }
+}

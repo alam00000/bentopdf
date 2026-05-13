@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Assignment — PaperBridge</title>
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+    <!-- Apply theme before paint to prevent flash -->
+    <script>
+      (function () {
+        var t =
+          localStorage.getItem('pb-theme') ||
+          (window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light');
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+
+    <link href="src/css/styles.css" rel="stylesheet" />
+    <link href="src/css/paperbridge.css" rel="stylesheet" />
+  </head>
+
+  <body class="pb-page">
+    <!-- ── Navigation ── -->
+    <nav class="pb-nav">
+      <div class="pb-nav-inner">
+        <a href="index.html" class="pb-logo">
+          <div class="pb-logo-mark" aria-hidden="true">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="2"
+                y="4"
+                width="10"
+                height="10"
+                rx="1.5"
+                fill="white"
+                opacity=".9"
+              />
+              <rect
+                x="4"
+                y="2"
+                width="10"
+                height="10"
+                rx="1.5"
+                fill="white"
+                opacity=".5"
+              />
+              <path
+                d="M5 9 Q8 6 11 9"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <span class="pb-logo-text">PaperBridge</span>
+        </a>
+
+        <nav class="pb-nav-links" aria-label="Primary navigation">
+          <a
+            href="index.html"
+            class="pb-nav-link"
+            data-i18n="paperbridge:nav.dashboard"
+            >Dashboard</a
+          >
+          <a
+            href="create-assignment.html"
+            class="pb-nav-link pb-nav-link--active"
+            data-i18n="paperbridge:nav.newAssignment"
+            >New Assignment</a
+          >
+          <a
+            href="tools.html"
+            class="pb-nav-link"
+            data-i18n="paperbridge:nav.pdfTools"
+            >PDF Tools</a
+          >
+        </nav>
+
+        <div class="pb-nav-right">
+          <button
+            id="pb-theme-toggle"
+            class="pb-theme-btn"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            <span class="pb-icon-sun" style="display: none" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path
+                  d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                />
+              </svg>
+            </span>
+            <span class="pb-icon-moon" aria-hidden="true">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </span>
+          </button>
+          <button
+            id="pb-mobile-menu-btn"
+            class="pb-theme-btn"
+            style="display: none"
+            aria-label="Open menu"
+            data-i18n-title="paperbridge:nav.menuOpen"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="pb-mobile-menu" class="pb-mobile-menu">
+        <a
+          href="index.html"
+          class="pb-mobile-link"
+          data-i18n="paperbridge:nav.dashboard"
+          >Dashboard</a
+        >
+        <a
+          href="create-assignment.html"
+          class="pb-mobile-link pb-mobile-link--active"
+          data-i18n="paperbridge:nav.newAssignment"
+          >New Assignment</a
+        >
+        <a
+          href="tools.html"
+          class="pb-mobile-link"
+          data-i18n="paperbridge:nav.pdfTools"
+          >PDF Tools</a
+        >
+      </div>
+    </nav>
+
+    <main style="max-width: 42rem; margin: 0 auto; padding: 2.5rem 1.25rem">
+      <!-- ── Step indicator ── -->
+      <div class="pb-steps">
+        <div class="pb-step" data-step="1">
+          <div class="pb-step-circle">1</div>
+          <span
+            class="pb-step-label"
+            data-i18n="paperbridge:create.steps.upload"
+            >Upload PDF</span
+          >
+        </div>
+        <div class="pb-step-connector">
+          <div class="pb-step-connector-fill"></div>
+        </div>
+        <div class="pb-step" data-step="2">
+          <div class="pb-step-circle">2</div>
+          <span
+            class="pb-step-label"
+            data-i18n="paperbridge:create.steps.details"
+            >Details &amp; Placement</span
+          >
+        </div>
+        <div class="pb-step-connector">
+          <div class="pb-step-connector-fill"></div>
+        </div>
+        <div class="pb-step" data-step="3">
+          <div class="pb-step-circle">3</div>
+          <span
+            class="pb-step-label"
+            data-i18n="paperbridge:create.steps.download"
+            >Download</span
+          >
+        </div>
+      </div>
+
+      <!-- ─── Step 1: Upload ─── -->
+      <div id="step-1" class="step-panel">
+        <h1
+          class="pb-heading-lg"
+          style="margin-bottom: 0.5rem"
+          data-i18n="paperbridge:create.step1.heading"
+        >
+          Upload your assignment PDF
+        </h1>
+        <p
+          style="
+            color: var(--pb-text-2);
+            font-size: 0.875rem;
+            margin-bottom: 1.75rem;
+            line-height: 1.6;
+          "
+          data-i18n="paperbridge:create.step1.description"
+        >
+          Used as the base for QR-stamped packets. No file leaves your browser.
+        </p>
+
+        <!-- Drop zone -->
+        <div id="drop-zone" class="pb-dropzone">
+          <svg
+            width="40"
+            height="40"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--pb-text-3)"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            style="margin: 0 auto 0.875rem; display: block"
+            aria-hidden="true"
+          >
+            <polyline points="16 16 12 12 8 16" />
+            <line x1="12" y1="12" x2="12" y2="21" />
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
+          </svg>
+          <p
+            style="
+              font-weight: 600;
+              color: var(--pb-text-1);
+              margin-bottom: 0.3rem;
+              font-size: 0.9375rem;
+            "
+            data-i18n="paperbridge:create.step1.dropHere"
+          >
+            Drop your PDF here
+          </p>
+          <p
+            style="
+              color: var(--pb-text-3);
+              font-size: 0.8125rem;
+              margin-bottom: 1.25rem;
+            "
+            data-i18n="paperbridge:create.step1.dropOr"
+          >
+            or click to browse
+          </p>
+          <input
+            id="pdf-input"
+            type="file"
+            accept=".pdf"
+            style="display: none"
+          />
+          <button
+            id="browse-btn"
+            class="pb-btn pb-btn-secondary"
+            data-i18n="paperbridge:create.step1.browse"
+          >
+            Browse files
+          </button>
+        </div>
+
+        <!-- PDF info (hidden until loaded) -->
+        <div id="pdf-preview" style="display: none; margin-top: 1.25rem">
+          <div
+            class="pb-card"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 0.875rem 1rem;
+              margin-bottom: 1rem;
+            "
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--pb-primary-text)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="flex-shrink: 0"
+              aria-hidden="true"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+            <div style="min-width: 0; flex: 1">
+              <p
+                style="
+                  font-weight: 600;
+                  font-size: 0.875rem;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  color: var(--pb-text-1);
+                "
+                id="file-name"
+              ></p>
+              <p
+                style="
+                  color: var(--pb-text-3);
+                  font-size: 0.75rem;
+                  margin-top: 0.125rem;
+                "
+                id="file-meta"
+              ></p>
+            </div>
+            <button
+              id="remove-file-btn"
+              style="
+                background: none;
+                border: none;
+                padding: 0.25rem;
+                cursor: pointer;
+                line-height: 0;
+                border-radius: 4px;
+                color: var(--pb-text-3);
+                transition: color var(--pb-transition);
+              "
+              aria-label="Remove file"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+          <div
+            id="page-thumbnails"
+            style="
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 0.5rem;
+            "
+          ></div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 2rem">
+          <button
+            id="step1-next"
+            disabled
+            class="pb-btn pb-btn-primary"
+            data-i18n="paperbridge:create.step1.next"
+          >
+            Next: Details &amp; Placement
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ─── Step 2: Details + QR Placement ─── -->
+      <div id="step-2" class="step-panel" style="display: none">
+        <h1
+          class="pb-heading-lg"
+          style="margin-bottom: 0.5rem"
+          data-i18n="paperbridge:create.step2.heading"
+        >
+          Assignment details
+        </h1>
+        <p
+          style="
+            color: var(--pb-text-2);
+            font-size: 0.875rem;
+            margin-bottom: 1.75rem;
+            line-height: 1.6;
+          "
+          data-i18n="paperbridge:create.step2.description"
+        >
+          Configure the assignment then position the QR code on each page.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 1.25rem">
+          <!-- Title -->
+          <div>
+            <label class="pb-label" for="assignment-title">
+              <span data-i18n="paperbridge:create.step2.titleLabel"
+                >Assignment Title</span
+              >
+              <span style="color: var(--pb-danger)">&thinsp;*</span>
+            </label>
+            <input
+              id="assignment-title"
+              type="text"
+              class="pb-input"
+              placeholder="e.g. EX10 Relays Note Catcher"
+              data-i18n-placeholder="paperbridge:create.step2.titlePlaceholder"
+            />
+          </div>
+
+          <!-- Class label -->
+          <div>
+            <label class="pb-label" for="class-label">
+              <span data-i18n="paperbridge:create.step2.classLabel"
+                >Class / Period</span
+              >
+              <span
+                style="color: var(--pb-text-3); font-weight: 400"
+                data-i18n="paperbridge:create.step2.optional"
+              >
+                (optional)</span
+              >
+            </label>
+            <input
+              id="class-label"
+              type="text"
+              class="pb-input"
+              placeholder="e.g. Period 4"
+              data-i18n-placeholder="paperbridge:create.step2.classPlaceholder"
+            />
+          </div>
+
+          <!-- QR Mode -->
+          <div>
+            <label
+              class="pb-label"
+              data-i18n="paperbridge:create.step2.qrModeLabel"
+              >QR Mode</label
+            >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
+              "
+            >
+              <label style="cursor: pointer">
+                <input
+                  type="radio"
+                  name="qr-mode"
+                  value="anonymous"
+                  checked
+                  style="display: none"
+                />
+                <div
+                  class="pb-mode-card pb-mode-card--active qr-mode-card"
+                  data-mode="anonymous"
+                >
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 0.5rem;
+                      margin-bottom: 0.375rem;
+                    "
+                  >
+                    <svg
+                      class="pb-mode-icon"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <span
+                      style="
+                        font-weight: 600;
+                        font-size: 0.8125rem;
+                        color: var(--pb-text-1);
+                      "
+                      data-i18n="paperbridge:create.step2.modeAnonymousTitle"
+                      >Anonymous Packet</span
+                    >
+                  </div>
+                  <p
+                    style="
+                      font-size: 0.75rem;
+                      color: var(--pb-text-2);
+                      line-height: 1.5;
+                    "
+                    data-i18n="paperbridge:create.step2.modeAnonymousDesc"
+                  >
+                    Each copy gets a unique packet ID. Pages from multiple
+                    students can be scanned together.
+                  </p>
+                </div>
+              </label>
+              <label style="cursor: pointer">
+                <input
+                  type="radio"
+                  name="qr-mode"
+                  value="generic"
+                  style="display: none"
+                />
+                <div class="pb-mode-card qr-mode-card" data-mode="generic">
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 0.5rem;
+                      margin-bottom: 0.375rem;
+                    "
+                  >
+                    <svg
+                      class="pb-mode-icon"
+                      width="15"
+                      height="15"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="3" width="7" height="7" />
+                      <rect x="14" y="3" width="7" height="7" />
+                      <rect x="3" y="14" width="7" height="7" />
+                      <path d="M14 14h.01M14 18h.01M18 14h.01M18 18h4v3h-4z" />
+                    </svg>
+                    <span
+                      style="
+                        font-weight: 600;
+                        font-size: 0.8125rem;
+                        color: var(--pb-text-1);
+                      "
+                      data-i18n="paperbridge:create.step2.modeGenericTitle"
+                      >Generic Assignment</span
+                    >
+                  </div>
+                  <p
+                    style="
+                      font-size: 0.75rem;
+                      color: var(--pb-text-2);
+                      line-height: 1.5;
+                    "
+                    data-i18n="paperbridge:create.step2.modeGenericDesc"
+                  >
+                    Every copy has the same QR code. Good for note catchers and
+                    informal work.
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Packet count -->
+          <div id="packet-count-section">
+            <label
+              class="pb-label"
+              for="packet-count"
+              data-i18n="paperbridge:create.step2.packetCountLabel"
+              >Packets to generate</label
+            >
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <input
+                id="packet-count"
+                type="number"
+                min="1"
+                max="200"
+                value="30"
+                class="pb-input pb-input-sm"
+              />
+              <p
+                style="
+                  color: var(--pb-text-3);
+                  font-size: 0.75rem;
+                  line-height: 1.5;
+                "
+                data-i18n="paperbridge:create.step2.packetCountHint"
+              >
+                One PDF per student. Print and distribute one packet each.
+              </p>
+            </div>
+          </div>
+
+          <!-- QR Placement -->
+          <hr class="pb-divider" />
+          <div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.35rem;
+              "
+            >
+              <label
+                class="pb-label"
+                style="margin: 0"
+                data-i18n="paperbridge:create.step2.placementLabel"
+                >QR Code Placement</label
+              >
+              <button
+                id="apply-all-btn"
+                class="pb-btn pb-btn-ghost"
+                style="
+                  font-size: 0.75rem;
+                  padding: 0.2rem 0.6rem;
+                  font-weight: 500;
+                  text-decoration: underline;
+                  text-underline-offset: 2px;
+                "
+                data-i18n="paperbridge:create.step2.placementApplyAll"
+              >
+                Apply page 1 position to all
+              </button>
+            </div>
+            <p
+              style="
+                color: var(--pb-text-3);
+                font-size: 0.75rem;
+                margin-bottom: 1rem;
+                line-height: 1.5;
+              "
+              data-i18n="paperbridge:create.step2.placementHint"
+            >
+              Drag the QR marker on each thumbnail to reposition. Default is
+              top-right with a 0.5&quot; print-safe margin.
+            </p>
+            <div
+              id="placement-thumbnails"
+              style="
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 0.75rem;
+              "
+            ></div>
+          </div>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+          "
+        >
+          <button
+            id="step2-back"
+            class="pb-btn pb-btn-secondary"
+            data-i18n="paperbridge:create.step2.back"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back
+          </button>
+          <button
+            id="step2-next"
+            class="pb-btn pb-btn-primary"
+            data-i18n="paperbridge:create.step2.generate"
+          >
+            Generate Packets
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ─── Step 3: Download ─── -->
+      <div id="step-3" class="step-panel" style="display: none">
+        <h1
+          class="pb-heading-lg"
+          style="margin-bottom: 0.5rem"
+          data-i18n="paperbridge:create.step3.heading"
+        >
+          Download packets
+        </h1>
+        <p
+          style="
+            color: var(--pb-text-2);
+            font-size: 0.875rem;
+            margin-bottom: 1.75rem;
+            line-height: 1.6;
+          "
+          data-i18n="paperbridge:create.step3.description"
+        >
+          Each packet PDF is QR-stamped and ready to print.
+        </p>
+
+        <!-- Progress -->
+        <div id="generate-progress" style="margin-bottom: 1.5rem">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              margin-bottom: 0.75rem;
+            "
+          >
+            <div class="pb-spinner"></div>
+            <span
+              style="color: var(--pb-text-2); font-size: 0.875rem"
+              id="progress-label"
+              data-i18n="paperbridge:create.step3.generating"
+              >Generating packets…</span
+            >
+          </div>
+          <div class="pb-progress-track">
+            <div
+              id="progress-bar"
+              class="pb-progress-fill"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div id="generate-results" style="display: none">
+          <div class="pb-banner-success" style="margin-bottom: 1.5rem">
+            <svg
+              class="pb-banner-success-icon"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              style="flex-shrink: 0; margin-top: 0.1rem"
+              aria-hidden="true"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <div>
+              <p
+                style="
+                  font-weight: 600;
+                  font-size: 0.875rem;
+                  color: var(--pb-primary-text);
+                "
+                id="success-message"
+              ></p>
+              <p
+                style="
+                  font-size: 0.75rem;
+                  color: var(--pb-text-2);
+                  margin-top: 0.2rem;
+                "
+                data-i18n="paperbridge:create.step3.savedNote"
+              >
+                Assignment saved to your dashboard.
+              </p>
+            </div>
+          </div>
+
+          <!-- Download cards -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 0.75rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <button
+              id="download-zip-btn"
+              class="pb-download-card pb-download-card--primary"
+            >
+              <svg
+                class="pb-download-card-icon"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span
+                class="pb-download-card-title"
+                id="download-zip-label"
+                data-i18n="paperbridge:create.step3.downloadZipTitle"
+                >Download ZIP</span
+              >
+              <span
+                class="pb-download-card-sub"
+                data-i18n="paperbridge:create.step3.downloadZipSub"
+                >All packets in one file</span
+              >
+            </button>
+            <button id="download-combined-btn" class="pb-download-card">
+              <svg
+                class="pb-download-card-icon"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+              </svg>
+              <span
+                class="pb-download-card-title"
+                id="download-combined-label"
+                data-i18n="paperbridge:create.step3.combinedTitle"
+                >Combined PDF</span
+              >
+              <span
+                class="pb-download-card-sub"
+                data-i18n="paperbridge:create.step3.combinedSub"
+                >All packets, one print job</span
+              >
+            </button>
+          </div>
+
+          <!-- Individual packet list -->
+          <div id="packet-list-section">
+            <p
+              style="
+                color: var(--pb-text-3);
+                font-size: 0.75rem;
+                margin-bottom: 0.5rem;
+              "
+              data-i18n="paperbridge:create.step3.individualLabel"
+            >
+              Or download individual packets:
+            </p>
+            <div
+              id="packet-list"
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 0.375rem;
+                max-height: 16rem;
+                overflow-y: auto;
+                padding-right: 0.125rem;
+              "
+            ></div>
+          </div>
+
+          <hr class="pb-divider" />
+
+          <div style="display: flex; justify-content: space-between">
+            <button
+              id="step3-new"
+              class="pb-btn pb-btn-ghost"
+              data-i18n="paperbridge:create.step3.newAssignment"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              New Assignment
+            </button>
+            <a
+              href="index.html"
+              class="pb-btn pb-btn-secondary"
+              data-i18n="paperbridge:create.step3.backToDashboard"
+            >
+              Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ── QR placement zoom modal ── -->
+    <div
+      id="qr-modal"
+      class="pb-modal-overlay"
+      style="display: none"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="qr-modal-page-label"
+    >
+      <div class="pb-modal-box">
+        <div class="pb-modal-header">
+          <p
+            id="qr-modal-page-label"
+            style="
+              font-weight: 700;
+              font-size: 0.875rem;
+              color: var(--pb-text-1);
+            "
+          ></p>
+          <button
+            id="qr-modal-close"
+            class="pb-btn pb-btn-primary"
+            style="padding: 0.35rem 0.875rem; font-size: 0.8125rem"
+          >
+            Done
+          </button>
+        </div>
+        <div class="pb-modal-scroll">
+          <div
+            id="qr-modal-canvas-wrap"
+            style="position: relative; display: inline-block; flex-shrink: 0"
+          >
+            <canvas id="qr-modal-canvas" style="display: block"></canvas>
+            <!-- QR marker injected by JS -->
+          </div>
+        </div>
+        <p class="pb-modal-footer">
+          Drag the marker to reposition the QR code on this page.
+        </p>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="/src/js/paperbridge/create-assignment.ts"
+    ></script>
+  </body>
+</html>
