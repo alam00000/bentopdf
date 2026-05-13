@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 💬 Discord Community
-    url: https://discord.gg/Bgq3Ay3f2w
-    about: Join our Discord for quick questions and community support
-  - name: 📖 Documentation
-    url: https://github.com/nicholaschen09/BentoPDF#readme
-    about: Check the README for setup and usage instructions
+  - name: 📖 Repository Documentation
+    url: https://github.com/mrbdahlem/paperbridge#readme
+    about: Check the PaperBridge README for setup and repository scope.

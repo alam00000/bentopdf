@@ -1,7 +1,7 @@
 name: ❓ Question
-description: Ask a question about BentoPDF
-title: "(Question) "
-labels: ["question"]
+description: Ask a question about PaperBridge or the bundled PDF tools
+title: '(Question) '
+labels: ['question']
 body:
   - type: textarea
     id: question

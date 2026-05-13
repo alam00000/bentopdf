@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
-  text: 'Free, Open-Source PDF Tools'
-  tagline: Process PDFs entirely in your browser. No uploads. No servers. Complete privacy.
+  name: 'PaperBridge'
+  text: 'Repository Docs'
+  tagline: Development documentation for PaperBridge, with the bundled BentoPDF tools surface maintained as a secondary capability.
   actions:
     - theme: brand
       text: Get Started
@@ -14,29 +14,21 @@ hero:
       text: View Tools
       link: /tools/
     - theme: alt
-      text: Self-Host
-      link: /self-hosting/
-    - theme: alt
-      text: Commercial License
-      link: /licensing
+      text: Workflow
+      link: /contributing
 
 features:
   - icon: 🔒
-    title: 100% Private
-    details: Your files never leave your device. All processing happens locally in your browser using WebAssembly.
+    title: Paper Submission Workflows
+    details: PaperBridge focuses on printable assignments, QR-stamped packets, and classroom submission flows.
   - icon: ⚡
-    title: Fast & Free
-    details: No sign-ups, no limits, no watermarks. Process unlimited PDFs for free, forever.
+    title: Shared Tooling
+    details: The repository still includes the BentoPDF tools surface and its shared PDF processing infrastructure.
   - icon: 🛠️
-    title: 50+ Tools
-    details: Convert, edit, merge, split, compress, sign, OCR, and more. Everything you need in one place.
-
-  - icon: 🌐
-    title: Self-Hostable
-    details: Deploy on your own infrastructure. Docker, Vercel, Netlify, AWS, or fully air-gapped environments with self-hosted OCR workers, language data, and text-layer fonts.
+    title: Project Focused
+    details: The remaining docs are now centered on development, testing, workflow, and repository structure.
 ---
 
-## Offline OCR
+## Scope
 
-If you self-host BentoPDF in an air-gapped or offline environment, OCR needs more than the Tesseract worker and traineddata files. Searchable PDF output also needs the OCR text-layer fonts to be served internally.
-See [Self-Hosting](/self-hosting/) for the full setup, including `VITE_OCR_FONT_BASE_URL`, the bundled `ocr-fonts/` directory, and the updated air-gap workflow.
+These docs no longer try to be a full BentoPDF deployment manual. Product-specific hosting and operational guides have been removed from this repository so the docs can stay aligned with PaperBridge as the main project here.
