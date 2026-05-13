@@ -74,8 +74,6 @@ function loadPages(): Set<string> {
 
 const PAGES = loadPages();
 const PAPERBRIDGE_INPUT_NAMES = new Set(['main', 'create-assignment']);
-const DEV_PORT = Number(process.env.VITE_DEV_PORT || 5173);
-const PREVIEW_PORT = Number(process.env.VITE_PREVIEW_PORT || 4173);
 
 function selectBuildInputs(
   inputs: Record<string, string>
@@ -550,6 +548,9 @@ function rewriteHtmlPathsPlugin(): Plugin {
 export default defineConfig(({ mode }) => {
   applyModeEnv(mode);
 
+  const devPort = Number(process.env.VITE_DEV_PORT || 5173);
+  const previewPort = Number(process.env.VITE_PREVIEW_PORT || 4173);
+
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
   if (USE_CDN) {
@@ -636,13 +637,13 @@ export default defineConfig(({ mode }) => {
       },
     },
     optimizeDeps: {
-      noDiscovery: true,
+      entries: ['index.html', 'create-assignment.html'],
       include: ['pdfkit', 'blob-stream'],
       exclude: ['coherentpdf', 'wasm-vips'],
     },
     server: {
       host: process.env.VITE_DEV_HOST || 'localhost',
-      port: DEV_PORT,
+      port: devPort,
       strictPort: true,
       headers: {
         'Cross-Origin-Opener-Policy': 'same-origin',
@@ -650,7 +651,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     preview: {
-      port: PREVIEW_PORT,
+      port: previewPort,
       strictPort: true,
       headers: {
         'Cross-Origin-Opener-Policy': 'same-origin',
