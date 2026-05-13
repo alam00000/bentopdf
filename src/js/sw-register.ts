@@ -46,6 +46,23 @@ function sendTrustedHostsToSw(target: ServiceWorker | null | undefined) {
 if (isDevelopment) {
   console.log('[Dev Mode] Service Worker registration skipped in development');
   console.log('Service Worker will be active in production builds');
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => {
+        registration.unregister();
+      });
+    });
+  }
+
+  if ('caches' in window) {
+    caches.keys().then((keys) => {
+      keys
+        .filter((key) => key.startsWith('bentopdf-'))
+        .forEach((key) => {
+          caches.delete(key);
+        });
+    });
+  }
 } else if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swPath = `${import.meta.env.BASE_URL}sw.js`;

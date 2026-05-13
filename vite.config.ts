@@ -2,7 +2,8 @@ import { defineConfig } from 'vitest/config';
 import type { IncomingMessage, ServerResponse } from 'http';
 import http from 'http';
 import https from 'https';
-import type { Connect, Plugin } from 'vite';
+import { loadEnv } from 'vite';
+import type { Connect, Plugin, ViteDevServer } from 'vite';
 // import basicSsl from '@vitejs/plugin-basic-ssl';
 import tailwindcss from '@tailwindcss/vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
@@ -72,6 +73,14 @@ function loadPages(): Set<string> {
 }
 
 const PAGES = loadPages();
+
+function applyModeEnv(mode: string): void {
+  const env = loadEnv(mode, process.cwd(), '');
+
+  for (const [key, value] of Object.entries(env)) {
+    process.env[key] ??= value;
+  }
+}
 
 function getBasePath(): string {
   return (process.env.BASE_URL || '/').replace(/\/$/, '');
@@ -201,6 +210,66 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
   };
 }
 
+function createSimpleModeIndexMiddleware(
+  server: ViteDevServer
+): Connect.NextHandleFunction {
+  const devServiceWorkerCleanup = `<script>
+(() => {
+  if (!('serviceWorker' in navigator)) return;
+  Promise.all([
+    navigator.serviceWorker.getRegistrations().then((registrations) =>
+      Promise.all(registrations.map((registration) => registration.unregister()))
+    ),
+    'caches' in window
+      ? caches.keys().then((keys) =>
+          Promise.all(
+            keys
+              .filter((key) => key.startsWith('bentopdf-'))
+              .map((key) => caches.delete(key))
+          )
+        )
+      : Promise.resolve(),
+  ]).then(() => {
+    if (
+      navigator.serviceWorker.controller &&
+      sessionStorage.getItem('bentopdf-dev-sw-cleared') !== 'true'
+    ) {
+      sessionStorage.setItem('bentopdf-dev-sw-cleared', 'true');
+      window.location.reload();
+    }
+  });
+})();
+</script>`;
+
+  return async (
+    req: IncomingMessage,
+    res: ServerResponse,
+    next: Connect.NextFunction
+  ): Promise<void> => {
+    if (process.env.SIMPLE_MODE !== 'true' || !req.url) return next();
+
+    const [pathname] = req.url.split('?');
+    if (pathname !== '/' && pathname !== '/index.html') return next();
+
+    try {
+      const templatePath = resolve(__dirname, 'simple-index.html');
+      const template = fs.readFileSync(templatePath, 'utf-8');
+      const html = (await server.transformIndexHtml(req.url, template)).replace(
+        '</head>',
+        `${devServiceWorkerCleanup}</head>`
+      );
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/html');
+      res.setHeader('Cache-Control', 'no-store');
+      res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+      res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+      res.end(html);
+    } catch (error) {
+      next(error);
+    }
+  };
+}
+
 function buildCorsProxyAllowedHosts(): Set<string> {
   const hosts = new Set<string>([
     'cdn.jsdelivr.net',
@@ -226,6 +295,7 @@ function buildCorsProxyAllowedHosts(): Set<string> {
   ];
   for (const raw of envHostSources) {
     if (!raw) continue;
+    if (!/^https?:\/\//.test(raw)) continue;
     try {
       hosts.add(new URL(raw).hostname);
     } catch {
@@ -353,6 +423,7 @@ function languageRouterPlugin(): Plugin {
     configureServer(server) {
       server.middlewares.use(createCorsProxyMiddleware());
       server.middlewares.use(createLanguageMiddleware(true));
+      server.middlewares.use(createSimpleModeIndexMiddleware(server));
     },
     configurePreviewServer(server) {
       server.middlewares.use(createCorsProxyMiddleware());
@@ -449,7 +520,9 @@ function rewriteHtmlPathsPlugin(): Plugin {
   };
 }
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  applyModeEnv(mode);
+
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
   if (USE_CDN) {
