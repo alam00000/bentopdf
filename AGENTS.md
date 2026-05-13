@@ -13,3 +13,7 @@
 - Confirm approach before making structural changes
 - Request guidance on preferences (cross-platform vs specific tools, etc.)
 - Verify understanding of requirements before proceeding
+
+## Translation
+
+- Keep translations up to date as ui is updated
