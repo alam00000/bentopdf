@@ -13,6 +13,7 @@ export default [
       'coverage/**',
       'node_modules/**',
       '**/.vitepress/cache/**',
+      '**/.vitepress/dist/**',
       'public/**/*.min.js',
       'vendor/**',
       'bentopdf-pymupdf-wasm/**',

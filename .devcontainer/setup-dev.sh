@@ -105,6 +105,6 @@ else
   echo "Development environment is ready."
   echo ""
   echo "Useful commands:"
-  echo "  npm run dev -- --host 0.0.0.0"
+  echo "  npm run dev"
   echo "  npm run test:run"
 fi
