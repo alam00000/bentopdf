@@ -1,7 +1,7 @@
 name: 🐛 Bug Report
-description: Report a bug in BentoPDF
-title: "(Bug) "
-labels: ["bug", "needs triage"]
+description: Report a bug in PaperBridge or the bundled PDF tools
+title: '(Bug) '
+labels: ['bug', 'needs triage']
 body:
   - type: markdown
     attributes:
@@ -73,7 +73,7 @@ body:
     attributes:
       label: Browser Version
       description: e.g., Chrome 120, Firefox 121
-      placeholder: "120"
+      placeholder: '120'
     validations:
       required: true
 
@@ -92,11 +92,11 @@ body:
       required: true
 
   - type: input
-    id: bentopdf-version
+    id: app-version
     attributes:
-      label: BentoPDF Version
+      label: PaperBridge Version
       description: Check the footer or package.json
-      placeholder: "1.15.4"
+      placeholder: '0.0.1'
     validations:
       required: false
 

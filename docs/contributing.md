@@ -1,6 +1,6 @@
-# Contributing
+# Project Workflow
 
-This docs page covers repository contribution workflow for PaperBridge.
+This docs page covers the repository workflow for PaperBridge.
 
 ## Setup
 
@@ -17,7 +17,7 @@ npm run dev
 - `npm run ci:tools` for the bundled BentoPDF tools surface
 - `npm test -- --run` for the full repository suite
 
-## Contribution Areas
+## Project Areas
 
 - `src/js/paperbridge/` for PaperBridge workflows
 - `src/js/logic/` and `src/pages/` for the BentoPDF tools surface
@@ -26,4 +26,4 @@ npm run dev
 
 ## More Detail
 
-Use the root [CONTRIBUTING.md](https://github.com/mrbdahlem/paperbridge/blob/main/CONTRIBUTING.md) for the full contribution policy.
+Use the root [CONTRIBUTING.md](https://github.com/mrbdahlem/paperbridge/blob/main/CONTRIBUTING.md) for the full workflow.

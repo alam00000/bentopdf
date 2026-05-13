@@ -1,6 +1,6 @@
 # Licenses
 
-This repository no longer documents a separate commercial-versus-open-source split.
+This repository keeps licensing notices lightweight.
 
 ## Repository License
 

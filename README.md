@@ -9,7 +9,7 @@ This repository also still ships the BentoPDF tool surface as a secondary capabi
 
 - PaperBridge application code lives under `src/js/paperbridge/`.
 - Shared tool pages and PDF utilities remain available in the broader app.
-- Repository documentation now focuses on development and maintenance, not commercial terms or contributor agreements.
+- Repository documentation now focuses on development and maintenance, not commercial terms, deployment recipes, or external agreement processes.
 
 ## Development
 
@@ -30,10 +30,10 @@ Useful scripts:
 ## Documentation
 
 - [docs/getting-started.md](docs/getting-started.md) covers local repository setup.
-- [docs/contributing.md](docs/contributing.md) covers the lightweight contribution workflow.
+- [docs/contributing.md](docs/contributing.md) covers the lightweight project workflow.
 - [docs/licensing.md](docs/licensing.md) and [licensing.html](licensing.html) summarize the repository license notices.
 
-## Contributing
+## Project Workflow
 
 Use [CONTRIBUTING.md](CONTRIBUTING.md) for issue, pull request, and validation expectations.
 

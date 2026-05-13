@@ -1,6 +1,6 @@
-# Contributing to PaperBridge
+# PaperBridge Project Workflow
 
-This repository uses a lightweight contribution workflow. There is no separate contributor agreement process.
+This repository uses a lightweight project workflow. There is no separate external agreement process.
 
 ## Repository Setup
 
@@ -30,8 +30,4 @@ If you changed shared code or shared docs, prefer the full test suite plus the m
 
 ## Security Reporting
 
-Do not open a public issue for a security vulnerability. Contact the maintainer directly at [contact@bentopdf.com](mailto:contact@bentopdf.com).
-
-## Code of Conduct
-
-All contributors are expected to follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+Do not open a public issue for a security vulnerability. Use the private reporting path in [SECURITY.md](SECURITY.md).

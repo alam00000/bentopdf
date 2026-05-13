@@ -1,7 +1,7 @@
 name: 💡 Feature Request
-description: Suggest a new feature for BentoPDF
-title: "(Feature) "
-labels: ["enhancement", "needs triage"]
+description: Suggest a new feature for PaperBridge or the bundled PDF tools
+title: '(Feature) '
+labels: ['enhancement', 'needs triage']
 body:
   - type: textarea
     id: description

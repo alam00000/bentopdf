@@ -14,7 +14,7 @@ hero:
       text: View Tools
       link: /tools/
     - theme: alt
-      text: Contributing
+      text: Workflow
       link: /contributing
 
 features:
@@ -25,8 +25,8 @@ features:
     title: Shared Tooling
     details: The repository still includes the BentoPDF tools surface and its shared PDF processing infrastructure.
   - icon: 🛠️
-    title: Contributor Focused
-    details: The remaining docs are now centered on development, testing, contribution workflow, and repository structure.
+    title: Project Focused
+    details: The remaining docs are now centered on development, testing, workflow, and repository structure.
 ---
 
 ## Scope

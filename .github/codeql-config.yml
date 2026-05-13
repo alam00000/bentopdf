@@ -1,4 +1,4 @@
-name: BentoPDF CodeQL config
+name: PaperBridge CodeQL config
 
 paths-ignore:
   - dist
@@ -8,7 +8,6 @@ paths-ignore:
   - vendor
   - bentopdf-pymupdf-wasm
   - libreoffice-wasm-package
-  - bentopdf-airgap-bundle
   - public/pdfjs-viewer
   - public/pdfjs-annotation-viewer
   - public/libreoffice-wasm
