@@ -237,11 +237,11 @@ Student identification is handled outside MVP 0. Students may write their names 
 Example hidden metadata behind the QR token:
 
 {
-  "assignmentId": "ex10-relays",
-  "templateVersion": 1,
-  "pageNumber": 2,
-  "packetId": null,
-  "studentId": null
+"assignmentId": "ex10-relays",
+"templateVersion": 1,
+"pageNumber": 2,
+"packetId": null,
+"studentId": null
 }
 
 Advantages:
@@ -278,11 +278,11 @@ This mode is the recommended MVP 0 default for collected assignments.
 Example hidden metadata behind the QR token:
 
 {
-  "assignmentId": "ex10-relays",
-  "templateVersion": 1,
-  "packetId": "7KQ4M",
-  "pageNumber": 2,
-  "studentId": null
+"assignmentId": "ex10-relays",
+"templateVersion": 1,
+"packetId": "7KQ4M",
+"pageNumber": 2,
+"studentId": null
 }
 
 Advantages:
@@ -324,11 +324,11 @@ Student ID or LMS user ID
 Example hidden metadata behind the QR token:
 
 {
-  "assignmentId": "ex10-relays",
-  "templateVersion": 1,
-  "packetId": "7KQ4M",
-  "pageNumber": 2,
-  "studentId": "student_928174"
+"assignmentId": "ex10-relays",
+"templateVersion": 1,
+"packetId": "7KQ4M",
+"pageNumber": 2,
+"studentId": "student_928174"
 }
 
 ## **QR code design**
@@ -388,7 +388,7 @@ Basic thumbnail previews
 Teacher enters:
 
 Assignment title  
-Number of anonymous packets to generate, if using packet mode  
+Number of anonymous packets to generate, if using packet mode
 
 Teacher chooses print mode:
 
@@ -441,41 +441,41 @@ The system stores a template record based on the PDF form structure.
 Example:
 
 {
-  "assignmentId": "ex10-relays",
-  "templateVersion": 1,
-  "title": "EX10 Relays Note Catcher",
-  "pageCount": 4,
-  "pages": [
-    {
-      "pageNumber": 1,
-      "width": 612,
-      "height": 792,
-      "fields": [
-        {
-          "fieldId": "student.name",
-          "type": "text",
-          "rect": {
-            "x": 72,
-            "y": 680,
-            "width": 240,
-            "height": 32
-          },
-          "purpose": "student_name"
-        },
-        {
-          "fieldId": "q01.prediction",
-          "type": "text",
-          "rect": {
-            "x": 72,
-            "y": 430,
-            "width": 468,
-            "height": 80
-          },
-          "purpose": "answer"
-        }
-      ]
-    }
-  ]
+"assignmentId": "ex10-relays",
+"templateVersion": 1,
+"title": "EX10 Relays Note Catcher",
+"pageCount": 4,
+"pages": [
+{
+"pageNumber": 1,
+"width": 612,
+"height": 792,
+"fields": [
+{
+"fieldId": "student.name",
+"type": "text",
+"rect": {
+"x": 72,
+"y": 680,
+"width": 240,
+"height": 32
+},
+"purpose": "student_name"
+},
+{
+"fieldId": "q01.prediction",
+"type": "text",
+"rect": {
+"x": 72,
+"y": 430,
+"width": 468,
+"height": 80
+},
+"purpose": "answer"
+}
+]
+}
+]
 }
 
 This metadata is used later for cropping scanned submissions and extracting digital field values.
@@ -571,10 +571,10 @@ If the PDF still contains AcroForm field values, the system extracts values dire
 Example extracted result:
 
 {
-  "student.name": "Maya Rodriguez",
-  "student.period": "4",
-  "q01.prediction": "The relay allows a small signal to control a larger circuit.",
-  "q02.explanation": "The coil creates a magnetic field that moves the switch."
+"student.name": "Maya Rodriguez",
+"student.period": "4",
+"q01.prediction": "The relay allows a small signal to control a larger circuit.",
+"q02.explanation": "The coil creates a magnetic field that moves the switch."
 }
 
 If the PDF was flattened or printed to PDF, the system treats it like a scanned submission and uses visual page processing.
@@ -596,28 +596,28 @@ Extracted AcroForm values, later
 Example MVP 0 output structure:
 
 EX10 Relays/  
-  packet-7KQ4M/  
-    submission.pdf  
-    metadata.json  
-    pages/  
-      page-1-preview.jpg  
-      page-2-preview.jpg
+ packet-7KQ4M/  
+ submission.pdf  
+ metadata.json  
+ pages/  
+ page-1-preview.jpg  
+ page-2-preview.jpg
 
 Example later output structure with answer crops:
 
 EX10 Relays/  
-  packet-7KQ4M/  
-    submission.pdf  
-    metadata.json  
-    pages/  
-      page-1-original.jpg  
-      page-1-processed.png  
-      page-2-original.jpg  
-      page-2-processed.png  
-    crops/  
-      student.name.png  
-      q01.prediction.png  
-      q02.explanation.png
+ packet-7KQ4M/  
+ submission.pdf  
+ metadata.json  
+ pages/  
+ page-1-original.jpg  
+ page-1-processed.png  
+ page-2-original.jpg  
+ page-2-processed.png  
+ crops/  
+ student.name.png  
+ q01.prediction.png  
+ q02.explanation.png
 
 ## **Cropping answer zones**
 
@@ -760,24 +760,24 @@ MVP 0 should probably export final PDFs and a summary CSV first.
 Example Drive structure:
 
 Paper Submissions/  
-  EX10 Relays/  
-    Complete/  
-      packet-7KQ4M.pdf  
-      packet-J82PA.pdf  
-    Needs Review/  
-      packet-X92KD.pdf  
-    Metadata/  
-      submissions.csv
+ EX10 Relays/  
+ Complete/  
+ packet-7KQ4M.pdf  
+ packet-J82PA.pdf  
+ Needs Review/  
+ packet-X92KD.pdf  
+ Metadata/  
+ submissions.csv
 
 A later detailed export option:
 
 Paper Submissions/  
-  EX10 Relays/  
-    packet-7KQ4M/  
-      submission.pdf  
-      metadata.json  
-      q01.prediction.png  
-      q02.explanation.png
+ EX10 Relays/  
+ packet-7KQ4M/  
+ submission.pdf  
+ metadata.json  
+ q01.prediction.png  
+ q02.explanation.png
 
 Example MVP 0 CSV columns:
 
@@ -890,116 +890,116 @@ The teacher-facing product should use normal assignment and submission screens. 
 ### **Assignment**
 
 {
-  "id": "assign_123",
-  "title": "EX10 Relays Note Catcher",
-  "ownerUserId": "user_456",
-  "templateVersion": 1,
-  "pageCount": 4,
-  "classLabel": "Period 4",
-  "createdAt": "2026-05-12T19:00:00Z"
+"id": "assign_123",
+"title": "EX10 Relays Note Catcher",
+"ownerUserId": "user_456",
+"templateVersion": 1,
+"pageCount": 4,
+"classLabel": "Period 4",
+"createdAt": "2026-05-12T19:00:00Z"
 }
 
 ### **Packet**
 
 {
-  "id": "packet_7KQ4M",
-  "assignmentId": "assign_123",
-  "packetCode": "7KQ4M",
-  "studentId": null,
-  "mode": "anonymous",
-  "createdAt": "2026-05-12T19:10:00Z"
+"id": "packet_7KQ4M",
+"assignmentId": "assign_123",
+"packetCode": "7KQ4M",
+"studentId": null,
+"mode": "anonymous",
+"createdAt": "2026-05-12T19:10:00Z"
 }
 
 ### **QR token**
 
 {
-  "token": "7KQ4M2",
-  "assignmentId": "assign_123",
-  "templateVersion": 1,
-  "packetId": "packet_7KQ4M",
-  "pageNumber": 2,
-  "expiresAt": null
+"token": "7KQ4M2",
+"assignmentId": "assign_123",
+"templateVersion": 1,
+"packetId": "packet_7KQ4M",
+"pageNumber": 2,
+"expiresAt": null
 }
 
 ### **Scan batch**
 
 {
-  "id": "scan_batch_789",
-  "assignmentId": "assign_123",
-  "source": "teacher-upload",
-  "status": "processed",
-  "createdAt": "2026-05-12T20:15:00Z"
+"id": "scan_batch_789",
+"assignmentId": "assign_123",
+"source": "teacher-upload",
+"status": "processed",
+"createdAt": "2026-05-12T20:15:00Z"
 }
 
 ### **Submission**
 
 {
-  "id": "sub_abc123",
-  "assignmentId": "assign_123",
-  "packetId": "packet_7KQ4M",
-  "status": "complete",
-  "source": "teacher-scan",
-  "createdAt": "2026-05-12T20:15:00Z",
-  "submittedAt": "2026-05-12T20:18:00Z"
+"id": "sub_abc123",
+"assignmentId": "assign_123",
+"packetId": "packet_7KQ4M",
+"status": "complete",
+"source": "teacher-scan",
+"createdAt": "2026-05-12T20:15:00Z",
+"submittedAt": "2026-05-12T20:18:00Z"
 }
 
 ### **Submission page**
 
 {
-  "submissionId": "sub_abc123",
-  "scanBatchId": "scan_batch_789",
-  "pageNumber": 2,
-  "qrFound": true,
-  "qrConfidence": 0.96,
-  "status": "accepted",
-  "originalPagePath": "uploads/scan-001-page-7.png",
-  "previewPath": "pages/page-2-preview.jpg"
+"submissionId": "sub_abc123",
+"scanBatchId": "scan_batch_789",
+"pageNumber": 2,
+"qrFound": true,
+"qrConfidence": 0.96,
+"status": "accepted",
+"originalPagePath": "uploads/scan-001-page-7.png",
+"previewPath": "pages/page-2-preview.jpg"
 }
 
 ### **Template page, Phase 2**
 
 {
-  "assignmentId": "assign_123",
-  "templateVersion": 1,
-  "pageNumber": 2,
-  "width": 612,
-  "height": 792,
-  "fields": []
+"assignmentId": "assign_123",
+"templateVersion": 1,
+"pageNumber": 2,
+"width": 612,
+"height": 792,
+"fields": []
 }
 
 ### **Field zone, Phase 2**
 
 {
-  "assignmentId": "assign_123",
-  "templateVersion": 1,
-  "pageNumber": 2,
-  "fieldId": "q02.explanation",
-  "fieldType": "text",
-  "rect": {
-    "x": 72,
-    "y": 330,
-    "width": 468,
-    "height": 90
-  }
+"assignmentId": "assign_123",
+"templateVersion": 1,
+"pageNumber": 2,
+"fieldId": "q02.explanation",
+"fieldType": "text",
+"rect": {
+"x": 72,
+"y": 330,
+"width": 468,
+"height": 90
+}
 }
 
 ### **Cropped response, Phase 2**
 
 {
-  "submissionId": "sub_abc123",
-  "fieldId": "q02.explanation",
-  "pageNumber": 2,
-  "type": "image",
-  "imagePath": "crops/q02.explanation.png"
+"submissionId": "sub_abc123",
+"fieldId": "q02.explanation",
+"pageNumber": 2,
+"type": "image",
+"imagePath": "crops/q02.explanation.png"
 }
 
 ### **Digital response value, Phase 3**
 
 {
-  "submissionId": "sub_abc123",
-  "fieldId": "q02.explanation",
-  "type": "text",
-  "value": "The coil creates a magnetic field that closes the switch."
+"submissionId": "sub_abc123",
+"fieldId": "q02.explanation",
+"type": "text",
+"value": "The coil creates a magnetic field that closes the switch."
 }
 
 ## **MVP 0 teacher scan upload interface**
