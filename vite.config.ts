@@ -74,6 +74,8 @@ function loadPages(): Set<string> {
 
 const PAGES = loadPages();
 const PAPERBRIDGE_INPUT_NAMES = new Set(['main', 'create-assignment']);
+const DEV_PORT = Number(process.env.VITE_DEV_PORT || 5173);
+const PREVIEW_PORT = Number(process.env.VITE_PREVIEW_PORT || 4173);
 
 function selectBuildInputs(
   inputs: Record<string, string>
@@ -634,17 +636,22 @@ export default defineConfig(({ mode }) => {
       },
     },
     optimizeDeps: {
+      noDiscovery: true,
       include: ['pdfkit', 'blob-stream'],
       exclude: ['coherentpdf', 'wasm-vips'],
     },
     server: {
       host: process.env.VITE_DEV_HOST || 'localhost',
+      port: DEV_PORT,
+      strictPort: true,
       headers: {
         'Cross-Origin-Opener-Policy': 'same-origin',
         'Cross-Origin-Embedder-Policy': 'require-corp',
       },
     },
     preview: {
+      port: PREVIEW_PORT,
+      strictPort: true,
       headers: {
         'Cross-Origin-Opener-Policy': 'same-origin',
         'Cross-Origin-Embedder-Policy': 'require-corp',
