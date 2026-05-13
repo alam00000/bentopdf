@@ -1,4 +1,4 @@
-name: BentoPDF Tools CI
+name: PaperBridge Tools CI
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint, typecheck, test, and build BentoPDF tools
+      - name: Lint, typecheck, test, and build the tools surface
         run: npm run ci:tools

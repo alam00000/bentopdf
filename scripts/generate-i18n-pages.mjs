@@ -84,7 +84,7 @@ function injectOrganizationLd(document) {
     url: SITE_URL,
     logo: `${SITE_URL}/images/favicon.svg`,
     sameAs: [
-      'https://github.com/alam00000/bentopdf',
+      'https://github.com/mrbdahlem/paperbridge',
       'https://x.com/BentoPDF',
       'https://www.linkedin.com/company/bentopdf/',
       'https://www.instagram.com/thebentopdf/',

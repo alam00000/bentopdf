@@ -79,8 +79,8 @@ RUN --mount=type=secret,id=VITE_CORS_PROXY_URL,required=false \
 # Production stage
 FROM quay.io/nginx/nginx-unprivileged:alpine-slim
 
-LABEL org.opencontainers.image.source="https://github.com/alam00000/bentopdf"
-LABEL org.opencontainers.image.url="https://github.com/alam00000/bentopdf"
+LABEL org.opencontainers.image.source="https://github.com/mrbdahlem/paperbridge"
+LABEL org.opencontainers.image.url="https://github.com/mrbdahlem/paperbridge"
 
 # global arg to local arg
 ARG BASE_URL

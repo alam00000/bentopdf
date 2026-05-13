@@ -1,77 +1,50 @@
 # Getting Started
 
-Welcome to BentoPDF! This guide will help you get up and running quickly.
+This guide is for working on the PaperBridge repository locally.
 
-## What is BentoPDF?
+## What Lives Here
 
-BentoPDF is a free, open-source, privacy-first PDF toolkit that runs **entirely in your browser**. Your files never leave your device—all processing happens locally using WebAssembly (WASM) technology.
+- PaperBridge: the classroom packet/submission workflow under `src/js/paperbridge/`
+- BentoPDF tools: the broader PDF tool surface that is still bundled in the app
+- Shared infrastructure: build scripts, translations, docs, and tests used by both surfaces
 
-## Quick Start
-
-### Option 1: Use the Hosted Version
-
-Visit [bentopdf.com](https://bentopdf.com) to use BentoPDF instantly—no installation required.
-
-### Option 2: Self-Host with Docker
-
-> [!IMPORTANT]
-> Office file conversion requires `SharedArrayBuffer`, which needs both:
->
-> - `Cross-Origin-Opener-Policy: same-origin`
-> - `Cross-Origin-Embedder-Policy: require-corp`
-> - a secure context
->
-> `http://localhost` works for local testing because browsers treat loopback as trustworthy. `http://192.168.x.x` or other LAN IPs usually do not, so Word/Excel/PowerPoint conversions will require HTTPS when accessed from other devices on your network.
+## Local Setup
 
 ```bash
-# Pull and run the Docker image
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
-
-# Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
-docker compose up -d
+git clone https://github.com/mrbdahlem/paperbridge.git
+cd paperbridge
+npm install
 ```
 
-Then open `http://localhost:3000` in your browser.
-
-> [!NOTE]
-> If you are preparing an air-gapped OCR deployment, you must host the OCR text-layer fonts internally in addition to the Tesseract worker, core runtime, and traineddata files. The full setup is documented in [Self-Hosting](/self-hosting/), including `VITE_OCR_FONT_BASE_URL` and the bundled `ocr-fonts/` directory.
-
-### Option 3: Build from Source
+Start the dev server:
 
 ```bash
-# Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
-
-# Install dependencies
-npm install
-
-# Start development server
 npm run dev
 ```
 
-## Features at a Glance
+The app is available at `http://localhost:5173` by default.
 
-| Category             | Tools                                                           |
-| -------------------- | --------------------------------------------------------------- |
-| **Convert to PDF**   | Word, Excel, PowerPoint, Images, Markdown, EPUB, MOBI, and more |
-| **Convert from PDF** | JPG, PNG, Text, Excel, SVG, and more                            |
-| **Edit & Annotate**  | Sign, Highlight, Redact, Fill Forms, Add Stamps                 |
-| **Organize**         | Merge, Split, Rotate, Delete Pages, Reorder                     |
-| **Optimize**         | Compress, Repair, Flatten, OCR                                  |
-| **Security**         | Encrypt, Decrypt, Remove Restrictions                           |
+## Validation Commands
 
-## Browser Support
+Use the narrowest command that matches your change:
 
-BentoPDF works best on modern browsers:
+- `npm run ci:paperbridge` for PaperBridge-specific work
+- `npm run ci:tools` for the BentoPDF tools surface
+- `npm test -- --run` for the full repository suite
+- `npm run docs:dev` for local docs work
 
-- ✅ Chrome/Edge 90+
-- ✅ Firefox 90+
-- ✅ Safari 15+
+## Project Areas
+
+| Area                  | Purpose                                             |
+| --------------------- | --------------------------------------------------- |
+| `src/js/paperbridge/` | PaperBridge assignment, packet, and dashboard flows |
+| `src/pages/`          | Tool pages and shared entry pages                   |
+| `src/js/logic/`       | BentoPDF tool logic                                 |
+| `src/tests/`          | Repository test suite                               |
+| `docs/`               | Repository documentation                            |
 
 ## Next Steps
 
-- [Explore all tools](/tools/)
-- [Self-host BentoPDF](/self-hosting/)
-- [Contribute to the project](/contributing)
+- [Contributing](/contributing)
+- [Tools Reference](/tools/)
+- [Licenses](/licensing)

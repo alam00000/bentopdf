@@ -135,7 +135,7 @@ function main() {
   console.log(`📦 Distribution: dist-${newVersion}.zip`);
   console.log(`📦 Distribution (simple): dist-simple-${newVersion}.zip`);
   console.log(
-    `🏷️  GitHub release: https://github.com/alam00000/bentopdf/releases/tag/${tagName}`
+    `🏷️  GitHub release: https://github.com/mrbdahlem/paperbridge/releases/tag/${tagName}`
   );
 }
 

@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-    title: "BentoPDF Docs",
-    description: "Documentation for BentoPDF - The free, open-source, privacy-first PDF toolkit",
+    title: "PaperBridge Docs",
+    description: "Repository documentation for PaperBridge and the bundled BentoPDF tools surface",
     base: '/docs/',
 
     themeConfig: {
@@ -12,9 +12,8 @@ export default defineConfig({
             { text: 'Home', link: '/' },
             { text: 'Getting Started', link: '/getting-started' },
             { text: 'Tools', link: '/tools/' },
-            { text: 'Self-Hosting', link: '/self-hosting/' },
             { text: 'Contributing', link: '/contributing' },
-            { text: 'Commercial License', link: '/licensing' }
+            { text: 'Licenses', link: '/licensing' }
         ],
 
         sidebar: {
@@ -175,44 +174,27 @@ export default defineConfig({
                     ]
                 }
             ],
-            '/self-hosting/': [
-                {
-                    text: 'Self-Hosting Guide',
-                    items: [
-                        { text: 'Overview', link: '/self-hosting/' },
-                        { text: 'Docker', link: '/self-hosting/docker' },
-                        { text: 'Vercel', link: '/self-hosting/vercel' },
-                        { text: 'Netlify', link: '/self-hosting/netlify' },
-                        { text: 'Cloudflare Pages', link: '/self-hosting/cloudflare' },
-                        { text: 'AWS S3 + CloudFront', link: '/self-hosting/aws' },
-                        { text: 'Hostinger', link: '/self-hosting/hostinger' },
-                        { text: 'Nginx', link: '/self-hosting/nginx' },
-                        { text: 'Apache', link: '/self-hosting/apache' }
-                    ]
-                }
-            ],
             '/': [
                 {
                     text: 'Guide',
                     items: [
                         { text: 'Getting Started', link: '/getting-started' },
                         { text: 'Tools Reference', link: '/tools/' },
-                        { text: 'Self-Hosting', link: '/self-hosting/' },
                         { text: 'Contributing', link: '/contributing' },
-                        { text: 'Commercial License', link: '/licensing' }
+                        { text: 'Licenses', link: '/licensing' }
                     ]
                 }
             ]
         },
 
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/alam00000/bentopdf' },
+            { icon: 'github', link: 'https://github.com/mrbdahlem/paperbridge' },
             { icon: 'discord', link: 'https://discord.gg/Bgq3Ay3f2w' }
         ],
 
         footer: {
-            message: 'Dual-licensed under AGPL-3.0 and Commercial License.',
-            copyright: 'Copyright © 2026 BentoPDF'
+            message: 'See the repository and dependency licenses before redistribution.',
+            copyright: 'Copyright © 2026 PaperBridge repository docs'
         },
 
         search: {
