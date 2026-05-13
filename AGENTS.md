@@ -109,3 +109,7 @@ If a discovery does not fit an existing knowledge file, create a new `.agent/kno
 2. Documentation is updated for any workflow/runtime/build change.
 3. Notes are recorded in the appropriate log files.
 4. If following a plan, appropriate step(s) are marked as complete.
+
+## PR Comments
+
+- make sure to check inline review comments when looking for comments in PR reviews.
