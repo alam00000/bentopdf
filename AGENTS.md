@@ -17,6 +17,7 @@
 ## Working Rules
 
 - From the package root you can call `npm test`; all tests must pass before commit.
+- Redirect and cache test output to a temp file, then inspect or tail that file instead of streaming long test logs directly.
 - Treat generated outputs (`dist`, caches, `node_modules`) as out of scope for manual edits.
 - Add or update tests for the code you change, even if nobody asked.
 - For tests that intentionally exercise failure/error paths, add explicit `[TEST]` log messages so expected noisy output is clearly distinguishable from real regressions.
