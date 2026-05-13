@@ -572,6 +572,8 @@ export default defineConfig(({ mode }) => {
   //   runs consistently on a predictable URL.
   const devPort = parseConfiguredPort('VITE_DEV_PORT', 5173);
   const previewPort = parseConfiguredPort('VITE_PREVIEW_PORT', 4173);
+  const enableDependencyOptimizer =
+    process.env.VITE_ENABLE_DEP_OPTIMIZER === 'true';
 
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
@@ -658,11 +660,23 @@ export default defineConfig(({ mode }) => {
         zlib: 'browserify-zlib',
       },
     },
-    optimizeDeps: {
-      entries: ['index.html', 'create-assignment.html'],
-      include: ['pdfkit', 'blob-stream', 'jszip', 'sortablejs', 'node-forge'],
-      exclude: ['coherentpdf', 'wasm-vips'],
-    },
+    optimizeDeps: enableDependencyOptimizer
+      ? {
+          entries: ['index.html', 'create-assignment.html'],
+          include: [
+            'pdfkit',
+            'blob-stream',
+            'jszip',
+            'sortablejs',
+            'node-forge',
+          ],
+          exclude: ['coherentpdf', 'wasm-vips'],
+        }
+      : {
+          noDiscovery: true,
+          include: [],
+          exclude: ['coherentpdf', 'wasm-vips'],
+        },
     server: {
       host: process.env.VITE_DEV_HOST || 'localhost',
       port: devPort,
