@@ -21,7 +21,8 @@ npm run dev
 ```
 
 By default, `npm run dev` serves on `http://localhost:5173` and `npm run preview` serves on `http://localhost:4173`.
-Set `VITE_DEV_PORT` or `VITE_PREVIEW_PORT` in your shell or `.env.development.local` if you need different local ports.
+Set `VITE_DEV_PORT` in your shell or `.env.development.local` if you need a different dev server port.
+Set `VITE_PREVIEW_PORT` in your shell, `.env.local`, or `.env.production.local` if you need a different preview server port.
 
 Useful scripts:
 

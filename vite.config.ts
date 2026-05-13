@@ -660,7 +660,7 @@ export default defineConfig(({ mode }) => {
     },
     optimizeDeps: {
       entries: ['index.html', 'create-assignment.html'],
-      include: ['pdfkit', 'blob-stream'],
+      include: ['pdfkit', 'blob-stream', 'jszip', 'sortablejs', 'node-forge'],
       exclude: ['coherentpdf', 'wasm-vips'],
     },
     server: {
