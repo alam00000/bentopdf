@@ -23,13 +23,13 @@
       "label": "Vite Dev Server",
       "onAutoForward": "openBrowser",
       "protocol": "http",
-      "requireLocalPort": false
+      "requireLocalPort": true
     },
     "4173": {
       "label": "Preview Server",
       "onAutoForward": "silent",
       "protocol": "http",
-      "requireLocalPort": false
+      "requireLocalPort": true
     }
   },
   "otherPortsAttributes": {
