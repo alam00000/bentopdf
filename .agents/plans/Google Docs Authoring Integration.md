@@ -58,7 +58,7 @@ Limitations: no page sorting, no packet grouping, no automatic student identity.
 
 ### **Direct print from student copy**
 
-If a student receives a copied Google Doc, the copied marker can identify the assignment. The add on may combine that marker with the current Google Doc ID to register a document copy.
+If a student receives a copied Google Doc, the copied marker can identify the assignment. The add-on may combine that marker with the current Google Doc ID to register a document copy.
 
 Good for: absent students printing at home.
 
@@ -134,7 +134,7 @@ Student copy print:
 
 Student opens copied Doc.  
  Marker identifies assignment.  
- Add on may register current Doc ID as a document copy.  
+ Add-on may register current Doc ID as a document copy.  
  Student prints, completes, then submits pages in order.
 
 ## **Validation**
