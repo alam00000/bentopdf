@@ -112,7 +112,7 @@
     "subtitle": "Paginanummers aan een document toevoegen."
   },
   "addPageLabels": {
-    "name": "Paginelabels toevoegen",
+    "name": "Paginalabels toevoegen",
     "subtitle": "Pas PDF-paginalabels toe met Romeinse cijfers, voorvoegsels en aangepaste startwaarden.",
     "uploadHint": "PDF-bestand",
     "howLabelsWorkTitle": "Hoe labels werken",
@@ -124,7 +124,7 @@
     "addRule": "Regel toevoegen",
     "removeExistingLabels": "Bestaande paginalabels verwijderen voordat deze regels worden toegepast",
     "cpdfNote": "Deze tool gebruikt CoherentPDF in je browser. Als CoherentPDF niet is geconfigureerd, word je gevraagd dit in te stellen in de WASM-instellingen.",
-    "processButton": "Paginelabels toevoegen",
+    "processButton": "Paginalabels toevoegen",
     "howItWorksUploadTitle": "Bestand uploaden",
     "howItWorksUploadDescription": "Kies de PDF die je opnieuw wilt labelen.",
     "howItWorksDefineTitle": "Regels definiëren",
@@ -155,11 +155,11 @@
     "continueNumbering": "Nummering voortzetten over onderbroken bereiken",
     "examplesNote": "Voorbeelden: 1-4 voor voorwerk met Romeinse cijfers, 15-20 met voorvoegsel A- en startwaarde 0, of oneven pagina's met voortgang ingeschakeld.",
     "uploadFirstMessage": "Upload eerst een PDF-bestand.",
-    "applyingLabels": "Paginelabels toepassen...",
+    "applyingLabels": "Paginalabels toepassen...",
     "invalidRangeMessage": "Regel {{number}} heeft een ongeldig paginabereik: {{range}}",
     "allPages": "alle pagina's",
     "emptyOutputMessage": "CoherentPDF heeft een leeg bestand geproduceerd.",
-    "successMessage": "Paginelabels zijn succesvol toegevoegd!",
+    "successMessage": "Paginalabels zijn succesvol toegevoegd!",
     "processErrorMessage": "Kon de paginalabels niet toevoegen.",
     "styleOptions": {
       "DecimalArabic": "Decimale cijfers",
