@@ -900,6 +900,16 @@ Or set the values in `.env.production` before building.
 > [!TIP]
 > Branding works in both full mode and Simple Mode. You can combine it with other build-time options like `SIMPLE_MODE`, `BASE_URL`, and `VITE_DEFAULT_LANGUAGE`.
 
+**Hiiire PDF build:**
+
+This fork includes a ready-to-use branded build for `https://pdf.hiiire.com`:
+
+```bash
+npm run build:hiiire
+```
+
+The command sets the Hiiire brand, canonical `SITE_URL`, Russian default language, CDN-backed WASM loading, and source repository links before writing the static site to `dist/`. See [docs/self-hosting/timeweb-hiiire.md](docs/self-hosting/timeweb-hiiire.md) for Timeweb App notes.
+
 ### 🚫 Disabling Specific Tools
 
 Hide tools from the UI for compliance or security requirements. Disabled tools are removed from the homepage, search, keyboard shortcuts, workflow builder, and direct URL access.

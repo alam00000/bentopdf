@@ -49,6 +49,15 @@ export const languageNames: Record<SupportedLanguage, string> = {
   uk: 'Українська',
 };
 
+const getConfiguredDefaultLanguage = (): SupportedLanguage | null => {
+  const envLang = import.meta.env?.VITE_DEFAULT_LANGUAGE;
+  if (envLang && supportedLanguages.includes(envLang as SupportedLanguage)) {
+    return envLang as SupportedLanguage;
+  }
+
+  return null;
+};
+
 export const getLanguageFromUrl = (): SupportedLanguage => {
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   let path = window.location.pathname;
@@ -79,6 +88,11 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
     return storedLang as SupportedLanguage;
   }
 
+  const configuredDefaultLanguage = getConfiguredDefaultLanguage();
+  if (configuredDefaultLanguage && configuredDefaultLanguage !== 'en') {
+    return configuredDefaultLanguage;
+  }
+
   // Check browser language preferences
   if (typeof navigator !== 'undefined' && navigator.languages) {
     for (const lang of navigator.languages) {
@@ -93,9 +107,8 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
     }
   }
 
-  const envLang = import.meta.env?.VITE_DEFAULT_LANGUAGE;
-  if (envLang && supportedLanguages.includes(envLang as SupportedLanguage)) {
-    return envLang as SupportedLanguage;
+  if (configuredDefaultLanguage) {
+    return configuredDefaultLanguage;
   }
 
   return 'en';
