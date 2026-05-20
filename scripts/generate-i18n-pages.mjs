@@ -13,6 +13,23 @@ const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
   ''
 );
 const BASE_PATH = (process.env.BASE_URL || '/').replace(/\/$/, '');
+const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
+const BRAND_LOGO = (
+  process.env.VITE_BRAND_LOGO || 'images/favicon.svg'
+).replace(/^\/+/, '');
+const SOURCE_REPOSITORY_URL =
+  process.env.VITE_SOURCE_REPOSITORY_URL ||
+  'https://github.com/alam00000/bentopdf';
+
+const DEFAULT_SAME_AS =
+  BRAND_NAME === 'BentoPDF'
+    ? [
+        SOURCE_REPOSITORY_URL,
+        'https://x.com/BentoPDF',
+        'https://www.linkedin.com/company/bentopdf/',
+        'https://www.instagram.com/thebentopdf/',
+      ]
+    : [SOURCE_REPOSITORY_URL];
 
 const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
   return fs.statSync(path.join(LOCALES_DIR, file)).isDirectory();
@@ -80,15 +97,10 @@ function injectOrganizationLd(document) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'BentoPDF',
+    name: BRAND_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/favicon.svg`,
-    sameAs: [
-      'https://github.com/alam00000/bentopdf',
-      'https://x.com/BentoPDF',
-      'https://www.linkedin.com/company/bentopdf/',
-      'https://www.instagram.com/thebentopdf/',
-    ],
+    logo: `${SITE_URL}/${BRAND_LOGO}`,
+    sameAs: DEFAULT_SAME_AS,
   };
   const script = document.createElement('script');
   script.setAttribute('type', 'application/ld+json');
@@ -114,7 +126,7 @@ function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
   const homeLink = document.createElement('a');
   homeLink.href = homeUrl;
   homeLink.className = 'hover:text-indigo-300';
-  homeLink.textContent = 'BentoPDF';
+  homeLink.textContent = BRAND_NAME;
 
   const sep = document.createElement('span');
   sep.setAttribute('aria-hidden', 'true');

@@ -23,12 +23,44 @@ import {
   isCurrentPageDisabled,
 } from './utils/disabled-tools.js';
 declare const __BRAND_NAME__: string;
+declare const __SOURCE_REPOSITORY_API_URL__: string;
+
+const replaceBrandName = (value: string): string =>
+  value.replace(/Bento PDF|BentoPDF/g, __BRAND_NAME__ || 'BentoPDF');
+
+const applyBrandTextOverrides = (): void => {
+  if (!__BRAND_NAME__) return;
+
+  document.title = replaceBrandName(document.title);
+
+  const textNodeFilter = 4;
+  const walker = document.createTreeWalker(document.body, textNodeFilter);
+  let node = walker.nextNode();
+  while (node) {
+    if (node.textContent && /Bento\s?PDF/.test(node.textContent)) {
+      node.textContent = replaceBrandName(node.textContent);
+    }
+    node = walker.nextNode();
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[alt], [title], [aria-label]')
+    .forEach((element) => {
+      ['alt', 'title', 'aria-label'].forEach((attribute) => {
+        const value = element.getAttribute(attribute);
+        if (value && /Bento\s?PDF/.test(value)) {
+          element.setAttribute(attribute, replaceBrandName(value));
+        }
+      });
+    });
+};
 
 const init = async () => {
   await initI18n();
   await loadRuntimeConfig();
   injectLanguageSwitcher();
   applyTranslations();
+  applyBrandTextOverrides();
 
   if (isCurrentPageDisabled()) {
     document.title = t('disabledTool.title') || 'Tool Unavailable';
@@ -546,7 +578,7 @@ const init = async () => {
   ];
 
   if (githubStarsElements.some((el) => el) && !__SIMPLE_MODE__) {
-    fetch('https://api.github.com/repos/alam00000/bentopdf')
+    fetch(__SOURCE_REPOSITORY_API_URL__)
       .then((response) => response.json())
       .then((data) => {
         if (data.stargazers_count !== undefined) {

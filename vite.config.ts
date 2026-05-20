@@ -477,6 +477,9 @@ export default defineConfig(() => {
           brandName: process.env.VITE_BRAND_NAME || '',
           brandLogo: process.env.VITE_BRAND_LOGO || '',
           footerText: process.env.VITE_FOOTER_TEXT || '',
+          sourceRepositoryUrl:
+            process.env.VITE_SOURCE_REPOSITORY_URL ||
+            'https://github.com/alam00000/bentopdf/',
           appVersion: process.env.npm_package_version || 'Unknown',
         },
       }),
@@ -520,6 +523,10 @@ export default defineConfig(() => {
     define: {
       __SIMPLE_MODE__: JSON.stringify(process.env.SIMPLE_MODE === 'true'),
       __BRAND_NAME__: JSON.stringify(process.env.VITE_BRAND_NAME || ''),
+      __SOURCE_REPOSITORY_API_URL__: JSON.stringify(
+        process.env.VITE_SOURCE_REPOSITORY_API_URL ||
+          'https://api.github.com/repos/alam00000/bentopdf'
+      ),
       __DISABLED_TOOLS__: JSON.stringify(
         (process.env.DISABLE_TOOLS || '')
           .split(',')
