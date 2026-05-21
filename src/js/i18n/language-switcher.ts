@@ -63,7 +63,7 @@ export const createLanguageSwitcher = (): HTMLElement => {
     w-full px-3 py-1.5 text-sm
     bg-gray-900 text-gray-200
     border border-gray-700 rounded-md
-    focus:outline-none focus:border-indigo-500
+    focus:outline-none focus:border-slate-950
     placeholder-gray-500
   `.trim();
   searchInput.setAttribute('aria-label', searchPlaceholder);
@@ -164,6 +164,8 @@ export const createLanguageSwitcher = (): HTMLElement => {
 };
 
 export const injectLanguageSwitcher = (): void => {
+  if (supportedLanguages.length <= 1) return;
+
   const simpleModeContainer = document.getElementById(
     'simple-mode-language-switcher'
   );

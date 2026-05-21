@@ -186,7 +186,7 @@ function updateOverlayScopeButtons() {
 
   const applyState = (button: HTMLButtonElement | null, active: boolean) => {
     if (!button) return;
-    button.classList.toggle('bg-indigo-600', active);
+    button.classList.toggle('bg-slate-950', active);
     button.classList.toggle('bg-gray-700', !active);
   };
 
@@ -657,11 +657,11 @@ function setViewMode(mode: 'overlay' | 'side-by-side') {
     if (overlayControls) overlayControls.classList.remove('hidden');
     if (sideControls) sideControls.classList.add('hidden');
     if (btnOverlay) {
-      btnOverlay.classList.add('bg-indigo-600');
+      btnOverlay.classList.add('bg-slate-950');
       btnOverlay.classList.remove('bg-gray-700');
     }
     if (btnSide) {
-      btnSide.classList.remove('bg-indigo-600');
+      btnSide.classList.remove('bg-slate-950');
       btnSide.classList.add('bg-gray-700');
     }
     if (canvas2 && opacitySlider) {
@@ -675,11 +675,11 @@ function setViewMode(mode: 'overlay' | 'side-by-side') {
     if (overlayControls) overlayControls.classList.add('hidden');
     if (sideControls) sideControls.classList.remove('hidden');
     if (btnOverlay) {
-      btnOverlay.classList.remove('bg-indigo-600');
+      btnOverlay.classList.remove('bg-slate-950');
       btnOverlay.classList.add('bg-gray-700');
     }
     if (btnSide) {
-      btnSide.classList.add('bg-indigo-600');
+      btnSide.classList.add('bg-slate-950');
       btnSide.classList.remove('bg-gray-700');
     }
     if (canvas2) canvas2.style.opacity = '1';

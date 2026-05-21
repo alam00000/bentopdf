@@ -11,11 +11,21 @@ const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
   /\/+$/,
   ''
 );
-const EXCLUDED_PAGES = new Set(['404', 'wasm-settings']);
+const EXCLUDED_PAGES = new Set([
+  '404',
+  'wasm-settings',
+  ...(process.env.VITE_EXCLUDED_PAGES || '')
+    .split(',')
+    .map((page) => page.trim())
+    .filter(Boolean),
+]);
 
-const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
+const allLanguages = fs.readdirSync(LOCALES_DIR).filter((file) => {
   return fs.statSync(path.join(LOCALES_DIR, file)).isDirectory();
 });
+const languages =
+  process.env.HIREPDF_RU_ONLY === 'true' ? ['ru'] : allLanguages;
+const isSingleLanguageBuild = languages.length === 1;
 
 const PRIORITY_MAP = {
   index: 1.0,
@@ -49,7 +59,7 @@ function getPriority(pageName) {
 
 function buildUrl(lang, pageName) {
   const pagePath = pageName === 'index' ? '' : pageName;
-  if (lang === 'en') {
+  if (isSingleLanguageBuild || lang === 'en') {
     return pagePath ? `${SITE_URL}/${pagePath}` : SITE_URL;
   }
   return pagePath ? `${SITE_URL}/${lang}/${pagePath}` : `${SITE_URL}/${lang}`;
@@ -72,7 +82,7 @@ function generateSitemap() {
     if (lastModCache.has(cacheKey)) return lastModCache.get(cacheKey);
     const fileName = `${pageName}.html`;
     const filePath =
-      lang === 'en'
+      isSingleLanguageBuild || lang === 'en'
         ? path.join(DIST_DIR, fileName)
         : path.join(DIST_DIR, lang, fileName);
     let iso;
@@ -92,8 +102,9 @@ function generateSitemap() {
 
   for (const pageName of htmlFiles) {
     const priority = getPriority(pageName);
-    const url = buildUrl('en', pageName);
-    const lastmod = getLastMod('en', pageName);
+    const canonicalLanguage = isSingleLanguageBuild ? languages[0] : 'en';
+    const url = buildUrl(canonicalLanguage, pageName);
+    const lastmod = getLastMod(canonicalLanguage, pageName);
 
     sitemap += `  <url>
     <loc>${url}</loc>
@@ -102,15 +113,19 @@ function generateSitemap() {
     <priority>${priority}</priority>
 `;
 
-    for (const altLang of languages) {
-      const altUrl = buildUrl(altLang, pageName);
-      sitemap += `    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}"/>
+    if (!isSingleLanguageBuild) {
+      for (const altLang of languages) {
+        const altUrl = buildUrl(altLang, pageName);
+        sitemap += `    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}"/>
+`;
+      }
+
+      const defaultUrl = buildUrl('en', pageName);
+      sitemap += `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}"/>
 `;
     }
 
-    const defaultUrl = buildUrl('en', pageName);
-    sitemap += `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}"/>
-  </url>
+    sitemap += `  </url>
 `;
   }
 

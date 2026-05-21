@@ -266,7 +266,7 @@ placeholder="${escapeHTML(field.placeholder || '')}" />
         <div class="flex items-center gap-2">
           <label class="flex items-center gap-1 text-xs">
             <input type="checkbox" id="modal-use-destination" class="w-4 h-4" ${hasDestination ? 'checked' : ''}>
-              <span class="text-gray-700">Set custom destination</span>
+              <span class="text-gray-700">Задать свой переход</span>
                 </label>
                 </div>
                 <div id="destination-controls" class="${hasDestination ? '' : 'hidden'} space-y-2">
@@ -796,7 +796,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const coordDisplay = document.createElement('div');
     coordDisplay.id = 'destination-coord-display';
     coordDisplay.className =
-      'absolute bg-blue-500 text-white px-2 py-1 rounded text-xs font-mono z-50 pointer-events-none';
+      'absolute bg-slate-950 text-white px-2 py-1 rounded text-xs font-mono z-50 pointer-events-none';
     coordDisplay.style.left =
       canvasX + canvasRect.left - wrapperRect.left + 20 + 'px';
     coordDisplay.style.top =
@@ -916,9 +916,9 @@ function handleResize(): void {
   if (window.innerWidth >= 1024) {
     viewerSection?.classList.remove('hidden');
     bookmarksSection?.classList.remove('hidden');
-    showViewerBtn?.classList.remove('bg-indigo-600', 'text-white');
+    showViewerBtn?.classList.remove('bg-slate-950', 'text-white');
     showViewerBtn?.classList.add('text-gray-300');
-    showBookmarksBtn?.classList.remove('bg-indigo-600', 'text-white');
+    showBookmarksBtn?.classList.remove('bg-slate-950', 'text-white');
     showBookmarksBtn?.classList.add('text-gray-300');
   }
 }
@@ -928,18 +928,18 @@ window.addEventListener('resize', handleResize);
 showViewerBtn?.addEventListener('click', () => {
   viewerSection?.classList.remove('hidden');
   bookmarksSection?.classList.add('hidden');
-  showViewerBtn?.classList.add('bg-indigo-600', 'text-white');
+  showViewerBtn?.classList.add('bg-slate-950', 'text-white');
   showViewerBtn?.classList.remove('text-gray-300');
-  showBookmarksBtn?.classList.remove('bg-indigo-600', 'text-white');
+  showBookmarksBtn?.classList.remove('bg-slate-950', 'text-white');
   showBookmarksBtn?.classList.add('text-gray-300');
 });
 
 showBookmarksBtn?.addEventListener('click', () => {
   viewerSection?.classList.add('hidden');
   bookmarksSection?.classList.remove('hidden');
-  showBookmarksBtn?.classList.add('bg-indigo-600', 'text-white');
+  showBookmarksBtn?.classList.add('bg-slate-950', 'text-white');
   showBookmarksBtn?.classList.remove('text-gray-300');
-  showViewerBtn?.classList.remove('bg-indigo-600', 'text-white');
+  showViewerBtn?.classList.remove('bg-slate-950', 'text-white');
   showViewerBtn?.classList.add('text-gray-300');
 });
 
@@ -1058,9 +1058,9 @@ function resetToUploader(): void {
 
   viewerSection?.classList.remove('hidden');
   bookmarksSection?.classList.add('hidden');
-  showViewerBtn?.classList.add('bg-indigo-600', 'text-white');
+  showViewerBtn?.classList.add('bg-slate-950', 'text-white');
   showViewerBtn?.classList.remove('text-gray-300');
-  showBookmarksBtn?.classList.remove('bg-indigo-600', 'text-white');
+  showBookmarksBtn?.classList.remove('bg-slate-950', 'text-white');
   showBookmarksBtn?.classList.add('text-gray-300');
 }
 
@@ -1633,7 +1633,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
   const textColorClass = getTextColor(node.color);
 
   const div = document.createElement('div');
-  div.className = `flex items-center gap-2 p-2 rounded border border-gray-200 ${colorClass} ${highlight} ${isSelected ? 'ring-2 ring-blue-500' : ''} hover:bg-gray-50`;
+  div.className = `flex items-center gap-2 p-2 rounded border border-gray-200 ${colorClass} ${highlight} ${isSelected ? 'ring-2 ring-slate-950' : ''} hover:bg-gray-50`;
 
   if (batchMode) {
     const checkbox = document.createElement('input');
@@ -1695,7 +1695,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
   const hasDestination =
     node.destX !== null || node.destY !== null || node.zoom !== null;
   const destinationIcon = hasDestination
-    ? '<i data-lucide="crosshair" class="w-3 h-3 inline-block ml-1 text-blue-500"></i>'
+    ? '<i data-lucide="crosshair" class="w-3 h-3 inline-block ml-1 text-slate-950"></i>'
     : '';
 
   titleDiv.innerHTML = `
@@ -1768,52 +1768,52 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const editBtn = document.createElement('button');
   editBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
-  editBtn.title = 'Edit';
+  editBtn.title = 'Редактировать';
   editBtn.innerHTML = '<i data-lucide="edit-2" class="w-4 h-4"></i>';
   editBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const result = await showInputModal(
-      'Edit Bookmark',
+      'Редактировать закладку',
       [
         {
           type: 'text',
           name: 'title',
-          label: 'Title',
-          placeholder: 'Enter bookmark title',
+          label: 'Название',
+          placeholder: 'Введите название закладки',
         },
         {
           type: 'select',
           name: 'color',
-          label: 'Color',
+          label: 'Цвет',
           options: [
-            { value: '', label: 'None' },
-            { value: 'red', label: 'Red' },
-            { value: 'blue', label: 'Blue' },
-            { value: 'green', label: 'Green' },
-            { value: 'yellow', label: 'Yellow' },
-            { value: 'purple', label: 'Purple' },
-            { value: 'custom', label: 'Custom...' },
+            { value: '', label: 'Без цвета' },
+            { value: 'red', label: 'Красный' },
+            { value: 'blue', label: 'Основной' },
+            { value: 'green', label: 'Зеленый' },
+            { value: 'yellow', label: 'Желтый' },
+            { value: 'neutral', label: 'Нейтральный' },
+            { value: 'custom', label: 'Свой...' },
           ],
         },
         {
           type: 'select',
           name: 'style',
-          label: 'Style',
+          label: 'Стиль',
           options: [
-            { value: '', label: 'Normal' },
-            { value: 'bold', label: 'Bold' },
-            { value: 'italic', label: 'Italic' },
-            { value: 'bold-italic', label: 'Bold & Italic' },
+            { value: '', label: 'Обычный' },
+            { value: 'bold', label: 'Жирный' },
+            { value: 'italic', label: 'Курсив' },
+            { value: 'bold-italic', label: 'Жирный курсив' },
           ],
         },
         {
           type: 'destination',
           name: 'destination',
-          label: 'Destination',
+          label: 'Переход',
           page: node.page,
           maxPages: pdfJsDoc ? pdfJsDoc.numPages : 1,
         },
-        { type: 'preview', label: 'Preview' },
+        { type: 'preview', label: 'Предпросмотр' },
       ],
       {
         title: node.title,
@@ -1846,7 +1846,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'p-1 hover:bg-gray-200 rounded text-red-600';
-  deleteBtn.title = 'Delete';
+  deleteBtn.title = 'Удалить';
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   deleteBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
@@ -2119,7 +2119,13 @@ async function extractExistingBookmarks(): Promise<BookmarkTree> {
         else if (rN < 0.3 && gN < 0.3 && bN > 0.8) color = 'blue';
         else if (rN < 0.3 && gN > 0.8 && bN < 0.3) color = 'green';
         else if (rN > 0.8 && gN > 0.8 && bN < 0.3) color = 'yellow';
-        else if (rN > 0.5 && gN < 0.5 && bN > 0.5) color = 'purple';
+        else if (
+          Math.abs(rN - gN) < 0.08 &&
+          Math.abs(gN - bN) < 0.08 &&
+          rN > 0.2 &&
+          rN < 0.7
+        )
+          color = 'neutral';
       }
 
       let style: BookmarkStyle = null;

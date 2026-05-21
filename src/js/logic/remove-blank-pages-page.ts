@@ -77,7 +77,7 @@ function updateFileDisplay() {
   const pageCount = pageState.pdfDoc.getPageCount();
 
   area.innerHTML = `
-        <div class="bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors">
+        <div class="bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-slate-950 transition-colors">
             <div class="flex items-center justify-between">
                 <div class="flex-1 min-w-0">
                     <p class="truncate font-medium text-white">${escapeHtml(pageState.file.name)}</p>
@@ -249,7 +249,7 @@ function updatePreviewPanel() {
     div.innerHTML = `
             <div class="relative">
                 <img src="${thumbnail}" alt="Page ${pageIndex + 1}" class="rounded-md shadow-md max-w-full h-auto">
-                <div class="absolute top-1 left-1 bg-indigo-600 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none">
+                <div class="absolute top-1 left-1 bg-slate-950 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none">
                     ${pageIndex + 1}
                 </div>
                 <div class="absolute top-1 right-1 bg-red-500 rounded-full w-5 h-5 flex items-center justify-center check-mark z-10">
@@ -352,16 +352,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dropZone?.addEventListener('dragover', (e) => {
     e.preventDefault();
-    dropZone.classList.add('border-indigo-500');
+    dropZone.classList.add('border-slate-950');
   });
 
   dropZone?.addEventListener('dragleave', () => {
-    dropZone.classList.remove('border-indigo-500');
+    dropZone.classList.remove('border-slate-950');
   });
 
   dropZone?.addEventListener('drop', (e) => {
     e.preventDefault();
-    dropZone.classList.remove('border-indigo-500');
+    dropZone.classList.remove('border-slate-950');
     const f = e.dataTransfer?.files[0];
     if (f) handleFileUpload(f);
   });

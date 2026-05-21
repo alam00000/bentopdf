@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">hiiire PDF</title>
-  <desc id="desc">Hiiire PDF brand mark</desc>
-  <rect width="64" height="64" rx="14" fill="#111111"/>
-  <path fill="#ffffff" d="M19 17h6v12c1.6-2 4-3 7-3 5.7 0 9 3.9 9 10v11h-6V37c0-3.4-1.7-5.2-4.7-5.2-3.2 0-5.3 2-5.3 5.8V47h-6V17Z"/>
-  <path fill="#ffffff" d="M45 18.8a3.4 3.4 0 1 1-6.8 0 3.4 3.4 0 0 1 6.8 0Z"/>
-  <path fill="#ffffff" d="M39 27h6v20h-6V27Z"/>
-  <path fill="#9ca3af" d="M17 53h30v3H17v-3Z"/>
-</svg>

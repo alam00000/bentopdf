@@ -7,7 +7,7 @@ export type BookmarkColor =
   | 'blue'
   | 'green'
   | 'yellow'
-  | 'purple'
+  | 'neutral'
   | null;
 export type BookmarkStyle = 'bold' | 'italic' | 'bold-italic' | null;
 
@@ -148,32 +148,32 @@ export type ColorClassMap = Record<string, string>;
 
 export const COLOR_CLASSES: ColorClassMap = {
   red: 'bg-red-100 border-red-300',
-  blue: 'bg-blue-100 border-blue-300',
+  blue: 'bg-slate-100 border-slate-300',
   green: 'bg-green-100 border-green-300',
   yellow: 'bg-yellow-100 border-yellow-300',
-  purple: 'bg-purple-100 border-purple-300',
+  neutral: 'bg-slate-100 border-slate-300',
 };
 
 export const TEXT_COLOR_CLASSES: ColorClassMap = {
   red: 'text-red-600',
-  blue: 'text-blue-600',
+  blue: 'text-slate-950',
   green: 'text-green-600',
   yellow: 'text-yellow-600',
-  purple: 'text-purple-600',
+  neutral: 'text-slate-950',
 };
 
 export const HEX_COLOR_MAP: Record<string, string> = {
   red: '#dc2626',
-  blue: '#2563eb',
+  blue: '#171717',
   green: '#16a34a',
   yellow: '#ca8a04',
-  purple: '#9333ea',
+  neutral: '#525252',
 };
 
 export const PDF_COLOR_MAP: Record<string, [number, number, number]> = {
   red: [1.0, 0.0, 0.0],
-  blue: [0.0, 0.0, 1.0],
+  blue: [0.0, 0.0, 0.0],
   green: [0.0, 1.0, 0.0],
   yellow: [1.0, 1.0, 0.0],
-  purple: [0.5, 0.0, 0.5],
+  neutral: [0.32, 0.32, 0.32],
 };

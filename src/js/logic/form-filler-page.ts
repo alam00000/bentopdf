@@ -58,7 +58,7 @@ function updateFileDisplay() {
 
   const card = document.createElement('div');
   card.className =
-    'bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors';
+    'bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-slate-950 transition-colors';
 
   const row = document.createElement('div');
   row.className = 'flex items-center justify-between';
@@ -294,16 +294,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dropZone?.addEventListener('dragover', (e) => {
     e.preventDefault();
-    dropZone.classList.add('border-indigo-500');
+    dropZone.classList.add('border-slate-950');
   });
 
   dropZone?.addEventListener('dragleave', () => {
-    dropZone.classList.remove('border-indigo-500');
+    dropZone.classList.remove('border-slate-950');
   });
 
   dropZone?.addEventListener('drop', (e) => {
     e.preventDefault();
-    dropZone.classList.remove('border-indigo-500');
+    dropZone.classList.remove('border-slate-950');
     const file = e.dataTransfer?.files[0];
     if (file) handleFileUpload(file);
   });

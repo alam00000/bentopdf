@@ -181,7 +181,7 @@ export function generateComicBookInfoJson(params: ComicMetadata): string {
   }
 
   const wrapper = {
-    appID: 'BentoPDF/1.0',
+    appID: 'HirePDF/1.0',
     lastModified: new Date().toISOString(),
     'ComicBookInfo/1.0': info,
   };

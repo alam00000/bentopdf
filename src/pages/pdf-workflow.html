@@ -225,9 +225,9 @@
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        background: var(--socket-color, #6366f1);
+        background: var(--socket-color, #171717);
         border: 2px solid #1f2937;
-        box-shadow: 0 0 0 1px var(--socket-color, #6366f1);
+        box-shadow: 0 0 0 1px var(--socket-color, #171717);
         cursor: crosshair;
         transition: transform 0.15s;
       }
@@ -237,7 +237,7 @@
       }
 
       .connection .main-path {
-        stroke: #6366f1;
+        stroke: #171717;
         stroke-width: 2px;
         fill: none;
       }
@@ -289,7 +289,7 @@
             id="node-search"
             type="text"
             placeholder="Search nodes..."
-            class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-2 py-1.5 text-xs focus:border-indigo-500 focus:outline-none"
+            class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-2 py-1.5 text-xs focus:border-slate-950 focus:outline-none"
           />
         </div>
 
@@ -315,7 +315,7 @@
           </button>
           <button
             id="run-btn"
-            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-3 md:px-4 py-1.5 rounded-lg flex items-center gap-1.5 text-sm transition-colors"
+            class="bg-slate-950 hover:bg-slate-800 text-white font-semibold px-3 md:px-4 py-1.5 rounded-lg flex items-center gap-1.5 text-sm transition-colors"
           >
             <i class="ph ph-play text-base"></i>
             <span class="hidden md:inline">Run</span>
@@ -419,9 +419,9 @@
       >
         <div class="flex items-center gap-3 mb-5">
           <div
-            class="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center"
+            class="w-9 h-9 rounded-xl bg-slate-950/10 flex items-center justify-center"
           >
-            <i class="ph ph-floppy-disk text-lg text-indigo-400"></i>
+            <i class="ph ph-floppy-disk text-lg text-slate-400"></i>
           </div>
           <h3 class="text-base font-semibold text-white">Save Template</h3>
         </div>
@@ -432,7 +432,7 @@
           id="save-template-name"
           type="text"
           placeholder="e.g. Invoice Workflow"
-          class="w-full bg-gray-900/80 border border-gray-600/60 text-white rounded-lg px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 focus:outline-none placeholder-gray-500 mb-1"
+          class="w-full bg-gray-900/80 border border-gray-600/60 text-white rounded-lg px-3 py-2.5 text-sm focus:border-slate-950 focus:ring-1 focus:ring-slate-950/30 focus:outline-none placeholder-gray-500 mb-1"
         />
         <p
           id="save-template-error"
@@ -447,7 +447,7 @@
           </button>
           <button
             id="save-template-confirm"
-            class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
+            class="flex-1 bg-slate-950 hover:bg-slate-950 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
           >
             Save
           </button>
@@ -465,9 +465,9 @@
       >
         <div class="flex items-center gap-3 mb-5">
           <div
-            class="w-9 h-9 rounded-xl bg-indigo-500/10 flex items-center justify-center"
+            class="w-9 h-9 rounded-xl bg-slate-950/10 flex items-center justify-center"
           >
-            <i class="ph ph-folder-open text-lg text-indigo-400"></i>
+            <i class="ph ph-folder-open text-lg text-slate-400"></i>
           </div>
           <h3 class="text-base font-semibold text-white">Load Template</h3>
         </div>
@@ -504,7 +504,7 @@
         <p id="alert-message" class="text-gray-300 text-sm mb-6"></p>
         <button
           id="alert-ok"
-          class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
+          class="w-full bg-slate-950 hover:bg-slate-950 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
         >
           OK
         </button>
@@ -530,7 +530,7 @@
           type="password"
           id="pdf-password-input"
           placeholder="Enter password"
-          class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-3 py-2 text-xs focus:border-indigo-500 focus:outline-none mb-1"
+          class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-3 py-2 text-xs focus:border-slate-950 focus:outline-none mb-1"
         />
         <p id="pdf-password-error" class="text-red-400 text-xs mb-3 hidden">
           Incorrect password
@@ -544,7 +544,7 @@
           </button>
           <button
             id="pdf-password-unlock"
-            class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-xs py-2 rounded-lg transition-colors"
+            class="flex-1 bg-slate-950 hover:bg-slate-950 text-white text-xs py-2 rounded-lg transition-colors"
           >
             Unlock
           </button>

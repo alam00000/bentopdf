@@ -175,7 +175,7 @@ export function initPagePreview(
 
     const icon = document.createElement('button');
     icon.className =
-      'page-preview-btn absolute bottom-1 right-1 bg-gray-900/80 hover:bg-indigo-600 text-white/70 hover:text-white rounded-full w-7 h-7 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10';
+      'page-preview-btn absolute bottom-1 right-1 bg-gray-900/80 hover:bg-slate-950 text-white/70 hover:text-white rounded-full w-7 h-7 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10';
     icon.title = 'Preview';
     icon.innerHTML =
       '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>';

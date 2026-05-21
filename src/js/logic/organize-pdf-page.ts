@@ -286,7 +286,7 @@ async function renderThumbnails() {
 
     const wrapper = document.createElement('div');
     wrapper.className =
-      'page-thumbnail relative cursor-move flex flex-col items-center gap-1 p-2 border-2 border-gray-600 hover:border-indigo-500 rounded-lg bg-gray-700 transition-colors group';
+      'page-thumbnail relative cursor-move flex flex-col items-center gap-1 p-2 border-2 border-gray-600 hover:border-slate-950 rounded-lg bg-gray-700 transition-colors group';
     wrapper.dataset.originalPageIndex = (i - 1).toString();
     wrapper.dataset.pageNumber = i.toString();
 
@@ -300,7 +300,7 @@ async function renderThumbnails() {
 
     const pageLabel = document.createElement('div');
     pageLabel.className =
-      'page-number absolute top-1 left-1 bg-indigo-600 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none';
+      'page-number absolute top-1 left-1 bg-slate-950 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none';
     pageLabel.textContent = i.toString();
     imgContainer.appendChild(pageLabel);
 

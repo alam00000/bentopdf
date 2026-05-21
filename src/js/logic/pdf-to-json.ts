@@ -40,7 +40,7 @@ function showStatus(
       ? 'bg-green-900 text-green-200'
       : type === 'error'
         ? 'bg-red-900 text-red-200'
-        : 'bg-blue-900 text-blue-200'
+        : 'bg-slate-900 text-slate-200'
   }`;
   statusMessage.classList.remove('hidden');
 }

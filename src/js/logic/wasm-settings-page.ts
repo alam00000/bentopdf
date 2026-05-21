@@ -124,7 +124,7 @@ async function initializePage() {
     } else if (configured && WasmProvider.isUserConfigured(packageName)) {
       statusEl.textContent = t('tools:wasmSettings.status.customOverride');
       statusEl.className =
-        'text-xs px-2 py-1 rounded-full bg-blue-600/30 text-blue-300';
+        'text-xs px-2 py-1 rounded-full bg-slate-600/30 text-slate-300';
     } else if (configured || WasmProvider.hasEnvDefault(packageName)) {
       statusEl.textContent = t('tools:wasmSettings.status.preConfigured');
       statusEl.className =

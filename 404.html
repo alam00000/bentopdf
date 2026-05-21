@@ -1,45 +1,36 @@
-<!doctype html>
-<html lang="en">
+﻿<!doctype html>
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary Meta Tags -->
-    <title>404 - Page Not Found | BentoPDF</title>
+    <title>404 - Страница не найдена | HirePDF</title>
     <meta
       name="description"
-      content="Oops! The page you're looking for doesn't exist. Return to BentoPDF's homepage to access our free PDF tools."
+      content="Страница не найдена. Вернитесь на главную HirePDF, чтобы открыть бесплатные PDF-инструменты."
     />
     <meta name="robots" content="noindex, nofollow" />
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.bentopdf.com/404" />
+    <link rel="canonical" href="https://pdf.hiiire.com/404" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.bentopdf.com/404" />
-    <meta property="og:title" content="404 - Page Not Found | BentoPDF" />
+    <meta property="og:url" content="https://pdf.hiiire.com/404" />
+    <meta property="og:title" content="404 - Страница не найдена | HirePDF" />
     <meta
       property="og:description"
-      content="The page you're looking for doesn't exist."
+      content="Страница не найдена. PDF-инструменты доступны на главной странице HirePDF."
     />
-    <meta property="og:site_name" content="BentoPDF" />
+    <meta property="og:site_name" content="HirePDF" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="404 - Page Not Found" />
+    <meta name="twitter:title" content="404 - Страница не найдена | HirePDF" />
     <meta
       name="twitter:description"
-      content="The page you're looking for doesn't exist."
+      content="Страница не найдена. Откройте главную страницу HirePDF."
     />
-    <meta name="twitter:site" content="@BentoPDF" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
-
-    <!-- Web App Manifest -->
     <link rel="manifest" href="/site.webmanifest" />
-
-    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
     <link
       rel="icon"
@@ -61,95 +52,73 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
   </head>
 
-  <body class="antialiased bg-gray-900 text-gray-300">
+  <body class="antialiased bg-slate-50 text-slate-900">
     {{> navbar }}
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
-      <section id="404-content" class="text-center py-20 md:py-32">
-        <!-- 404 Number -->
+      <section id="404-content" class="py-20 text-center md:py-32">
         <div class="mb-8">
           <h1
-            class="text-9xl md:text-[12rem] font-bold text-indigo-500 leading-none"
+            class="text-8xl font-bold leading-none text-slate-950 md:text-[12rem]"
           >
             404
           </h1>
         </div>
 
-        <!-- Main heading -->
-        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
-          Page Not Found
+        <h2 class="mb-4 text-3xl font-bold text-slate-950 md:text-5xl">
+          Страница не найдена
         </h2>
 
-        <!-- Description -->
-        <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-          Oops! The page you're looking for seems to have wandered off into the
-          digital void. Don't worry though, our PDF tools are still right where
-          you left them.
+        <p class="mx-auto mb-8 max-w-2xl text-lg leading-8 text-slate-600">
+          Возможно, ссылка устарела или адрес введён с ошибкой. PDF-инструменты
+          HirePDF доступны на главной странице.
         </p>
 
-        <!-- Action buttons -->
         <div
-          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          class="flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
             href="index.html"
-            class="inline-flex items-center gap-3 pl-8 pr-2 py-2 rounded-full bg-gradient-to-b from-indigo-500 to-indigo-600 text-white font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-indigo-400 hover:shadow-xl hover:shadow-indigo-500/30 transition-all duration-200 transform hover:-translate-y-1"
+            class="inline-flex items-center gap-3 rounded-lg bg-slate-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-slate-800 focus:ring-2 focus:ring-slate-950 focus:ring-offset-2"
           >
-            <span>Back to Home</span>
-            <span class="bg-white text-indigo-600 rounded-full p-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="w-4 h-4"
-              >
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                <polyline points="9 22 9 12 15 12 15 22" />
-              </svg>
-            </span>
+            <span>На главную</span>
+            <i data-lucide="home" class="h-5 w-5"></i>
           </a>
 
           <a
             href="/index.html#tools-header"
-            class="inline-block px-8 py-3 rounded-full bg-gray-800 text-white font-semibold border border-gray-700 hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-gray-700 transition-all duration-200"
+            class="inline-flex items-center gap-3 rounded-lg border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 transition-colors hover:border-slate-400 hover:text-slate-950 focus:ring-2 focus:ring-slate-950 focus:ring-offset-2"
           >
-            Browse All Tools
+            Открыть инструменты
           </a>
         </div>
 
-        <!-- Helpful links -->
         <div class="mt-16">
-          <p class="text-gray-500 mb-4">Or try these popular tools:</p>
+          <p class="mb-4 text-slate-500">Популярные инструменты:</p>
           <div class="flex flex-wrap justify-center gap-3">
             <a
               href="/merge-pdf"
-              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+              class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
             >
-              Merge PDF
+              Объединить PDF
             </a>
             <a
               href="/split-pdf"
-              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+              class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
             >
-              Split PDF
+              Разделить PDF
             </a>
             <a
               href="/compress-pdf"
-              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+              class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
             >
-              Compress PDF
+              Сжать PDF
             </a>
             <a
               href="/edit-pdf"
-              class="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 hover:text-white transition-colors text-sm"
+              class="rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950"
             >
-              Edit PDF
+              Редактировать PDF
             </a>
           </div>
         </div>
@@ -162,14 +131,13 @@
     <script type="module" src="src/js/main.ts"></script>
     <script type="module" src="src/js/mobileMenu.ts"></script>
 
-    <!-- JSON-LD Schema -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "404 - Page Not Found",
-        "description": "The page you're looking for doesn't exist on BentoPDF.",
-        "url": "https://www.bentopdf.com/404"
+        "name": "404 - Страница не найдена",
+        "description": "Страница не найдена на HirePDF.",
+        "url": "https://pdf.hiiire.com/404"
       }
     </script>
   </body>

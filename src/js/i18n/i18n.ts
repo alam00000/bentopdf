@@ -1,15 +1,12 @@
 import i18next from 'i18next';
 import HttpBackend from 'i18next-http-backend';
 
-// Supported languages
-export const supportedLanguages = [
+const allSupportedLanguages = [
   'en',
   'ar',
-  'be',
-  'ru',
   'fr',
-  'de',
   'es',
+  'de',
   'zh',
   'zh-TW',
   'vi',
@@ -18,44 +15,67 @@ export const supportedLanguages = [
   'it',
   'pt',
   'nl',
+  'be',
   'da',
-  'sv',
   'ko',
+  'sv',
+  'ru',
   'ja',
   'uk',
 ] as const;
-export type SupportedLanguage = (typeof supportedLanguages)[number];
+
+export type SupportedLanguage = (typeof allSupportedLanguages)[number];
+
+const isSupportedLanguage = (lang: string): lang is SupportedLanguage =>
+  (allSupportedLanguages as readonly string[]).includes(lang);
+
+const configuredLanguages = (
+  __ENABLED_LANGUAGES__.length > 0
+    ? __ENABLED_LANGUAGES__
+    : allSupportedLanguages
+).filter(isSupportedLanguage);
+
+export const supportedLanguages: readonly SupportedLanguage[] =
+  configuredLanguages.length > 0 ? configuredLanguages : allSupportedLanguages;
 
 export const languageNames: Record<SupportedLanguage, string> = {
   en: 'English',
   ar: 'العربية',
-  be: 'Беларуская',
-  ru: 'Русский',
   fr: 'Français',
-  de: 'Deutsch',
   es: 'Español',
-  zh: '中文',
-  'zh-TW': '繁體中文（台灣）',
+  de: 'Deutsch',
+  zh: '简体中文',
+  'zh-TW': '繁體中文',
   vi: 'Tiếng Việt',
   tr: 'Türkçe',
   id: 'Bahasa Indonesia',
   it: 'Italiano',
   pt: 'Português',
   nl: 'Nederlands',
+  be: 'Беларуская',
   da: 'Dansk',
-  sv: 'Svenska',
   ko: '한국어',
+  sv: 'Svenska',
+  ru: 'Русский',
   ja: '日本語',
   uk: 'Українська',
 };
 
 const getConfiguredDefaultLanguage = (): SupportedLanguage | null => {
   const envLang = import.meta.env?.VITE_DEFAULT_LANGUAGE;
-  if (envLang && supportedLanguages.includes(envLang as SupportedLanguage)) {
+  if (
+    envLang &&
+    isSupportedLanguage(envLang) &&
+    supportedLanguages.includes(envLang)
+  ) {
     return envLang as SupportedLanguage;
   }
 
   return null;
+};
+
+const getFallbackLanguage = (): SupportedLanguage => {
+  return getConfiguredDefaultLanguage() || supportedLanguages[0] || 'en';
 };
 
 export const getLanguageFromUrl = (): SupportedLanguage => {
@@ -89,9 +109,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
   }
 
   const configuredDefaultLanguage = getConfiguredDefaultLanguage();
-  if (configuredDefaultLanguage && configuredDefaultLanguage !== 'en') {
-    return configuredDefaultLanguage;
-  }
+  if (configuredDefaultLanguage) return configuredDefaultLanguage;
 
   // Check browser language preferences
   if (typeof navigator !== 'undefined' && navigator.languages) {
@@ -107,11 +125,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
     }
   }
 
-  if (configuredDefaultLanguage) {
-    return configuredDefaultLanguage;
-  }
-
-  return 'en';
+  return getFallbackLanguage();
 };
 
 let initialized = false;
@@ -125,7 +139,7 @@ export const initI18n = async (): Promise<typeof i18next> => {
 
   await i18next.use(HttpBackend).init({
     lng: currentLang,
-    fallbackLng: 'en',
+    fallbackLng: getFallbackLanguage(),
     supportedLngs: supportedLanguages as unknown as string[],
     ns: ['common', 'tools'],
     defaultNS: 'common',
@@ -175,12 +189,14 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
     pagePathWithoutLang = '/' + pagePathWithoutLang;
   }
 
-  let newRelativePath: string;
-  if (lang === 'en') {
-    newRelativePath = pagePathWithoutLang;
-  } else {
-    newRelativePath = `/${lang}${pagePathWithoutLang}`;
-  }
+  const useRootPath =
+    supportedLanguages.length === 1 ||
+    lang === getConfiguredDefaultLanguage() ||
+    lang === 'en';
+
+  const newRelativePath = useRootPath
+    ? pagePathWithoutLang
+    : `/${lang}${pagePathWithoutLang}`;
 
   let newPath: string;
   if (basePath && basePath !== '/') {
@@ -232,8 +248,9 @@ export const applyTranslations = (): void => {
 };
 
 export const rewriteLinks = (): void => {
+  if (supportedLanguages.length <= 1) return;
+
   const currentLang = getLanguageFromUrl();
-  if (currentLang === 'en') return;
 
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   const links = document.querySelectorAll('a[href]');

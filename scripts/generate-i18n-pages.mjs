@@ -17,23 +17,30 @@ const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
 const BRAND_LOGO = (
   process.env.VITE_BRAND_LOGO || 'images/favicon.svg'
 ).replace(/^\/+/, '');
-const SOURCE_REPOSITORY_URL =
-  process.env.VITE_SOURCE_REPOSITORY_URL ||
-  'https://github.com/alam00000/bentopdf';
+const SOURCE_REPOSITORY_URL = process.env.VITE_SOURCE_REPOSITORY_URL || '';
 
 const DEFAULT_SAME_AS =
-  BRAND_NAME === 'BentoPDF'
+  BRAND_NAME === 'BentoPDF' && SOURCE_REPOSITORY_URL
     ? [
         SOURCE_REPOSITORY_URL,
         'https://x.com/BentoPDF',
         'https://www.linkedin.com/company/bentopdf/',
         'https://www.instagram.com/thebentopdf/',
       ]
-    : [SOURCE_REPOSITORY_URL];
+    : SOURCE_REPOSITORY_URL
+      ? [SOURCE_REPOSITORY_URL]
+      : [];
 
-const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
+const allLanguages = fs.readdirSync(LOCALES_DIR).filter((file) => {
   return fs.statSync(path.join(LOCALES_DIR, file)).isDirectory();
 });
+const languages =
+  process.env.HIREPDF_RU_ONLY === 'true' ||
+  process.env.HIREFPDF_RU_ONLY === 'true' ||
+  process.env.HIREF_PDF_RU_ONLY === 'true'
+    ? ['ru']
+    : allLanguages;
+const isSingleLanguageBuild = languages.length === 1;
 
 const toCamelCase = (str) => {
   return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
@@ -42,6 +49,8 @@ const toCamelCase = (str) => {
 const KEY_MAPPING = {
   index: 'home',
   404: 'notFound',
+  bookmark: 'editBookmarks',
+  'overlay-pdf': 'pdfOverlay',
 };
 
 function loadAllTranslations() {
@@ -79,7 +88,7 @@ function buildUrl(langPrefix, pagePath) {
   return parts.filter(Boolean).join('/').replace(/\/+$/, '') || SITE_URL;
 }
 
-const ORGANIZATION_LD_MARKER = 'data-bentopdf-organization';
+const ORGANIZATION_LD_MARKER = 'data-hirepdf-organization';
 
 function injectOrganizationLd(document) {
   if (document.querySelector(`script[${ORGANIZATION_LD_MARKER}]`)) return;
@@ -100,8 +109,10 @@ function injectOrganizationLd(document) {
     name: BRAND_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/${BRAND_LOGO}`,
-    sameAs: DEFAULT_SAME_AS,
   };
+  if (DEFAULT_SAME_AS.length > 0) {
+    data.sameAs = DEFAULT_SAME_AS;
+  }
   const script = document.createElement('script');
   script.setAttribute('type', 'application/ld+json');
   script.setAttribute(ORGANIZATION_LD_MARKER, '');
@@ -109,14 +120,17 @@ function injectOrganizationLd(document) {
   document.body.appendChild(script);
 }
 
-const BREADCRUMB_MARKER = 'data-bentopdf-breadcrumb';
+const BREADCRUMB_MARKER = 'data-hirepdf-breadcrumb';
 
 function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
   const h1 = document.querySelector('h1[data-i18n^="tools:"]');
   if (!h1) return;
   if (document.querySelector(`[${BREADCRUMB_MARKER}]`)) return;
 
-  const homeUrl = buildUrl(lang === 'en' ? '' : lang, '');
+  const homeUrl = buildUrl(
+    isSingleLanguageBuild || lang === 'en' ? '' : lang,
+    ''
+  );
 
   const nav = document.createElement('nav');
   nav.setAttribute('aria-label', 'Breadcrumb');
@@ -125,7 +139,7 @@ function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
 
   const homeLink = document.createElement('a');
   homeLink.href = homeUrl;
-  homeLink.className = 'hover:text-indigo-300';
+  homeLink.className = 'hover:text-slate-200';
   homeLink.textContent = BRAND_NAME;
 
   const sep = document.createElement('span');
@@ -151,7 +165,7 @@ function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'BentoPDF',
+        name: BRAND_NAME,
         item: homeUrl,
       },
       {
@@ -177,6 +191,105 @@ function resolveToolName(translationKey, langTools) {
   return enEntry && enEntry.name ? enEntry.name : null;
 }
 
+function getNestedValue(source, pathKey) {
+  return pathKey.split('.').reduce((value, part) => {
+    if (value && typeof value === 'object' && part in value) {
+      return value[part];
+    }
+    return null;
+  }, source);
+}
+
+function resolveTranslation(resources, key) {
+  const [namespace, pathKey] = key.includes(':')
+    ? key.split(':', 2)
+    : ['common', key];
+  const source = namespace === 'tools' ? resources.tools : resources.common;
+  const value = getNestedValue(source, pathKey);
+  return typeof value === 'string' ? value : null;
+}
+
+function applyStaticTranslations(document, resources) {
+  document.querySelectorAll('[data-i18n]').forEach((element) => {
+    const key = element.getAttribute('data-i18n');
+    if (!key) return;
+    const value = resolveTranslation(resources, key);
+    if (value) element.textContent = value;
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+    const key = element.getAttribute('data-i18n-placeholder');
+    if (!key) return;
+    const value = resolveTranslation(resources, key);
+    if (value) element.setAttribute('placeholder', value);
+  });
+
+  document.querySelectorAll('[data-i18n-title]').forEach((element) => {
+    const key = element.getAttribute('data-i18n-title');
+    if (!key) return;
+    const value = resolveTranslation(resources, key);
+    if (value) element.setAttribute('title', value);
+  });
+}
+
+function setMetaContent(document, selector, value) {
+  document.querySelectorAll(selector).forEach((meta) => {
+    meta.content = value;
+  });
+}
+
+function getVisibleRussianTitle(document) {
+  const h1 = document.querySelector('h1');
+  const text = h1?.textContent?.replace(/\s+/g, ' ').trim();
+  return text && /[А-Яа-яЁё]/.test(text) ? text : null;
+}
+
+function getGenericToolTitle(document) {
+  return `${getVisibleRussianTitle(document) || 'PDF-инструмент'} - ${BRAND_NAME}`;
+}
+
+function getGenericToolDescription() {
+  return `Бесплатный PDF-инструмент ${BRAND_NAME} работает в браузере и помогает быстро подготовить документ без установки программ.`;
+}
+
+function removeLegacyStructuredData(document) {
+  document
+    .querySelectorAll('script[type="application/ld+json"]')
+    .forEach((node) => {
+      try {
+        const parsed = JSON.parse(node.textContent || '');
+        const types = Array.isArray(parsed['@type'])
+          ? parsed['@type']
+          : [parsed['@type']];
+        if (
+          types.some((type) =>
+            [
+              'Organization',
+              'SoftwareApplication',
+              'HowTo',
+              'FAQPage',
+            ].includes(type)
+          )
+        ) {
+          node.remove();
+        }
+      } catch {
+        return;
+      }
+    });
+}
+
+function removeSectionByDataI18n(document, key) {
+  const heading = document.querySelector(`[data-i18n="${key}"]`);
+  heading?.closest('section')?.remove();
+}
+
+function removeEnglishSeoSections(document) {
+  removeSectionByDataI18n(document, 'howItWorks.title');
+  removeSectionByDataI18n(document, 'relatedTools.title');
+  removeSectionByDataI18n(document, 'faq.sectionTitle');
+}
+
 function processFileForLanguage(
   originalContent,
   file,
@@ -193,9 +306,16 @@ function processFileForLanguage(
   const { tools } = translations[lang];
   const dom = new JSDOM(originalContent);
   const document = dom.window.document;
+  const isToolPage = Boolean(document.querySelector('h1[data-i18n^="tools:"]'));
 
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  applyStaticTranslations(document, translations[lang]);
+
+  if (isSingleLanguageBuild) {
+    removeLegacyStructuredData(document);
+    removeEnglishSeoSections(document);
+  }
 
   let title = null;
   let description = null;
@@ -204,32 +324,38 @@ function processFileForLanguage(
     title =
       tools[translationKey].pageTitle ||
       (tools[translationKey].name
-        ? `${tools[translationKey].name} - BentoPDF`
+        ? `${tools[translationKey].name} - ${BRAND_NAME}`
         : null);
     description = tools[translationKey].subtitle;
   }
 
+  if (isToolPage && !title) {
+    title = getGenericToolTitle(document);
+  }
+
+  if (isToolPage && !description) {
+    description = getGenericToolDescription();
+  }
+
   if (title) {
     document.title = title;
-    const metaTitle = document.querySelector('meta[property="og:title"]');
-    if (metaTitle) metaTitle.content = title;
-    const metaTwitterTitle = document.querySelector(
-      'meta[name="twitter:title"]'
-    );
-    if (metaTwitterTitle) metaTwitterTitle.content = title;
+    setMetaContent(document, 'meta[name="title"]', title);
+    setMetaContent(document, 'meta[property="og:title"]', title);
+    setMetaContent(document, 'meta[name="twitter:title"]', title);
   }
 
   if (description) {
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.content = description;
-    const metaOgDesc = document.querySelector(
-      'meta[property="og:description"]'
+    setMetaContent(document, 'meta[name="description"]', description);
+    setMetaContent(document, 'meta[property="og:description"]', description);
+    setMetaContent(document, 'meta[name="twitter:description"]', description);
+  }
+
+  if (isToolPage) {
+    setMetaContent(
+      document,
+      'meta[name="keywords"]',
+      'PDF, PDF инструменты, редактировать PDF, конвертировать PDF, HirePDF'
     );
-    if (metaOgDesc) metaOgDesc.content = description;
-    const metaTwitterDesc = document.querySelector(
-      'meta[name="twitter:description"]'
-    );
-    if (metaTwitterDesc) metaTwitterDesc.content = description;
   }
 
   document
@@ -238,21 +364,25 @@ function processFileForLanguage(
 
   const pagePath = filenameNoExt === 'index' ? '' : filenameNoExt;
 
-  languages.forEach((l) => {
-    const link = document.createElement('link');
-    link.rel = 'alternate';
-    link.hreflang = l;
-    link.href = buildUrl(l === 'en' ? '' : l, pagePath);
-    document.head.appendChild(link);
-  });
+  if (!isSingleLanguageBuild) {
+    languages.forEach((l) => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = l;
+      link.href = buildUrl(l === 'en' ? '' : l, pagePath);
+      document.head.appendChild(link);
+    });
 
-  const defaultLink = document.createElement('link');
-  defaultLink.rel = 'alternate';
-  defaultLink.hreflang = 'x-default';
-  defaultLink.href = buildUrl('', pagePath);
-  document.head.appendChild(defaultLink);
+    const defaultLink = document.createElement('link');
+    defaultLink.rel = 'alternate';
+    defaultLink.hreflang = 'x-default';
+    defaultLink.href = buildUrl('', pagePath);
+    document.head.appendChild(defaultLink);
+  }
 
-  const localizedUrl = buildUrl(lang, pagePath);
+  const localizedUrl = isSingleLanguageBuild
+    ? buildUrl('', pagePath)
+    : buildUrl(lang, pagePath);
   const canonicalUrl = buildUrl('', pagePath);
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
@@ -269,48 +399,51 @@ function processFileForLanguage(
 
   injectOrganizationLd(document);
 
-  const localizedToolName = resolveToolName(translationKey, tools);
+  const localizedToolName =
+    resolveToolName(translationKey, tools) || getVisibleRussianTitle(document);
   if (localizedToolName) {
     injectToolBreadcrumb(document, lang, localizedToolName, localizedUrl);
   }
 
-  const links = document.querySelectorAll('a[href]');
-  links.forEach((link) => {
-    const href = link.getAttribute('href');
-    if (!href) return;
+  if (!isSingleLanguageBuild) {
+    const links = document.querySelectorAll('a[href]');
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
 
-    if (
-      href.startsWith('http') ||
-      href.startsWith('//') ||
-      href.startsWith('#') ||
-      href.startsWith('mailto:') ||
-      href.startsWith('tel:') ||
-      href.startsWith('javascript:') ||
-      href.startsWith('data:') ||
-      href.startsWith('vbscript:')
-    ) {
-      return;
-    }
+      if (
+        href.startsWith('http') ||
+        href.startsWith('//') ||
+        href.startsWith('#') ||
+        href.startsWith('mailto:') ||
+        href.startsWith('tel:') ||
+        href.startsWith('javascript:') ||
+        href.startsWith('data:') ||
+        href.startsWith('vbscript:')
+      ) {
+        return;
+      }
 
-    if (href.startsWith('/assets/') || href.includes('/assets/')) return;
+      if (href.startsWith('/assets/') || href.includes('/assets/')) return;
 
-    const langPrefixRegex = new RegExp(
-      `^(${BASE_PATH})?/(${languages.join('|')})(/|$)`
-    );
-    if (langPrefixRegex.test(href)) return;
+      const langPrefixRegex = new RegExp(
+        `^(${BASE_PATH})?/(${languages.join('|')})(/|$)`
+      );
+      if (langPrefixRegex.test(href)) return;
 
-    let newHref;
-    if (href.startsWith('/')) {
-      const pathWithoutBase = href.startsWith(BASE_PATH)
-        ? href.slice(BASE_PATH.length)
-        : href;
-      newHref = `${BASE_PATH}/${lang}${pathWithoutBase}`;
-    } else {
-      newHref = `${BASE_PATH}/${lang}/${href}`;
-    }
+      let newHref;
+      if (href.startsWith('/')) {
+        const pathWithoutBase = href.startsWith(BASE_PATH)
+          ? href.slice(BASE_PATH.length)
+          : href;
+        newHref = `${BASE_PATH}/${lang}${pathWithoutBase}`;
+      } else {
+        newHref = `${BASE_PATH}/${lang}/${href}`;
+      }
 
-    link.setAttribute('href', newHref);
-  });
+      link.setAttribute('href', newHref);
+    });
+  }
 
   const result = dom.serialize();
 
@@ -394,44 +527,57 @@ async function generateI18nPages() {
 
   console.log(`   Processing ${htmlFiles.length} HTML files...`);
 
-  for (const lang of languages) {
-    if (lang === 'en') continue;
-    const langDir = path.join(DIST_DIR, lang);
-    if (!fs.existsSync(langDir)) {
-      fs.mkdirSync(langDir, { recursive: true });
+  if (!isSingleLanguageBuild) {
+    for (const lang of languages) {
+      if (lang === 'en') continue;
+      const langDir = path.join(DIST_DIR, lang);
+      if (!fs.existsSync(langDir)) {
+        fs.mkdirSync(langDir, { recursive: true });
+      }
     }
   }
 
   let processed = 0;
-  const total = htmlFiles.length * (languages.length - 1);
+  const localizedLanguages = languages.filter((lang) => lang !== 'en');
+  const total = htmlFiles.length * localizedLanguages.length;
 
   for (const file of htmlFiles) {
     const filePath = path.join(DIST_DIR, file);
     const originalContent = fs.readFileSync(filePath, 'utf-8');
 
-    for (const lang of languages) {
-      if (lang === 'en') continue;
+    if (!isSingleLanguageBuild) {
+      for (const lang of localizedLanguages) {
+        const langDir = path.join(DIST_DIR, lang);
 
-      const langDir = path.join(DIST_DIR, lang);
+        processFileForLanguage(
+          originalContent,
+          file,
+          lang,
+          translations,
+          langDir
+        );
 
+        processed++;
+        if (processed % 10 === 0 || processed === total) {
+          console.log(`   Progress: ${processed}/${total} pages`);
+        }
+
+        // Clean up JSDOM instances
+        await new Promise((resolve) => setImmediate(resolve));
+      }
+    }
+
+    if (isSingleLanguageBuild && languages[0] !== 'en') {
       processFileForLanguage(
         originalContent,
         file,
-        lang,
+        languages[0],
         translations,
-        langDir
+        DIST_DIR
       );
-
-      processed++;
-      if (processed % 10 === 0 || processed === total) {
-        console.log(`   Progress: ${processed}/${total} pages`);
-      }
-
-      // Clean up JSDOM instances
-      await new Promise((resolve) => setImmediate(resolve));
+    } else {
+      updateEnglishFile(filePath, originalContent);
     }
-
-    updateEnglishFile(filePath, originalContent);
   }
 
   console.log('✅ i18n pages generated successfully!');

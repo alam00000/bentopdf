@@ -89,7 +89,7 @@ function buildUnsupportedLanguageMessage(
   const availableText = formatTesseractLanguageList(availableLanguages);
 
   return [
-    `This BentoPDF build only bundles OCR data for ${availableText}.`,
+    `В этой сборке HirePDF есть OCR-данные только для языков: ${availableText}.`,
     `The requested OCR language is not available: ${unavailableText}.`,
     'Choose one of the bundled languages or rebuild the air-gapped bundle with the missing language added to --ocr-languages.',
   ].join(' ');

@@ -1,40 +1,28 @@
 {
-    "name": "BentoPDF",
-    "short_name": "BentoPDF",
-    "description": "Free online PDF tools - Privacy-first PDF toolkit that works 100% in your browser",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#262d3b",
-    "theme_color": "#4f46e5",
-    "orientation": "portrait-primary",
-    "icons": [
-        {
-            "src": "/images/favicon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable any"
-        },
-        {
-            "src": "/images/favicon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable any"
-        },
-        {
-            "src": "/images/apple-touch-icon.png",
-            "sizes": "180x180",
-            "type": "image/png",
-            "purpose": "any"
-        }
-    ],
-    "categories": [
-        "productivity",
-        "utilities",
-        "privacy",
-        "pdf",
-        "security",
-        "offline",
-        "tools"
-    ],
-    "screenshots": []
+  "name": "HirePDF",
+  "short_name": "HirePDF",
+  "description": "Бесплатные PDF-инструменты HirePDF для работы с файлами прямо в браузере",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/favicon-no-bg.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities",
+    "privacy",
+    "pdf",
+    "security",
+    "offline",
+    "tools"
+  ],
+  "screenshots": []
 }

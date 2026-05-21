@@ -82,7 +82,7 @@ function updateFileDisplay(): void {
 
     const fileIcon = document.createElement('i');
     fileIcon.setAttribute('data-lucide', 'file-text');
-    fileIcon.className = 'w-5 h-5 text-indigo-400';
+    fileIcon.className = 'w-5 h-5 text-slate-400';
 
     const nameSpan = document.createElement('span');
     nameSpan.className = 'text-gray-200 truncate max-w-xs';

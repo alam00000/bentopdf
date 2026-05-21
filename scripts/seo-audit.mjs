@@ -223,9 +223,12 @@ function auditSitemap() {
     }
   }
 
-  const expectedLocales = fs
-    .readdirSync(LOCALES_DIR)
-    .filter((d) => fs.statSync(path.join(LOCALES_DIR, d)).isDirectory());
+  const expectedLocales =
+    process.env.HIREPDF_RU_ONLY === 'true'
+      ? []
+      : fs
+          .readdirSync(LOCALES_DIR)
+          .filter((d) => fs.statSync(path.join(LOCALES_DIR, d)).isDirectory());
   for (const lang of expectedLocales) {
     if (lang === 'en') continue;
     const hreflangPattern = new RegExp(`hreflang="${lang}"`);

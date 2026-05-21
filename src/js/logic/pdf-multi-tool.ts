@@ -96,7 +96,7 @@ function showModal(
     success: 'check-circle',
   };
   const colorMap = {
-    info: 'text-blue-400',
+    info: 'text-slate-400',
     error: 'text-red-400',
     success: 'text-green-400',
   };
@@ -334,14 +334,14 @@ function initializeTool() {
   if (uploadArea) {
     uploadArea.addEventListener('dragover', (e) => {
       e.preventDefault();
-      uploadArea.classList.add('border-indigo-500');
+      uploadArea.classList.add('border-slate-950');
     });
     uploadArea.addEventListener('dragleave', () => {
-      uploadArea.classList.remove('border-indigo-500');
+      uploadArea.classList.remove('border-slate-950');
     });
     uploadArea.addEventListener('drop', (e) => {
       e.preventDefault();
-      uploadArea.classList.remove('border-indigo-500');
+      uploadArea.classList.remove('border-slate-950');
       const files = Array.from(e.dataTransfer?.files || []).filter(
         (f) => f.type === 'application/pdf'
       );
@@ -565,7 +565,7 @@ function createPageElement(
   }
 
   if (selectedPages.has(index)) {
-    card.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-500');
+    card.classList.add('border-slate-950', 'ring-2', 'ring-slate-950');
   }
 
   const preview = document.createElement('div');
@@ -612,7 +612,7 @@ function createPageElement(
   selectBtn.className =
     'absolute top-2 right-2 p-1 rounded bg-gray-900/70 hover:bg-gray-800 z-10';
   selectBtn.innerHTML = selectedPages.has(index)
-    ? '<i data-lucide="check-square" class="w-4 h-4 text-indigo-400"></i>'
+    ? '<i data-lucide="check-square" class="w-4 h-4 text-slate-400"></i>'
     : '<i data-lucide="square" class="w-4 h-4 text-gray-200"></i>';
   selectBtn.onclick = (e) => {
     e.stopPropagation();
@@ -702,7 +702,7 @@ function createPageElement(
     marker.className =
       'split-marker absolute -right-3 top-0 bottom-0 w-6 flex items-center justify-center z-20 pointer-events-none';
     marker.innerHTML =
-      '<div class="h-full w-0.5 border-l-2 border-dashed border-blue-400"></div>';
+      '<div class="h-full w-0.5 border-l-2 border-dashed border-slate-400"></div>';
     card.appendChild(marker);
   }
 
@@ -760,11 +760,11 @@ function toggleSelectOptimized(index: number) {
   if (!selectBtn) return;
 
   if (selectedPages.has(index)) {
-    card.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-500');
+    card.classList.add('border-slate-950', 'ring-2', 'ring-slate-950');
     selectBtn.innerHTML =
-      '<i data-lucide="check-square" class="w-4 h-4 text-indigo-400"></i>';
+      '<i data-lucide="check-square" class="w-4 h-4 text-slate-400"></i>';
   } else {
-    card.classList.remove('border-indigo-500', 'ring-2', 'ring-indigo-500');
+    card.classList.remove('border-slate-950', 'ring-2', 'ring-slate-950');
     selectBtn.innerHTML =
       '<i data-lucide="square" class="w-4 h-4 text-gray-200"></i>';
   }
@@ -960,7 +960,7 @@ function renderSplitMarkers() {
       marker.className =
         'split-marker absolute -right-3 top-0 bottom-0 w-6 flex items-center justify-center z-20 pointer-events-none';
       marker.innerHTML =
-        '<div class="h-full w-0.5 border-l-2 border-dashed border-blue-400"></div>';
+        '<div class="h-full w-0.5 border-l-2 border-dashed border-slate-400"></div>';
       (cardEl as HTMLElement).appendChild(marker);
     }
   });
@@ -1318,15 +1318,11 @@ function updatePageDisplay() {
       );
       if (selectBtn) {
         if (selectedPages.has(index)) {
-          card.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-500');
+          card.classList.add('border-slate-950', 'ring-2', 'ring-slate-950');
           selectBtn.innerHTML =
-            '<i data-lucide="check-square" class="w-4 h-4 text-indigo-400"></i>';
+            '<i data-lucide="check-square" class="w-4 h-4 text-slate-400"></i>';
         } else {
-          card.classList.remove(
-            'border-indigo-500',
-            'ring-2',
-            'ring-indigo-500'
-          );
+          card.classList.remove('border-slate-950', 'ring-2', 'ring-slate-950');
           selectBtn.innerHTML =
             '<i data-lucide="square" class="w-4 h-4 text-gray-200"></i>';
         }

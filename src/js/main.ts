@@ -5,11 +5,7 @@ import { createIcons, icons } from 'lucide';
 import '@phosphor-icons/web/regular';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
-import {
-  escapeHtml,
-  formatShortcutDisplay,
-  formatStars,
-} from './utils/helpers.js';
+import { escapeHtml, formatShortcutDisplay } from './utils/helpers.js';
 import {
   initI18n,
   applyTranslations,
@@ -23,10 +19,9 @@ import {
   isCurrentPageDisabled,
 } from './utils/disabled-tools.js';
 declare const __BRAND_NAME__: string;
-declare const __SOURCE_REPOSITORY_API_URL__: string;
 
 const replaceBrandName = (value: string): string =>
-  value.replace(/Bento PDF|BentoPDF/g, __BRAND_NAME__ || 'BentoPDF');
+  value.replace(/Bento PDF|BentoPDF/g, __BRAND_NAME__ || 'HirePDF');
 
 const applyBrandTextOverrides = (): void => {
   if (!__BRAND_NAME__) return;
@@ -75,7 +70,7 @@ const init = async () => {
         <i class="ph ph-prohibit text-6xl text-gray-500 mb-4"></i>
         <h1 class="text-2xl font-bold text-white mb-2">${heading}</h1>
         <p class="text-gray-400 mb-6">${message}</p>
-        <a href="${import.meta.env.BASE_URL}" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">${backHome}</a>
+        <a href="${import.meta.env.BASE_URL}" class="px-6 py-2 bg-slate-950 hover:bg-slate-800 text-white rounded-lg transition">${backHome}</a>
       </div>
     `;
     return;
@@ -90,13 +85,6 @@ const init = async () => {
       const heroSection = document.getElementById('hero-section');
       if (heroSection) {
         heroSection.style.display = 'none';
-      }
-
-      const githubLink = document.querySelector(
-        'a[href*="github.com/alam00000/bentopdf"]'
-      );
-      if (githubLink) {
-        (githubLink as HTMLElement).style.display = 'none';
       }
 
       const featuresSection = document.getElementById('features-section');
@@ -116,19 +104,11 @@ const init = async () => {
         faqSection.style.display = 'none';
       }
 
-      const testimonialsSection = document.getElementById(
-        'testimonials-section'
-      );
-      if (testimonialsSection) {
-        testimonialsSection.style.display = 'none';
-      }
-
       const supportSection = document.getElementById('support-section');
       if (supportSection) {
         supportSection.style.display = 'none';
       }
 
-      // Hide "Used by companies" section
       const usedBySection = document.querySelector(
         '.hide-section'
       ) as HTMLElement;
@@ -141,7 +121,7 @@ const init = async () => {
         (divider as HTMLElement).style.display = 'none';
       });
 
-      const brandName = __BRAND_NAME__ || 'BentoPDF';
+      const brandName = __BRAND_NAME__ || 'HirePDF';
       document.title = `${brandName} - ${t('simpleMode.title')}`;
 
       const toolsHeader = document.getElementById('tools-header');
@@ -416,10 +396,10 @@ const init = async () => {
         }
 
         const icon = document.createElement('i');
-        icon.className = 'w-10 h-10 mb-3 text-indigo-400';
+        icon.className = 'w-10 h-10 mb-3 text-slate-400';
 
         if (tool.icon.startsWith('ph-')) {
-          icon.className = `ph ${tool.icon} text-4xl mb-3 text-indigo-400`;
+          icon.className = `ph ${tool.icon} text-4xl mb-3 text-slate-400`;
         } else {
           icon.setAttribute('data-lucide', tool.icon);
         }
@@ -570,30 +550,6 @@ const init = async () => {
   }
 
   createIcons({ icons });
-  console.log('Please share our tool and share the love!');
-
-  const githubStarsElements = [
-    document.getElementById('github-stars-desktop'),
-    document.getElementById('github-stars-mobile'),
-  ];
-
-  if (githubStarsElements.some((el) => el) && !__SIMPLE_MODE__) {
-    fetch(__SOURCE_REPOSITORY_API_URL__)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.stargazers_count !== undefined) {
-          const formattedStars = formatStars(data.stargazers_count);
-          githubStarsElements.forEach((el) => {
-            if (el) el.textContent = formattedStars;
-          });
-        }
-      })
-      .catch(() => {
-        githubStarsElements.forEach((el) => {
-          if (el) el.textContent = '-';
-        });
-      });
-  }
 
   // Initialize Shortcuts System
   ShortcutsManager.init();
@@ -613,9 +569,9 @@ const init = async () => {
 
   if (shortcutsTabBtn && preferencesTabBtn) {
     shortcutsTabBtn.addEventListener('click', () => {
-      shortcutsTabBtn.classList.add('bg-indigo-600', 'text-white');
+      shortcutsTabBtn.classList.add('bg-slate-950', 'text-white');
       shortcutsTabBtn.classList.remove('text-gray-300');
-      preferencesTabBtn.classList.remove('bg-indigo-600', 'text-white');
+      preferencesTabBtn.classList.remove('bg-slate-950', 'text-white');
       preferencesTabBtn.classList.add('text-gray-300');
       shortcutsTabContent?.classList.remove('hidden');
       preferencesTabContent?.classList.add('hidden');
@@ -625,9 +581,9 @@ const init = async () => {
     });
 
     preferencesTabBtn.addEventListener('click', () => {
-      preferencesTabBtn.classList.add('bg-indigo-600', 'text-white');
+      preferencesTabBtn.classList.add('bg-slate-950', 'text-white');
       preferencesTabBtn.classList.remove('text-gray-300');
-      shortcutsTabBtn.classList.remove('bg-indigo-600', 'text-white');
+      shortcutsTabBtn.classList.remove('bg-slate-950', 'text-white');
       shortcutsTabBtn.classList.add('text-gray-300');
       preferencesTabContent?.classList.remove('hidden');
       shortcutsTabContent?.classList.add('hidden');
@@ -980,9 +936,9 @@ const init = async () => {
 
         const icon = document.createElement('i');
         if (tool.icon.startsWith('ph-')) {
-          icon.className = `ph ${tool.icon} w-5 h-5 text-indigo-400`;
+          icon.className = `ph ${tool.icon} w-5 h-5 text-slate-400`;
         } else {
-          icon.className = 'w-5 h-5 text-indigo-400';
+          icon.className = 'w-5 h-5 text-slate-400';
           icon.setAttribute('data-lucide', tool.icon);
         }
 
@@ -999,7 +955,7 @@ const init = async () => {
         const input = document.createElement('input');
         input.type = 'text';
         input.className =
-          'shortcut-input w-32 bg-gray-800 border border-gray-600 text-white text-center text-sm rounded px-2 py-1 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all';
+          'shortcut-input w-32 bg-gray-800 border border-gray-600 text-white text-center text-sm rounded px-2 py-1 focus:ring-2 focus:ring-slate-950 focus:border-transparent outline-none transition-all';
         input.placeholder = t('settings.clickToSet');
         input.value = formatShortcutDisplay(currentShortcut, isMac);
         input.readOnly = true;
@@ -1099,7 +1055,7 @@ const init = async () => {
                 ShortcutsManager.getShortcut(toolId) || '',
                 isMac
               );
-              input.classList.remove('border-indigo-500', 'text-indigo-400');
+              input.classList.remove('border-slate-950', 'text-slate-400');
               input.blur();
               return;
             }
@@ -1121,7 +1077,7 @@ const init = async () => {
                   ShortcutsManager.getShortcut(toolId) || '',
                   isMac
                 );
-                input.classList.remove('border-indigo-500', 'text-indigo-400');
+                input.classList.remove('border-slate-950', 'text-slate-400');
                 input.blur();
                 return;
               }
@@ -1143,7 +1099,7 @@ const init = async () => {
 
         input.onfocus = () => {
           input.value = t('settings.pressKeys');
-          input.classList.add('border-indigo-500', 'text-indigo-400');
+          input.classList.add('border-slate-950', 'text-slate-400');
         };
 
         input.onblur = () => {
@@ -1151,7 +1107,7 @@ const init = async () => {
             ShortcutsManager.getShortcut(toolId) || '',
             isMac
           );
-          input.classList.remove('border-indigo-500', 'text-indigo-400');
+          input.classList.remove('border-slate-950', 'text-slate-400');
         };
 
         right.append(input);

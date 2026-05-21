@@ -59,7 +59,7 @@ function showStatus(
       ? 'bg-green-900 text-green-200'
       : type === 'error'
         ? 'bg-red-900 text-red-200'
-        : 'bg-blue-900 text-blue-200'
+        : 'bg-slate-900 text-slate-200'
   }`;
   statusMessage.classList.remove('hidden');
 }
@@ -104,16 +104,16 @@ async function handleFileSelect(file: File) {
 
 dropZone.addEventListener('dragover', (e) => {
   e.preventDefault();
-  dropZone.classList.add('border-blue-500');
+  dropZone.classList.add('border-slate-950');
 });
 
 dropZone.addEventListener('dragleave', () => {
-  dropZone.classList.remove('border-blue-500');
+  dropZone.classList.remove('border-slate-950');
 });
 
 dropZone.addEventListener('drop', (e) => {
   e.preventDefault();
-  dropZone.classList.remove('border-blue-500');
+  dropZone.classList.remove('border-slate-950');
   const file = e.dataTransfer?.files[0];
   if (file) {
     handleFileSelect(file);

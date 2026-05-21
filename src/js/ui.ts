@@ -73,7 +73,7 @@ export const showLoader = (text = t('common.loading'), progress?: number) => {
         progressContainer.className = 'loader-progress-container w-64 mt-4';
         progressContainer.innerHTML = `
                     <div class="bg-gray-700 rounded-full h-2 overflow-hidden">
-                        <div class="loader-progress-bar bg-indigo-500 h-full transition-all duration-300" style="width: 0%"></div>
+                        <div class="loader-progress-bar bg-slate-950 h-full transition-all duration-300" style="width: 0%"></div>
                     </div>
                     <p class="loader-progress-text text-xs text-gray-400 mt-1 text-center">0%</p>
                 `;
@@ -247,12 +247,12 @@ export const renderPageThumbnails = async (
 
     const pageNumSpan = document.createElement('div');
     pageNumSpan.className =
-      'absolute top-1 left-1 bg-indigo-600 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none';
+      'absolute top-1 left-1 bg-slate-950 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none';
     pageNumSpan.textContent = pageNumber.toString();
 
     if (toolId === 'organize') {
       wrapper.className =
-        'page-thumbnail relative cursor-move flex flex-col items-center gap-1 p-2 border-2 border-gray-600 hover:border-indigo-500 rounded-lg bg-gray-700 transition-colors group';
+        'page-thumbnail relative cursor-move flex flex-col items-center gap-1 p-2 border-2 border-gray-600 hover:border-slate-950 rounded-lg bg-gray-700 transition-colors group';
 
       imgContainer.appendChild(pageNumSpan);
       wrapper.appendChild(imgContainer);
@@ -267,7 +267,7 @@ export const renderPageThumbnails = async (
         // Renumber remaining pages
         const pages = container.querySelectorAll('.page-thumbnail');
         pages.forEach((page, index) => {
-          const numSpan = page.querySelector('.bg-indigo-600');
+          const numSpan = page.querySelector('.bg-slate-950');
           if (numSpan) {
             numSpan.textContent = (index + 1).toString();
           }
@@ -279,7 +279,7 @@ export const renderPageThumbnails = async (
       wrapper.appendChild(deleteBtn);
     } else if (toolId === 'rotate') {
       wrapper.className =
-        'page-rotator-item flex flex-col items-center gap-2 p-2 border-2 border-gray-600 hover:border-indigo-500 rounded-lg bg-gray-700 transition-colors relative group';
+        'page-rotator-item flex flex-col items-center gap-2 p-2 border-2 border-gray-600 hover:border-slate-950 rounded-lg bg-gray-700 transition-colors relative group';
 
       // Read rotation from state (handles "Rotate All" on lazy-loaded pages)
       const rotationStateArray = getRotationState();
@@ -375,7 +375,7 @@ export const renderPageThumbnails = async (
       wrapper.appendChild(controlsDiv);
     } else if (toolId === 'delete-pages') {
       wrapper.className =
-        'page-thumbnail relative cursor-pointer flex flex-col items-center gap-1 p-2 border-2 border-gray-600 hover:border-indigo-500 rounded-lg bg-gray-700 transition-colors group';
+        'page-thumbnail relative cursor-pointer flex flex-col items-center gap-1 p-2 border-2 border-gray-600 hover:border-slate-950 rounded-lg bg-gray-700 transition-colors group';
       wrapper.dataset.pageNumber = pageNumber.toString();
 
       imgContainer.appendChild(pageNumSpan);
@@ -499,7 +499,7 @@ const createFileInputHTML = (options: FileInputOptions = {}) => {
             ? `
             <!-- NEW: Add control buttons for multi-file uploads -->
             <div id="file-controls" class="hidden mt-4 flex gap-3">
-                <button id="add-more-btn" class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
+                <button id="add-more-btn" class="btn bg-slate-950 hover:bg-slate-800 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">
                     <i data-lucide="plus"></i> ${t('upload.addMore')}
                 </button>
                 <button id="clear-files-btn" class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2">

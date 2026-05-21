@@ -38,6 +38,36 @@ const SUPPORTED_LANGUAGES = [
 const LANG_REGEX = new RegExp(
   `^/(${SUPPORTED_LANGUAGES.join('|')})(?:/(.*))?$`
 );
+const DEFAULT_EXCLUDED_PAGES = [
+  'about',
+  'contact',
+  'licensing',
+  'faq',
+  'privacy',
+  'terms',
+  'tools',
+  'pdf-converter',
+  'pdf-editor',
+  'pdf-security',
+  'pdf-merge-split',
+  'wasm-settings',
+];
+
+const EXCLUDED_BUILD_PAGES = new Set(
+  (process.env.VITE_EXCLUDED_PAGES || DEFAULT_EXCLUDED_PAGES.join(','))
+    .split(',')
+    .map((page) => page.trim())
+    .filter(Boolean)
+);
+
+function getEnabledLanguages(): string[] {
+  const envLanguages = (process.env.VITE_ENABLED_LANGUAGES || '')
+    .split(',')
+    .map((lang) => lang.trim())
+    .filter(Boolean);
+
+  return envLanguages.length > 0 ? envLanguages : [...SUPPORTED_LANGUAGES];
+}
 
 function loadPages(): Set<string> {
   const pagesDir = resolve(__dirname, 'src/pages');
@@ -66,7 +96,9 @@ function loadPages(): Set<string> {
     'pdf-security',
     'pdf-merge-split',
   ];
-  rootPages.forEach((p) => pages.add(p));
+  rootPages
+    .filter((page) => !EXCLUDED_BUILD_PAGES.has(page))
+    .forEach((page) => pages.add(page));
 
   return pages;
 }
@@ -477,9 +509,7 @@ export default defineConfig(() => {
           brandName: process.env.VITE_BRAND_NAME || '',
           brandLogo: process.env.VITE_BRAND_LOGO || '',
           footerText: process.env.VITE_FOOTER_TEXT || '',
-          sourceRepositoryUrl:
-            process.env.VITE_SOURCE_REPOSITORY_URL ||
-            'https://github.com/alam00000/bentopdf/',
+          sourceRepositoryUrl: process.env.VITE_SOURCE_REPOSITORY_URL || '',
           appVersion: process.env.npm_package_version || 'Unknown',
         },
       }),
@@ -523,10 +553,7 @@ export default defineConfig(() => {
     define: {
       __SIMPLE_MODE__: JSON.stringify(process.env.SIMPLE_MODE === 'true'),
       __BRAND_NAME__: JSON.stringify(process.env.VITE_BRAND_NAME || ''),
-      __SOURCE_REPOSITORY_API_URL__: JSON.stringify(
-        process.env.VITE_SOURCE_REPOSITORY_API_URL ||
-          'https://api.github.com/repos/alam00000/bentopdf'
-      ),
+      __ENABLED_LANGUAGES__: JSON.stringify(getEnabledLanguages()),
       __DISABLED_TOOLS__: JSON.stringify(
         (process.env.DISABLE_TOOLS || '')
           .split(',')
@@ -561,212 +588,229 @@ export default defineConfig(() => {
     },
     build: {
       rollupOptions: {
-        input: {
-          main:
-            process.env.SIMPLE_MODE === 'true'
-              ? resolve(__dirname, 'simple-index.html')
-              : resolve(__dirname, 'index.html'),
-          about: resolve(__dirname, 'about.html'),
-          contact: resolve(__dirname, 'contact.html'),
-          faq: resolve(__dirname, 'faq.html'),
-          privacy: resolve(__dirname, 'privacy.html'),
-          terms: resolve(__dirname, 'terms.html'),
-          licensing: resolve(__dirname, 'licensing.html'),
-          tools: resolve(__dirname, 'tools.html'),
-          '404': resolve(__dirname, '404.html'),
-          // Category Hub Pages
-          'pdf-converter': resolve(__dirname, 'pdf-converter.html'),
-          'pdf-editor': resolve(__dirname, 'pdf-editor.html'),
-          'pdf-security': resolve(__dirname, 'pdf-security.html'),
-          'pdf-merge-split': resolve(__dirname, 'pdf-merge-split.html'),
-          // Tool Pages
-          bookmark: resolve(__dirname, 'src/pages/bookmark.html'),
-          'table-of-contents': resolve(
-            __dirname,
-            'src/pages/table-of-contents.html'
-          ),
-          'pdf-to-json': resolve(__dirname, 'src/pages/pdf-to-json.html'),
-          'json-to-pdf': resolve(__dirname, 'src/pages/json-to-pdf.html'),
-          'pdf-multi-tool': resolve(__dirname, 'src/pages/pdf-multi-tool.html'),
-          'add-stamps': resolve(__dirname, 'src/pages/add-stamps.html'),
-          'form-creator': resolve(__dirname, 'src/pages/form-creator.html'),
-          'repair-pdf': resolve(__dirname, 'src/pages/repair-pdf.html'),
-          'merge-pdf': resolve(__dirname, 'src/pages/merge-pdf.html'),
-          'split-pdf': resolve(__dirname, 'src/pages/split-pdf.html'),
-          'compress-pdf': resolve(__dirname, 'src/pages/compress-pdf.html'),
-          'edit-pdf': resolve(__dirname, 'src/pages/edit-pdf.html'),
-          'jpg-to-pdf': resolve(__dirname, 'src/pages/jpg-to-pdf.html'),
-          'sign-pdf': resolve(__dirname, 'src/pages/sign-pdf.html'),
-          'crop-pdf': resolve(__dirname, 'src/pages/crop-pdf.html'),
-          'extract-pages': resolve(__dirname, 'src/pages/extract-pages.html'),
-          'delete-pages': resolve(__dirname, 'src/pages/delete-pages.html'),
-          'organize-pdf': resolve(__dirname, 'src/pages/organize-pdf.html'),
-          'overlay-pdf': resolve(__dirname, 'src/pages/overlay-pdf.html'),
-          'page-numbers': resolve(__dirname, 'src/pages/page-numbers.html'),
-          'add-page-labels': resolve(
-            __dirname,
-            'src/pages/add-page-labels.html'
-          ),
-          'add-watermark': resolve(__dirname, 'src/pages/add-watermark.html'),
-          'header-footer': resolve(__dirname, 'src/pages/header-footer.html'),
-          'invert-colors': resolve(__dirname, 'src/pages/invert-colors.html'),
-          'scanner-effect': resolve(__dirname, 'src/pages/scanner-effect.html'),
-          'pdf-workflow': resolve(__dirname, 'src/pages/pdf-workflow.html'),
-          'adjust-colors': resolve(__dirname, 'src/pages/adjust-colors.html'),
-          'background-color': resolve(
-            __dirname,
-            'src/pages/background-color.html'
-          ),
-          'text-color': resolve(__dirname, 'src/pages/text-color.html'),
-          'remove-annotations': resolve(
-            __dirname,
-            'src/pages/remove-annotations.html'
-          ),
-          'remove-blank-pages': resolve(
-            __dirname,
-            'src/pages/remove-blank-pages.html'
-          ),
-          'image-to-pdf': resolve(__dirname, 'src/pages/image-to-pdf.html'),
-          'png-to-pdf': resolve(__dirname, 'src/pages/png-to-pdf.html'),
-          'webp-to-pdf': resolve(__dirname, 'src/pages/webp-to-pdf.html'),
-          'svg-to-pdf': resolve(__dirname, 'src/pages/svg-to-pdf.html'),
-          'form-filler': resolve(__dirname, 'src/pages/form-filler.html'),
-          'reverse-pages': resolve(__dirname, 'src/pages/reverse-pages.html'),
-          'add-blank-page': resolve(__dirname, 'src/pages/add-blank-page.html'),
-          'divide-pages': resolve(__dirname, 'src/pages/divide-pages.html'),
-          'rotate-pdf': resolve(__dirname, 'src/pages/rotate-pdf.html'),
-          'rotate-custom': resolve(__dirname, 'src/pages/rotate-custom.html'),
-          'n-up-pdf': resolve(__dirname, 'src/pages/n-up-pdf.html'),
-          'combine-single-page': resolve(
-            __dirname,
-            'src/pages/combine-single-page.html'
-          ),
-          'view-metadata': resolve(__dirname, 'src/pages/view-metadata.html'),
-          'edit-metadata': resolve(__dirname, 'src/pages/edit-metadata.html'),
-          'pdf-to-zip': resolve(__dirname, 'src/pages/pdf-to-zip.html'),
-          'alternate-merge': resolve(
-            __dirname,
-            'src/pages/alternate-merge.html'
-          ),
-          'compare-pdfs': resolve(__dirname, 'src/pages/compare-pdfs.html'),
-          'add-attachments': resolve(
-            __dirname,
-            'src/pages/add-attachments.html'
-          ),
-          'edit-attachments': resolve(
-            __dirname,
-            'src/pages/edit-attachments.html'
-          ),
-          'extract-attachments': resolve(
-            __dirname,
-            'src/pages/extract-attachments.html'
-          ),
-          'ocr-pdf': resolve(__dirname, 'src/pages/ocr-pdf.html'),
-          'posterize-pdf': resolve(__dirname, 'src/pages/posterize-pdf.html'),
-          'fix-page-size': resolve(__dirname, 'src/pages/fix-page-size.html'),
-          'remove-metadata': resolve(
-            __dirname,
-            'src/pages/remove-metadata.html'
-          ),
-          'decrypt-pdf': resolve(__dirname, 'src/pages/decrypt-pdf.html'),
-          'flatten-pdf': resolve(__dirname, 'src/pages/flatten-pdf.html'),
-          'encrypt-pdf': resolve(__dirname, 'src/pages/encrypt-pdf.html'),
-          'linearize-pdf': resolve(__dirname, 'src/pages/linearize-pdf.html'),
-          'remove-restrictions': resolve(
-            __dirname,
-            'src/pages/remove-restrictions.html'
-          ),
-          'change-permissions': resolve(
-            __dirname,
-            'src/pages/change-permissions.html'
-          ),
-          'sanitize-pdf': resolve(__dirname, 'src/pages/sanitize-pdf.html'),
-          'page-dimensions': resolve(
-            __dirname,
-            'src/pages/page-dimensions.html'
-          ),
-          'bmp-to-pdf': resolve(__dirname, 'src/pages/bmp-to-pdf.html'),
-          'heic-to-pdf': resolve(__dirname, 'src/pages/heic-to-pdf.html'),
-          'tiff-to-pdf': resolve(__dirname, 'src/pages/tiff-to-pdf.html'),
-          'txt-to-pdf': resolve(__dirname, 'src/pages/txt-to-pdf.html'),
-          'markdown-to-pdf': resolve(
-            __dirname,
-            'src/pages/markdown-to-pdf.html'
-          ),
-          'pdf-to-bmp': resolve(__dirname, 'src/pages/pdf-to-bmp.html'),
-          'pdf-to-greyscale': resolve(
-            __dirname,
-            'src/pages/pdf-to-greyscale.html'
-          ),
-          'pdf-to-jpg': resolve(__dirname, 'src/pages/pdf-to-jpg.html'),
-          'pdf-to-png': resolve(__dirname, 'src/pages/pdf-to-png.html'),
-          'pdf-to-tiff': resolve(__dirname, 'src/pages/pdf-to-tiff.html'),
-          'pdf-to-cbz': resolve(__dirname, 'src/pages/pdf-to-cbz.html'),
-          'pdf-to-webp': resolve(__dirname, 'src/pages/pdf-to-webp.html'),
-          'pdf-to-docx': resolve(__dirname, 'src/pages/pdf-to-docx.html'),
-          'extract-images': resolve(__dirname, 'src/pages/extract-images.html'),
-          'pdf-to-markdown': resolve(
-            __dirname,
-            'src/pages/pdf-to-markdown.html'
-          ),
-          'rasterize-pdf': resolve(__dirname, 'src/pages/rasterize-pdf.html'),
-          'prepare-pdf-for-ai': resolve(
-            __dirname,
-            'src/pages/prepare-pdf-for-ai.html'
-          ),
-          'pdf-layers': resolve(__dirname, 'src/pages/pdf-layers.html'),
-          'pdf-to-pdfa': resolve(__dirname, 'src/pages/pdf-to-pdfa.html'),
-          'odt-to-pdf': resolve(__dirname, 'src/pages/odt-to-pdf.html'),
-          'csv-to-pdf': resolve(__dirname, 'src/pages/csv-to-pdf.html'),
-          'rtf-to-pdf': resolve(__dirname, 'src/pages/rtf-to-pdf.html'),
-          'word-to-pdf': resolve(__dirname, 'src/pages/word-to-pdf.html'),
-          'excel-to-pdf': resolve(__dirname, 'src/pages/excel-to-pdf.html'),
-          'powerpoint-to-pdf': resolve(
-            __dirname,
-            'src/pages/powerpoint-to-pdf.html'
-          ),
-          'pdf-booklet': resolve(__dirname, 'src/pages/pdf-booklet.html'),
-          'xps-to-pdf': resolve(__dirname, 'src/pages/xps-to-pdf.html'),
-          'mobi-to-pdf': resolve(__dirname, 'src/pages/mobi-to-pdf.html'),
-          'epub-to-pdf': resolve(__dirname, 'src/pages/epub-to-pdf.html'),
-          'fb2-to-pdf': resolve(__dirname, 'src/pages/fb2-to-pdf.html'),
-          'cbz-to-pdf': resolve(__dirname, 'src/pages/cbz-to-pdf.html'),
-          'wpd-to-pdf': resolve(__dirname, 'src/pages/wpd-to-pdf.html'),
-          'wps-to-pdf': resolve(__dirname, 'src/pages/wps-to-pdf.html'),
-          'xml-to-pdf': resolve(__dirname, 'src/pages/xml-to-pdf.html'),
-          'pages-to-pdf': resolve(__dirname, 'src/pages/pages-to-pdf.html'),
-          'odg-to-pdf': resolve(__dirname, 'src/pages/odg-to-pdf.html'),
-          'ods-to-pdf': resolve(__dirname, 'src/pages/ods-to-pdf.html'),
-          'odp-to-pdf': resolve(__dirname, 'src/pages/odp-to-pdf.html'),
-          'pub-to-pdf': resolve(__dirname, 'src/pages/pub-to-pdf.html'),
-          'vsd-to-pdf': resolve(__dirname, 'src/pages/vsd-to-pdf.html'),
-          'psd-to-pdf': resolve(__dirname, 'src/pages/psd-to-pdf.html'),
-          'pdf-to-svg': resolve(__dirname, 'src/pages/pdf-to-svg.html'),
-          'extract-tables': resolve(__dirname, 'src/pages/extract-tables.html'),
-          'pdf-to-csv': resolve(__dirname, 'src/pages/pdf-to-csv.html'),
-          'pdf-to-excel': resolve(__dirname, 'src/pages/pdf-to-excel.html'),
-          'pdf-to-text': resolve(__dirname, 'src/pages/pdf-to-text.html'),
-          'digital-sign-pdf': resolve(
-            __dirname,
-            'src/pages/digital-sign-pdf.html'
-          ),
-          'timestamp-pdf': resolve(__dirname, 'src/pages/timestamp-pdf.html'),
-          'validate-signature-pdf': resolve(
-            __dirname,
-            'src/pages/validate-signature-pdf.html'
-          ),
-          'email-to-pdf': resolve(__dirname, 'src/pages/email-to-pdf.html'),
-          'font-to-outline': resolve(
-            __dirname,
-            'src/pages/font-to-outline.html'
-          ),
-          'deskew-pdf': resolve(__dirname, 'src/pages/deskew-pdf.html'),
-          'wasm-settings': resolve(__dirname, 'src/pages/wasm-settings.html'),
-          'bates-numbering': resolve(
-            __dirname,
-            'src/pages/bates-numbering.html'
-          ),
-        },
+        input: Object.fromEntries(
+          Object.entries({
+            main:
+              process.env.SIMPLE_MODE === 'true'
+                ? resolve(__dirname, 'simple-index.html')
+                : resolve(__dirname, 'index.html'),
+            about: resolve(__dirname, 'about.html'),
+            contact: resolve(__dirname, 'contact.html'),
+            faq: resolve(__dirname, 'faq.html'),
+            privacy: resolve(__dirname, 'privacy.html'),
+            terms: resolve(__dirname, 'terms.html'),
+            licensing: resolve(__dirname, 'licensing.html'),
+            tools: resolve(__dirname, 'tools.html'),
+            '404': resolve(__dirname, '404.html'),
+            // Category Hub Pages
+            'pdf-converter': resolve(__dirname, 'pdf-converter.html'),
+            'pdf-editor': resolve(__dirname, 'pdf-editor.html'),
+            'pdf-security': resolve(__dirname, 'pdf-security.html'),
+            'pdf-merge-split': resolve(__dirname, 'pdf-merge-split.html'),
+            // Tool Pages
+            bookmark: resolve(__dirname, 'src/pages/bookmark.html'),
+            'table-of-contents': resolve(
+              __dirname,
+              'src/pages/table-of-contents.html'
+            ),
+            'pdf-to-json': resolve(__dirname, 'src/pages/pdf-to-json.html'),
+            'json-to-pdf': resolve(__dirname, 'src/pages/json-to-pdf.html'),
+            'pdf-multi-tool': resolve(
+              __dirname,
+              'src/pages/pdf-multi-tool.html'
+            ),
+            'add-stamps': resolve(__dirname, 'src/pages/add-stamps.html'),
+            'form-creator': resolve(__dirname, 'src/pages/form-creator.html'),
+            'repair-pdf': resolve(__dirname, 'src/pages/repair-pdf.html'),
+            'merge-pdf': resolve(__dirname, 'src/pages/merge-pdf.html'),
+            'split-pdf': resolve(__dirname, 'src/pages/split-pdf.html'),
+            'compress-pdf': resolve(__dirname, 'src/pages/compress-pdf.html'),
+            'edit-pdf': resolve(__dirname, 'src/pages/edit-pdf.html'),
+            'jpg-to-pdf': resolve(__dirname, 'src/pages/jpg-to-pdf.html'),
+            'sign-pdf': resolve(__dirname, 'src/pages/sign-pdf.html'),
+            'crop-pdf': resolve(__dirname, 'src/pages/crop-pdf.html'),
+            'extract-pages': resolve(__dirname, 'src/pages/extract-pages.html'),
+            'delete-pages': resolve(__dirname, 'src/pages/delete-pages.html'),
+            'organize-pdf': resolve(__dirname, 'src/pages/organize-pdf.html'),
+            'overlay-pdf': resolve(__dirname, 'src/pages/overlay-pdf.html'),
+            'page-numbers': resolve(__dirname, 'src/pages/page-numbers.html'),
+            'add-page-labels': resolve(
+              __dirname,
+              'src/pages/add-page-labels.html'
+            ),
+            'add-watermark': resolve(__dirname, 'src/pages/add-watermark.html'),
+            'header-footer': resolve(__dirname, 'src/pages/header-footer.html'),
+            'invert-colors': resolve(__dirname, 'src/pages/invert-colors.html'),
+            'scanner-effect': resolve(
+              __dirname,
+              'src/pages/scanner-effect.html'
+            ),
+            'pdf-workflow': resolve(__dirname, 'src/pages/pdf-workflow.html'),
+            'adjust-colors': resolve(__dirname, 'src/pages/adjust-colors.html'),
+            'background-color': resolve(
+              __dirname,
+              'src/pages/background-color.html'
+            ),
+            'text-color': resolve(__dirname, 'src/pages/text-color.html'),
+            'remove-annotations': resolve(
+              __dirname,
+              'src/pages/remove-annotations.html'
+            ),
+            'remove-blank-pages': resolve(
+              __dirname,
+              'src/pages/remove-blank-pages.html'
+            ),
+            'image-to-pdf': resolve(__dirname, 'src/pages/image-to-pdf.html'),
+            'png-to-pdf': resolve(__dirname, 'src/pages/png-to-pdf.html'),
+            'webp-to-pdf': resolve(__dirname, 'src/pages/webp-to-pdf.html'),
+            'svg-to-pdf': resolve(__dirname, 'src/pages/svg-to-pdf.html'),
+            'form-filler': resolve(__dirname, 'src/pages/form-filler.html'),
+            'reverse-pages': resolve(__dirname, 'src/pages/reverse-pages.html'),
+            'add-blank-page': resolve(
+              __dirname,
+              'src/pages/add-blank-page.html'
+            ),
+            'divide-pages': resolve(__dirname, 'src/pages/divide-pages.html'),
+            'rotate-pdf': resolve(__dirname, 'src/pages/rotate-pdf.html'),
+            'rotate-custom': resolve(__dirname, 'src/pages/rotate-custom.html'),
+            'n-up-pdf': resolve(__dirname, 'src/pages/n-up-pdf.html'),
+            'combine-single-page': resolve(
+              __dirname,
+              'src/pages/combine-single-page.html'
+            ),
+            'view-metadata': resolve(__dirname, 'src/pages/view-metadata.html'),
+            'edit-metadata': resolve(__dirname, 'src/pages/edit-metadata.html'),
+            'pdf-to-zip': resolve(__dirname, 'src/pages/pdf-to-zip.html'),
+            'alternate-merge': resolve(
+              __dirname,
+              'src/pages/alternate-merge.html'
+            ),
+            'compare-pdfs': resolve(__dirname, 'src/pages/compare-pdfs.html'),
+            'add-attachments': resolve(
+              __dirname,
+              'src/pages/add-attachments.html'
+            ),
+            'edit-attachments': resolve(
+              __dirname,
+              'src/pages/edit-attachments.html'
+            ),
+            'extract-attachments': resolve(
+              __dirname,
+              'src/pages/extract-attachments.html'
+            ),
+            'ocr-pdf': resolve(__dirname, 'src/pages/ocr-pdf.html'),
+            'posterize-pdf': resolve(__dirname, 'src/pages/posterize-pdf.html'),
+            'fix-page-size': resolve(__dirname, 'src/pages/fix-page-size.html'),
+            'remove-metadata': resolve(
+              __dirname,
+              'src/pages/remove-metadata.html'
+            ),
+            'decrypt-pdf': resolve(__dirname, 'src/pages/decrypt-pdf.html'),
+            'flatten-pdf': resolve(__dirname, 'src/pages/flatten-pdf.html'),
+            'encrypt-pdf': resolve(__dirname, 'src/pages/encrypt-pdf.html'),
+            'linearize-pdf': resolve(__dirname, 'src/pages/linearize-pdf.html'),
+            'remove-restrictions': resolve(
+              __dirname,
+              'src/pages/remove-restrictions.html'
+            ),
+            'change-permissions': resolve(
+              __dirname,
+              'src/pages/change-permissions.html'
+            ),
+            'sanitize-pdf': resolve(__dirname, 'src/pages/sanitize-pdf.html'),
+            'page-dimensions': resolve(
+              __dirname,
+              'src/pages/page-dimensions.html'
+            ),
+            'bmp-to-pdf': resolve(__dirname, 'src/pages/bmp-to-pdf.html'),
+            'heic-to-pdf': resolve(__dirname, 'src/pages/heic-to-pdf.html'),
+            'tiff-to-pdf': resolve(__dirname, 'src/pages/tiff-to-pdf.html'),
+            'txt-to-pdf': resolve(__dirname, 'src/pages/txt-to-pdf.html'),
+            'markdown-to-pdf': resolve(
+              __dirname,
+              'src/pages/markdown-to-pdf.html'
+            ),
+            'pdf-to-bmp': resolve(__dirname, 'src/pages/pdf-to-bmp.html'),
+            'pdf-to-greyscale': resolve(
+              __dirname,
+              'src/pages/pdf-to-greyscale.html'
+            ),
+            'pdf-to-jpg': resolve(__dirname, 'src/pages/pdf-to-jpg.html'),
+            'pdf-to-png': resolve(__dirname, 'src/pages/pdf-to-png.html'),
+            'pdf-to-tiff': resolve(__dirname, 'src/pages/pdf-to-tiff.html'),
+            'pdf-to-cbz': resolve(__dirname, 'src/pages/pdf-to-cbz.html'),
+            'pdf-to-webp': resolve(__dirname, 'src/pages/pdf-to-webp.html'),
+            'pdf-to-docx': resolve(__dirname, 'src/pages/pdf-to-docx.html'),
+            'extract-images': resolve(
+              __dirname,
+              'src/pages/extract-images.html'
+            ),
+            'pdf-to-markdown': resolve(
+              __dirname,
+              'src/pages/pdf-to-markdown.html'
+            ),
+            'rasterize-pdf': resolve(__dirname, 'src/pages/rasterize-pdf.html'),
+            'prepare-pdf-for-ai': resolve(
+              __dirname,
+              'src/pages/prepare-pdf-for-ai.html'
+            ),
+            'pdf-layers': resolve(__dirname, 'src/pages/pdf-layers.html'),
+            'pdf-to-pdfa': resolve(__dirname, 'src/pages/pdf-to-pdfa.html'),
+            'odt-to-pdf': resolve(__dirname, 'src/pages/odt-to-pdf.html'),
+            'csv-to-pdf': resolve(__dirname, 'src/pages/csv-to-pdf.html'),
+            'rtf-to-pdf': resolve(__dirname, 'src/pages/rtf-to-pdf.html'),
+            'word-to-pdf': resolve(__dirname, 'src/pages/word-to-pdf.html'),
+            'excel-to-pdf': resolve(__dirname, 'src/pages/excel-to-pdf.html'),
+            'powerpoint-to-pdf': resolve(
+              __dirname,
+              'src/pages/powerpoint-to-pdf.html'
+            ),
+            'pdf-booklet': resolve(__dirname, 'src/pages/pdf-booklet.html'),
+            'xps-to-pdf': resolve(__dirname, 'src/pages/xps-to-pdf.html'),
+            'mobi-to-pdf': resolve(__dirname, 'src/pages/mobi-to-pdf.html'),
+            'epub-to-pdf': resolve(__dirname, 'src/pages/epub-to-pdf.html'),
+            'fb2-to-pdf': resolve(__dirname, 'src/pages/fb2-to-pdf.html'),
+            'cbz-to-pdf': resolve(__dirname, 'src/pages/cbz-to-pdf.html'),
+            'wpd-to-pdf': resolve(__dirname, 'src/pages/wpd-to-pdf.html'),
+            'wps-to-pdf': resolve(__dirname, 'src/pages/wps-to-pdf.html'),
+            'xml-to-pdf': resolve(__dirname, 'src/pages/xml-to-pdf.html'),
+            'pages-to-pdf': resolve(__dirname, 'src/pages/pages-to-pdf.html'),
+            'odg-to-pdf': resolve(__dirname, 'src/pages/odg-to-pdf.html'),
+            'ods-to-pdf': resolve(__dirname, 'src/pages/ods-to-pdf.html'),
+            'odp-to-pdf': resolve(__dirname, 'src/pages/odp-to-pdf.html'),
+            'pub-to-pdf': resolve(__dirname, 'src/pages/pub-to-pdf.html'),
+            'vsd-to-pdf': resolve(__dirname, 'src/pages/vsd-to-pdf.html'),
+            'psd-to-pdf': resolve(__dirname, 'src/pages/psd-to-pdf.html'),
+            'pdf-to-svg': resolve(__dirname, 'src/pages/pdf-to-svg.html'),
+            'extract-tables': resolve(
+              __dirname,
+              'src/pages/extract-tables.html'
+            ),
+            'pdf-to-csv': resolve(__dirname, 'src/pages/pdf-to-csv.html'),
+            'pdf-to-excel': resolve(__dirname, 'src/pages/pdf-to-excel.html'),
+            'pdf-to-text': resolve(__dirname, 'src/pages/pdf-to-text.html'),
+            'digital-sign-pdf': resolve(
+              __dirname,
+              'src/pages/digital-sign-pdf.html'
+            ),
+            'timestamp-pdf': resolve(__dirname, 'src/pages/timestamp-pdf.html'),
+            'validate-signature-pdf': resolve(
+              __dirname,
+              'src/pages/validate-signature-pdf.html'
+            ),
+            'email-to-pdf': resolve(__dirname, 'src/pages/email-to-pdf.html'),
+            'font-to-outline': resolve(
+              __dirname,
+              'src/pages/font-to-outline.html'
+            ),
+            'deskew-pdf': resolve(__dirname, 'src/pages/deskew-pdf.html'),
+            'wasm-settings': resolve(__dirname, 'src/pages/wasm-settings.html'),
+            'bates-numbering': resolve(
+              __dirname,
+              'src/pages/bates-numbering.html'
+            ),
+          }).filter(([name]) => !EXCLUDED_BUILD_PAGES.has(name))
+        ),
         output: {
           assetFileNames: (assetInfo) => {
             const name = assetInfo.names?.[0] ?? '';

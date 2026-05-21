@@ -76,14 +76,14 @@ function initializePage() {
   if (dropZone) {
     dropZone.addEventListener('dragover', (e) => {
       e.preventDefault();
-      dropZone.classList.add('border-indigo-500');
+      dropZone.classList.add('border-slate-950');
     });
     dropZone.addEventListener('dragleave', () => {
-      dropZone.classList.remove('border-indigo-500');
+      dropZone.classList.remove('border-slate-950');
     });
     dropZone.addEventListener('drop', (e) => {
       e.preventDefault();
-      dropZone.classList.remove('border-indigo-500');
+      dropZone.classList.remove('border-slate-950');
       if (e.dataTransfer?.files.length) handleFiles(e.dataTransfer.files);
     });
   }
@@ -357,14 +357,14 @@ function loadPageConfig(pageNum: number) {
 
   if (config.type === 'text') {
     typeTextBtn!.className =
-      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors';
+      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-slate-950 text-white transition-colors';
     typeImageBtn!.className =
       'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors';
     textOptions?.classList.remove('hidden');
     imageOptions?.classList.add('hidden');
   } else {
     typeImageBtn!.className =
-      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors';
+      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-slate-950 text-white transition-colors';
     typeTextBtn!.className =
       'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors';
     textOptions?.classList.add('hidden');
@@ -492,7 +492,7 @@ function setupEditorControls() {
   typeTextBtn?.addEventListener('click', () => {
     watermarkType = 'text';
     typeTextBtn.className =
-      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors';
+      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-slate-950 text-white transition-colors';
     typeImageBtn!.className =
       'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors';
     textOptions?.classList.remove('hidden');
@@ -503,7 +503,7 @@ function setupEditorControls() {
   typeImageBtn?.addEventListener('click', () => {
     watermarkType = 'image';
     typeImageBtn.className =
-      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors';
+      'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-slate-950 text-white transition-colors';
     typeTextBtn!.className =
       'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors';
     textOptions?.classList.add('hidden');
@@ -596,7 +596,7 @@ function updatePresetHighlight(x: number, y: number) {
     const [bx, by] = pos.split(',').map(Number);
     if (Math.abs(bx - x) < 0.01 && Math.abs(by - y) < 0.01) {
       btn.className =
-        'pos-preset-btn py-1.5 text-xs bg-indigo-600 hover:bg-indigo-500 text-white rounded-md transition-colors';
+        'pos-preset-btn py-1.5 text-xs bg-slate-950 hover:bg-slate-950 text-white rounded-md transition-colors';
     } else {
       btn.className =
         'pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors';

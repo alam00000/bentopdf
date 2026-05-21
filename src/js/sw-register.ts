@@ -83,9 +83,7 @@ if (isDevelopment) {
                 console.log('[SW] New version available! Reload to update.');
 
                 if (
-                  confirm(
-                    'A new version of BentoPDF is available. Reload to update?'
-                  )
+                  confirm('Доступна новая версия HirePDF. Обновить страницу?')
                 ) {
                   newWorker.postMessage({ type: 'SKIP_WAITING' });
                   window.location.reload();

@@ -68,7 +68,7 @@ function updateFileDisplay() {
   const pageCount = pageState.pdfDoc.getPageCount();
 
   displayArea.innerHTML = `
-        <div class="bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-indigo-500 transition-colors">
+        <div class="bg-gray-700 p-3 rounded-lg border border-gray-600 hover:border-slate-950 transition-colors">
             <div class="flex items-center justify-between">
                 <div class="flex-1 min-w-0">
                     <p class="truncate font-medium text-white">${escapeHtml(pageState.file.name)}</p>
@@ -172,16 +172,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   dropZone?.addEventListener('dragover', (e) => {
     e.preventDefault();
-    dropZone.classList.add('border-indigo-500');
+    dropZone.classList.add('border-slate-950');
   });
 
   dropZone?.addEventListener('dragleave', () => {
-    dropZone.classList.remove('border-indigo-500');
+    dropZone.classList.remove('border-slate-950');
   });
 
   dropZone?.addEventListener('drop', (e) => {
     e.preventDefault();
-    dropZone.classList.remove('border-indigo-500');
+    dropZone.classList.remove('border-slate-950');
     const file = e.dataTransfer?.files[0];
     if (file) handleFileUpload(file);
   });

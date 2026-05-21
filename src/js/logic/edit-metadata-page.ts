@@ -73,14 +73,14 @@ function addCustomFieldRow(key: string = '', value: string = '') {
   keyInput.placeholder = 'Key (e.g., Department)';
   keyInput.value = key;
   keyInput.className =
-    'custom-meta-key w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5';
+    'custom-meta-key w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-slate-950 focus:border-slate-950 p-2.5';
 
   const valueInput = document.createElement('input');
   valueInput.type = 'text';
   valueInput.placeholder = 'Value (e.g., Marketing)';
   valueInput.value = value;
   valueInput.className =
-    'custom-meta-value w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5';
+    'custom-meta-value w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-slate-950 focus:border-slate-950 p-2.5';
 
   const removeBtn = document.createElement('button');
   removeBtn.type = 'button';

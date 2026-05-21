@@ -16,12 +16,12 @@ const BRAND_LOGO = (
 ).replace(/^\/+/, '');
 const FOOTER_TEXT =
   process.env.VITE_FOOTER_TEXT || '© 2026 BentoPDF. All rights reserved.';
-const SOURCE_REPOSITORY_URL =
-  process.env.VITE_SOURCE_REPOSITORY_URL ||
-  'https://github.com/alam00000/bentopdf';
+const SOURCE_REPOSITORY_URL = process.env.VITE_SOURCE_REPOSITORY_URL || '';
 
 const isBrandedBuild =
   BRAND_NAME !== 'BentoPDF' || SITE_URL !== 'https://www.bentopdf.com';
+const shouldExposeSourceRepository =
+  !isBrandedBuild && SOURCE_REPOSITORY_URL.length > 0;
 
 function walk(dir, predicate) {
   const results = [];
@@ -77,7 +77,11 @@ function rewriteJsonLdValue(value, isOrganization = false) {
       output.name = BRAND_NAME;
       output.url = SITE_URL;
       output.logo = `${SITE_URL}/${BRAND_LOGO}`;
-      output.sameAs = [SOURCE_REPOSITORY_URL];
+      if (shouldExposeSourceRepository) {
+        output.sameAs = [SOURCE_REPOSITORY_URL];
+      } else {
+        delete output.sameAs;
+      }
     }
 
     return output;
@@ -106,6 +110,7 @@ function rewriteStructuredData(html) {
 
 function removeOriginalSocialLinks(html) {
   const originalSocialLinks = [
+    /<a\s+[^>]*href="https:\/\/github\.com\/[^"]*"[\s\S]*?<\/a>/g,
     /<a\s+[^>]*href="https:\/\/discord\.gg\/[^"]*"[\s\S]*?<\/a>/g,
     /<a\s+[^>]*href="https:\/\/www\.instagram\.com\/thebentopdf\/"[\s\S]*?<\/a>/g,
     /<a\s+[^>]*href="https:\/\/www\.linkedin\.com\/company\/bentopdf\/"[\s\S]*?<\/a>/g,
@@ -116,6 +121,19 @@ function removeOriginalSocialLinks(html) {
     (updatedHtml, pattern) => updatedHtml.replace(pattern, ''),
     html
   );
+}
+
+function removeSourceRepositoryUi(html) {
+  return html
+    .replace(
+      /<a\s+[^>]*href="about:blank"[^>]*>[\s\S]*?github-stars-(?:desktop|mobile)[\s\S]*?<\/a>/g,
+      ''
+    )
+    .replace(
+      /<a\s+[^>]*>[\s\S]*?github-stars-(?:desktop|mobile)[\s\S]*?<\/a>/g,
+      ''
+    )
+    .replace(/<a\s+[^>]*title="GitHub"[^>]*>[\s\S]*?<\/a>/g, '');
 }
 
 function rewriteBrandHtml(html) {
@@ -156,6 +174,7 @@ function rewriteHtml(filePath) {
         '$1$2'
       );
     html = removeOriginalSocialLinks(html);
+    html = removeSourceRepositoryUi(html);
   }
 
   html = html
@@ -173,8 +192,9 @@ function writeManifest() {
   const manifest = {
     name: BRAND_NAME,
     short_name: BRAND_NAME,
-    description:
-      'Бесплатные PDF-инструменты Hiiire: редактирование, объединение, сжатие и конвертация файлов прямо в браузере.',
+    description: isBrandedBuild
+      ? `Бесплатные PDF-инструменты ${BRAND_NAME}: редактирование, объединение, сжатие и конвертация файлов прямо в браузере.`
+      : 'Free online PDF tools - Privacy-first PDF toolkit that works 100% in your browser',
     start_url: '/',
     display: 'standalone',
     background_color: '#ffffff',
@@ -218,7 +238,6 @@ Disallow: /*.br$
 Disallow: /tmp/
 Disallow: /temp/
 Disallow: /uploads/
-Disallow: /docs/assets/
 
 User-agent: Googlebot
 Allow: /
@@ -228,6 +247,15 @@ Allow: /
 `;
 
   fs.writeFileSync(path.join(DIST_DIR, 'robots.txt'), robots);
+}
+
+function removeUnusedBrandAssets() {
+  if (!isBrandedBuild) return;
+
+  const oldBrandMark = path.join(DIST_DIR, 'images', 'hiiire-pdf-mark.svg');
+  if (fs.existsSync(oldBrandMark)) {
+    fs.unlinkSync(oldBrandMark);
+  }
 }
 
 if (!fs.existsSync(DIST_DIR)) {
@@ -241,5 +269,6 @@ for (const file of walk(DIST_DIR, (filePath) => filePath.endsWith('.html'))) {
 
 writeManifest();
 writeRobots();
+removeUnusedBrandAssets();
 
 console.log(`Applied branding for ${BRAND_NAME} at ${SITE_URL}`);
