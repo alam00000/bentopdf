@@ -1,5 +1,5 @@
 name: 🐛 Bug Report
-description: Report a bug in BentoPDF
+description: Report a bug in hiiirePDF
 title: "(Bug) "
 labels: ["bug", "needs triage"]
 body:
@@ -92,9 +92,9 @@ body:
       required: true
 
   - type: input
-    id: bentopdf-version
+    id: hiiirepdf-version
     attributes:
-      label: BentoPDF Version
+      label: hiiirePDF Version
       description: Check the footer or package.json
       placeholder: "1.15.4"
     validations:

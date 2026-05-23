@@ -2,7 +2,7 @@ import { categories } from '../config/tools.js';
 import type { ToolEntry } from '@/types';
 
 export class ShortcutsManager {
-  private static STORAGE_KEY = 'bentopdf_shortcuts';
+  private static STORAGE_KEY = 'hiiirepdf_shortcuts';
   private static shortcuts: Map<string, string> = new Map();
   private static defaultShortcuts: Map<string, string> = new Map();
 
@@ -110,7 +110,7 @@ export class ShortcutsManager {
       encodeURIComponent(JSON.stringify(exportObj, null, 2));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute('href', dataStr);
-    downloadAnchorNode.setAttribute('download', 'bentopdf_shortcuts.json');
+    downloadAnchorNode.setAttribute('download', 'hiiirepdf_shortcuts.json');
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();

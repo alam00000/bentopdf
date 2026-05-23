@@ -243,7 +243,7 @@
     "subtitle": "브라우저에서 직접 양식을 작성합니다. XFA 양식도 지원됩니다.",
     "uploadHint": "양식 필드가 있는 PDF를 업로드하세요. 아래 뷰어에서 직접 작성한 후 버튼을 클릭하여 작성된 양식을 저장하고 다운로드하세요. XFA 양식도 지원합니다.",
     "xfaNoteTitle": "XFA 양식 참고:",
-    "xfaNoteDescription": "XFA(XML Forms Architecture)는 BentoPDF 및 Firefox와 같은 특정 PDF 뷰어에서만 지원되는 레거시 형식입니다. 다른 소프트웨어에서 XFA PDF를 열어 빈 페이지 또는 양식 필드가 보이지 않으면, 해당 뷰어가 XFA를 지원하지 않는다는 의미입니다. XFA 양식을 올바르게 보고 작성하려면 Firefox 또는 BentoPDF의 양식 작성기를 사용하세요."
+    "xfaNoteDescription": "XFA(XML Forms Architecture)는 hiiirePDF 및 Firefox와 같은 특정 PDF 뷰어에서만 지원되는 레거시 형식입니다. 다른 소프트웨어에서 XFA PDF를 열어 빈 페이지 또는 양식 필드가 보이지 않으면, 해당 뷰어가 XFA를 지원하지 않는다는 의미입니다. XFA 양식을 올바르게 보고 작성하려면 Firefox 또는 hiiirePDF의 양식 작성기를 사용하세요."
   },
   "createPdfForm": {
     "name": "PDF 양식 만들기",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "PDF 디지털 서명",
-    "pageTitle": "PDF 디지털 서명 - 암호화 서명 추가 | BentoPDF",
+    "pageTitle": "PDF 디지털 서명 - 암호화 서명 추가 | hiiirePDF",
     "subtitle": "X.509 인증서를 사용하여 PDF에 암호화 디지털 서명을 추가합니다. PKCS#12(.pfx, .p12) 및 PEM 형식을 지원합니다. 개인키는 브라우저 밖으로 나가지 않습니다.",
     "certificateSection": "인증서",
     "uploadCert": "인증서 업로드 (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "PDF 서명 검증",
-    "pageTitle": "PDF 서명 검증 - 디지털 서명 확인 | BentoPDF",
+    "pageTitle": "PDF 서명 검증 - 디지털 서명 확인 | hiiirePDF",
     "subtitle": "PDF의 디지털 서명을 검증합니다. 인증서 유효성 확인, 서명자 정보 조회, 문서 무결성 확인이 가능합니다. 모든 처리는 브라우저에서 이루어집니다."
   },
   "timestampPdf": {
     "name": "PDF 타임스탬프",
-    "pageTitle": "PDF 타임스탬프 무료 온라인 - RFC 3161 문서 타임스탬프 | BentoPDF",
+    "pageTitle": "PDF 타임스탬프 무료 온라인 - RFC 3161 문서 타임스탬프 | hiiirePDF",
     "subtitle": "신뢰할 수 있는 타임스탬프 기관(TSA) 서버를 사용하여 PDF에 RFC 3161 문서 타임스탬프를 추가합니다. 문서가 특정 시점에 존재했음을 증명합니다. 인증서가 필요하지 않습니다.",
     "tsaSectionTitle": "타임스탬프 서버 (TSA)",
     "selectTsa": "TSA 서버 선택",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "사용자 지정 재정의가 지워졌습니다. 사전 구성된 기본값이 활성화되었습니다.",
     "resetNoDefaults": "모든 구성 및 캐시된 모듈이 지워졌습니다.",
     "licenseTitle": "라이선스 공지:",
-    "licenseDescription": "외부 모듈(PyMuPDF, Ghostscript, CoherentPDF)은 AGPL-3.0 또는 유사한 카피레프트 라이선스에 따라 라이선스가 부여됩니다. 이러한 모듈을 구성하고 사용함으로써 해당 라이선스 조건에 동의하게 됩니다. BentoPDF는 예상되는 인터페이스를 따르는 모든 Ghostscript WASM 및 PyMuPDF WASM 구현과 호환됩니다."
+    "licenseDescription": "외부 모듈(PyMuPDF, Ghostscript, CoherentPDF)은 AGPL-3.0 또는 유사한 카피레프트 라이선스에 따라 라이선스가 부여됩니다. 이러한 모듈을 구성하고 사용함으로써 해당 라이선스 조건에 동의하게 됩니다. hiiirePDF는 예상되는 인터페이스를 따르는 모든 Ghostscript WASM 및 PyMuPDF WASM 구현과 호환됩니다."
   },
   "pdfOverlay": {
     "name": "PDF 오버레이",

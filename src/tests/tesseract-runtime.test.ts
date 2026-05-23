@@ -121,7 +121,7 @@ describe('tesseract-runtime', () => {
       createConfiguredTesseractWorker('fra', 1, undefined, {
         VITE_TESSERACT_AVAILABLE_LANGUAGES: 'eng,deu',
       })
-    ).rejects.toThrow('This BentoPDF build only bundles OCR data for');
+    ).rejects.toThrow('This hiiirePDF build only bundles OCR data for');
 
     expect(createWorker).not.toHaveBeenCalled();
   });

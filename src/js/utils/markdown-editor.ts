@@ -75,7 +75,7 @@ export interface MarkdownEditorOptions {
 
 export type { MarkdownItOptions } from '@/types';
 
-const DEFAULT_MARKDOWN = `# Редактор Markdown в HirePDF
+const DEFAULT_MARKDOWN = `# Редактор Markdown в hiiirePDF
 
 Это редактор Markdown с живым предпросмотром.
 
@@ -145,12 +145,12 @@ graph TD
 \`\`\`mermaid
 sequenceDiagram
     participant User
-    participant HirePDF
+    participant hiiirePDF
     participant Server
-    User->>HirePDF: Upload PDF
-    HirePDF->>HirePDF: Process locally
-    HirePDF-->>User: Download result
-    Note over HirePDF: No server needed!
+    User->>hiiirePDF: Upload PDF
+    hiiirePDF->>hiiirePDF: Process locally
+    hiiirePDF-->>User: Download result
+    Note over hiiirePDF: No server needed!
 \`\`\`
 
 ### Pie Chart
@@ -218,7 +218,7 @@ erDiagram
 
 \`\`\`mermaid
 mindmap
-    root((HirePDF))
+    root((hiiirePDF))
         Convert
             Word to PDF
             Excel to PDF

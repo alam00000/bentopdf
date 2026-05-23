@@ -26,7 +26,7 @@ const DEFAULT_WASM_ORIGINS = {
   cpdf: 'https://cdn.jsdelivr.net',
 };
 const DEFAULT_CORS_PROXY_ORIGIN =
-  'https://bentopdf-cors-proxy.bentopdf.workers.dev';
+  'https://hiiirepdf-cors-proxy.hiiirepdf.workers.dev';
 
 const wasmOrigins = [
   originOf(process.env.VITE_WASM_PYMUPDF_URL) || DEFAULT_WASM_ORIGINS.pymupdf,

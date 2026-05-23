@@ -4,10 +4,10 @@ import { join } from 'node:path';
 
 const defaults = {
   SITE_URL: 'https://pdf.hiiire.com',
-  VITE_BRAND_NAME: 'HirePDF',
+  VITE_BRAND_NAME: 'hiiirePDF',
   VITE_BRAND_LOGO: 'images/favicon-no-bg.svg',
   VITE_FOOTER_TEXT:
-    '© 2026 HirePDF. PDF-инструменты работают локально в браузере.',
+    '© 2026 hiiirePDF. PDF-инструменты работают локально в браузере.',
   VITE_DEFAULT_LANGUAGE: 'ru',
   VITE_ENABLED_LANGUAGES: 'ru',
   VITE_EXCLUDED_PAGES:
@@ -16,6 +16,9 @@ const defaults = {
   VITE_USE_CDN: 'true',
   VITE_SOURCE_REPOSITORY_URL: '',
   VITE_SOURCE_REPOSITORY_API_URL: '',
+  VITE_WASM_PYMUPDF_URL: '/wasm/pymupdf/',
+  VITE_WASM_GS_URL: '/wasm/gs/',
+  VITE_WASM_CPDF_URL: '/wasm/cpdf/',
   NODE_OPTIONS: '--max-old-space-size=6144',
 };
 

@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contributing to BentoPDF! This guide will help you get started.
+Thank you for your interest in contributing to hiiirePDF! This guide will help you get started.
 
 ## Getting Started
 
@@ -14,8 +14,8 @@ Thank you for your interest in contributing to BentoPDF! This guide will help yo
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/hiiirepdf.git
+cd hiiirepdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Project Structure
 
 ```
-bentopdf/
+hiiirepdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Add entries to all locale files in `public/locales/`:
 
 ## Translation
 
-See [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) for adding new languages.
+See [TRANSLATION.md](https://github.com/alam00000/hiiirepdf/blob/main/TRANSLATION.md) for adding new languages.
 
 ## Contributor License Agreement
 
 Before your PR can be merged, you'll need to sign our CLA:
 
-- [Individual CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Corporate CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individual CLA (ICLA)](https://github.com/alam00000/hiiirepdf/blob/main/ICLA.md)
+- [Corporate CLA (CCLA)](https://github.com/alam00000/hiiirepdf/blob/main/CCLA.md)
 
 ## Getting Help
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/alam00000/hiiirepdf/issues)
 - [Discord Community](https://discord.gg/Bgq3Ay3f2w)
 
 ## License
 
-BentoPDF is dual-licensed:
+hiiirePDF is dual-licensed:
 
 - **AGPL-3.0** for open-source projects where you share your full source code publicly
 - **Commercial License** for proprietary/closed-source applications - [Get Lifetime License for $79](https://ko-fi.com/s/f32ca4cb75)

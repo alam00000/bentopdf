@@ -2,10 +2,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "bentopdf.name" . }}
+  name: {{ include "hiiirepdf.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "bentopdf.labels" . | nindent 4 }}
+    {{- include "hiiirepdf.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -36,7 +36,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "bentopdf.name" $ }}
+                name: {{ include "hiiirepdf.name" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

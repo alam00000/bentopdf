@@ -6,20 +6,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
-const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+const SITE_URL = (process.env.SITE_URL || 'https://pdf.hiiire.com').replace(
   /\/+$/,
   ''
 );
-const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
+const BRAND_NAME = process.env.VITE_BRAND_NAME || 'hiiirePDF';
 const BRAND_LOGO = (
   process.env.VITE_BRAND_LOGO || 'images/favicon.svg'
 ).replace(/^\/+/, '');
 const FOOTER_TEXT =
-  process.env.VITE_FOOTER_TEXT || '© 2026 BentoPDF. All rights reserved.';
+  process.env.VITE_FOOTER_TEXT || '© 2026 hiiirePDF. All rights reserved.';
 const SOURCE_REPOSITORY_URL = process.env.VITE_SOURCE_REPOSITORY_URL || '';
 
 const isBrandedBuild =
-  BRAND_NAME !== 'BentoPDF' || SITE_URL !== 'https://www.bentopdf.com';
+  BRAND_NAME !== 'hiiirePDF' || SITE_URL !== 'https://pdf.hiiire.com';
 const shouldExposeSourceRepository =
   !isBrandedBuild && SOURCE_REPOSITORY_URL.length > 0;
 
@@ -41,19 +41,19 @@ function walk(dir, predicate) {
 
 function replaceBrandText(value) {
   return value
-    .replace(/Bento PDF/g, BRAND_NAME)
-    .replace(/BentoPDF/g, BRAND_NAME);
+    .replace(/hiiirePDF/g, BRAND_NAME)
+    .replace(/hiiirePDF/g, BRAND_NAME);
 }
 
 function rewriteTextNodes(html) {
-  return html.replace(/>([^<]*Bento\s?PDF[^<]*)</g, (_match, text) => {
+  return html.replace(/>([^<]*hiiire\s?PDF[^<]*)</g, (_match, text) => {
     return `>${replaceBrandText(text)}<`;
   });
 }
 
 function rewriteBrandAttributes(html) {
   return html.replace(
-    /\b(content|alt|title|aria-label)="([^"]*Bento\s?PDF[^"]*)"/g,
+    /\b(content|alt|title|aria-label)="([^"]*hiiire\s?PDF[^"]*)"/g,
     (_match, attribute, value) => {
       return `${attribute}="${replaceBrandText(value)}"`;
     }
@@ -112,9 +112,9 @@ function removeOriginalSocialLinks(html) {
   const originalSocialLinks = [
     /<a\s+[^>]*href="https:\/\/github\.com\/[^"]*"[\s\S]*?<\/a>/g,
     /<a\s+[^>]*href="https:\/\/discord\.gg\/[^"]*"[\s\S]*?<\/a>/g,
-    /<a\s+[^>]*href="https:\/\/www\.instagram\.com\/thebentopdf\/"[\s\S]*?<\/a>/g,
-    /<a\s+[^>]*href="https:\/\/www\.linkedin\.com\/company\/bentopdf\/"[\s\S]*?<\/a>/g,
-    /<a\s+[^>]*href="https:\/\/x\.com\/BentoPDF"[\s\S]*?<\/a>/g,
+    /<a\s+[^>]*href="https:\/\/www\.instagram\.com\/thehiiirepdf\/"[\s\S]*?<\/a>/g,
+    /<a\s+[^>]*href="https:\/\/www\.linkedin\.com\/company\/hiiirepdf\/"[\s\S]*?<\/a>/g,
+    /<a\s+[^>]*href="https:\/\/x\.com\/hiiirePDF"[\s\S]*?<\/a>/g,
   ];
 
   return originalSocialLinks.reduce(
@@ -178,7 +178,7 @@ function rewriteHtml(filePath) {
   }
 
   html = html
-    .replace(/https:\/\/www\.bentopdf\.com/g, SITE_URL)
+    .replace(/https:\/\/www\.hiiirepdf\.com/g, SITE_URL)
     .replace(/\/images\/favicon\.svg/g, `/${BRAND_LOGO}`);
 
   if (isBrandedBuild) {

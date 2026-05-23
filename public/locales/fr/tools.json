@@ -243,7 +243,7 @@
     "subtitle": "Remplir des formulaires directement dans le navigateur, y compris les formulaires XFA.",
     "uploadHint": "Téléversez un PDF avec des champs de formulaire. Remplissez-les directement dans la visionneuse ci-dessous, puis cliquez sur le bouton pour enregistrer et télécharger le formulaire rempli. Prend également en charge les formulaires XFA.",
     "xfaNoteTitle": "Remarque sur les formulaires XFA :",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) est un format hérité uniquement pris en charge par certaines visionneuses PDF telles que BentoPDF et Firefox. Si vous ouvrez un PDF XFA dans un autre logiciel et voyez des pages blanches ou aucun champ de formulaire, cela signifie que la visionneuse ne prend pas en charge XFA. Pour afficher et remplir correctement les formulaires XFA, utilisez Firefox ou le remplisseur de formulaires de BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) est un format hérité uniquement pris en charge par certaines visionneuses PDF telles que hiiirePDF et Firefox. Si vous ouvrez un PDF XFA dans un autre logiciel et voyez des pages blanches ou aucun champ de formulaire, cela signifie que la visionneuse ne prend pas en charge XFA. Pour afficher et remplir correctement les formulaires XFA, utilisez Firefox ou le remplisseur de formulaires de hiiirePDF."
   },
   "createPdfForm": {
     "name": "Créer un formulaire PDF",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Signature numérique PDF",
-    "pageTitle": "Signature numérique PDF - Ajouter une signature cryptographique | BentoPDF",
+    "pageTitle": "Signature numérique PDF - Ajouter une signature cryptographique | hiiirePDF",
     "subtitle": "Ajouter une signature numérique cryptographique à votre PDF à l’aide de certificats X.509. Prend en charge les formats PKCS#12 (.pfx, .p12) et PEM. Votre clé privée ne quitte jamais votre navigateur.",
     "certificateSection": "Certificat",
     "uploadCert": "Téléverser un certificat (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Valider la signature PDF",
-    "pageTitle": "Valider la signature PDF - Vérifier les signatures numériques | BentoPDF",
+    "pageTitle": "Valider la signature PDF - Vérifier les signatures numériques | hiiirePDF",
     "subtitle": "Vérifier les signatures numériques de vos fichiers PDF. Contrôlez la validité du certificat, consultez les informations du signataire et confirmez l’intégrité du document. Tout le traitement s’effectue dans votre navigateur."
   },
   "timestampPdf": {
     "name": "Horodater un PDF",
-    "pageTitle": "Horodatage PDF en ligne gratuit - Horodatage RFC 3161 | BentoPDF",
+    "pageTitle": "Horodatage PDF en ligne gratuit - Horodatage RFC 3161 | hiiirePDF",
     "subtitle": "Ajoutez un horodatage RFC 3161 à votre PDF via un serveur d'horodatage (TSA) de confiance. Prouve que votre document existait à un moment précis. Aucun certificat requis.",
     "tsaSectionTitle": "Serveur d'horodatage (TSA)",
     "selectTsa": "Sélectionner un serveur TSA",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Substitutions personnalisées effacées. Les valeurs par défaut préconfigurées sont actives.",
     "resetNoDefaults": "Toutes les configurations et modules en cache ont été effacés.",
     "licenseTitle": "Avis de licence :",
-    "licenseDescription": "Les modules externes (PyMuPDF, Ghostscript, CoherentPDF) sont sous licence AGPL-3.0 ou licences copyleft similaires. En configurant et en utilisant ces modules, vous acceptez leurs conditions de licence respectives. BentoPDF est compatible avec toute implémentation Ghostscript WASM et PyMuPDF WASM qui respecte l'interface attendue."
+    "licenseDescription": "Les modules externes (PyMuPDF, Ghostscript, CoherentPDF) sont sous licence AGPL-3.0 ou licences copyleft similaires. En configurant et en utilisant ces modules, vous acceptez leurs conditions de licence respectives. hiiirePDF est compatible avec toute implémentation Ghostscript WASM et PyMuPDF WASM qui respecte l'interface attendue."
   },
   "pdfOverlay": {
     "name": "Superposition PDF",

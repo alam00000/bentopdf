@@ -243,7 +243,7 @@
     "subtitle": "直接在你的瀏覽器中填寫表單。支援 XFA 表單。",
     "uploadHint": "上传带有表单字段的 PDF。在下方查看器中直接填写，然後點擊按钮保存并下載填写好的表单。也支持 XFA 表单。",
     "xfaNoteTitle": "關于 XFA 表单的说明：",
-    "xfaNoteDescription": "XFA（XML Forms Architecture）是一种旧版格式，仅 BentoPDF 和 Firefox 等部分 PDF 查看器支持。如果您在其他软件中打开 XFA PDF，看到空白頁面或没有表单字段，则表示該查看器不支持 XFA。要正確查看和填写 XFA 表单，請使用 Firefox 或 BentoPDF 的表单填写器。"
+    "xfaNoteDescription": "XFA（XML Forms Architecture）是一种旧版格式，仅 hiiirePDF 和 Firefox 等部分 PDF 查看器支持。如果您在其他软件中打开 XFA PDF，看到空白頁面或没有表单字段，则表示該查看器不支持 XFA。要正確查看和填写 XFA 表单，請使用 Firefox 或 hiiirePDF 的表单填写器。"
   },
   "createPdfForm": {
     "name": "建立 PDF 表單",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Digital Signature PDF",
-    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
+    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | hiiirePDF",
     "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
     "certificateSection": "Certificate",
     "uploadCert": "Upload certificate (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Validate PDF Signature",
-    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
+    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | hiiirePDF",
     "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
   },
   "timestampPdf": {
     "name": "PDF 時間戳記",
-    "pageTitle": "免費線上 PDF 時間戳記 - RFC 3161 文件時間戳記 | BentoPDF",
+    "pageTitle": "免費線上 PDF 時間戳記 - RFC 3161 文件時間戳記 | hiiirePDF",
     "subtitle": "透過可信賴的 TSA 伺服器為您的 PDF 新增 RFC 3161 時間戳記。證明您的文件在特定時間點存在。無需憑證。",
     "tsaSectionTitle": "時間戳記伺服器 (TSA)",
     "selectTsa": "選擇 TSA 伺服器",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "已清除自定義覆蓋。預配置的默認值已激活。",
     "resetNoDefaults": "所有配置和缓存模块均已清除。",
     "licenseTitle": "许可證通知：",
-    "licenseDescription": "外部模块（PyMuPDF、Ghostscript、CoherentPDF）根據 AGPL-3.0 或類似的 copyleft 许可證授權。配置和使用这些模块即表示您同意各自的许可證条款。BentoPDF 与遵循預期接口的任何 Ghostscript WASM 和 PyMuPDF WASM 實現兼容。"
+    "licenseDescription": "外部模块（PyMuPDF、Ghostscript、CoherentPDF）根據 AGPL-3.0 或類似的 copyleft 许可證授權。配置和使用这些模块即表示您同意各自的许可證条款。hiiirePDF 与遵循預期接口的任何 Ghostscript WASM 和 PyMuPDF WASM 實現兼容。"
   },
   "pdfOverlay": {
     "name": "PDF 疊加",

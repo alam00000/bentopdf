@@ -243,7 +243,7 @@
     "subtitle": "Preencha formulários diretamente no navegador. Também suporta formulários XFA.",
     "uploadHint": "Envie um PDF com campos de formulário. Preencha-os diretamente no visualizador abaixo, depois clique no botão para salvar e baixar o formulário preenchido. Também suporta formulários XFA.",
     "xfaNoteTitle": "Nota sobre formulários XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) é um formato legado suportado apenas por certos visualizadores de PDF como BentoPDF e Firefox. Se você abrir um PDF XFA em outro software e ver páginas em branco ou nenhum campo de formulário, significa que esse visualizador não suporta XFA. Para visualizar e preencher corretamente formulários XFA, use Firefox ou o preenchedor de formulários do BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) é um formato legado suportado apenas por certos visualizadores de PDF como hiiirePDF e Firefox. Se você abrir um PDF XFA em outro software e ver páginas em branco ou nenhum campo de formulário, significa que esse visualizador não suporta XFA. Para visualizar e preencher corretamente formulários XFA, use Firefox ou o preenchedor de formulários do hiiirePDF."
   },
   "createPdfForm": {
     "name": "Criar Formulário PDF",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Assinatura Digital PDF",
-    "pageTitle": "Assinatura Digital PDF - Adicionar Assinatura Criptográfica | BentoPDF",
+    "pageTitle": "Assinatura Digital PDF - Adicionar Assinatura Criptográfica | hiiirePDF",
     "subtitle": "Adicione uma assinatura digital criptográfica ao seu PDF usando certificados X.509. Suporta formatos PKCS#12 (.pfx, .p12) e PEM. Sua chave privada nunca sai do seu navegador.",
     "certificateSection": "Certificado",
     "uploadCert": "Carregar certificado (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Validar Assinatura PDF",
-    "pageTitle": "Validar Assinatura PDF - Verificar Assinaturas Digitais | BentoPDF",
+    "pageTitle": "Validar Assinatura PDF - Verificar Assinaturas Digitais | hiiirePDF",
     "subtitle": "Verifique assinaturas digitais em seus arquivos PDF. Verifique a validade do certificado e a integridade do documento."
   },
   "timestampPdf": {
     "name": "Carimbo de tempo PDF",
-    "pageTitle": "Carimbo de tempo PDF grátis online - RFC 3161 | BentoPDF",
+    "pageTitle": "Carimbo de tempo PDF grátis online - RFC 3161 | hiiirePDF",
     "subtitle": "Adicione um carimbo de tempo RFC 3161 ao seu PDF usando um servidor TSA confiável. Prova que o seu documento existia num momento específico. Sem necessidade de certificado.",
     "tsaSectionTitle": "Servidor de carimbo de tempo (TSA)",
     "selectTsa": "Selecionar um servidor TSA",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Substituições personalizadas removidas. Padrões pré-configurados estão ativos.",
     "resetNoDefaults": "Todas as configurações e módulos em cache foram apagados.",
     "licenseTitle": "Aviso de licença:",
-    "licenseDescription": "Os módulos externos (PyMuPDF, Ghostscript, CoherentPDF) são licenciados sob AGPL-3.0 ou licenças copyleft similares. Ao configurar e usar estes módulos, você concorda com seus respectivos termos de licença. BentoPDF é compatível com qualquer implementação WASM de Ghostscript e PyMuPDF que siga a interface esperada."
+    "licenseDescription": "Os módulos externos (PyMuPDF, Ghostscript, CoherentPDF) são licenciados sob AGPL-3.0 ou licenças copyleft similares. Ao configurar e usar estes módulos, você concorda com seus respectivos termos de licença. hiiirePDF é compatível com qualquer implementação WASM de Ghostscript e PyMuPDF que siga a interface esperada."
   },
   "pdfOverlay": {
     "name": "Sobreposição de PDF",

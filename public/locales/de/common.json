@@ -12,7 +12,7 @@
     "noLanguagesFound": "Keine Sprachen gefunden"
   },
   "donation": {
-    "message": "Liebst du BentoPDF? Hilf uns, es kostenlos und Open Source zu halten!",
+    "message": "Liebst du hiiirePDF? Hilf uns, es kostenlos und Open Source zu halten!",
     "button": "Spenden"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "Warum",
-    "bentoPdf": "BentoPDF nutzen?",
+    "hiiirePdf": "hiiirePDF nutzen?",
     "noSignup": {
       "title": "Keine Anmeldung",
       "description": "Sofort starten, keine Registrierung notwendig."
@@ -187,8 +187,8 @@
     "questions": "Fragen",
     "sectionTitle": "Häufig gestellte Fragen",
     "isFree": {
-      "question": "Ist BentoPDF wirklich kostenlos?",
-      "answer": "Ja, absolut. Alle Werkzeuge auf BentoPDF sind zu 100% kostenlos nutzbar, ohne Dateilimits, ohne Anmeldung und ohne Wasserzeichen. Wir glauben, dass jeder Zugang zu einfachen, leistungsstarken PDF-Werkzeugen verdient, ohne Bezahlschranke."
+      "question": "Ist hiiirePDF wirklich kostenlos?",
+      "answer": "Ja, absolut. Alle Werkzeuge auf hiiirePDF sind zu 100% kostenlos nutzbar, ohne Dateilimits, ohne Anmeldung und ohne Wasserzeichen. Wir glauben, dass jeder Zugang zu einfachen, leistungsstarken PDF-Werkzeugen verdient, ohne Bezahlschranke."
     },
     "areFilesSecure": {
       "question": "Sind meine Dateien sicher? Wo werden sie verarbeitet?",
@@ -196,27 +196,27 @@
     },
     "platforms": {
       "question": "Funktioniert es auf Mac, Windows und Mobilgeräten?",
-      "answer": "Ja! Da BentoPDF vollständig in deinem Browser läuft, funktioniert es auf jedem Betriebssystem mit einem modernen Webbrowser, einschließlich Windows, macOS, Linux, iOS und Android."
+      "answer": "Ja! Da hiiirePDF vollständig in deinem Browser läuft, funktioniert es auf jedem Betriebssystem mit einem modernen Webbrowser, einschließlich Windows, macOS, Linux, iOS und Android."
     },
     "gdprCompliant": {
-      "question": "Ist BentoPDF DSGVO-konform?",
-      "answer": "Ja. BentoPDF ist vollständig DSGVO-konform. Da die gesamte Dateiverarbeitung lokal in deinem Browser erfolgt und wir deine Dateien nie sammeln oder übertragen, haben wir keinen Zugang zu deinen Daten. Dies stellt sicher, dass du immer die Kontrolle über deine Dokumente hast."
+      "question": "Ist hiiirePDF DSGVO-konform?",
+      "answer": "Ja. hiiirePDF ist vollständig DSGVO-konform. Da die gesamte Dateiverarbeitung lokal in deinem Browser erfolgt und wir deine Dateien nie sammeln oder übertragen, haben wir keinen Zugang zu deinen Daten. Dies stellt sicher, dass du immer die Kontrolle über deine Dokumente hast."
     },
     "dataStorage": {
       "question": "Speichert oder verfolgt ihr meine Dateien?",
-      "answer": "Nein. Wir speichern, verfolgen oder protokollieren deine Dateien niemals. Alles, was du auf BentoPDF tust, geschieht im Speicher deines Browsers und verschwindet, sobald du die Seite schließt. Es gibt keine Uploads, keine Verlaufsprotokolle und keine Server."
+      "answer": "Nein. Wir speichern, verfolgen oder protokollieren deine Dateien niemals. Alles, was du auf hiiirePDF tust, geschieht im Speicher deines Browsers und verschwindet, sobald du die Seite schließt. Es gibt keine Uploads, keine Verlaufsprotokolle und keine Server."
     },
     "different": {
-      "question": "Was unterscheidet BentoPDF von anderen PDF-Werkzeugen?",
-      "answer": "Die meisten PDF-Werkzeuge laden deine Dateien zur Verarbeitung auf einen Server hoch. BentoPDF tut das nie. Wir verwenden sichere, moderne Webtechnologie, um Dateien direkt in deinem Browser zu verarbeiten. Das bedeutet schnellere Verarbeitung, stärkere Privatsphäre und vollständige Sicherheit."
+      "question": "Was unterscheidet hiiirePDF von anderen PDF-Werkzeugen?",
+      "answer": "Die meisten PDF-Werkzeuge laden deine Dateien zur Verarbeitung auf einen Server hoch. hiiirePDF tut das nie. Wir verwenden sichere, moderne Webtechnologie, um Dateien direkt in deinem Browser zu verarbeiten. Das bedeutet schnellere Verarbeitung, stärkere Privatsphäre und vollständige Sicherheit."
     },
     "browserBased": {
       "question": "Wie schützt mich die browserbasierte Verarbeitung?",
-      "answer": "Durch die vollständige Ausführung in deinem Browser stellt BentoPDF sicher, dass deine Dateien nie dein Gerät verlassen. Dies eliminiert die Risiken von Server-Hacks, Datenschutzverletzungen oder unbefugtem Zugriff. Deine Dateien gehören dir — Immer."
+      "answer": "Durch die vollständige Ausführung in deinem Browser stellt hiiirePDF sicher, dass deine Dateien nie dein Gerät verlassen. Dies eliminiert die Risiken von Server-Hacks, Datenschutzverletzungen oder unbefugtem Zugriff. Deine Dateien gehören dir — Immer."
     },
     "analytics": {
       "question": "Verwendet ihr Cookies oder Analysen, um mich zu verfolgen?",
-      "answer": "Uns liegt deine Privatsphäre am Herzen. BentoPDF verfolgt keine persönlichen Informationen. Wir verwenden Simple Analytics ausschließlich, um anonyme Besucherzahlen zu sehen. Das bedeutet, wir können wissen, wie viele Benutzer unsere Seite besuchen, aber wir wissen nie, wer sie sind. Simple Analytics ist vollständig DSGVO-konform und respektiert deine Privatsphäre."
+      "answer": "Uns liegt deine Privatsphäre am Herzen. hiiirePDF verfolgt keine persönlichen Informationen. Wir verwenden Simple Analytics ausschließlich, um anonyme Besucherzahlen zu sehen. Das bedeutet, wir können wissen, wie viele Benutzer unsere Seite besuchen, aber wir wissen nie, wer sie sind. Simple Analytics ist vollständig DSGVO-konform und respektiert deine Privatsphäre."
     }
   },
   "testimonials": {
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "Gefällt dir meine Arbeit?",
-    "description": "BentoPDF ist eine Herzensangelegenheit, entwickelt, um ein kostenloses, privates und leistungsstarkes PDF-Toolkit für alle bereitzustellen. Wenn du es nützlich findest, erwäge gerne, die Entwicklung zu unterstützen. Jeder Kaffee hilft!",
+    "description": "hiiirePDF ist eine Herzensangelegenheit, entwickelt, um ein kostenloses, privates und leistungsstarkes PDF-Toolkit für alle bereitzustellen. Wenn du es nützlich findest, erwäge gerne, die Entwicklung zu unterstützen. Jeder Kaffee hilft!",
     "buyMeCoffee": "Kauf mir einen Kaffee"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Alle Rechte vorbehalten.",
+    "copyright": "© 2026 hiiirePDF. Alle Rechte vorbehalten.",
     "version": "Version",
     "company": "Unternehmen",
     "aboutUs": "Über uns",
@@ -292,9 +292,9 @@
     "philosophy": {
       "label": "Unsere Kernphilosophie",
       "title": "Privatsphäre zuerst. Immer.",
-      "description": "In einer Zeit, in der Daten eine Ware sind, gehen wir einen anderen Weg. Die gesamte Verarbeitung für BentoPDF-Werkzeuge erfolgt lokal in deinem Browser. Das bedeutet, deine Dateien berühren niemals unsere Server, wir sehen deine Dokumente nie und verfolgen nicht, was du tust. Deine Dokumente bleiben voll und ganz privat, ohne Hintertürchen. Privatsphäre ist nicht nur eine Funktion; es ist unser Fundament."
+      "description": "In einer Zeit, in der Daten eine Ware sind, gehen wir einen anderen Weg. Die gesamte Verarbeitung für hiiirePDF-Werkzeuge erfolgt lokal in deinem Browser. Das bedeutet, deine Dateien berühren niemals unsere Server, wir sehen deine Dokumente nie und verfolgen nicht, was du tust. Deine Dokumente bleiben voll und ganz privat, ohne Hintertürchen. Privatsphäre ist nicht nur eine Funktion; es ist unser Fundament."
     },
-    "whyBentopdf": {
+    "whyhiiirePDF": {
       "title": "Warum",
       "speed": {
         "title": "Für Schnelligkeit gebaut",
@@ -315,7 +315,7 @@
     },
     "cta": {
       "title": "Bereit loszulegen?",
-      "description": "Schließ dich Tausenden von Benutzer*innen an, die BentoPDF für ihre tägliche Arbeit vertrauen. Erlebe den Unterschied, den Privatsphäre und Leistung machen können.",
+      "description": "Schließ dich Tausenden von Benutzer*innen an, die hiiirePDF für ihre tägliche Arbeit vertrauen. Erlebe den Unterschied, den Privatsphäre und Leistung machen können.",
       "button": "Alle Werkzeuge erkunden"
     }
   },

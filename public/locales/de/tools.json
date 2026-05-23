@@ -243,7 +243,7 @@
     "subtitle": "Formulare direkt im Browser ausfüllen. Unterstützt auch XFA-Formulare.",
     "uploadHint": "Laden Sie eine PDF mit Formularfeldern hoch. Füllen Sie sie direkt im untenstehenden Viewer aus und klicken Sie dann auf die Schaltfläche, um das ausgefüllte Formular zu speichern und herunterzuladen. Unterstützt auch XFA-Formulare.",
     "xfaNoteTitle": "Hinweis zu XFA-Formularen:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) ist ein älteres Format, das nur von bestimmten PDF-Viewern wie BentoPDF und Firefox unterstützt wird. Wenn Sie eine XFA-PDF in anderer Software öffnen und leere Seiten oder keine Formularfelder sehen, bedeutet das, dass dieser Viewer XFA nicht unterstützt. Um XFA-Formulare korrekt anzuzeigen und auszufüllen, verwenden Sie Firefox oder den Formular-Ausfüller von BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) ist ein älteres Format, das nur von bestimmten PDF-Viewern wie hiiirePDF und Firefox unterstützt wird. Wenn Sie eine XFA-PDF in anderer Software öffnen und leere Seiten oder keine Formularfelder sehen, bedeutet das, dass dieser Viewer XFA nicht unterstützt. Um XFA-Formulare korrekt anzuzeigen und auszufüllen, verwenden Sie Firefox oder den Formular-Ausfüller von hiiirePDF."
   },
   "createPdfForm": {
     "name": "PDF-Formular erstellen",
@@ -845,7 +845,7 @@
   },
   "digitalSignPdf": {
     "name": "Digitale PDF-Signatur",
-    "pageTitle": "Digitale PDF-Signatur - Kryptografische Signatur hinzufügen | BentoPDF",
+    "pageTitle": "Digitale PDF-Signatur - Kryptografische Signatur hinzufügen | hiiirePDF",
     "subtitle": "Fügen Sie eine kryptografische digitale Signatur mit X.509-Zertifikaten zu Ihrer PDF hinzu. Unterstützt PKCS#12 (.pfx, .p12) und PEM-Formate. Ihr privater Schlüssel verlässt niemals Ihren Browser.",
     "certificateSection": "Zertifikat",
     "uploadCert": "Zertifikat hochladen (.pfx, .p12, .pem)",
@@ -931,12 +931,12 @@
   },
   "validateSignaturePdf": {
     "name": "PDF-Signatur überprüfen",
-    "pageTitle": "PDF-Signatur überprüfen - Digitale Signaturen verifizieren | BentoPDF",
+    "pageTitle": "PDF-Signatur überprüfen - Digitale Signaturen verifizieren | hiiirePDF",
     "subtitle": "Überprüfen Sie digitale Signaturen in Ihren PDF-Dateien. Prüfen Sie die Zertifikatsgültigkeit, sehen Sie Unterzeichnerdetails und bestätigen Sie die Dokumentenintegrität. Die gesamte Verarbeitung erfolgt in Ihrem Browser."
   },
   "timestampPdf": {
     "name": "PDF mit Zeitstempel versehen",
-    "pageTitle": "PDF-Zeitstempel online kostenlos - RFC 3161 Dokumentenzeitstempel | BentoPDF",
+    "pageTitle": "PDF-Zeitstempel online kostenlos - RFC 3161 Dokumentenzeitstempel | hiiirePDF",
     "subtitle": "Fügen Sie Ihrem PDF einen RFC 3161-Zeitstempel über einen vertrauenswürdigen Zeitstempelserver (TSA) hinzu. Beweist, dass Ihr Dokument zu einem bestimmten Zeitpunkt existierte. Kein Zertifikat erforderlich.",
     "tsaSectionTitle": "Zeitstempelserver (TSA)",
     "selectTsa": "TSA-Server auswählen",
@@ -1122,7 +1122,7 @@
     "resetWithDefaults": "Benutzerdefinierte Überschreibungen wurden entfernt. Vorkonfigurierte Standardwerte sind aktiv.",
     "resetNoDefaults": "Alle Konfigurationen und zwischengespeicherten Module wurden gelöscht.",
     "licenseTitle": "Lizenzhinweis:",
-    "licenseDescription": "Die externen Module (PyMuPDF, Ghostscript, CoherentPDF) sind unter AGPL-3.0 oder ähnlichen Copyleft-Lizenzen lizenziert. Durch das Konfigurieren und Verwenden dieser Module stimmen Sie den jeweiligen Lizenzbedingungen zu. BentoPDF ist mit jeder Ghostscript-WASM- und PyMuPDF-WASM-Implementierung kompatibel, die der erwarteten Schnittstelle folgt."
+    "licenseDescription": "Die externen Module (PyMuPDF, Ghostscript, CoherentPDF) sind unter AGPL-3.0 oder ähnlichen Copyleft-Lizenzen lizenziert. Durch das Konfigurieren und Verwenden dieser Module stimmen Sie den jeweiligen Lizenzbedingungen zu. hiiirePDF ist mit jeder Ghostscript-WASM- und PyMuPDF-WASM-Implementierung kompatibel, die der erwarteten Schnittstelle folgt."
   },
   "pdfOverlay": {
     "name": "PDF-Überlagerung",

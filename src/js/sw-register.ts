@@ -83,7 +83,7 @@ if (isDevelopment) {
                 console.log('[SW] New version available! Reload to update.');
 
                 if (
-                  confirm('Доступна новая версия HirePDF. Обновить страницу?')
+                  confirm('Доступна новая версия hiiirePDF. Обновить страницу?')
                 ) {
                   newWorker.postMessage({ type: 'SKIP_WAITING' });
                   window.location.reload();

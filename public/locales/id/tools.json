@@ -243,7 +243,7 @@
     "subtitle": "Isi formulir langsung di browser. Juga mendukung formulir XFA.",
     "uploadHint": "Unggah PDF dengan bidang formulir. Isi langsung di penampil di bawah, lalu klik tombol untuk menyimpan dan mengunduh formulir yang telah diisi. Juga mendukung formulir XFA.",
     "xfaNoteTitle": "Catatan tentang Formulir XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) adalah format lama yang hanya didukung oleh penampil PDF tertentu seperti BentoPDF dan Firefox. Jika Anda membuka PDF XFA di perangkat lunak lain dan melihat halaman kosong atau tidak ada bidang formulir, itu berarti penampil tersebut tidak mendukung XFA. Untuk melihat dan mengisi formulir XFA dengan benar, gunakan Firefox atau Form Filler BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) adalah format lama yang hanya didukung oleh penampil PDF tertentu seperti hiiirePDF dan Firefox. Jika Anda membuka PDF XFA di perangkat lunak lain dan melihat halaman kosong atau tidak ada bidang formulir, itu berarti penampil tersebut tidak mendukung XFA. Untuk melihat dan mengisi formulir XFA dengan benar, gunakan Firefox atau Form Filler hiiirePDF."
   },
   "createPdfForm": {
     "name": "Buat Formulir PDF",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Tanda Tangan Digital PDF",
-    "pageTitle": "Tanda Tangan Digital PDF - Tambah Tanda Tangan Kriptografi | BentoPDF",
+    "pageTitle": "Tanda Tangan Digital PDF - Tambah Tanda Tangan Kriptografi | hiiirePDF",
     "subtitle": "Tambah tanda tangan digital kriptografi ke PDF Anda menggunakan sertifikat X.509. Mendukung format PKCS#12 (.pfx, .p12) dan PEM. Kunci pribadi Anda tidak pernah meninggalkan browser Anda.",
     "certificateSection": "Sertifikat",
     "uploadCert": "Unggah sertifikat (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Validasi Tanda Tangan PDF",
-    "pageTitle": "Validasi Tanda Tangan PDF - Verifikasi Tanda Tangan Digital | BentoPDF",
+    "pageTitle": "Validasi Tanda Tangan PDF - Verifikasi Tanda Tangan Digital | hiiirePDF",
     "subtitle": "Verifikasi tanda tangan digital di file PDF Anda. Periksa validitas sertifikat, lihat detail penandatangan, dan konfirmasi integritas dokumen. Semua pemrosesan terjadi di browser Anda."
   },
   "timestampPdf": {
     "name": "Stempel Waktu PDF",
-    "pageTitle": "Stempel Waktu PDF Gratis Online - RFC 3161 | BentoPDF",
+    "pageTitle": "Stempel Waktu PDF Gratis Online - RFC 3161 | hiiirePDF",
     "subtitle": "Tambahkan stempel waktu RFC 3161 ke PDF Anda menggunakan server TSA tepercaya. Membuktikan dokumen Anda ada pada waktu tertentu. Tidak memerlukan sertifikat.",
     "tsaSectionTitle": "Server Stempel Waktu (TSA)",
     "selectTsa": "Pilih server TSA",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Penimpaan kustom dihapus. Default yang dikonfigurasi sebelumnya aktif.",
     "resetNoDefaults": "Semua konfigurasi dan modul yang di-cache telah dihapus.",
     "licenseTitle": "Pemberitahuan Lisensi:",
-    "licenseDescription": "Modul eksternal (PyMuPDF, Ghostscript, CoherentPDF) dilisensikan di bawah AGPL-3.0 atau lisensi copyleft serupa. Dengan mengonfigurasi dan menggunakan modul-modul ini, Anda menyetujui ketentuan lisensi masing-masing. BentoPDF kompatibel dengan implementasi Ghostscript WASM dan PyMuPDF WASM apa pun yang mengikuti antarmuka yang diharapkan."
+    "licenseDescription": "Modul eksternal (PyMuPDF, Ghostscript, CoherentPDF) dilisensikan di bawah AGPL-3.0 atau lisensi copyleft serupa. Dengan mengonfigurasi dan menggunakan modul-modul ini, Anda menyetujui ketentuan lisensi masing-masing. hiiirePDF kompatibel dengan implementasi Ghostscript WASM dan PyMuPDF WASM apa pun yang mengikuti antarmuka yang diharapkan."
   },
   "pdfOverlay": {
     "name": "Overlay PDF",

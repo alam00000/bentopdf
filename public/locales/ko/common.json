@@ -12,7 +12,7 @@
     "noLanguagesFound": "언어를 찾을 수 없습니다"
   },
   "donation": {
-    "message": "BentoPDF가 마음에 드셨나요? 무료 오픈소스로 유지될 수 있도록 도와주세요!",
+    "message": "hiiirePDF가 마음에 드셨나요? 무료 오픈소스로 유지될 수 있도록 도와주세요!",
     "button": "후원하기"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "왜",
-    "bentoPdf": "BentoPDF일까요?",
+    "hiiirePdf": "hiiirePDF일까요?",
     "noSignup": {
       "title": "회원가입 불필요",
       "description": "계정이나 이메일 없이 바로 시작하세요."
@@ -187,8 +187,8 @@
     "questions": "질문",
     "sectionTitle": "자주 묻는 질문",
     "isFree": {
-      "question": "BentoPDF는 정말 무료인가요?",
-      "answer": "네, 완전히 무료입니다. BentoPDF의 모든 도구는 파일 수 제한, 회원가입, 워터마크 없이 자유롭게 사용할 수 있습니다. 누구나 비용 걱정 없이 편리한 PDF 도구를 쓸 수 있어야 한다고 생각합니다."
+      "question": "hiiirePDF는 정말 무료인가요?",
+      "answer": "네, 완전히 무료입니다. hiiirePDF의 모든 도구는 파일 수 제한, 회원가입, 워터마크 없이 자유롭게 사용할 수 있습니다. 누구나 비용 걱정 없이 편리한 PDF 도구를 쓸 수 있어야 한다고 생각합니다."
     },
     "areFilesSecure": {
       "question": "파일이 안전한가요? 어디에서 처리되나요?",
@@ -196,27 +196,27 @@
     },
     "platforms": {
       "question": "Mac, Windows, 모바일에서도 되나요?",
-      "answer": "네! BentoPDF는 브라우저에서 실행되므로 Windows, macOS, Linux, iOS, Android 등 최신 웹 브라우저가 있는 어떤 기기에서든 사용할 수 있습니다."
+      "answer": "네! hiiirePDF는 브라우저에서 실행되므로 Windows, macOS, Linux, iOS, Android 등 최신 웹 브라우저가 있는 어떤 기기에서든 사용할 수 있습니다."
     },
     "gdprCompliant": {
-      "question": "BentoPDF는 GDPR을 준수하나요?",
+      "question": "hiiirePDF는 GDPR을 준수하나요?",
       "answer": "네, 완전히 준수합니다. 모든 파일 처리가 브라우저에서 이루어지고 서버로 파일을 전송하지 않기 때문에, 저희는 여러분의 데이터에 접근할 수 없습니다. 문서에 대한 통제권은 항상 여러분에게 있습니다."
     },
     "dataStorage": {
       "question": "파일을 저장하거나 추적하나요?",
-      "answer": "아니요. 파일을 저장하거나 추적하거나 기록하지 않습니다. BentoPDF에서 하는 모든 작업은 브라우저 메모리에서 처리되며, 페이지를 닫으면 모두 사라집니다. 업로드도, 이용 기록도, 서버도 관여하지 않습니다."
+      "answer": "아니요. 파일을 저장하거나 추적하거나 기록하지 않습니다. hiiirePDF에서 하는 모든 작업은 브라우저 메모리에서 처리되며, 페이지를 닫으면 모두 사라집니다. 업로드도, 이용 기록도, 서버도 관여하지 않습니다."
     },
     "different": {
-      "question": "BentoPDF가 다른 PDF 도구와 다른 점은 뭔가요?",
-      "answer": "대부분의 PDF 도구는 파일을 서버에 업로드해서 처리합니다. BentoPDF는 그렇게 하지 않습니다. 최신 웹 기술을 활용해 브라우저에서 바로 처리하기 때문에 더 빠르고, 더 안전하며, 걱정 없이 사용할 수 있습니다."
+      "question": "hiiirePDF가 다른 PDF 도구와 다른 점은 뭔가요?",
+      "answer": "대부분의 PDF 도구는 파일을 서버에 업로드해서 처리합니다. hiiirePDF는 그렇게 하지 않습니다. 최신 웹 기술을 활용해 브라우저에서 바로 처리하기 때문에 더 빠르고, 더 안전하며, 걱정 없이 사용할 수 있습니다."
     },
     "browserBased": {
       "question": "브라우저 기반 처리가 왜 안전한가요?",
-      "answer": "BentoPDF는 브라우저 안에서만 실행되기 때문에 파일이 기기 밖으로 나가지 않습니다. 서버 해킹, 데이터 유출, 무단 접근 같은 위험이 원천적으로 차단됩니다. 파일은 언제나 여러분만의 것입니다."
+      "answer": "hiiirePDF는 브라우저 안에서만 실행되기 때문에 파일이 기기 밖으로 나가지 않습니다. 서버 해킹, 데이터 유출, 무단 접근 같은 위험이 원천적으로 차단됩니다. 파일은 언제나 여러분만의 것입니다."
     },
     "analytics": {
       "question": "쿠키나 분석 도구로 사용자를 추적하나요?",
-      "answer": "여러분의 프라이버시를 소중히 여깁니다. BentoPDF는 개인정보를 추적하지 않으며, 익명 방문 수 확인만을 위해 Simple Analytics를 사용합니다. 방문자 수는 알 수 있지만 누가 방문했는지는 절대 알 수 없습니다. Simple Analytics는 GDPR을 완전히 준수합니다."
+      "answer": "여러분의 프라이버시를 소중히 여깁니다. hiiirePDF는 개인정보를 추적하지 않으며, 익명 방문 수 확인만을 위해 Simple Analytics를 사용합니다. 방문자 수는 알 수 있지만 누가 방문했는지는 절대 알 수 없습니다. Simple Analytics는 GDPR을 완전히 준수합니다."
     }
   },
   "testimonials": {
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "도움이 되셨나요?",
-    "description": "BentoPDF는 누구나 무료로, 안전하게, 강력한 PDF 도구를 사용할 수 있도록 만든 프로젝트입니다. 유용하게 쓰고 계시다면 개발을 응원해 주세요. 작은 후원이 큰 힘이 됩니다!",
+    "description": "hiiirePDF는 누구나 무료로, 안전하게, 강력한 PDF 도구를 사용할 수 있도록 만든 프로젝트입니다. 유용하게 쓰고 계시다면 개발을 응원해 주세요. 작은 후원이 큰 힘이 됩니다!",
     "buyMeCoffee": "커피 한 잔 사주기"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. All rights reserved.",
+    "copyright": "© 2026 hiiirePDF. All rights reserved.",
     "version": "버전",
     "company": "회사",
     "aboutUs": "소개",
@@ -292,9 +292,9 @@
     "philosophy": {
       "label": "핵심 철학",
       "title": "개인정보 보호가 최우선. 언제나.",
-      "description": "데이터가 곧 상품인 시대에, 우리는 다른 길을 걷습니다. BentoPDF의 모든 처리는 브라우저에서 직접 이루어집니다. 파일이 서버로 전송되지 않고, 문서를 들여다보지 않으며, 사용 내역을 추적하지 않습니다. 여러분의 문서는 철저하게 비공개로 유지됩니다. 이것은 하나의 기능이 아니라 우리의 근본입니다."
+      "description": "데이터가 곧 상품인 시대에, 우리는 다른 길을 걷습니다. hiiirePDF의 모든 처리는 브라우저에서 직접 이루어집니다. 파일이 서버로 전송되지 않고, 문서를 들여다보지 않으며, 사용 내역을 추적하지 않습니다. 여러분의 문서는 철저하게 비공개로 유지됩니다. 이것은 하나의 기능이 아니라 우리의 근본입니다."
     },
-    "whyBentopdf": {
+    "whyhiiirePDF": {
       "title": "왜",
       "speed": {
         "title": "속도에 최적화",
@@ -315,7 +315,7 @@
     },
     "cta": {
       "title": "시작할 준비가 되셨나요?",
-      "description": "수많은 사용자가 일상적인 문서 작업에 BentoPDF를 활용하고 있습니다. 프라이버시와 빠른 성능이 가져다주는 차이를 직접 느껴보세요.",
+      "description": "수많은 사용자가 일상적인 문서 작업에 hiiirePDF를 활용하고 있습니다. 프라이버시와 빠른 성능이 가져다주는 차이를 직접 느껴보세요.",
       "button": "모든 도구 둘러보기"
     }
   },

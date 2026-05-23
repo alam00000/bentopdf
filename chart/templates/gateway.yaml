@@ -1,7 +1,7 @@
 {{- if .Values.gateway.enabled -}}
 {{- $gatewayName := .Values.gateway.name -}}
 {{- if not $gatewayName -}}
-{{- $gatewayName = printf "%s-gateway" (include "bentopdf.name" .) -}}
+{{- $gatewayName = printf "%s-gateway" (include "hiiirepdf.name" .) -}}
 {{- end -}}
 {{- $gatewayNs := default .Release.Namespace .Values.gateway.namespace -}}
 apiVersion: gateway.networking.k8s.io/v1
@@ -10,7 +10,7 @@ metadata:
   name: {{ $gatewayName }}
   namespace: {{ $gatewayNs }}
   labels:
-    {{- include "bentopdf.labels" . | nindent 4 }}
+    {{- include "hiiirepdf.labels" . | nindent 4 }}
   {{- with .Values.gateway.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

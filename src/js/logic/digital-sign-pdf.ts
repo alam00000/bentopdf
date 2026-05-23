@@ -118,7 +118,7 @@ const CORS_PROXY_URL = import.meta.env.VITE_CORS_PROXY_URL || '';
  * 3. Have your frontend call your server, which then calls the CORS proxy
  *
  * This client-side HMAC provides limited protection (deters casual abuse)
- * but should NOT be considered secure against determined attackers. HirePDF
+ * but should NOT be considered secure against determined attackers. hiiirePDF
  * accepts this tradeoff because of it's client side architecture.
  *
  * To enable (optional):

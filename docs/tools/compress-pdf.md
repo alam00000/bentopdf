@@ -5,7 +5,7 @@ description: Reduce PDF file size by up to 90% with smart compression algorithms
 
 # Compress PDF
 
-Shrink your PDF files without destroying them. BentoPDF offers two distinct compression algorithms -- one for text-heavy documents, another for photo-heavy scans -- so you get meaningful size reduction regardless of what your PDF contains.
+Shrink your PDF files without destroying them. hiiirePDF offers two distinct compression algorithms -- one for text-heavy documents, another for photo-heavy scans -- so you get meaningful size reduction regardless of what your PDF contains.
 
 ## How It Works
 

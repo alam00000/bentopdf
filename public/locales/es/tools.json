@@ -243,7 +243,7 @@
     "subtitle": "Rellena formularios directamente en el navegador. También soporta formularios XFA.",
     "uploadHint": "Sube un PDF con campos de formulario. Rellénalos directamente en el visor de abajo, luego haz clic en el botón para guardar y descargar el formulario completado. También admite formularios XFA.",
     "xfaNoteTitle": "Nota sobre formularios XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) es un formato heredado solo compatible con ciertos visores de PDF como BentoPDF y Firefox. Si abres un PDF XFA en otro software y ves páginas en blanco o ningún campo de formulario, significa que ese visor no admite XFA. Para ver y rellenar correctamente formularios XFA, usa Firefox o el llenador de formularios de BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) es un formato heredado solo compatible con ciertos visores de PDF como hiiirePDF y Firefox. Si abres un PDF XFA en otro software y ves páginas en blanco o ningún campo de formulario, significa que ese visor no admite XFA. Para ver y rellenar correctamente formularios XFA, usa Firefox o el llenador de formularios de hiiirePDF."
   },
   "createPdfForm": {
     "name": "Crear Formulario PDF",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Firma Digital PDF",
-    "pageTitle": "Firma Digital PDF - Agregar Firma Criptográfica | BentoPDF",
+    "pageTitle": "Firma Digital PDF - Agregar Firma Criptográfica | hiiirePDF",
     "subtitle": "Agrega una firma digital criptográfica a tu PDF usando certificados X.509. Soporta formatos PKCS#12 (.pfx, .p12) y PEM. Tu clave privada nunca sale de tu navegador.",
     "certificateSection": "Certificado",
     "uploadCert": "Cargar certificado (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Validar Firma PDF",
-    "pageTitle": "Validar Firma PDF - Verificar Firmas Digitales | BentoPDF",
+    "pageTitle": "Validar Firma PDF - Verificar Firmas Digitales | hiiirePDF",
     "subtitle": "Verifica firmas digitales en tus archivos PDF. Comprueba la validez del certificado, ve los detalles del firmante y confirma la integridad del documento."
   },
   "timestampPdf": {
     "name": "Sellar PDF con marca de tiempo",
-    "pageTitle": "Marca de tiempo PDF gratis - Sello RFC 3161 | BentoPDF",
+    "pageTitle": "Marca de tiempo PDF gratis - Sello RFC 3161 | hiiirePDF",
     "subtitle": "Añade una marca de tiempo RFC 3161 a tu PDF mediante un servidor TSA de confianza. Demuestra que tu documento existía en un momento específico. No se requiere certificado.",
     "tsaSectionTitle": "Servidor de marca de tiempo (TSA)",
     "selectTsa": "Seleccionar un servidor TSA",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Anulaciones personalizadas borradas. Los valores preconfigurados están activos.",
     "resetNoDefaults": "Se han borrado todas las configuraciones y módulos en caché.",
     "licenseTitle": "Aviso de licencia:",
-    "licenseDescription": "Los módulos externos (PyMuPDF, Ghostscript, CoherentPDF) están licenciados bajo AGPL-3.0 o licencias copyleft similares. Al configurar y usar estos módulos, aceptas sus respectivos términos de licencia. BentoPDF es compatible con cualquier implementación WASM de Ghostscript y PyMuPDF que siga la interfaz esperada."
+    "licenseDescription": "Los módulos externos (PyMuPDF, Ghostscript, CoherentPDF) están licenciados bajo AGPL-3.0 o licencias copyleft similares. Al configurar y usar estos módulos, aceptas sus respectivos términos de licencia. hiiirePDF es compatible con cualquier implementación WASM de Ghostscript y PyMuPDF que siga la interfaz esperada."
   },
   "pdfOverlay": {
     "name": "Superposición de PDF",

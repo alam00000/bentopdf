@@ -13,7 +13,7 @@ if [ "${ROBOTS_NOINDEX:-false}" != "true" ]; then
 fi
 
 ROOT="${NOINDEX_HTML_ROOT:-/usr/share/nginx/html}"
-MARKER='<!-- bentopdf-noindex-injected -->'
+MARKER='<!-- hiiirepdf-noindex-injected -->'
 META_TAG='<meta name="robots" content="noindex, follow">'
 
 entrypoint_log "ROBOTS_NOINDEX=true: injecting noindex meta into HTML under $ROOT"

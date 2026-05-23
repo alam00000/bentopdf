@@ -243,7 +243,7 @@
     "subtitle": "Formları doğrudan tarayıcıda doldurun. XFA formlarını da destekler.",
     "uploadHint": "Form alanları olan bir PDF yükleyin. Aşağıdaki görüntüleyicide doğrudan doldurun, ardından doldurulmuş formu kaydetmek ve indirmek için düğmeye tıklayın. XFA formlarını da destekler.",
     "xfaNoteTitle": "XFA Formları Hakkında Not:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture), yalnızca BentoPDF ve Firefox gibi belirli PDF görüntüleyicileri tarafından desteklenen eski bir biçimdir. XFA bir PDF'yi başka yazılımda açtığınızda boş sayfalar veya form alanı görmüyorsanız, görüntüleyicinin XFA'yı desteklemediği anlamına gelir. XFA formlarını doğru görüntülemek ve doldurmak için Firefox veya BentoPDF'in Form Doldurucu'yu kullanın."
+    "xfaNoteDescription": "XFA (XML Forms Architecture), yalnızca hiiirePDF ve Firefox gibi belirli PDF görüntüleyicileri tarafından desteklenen eski bir biçimdir. XFA bir PDF'yi başka yazılımda açtığınızda boş sayfalar veya form alanı görmüyorsanız, görüntüleyicinin XFA'yı desteklemediği anlamına gelir. XFA formlarını doğru görüntülemek ve doldurmak için Firefox veya hiiirePDF'in Form Doldurucu'yu kullanın."
   },
   "createPdfForm": {
     "name": "PDF Formu Oluştur",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Digital Signature PDF",
-    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
+    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | hiiirePDF",
     "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
     "certificateSection": "Certificate",
     "uploadCert": "Upload certificate (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Validate PDF Signature",
-    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
+    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | hiiirePDF",
     "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
   },
   "timestampPdf": {
     "name": "PDF Zaman Damgası",
-    "pageTitle": "PDF Zaman Damgası Ücretsiz - RFC 3161 Belge Zaman Damgası | BentoPDF",
+    "pageTitle": "PDF Zaman Damgası Ücretsiz - RFC 3161 Belge Zaman Damgası | hiiirePDF",
     "subtitle": "Güvenilir bir TSA sunucusu aracılığıyla PDF'nize RFC 3161 zaman damgası ekleyin. Belgenizin belirli bir zamanda var olduğunu kanıtlar. Sertifika gerekmez.",
     "tsaSectionTitle": "Zaman Damgası Sunucusu (TSA)",
     "selectTsa": "Bir TSA sunucusu seçin",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Özel geçersiz kılmalar temizlendi. Önceden yapılandırılmış varsayılanlar etkin.",
     "resetNoDefaults": "Tüm yapılandırmalar ve önbelleğe alınmış modüller temizlendi.",
     "licenseTitle": "Lisans Bildirimi:",
-    "licenseDescription": "Harici modüller (PyMuPDF, Ghostscript, CoherentPDF), AGPL-3.0 veya benzer copyleft lisansları altında lisanslanmıştır. Bu modülleri yapılandırarak ve kullanarak, ilgili lisans şartlarını kabul etmiş olursunuz. BentoPDF, beklenen arayüzü izleyen herhangi bir Ghostscript WASM ve PyMuPDF WASM uygulamasıyla uyumludur."
+    "licenseDescription": "Harici modüller (PyMuPDF, Ghostscript, CoherentPDF), AGPL-3.0 veya benzer copyleft lisansları altında lisanslanmıştır. Bu modülleri yapılandırarak ve kullanarak, ilgili lisans şartlarını kabul etmiş olursunuz. hiiirePDF, beklenen arayüzü izleyen herhangi bir Ghostscript WASM ve PyMuPDF WASM uygulamasıyla uyumludur."
   },
   "pdfOverlay": {
     "name": "PDF Katmanlama",

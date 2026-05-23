@@ -12,7 +12,7 @@
     "noLanguagesFound": "Dil bulunamadı"
   },
   "donation": {
-    "message": "BentoPDF'i seviyor musunuz? Ücretsiz ve açık kaynaklı kalmasına yardımcı olun!",
+    "message": "hiiirePDF'i seviyor musunuz? Ücretsiz ve açık kaynaklı kalmasına yardımcı olun!",
     "button": "Bağış Yap"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "Neden",
-    "bentoPdf": "BentoPDF'yi seçmelisiniz?",
+    "hiiirePdf": "hiiirePDF'yi seçmelisiniz?",
     "noSignup": {
       "title": "Kayıt Gerekmez",
       "description": "Hemen başlayın, hesap veya e-posta gerekmez."
@@ -187,8 +187,8 @@
     "questions": "Sorular",
     "sectionTitle": "Sıkça Sorulan Sorular",
     "isFree": {
-      "question": "BentoPDF gerçekten ücretsiz mi?",
-      "answer": "Evet, kesinlikle. BentoPDF'deki tüm araçlar %100 ücretsizdir, dosya sınırı yoktur, kayıt gerekmez ve filigran eklenmez. Herkesin ödeme duvarı olmadan basit, güçlü PDF araçlarına erişimi hak ettiğine inanıyoruz."
+      "question": "hiiirePDF gerçekten ücretsiz mi?",
+      "answer": "Evet, kesinlikle. hiiirePDF'deki tüm araçlar %100 ücretsizdir, dosya sınırı yoktur, kayıt gerekmez ve filigran eklenmez. Herkesin ödeme duvarı olmadan basit, güçlü PDF araçlarına erişimi hak ettiğine inanıyoruz."
     },
     "areFilesSecure": {
       "question": "Dosyalarım güvende mi? Nerede işleniyorlar?",
@@ -196,27 +196,27 @@
     },
     "platforms": {
       "question": "Mac, Windows ve Mobil'de çalışıyor mu?",
-      "answer": "Evet! BentoPDF tamamen tarayıcınızda çalıştığı için, Windows, macOS, Linux, iOS ve Android dahil modern bir web tarayıcısı olan herhangi bir işletim sisteminde çalışır."
+      "answer": "Evet! hiiirePDF tamamen tarayıcınızda çalıştığı için, Windows, macOS, Linux, iOS ve Android dahil modern bir web tarayıcısı olan herhangi bir işletim sisteminde çalışır."
     },
     "gdprCompliant": {
-      "question": "BentoPDF GDPR uyumlu mu?",
-      "answer": "Evet. BentoPDF tamamen GDPR uyumludur. Tüm dosya işlemleri tarayıcınızda yerel olarak gerçekleştiği ve dosyalarınızı herhangi bir sunucuya asla iletmediğimiz için verilerinize erişimimiz yoktur. Bu, belgeleriniz üzerindeki kontrolün her zaman sizde olduğundan emin olur."
+      "question": "hiiirePDF GDPR uyumlu mu?",
+      "answer": "Evet. hiiirePDF tamamen GDPR uyumludur. Tüm dosya işlemleri tarayıcınızda yerel olarak gerçekleştiği ve dosyalarınızı herhangi bir sunucuya asla iletmediğimiz için verilerinize erişimimiz yoktur. Bu, belgeleriniz üzerindeki kontrolün her zaman sizde olduğundan emin olur."
     },
     "dataStorage": {
       "question": "Dosyalarımı saklıyor veya takip ediyor musunuz?",
-      "answer": "Hayır. Dosyalarınızı asla saklamıyor, takip etmiyor veya kaydetmiyoruz. BentoPDF'de yaptığınız her şey tarayıcı belleğinizde gerçekleşir ve sayfayı kapattığınızda silinir. Yükleme, geçmiş kaydı veya sunucu yoktur."
+      "answer": "Hayır. Dosyalarınızı asla saklamıyor, takip etmiyor veya kaydetmiyoruz. hiiirePDF'de yaptığınız her şey tarayıcı belleğinizde gerçekleşir ve sayfayı kapattığınızda silinir. Yükleme, geçmiş kaydı veya sunucu yoktur."
     },
     "different": {
-      "question": "BentoPDF'yi diğer PDF araçlarından farklı kılan nedir?",
-      "answer": "Çoğu PDF aracı, işlem için dosyalarınızı bir sunucuya yükler. BentoPDF asla böyle yapmaz. Dosyalarınızı doğrudan tarayıcınızda işlemek için güvenli, modern web teknolojileri kullanırız. Bu, daha hızlı performans, daha güçlü gizlilik ve tam bir gönül rahatlığı anlamına gelir."
+      "question": "hiiirePDF'yi diğer PDF araçlarından farklı kılan nedir?",
+      "answer": "Çoğu PDF aracı, işlem için dosyalarınızı bir sunucuya yükler. hiiirePDF asla böyle yapmaz. Dosyalarınızı doğrudan tarayıcınızda işlemek için güvenli, modern web teknolojileri kullanırız. Bu, daha hızlı performans, daha güçlü gizlilik ve tam bir gönül rahatlığı anlamına gelir."
     },
     "browserBased": {
       "question": "Tarayıcı tabanlı işlem beni nasıl korur?",
-      "answer": "Tamamen tarayıcınızın içinde çalışarak, BentoPDF dosyalarınızın cihazınızı asla terk etmemesini sağlar. Bu, sunucu saldırıları, veri ihlalleri veya yetkisiz erişim risklerini ortadan kaldırır. Dosyalarınız her zaman sizin kalır."
+      "answer": "Tamamen tarayıcınızın içinde çalışarak, hiiirePDF dosyalarınızın cihazınızı asla terk etmemesini sağlar. Bu, sunucu saldırıları, veri ihlalleri veya yetkisiz erişim risklerini ortadan kaldırır. Dosyalarınız her zaman sizin kalır."
     },
     "analytics": {
       "question": "Beni takip etmek için çerez veya analiz kullanıyor musunuz?",
-      "answer": "Gizliliğinizi önemsiyoruz. BentoPDF kişisel bilgileri takip etmez. Sadece anonim ziyaretçi sayılarını görmek için Simple Analytics kullanıyoruz. Bu, sitemizi kaç kişinin ziyaret ettiğini görebileceğimiz, ancak kim olduğunuzu asla bilemeyeceğimiz anlamına gelir. Simple Analytics tamamen GDPR uyumludur ve gizliliğinize saygı gösterir."
+      "answer": "Gizliliğinizi önemsiyoruz. hiiirePDF kişisel bilgileri takip etmez. Sadece anonim ziyaretçi sayılarını görmek için Simple Analytics kullanıyoruz. Bu, sitemizi kaç kişinin ziyaret ettiğini görebileceğimiz, ancak kim olduğunuzu asla bilemeyeceğimiz anlamına gelir. Simple Analytics tamamen GDPR uyumludur ve gizliliğinize saygı gösterir."
     }
   },
   "testimonials": {
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "Çalışmamı Beğendiniz mi?",
-    "description": "BentoPDF, herkes için ücretsiz, özel ve güçlü bir PDF araç seti sağlamak amacıyla oluşturulmuş bir tutku projesidir. Faydalı bulduysanız, geliştirilmesini desteklemeyi düşünebilirsiniz. Her kahve yardımcı olur!",
+    "description": "hiiirePDF, herkes için ücretsiz, özel ve güçlü bir PDF araç seti sağlamak amacıyla oluşturulmuş bir tutku projesidir. Faydalı bulduysanız, geliştirilmesini desteklemeyi düşünebilirsiniz. Her kahve yardımcı olur!",
     "buyMeCoffee": "Bana Kahve Ismarla"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Tüm hakları saklıdır.",
+    "copyright": "© 2026 hiiirePDF. Tüm hakları saklıdır.",
     "version": "Sürüm",
     "company": "Şirket",
     "aboutUs": "Hakkımızda",
@@ -292,9 +292,9 @@
     "philosophy": {
       "label": "Temel Felsefemiz",
       "title": "Öncelik Her Zaman Gizlilik.",
-      "description": "Verinin bir meta olarak kabul edildiği bir çağda, farklı bir yaklaşım benimsiyoruz. Bentopdf araçları için tüm işlemler tarayıcınızda yerel olarak gerçekleşir. Bu, dosyalarınızın sunucularımıza asla dokunmadığı, belgelerinizi asla görmediğimiz ve ne yaptığınızı takip etmediğimiz anlamına gelir. Belgeleriniz tamamen ve kesinlikle özel kalır. Bu sadece bir özellik değil, temelimizdir."
+      "description": "Verinin bir meta olarak kabul edildiği bir çağda, farklı bir yaklaşım benimsiyoruz. hiiirePDF araçları için tüm işlemler tarayıcınızda yerel olarak gerçekleşir. Bu, dosyalarınızın sunucularımıza asla dokunmadığı, belgelerinizi asla görmediğimiz ve ne yaptığınızı takip etmediğimiz anlamına gelir. Belgeleriniz tamamen ve kesinlikle özel kalır. Bu sadece bir özellik değil, temelimizdir."
     },
-    "whyBentopdf": {
+    "whyhiiirePDF": {
       "title": "Neden",
       "speed": {
         "title": "Hız İçin Tasarlandı",
@@ -315,7 +315,7 @@
     },
     "cta": {
       "title": "Başlamaya hazır mısınız?",
-      "description": "Günlük belge ihtiyaçları için BentoPDF'ye güvenen binlerce kullanıcıya katılın. Gizlilik ve performansın yaratabileceği farkı deneyimleyin.",
+      "description": "Günlük belge ihtiyaçları için hiiirePDF'ye güvenen binlerce kullanıcıya katılın. Gizlilik ve performansın yaratabileceği farkı deneyimleyin.",
       "button": "Tüm Araçları Keşfet"
     }
   },

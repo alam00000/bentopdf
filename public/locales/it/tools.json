@@ -243,7 +243,7 @@
     "subtitle": "Compila i moduli direttamente nel browser. Supporta anche i moduli XFA.",
     "uploadHint": "Carica un PDF con campi modulo. Compilali direttamente nel visualizzatore qui sotto, quindi clicca sul pulsante per salvare e scaricare il modulo compilato. Supporta anche moduli XFA.",
     "xfaNoteTitle": "Nota sui moduli XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) è un formato legacy supportato solo da alcuni visualizzatori PDF come BentoPDF e Firefox. Se apri un PDF XFA in altri software e vedi pagine vuote o nessun campo modulo, significa che quel visualizzatore non supporta XFA. Per visualizzare e compilare correttamente i moduli XFA, usa Firefox o il Form Filler di BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) è un formato legacy supportato solo da alcuni visualizzatori PDF come hiiirePDF e Firefox. Se apri un PDF XFA in altri software e vedi pagine vuote o nessun campo modulo, significa che quel visualizzatore non supporta XFA. Per visualizzare e compilare correttamente i moduli XFA, usa Firefox o il Form Filler di hiiirePDF."
   },
   "createPdfForm": {
     "name": "Crea Modulo PDF",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Firma digitale PDF",
-    "pageTitle": "Firma digitale PDF - Aggiungi firma crittografica | BentoPDF",
+    "pageTitle": "Firma digitale PDF - Aggiungi firma crittografica | hiiirePDF",
     "subtitle": "Aggiungi una firma digitale crittografica al tuo PDF usando certificati X.509. Supporta i formati PKCS#12 (.pfx, .p12) e PEM. La tua chiave privata non lascia mai il browser.",
     "certificateSection": "Certificato",
     "uploadCert": "Carica certificato (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Verifica firma PDF",
-    "pageTitle": "Verifica firma PDF - Controlla firme digitali | BentoPDF",
+    "pageTitle": "Verifica firma PDF - Controlla firme digitali | hiiirePDF",
     "subtitle": "Verifica le firme digitali nei tuoi PDF. Controlla la validità del certificato, visualizza i dati del firmatario e conferma l'integrità del documento. Tutto avviene nel tuo browser."
   },
   "timestampPdf": {
     "name": "Marca temporale PDF",
-    "pageTitle": "Marca temporale PDF gratuita online - RFC 3161 | BentoPDF",
+    "pageTitle": "Marca temporale PDF gratuita online - RFC 3161 | hiiirePDF",
     "subtitle": "Aggiungi una marca temporale RFC 3161 al tuo PDF tramite un server TSA affidabile. Dimostra che il tuo documento esisteva in un momento specifico. Nessun certificato richiesto.",
     "tsaSectionTitle": "Server marca temporale (TSA)",
     "selectTsa": "Seleziona un server TSA",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Sovrascritture personalizzate cancellate. I valori preconfigurati sono attivi.",
     "resetNoDefaults": "Tutte le configurazioni e i moduli in cache sono stati cancellati.",
     "licenseTitle": "Avviso di licenza:",
-    "licenseDescription": "I moduli esterni (PyMuPDF, Ghostscript, CoherentPDF) sono concessi in licenza con AGPL-3.0 o licenze copyleft simili. Configurando e utilizzando questi moduli, accetti i rispettivi termini di licenza. BentoPDF è compatibile con qualsiasi implementazione WASM Ghostscript e PyMuPDF che segua l'interfaccia prevista."
+    "licenseDescription": "I moduli esterni (PyMuPDF, Ghostscript, CoherentPDF) sono concessi in licenza con AGPL-3.0 o licenze copyleft simili. Configurando e utilizzando questi moduli, accetti i rispettivi termini di licenza. hiiirePDF è compatibile con qualsiasi implementazione WASM Ghostscript e PyMuPDF che segua l'interfaccia prevista."
   },
   "pdfOverlay": {
     "name": "Sovrapposizione PDF",

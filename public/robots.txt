@@ -1,12 +1,12 @@
-# BentoPDF Robots.txt
-# https://www.bentopdf.com
+# hiiirePDF Robots.txt
+# https://pdf.hiiire.com
 
 # Allow all crawlers
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.bentopdf.com/sitemap.xml
+Sitemap: https://pdf.hiiire.com/sitemap.xml
 
 # Disallow internal/system paths
 Disallow: /api/

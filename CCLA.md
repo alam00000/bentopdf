@@ -1,6 +1,6 @@
-# BentoPDF Corporate Contributor License Agreement (CCLA)
+# hiiirePDF Corporate Contributor License Agreement (CCLA)
 
-Thank you for your organization's interest in contributing to BentoPDF. This Corporate Contributor License Agreement ("Agreement") documents the rights granted by corporate contributors to the Project.
+Thank you for your organization's interest in contributing to hiiirePDF. This Corporate Contributor License Agreement ("Agreement") documents the rights granted by corporate contributors to the Project.
 
 By signing this Agreement, you accept and agree to the following terms and conditions for your organization's present and future Contributions submitted to the Project.
 
@@ -12,7 +12,7 @@ By signing this Agreement, you accept and agree to the following terms and condi
 
 **"Contribution"** means any original work of authorship, including any modifications or additions to an existing work, that is intentionally submitted by You or any of Your Contributors to the Project for inclusion in, or documentation of, the Project. For the purposes of this definition, "submitted" means any form of electronic, verbal, or written communication sent to the Project or its representatives, including but not limited to communication on electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, the Project for the purpose of discussing and improving the Project.
 
-**"Project"** means the BentoPDF software project and all associated repositories, documentation, and related materials maintained at https://github.com/alam00000/bentopdf.
+**"Project"** means the hiiirePDF software project and all associated repositories, documentation, and related materials maintained at https://github.com/alam00000/hiiirepdf.
 
 **"Project Owner"** means the owners and maintainers of the Project.
 
@@ -103,21 +103,21 @@ This Agreement shall be governed by and construed in accordance with the laws of
 
 By signing this Agreement, You confirm that You have the authority to bind the legal entity named below, and that entity agrees to the terms of this Corporate Contributor License Agreement.
 
-**Legal Entity Name:** ___________________________
+**Legal Entity Name:** ************\_\_\_************
 
-**Address:** ___________________________
+**Address:** ************\_\_\_************
 
-**Point of Contact Name:** ___________________________
+**Point of Contact Name:** ************\_\_\_************
 
-**Point of Contact Email:** ___________________________
+**Point of Contact Email:** ************\_\_\_************
 
-**Point of Contact Phone:** ___________________________
+**Point of Contact Phone:** ************\_\_\_************
 
-**Signature:** ___________________________
+**Signature:** ************\_\_\_************
 
-**Title:** ___________________________
+**Title:** ************\_\_\_************
 
-**Date:** ___________________________
+**Date:** ************\_\_\_************
 
 ---
 
@@ -126,15 +126,15 @@ By signing this Agreement, You confirm that You have the authority to bind the l
 The following individuals are authorized to submit Contributions to the Project on behalf of the above-named legal entity:
 
 | Full Name | GitHub Username | Email Address | Date Added |
-|-----------|-----------------|---------------|------------|
+| --------- | --------------- | ------------- | ---------- |
 |           |                 |               |            |
 |           |                 |               |            |
 |           |                 |               |            |
 |           |                 |               |            |
 |           |                 |               |            |
 
-*Add additional rows as needed. To update this list, contact the Project Owner at contact@bentopdf.com*
+_Add additional rows as needed. To update this list, contact the Project Owner at inbox@hiiire.com_
 
 ---
 
-*This CLA is based on the Apache Corporate Contributor License Agreement and has been adapted for BentoPDF's dual licensing model.*
+_This CLA is based on the Apache Corporate Contributor License Agreement and has been adapted for hiiirePDF's dual licensing model._

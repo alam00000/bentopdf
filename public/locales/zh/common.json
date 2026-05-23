@@ -12,7 +12,7 @@
     "noLanguagesFound": "未找到语言"
   },
   "donation": {
-    "message": "喜欢 BentoPDF？帮助我们保持免费和开源！",
+    "message": "喜欢 hiiirePDF？帮助我们保持免费和开源！",
     "button": "捐赠"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "为什么选择",
-    "bentoPdf": "BentoPDF?",
+    "hiiirePdf": "hiiirePDF?",
     "noSignup": {
       "title": "无需注册",
       "description": "即刻开始，无需账户或电子邮件。"
@@ -187,8 +187,8 @@
     "questions": "问题",
     "sectionTitle": "常见问题",
     "isFree": {
-      "question": "BentoPDF 真的免费吗？",
-      "answer": "是的，完全免费。BentoPDF 上的所有工具均可 100% 免费使用，没有文件限制，无需注册，也没有水印。我们相信每个人都应该能够使用简单、强大的 PDF 工具，而无需通过付费墙。"
+      "question": "hiiirePDF 真的免费吗？",
+      "answer": "是的，完全免费。hiiirePDF 上的所有工具均可 100% 免费使用，没有文件限制，无需注册，也没有水印。我们相信每个人都应该能够使用简单、强大的 PDF 工具，而无需通过付费墙。"
     },
     "areFilesSecure": {
       "question": "我的文件安全吗？它们在哪里处理？",
@@ -196,27 +196,27 @@
     },
     "platforms": {
       "question": "它适用于 Mac、Windows 和手机吗？",
-      "answer": "是的！由于 BentoPDF 完全在您的浏览器中运行，因此它适用于任何带有现代网络浏览器的操作系统，包括 Windows、macOS、Linux、iOS 和 Android。"
+      "answer": "是的！由于 hiiirePDF 完全在您的浏览器中运行，因此它适用于任何带有现代网络浏览器的操作系统，包括 Windows、macOS、Linux、iOS 和 Android。"
     },
     "gdprCompliant": {
-      "question": "BentoPDF 符合 GDPR 吗？",
-      "answer": "是的。BentoPDF 完全符合 GDPR。由于所有文件处理都在您的浏览器中本地进行，并且我们从不收集或将您的文件传输到任何服务器，因此我们无法访问您的数据。这确保您始终掌控您的文档。"
+      "question": "hiiirePDF 符合 GDPR 吗？",
+      "answer": "是的。hiiirePDF 完全符合 GDPR。由于所有文件处理都在您的浏览器中本地进行，并且我们从不收集或将您的文件传输到任何服务器，因此我们无法访问您的数据。这确保您始终掌控您的文档。"
     },
     "dataStorage": {
       "question": "你们会存储或跟踪我的任何文件吗？",
-      "answer": "不。我们从不存储、跟踪或记录您的文件。您在 BentoPDF 上所做的所有操作都在您的浏览器内存中进行，并在您关闭页面后消失。没有上传，没有历史记录，也没有涉及服务器。"
+      "answer": "不。我们从不存储、跟踪或记录您的文件。您在 hiiirePDF 上所做的所有操作都在您的浏览器内存中进行，并在您关闭页面后消失。没有上传，没有历史记录，也没有涉及服务器。"
     },
     "different": {
-      "question": "BentoPDF 与其他 PDF 工具有何不同？",
-      "answer": "大多数 PDF 工具将您的文件上传到服务器进行处理。BentoPDF 从不这样做。我们使用安全、现代的网络技术直接在您的浏览器中处理您的文件。这意味着更快的性能、更强的隐私和完全的安心。"
+      "question": "hiiirePDF 与其他 PDF 工具有何不同？",
+      "answer": "大多数 PDF 工具将您的文件上传到服务器进行处理。hiiirePDF 从不这样做。我们使用安全、现代的网络技术直接在您的浏览器中处理您的文件。这意味着更快的性能、更强的隐私和完全的安心。"
     },
     "browserBased": {
       "question": "基于浏览器的处理如何保护我的安全？",
-      "answer": "通过完全在您的浏览器内部运行，BentoPDF 确保您的文件从未离开您的设备。这消除了服务器黑客攻击、数据泄露或未经授权访问的风险。您的文件始终属于您。"
+      "answer": "通过完全在您的浏览器内部运行，hiiirePDF 确保您的文件从未离开您的设备。这消除了服务器黑客攻击、数据泄露或未经授权访问的风险。您的文件始终属于您。"
     },
     "analytics": {
       "question": "你们使用 Cookie 或分析来跟踪我吗？",
-      "answer": "我们关心您的隐私。BentoPDF 不会跟踪个人信息。我们仅使用 Simple Analytics 查看匿名访问计数。这意味着我们可以知道有多少用户访问我们的网站，但我们永远不知道您是谁。Simple Analytics 完全符合 GDPR 并尊重您的隐私。"
+      "answer": "我们关心您的隐私。hiiirePDF 不会跟踪个人信息。我们仅使用 Simple Analytics 查看匿名访问计数。这意味着我们可以知道有多少用户访问我们的网站，但我们永远不知道您是谁。Simple Analytics 完全符合 GDPR 并尊重您的隐私。"
     }
   },
   "testimonials": {
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "喜欢这个项目？",
-    "description": "BentoPDF 是一个充满激情的项目，旨在为每个人提供免费、私密且强大的 PDF 工具箱。如果您觉得它有用，请考虑支持它的开发。每一杯咖啡都是莫大的支持！",
+    "description": "hiiirePDF 是一个充满激情的项目，旨在为每个人提供免费、私密且强大的 PDF 工具箱。如果您觉得它有用，请考虑支持它的开发。每一杯咖啡都是莫大的支持！",
     "buyMeCoffee": "请我喝杯咖啡"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. 保留所有权利。",
+    "copyright": "© 2026 hiiirePDF. 保留所有权利。",
     "version": "版本",
     "company": "公司",
     "aboutUs": "关于我们",
@@ -292,9 +292,9 @@
     "philosophy": {
       "label": "我们的核心理念",
       "title": "隐私至上。始终如一。",
-      "description": "在数据被商品化的时代，我们采取不同的方式。BentoPDF 工具的所有处理都在您的浏览器本地进行。这意味着您的文件从未接触我们的服务器，我们从不查看您的文档，也不跟踪您的操作。您的文档保持绝对的私密性。这不仅是一项功能；这是我们的基石。"
+      "description": "在数据被商品化的时代，我们采取不同的方式。hiiirePDF 工具的所有处理都在您的浏览器本地进行。这意味着您的文件从未接触我们的服务器，我们从不查看您的文档，也不跟踪您的操作。您的文档保持绝对的私密性。这不仅是一项功能；这是我们的基石。"
     },
-    "whyBentopdf": {
+    "whyhiiirePDF": {
       "title": "为什么选择",
       "speed": {
         "title": "为速度而生",
@@ -315,7 +315,7 @@
     },
     "cta": {
       "title": "准备好开始了吗？",
-      "description": "加入成千上万信任 BentoPDF 满足日常文档需求的用户。体验隐私和性能带来的不同。",
+      "description": "加入成千上万信任 hiiirePDF 满足日常文档需求的用户。体验隐私和性能带来的不同。",
       "button": "探索所有工具"
     }
   },

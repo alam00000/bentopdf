@@ -12,7 +12,7 @@
     "noLanguagesFound": "No se encontraron idiomas"
   },
   "donation": {
-    "message": "¿Te encanta BentoPDF? ¡Ayúdanos a mantenerlo gratis y de código abierto!",
+    "message": "¿Te encanta hiiirePDF? ¡Ayúdanos a mantenerlo gratis y de código abierto!",
     "button": "Donar"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "¿Por qué elegir",
-    "bentoPdf": "BentoPDF?",
+    "hiiirePdf": "hiiirePDF?",
     "noSignup": {
       "title": "Sin Registro",
       "description": "Comienza al instante, sin cuentas ni correos electrónicos."
@@ -187,8 +187,8 @@
     "questions": "Frecuentes",
     "sectionTitle": "Preguntas frecuentes",
     "isFree": {
-      "question": "¿BentoPDF es realmente gratis?",
-      "answer": "Sí, absolutamente. Todas las herramientas en BentoPDF son 100% gratuitas, sin límites de archivos, sin registro y sin marcas de agua. Creemos que todos merecen acceso a herramientas PDF simples y potentes sin un muro de pago."
+      "question": "¿hiiirePDF es realmente gratis?",
+      "answer": "Sí, absolutamente. Todas las herramientas en hiiirePDF son 100% gratuitas, sin límites de archivos, sin registro y sin marcas de agua. Creemos que todos merecen acceso a herramientas PDF simples y potentes sin un muro de pago."
     },
     "areFilesSecure": {
       "question": "¿Mis archivos están seguros? ¿Dónde se procesan?",
@@ -196,27 +196,27 @@
     },
     "platforms": {
       "question": "¿Funciona en Mac, Windows y Móvil?",
-      "answer": "¡Sí! Dado que BentoPDF se ejecuta completamente en tu navegador, funciona en cualquier sistema operativo con un navegador web moderno, incluyendo Windows, macOS, Linux, iOS y Android."
+      "answer": "¡Sí! Dado que hiiirePDF se ejecuta completamente en tu navegador, funciona en cualquier sistema operativo con un navegador web moderno, incluyendo Windows, macOS, Linux, iOS y Android."
     },
     "gdprCompliant": {
-      "question": "¿BentoPDF cumple con GDPR?",
-      "answer": "Sí. BentoPDF cumple completamente con GDPR. Dado que todo el procesamiento de archivos ocurre localmente en tu navegador y nunca recopilamos ni transmitimos tus archivos a ningún servidor, no tenemos acceso a tus datos. Esto garantiza que siempre tengas el control de tus documentos."
+      "question": "¿hiiirePDF cumple con GDPR?",
+      "answer": "Sí. hiiirePDF cumple completamente con GDPR. Dado que todo el procesamiento de archivos ocurre localmente en tu navegador y nunca recopilamos ni transmitimos tus archivos a ningún servidor, no tenemos acceso a tus datos. Esto garantiza que siempre tengas el control de tus documentos."
     },
     "dataStorage": {
       "question": "¿Almacenan o rastrean alguno de mis archivos?",
-      "answer": "No. Nunca almacenamos, rastreamos ni registramos tus archivos. Todo lo que haces en BentoPDF ocurre en la memoria de tu navegador y desaparece una vez que cierras la página. No hay cargas, no hay registros de historial y no hay servidores involucrados."
+      "answer": "No. Nunca almacenamos, rastreamos ni registramos tus archivos. Todo lo que haces en hiiirePDF ocurre en la memoria de tu navegador y desaparece una vez que cierras la página. No hay cargas, no hay registros de historial y no hay servidores involucrados."
     },
     "different": {
-      "question": "¿Qué hace que BentoPDF sea diferente de otras herramientas PDF?",
-      "answer": "La mayoría de las herramientas PDF cargan tus archivos a un servidor para procesarlos. BentoPDF nunca hace eso. Utilizamos tecnología web moderna y segura para procesar tus archivos directamente en tu navegador. Esto significa un rendimiento más rápido, mayor privacidad y total tranquilidad."
+      "question": "¿Qué hace que hiiirePDF sea diferente de otras herramientas PDF?",
+      "answer": "La mayoría de las herramientas PDF cargan tus archivos a un servidor para procesarlos. hiiirePDF nunca hace eso. Utilizamos tecnología web moderna y segura para procesar tus archivos directamente en tu navegador. Esto significa un rendimiento más rápido, mayor privacidad y total tranquilidad."
     },
     "browserBased": {
       "question": "¿Cómo me mantiene seguro el procesamiento basado en navegador?",
-      "answer": "Al ejecutarse completamente dentro de tu navegador, BentoPDF garantiza que tus archivos nunca salgan de tu dispositivo. Esto elimina los riesgos de hackeos de servidores, violaciones de datos o accesos no autorizados. Tus archivos siguen siendo tuyos, siempre."
+      "answer": "Al ejecutarse completamente dentro de tu navegador, hiiirePDF garantiza que tus archivos nunca salgan de tu dispositivo. Esto elimina los riesgos de hackeos de servidores, violaciones de datos o accesos no autorizados. Tus archivos siguen siendo tuyos, siempre."
     },
     "analytics": {
       "question": "¿Usan cookies o análisis para rastrearme?",
-      "answer": "Nos preocupamos por tu privacidad. BentoPDF no rastrea información personal. Usamos Simple Analytics únicamente para ver recuentos de visitas anónimas. Esto significa que podemos saber cuántos usuarios visitan nuestro sitio, pero nunca sabemos quién eres. Simple Analytics cumple completamente con GDPR y respeta tu privacidad."
+      "answer": "Nos preocupamos por tu privacidad. hiiirePDF no rastrea información personal. Usamos Simple Analytics únicamente para ver recuentos de visitas anónimas. Esto significa que podemos saber cuántos usuarios visitan nuestro sitio, pero nunca sabemos quién eres. Simple Analytics cumple completamente con GDPR y respeta tu privacidad."
     }
   },
   "testimonials": {
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "¿Te Gusta Mi Trabajo?",
-    "description": "BentoPDF es un proyecto de pasión, creado para proporcionar un kit de herramientas PDF gratuito, privado y potente para todos. Si te resulta útil, considera apoyar su desarrollo. ¡Cada café ayuda!",
+    "description": "hiiirePDF es un proyecto de pasión, creado para proporcionar un kit de herramientas PDF gratuito, privado y potente para todos. Si te resulta útil, considera apoyar su desarrollo. ¡Cada café ayuda!",
     "buyMeCoffee": "Cómprame un Café"
   },
   "footer": {
-    "copyright": "© 2025 BentoPDF. Todos los derechos reservados.",
+    "copyright": "© 2025 hiiirePDF. Todos los derechos reservados.",
     "version": "Versión",
     "company": "Empresa",
     "aboutUs": "Acerca de Nosotros",
@@ -292,9 +292,9 @@
     "philosophy": {
       "label": "Nuestra Filosofía Central",
       "title": "Privacidad Primero. Siempre.",
-      "description": "En una era donde los datos son una mercancía, adoptamos un enfoque diferente. Todo el procesamiento de las herramientas de Bentopdf ocurre localmente en tu navegador. Esto significa que tus archivos nunca tocan nuestros servidores, nunca vemos tus documentos y no rastreamos lo que haces. Tus documentos permanecen completa e inequívocamente privados. No es solo una característica; es nuestra base."
+      "description": "En una era donde los datos son una mercancía, adoptamos un enfoque diferente. Todo el procesamiento de las herramientas de hiiirePDF ocurre localmente en tu navegador. Esto significa que tus archivos nunca tocan nuestros servidores, nunca vemos tus documentos y no rastreamos lo que haces. Tus documentos permanecen completa e inequívocamente privados. No es solo una característica; es nuestra base."
     },
-    "whyBentopdf": {
+    "whyhiiirePDF": {
       "title": "Por qué",
       "speed": {
         "title": "Diseñado para la Velocidad",
@@ -315,7 +315,7 @@
     },
     "cta": {
       "title": "¿Listo para comenzar?",
-      "description": "Únete a miles de usuarios que confían en Bentopdf para sus necesidades diarias de documentos. Experimenta la diferencia que la privacidad y el rendimiento pueden hacer.",
+      "description": "Únete a miles de usuarios que confían en hiiirePDF para sus necesidades diarias de documentos. Experimenta la diferencia que la privacidad y el rendimiento pueden hacer.",
       "button": "Explorar Todas las Herramientas"
     }
   },

@@ -8,24 +8,24 @@ const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const LOCALES_DIR = path.resolve(__dirname, '../public/locales');
-const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+const SITE_URL = (process.env.SITE_URL || 'https://pdf.hiiire.com').replace(
   /\/+$/,
   ''
 );
 const BASE_PATH = (process.env.BASE_URL || '/').replace(/\/$/, '');
-const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
+const BRAND_NAME = process.env.VITE_BRAND_NAME || 'hiiirePDF';
 const BRAND_LOGO = (
   process.env.VITE_BRAND_LOGO || 'images/favicon.svg'
 ).replace(/^\/+/, '');
 const SOURCE_REPOSITORY_URL = process.env.VITE_SOURCE_REPOSITORY_URL || '';
 
 const DEFAULT_SAME_AS =
-  BRAND_NAME === 'BentoPDF' && SOURCE_REPOSITORY_URL
+  BRAND_NAME === 'hiiirePDF' && SOURCE_REPOSITORY_URL
     ? [
         SOURCE_REPOSITORY_URL,
-        'https://x.com/BentoPDF',
-        'https://www.linkedin.com/company/bentopdf/',
-        'https://www.instagram.com/thebentopdf/',
+        'https://x.com/hiiirePDF',
+        'https://www.linkedin.com/company/hiiirepdf/',
+        'https://www.instagram.com/thehiiirepdf/',
       ]
     : SOURCE_REPOSITORY_URL
       ? [SOURCE_REPOSITORY_URL]
@@ -354,7 +354,7 @@ function processFileForLanguage(
     setMetaContent(
       document,
       'meta[name="keywords"]',
-      'PDF, PDF инструменты, редактировать PDF, конвертировать PDF, HirePDF'
+      'PDF, PDF инструменты, редактировать PDF, конвертировать PDF, hiiirePDF'
     );
   }
 

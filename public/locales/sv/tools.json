@@ -243,7 +243,7 @@
     "subtitle": "Fyll i formulär direkt i webbläsaren. Stöder även XFA-formulär.",
     "uploadHint": "Ladda upp en PDF med formulärfält. Fyll i dem direkt i visaren nedan, klicka sedan på knappen för att spara och ladda ner det ifyllda formuläret. Stöder även XFA-formulär.",
     "xfaNoteTitle": "Anmärkning om XFA-formulär:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) är ett äldre format som bara stöds av vissa PDF-visare som BentoPDF och Firefox. Om du öppnar en XFA-PDF i annan programvara och ser tomma sidor eller inga formulärfält betyder det att visaren inte stöder XFA. För att visa och fylla i XFA-formulär korrekt, använd Firefox eller BentoPDFs formulärifyllare."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) är ett äldre format som bara stöds av vissa PDF-visare som hiiirePDF och Firefox. Om du öppnar en XFA-PDF i annan programvara och ser tomma sidor eller inga formulärfält betyder det att visaren inte stöder XFA. För att visa och fylla i XFA-formulär korrekt, använd Firefox eller hiiirePDFs formulärifyllare."
   },
   "createPdfForm": {
     "name": "Skapa PDF-formulär",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Digital signatur PDF",
-    "pageTitle": "Digital signatur PDF - Lägg till kryptografisk signatur | BentoPDF",
+    "pageTitle": "Digital signatur PDF - Lägg till kryptografisk signatur | hiiirePDF",
     "subtitle": "Lägg till en kryptografisk digital signatur på din PDF med X.509-certifikat. Stöder PKCS#12 (.pfx, .p12) och PEM-format. Din privata nyckel lämnar aldrig din webbläsare.",
     "certificateSection": "Certifikat",
     "uploadCert": "Ladda upp certifikat (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "Validera PDF-signatur",
-    "pageTitle": "Validera PDF-signatur - Verifiera digitala signaturer | BentoPDF",
+    "pageTitle": "Validera PDF-signatur - Verifiera digitala signaturer | hiiirePDF",
     "subtitle": "Verifiera digitala signaturer i dina PDF-filer. Kontrollera certifikatgiltighet, visa signerardetaljer och bekräfta dokumentintegritet. All bearbetning sker i din webbläsare."
   },
   "timestampPdf": {
     "name": "Tidsstämpla PDF",
-    "pageTitle": "Tidsstämpla PDF gratis online - RFC 3161 dokumenttidsstämpel | BentoPDF",
+    "pageTitle": "Tidsstämpla PDF gratis online - RFC 3161 dokumenttidsstämpel | hiiirePDF",
     "subtitle": "Lägg till en RFC 3161 tidsstämpel till din PDF via en betrodd TSA-server. Bevisar att ditt dokument existerade vid en specifik tidpunkt. Inget certifikat krävs.",
     "tsaSectionTitle": "Tidsstämpelserver (TSA)",
     "selectTsa": "Välj en TSA-server",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Anpassade åsidosättningar rensade. Förkonfigurerade standardvärden är aktiva.",
     "resetNoDefaults": "Alla konfigurationer och cachade moduler har rensats.",
     "licenseTitle": "Licensmeddelande:",
-    "licenseDescription": "De externa modulerna (PyMuPDF, Ghostscript, CoherentPDF) är licensierade under AGPL-3.0 eller liknande copyleft-licenser. Genom att konfigurera och använda dessa moduler godkänner du deras respektive licensvillkor. BentoPDF är kompatibel med alla Ghostscript WASM- och PyMuPDF WASM-implementationer som följer det förväntade gränssnittet."
+    "licenseDescription": "De externa modulerna (PyMuPDF, Ghostscript, CoherentPDF) är licensierade under AGPL-3.0 eller liknande copyleft-licenser. Genom att konfigurera och använda dessa moduler godkänner du deras respektive licensvillkor. hiiirePDF är kompatibel med alla Ghostscript WASM- och PyMuPDF WASM-implementationer som följer det förväntade gränssnittet."
   },
   "pdfOverlay": {
     "name": "PDF-överlägg",
