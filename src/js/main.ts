@@ -21,7 +21,7 @@ import {
 declare const __BRAND_NAME__: string;
 
 const replaceBrandName = (value: string): string =>
-  value.replace(/Bento PDF|BentoPDF/g, __BRAND_NAME__ || 'HirePDF');
+  value.replace(/hiiirePDF/g, __BRAND_NAME__ || 'hiiirePDF');
 
 const applyBrandTextOverrides = (): void => {
   if (!__BRAND_NAME__) return;
@@ -32,7 +32,7 @@ const applyBrandTextOverrides = (): void => {
   const walker = document.createTreeWalker(document.body, textNodeFilter);
   let node = walker.nextNode();
   while (node) {
-    if (node.textContent && /Bento\s?PDF/.test(node.textContent)) {
+    if (node.textContent && /hiiire\s?PDF/.test(node.textContent)) {
       node.textContent = replaceBrandName(node.textContent);
     }
     node = walker.nextNode();
@@ -43,7 +43,7 @@ const applyBrandTextOverrides = (): void => {
     .forEach((element) => {
       ['alt', 'title', 'aria-label'].forEach((attribute) => {
         const value = element.getAttribute(attribute);
-        if (value && /Bento\s?PDF/.test(value)) {
+        if (value && /hiiire\s?PDF/.test(value)) {
           element.setAttribute(attribute, replaceBrandName(value));
         }
       });
@@ -121,7 +121,7 @@ const init = async () => {
         (divider as HTMLElement).style.display = 'none';
       });
 
-      const brandName = __BRAND_NAME__ || 'HirePDF';
+      const brandName = __BRAND_NAME__ || 'hiiirePDF';
       document.title = `${brandName} - ${t('simpleMode.title')}`;
 
       const toolsHeader = document.getElementById('tools-header');
@@ -130,11 +130,12 @@ const init = async () => {
         const subtitle = toolsHeader.querySelector('p');
         if (title) {
           title.textContent = t('simpleMode.title');
-          title.className = 'text-4xl md:text-5xl font-bold text-white mb-3';
+          title.className =
+            'text-3xl md:text-4xl font-bold text-foreground mb-3';
         }
         if (subtitle) {
           subtitle.textContent = t('simpleMode.subtitle');
-          subtitle.className = 'text-lg text-gray-400';
+          subtitle.className = 'text-lg text-muted-foreground';
         }
       }
 
@@ -387,25 +388,25 @@ const init = async () => {
           toolCard = document.createElement('a');
           toolCard.href = tool.href;
           toolCard.className =
-            'tool-card block bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:shadow-lg transition duration-200';
+            'tool-card block border border-border bg-card/60 rounded-lg p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:border-ring hover:bg-muted/50 hover:shadow-lg transition duration-200';
         } else {
           toolCard = document.createElement('div');
           toolCard.className =
-            'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-lg transition duration-200';
+            'tool-card border border-border bg-card/60 rounded-lg p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:border-ring hover:bg-muted/50 hover:shadow-lg transition duration-200';
           toolCard.dataset.toolId = getToolId(tool);
         }
 
         const icon = document.createElement('i');
-        icon.className = 'w-10 h-10 mb-3 text-slate-400';
+        icon.className = 'w-10 h-10 mb-3 text-muted-foreground';
 
         if (tool.icon.startsWith('ph-')) {
-          icon.className = `ph ${tool.icon} text-4xl mb-3 text-slate-400`;
+          icon.className = `ph ${tool.icon} text-4xl mb-3 text-muted-foreground`;
         } else {
           icon.setAttribute('data-lucide', tool.icon);
         }
 
         const toolName = document.createElement('h3');
-        toolName.className = 'font-semibold text-white';
+        toolName.className = 'font-semibold text-foreground';
         const toolKey = toolTranslationKeys[tool.name];
         toolName.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
 
@@ -413,7 +414,7 @@ const init = async () => {
 
         if (tool.subtitle) {
           const toolSubtitle = document.createElement('p');
-          toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
+          toolSubtitle.className = 'text-xs text-muted-foreground mt-1 px-2';
           toolSubtitle.textContent = toolKey
             ? t(`${toolKey}.subtitle`)
             : tool.subtitle;
@@ -911,7 +912,7 @@ const init = async () => {
 
       const header = document.createElement('h3');
       header.className =
-        'text-gray-400 text-xs font-bold uppercase tracking-wider mb-3 pl-1';
+        'text-muted-foreground text-xs font-bold uppercase tracking-wider mb-3 pl-1';
       const categoryKey = categoryTranslationKeys[category.name];
       header.textContent = categoryKey ? t(categoryKey) : category.name;
       section.appendChild(header);
@@ -929,21 +930,21 @@ const init = async () => {
 
         const item = document.createElement('div');
         item.className =
-          'shortcut-item flex items-center justify-between p-3 bg-gray-900 rounded-lg border border-gray-700 hover:border-gray-600 transition-colors';
+          'shortcut-item flex items-center justify-between p-3 bg-background rounded-lg border border-border hover:border-ring transition-colors';
 
         const left = document.createElement('div');
         left.className = 'flex items-center gap-3';
 
         const icon = document.createElement('i');
         if (tool.icon.startsWith('ph-')) {
-          icon.className = `ph ${tool.icon} w-5 h-5 text-slate-400`;
+          icon.className = `ph ${tool.icon} w-5 h-5 text-muted-foreground`;
         } else {
-          icon.className = 'w-5 h-5 text-slate-400';
+          icon.className = 'w-5 h-5 text-muted-foreground';
           icon.setAttribute('data-lucide', tool.icon);
         }
 
         const name = document.createElement('span');
-        name.className = 'text-gray-200 font-medium';
+        name.className = 'text-foreground font-medium';
         const toolKey = toolTranslationKeys[tool.name];
         name.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
 
@@ -955,14 +956,14 @@ const init = async () => {
         const input = document.createElement('input');
         input.type = 'text';
         input.className =
-          'shortcut-input w-32 bg-gray-800 border border-gray-600 text-white text-center text-sm rounded px-2 py-1 focus:ring-2 focus:ring-slate-950 focus:border-transparent outline-none transition-all';
+          'shortcut-input w-32 bg-background border border-input text-foreground text-center text-sm rounded px-2 py-1 focus:ring-2 focus:ring-ring focus:border-transparent outline-none transition-all';
         input.placeholder = t('settings.clickToSet');
         input.value = formatShortcutDisplay(currentShortcut, isMac);
         input.readOnly = true;
 
         const clearBtn = document.createElement('button');
         clearBtn.className =
-          'absolute -right-2 -top-2 bg-gray-700 hover:bg-red-600 text-white rounded-full p-0.5 hidden group-hover:block shadow-sm';
+          'absolute -right-2 -top-2 bg-muted hover:bg-red-600 hover:text-white text-muted-foreground rounded-full p-0.5 hidden group-hover:block shadow-sm';
         clearBtn.innerHTML = '<i data-lucide="x" class="w-3 h-3"></i>';
         if (currentShortcut) {
           right.classList.add('group');

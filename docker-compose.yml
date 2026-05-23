@@ -1,13 +1,13 @@
 services:
-  bentopdf:
+  hiiirepdf:
     # GitHub Container Registry (Recommended)
-    # Self-Hosted build - ghcr.io/alam00000/bentopdf-simple:latest
-    # Commercial build  - ghcr.io/alam00000/bentopdf:latest
+    # Self-Hosted build - ghcr.io/alam00000/hiiirepdf-simple:latest
+    # Commercial build  - ghcr.io/alam00000/hiiirepdf:latest
     # Docker Hub (Alternative)
-    # Self-Hosted build - bentopdfteam/bentopdf-simple:latest
-    # Commercial build  - bentopdfteam/bentopdf:latest
-    image: ghcr.io/alam00000/bentopdf-simple:latest
-    container_name: bentopdf
+    # Self-Hosted build - ghcr.io/alam00000/hiiirepdf-simple:latest
+    # Commercial build  - ghcr.io/alam00000/hiiirepdf:latest
+    image: ghcr.io/alam00000/hiiirepdf-simple:latest
+    container_name: hiiirepdf
     restart: unless-stopped
     ports:
       - '8080:8080'

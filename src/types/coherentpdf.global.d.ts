@@ -1,11 +1,11 @@
 /*
- * coherentpdf.global.d.ts — TypeScript type definitions for BentoPDF / CoherentPDF integration
+ * coherentpdf.global.d.ts — TypeScript type definitions for hiiirePDF / CoherentPDF integration
  *
- * These type definitions were written by Alam for use in the BentoPDF project.
+ * These type definitions were written by Alam for use in the hiiirePDF project.
  * They describe APIs provided by the CoherentPDF library (cpdf.js) but are original
  * work created for type safety and integration.
  *
- * Copyright © 2026 BentoPDF
+ * Copyright © 2026 hiiirePDF
  * Licensed under the GNU Affero General Public License v3.0 or later (AGPLv3+).
  */
 declare global {
@@ -18,8 +18,37 @@ declare global {
   // --- Type Aliases from Constants ---
   type CpdfPermission = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
   type CpdfEncryptionMethod = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
-  type CpdfPaperSize = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15;
-  type CpdfPositionAnchor = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  type CpdfPaperSize =
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12
+    | 13
+    | 14
+    | 15;
+  type CpdfPositionAnchor =
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 7
+    | 8
+    | 9
+    | 10
+    | 11
+    | 12;
   type CpdfFont = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
   type CpdfJustification = 0 | 1 | 2;
   type CpdfLayout = 0 | 1 | 2 | 3 | 4 | 5;
@@ -307,7 +336,12 @@ declare const coherentpdf: {
    * @param linearize If true, linearizes the PDF for fast web view.
    * @param make_id If true, generates a new `/ID`.
    */
-  toFile(pdf: CoherentPdf, filename: string, linearize: boolean, make_id: boolean): void;
+  toFile(
+    pdf: CoherentPdf,
+    filename: string,
+    linearize: boolean,
+    make_id: boolean
+  ): void;
 
   /**
    * Writes the PDF to a file with extended control over object streams.
@@ -320,7 +354,15 @@ declare const coherentpdf: {
    * @param generate_objstm Create new object streams.
    * @param compress_objstm Compress new object streams.
    */
-  toFileExt(pdf: CoherentPdf, filename: string, linearize: boolean, make_id: boolean, preserve_objstm: boolean, generate_objstm: boolean, compress_objstm: boolean): void;
+  toFileExt(
+    pdf: CoherentPdf,
+    filename: string,
+    linearize: boolean,
+    make_id: boolean,
+    preserve_objstm: boolean,
+    generate_objstm: boolean,
+    compress_objstm: boolean
+  ): void;
 
   /**
    * Writes the PDF document to memory as a byte array.
@@ -342,7 +384,14 @@ declare const coherentpdf: {
    * @param compress_objstm Compress new object streams.
    * @returns The PDF file as a byte array.
    */
-  toMemoryExt(pdf: CoherentPdf, linearize: boolean, make_id: boolean, preserve_objstm: boolean, generate_objstm: boolean, compress_objstm: boolean): Uint8Array;
+  toMemoryExt(
+    pdf: CoherentPdf,
+    linearize: boolean,
+    make_id: boolean,
+    preserve_objstm: boolean,
+    generate_objstm: boolean,
+    compress_objstm: boolean
+  ): Uint8Array;
 
   /**
    * Returns true if the PDF document is encrypted, false otherwise.
@@ -409,7 +458,16 @@ declare const coherentpdf: {
    * @param makeid If true, generates a new `/ID`.
    * @param filename The file name to write to.
    */
-  toFileEncrypted(pdf: CoherentPdf, encryption_method: CpdfEncryptionMethod, permissions: CpdfPermission[], ownerpw: string, userpw: string, linearize: boolean, makeid: boolean, filename: string): void;
+  toFileEncrypted(
+    pdf: CoherentPdf,
+    encryption_method: CpdfEncryptionMethod,
+    permissions: CpdfPermission[],
+    ownerpw: string,
+    userpw: string,
+    linearize: boolean,
+    makeid: boolean,
+    filename: string
+  ): void;
 
   /**
    * Writes the PDF document to memory as a byte array with encryption applied.
@@ -422,20 +480,51 @@ declare const coherentpdf: {
    * @param makeid If true, generates a new `/ID`.
    * @returns The encrypted PDF file as a byte array.
    */
-  toMemoryEncrypted(pdf: CoherentPdf, encryption_method: CpdfEncryptionMethod, permissions: CpdfPermission[], ownerpw: string, userpw: string, linearize: boolean, makeid: boolean): Uint8Array;
+  toMemoryEncrypted(
+    pdf: CoherentPdf,
+    encryption_method: CpdfEncryptionMethod,
+    permissions: CpdfPermission[],
+    ownerpw: string,
+    userpw: string,
+    linearize: boolean,
+    makeid: boolean
+  ): Uint8Array;
 
   /**
    * Writes the PDF to a file with encryption and extended control over object streams.
    * **WARNING**: The `pdf` argument is **invalid** after this call.
    */
-  toFileEncryptedExt(pdf: CoherentPdf, encryption_method: CpdfEncryptionMethod, permissions: CpdfPermission[], ownerpw: string, userpw: string, linearize: boolean, makeid: boolean, preserve_objstm: boolean, generate_objstm: boolean, compress_objstm: boolean, filename: string): void;
+  toFileEncryptedExt(
+    pdf: CoherentPdf,
+    encryption_method: CpdfEncryptionMethod,
+    permissions: CpdfPermission[],
+    ownerpw: string,
+    userpw: string,
+    linearize: boolean,
+    makeid: boolean,
+    preserve_objstm: boolean,
+    generate_objstm: boolean,
+    compress_objstm: boolean,
+    filename: string
+  ): void;
 
   /**
    * Writes the PDF to memory with encryption and extended control over object streams.
    * **WARNING**: The `pdf` argument is **invalid** after this call.
    * @returns The encrypted PDF file as a byte array.
    */
-  toMemoryEncryptedExt(pdf: CoherentPdf, encryption_method: CpdfEncryptionMethod, permissions: CpdfPermission[], ownerpw: string, userpw: string, linearize: boolean, makeid: boolean, preserve_objstm: boolean, generate_objstm: boolean, compress_objstm: boolean): Uint8Array;
+  toMemoryEncryptedExt(
+    pdf: CoherentPdf,
+    encryption_method: CpdfEncryptionMethod,
+    permissions: CpdfPermission[],
+    ownerpw: string,
+    userpw: string,
+    linearize: boolean,
+    makeid: boolean,
+    preserve_objstm: boolean,
+    generate_objstm: boolean,
+    compress_objstm: boolean
+  ): Uint8Array;
 
   /**
    * Returns true if the given permission (restriction) is present on the PDF.
@@ -468,7 +557,11 @@ declare const coherentpdf: {
    * @param remove_duplicate_fonts If true, attempts to merge duplicate font resources.
    * @returns The merged PDF document.
    */
-  merge(pdfs: CoherentPdf[], retain_numbering: boolean, remove_duplicate_fonts: boolean): CoherentPdf;
+  merge(
+    pdfs: CoherentPdf[],
+    retain_numbering: boolean,
+    remove_duplicate_fonts: boolean
+  ): CoherentPdf;
 
   /**
    * Merges PDFs, allowing a specific page range to be selected from each input PDF.
@@ -479,7 +572,12 @@ declare const coherentpdf: {
    * @param ranges Array of page ranges, one for each input PDF.
    * @returns The merged PDF document.
    */
-  mergeSame(pdfs: CoherentPdf[], retain_numbering: boolean, remove_duplicate_fonts: boolean, ranges: CpdfPageRange[]): CoherentPdf;
+  mergeSame(
+    pdfs: CoherentPdf[],
+    retain_numbering: boolean,
+    remove_duplicate_fonts: boolean,
+    ranges: CpdfPageRange[]
+  ): CoherentPdf;
 
   /**
    * Creates a new document containing only the pages specified in the page range.
@@ -499,7 +597,12 @@ declare const coherentpdf: {
    * @param sx X-axis scale factor.
    * @param sy Y-axis scale factor.
    */
-  scalePages(pdf: CoherentPdf, range: CpdfPageRange, sx: number, sy: number): void;
+  scalePages(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    sx: number,
+    sy: number
+  ): void;
 
   /**
    * Scales the content to fit new page dimensions (`sx` width x `sy` height), multiplied by a final `scale`.
@@ -509,7 +612,13 @@ declare const coherentpdf: {
    * @param sy Target height dimension.
    * @param scale Overall scale factor (typically 1.0).
    */
-  scaleToFit(pdf: CoherentPdf, range: CpdfPageRange, sx: number, sy: number, scale: number): void;
+  scaleToFit(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    sx: number,
+    sy: number,
+    scale: number
+  ): void;
 
   /** A0 Portrait paper (0) */
   readonly a0portrait: CpdfPaperSize;
@@ -551,7 +660,12 @@ declare const coherentpdf: {
    * @param papersize The paper size constant.
    * @param s Overall scale factor.
    */
-  scaleToFitPaper(pdf: CoherentPdf, range: CpdfPageRange, papersize: CpdfPaperSize, s: number): void;
+  scaleToFitPaper(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    papersize: CpdfPaperSize,
+    s: number
+  ): void;
 
   /** Absolute centre (0) */
   readonly posCentre: CpdfPositionAnchor;
@@ -589,7 +703,14 @@ declare const coherentpdf: {
    * @param p2 Position argument 2.
    * @param scale Scale factor.
    */
-  scaleContents(pdf: CoherentPdf, range: CpdfPageRange, anchor: CpdfPositionAnchor, p1: number, p2: number, scale: number): void;
+  scaleContents(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    anchor: CpdfPositionAnchor,
+    p1: number,
+    p2: number,
+    scale: number
+  ): void;
 
   /**
    * Shifts the content of the pages in the range by the given horizontal (`dx`) and vertical (`dy`) amounts.
@@ -598,7 +719,12 @@ declare const coherentpdf: {
    * @param dx X shift distance.
    * @param dy Y shift distance.
    */
-  shiftContents(pdf: CoherentPdf, range: CpdfPageRange, dx: number, dy: number): void;
+  shiftContents(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    dx: number,
+    dy: number
+  ): void;
 
   /**
    * Changes the viewing rotation of the pages to an absolute value (0, 90, 180, or 270).
@@ -655,7 +781,14 @@ declare const coherentpdf: {
    * @param w Width of the new crop box.
    * @param h Height of the new crop box.
    */
-  crop(pdf: CoherentPdf, range: CpdfPageRange, x: number, y: number, w: number, h: number): void;
+  crop(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    x: number,
+    y: number,
+    w: number,
+    h: number
+  ): void;
 
   /**
    * Removes any crop box from pages in the range.
@@ -840,7 +973,13 @@ declare const coherentpdf: {
    * @param title The title for the TOC page.
    * @param bookmark If true, the TOC page itself gets a bookmark.
    */
-  tableOfContents(pdf: CoherentPdf, font: CpdfFont, fontsize: number, title: string, bookmark: boolean): void;
+  tableOfContents(
+    pdf: CoherentPdf,
+    font: CpdfFont,
+    fontsize: number,
+    title: string,
+    bookmark: boolean
+  ): void;
 
   //   8. Logos, Watermarks and Stamps
 
@@ -860,7 +999,11 @@ declare const coherentpdf: {
    * @param pdf The target PDF document.
    * @param range The page range in the target PDF to stamp under.
    */
-  stampUnder(stamp_pdf: CoherentPdf, pdf: CoherentPdf, range: CpdfPageRange): void;
+  stampUnder(
+    stamp_pdf: CoherentPdf,
+    pdf: CoherentPdf,
+    range: CpdfPageRange
+  ): void;
 
   /**
    * A stamping function with extended features for control over placement and scaling.
@@ -872,7 +1015,15 @@ declare const coherentpdf: {
    * @param position The position anchor for placing the stamp.
    * @param relative_to_cropbox If true, position is relative to the CropBox, otherwise the MediaBox.
    */
-  stampExtended(pdf: CoherentPdf, pdf2: CoherentPdf, range: CpdfPageRange, isover: boolean, scale_stamp_to_fit: boolean, position: CpdfPositionAnchor, relative_to_cropbox: boolean): void;
+  stampExtended(
+    pdf: CoherentPdf,
+    pdf2: CoherentPdf,
+    range: CpdfPageRange,
+    isover: boolean,
+    scale_stamp_to_fit: boolean,
+    position: CpdfPositionAnchor,
+    relative_to_cropbox: boolean
+  ): void;
 
   /**
    * Combines two PDFs page-by-page, putting each page of `over` on top of each page of `under`.
@@ -940,7 +1091,32 @@ declare const coherentpdf: {
    * @param linewidth Line width (for outline text).
    * @param embed_fonts If true, embeds font information in the PDF.
    */
-  addText(metrics: boolean, pdf: CoherentPdf, range: CpdfPageRange, text: string, anchor: CpdfPositionAnchor, p1: number, p2: number, linespacing: number, bates: number, font: CpdfFont, fontsize: number, r: number, g: number, b: number, underneath: boolean, relative_to_cropbox: boolean, outline: boolean, opacity: number, justification: CpdfJustification, midline: boolean, topline: boolean, filename: string, linewidth: number, embed_fonts: boolean): void;
+  addText(
+    metrics: boolean,
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    text: string,
+    anchor: CpdfPositionAnchor,
+    p1: number,
+    p2: number,
+    linespacing: number,
+    bates: number,
+    font: CpdfFont,
+    fontsize: number,
+    r: number,
+    g: number,
+    b: number,
+    underneath: boolean,
+    relative_to_cropbox: boolean,
+    outline: boolean,
+    opacity: number,
+    justification: CpdfJustification,
+    midline: boolean,
+    topline: boolean,
+    filename: string,
+    linewidth: number,
+    embed_fonts: boolean
+  ): void;
 
   /**
    * Adds text with default settings for most parameters.
@@ -953,7 +1129,16 @@ declare const coherentpdf: {
    * @param font The font constant.
    * @param fontsize The font size.
    */
-  addTextSimple(pdf: CoherentPdf, range: CpdfPageRange, text: string, anchor: CpdfPositionAnchor, p1: number, p2: number, font: CpdfFont, fontsize: number): void;
+  addTextSimple(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    text: string,
+    anchor: CpdfPositionAnchor,
+    p1: number,
+    p2: number,
+    font: CpdfFont,
+    fontsize: number
+  ): void;
 
   /**
    * Removes any text that was previously added by cpdf from the given pages.
@@ -977,7 +1162,12 @@ declare const coherentpdf: {
    * @param pdf The PDF document.
    * @param range The page range.
    */
-  addContent(content: string, before: boolean, pdf: CoherentPdf, range: CpdfPageRange): void;
+  addContent(
+    content: string,
+    before: boolean,
+    pdf: CoherentPdf,
+    range: CpdfPageRange
+  ): void;
 
   /**
    * Stamps `stamp_pdf` onto the pages in `pdf` as a shared **Form XObject** and returns the name of the created XObject.
@@ -986,7 +1176,11 @@ declare const coherentpdf: {
    * @param stamp_pdf The stamp PDF document.
    * @returns The name of the newly created XObject.
    */
-  stampAsXObject(pdf: CoherentPdf, range: CpdfPageRange, stamp_pdf: CoherentPdf): string;
+  stampAsXObject(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    stamp_pdf: CoherentPdf
+  ): string;
 
   //   9. Multipage facilities
 
@@ -1004,7 +1198,19 @@ declare const coherentpdf: {
    * @param spacing Spacing between the imposed pages.
    * @param linewidth Line width for imposition guides.
    */
-  impose(pdf: CoherentPdf, x: number, y: number, fit: boolean, columns: boolean, rtl: boolean, btt: boolean, center: boolean, margin: number, spacing: number, linewidth: number): void;
+  impose(
+    pdf: CoherentPdf,
+    x: number,
+    y: number,
+    fit: boolean,
+    columns: boolean,
+    rtl: boolean,
+    btt: boolean,
+    center: boolean,
+    margin: number,
+    spacing: number,
+    linewidth: number
+  ): void;
 
   /**
    * Imposes a document "two-up" by **shrinking** each page to fit two original pages onto one new page.
@@ -1053,7 +1259,7 @@ declare const coherentpdf: {
    */
   padMultipleBefore(pdf: CoherentPdf, n: number): void;
 
-  //   10. Annotations 
+  //   10. Annotations
 
   /**
    * Returns the document's annotations data in **JSON format** as a byte array.
@@ -1143,7 +1349,16 @@ declare const coherentpdf: {
    * Builds a PDF date string from individual date and time components.
    * @returns The formatted PDF date string.
    */
-  dateStringOfComponents(y: number, m: number, d: number, h: number, min: number, sec: number, hour_offset: number, minute_offset: number): string;
+  dateStringOfComponents(
+    y: number,
+    m: number,
+    d: number,
+    h: number,
+    min: number,
+    sec: number,
+    hour_offset: number,
+    minute_offset: number
+  ): string;
 
   /**
    * Gets the viewing rotation (0, 90, 180, 270) for a given page.
@@ -1170,11 +1385,46 @@ declare const coherentpdf: {
   getTrimBox(pdf: CoherentPdf, pagenumber: number): number[];
 
   // Page Box Setters:
-  setMediabox(pdf: CoherentPdf, range: CpdfPageRange, minx: number, maxx: number, miny: number, maxy: number): void;
-  setCropBox(pdf: CoherentPdf, range: CpdfPageRange, minx: number, maxx: number, miny: number, maxy: number): void;
-  setTrimBox(pdf: CoherentPdf, range: CpdfPageRange, minx: number, maxx: number, miny: number, maxy: number): void;
-  setBleedBox(pdf: CoherentPdf, range: CpdfPageRange, minx: number, maxx: number, miny: number, maxy: number): void;
-  setArtBox(pdf: CoherentPdf, range: CpdfPageRange, minx: number, maxx: number, miny: number, maxy: number): void;
+  setMediabox(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    minx: number,
+    maxx: number,
+    miny: number,
+    maxy: number
+  ): void;
+  setCropBox(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    minx: number,
+    maxx: number,
+    miny: number,
+    maxy: number
+  ): void;
+  setTrimBox(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    minx: number,
+    maxx: number,
+    miny: number,
+    maxy: number
+  ): void;
+  setBleedBox(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    minx: number,
+    maxx: number,
+    miny: number,
+    maxy: number
+  ): void;
+  setArtBox(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    minx: number,
+    maxx: number,
+    miny: number,
+    maxy: number
+  ): void;
 
   /**
    * Marks a document as "trapped" in the PDF Info dictionary.
@@ -1314,7 +1564,14 @@ declare const coherentpdf: {
    * @param range The page range this label sequence applies to.
    * @param progress If true, labels continue the sequence.
    */
-  addPageLabels(pdf: CoherentPdf, style: CpdfLabelStyle, prefix: string, offset: number, range: CpdfPageRange, progress: boolean): void;
+  addPageLabels(
+    pdf: CoherentPdf,
+    style: CpdfLabelStyle,
+    prefix: string,
+    offset: number,
+    range: CpdfPageRange,
+    progress: boolean
+  ): void;
 
   /**
    * Removes all page labels from the document.
@@ -1363,7 +1620,11 @@ declare const coherentpdf: {
    * @param pdf The PDF document.
    * @param pagenumber The page number (1-based) to attach to.
    */
-  attachFileToPage(filename: string, pdf: CoherentPdf, pagenumber: number): void;
+  attachFileToPage(
+    filename: string,
+    pdf: CoherentPdf,
+    pagenumber: number
+  ): void;
 
   /**
    * Attaches data from memory to the PDF at the **document level**.
@@ -1371,7 +1632,11 @@ declare const coherentpdf: {
    * @param filename The name to store the attachment under within the PDF.
    * @param pdf The PDF document.
    */
-  attachFileFromMemory(data: Uint8Array, filename: string, pdf: CoherentPdf): void;
+  attachFileFromMemory(
+    data: Uint8Array,
+    filename: string,
+    pdf: CoherentPdf
+  ): void;
 
   /**
    * Attaches data from memory to a **specific page number**.
@@ -1380,7 +1645,12 @@ declare const coherentpdf: {
    * @param pdf The PDF document.
    * @param pagenumber The page number (1-based) to attach to.
    */
-  attachFileToPageFromMemory(data: Uint8Array, filename: string, pdf: CoherentPdf, pagenumber: number): void;
+  attachFileToPageFromMemory(
+    data: Uint8Array,
+    filename: string,
+    pdf: CoherentPdf,
+    pagenumber: number
+  ): void;
 
   /**
    * Removes all page- and document-level attachments from the document.
@@ -1413,7 +1683,10 @@ declare const coherentpdf: {
    * @param min_required_resolution The minimum required resolution (e.g., 300) to report for image uses below it.
    * @returns The number of image uses found.
    */
-  startGetImageResolution(pdf: CoherentPdf, min_required_resolution: number): number;
+  startGetImageResolution(
+    pdf: CoherentPdf,
+    min_required_resolution: number
+  ): number;
 
   // Accessor functions for image resolution data:
   getImageResolutionPageNumber(n: number): number;
@@ -1467,7 +1740,13 @@ declare const coherentpdf: {
    * @param pagenumber The page number in the source document where the font is used.
    * @param fontname The name of the font resource.
    */
-  copyFont(docfrom: CoherentPdf, docto: CoherentPdf, range: CpdfPageRange, pagenumber: number, fontname: string): void;
+  copyFont(
+    docfrom: CoherentPdf,
+    docto: CoherentPdf,
+    range: CpdfPageRange,
+    pagenumber: number,
+    fontname: string
+  ): void;
 
   //   15. PDF and JSON
 
@@ -1479,13 +1758,24 @@ declare const coherentpdf: {
    * @param decompress_streams If true, decompresses streams before exporting.
    * @param pdf The PDF document.
    */
-  outputJSON(filename: string, parse_content: boolean, no_stream_data: boolean, decompress_streams: boolean, pdf: CoherentPdf): void;
+  outputJSON(
+    filename: string,
+    parse_content: boolean,
+    no_stream_data: boolean,
+    decompress_streams: boolean,
+    pdf: CoherentPdf
+  ): void;
 
   /**
    * Exports the PDF structure and content to a **JSON byte array** in memory.
    * @returns The JSON data as a byte array.
    */
-  outputJSONMemory(parse_content: boolean, no_stream_data: boolean, decompress_streams: boolean, pdf: CoherentPdf): Uint8Array;
+  outputJSONMemory(
+    parse_content: boolean,
+    no_stream_data: boolean,
+    decompress_streams: boolean,
+    pdf: CoherentPdf
+  ): Uint8Array;
 
   /**
    * Loads a new PDF document instance from a specified JSON file.
@@ -1570,7 +1860,13 @@ declare const coherentpdf: {
    * @param filename The path to the input text file.
    * @returns The new PDF document instance.
    */
-  textToPDF(w: number, h: number, font: CpdfFont, fontsize: number, filename: string): CoherentPdf;
+  textToPDF(
+    w: number,
+    h: number,
+    font: CpdfFont,
+    fontsize: number,
+    filename: string
+  ): CoherentPdf;
 
   /**
    * Typesets UTF8 text from a byte array onto a new PDF with given dimensions, font, and font size.
@@ -1581,7 +1877,13 @@ declare const coherentpdf: {
    * @param data The input text as a byte array.
    * @returns The new PDF document instance.
    */
-  textToPDFMemory(w: number, h: number, font: CpdfFont, fontsize: number, data: Uint8Array): CoherentPdf;
+  textToPDFMemory(
+    w: number,
+    h: number,
+    font: CpdfFont,
+    fontsize: number,
+    data: Uint8Array
+  ): CoherentPdf;
 
   /**
    * Typesets a UTF8 text file onto a new PDF using a predefined paper size, font, and font size.
@@ -1591,7 +1893,12 @@ declare const coherentpdf: {
    * @param filename The path to the input text file.
    * @returns The new PDF document instance.
    */
-  textToPDFPaper(papersize: CpdfPaperSize, font: CpdfFont, fontsize: number, filename: string): CoherentPdf;
+  textToPDFPaper(
+    papersize: CpdfPaperSize,
+    font: CpdfFont,
+    fontsize: number,
+    filename: string
+  ): CoherentPdf;
 
   /**
    * Typesets UTF8 text from a byte array onto a new PDF using a predefined paper size, font, and font size.
@@ -1601,7 +1908,12 @@ declare const coherentpdf: {
    * @param data The input text as a byte array.
    * @returns The new PDF document instance.
    */
-  textToPDFPaperMemory(papersize: CpdfPaperSize, font: CpdfFont, fontsize: number, data: Uint8Array): CoherentPdf;
+  textToPDFPaperMemory(
+    papersize: CpdfPaperSize,
+    font: CpdfFont,
+    fontsize: number,
+    data: Uint8Array
+  ): CoherentPdf;
 
   //  18. Miscellaneous
 
@@ -1647,7 +1959,11 @@ declare const coherentpdf: {
    * @param range The page range.
    * @param min_thickness The minimum required line thickness.
    */
-  thinLines(pdf: CoherentPdf, range: CpdfPageRange, min_thickness: number): void;
+  thinLines(
+    pdf: CoherentPdf,
+    range: CpdfPageRange,
+    min_thickness: number
+  ): void;
 
   /**
    * Copies the unique document identifier (`/ID`) from one PDF to another.
@@ -1690,7 +2006,11 @@ declare const coherentpdf: {
    * @param key The dictionary key.
    * @param searchterm The value to search for.
    */
-  removeDictEntrySearch(pdf: CoherentPdf, key: string, searchterm: string): void;
+  removeDictEntrySearch(
+    pdf: CoherentPdf,
+    key: string,
+    searchterm: string
+  ): void;
 
   /**
    * Replaces the value associated with the given key anywhere in the document.
@@ -1707,7 +2027,12 @@ declare const coherentpdf: {
    * @param newval The new value string.
    * @param searchterm The value to search for.
    */
-  replaceDictEntrySearch(pdf: CoherentPdf, key: string, newval: string, searchterm: string): void;
+  replaceDictEntrySearch(
+    pdf: CoherentPdf,
+    key: string,
+    newval: string,
+    searchterm: string
+  ): void;
 
   /**
    * Removes all clipping paths applied to content streams on pages in the specified range.
@@ -1725,4 +2050,4 @@ declare const coherentpdf: {
   getDictEntries(pdf: CoherentPdf, key: string): Uint8Array;
 };
 
-export { coherentpdf }
+export { coherentpdf };

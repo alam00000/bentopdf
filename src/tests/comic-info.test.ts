@@ -283,7 +283,7 @@ describe('generateComicBookInfoJson', () => {
     const json = generateComicBookInfoJson(fullMetadata);
     const parsed = JSON.parse(json);
 
-    expect(parsed.appID).toBe('BentoPDF/1.0');
+    expect(parsed.appID).toBe('hiiirePDF/1.0');
     expect(parsed.lastModified).toBe('2024-06-15T12:00:00.000Z');
 
     const info = parsed['ComicBookInfo/1.0'];
@@ -302,7 +302,7 @@ describe('generateComicBookInfoJson', () => {
     const json = generateComicBookInfoJson(minimalMetadata);
     const parsed = JSON.parse(json);
 
-    expect(parsed.appID).toBe('BentoPDF/1.0');
+    expect(parsed.appID).toBe('hiiirePDF/1.0');
     expect(parsed['ComicBookInfo/1.0']).toEqual({});
   });
 

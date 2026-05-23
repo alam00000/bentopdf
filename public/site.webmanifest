@@ -1,7 +1,7 @@
 {
-  "name": "HirePDF",
-  "short_name": "HirePDF",
-  "description": "Бесплатные PDF-инструменты HirePDF для работы с файлами прямо в браузере",
+  "name": "hiiirePDF",
+  "short_name": "hiiirePDF",
+  "description": "Бесплатные PDF-инструменты hiiirePDF для работы с файлами прямо в браузере",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

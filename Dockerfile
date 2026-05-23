@@ -62,7 +62,7 @@ ENV VITE_FOOTER_TEXT=$VITE_FOOTER_TEXT
 ARG DISABLE_TOOLS
 ENV DISABLE_TOOLS=$DISABLE_TOOLS
 
-# Public-facing canonical site URL for the branded HirePDF build. Override with --build-arg
+# Public-facing canonical site URL for the branded hiiirePDF build. Override with --build-arg
 # SITE_URL=https://your-domain.example to claim canonical for your own deployment.
 ARG SITE_URL=https://pdf.hiiire.com
 ENV SITE_URL=$SITE_URL
@@ -78,7 +78,7 @@ RUN --mount=type=secret,id=VITE_CORS_PROXY_URL,required=false \
 # Production stage
 FROM quay.io/nginx/nginx-unprivileged:alpine-slim
 
-LABEL org.opencontainers.image.title="HirePDF"
+LABEL org.opencontainers.image.title="hiiirePDF"
 
 # global arg to local arg
 ARG BASE_URL

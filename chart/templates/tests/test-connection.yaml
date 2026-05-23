@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "bentopdf.name" . }}-test-connection"
+  name: "{{ include "hiiirepdf.name" . }}-test-connection"
   labels:
-    {{- include "bentopdf.labels" . | nindent 4 }}
+    {{- include "hiiirepdf.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['-qO-', 'http://{{ include "bentopdf.name" . }}:{{ .Values.service.port }}/']
+      args: ['-qO-', 'http://{{ include "hiiirepdf.name" . }}:{{ .Values.service.port }}/']
   restartPolicy: Never

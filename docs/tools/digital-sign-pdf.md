@@ -7,7 +7,7 @@ description: Add cryptographic digital signatures to PDFs using X.509 certificat
 
 A digital signature is cryptographic proof that a specific person signed a document and that the document has not been altered since. Unlike a drawn signature (which is just an image), a digital signature uses X.509 certificates and PKCS#7 standards to provide verifiable authenticity and integrity.
 
-BentoPDF applies digital signatures entirely in your browser. Your private key never leaves your device.
+hiiirePDF applies digital signatures entirely in your browser. Your private key never leaves your device.
 
 ## How It Works
 

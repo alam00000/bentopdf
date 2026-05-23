@@ -5,7 +5,7 @@ description: Password-protect PDF files with 256-bit AES encryption. Set user an
 
 # Encrypt PDF
 
-Lock your PDF behind a password so only authorized people can open it. BentoPDF uses 256-bit AES encryption -- the same standard used by banks and government agencies -- applied entirely in your browser via QPDF.
+Lock your PDF behind a password so only authorized people can open it. hiiirePDF uses 256-bit AES encryption -- the same standard used by banks and government agencies -- applied entirely in your browser via QPDF.
 
 ## How It Works
 
@@ -23,7 +23,7 @@ The user password is what recipients type to open the PDF. Without it, the docum
 
 ### Owner Password (Optional)
 
-The owner password controls what an authorized user can do after opening the file. When you set a distinct owner password, BentoPDF automatically applies the strictest restriction set:
+The owner password controls what an authorized user can do after opening the file. When you set a distinct owner password, hiiirePDF automatically applies the strictest restriction set:
 
 - Modification disabled
 - Extraction/copying disabled

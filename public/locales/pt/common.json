@@ -12,7 +12,7 @@
     "noLanguagesFound": "Nenhum idioma encontrado"
   },
   "donation": {
-    "message": "Adora o BentoPDF? Ajude-nos a mantê-lo gratuito e de código aberto!",
+    "message": "Adora o hiiirePDF? Ajude-nos a mantê-lo gratuito e de código aberto!",
     "button": "Doar"
   },
   "hero": {
@@ -29,7 +29,7 @@
   },
   "features": {
     "title": "Por que escolher o",
-    "bentoPdf": "BentoPDF?",
+    "hiiirePdf": "hiiirePDF?",
     "noSignup": {
       "title": "Sem Cadastro",
       "description": "Comece instantaneamente, sem contas ou e-mails."
@@ -187,8 +187,8 @@
     "questions": "Frequentes",
     "sectionTitle": "Perguntas frequentes",
     "isFree": {
-      "question": "O BentoPDF é realmente grátis?",
-      "answer": "Sim, com certeza. Todas as ferramentas do BentoPDF são 100% gratuitas, sem limites de arquivos, sem cadastros e sem marcas d'água. Acreditamos que todos merecem acesso a ferramentas PDF poderosas sem barreiras financeiras."
+      "question": "O hiiirePDF é realmente grátis?",
+      "answer": "Sim, com certeza. Todas as ferramentas do hiiirePDF são 100% gratuitas, sem limites de arquivos, sem cadastros e sem marcas d'água. Acreditamos que todos merecem acesso a ferramentas PDF poderosas sem barreiras financeiras."
     },
     "areFilesSecure": {
       "question": "Meus arquivos estão seguros? Onde são processados?",
@@ -196,10 +196,10 @@
     },
     "platforms": {
       "question": "Funciona no Mac, Windows e Celular?",
-      "answer": "Sim! Como o BentoPDF roda inteiramente no navegador, funciona em qualquer sistema operacional moderno, incluindo Windows, macOS, Linux, iOS e Android."
+      "answer": "Sim! Como o hiiirePDF roda inteiramente no navegador, funciona em qualquer sistema operacional moderno, incluindo Windows, macOS, Linux, iOS e Android."
     },
     "gdprCompliant": {
-      "question": "O BentoPDF está em conformidade com a GDPR?",
+      "question": "O hiiirePDF está em conformidade com a GDPR?",
       "answer": "Sim. Como o processamento é local e não coletamos seus arquivos, não temos acesso aos seus dados. Isso garante total conformidade e controle por parte do usuário."
     },
     "dataStorage": {
@@ -207,8 +207,8 @@
       "answer": "Não. Nunca armazenamos, rastreamos ou registramos seus arquivos. Tudo acontece na memória do navegador e desaparece ao fechar a página. Não há logs nem servidores envolvidos."
     },
     "different": {
-      "question": "O que torna o BentoPDF diferente de outras ferramentas?",
-      "answer": "A maioria das ferramentas faz upload dos arquivos para um servidor. O BentoPDF usa tecnologia web moderna para processar tudo localmente no seu navegador, garantindo mais velocidade e privacidade."
+      "question": "O que torna o hiiirePDF diferente de outras ferramentas?",
+      "answer": "A maioria das ferramentas faz upload dos arquivos para um servidor. O hiiirePDF usa tecnologia web moderna para processar tudo localmente no seu navegador, garantindo mais velocidade e privacidade."
     },
     "browserBased": {
       "question": "Como o processamento no navegador me mantém seguro?",
@@ -226,11 +226,11 @@
   },
   "support": {
     "title": "Gostou do Trabalho?",
-    "description": "O BentoPDF é um projeto pessoal feito para fornecer ferramentas poderosas e privadas para todos. Se for útil para você, considere apoiar o desenvolvimento!",
+    "description": "O hiiirePDF é um projeto pessoal feito para fornecer ferramentas poderosas e privadas para todos. Se for útil para você, considere apoiar o desenvolvimento!",
     "buyMeCoffee": "Pague um Café"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Todos os direitos reservados.",
+    "copyright": "© 2026 hiiirePDF. Todos os direitos reservados.",
     "version": "Versão",
     "company": "Empresa",
     "aboutUs": "Sobre Nós",
@@ -294,8 +294,8 @@
       "title": "Privacidade Primeiro. Sempre.",
       "description": "Em uma era onde dados são mercadoria, seguimos outro caminho. Todo o processamento ocorre no seu navegador. Arquivos não tocam nossos servidores e não rastreamos você. Privacidade não é apenas um recurso; é nossa base."
     },
-    "whyBentopdf": {
-      "title": "Por que o BentoPDF?",
+    "whyhiiirePDF": {
+      "title": "Por que o hiiirePDF?",
       "speed": {
         "title": "Feito para Velocidade",
         "description": "Sem esperas de upload. Usando tecnologias como WebAssembly, processamos tudo diretamente no navegador com velocidade inigualável."
@@ -315,7 +315,7 @@
     },
     "cta": {
       "title": "Pronto para começar?",
-      "description": "Junte-se a milhares de usuários que confiam no BentoPDF. Sinta a diferença da privacidade e do desempenho.",
+      "description": "Junte-se a milhares de usuários que confiam no hiiirePDF. Sinta a diferença da privacidade e do desempenho.",
       "button": "Explorar Ferramentas"
     }
   },

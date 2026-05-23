@@ -1,6 +1,6 @@
 # Deploy with Nginx
 
-Host BentoPDF on your own server using Nginx.
+Host hiiirePDF on your own server using Nginx.
 
 ## Prerequisites
 
@@ -11,8 +11,8 @@ Host BentoPDF on your own server using Nginx.
 ## Step 1: Build the Project
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/alam00000/hiiirepdf.git
+cd hiiirepdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Step 2: Copy Files
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/hiiirepdf
+sudo cp -r dist/* /var/www/hiiirepdf/
+sudo chown -R www-data:www-data /var/www/hiiirepdf
 ```
 
 ## Step 3: Nginx Configuration
 
-Create `/etc/nginx/sites-available/bentopdf`:
+Create `/etc/nginx/sites-available/hiiirepdf`:
 
 ```nginx
 server {
@@ -50,7 +50,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
-    root /var/www/bentopdf;
+    root /var/www/hiiirepdf;
     index index.html;
 
     # Gzip compression
@@ -114,7 +114,7 @@ server {
 ## Step 4: Enable the Site
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/bentopdf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/hiiirepdf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -132,7 +132,7 @@ To host at `/pdf/`:
 
 ```nginx
 location /pdf/ {
-    alias /var/www/bentopdf/;
+    alias /var/www/hiiirepdf/;
     try_files $uri $uri/ /pdf/index.html;
 }
 ```

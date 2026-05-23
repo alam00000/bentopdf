@@ -243,7 +243,7 @@
     "subtitle": "Formulieren invullen vanuit de browser, incl. ondersteuning voor XFA-formulieren.",
     "uploadHint": "Upload een PDF met formuliervelden. Vul ze direct in in de viewer hieronder en klik op de knop om het ingevulde formulier op te slaan en te downloaden. Ondersteunt ook XFA-formulieren.",
     "xfaNoteTitle": "Opmerking over XFA-formulieren:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) is een verouderd formaat dat alleen door bepaalde PDF-viewers zoals BentoPDF en Firefox wordt ondersteund. Als je een XFA-PDF in andere software opent en lege pagina's of geen formuliervelden ziet, betekent dat dat die viewer XFA niet ondersteunt. Om XFA-formulieren correct te bekijken en in te vullen, gebruik je Firefox of de Form Filler van BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) is een verouderd formaat dat alleen door bepaalde PDF-viewers zoals hiiirePDF en Firefox wordt ondersteund. Als je een XFA-PDF in andere software opent en lege pagina's of geen formuliervelden ziet, betekent dat dat die viewer XFA niet ondersteunt. Om XFA-formulieren correct te bekijken en in te vullen, gebruik je Firefox of de Form Filler van hiiirePDF."
   },
   "createPdfForm": {
     "name": "PDF-formulier Aanmaken",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "Digitale handtekening",
-    "pageTitle": "Digitale handtekening - Cryptografische handtekening toevoegen | BentoPDF",
+    "pageTitle": "Digitale handtekening - Cryptografische handtekening toevoegen | hiiirePDF",
     "subtitle": "Een cryptografische digitale handtekening toevoegen aan een PDF met behulp van X.509-certificaten. Ondersteunt PKCS#12 (.pfx, .p12) en PEM-formaten. Jouw privésleutel blijft op jouw browser.",
     "certificateSection": "Certificaat",
     "uploadCert": "Certificaat laden (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "PDF-handtekening Valideren",
-    "pageTitle": "PDF-handtekening valideren - Digitale handtekeningen verifiëren | BentoPDF",
+    "pageTitle": "PDF-handtekening valideren - Digitale handtekeningen verifiëren | hiiirePDF",
     "subtitle": "Digitale handtekeningen in een PDF-bestanden verifiëren. Controleer de geldigheid van het certificaat, bekijk de gegevens van de ondertekenaar en bevestig de integriteit van het document. Alle verwerking gebeurt binnen jouw browser."
   },
   "timestampPdf": {
     "name": "PDF Tijdstempelen",
-    "pageTitle": "PDF tijdstempel gratis online - RFC 3161 documenttijdstempel | BentoPDF",
+    "pageTitle": "PDF tijdstempel gratis online - RFC 3161 documenttijdstempel | hiiirePDF",
     "subtitle": "Voeg een RFC 3161 tijdstempel toe aan je PDF via een vertrouwde TSA-server. Dit bewijst dat jouw document op een specifiek moment bestond. Geen certificaat vereist.",
     "tsaSectionTitle": "Tijdstempelserver (TSA)",
     "selectTsa": "Selecteer een TSA-server",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "Aangepaste overrides gewist. Vooraf geconfigureerde standaardwaarden zijn actief.",
     "resetNoDefaults": "Alle configuraties en cachemodules zijn gewist.",
     "licenseTitle": "Licentiekennisgeving:",
-    "licenseDescription": "De externe modules (PyMuPDF, Ghostscript, CoherentPDF) zijn gelicentieerd onder AGPL-3.0 of vergelijkbare copyleft-licenties. Door deze modules te configureren en te gebruiken ga je akkoord met de respectievelijke licentievoorwaarden. BentoPDF is compatibel met elke Ghostscript WASM- en PyMuPDF WASM-implementatie die de verwachte interface volgt."
+    "licenseDescription": "De externe modules (PyMuPDF, Ghostscript, CoherentPDF) zijn gelicentieerd onder AGPL-3.0 of vergelijkbare copyleft-licenties. Door deze modules te configureren en te gebruiken ga je akkoord met de respectievelijke licentievoorwaarden. hiiirePDF is compatibel met elke Ghostscript WASM- en PyMuPDF WASM-implementatie die de verwachte interface volgt."
   },
   "pdfOverlay": {
     "name": "PDF-overlay",

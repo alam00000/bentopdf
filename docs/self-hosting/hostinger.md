@@ -1,6 +1,6 @@
 # Deploy to Hostinger
 
-[Hostinger](https://hostinger.com) is a popular shared hosting provider. This guide covers deploying BentoPDF to Hostinger's shared hosting.
+[Hostinger](https://hostinger.com) is a popular shared hosting provider. This guide covers deploying hiiirePDF to Hostinger's shared hosting.
 
 ## Prerequisites
 
@@ -10,8 +10,8 @@
 ## Step 1: Build the Project
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/alam00000/hiiirepdf.git
+cd hiiirepdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^hiiirepdf\.com [NC]
+RewriteRule ^(.*)$ https://pdf.hiiire.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ If headers aren't being applied, contact Hostinger support to enable `mod_header
 
 ### 404 Errors on Page Refresh
 
-Make sure the `.html` extension rule and language routes are correctly configured. BentoPDF uses static HTML files, not SPA routing:
+Make sure the `.html` extension rule and language routes are correctly configured. hiiirePDF uses static HTML files, not SPA routing:
 
 ```apache
 # Language routes serve actual files from language directories

@@ -1,4 +1,4 @@
-name = "bentopdf-wasm-proxy"
+name = "hiiirepdf-wasm-proxy"
 main = "wasm-proxy-worker.js"
 compatibility_date = "2024-01-01"
 
@@ -11,7 +11,7 @@ compatibility_date = "2024-01-01"
 #
 # Set environment secrets (one of the following methods):
 #   Option A: Cloudflare Dashboard
-#     Go to Workers & Pages > bentopdf-wasm-proxy > Settings > Variables
+#     Go to Workers & Pages > hiiirepdf-wasm-proxy > Settings > Variables
 #     Add: PYMUPDF_SOURCE, GS_SOURCE, CPDF_SOURCE
 #
 #   Option B: Wrangler CLI
@@ -25,11 +25,11 @@ compatibility_date = "2024-01-01"
 # Set these as secrets in the Cloudflare dashboard or via wrangler:
 #
 # PYMUPDF_SOURCE: Base URL to PyMuPDF WASM files
-#   Example: https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm/assets
+#   Example: /wasm/pymupdf/
 #            https://your-bucket.r2.cloudflarestorage.com/pymupdf
 #
 # GS_SOURCE: Base URL to Ghostscript WASM files
-#   Example: https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm/assets
+#   Example: https://cdn.jsdelivr.net/npm/gs-wasm/assets
 #            https://your-bucket.r2.cloudflarestorage.com/gs
 #
 # CPDF_SOURCE: Base URL to CoherentPDF files
@@ -37,12 +37,12 @@ compatibility_date = "2024-01-01"
 #            https://your-bucket.r2.cloudflarestorage.com/cpdf
 
 # =============================================================================
-# USAGE FROM BENTOPDF
+# USAGE FROM HIIIREPDF
 # =============================================================================
-# In BentoPDF's WASM Settings page, configure URLs like:
-#   PyMuPDF: https://wasm.bentopdf.com/pymupdf/
-#   Ghostscript: https://wasm.bentopdf.com/gs/
-#   CoherentPDF: https://wasm.bentopdf.com/cpdf/
+# In hiiirePDF's WASM Settings page, configure URLs like:
+#   PyMuPDF: https://pdf.hiiire.com/wasm/pymupdf/
+#   Ghostscript: https://pdf.hiiire.com/wasm/gs/
+#   CoherentPDF: https://pdf.hiiire.com/wasm/cpdf/
 
 # =============================================================================
 # RATE LIMITING (Optional but recommended)
@@ -63,7 +63,7 @@ id = "b88e030b308941118cd484e3fcb3ae49"
 # =============================================================================
 # CUSTOM DOMAIN (Optional)
 # =============================================================================
-# If you want a custom domain like wasm.bentopdf.com:
+# If you want a custom domain like pdf.hiiire.com/wasm:
 # routes = [
-#   { pattern = "wasm.bentopdf.com/*", zone_name = "bentopdf.com" }
+#   { pattern = "pdf.hiiire.com/wasm/*", zone_name = "pdf.hiiire.com" }
 # ]

@@ -2,13 +2,13 @@
 set -euo pipefail
 
 # ============================================================
-# BentoPDF Air-Gapped Deployment Preparation Script
+# hiiirePDF Air-Gapped Deployment Preparation Script
 # ============================================================
 # Automates the creation of a self-contained deployment bundle
 # for air-gapped (offline) networks.
 #
 # Run this on a machine WITH internet access. The output bundle
-# contains everything needed to deploy BentoPDF offline.
+# contains everything needed to deploy hiiirePDF offline.
 #
 # Usage:
 #   bash scripts/prepare-airgap.sh --wasm-base-url https://internal.example.com/wasm
@@ -43,8 +43,8 @@ fi
 
 # --- Defaults ---
 WASM_BASE_URL=""
-IMAGE_NAME="bentopdf"
-OUTPUT_DIR="./bentopdf-airgap-bundle"
+IMAGE_NAME="hiiirepdf"
+OUTPUT_DIR="./hiiirepdf-airgap-bundle"
 SIMPLE_MODE=""
 BASE_URL=""
 COMPRESSION_MODE=""
@@ -164,7 +164,7 @@ load_required_ocr_fonts() {
 # --- Usage ---
 usage() {
   cat <<'EOF'
-BentoPDF Air-Gapped Deployment Preparation
+hiiirePDF Air-Gapped Deployment Preparation
 
 USAGE:
   bash scripts/prepare-airgap.sh [OPTIONS]
@@ -176,8 +176,8 @@ REQUIRED:
                           (e.g. https://internal.example.com/wasm)
 
 OPTIONS:
-  --image-name <name>     Docker image name          (default: bentopdf)
-  --output-dir <path>     Output bundle directory     (default: ./bentopdf-airgap-bundle)
+  --image-name <name>     Docker image name          (default: hiiirepdf)
+  --output-dir <path>     Output bundle directory     (default: ./hiiirepdf-airgap-bundle)
   --dockerfile <path>     Dockerfile to use           (default: Dockerfile)
   --simple-mode           Enable Simple Mode
   --base-url <path>       Subdirectory base URL       (e.g. /pdf/)
@@ -247,7 +247,7 @@ done
 cd "$PROJECT_ROOT"
 
 if [ ! -f "package.json" ] || [ ! -f "src/js/const/cdn-version.ts" ]; then
-  error "This script must be run from the BentoPDF project root."
+  error "This script must be run from the hiiirePDF project root."
   error "Expected to find package.json and src/js/const/cdn-version.ts"
   exit 1
 fi
@@ -306,7 +306,7 @@ read_versions() {
 interactive_mode() {
   echo ""
   echo -e "${BOLD}============================================================${NC}"
-  echo -e "${BOLD}  BentoPDF Air-Gapped Deployment Preparation${NC}"
+  echo -e "${BOLD}  hiiirePDF Air-Gapped Deployment Preparation${NC}"
   echo -e "${BOLD}  App Version: ${APP_VERSION}${NC}"
   echo -e "${BOLD}============================================================${NC}"
   echo ""
@@ -326,7 +326,7 @@ interactive_mode() {
   echo "    Examples:"
   echo "      https://internal.example.com/wasm"
   echo "      http://192.168.1.100/assets/wasm"
-  echo "      https://cdn.mycompany.local/bentopdf"
+  echo "      https://cdn.mycompany.local/hiiirepdf"
   echo ""
   while true; do
     read -r -p "    URL: " WASM_BASE_URL
@@ -371,14 +371,14 @@ interactive_mode() {
 
   # [5] Custom branding (optional)
   echo -e "${BOLD}[5/8] Custom Branding ${GREEN}(optional)${NC}"
-  echo "    Replace the default BentoPDF name, logo, and footer text."
-  read -r -p "    Brand name [BentoPDF]: " input
+  echo "    Replace the default hiiirePDF name, logo, and footer text."
+  read -r -p "    Brand name [hiiirePDF]: " input
   BRAND_NAME="${input:-}"
   if [ -n "$BRAND_NAME" ]; then
     echo "    Place your logo in the public/ folder before building."
     read -r -p "    Logo path relative to public/ [images/favicon-no-bg.svg]: " input
     BRAND_LOGO="${input:-}"
-    read -r -p "    Footer text [© 2026 BentoPDF. All rights reserved.]: " input
+    read -r -p "    Footer text [© 2026 hiiirePDF. All rights reserved.]: " input
     FOOTER_TEXT="${input:-}"
   fi
   echo ""
@@ -438,7 +438,7 @@ interactive_mode() {
   echo "  Dockerfile:     ${DOCKERFILE}"
   echo "  Simple Mode:    ${SIMPLE_MODE:-false}"
   echo "  Language:       ${LANGUAGE:-en (default)}"
-  echo "  Brand Name:     ${BRAND_NAME:-BentoPDF (default)}"
+  echo "  Brand Name:     ${BRAND_NAME:-hiiirePDF (default)}"
   [ -n "$BRAND_NAME" ] && echo "  Brand Logo:     ${BRAND_LOGO:-images/favicon-no-bg.svg (default)}"
   [ -n "$BRAND_NAME" ] && echo "  Footer Text:    ${FOOTER_TEXT:-(default)}"
   echo "  Base URL:       ${BASE_URL:-/ (root)}"
@@ -558,7 +558,7 @@ OCR_FONT_BASE_URL="${WASM_BASE_URL}/ocr/fonts"
 
 echo ""
 echo -e "${BOLD}============================================================${NC}"
-echo -e "${BOLD}  BentoPDF Air-Gapped Bundle Preparation${NC}"
+echo -e "${BOLD}  hiiirePDF Air-Gapped Bundle Preparation${NC}"
 echo -e "${BOLD}  App: v${APP_VERSION}  |  PyMuPDF: ${PYMUPDF_VERSION}  |  GS: ${GS_VERSION}  |  OCR: ${TESSERACT_VERSION}${NC}"
 echo -e "${BOLD}============================================================${NC}"
 
@@ -569,7 +569,7 @@ mkdir -p "$OUTPUT_DIR"
 OUTPUT_DIR="$(cd "$OUTPUT_DIR" && pwd)"
 
 # Warn if output directory already has bundle files
-if ls "$OUTPUT_DIR"/*.tgz "$OUTPUT_DIR"/bentopdf.tar "$OUTPUT_DIR"/setup.sh 2>/dev/null | head -1 &>/dev/null; then
+if ls "$OUTPUT_DIR"/*.tgz "$OUTPUT_DIR"/hiiirepdf.tar "$OUTPUT_DIR"/setup.sh 2>/dev/null | head -1 &>/dev/null; then
   warn "Output directory already contains files from a previous run."
   warn "Existing files will be overwritten."
   if [ "$INTERACTIVE" = true ]; then
@@ -588,12 +588,12 @@ if [ "$SKIP_WASM" = true ]; then
   step "Skipping WASM download (--skip-wasm)"
   # Verify each file exists with specific errors
   wasm_missing=false
-  if ! ls "$OUTPUT_DIR"/bentopdf-pymupdf-wasm-*.tgz &>/dev/null; then
-    error "Missing: bentopdf-pymupdf-wasm-*.tgz"
+  if ! ls "$OUTPUT_DIR"/pymupdf-wasm-*.tgz &>/dev/null; then
+    error "Missing: pymupdf-wasm-*.tgz"
     wasm_missing=true
   fi
-  if ! ls "$OUTPUT_DIR"/bentopdf-gs-wasm-*.tgz &>/dev/null; then
-    error "Missing: bentopdf-gs-wasm-*.tgz"
+  if ! ls "$OUTPUT_DIR"/gs-wasm-*.tgz &>/dev/null; then
+    error "Missing: gs-wasm-*.tgz"
     wasm_missing=true
   fi
   if ! ls "$OUTPUT_DIR"/coherentpdf-*.tgz &>/dev/null; then
@@ -632,16 +632,16 @@ else
   WASM_TMP=$(mktemp -d)
   trap 'rm -rf "$WASM_TMP"' EXIT
 
-  info "Downloading @bentopdf/pymupdf-wasm@${PYMUPDF_VERSION}..."
-  if ! (cd "$WASM_TMP" && npm pack "@bentopdf/pymupdf-wasm@${PYMUPDF_VERSION}" --quiet 2>&1); then
-    error "Failed to download @bentopdf/pymupdf-wasm@${PYMUPDF_VERSION}"
+  info "Downloading pymupdf-wasm@${PYMUPDF_VERSION}..."
+  if ! (cd "$WASM_TMP" && npm pack "pymupdf-wasm@${PYMUPDF_VERSION}" --quiet 2>&1); then
+    error "Failed to download pymupdf-wasm@${PYMUPDF_VERSION}"
     error "Check your internet connection and that the package exists on npm."
     exit 1
   fi
 
-  info "Downloading @bentopdf/gs-wasm@${GS_VERSION}..."
-  if ! (cd "$WASM_TMP" && npm pack "@bentopdf/gs-wasm@${GS_VERSION}" --quiet 2>&1); then
-    error "Failed to download @bentopdf/gs-wasm@${GS_VERSION}"
+  info "Downloading gs-wasm@${GS_VERSION}..."
+  if ! (cd "$WASM_TMP" && npm pack "gs-wasm@${GS_VERSION}" --quiet 2>&1); then
+    error "Failed to download gs-wasm@${GS_VERSION}"
     error "Check your internet connection and that the package exists on npm."
     exit 1
   fi
@@ -697,8 +697,8 @@ else
   CPDF_VERSION=$(basename "$CPDF_TGZ" | sed 's/coherentpdf-\(.*\)\.tgz/\1/')
 
   success "Downloaded all WASM packages"
-  info "  PyMuPDF:      $(filesize "$OUTPUT_DIR"/bentopdf-pymupdf-wasm-*.tgz)"
-  info "  Ghostscript:  $(filesize "$OUTPUT_DIR"/bentopdf-gs-wasm-*.tgz)"
+  info "  PyMuPDF:      $(filesize "$OUTPUT_DIR"/pymupdf-wasm-*.tgz)"
+  info "  Ghostscript:  $(filesize "$OUTPUT_DIR"/gs-wasm-*.tgz)"
   info "  CoherentPDF:  $(filesize "$CPDF_TGZ") (v${CPDF_VERSION})"
   info "  Tesseract.js: $(filesize "$OUTPUT_DIR"/tesseract.js-*.tgz)"
   info "  OCR Core:     $(filesize "$OUTPUT_DIR"/tesseract.js-core-*.tgz)"
@@ -717,14 +717,14 @@ if [ "$SKIP_DOCKER" = true ]; then
   step "Skipping Docker build (--skip-docker)"
 
   # Check if image exists or tar exists
-  if [ -f "$OUTPUT_DIR/bentopdf.tar" ]; then
-    success "Reusing existing bentopdf.tar"
+  if [ -f "$OUTPUT_DIR/hiiirepdf.tar" ]; then
+    success "Reusing existing hiiirepdf.tar"
   elif docker image inspect "$IMAGE_NAME" &>/dev/null; then
     step "Exporting existing Docker image"
-    docker save "$IMAGE_NAME" -o "$OUTPUT_DIR/bentopdf.tar"
-    success "Exported: $(filesize "$OUTPUT_DIR/bentopdf.tar")"
+    docker save "$IMAGE_NAME" -o "$OUTPUT_DIR/hiiirepdf.tar"
+    success "Exported: $(filesize "$OUTPUT_DIR/hiiirepdf.tar")"
   else
-    warn "No Docker image '${IMAGE_NAME}' found and no bentopdf.tar in output."
+    warn "No Docker image '${IMAGE_NAME}' found and no hiiirepdf.tar in output."
     warn "The bundle will not include a Docker image."
   fi
 else
@@ -786,8 +786,8 @@ else
   # --- Phase 4: Export Docker image ---
   step "Exporting Docker image"
 
-  docker save "$IMAGE_NAME" -o "$OUTPUT_DIR/bentopdf.tar"
-  success "Exported: $(filesize "$OUTPUT_DIR/bentopdf.tar")"
+  docker save "$IMAGE_NAME" -o "$OUTPUT_DIR/hiiirepdf.tar"
+  success "Exported: $(filesize "$OUTPUT_DIR/hiiirepdf.tar")"
 fi
 
 # --- Phase 5: Generate setup.sh ---
@@ -798,9 +798,9 @@ cat > "$OUTPUT_DIR/setup.sh" <<SETUP_EOF
 set -euo pipefail
 
 # ============================================================
-# BentoPDF Air-Gapped Setup Script
+# hiiirePDF Air-Gapped Setup Script
 # Generated on $(date -u +"%Y-%m-%d %H:%M:%S UTC")
-# BentoPDF v${APP_VERSION}
+# hiiirePDF v${APP_VERSION}
 # ============================================================
 # Transfer this entire directory to the air-gapped network,
 # then run this script.
@@ -830,7 +830,7 @@ WASM_DIR="\${WASM_EXTRACT_DIR:-\${SCRIPT_DIR}/wasm}"
 
 echo ""
 echo "============================================================"
-echo "  BentoPDF Air-Gapped Setup"
+echo "  hiiirePDF Air-Gapped Setup"
 echo "  Version: ${APP_VERSION}"
 echo "============================================================"
 echo ""
@@ -842,11 +842,11 @@ echo ""
 
 # --- Step 1: Load Docker Image ---
 echo "[1/3] Loading Docker image..."
-if [ -f "\${SCRIPT_DIR}/bentopdf.tar" ]; then
-  docker load -i "\${SCRIPT_DIR}/bentopdf.tar"
+if [ -f "\${SCRIPT_DIR}/hiiirepdf.tar" ]; then
+  docker load -i "\${SCRIPT_DIR}/hiiirepdf.tar"
   echo "  Docker image '\${IMAGE_NAME}' loaded."
 else
-  echo "  WARNING: bentopdf.tar not found. Skipping Docker load."
+  echo "  WARNING: hiiirepdf.tar not found. Skipping Docker load."
   echo "  Make sure the image '\${IMAGE_NAME}' is already available."
 fi
 
@@ -858,12 +858,12 @@ mkdir -p "\${WASM_DIR}/pymupdf" "\${WASM_DIR}/gs" "\${WASM_DIR}/cpdf" "\${WASM_D
 
 # PyMuPDF: package has dist/ and assets/ at root
 echo "  Extracting PyMuPDF..."
-tar xzf "\${SCRIPT_DIR}"/bentopdf-pymupdf-wasm-*.tgz -C "\${WASM_DIR}/pymupdf" --strip-components=1
+tar xzf "\${SCRIPT_DIR}"/pymupdf-wasm-*.tgz -C "\${WASM_DIR}/pymupdf" --strip-components=1
 
 # Ghostscript: browser expects gs.js and gs.wasm at root
 echo "  Extracting Ghostscript..."
 TEMP_GS="\$(mktemp -d)"
-tar xzf "\${SCRIPT_DIR}"/bentopdf-gs-wasm-*.tgz -C "\${TEMP_GS}"
+tar xzf "\${SCRIPT_DIR}"/gs-wasm-*.tgz -C "\${TEMP_GS}"
 if [ -d "\${TEMP_GS}/package/assets" ]; then
   cp -r "\${TEMP_GS}/package/assets/"* "\${WASM_DIR}/gs/"
 else
@@ -912,21 +912,21 @@ echo "    \${WASM_BASE_URL}/ocr/core           ->  \${WASM_DIR}/ocr/core/"
 echo "    \${WASM_BASE_URL}/ocr/lang-data      ->  \${WASM_DIR}/ocr/lang-data/"
 echo "    \${WASM_BASE_URL}/ocr/fonts          ->  \${WASM_DIR}/ocr/fonts/"
 
-# --- Step 3: Start BentoPDF ---
+# --- Step 3: Start hiiirePDF ---
 echo ""
-echo "[3/3] Ready to start BentoPDF"
+echo "[3/3] Ready to start hiiirePDF"
 echo ""
 echo "  To start manually:"
-echo "    docker run -d --name bentopdf -p \${DOCKER_PORT}:8080 --restart unless-stopped \${IMAGE_NAME}"
+echo "    docker run -d --name hiiirepdf -p \${DOCKER_PORT}:8080 --restart unless-stopped \${IMAGE_NAME}"
 echo ""
 echo "  Then open: http://localhost:\${DOCKER_PORT}"
 echo ""
 
-read -r -p "Start BentoPDF now? (y/N): " REPLY
+read -r -p "Start hiiirePDF now? (y/N): " REPLY
 if [[ "\${REPLY:-}" =~ ^[Yy]$ ]]; then
-  docker run -d --name bentopdf -p "\${DOCKER_PORT}:8080" --restart unless-stopped "\${IMAGE_NAME}"
+  docker run -d --name hiiirepdf -p "\${DOCKER_PORT}:8080" --restart unless-stopped "\${IMAGE_NAME}"
   echo ""
-  echo "  BentoPDF is running at http://localhost:\${DOCKER_PORT}"
+  echo "  hiiirePDF is running at http://localhost:\${DOCKER_PORT}"
 fi
 SETUP_EOF
 
@@ -937,17 +937,17 @@ success "Generated setup.sh"
 step "Generating README"
 
 cat > "$OUTPUT_DIR/README.md" <<README_EOF
-# BentoPDF Air-Gapped Deployment Bundle
+# hiiirePDF Air-Gapped Deployment Bundle
 
-**BentoPDF v${APP_VERSION}** | Generated on $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+**hiiirePDF v${APP_VERSION}** | Generated on $(date -u +"%Y-%m-%d %H:%M:%S UTC")
 
 ## Contents
 
 | File | Description |
 | --- | --- |
-| \`bentopdf.tar\` | Docker image |
-| \`bentopdf-pymupdf-wasm-${PYMUPDF_VERSION}.tgz\` | PyMuPDF WASM module |
-| \`bentopdf-gs-wasm-${GS_VERSION}.tgz\` | Ghostscript WASM module |
+| \`hiiirepdf.tar\` | Docker image |
+| \`pymupdf-wasm-${PYMUPDF_VERSION}.tgz\` | PyMuPDF WASM module |
+| \`gs-wasm-${GS_VERSION}.tgz\` | Ghostscript WASM module |
 | \`coherentpdf-${CPDF_VERSION}.tgz\` | CoherentPDF WASM module |
 | \`tesseract.js-${TESSERACT_VERSION}.tgz\` | Tesseract browser worker package |
 | \`tesseract.js-core-${TESSERACT_CORE_VERSION}.tgz\` | Tesseract core runtime package |
@@ -988,14 +988,14 @@ bash setup.sh
 The setup script will:
 1. Load the Docker image
 2. Extract WASM packages to \`./wasm/\` (override with \`WASM_EXTRACT_DIR\`)
-3. Optionally start the BentoPDF container
+3. Optionally start the hiiirePDF container
 
 ## Manual Setup
 
 ### 1. Load the Docker image
 
 \`\`\`bash
-docker load -i bentopdf.tar
+docker load -i hiiirepdf.tar
 \`\`\`
 
 ### 2. Extract WASM packages
@@ -1006,11 +1006,11 @@ Extract to your internal web server's document root:
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
 
 # PyMuPDF
-tar xzf bentopdf-pymupdf-wasm-${PYMUPDF_VERSION}.tgz -C ./wasm/pymupdf --strip-components=1
+tar xzf pymupdf-wasm-${PYMUPDF_VERSION}.tgz -C ./wasm/pymupdf --strip-components=1
 
 # Ghostscript (extract assets/ to root)
 TEMP_GS=\$(mktemp -d)
-tar xzf bentopdf-gs-wasm-${GS_VERSION}.tgz -C \$TEMP_GS
+tar xzf gs-wasm-${GS_VERSION}.tgz -C \$TEMP_GS
 cp -r \$TEMP_GS/package/assets/* ./wasm/gs/
 rm -rf \$TEMP_GS
 
@@ -1050,10 +1050,10 @@ Ensure these paths are accessible at the configured URLs:
 | \`${OCR_TESSERACT_LANG_URL}\` | \`./wasm/ocr/lang-data/\` |
 | \`${OCR_FONT_BASE_URL}\` | \`./wasm/ocr/fonts/\` |
 
-### 4. Run BentoPDF
+### 4. Run hiiirePDF
 
 \`\`\`bash
-docker run -d --name bentopdf -p 3000:8080 --restart unless-stopped ${IMAGE_NAME}
+docker run -d --name hiiirepdf -p 3000:8080 --restart unless-stopped ${IMAGE_NAME}
 \`\`\`
 
 Open: http://localhost:3000

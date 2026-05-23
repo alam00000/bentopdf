@@ -2,7 +2,7 @@
 
 The digital signature tool uses a CORS proxy to fetch issuer certificates from external Certificate Authorities (CAs). This is necessary because many CA servers don't include CORS headers in their responses, which prevents direct browser-based fetching.
 
-Additionally, many CA servers serve certificates over plain HTTP. When your BentoPDF instance is hosted over HTTPS, browsers block these HTTP requests (mixed content policy). The CORS proxy resolves both issues by routing requests through an HTTPS endpoint with proper headers.
+Additionally, many CA servers serve certificates over plain HTTP. When your hiiirePDF instance is hosted over HTTPS, browsers block these HTTP requests (mixed content policy). The CORS proxy resolves both issues by routing requests through an HTTPS endpoint with proper headers.
 
 ## How It Works
 
@@ -15,7 +15,7 @@ When signing a PDF with a certificate:
 
 ## Self-Hosting the CORS Proxy
 
-If you're self-hosting BentoPDF, you'll need to deploy your own CORS proxy for digital signatures to work with certificates that require chain fetching.
+If you're self-hosting hiiirePDF, you'll need to deploy your own CORS proxy for digital signatures to work with certificates that require chain fetching.
 
 ### Option 1: Cloudflare Workers (Recommended)
 
@@ -31,11 +31,11 @@ If you're self-hosting BentoPDF, you'll need to deploy your own CORS proxy for d
    wrangler login
    ```
 
-3. **Clone BentoPDF and update allowed origins**:
+3. **Clone hiiirePDF and update allowed origins**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/alam00000/hiiirepdf.git
+   cd hiiirepdf/cloudflare
    ```
 
    Open `cors-proxy-worker.js` and change the `ALLOWED_ORIGINS` array to your domain:
@@ -48,7 +48,7 @@ If you're self-hosting BentoPDF, you'll need to deploy your own CORS proxy for d
    ```
 
    ::: warning Important
-   Without this change, the proxy will reject all requests from your site with a **403 Forbidden** error. The default only allows requests from `bentopdf.com`.
+   Without this change, the proxy will reject all requests from your site with a **403 Forbidden** error. The default only allows requests from `pdf.hiiire.com`.
    :::
 
 4. **Deploy the proxy**:
@@ -57,9 +57,9 @@ If you're self-hosting BentoPDF, you'll need to deploy your own CORS proxy for d
    wrangler deploy
    ```
 
-   Note your worker URL (e.g., `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Note your worker URL (e.g., `https://hiiirepdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Rebuild BentoPDF with the proxy URL**:
+5. **Rebuild hiiirePDF with the proxy URL**:
 
    If using Docker:
 
@@ -67,7 +67,7 @@ If you're self-hosting BentoPDF, you'll need to deploy your own CORS proxy for d
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-hiiirepdf .
    ```
 
    If building from source:

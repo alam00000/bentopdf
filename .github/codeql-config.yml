@@ -1,4 +1,4 @@
-name: BentoPDF CodeQL config
+name: hiiirePDF CodeQL config
 
 paths-ignore:
   - dist
@@ -6,9 +6,9 @@ paths-ignore:
   - coverage
   - node_modules
   - vendor
-  - bentopdf-pymupdf-wasm
+  - pymupdf-wasm
   - libreoffice-wasm-package
-  - bentopdf-airgap-bundle
+  - hiiirepdf-airgap-bundle
   - public/pdfjs-viewer
   - public/pdfjs-annotation-viewer
   - public/libreoffice-wasm

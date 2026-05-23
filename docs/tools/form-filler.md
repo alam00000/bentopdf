@@ -36,7 +36,7 @@ There are no additional configuration options. Upload the form, fill it in, and 
 
 ## Tips
 
-- XFA forms are a legacy format only supported by some PDF viewers. If you open an XFA PDF in Chrome or most other tools and see blank pages, it means those viewers lack XFA support. BentoPDF's Form Filler and Firefox both handle XFA properly.
+- XFA forms are a legacy format only supported by some PDF viewers. If you open an XFA PDF in Chrome or most other tools and see blank pages, it means those viewers lack XFA support. hiiirePDF's Form Filler and Firefox both handle XFA properly.
 - For PDFs without existing form fields, use the [Create PDF Form](./form-creator) tool to add fields first, then fill them here.
 - The viewer automatically adjusts its size to match the PDF's page dimensions.
 

@@ -1,5 +1,5 @@
 /**
- * HirePDF Service Worker
+ * hiiirePDF Service Worker
  * Caches WASM files and static assets for offline support and faster loading
  * Supports both local and CDN delivery with deduplication
  * Version: 1.1.0
@@ -52,7 +52,7 @@ self.addEventListener('activate', (event) => {
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (
-              (cacheName.startsWith('bentopdf-') ||
+              (cacheName.startsWith('hiiirepdf-') ||
                 cacheName.startsWith('hirepdf-')) &&
               cacheName !== CACHE_NAME
             ) {
@@ -290,14 +290,13 @@ const CACHEABLE_EXTENSIONS =
 function shouldCache(pathname, isCDN = false) {
   if (isCDN) {
     return (
-      pathname.includes('/@bentopdf/pymupdf-wasm') ||
-      pathname.includes('/@bentopdf/gs-wasm') ||
       pathname.includes('/@matbee/libreoffice-converter') ||
       CACHEABLE_EXTENSIONS.test(pathname)
     );
   }
 
   return (
+    pathname.includes('/wasm/') ||
     pathname.includes('/libreoffice-wasm/') ||
     pathname.includes('/embedpdf/') ||
     pathname.includes('/assets/') ||

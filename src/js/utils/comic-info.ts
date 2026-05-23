@@ -181,7 +181,7 @@ export function generateComicBookInfoJson(params: ComicMetadata): string {
   }
 
   const wrapper = {
-    appID: 'HirePDF/1.0',
+    appID: 'hiiirePDF/1.0',
     lastModified: new Date().toISOString(),
     'ComicBookInfo/1.0': info,
   };

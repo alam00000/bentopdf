@@ -38,7 +38,7 @@ Add your signature to any PDF document. The tool embeds a full PDF viewer with b
 ## Tips
 
 - Enable flattening if you are sending the signed PDF to someone who should not be able to remove or reposition your signature.
-- For legally binding digital signatures with certificate-based verification, BentoPDF also offers a separate Digital Signature tool.
+- For legally binding digital signatures with certificate-based verification, hiiirePDF also offers a separate Digital Signature tool.
 - Upload a PNG signature image with a transparent background for the cleanest result.
 
 ## Related Tools

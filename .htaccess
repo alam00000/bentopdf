@@ -84,8 +84,8 @@ Header append Vary Accept-Encoding
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^hiiirepdf\.com [NC]
+RewriteRule ^(.*)$ https://pdf.hiiire.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off

@@ -5,7 +5,7 @@ description: Annotate, highlight, redact, add shapes and images, search, and vie
 
 # PDF Editor
 
-BentoPDF's PDF Editor lets you annotate, highlight, redact, comment, add shapes and images, and search through your PDFs. It loads a full-featured editor directly in your browser with no server uploads required.
+hiiirePDF's PDF Editor lets you annotate, highlight, redact, comment, add shapes and images, and search through your PDFs. It loads a full-featured editor directly in your browser with no server uploads required.
 
 ## How It Works
 

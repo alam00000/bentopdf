@@ -1,4 +1,4 @@
-# Deploy Hiiire PDF on Timeweb App
+﻿# Deploy hiiirePDF on Timeweb App
 
 This fork can be deployed as a branded public PDF tool at `https://pdf.hiiire.com`.
 
@@ -12,20 +12,20 @@ npm run build:hiiire
 
 It sets the Hiiire defaults before building:
 
-| Variable                     | Value                                     |
-| ---------------------------- | ----------------------------------------- |
-| `SITE_URL`                   | `https://pdf.hiiire.com`                  |
-| `VITE_BRAND_NAME`            | `hiiire PDF`                              |
-| `VITE_BRAND_LOGO`            | `images/hiiire-pdf-mark.svg`              |
-| `VITE_DEFAULT_LANGUAGE`      | `ru`                                      |
-| `VITE_USE_CDN`               | `true`                                    |
-| `VITE_SOURCE_REPOSITORY_URL` | `https://github.com/vladkolchik/bentopdf` |
+| Variable                     | Value                                      |
+| ---------------------------- | ------------------------------------------ |
+| `SITE_URL`                   | `https://pdf.hiiire.com`                   |
+| `VITE_BRAND_NAME`            | `hiiirePDF`                                |
+| `VITE_BRAND_LOGO`            | `images/hiiire-pdf-mark.svg`               |
+| `VITE_DEFAULT_LANGUAGE`      | `ru`                                       |
+| `VITE_USE_CDN`               | `true`                                     |
+| `VITE_SOURCE_REPOSITORY_URL` | `https://github.com/vladkolchik/hiiirepdf` |
 
 Timeweb can either run this command directly or use `npm ci` as the install command and `npm run build:hiiire` as the build command.
 
 ## Static output
 
-The production files are written to `dist/`. BentoPDF is a client-side app, so the Timeweb app only needs to serve static files from that directory.
+The production files are written to `dist/`. hiiirePDF is a client-side app, so the Timeweb app only needs to serve static files from that directory.
 
 ## Custom environment
 
@@ -33,4 +33,4 @@ Every default can still be overridden in Timeweb environment variables. The most
 
 ## License note
 
-This deployment uses the public commercial-build path described by BentoPDF. Keep the commercial license purchase record outside the repository.
+This deployment uses the public commercial-build path described by hiiirePDF. Keep the commercial license purchase record outside the repository.

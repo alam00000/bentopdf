@@ -2,10 +2,10 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: {{ include "bentopdf.name" . }}
+  name: {{ include "hiiirepdf.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "bentopdf.labels" . | nindent 4 }}
+    {{- include "hiiirepdf.labels" . | nindent 4 }}
   {{- with .Values.httpRoute.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -26,7 +26,7 @@ spec:
     {{- end }}
     {{- else }}
     # Default parentRef when parentRefs is empty or not set
-    - name: {{ .Values.gateway.name | default (printf "%s-gateway" (include "bentopdf.name" $)) | quote }}
+    - name: {{ .Values.gateway.name | default (printf "%s-gateway" (include "hiiirepdf.name" $)) | quote }}
       namespace: {{ .Values.gateway.namespace | default .Release.Namespace | quote }}
       sectionName: "http"
     {{- end }}
@@ -45,7 +45,7 @@ spec:
       {{- toYaml . | nindent 8 }}
       {{- end }}
       backendRefs:
-        - name: {{ include "bentopdf.name" $ }}
+        - name: {{ include "hiiirepdf.name" $ }}
           port: {{ $.Values.service.port }}
           weight: 1
     {{- end }}

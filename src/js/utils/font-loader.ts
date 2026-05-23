@@ -6,7 +6,7 @@ import {
 
 const fontCache: Map<string, ArrayBuffer> = new Map();
 
-const DB_NAME = 'bentopdf-fonts';
+const DB_NAME = 'hiiirepdf-fonts';
 const DB_VERSION = 1;
 const STORE_NAME = 'fonts';
 

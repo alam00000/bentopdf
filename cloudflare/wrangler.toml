@@ -1,4 +1,4 @@
-name = "bentopdf-cors-proxy"
+name = "hiiirepdf-cors-proxy"
 main = "cors-proxy-worker.js"
 compatibility_date = "2024-01-01"
 
@@ -37,9 +37,9 @@ id = "b88e030b308941118cd484e3fcb3ae49"
 
 # Optional: Custom domain routing
 # routes = [
-#   { pattern = "cors-proxy.bentopdf.com/*", zone_name = "bentopdf.com" }
+#   { pattern = "cors-proxy.pdf.hiiire.com/*", zone_name = "pdf.hiiire.com" }
 # ]
 
 # Optional: Environment variables (for non-secret config)
 # [vars]
-# ALLOWED_ORIGINS = "https://www.bentopdf.com,https://bentopdf.com"
+# ALLOWED_ORIGINS = "https://pdf.hiiire.com,https://pdf.hiiire.com"

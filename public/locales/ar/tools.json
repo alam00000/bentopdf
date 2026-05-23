@@ -243,7 +243,7 @@
     "subtitle": "ملء النماذج مباشرة في المتصفح. يدعم أيضًا نماذج XFA.",
     "uploadHint": "حمّل ملف PDF يحتوي على حقول نموذج. املأها مباشرة في العارض أدناه، ثم انقر على الزر لحفظ النموذج المملوء وتنزيله. يدعم أيضًا نماذج XFA.",
     "xfaNoteTitle": "ملاحظة حول نماذج XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) هو تنسيق قديم مدعوم فقط في بعض عارضات PDF مثل BentoPDF و Firefox. إذا فتحت ملف XFA PDF في برنامج آخر ورأيت صفحات فارغة أو لا توجد حقول نموذج، فهذا يعني أن هذا العارض لا يدعم XFA. لعرض وملء نماذج XFA بشكل صحيح، استخدم Firefox أو أداة ملء النماذج في BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) هو تنسيق قديم مدعوم فقط في بعض عارضات PDF مثل hiiirePDF و Firefox. إذا فتحت ملف XFA PDF في برنامج آخر ورأيت صفحات فارغة أو لا توجد حقول نموذج، فهذا يعني أن هذا العارض لا يدعم XFA. لعرض وملء نماذج XFA بشكل صحيح، استخدم Firefox أو أداة ملء النماذج في hiiirePDF."
   },
   "createPdfForm": {
     "name": "إنشاء نموذج PDF",
@@ -846,7 +846,7 @@
   },
   "digitalSignPdf": {
     "name": "توقيع رقمي لـ PDF",
-    "pageTitle": "توقيع رقمي لـ PDF - إضافة توقيع تشفيري | BentoPDF",
+    "pageTitle": "توقيع رقمي لـ PDF - إضافة توقيع تشفيري | hiiirePDF",
     "subtitle": "إضافة توقيع رقمي تشفيري إلى PDF باستخدام شهادات X.509. يدعم تنسيقات PKCS#12 (.pfx، .p12) وPEM. مفتاحك الخاص لا يغادر متصفحك أبدًا.",
     "certificateSection": "الشهادة",
     "uploadCert": "رفع شهادة (.pfx, .p12, .pem)",
@@ -932,12 +932,12 @@
   },
   "validateSignaturePdf": {
     "name": "التحقق من توقيع PDF",
-    "pageTitle": "التحقق من توقيع PDF - التحقق من التوقيعات الرقمية | BentoPDF",
+    "pageTitle": "التحقق من توقيع PDF - التحقق من التوقيعات الرقمية | hiiirePDF",
     "subtitle": "التحقق من التوقيعات الرقمية في ملفات PDF. تحقق من صلاحية الشهادة، واعرض تفاصيل الموقّع، وتأكد من سلامة المستند. تتم جميع المعالجة في متصفحك."
   },
   "timestampPdf": {
     "name": "ختم PDF بالوقت",
-    "pageTitle": "ختم PDF بالوقت مجاناً - ختم RFC 3161 | BentoPDF",
+    "pageTitle": "ختم PDF بالوقت مجاناً - ختم RFC 3161 | hiiirePDF",
     "subtitle": "أضف ختماً زمنياً RFC 3161 إلى ملف PDF باستخدام خادم TSA موثوق. يثبت أن مستندك كان موجوداً في وقت محدد. لا يتطلب شهادة.",
     "tsaSectionTitle": "خادم الختم الزمني (TSA)",
     "selectTsa": "اختر خادم TSA",
@@ -1123,7 +1123,7 @@
     "resetWithDefaults": "تم مسح التجاوزات المخصصة. الإعدادات الافتراضية المهيأة مسبقًا نشطة.",
     "resetNoDefaults": "تم مسح جميع التكوينات والوحدات المخزنة مؤقتًا.",
     "licenseTitle": "إشعار الترخيص:",
-    "licenseDescription": "الوحدات الخارجية (PyMuPDF، Ghostscript، CoherentPDF) مرخصة بموجب AGPL-3.0 أو تراخيص copyleft مماثلة. بتكوين واستخدام هذه الوحدات، فإنك توافق على شروط الترخيص الخاصة بكل منها. BentoPDF متوافق مع أي تنفيذ Ghostscript WASM وPyMuPDF WASM يتبع الواجهة المتوقعة."
+    "licenseDescription": "الوحدات الخارجية (PyMuPDF، Ghostscript، CoherentPDF) مرخصة بموجب AGPL-3.0 أو تراخيص copyleft مماثلة. بتكوين واستخدام هذه الوحدات، فإنك توافق على شروط الترخيص الخاصة بكل منها. hiiirePDF متوافق مع أي تنفيذ Ghostscript WASM وPyMuPDF WASM يتبع الواجهة المتوقعة."
   },
   "pdfOverlay": {
     "name": "تراكب PDF",

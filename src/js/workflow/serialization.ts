@@ -131,7 +131,7 @@ async function deserializeWorkflow(
   }
 }
 
-const TEMPLATES_KEY = 'bento-pdf-workflow-templates';
+const TEMPLATES_KEY = 'hiiire-pdf-workflow-templates';
 
 interface StoredTemplates {
   [name: string]: SerializedWorkflow;

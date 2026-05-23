@@ -1,9 +1,9 @@
 # Commercial License
 
-BentoPDF is dual-licensed under **AGPL-3.0** (for open-source projects) and a **Commercial License** (for proprietary/closed-source applications).
+hiiirePDF is dual-licensed under **AGPL-3.0** (for open-source projects) and a **Commercial License** (for proprietary/closed-source applications).
 
 ::: tip Full Details
-For complete licensing information, delivery details, AGPL component notices, and invoicing, visit our [Licensing Page](https://bentopdf.com/licensing.html).
+For complete licensing information, delivery details, AGPL component notices, and invoicing, visit our [Licensing Page](https://pdf.hiiire.com/licensing.html).
 :::
 
 ## Get a Commercial License
@@ -22,16 +22,16 @@ For complete licensing information, delivery details, AGPL component notices, an
 
 ## Delivery & Licensing Model
 
-- **No license key is required or provided.** BentoPDF intentionally does not use license keys to streamline deployment and reduce operational friction for users.
-- Upon purchase, users receive a ZIP archive containing the complete BentoPDF source code and binaries.
+- **No license key is required or provided.** hiiirePDF intentionally does not use license keys to streamline deployment and reduce operational friction for users.
+- Upon purchase, users receive a ZIP archive containing the complete hiiirePDF source code and binaries.
 - The source code provided is identical to the code published in our public open-source repository.
 
-**GitHub Repository:** [github.com/alam00000/bentopdf](https://github.com/alam00000/bentopdf)
+**GitHub Repository:** [github.com/alam00000/hiiirepdf](https://github.com/alam00000/hiiirepdf)
 
 ## Important Notice on Third-Party Components
 
 ::: info AGPL Components — Pre-configured via CDN
-BentoPDF **does not bundle** AGPL-licensed processing libraries in its source code. These components are loaded at runtime from CDN URLs that are **pre-configured by default** — all features work out of the box with zero setup.
+hiiirePDF **does not bundle** AGPL-licensed processing libraries in its source code. These components are loaded at runtime from CDN URLs that are **pre-configured by default** — all features work out of the box with zero setup.
 
 | Component       | License  | Status                 |
 | --------------- | -------- | ---------------------- |
@@ -45,13 +45,13 @@ See [Self-Hosting > WASM Configuration](/self-hosting/#wasm-configuration-agpl-c
 
 This approach ensures:
 
-- BentoPDF's core code remains under its dual-license (AGPL-3.0 / Commercial)
+- hiiirePDF's core code remains under its dual-license (AGPL-3.0 / Commercial)
 - WASM binaries are loaded at runtime, not included in the source
 - Clear compliance boundaries for commercial users
   :::
 
 ::: tip Commercial License & AGPL Features
-The commercial license covers BentoPDF's own code. If you configure and use AGPL components (PyMuPDF, Ghostscript, CoherentPDF), you must still comply with their respective AGPL-3.0 license terms, which may require source code disclosure if you distribute modified versions.
+The commercial license covers hiiirePDF's own code. If you configure and use AGPL components (PyMuPDF, Ghostscript, CoherentPDF), you must still comply with their respective AGPL-3.0 license terms, which may require source code disclosure if you distribute modified versions.
 :::
 
 ## Invoicing
@@ -59,7 +59,7 @@ The commercial license covers BentoPDF's own code. If you configure and use AGPL
 - Ko-fi does not automatically issue invoices.
 - An official invoice will be provided immediately upon request.
 
-**Contact us:** [contact@bentopdf.com](mailto:contact@bentopdf.com) with your purchase details.
+**Contact us:** [inbox@hiiire.com](mailto:inbox@hiiire.com) with your purchase details.
 
 ## What's Included
 
@@ -75,18 +75,18 @@ The commercial license covers BentoPDF's own code. If you configure and use AGPL
 
 ## FAQ
 
-### Do I need a license key to use BentoPDF?
+### Do I need a license key to use hiiirePDF?
 
-No. BentoPDF does not use license keys. The commercial license grants you legal rights to use the software in proprietary applications.
+No. hiiirePDF does not use license keys. The commercial license grants you legal rights to use the software in proprietary applications.
 
-### Can I use BentoPDF in my SaaS product?
+### Can I use hiiirePDF in my SaaS product?
 
 Yes, with a commercial license. Without it, you must comply with AGPL-3.0, which requires you to make your full source code available to users.
 
 ### What about the AGPL components?
 
-Components like CoherentPDF are licensed under AGPL v3 and remain under that license. The commercial license covers BentoPDF's own code but does not override third-party AGPL obligations.
+Components like CoherentPDF are licensed under AGPL v3 and remain under that license. The commercial license covers hiiirePDF's own code but does not override third-party AGPL obligations.
 
 ### How do I get an invoice?
 
-Email [contact@bentopdf.com](mailto:contact@bentopdf.com) with your Ko-fi purchase confirmation, and we'll send an official invoice.
+Email [inbox@hiiire.com](mailto:inbox@hiiire.com) with your Ko-fi purchase confirmation, and we'll send an official invoice.

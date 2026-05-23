@@ -24,7 +24,7 @@ The universal image-to-PDF converter. Upload images in virtually any format and 
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-This is the broadest format support of any BentoPDF image converter. If you only need a specific format, use one of the dedicated tools instead.
+This is the broadest format support of any hiiirePDF image converter. If you only need a specific format, use one of the dedicated tools instead.
 
 ## How It Works
 

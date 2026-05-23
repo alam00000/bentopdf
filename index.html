@@ -4,20 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>HirePDF - PDF-инструменты для HR и офисных документов</title>
+    <title>hiiirePDF - PDF-инструменты для HR и офисных документов</title>
     <meta
       name="title"
-      content="HirePDF - PDF-инструменты для HR и офисных документов"
+      content="hiiirePDF - PDF-инструменты для HR и офисных документов"
     />
     <meta
       name="description"
-      content="HirePDF помогает быстро объединять, разделять, сжимать, подписывать и конвертировать PDF-документы для HR, рекрутинга и ежедневной офисной работы."
+      content="hiiirePDF помогает быстро объединять, разделять, сжимать, подписывать и конвертировать PDF-документы для HR, рекрутинга и ежедневной офисной работы."
     />
     <meta
       name="keywords"
-      content="HirePDF, PDF инструменты, объединить PDF, разделить PDF, сжать PDF, подписать PDF, конвертировать PDF, HR документы, резюме PDF"
+      content="hiiirePDF, PDF инструменты, объединить PDF, разделить PDF, сжать PDF, подписать PDF, конвертировать PDF, HR документы, резюме PDF"
     />
-    <meta name="author" content="HirePDF" />
+    <meta name="author" content="hiiirePDF" />
     <meta
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
@@ -27,7 +27,7 @@
     <meta property="og:url" content="/" />
     <meta
       property="og:title"
-      content="HirePDF - PDF-инструменты для HR и офисных документов"
+      content="hiiirePDF - PDF-инструменты для HR и офисных документов"
     />
     <meta
       property="og:description"
@@ -36,11 +36,11 @@
     <meta property="og:image" content="/images/og-home.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="HirePDF" />
+    <meta property="og:site_name" content="hiiirePDF" />
     <meta property="og:locale" content="ru_RU" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="HirePDF - PDF-инструменты для HR" />
+    <meta name="twitter:title" content="hiiirePDF - PDF-инструменты для HR" />
     <meta
       name="twitter:description"
       content="PDF-инструменты для резюме, договоров, анкет и офисных документов."
@@ -50,7 +50,7 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="HirePDF" />
+    <meta name="apple-mobile-web-app-title" content="hiiirePDF" />
 
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
@@ -83,7 +83,7 @@
       >
         <a href="#hero-section" class="flex min-w-0 items-center">
           <span class="text-lg font-bold text-slate-950 md:text-xl">
-            HirePDF
+            hiiirePDF
           </span>
         </a>
         <nav class="hidden items-center gap-6 text-sm font-medium md:flex">
@@ -129,7 +129,7 @@
             <h1
               class="max-w-4xl text-4xl font-bold leading-tight text-slate-950 md:text-6xl"
             >
-              HirePDF
+              hiiirePDF
             </h1>
             <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
               Подготовьте резюме, договор, анкету или скан без лишних шагов:
@@ -340,18 +340,18 @@
         </div>
       </section>
 
-      <section class="bg-slate-950 py-16 md:py-20">
+      <section class="border-t border-border bg-background py-16 md:py-20">
         <div class="mx-auto max-w-7xl px-4 md:px-8">
-          <div id="tools-header" class="mb-10 text-center">
+          <div id="tools-header" class="mb-10 scroll-mt-24 text-center">
             <p
-              class="text-sm font-semibold uppercase tracking-wide text-slate-300"
+              class="text-sm font-semibold uppercase tracking-wide text-foreground"
             >
               Инструменты
             </p>
-            <h2 class="mt-3 text-3xl font-bold text-white md:text-4xl">
+            <h2 class="mt-3 text-3xl font-bold text-foreground md:text-4xl">
               Выберите действие с PDF
             </h2>
-            <p class="mx-auto mt-4 max-w-2xl text-slate-300">
+            <p class="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Найдите нужный инструмент или откройте карточку из списка ниже.
             </p>
           </div>
@@ -360,12 +360,15 @@
             <div class="mx-auto mb-8 max-w-xl">
               <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <i data-lucide="search" class="h-5 w-5 text-slate-400"></i>
+                  <i
+                    data-lucide="search"
+                    class="h-5 w-5 text-muted-foreground"
+                  ></i>
                 </span>
                 <input
                   type="text"
                   id="search-bar"
-                  class="w-full rounded-lg border border-slate-700 bg-slate-900 py-3 pl-10 pr-24 text-white placeholder:text-slate-500 focus:border-slate-950 focus:ring-slate-950"
+                  class="w-full rounded-lg border border-input bg-background py-3 pl-10 pr-24 text-foreground placeholder:text-muted-foreground shadow-sm focus:border-ring focus:ring-ring"
                   placeholder="Поиск инструмента, например: сжать, разделить, подпись"
                 />
                 <span
@@ -373,11 +376,11 @@
                 >
                   <kbd
                     id="shortcut"
-                    class="rounded-md border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs font-semibold text-slate-300 shadow-sm"
+                    class="rounded-md border border-border bg-muted px-2.5 py-1.5 text-xs font-semibold text-muted-foreground shadow-sm"
                   ></kbd>
                   <button
                     id="open-shortcuts-btn"
-                    class="rounded-md p-1 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+                    class="rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                     title="Горячие клавиши"
                   >
                     <i data-lucide="settings" class="h-4 w-4"></i>
@@ -394,11 +397,11 @@
 
           <div
             id="tool-interface"
-            class="mx-auto hidden w-full max-w-4xl rounded-xl border border-slate-700 bg-slate-800 p-6 shadow-2xl md:p-8"
+            class="mx-auto hidden w-full max-w-4xl rounded-lg border border-border bg-card/60 p-6 shadow-sm md:p-8"
           >
             <button
               id="back-to-grid"
-              class="mb-6 flex items-center gap-2 font-semibold text-slate-300 hover:text-slate-600"
+              class="mb-6 flex items-center gap-2 font-semibold text-muted-foreground hover:text-foreground"
             >
               <i data-lucide="arrow-left" class="cursor-pointer"></i>
               <span class="cursor-pointer">Назад к инструментам</span>
@@ -422,7 +425,7 @@
               Документы остаются под вашим контролем
             </h2>
             <p class="mt-4 text-lg leading-8 text-slate-600">
-              HirePDF рассчитан на рабочие документы, где важны скорость,
+              hiiirePDF рассчитан на рабочие документы, где важны скорость,
               понятный результат и аккуратное обращение с файлами.
             </p>
           </div>
@@ -463,7 +466,7 @@
                 class="faq-question flex w-full items-center justify-between gap-4 p-6 text-left"
               >
                 <span class="text-lg font-semibold text-slate-950">
-                  Для каких задач подходит HirePDF?
+                  Для каких задач подходит hiiirePDF?
                 </span>
                 <i
                   data-lucide="chevron-down"
@@ -533,7 +536,7 @@
         <div
           class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between md:px-8"
         >
-          <p>HirePDF - PDF-инструменты для рабочей рутины.</p>
+          <p>hiiirePDF - PDF-инструменты для рабочей рутины.</p>
           <a href="#hero-section" class="font-semibold text-slate-950">
             Наверх
           </a>
@@ -696,7 +699,7 @@
       {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "HirePDF",
+        "name": "hiiirePDF",
         "url": "/",
         "description": "PDF-инструменты для HR, рекрутинга и офисных документов: объединение, разделение, сжатие, подпись, защита и конвертация PDF.",
         "applicationCategory": "ProductivityApplication",
@@ -726,10 +729,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "Для каких задач подходит HirePDF?",
+            "name": "Для каких задач подходит hiiirePDF?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "HirePDF подходит для работы с резюме, анкетами, договорами, сканами, презентациями в PDF и другими документами, которые нужно быстро подготовить к отправке."
+              "text": "hiiirePDF подходит для работы с резюме, анкетами, договорами, сканами, презентациями в PDF и другими документами, которые нужно быстро подготовить к отправке."
             }
           },
           {

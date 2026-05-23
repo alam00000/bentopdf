@@ -1,6 +1,6 @@
 # Deploy with Docker / Podman
 
-The easiest way to self-host BentoPDF in a production environment.
+The easiest way to self-host hiiirePDF in a production environment.
 
 > [!IMPORTANT]
 > **Required Headers for Office File Conversion**
@@ -20,26 +20,26 @@ The easiest way to self-host BentoPDF in a production environment.
 ## Quick Start
 
 > [!TIP]
-> BentoPDF ships in two builds:
+> hiiirePDF ships in two builds:
 >
-> - **Self-Hosted build** — `ghcr.io/alam00000/bentopdf-simple:latest`. Every PDF tool, **without** the marketing chrome (no hero, FAQ, testimonials, footer). Use this for internal/team/organization deployments. It is **not** a feature-reduced "lite" version.
-> - **Commercial build** — `ghcr.io/alam00000/bentopdf:latest`. The full marketing site, used by bentopdf.com itself and by commercial license holders running public-facing deployments.
+> - **Self-Hosted build** — `ghcr.io/alam00000/hiiirepdf-simple:latest`. Every PDF tool, **without** the marketing chrome (no hero, FAQ, testimonials, footer). Use this for internal/team/organization deployments. It is **not** a feature-reduced "lite" version.
+> - **Commercial build** — `ghcr.io/alam00000/hiiirepdf:latest`. The full marketing site, used by pdf.hiiire.com itself and by commercial license holders running public-facing deployments.
 >
 > If in doubt: pull the Self-Hosted build.
 
 ```bash
 # Docker
 docker run -d \
-  --name bentopdf \
+  --name hiiirepdf \
   -p 3000:8080 \
   --restart unless-stopped \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/alam00000/hiiirepdf-simple:latest
 
 # Podman
 podman run -d \
-  --name bentopdf \
+  --name hiiirepdf \
   -p 3000:8080 \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/alam00000/hiiirepdf-simple:latest
 ```
 
 ## Docker Compose / Podman Compose
@@ -48,9 +48,9 @@ Create `docker-compose.yml`:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
-    container_name: bentopdf
+  hiiirepdf:
+    image: ghcr.io/alam00000/hiiirepdf-simple:latest
+    container_name: hiiirepdf
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -92,29 +92,29 @@ CMD ["nginx", "-g", "daemon off;"]
 Build and run:
 
 ```bash
-docker build -t bentopdf:custom .
-docker run -d -p 3000:8080 bentopdf:custom
+docker build -t hiiirepdf:custom .
+docker run -d -p 3000:8080 hiiirepdf:custom
 ```
 
 ## Environment Variables
 
-| Variable                             | Description                                                                                                                  | Default                                                        |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `SIMPLE_MODE`                        | Build the Self-Hosted variant (hides bentopdf.com marketing chrome — hero, FAQ, testimonials, footer). All PDF tools remain. | `false`                                                        |
-| `BASE_URL`                           | Deploy to subdirectory                                                                                                       | `/`                                                            |
-| `VITE_WASM_PYMUPDF_URL`              | PyMuPDF WASM module URL                                                                                                      | `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/` |
-| `VITE_WASM_GS_URL`                   | Ghostscript WASM module URL                                                                                                  | `https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/` |
-| `VITE_WASM_CPDF_URL`                 | CoherentPDF WASM module URL                                                                                                  | `https://cdn.jsdelivr.net/npm/coherentpdf@2.5.5/dist/`         |
-| `VITE_TESSERACT_WORKER_URL`          | OCR worker script URL                                                                                                        | _(empty; use Tesseract.js default CDN)_                        |
-| `VITE_TESSERACT_CORE_URL`            | OCR core runtime directory                                                                                                   | _(empty; use Tesseract.js default CDN)_                        |
-| `VITE_TESSERACT_LANG_URL`            | OCR traineddata directory                                                                                                    | _(empty; use Tesseract.js default CDN)_                        |
-| `VITE_TESSERACT_AVAILABLE_LANGUAGES` | Comma-separated OCR languages exposed in UI                                                                                  | _(empty; show full catalog)_                                   |
-| `VITE_OCR_FONT_BASE_URL`             | OCR text-layer font directory                                                                                                | _(empty; use remote Noto font URLs)_                           |
-| `VITE_DEFAULT_LANGUAGE`              | Default UI language                                                                                                          | `en`                                                           |
-| `VITE_BRAND_NAME`                    | Custom brand name                                                                                                            | `BentoPDF`                                                     |
-| `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                              | `images/favicon-no-bg.svg`                                     |
-| `VITE_FOOTER_TEXT`                   | Custom footer/copyright text                                                                                                 | `© 2026 BentoPDF. All rights reserved.`                        |
-| `DISABLE_TOOLS`                      | Comma-separated tool IDs to hide                                                                                             | _(empty; all tools enabled)_                                   |
+| Variable                             | Description                                                                                                                    | Default                                                |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| `SIMPLE_MODE`                        | Build the Self-Hosted variant (hides pdf.hiiire.com marketing chrome — hero, FAQ, testimonials, footer). All PDF tools remain. | `false`                                                |
+| `BASE_URL`                           | Deploy to subdirectory                                                                                                         | `/`                                                    |
+| `VITE_WASM_PYMUPDF_URL`              | PyMuPDF WASM module URL                                                                                                        | `/wasm/pymupdf/`                                       |
+| `VITE_WASM_GS_URL`                   | Ghostscript WASM module URL                                                                                                    | `/wasm/gs/`                                            |
+| `VITE_WASM_CPDF_URL`                 | CoherentPDF WASM module URL                                                                                                    | `https://cdn.jsdelivr.net/npm/coherentpdf@2.5.5/dist/` |
+| `VITE_TESSERACT_WORKER_URL`          | OCR worker script URL                                                                                                          | _(empty; use Tesseract.js default CDN)_                |
+| `VITE_TESSERACT_CORE_URL`            | OCR core runtime directory                                                                                                     | _(empty; use Tesseract.js default CDN)_                |
+| `VITE_TESSERACT_LANG_URL`            | OCR traineddata directory                                                                                                      | _(empty; use Tesseract.js default CDN)_                |
+| `VITE_TESSERACT_AVAILABLE_LANGUAGES` | Comma-separated OCR languages exposed in UI                                                                                    | _(empty; show full catalog)_                           |
+| `VITE_OCR_FONT_BASE_URL`             | OCR text-layer font directory                                                                                                  | _(empty; use remote Noto font URLs)_                   |
+| `VITE_DEFAULT_LANGUAGE`              | Default UI language                                                                                                            | `en`                                                   |
+| `VITE_BRAND_NAME`                    | Custom brand name                                                                                                              | `hiiirePDF`                                            |
+| `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                                | `images/favicon-no-bg.svg`                             |
+| `VITE_FOOTER_TEXT`                   | Custom footer/copyright text                                                                                                   | `© 2026 hiiirePDF. All rights reserved.`               |
+| `DISABLE_TOOLS`                      | Comma-separated tool IDs to hide                                                                                               | _(empty; all tools enabled)_                           |
 
 WASM module URLs are pre-configured with CDN defaults — all advanced features work out of the box. Override these for air-gapped or self-hosted deployments.
 
@@ -126,7 +126,7 @@ As a result:
 
 - If you override `VITE_CORS_PROXY_URL` or `VITE_WASM_*_URL` at build time, the CSP permits those origins automatically — no extra config needed.
 - If you configure custom WASM URLs at _runtime_ via the in-app Advanced Settings page, those origins are **not** in the CSP and the browser will block fetches to them. Runtime configuration is intended for experimentation; for permanent custom URLs set the matching `VITE_*` build arg.
-- Air-gapped deployments that override all three `VITE_WASM_*_URL` values also get the public `cdn.jsdelivr.net` removed from CSP (each default is replaced, not appended). Similarly, setting `VITE_CORS_PROXY_URL` replaces the public `bentopdf-cors-proxy.bentopdf.workers.dev` default.
+- Air-gapped deployments that override all three `VITE_WASM_*_URL` values also get the public `cdn.jsdelivr.net` removed from CSP (each default is replaced, not appended). Similarly, setting `VITE_CORS_PROXY_URL` replaces the public `hiiirepdf-cors-proxy.hiiirepdf.workers.dev` default.
 
 The CSP includes `'unsafe-eval'` in `script-src` because the LibreOffice WASM runtime (used by Word/Excel/PowerPoint conversion tools) compiles internal dispatch code via `new Function()`. Removing it would break all LibreOffice-backed tools. If you build in `SIMPLE_MODE` (without LibreOffice), you can manually edit the generated `security-headers.conf` to drop `'unsafe-eval'` for a stricter policy.
 
@@ -138,13 +138,13 @@ Example:
 
 ```bash
 # Build with French as the default language
-docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .
-docker run -d -p 3000:8080 bentopdf
+docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t hiiirepdf .
+docker run -d -p 3000:8080 hiiirepdf
 ```
 
 ### Custom Branding
 
-Replace the default BentoPDF logo, name, and footer text with your own. Place your logo file in the `public/` folder (or use an existing image), then pass the branding variables at build time:
+Replace the default hiiirePDF logo, name, and footer text with your own. Place your logo file in the `public/` folder (or use an existing image), then pass the branding variables at build time:
 
 ```bash
 docker build \
@@ -160,11 +160,11 @@ Branding works in both full mode and Simple Mode, and can be combined with all o
 
 Hide tools from the UI for compliance or security requirements. Disabled tools are removed from the homepage, search results, keyboard shortcuts, and the workflow builder. Direct URL access shows a "tool unavailable" page.
 
-Tool IDs are the page URL without `.html`. For example, if the tool lives at `bentopdf.com/edit-pdf.html`, the ID is `edit-pdf`.
+Tool IDs are the page URL without `.html`. For example, if the tool lives at `pdf.hiiire.com/edit-pdf.html`, the ID is `edit-pdf`.
 
 #### Finding Tool IDs
 
-The easiest way: open any tool in BentoPDF and look at the URL. The last part of the path (without `.html`) is the tool ID.
+The easiest way: open any tool in hiiirePDF and look at the URL. The last part of the path (without `.html`) is the tool ID.
 
 <details>
 <summary>Full list of tool IDs</summary>
@@ -188,7 +188,7 @@ The easiest way: open any tool in BentoPDF and look at the URL. The last part of
 ```bash
 docker build \
   --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" \
-  -t bentopdf .
+  -t hiiirepdf .
 ```
 
 This bakes the disabled list into the JavaScript bundle. Requires a rebuild to change.
@@ -207,15 +207,15 @@ Mount a `config.json` file into the served directory — no rebuild needed:
 docker run -d \
   -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/alam00000/hiiirepdf-simple:latest
 ```
 
 Or with Docker Compose:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  hiiirepdf:
+    image: ghcr.io/alam00000/hiiirepdf-simple:latest
     ports:
       - '3000:8080'
     volumes:
@@ -276,8 +276,8 @@ bash scripts/prepare-airgap.sh --list-ocr-languages
 bash scripts/prepare-airgap.sh --search-ocr-language german
 
 # 2. Download WASM/OCR packages
-npm pack @bentopdf/pymupdf-wasm@0.11.14
-npm pack @bentopdf/gs-wasm
+npm pack pymupdf-wasm@0.11.14
+npm pack gs-wasm
 npm pack coherentpdf
 npm pack tesseract.js@7.0.0
 npm pack tesseract.js-core@7.0.0
@@ -296,20 +296,20 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t hiiirepdf .
 
 # 4. Export the image
-docker save bentopdf -o bentopdf.tar
+docker save hiiirepdf -o hiiirepdf.tar
 
-# 5. Transfer bentopdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
+# 5. Transfer hiiirepdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
 
 # 6. Inside the air-gapped network — load and run
-docker load -i bentopdf.tar
+docker load -i hiiirepdf.tar
 
 # Extract WASM packages to your internal web server
 mkdir -p /var/www/wasm/pymupdf /var/www/wasm/gs /var/www/wasm/cpdf /var/www/wasm/ocr/core /var/www/wasm/ocr/lang-data /var/www/wasm/ocr/fonts
-tar xzf bentopdf-pymupdf-wasm-0.11.14.tgz -C /var/www/wasm/pymupdf --strip-components=1
-tar xzf bentopdf-gs-wasm-*.tgz -C /var/www/wasm/gs --strip-components=1
+tar xzf pymupdf-wasm-0.11.14.tgz -C /var/www/wasm/pymupdf --strip-components=1
+tar xzf gs-wasm-*.tgz -C /var/www/wasm/gs --strip-components=1
 tar xzf coherentpdf-*.tgz -C /var/www/wasm/cpdf --strip-components=1
 TEMP_TESS=$(mktemp -d)
 tar xzf tesseract.js-7.0.0.tgz -C "$TEMP_TESS"
@@ -319,8 +319,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C /var/www/wasm/ocr/core --strip-components
 cp ./tesseract-langdata/*.traineddata.gz /var/www/wasm/ocr/lang-data/
 cp ./ocr-fonts/* /var/www/wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run hiiirePDF
+docker run -d -p 3000:8080 --restart unless-stopped hiiirepdf
 ```
 
 Use the codes printed by `bash scripts/prepare-airgap.sh --list-ocr-languages`, or search by name with `bash scripts/prepare-airgap.sh --search-ocr-language <term>`, for `--ocr-languages`. When you build with a restricted OCR subset, pass the same codes to `VITE_TESSERACT_AVAILABLE_LANGUAGES` so the app only shows bundled languages. For full offline OCR output, also host the bundled `ocr-fonts/` directory and point `VITE_OCR_FONT_BASE_URL` at it.
@@ -329,10 +329,10 @@ Set a variable to empty string to disable that module (users must configure manu
 
 ## Custom Port
 
-By default, BentoPDF listens on port `8080` inside the container. To change this, set the `PORT` environment variable at runtime:
+By default, hiiirePDF listens on port `8080` inside the container. To change this, set the `PORT` environment variable at runtime:
 
 ```bash
-docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/hiiirepdf-simple:latest
 ```
 
 | Variable | Description                    | Default |
@@ -343,22 +343,22 @@ This works with both the standard and nonroot Dockerfiles.
 
 ## Custom User ID (PUID/PGID)
 
-For environments that require running as a specific non-root user (NAS devices, Kubernetes with security contexts, organizational policies), BentoPDF provides a separate Dockerfile with LSIO-style PUID/PGID support.
+For environments that require running as a specific non-root user (NAS devices, Kubernetes with security contexts, organizational policies), hiiirePDF provides a separate Dockerfile with LSIO-style PUID/PGID support.
 
 ### Build and Run
 
 ```bash
 # Build the non-root image
-docker build -f Dockerfile.nonroot -t bentopdf-nonroot .
+docker build -f Dockerfile.nonroot -t hiiirepdf-nonroot .
 
 # Run with custom UID/GID
 docker run -d \
-  --name bentopdf \
+  --name hiiirepdf \
   -p 3000:8080 \
   -e PUID=1000 \
   -e PGID=1000 \
   --restart unless-stopped \
-  bentopdf-nonroot
+  hiiirepdf-nonroot
 ```
 
 ### Environment Variables
@@ -374,11 +374,11 @@ docker run -d \
 
 ```yaml
 services:
-  bentopdf:
+  hiiirepdf:
     build:
       context: .
       dockerfile: Dockerfile.nonroot
-    container_name: bentopdf
+    container_name: hiiirepdf
     ports:
       - '3000:8080'
     environment:
@@ -417,18 +417,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  hiiirepdf:
+    image: ghcr.io/alam00000/hiiirepdf-simple:latest
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.bentopdf.rule=Host(`pdf.example.com`)'
-      - 'traefik.http.routers.bentopdf.entrypoints=websecure'
-      - 'traefik.http.routers.bentopdf.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.bentopdf.loadbalancer.server.port=8080'
+      - 'traefik.http.routers.hiiirepdf.rule=Host(`pdf.example.com`)'
+      - 'traefik.http.routers.hiiirepdf.entrypoints=websecure'
+      - 'traefik.http.routers.hiiirepdf.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.hiiirepdf.loadbalancer.server.port=8080'
       # Required headers for SharedArrayBuffer (LibreOffice WASM)
-      - 'traefik.http.routers.bentopdf.middlewares=bentopdf-headers'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
+      - 'traefik.http.routers.hiiirepdf.middlewares=hiiirepdf-headers'
+      - 'traefik.http.middlewares.hiiirepdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
+      - 'traefik.http.middlewares.hiiirepdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
     restart: unless-stopped
 ```
 
@@ -445,8 +445,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  hiiirepdf:
+    image: ghcr.io/alam00000/hiiirepdf-simple:latest
     restart: unless-stopped
 
 volumes:
@@ -457,7 +457,7 @@ Caddyfile:
 
 ```
 pdf.example.com {
-    reverse_proxy bentopdf:8080
+    reverse_proxy hiiirepdf:8080
     header Cross-Origin-Opener-Policy "same-origin"
     header Cross-Origin-Embedder-Policy "require-corp"
 }
@@ -467,8 +467,8 @@ pdf.example.com {
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  hiiirepdf:
+    image: ghcr.io/alam00000/hiiirepdf-simple:latest
     deploy:
       resources:
         limits:
@@ -485,17 +485,17 @@ services:
 
 ### Basic Quadlet Setup
 
-Create a container unit file at `~/.config/containers/systemd/bentopdf.container` (user) or `/etc/containers/systemd/bentopdf.container` (system):
+Create a container unit file at `~/.config/containers/systemd/hiiirepdf.container` (user) or `/etc/containers/systemd/hiiirepdf.container` (system):
 
 ```ini
 [Unit]
-Description=BentoPDF - Privacy-first PDF toolkit
+Description=hiiirePDF - Privacy-first PDF toolkit
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/alam00000/hiiirepdf-simple:latest
+ContainerName=hiiirepdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -514,16 +514,16 @@ WantedBy=default.target
 systemctl --user daemon-reload
 
 # Start the service
-systemctl --user start bentopdf
+systemctl --user start hiiirepdf
 
 # Enable on boot
-systemctl --user enable bentopdf
+systemctl --user enable hiiirepdf
 
 # Check status
-systemctl --user status bentopdf
+systemctl --user status hiiirepdf
 
 # View logs
-journalctl --user -u bentopdf -f
+journalctl --user -u hiiirepdf -f
 ```
 
 > [!TIP]
@@ -533,13 +533,13 @@ journalctl --user -u bentopdf -f
 
 ```ini
 [Unit]
-Description=BentoPDF with health monitoring
+Description=hiiirePDF with health monitoring
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/alam00000/hiiirepdf-simple:latest
+ContainerName=hiiirepdf
 PublishPort=3000:8080
 AutoUpdate=registry
 HealthCmd=wget --spider -q http://localhost:8080 || exit 1
@@ -572,7 +572,7 @@ podman auto-update --dry-run
 
 ### Quadlet Network Configuration
 
-For custom network configuration, create a network file `bentopdf.network`:
+For custom network configuration, create a network file `hiiirepdf.network`:
 
 ```ini
 [Network]
@@ -584,10 +584,10 @@ Then reference it in your container file:
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/alam00000/hiiirepdf-simple:latest
+ContainerName=hiiirepdf
 PublishPort=3000:8080
-Network=bentopdf.network
+Network=hiiirepdf.network
 ```
 
 ## Updating

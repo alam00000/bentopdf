@@ -1,9 +1,9 @@
-# Default values for the BentoPDF chart (single nginx static frontend).
+# Default values for the hiiirePDF chart (single nginx static frontend).
 replicaCount: 1
 
 image:
   # Image built from this repo's `Dockerfile` (nginx serving static frontend).
-  repository: ghcr.io/alam00000/bentopdf-simple
+  repository: ghcr.io/alam00000/hiiirepdf-simple
   pullPolicy: IfNotPresent
   tag: ''
 
@@ -17,7 +17,7 @@ service:
   type: ClusterIP
   port: 80
 
-# Container listen port (BentoPDF nginx image listens on 8080).
+# Container listen port (hiiirePDF nginx image listens on 8080).
 containerPort: 8080
 
 env: []
@@ -27,7 +27,7 @@ ingress:
   className: ''
   annotations: {}
   hosts:
-    - host: bentopdf.local
+    - host: hiiirepdf.local
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -56,7 +56,7 @@ httpRoute:
   #     namespace: "" # to override the namespace
   #     sectionName: "http"
   hostnames:
-    - bentopdf.local
+    - hiiirepdf.local
   rules:
     - matches:
         - path:
