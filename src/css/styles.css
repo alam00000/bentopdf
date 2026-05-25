@@ -224,7 +224,7 @@ body {
   cursor: pointer;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--hirepdf-primary);
   text-align: left;
 }
 
