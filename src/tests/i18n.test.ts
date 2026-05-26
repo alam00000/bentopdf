@@ -1,5 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { getLanguageFromUrl } from '@/js/i18n/i18n';
+import {
+  getLanguageFromUrl,
+  translateKnownToolButtonLabel,
+} from '@/js/i18n/i18n';
 
 describe('getLanguageFromUrl', () => {
   const originalLocation = window.location;
@@ -63,6 +66,7 @@ describe('getLanguageFromUrl', () => {
 
   it('should return exact match from navigator.languages', () => {
     window.location.pathname = '/';
+    vi.stubEnv('VITE_DEFAULT_LANGUAGE', '');
     Object.defineProperty(window.navigator, 'languages', {
       value: ['zh-TW', 'en-US', 'en'],
       configurable: true,
@@ -72,6 +76,7 @@ describe('getLanguageFromUrl', () => {
 
   it('should return primary language match from navigator.languages', () => {
     window.location.pathname = '/';
+    vi.stubEnv('VITE_DEFAULT_LANGUAGE', '');
     // 'de-AT' is not in supportedLanguages, but we should match its primary 'de'
     Object.defineProperty(window.navigator, 'languages', {
       value: ['de-AT', 'en-US', 'en'],
@@ -82,6 +87,7 @@ describe('getLanguageFromUrl', () => {
 
   it('should return first matched language from navigator.languages', () => {
     window.location.pathname = '/';
+    vi.stubEnv('VITE_DEFAULT_LANGUAGE', '');
     Object.defineProperty(window.navigator, 'languages', {
       value: ['fr-CA', 'de-DE', 'en'],
       configurable: true,
@@ -91,6 +97,7 @@ describe('getLanguageFromUrl', () => {
 
   it('should ignore unsupported languages in navigator.languages', () => {
     window.location.pathname = '/';
+    vi.stubEnv('VITE_DEFAULT_LANGUAGE', '');
     Object.defineProperty(window.navigator, 'languages', {
       value: ['xx-XX', 'es-ES'],
       configurable: true,
@@ -125,5 +132,19 @@ describe('getLanguageFromUrl', () => {
       writable: true,
     });
     expect(getLanguageFromUrl()).toBe('en');
+  });
+});
+
+describe('translateKnownToolButtonLabel', () => {
+  it('translates common tool button labels to Russian', () => {
+    expect(translateKnownToolButtonLabel('Reset', 'ru')).toBe('Сбросить');
+    expect(translateKnownToolButtonLabel('Download', 'ru')).toBe('Скачать');
+    expect(translateKnownToolButtonLabel('Apply Scanner Effect', 'ru')).toBe(
+      'Применить эффект сканера'
+    );
+  });
+
+  it('leaves labels unchanged outside Russian locale', () => {
+    expect(translateKnownToolButtonLabel('Reset', 'en')).toBe('Reset');
   });
 });

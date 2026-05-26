@@ -32,6 +32,14 @@ describe('hiiirePDF branded surface', () => {
     expect(css).toContain('background-color: #0a0a0a !important');
   });
 
+  it('keeps primary tool action buttons readable on the light brand accent', () => {
+    const css = readProjectFile('src/css/styles.css');
+
+    expect(css).toContain('color: var(--color-primary-foreground)');
+    expect(css).toContain('background: var(--hirepdf-primary)');
+    expect(css).not.toContain('color: #ffffff;\n  /* text-white */');
+  });
+
   it('builds the branded deploy with hiiirePDF defaults', () => {
     const buildScript = readProjectFile('scripts/build-hirepdf.mjs');
 

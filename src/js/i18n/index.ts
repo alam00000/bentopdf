@@ -3,6 +3,7 @@ export {
   t,
   changeLanguage,
   applyTranslations,
+  translateKnownToolButtonLabel,
   rewriteLinks,
   getLanguageFromUrl,
   supportedLanguages,

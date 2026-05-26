@@ -1,6 +1,8 @@
 import i18next from 'i18next';
 import HttpBackend from 'i18next-http-backend';
 
+/* global __ENABLED_LANGUAGES__ */
+
 const allSupportedLanguages = [
   'en',
   'ar',
@@ -29,10 +31,11 @@ export type SupportedLanguage = (typeof allSupportedLanguages)[number];
 const isSupportedLanguage = (lang: string): lang is SupportedLanguage =>
   (allSupportedLanguages as readonly string[]).includes(lang);
 
+const enabledLanguages =
+  typeof __ENABLED_LANGUAGES__ !== 'undefined' ? __ENABLED_LANGUAGES__ : [];
+
 const configuredLanguages = (
-  __ENABLED_LANGUAGES__.length > 0
-    ? __ENABLED_LANGUAGES__
-    : allSupportedLanguages
+  enabledLanguages.length > 0 ? enabledLanguages : allSupportedLanguages
 ).filter(isSupportedLanguage);
 
 export const supportedLanguages: readonly SupportedLanguage[] =
@@ -162,6 +165,70 @@ export const t = (key: string, options?: Record<string, unknown>): string => {
   return i18next.t(key, options);
 };
 
+const russianToolButtonLabels: Record<string, string> = {
+  Apply: 'Применить',
+  'Apply Scanner Effect': 'Применить эффект сканера',
+  'Apply Color Adjustments': 'Применить настройки',
+  Cancel: 'Отмена',
+  Confirm: 'Подтвердить',
+  Convert: 'Конвертировать',
+  Delete: 'Удалить',
+  Download: 'Скачать',
+  'Download All (ZIP)': 'Скачать всё (ZIP)',
+  'Download PDF Form': 'Скачать PDF-форму',
+  'Download Selected': 'Скачать выбранное',
+  'Extract & Download ZIP': 'Извлечь и скачать ZIP',
+  'Merge PDFs': 'Объединить PDF',
+  OK: 'OK',
+  Process: 'Обработать',
+  Remove: 'Удалить',
+  Reset: 'Сбросить',
+  'Reset to Defaults': 'По умолчанию',
+  Save: 'Сохранить',
+  'Save Changes': 'Сохранить изменения',
+  'Save & Download Filled Form': 'Сохранить и скачать заполненную форму',
+  'Sign & Download': 'Подписать и скачать',
+};
+
+export const translateKnownToolButtonLabel = (
+  label: string,
+  language: string = i18next.language
+): string => {
+  if (language !== 'ru') return label;
+
+  const normalizedLabel = label.replace(/\s+/g, ' ').trim();
+  return russianToolButtonLabels[normalizedLabel] || label;
+};
+
+const applyKnownToolButtonTranslations = (): void => {
+  if (i18next.language !== 'ru') return;
+
+  document
+    .querySelectorAll<
+      HTMLButtonElement | HTMLAnchorElement
+    >('#tool-uploader button:not([data-i18n]), #tool-uploader a.btn-gradient:not([data-i18n]), #tool-interface button:not([data-i18n]), #tool-interface a.btn-gradient:not([data-i18n])')
+    .forEach((element) => {
+      const translated = translateKnownToolButtonLabel(
+        element.textContent || ''
+      );
+      if (translated === element.textContent) return;
+
+      const textSpan = Array.from(element.querySelectorAll('span')).find(
+        (span) =>
+          translateKnownToolButtonLabel(span.textContent || '') !==
+          span.textContent
+      );
+
+      if (textSpan) {
+        textSpan.textContent = translateKnownToolButtonLabel(
+          textSpan.textContent || ''
+        );
+      } else if (element.children.length === 0) {
+        element.textContent = translated;
+      }
+    });
+};
+
 export const changeLanguage = (lang: SupportedLanguage): void => {
   if (!supportedLanguages.includes(lang)) return;
   localStorage.setItem('i18nextLng', lang);
@@ -242,6 +309,8 @@ export const applyTranslations = (): void => {
       }
     }
   });
+
+  applyKnownToolButtonTranslations();
 
   document.documentElement.lang = i18next.language;
   document.documentElement.dir = i18next.language === 'ar' ? 'rtl' : 'ltr';

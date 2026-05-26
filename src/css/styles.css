@@ -498,7 +498,7 @@ footer a {
 
 .cta-button {
   background-color: var(--hirepdf-primary);
-  color: white;
+  color: var(--color-primary-foreground);
   font-weight: 600;
   padding: 12px 24px;
   border-radius: 8px;
@@ -565,8 +565,7 @@ footer a {
   border-radius: 0.375rem;
   /* rounded-md */
   background: var(--hirepdf-primary);
-  color: #ffffff;
-  /* text-white */
+  color: var(--color-primary-foreground);
   font-weight: 600;
   /* font-semibold */
   transition-property: all;
