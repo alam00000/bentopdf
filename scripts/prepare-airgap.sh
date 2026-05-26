@@ -376,7 +376,7 @@ interactive_mode() {
   BRAND_NAME="${input:-}"
   if [ -n "$BRAND_NAME" ]; then
     echo "    Place your logo in the public/ folder before building."
-    read -r -p "    Logo path relative to public/ [images/favicon-no-bg.svg]: " input
+    read -r -p "    Logo path relative to public/ [images/favicon.svg]: " input
     BRAND_LOGO="${input:-}"
     read -r -p "    Footer text [© 2026 hiiirePDF. All rights reserved.]: " input
     FOOTER_TEXT="${input:-}"
@@ -439,7 +439,7 @@ interactive_mode() {
   echo "  Simple Mode:    ${SIMPLE_MODE:-false}"
   echo "  Language:       ${LANGUAGE:-en (default)}"
   echo "  Brand Name:     ${BRAND_NAME:-hiiirePDF (default)}"
-  [ -n "$BRAND_NAME" ] && echo "  Brand Logo:     ${BRAND_LOGO:-images/favicon-no-bg.svg (default)}"
+  [ -n "$BRAND_NAME" ] && echo "  Brand Logo:     ${BRAND_LOGO:-images/favicon.svg (default)}"
   [ -n "$BRAND_NAME" ] && echo "  Footer Text:    ${FOOTER_TEXT:-(default)}"
   echo "  Base URL:       ${BASE_URL:-/ (root)}"
   echo "  OCR Languages:  ${OCR_LANGUAGES}"

@@ -5,7 +5,7 @@ import { join } from 'node:path';
 const defaults = {
   SITE_URL: 'https://pdf.hiiire.com',
   VITE_BRAND_NAME: 'hiiirePDF',
-  VITE_BRAND_LOGO: 'images/favicon-no-bg.svg',
+  VITE_BRAND_LOGO: 'images/favicon.svg',
   VITE_FOOTER_TEXT:
     '© 2026 hiiirePDF. PDF-инструменты работают локально в браузере.',
   VITE_DEFAULT_LANGUAGE: 'ru',

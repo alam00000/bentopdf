@@ -14,6 +14,26 @@ const BRAND_NAME = process.env.VITE_BRAND_NAME || 'hiiirePDF';
 const BRAND_LOGO = (
   process.env.VITE_BRAND_LOGO || 'images/favicon.svg'
 ).replace(/^\/+/, '');
+const FAVICON_ICONS = [
+  {
+    src: '/images/favicon.svg',
+    sizes: 'any',
+    type: 'image/svg+xml',
+    purpose: 'any',
+  },
+  {
+    src: '/images/favicon-192x192.png',
+    sizes: '192x192',
+    type: 'image/png',
+    purpose: 'any',
+  },
+  {
+    src: '/images/favicon-512x512.png',
+    sizes: '512x512',
+    type: 'image/png',
+    purpose: 'any',
+  },
+];
 const FOOTER_TEXT =
   process.env.VITE_FOOTER_TEXT || '© 2026 hiiirePDF. All rights reserved.';
 const SOURCE_REPOSITORY_URL = process.env.VITE_SOURCE_REPOSITORY_URL || '';
@@ -200,15 +220,16 @@ function writeManifest() {
     background_color: '#ffffff',
     theme_color: '#111111',
     orientation: 'portrait-primary',
-    icons: [
-      {
-        src: `/${BRAND_LOGO}`,
-        sizes: 'any',
-        type: 'image/svg+xml',
-        purpose: 'any',
-      },
+    icons: FAVICON_ICONS,
+    categories: [
+      'productivity',
+      'utilities',
+      'privacy',
+      'pdf',
+      'security',
+      'offline',
+      'tools',
     ],
-    categories: ['productivity', 'utilities', 'privacy', 'pdf', 'tools'],
     screenshots: [],
   };
 

@@ -39,6 +39,16 @@ describe('hiiirePDF branded surface', () => {
     expect(buildScript).toContain('© 2026 hiiirePDF');
   });
 
+  it('generates the branded deploy with the refreshed favicon assets', () => {
+    const buildScript = readProjectFile('scripts/build-hirepdf.mjs');
+    const brandingScript = readProjectFile('scripts/apply-branding.mjs');
+
+    expect(buildScript).toContain("VITE_BRAND_LOGO: 'images/favicon.svg'");
+    expect(brandingScript).toContain("src: '/images/favicon.svg'");
+    expect(brandingScript).toContain("src: '/images/favicon-192x192.png'");
+    expect(brandingScript).toContain("src: '/images/favicon-512x512.png'");
+  });
+
   it('does not keep the previous product branding in tracked text files', () => {
     const previousBrandNeedle = ['ben', 'to'].join('');
     let output = '';
