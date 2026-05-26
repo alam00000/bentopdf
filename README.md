@@ -871,7 +871,7 @@ Replace the default hiiirePDF logo, name, and footer text with your own. Brandin
 | Variable           | Description                             | Default                                  |
 | ------------------ | --------------------------------------- | ---------------------------------------- |
 | `VITE_BRAND_NAME`  | Brand name shown in header and footer   | `hiiirePDF`                              |
-| `VITE_BRAND_LOGO`  | Path to logo file relative to `public/` | `images/favicon-no-bg.svg`               |
+| `VITE_BRAND_LOGO`  | Path to logo file relative to `public/` | `images/favicon.svg`                     |
 | `VITE_FOOTER_TEXT` | Custom footer/copyright text            | `© 2026 hiiirePDF. All rights reserved.` |
 
 **Docker:**

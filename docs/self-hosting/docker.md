@@ -112,7 +112,7 @@ docker run -d -p 3000:8080 hiiirepdf:custom
 | `VITE_OCR_FONT_BASE_URL`             | OCR text-layer font directory                                                                                                  | _(empty; use remote Noto font URLs)_                   |
 | `VITE_DEFAULT_LANGUAGE`              | Default UI language                                                                                                            | `en`                                                   |
 | `VITE_BRAND_NAME`                    | Custom brand name                                                                                                              | `hiiirePDF`                                            |
-| `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                                | `images/favicon-no-bg.svg`                             |
+| `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                                | `images/favicon.svg`                                   |
 | `VITE_FOOTER_TEXT`                   | Custom footer/copyright text                                                                                                   | `© 2026 hiiirePDF. All rights reserved.`               |
 | `DISABLE_TOOLS`                      | Comma-separated tool IDs to hide                                                                                               | _(empty; all tools enabled)_                           |
 
