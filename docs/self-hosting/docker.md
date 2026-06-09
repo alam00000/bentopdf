@@ -118,6 +118,11 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `BENTOPDF_PORT`                      | Nginx listen port inside the container                                                                                           | `8080`                                   |
 | `PORT`                      | Legacy fallback port environment variable                                                                                          | `8080`                                   |
 
+
+**Port resolution priority**: `BENTOPDF_PORT` → `PORT` → `8080`
+
+Use `BENTOPDF_PORT` to avoid conflicts with other services that use `PORT`.
+
 WASM module URLs are pre-configured with CDN defaults — all advanced features work out of the box. Override these for air-gapped or self-hosted deployments.
 
 ### Content-Security-Policy
