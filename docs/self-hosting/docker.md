@@ -115,6 +115,8 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                              | `images/favicon-no-bg.svg`                                     |
 | `VITE_FOOTER_TEXT`                   | Custom footer/copyright text                                                                                                 | `© 2026 BentoPDF. All rights reserved.`                        |
 | `DISABLE_TOOLS`                      | Comma-separated tool IDs to hide                                                                                             | _(empty; all tools enabled)_                                   |
+| `BENTOPDF_PORT`                      | Nginx listen port inside the container                                                                                           | `8080`                                   |
+| `PORT`                      | Legacy fallback port environment variable                                                                                          | `8080`                                   |
 
 WASM module URLs are pre-configured with CDN defaults — all advanced features work out of the box. Override these for air-gapped or self-hosted deployments.
 
