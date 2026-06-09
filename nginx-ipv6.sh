@@ -9,7 +9,7 @@ entrypoint_log() {
     fi
 }
 
-PORT=${PORT:-8080}
+PORT=${BENTOPDF_PORT:-${PORT:-8080}}
 if [ "$PORT" != "8080" ]; then
   entrypoint_log "Changing Nginx listen port to $PORT"
   sed -i "s/listen 8080/listen $PORT/g; s/listen \[::\]:8080/listen [::]:$PORT/g" /etc/nginx/nginx.conf
