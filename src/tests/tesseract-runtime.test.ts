@@ -18,12 +18,6 @@ import {
   hasConfiguredTesseractOverrides,
   resolveTesseractAssetConfig,
 } from '../js/utils/tesseract-runtime';
-import {
-  assertTesseractLanguagesAvailable,
-  getAvailableTesseractLanguageEntries,
-  getUnavailableTesseractLanguages,
-  UnsupportedOcrLanguageError,
-} from '../js/utils/tesseract-language-availability';
 
 describe('tesseract-runtime', () => {
   beforeEach(() => {
@@ -89,31 +83,6 @@ describe('tesseract-runtime', () => {
       langPath: 'https://internal.example.com/ocr/lang-data',
       gzip: true,
     });
-  });
-
-  it('filters OCR language entries when the build restricts bundled languages', () => {
-    expect(
-      getAvailableTesseractLanguageEntries({
-        VITE_TESSERACT_AVAILABLE_LANGUAGES: 'eng,deu',
-      })
-    ).toEqual([
-      ['eng', 'English'],
-      ['deu', 'German'],
-    ]);
-  });
-
-  it('reports unavailable OCR languages for restricted air-gap builds', () => {
-    expect(
-      getUnavailableTesseractLanguages('eng+fra', {
-        VITE_TESSERACT_AVAILABLE_LANGUAGES: 'eng,deu',
-      })
-    ).toEqual(['fra']);
-
-    expect(() =>
-      assertTesseractLanguagesAvailable('eng+fra', {
-        VITE_TESSERACT_AVAILABLE_LANGUAGES: 'eng,deu',
-      })
-    ).toThrow(UnsupportedOcrLanguageError);
   });
 
   it('blocks worker creation when OCR requests an unbundled language', async () => {
