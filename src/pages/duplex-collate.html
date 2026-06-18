@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Duplex Collate - Reorder Front/Back Scan Blocks | BentoPDF</title>
+    <meta
+      name="title"
+      content="Duplex Collate - Reorder Front/Back Scan Blocks | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="Reorder duplex scan PDFs that contain front pages and back pages in separate blocks. Create one collated PDF or grouped output files, directly in your browser."
+    />
+    <meta
+      name="keywords"
+      content="duplex collate, adf scan reorder, front back pdf, collate scanned pdf, duplex sort pdf"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+
+    <link rel="canonical" href="https://www.bentopdf.com/duplex-collate" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/duplex-collate" />
+    <meta
+      property="og:title"
+      content="Duplex Collate - Reorder Front/Back Scan Blocks"
+    />
+    <meta
+      property="og:description"
+      content="Turn front-block/back-block scan output into a correctly collated PDF."
+    />
+    <meta
+      property="og:image"
+      content="https://www.bentopdf.com/images/og-pdf-workflow.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:url"
+      content="https://www.bentopdf.com/duplex-collate"
+    />
+    <meta name="twitter:title" content="Duplex Collate" />
+    <meta
+      name="twitter:description"
+      content="Reorder front/back scan blocks into collated page order."
+    />
+
+    <link href="/src/css/styles.css" rel="stylesheet" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/images/favicon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/images/favicon-512x512.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/images/apple-touch-icon.png"
+    />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  </head>
+
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
+
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >Back to Tools</span
+          >
+        </button>
+
+        <h1 class="text-2xl font-bold text-white mb-2">Duplex Collate</h1>
+        <p class="text-gray-400 mb-6">
+          Reorder a PDF scanned as two blocks (all fronts, then all backs) into
+          proper front/back order.
+        </p>
+
+        <div
+          id="drop-zone"
+          class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i
+              data-lucide="upload-cloud"
+              class="w-10 h-10 mb-3 text-gray-400"
+            ></i>
+            <p class="mb-2 text-sm text-gray-400">
+              <span class="font-semibold" data-i18n="upload.clickToSelect"
+                >Click to select a file</span
+              >
+              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+            </p>
+            <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
+              A single PDF file
+            </p>
+            <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+              Your files never leave your device.
+            </p>
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            accept="application/pdf"
+          />
+        </div>
+
+        <div id="file-display-area" class="mt-4 space-y-2"></div>
+
+        <div
+          id="odd-page-banner"
+          class="hidden mt-3 p-3 bg-yellow-900/50 border border-yellow-600 text-yellow-300 text-sm rounded-lg"
+        ></div>
+
+        <div id="duplex-options" class="hidden mt-6 space-y-4">
+          <div class="p-3 bg-gray-900 rounded-lg border border-gray-700">
+            <p class="text-sm text-gray-300">
+              Total pages: <span id="total-pages" class="text-white">0</span>
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label
+                for="split-page"
+                class="block mb-2 text-sm font-medium text-gray-300"
+                >Split after page</label
+              >
+              <input
+                id="split-page"
+                type="number"
+                min="1"
+                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
+                placeholder="e.g. 50"
+              />
+            </div>
+
+            <div>
+              <label
+                for="back-order"
+                class="block mb-2 text-sm font-medium text-gray-300"
+                >Back block order</label
+              >
+              <select
+                id="back-order"
+                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
+              >
+                <option value="reverse" selected>
+                  Reverse back block (common for flipped stacks)
+                </option>
+                <option value="keep">Keep back block as-is</option>
+              </select>
+            </div>
+          </div>
+
+          <button
+            id="auto-split-btn"
+            class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+          >
+            Auto-detect split (half)
+          </button>
+
+          <div class="p-3 bg-gray-900 rounded-lg border border-gray-700">
+            <p id="duplex-preview-summary" class="text-sm text-gray-300"></p>
+            <p
+              id="duplex-warning"
+              class="text-sm text-yellow-400 mt-2 hidden"
+            ></p>
+          </div>
+
+          <label
+            class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer"
+          >
+            <input
+              id="export-grouped"
+              type="checkbox"
+              class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded"
+            />
+            Export grouped files by original document length
+          </label>
+
+          <div id="grouped-options" class="hidden">
+            <label
+              for="pages-per-document"
+              class="block mb-2 text-sm font-medium text-gray-300"
+              >Pages per original document</label
+            >
+            <input
+              id="pages-per-document"
+              type="number"
+              min="1"
+              value="2"
+              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
+            />
+            <p class="text-xs text-gray-400 mt-2">
+              If enabled, output is a ZIP containing one PDF per grouped
+              document.
+            </p>
+          </div>
+
+          <button id="process-btn" class="btn-gradient w-full mt-2">
+            Collate PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="loader-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+      >
+        <div class="solid-spinner"></div>
+        <p id="loader-text" class="text-white text-lg font-medium">
+          Processing...
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="alert-modal"
+      class="fixed inset-0 bg-gray-900 bg-opacity-90 flex items-center justify-center z-50 hidden"
+    >
+      <div
+        class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
+      >
+        <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
+          Alert
+        </h3>
+        <p id="alert-message" class="text-gray-300 mb-6"></p>
+        <button
+          id="alert-ok"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+        >
+          OK
+        </button>
+      </div>
+    </div>
+
+    {{> footer }}
+
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/utils/simple-mode-footer.ts"></script>
+    <script type="module" src="/src/js/logic/duplex-collate-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>

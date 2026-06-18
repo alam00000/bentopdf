@@ -514,6 +514,10 @@
     "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
     "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
   },
+  "duplexCollate": {
+    "name": "Seitenfolge für Duplex-Scans neu anordnen",
+    "subtitle": "Vorder-/Rückseiten-Scanblöcke in eine zusammengeführte Seitenreihenfolge in einem PDF neu anordnen."
+  },
   "addAttachments": {
     "name": "Anhänge hinzufügen",
     "subtitle": "Eine oder mehrere Dateien in Ihre PDF einbetten."

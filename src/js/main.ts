@@ -211,6 +211,7 @@ const init = async () => {
     'PDF to JSON': 'tools:pdfToJson',
     'OCR PDF': 'tools:ocrPdf',
     'Alternate & Mix Pages': 'tools:alternateMerge',
+    'Duplex Collate': 'tools:duplexCollate',
     'PDF Overlay': 'tools:pdfOverlay',
     'Organize & Duplicate': 'tools:duplicateOrganize',
     'Add Attachments': 'tools:addAttachments',
