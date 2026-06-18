@@ -31,7 +31,7 @@ Instead of manually splitting and reassembling, this tool interleaves the two bl
 ## Output Behavior
 
 - **Default**: one output PDF (single input PDF in, single output PDF out).
-- **Grouped mode**: one ZIP containing multiple PDFs, each chunked by your pages-per-document value.
+- **Grouped mode**: output is chunked by your pages-per-document value; if multiple chunks are produced, they are downloaded as one ZIP, otherwise a single PDF is downloaded.
 
 If block sizes are uneven, paired pages are collated first, and remaining unpaired pages are appended at the end.
 
