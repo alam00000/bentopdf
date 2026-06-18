@@ -24,6 +24,9 @@ if (document.readyState === 'loading') {
   initializePage();
 }
 
+/**
+ * Wires duplex-collate page event handlers and initial UI behavior.
+ */
 function initializePage() {
   createIcons({ icons });
 
@@ -85,6 +88,9 @@ function initializePage() {
   });
 }
 
+/**
+ * Handles file input selection events and forwards the chosen file for parsing.
+ */
 function handleFileUpload(e: Event) {
   const input = e.target as HTMLInputElement;
   if (input.files && input.files.length > 0) {
@@ -92,6 +98,9 @@ function handleFileUpload(e: Event) {
   }
 }
 
+/**
+ * Loads and validates the uploaded PDF, then prepares UI state for duplex collation.
+ */
 async function handleFile(file: File) {
   if (
     file.type !== 'application/pdf' &&
@@ -128,14 +137,23 @@ async function handleFile(file: File) {
   }
 }
 
+/**
+ * Removes the .pdf extension from a filename.
+ */
 function stripPdfExtension(name: string): string {
   return name.replace(/\.pdf$/i, '');
 }
 
+/**
+ * Resolves a safe base filename for generated outputs.
+ */
 function getBaseFilename(): string {
   return stripPdfExtension(duplexState.file?.name || 'document');
 }
 
+/**
+ * Renders the selected file metadata and remove action in the file list area.
+ */
 function updateFileDisplay() {
   const fileDisplayArea = document.getElementById('file-display-area');
   if (!fileDisplayArea || !duplexState.file) return;
@@ -169,6 +187,9 @@ function updateFileDisplay() {
   createIcons({ icons });
 }
 
+/**
+ * Reveals duplex options and updates the total page counter.
+ */
 function showOptions() {
   const options = document.getElementById('duplex-options');
   const totalPagesEl = document.getElementById('total-pages');
@@ -179,6 +200,9 @@ function showOptions() {
   }
 }
 
+/**
+ * Shows a warning when the uploaded document has an odd page count.
+ */
 function showOddPageWarning() {
   const banner = document.getElementById('odd-page-banner');
   if (!banner) return;
@@ -191,6 +215,9 @@ function showOddPageWarning() {
   }
 }
 
+/**
+ * Sets the split input to the midpoint of the uploaded document.
+ */
 function applyDefaultSplitPoint() {
   const splitInput = document.getElementById(
     'split-page'
@@ -199,6 +226,9 @@ function applyDefaultSplitPoint() {
   splitInput.value = Math.ceil(duplexState.totalPages / 2).toString();
 }
 
+/**
+ * Toggles grouped-export inputs based on the grouped export checkbox.
+ */
 function toggleGroupedOptions() {
   const grouped = document.getElementById(
     'export-grouped'
@@ -213,6 +243,9 @@ function toggleGroupedOptions() {
   }
 }
 
+/**
+ * Returns a clamped split point derived from the current UI input.
+ */
 function getSplitPoint(): number {
   const splitInput = document.getElementById(
     'split-page'
@@ -226,6 +259,9 @@ function getSplitPoint(): number {
   return Math.max(1, Math.min(parsed, Math.max(duplexState.totalPages - 1, 1)));
 }
 
+/**
+ * Returns the selected back-page ordering strategy.
+ */
 function getBackOrder(): 'reverse' | 'keep' {
   const backOrder = document.getElementById(
     'back-order'
@@ -233,6 +269,9 @@ function getBackOrder(): 'reverse' | 'keep' {
   return backOrder?.value === 'keep' ? 'keep' : 'reverse';
 }
 
+/**
+ * Builds the final page index order by interleaving front and back page blocks.
+ */
 export function buildDuplexOrder(
   totalPages: number,
   splitPoint: number,
@@ -263,6 +302,9 @@ export function buildDuplexOrder(
   };
 }
 
+/**
+ * Refreshes the preview summary and warnings for the current collation settings.
+ */
 function updatePreviewSummary() {
   const summary = document.getElementById('duplex-preview-summary');
   const warning = document.getElementById('duplex-warning');
@@ -291,6 +333,9 @@ function updatePreviewSummary() {
   }
 }
 
+/**
+ * Creates a new PDF containing the source pages referenced by index.
+ */
 async function createPdfFromIndices(
   sourceDoc: PDFDocument,
   indices: number[]
@@ -301,6 +346,9 @@ async function createPdfFromIndices(
   return new Uint8Array(await outDoc.save());
 }
 
+/**
+ * Converts Uint8Array output into an ArrayBuffer suitable for Blob construction.
+ */
 function bytesToArrayBuffer(bytes: Uint8Array): ArrayBuffer {
   const { buffer, byteOffset, byteLength } = bytes;
   if (buffer instanceof ArrayBuffer) {
@@ -311,6 +359,9 @@ function bytesToArrayBuffer(bytes: Uint8Array): ArrayBuffer {
   return copy.buffer;
 }
 
+/**
+ * Runs duplex collation and downloads either a single file or grouped ZIP output.
+ */
 async function processDuplexCollate() {
   if (!duplexState.file || !duplexState.pdfDoc || duplexState.totalPages < 2) {
     showAlert(
@@ -424,6 +475,9 @@ async function processDuplexCollate() {
   }
 }
 
+/**
+ * Clears selected file data and restores the page UI to its initial state.
+ */
 function resetState() {
   duplexState.file = null;
   duplexState.pdfDoc = null;
