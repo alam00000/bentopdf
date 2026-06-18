@@ -233,7 +233,7 @@ function getBackOrder(): 'reverse' | 'keep' {
   return backOrder?.value === 'keep' ? 'keep' : 'reverse';
 }
 
-function buildDuplexOrder(
+export function buildDuplexOrder(
   totalPages: number,
   splitPoint: number,
   backOrder: 'reverse' | 'keep'
