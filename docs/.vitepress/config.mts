@@ -132,6 +132,7 @@ export default defineConfig({
                         { text: 'OCR PDF', link: '/tools/ocr-pdf' },
                         { text: 'Merge PDF', link: '/tools/merge-pdf' },
                         { text: 'Alternate & Mix Pages', link: '/tools/alternate-merge' },
+                        { text: 'Duplex Collate', link: '/tools/duplex-collate' },
                         { text: 'Organize & Duplicate', link: '/tools/organize-pdf' },
                         { text: 'Add Attachments', link: '/tools/add-attachments' },
                         { text: 'Extract Attachments', link: '/tools/extract-attachments' },

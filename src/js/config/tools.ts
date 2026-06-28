@@ -540,6 +540,13 @@ const baseCategories = [
           'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks',
       },
       {
+        href: import.meta.env.BASE_URL + 'duplex-collate.html',
+        name: 'Duplex Collate',
+        icon: 'ph-arrows-vertical',
+        subtitle:
+          'Reorder front/back scan blocks into collated page order in one PDF.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'organize-pdf.html',
         name: 'Organize & Duplicate',
         icon: 'ph-files',
