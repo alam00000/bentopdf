@@ -102,7 +102,7 @@ self.addEventListener('fetch', (event) => {
     isLocal &&
     (url.pathname.endsWith('.html') ||
       url.pathname === '/' ||
-      /^\/(en|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|ru|nl|be)(\/|$)/.test(
+      /^\/(en|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|ru|nl|be|pl)(\/|$)/.test(
         url.pathname
       ))
   ) {
