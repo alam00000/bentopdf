@@ -156,7 +156,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **View PDF**                 | A powerful, integrated PDF viewer.                                                                      |
 | **Alternate & Mix Pages**    | Merge pages by alternating pages from each PDF. Preserves Bookmarks.                                    |
 | **Posterize PDF**            | Split a PDF into multiple smaller pages for print.                                                      |
-| **PDF Multi Tool**           | Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface. |
+| **PDF Multi Tool**           | Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in a unified interface. |
 | **PDF Booklet**              | Rearrange pages for double-sided booklet printing. Fold and staple to create a booklet.                 |
 | **Add Attachments**          | Embed one or more files into your PDF.                                                                  |
 | **Extract Attachments**      | Extract all embedded files from PDF(s) as a ZIP.                                                        |
