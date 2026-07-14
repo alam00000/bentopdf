@@ -13,7 +13,7 @@
   "convertToPdf": "Convert to PDF",
   "pdfMultiTool": {
     "name": "PDF Multi Tool",
-    "subtitle": "Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface."
+    "subtitle": "Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in a unified interface."
   },
   "mergePdf": {
     "name": "Merge PDF",
