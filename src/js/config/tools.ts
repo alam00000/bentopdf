@@ -15,7 +15,7 @@ const baseCategories = [
         name: 'PDF Multi Tool',
         icon: 'ph-pencil-ruler',
         subtitle:
-          'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface.',
+          'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in a unified interface.',
       },
       {
         href: import.meta.env.BASE_URL + 'merge-pdf.html',
@@ -40,7 +40,7 @@ const baseCategories = [
         name: 'PDF Editor',
         icon: 'ph-pencil-simple',
         subtitle:
-          'Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs',
+          'Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs.',
       },
       {
         href: import.meta.env.BASE_URL + 'jpg-to-pdf.html',
@@ -537,7 +537,7 @@ const baseCategories = [
         name: 'Alternate & Mix Pages',
         icon: 'ph-shuffle',
         subtitle:
-          'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks',
+          'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks.',
       },
       {
         href: import.meta.env.BASE_URL + 'organize-pdf.html',

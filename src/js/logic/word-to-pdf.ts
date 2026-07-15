@@ -1,4 +1,4 @@
-// NOTE: This is a work in progress and does not work correctly as of yet
+// NOTE: This is a work in progress and does not work correctly yet
 import DOMPurify from 'dompurify';
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { readFileAsArrayBuffer } from '../utils/helpers.js';
