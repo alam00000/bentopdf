@@ -841,8 +841,7 @@
     "subtitle": "Tekst uit een PDF-bestanden halen en opslaan als gewone tekst (.txt). Ondersteunt meerdere bestanden.",
     "noteLabel": "Opmerking:",
     "noteText": "Deze tool werkt ALLEEN met digitaal aangemaakte PDF's. Voor gescande documenten of PDF's op basis van afbeeldingen gebruik je in plaats daarvan onze OCR PDF-tool.",
-    "convertButton": "Tekst extraheren",
-    "note": "Dit hulpmiddel werkt ALLEEN met digitaal gemaakte PDF's. Gebruik voor gescande documenten of op afbeeldingen gebaseerde PDF's in plaats hiervan de OCR PDF-tool."
+    "convertButton": "Tekst extraheren"
   },
   "digitalSignPdf": {
     "name": "Digitale handtekening",
