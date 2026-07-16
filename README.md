@@ -6,7 +6,7 @@
   </a>
 </p>
 
-**BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that is self hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
+**BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that is self-hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
 
 [![Docker Downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fghcr-badge.elias.eu.org%2Fapi%2Falam00000%2Fbentopdf%2Fbentopdf&query=%24.downloadCount&logo=docker&label=Docker%20Downloads&color=blue)](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio01) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
 [![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ff69b4)](https://github.com/sponsors/alam00000)
@@ -131,7 +131,7 @@ We're incredibly grateful to all our sponsors and supporters who help keep Bento
 ## ✨ Why BentoPDF?
 
 - **Privacy First**: All processing happens in your browser. Your files are never uploaded to a server, guaranteeing 100% privacy.
-- **No Limits**: Manipulate as many files as you want, as often you want. There are no restrictions or upload limits.
+- **No Limits**: Manipulate as many files as you want, as often as you want. There are no restrictions or upload limits.
 - **High Performance**: Built with modern web technologies, BentoPDF is fast and efficient, handling even large PDF files with ease.
 - **Completely Free**: BentoPDF is a free and open-source tool for everyone.
 
@@ -156,7 +156,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 | **View PDF**                 | A powerful, integrated PDF viewer.                                                                      |
 | **Alternate & Mix Pages**    | Merge pages by alternating pages from each PDF. Preserves Bookmarks.                                    |
 | **Posterize PDF**            | Split a PDF into multiple smaller pages for print.                                                      |
-| **PDF Multi Tool**           | Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface. |
+| **PDF Multi Tool**           | Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in a unified interface.  |
 | **PDF Booklet**              | Rearrange pages for double-sided booklet printing. Fold and staple to create a booklet.                 |
 | **Add Attachments**          | Embed one or more files into your PDF.                                                                  |
 | **Extract Attachments**      | Extract all embedded files from PDF(s) as a ZIP.                                                        |
@@ -332,7 +332,7 @@ Open your browser at: http://localhost:3000
 > - **Self-Hosted build** — `ghcr.io/alam00000/bentopdf-simple:latest`. Every PDF tool the public site has, **without** the BentoPDF marketing (no hero, FAQ, testimonials, footer). Use this for internal/team/organization deployments. It is **not** a feature-reduced lite version.
 > - **Commercial build** — `ghcr.io/alam00000/bentopdf:latest`. The full marketing site, used by bentopdf.com itself and by commercial license holders running public-facing deployments. Includes hero, FAQ, testimonials, and footer.
 >
-> If in doubt: pull the Self Hosted build.
+> If in doubt: pull the Self-Hosted build.
 
 <details>
 <summary><b>Alternative: Using Docker Hub or Podman</b></summary>
@@ -684,7 +684,7 @@ BentoPDF can also be hosted from a subdirectory (e.g., `example.com/tools/bentop
 ```bash
 
 # Example:
-# 1. Build the app with the specific BASE_URL. BASE_URL must have a trailing and leading slash. The BASE_URL can be any url of your choice. Here we are using /tools/bentopdf/ as an example.
+# 1. Build the app with the specific BASE_URL. BASE_URL must have a trailing and leading slash. The BASE_URL can be any URL of your choice. Here we are using /tools/bentopdf/ as an example.
 
 BASE_URL=/tools/bentopdf/ npm run build
 
@@ -806,7 +806,7 @@ For detailed Quadlet configuration, see [Self-Hosting Docker Guide](https://bent
 
 ### 🏢 Self-Hosted build (Simple Mode)
 
-The Self-Hosted build (the `bentopdf-simple` image, also called Simple Mode) is **functionally identical** to the Commercial build. Every PDF tool is present and behaves the same. It just hides the marketing that only makes sense on bentopdf.com itself or on a commercial public-facing deployment. **It is not a feature reduced or "lite" version.**
+The Self-Hosted build (the `bentopdf-simple` image, also called Simple Mode) is **functionally identical** to the Commercial build. Every PDF tool is present and behaves the same. It just hides the marketing that only makes sense on bentopdf.com itself or on a commercial public-facing deployment. **It is not a feature-reduced or "lite" version.**
 
 **What the Self-Hosted build hides** (cosmetic only, no PDF features are removed):
 
@@ -818,7 +818,7 @@ The Self-Hosted build (the `bentopdf-simple` image, also called Simple Mode) is 
 - All PDF tools (merge, split, edit, sign, OCR, Office conversion, every other tool)
 - Custom branding support, all build-time and runtime config
 
-The Commercial build (`ghcr.io/alam00000/bentopdf:latest`) is what powers bentopdf.com itself and is used by commercial license holders running public facing deployments. It adds the hero, FAQ, testimonials, and footer that wouldn't make sense on an internal tool.
+The Commercial build (`ghcr.io/alam00000/bentopdf:latest`) is what powers bentopdf.com itself and is used by commercial license holders running public-facing deployments. It adds the hero, FAQ, testimonials, and footer that wouldn't make sense on an internal tool.
 
 If you're self-hosting BentoPDF for your team, organization, or as an internal tool, pull `ghcr.io/alam00000/bentopdf-simple:latest`. For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
 

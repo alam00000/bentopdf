@@ -3,7 +3,7 @@ main = "cors-proxy-worker.js"
 compatibility_date = "2024-01-01"
 
 # Deploy to Cloudflare's global network
-# If you are self hosting change the name to your worker name
+# If you are self-hosting, change the name to your worker name
 # Run: npx wrangler deploy
 
 # =============================================================================

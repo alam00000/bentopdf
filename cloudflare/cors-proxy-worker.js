@@ -212,7 +212,7 @@ export default {
       return handleOptions(request);
     }
 
-    // NOTE: If you are selfhosting this proxy, you can remove this check, or can set it to only accept requests from your own domain
+    // NOTE: If you are self-hosting this proxy, you can remove this check or set it to accept requests only from your own domain
     if (!isAllowedOrigin(origin)) {
       return new Response(
         JSON.stringify({

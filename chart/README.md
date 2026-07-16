@@ -91,7 +91,7 @@ helm package .
 helm push bentopdf-*.tgz oci://ghcr.io/$GHCR_USERNAME/charts
 ```
 
-This could be automated as part of a Github workflow.
+This could be automated as part of a GitHub workflow.
 
 ### Deploy
 

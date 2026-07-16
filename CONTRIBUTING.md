@@ -81,7 +81,7 @@ When submitting code contributions, please use our [pull request template](.gith
 
     ```bash
     git clone https://github.com/alam00000/bentopdf.git
-    cd bento-pdf
+    cd bentopdf
     npm install
     ```
 
