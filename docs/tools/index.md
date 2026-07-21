@@ -117,6 +117,7 @@ Rearrange, combine, split, and manage your PDF pages and files.
 - [**OCR PDF**](./ocr-pdf) — Make a PDF searchable and copyable.
 - [**Merge PDF**](./merge-pdf) — Combine multiple PDFs into one file.
 - [**Alternate & Mix Pages**](./alternate-merge) — Merge PDFs by alternating pages from each PDF.
+- [**Duplex Collate**](./duplex-collate) — Reorder front/back scan blocks into proper page sequence.
 - [**Organize & Duplicate**](./organize-pdf) — Duplicate, reorder, and delete pages.
 - [**Add Attachments**](./add-attachments) — Embed one or more files into your PDF.
 - [**Extract Attachments**](./extract-attachments) — Extract all embedded files from PDF(s) as a ZIP.
