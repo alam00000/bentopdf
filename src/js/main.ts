@@ -1,3 +1,4 @@
+import './utils/map-upsert-polyfill.js';
 import { categories } from './config/tools.js';
 import { dom, switchView, hideAlert } from './ui.js';
 import { ShortcutsManager } from './logic/shortcuts.js';
