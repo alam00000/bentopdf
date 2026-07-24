@@ -201,10 +201,6 @@ function processFileForLanguage(
     document.title = title;
     const metaTitle = document.querySelector('meta[property="og:title"]');
     if (metaTitle) metaTitle.content = title;
-    const metaTwitterTitle = document.querySelector(
-      'meta[name="twitter:title"]'
-    );
-    if (metaTwitterTitle) metaTwitterTitle.content = title;
   }
 
   if (description) {
@@ -214,10 +210,6 @@ function processFileForLanguage(
       'meta[property="og:description"]'
     );
     if (metaOgDesc) metaOgDesc.content = description;
-    const metaTwitterDesc = document.querySelector(
-      'meta[name="twitter:description"]'
-    );
-    if (metaTwitterDesc) metaTwitterDesc.content = description;
   }
 
   document
@@ -252,8 +244,6 @@ function processFileForLanguage(
 
   const ogUrl = document.querySelector('meta[property="og:url"]');
   if (ogUrl) ogUrl.content = localizedUrl;
-  const twitterUrl = document.querySelector('meta[name="twitter:url"]');
-  if (twitterUrl) twitterUrl.content = localizedUrl;
 
   injectOrganizationLd(document);
 
@@ -343,8 +333,6 @@ function updateEnglishFile(filePath, originalContent) {
 
   const ogUrl = document.querySelector('meta[property="og:url"]');
   if (ogUrl) ogUrl.content = canonicalUrl;
-  const twitterUrl = document.querySelector('meta[name="twitter:url"]');
-  if (twitterUrl) twitterUrl.content = canonicalUrl;
 
   injectOrganizationLd(document);
 
