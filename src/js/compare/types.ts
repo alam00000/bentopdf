@@ -3,6 +3,8 @@ import type { LRUCache } from './lru-cache.ts';
 
 export type CompareViewMode = 'overlay' | 'side-by-side';
 
+export type CompareComparisonMode = 'page' | 'document';
+
 export type ComparePdfExportMode =
   | 'split'
   | 'alternating'
@@ -79,6 +81,8 @@ export interface CompareTextItem {
   fragments?: CompareTextItem[];
   charMap?: CharPosition[];
   wordTokens?: CompareWordToken[];
+  pageNumber?: number;
+  layer?: 'body' | 'background';
 }
 
 export interface ComparePageModel {
@@ -155,6 +159,8 @@ export interface CompareTextChange {
   afterText: string;
   beforeRects: CompareRectangle[];
   afterRects: CompareRectangle[];
+  beforePage?: number;
+  afterPage?: number;
 }
 
 export interface CompareChangeSummary {
@@ -208,6 +214,8 @@ export interface CompareState {
   pdfDoc2: pdfjsLib.PDFDocumentProxy | null;
   currentPage: number;
   viewMode: CompareViewMode;
+  comparisonMode: CompareComparisonMode;
+  ignoreFixedContent: boolean;
   overlayChangeScope: CompareOverlayChangeScope;
   overlayDocumentVisible: boolean;
   isSyncScroll: boolean;

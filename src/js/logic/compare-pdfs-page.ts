@@ -10,19 +10,28 @@ import type {
   CompareCategoryFilterState,
 } from '../compare/types.ts';
 import { extractDocumentSignatures } from '../compare/engine/page-signatures.ts';
-import { pairPagesAsync } from '../compare/worker-api.ts';
+import { pairPagesAsync, diffTextRunsAsync } from '../compare/worker-api.ts';
 import type {
   ComparePdfExportMode,
+  CompareComparisonMode,
   CompareCaches,
   CompareRenderContext,
 } from '../compare/types.ts';
 import { exportComparePdf } from '../compare/reporting/export-compare-pdf.ts';
+import {
+  collectDocumentItems,
+  buildDocumentResults,
+  type DocumentPagePair,
+} from '../compare/engine/compare-document.ts';
 import { LRUCache } from '../compare/lru-cache.ts';
-import { COMPARE_CACHE_MAX_SIZE } from '../compare/config.ts';
+import { COMPARE_CACHE_MAX_SIZE, COMPARE_RENDER } from '../compare/config.ts';
 import {
   getElement,
   computeComparisonForPair,
   getComparisonCacheKey,
+  loadComparisonPage,
+  rescaleRect,
+  getRenderScale,
 } from './compare-render.ts';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
@@ -35,6 +44,8 @@ const pageState: CompareState = {
   pdfDoc2: null,
   currentPage: 1,
   viewMode: 'side-by-side',
+  comparisonMode: 'page',
+  ignoreFixedContent: true,
   overlayChangeScope: 'all',
   overlayDocumentVisible: true,
   isSyncScroll: true,
@@ -67,6 +78,7 @@ const documentNames = {
   right: 'second.pdf',
 };
 
+let documentComparison: Map<number, ComparePageResult> | null = null;
 let renderGeneration = 0;
 
 function getActivePair() {
@@ -553,6 +565,126 @@ async function buildReportResults() {
   return results;
 }
 
+async function loadDocumentPageModels(
+  ctx: CompareRenderContext
+): Promise<DocumentPagePair[]> {
+  const pages: DocumentPagePair[] = [];
+  const total = pageState.pagePairs.length;
+
+  for (let i = 0; i < total; i += 1) {
+    const pair = pageState.pagePairs[i];
+    showLoader(
+      `Analyzing document ${i + 1} of ${total}...`,
+      ((i + 1) / Math.max(total, 1)) * 100
+    );
+    const left = await loadComparisonPage(
+      pageState.pdfDoc1,
+      pair.leftPageNumber,
+      'left',
+      undefined,
+      caches,
+      ctx
+    );
+    const right = await loadComparisonPage(
+      pageState.pdfDoc2,
+      pair.rightPageNumber,
+      'right',
+      undefined,
+      caches,
+      ctx
+    );
+    pages.push({ pair, left: left.model, right: right.model });
+  }
+
+  return pages;
+}
+
+async function ensureDocumentComparison(
+  ctx: CompareRenderContext
+): Promise<Map<number, ComparePageResult>> {
+  if (documentComparison) return documentComparison;
+
+  const pages = await loadDocumentPageModels(ctx);
+  const detectFixed = pageState.ignoreFixedContent;
+  const { beforeItems, afterItems } = collectDocumentItems(pages, detectFixed);
+  const diff = await diffTextRunsAsync(beforeItems, afterItems);
+  documentComparison = buildDocumentResults(pages, diff, detectFixed);
+  return documentComparison;
+}
+
+async function documentDisplayRatio(
+  pdfDoc: pdfjsLib.PDFDocumentProxy | null,
+  pageNumber: number | null,
+  container: HTMLElement,
+  ctx: CompareRenderContext
+): Promise<number> {
+  if (!pdfDoc || !pageNumber) return 1;
+  const page = await pdfDoc.getPage(pageNumber);
+  const displayScale = getRenderScale(
+    page,
+    container,
+    ctx.viewMode,
+    ctx.zoomLevel
+  );
+  return displayScale / COMPARE_RENDER.OFFLINE_SCALE;
+}
+
+async function buildDocumentPairComparison(
+  pair: ReturnType<typeof getActivePair>,
+  results: Map<number, ComparePageResult>,
+  ctx: CompareRenderContext,
+  container1: HTMLElement,
+  container2: HTMLElement
+): Promise<ComparePageResult> {
+  const base = results.get(pair!.pairIndex);
+  if (!base) {
+    return {
+      status: 'match',
+      leftPageNumber: pair!.leftPageNumber,
+      rightPageNumber: pair!.rightPageNumber,
+      changes: [],
+      summary: { added: 0, removed: 0, modified: 0, moved: 0, styleChanged: 0 },
+      categorySummary: {
+        text: 0,
+        image: 0,
+        'header-footer': 0,
+        annotation: 0,
+        formatting: 0,
+        background: 0,
+      },
+      visualDiff: null,
+      confidence: pair!.confidence,
+      usedOcr: false,
+    };
+  }
+
+  const ratioLeft = await documentDisplayRatio(
+    pageState.pdfDoc1,
+    pair!.leftPageNumber,
+    container1,
+    ctx
+  );
+  const ratioRight = await documentDisplayRatio(
+    pageState.pdfDoc2,
+    pair!.rightPageNumber,
+    container2,
+    ctx
+  );
+
+  return {
+    ...base,
+    changes: base.changes.map((change) => ({
+      ...change,
+      beforeRects: change.beforeRects.map((rect) =>
+        rescaleRect(rect, ratioLeft, ratioLeft)
+      ),
+      afterRects: change.afterRects.map((rect) =>
+        rescaleRect(rect, ratioRight, ratioRight)
+      ),
+    })),
+  };
+}
+
 async function renderBothPages() {
   if (!pageState.pdfDoc1 || !pageState.pdfDoc2) return;
 
@@ -579,27 +711,68 @@ async function renderBothPages() {
 
   const ctx = getRenderContext();
 
-  const comparison = await computeComparisonForPair(
-    pageState.pdfDoc1,
-    pageState.pdfDoc2,
-    pair,
-    caches,
-    ctx,
-    {
-      renderTargets: {
-        left: {
-          canvas: canvas1,
-          container: container1,
-          placeholderId: 'placeholder-1',
-        },
-        right: {
-          canvas: canvas2,
-          container: container2,
-          placeholderId: 'placeholder-2',
-        },
+  let comparison: ComparePageResult;
+
+  if (pageState.comparisonMode === 'document') {
+    const results = await ensureDocumentComparison(ctx);
+    if (gen !== renderGeneration) return;
+
+    await loadComparisonPage(
+      pageState.pdfDoc1,
+      pair.leftPageNumber,
+      'left',
+      {
+        canvas: canvas1,
+        container: container1,
+        placeholderId: 'placeholder-1',
       },
-    }
-  );
+      caches,
+      ctx
+    );
+    await loadComparisonPage(
+      pageState.pdfDoc2,
+      pair.rightPageNumber,
+      'right',
+      {
+        canvas: canvas2,
+        container: container2,
+        placeholderId: 'placeholder-2',
+      },
+      caches,
+      ctx
+    );
+    if (gen !== renderGeneration) return;
+
+    comparison = await buildDocumentPairComparison(
+      pair,
+      results,
+      ctx,
+      container1,
+      container2
+    );
+  } else {
+    comparison = await computeComparisonForPair(
+      pageState.pdfDoc1,
+      pageState.pdfDoc2,
+      pair,
+      caches,
+      ctx,
+      {
+        renderTargets: {
+          left: {
+            canvas: canvas1,
+            container: container1,
+            placeholderId: 'placeholder-1',
+          },
+          right: {
+            canvas: canvas2,
+            container: container2,
+            placeholderId: 'placeholder-2',
+          },
+        },
+      }
+    );
+  }
 
   if (gen !== renderGeneration) return;
 
@@ -704,6 +877,27 @@ function setViewMode(mode: 'overlay' | 'side-by-side') {
   }
 }
 
+function setComparisonMode(mode: CompareComparisonMode) {
+  if (pageState.comparisonMode === mode) return;
+  pageState.comparisonMode = mode;
+
+  const btnPage = getElement<HTMLButtonElement>('compare-mode-page');
+  const btnDocument = getElement<HTMLButtonElement>('compare-mode-document');
+  const applyState = (button: HTMLButtonElement | null, active: boolean) => {
+    if (!button) return;
+    button.classList.toggle('bg-indigo-600', active);
+    button.classList.toggle('bg-gray-700', !active);
+  };
+  applyState(btnPage, mode === 'page');
+  applyState(btnDocument, mode === 'document');
+
+  pageState.activeChangeIndex = 0;
+
+  if (pageState.pdfDoc1 && pageState.pdfDoc2) {
+    renderBothPages().catch(console.error);
+  }
+}
+
 async function handleFileInput(
   inputId: string,
   docKey: 'pdfDoc1' | 'pdfDoc2',
@@ -753,6 +947,7 @@ async function handleFileInput(
       caches.pageModelCache.clear();
       caches.comparisonCache.clear();
       caches.comparisonResultsCache.clear();
+      documentComparison = null;
       pageState.changeSearchQuery = '';
 
       const searchInput = getElement<HTMLInputElement>('compare-search-input');
@@ -850,6 +1045,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  const btnModePage = getElement<HTMLButtonElement>('compare-mode-page');
+  const btnModeDocument = getElement<HTMLButtonElement>(
+    'compare-mode-document'
+  );
+
+  if (btnModePage) {
+    btnModePage.addEventListener('click', function () {
+      setComparisonMode('page');
+    });
+  }
+
+  if (btnModeDocument) {
+    btnModeDocument.addEventListener('click', function () {
+      setComparisonMode('document');
+    });
+  }
+
   const flickerBtn = getElement<HTMLButtonElement>('flicker-btn');
   const canvas2 = getElement<HTMLCanvasElement>(
     'canvas-compare-2'
@@ -885,6 +1097,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const exportDropdownMenu = getElement<HTMLDivElement>('export-dropdown-menu');
   const ocrToggle = getElement<HTMLInputElement>('ocr-toggle');
   const overlayOcrToggle = getElement<HTMLInputElement>('overlay-ocr-toggle');
+  const ignoreFixedToggle = getElement<HTMLInputElement>('ignore-fixed-toggle');
   const searchInput = getElement<HTMLInputElement>('compare-search-input');
   const overlayAllBtn = getElement<HTMLButtonElement>('overlay-scope-all');
   const overlayContentOnlyBtn = getElement<HTMLButtonElement>(
@@ -1088,6 +1301,7 @@ document.addEventListener('DOMContentLoaded', function () {
       caches.pageModelCache.clear();
       caches.comparisonCache.clear();
       caches.comparisonResultsCache.clear();
+      documentComparison = null;
       if (pageState.pdfDoc1 && pageState.pdfDoc2) {
         await renderBothPages();
       }
@@ -1108,6 +1322,21 @@ document.addEventListener('DOMContentLoaded', function () {
     overlayOcrToggle.checked = pageState.useOcr;
     overlayOcrToggle.addEventListener('change', async function () {
       await handleOcrToggleChange(overlayOcrToggle.checked);
+    });
+  }
+
+  if (ignoreFixedToggle) {
+    ignoreFixedToggle.checked = pageState.ignoreFixedContent;
+    ignoreFixedToggle.addEventListener('change', function () {
+      pageState.ignoreFixedContent = ignoreFixedToggle.checked;
+      documentComparison = null;
+      if (
+        pageState.comparisonMode === 'document' &&
+        pageState.pdfDoc1 &&
+        pageState.pdfDoc2
+      ) {
+        renderBothPages().catch(console.error);
+      }
     });
   }
 
@@ -1163,6 +1392,10 @@ document.addEventListener('DOMContentLoaded', function () {
         exportDropdownMenu.classList.add('hidden');
         try {
           showLoader('Preparing PDF export...');
+          const documentResults =
+            pageState.comparisonMode === 'document'
+              ? await ensureDocumentComparison(getRenderContext())
+              : undefined;
           await exportComparePdf(
             mode,
             pageState.pdfDoc1,
@@ -1172,6 +1405,7 @@ document.addEventListener('DOMContentLoaded', function () {
               showLoader(message, percent);
             },
             {
+              documentResults,
               useOcr: pageState.useOcr,
               ocrLanguage: pageState.ocrLanguage,
               showOverlayDocument:
