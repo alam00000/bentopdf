@@ -407,6 +407,42 @@
           </button>
         </div>
 
+        <!-- Preview Size Control -->
+        <div
+          id="preview-size-toolbar"
+          class="flex items-center justify-end gap-2 mb-3"
+        >
+          <span class="text-sm text-gray-400 mr-1" data-i18n="previewSize.label"
+            >Preview size</span
+          >
+          <div
+            class="inline-flex rounded-lg overflow-hidden border border-gray-600"
+            id="preview-size-group"
+          >
+            <button
+              data-size="small"
+              data-i18n="previewSize.small"
+              class="preview-size-btn px-3 py-1.5 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
+            >
+              Small
+            </button>
+            <button
+              data-size="medium"
+              data-i18n="previewSize.medium"
+              class="preview-size-btn px-3 py-1.5 text-sm text-gray-300 hover:bg-gray-700 transition-colors border-l border-gray-600"
+            >
+              Medium
+            </button>
+            <button
+              data-size="large"
+              data-i18n="previewSize.large"
+              class="preview-size-btn px-3 py-1.5 text-sm text-gray-300 hover:bg-gray-700 transition-colors border-l border-gray-600"
+            >
+              Large
+            </button>
+          </div>
+        </div>
+
         <div
           id="pages-container"
           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4"

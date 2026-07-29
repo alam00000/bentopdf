@@ -17,6 +17,7 @@ export interface RenderConfig {
   onPageRendered?: (pageIndex: number, element: HTMLElement) => void;
   onBatchComplete?: () => void;
   shouldCancel?: () => boolean;
+  scale?: number;
 }
 
 /**
@@ -275,6 +276,7 @@ export async function renderPagesProgressively(
     eagerLoadBatches = 2,
     onProgress,
     onBatchComplete,
+    scale,
   } = config;
 
   const totalPages = pdfjsDoc.numPages;
@@ -298,7 +300,7 @@ export async function renderPagesProgressively(
       pageNumber: i,
       pdfjsDoc,
       container,
-      scale: useLazyLoading ? 0.5 : 1,
+      scale: scale ?? (useLazyLoading ? 0.5 : 1),
       createWrapper,
       placeholderElement: placeholders[i - 1],
     });

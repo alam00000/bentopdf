@@ -29,6 +29,33 @@ const organizeState: OrganizeState = {
   sortableInstance: null,
 };
 
+const PREVIEW_SIZE_KEY = 'previewSize';
+const DEFAULT_SIZE = 'small';
+const SIZE_CLASSES: Record<string, string> = {
+  small: 'grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-3',
+  medium: 'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4',
+  large: 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4',
+};
+
+function applyPreviewSize(size: string): void {
+  const grid = document.getElementById('page-grid');
+  if (!grid) return;
+  const hidden = grid.classList.contains('hidden');
+  grid.className = SIZE_CLASSES[size] ?? SIZE_CLASSES[DEFAULT_SIZE];
+  if (hidden) grid.classList.add('hidden');
+
+  document.querySelectorAll('.preview-size-btn').forEach((btn) => {
+    const active = btn.getAttribute('data-size') === size;
+    btn.classList.toggle('bg-indigo-600', active);
+    btn.classList.toggle('text-white', active);
+    btn.classList.toggle('hover:bg-indigo-700', active);
+  });
+}
+
+function currentPreviewSize(): string {
+  return localStorage.getItem(PREVIEW_SIZE_KEY) || DEFAULT_SIZE;
+}
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializePage);
 } else {
@@ -72,6 +99,20 @@ function initializePage() {
 
   const applyOrderBtn = document.getElementById('apply-order-btn');
   if (applyOrderBtn) applyOrderBtn.addEventListener('click', applyCustomOrder);
+
+  const sizeGroup = document.getElementById('preview-size-group');
+  if (sizeGroup) {
+    sizeGroup.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest(
+        '.preview-size-btn'
+      ) as HTMLElement | null;
+      if (!btn) return;
+      const size = btn.getAttribute('data-size') || DEFAULT_SIZE;
+      localStorage.setItem(PREVIEW_SIZE_KEY, size);
+      applyPreviewSize(size);
+    });
+    applyPreviewSize(currentPreviewSize());
+  }
 }
 
 function applyCustomOrder() {
@@ -273,6 +314,8 @@ async function renderThumbnails() {
   grid.classList.remove('hidden');
   processBtn.classList.remove('hidden');
   advancedSettings.classList.remove('hidden');
+  document.getElementById('preview-size-toolbar')?.classList.remove('hidden');
+  applyPreviewSize(currentPreviewSize());
 
   for (let i = 1; i <= organizeState.totalPages; i++) {
     const page = await organizeState.pdfJsDoc.getPage(i);
@@ -414,6 +457,7 @@ function resetState() {
   }
   document.getElementById('process-btn')?.classList.add('hidden');
   document.getElementById('advanced-settings')?.classList.add('hidden');
+  document.getElementById('preview-size-toolbar')?.classList.add('hidden');
   const fileDisplayArea = document.getElementById('file-display-area');
   if (fileDisplayArea) fileDisplayArea.innerHTML = '';
 }

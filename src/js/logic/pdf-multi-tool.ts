@@ -23,6 +23,36 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
 import { t } from '../i18n/i18n';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+const PREVIEW_SIZE_KEY = 'previewSize';
+const DEFAULT_SIZE = 'small';
+const SIZE_CLASSES: Record<string, string> = {
+  small:
+    'grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 gap-2 sm:gap-3',
+  medium:
+    'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4',
+  large:
+    'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4',
+};
+
+function applyPreviewSize(size: string): void {
+  const grid = document.getElementById('pages-container');
+  if (!grid) return;
+  const hidden = grid.classList.contains('hidden');
+  grid.className = SIZE_CLASSES[size] ?? SIZE_CLASSES[DEFAULT_SIZE];
+  if (hidden) grid.classList.add('hidden');
+
+  document.querySelectorAll('.preview-size-btn').forEach((btn) => {
+    const active = btn.getAttribute('data-size') === size;
+    btn.classList.toggle('bg-indigo-600', active);
+    btn.classList.toggle('text-white', active);
+    btn.classList.toggle('hover:bg-indigo-700', active);
+  });
+}
+
+function currentPreviewSize(): string {
+  return localStorage.getItem(PREVIEW_SIZE_KEY) || DEFAULT_SIZE;
+}
+
 interface PageData {
   id: string; // Unique ID for DOM reconciliation
   pdfIndex: number;
@@ -341,6 +371,20 @@ function initializeTool() {
     }
   });
 
+  const sizeGroup = document.getElementById('preview-size-group');
+  if (sizeGroup) {
+    sizeGroup.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest(
+        '.preview-size-btn'
+      ) as HTMLElement | null;
+      if (!btn) return;
+      const size = btn.getAttribute('data-size') || DEFAULT_SIZE;
+      localStorage.setItem(PREVIEW_SIZE_KEY, size);
+      applyPreviewSize(size);
+    });
+    applyPreviewSize(currentPreviewSize());
+  }
+
   setupGlobalDragAndDrop();
 
   document.getElementById('upload-area')?.classList.remove('hidden');
@@ -586,6 +630,7 @@ async function loadPdfs(files: File[]) {
             batchSize: 8,
             useLazyLoading: true,
             lazyLoadMargin: '400px',
+            scale: 1,
             onProgress: (current, total) => {
               showLoading(current, total);
             },
@@ -656,11 +701,11 @@ function createPageElement(
 
   const preview = document.createElement('div');
   preview.className =
-    'bg-white rounded mb-2 overflow-hidden w-full flex items-center justify-center relative h-36 sm:h-64';
+    'page-preview-box bg-white rounded mb-2 overflow-hidden w-full flex items-center justify-center relative min-h-32';
 
   if (canvas) {
     const previewCanvas = canvas;
-    previewCanvas.className = 'max-w-full max-h-full object-contain';
+    previewCanvas.className = 'max-w-full h-auto block object-contain';
 
     previewCanvas.style.transform = `rotate(${pageData.visualRotation}deg)`;
     previewCanvas.style.transition = 'transform 0.2s ease';

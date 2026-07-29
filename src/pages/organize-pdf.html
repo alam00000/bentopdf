@@ -164,10 +164,46 @@
         <!-- File Display -->
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
+        <!-- Preview Size Control -->
+        <div
+          id="preview-size-toolbar"
+          class="hidden mt-6 mb-2 flex items-center justify-end gap-2"
+        >
+          <span class="text-sm text-gray-400 mr-1" data-i18n="previewSize.label"
+            >Preview size</span
+          >
+          <div
+            class="inline-flex rounded-lg overflow-hidden border border-gray-600"
+            id="preview-size-group"
+          >
+            <button
+              data-size="small"
+              data-i18n="previewSize.small"
+              class="preview-size-btn px-3 py-1.5 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
+            >
+              Small
+            </button>
+            <button
+              data-size="medium"
+              data-i18n="previewSize.medium"
+              class="preview-size-btn px-3 py-1.5 text-sm text-gray-300 hover:bg-gray-700 transition-colors border-l border-gray-600"
+            >
+              Medium
+            </button>
+            <button
+              data-size="large"
+              data-i18n="previewSize.large"
+              class="preview-size-btn px-3 py-1.5 text-sm text-gray-300 hover:bg-gray-700 transition-colors border-l border-gray-600"
+            >
+              Large
+            </button>
+          </div>
+        </div>
+
         <!-- Page Grid (shown after file upload) -->
         <div
           id="page-grid"
-          class="hidden grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 my-6"
+          class="hidden grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-3"
         ></div>
 
         <!-- Advanced Settings -->
