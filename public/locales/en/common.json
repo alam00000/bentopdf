@@ -122,6 +122,12 @@
     "downloadAsPdf": "Download as PDF",
     "close": "Close"
   },
+  "previewSize": {
+    "label": "Preview size",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large"
+  },
   "settings": {
     "title": "Settings",
     "shortcuts": "Shortcuts",

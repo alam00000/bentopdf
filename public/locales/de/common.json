@@ -122,6 +122,12 @@
     "downloadAsPdf": "Als PDF herunterladen",
     "close": "Schließen"
   },
+  "previewSize": {
+    "label": "Vorschaugröße",
+    "small": "Klein",
+    "medium": "Mittel",
+    "large": "Groß"
+  },
   "settings": {
     "title": "Einstellungen",
     "shortcuts": "Tastenkürzel",
