@@ -46,6 +46,7 @@ function applyPreviewSize(size: string): void {
 
   document.querySelectorAll('.preview-size-btn').forEach((btn) => {
     const active = btn.getAttribute('data-size') === size;
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     btn.classList.toggle('bg-indigo-600', active);
     btn.classList.toggle('text-white', active);
     btn.classList.toggle('hover:bg-indigo-700', active);
