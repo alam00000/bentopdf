@@ -1,0 +1,1154 @@
+{
+  "categories": {
+    "popularTools": "כלים פופולריים",
+    "editAnnotate": "עריכה והערות",
+    "convertToPdf": "המרה ל-PDF",
+    "convertFromPdf": "המרה מ-PDF",
+    "organizeManage": "ארגון וניהול",
+    "optimizeRepair": "אופטימיזציה ותיקון",
+    "securePdf": "אבטחת PDF",
+    "input": "קלט",
+    "output": "פלט"
+  },
+  "convertToPdf": "המרה ל-PDF",
+  "pdfMultiTool": {
+    "name": "מולטי-כלי PDF",
+    "subtitle": "מיזוג, פיצול, ארגון, מחיקה, סיבוב, הוספת דפים חלקים, חילוץ ושכפול בממשק מאוחד אחד."
+  },
+  "mergePdf": {
+    "name": "מיזוג PDF",
+    "subtitle": "שילוב מספר קבצי PDF לקובץ אחד. שומר על סימניות.",
+    "retainPageLabels": "שמור על תוויות הדפים המקוריות מכל קובץ",
+    "retainPageLabelsHint": "כבוי (ברירת מחדל): ה-PDF הממוזג משתמש במספור דפים טבעי 1–N. מופעל: תוויות הדפים המקוריות של כל קובץ נשמרות (עלול ליצור תוויות כפולות)."
+  },
+  "splitPdf": {
+    "name": "פיצול PDF",
+    "subtitle": "חילוץ טווח דפים לקובץ PDF חדש."
+  },
+  "compressPdf": {
+    "name": "דחיסת PDF",
+    "subtitle": "הקטנת גודל הקובץ של ה-PDF שלך.",
+    "algorithmLabel": "אלגוריתם דחיסה",
+    "condense": "Condense (מומלץ)",
+    "photon": "Photon (לקבצי PDF עתירי תמונות)",
+    "condenseInfo": "Condense משתמש בדחיסה מתקדמת: מסיר משקל עודף, מבצע אופטימיזציה לתמונות ומצמצם גופנים. הכי טוב לרוב קבצי ה-PDF.",
+    "photonInfo": "Photon ממיר דפים לתמונות. מיועד לקבצי PDF עתירי תמונות או סרוקים.",
+    "photonWarning": "אזהרה: הטקסט יהפוך לבלתי ניתן לבחירה וקישורים יפסיקו לעבוד.",
+    "levelLabel": "רמת דחיסה",
+    "light": "קלה (שמירה על האיכות)",
+    "balanced": "מאוזנת (מומלץ)",
+    "aggressive": "אגרסיבית (קבצים קטנים יותר)",
+    "extreme": "קיצונית (דחיסה מקסימלית)",
+    "grayscale": "המר לגווני אפור",
+    "grayscaleHint": "מפחית את גודל הקובץ על ידי הסרת מידע צבע",
+    "customSettings": "הגדרות מותאמות אישית",
+    "customSettingsHint": "כוונון עדין של פרמטרי הדחיסה:",
+    "outputQuality": "איכות הפלט",
+    "resizeImagesTo": "שנה גודל תמונות ל-",
+    "onlyProcessAbove": "עבד רק מעל",
+    "removeMetadata": "הסר מטא-דאטה",
+    "subsetFonts": "צמצם גופנים (הסר תווים שאינם בשימוש)",
+    "removeThumbnails": "הסר תמונות מזעור מוטמעות",
+    "compressButton": "דחוס PDF"
+  },
+  "pdfEditor": {
+    "name": "עורך PDF",
+    "subtitle": "הוספת הערות, הדגשה, השחרה (הסתרה), תגובות, הוספת צורות/תמונות, חיפוש וצפייה בקבצי PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG ל-PDF",
+    "subtitle": "צור PDF מתמונות JPG, JPEG ו-JPEG2000 (JP2/JPX)."
+  },
+  "signPdf": {
+    "name": "חתימה על PDF",
+    "subtitle": "ציור, הקלדה או העלאה של החתימה שלך."
+  },
+  "cropPdf": {
+    "name": "חיתוך PDF",
+    "subtitle": "חיתוך השוליים של כל דף ב-PDF שלך."
+  },
+  "extractPages": {
+    "name": "חילוץ דפים",
+    "subtitle": "שמירת בחירת דפים כקבצים חדשים."
+  },
+  "duplicateOrganize": {
+    "name": "שכפול וארגון",
+    "subtitle": "שכפול, שינוי סדר ומחיקת דפים.",
+    "saveChanges": "שמור שינויים"
+  },
+  "deletePages": {
+    "name": "מחיקת דפים",
+    "subtitle": "הסרת דפים ספציפיים מהמסמך שלך."
+  },
+  "editBookmarks": {
+    "name": "עריכת סימניות",
+    "subtitle": "הוספה, עריכה, ייבוא, מחיקה וחילוץ של סימניות PDF.",
+    "autoExtractExisting": "חילוץ אוטומטי של סימניות קיימות",
+    "importSectionTitle": "או ייבא סימניות",
+    "csvFormat": "פורמט CSV: title,page,level",
+    "jsonFormat": "פורמט JSON",
+    "uploadCsvAction": "לחץ להעלאת CSV",
+    "uploadJsonAction": "לחץ להעלאת JSON",
+    "orDragHere": "או גרור לכאן"
+  },
+  "tableOfContents": {
+    "name": "תוכן עניינים",
+    "subtitle": "צור דף תוכן עניינים מתוך סימניות ה-PDF.",
+    "titleLabel": "כותרת תוכן העניינים",
+    "fontSize": "גודל גופן",
+    "fontFamily": "משפחת גופן",
+    "addBookmark": "הוסף סימנייה עבור דף תוכן העניינים",
+    "generateButton": "צור תוכן עניינים",
+    "selectPdfFirst": "אנא בחר קובץ PDF תחילה.",
+    "statusReadingFileMainThread": "קורא קובץ (Main Thread)...",
+    "statusGenerating": "מייצר תוכן עניינים...",
+    "errorReadingFileWithMessage": "שגיאה בקריאת הקובץ: {{message}}",
+    "successGeneratedDownloadStarted": "תוכן העניינים נוצר בהצלחה! ההורדה החלה.",
+    "workerErrorWithMessage": "שגיאה: {{message}}",
+    "workerErrorOccurred": "ארעה שגיאת Worker. בדוק את ה-console לפרטים."
+  },
+  "pageNumbers": {
+    "name": "מספרי דפים",
+    "subtitle": "הוספת מספרי דפים למסמך שלך."
+  },
+  "addPageLabels": {
+    "name": "הוספת תוויות דפים",
+    "subtitle": "החלת תוויות דפי PDF עם ספרות רומיות, קידומות והתחלות מותאמות אישית.",
+    "uploadHint": "קובץ PDF",
+    "howLabelsWorkTitle": "איך תוויות עובדות",
+    "howLabelsWorkStep1": "השאר את טווח הדפים ריק כדי להוסיף תוויות לכל הדפים.",
+    "howLabelsWorkStep2": "השתמש בסגנונות כמו ספרות רומיות לעמודי הפתיחה ומספור עשרוני לגוף המסמך.",
+    "howLabelsWorkStep3": "השתמש בקידומת (Prefix) עם ערך התחלה 0 כדי ליצור תוויות כגון A-0, A-1, A-2.",
+    "howLabelsWorkStep4": "אפשר התקדמות כאשר כלל אחד משתמש בטווח לא רציף כגון 1-9,30-40 או אי-זוגי (odd).",
+    "labelRulesTitle": "כללי תוויות",
+    "addRule": "הוסף כלל",
+    "removeExistingLabels": "הסר תוויות דפים קיימות לפני החלת כללים אלה",
+    "cpdfNote": "כלי זה משתמש ב-CoherentPDF בדפדפן שלך. אם CoherentPDF אינו מוגדר, תתבקש להגדיר אותו בהגדרות WASM.",
+    "processButton": "הוסף תוויות דפים",
+    "howItWorksUploadTitle": "העלאת קובץ",
+    "howItWorksUploadDescription": "בחר את ה-PDF שברצונך לשנות לו תוויות.",
+    "howItWorksDefineTitle": "הגדרת כללים",
+    "howItWorksDefineDescription": "הגדר כלל תוויות דפים אחד או יותר עם טווי דפים, סגנונות, קידומות וערכי התחלה.",
+    "howItWorksDownloadTitle": "הורדה",
+    "howItWorksDownloadDescription": "שמור את ה-PDF המעודכן עם תוויות הדפים החדשות שלו.",
+    "relatedToolsTitle": "כלי PDF קשורים",
+    "faqWhatIsQuestion": "מהי תווית דף?",
+    "faqWhatIsAnswer": "תווית דף היא המספור המוצג על ידי קוראי PDF בתמונות מזעור, ניווט בין דפים ובדיאלוגי הדפסה. היא אינה מדפיסה טקסט חדש על גבי הדף עצמו.",
+    "faqMixQuestion": "האם ניתן לערבב ספרות רומיות ומספרים רגילים?",
+    "faqMixAnswer": "כן. הוסף מספר כללים, כגון 1-4 עם LowercaseRoman ו-5-20 עם DecimalArabic.",
+    "faqPrivacyQuestion": "האם הקבצים שלי נשארים פרטיים?",
+    "faqPrivacyAnswer": "כן. העיבוד מתבצע בדפדפן שלך באמצעות CoherentPDF WASM. ה-PDF שלך אינו עוזב את המכשיר שלך.",
+    "invalidFileTitle": "קובץ לא תקין",
+    "invalidFileMessage": "אנא העלה קובץ PDF תקין.",
+    "loadingPdf": "טוען PDF...",
+    "protectedPdfTitle": "PDF מוגן",
+    "protectedPdfMessage": "קובץ PDF זה מוגן באמצעות סיסמה. אנא השתמש בכלי פענוח או שינוי הרשאות תחילה.",
+    "loadErrorMessage": "טעינת קובץ ה-PDF נכשלה. הקובץ עשוי להיות לא תקין, פגום או מוגן בסיסמה.",
+    "fileMeta": "{{size}} • {{count}} דפים",
+    "ruleTitle": "כלל תוויות {{number}}",
+    "pageRangeLabel": "טווח דפים",
+    "pageRangePlaceholder": "כל הדפים, או למשל 1-4, 7, odd",
+    "labelStyleLabel": "סגנון תווית",
+    "labelPrefixLabel": "קידומת תווית",
+    "labelPrefixPlaceholder": "קידומת אופציונלית, למשל A-",
+    "startValueLabel": "ערך התחלה",
+    "continueNumbering": "המשך מספור לאורך טווחים לא רציפים",
+    "examplesNote": "דוגמאות: 1-4 עבור עמודי פתיחה רומיים, 15-20 עם קידומת A- וערך התחלה 0, או odd כאשר התקדמות מופעלת.",
+    "uploadFirstMessage": "אנא העלה קובץ PDF תחילה.",
+    "applyingLabels": "מחיל תוויות דפים...",
+    "invalidRangeMessage": "לכלל {{number}} יש טווח דפים לא תקין: {{range}}",
+    "allPages": "כל הדפים",
+    "emptyOutputMessage": "CoherentPDF יצר קובץ ריק.",
+    "successMessage": "תוויות הדפים הנוספו בהצלחה!",
+    "processErrorMessage": "לא ניתן היה להוסיף תוויות דפים.",
+    "styleOptions": {
+      "DecimalArabic": "ספרות ערביות (Decimal Arabic)",
+      "LowercaseRoman": "ספרות רומיות קטנות (Lowercase Roman)",
+      "UppercaseRoman": "ספרות רומיות גדולות (Uppercase Roman)",
+      "LowercaseLetters": "אותיות קטנות (Lowercase Letters)",
+      "UppercaseLetters": "אותיות גדולות (Uppercase Letters)",
+      "NoLabelPrefixOnly": "קידומת בלבד (ללא תווית)"
+    }
+  },
+  "batesNumbering": {
+    "name": "מספור בייטס (Bates Numbering)",
+    "subtitle": "הוספת מספרי בייטס עוקבים לאורך קובץ PDF אחד או יותר."
+  },
+  "addWatermark": {
+    "name": "הוספת סימן מים",
+    "subtitle": "הטבעת טקסט או תמונה על גבי דפי ה-PDF שלך.",
+    "applyToAllPages": "החל על כל הדפים"
+  },
+  "headerFooter": {
+    "name": "כותרת עליונה ותחתונה",
+    "subtitle": "הוספת טקסט לחלק העליון והתחתון של הדפים."
+  },
+  "invertColors": {
+    "name": "היפוך צבעים",
+    "subtitle": "יצירת גרסת \"מצב כהה\" (Dark Mode) ל-PDF שלך."
+  },
+  "scannerEffect": {
+    "name": "אפקט סורק",
+    "subtitle": "גרם ל-PDF שלך להיראות כמו מסמך סרוק.",
+    "scanSettings": "הגדרות סריקה",
+    "colorspace": "מרחב צבע",
+    "gray": "אפור",
+    "border": "גבול",
+    "rotate": "סובב",
+    "rotateVariance": "שונות סיבוב",
+    "brightness": "בהירות",
+    "contrast": "ניגודיות",
+    "blur": "טשטוש",
+    "noise": "רעש",
+    "yellowish": "צהבהב",
+    "resolution": "רזולוציה",
+    "processButton": "החל אפקט סורק"
+  },
+  "adjustColors": {
+    "name": "כוונון צבעים",
+    "subtitle": "כוונון עדין של בהירות, ניגודיות, רוויה ועוד ב-PDF שלך.",
+    "colorSettings": "הגדרות צבע",
+    "brightness": "בהירות",
+    "contrast": "ניגודיות",
+    "saturation": "רוויה",
+    "hueShift": "הסטת גוון (Hue)",
+    "temperature": "טמפרטורה",
+    "tint": "גוון (Tint)",
+    "gamma": "גאמה",
+    "sepia": "ספיה",
+    "processButton": "החל כוונון צבעים"
+  },
+  "backgroundColor": {
+    "name": "צבע רקע",
+    "subtitle": "שינוי צבע הרקע של ה-PDF שלך."
+  },
+  "changeTextColor": {
+    "name": "שינוי צבע טקסט",
+    "subtitle": "שינוי צבע הטקסט ב-PDF שלך."
+  },
+  "addStamps": {
+    "name": "הוספת חותמות",
+    "subtitle": "הוספת חותמות תמונה ל-PDF שלך באמצעות סרגל כלי ההערות.",
+    "usernameLabel": "שם משתמש לחותמת",
+    "usernamePlaceholder": "הזן את שמך (עבור חותמות)",
+    "usernameHint": "שם זה יופיע על חותמות שתצור.",
+    "saveButton": "שמור PDF עם חותמות"
+  },
+  "removeAnnotations": {
+    "name": "הסרת הערות",
+    "subtitle": "הסרת תגובות, הדגשות וקישורים."
+  },
+  "pdfFormFiller": {
+    "name": "מלא טפסי PDF",
+    "subtitle": "מילוי טפסים ישירות בדפדפן. תומך גם בטפסי XFA.",
+    "uploadHint": "העלה PDF עם שדות טופס. מלא אותם ישירות בצופה למטה, ולאחר מכן לחץ על הכפתור כדי לשמור ולהוריד את הטופס המלא. תומך גם בטפסי XFA.",
+    "xfaNoteTitle": "הערה לגבי טפסי XFA:",
+    "xfaNoteDescription": "XFA (XML Forms Architecture) הוא פורמט ישן שנתמך רק על ידי צפי PDF מסוימים כמו BentoPDF ו-Firefox. אם תפתח קובץ XFA PDF בתוכנה אחרת ותראה דפים ריקים או ללא שדות טופס, פירוש הדבר שצופה זה אינו תומך ב-XFA. לצפייה ומילוי תקינים של טפסי XFA, השתמש ב-Firefox או בממלא הטפסים של BentoPDF."
+  },
+  "createPdfForm": {
+    "name": "צור טופס PDF",
+    "subtitle": "יצירת טפסי PDF למילוי עם שדות טקסט בגרירה ושחרור.",
+    "orSeparator": "או",
+    "createBlankPdf": "צור PDF ריק"
+  },
+  "removeBlankPages": {
+    "name": "הסרת דפים ריקים",
+    "subtitle": "זיהוי ומחיקה אוטומטית של דפים ריקים.",
+    "sensitivityHint": "גבוה יותר = מחמיר יותר, רק דפים ריקים לחלוטין. נמוך יותר = מאפשר דפים עם מעט תוכן."
+  },
+  "imageToPdf": {
+    "name": "תמונות ל-PDF",
+    "subtitle": "המרת JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP ל-PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG ל-PDF",
+    "subtitle": "יצירת PDF מתמונה אחת או יותר מסוג PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP ל-PDF",
+    "subtitle": "יצירת PDF מתמונה אחת או יותר מסוג WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG ל-PDF",
+    "subtitle": "יצירת PDF מתמונה אחת או יותר מסוג SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP ל-PDF",
+    "subtitle": "יצירת PDF מתמונה אחת או יותר מסוג BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC ל-PDF",
+    "subtitle": "יצירת PDF מתמונה אחת או יותר מסוג HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF ל-PDF",
+    "subtitle": "יצירת PDF מתמונה אחת או יותר מסוג TIFF."
+  },
+  "textToPdf": {
+    "name": "טקסט ל-PDF",
+    "subtitle": "המרת קובץ טקסט פשוט (Plain Text) ל-PDF.",
+    "uploadFiles": "העלאת קבצים",
+    "typeText": "הקלד טקסט",
+    "acceptedFormats": "קבצי טקסט (.txt)",
+    "fontFamily": "משפחת גופן",
+    "fontSize": "גודל גופן",
+    "textColor": "צבע טקסט",
+    "pageSize": "גודל דף",
+    "rtlAutoDetectNote": "שפות מימין לשמאל (ערבית, אורדו, פרסית וכו') מזוהות אוטומטית וכיוון הטקסט מותאם בהתאם.",
+    "createButton": "צור PDF"
+  },
+  "jsonToPdf": {
+    "name": "JSON ל-PDF",
+    "subtitle": "המרת קבצי JSON לפורמט PDF.",
+    "noteLabel": "הערה:",
+    "noteText": "רק קבצי JSON שנוצרו על ידי הכלי להמרת PDF ל-JSON נתמכים. קבצי JSON סטנדרטיים מכלים אחרים לא יעבדו.",
+    "acceptedFormats": "מספר קבצי JSON",
+    "status": {
+      "selectAtLeastOne": "אנא בחר לפחות קובץ JSON אחד",
+      "selectedReady": "נבחרו {{count}} קבצים. מוכן להמרה!",
+      "readingFiles": "קורא קבצים (Main Thread)...",
+      "converting": "ממיר קבצי JSON לקבצי PDF...",
+      "readError": "שגיאה בקריאת קבצים: {{message}}",
+      "creatingZip": "יוצר קובץ ZIP...",
+      "success": "קבצי JSON הומרו ל-PDF בהצלחה! הורדת ה-ZIP החלה.",
+      "zipError": "שגיאה ביצירת ZIP: {{message}}",
+      "workerError": "שגיאת Worker: {{message}}",
+      "getStarted": "בחר קבצי JSON כדי להתחיל"
+    }
+  },
+  "pdfToJpg": {
+    "name": "PDF ל-JPG",
+    "subtitle": "המרת כל דף PDF לתמונת JPG.",
+    "imageQuality": "איכות תמונה",
+    "imageQualityExplanation": "איכות גבוהה יותר = גודל קובץ גדול יותר",
+    "alert": {
+      "invalidFile": "קובץ לא תקין",
+      "invalidFileExplanation": "אנא העלה קובץ PDF.",
+      "noFile": "אין קובץ",
+      "noFileExplanation": "אנא העלה קובץ PDF תחילה.",
+      "conversionSuccess": "ה-PDF הומר לתמונות JPG בהצלחה!",
+      "conversionError": "המרת ה-PDF ל-JPG נכשלה. הקובץ עשוי להיות פגום."
+    },
+    "loader": {
+      "converting": "ממיר ל-JPG..."
+    }
+  },
+  "pdfToPng": {
+    "name": "PDF ל-PNG",
+    "subtitle": "המרת כל דף PDF לתמונת PNG.",
+    "imageScale": "קנה מידה של תמונה",
+    "imageScaleExplanation": "קנה מידה גבוה יותר = איכות טובה יותר אך גודל קובץ גדול יותר",
+    "alert": {
+      "invalidFile": "קובץ לא תקין",
+      "invalidFileExplanation": "אנא העלה קובץ PDF.",
+      "noFile": "אין קובץ",
+      "noFileExplanation": "אנא העלה קובץ PDF תחילה.",
+      "conversionSuccess": "ה-PDF הומר לתמונות PNG בהצלחה!",
+      "conversionError": "המרת ה-PDF ל-PNG נכשלה. הקובץ עשוי להיות פגום."
+    },
+    "loader": {
+      "converting": "ממיר ל-PNG..."
+    }
+  },
+  "pdfToWebp": {
+    "name": "PDF ל-WebP",
+    "subtitle": "המרת כל דף PDF לתמונת WebP.",
+    "imageQuality": "איכות תמונה",
+    "imageQualityExplanation": "איכות גבוהה יותר = גודל קובץ גדול יותר",
+    "alert": {
+      "invalidFile": "קובץ לא תקין",
+      "invalidFileExplanation": "אנא העלה קובץ PDF.",
+      "noFile": "אין קובץ",
+      "noFileExplanation": "אנא העלה קובץ PDF תחילה.",
+      "conversionSuccess": "ה-PDF הומר לתמונות WebP בהצלחה!",
+      "conversionError": "המרת ה-PDF ל-WebP נכשלה. הקובץ עשוי להיות פגום."
+    },
+    "loader": {
+      "converting": "ממיר ל-WebP..."
+    }
+  },
+  "pdfToBmp": {
+    "name": "PDF ל-BMP",
+    "subtitle": "המרת כל דף PDF לתמונת BMP.",
+    "alert": {
+      "invalidFile": "קובץ לא תקין",
+      "invalidFileExplanation": "אנא העלה קובץ PDF.",
+      "noFile": "אין קובץ",
+      "noFileExplanation": "אנא העלה קובץ PDF תחילה.",
+      "conversionSuccess": "ה-PDF הומר לתמונות BMP בהצלחה!",
+      "conversionError": "המרת ה-PDF ל-BMP נכשלה. הקובץ עשוי להיות פגום."
+    },
+    "loader": {
+      "converting": "ממיר ל-BMP..."
+    }
+  },
+  "pdfToTiff": {
+    "name": "PDF ל-TIFF",
+    "subtitle": "המרת כל דף PDF לתמונת TIFF.",
+    "dpi": "DPI (רזולוציה)",
+    "dpiExplanation": "DPI גבוה יותר = איכות טובה יותר להדפסה, גודל קובץ גדול יותר",
+    "compression": "דחיסה",
+    "compressionExplanation": "LZW ו-Deflate הן ללא אובדן איכות (lossless). CCITT Group 4 הכי טוב למסמכים סרוקים בשחור-לבן.",
+    "colorMode": "מצב צבע",
+    "multiPage": "שמור כ-TIFF מרובה דפים (קובץ יחיד)",
+    "loadingVips": "טוען מעבד תמונות...",
+    "converting": "ממיר ל-TIFF...",
+    "alert": {
+      "invalidFile": "קובץ לא תקין",
+      "invalidFileExplanation": "אנא העלה קובץ PDF.",
+      "noFile": "אין קובץ",
+      "noFileExplanation": "אנא העלה קובץ PDF תחילה.",
+      "conversionSuccess": "ה-PDF הומר לתמונות TIFF בהצלחה!",
+      "conversionError": "המרת ה-PDF ל-TIFF נכשלה. הקובץ עשוי להיות פגום."
+    }
+  },
+  "pdfToCbz": {
+    "name": "PDF ל-CBZ",
+    "subtitle": "המרת PDF לקובץ CBZ (ארכיון קומיקס) עבור קוראי קומיקס.",
+    "imageFormat": "פורמט תמונה",
+    "quality": "איכות תמונה",
+    "qualityExplanation": "איכות גבוהה יותר = גודל קובץ גדול יותר",
+    "scale": "קנה מידה",
+    "scaleExplanation": "קנה מידה גבוה יותר = איכות טובה יותר למסכים ברזולוציה גבוהה",
+    "grayscale": "המר לגווני אפור",
+    "manga": "מצב מנגה (מימין לשמאל)",
+    "includeMetadata": "כלול מטא-דאטה של ComicInfo.xml",
+    "titleLabel": "כותרת",
+    "seriesLabel": "סדרה",
+    "authorLabel": "מחבר(ים)",
+    "numberLabel": "#",
+    "volumeLabel": "כרך",
+    "publisherLabel": "מוציא לאור",
+    "tagsLabel": "תגיות / ז'אנר",
+    "yearLabel": "שנת הוצאה",
+    "ratingLabel": "דירוג (0-5)",
+    "converting": "ממיר ל-CBZ...",
+    "alert": {
+      "invalidFile": "קובץ לא תקין",
+      "invalidFileExplanation": "אנא העלה קובץ PDF.",
+      "noFile": "אין קובץ",
+      "noFileExplanation": "אנא העלה קובץ PDF תחילה.",
+      "conversionSuccess": "ה-PDF הומר ל-CBZ בהצלחה!",
+      "conversionError": "המרת ה-PDF ל-CBZ נכשלה. הקובץ עשוי להיות פגום."
+    }
+  },
+  "pdfToGreyscale": {
+    "name": "PDF לגווני אפור",
+    "subtitle": "המרת כל הצבעים לשחור ולבן."
+  },
+  "pdfToJson": {
+    "name": "PDF ל-JSON",
+    "subtitle": "המרת קבצי PDF לפורמט JSON.",
+    "convertButton": "המר ל-JSON",
+    "status": {
+      "selectAtLeastOne": "אנא בחר לפחות קובץ PDF אחד",
+      "selectedReady": "נבחרו {{count}} קבצים. מוכן להמרה!",
+      "checkingEncrypted": "בודק אם קיימים קבצי PDF מוצפנים...",
+      "readingFiles": "קורא קבצים (Main Thread)...",
+      "converting": "ממיר קבצי PDF ל-JSON...",
+      "readError": "שגיאה בקריאת קבצים: {{message}}",
+      "creatingZip": "יוצר קובץ ZIP...",
+      "success": "קבצי ה-PDF הומרו ל-JSON בהצלחה! הורדת ה-ZIP החלה.",
+      "zipError": "שגיאה ביצירת ZIP: {{message}}",
+      "workerError": "שגיאת Worker: {{message}}",
+      "getStarted": "בחר קבצי PDF כדי להתחיל"
+    }
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "הפיכת PDF לניתן לחיפוש והעתקה.",
+    "languagesInDocument": "שפות במסמך",
+    "searchLanguagesPlaceholder": "חפש שפות...",
+    "selectedLabel": "נבחרו:",
+    "none": "ללא",
+    "advancedSettingsSummary": "הגדרות מתקדמות (מומלץ לשיפור הדיוק)",
+    "resolutionLabel": "רזולוציה",
+    "resolutionStandard": "רגילה (192 DPI)",
+    "resolutionHigh": "גבוהה (288 DPI)",
+    "resolutionUltra": "אולטרה (384 DPI)",
+    "binarizeLabel": "המרת התמונה לבינארית (שיפור ניגודיות לסריקות נקיות)",
+    "embedFullFontsLabel": "הטמעת גופנים מלאים (קובץ גדול יותר, תאימות טובה יותר)",
+    "whitelistPresetLabel": "הגדרה מראש של רשימת תווים מורשים",
+    "whitelistNone": "ללא (כל התווים)",
+    "whitelistAlphanumeric": "אותיות ומספרים + פיסוק בסיסי",
+    "whitelistNumbersCurrency": "מספרים + סמלי מטבע",
+    "whitelistLettersOnly": "אותיות בלבד (A-Z, a-z)",
+    "whitelistNumbersOnly": "מספרים בלבד (0-9)",
+    "whitelistInvoice": "חשבונית/קבלה (מספרים, $, ., -, /)",
+    "whitelistForms": "טפסים (אותיות ומספרים + סמלים נפוצים)",
+    "whitelistCustom": "בהתאמה אישית...",
+    "whitelistHelp": "רק תווים אלה יזוהו. השאר ריק עבור כל התווים.",
+    "whitelistInputLabel": "רשימת תווים מורשים (אופציונלי)",
+    "whitelistInputPlaceholder": "למשל, abcdefghijklmnopqrstuvwxyz0123456789$.,",
+    "startButton": "התחל OCR",
+    "progressInitializing": "אתחול...",
+    "resultsTitle": "ה-OCR הושלם",
+    "resultsDescription": "ה-PDF הניתן לחיפוש מוכן. תוכל גם להעתיק או להוריד את הטקסט שחולץ למטה.",
+    "copyToClipboard": "העתק ללוח",
+    "downloadTxt": "הורד כ-txt.",
+    "downloadSearchablePdf": "הורד PDF ניתן לחיפוש",
+    "statusPrefix": "סטטוס: {{status}}",
+    "availabilityInvalidConfig": "התקנה זו אינה חושפת שפות OCR תקינות. בנה אותה מחדש כאשר VITE_TESSERACT_AVAILABLE_LANGUAGES מוגדר לקודי Tesseract תקינים.",
+    "availabilityBundles": "התקנה זו כוללת חבילת OCR עבור: {{languages}}.",
+    "noLanguagesAvailable": "אין שפות OCR זמינות בהתקנה זו.",
+    "noLanguagesTitle": "לא נבחרו שפות",
+    "noLanguagesMessage": "אנא בחר לפחות שפה אחת עבור ה-OCR.",
+    "noFileTitle": "אין קובץ",
+    "noFileMessage": "אנא העלה קובץ PDF תחילה.",
+    "languageUnavailableTitle": "שפת ה-OCR אינה זמינה",
+    "ocrErrorTitle": "שגיאת OCR",
+    "ocrErrorMessage": "ארעה שגיאה במהלך תהליך ה-OCR. ייתכן שה-Worker נכשל בטעינה. אנא נסה שוב.",
+    "howItWorksTitle": "איך זה עובד:",
+    "extractTextLabel": "חילוץ טקסט:",
+    "extractTextDescription": "משתמש ב-Tesseract OCR כדי לזהות טקסט מתמונות סרוקות או מקבצי PDF.",
+    "searchableOutputLabel": "פלט ניתן לחיפוש:",
+    "searchableOutputDescription": "יוצר PDF חדש עם שכבת טקסט שקופה, מה שהופך את המסמך לניתן לחיפוש מלא תוך שמירה על המראה המקורי.",
+    "characterFilteringLabel": "סינון תווים:",
+    "characterFilteringDescription": "השתמש ברשימות מורשות כדי לסנן תווים לא רצויים ולשפר את הדיוק עבור סוגי מסמכים ספציפיים (חשבוניות, טפסים וכו').",
+    "multiLanguageSupportLabel": "תמיכה ברב-שפתיות:",
+    "multiLanguageSupportDescription": "בחר מספר שפות עבור מסמכים המכילים תוכן בשפות מעורבות."
+  },
+  "alternateMerge": {
+    "name": "מיזוג ושילוב דפים לסירוגין",
+    "subtitle": "מיזוג קבצי PDF על ידי סירוגין של דפים מכל PDF. שומר על סימניות.",
+    "retainPageLabels": "שמור על תוויות הדפים המקוריות מכל קובץ",
+    "retainPageLabelsHint": "כבוי (ברירת מחדל): ה-PDF הממוזג משתמש במספור דפים טבעי 1–N. מופעל: תוויות הדפים המקוריות של כל קובץ נשמרות (עלול ליצור תוויות כפולות)."
+  },
+  "addAttachments": {
+    "name": "הוספת קבצים מצורפים",
+    "subtitle": "הטמעת קובץ אחד או יותר בתוך ה-PDF שלך."
+  },
+  "extractAttachments": {
+    "name": "חילוץ קבצים מצורפים",
+    "subtitle": "חילוץ כל הקבצים המוטמעים מקובצי PDF כקובץ ZIP."
+  },
+  "editAttachments": {
+    "name": "עריכת קבצים מצורפים",
+    "subtitle": "צפייה או הסרה של קבצים מצורפים ב-PDF שלך."
+  },
+  "dividePages": {
+    "name": "חלוקת דפים",
+    "subtitle": "חלוקת דפים אופקית או אנכית."
+  },
+  "addBlankPage": {
+    "name": "הוספת דף חלק",
+    "subtitle": "הכנסת דף ריק בכל מקום ב-PDF שלך."
+  },
+  "reversePages": {
+    "name": "היפוך סדר הדפים",
+    "subtitle": "היפוך הסדר של כל הדפים במסמך שלך."
+  },
+  "rotatePdf": {
+    "name": "סיבוב PDF",
+    "subtitle": "סיבוב דפים בקפיצות של 90 מעלות."
+  },
+  "rotateCustom": {
+    "name": "סיבוב בזווית מותאמת אישית",
+    "subtitle": "סיבוב דפים בכל זווית מותאמת אישית."
+  },
+  "nUpPdf": {
+    "name": "N-Up PDF (מרובה דפים בדף אחד)",
+    "subtitle": "סידור מספר דפים על גבי גליון יחיד."
+  },
+  "combineToSinglePage": {
+    "name": "שילוב לדף יחיד",
+    "subtitle": "חיבור כל הדפים לגלילה רציפה אחת."
+  },
+  "viewMetadata": {
+    "name": "צפייה במטא-דאטה",
+    "subtitle": "בדיקת התכונות הנסתרות של ה-PDF שלך."
+  },
+  "editMetadata": {
+    "name": "עריכת מטא-דאטה",
+    "subtitle": "שינוי המחבר, הכותרת ותכונות נוספות."
+  },
+  "pdfsToZip": {
+    "name": "קבצי PDF ל-ZIP",
+    "subtitle": "אריזת מספר קבצי PDF בארכיון ZIP."
+  },
+  "comparePdfs": {
+    "name": "השוואת קבצי PDF",
+    "subtitle": "השוואת שני קבצי PDF זה לצד זה.",
+    "firstPdf": "PDF ראשון",
+    "secondPdf": "PDF שני",
+    "clickOrDrop": "לחץ או גרור",
+    "page": "דף",
+    "overlay": "שכבה על גבי שכבה (Overlay)",
+    "sideBySide": "זה לצד זה",
+    "flicker": "הבהוב (Flicker)",
+    "syncScroll": "סנכרון גלילה",
+    "export": "ייצוא",
+    "exportAsPdf": "ייצא כ-PDF",
+    "splitView": "תצוגת פיצול",
+    "alternating": "לסירוגין",
+    "leftDocument": "מסמך שמאלי",
+    "rightDocument": "מסמך ימני",
+    "original": "מקור",
+    "modified": "משונה",
+    "searchChanges": "חפש שינויים...",
+    "deleted": "נמחק",
+    "added": "נוסף",
+    "prevPage": "הדף הקודם",
+    "nextPage": "הדף הבא",
+    "prevChange": "השינוי הקודם",
+    "nextChange": "השינוי הבא",
+    "uploadTwoPdfs": "העלה שני קבצי PDF כדי לראות את ההבדלים.",
+    "noDifferences": "לא זוהו הבדלים בדף זה.",
+    "noMatchingChanges": "אין שינויים התואמים לסינון הנוכחי.",
+    "pageNotExist": "דף {{page}} אינו קיים ב-PDF זה.",
+    "noPairedPage": "אין דף מותאם לצד זה.",
+    "buildingModel": "בונה מודל התאמת דפים...",
+    "indexingPdf": "מפלח PDF {{num}} דף {{page}} מתוך {{total}}...",
+    "loadingComparison": "טוען השוואה {{current}} מתוך {{total}}...",
+    "runningOcr": "מריץ OCR על דף {{page}}...",
+    "preparingExport": "מכין ייצוא PDF...",
+    "renderingPage": "מרנדר דף {{current}} מתוך {{total}}...",
+    "exportError": "שגיאת ייצוא",
+    "exportFailed": "לא ניתן היה לייצא PDF השוואה.",
+    "loadingFile": "טוען {{name}}...",
+    "invalidFile": "קובץ לא תקין",
+    "invalidFileMsg": "אנא בחר קובץ PDF תקין.",
+    "loadError": "לא ניתן היה לטעון את ה-PDF. הוא עשוי להיות פגום או מוגן בסיסמה."
+  },
+  "posterizePdf": {
+    "name": "פיצול דפים גדולים (Posterize)",
+    "subtitle": "פיצול דף גדול למספר דפים קטנים יותר."
+  },
+  "fixPageSize": {
+    "name": "תיקון גודל דף",
+    "subtitle": "אחידות גודל כל הדפים לגודל אחיד."
+  },
+  "linearizePdf": {
+    "name": "ליניאריזציה של PDF",
+    "subtitle": "אופטימיזציה של PDF לצפייה מהירה ברשת."
+  },
+  "pageDimensions": {
+    "name": "ממדי דף",
+    "subtitle": "ניתוח גודל הדף, הכיוון והיחידות."
+  },
+  "removeRestrictions": {
+    "name": "הסרת הגבלות",
+    "subtitle": "הסרת הגנת סיסמה והגבלות אבטחה הקשורות לקבצי PDF חתומים דיגיטלית."
+  },
+  "repairPdf": {
+    "name": "תיקון PDF",
+    "subtitle": "שחזור נתונים מקבצי PDF פגומים או ניזוקים."
+  },
+  "encryptPdf": {
+    "name": "הצפנת PDF",
+    "subtitle": "נעילת ה-PDF שלך באמצעות הוספת סיסמה."
+  },
+  "sanitizePdf": {
+    "name": "חיטוי PDF",
+    "subtitle": "הסרת מטא-דאטה, הערות, סקריפטים ועוד."
+  },
+  "decryptPdf": {
+    "name": "פענוח PDF",
+    "subtitle": "פתיחת נעילת PDF על ידי הסרת הגנת סיסמה."
+  },
+  "flattenPdf": {
+    "name": "השטחת PDF",
+    "subtitle": "הפיכת שדות טופס והערות לבלתי ניתנים לעריכה."
+  },
+  "removeMetadata": {
+    "name": "הסרת מטא-דאטה",
+    "subtitle": "הסרת נתונים נסתרים מה-PDF שלך."
+  },
+  "changePermissions": {
+    "name": "שינוי הרשאות",
+    "subtitle": "הגדרה או שינוי של הרשאות משתמש ב-PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT ל-PDF",
+    "subtitle": "המרת קבצי OpenDocument Text לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי ODT",
+    "convertButton": "המר ל-PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV ל-PDF",
+    "subtitle": "המרת קבצי גיליון נתונים CSV לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי CSV",
+    "convertButton": "המר ל-PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF ל-PDF",
+    "subtitle": "המרת מסמכי Rich Text Format ל-PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי RTF",
+    "convertButton": "המר ל-PDF"
+  },
+  "wordToPdf": {
+    "name": "Word ל-PDF",
+    "subtitle": "המרת מסמכי Word (DOCX, DOC, ODT, RTF) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי DOCX, DOC, ODT, RTF",
+    "convertButton": "המר ל-PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel ל-PDF",
+    "subtitle": "המרת גיליונות אלקטרוניים של Excel (XLSX, XLS, ODS, CSV) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי XLSX, XLS, ODS, CSV",
+    "convertButton": "המר ל-PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint ל-PDF",
+    "subtitle": "המרת מצגות PowerPoint (PPTX, PPT, ODP) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי PPTX, PPT, ODP",
+    "convertButton": "המר ל-PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown ל-PDF",
+    "subtitle": "כתיבה או הדבקה של Markdown וייצוא כ-PDF המעוצב בצורה יפה.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "תצוגה מקדימה",
+    "btnUpload": "העלה",
+    "btnSyncScroll": "סנכרון גלילה",
+    "btnSettings": "הגדרות",
+    "btnExportPdf": "ייצא PDF",
+    "settingsTitle": "הגדרות Markdown",
+    "settingsPreset": "ערכה מוגדרת מראש",
+    "presetDefault": "ברירת מחדל (דמוי GFM)",
+    "presetCommonmark": "CommonMark (מחמיר)",
+    "presetZero": "מינימלי (ללא תכונות)",
+    "settingsOptions": "אפשרויות Markdown",
+    "optAllowHtml": "אפשר תגיות HTML",
+    "optBreaks": "המר שורות חדשות ל-<br>",
+    "optLinkify": "המרת כתובות URL לקישורים באופן אוטומטי",
+    "optTypographer": "טיפוגרפיה (מירכאות חכמות וכו')"
+  },
+  "pdfBooklet": {
+    "name": "חוברת PDF (Booklet)",
+    "subtitle": "סידור מחדש של דפים להדפסת חוברת דו-צדדית. קיפול וסיכות ליצירת חוברת.",
+    "howItWorks": "איך זה עובד:",
+    "step1": "העלה קובץ PDF.",
+    "step2": "הדפים יסודרו מחדש בסדר המיועד לחוברת.",
+    "step3": "הדפס דו-צדדי, הפוך על השוליים הקצרים, קפל והדק.",
+    "paperSize": "גודל נייר",
+    "orientation": "כיוון דף",
+    "portrait": "לאורך",
+    "landscape": "לרוחב",
+    "pagesPerSheet": "דפים בכל גליון",
+    "createBooklet": "צור חוברת",
+    "processing": "מעבד...",
+    "pageCount": "מספר הדפים יורחב למכפלה של 4 במידת הצורך."
+  },
+  "xpsToPdf": {
+    "name": "XPS ל-PDF",
+    "subtitle": "המרת מסמכי XPS/OXPS לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי XPS, OXPS",
+    "convertButton": "המר ל-PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI ל-PDF",
+    "subtitle": "המרת ספרים אלקטרוניים מסוג MOBI לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי MOBI",
+    "convertButton": "המר ל-PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB ל-PDF",
+    "subtitle": "המרת ספרים אלקטרוניים מסוג EPUB לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי EPUB",
+    "convertButton": "המר ל-PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 ל-PDF",
+    "subtitle": "המרת ספרים אלקטרוניים מסוג FictionBook (FB2) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי FB2",
+    "convertButton": "המר ל-PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ ל-PDF",
+    "subtitle": "המרת ארכיוני קומיקס (CBZ/CBR) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי CBZ, CBR",
+    "convertButton": "המר ל-PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD ל-PDF",
+    "subtitle": "המרת מסמכי WordPerfect (WPD) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי WPD",
+    "convertButton": "המר ל-PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS ל-PDF",
+    "subtitle": "המרת מסמכי WPS Office לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי WPS",
+    "convertButton": "המר ל-PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML ל-PDF",
+    "subtitle": "המרת מסמכי XML לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי XML",
+    "convertButton": "המר ל-PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages ל-PDF",
+    "subtitle": "המרת מסמכי Apple Pages לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי Pages",
+    "convertButton": "המר ל-PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG ל-PDF",
+    "subtitle": "המרת קבצי OpenDocument Graphics (ODG) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי ODG",
+    "convertButton": "המר ל-PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS ל-PDF",
+    "subtitle": "המרת קבצי OpenDocument Spreadsheet (ODS) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי ODS",
+    "convertButton": "המר ל-PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP ל-PDF",
+    "subtitle": "המרת קבצי OpenDocument Presentation (ODP) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי ODP",
+    "convertButton": "המר ל-PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB ל-PDF",
+    "subtitle": "המרת קבצי Microsoft Publisher (PUB) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי PUB",
+    "convertButton": "המר ל-PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD ל-PDF",
+    "subtitle": "המרת קבצי Microsoft Visio (VSD, VSDX) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי VSD, VSDX",
+    "convertButton": "המר ל-PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD ל-PDF",
+    "subtitle": "המרת קבצי Adobe Photoshop (PSD) לפורמט PDF. תומך במספר קבצים.",
+    "acceptedFormats": "קבצי PSD",
+    "convertButton": "המר ל-PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF ל-SVG",
+    "subtitle": "המרת כל דף בקובץ PDF לגרפיקת וקטור ניתנת להגדלה (SVG) לאיכות מושלמת בכל גודל."
+  },
+  "extractTables": {
+    "name": "חילוץ טבלאות מ-PDF",
+    "subtitle": "חילוץ טבלאות מקבצי PDF וייצוא כ-CSV, JSON, או Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF ל-CSV",
+    "subtitle": "חילוץ טבלאות מ-PDF והמרה לפורמט CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF ל-Excel",
+    "subtitle": "חילוץ טבלאות מ-PDF והמרה לפורמט Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF לטקסט",
+    "subtitle": "חילוץ טקסט מקבצי PDF ושמירה כטקסט פשוט (.txt). תומך במספר קבצים.",
+    "noteLabel": "הערה:",
+    "noteText": "כלי זה עובד רק עם קבצי PDF שנבנו דיגיטלית. עבור מסמכים סרוקים או קבצי PDF מבוססי תמונה, השתמש בכלי ה-OCR PDF שלנו.",
+    "convertButton": "חלץ טקסט"
+  },
+  "digitalSignPdf": {
+    "name": "חתימה דיגיטלית על PDF",
+    "pageTitle": "חתימה דיגיטלית על PDF - הוסף חתימה קריפטוגרפית | BentoPDF",
+    "subtitle": "הוספת חתימה דיגיטלית קריפטוגרפית ל-PDF שלך באמצעות תעודות X.509. תומך בפורמטי PKCS#12 (.pfx, .p12) ו-PEM. המפתח הפרטי שלך לעולם לא עוזב את הדפדפן שלך.",
+    "certificateSection": "תעודה",
+    "uploadCert": "העלאת תעודה (.pfx, .p12, .pem)",
+    "certPassword": "סיסמת תעודה",
+    "privateKeyPassword": "סיסמת מפתח פרטי",
+    "certPasswordPlaceholder": "הזן סיסמת תעודה",
+    "certInfo": "פרטי תעודה",
+    "certSubject": "נושא (Subject)",
+    "certIssuer": "מנפיק (Issuer)",
+    "certValidity": "בתוקף",
+    "signatureDetails": "פרטי חתימה (אופציונלי)",
+    "reason": "סיבה",
+    "reasonPlaceholder": "למשל, אני מאשר מסמך זה",
+    "location": "מיקום",
+    "locationPlaceholder": "למשל, תל אביב, ישראל",
+    "contactInfo": "פרטי התקשרות",
+    "contactPlaceholder": "למשל, email@example.com",
+    "visibleSignature": "חתימה חזותית",
+    "visibleSignatureDescription": "כאשר מופעל, תיבת חתימה חזותית תופיע ב-PDF. תוכל להעלות תמונה/לוגו או להוסיף טקסט. אם לא תספק אף אחד מהם, שם החותם מהתעודה יוצג אוטומטית.",
+    "signatureImage": "תמונת/לוגו חתימה (אופציונלי)",
+    "uploadSignatureImage": "העלאת תמונה (PNG, JPG, WebP)",
+    "signaturePreviewAlt": "תצוגה מקדימה של החתימה",
+    "remove": "הסר",
+    "page": "דף",
+    "firstPage": "דף ראשון",
+    "lastPage": "דף אחרון",
+    "allPages": "כל הדפים",
+    "customPage": "דף מותאם אישית #",
+    "pageNumber": "דף #",
+    "xPosition": "מיקום X (משמאל)",
+    "yPosition": "מיקום Y (מלמעלה)",
+    "width": "רוחב",
+    "height": "גובה",
+    "addTextOverlay": "הוסף שכבת טקסט",
+    "text": "טקסט",
+    "textPlaceholder": "למשל, נחתם דיגיטלית על ידי ישראל ישראלי",
+    "textColor": "צבע טקסט",
+    "fontSize": "גודל גופן",
+    "invalidImageTitle": "תמונה לא תקינה",
+    "invalidImageMessage": "אנא בחר תמונה מסוג PNG, JPG או WebP.",
+    "invalidFileTitle": "קובץ לא תקין",
+    "invalidFileMessage": "אנא בחר קובץ PDF.",
+    "invalidCertificateTitle": "תעודה לא תקינה",
+    "invalidCertificateMessage": "אנא בחר קובץ תעודה מסוג .pfx, .p12, או .pem.",
+    "certificateLoaded": "תעודה נטענה",
+    "certificateUnlocked": "תעודה שוחררה מנעילה",
+    "failedParsePem": "פענוח קובץ PEM נכשל",
+    "enterPasswordToUnlock": "הזן סיסמה לשחרור מנעילה",
+    "invalidPasswordOrCertificate": "סיסמה או תעודה לא תקינים",
+    "incorrectPassword": "סיסמה שגויה",
+    "failedParseCertificate": "פענוח התעודה נכשל",
+    "missingDataTitle": "נתונים חסרים",
+    "missingDataMessage": "אנא העלה קובץ PDF ותעודה תקינה.",
+    "applyingSignature": "מחיל חתימה דיגיטלית...",
+    "signingFailedTitle": "החתימה נכשלה",
+    "chainFetchFailed": "טעינת שרשרת התעודות נכשלה. הדבר עשוי לנבוע מבעיות רשת או מחוסר זמינות של פרוקסי התעודות. אנא בדוק את החיבור לאינטרנט ונסה שוב. אם הבעיה נמשכת, צור קשר עם התמיכה.",
+    "failedToSignPdf": "חתימה על ה-PDF נכשלה: {{message}}",
+    "defaultSignatureText": "נחתם דיגיטלית על ידי {{signer}}\n{{date}}",
+    "pageCount": "{{count}} דפים",
+    "howToStep1Title": "העלאת PDF",
+    "howToStep1Text": "בחר את מסמך ה-PDF שברצונך לחתום עליו",
+    "howToStep2Title": "העלאת תעודה",
+    "howToStep2Text": "ספק את קובץ התעודה שלך מסוג .pfx או .p12 ואת הסיסמה",
+    "howToStep3Title": "חתימה והורדה",
+    "howToStep3Text": "החל את החתימה הדיגיטלית והורד את ה-PDF החתום שלך",
+    "relatedEncryptDesc": "הגנה על ה-PDF שלך בסיסמה",
+    "relatedDecryptDesc": "הסרת סיסמת PDF",
+    "relatedFlattenDesc": "הפיכת הערות לקבועות",
+    "relatedSanitizeDesc": "הסרת נתונים נסתרים",
+    "relatedPermissionsDesc": "הגדרת הרשאות PDF",
+    "faqWhatIsQuestion": "מהי חתימה דיגיטלית?",
+    "faqWhatIsAnswer": "חתימה דיגיטלית היא מנגנון קריפטוגרפי המאמת את האותנטיות והשלמות של מסמך. בניגוד לחתימה מצוירת, היא משתמשת בקריפטוגרפיה של מפתח ציבורי (תעודות X.509) כדי להוכיח את זהות החותם.",
+    "faqFormatsQuestion": "אילו פורמטי תעודות נתמכים?",
+    "faqFormatsAnswer": "אנו תומכים בתעודות בפורמט PKCS#12 (.pfx, .p12) המכילות הן את התעודה והן את המפתח הפרטי שלך בקובץ מוצפן יחיד. אלה מונפקות בדרך כלל על ידי רשויות אישור (CA).",
+    "faqPrivateKeyQuestion": "האם המפתח הפרטי שלי בטוח?",
+    "faqPrivateKeyAnswer": "כן! כל העיבוד מתבצע כולו בדפדפן שלך. התעודה, המפתח הפרטי וקבצי ה-PDF שלך לעולם לא עוזבים את המכשיר שלך או מועלים לשרת כלשהו.",
+    "faqValidReadersQuestion": "האם החתימה תהיה תקפה בקוראי PDF?",
+    "faqValidReadersAnswer": "כן, הכלי יוצר חתימות נפרדות (detached) תקניות מסוג PKCS#7 שמוכרות על ידי כל צפי ה-PDF המובילים. לאימות מלא, השתמש בתעודה מרשות אישור מהימנה.",
+    "applySignature": "החל חתימה דיגיטלית",
+    "successMessage": "ה-PDF נחתם בהצלחה! ניתן לאמת את החתימה בכל קורא PDF.",
+    "internetRequiredTitle": "נדרש חיבור לאינטרנט",
+    "internetRequiredDescription": "ייתכן שהחתימה תצטרך לטעון מידע על שרשרת התעודות משרת מנפיק התעודה שלך כדי לאמת את החתימה."
+  },
+  "validateSignaturePdf": {
+    "name": "אימות חתימת PDF",
+    "pageTitle": "אימות חתימת PDF - אימות חתימות דיגיטליות | BentoPDF",
+    "subtitle": "אימות חתימות דיגיטליות בקבצי ה-PDF שלך. בדוק את תוקף התעודה, הצג את פרטי החותם ואשר את שלמות המסמך. כל העיבוד מתבצע בדפדפן שלך."
+  },
+  "timestampPdf": {
+    "name": "חתמת זמן ל-PDF",
+    "pageTitle": "חתמת זמן ל-PDF אונליין בחינם - חתמת זמן RFC 3161 | BentoPDF",
+    "subtitle": "הוספת חותמת זמן RFC 3161 למסמך ה-PDF שלך באמצעות שרת רשות חותמות זמן (TSA) מהימן. מוכיח שהמסמך שלך היה קיים בנקודת זמן ספציפית. אין צורך בתעודה.",
+    "tsaSectionTitle": "שרת חותמת זמן (TSA)",
+    "selectTsa": "בחר שרת TSA",
+    "applyTimestamp": "החל חותמת זמן",
+    "successMessage": "נוספה חותמת זמן ל-PDF בהצלחה! ניתן לאמת את חותמת הזמן בכל קורא PDF."
+  },
+  "emailToPdf": {
+    "name": "אימייל ל-PDF",
+    "subtitle": "המרת קבצי דוא\"ל (EML, MSG) לפורמט PDF. תומך בייצוא מ-Outlook ובפורמטי דוא\"ל תקניים.",
+    "acceptedFormats": "קבצי EML, MSG",
+    "convertButton": "המר ל-PDF"
+  },
+  "fontToOutline": {
+    "name": "גופן לקווי מתווה (Font to Outline)",
+    "subtitle": "המרת כל הגופנים לקווי מתווה וקטוריים לתצוגה אחידה בכל המכשירים."
+  },
+  "deskewPdf": {
+    "name": "יישור סריקה (Deskew PDF)",
+    "subtitle": "יישור אוטומטי של דפים סרוקים נטויים באמצעות OpenCV."
+  },
+  "pdfToWord": {
+    "name": "PDF ל-Word",
+    "subtitle": "המרת קבצי PDF למסמכי Word ניתנים לעריכה."
+  },
+  "extractImages": {
+    "name": "חילוץ תמונות",
+    "subtitle": "חילוץ כל התמונות המוטמעות מקבצי ה-PDF שלך."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF ל-Markdown",
+    "subtitle": "המרת טקסט וטבלאות PDF לפורמט Markdown."
+  },
+  "preparePdfForAi": {
+    "name": "הכנת PDF ל-AI",
+    "subtitle": "חילוץ תוכן PDF כ-LlamaIndex JSON עבור צינורות עיבוד RAG/LLM."
+  },
+  "pdfOcg": {
+    "name": "שכבות PDF (OCG)",
+    "subtitle": "צפייה, החלפת מצב, הוספה ומחיקה של שכבות OCG ב-PDF שלך."
+  },
+  "pdfToPdfa": {
+    "name": "PDF ל-PDF/A",
+    "subtitle": "המרת PDF ל-PDF/A לארכוב לטווח ארוך."
+  },
+  "rasterizePdf": {
+    "name": "המרת PDF לתמונה (Rasterize)",
+    "subtitle": "המרת PDF ל-PDF מבוסס תמונות. השטחת שכבות והסרת טקסט ניתן לבחירה."
+  },
+  "pdfWorkflow": {
+    "name": "בונה זרימת עבודה ב-PDF",
+    "subtitle": "בניית צינורות עיבוד PDF מותאמים אישית בעזרת עורך צומת חזותי.",
+    "nodes": "צומתים",
+    "searchNodes": "חפש צומתים...",
+    "run": "הרצֵץ",
+    "clear": "נקה",
+    "save": "שמור",
+    "load": "טען",
+    "export": "ייצא",
+    "import": "ייבא",
+    "ready": "מוכן",
+    "settings": "הגדרות",
+    "processing": "מעבד...",
+    "saveTemplate": "שמור תבנית",
+    "templateName": "שם תבנית",
+    "templatePlaceholder": "למשל, זרימת עבודה לחשבונית",
+    "cancel": "ביטול",
+    "loadTemplate": "טען תבנית",
+    "noTemplates": "אין עדיין תבניות שמורות.",
+    "ok": "אישור",
+    "workflowCompleted": "זרימת העבודה הושלמה",
+    "errorDuringExecution": "שגיאה במהלך הביצוע",
+    "addNodeError": "הוסף לפחות צומת אחד כדי להריץ את זרימת העבודה.",
+    "needInputOutput": "זרימת העבודה שלך זקוקה לפחות לצומת קלט אחד וצומת פלט אחד כדי לפעול.",
+    "enterName": "אנא הזן שם.",
+    "templateExists": "תבנית בשם זה כבר קיימת.",
+    "templateSaved": "תבנית \"{{name}}\" נשמרה.",
+    "templateLoaded": "תבנית \"{{name}}\" נטענה.",
+    "failedLoadTemplate": "טעינת התבנית נכשלה.",
+    "noSettings": "אין הגדרות שניתנות לקביעה עבור צומת זה.",
+    "advancedSettings": "הגדרות מתקדמות",
+    "specialNodes": {
+      "pdfInput": {
+        "name": "קלט PDF",
+        "description": "העלאת קובץ PDF אחד או יותר"
+      },
+      "download": {
+        "name": "הורדה",
+        "description": "הורדה כ-PDF או ZIP באופן אוטומטי"
+      }
+    },
+    "errors": {
+      "noPdfsConnected": "אין קבצי PDF מחוברים לצומת {{node}}",
+      "noPdfInputs": "אין קבצי PDF בקלט",
+      "expectedPdfInput": "צפוי קלט PDF",
+      "failedToRenderPage": "רינדור דף {{page}} נכשל",
+      "failedToGetCanvasContext": "השגת קונטקסט canvas עבור דף {{page}} נכשלה",
+      "failedToRenderPageToImage": "רינדור דף {{page}} לתמונה נכשל",
+      "noPagesProcessed": "לא עובדו דפים",
+      "cpdfNotConfigured": "CoherentPDF אינו מוגדר. אנא הגדר אותו בהגדרות מתקדמות.",
+      "workerError": "שגיאת Worker: {{message}}",
+      "alternateMergeWorkerError": "שגיאת Alternate merge worker: {{message}}",
+      "noPdfFilesUploaded": "לא הועלו קבצי PDF בצומת קלט PDF",
+      "failedToLoadFile": "טעינת \"{{file}}\" נכשלה - הקובץ עשוי להיות פגום",
+      "noImagesUploaded": "לא הועלו תמונות בצומת קלט תמונה",
+      "noWordDocsUploaded": "לא הועלו מסמכים בצומת קלט Word",
+      "noExcelUploaded": "לא הועלו גיליונות בצומת קלט Excel",
+      "noPowerPointUploaded": "לא הועלו מצגות בצומת קלט PowerPoint",
+      "noCbzUploaded": "לא הועלו ארכיוני קומיקס בצומת קלט CBZ",
+      "noEmailUploaded": "לא הועלו קבצי דוא\"ל בצומת קלט Email",
+      "noEpubUploaded": "לא הועלו קבצי EPUB בצומת קלט EPUB",
+      "noFb2Uploaded": "לא הועלו קבצי FB2 בצומת קלט FB2",
+      "noJsonUploaded": "לא הועלו קבצי JSON בצומת קלט JSON",
+      "noMarkdownUploaded": "לא הועלו קבצי Markdown בצומת קלט Markdown",
+      "noMobiUploaded": "לא הועלו קבצי MOBI בצומת קלט MOBI",
+      "noOdgUploaded": "לא הועלו קבצי ODG בצומת קלט ODG",
+      "noPagesUploaded": "לא הועלו קבצי Pages בצומת קלט Pages",
+      "noPubUploaded": "לא הועלו קבצי PUB בצומת קלט PUB",
+      "noSvgUploaded": "לא הועלו קבצי SVG בצומת קלט SVG",
+      "noTextUploaded": "לא הועלו קבצי טקסט בצומת קלט Text",
+      "noVsdUploaded": "לא הועלו קבצי Visio בצומת קלט VSD",
+      "noWpdUploaded": "לא הועלו קבצי WPD בצומת קלט WPD",
+      "noWpsUploaded": "לא הועלו קבצי WPS בצומת קלט WPS",
+      "noXmlUploaded": "לא הועלו קבצי XML בצומת קלט XML",
+      "noXpsUploaded": "לא הועלו קבצי XPS בצומת קלט XPS",
+      "alternateMergeNeedsTwo": "Alternate Merge זקוק לפחות לשני קבצי PDF המחוברים לקלט שלו",
+      "cropMarginsExceed": "שולי החיתוך חורגים מממדי הדף. צמצם את ערכי החיתוך.",
+      "digitalSignNoCertificate": "לא נטענה תעודה בצומת Digital Sign",
+      "encryptUserPasswordRequired": "נדרשת סיסמת משתמש לצורך הצפנה",
+      "extractImagesNoneFound": "לא נמצאו תמונות באף אחד מקבצי ה-PDF המחוברים",
+      "invertColorsFailedReadImage": "קריאת נתוני התמונה נכשלה",
+      "overlayRequiresPdf": "צומת Overlay דורש קלט PDF של שכבה.",
+      "pdfToCsvNoTables": "לא נמצאו טבלאות ב-PDF",
+      "pdfToXlsxNoTables": "לא נמצאו טבלאות ב-{{file}}",
+      "posterizeFailedTileCanvas": "השגת קונטקסט canvas עבור ה-tile נכשלה",
+      "redactNoText": "השחרה: לא צוין טקסט להשחרה",
+      "removeBlankPagesAllBlank": "כל הדפים ריקים",
+      "svgFailedToConvert": "המרת SVG נכשלה",
+      "svgFailedToLoad": "טעינת SVG נכשלה",
+      "timestampFailed": "הוספת חותמת זמן נכשלה באמצעות TSA {{tsa}}: {{message}}",
+      "noOutputNodes": "לא נמצאו צומתי פלט. הוסף צומת הורדה כדי להשלים את זרימת העבודה שלך.",
+      "circularDependency": "זוהתה תלות מעגלית בזרימת העבודה. אנא הסר לולאות בין צומתים.",
+      "encryptOrdering": "צומת ההצפנה מזין את \"{{target}}\", מה שעלול להיכשל בנתונים מוצפנים. העבר את ההצפנה רגע לפני צומת הפלט.",
+      "invalidWorkflowFile": "קובץ זרימת עבודה לא תקין: חסר מערך צומתים או חיבורים.",
+      "storageQuotaExceeded": "שמירת זרימת העבודה נכשלה: חריגה ממכסת האחסון. נסה למחוק תבניות ישנות.",
+      "failedToImport": "ייבוא זרימת העבודה נכשל: {{message}}"
+    }
+  },
+  "wasmSettings": {
+    "title": "הגדרות תכונות מתקדמות",
+    "description": "הגדר מודולי עיבוד חיצוניים כדי לאפשר תכונות PDF מתקדמות. מודולים אלה הם אופציונליים ומורשים בנפרד.",
+    "status": {
+      "testing": "בודק...",
+      "customOverride": "דריסה מותאמת אישית",
+      "preConfigured": "מוגדר מראש",
+      "notConfigured": "לא מוגדר"
+    },
+    "preconfiguredTitle": "מוגדר מראש ומוכן לשימוש.",
+    "preconfiguredDescription": "מודולי עיבוד מתקדמים נטענים אוטומטית מ-CDN. תוכל לדרוס את כתובות ה-URL למטה אם עליך להשתמש במקור מותאם אישית (למשל, עבור התקנות עצמאיות או מקומיות).",
+    "usingDefault": "משתמש בברירת מחדל: {{url}}",
+    "pymupdfSubtitle": "מנוע עיבוד מסמכים",
+    "pymupdfFeatures": "מאפשר: PDF לטקסט, Markdown, SVG, DOCX, Excel • חילוץ תמונות/טבלאות • המרת פורמטים",
+    "testButton": "בדוק",
+    "recommendedLabel": "מומלץ:",
+    "copyTitle": "העתק ללוח",
+    "ghostscriptSubtitle": "מנוע המרה ל-PDF/A",
+    "ghostscriptFeatures": "מאפשר: המרה ל-PDF/A-1b, PDF/A-2b, PDF/A-3b • גופן לקווי מתווה",
+    "cpdfSubtitle": "מנוע סימניות ומטא-דאטה",
+    "cpdfFeatures": "מאפשר: פיצול לפי סימניות • עריכת סימניות • מטא-דאטה של PDF",
+    "saveConfiguration": "שמור תצורה",
+    "savingConfiguration": "שומר תצורה...",
+    "savedTitle": "נשמר",
+    "savedMessage": "התצורה נשמרה בהצלחה!",
+    "errorTitle": "שגיאה",
+    "failedSave": "שמירת התצורה נכשלה: {{message}}",
+    "emptyUrlTitle": "כתובת URL ריקה",
+    "emptyUrlMessage": "אנא הזן כתובת URL לבדיקה.",
+    "testSuccessTitle": "הצלחה",
+    "connectionSuccess": "החיבור ל-{{package}} הצליח!",
+    "connectionFailedTitle": "החיבור נכשל",
+    "connectionFailedMessage": "לא ניתן היה להתחבר לכתובת ה-URL.",
+    "resetDefaults": "אפס לברירות מחדל",
+    "resetTitle": "איפוס",
+    "resetWithDefaults": "דריסות מותאמות אישית נוקו. ברירות המחדל המוגדרות מראש פעילות.",
+    "resetNoDefaults": "כל התצורות והמודולים שבמטמון נוקו.",
+    "licenseTitle": "הודעת רישוי:",
+    "licenseDescription": "המודולים החיצוניים (PyMuPDF, Ghostscript, CoherentPDF) מורשים תחת AGPL-3.0 או רישיונות copyleft דומים. על ידי הגדרת מודולים אלה והשימוש בהם, אתה מסכים לתנאי הרישיון שלהם. BentoPDF תואם לכל יישום של Ghostscript WASM ו-PyMuPDF WASM שפועל לפי הממשק המצופה."
+  },
+  "pdfOverlay": {
+    "name": "שכבת PDF (Overlay)",
+    "subtitle": "הנחת דפים מ-PDF אחד על גבי או מתחת לדפים של PDF אחר.",
+    "basePdfLabel": "PDF בסיס",
+    "uploadBasePdf": "העלאת PDF בסיס",
+    "overlayPdfLabel": "PDF עליון / תחתון (Overlay / Underlay)",
+    "uploadOverlayPdf": "העלאת PDF עליון/תחתון",
+    "modeLabel": "מצב",
+    "overlayOption": "Overlay (על גבי הדפים)",
+    "underlayOption": "Underlay (מתחת לדפים)",
+    "pageRangeLabel": "החל על דפים (אופציונלי)",
+    "pageRangeHint": "השתמש ב-\"z\" עבור הדף האחרון. השאר ריק כדי להחיל על כל הדפים.",
+    "repeatLabel": "חזור על דפי השכבה אם קובץ הבסיס ארוך יותר",
+    "processButton": "החל שכבה עליונה / תחתונה",
+    "howItWorksUploadTitle": "העלאת שני קבצי PDF",
+    "howItWorksUploadDescription": "העלה את ה-PDF הבסיסי שלך ואת ה-PDF שברצונך להניח מעליו או מתחתיו.",
+    "howItWorksModeTitle": "בחירת מצב",
+    "howItWorksModeDescription": "בחר שכבה עליונה (על גבי) או תחתונה (מתחת). לחלופין הגדר טווח דפים וחזרתיות.",
+    "howItWorksDownloadTitle": "הורדה",
+    "howItWorksDownloadDescription": "הורד את ה-PDF שלך עם השכבה שהוחלה.",
+    "faqDifferenceQuestion": "מה ההבדל בין Overlay ל-Underlay?",
+    "faqDifferenceAnswer": "Overlay מציב דפים על גבי ה-PDF הבסיסי שלך (כמו סימן מים). Underlay מציב דפים מתחת ל-PDF הבסיסי שלך (כמו נייר מכתבים או רקע).",
+    "faqSinglePageQuestion": "האם אוכל להשתמש ב-PDF בעל דף יחיד כשכבה עבור כל הדפים?",
+    "faqSinglePageAnswer": "כן! הפעל את אפשרות ה-\"חזרתיות\" (Loop) ודפי ה-PDF של השכבה יחזרו על עצמם לאורך כל דפי הבסיס. סימן מים של דף יחיד יוחל על כל דף.",
+    "faqPrivacyQuestion": "האם הקבצים שלי פרטיים ומאובטחים?",
+    "faqPrivacyAnswer": "לחלוטין! כל העיבוד מתבצע בדפדפן שלך. הקבצים שלך לעולם לא עוזבים את המכשיר שלך, מה שמבטיח פרטיות מוחלטת."
+  }
+}
