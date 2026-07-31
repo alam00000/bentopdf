@@ -13,17 +13,17 @@
   "convertToPdf": "המרה ל-PDF",
   "pdfMultiTool": {
     "name": "מולטי-כלי PDF",
-    "subtitle": "מיזוג, פיצול, ארגון, מחיקה, סיבוב, הוספת דפים חלקים, חילוץ ושכפול בממשק מאוחד אחד."
+    "subtitle": "מיזוג, פיצול, ארגון, מחיקה, סיבוב, הוספת עמודים חלקים, חילוץ ושכפול בממשק מאוחד אחד."
   },
   "mergePdf": {
     "name": "מיזוג PDF",
     "subtitle": "שילוב מספר קבצי PDF לקובץ אחד. שומר על סימניות.",
-    "retainPageLabels": "שמור על תוויות הדפים המקוריות מכל קובץ",
-    "retainPageLabelsHint": "כבוי (ברירת מחדל): ה-PDF הממוזג משתמש במספור דפים טבעי 1–N. מופעל: תוויות הדפים המקוריות של כל קובץ נשמרות (עלול ליצור תוויות כפולות)."
+    "retainPageLabels": "שמור על תוויות העמודים המקוריות מכל קובץ",
+    "retainPageLabelsHint": "כבוי (ברירת מחדל): ה-PDF הממוזג משתמש במספור עמודים טבעי 1–N. מופעל: תוויות העמודים המקוריות של כל קובץ נשמרות (עלול ליצור תוויות כפולות)."
   },
   "splitPdf": {
     "name": "פיצול PDF",
-    "subtitle": "חילוץ טווח דפים לקובץ PDF חדש."
+    "subtitle": "חילוץ טווח עמודים לקובץ PDF חדש."
   },
   "compressPdf": {
     "name": "דחיסת PDF",
@@ -32,7 +32,7 @@
     "condense": "Condense (מומלץ)",
     "photon": "Photon (לקבצי PDF עתירי תמונות)",
     "condenseInfo": "Condense משתמש בדחיסה מתקדמת: מסיר משקל עודף, מבצע אופטימיזציה לתמונות ומצמצם גופנים. הכי טוב לרוב קבצי ה-PDF.",
-    "photonInfo": "Photon ממיר דפים לתמונות. מיועד לקבצי PDF עתירי תמונות או סרוקים.",
+    "photonInfo": "Photon ממיר עמודים לתמונות. מיועד לקבצי PDF עתירי תמונות או סרוקים.",
     "photonWarning": "אזהרה: הטקסט יהפוך לבלתי ניתן לבחירה וקישורים יפסיקו לעבוד.",
     "levelLabel": "רמת דחיסה",
     "light": "קלה (שמירה על האיכות)",
@@ -65,20 +65,20 @@
   },
   "cropPdf": {
     "name": "חיתוך PDF",
-    "subtitle": "חיתוך השוליים של כל דף ב-PDF שלך."
+    "subtitle": "חיתוך השוליים של כל עמוד ב-PDF שלך."
   },
   "extractPages": {
-    "name": "חילוץ דפים",
-    "subtitle": "שמירת בחירת דפים כקבצים חדשים."
+    "name": "חילוץ עמודים",
+    "subtitle": "שמירת בחירת עמודים כקבצים חדשים."
   },
   "duplicateOrganize": {
     "name": "שכפול וארגון",
-    "subtitle": "שכפול, שינוי סדר ומחיקת דפים.",
+    "subtitle": "שכפול, שינוי סדר ומחיקת עמודים.",
     "saveChanges": "שמור שינויים"
   },
   "deletePages": {
-    "name": "מחיקת דפים",
-    "subtitle": "הסרת דפים ספציפיים מהמסמך שלך."
+    "name": "מחיקת עמודים",
+    "subtitle": "הסרת עמודים ספציפיים מהמסמך שלך."
   },
   "editBookmarks": {
     "name": "עריכת סימניות",
@@ -93,11 +93,11 @@
   },
   "tableOfContents": {
     "name": "תוכן עניינים",
-    "subtitle": "צור דף תוכן עניינים מתוך סימניות ה-PDF.",
+    "subtitle": "צור עמוד תוכן עניינים מתוך סימניות ה-PDF.",
     "titleLabel": "כותרת תוכן העניינים",
     "fontSize": "גודל גופן",
     "fontFamily": "משפחת גופן",
-    "addBookmark": "הוסף סימנייה עבור דף תוכן העניינים",
+    "addBookmark": "הוסף סימנייה עבור עמוד תוכן העניינים",
     "generateButton": "צור תוכן עניינים",
     "selectPdfFirst": "אנא בחר קובץ PDF תחילה.",
     "statusReadingFileMainThread": "קורא קובץ (Main Thread)...",
@@ -108,32 +108,32 @@
     "workerErrorOccurred": "ארעה שגיאת Worker. בדוק את ה-console לפרטים."
   },
   "pageNumbers": {
-    "name": "מספרי דפים",
-    "subtitle": "הוספת מספרי דפים למסמך שלך."
+    "name": "מספרי עמודים",
+    "subtitle": "הוספת מספרי עמודים למסמך שלך."
   },
   "addPageLabels": {
-    "name": "הוספת תוויות דפים",
+    "name": "הוספת תוויות עמודים",
     "subtitle": "החלת תוויות דפי PDF עם ספרות רומיות, קידומות והתחלות מותאמות אישית.",
     "uploadHint": "קובץ PDF",
     "howLabelsWorkTitle": "איך תוויות עובדות",
-    "howLabelsWorkStep1": "השאר את טווח הדפים ריק כדי להוסיף תוויות לכל הדפים.",
+    "howLabelsWorkStep1": "השאר את טווח העמודים ריק כדי להוסיף תוויות לכל העמודים.",
     "howLabelsWorkStep2": "השתמש בסגנונות כמו ספרות רומיות לעמודי הפתיחה ומספור עשרוני לגוף המסמך.",
     "howLabelsWorkStep3": "השתמש בקידומת (Prefix) עם ערך התחלה 0 כדי ליצור תוויות כגון A-0, A-1, A-2.",
     "howLabelsWorkStep4": "אפשר התקדמות כאשר כלל אחד משתמש בטווח לא רציף כגון 1-9,30-40 או אי-זוגי (odd).",
     "labelRulesTitle": "כללי תוויות",
     "addRule": "הוסף כלל",
-    "removeExistingLabels": "הסר תוויות דפים קיימות לפני החלת כללים אלה",
+    "removeExistingLabels": "הסר תוויות עמודים קיימות לפני החלת כללים אלה",
     "cpdfNote": "כלי זה משתמש ב-CoherentPDF בדפדפן שלך. אם CoherentPDF אינו מוגדר, תתבקש להגדיר אותו בהגדרות WASM.",
-    "processButton": "הוסף תוויות דפים",
+    "processButton": "הוסף תוויות עמודים",
     "howItWorksUploadTitle": "העלאת קובץ",
     "howItWorksUploadDescription": "בחר את ה-PDF שברצונך לשנות לו תוויות.",
     "howItWorksDefineTitle": "הגדרת כללים",
-    "howItWorksDefineDescription": "הגדר כלל תוויות דפים אחד או יותר עם טווי דפים, סגנונות, קידומות וערכי התחלה.",
+    "howItWorksDefineDescription": "הגדר כלל תוויות עמודים אחד או יותר עם טווי עמודים, סגנונות, קידומות וערכי התחלה.",
     "howItWorksDownloadTitle": "הורדה",
-    "howItWorksDownloadDescription": "שמור את ה-PDF המעודכן עם תוויות הדפים החדשות שלו.",
+    "howItWorksDownloadDescription": "שמור את ה-PDF המעודכן עם תוויות העמודים החדשות שלו.",
     "relatedToolsTitle": "כלי PDF קשורים",
-    "faqWhatIsQuestion": "מהי תווית דף?",
-    "faqWhatIsAnswer": "תווית דף היא המספור המוצג על ידי קוראי PDF בתמונות מזעור, ניווט בין דפים ובדיאלוגי הדפסה. היא אינה מדפיסה טקסט חדש על גבי הדף עצמו.",
+    "faqWhatIsQuestion": "מהי תווית עמוד?",
+    "faqWhatIsAnswer": "תווית עמוד היא המספור המוצג על ידי קוראי PDF בתמונות מזעור, ניווט בין עמודים ובדיאלוגי הדפסה. היא אינה מדפיסה טקסט חדש על גבי העמוד עצמו.",
     "faqMixQuestion": "האם ניתן לערבב ספרות רומיות ומספרים רגילים?",
     "faqMixAnswer": "כן. הוסף מספר כללים, כגון 1-4 עם LowercaseRoman ו-5-20 עם DecimalArabic.",
     "faqPrivacyQuestion": "האם הקבצים שלי נשארים פרטיים?",
@@ -144,10 +144,10 @@
     "protectedPdfTitle": "PDF מוגן",
     "protectedPdfMessage": "קובץ PDF זה מוגן באמצעות סיסמה. אנא השתמש בכלי פענוח או שינוי הרשאות תחילה.",
     "loadErrorMessage": "טעינת קובץ ה-PDF נכשלה. הקובץ עשוי להיות לא תקין, פגום או מוגן בסיסמה.",
-    "fileMeta": "{{size}} • {{count}} דפים",
+    "fileMeta": "{{size}} • {{count}} עמודים",
     "ruleTitle": "כלל תוויות {{number}}",
-    "pageRangeLabel": "טווח דפים",
-    "pageRangePlaceholder": "כל הדפים, או למשל 1-4, 7, odd",
+    "pageRangeLabel": "טווח עמודים",
+    "pageRangePlaceholder": "כל העמודים, או למשל 1-4, 7, odd",
     "labelStyleLabel": "סגנון תווית",
     "labelPrefixLabel": "קידומת תווית",
     "labelPrefixPlaceholder": "קידומת אופציונלית, למשל A-",
@@ -155,12 +155,12 @@
     "continueNumbering": "המשך מספור לאורך טווחים לא רציפים",
     "examplesNote": "דוגמאות: 1-4 עבור עמודי פתיחה רומיים, 15-20 עם קידומת A- וערך התחלה 0, או odd כאשר התקדמות מופעלת.",
     "uploadFirstMessage": "אנא העלה קובץ PDF תחילה.",
-    "applyingLabels": "מחיל תוויות דפים...",
-    "invalidRangeMessage": "לכלל {{number}} יש טווח דפים לא תקין: {{range}}",
-    "allPages": "כל הדפים",
+    "applyingLabels": "מחיל תוויות עמודים...",
+    "invalidRangeMessage": "לכלל {{number}} יש טווח עמודים לא תקין: {{range}}",
+    "allPages": "כל העמודים",
     "emptyOutputMessage": "CoherentPDF יצר קובץ ריק.",
-    "successMessage": "תוויות הדפים הנוספו בהצלחה!",
-    "processErrorMessage": "לא ניתן היה להוסיף תוויות דפים.",
+    "successMessage": "תוויות העמודים הנוספו בהצלחה!",
+    "processErrorMessage": "לא ניתן היה להוסיף תוויות עמודים.",
     "styleOptions": {
       "DecimalArabic": "ספרות ערביות (Decimal Arabic)",
       "LowercaseRoman": "ספרות רומיות קטנות (Lowercase Roman)",
@@ -177,11 +177,11 @@
   "addWatermark": {
     "name": "הוספת סימן מים",
     "subtitle": "הטבעת טקסט או תמונה על גבי דפי ה-PDF שלך.",
-    "applyToAllPages": "החל על כל הדפים"
+    "applyToAllPages": "החל על כל העמודים"
   },
   "headerFooter": {
     "name": "כותרת עליונה ותחתונה",
-    "subtitle": "הוספת טקסט לחלק העליון והתחתון של הדפים."
+    "subtitle": "הוספת טקסט לחלק העליון והתחתון של העמודים."
   },
   "invertColors": {
     "name": "היפוך צבעים",
@@ -243,7 +243,7 @@
     "subtitle": "מילוי טפסים ישירות בדפדפן. תומך גם בטפסי XFA.",
     "uploadHint": "העלה PDF עם שדות טופס. מלא אותם ישירות בצופה למטה, ולאחר מכן לחץ על הכפתור כדי לשמור ולהוריד את הטופס המלא. תומך גם בטפסי XFA.",
     "xfaNoteTitle": "הערה לגבי טפסי XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) הוא פורמט ישן שנתמך רק על ידי צפי PDF מסוימים כמו BentoPDF ו-Firefox. אם תפתח קובץ XFA PDF בתוכנה אחרת ותראה דפים ריקים או ללא שדות טופס, פירוש הדבר שצופה זה אינו תומך ב-XFA. לצפייה ומילוי תקינים של טפסי XFA, השתמש ב-Firefox או בממלא הטפסים של BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) הוא פורמט ישן שנתמך רק על ידי צפי PDF מסוימים כמו BentoPDF ו-Firefox. אם תפתח קובץ XFA PDF בתוכנה אחרת ותראה עמודים ריקים או ללא שדות טופס, פירוש הדבר שצופה זה אינו תומך ב-XFA. לצפייה ומילוי תקינים של טפסי XFA, השתמש ב-Firefox או בממלא הטפסים של BentoPDF."
   },
   "createPdfForm": {
     "name": "צור טופס PDF",
@@ -252,9 +252,9 @@
     "createBlankPdf": "צור PDF ריק"
   },
   "removeBlankPages": {
-    "name": "הסרת דפים ריקים",
-    "subtitle": "זיהוי ומחיקה אוטומטית של דפים ריקים.",
-    "sensitivityHint": "גבוה יותר = מחמיר יותר, רק דפים ריקים לחלוטין. נמוך יותר = מאפשר דפים עם מעט תוכן."
+    "name": "הסרת עמודים ריקים",
+    "subtitle": "זיהוי ומחיקה אוטומטית של עמודים ריקים.",
+    "sensitivityHint": "גבוה יותר = מחמיר יותר, רק עמודים ריקים לחלוטין. נמוך יותר = מאפשר עמודים עם מעט תוכן."
   },
   "imageToPdf": {
     "name": "תמונות ל-PDF",
@@ -293,7 +293,7 @@
     "fontFamily": "משפחת גופן",
     "fontSize": "גודל גופן",
     "textColor": "צבע טקסט",
-    "pageSize": "גודל דף",
+    "pageSize": "גודל עמוד",
     "rtlAutoDetectNote": "שפות מימין לשמאל (ערבית, אורדו, פרסית וכו') מזוהות אוטומטית וכיוון הטקסט מותאם בהתאם.",
     "createButton": "צור PDF"
   },
@@ -318,7 +318,7 @@
   },
   "pdfToJpg": {
     "name": "PDF ל-JPG",
-    "subtitle": "המרת כל דף PDF לתמונת JPG.",
+    "subtitle": "המרת כל עמוד PDF לתמונת JPG.",
     "imageQuality": "איכות תמונה",
     "imageQualityExplanation": "איכות גבוהה יותר = גודל קובץ גדול יותר",
     "alert": {
@@ -335,7 +335,7 @@
   },
   "pdfToPng": {
     "name": "PDF ל-PNG",
-    "subtitle": "המרת כל דף PDF לתמונת PNG.",
+    "subtitle": "המרת כל עמוד PDF לתמונת PNG.",
     "imageScale": "קנה מידה של תמונה",
     "imageScaleExplanation": "קנה מידה גבוה יותר = איכות טובה יותר אך גודל קובץ גדול יותר",
     "alert": {
@@ -352,7 +352,7 @@
   },
   "pdfToWebp": {
     "name": "PDF ל-WebP",
-    "subtitle": "המרת כל דף PDF לתמונת WebP.",
+    "subtitle": "המרת כל עמוד PDF לתמונת WebP.",
     "imageQuality": "איכות תמונה",
     "imageQualityExplanation": "איכות גבוהה יותר = גודל קובץ גדול יותר",
     "alert": {
@@ -369,7 +369,7 @@
   },
   "pdfToBmp": {
     "name": "PDF ל-BMP",
-    "subtitle": "המרת כל דף PDF לתמונת BMP.",
+    "subtitle": "המרת כל עמוד PDF לתמונת BMP.",
     "alert": {
       "invalidFile": "קובץ לא תקין",
       "invalidFileExplanation": "אנא העלה קובץ PDF.",
@@ -384,13 +384,13 @@
   },
   "pdfToTiff": {
     "name": "PDF ל-TIFF",
-    "subtitle": "המרת כל דף PDF לתמונת TIFF.",
+    "subtitle": "המרת כל עמוד PDF לתמונת TIFF.",
     "dpi": "DPI (רזולוציה)",
     "dpiExplanation": "DPI גבוה יותר = איכות טובה יותר להדפסה, גודל קובץ גדול יותר",
     "compression": "דחיסה",
     "compressionExplanation": "LZW ו-Deflate הן ללא אובדן איכות (lossless). CCITT Group 4 הכי טוב למסמכים סרוקים בשחור-לבן.",
     "colorMode": "מצב צבע",
-    "multiPage": "שמור כ-TIFF מרובה דפים (קובץ יחיד)",
+    "multiPage": "שמור כ-TIFF מרובה עמודים (קובץ יחיד)",
     "loadingVips": "טוען מעבד תמונות...",
     "converting": "ממיר ל-TIFF...",
     "alert": {
@@ -509,10 +509,10 @@
     "multiLanguageSupportDescription": "בחר מספר שפות עבור מסמכים המכילים תוכן בשפות מעורבות."
   },
   "alternateMerge": {
-    "name": "מיזוג ושילוב דפים לסירוגין",
-    "subtitle": "מיזוג קבצי PDF על ידי סירוגין של דפים מכל PDF. שומר על סימניות.",
-    "retainPageLabels": "שמור על תוויות הדפים המקוריות מכל קובץ",
-    "retainPageLabelsHint": "כבוי (ברירת מחדל): ה-PDF הממוזג משתמש במספור דפים טבעי 1–N. מופעל: תוויות הדפים המקוריות של כל קובץ נשמרות (עלול ליצור תוויות כפולות)."
+    "name": "מיזוג ושילוב עמודים לסירוגין",
+    "subtitle": "מיזוג קבצי PDF על ידי סירוגין של עמודים מכל PDF. שומר על סימניות.",
+    "retainPageLabels": "שמור על תוויות העמודים המקוריות מכל קובץ",
+    "retainPageLabelsHint": "כבוי (ברירת מחדל): ה-PDF הממוזג משתמש במספור עמודים טבעי 1–N. מופעל: תוויות העמודים המקוריות של כל קובץ נשמרות (עלול ליצור תוויות כפולות)."
   },
   "addAttachments": {
     "name": "הוספת קבצים מצורפים",
@@ -527,32 +527,32 @@
     "subtitle": "צפייה או הסרה של קבצים מצורפים ב-PDF שלך."
   },
   "dividePages": {
-    "name": "חלוקת דפים",
-    "subtitle": "חלוקת דפים אופקית או אנכית."
+    "name": "חלוקת עמודים",
+    "subtitle": "חלוקת עמודים אופקית או אנכית."
   },
   "addBlankPage": {
-    "name": "הוספת דף חלק",
-    "subtitle": "הכנסת דף ריק בכל מקום ב-PDF שלך."
+    "name": "הוספת עמוד חלק",
+    "subtitle": "הכנסת עמוד ריק בכל מקום ב-PDF שלך."
   },
   "reversePages": {
-    "name": "היפוך סדר הדפים",
-    "subtitle": "היפוך הסדר של כל הדפים במסמך שלך."
+    "name": "היפוך סדר העמודים",
+    "subtitle": "היפוך הסדר של כל העמודים במסמך שלך."
   },
   "rotatePdf": {
     "name": "סיבוב PDF",
-    "subtitle": "סיבוב דפים בקפיצות של 90 מעלות."
+    "subtitle": "סיבוב עמודים בקפיצות של 90 מעלות."
   },
   "rotateCustom": {
     "name": "סיבוב בזווית מותאמת אישית",
-    "subtitle": "סיבוב דפים בכל זווית מותאמת אישית."
+    "subtitle": "סיבוב עמודים בכל זווית מותאמת אישית."
   },
   "nUpPdf": {
-    "name": "N-Up PDF (מרובה דפים בדף אחד)",
-    "subtitle": "סידור מספר דפים על גבי גליון יחיד."
+    "name": "N-Up PDF (מרובה עמודים בעמוד אחד)",
+    "subtitle": "סידור מספר עמודים על גבי גליון יחיד."
   },
   "combineToSinglePage": {
-    "name": "שילוב לדף יחיד",
-    "subtitle": "חיבור כל הדפים לגלילה רציפה אחת."
+    "name": "שילוב לעמוד יחיד",
+    "subtitle": "חיבור כל העמודים לגלילה רציפה אחת."
   },
   "viewMetadata": {
     "name": "צפייה במטא-דאטה",
@@ -572,7 +572,7 @@
     "firstPdf": "PDF ראשון",
     "secondPdf": "PDF שני",
     "clickOrDrop": "לחץ או גרור",
-    "page": "דף",
+    "page": "עמוד",
     "overlay": "שכבה על גבי שכבה (Overlay)",
     "sideBySide": "זה לצד זה",
     "flicker": "הבהוב (Flicker)",
@@ -588,21 +588,21 @@
     "searchChanges": "חפש שינויים...",
     "deleted": "נמחק",
     "added": "נוסף",
-    "prevPage": "הדף הקודם",
-    "nextPage": "הדף הבא",
+    "prevPage": "העמוד הקודם",
+    "nextPage": "העמוד הבא",
     "prevChange": "השינוי הקודם",
     "nextChange": "השינוי הבא",
     "uploadTwoPdfs": "העלה שני קבצי PDF כדי לראות את ההבדלים.",
-    "noDifferences": "לא זוהו הבדלים בדף זה.",
+    "noDifferences": "לא זוהו הבדלים בעמוד זה.",
     "noMatchingChanges": "אין שינויים התואמים לסינון הנוכחי.",
-    "pageNotExist": "דף {{page}} אינו קיים ב-PDF זה.",
-    "noPairedPage": "אין דף מותאם לצד זה.",
-    "buildingModel": "בונה מודל התאמת דפים...",
-    "indexingPdf": "מפלח PDF {{num}} דף {{page}} מתוך {{total}}...",
+    "pageNotExist": "עמוד {{page}} אינו קיים ב-PDF זה.",
+    "noPairedPage": "אין עמוד מותאם לצד זה.",
+    "buildingModel": "בונה מודל התאמת עמודים...",
+    "indexingPdf": "מפלח PDF {{num}} עמוד {{page}} מתוך {{total}}...",
     "loadingComparison": "טוען השוואה {{current}} מתוך {{total}}...",
-    "runningOcr": "מריץ OCR על דף {{page}}...",
+    "runningOcr": "מריץ OCR על עמוד {{page}}...",
     "preparingExport": "מכין ייצוא PDF...",
-    "renderingPage": "מרנדר דף {{current}} מתוך {{total}}...",
+    "renderingPage": "מרנדר עמוד {{current}} מתוך {{total}}...",
     "exportError": "שגיאת ייצוא",
     "exportFailed": "לא ניתן היה לייצא PDF השוואה.",
     "loadingFile": "טוען {{name}}...",
@@ -611,20 +611,20 @@
     "loadError": "לא ניתן היה לטעון את ה-PDF. הוא עשוי להיות פגום או מוגן בסיסמה."
   },
   "posterizePdf": {
-    "name": "פיצול דפים גדולים (Posterize)",
-    "subtitle": "פיצול דף גדול למספר דפים קטנים יותר."
+    "name": "פיצול עמודים גדולים (Posterize)",
+    "subtitle": "פיצול עמוד גדול למספר עמודים קטנים יותר."
   },
   "fixPageSize": {
-    "name": "תיקון גודל דף",
-    "subtitle": "אחידות גודל כל הדפים לגודל אחיד."
+    "name": "תיקון גודל עמוד",
+    "subtitle": "אחידות גודל כל העמודים לגודל אחיד."
   },
   "linearizePdf": {
     "name": "ליניאריזציה של PDF",
     "subtitle": "אופטימיזציה של PDF לצפייה מהירה ברשת."
   },
   "pageDimensions": {
-    "name": "ממדי דף",
-    "subtitle": "ניתוח גודל הדף, הכיוון והיחידות."
+    "name": "ממדי עמוד",
+    "subtitle": "ניתוח גודל העמוד, הכיוון והיחידות."
   },
   "removeRestrictions": {
     "name": "הסרת הגבלות",
@@ -716,19 +716,19 @@
   },
   "pdfBooklet": {
     "name": "חוברת PDF (Booklet)",
-    "subtitle": "סידור מחדש של דפים להדפסת חוברת דו-צדדית. קיפול וסיכות ליצירת חוברת.",
+    "subtitle": "סידור מחדש של עמודים להדפסת חוברת דו-צדדית. קיפול וסיכות ליצירת חוברת.",
     "howItWorks": "איך זה עובד:",
     "step1": "העלה קובץ PDF.",
-    "step2": "הדפים יסודרו מחדש בסדר המיועד לחוברת.",
+    "step2": "העמודים יסודרו מחדש בסדר המיועד לחוברת.",
     "step3": "הדפס דו-צדדי, הפוך על השוליים הקצרים, קפל והדק.",
     "paperSize": "גודל נייר",
-    "orientation": "כיוון דף",
+    "orientation": "כיוון עמוד",
     "portrait": "לאורך",
     "landscape": "לרוחב",
-    "pagesPerSheet": "דפים בכל גליון",
+    "pagesPerSheet": "עמודים בכל גליון",
     "createBooklet": "צור חוברת",
     "processing": "מעבד...",
-    "pageCount": "מספר הדפים יורחב למכפלה של 4 במידת הצורך."
+    "pageCount": "מספר העמודים יורחב למכפלה של 4 במידת הצורך."
   },
   "xpsToPdf": {
     "name": "XPS ל-PDF",
@@ -822,7 +822,7 @@
   },
   "pdfToSvg": {
     "name": "PDF ל-SVG",
-    "subtitle": "המרת כל דף בקובץ PDF לגרפיקת וקטור ניתנת להגדלה (SVG) לאיכות מושלמת בכל גודל."
+    "subtitle": "המרת כל עמוד בקובץ PDF לגרפיקת וקטור ניתנת להגדלה (SVG) לאיכות מושלמת בכל גודל."
   },
   "extractTables": {
     "name": "חילוץ טבלאות מ-PDF",
@@ -869,12 +869,12 @@
     "uploadSignatureImage": "העלאת תמונה (PNG, JPG, WebP)",
     "signaturePreviewAlt": "תצוגה מקדימה של החתימה",
     "remove": "הסר",
-    "page": "דף",
-    "firstPage": "דף ראשון",
-    "lastPage": "דף אחרון",
-    "allPages": "כל הדפים",
-    "customPage": "דף מותאם אישית #",
-    "pageNumber": "דף #",
+    "page": "עמוד",
+    "firstPage": "עמוד ראשון",
+    "lastPage": "עמוד אחרון",
+    "allPages": "כל העמודים",
+    "customPage": "עמוד מותאם אישית #",
+    "pageNumber": "עמוד #",
     "xPosition": "מיקום X (משמאל)",
     "yPosition": "מיקום Y (מלמעלה)",
     "width": "רוחב",
@@ -904,7 +904,7 @@
     "chainFetchFailed": "טעינת שרשרת התעודות נכשלה. הדבר עשוי לנבוע מבעיות רשת או מחוסר זמינות של פרוקסי התעודות. אנא בדוק את החיבור לאינטרנט ונסה שוב. אם הבעיה נמשכת, צור קשר עם התמיכה.",
     "failedToSignPdf": "חתימה על ה-PDF נכשלה: {{message}}",
     "defaultSignatureText": "נחתם דיגיטלית על ידי {{signer}}\n{{date}}",
-    "pageCount": "{{count}} דפים",
+    "pageCount": "{{count}} עמודים",
     "howToStep1Title": "העלאת PDF",
     "howToStep1Text": "בחר את מסמך ה-PDF שברצונך לחתום עליו",
     "howToStep2Title": "העלאת תעודה",
@@ -955,7 +955,7 @@
   },
   "deskewPdf": {
     "name": "יישור סריקה (Deskew PDF)",
-    "subtitle": "יישור אוטומטי של דפים סרוקים נטויים באמצעות OpenCV."
+    "subtitle": "יישור אוטומטי של עמודים סרוקים נטויים באמצעות OpenCV."
   },
   "pdfToWord": {
     "name": "PDF ל-Word",
@@ -1031,10 +1031,10 @@
       "noPdfsConnected": "אין קבצי PDF מחוברים לצומת {{node}}",
       "noPdfInputs": "אין קבצי PDF בקלט",
       "expectedPdfInput": "צפוי קלט PDF",
-      "failedToRenderPage": "רינדור דף {{page}} נכשל",
-      "failedToGetCanvasContext": "השגת קונטקסט canvas עבור דף {{page}} נכשלה",
-      "failedToRenderPageToImage": "רינדור דף {{page}} לתמונה נכשל",
-      "noPagesProcessed": "לא עובדו דפים",
+      "failedToRenderPage": "רינדור עמוד {{page}} נכשל",
+      "failedToGetCanvasContext": "השגת קונטקסט canvas עבור עמוד {{page}} נכשלה",
+      "failedToRenderPageToImage": "רינדור עמוד {{page}} לתמונה נכשל",
+      "noPagesProcessed": "לא עובדו עמודים",
       "cpdfNotConfigured": "CoherentPDF אינו מוגדר. אנא הגדר אותו בהגדרות מתקדמות.",
       "workerError": "שגיאת Worker: {{message}}",
       "alternateMergeWorkerError": "שגיאת Alternate merge worker: {{message}}",
@@ -1062,7 +1062,7 @@
       "noXmlUploaded": "לא הועלו קבצי XML בצומת קלט XML",
       "noXpsUploaded": "לא הועלו קבצי XPS בצומת קלט XPS",
       "alternateMergeNeedsTwo": "Alternate Merge זקוק לפחות לשני קבצי PDF המחוברים לקלט שלו",
-      "cropMarginsExceed": "שולי החיתוך חורגים מממדי הדף. צמצם את ערכי החיתוך.",
+      "cropMarginsExceed": "שולי החיתוך חורגים מממדי העמוד. צמצם את ערכי החיתוך.",
       "digitalSignNoCertificate": "לא נטענה תעודה בצומת Digital Sign",
       "encryptUserPasswordRequired": "נדרשת סיסמת משתמש לצורך הצפנה",
       "extractImagesNoneFound": "לא נמצאו תמונות באף אחד מקבצי ה-PDF המחוברים",
@@ -1072,7 +1072,7 @@
       "pdfToXlsxNoTables": "לא נמצאו טבלאות ב-{{file}}",
       "posterizeFailedTileCanvas": "השגת קונטקסט canvas עבור ה-tile נכשלה",
       "redactNoText": "השחרה: לא צוין טקסט להשחרה",
-      "removeBlankPagesAllBlank": "כל הדפים ריקים",
+      "removeBlankPagesAllBlank": "כל העמודים ריקים",
       "svgFailedToConvert": "המרת SVG נכשלה",
       "svgFailedToLoad": "טעינת SVG נכשלה",
       "timestampFailed": "הוספת חותמת זמן נכשלה באמצעות TSA {{tsa}}: {{message}}",
@@ -1126,28 +1126,28 @@
   },
   "pdfOverlay": {
     "name": "שכבת PDF (Overlay)",
-    "subtitle": "הנחת דפים מ-PDF אחד על גבי או מתחת לדפים של PDF אחר.",
+    "subtitle": "הנחת עמודים מ-PDF אחד על גבי או מתחת לעמודים של PDF אחר.",
     "basePdfLabel": "PDF בסיס",
     "uploadBasePdf": "העלאת PDF בסיס",
     "overlayPdfLabel": "PDF עליון / תחתון (Overlay / Underlay)",
     "uploadOverlayPdf": "העלאת PDF עליון/תחתון",
     "modeLabel": "מצב",
-    "overlayOption": "Overlay (על גבי הדפים)",
-    "underlayOption": "Underlay (מתחת לדפים)",
-    "pageRangeLabel": "החל על דפים (אופציונלי)",
-    "pageRangeHint": "השתמש ב-\"z\" עבור הדף האחרון. השאר ריק כדי להחיל על כל הדפים.",
+    "overlayOption": "Overlay (על גבי העמודים)",
+    "underlayOption": "Underlay (מתחת לעמודים)",
+    "pageRangeLabel": "החל על עמודים (אופציונלי)",
+    "pageRangeHint": "השתמש ב-\"z\" עבור העמוד האחרון. השאר ריק כדי להחיל על כל העמודים.",
     "repeatLabel": "חזור על דפי השכבה אם קובץ הבסיס ארוך יותר",
     "processButton": "החל שכבה עליונה / תחתונה",
     "howItWorksUploadTitle": "העלאת שני קבצי PDF",
     "howItWorksUploadDescription": "העלה את ה-PDF הבסיסי שלך ואת ה-PDF שברצונך להניח מעליו או מתחתיו.",
     "howItWorksModeTitle": "בחירת מצב",
-    "howItWorksModeDescription": "בחר שכבה עליונה (על גבי) או תחתונה (מתחת). לחלופין הגדר טווח דפים וחזרתיות.",
+    "howItWorksModeDescription": "בחר שכבה עליונה (על גבי) או תחתונה (מתחת). לחלופין הגדר טווח עמודים וחזרתיות.",
     "howItWorksDownloadTitle": "הורדה",
     "howItWorksDownloadDescription": "הורד את ה-PDF שלך עם השכבה שהוחלה.",
     "faqDifferenceQuestion": "מה ההבדל בין Overlay ל-Underlay?",
-    "faqDifferenceAnswer": "Overlay מציב דפים על גבי ה-PDF הבסיסי שלך (כמו סימן מים). Underlay מציב דפים מתחת ל-PDF הבסיסי שלך (כמו נייר מכתבים או רקע).",
-    "faqSinglePageQuestion": "האם אוכל להשתמש ב-PDF בעל דף יחיד כשכבה עבור כל הדפים?",
-    "faqSinglePageAnswer": "כן! הפעל את אפשרות ה-\"חזרתיות\" (Loop) ודפי ה-PDF של השכבה יחזרו על עצמם לאורך כל דפי הבסיס. סימן מים של דף יחיד יוחל על כל דף.",
+    "faqDifferenceAnswer": "Overlay מציב עמודים על גבי ה-PDF הבסיסי שלך (כמו סימן מים). Underlay מציב עמודים מתחת ל-PDF הבסיסי שלך (כמו נייר מכתבים או רקע).",
+    "faqSinglePageQuestion": "האם אוכל להשתמש ב-PDF בעל עמוד יחיד כשכבה עבור כל העמודים?",
+    "faqSinglePageAnswer": "כן! הפעל את אפשרות ה-\"חזרתיות\" (Loop) ודפי ה-PDF של השכבה יחזרו על עצמם לאורך כל דפי הבסיס. סימן מים של עמוד יחיד יוחל על כל עמוד.",
     "faqPrivacyQuestion": "האם הקבצים שלי פרטיים ומאובטחים?",
     "faqPrivacyAnswer": "לחלוטין! כל העיבוד מתבצע בדפדפן שלך. הקבצים שלך לעולם לא עוזבים את המכשיר שלך, מה שמבטיח פרטיות מוחלטת."
   }
