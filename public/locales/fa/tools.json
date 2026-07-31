@@ -1,0 +1,1154 @@
+{
+  "categories": {
+    "popularTools": "ابزارهای پرکاربرد",
+    "editAnnotate": "ویرایش و حاشیه‌نویسی",
+    "convertToPdf": "تبدیل به PDF",
+    "convertFromPdf": "تبدیل از PDF",
+    "organizeManage": "سازماندهی و مدیریت",
+    "optimizeRepair": "بهینه‌سازی و ترمیم",
+    "securePdf": "ایمن‌سازی PDF",
+    "input": "ورودی",
+    "output": "خروجی"
+  },
+  "convertToPdf": "تبدیل به PDF",
+  "pdfMultiTool": {
+    "name": "ابزار چندکارهٔ PDF",
+    "subtitle": "ادغام، تقسیم، سازماندهی، حذف، چرخش، افزودن صفحهٔ خالی، استخراج و تکثیر در یک رابط یکپارچه."
+  },
+  "mergePdf": {
+    "name": "ادغام PDF",
+    "subtitle": "چند PDF را در یک فایل ترکیب کنید. نشانک‌ها حفظ می‌شوند.",
+    "retainPageLabels": "حفظ برچسب‌های اصلی صفحات هر فایل",
+    "retainPageLabelsHint": "خاموش (پیش‌فرض): PDF ادغام‌شده از شماره‌گذاری طبیعی ۱ تا N استفاده می‌کند. روشن: برچسب‌های اصلی صفحات هر فایل حفظ می‌شوند (ممکن است برچسب‌های تکراری پدید آید)."
+  },
+  "splitPdf": {
+    "name": "تقسیم PDF",
+    "subtitle": "بازه‌ای از صفحات را در یک PDF تازه استخراج کنید."
+  },
+  "compressPdf": {
+    "name": "فشرده‌سازی PDF",
+    "subtitle": "حجم فایل PDF خود را کاهش دهید.",
+    "algorithmLabel": "الگوریتم فشرده‌سازی",
+    "condense": "Condense (پیشنهادی)",
+    "photon": "Photon (برای PDFهای پرتصویر)",
+    "condenseInfo": "Condense از فشرده‌سازی پیشرفته بهره می‌گیرد: حذف داده‌های زائد، بهینه‌سازی تصاویر و کاهش قلم‌ها. مناسب برای بیشتر PDFها.",
+    "photonInfo": "Photon صفحات را به تصویر تبدیل می‌کند. برای PDFهای پرتصویر یا اسکن‌شده به کار می‌رود.",
+    "photonWarning": "هشدار: متن دیگر قابل انتخاب نخواهد بود و پیوندها از کار می‌افتند.",
+    "levelLabel": "سطح فشرده‌سازی",
+    "light": "سبک (حفظ کیفیت)",
+    "balanced": "متعادل (پیشنهادی)",
+    "aggressive": "تهاجمی (فایل‌های کوچک‌تر)",
+    "extreme": "بیشینه (حداکثر فشرده‌سازی)",
+    "grayscale": "تبدیل به خاکستری",
+    "grayscaleHint": "با حذف اطلاعات رنگ، حجم فایل را کاهش می‌دهد",
+    "customSettings": "تنظیمات سفارشی",
+    "customSettingsHint": "تنظیم دقیق پارامترهای فشرده‌سازی:",
+    "outputQuality": "کیفیت خروجی",
+    "resizeImagesTo": "تغییر اندازهٔ تصاویر به",
+    "onlyProcessAbove": "فقط پردازش موارد بالاتر از",
+    "removeMetadata": "حذف فراداده",
+    "subsetFonts": "کاهش قلم‌ها (حذف نویسه‌های بلااستفاده)",
+    "removeThumbnails": "حذف بندانگشتی‌های تعبیه‌شده",
+    "compressButton": "فشرده‌سازی PDF"
+  },
+  "pdfEditor": {
+    "name": "ویرایشگر PDF",
+    "subtitle": "حاشیه‌نویسی، هایلایت، سانسور، درج نظر، افزودن شکل و تصویر، جستجو و مشاهدهٔ PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG به PDF",
+    "subtitle": "از تصاویر JPG، JPEG و JPEG2000 (JP2/JPX) یک PDF بسازید."
+  },
+  "signPdf": {
+    "name": "امضای PDF",
+    "subtitle": "امضای خود را بکشید، تایپ کنید یا بارگذاری کنید."
+  },
+  "cropPdf": {
+    "name": "برش PDF",
+    "subtitle": "حاشیهٔ همهٔ صفحات PDF خود را کوتاه کنید."
+  },
+  "extractPages": {
+    "name": "استخراج صفحات",
+    "subtitle": "گزیده‌ای از صفحات را به‌صورت فایل‌های تازه ذخیره کنید."
+  },
+  "duplicateOrganize": {
+    "name": "تکثیر و سازماندهی",
+    "subtitle": "صفحات را تکثیر، مرتب و حذف کنید.",
+    "saveChanges": "ذخیرهٔ تغییرات"
+  },
+  "deletePages": {
+    "name": "حذف صفحات",
+    "subtitle": "صفحات مشخصی را از سند خود بردارید."
+  },
+  "editBookmarks": {
+    "name": "ویرایش نشانک‌ها",
+    "subtitle": "نشانک‌های PDF را افزودن، ویرایش، درون‌ریزی، حذف و استخراج کنید.",
+    "autoExtractExisting": "استخراج خودکار نشانک‌های موجود",
+    "importSectionTitle": "یا نشانک‌ها را درون‌ریزی کنید",
+    "csvFormat": "قالب CSV: عنوان،صفحه،سطح",
+    "jsonFormat": "قالب JSON",
+    "uploadCsvAction": "برای بارگذاری CSV کلیک کنید",
+    "uploadJsonAction": "برای بارگذاری JSON کلیک کنید",
+    "orDragHere": "یا اینجا بکشید"
+  },
+  "tableOfContents": {
+    "name": "فهرست مطالب",
+    "subtitle": "از روی نشانک‌های PDF یک صفحهٔ فهرست مطالب بسازید.",
+    "titleLabel": "عنوان فهرست مطالب",
+    "fontSize": "اندازهٔ قلم",
+    "fontFamily": "خانوادهٔ قلم",
+    "addBookmark": "افزودن نشانک برای صفحهٔ فهرست",
+    "generateButton": "ساخت فهرست مطالب",
+    "selectPdfFirst": "لطفاً نخست یک فایل PDF برگزینید.",
+    "statusReadingFileMainThread": "در حال خواندن فایل (نخ اصلی)…",
+    "statusGenerating": "در حال ساخت فهرست مطالب…",
+    "errorReadingFileWithMessage": "خطا در خواندن فایل: {{message}}",
+    "successGeneratedDownloadStarted": "فهرست مطالب با موفقیت ساخته شد! دانلود آغاز شد.",
+    "workerErrorWithMessage": "خطا: {{message}}",
+    "workerErrorOccurred": "خطای worker رخ داد. برای جزئیات، کنسول را بررسی کنید."
+  },
+  "pageNumbers": {
+    "name": "شماره‌گذاری صفحات",
+    "subtitle": "شمارهٔ صفحات را در سند خود درج کنید."
+  },
+  "addPageLabels": {
+    "name": "افزودن برچسب صفحه",
+    "subtitle": "برچسب‌های صفحهٔ PDF را با اعداد رومی، پیشوند و نقطهٔ شروع دلخواه اعمال کنید.",
+    "uploadHint": "فایل PDF",
+    "howLabelsWorkTitle": "برچسب‌ها چگونه کار می‌کنند",
+    "howLabelsWorkStep1": "برای برچسب‌گذاری همهٔ صفحات، بازهٔ صفحات را خالی بگذارید.",
+    "howLabelsWorkStep2": "برای صفحات آغازین از سبک‌هایی مانند اعداد رومی و برای متن اصلی از شماره‌گذاری اعشاری استفاده کنید.",
+    "howLabelsWorkStep3": "برای ساخت برچسب‌هایی مانند A-0، A-1، A-2 از پیشوند همراه با مقدار شروع ۰ استفاده کنید.",
+    "howLabelsWorkStep4": "هرگاه یک قاعده از بازه‌ای ناپیوسته مانند ۱-۹،۳۰-۴۰ یا فرد استفاده می‌کند، پیوستگی شماره‌گذاری را فعال کنید.",
+    "labelRulesTitle": "قواعد برچسب",
+    "addRule": "افزودن قاعده",
+    "removeExistingLabels": "حذف برچسب‌های موجود صفحات پیش از اعمال این قواعد",
+    "cpdfNote": "این ابزار از CoherentPDF در مرورگر شما استفاده می‌کند. اگر CoherentPDF پیکربندی نشده باشد، از شما خواسته می‌شود آن را در تنظیمات WASM راه‌اندازی کنید.",
+    "processButton": "افزودن برچسب صفحه",
+    "howItWorksUploadTitle": "بارگذاری فایل",
+    "howItWorksUploadDescription": "PDF‌ای را که می‌خواهید دوباره برچسب‌گذاری کنید برگزینید.",
+    "howItWorksDefineTitle": "تعریف قواعد",
+    "howItWorksDefineDescription": "یک یا چند قاعدهٔ برچسب صفحه را با بازهٔ صفحات، سبک، پیشوند و مقدار شروع تعیین کنید.",
+    "howItWorksDownloadTitle": "دانلود",
+    "howItWorksDownloadDescription": "PDF به‌روزشده را با برچسب‌های تازهٔ صفحاتش ذخیره کنید.",
+    "relatedToolsTitle": "ابزارهای مرتبط PDF",
+    "faqWhatIsQuestion": "برچسب صفحه چیست؟",
+    "faqWhatIsAnswer": "برچسب صفحه همان شماره‌ای است که خوانندگان PDF در بندانگشتی‌ها، پیمایش صفحات و پنجرهٔ چاپ نشان می‌دهند. این برچسب متن تازه‌ای روی خودِ صفحه چاپ نمی‌کند.",
+    "faqMixQuestion": "آیا می‌توانم اعداد رومی و اعداد معمولی را با هم به کار ببرم؟",
+    "faqMixAnswer": "بله. چند قاعده بیفزایید؛ مثلاً ۱-۴ با LowercaseRoman و ۵-۲۰ با DecimalArabic.",
+    "faqPrivacyQuestion": "آیا فایل‌های من خصوصی می‌مانند؟",
+    "faqPrivacyAnswer": "بله. پردازش در مرورگر شما و با CoherentPDF WASM انجام می‌شود. PDF شما از دستگاهتان خارج نمی‌شود.",
+    "invalidFileTitle": "فایل نامعتبر",
+    "invalidFileMessage": "لطفاً یک فایل PDF معتبر بارگذاری کنید.",
+    "loadingPdf": "در حال بارگذاری PDF…",
+    "protectedPdfTitle": "PDF محافظت‌شده",
+    "protectedPdfMessage": "این PDF با گذرواژه محافظت شده است. لطفاً نخست از ابزار رمزگشایی یا تغییر مجوزها استفاده کنید.",
+    "loadErrorMessage": "بارگذاری فایل PDF ناموفق بود. ممکن است فایل نامعتبر، آسیب‌دیده یا محافظت‌شده با گذرواژه باشد.",
+    "fileMeta": "{{size}} • {{count}} صفحه",
+    "ruleTitle": "قاعدهٔ برچسب {{number}}",
+    "pageRangeLabel": "بازهٔ صفحات",
+    "pageRangePlaceholder": "همهٔ صفحات، یا مثلاً ۱-۴، ۷، فرد",
+    "labelStyleLabel": "سبک برچسب",
+    "labelPrefixLabel": "پیشوند برچسب",
+    "labelPrefixPlaceholder": "پیشوند اختیاری، مثلاً -A",
+    "startValueLabel": "مقدار شروع",
+    "continueNumbering": "ادامهٔ شماره‌گذاری در بازه‌های ناپیوسته",
+    "examplesNote": "نمونه‌ها: ۱-۴ برای صفحات آغازین رومی، ۱۵-۲۰ با پیشوند -A و مقدار شروع ۰، یا فرد با پیوستگی فعال.",
+    "uploadFirstMessage": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+    "applyingLabels": "در حال اعمال برچسب‌های صفحه…",
+    "invalidRangeMessage": "قاعدهٔ {{number}} بازهٔ صفحات نامعتبری دارد: {{range}}",
+    "allPages": "همهٔ صفحات",
+    "emptyOutputMessage": "CoherentPDF یک فایل خالی تولید کرد.",
+    "successMessage": "برچسب‌های صفحه با موفقیت افزوده شدند!",
+    "processErrorMessage": "افزودن برچسب‌های صفحه ممکن نشد.",
+    "styleOptions": {
+      "DecimalArabic": "اعشاری عربی",
+      "LowercaseRoman": "رومی کوچک",
+      "UppercaseRoman": "رومی بزرگ",
+      "LowercaseLetters": "حروف کوچک",
+      "UppercaseLetters": "حروف بزرگ",
+      "NoLabelPrefixOnly": "بدون برچسب، فقط پیشوند"
+    }
+  },
+  "batesNumbering": {
+    "name": "شماره‌گذاری Bates",
+    "subtitle": "شماره‌های ترتیبی Bates را در یک یا چند فایل PDF بیفزایید."
+  },
+  "addWatermark": {
+    "name": "افزودن واترمارک",
+    "subtitle": "متن یا تصویری را روی صفحات PDF خود مهر کنید.",
+    "applyToAllPages": "اعمال بر همهٔ صفحات"
+  },
+  "headerFooter": {
+    "name": "سرصفحه و پاصفحه",
+    "subtitle": "متن را به بالا و پایین صفحات بیفزایید."
+  },
+  "invertColors": {
+    "name": "وارونه‌سازی رنگ‌ها",
+    "subtitle": "نسخه‌ای با «حالت تاریک» از PDF خود بسازید."
+  },
+  "scannerEffect": {
+    "name": "جلوهٔ اسکنر",
+    "subtitle": "PDF خود را شبیه یک سند اسکن‌شده کنید.",
+    "scanSettings": "تنظیمات اسکن",
+    "colorspace": "فضای رنگی",
+    "gray": "خاکستری",
+    "border": "حاشیه",
+    "rotate": "چرخش",
+    "rotateVariance": "پراکندگی چرخش",
+    "brightness": "روشنایی",
+    "contrast": "کنتراست",
+    "blur": "محو‌شدگی",
+    "noise": "نویز",
+    "yellowish": "متمایل به زرد",
+    "resolution": "وضوح",
+    "processButton": "اعمال جلوهٔ اسکنر"
+  },
+  "adjustColors": {
+    "name": "تنظیم رنگ‌ها",
+    "subtitle": "روشنایی، کنتراست، اشباع و موارد دیگر را در PDF خود تنظیم دقیق کنید.",
+    "colorSettings": "تنظیمات رنگ",
+    "brightness": "روشنایی",
+    "contrast": "کنتراست",
+    "saturation": "اشباع",
+    "hueShift": "جابه‌جایی فام",
+    "temperature": "دمای رنگ",
+    "tint": "ته‌رنگ",
+    "gamma": "گاما",
+    "sepia": "سپیا",
+    "processButton": "اعمال تنظیمات رنگ"
+  },
+  "backgroundColor": {
+    "name": "رنگ پس‌زمینه",
+    "subtitle": "رنگ پس‌زمینهٔ PDF خود را تغییر دهید."
+  },
+  "changeTextColor": {
+    "name": "تغییر رنگ متن",
+    "subtitle": "رنگ متن PDF خود را تغییر دهید."
+  },
+  "addStamps": {
+    "name": "افزودن مهر",
+    "subtitle": "با نوار ابزار حاشیه‌نویسی، مهرهای تصویری به PDF خود بیفزایید.",
+    "usernameLabel": "نام کاربری مهر",
+    "usernamePlaceholder": "نام خود را وارد کنید (برای مهرها)",
+    "usernameHint": "این نام روی مهرهایی که می‌سازید نمایان می‌شود.",
+    "saveButton": "ذخیرهٔ PDF مهرخورده"
+  },
+  "removeAnnotations": {
+    "name": "حذف حاشیه‌نویسی‌ها",
+    "subtitle": "نظرها، هایلایت‌ها و پیوندها را بردارید."
+  },
+  "pdfFormFiller": {
+    "name": "پرکنندهٔ فرم PDF",
+    "subtitle": "فرم‌ها را مستقیماً در مرورگر پر کنید. از فرم‌های XFA نیز پشتیبانی می‌شود.",
+    "uploadHint": "یک PDF دارای فیلدهای فرم بارگذاری کنید. آن‌ها را مستقیماً در نمایشگر زیر پر کنید، سپس برای ذخیره و دانلود فرم تکمیل‌شده روی دکمه کلیک کنید. از فرم‌های XFA نیز پشتیبانی می‌شود.",
+    "xfaNoteTitle": "نکته دربارهٔ فرم‌های XFA:",
+    "xfaNoteDescription": "XFA (معماری فرم‌های XML) قالبی قدیمی است که تنها برخی نمایشگرهای PDF مانند BentoPDF و Firefox از آن پشتیبانی می‌کنند. اگر یک PDF از نوع XFA را در نرم‌افزار دیگری باز کنید و صفحات خالی یا بدون فیلد فرم ببینید، یعنی آن نمایشگر از XFA پشتیبانی نمی‌کند. برای مشاهده و تکمیل درست فرم‌های XFA، از Firefox یا پرکنندهٔ فرم BentoPDF استفاده کنید."
+  },
+  "createPdfForm": {
+    "name": "ساخت فرم PDF",
+    "subtitle": "با فیلدهای متنی کشیدنی‌رهاکردنی، فرم‌های PDF قابل تکمیل بسازید.",
+    "orSeparator": "یا",
+    "createBlankPdf": "ساخت PDF خالی"
+  },
+  "removeBlankPages": {
+    "name": "حذف صفحات خالی",
+    "subtitle": "صفحات خالی را به‌طور خودکار تشخیص داده و حذف کنید.",
+    "sensitivityHint": "بالاتر = سخت‌گیرانه‌تر، فقط صفحات کاملاً خالی. پایین‌تر = صفحات دارای اندکی محتوا را نیز در بر می‌گیرد."
+  },
+  "imageToPdf": {
+    "name": "تصاویر به PDF",
+    "subtitle": "تبدیل JPG، PNG، BMP، GIF، TIFF، PNM، PGM، PBM، PPM، PAM، JXR، JPX، JP2، PSD، SVG، HEIC و WebP به PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG به PDF",
+    "subtitle": "از یک یا چند تصویر PNG یک PDF بسازید."
+  },
+  "webpToPdf": {
+    "name": "WebP به PDF",
+    "subtitle": "از یک یا چند تصویر WebP یک PDF بسازید."
+  },
+  "svgToPdf": {
+    "name": "SVG به PDF",
+    "subtitle": "از یک یا چند تصویر SVG یک PDF بسازید."
+  },
+  "bmpToPdf": {
+    "name": "BMP به PDF",
+    "subtitle": "از یک یا چند تصویر BMP یک PDF بسازید."
+  },
+  "heicToPdf": {
+    "name": "HEIC به PDF",
+    "subtitle": "از یک یا چند تصویر HEIC یک PDF بسازید."
+  },
+  "tiffToPdf": {
+    "name": "TIFF به PDF",
+    "subtitle": "از یک یا چند تصویر TIFF یک PDF بسازید."
+  },
+  "textToPdf": {
+    "name": "متن به PDF",
+    "subtitle": "یک فایل متنی ساده را به PDF تبدیل کنید.",
+    "uploadFiles": "بارگذاری فایل‌ها",
+    "typeText": "تایپ متن",
+    "acceptedFormats": "فایل‌های متنی (.txt)",
+    "fontFamily": "خانوادهٔ قلم",
+    "fontSize": "اندازهٔ قلم",
+    "textColor": "رنگ متن",
+    "pageSize": "اندازهٔ صفحه",
+    "rtlAutoDetectNote": "زبان‌های راست‌به‌چپ (عربی، اردو، فارسی و غیره) به‌طور خودکار تشخیص داده می‌شوند و جهت متن تنظیم می‌گردد.",
+    "createButton": "ساخت PDF"
+  },
+  "jsonToPdf": {
+    "name": "JSON به PDF",
+    "subtitle": "فایل‌های JSON را به قالب PDF تبدیل کنید.",
+    "noteLabel": "نکته:",
+    "noteText": "تنها فایل‌های JSON ساخته‌شده با ابزار تبدیل PDF به JSON پشتیبانی می‌شوند. فایل‌های JSON استاندارد از ابزارهای دیگر کار نخواهند کرد.",
+    "acceptedFormats": "چند فایل JSON",
+    "status": {
+      "selectAtLeastOne": "لطفاً دست‌کم ۱ فایل JSON برگزینید",
+      "selectedReady": "{{count}} فایل برگزیده شد. آمادهٔ تبدیل!",
+      "readingFiles": "در حال خواندن فایل‌ها (نخ اصلی)…",
+      "converting": "در حال تبدیل فایل‌های JSON به PDF…",
+      "readError": "خطا در خواندن فایل‌ها: {{message}}",
+      "creatingZip": "در حال ساخت فایل ZIP…",
+      "success": "فایل‌های JSON با موفقیت به PDF تبدیل شدند! دانلود ZIP آغاز شد.",
+      "zipError": "خطا در ساخت ZIP: {{message}}",
+      "workerError": "خطای Worker: {{message}}",
+      "getStarted": "برای شروع، فایل‌های JSON را برگزینید"
+    }
+  },
+  "pdfToJpg": {
+    "name": "PDF به JPG",
+    "subtitle": "هر صفحهٔ PDF را به یک تصویر JPG تبدیل کنید.",
+    "imageQuality": "کیفیت تصویر",
+    "imageQualityExplanation": "کیفیت بالاتر = حجم فایل بیشتر",
+    "alert": {
+      "invalidFile": "فایل نامعتبر",
+      "invalidFileExplanation": "لطفاً یک فایل PDF بارگذاری کنید.",
+      "noFile": "بدون فایل",
+      "noFileExplanation": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+      "conversionSuccess": "PDF با موفقیت به JPG تبدیل شد!",
+      "conversionError": "تبدیل PDF به JPG ناموفق بود. ممکن است فایل آسیب‌دیده باشد."
+    },
+    "loader": {
+      "converting": "در حال تبدیل به JPG…"
+    }
+  },
+  "pdfToPng": {
+    "name": "PDF به PNG",
+    "subtitle": "هر صفحهٔ PDF را به یک تصویر PNG تبدیل کنید.",
+    "imageScale": "مقیاس تصویر",
+    "imageScaleExplanation": "مقیاس بالاتر = کیفیت بهتر اما حجم فایل بیشتر",
+    "alert": {
+      "invalidFile": "فایل نامعتبر",
+      "invalidFileExplanation": "لطفاً یک فایل PDF بارگذاری کنید.",
+      "noFile": "بدون فایل",
+      "noFileExplanation": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+      "conversionSuccess": "PDF با موفقیت به PNG تبدیل شد!",
+      "conversionError": "تبدیل PDF به PNG ناموفق بود. ممکن است فایل آسیب‌دیده باشد."
+    },
+    "loader": {
+      "converting": "در حال تبدیل به PNG…"
+    }
+  },
+  "pdfToWebp": {
+    "name": "PDF به WebP",
+    "subtitle": "هر صفحهٔ PDF را به یک تصویر WebP تبدیل کنید.",
+    "imageQuality": "کیفیت تصویر",
+    "imageQualityExplanation": "کیفیت بالاتر = حجم فایل بیشتر",
+    "alert": {
+      "invalidFile": "فایل نامعتبر",
+      "invalidFileExplanation": "لطفاً یک فایل PDF بارگذاری کنید.",
+      "noFile": "بدون فایل",
+      "noFileExplanation": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+      "conversionSuccess": "PDF با موفقیت به WebP تبدیل شد!",
+      "conversionError": "تبدیل PDF به WebP ناموفق بود. ممکن است فایل آسیب‌دیده باشد."
+    },
+    "loader": {
+      "converting": "در حال تبدیل به WebP…"
+    }
+  },
+  "pdfToBmp": {
+    "name": "PDF به BMP",
+    "subtitle": "هر صفحهٔ PDF را به یک تصویر BMP تبدیل کنید.",
+    "alert": {
+      "invalidFile": "فایل نامعتبر",
+      "invalidFileExplanation": "لطفاً یک فایل PDF بارگذاری کنید.",
+      "noFile": "بدون فایل",
+      "noFileExplanation": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+      "conversionSuccess": "PDF با موفقیت به BMP تبدیل شد!",
+      "conversionError": "تبدیل PDF به BMP ناموفق بود. ممکن است فایل آسیب‌دیده باشد."
+    },
+    "loader": {
+      "converting": "در حال تبدیل به BMP…"
+    }
+  },
+  "pdfToTiff": {
+    "name": "PDF به TIFF",
+    "subtitle": "هر صفحهٔ PDF را به یک تصویر TIFF تبدیل کنید.",
+    "dpi": "DPI (وضوح)",
+    "dpiExplanation": "DPI بالاتر = کیفیت بهتر برای چاپ، حجم فایل بیشتر",
+    "compression": "فشرده‌سازی",
+    "compressionExplanation": "LZW و Deflate بدون اتلاف هستند. CCITT Group 4 برای اسناد اسکن‌شدهٔ سیاه‌وسفید بهترین گزینه است.",
+    "colorMode": "حالت رنگ",
+    "multiPage": "ذخیره به‌صورت TIFF چندصفحه‌ای (یک فایل)",
+    "loadingVips": "در حال بارگذاری پردازشگر تصویر…",
+    "converting": "در حال تبدیل به TIFF…",
+    "alert": {
+      "invalidFile": "فایل نامعتبر",
+      "invalidFileExplanation": "لطفاً یک فایل PDF بارگذاری کنید.",
+      "noFile": "بدون فایل",
+      "noFileExplanation": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+      "conversionSuccess": "PDF با موفقیت به TIFF تبدیل شد!",
+      "conversionError": "تبدیل PDF به TIFF ناموفق بود. ممکن است فایل آسیب‌دیده باشد."
+    }
+  },
+  "pdfToCbz": {
+    "name": "PDF به CBZ",
+    "subtitle": "یک PDF را به فایل CBZ (بایگانی کتاب کمیک) برای خوانندگان کمیک تبدیل کنید.",
+    "imageFormat": "قالب تصویر",
+    "quality": "کیفیت تصویر",
+    "qualityExplanation": "کیفیت بالاتر = حجم فایل بیشتر",
+    "scale": "مقیاس",
+    "scaleExplanation": "مقیاس بالاتر = کیفیت بهتر برای نمایشگرهای پروضوح",
+    "grayscale": "تبدیل به خاکستری",
+    "manga": "حالت مانگا (راست به چپ)",
+    "includeMetadata": "گنجاندن فرادادهٔ ComicInfo.xml",
+    "titleLabel": "عنوان",
+    "seriesLabel": "مجموعه",
+    "authorLabel": "نویسنده(ها)",
+    "numberLabel": "شماره",
+    "volumeLabel": "جلد",
+    "publisherLabel": "ناشر",
+    "tagsLabel": "برچسب‌ها / ژانر",
+    "yearLabel": "سال انتشار",
+    "ratingLabel": "امتیاز (۰-۵)",
+    "converting": "در حال تبدیل به CBZ…",
+    "alert": {
+      "invalidFile": "فایل نامعتبر",
+      "invalidFileExplanation": "لطفاً یک فایل PDF بارگذاری کنید.",
+      "noFile": "بدون فایل",
+      "noFileExplanation": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+      "conversionSuccess": "PDF با موفقیت به CBZ تبدیل شد!",
+      "conversionError": "تبدیل PDF به CBZ ناموفق بود. ممکن است فایل آسیب‌دیده باشد."
+    }
+  },
+  "pdfToGreyscale": {
+    "name": "PDF به خاکستری",
+    "subtitle": "همهٔ رنگ‌ها را به سیاه‌وسفید تبدیل کنید."
+  },
+  "pdfToJson": {
+    "name": "PDF به JSON",
+    "subtitle": "فایل‌های PDF را به قالب JSON تبدیل کنید.",
+    "convertButton": "تبدیل به JSON",
+    "status": {
+      "selectAtLeastOne": "لطفاً دست‌کم ۱ فایل PDF برگزینید",
+      "selectedReady": "{{count}} فایل برگزیده شد. آمادهٔ تبدیل!",
+      "checkingEncrypted": "در حال بررسی PDFهای رمزگذاری‌شده…",
+      "readingFiles": "در حال خواندن فایل‌ها (نخ اصلی)…",
+      "converting": "در حال تبدیل PDFها به JSON…",
+      "readError": "خطا در خواندن فایل‌ها: {{message}}",
+      "creatingZip": "در حال ساخت فایل ZIP…",
+      "success": "PDFها با موفقیت به JSON تبدیل شدند! دانلود ZIP آغاز شد.",
+      "zipError": "خطا در ساخت ZIP: {{message}}",
+      "workerError": "خطای Worker: {{message}}",
+      "getStarted": "برای شروع، فایل‌های PDF را برگزینید"
+    }
+  },
+  "ocrPdf": {
+    "name": "OCR روی PDF",
+    "subtitle": "PDF را قابل جستجو و کپی کنید.",
+    "languagesInDocument": "زبان‌های موجود در سند",
+    "searchLanguagesPlaceholder": "جستجوی زبان‌ها…",
+    "selectedLabel": "برگزیده:",
+    "none": "هیچ‌کدام",
+    "advancedSettingsSummary": "تنظیمات پیشرفته (برای بهبود دقت پیشنهاد می‌شود)",
+    "resolutionLabel": "وضوح",
+    "resolutionStandard": "استاندارد (۱۹۲ DPI)",
+    "resolutionHigh": "بالا (۲۸۸ DPI)",
+    "resolutionUltra": "فوق‌العاده (۳۸۴ DPI)",
+    "binarizeLabel": "دوسطحی‌سازی تصویر (افزایش کنتراست برای اسکن‌های تمیز)",
+    "embedFullFontsLabel": "تعبیهٔ کامل قلم‌ها (فایل بزرگ‌تر، سازگاری بهتر)",
+    "whitelistPresetLabel": "پیش‌تنظیم فهرست سفید نویسه‌ها",
+    "whitelistNone": "هیچ‌کدام (همهٔ نویسه‌ها)",
+    "whitelistAlphanumeric": "حروف و ارقام + نشانه‌گذاری پایه",
+    "whitelistNumbersCurrency": "اعداد + نمادهای ارز",
+    "whitelistLettersOnly": "فقط حروف (A-Z، a-z)",
+    "whitelistNumbersOnly": "فقط اعداد (0-9)",
+    "whitelistInvoice": "فاکتور/رسید (اعداد، $، .، -، /)",
+    "whitelistForms": "فرم‌ها (حروف و ارقام + نمادهای رایج)",
+    "whitelistCustom": "سفارشی…",
+    "whitelistHelp": "تنها این نویسه‌ها شناسایی می‌شوند. برای همهٔ نویسه‌ها، خالی بگذارید.",
+    "whitelistInputLabel": "فهرست سفید نویسه‌ها (اختیاری)",
+    "whitelistInputPlaceholder": "مثلاً abcdefghijklmnopqrstuvwxyz0123456789$.,",
+    "startButton": "شروع OCR",
+    "progressInitializing": "در حال راه‌اندازی…",
+    "resultsTitle": "OCR به پایان رسید",
+    "resultsDescription": "PDF قابل جستجوی شما آماده است. همچنین می‌توانید متن استخراج‌شدهٔ زیر را کپی یا دانلود کنید.",
+    "copyToClipboard": "کپی در حافظهٔ موقت",
+    "downloadTxt": "دانلود به‌صورت ‎.txt",
+    "downloadSearchablePdf": "دانلود PDF قابل جستجو",
+    "statusPrefix": "وضعیت: {{status}}",
+    "availabilityInvalidConfig": "این نسخهٔ مستقرشده هیچ زبان OCR معتبری ارائه نمی‌دهد. آن را با تنظیم VITE_TESSERACT_AVAILABLE_LANGUAGES روی کدهای معتبر Tesseract بازسازی کنید.",
+    "availabilityBundles": "این نسخهٔ مستقرشده OCR را برای این زبان‌ها همراه دارد: {{languages}}.",
+    "noLanguagesAvailable": "هیچ زبان OCR‌ای در این نسخهٔ مستقرشده در دسترس نیست.",
+    "noLanguagesTitle": "هیچ زبانی برگزیده نشده است",
+    "noLanguagesMessage": "لطفاً دست‌کم یک زبان برای OCR برگزینید.",
+    "noFileTitle": "بدون فایل",
+    "noFileMessage": "لطفاً نخست یک فایل PDF بارگذاری کنید.",
+    "languageUnavailableTitle": "زبان OCR در دسترس نیست",
+    "ocrErrorTitle": "خطای OCR",
+    "ocrErrorMessage": "در فرایند OCR خطایی رخ داد. ممکن است worker بارگذاری نشده باشد. لطفاً دوباره تلاش کنید.",
+    "howItWorksTitle": "چگونه کار می‌کند:",
+    "extractTextLabel": "استخراج متن:",
+    "extractTextDescription": "از Tesseract OCR برای شناسایی متن در تصاویر یا PDFهای اسکن‌شده بهره می‌گیرد.",
+    "searchableOutputLabel": "خروجی قابل جستجو:",
+    "searchableOutputDescription": "یک PDF تازه با لایهٔ متنی نامرئی می‌سازد که سند شما را کاملاً قابل جستجو می‌کند و در عین حال ظاهر اصلی را نگه می‌دارد.",
+    "characterFilteringLabel": "پالایش نویسه‌ها:",
+    "characterFilteringDescription": "با فهرست سفید، نویسه‌های ناخواسته را کنار بگذارید و دقت را برای انواع خاص سند (فاکتور، فرم و غیره) بهبود دهید.",
+    "multiLanguageSupportLabel": "پشتیبانی چندزبانه:",
+    "multiLanguageSupportDescription": "برای اسنادی که محتوای چندزبانه دارند، چند زبان را برگزینید."
+  },
+  "alternateMerge": {
+    "name": "ادغام یک‌درمیان صفحات",
+    "subtitle": "PDFها را با درج یک‌درمیان صفحات هر فایل ادغام کنید. نشانک‌ها حفظ می‌شوند.",
+    "retainPageLabels": "حفظ برچسب‌های اصلی صفحات هر فایل",
+    "retainPageLabelsHint": "خاموش (پیش‌فرض): PDF ادغام‌شده از شماره‌گذاری طبیعی ۱ تا N استفاده می‌کند. روشن: برچسب‌های اصلی صفحات هر فایل حفظ می‌شوند (ممکن است برچسب‌های تکراری پدید آید)."
+  },
+  "addAttachments": {
+    "name": "افزودن پیوست",
+    "subtitle": "یک یا چند فایل را در PDF خود تعبیه کنید."
+  },
+  "extractAttachments": {
+    "name": "استخراج پیوست‌ها",
+    "subtitle": "همهٔ فایل‌های تعبیه‌شده در PDF(ها) را به‌صورت ZIP استخراج کنید."
+  },
+  "editAttachments": {
+    "name": "ویرایش پیوست‌ها",
+    "subtitle": "پیوست‌های PDF خود را مشاهده یا حذف کنید."
+  },
+  "dividePages": {
+    "name": "تقسیم صفحات",
+    "subtitle": "صفحات را به‌صورت افقی یا عمودی تقسیم کنید."
+  },
+  "addBlankPage": {
+    "name": "افزودن صفحهٔ خالی",
+    "subtitle": "یک صفحهٔ خالی را در هر جای PDF خود درج کنید."
+  },
+  "reversePages": {
+    "name": "وارونه‌سازی ترتیب صفحات",
+    "subtitle": "ترتیب همهٔ صفحات سند خود را وارونه کنید."
+  },
+  "rotatePdf": {
+    "name": "چرخاندن PDF",
+    "subtitle": "صفحات را در گام‌های ۹۰ درجه بچرخانید."
+  },
+  "rotateCustom": {
+    "name": "چرخاندن با زاویهٔ دلخواه",
+    "subtitle": "صفحات را با هر زاویهٔ دلخواهی بچرخانید."
+  },
+  "nUpPdf": {
+    "name": "N-Up کردن PDF",
+    "subtitle": "چند صفحه را روی یک برگ بچینید."
+  },
+  "combineToSinglePage": {
+    "name": "ترکیب در یک صفحه",
+    "subtitle": "همهٔ صفحات را در یک پیمایش پیوسته به هم بدوزید."
+  },
+  "viewMetadata": {
+    "name": "مشاهدهٔ فراداده",
+    "subtitle": "ویژگی‌های پنهان PDF خود را بررسی کنید."
+  },
+  "editMetadata": {
+    "name": "ویرایش فراداده",
+    "subtitle": "نویسنده، عنوان و دیگر ویژگی‌ها را تغییر دهید."
+  },
+  "pdfsToZip": {
+    "name": "PDFها به ZIP",
+    "subtitle": "چند فایل PDF را در یک بایگانی ZIP بسته‌بندی کنید."
+  },
+  "comparePdfs": {
+    "name": "مقایسهٔ PDFها",
+    "subtitle": "دو PDF را کنار هم مقایسه کنید.",
+    "firstPdf": "PDF نخست",
+    "secondPdf": "PDF دوم",
+    "clickOrDrop": "کلیک کنید یا رها کنید",
+    "page": "صفحه",
+    "overlay": "روی‌هم",
+    "sideBySide": "کنار هم",
+    "flicker": "چشمک‌زن",
+    "syncScroll": "پیمایش هم‌زمان",
+    "export": "برون‌ریزی",
+    "exportAsPdf": "برون‌ریزی به‌صورت PDF",
+    "splitView": "نمای تقسیم‌شده",
+    "alternating": "یک‌درمیان",
+    "leftDocument": "سند چپ",
+    "rightDocument": "سند راست",
+    "original": "اصلی",
+    "modified": "تغییریافته",
+    "searchChanges": "جستجوی تغییرات…",
+    "deleted": "حذف‌شده",
+    "added": "افزوده‌شده",
+    "prevPage": "صفحهٔ پیشین",
+    "nextPage": "صفحهٔ بعدی",
+    "prevChange": "تغییر پیشین",
+    "nextChange": "تغییر بعدی",
+    "uploadTwoPdfs": "برای دیدن تفاوت‌ها، دو PDF بارگذاری کنید.",
+    "noDifferences": "هیچ تفاوتی در این صفحه یافت نشد.",
+    "noMatchingChanges": "هیچ تغییری با پالایهٔ کنونی همخوانی ندارد.",
+    "pageNotExist": "صفحهٔ {{page}} در این PDF وجود ندارد.",
+    "noPairedPage": "برای این سمت هیچ صفحهٔ متناظری وجود ندارد.",
+    "buildingModel": "در حال ساخت مدل تطبیق صفحات…",
+    "indexingPdf": "در حال نمایه‌سازی PDF شمارهٔ {{num}}، صفحهٔ {{page}} از {{total}}…",
+    "loadingComparison": "در حال بارگذاری مقایسهٔ {{current}} از {{total}}…",
+    "runningOcr": "در حال اجرای OCR روی صفحهٔ {{page}}…",
+    "preparingExport": "در حال آماده‌سازی برون‌ریزی PDF…",
+    "renderingPage": "در حال ترسیم صفحهٔ {{current}} از {{total}}…",
+    "exportError": "خطای برون‌ریزی",
+    "exportFailed": "برون‌ریزی PDF مقایسه ممکن نشد.",
+    "loadingFile": "در حال بارگذاری {{name}}…",
+    "invalidFile": "فایل نامعتبر",
+    "invalidFileMsg": "لطفاً یک فایل PDF معتبر برگزینید.",
+    "loadError": "بارگذاری PDF ممکن نشد. ممکن است آسیب‌دیده یا محافظت‌شده با گذرواژه باشد."
+  },
+  "posterizePdf": {
+    "name": "پوستری‌کردن PDF",
+    "subtitle": "یک صفحهٔ بزرگ را به چند صفحهٔ کوچک‌تر تقسیم کنید."
+  },
+  "fixPageSize": {
+    "name": "اصلاح اندازهٔ صفحه",
+    "subtitle": "همهٔ صفحات را به اندازه‌ای یکسان استاندارد کنید."
+  },
+  "linearizePdf": {
+    "name": "خطی‌سازی PDF",
+    "subtitle": "PDF را برای نمایش سریع در وب بهینه کنید."
+  },
+  "pageDimensions": {
+    "name": "ابعاد صفحه",
+    "subtitle": "اندازه، جهت و واحد صفحات را تحلیل کنید."
+  },
+  "removeRestrictions": {
+    "name": "حذف محدودیت‌ها",
+    "subtitle": "محافظت با گذرواژه و محدودیت‌های امنیتی مرتبط با فایل‌های PDF امضاشدهٔ دیجیتال را بردارید."
+  },
+  "repairPdf": {
+    "name": "ترمیم PDF",
+    "subtitle": "داده‌ها را از فایل‌های PDF خراب یا آسیب‌دیده بازیابی کنید."
+  },
+  "encryptPdf": {
+    "name": "رمزگذاری PDF",
+    "subtitle": "با افزودن گذرواژه، PDF خود را قفل کنید."
+  },
+  "sanitizePdf": {
+    "name": "پاک‌سازی PDF",
+    "subtitle": "فراداده، حاشیه‌نویسی، اسکریپت و موارد دیگر را حذف کنید."
+  },
+  "decryptPdf": {
+    "name": "رمزگشایی PDF",
+    "subtitle": "با برداشتن محافظت گذرواژه، PDF را باز کنید."
+  },
+  "flattenPdf": {
+    "name": "مسطح‌سازی PDF",
+    "subtitle": "فیلدهای فرم و حاشیه‌نویسی‌ها را غیرقابل ویرایش کنید."
+  },
+  "removeMetadata": {
+    "name": "حذف فراداده",
+    "subtitle": "داده‌های پنهان را از PDF خود بردارید."
+  },
+  "changePermissions": {
+    "name": "تغییر مجوزها",
+    "subtitle": "مجوزهای کاربر را روی یک PDF تعیین یا تغییر دهید."
+  },
+  "odtToPdf": {
+    "name": "ODT به PDF",
+    "subtitle": "فایل‌های متنی OpenDocument را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های ODT",
+    "convertButton": "تبدیل به PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV به PDF",
+    "subtitle": "فایل‌های صفحه‌گستردهٔ CSV را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های CSV",
+    "convertButton": "تبدیل به PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF به PDF",
+    "subtitle": "اسناد Rich Text Format را به PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های RTF",
+    "convertButton": "تبدیل به PDF"
+  },
+  "wordToPdf": {
+    "name": "Word به PDF",
+    "subtitle": "اسناد Word (DOCX، DOC، ODT، RTF) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های DOCX، DOC، ODT، RTF",
+    "convertButton": "تبدیل به PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel به PDF",
+    "subtitle": "صفحه‌گسترده‌های Excel (XLSX، XLS، ODS، CSV) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های XLSX، XLS، ODS، CSV",
+    "convertButton": "تبدیل به PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint به PDF",
+    "subtitle": "ارائه‌های PowerPoint (PPTX، PPT، ODP) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های PPTX، PPT، ODP",
+    "convertButton": "تبدیل به PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown به PDF",
+    "subtitle": "Markdown بنویسید یا بچسبانید و آن را به‌صورت یک PDF زیبا برون‌ریزی کنید.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "پیش‌نمایش",
+    "btnUpload": "بارگذاری",
+    "btnSyncScroll": "پیمایش هم‌زمان",
+    "btnSettings": "تنظیمات",
+    "btnExportPdf": "برون‌ریزی PDF",
+    "settingsTitle": "تنظیمات Markdown",
+    "settingsPreset": "پیش‌تنظیم",
+    "presetDefault": "پیش‌فرض (شبیه GFM)",
+    "presetCommonmark": "CommonMark (سخت‌گیرانه)",
+    "presetZero": "کمینه (بدون قابلیت)",
+    "settingsOptions": "گزینه‌های Markdown",
+    "optAllowHtml": "اجازهٔ استفاده از تگ‌های HTML",
+    "optBreaks": "تبدیل خط تازه به <br>",
+    "optLinkify": "تبدیل خودکار نشانی‌ها به پیوند",
+    "optTypographer": "حروف‌نگار (گیومه‌های هوشمند و غیره)"
+  },
+  "pdfBooklet": {
+    "name": "دفترچهٔ PDF",
+    "subtitle": "صفحات را برای چاپ دورو به‌صورت دفترچه بازچینی کنید. تا بزنید و منگنه کنید تا دفترچه ساخته شود.",
+    "howItWorks": "چگونه کار می‌کند:",
+    "step1": "یک فایل PDF بارگذاری کنید.",
+    "step2": "صفحات به ترتیب دفترچه‌ای بازچینی می‌شوند.",
+    "step3": "دورو چاپ کنید، از لبهٔ کوتاه برگردانید، تا بزنید و منگنه کنید.",
+    "paperSize": "اندازهٔ کاغذ",
+    "orientation": "جهت",
+    "portrait": "عمودی",
+    "landscape": "افقی",
+    "pagesPerSheet": "تعداد صفحه در هر برگ",
+    "createBooklet": "ساخت دفترچه",
+    "processing": "در حال پردازش…",
+    "pageCount": "در صورت نیاز، تعداد صفحات تا مضربی از ۴ تکمیل می‌شود."
+  },
+  "xpsToPdf": {
+    "name": "XPS به PDF",
+    "subtitle": "اسناد XPS/OXPS را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های XPS، OXPS",
+    "convertButton": "تبدیل به PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI به PDF",
+    "subtitle": "کتاب‌های الکترونیکی MOBI را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های MOBI",
+    "convertButton": "تبدیل به PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB به PDF",
+    "subtitle": "کتاب‌های الکترونیکی EPUB را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های EPUB",
+    "convertButton": "تبدیل به PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 به PDF",
+    "subtitle": "کتاب‌های الکترونیکی FictionBook (FB2) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های FB2",
+    "convertButton": "تبدیل به PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ به PDF",
+    "subtitle": "بایگانی‌های کتاب کمیک (CBZ/CBR) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های CBZ، CBR",
+    "convertButton": "تبدیل به PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD به PDF",
+    "subtitle": "اسناد WordPerfect (WPD) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های WPD",
+    "convertButton": "تبدیل به PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS به PDF",
+    "subtitle": "اسناد WPS Office را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های WPS",
+    "convertButton": "تبدیل به PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML به PDF",
+    "subtitle": "اسناد XML را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های XML",
+    "convertButton": "تبدیل به PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages به PDF",
+    "subtitle": "اسناد Apple Pages را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های Pages",
+    "convertButton": "تبدیل به PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG به PDF",
+    "subtitle": "فایل‌های گرافیکی OpenDocument (ODG) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های ODG",
+    "convertButton": "تبدیل به PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS به PDF",
+    "subtitle": "فایل‌های صفحه‌گستردهٔ OpenDocument (ODS) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های ODS",
+    "convertButton": "تبدیل به PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP به PDF",
+    "subtitle": "فایل‌های ارائهٔ OpenDocument (ODP) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های ODP",
+    "convertButton": "تبدیل به PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB به PDF",
+    "subtitle": "فایل‌های Microsoft Publisher (PUB) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های PUB",
+    "convertButton": "تبدیل به PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD به PDF",
+    "subtitle": "فایل‌های Microsoft Visio (VSD، VSDX) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های VSD، VSDX",
+    "convertButton": "تبدیل به PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD به PDF",
+    "subtitle": "فایل‌های Adobe Photoshop (PSD) را به قالب PDF تبدیل کنید. از چند فایل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های PSD",
+    "convertButton": "تبدیل به PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF به SVG",
+    "subtitle": "هر صفحهٔ یک فایل PDF را به گرافیک برداری مقیاس‌پذیر (SVG) تبدیل کنید تا در هر اندازه‌ای کیفیتی بی‌نقص داشته باشد."
+  },
+  "extractTables": {
+    "name": "استخراج جدول‌های PDF",
+    "subtitle": "جدول‌ها را از فایل‌های PDF استخراج کرده و به‌صورت CSV، JSON یا Markdown برون‌ریزی کنید."
+  },
+  "pdfToCsv": {
+    "name": "PDF به CSV",
+    "subtitle": "جدول‌ها را از PDF استخراج کرده و به قالب CSV تبدیل کنید."
+  },
+  "pdfToExcel": {
+    "name": "PDF به Excel",
+    "subtitle": "جدول‌ها را از PDF استخراج کرده و به قالب Excel (XLSX) تبدیل کنید."
+  },
+  "pdfToText": {
+    "name": "PDF به متن",
+    "subtitle": "متن را از فایل‌های PDF استخراج کرده و به‌صورت متن ساده (.txt) ذخیره کنید. از چند فایل پشتیبانی می‌شود.",
+    "noteLabel": "نکته:",
+    "noteText": "این ابزار تنها با PDFهایی کار می‌کند که به‌صورت دیجیتال ساخته شده‌اند. برای اسناد اسکن‌شده یا PDFهای مبتنی بر تصویر، به‌جای آن از ابزار OCR روی PDF استفاده کنید.",
+    "convertButton": "استخراج متن"
+  },
+  "digitalSignPdf": {
+    "name": "امضای دیجیتال PDF",
+    "pageTitle": "امضای دیجیتال PDF - افزودن امضای رمزنگاری‌شده | BentoPDF",
+    "subtitle": "با گواهی‌های X.509 یک امضای دیجیتال رمزنگاری‌شده به PDF خود بیفزایید. از قالب‌های PKCS#12 (‎.pfx، ‎.p12) و PEM پشتیبانی می‌شود. کلید خصوصی شما هرگز از مرورگرتان خارج نمی‌شود.",
+    "certificateSection": "گواهی",
+    "uploadCert": "بارگذاری گواهی (‎.pfx، ‎.p12، ‎.pem)",
+    "certPassword": "گذرواژهٔ گواهی",
+    "privateKeyPassword": "گذرواژهٔ کلید خصوصی",
+    "certPasswordPlaceholder": "گذرواژهٔ گواهی را وارد کنید",
+    "certInfo": "اطلاعات گواهی",
+    "certSubject": "موضوع",
+    "certIssuer": "صادرکننده",
+    "certValidity": "معتبر",
+    "signatureDetails": "جزئیات امضا (اختیاری)",
+    "reason": "دلیل",
+    "reasonPlaceholder": "مثلاً: این سند را تأیید می‌کنم",
+    "location": "مکان",
+    "locationPlaceholder": "مثلاً: تهران، ایران",
+    "contactInfo": "اطلاعات تماس",
+    "contactPlaceholder": "مثلاً: email@example.com",
+    "visibleSignature": "امضای نمایان",
+    "visibleSignatureDescription": "با فعال‌سازی این گزینه، کادر امضای نمایانی روی PDF ظاهر می‌شود. می‌توانید تصویر یا نشان بارگذاری کنید یا متن بیفزایید. اگر هیچ‌کدام ارائه نشود، نام امضاکننده از روی گواهی به‌طور خودکار نمایش داده می‌شود.",
+    "signatureImage": "تصویر/نشان امضا (اختیاری)",
+    "uploadSignatureImage": "بارگذاری تصویر (PNG، JPG، WebP)",
+    "signaturePreviewAlt": "پیش‌نمایش امضا",
+    "remove": "برداشتن",
+    "page": "صفحه",
+    "firstPage": "صفحهٔ نخست",
+    "lastPage": "صفحهٔ پایانی",
+    "allPages": "همهٔ صفحات",
+    "customPage": "شمارهٔ صفحهٔ دلخواه",
+    "pageNumber": "شمارهٔ صفحه",
+    "xPosition": "موقعیت X (از چپ)",
+    "yPosition": "موقعیت Y (از بالا)",
+    "width": "عرض",
+    "height": "ارتفاع",
+    "addTextOverlay": "افزودن متن روی امضا",
+    "text": "متن",
+    "textPlaceholder": "مثلاً: به‌صورت دیجیتال امضا شده توسط John Doe",
+    "textColor": "رنگ متن",
+    "fontSize": "اندازهٔ قلم",
+    "invalidImageTitle": "تصویر نامعتبر",
+    "invalidImageMessage": "لطفاً یک تصویر PNG، JPG یا WebP برگزینید.",
+    "invalidFileTitle": "فایل نامعتبر",
+    "invalidFileMessage": "لطفاً یک فایل PDF برگزینید.",
+    "invalidCertificateTitle": "گواهی نامعتبر",
+    "invalidCertificateMessage": "لطفاً یک فایل گواهی ‎.pfx، ‎.p12 یا ‎.pem برگزینید.",
+    "certificateLoaded": "گواهی بارگذاری شد",
+    "certificateUnlocked": "گواهی باز شد",
+    "failedParsePem": "تجزیهٔ فایل PEM ناموفق بود",
+    "enterPasswordToUnlock": "برای باز کردن، گذرواژه را وارد کنید",
+    "invalidPasswordOrCertificate": "گذرواژه یا گواهی نامعتبر است",
+    "incorrectPassword": "گذرواژه نادرست است",
+    "failedParseCertificate": "تجزیهٔ گواهی ناموفق بود",
+    "missingDataTitle": "داده‌های ناقص",
+    "missingDataMessage": "لطفاً هم یک PDF و هم یک گواهی معتبر بارگذاری کنید.",
+    "applyingSignature": "در حال اعمال امضای دیجیتال…",
+    "signingFailedTitle": "امضا ناموفق بود",
+    "chainFetchFailed": "دریافت زنجیرهٔ گواهی ناموفق بود. این ممکن است به دلیل مشکلات شبکه یا در دسترس نبودن پراکسی گواهی باشد. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید. اگر مشکل ادامه یافت، با پشتیبانی تماس بگیرید.",
+    "failedToSignPdf": "امضای PDF ناموفق بود: {{message}}",
+    "defaultSignatureText": "به‌صورت دیجیتال امضا شده توسط {{signer}}\n{{date}}",
+    "pageCount": "{{count}} صفحه",
+    "howToStep1Title": "بارگذاری PDF",
+    "howToStep1Text": "سند PDF‌ای را که می‌خواهید امضا کنید برگزینید",
+    "howToStep2Title": "بارگذاری گواهی",
+    "howToStep2Text": "فایل گواهی ‎.pfx یا ‎.p12 و گذرواژهٔ آن را وارد کنید",
+    "howToStep3Title": "امضا و دانلود",
+    "howToStep3Text": "امضای دیجیتال را اعمال کرده و PDF امضاشدهٔ خود را دانلود کنید",
+    "relatedEncryptDesc": "PDF خود را با گذرواژه محافظت کنید",
+    "relatedDecryptDesc": "گذرواژهٔ PDF را بردارید",
+    "relatedFlattenDesc": "حاشیه‌نویسی‌ها را دائمی کنید",
+    "relatedSanitizeDesc": "داده‌های پنهان را حذف کنید",
+    "relatedPermissionsDesc": "مجوزهای PDF را تعیین کنید",
+    "faqWhatIsQuestion": "امضای دیجیتال چیست؟",
+    "faqWhatIsAnswer": "امضای دیجیتال سازوکاری رمزنگاری‌شده است که اصالت و یکپارچگی یک سند را تأیید می‌کند. برخلاف امضای دستی، این امضا از رمزنگاری کلید عمومی (گواهی‌های X.509) برای اثبات هویت امضاکننده بهره می‌گیرد.",
+    "faqFormatsQuestion": "از چه قالب‌های گواهی پشتیبانی می‌شود؟",
+    "faqFormatsAnswer": "ما از گواهی‌های قالب PKCS#12 (‎.pfx، ‎.p12) پشتیبانی می‌کنیم که هم گواهی و هم کلید خصوصی شما را در یک فایل رمزگذاری‌شده در بر دارند. این گواهی‌ها معمولاً توسط مراجع صدور گواهی صادر می‌شوند.",
+    "faqPrivateKeyQuestion": "آیا کلید خصوصی من ایمن است؟",
+    "faqPrivateKeyAnswer": "بله! تمام پردازش‌ها به‌طور کامل در مرورگر شما انجام می‌شود. گواهی، کلید خصوصی و فایل‌های PDF شما هرگز از دستگاهتان خارج نشده و روی هیچ سروری بارگذاری نمی‌شوند.",
+    "faqValidReadersQuestion": "آیا امضا در خوانندگان PDF معتبر خواهد بود؟",
+    "faqValidReadersAnswer": "بله، این ابزار امضاهای جداشدهٔ استاندارد PKCS#7 می‌سازد که همهٔ نمایشگرهای اصلی PDF آن‌ها را می‌شناسند. برای اعتبارسنجی کامل، از گواهی یک مرجع صدور گواهی مورد اعتماد استفاده کنید.",
+    "applySignature": "اعمال امضای دیجیتال",
+    "successMessage": "PDF با موفقیت امضا شد! این امضا در هر خوانندهٔ PDF قابل بررسی است.",
+    "internetRequiredTitle": "اتصال اینترنت لازم است",
+    "internetRequiredDescription": "امضا کردن ممکن است نیازمند دریافت اطلاعات زنجیرهٔ گواهی از سرور صادرکنندهٔ گواهی شما برای اعتبارسنجی امضا باشد."
+  },
+  "validateSignaturePdf": {
+    "name": "اعتبارسنجی امضای PDF",
+    "pageTitle": "اعتبارسنجی امضای PDF - بررسی امضاهای دیجیتال | BentoPDF",
+    "subtitle": "امضاهای دیجیتال فایل‌های PDF خود را بررسی کنید. اعتبار گواهی را وارسی کنید، جزئیات امضاکننده را ببینید و یکپارچگی سند را تأیید کنید. تمام پردازش‌ها در مرورگر شما انجام می‌شود."
+  },
+  "timestampPdf": {
+    "name": "مُهر زمانی PDF",
+    "pageTitle": "مُهر زمانی PDF آنلاین و رایگان - مُهر زمانی سند بر پایهٔ RFC 3161 | BentoPDF",
+    "subtitle": "با استفاده از یک سرور مرجع مُهر زمانی (TSA) مورد اعتماد، یک مُهر زمانی سند بر پایهٔ RFC 3161 به PDF خود بیفزایید. این کار اثبات می‌کند سند شما در زمانی مشخص وجود داشته است. نیازی به گواهی نیست.",
+    "tsaSectionTitle": "سرور مُهر زمانی (TSA)",
+    "selectTsa": "یک سرور TSA برگزینید",
+    "applyTimestamp": "اعمال مُهر زمانی",
+    "successMessage": "مُهر زمانی با موفقیت به PDF افزوده شد! این مُهر زمانی در هر خوانندهٔ PDF قابل بررسی است."
+  },
+  "emailToPdf": {
+    "name": "ایمیل به PDF",
+    "subtitle": "فایل‌های ایمیل (EML، MSG) را به قالب PDF تبدیل کنید. از برون‌ریزی‌های Outlook و قالب‌های استاندارد ایمیل پشتیبانی می‌شود.",
+    "acceptedFormats": "فایل‌های EML، MSG",
+    "convertButton": "تبدیل به PDF"
+  },
+  "fontToOutline": {
+    "name": "تبدیل قلم به خطوط برداری",
+    "subtitle": "همهٔ قلم‌ها را به خطوط برداری تبدیل کنید تا نمایش یکسانی در همهٔ دستگاه‌ها داشته باشند."
+  },
+  "deskewPdf": {
+    "name": "صاف‌کردن PDF",
+    "subtitle": "صفحات اسکن‌شدهٔ کج را به‌طور خودکار و با OpenCV صاف کنید."
+  },
+  "pdfToWord": {
+    "name": "PDF به Word",
+    "subtitle": "فایل‌های PDF را به اسناد Word قابل ویرایش تبدیل کنید."
+  },
+  "extractImages": {
+    "name": "استخراج تصاویر",
+    "subtitle": "همهٔ تصاویر تعبیه‌شده در فایل‌های PDF خود را استخراج کنید."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF به Markdown",
+    "subtitle": "متن و جدول‌های PDF را به قالب Markdown تبدیل کنید."
+  },
+  "preparePdfForAi": {
+    "name": "آماده‌سازی PDF برای هوش مصنوعی",
+    "subtitle": "محتوای PDF را به‌صورت JSON سازگار با LlamaIndex برای خط‌لوله‌های RAG/LLM استخراج کنید."
+  },
+  "pdfOcg": {
+    "name": "لایه‌های OCG در PDF",
+    "subtitle": "لایه‌های OCG را در PDF خود مشاهده، فعال/غیرفعال، اضافه و حذف کنید."
+  },
+  "pdfToPdfa": {
+    "name": "PDF به PDF/A",
+    "subtitle": "PDF را برای بایگانی بلندمدت به PDF/A تبدیل کنید."
+  },
+  "rasterizePdf": {
+    "name": "رستر کردن PDF",
+    "subtitle": "PDF را به PDF مبتنی بر تصویر تبدیل کنید. لایه‌ها را مسطح کرده و متن قابل انتخاب را حذف کنید."
+  },
+  "pdfWorkflow": {
+    "name": "سازندهٔ گردش کار PDF",
+    "subtitle": "با یک ویرایشگر گرهی دیداری، خط‌لوله‌های پردازش PDF سفارشی بسازید.",
+    "nodes": "گره‌ها",
+    "searchNodes": "جستجوی گره‌ها…",
+    "run": "اجرا",
+    "clear": "پاک‌سازی",
+    "save": "ذخیره",
+    "load": "بارگذاری",
+    "export": "برون‌ریزی",
+    "import": "درون‌ریزی",
+    "ready": "آماده",
+    "settings": "تنظیمات",
+    "processing": "در حال پردازش…",
+    "saveTemplate": "ذخیرهٔ قالب",
+    "templateName": "نام قالب",
+    "templatePlaceholder": "مثلاً گردش کار فاکتور",
+    "cancel": "انصراف",
+    "loadTemplate": "بارگذاری قالب",
+    "noTemplates": "هنوز هیچ قالب ذخیره‌شده‌ای وجود ندارد.",
+    "ok": "باشه",
+    "workflowCompleted": "گردش کار به پایان رسید",
+    "errorDuringExecution": "خطا هنگام اجرا",
+    "addNodeError": "برای اجرای گردش کار، دست‌کم یک گره بیفزایید.",
+    "needInputOutput": "گردش کار شما برای اجرا به دست‌کم یک گره ورودی و یک گره خروجی نیاز دارد.",
+    "enterName": "لطفاً یک نام وارد کنید.",
+    "templateExists": "قالبی با این نام از پیش وجود دارد.",
+    "templateSaved": "قالب «{{name}}» ذخیره شد.",
+    "templateLoaded": "قالب «{{name}}» بارگذاری شد.",
+    "failedLoadTemplate": "بارگذاری قالب ناموفق بود.",
+    "noSettings": "این گره تنظیمات قابل پیکربندی ندارد.",
+    "advancedSettings": "تنظیمات پیشرفته",
+    "specialNodes": {
+      "pdfInput": {
+        "name": "ورودی PDF",
+        "description": "یک یا چند فایل PDF بارگذاری کنید"
+      },
+      "download": {
+        "name": "دانلود",
+        "description": "دانلود خودکار به‌صورت PDF یا ZIP"
+      }
+    },
+    "errors": {
+      "noPdfsConnected": "هیچ PDF‌ای به گرهٔ {{node}} متصل نشده است",
+      "noPdfInputs": "هیچ PDF‌ای در ورودی وجود ندارد",
+      "expectedPdfInput": "ورودی PDF انتظار می‌رفت",
+      "failedToRenderPage": "ترسیم صفحهٔ {{page}} ناموفق بود",
+      "failedToGetCanvasContext": "دریافت زمینهٔ canvas برای صفحهٔ {{page}} ناموفق بود",
+      "failedToRenderPageToImage": "ترسیم صفحهٔ {{page}} به تصویر ناموفق بود",
+      "noPagesProcessed": "هیچ صفحه‌ای پردازش نشد",
+      "cpdfNotConfigured": "CoherentPDF پیکربندی نشده است. لطفاً آن را در تنظیمات پیشرفته پیکربندی کنید.",
+      "workerError": "خطای worker: {{message}}",
+      "alternateMergeWorkerError": "خطای worker ادغام یک‌درمیان: {{message}}",
+      "noPdfFilesUploaded": "هیچ فایل PDF‌ای در گرهٔ ورودی PDF بارگذاری نشده است",
+      "failedToLoadFile": "بارگذاری «{{file}}» ناموفق بود - ممکن است فایل آسیب‌دیده باشد",
+      "noImagesUploaded": "هیچ تصویری در گرهٔ ورودی تصویر بارگذاری نشده است",
+      "noWordDocsUploaded": "هیچ سندی در گرهٔ ورودی Word بارگذاری نشده است",
+      "noExcelUploaded": "هیچ صفحه‌گسترده‌ای در گرهٔ ورودی Excel بارگذاری نشده است",
+      "noPowerPointUploaded": "هیچ ارائه‌ای در گرهٔ ورودی PowerPoint بارگذاری نشده است",
+      "noCbzUploaded": "هیچ بایگانی کمیکی در گرهٔ ورودی CBZ بارگذاری نشده است",
+      "noEmailUploaded": "هیچ فایل ایمیلی در گرهٔ ورودی ایمیل بارگذاری نشده است",
+      "noEpubUploaded": "هیچ فایل EPUB‌ای در گرهٔ ورودی EPUB بارگذاری نشده است",
+      "noFb2Uploaded": "هیچ فایل FB2‌ای در گرهٔ ورودی FB2 بارگذاری نشده است",
+      "noJsonUploaded": "هیچ فایل JSON‌ای در گرهٔ ورودی JSON بارگذاری نشده است",
+      "noMarkdownUploaded": "هیچ فایل Markdown‌ای در گرهٔ ورودی Markdown بارگذاری نشده است",
+      "noMobiUploaded": "هیچ فایل MOBI‌ای در گرهٔ ورودی MOBI بارگذاری نشده است",
+      "noOdgUploaded": "هیچ فایل ODG‌ای در گرهٔ ورودی ODG بارگذاری نشده است",
+      "noPagesUploaded": "هیچ فایل Pages‌ای در گرهٔ ورودی Pages بارگذاری نشده است",
+      "noPubUploaded": "هیچ فایل PUB‌ای در گرهٔ ورودی PUB بارگذاری نشده است",
+      "noSvgUploaded": "هیچ فایل SVG‌ای در گرهٔ ورودی SVG بارگذاری نشده است",
+      "noTextUploaded": "هیچ فایل متنی‌ای در گرهٔ ورودی متن بارگذاری نشده است",
+      "noVsdUploaded": "هیچ فایل Visio‌ای در گرهٔ ورودی VSD بارگذاری نشده است",
+      "noWpdUploaded": "هیچ فایل WPD‌ای در گرهٔ ورودی WPD بارگذاری نشده است",
+      "noWpsUploaded": "هیچ فایل WPS‌ای در گرهٔ ورودی WPS بارگذاری نشده است",
+      "noXmlUploaded": "هیچ فایل XML‌ای در گرهٔ ورودی XML بارگذاری نشده است",
+      "noXpsUploaded": "هیچ فایل XPS‌ای در گرهٔ ورودی XPS بارگذاری نشده است",
+      "alternateMergeNeedsTwo": "ادغام یک‌درمیان به دست‌کم دو PDF متصل به ورودی خود نیاز دارد",
+      "cropMarginsExceed": "حاشیه‌های برش از ابعاد صفحه فراتر می‌روند. مقادیر برش را کاهش دهید.",
+      "digitalSignNoCertificate": "هیچ گواهی‌ای در گرهٔ امضای دیجیتال بارگذاری نشده است",
+      "encryptUserPasswordRequired": "برای رمزگذاری، گذرواژهٔ کاربر لازم است",
+      "extractImagesNoneFound": "در هیچ‌یک از PDFهای متصل تصویری یافت نشد",
+      "invertColorsFailedReadImage": "خواندن داده‌های تصویر ناموفق بود",
+      "overlayRequiresPdf": "گرهٔ روی‌گذاری به یک PDF ورودی برای روی‌گذاری نیاز دارد.",
+      "pdfToCsvNoTables": "هیچ جدولی در PDF یافت نشد",
+      "pdfToXlsxNoTables": "هیچ جدولی در {{file}} یافت نشد",
+      "posterizeFailedTileCanvas": "دریافت زمینهٔ canvas کاشی ناموفق بود",
+      "redactNoText": "سانسور: هیچ متنی برای سانسور مشخص نشده است",
+      "removeBlankPagesAllBlank": "همهٔ صفحات خالی هستند",
+      "svgFailedToConvert": "تبدیل SVG ناموفق بود",
+      "svgFailedToLoad": "بارگذاری SVG ناموفق بود",
+      "timestampFailed": "افزودن مُهر زمانی با TSA {{tsa}} ناموفق بود: {{message}}",
+      "noOutputNodes": "هیچ گرهٔ خروجی یافت نشد. برای تکمیل گردش کار خود، یک گرهٔ دانلود بیفزایید.",
+      "circularDependency": "وابستگی حلقوی در گردش کار تشخیص داده شد. لطفاً حلقه‌های میان گره‌ها را بردارید.",
+      "encryptOrdering": "گرهٔ رمزگذاری به «{{target}}» خورانده می‌شود که ممکن است روی داده‌های رمزگذاری‌شده شکست بخورد. گرهٔ رمزگذاری را درست پیش از گرهٔ خروجی قرار دهید.",
+      "invalidWorkflowFile": "فایل گردش کار نامعتبر است: آرایهٔ گره‌ها یا اتصال‌ها وجود ندارد.",
+      "storageQuotaExceeded": "ذخیرهٔ گردش کار ناموفق بود: سهمیهٔ فضای ذخیره‌سازی پر شده است. قالب‌های قدیمی را حذف کنید.",
+      "failedToImport": "درون‌ریزی گردش کار ناموفق بود: {{message}}"
+    }
+  },
+  "wasmSettings": {
+    "title": "تنظیمات قابلیت‌های پیشرفته",
+    "description": "برای فعال‌سازی قابلیت‌های پیشرفتهٔ PDF، ماژول‌های پردازش خارجی را پیکربندی کنید. این ماژول‌ها اختیاری بوده و مجوز جداگانه دارند.",
+    "status": {
+      "testing": "در حال آزمایش…",
+      "customOverride": "بازنویسی سفارشی",
+      "preConfigured": "از پیش پیکربندی‌شده",
+      "notConfigured": "پیکربندی نشده"
+    },
+    "preconfiguredTitle": "از پیش پیکربندی‌شده و آمادهٔ استفاده.",
+    "preconfiguredDescription": "ماژول‌های پردازش پیشرفته به‌طور خودکار از CDN بارگذاری می‌شوند. اگر نیاز به منبع سفارشی دارید (مثلاً برای استقرارهای جدا از شبکه یا میزبانی‌شخصی)، می‌توانید نشانی‌های زیر را بازنویسی کنید.",
+    "usingDefault": "استفاده از پیش‌فرض: {{url}}",
+    "pymupdfSubtitle": "موتور پردازش سند",
+    "pymupdfFeatures": "فعال می‌کند: PDF به متن، Markdown، SVG، DOCX، Excel • استخراج تصاویر/جدول‌ها • تبدیل قالب",
+    "testButton": "آزمایش",
+    "recommendedLabel": "پیشنهادی:",
+    "copyTitle": "کپی در حافظهٔ موقت",
+    "ghostscriptSubtitle": "موتور تبدیل PDF/A",
+    "ghostscriptFeatures": "فعال می‌کند: تبدیل PDF/A-1b، PDF/A-2b، PDF/A-3b • تبدیل قلم به خطوط برداری",
+    "cpdfSubtitle": "موتور نشانک‌ها و فراداده",
+    "cpdfFeatures": "فعال می‌کند: تقسیم بر پایهٔ نشانک • ویرایش نشانک‌ها • فرادادهٔ PDF",
+    "saveConfiguration": "ذخیرهٔ پیکربندی",
+    "savingConfiguration": "در حال ذخیرهٔ پیکربندی…",
+    "savedTitle": "ذخیره شد",
+    "savedMessage": "پیکربندی با موفقیت ذخیره شد!",
+    "errorTitle": "خطا",
+    "failedSave": "ذخیرهٔ پیکربندی ناموفق بود: {{message}}",
+    "emptyUrlTitle": "نشانی خالی",
+    "emptyUrlMessage": "لطفاً برای آزمایش یک نشانی وارد کنید.",
+    "testSuccessTitle": "موفق",
+    "connectionSuccess": "اتصال به {{package}} موفق بود!",
+    "connectionFailedTitle": "اتصال ناموفق",
+    "connectionFailedMessage": "اتصال به این نشانی ممکن نشد.",
+    "resetDefaults": "بازنشانی به پیش‌فرض‌ها",
+    "resetTitle": "بازنشانی",
+    "resetWithDefaults": "بازنویسی‌های سفارشی پاک شدند. پیش‌فرض‌های از پیش پیکربندی‌شده فعال هستند.",
+    "resetNoDefaults": "همهٔ پیکربندی‌ها و ماژول‌های ذخیره‌شده در حافظهٔ نهان پاک شدند.",
+    "licenseTitle": "اطلاعیهٔ مجوز:",
+    "licenseDescription": "ماژول‌های خارجی (PyMuPDF، Ghostscript، CoherentPDF) تحت مجوز AGPL-3.0 یا مجوزهای کپی‌لفت مشابه ارائه می‌شوند. با پیکربندی و استفاده از این ماژول‌ها، شما با شرایط مجوز مربوط به هر یک موافقت می‌کنید. BentoPDF با هر پیاده‌سازی Ghostscript WASM و PyMuPDF WASM که از رابط مورد انتظار پیروی کند سازگار است."
+  },
+  "pdfOverlay": {
+    "name": "روی‌گذاری PDF",
+    "subtitle": "صفحات یک PDF را روی یا زیر PDF دیگری قرار دهید.",
+    "basePdfLabel": "PDF پایه",
+    "uploadBasePdf": "بارگذاری PDF پایه",
+    "overlayPdfLabel": "PDF روی‌گذاری / زیرگذاری",
+    "uploadOverlayPdf": "بارگذاری PDF روی‌گذاری/زیرگذاری",
+    "modeLabel": "حالت",
+    "overlayOption": "روی‌گذاری (بالای صفحات)",
+    "underlayOption": "زیرگذاری (پشت صفحات)",
+    "pageRangeLabel": "اعمال بر صفحات (اختیاری)",
+    "pageRangeHint": "برای صفحهٔ پایانی از «z» استفاده کنید. برای اعمال بر همهٔ صفحات، خالی بگذارید.",
+    "repeatLabel": "تکرار صفحات روی‌گذاری/زیرگذاری در صورت بلندتر بودن PDF پایه",
+    "processButton": "اعمال روی‌گذاری / زیرگذاری",
+    "howItWorksUploadTitle": "دو PDF بارگذاری کنید",
+    "howItWorksUploadDescription": "PDF پایه و PDF‌ای را که می‌خواهید روی یا زیر آن قرار دهید بارگذاری کنید.",
+    "howItWorksModeTitle": "انتخاب حالت",
+    "howItWorksModeDescription": "روی‌گذاری (بالا) یا زیرگذاری (پشت) را برگزینید. در صورت تمایل، بازهٔ صفحات و تکرار را تعیین کنید.",
+    "howItWorksDownloadTitle": "دانلود",
+    "howItWorksDownloadDescription": "PDF خود را با روی‌گذاری یا زیرگذاری اعمال‌شده دانلود کنید.",
+    "faqDifferenceQuestion": "تفاوت روی‌گذاری و زیرگذاری چیست؟",
+    "faqDifferenceAnswer": "روی‌گذاری صفحات را بالای PDF پایهٔ شما قرار می‌دهد (مانند واترمارک). زیرگذاری صفحات را پشت PDF پایهٔ شما قرار می‌دهد (مانند سربرگ یا پس‌زمینه).",
+    "faqSinglePageQuestion": "آیا می‌توانم از یک PDF تک‌صفحه‌ای به‌عنوان روی‌گذاری برای همهٔ صفحات استفاده کنم؟",
+    "faqSinglePageAnswer": "بله! گزینهٔ «تکرار» را فعال کنید تا صفحات PDF روی‌گذاری در همهٔ صفحات پایه تکرار شوند. یک واترمارک تک‌صفحه‌ای بر همهٔ صفحات اعمال خواهد شد.",
+    "faqPrivacyQuestion": "آیا فایل‌های من خصوصی و ایمن هستند؟",
+    "faqPrivacyAnswer": "کاملاً! تمام پردازش‌ها در مرورگر شما انجام می‌شود. فایل‌های شما هرگز از دستگاهتان خارج نمی‌شوند و حریم خصوصی کامل تضمین می‌شود."
+  }
+}
