@@ -635,6 +635,12 @@ async function ensureDocumentComparison(
   })();
 
   documentComparisonPending = { epoch, promise: run };
+  const clearPending = () => {
+    if (documentComparisonPending?.promise === run) {
+      documentComparisonPending = null;
+    }
+  };
+  void run.then(clearPending, clearPending);
   return run;
 }
 
