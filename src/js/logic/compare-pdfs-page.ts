@@ -79,7 +79,18 @@ const documentNames = {
 };
 
 let documentComparison: Map<number, ComparePageResult> | null = null;
+let documentComparisonEpoch = 0;
+let documentComparisonPending: {
+  epoch: number;
+  promise: Promise<Map<number, ComparePageResult>>;
+} | null = null;
 let renderGeneration = 0;
+
+function invalidateDocumentComparison() {
+  documentComparison = null;
+  documentComparisonPending = null;
+  documentComparisonEpoch += 1;
+}
 
 function getActivePair() {
   return pageState.pagePairs[pageState.currentPage - 1] || null;
@@ -603,13 +614,28 @@ async function ensureDocumentComparison(
   ctx: CompareRenderContext
 ): Promise<Map<number, ComparePageResult>> {
   if (documentComparison) return documentComparison;
+  if (documentComparisonPending?.epoch === documentComparisonEpoch) {
+    return documentComparisonPending.promise;
+  }
 
-  const pages = await loadDocumentPageModels(ctx);
-  const detectFixed = pageState.ignoreFixedContent;
-  const { beforeItems, afterItems } = collectDocumentItems(pages, detectFixed);
-  const diff = await diffTextRunsAsync(beforeItems, afterItems);
-  documentComparison = buildDocumentResults(pages, diff, detectFixed);
-  return documentComparison;
+  const epoch = documentComparisonEpoch;
+  const run = (async () => {
+    const pages = await loadDocumentPageModels(ctx);
+    const detectFixed = pageState.ignoreFixedContent;
+    const { beforeItems, afterItems } = collectDocumentItems(
+      pages,
+      detectFixed
+    );
+    const diff = await diffTextRunsAsync(beforeItems, afterItems);
+    const results = buildDocumentResults(pages, diff, detectFixed);
+    if (epoch === documentComparisonEpoch) {
+      documentComparison = results;
+    }
+    return results;
+  })();
+
+  documentComparisonPending = { epoch, promise: run };
+  return run;
 }
 
 async function documentDisplayRatio(
@@ -947,7 +973,7 @@ async function handleFileInput(
       caches.pageModelCache.clear();
       caches.comparisonCache.clear();
       caches.comparisonResultsCache.clear();
-      documentComparison = null;
+      invalidateDocumentComparison();
       pageState.changeSearchQuery = '';
 
       const searchInput = getElement<HTMLInputElement>('compare-search-input');
@@ -1301,7 +1327,7 @@ document.addEventListener('DOMContentLoaded', function () {
       caches.pageModelCache.clear();
       caches.comparisonCache.clear();
       caches.comparisonResultsCache.clear();
-      documentComparison = null;
+      invalidateDocumentComparison();
       if (pageState.pdfDoc1 && pageState.pdfDoc2) {
         await renderBothPages();
       }
@@ -1329,7 +1355,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ignoreFixedToggle.checked = pageState.ignoreFixedContent;
     ignoreFixedToggle.addEventListener('change', function () {
       pageState.ignoreFixedContent = ignoreFixedToggle.checked;
-      documentComparison = null;
+      invalidateDocumentComparison();
       if (
         pageState.comparisonMode === 'document' &&
         pageState.pdfDoc1 &&

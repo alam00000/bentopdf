@@ -65,6 +65,19 @@ describe('classifyItemLayers', () => {
     expect(result[3]).toBe('background');
   });
 
+  it('keeps body glyphs whose angles straddle the 0/180 wrap boundary', () => {
+    const signals: ItemLayerSignal[] = [
+      { scale: 10, angleDeg: 0.5, insideArtifact: false },
+      { scale: 10, angleDeg: 179.5, insideArtifact: false },
+      { scale: 10, angleDeg: 0.3, insideArtifact: false },
+      { scale: 10, angleDeg: 179.8, insideArtifact: false },
+      { scale: 10, angleDeg: 90, insideArtifact: false },
+    ];
+    const result = classifyItemLayers(signals);
+    expect(result.slice(0, 4)).toEqual(['body', 'body', 'body', 'body']);
+    expect(result[4]).toBe('background');
+  });
+
   it('flags marked-content artifacts regardless of geometry', () => {
     const signals: ItemLayerSignal[] = [
       { scale: 10, angleDeg: 0, insideArtifact: false },

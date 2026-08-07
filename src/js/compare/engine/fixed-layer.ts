@@ -23,6 +23,33 @@ function median(values: number[]): number {
     : (sorted[mid - 1] + sorted[mid]) / 2;
 }
 
+function circularMeanAngleDeg(values: number[]): number {
+  if (values.length === 0) return 0;
+  let sumX = 0;
+  let sumY = 0;
+  for (const deg of values) {
+    const rad = (deg * 2 * Math.PI) / 180;
+    sumX += Math.cos(rad);
+    sumY += Math.sin(rad);
+  }
+  return lineAngleDeg(Math.atan2(sumY, sumX) / 2);
+}
+
+function signedAngleDeltaDeg(angle: number, reference: number): number {
+  const delta = (((angle - reference) % 180) + 180) % 180;
+  return delta > 90 ? delta - 180 : delta;
+}
+
+function dominantAngleDeg(values: number[]): number {
+  if (values.length === 0) return 0;
+  const center = circularMeanAngleDeg(values);
+  const unwrapped = values.map(
+    (value) => center + signedAngleDeltaDeg(value, center)
+  );
+  const dominant = median(unwrapped) % 180;
+  return dominant < 0 ? dominant + 180 : dominant;
+}
+
 export interface ItemLayerSignal {
   scale: number;
   angleDeg: number;
@@ -42,7 +69,7 @@ export function classifyItemLayers(
     (s) => s.angleDeg
   );
   const medianScale = median(scalePool);
-  const dominantAngle = median(anglePool);
+  const dominantAngle = dominantAngleDeg(anglePool);
 
   return signals.map((s) => {
     if (s.insideArtifact) return 'background';
