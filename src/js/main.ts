@@ -1112,7 +1112,7 @@ const init = async () => {
           // If the user releases a modifier without pressing a main key, revert to saved
           const key = e.key.toLowerCase();
           if (['control', 'shift', 'alt', 'meta'].includes(key)) {
-            const currentSaved = ShortcutsManager.getShortcut(toolId);
+            input.value = ShortcutsManager.getShortcut(toolId) || '';
           }
         };
 

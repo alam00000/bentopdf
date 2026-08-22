@@ -345,9 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const level = (
       document.getElementById('compression-level') as HTMLSelectElement
     ).value;
-    const algorithm = (
-      document.getElementById('compression-algorithm') as HTMLSelectElement
-    ).value;
     const convertToGrayscale =
       (document.getElementById('convert-to-grayscale') as HTMLInputElement)
         ?.checked ?? false;
