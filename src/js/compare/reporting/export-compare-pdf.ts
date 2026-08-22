@@ -3,6 +3,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import type {
   CompareCaches,
   ComparePagePair,
+  ComparePageResult,
   CompareTextChange,
   ComparePdfExportMode,
 } from '../types.ts';
@@ -96,6 +97,7 @@ export async function exportComparePdf(
     useOcr?: boolean;
     ocrLanguage?: string;
     showOverlayDocument?: boolean;
+    documentResults?: Map<number, ComparePageResult>;
   }
 ) {
   if (!pdfDoc1 && !pdfDoc2) {
@@ -152,13 +154,15 @@ export async function exportComparePdf(
         ? await pdfDoc2.getPage(pair.rightPageNumber)
         : null;
 
-    const comparison = await computeComparisonForPair(
-      pdfDoc1,
-      pdfDoc2,
-      pair,
-      exportCaches,
-      renderContext
-    );
+    const comparison =
+      options?.documentResults?.get(pair.pairIndex) ??
+      (await computeComparisonForPair(
+        pdfDoc1,
+        pdfDoc2,
+        pair,
+        exportCaches,
+        renderContext
+      ));
     const changes = comparison.changes.filter(includeChange);
 
     if (mode === 'overlay') {

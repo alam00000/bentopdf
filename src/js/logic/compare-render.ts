@@ -81,7 +81,7 @@ function shouldUseOcrForModel(model: ComparePageModel) {
   return !model.hasText || isLowQualityExtractedText(model.plainText);
 }
 
-function rescaleRect(
+export function rescaleRect(
   rect: CompareRectangle,
   scaleX: number,
   scaleY: number

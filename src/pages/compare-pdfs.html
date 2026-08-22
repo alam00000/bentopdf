@@ -697,6 +697,38 @@
 
             <div class="border-l border-gray-700 h-5 mx-1"></div>
 
+            <div class="bg-gray-700 p-0.5 rounded flex gap-0.5">
+              <button
+                id="compare-mode-page"
+                class="btn bg-indigo-600 px-2.5 py-1 rounded text-xs font-semibold"
+                title="Compare each page against its aligned counterpart"
+              >
+                Per-page
+              </button>
+              <button
+                id="compare-mode-document"
+                class="btn bg-gray-700 px-2.5 py-1 rounded text-xs font-semibold"
+                title="Compare the documents as a whole so reflowed content is not flagged"
+              >
+                Whole document
+              </button>
+            </div>
+
+            <label
+              class="flex items-center gap-1.5 text-xs text-gray-300 cursor-pointer"
+              title="Exclude headers, footers, page numbers and watermarks from the whole-document comparison"
+            >
+              <input
+                type="checkbox"
+                id="ignore-fixed-toggle"
+                checked
+                class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-700 border-gray-600"
+              />
+              Ignore headers &amp; watermarks
+            </label>
+
+            <div class="border-l border-gray-700 h-5 mx-1"></div>
+
             <button
               id="prev-change-btn"
               class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold disabled:opacity-50"

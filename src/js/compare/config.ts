@@ -37,3 +37,13 @@ export const VISUAL_DIFF = {
 } as const;
 
 export const COMPARE_CACHE_MAX_SIZE = 50;
+
+export const HEADER_FOOTER_ZONE = 0.12;
+
+export const COMPARE_FURNITURE = {
+  FONT_SCALE_OUTLIER: 2.2,
+  ROTATION_TOLERANCE_DEG: 12,
+  REPEAT_PAGE_FRACTION: 0.6,
+  REPEAT_MIN_PAGES: 3,
+  POSITION_QUANTIZE: 12,
+} as const;

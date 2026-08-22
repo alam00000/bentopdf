@@ -21,6 +21,7 @@ interface WordToken {
   rect: CompareRectangle;
   fontName?: string;
   fontSize?: number;
+  pageNumber?: number;
 }
 
 function getCharMap(line: CompareTextItem): CharPosition[] {
@@ -42,6 +43,7 @@ function splitLineIntoWords(line: CompareTextItem): WordToken[] {
       rect: token.rect,
       fontName: token.fontName,
       fontSize: token.fontSize,
+      pageNumber: line.pageNumber,
     }));
     if (!containsCJK(line.normalizedText)) return baseTokens;
     return baseTokens.flatMap(splitCJKToken);
@@ -73,6 +75,7 @@ function splitLineIntoWords(line: CompareTextItem): WordToken[] {
           width: word.length * charWidth,
           height: line.rect.height,
         },
+        pageNumber: line.pageNumber,
       };
     }
 
@@ -83,6 +86,7 @@ function splitLineIntoWords(line: CompareTextItem): WordToken[] {
       word,
       compareWord: word.toLowerCase(),
       rect: { x, y: line.rect.y, width: w, height: line.rect.height },
+      pageNumber: line.pageNumber,
     };
   });
 
@@ -108,6 +112,7 @@ function splitCJKToken(token: WordToken): WordToken[] {
       word: seg,
       compareWord: seg.toLowerCase(),
       rect: { x, y: token.rect.y, width, height: token.rect.height },
+      pageNumber: token.pageNumber,
     };
   });
 }
@@ -168,6 +173,8 @@ function createWordChange(
   const id = `${type}-${changes.length}`;
   const beforeRects = groupAdjacentRects(beforeWords.map((w) => w.rect));
   const afterRects = groupAdjacentRects(afterWords.map((w) => w.rect));
+  const beforePage = beforeWords[0]?.pageNumber;
+  const afterPage = afterWords[0]?.pageNumber;
 
   if (type === 'modified') {
     changes.push({
@@ -179,6 +186,8 @@ function createWordChange(
       afterText,
       beforeRects,
       afterRects,
+      beforePage,
+      afterPage,
     });
   } else if (type === 'removed') {
     changes.push({
@@ -190,6 +199,7 @@ function createWordChange(
       afterText: '',
       beforeRects,
       afterRects: [],
+      beforePage,
     });
   } else {
     changes.push({
@@ -201,6 +211,7 @@ function createWordChange(
       afterText,
       beforeRects: [],
       afterRects,
+      afterPage,
     });
   }
 }
@@ -313,6 +324,8 @@ function detectStyleChanges(
     text: string;
     beforeRects: CompareRectangle[];
     afterRects: CompareRectangle[];
+    beforePage: number | undefined;
+    afterPage: number | undefined;
   }
 
   const fragments: StyleFragment[] = [];
@@ -357,6 +370,8 @@ function detectStyleChanges(
           text: bTokens.map((w) => w.word).join(' '),
           beforeRects: groupAdjacentRects(bTokens.map((w) => w.rect)),
           afterRects: groupAdjacentRects(aTokens.map((w) => w.rect)),
+          beforePage: bTokens[0].pageNumber,
+          afterPage: aTokens[0].pageNumber,
         });
         styleRunStart = -1;
       }
@@ -399,6 +414,8 @@ function detectStyleChanges(
       afterText: allText,
       beforeRects: allBeforeRects,
       afterRects: allAfterRects,
+      beforePage: groupFrags[0].beforePage,
+      afterPage: groupFrags[0].afterPage,
     });
   }
 }
@@ -462,6 +479,8 @@ function detectMovedText(changes: CompareTextChange[]) {
         afterText: bestMatch.afterText,
         beforeRects: rem.beforeRects,
         afterRects: bestMatch.afterRects,
+        beforePage: rem.beforePage,
+        afterPage: bestMatch.afterPage,
       });
     }
   }

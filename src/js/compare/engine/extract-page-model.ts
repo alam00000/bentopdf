@@ -14,6 +14,11 @@ import {
   containsCJK,
   segmentCJKText,
 } from './text-normalization.ts';
+import {
+  classifyItemLayers,
+  lineAngleDeg,
+  type ItemLayerSignal,
+} from './fixed-layer.ts';
 
 type PageTextItem = {
   str: string;
@@ -628,7 +633,7 @@ export async function extractPageModel(
   viewport: pdfjsLib.PageViewport
 ): Promise<ComparePageModel> {
   const [textContent, rawAnnotations, opList] = await Promise.all([
-    page.getTextContent(),
+    page.getTextContent({ includeMarkedContent: true }),
     page
       .getAnnotations({ intent: 'any' })
       .catch(() => [] as Array<Record<string, unknown>>),
@@ -658,13 +663,56 @@ export async function extractPageModel(
     }
   }
 
-  const rawItems = sortCompareTextItems(
-    textContent.items
-      .filter((item): item is PageTextItem => 'str' in item)
-      .map((item, index) => toRect(viewport, item, index, styles, fontNameMap))
-      .filter((item) => item.normalizedText.length > 0)
-  );
-  const textItems = mergeIntoLines(rawItems);
+  const classified: Array<{ item: CompareTextItem; signal: ItemLayerSignal }> =
+    [];
+  const artifactStack: boolean[] = [];
+  let textIndex = 0;
+
+  for (const raw of textContent.items) {
+    if ('type' in raw) {
+      const marked = raw as { type: string; tag?: string };
+      if (marked.type === 'endMarkedContent') {
+        artifactStack.pop();
+      } else {
+        artifactStack.push(marked.tag === 'Artifact');
+      }
+      continue;
+    }
+    if (!('str' in raw)) continue;
+
+    const pageItem = raw as PageTextItem;
+    const item = toRect(viewport, pageItem, textIndex++, styles, fontNameMap);
+    if (item.normalizedText.length === 0) continue;
+
+    const composite = pdfjsLib.Util.transform(
+      viewport.transform,
+      pageItem.transform
+    );
+    classified.push({
+      item,
+      signal: {
+        scale: Math.hypot(pageItem.transform[0], pageItem.transform[1]),
+        angleDeg: lineAngleDeg(Math.atan2(composite[1], composite[0])),
+        insideArtifact: artifactStack.some(Boolean),
+      },
+    });
+  }
+
+  const layers = classifyItemLayers(classified.map((entry) => entry.signal));
+  const bodyItems: CompareTextItem[] = [];
+  const backgroundItems: CompareTextItem[] = [];
+  classified.forEach((entry, index) => {
+    if (layers[index] === 'background') {
+      backgroundItems.push({ ...entry.item, layer: 'background' });
+    } else {
+      bodyItems.push(entry.item);
+    }
+  });
+
+  const textItems = [
+    ...mergeIntoLines(sortCompareTextItems(bodyItems)),
+    ...backgroundItems,
+  ];
 
   return {
     pageNumber: page.pageNumber,

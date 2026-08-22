@@ -6,8 +6,7 @@ import type {
   CompareRectangle,
   CompareTextChange,
 } from '../types.ts';
-
-const HEADER_FOOTER_ZONE = 0.12;
+import { HEADER_FOOTER_ZONE } from '../config.ts';
 
 export function classifyChangeCategory(
   change: CompareTextChange,
@@ -24,7 +23,7 @@ export function classifyChangeCategory(
   return 'text';
 }
 
-function isHeaderFooterZone(
+export function isHeaderFooterZone(
   rects: CompareRectangle[],
   pageHeight: number
 ): boolean {
