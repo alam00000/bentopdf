@@ -65,6 +65,9 @@ spec:
               mountPath: /var/cache/nginx
             - name: nginx-run
               mountPath: /var/run
+            {{- if .Values.extraVolumeMounts }}
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+            {{- end }}
       volumes:
         - name: nginx-tmp
           emptyDir: {}
@@ -72,3 +75,6 @@ spec:
           emptyDir: {}
         - name: nginx-run
           emptyDir: {}
+        {{- if .Values.extraVolumes }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
