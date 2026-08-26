@@ -12,9 +12,9 @@ function escapeRegex(text: string): string {
  * Scoring Hierarchy:
  * - 100 pts: Exact title match
  * -  80 pts: Title starts with query
- * -  60 pts: Query matches a word boundary in the title
+ * -  60 pts: Query matches a Unicode-aware word start in the title
  * -  40 pts: Query is contained anywhere in the title
- * -  20 pts: Query matches a word boundary in the description
+ * -  20 pts: Query matches a Unicode-aware word start in the description
  * -  10 pts: Query is contained anywhere in the description
  * -   0 pts: No match
  */
@@ -41,9 +41,12 @@ export function calculateSearchRelevance(
     return 80;
   }
 
-  // Tier 3: Query matches a word boundary in the title
+  // Tier 3: Query matches a Unicode-aware word boundary in the title
   const escapedQuery = escapeRegex(normalizedQuery);
-  const wordBoundaryRegex = new RegExp(`\\b${escapedQuery}`, 'i');
+  const wordBoundaryRegex = new RegExp(
+    `(?<![\\p{L}\\p{N}])${escapedQuery}`,
+    'iu'
+  );
   if (wordBoundaryRegex.test(normalizedTitle)) {
     return 60;
   }
@@ -53,7 +56,7 @@ export function calculateSearchRelevance(
     return 40;
   }
 
-  // Tier 5: Query matches a word boundary in the description
+  // Tier 5: Query matches a Unicode-aware word boundary in the description
   if (wordBoundaryRegex.test(normalizedDescription)) {
     return 20;
   }
