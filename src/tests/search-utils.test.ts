@@ -120,6 +120,15 @@ describe('calculateSearchRelevance', () => {
     expect(descMatchScore).toBe(20);
   });
 
+  it('correctly matches non-ASCII Unicode words at word boundaries', () => {
+    expect(
+      calculateSearchRelevance('Outil Éclair', 'Outil de conversion', 'éclair')
+    ).toBe(60);
+    expect(
+      calculateSearchRelevance('Añadir Página', 'Operaciones de PDF', 'página')
+    ).toBe(60);
+  });
+
   it('safely handles special regex characters in query', () => {
     expect(() =>
       calculateSearchRelevance(
