@@ -115,6 +115,7 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                              | `images/favicon-no-bg.svg`                                     |
 | `VITE_FOOTER_TEXT`                   | Custom footer/copyright text                                                                                                 | `© 2026 BentoPDF. All rights reserved.`                        |
 | `DISABLE_TOOLS`                      | Comma-separated tool IDs to hide                                                                                             | _(empty; all tools enabled)_                                   |
+| `DISABLE_GITHUB_STARS`               | Skip the GitHub star-count fetch on page load and drop `api.github.com` from the CSP. Simple Mode builds always skip it.     | `false`                                                        |
 
 WASM module URLs are pre-configured with CDN defaults — all advanced features work out of the box. Override these for air-gapped or self-hosted deployments.
 
@@ -262,6 +263,16 @@ You can also disable specific features inside the PDF Editor (e.g., redaction, a
 </details>
 
 Categories are hierarchical — disabling a parent (e.g., `annotation`) disables all its children.
+
+### Disabling the GitHub Star Counter
+
+The navbar shows a live GitHub star count, fetched from `api.github.com` on page load. The only external request that isn't serving a PDF feature. Disable it at build time to remove the fetch code from the bundle and drop `api.github.com` from the Content-Security-Policy:
+
+```bash
+docker build --build-arg DISABLE_GITHUB_STARS=true -t bentopdf .
+```
+
+Simple Mode builds (`bentopdf-simple`) always skip the star counter — this flag is only needed on the Commercial build or custom full builds.
 
 ### Custom WASM URLs (Air-Gapped / Self-Hosted)
 

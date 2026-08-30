@@ -18,6 +18,7 @@ export interface MergeMessage {
   jobs: MergeJob[];
   cpdfUrl?: string;
   retainPageLabels?: boolean;
+  removeDuplicateFonts?: boolean;
 }
 
 export interface MergeSuccessResponse {

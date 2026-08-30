@@ -26,6 +26,7 @@ export default [
     ],
   },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
+
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
@@ -87,6 +88,16 @@ export default [
       'valid-typeof': 'warn',
       'no-sparse-arrays': 'warn',
       'no-misleading-character-class': 'warn',
+    },
+  },
+  {
+    files: ['src/js/editcore/**/*.js'],
+    rules: {
+      'no-useless-assignment': 'off',
+      'security/detect-unsafe-regex': 'off',
+      'security/detect-object-injection': 'off',
+      'no-unsanitized/property': 'off',
+      'no-empty': 'off',
     },
   },
 ];

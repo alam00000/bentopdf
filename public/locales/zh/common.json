@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "你们使用 Cookie 或分析来跟踪我吗？",
-      "answer": "我们关心您的隐私。BentoPDF 不会跟踪个人信息。我们仅使用 Simple Analytics 查看匿名访问计数。这意味着我们可以知道有多少用户访问我们的网站，但我们永远不知道您是谁。Simple Analytics 完全符合 GDPR 并尊重您的隐私。"
+      "answer": "不会。BentoPDF 完全不会追踪您。我们不使用 Cookie、分析工具或任何追踪脚本，即使在正式网站 bentopdf.com 上也是如此。我们永远不知道您是谁，也不知道您用这些工具做了什么。"
     }
   },
   "testimonials": {

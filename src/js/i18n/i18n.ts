@@ -1,5 +1,8 @@
 import i18next from 'i18next';
 import HttpBackend from 'i18next-http-backend';
+import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
+import enCommon from '../../../public/locales/en/common.json';
+import enTools from '../../../public/locales/en/tools.json';
 
 // Supported languages
 export const supportedLanguages = [
@@ -75,7 +78,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
     return langMatch[1] as SupportedLanguage;
   }
 
-  const storedLang = localStorage.getItem('i18nextLng');
+  const storedLang = getStoredItem('i18nextLng');
   if (
     storedLang &&
     supportedLanguages.includes(storedLang as SupportedLanguage)
@@ -112,7 +115,7 @@ export const initI18n = async (): Promise<typeof i18next> => {
 
   const currentLang = getLanguageFromUrl();
 
-  localStorage.setItem('i18nextLng', currentLang);
+  setStoredItem('i18nextLng', currentLang);
 
   await i18next.use(HttpBackend).init({
     lng: currentLang,
@@ -121,6 +124,13 @@ export const initI18n = async (): Promise<typeof i18next> => {
     ns: ['common', 'tools'],
     defaultNS: 'common',
     preload: [currentLang],
+    partialBundledLanguages: true,
+    resources: {
+      en: {
+        common: enCommon,
+        tools: enTools,
+      },
+    },
     backend: {
       loadPath: `${import.meta.env.BASE_URL.replace(/\/?$/, '/')}locales/{{lng}}/{{ns}}.json`,
     },
@@ -141,7 +151,7 @@ export const t = (key: string, options?: Record<string, unknown>): string => {
 
 export const changeLanguage = (lang: SupportedLanguage): void => {
   if (!supportedLanguages.includes(lang)) return;
-  localStorage.setItem('i18nextLng', lang);
+  setStoredItem('i18nextLng', lang);
 
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   let relativePath = window.location.pathname;

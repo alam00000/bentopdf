@@ -16,7 +16,7 @@ import {
   extractPagesWithQpdf,
 } from '@/js/utils/split-pdf-helpers';
 
-const FIXTURES = path.resolve(__dirname, './fixtures');
+import { sharedResourcesPdf, bookmarkedPdf } from './helpers/split-fixtures';
 
 describe('split-pdf-helpers (pure planning)', () => {
   describe('parseRangeGroups', () => {
@@ -332,9 +332,7 @@ describe('split modes end-to-end with real qpdf', () => {
   });
 
   it('fixes resource bloat: a single-page extract is far smaller than pdf-lib copyPages', async () => {
-    const src = new Uint8Array(
-      fs.readFileSync(path.join(FIXTURES, 'shared-resources.pdf'))
-    );
+    const src = sharedResourcesPdf();
 
     const srcDoc = await PDFDocument.load(src);
     const plDoc = await PDFDocument.create();
@@ -347,9 +345,7 @@ describe('split modes end-to-end with real qpdf', () => {
   });
 
   it('preserves the document outline that pdf-lib copyPages drops', async () => {
-    const src = new Uint8Array(
-      fs.readFileSync(path.join(FIXTURES, 'bookmarked.pdf'))
-    );
+    const src = bookmarkedPdf();
 
     const srcDoc = await PDFDocument.load(src);
     const plDoc = await PDFDocument.create();

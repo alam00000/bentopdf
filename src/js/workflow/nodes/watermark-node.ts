@@ -47,6 +47,18 @@ export class WatermarkNode extends BaseWorkflowNode {
       new ClassicPreset.InputControl('text', { initial: 'center' })
     );
     this.addControl(
+      'tile',
+      new ClassicPreset.InputControl('text', { initial: 'no' })
+    );
+    this.addControl(
+      'tileGapX',
+      new ClassicPreset.InputControl('number', { initial: 25 })
+    );
+    this.addControl(
+      'tileGapY',
+      new ClassicPreset.InputControl('number', { initial: 75 })
+    );
+    this.addControl(
       'pages',
       new ClassicPreset.InputControl('text', { initial: 'all' })
     );
@@ -96,6 +108,10 @@ export class WatermarkNode extends BaseWorkflowNode {
     const posKey = getText('position', 'center').trim().toLowerCase();
     const { x, y } = positionPresets[posKey] ?? positionPresets['center'];
 
+    const tile = getText('tile', 'no').trim().toLowerCase() === 'yes';
+    const tileGapX = Math.max(0, getNum('tileGapX', 25)) / 100;
+    const tileGapY = Math.max(0, getNum('tileGapY', 75)) / 100;
+
     const pagesStr = getText('pages', 'all').trim().toLowerCase();
     const shouldFlatten =
       getText('flatten', 'no').trim().toLowerCase() === 'yes';
@@ -117,6 +133,9 @@ export class WatermarkNode extends BaseWorkflowNode {
           x,
           y: 1 - y,
           pageIndices,
+          tile,
+          tileGapX,
+          tileGapY,
         });
 
         if (shouldFlatten) {

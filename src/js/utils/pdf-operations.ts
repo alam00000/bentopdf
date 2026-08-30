@@ -182,6 +182,82 @@ export function parseDeletePages(str: string, totalPages: number): Set<number> {
   return pages;
 }
 
+export interface TileLayoutOptions {
+  pageWidth: number;
+  pageHeight: number;
+  itemWidth: number;
+  itemHeight: number;
+  angle: number;
+  gapX: number;
+  gapY: number;
+}
+
+export const DEFAULT_TILE_GAP_X = 0.25;
+export const DEFAULT_TILE_GAP_Y = 0.75;
+const MAX_TILES = 1500;
+
+export function computeTileCenters(
+  options: TileLayoutOptions
+): { x: number; y: number }[] {
+  const { pageWidth, pageHeight, itemWidth, itemHeight } = options;
+  if (
+    !(pageWidth > 0) ||
+    !(pageHeight > 0) ||
+    !(itemWidth > 0) ||
+    !(itemHeight > 0) ||
+    !Number.isFinite(options.angle)
+  ) {
+    return [];
+  }
+
+  const rad = (options.angle * Math.PI) / 180;
+  const ux = Math.cos(rad);
+  const uy = Math.sin(rad);
+  const vx = -Math.sin(rad);
+  const vy = Math.cos(rad);
+
+  let stepX = Math.max(itemWidth * (1 + Math.max(0, options.gapX)), 1);
+  let stepY = Math.max(itemHeight * (1 + Math.max(0, options.gapY)), 1);
+
+  const density = (pageWidth * pageHeight) / (stepX * stepY);
+  if (density > MAX_TILES) {
+    const factor = Math.sqrt(density / MAX_TILES);
+    stepX *= factor;
+    stepY *= factor;
+  }
+
+  const centerX = pageWidth / 2;
+  const centerY = pageHeight / 2;
+  const reach = Math.hypot(pageWidth, pageHeight) / 2;
+  const radius = Math.hypot(itemWidth, itemHeight) / 2;
+  const halfExtentX =
+    (Math.abs(ux) * itemWidth + Math.abs(vx) * itemHeight) / 2;
+  const halfExtentY =
+    (Math.abs(uy) * itemWidth + Math.abs(vy) * itemHeight) / 2;
+  const iMax = Math.ceil((reach + radius) / stepX);
+  const jMax = Math.ceil((reach + radius) / stepY);
+
+  const centers: { x: number; y: number }[] = [];
+  for (let j = -jMax; j <= jMax; j++) {
+    for (let i = -iMax; i <= iMax; i++) {
+      const x = centerX + i * stepX * ux + j * stepY * vx;
+      const y = centerY + i * stepX * uy + j * stepY * vy;
+      if (
+        x + halfExtentX < 0 ||
+        x - halfExtentX > pageWidth ||
+        y + halfExtentY < 0 ||
+        y - halfExtentY > pageHeight
+      ) {
+        continue;
+      }
+      centers.push({ x, y });
+      if (centers.length >= MAX_TILES * 2) return centers;
+    }
+  }
+
+  return centers;
+}
+
 export interface TextWatermarkOptions {
   text: string;
   fontSize: number;
@@ -191,6 +267,9 @@ export interface TextWatermarkOptions {
   x?: number;
   y?: number;
   pageIndices?: number[];
+  tile?: boolean;
+  tileGapX?: number;
+  tileGapY?: number;
 }
 
 export async function addTextWatermark(
@@ -244,17 +323,28 @@ export async function addTextWatermark(
     const page = pages[idx];
     if (!page) continue;
     const { width, height } = page.getSize();
-    const cx = posX * width;
-    const cy = posY * height;
+    const centers = options.tile
+      ? computeTileCenters({
+          pageWidth: width,
+          pageHeight: height,
+          itemWidth: imgWidth,
+          itemHeight: imgHeight,
+          angle: options.angle,
+          gapX: options.tileGapX ?? DEFAULT_TILE_GAP_X,
+          gapY: options.tileGapY ?? DEFAULT_TILE_GAP_Y,
+        })
+      : [{ x: posX * width, y: posY * height }];
 
-    page.drawImage(image, {
-      x: cx - Math.cos(rad) * halfW + Math.sin(rad) * halfH,
-      y: cy - Math.sin(rad) * halfW - Math.cos(rad) * halfH,
-      width: imgWidth,
-      height: imgHeight,
-      opacity: options.opacity,
-      rotate: degrees(options.angle),
-    });
+    for (const { x: cx, y: cy } of centers) {
+      page.drawImage(image, {
+        x: cx - Math.cos(rad) * halfW + Math.sin(rad) * halfH,
+        y: cy - Math.sin(rad) * halfW - Math.cos(rad) * halfH,
+        width: imgWidth,
+        height: imgHeight,
+        opacity: options.opacity,
+        rotate: degrees(options.angle),
+      });
+    }
   }
 
   return new Uint8Array(await pdfDoc.save());
@@ -269,6 +359,9 @@ export interface ImageWatermarkOptions {
   x?: number;
   y?: number;
   pageIndices?: number[];
+  tile?: boolean;
+  tileGapX?: number;
+  tileGapY?: number;
 }
 
 export async function addImageWatermark(
@@ -295,17 +388,28 @@ export async function addImageWatermark(
     const page = pages[idx];
     if (!page) continue;
     const { width, height } = page.getSize();
-    const cx = posX * width;
-    const cy = posY * height;
+    const centers = options.tile
+      ? computeTileCenters({
+          pageWidth: width,
+          pageHeight: height,
+          itemWidth: imgWidth,
+          itemHeight: imgHeight,
+          angle: options.angle,
+          gapX: options.tileGapX ?? DEFAULT_TILE_GAP_X,
+          gapY: options.tileGapY ?? DEFAULT_TILE_GAP_Y,
+        })
+      : [{ x: posX * width, y: posY * height }];
 
-    page.drawImage(image, {
-      x: cx - Math.cos(rad) * halfW + Math.sin(rad) * halfH,
-      y: cy - Math.sin(rad) * halfW - Math.cos(rad) * halfH,
-      width: imgWidth,
-      height: imgHeight,
-      opacity: options.opacity,
-      rotate: degrees(options.angle),
-    });
+    for (const { x: cx, y: cy } of centers) {
+      page.drawImage(image, {
+        x: cx - Math.cos(rad) * halfW + Math.sin(rad) * halfH,
+        y: cy - Math.sin(rad) * halfW - Math.cos(rad) * halfH,
+        width: imgWidth,
+        height: imgHeight,
+        opacity: options.opacity,
+        rotate: degrees(options.angle),
+      });
+    }
   }
 
   return new Uint8Array(await pdfDoc.save());

@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "BentoPDF 會使用 Cookie 或網站分析工具追蹤我嗎？",
-      "answer": "我們非常重視您的隱私。BentoPDF 不會追蹤任何個人資料。我們僅使用 Simple Analytics 來統計匿名造訪次數。這代表我們只會知道有多少使用者造訪過我們的網站，但永遠不會知道您是誰。Simple Analytics 完全符合 GDPR 規範並尊重您的隱私權。"
+      "answer": "不會。BentoPDF 完全不會追蹤您。我們不使用 Cookie、分析工具或任何追蹤指令碼，即使在正式網站 bentopdf.com 上也是如此。我們永遠不知道您是誰，也不知道您用這些工具做了什麼。"
     }
   },
   "testimonials": {

@@ -98,6 +98,12 @@ function injectOrganizationLd(document) {
 }
 
 const BREADCRUMB_MARKER = 'data-bentopdf-breadcrumb';
+const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
+
+function buildLocalHomeHref(lang) {
+  const langSegment = lang === 'en' ? '/' : `/${lang}/`;
+  return `${BASE_PATH}${langSegment}`.replace(/\/+/g, '/');
+}
 
 function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
   const h1 = document.querySelector('h1[data-i18n^="tools:"]');
@@ -112,9 +118,9 @@ function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
   nav.className = 'text-sm text-gray-400 mb-4';
 
   const homeLink = document.createElement('a');
-  homeLink.href = homeUrl;
+  homeLink.href = buildLocalHomeHref(lang);
   homeLink.className = 'hover:text-indigo-300';
-  homeLink.textContent = 'BentoPDF';
+  homeLink.textContent = BRAND_NAME;
 
   const sep = document.createElement('span');
   sep.setAttribute('aria-hidden', 'true');
@@ -139,7 +145,7 @@ function injectToolBreadcrumb(document, lang, toolName, toolUrl) {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'BentoPDF',
+        name: BRAND_NAME,
         item: homeUrl,
       },
       {

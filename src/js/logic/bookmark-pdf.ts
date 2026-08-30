@@ -14,6 +14,7 @@ import {
 } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import '../utils/setup-pdf-worker.js';
 import {
   BookmarkNode,
   BookmarkTree,
@@ -31,11 +32,6 @@ import {
   HEX_COLOR_MAP,
   PDF_COLOR_MAP,
 } from '@/types';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
 
 const modalContainer = document.getElementById(
   'modal-container'

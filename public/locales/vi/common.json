@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "Bạn có sử dụng cookie hoặc phân tích để theo dõi tôi không?",
-      "answer": "Chúng tôi quan tâm đến quyền riêng tư của bạn. BentoPDF không theo dõi thông tin cá nhân. Chúng tôi chỉ sử dụng Simple Analytics để xem số lượt truy cập ẩn danh. Điều này có nghĩa là chúng tôi có thể biết có bao nhiêu người dùng truy cập trang web của chúng tôi, nhưng chúng tôi không bao giờ biết bạn là ai. Simple Analytics hoàn toàn tuân thủ GDPR và tôn trọng quyền riêng tư của bạn."
+      "answer": "Không. BentoPDF hoàn toàn không theo dõi bạn. Chúng tôi không dùng cookie, công cụ phân tích hay bất kỳ tập lệnh theo dõi nào, kể cả trên trang web chính thức bentopdf.com. Chúng tôi không bao giờ biết bạn là ai hay bạn làm gì với các công cụ."
     }
   },
   "testimonials": {

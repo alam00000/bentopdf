@@ -33,6 +33,13 @@ Add text or image watermarks to your PDF pages using a visual editor. You can po
 - **Opacity** -- Control image transparency.
 - **Scale** -- Resize the image watermark.
 
+**Layout settings:**
+
+- **Single** -- One watermark per page, positioned by dragging or with the position presets.
+- **Tiled** -- Repeats the watermark across the whole page in a diagonal grid that follows the rotation angle, so the mark covers the document from edge to edge.
+- **Horizontal gap** -- Spacing between tiles along the text direction, as a percentage of the watermark width (tiled mode only).
+- **Vertical gap** -- Spacing between tile rows, as a percentage of the watermark height (tiled mode only).
+
 **General settings:**
 
 - **Apply to all pages** -- When checked, the same watermark applies to every page. Uncheck to set individual watermarks per page.
@@ -43,6 +50,7 @@ Add text or image watermarks to your PDF pages using a visual editor. You can po
 - Visual drag-and-drop positioning on a live PDF preview
 - Resizable watermark with corner handles
 - Text and image watermark modes
+- Single or full-page tiled (repeating) layout with adjustable spacing
 - Per-page or global watermark application
 - Page-by-page navigation in the preview
 - Opacity and rotation controls
@@ -59,6 +67,7 @@ Add text or image watermarks to your PDF pages using a visual editor. You can po
 ## Tips
 
 - For diagonal watermarks across the page, set a rotation around 45 degrees and increase the font size.
+- Tiled mode makes a document much harder to reuse after cropping, since removing one mark still leaves dozens behind. Lower the opacity when tiling so the underlying text stays readable.
 - Image watermarks with transparent backgrounds (PNG format) blend more naturally with the document content.
 - If you need different watermark text on different pages, uncheck "Apply to all pages" and navigate page by page.
 

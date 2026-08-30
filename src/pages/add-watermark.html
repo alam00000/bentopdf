@@ -13,7 +13,7 @@
       name="description"
       content="★ Add Watermark online free - Add watermark PDFs easily ★ No signup ★ Unlimited files ★ Privacy-first ★ Works in browser ★ Fast & secure"
     />
-    <meta name="keywords" content="add watermark, add watermark, online pdf" />
+    <meta name="keywords" content="add watermark, online pdf" />
     <meta name="author" content="BentoPDF" />
     <meta
       name="robots"
@@ -130,10 +130,7 @@
           class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
         >
           <div class="flex flex-col items-center justify-center pt-5 pb-6">
-            <i
-              data-lucide="upload-cloud"
-              class="w-10 h-10 mb-3 text-gray-400"
-            ></i>
+            <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
                 >Click to select a file</span
@@ -212,7 +209,9 @@
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                   </button>
                 </div>
-                <span class="text-xs text-gray-500 hidden sm:inline"
+                <span
+                  id="drag-hint"
+                  class="text-xs text-gray-500 hidden sm:inline"
                   >Drag watermark to position</span
                 >
               </div>
@@ -226,6 +225,10 @@
                   style="touch-action: none"
                 >
                   <canvas id="preview-canvas"></canvas>
+                  <canvas
+                    id="tile-preview-canvas"
+                    class="hidden absolute top-0 left-0 pointer-events-none"
+                  ></canvas>
                   <div
                     id="watermark-box"
                     class="absolute pointer-events-auto"
@@ -282,6 +285,29 @@
                 >
                   Image
                 </button>
+              </div>
+
+              <div>
+                <label class="block mb-1.5 text-sm font-medium text-gray-300"
+                  >Layout</label
+                >
+                <div class="flex gap-2">
+                  <button
+                    id="layout-single-btn"
+                    class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors"
+                  >
+                    Single
+                  </button>
+                  <button
+                    id="layout-tile-btn"
+                    class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors"
+                  >
+                    Tiled
+                  </button>
+                </div>
+                <p class="text-xs text-gray-500 mt-1.5">
+                  Tiled repeats the watermark across the whole page.
+                </p>
               </div>
 
               <div
@@ -470,7 +496,44 @@
                 </div>
               </div>
 
-              <div>
+              <div id="tile-options" class="hidden space-y-4">
+                <div>
+                  <label
+                    for="tile-gap-x"
+                    class="block mb-1.5 text-sm font-medium text-gray-300"
+                  >
+                    Horizontal gap: <span id="tile-gap-x-value">25</span>%
+                  </label>
+                  <input
+                    type="range"
+                    id="tile-gap-x"
+                    min="0"
+                    max="200"
+                    step="5"
+                    value="25"
+                    class="w-full h-2 bg-gray-700 rounded-lg cursor-pointer accent-indigo-500"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="tile-gap-y"
+                    class="block mb-1.5 text-sm font-medium text-gray-300"
+                  >
+                    Vertical gap: <span id="tile-gap-y-value">75</span>%
+                  </label>
+                  <input
+                    type="range"
+                    id="tile-gap-y"
+                    min="0"
+                    max="200"
+                    step="5"
+                    value="75"
+                    class="w-full h-2 bg-gray-700 rounded-lg cursor-pointer accent-indigo-500"
+                  />
+                </div>
+              </div>
+
+              <div id="position-section">
                 <label class="block mb-1.5 text-sm font-medium text-gray-300"
                   >Position</label
                 >
@@ -668,36 +731,36 @@
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge Pdf</h3>
-          <p class="text-gray-400 text-sm">Free online merge pdf tool</p>
+          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
+          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress Pdf</h3>
-          <p class="text-gray-400 text-sm">Free online compress pdf tool</p>
+          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
+          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split Pdf</h3>
-          <p class="text-gray-400 text-sm">Free online split pdf tool</p>
+          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
+          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit Pdf</h3>
-          <p class="text-gray-400 text-sm">Free online edit pdf tool</p>
+          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
+          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate Pdf</h3>
-          <p class="text-gray-400 text-sm">Free online rotate pdf tool</p>
+          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
+          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
         </a>
       </div>
     </section>

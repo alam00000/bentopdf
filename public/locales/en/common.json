@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "Do you use cookies or analytics to track me?",
-      "answer": "We care about your privacy. BentoPDF does not track personal information. We use Simple Analytics solely to see anonymous visit counts. This means we can know how many users visit our site, but we never know who you are. Simple Analytics is fully GDPR-compliant and respects your privacy."
+      "answer": "No. BentoPDF does not track you at all. We do not use cookies, analytics, or any tracking scripts, not even on the live website at bentopdf.com. We never know who you are or what you do with the tools."
     }
   },
   "testimonials": {

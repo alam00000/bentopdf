@@ -6,11 +6,7 @@ import { icons, createIcons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import type { CropBox } from '@/types';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import './utils/setup-pdf-worker.js';
 
 const editorState: {
   pdf: PDFDocumentProxy | null;

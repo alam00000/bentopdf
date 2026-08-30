@@ -14,11 +14,7 @@ import {
 import * as pdfjsLib from 'pdfjs-dist';
 import { t } from './i18n/i18n';
 import type { FileInputOptions } from '@/types';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import './utils/setup-pdf-worker.js';
 
 // Centralizing DOM element selection
 export const dom = {
@@ -486,7 +482,7 @@ const createFileInputHTML = (options: FileInputOptions = {}) => {
   return `
         <div id="drop-zone" class="relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300">
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <i data-lucide="upload-cloud" class="w-10 h-10 mb-3 text-gray-400"></i>
+                <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
                 <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">${t('upload.clickToSelect')}</span> ${t('upload.orDragAndDrop')}</p>
                 <p class="text-xs text-gray-500">${multiple ? t('upload.pdfOrImages') : 'A single PDF file'}</p>
                 <p class="text-xs text-gray-500">${t('upload.filesNeverLeave')}</p>

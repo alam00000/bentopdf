@@ -7,11 +7,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { InvertColorsState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import '../utils/setup-pdf-worker.js';
 
 const pageState: InvertColorsState = { file: null, pdfDoc: null };
 

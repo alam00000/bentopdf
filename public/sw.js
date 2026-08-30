@@ -16,7 +16,14 @@ const getBasePath = () => {
   return url.pathname.replace(/\/$/, '') || '';
 };
 
-const buildCriticalAssets = () => [];
+const PRECACHE_ASSETS = [];
+
+const buildCriticalAssets = () => {
+  const basePath = getBasePath();
+  return PRECACHE_ASSETS.map(
+    (asset) => `${basePath}/${asset.replace(/^\/+/, '')}`
+  );
+};
 
 self.addEventListener('install', (event) => {
   const CRITICAL_ASSETS = buildCriticalAssets();

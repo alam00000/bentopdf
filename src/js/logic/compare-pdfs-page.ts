@@ -19,16 +19,12 @@ import type {
 import { exportComparePdf } from '../compare/reporting/export-compare-pdf.ts';
 import { LRUCache } from '../compare/lru-cache.ts';
 import { COMPARE_CACHE_MAX_SIZE } from '../compare/config.ts';
+import '../utils/setup-pdf-worker.js';
 import {
   getElement,
   computeComparisonForPair,
   getComparisonCacheKey,
 } from './compare-render.ts';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
 
 const pageState: CompareState = {
   pdfDoc1: null,

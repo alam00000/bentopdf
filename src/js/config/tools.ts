@@ -4,6 +4,13 @@ const baseCategories = [
     name: 'Popular Tools',
     tools: [
       {
+        href: import.meta.env.BASE_URL + 'edit-pdf-text.html',
+        name: 'Edit PDF Text',
+        icon: 'ph-cursor-text',
+        subtitle:
+          'Click any paragraph and edit it in place with live reflow, fonts, and styling.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'pdf-workflow.html',
         name: 'PDF Workflow Builder',
         icon: 'ph-tree-structure',
@@ -15,7 +22,7 @@ const baseCategories = [
         name: 'PDF Multi Tool',
         icon: 'ph-pencil-ruler',
         subtitle:
-          'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in an unified interface.',
+          'Merge, Split, Organize, Delete, Rotate, Add Blank Pages, Extract and Duplicate in a unified interface.',
       },
       {
         href: import.meta.env.BASE_URL + 'merge-pdf.html',
@@ -40,7 +47,7 @@ const baseCategories = [
         name: 'PDF Editor',
         icon: 'ph-pencil-simple',
         subtitle:
-          'Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs',
+          'Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs.',
       },
       {
         href: import.meta.env.BASE_URL + 'jpg-to-pdf.html',
@@ -89,6 +96,13 @@ const baseCategories = [
         icon: 'ph-pencil-simple',
         subtitle:
           'Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'edit-pdf-text.html',
+        name: 'Edit PDF Text',
+        icon: 'ph-cursor-text',
+        subtitle:
+          'Click any paragraph and edit it in place with live reflow, fonts, and styling.',
       },
       {
         href: import.meta.env.BASE_URL + 'bookmark.html',
@@ -537,7 +551,14 @@ const baseCategories = [
         name: 'Alternate & Mix Pages',
         icon: 'ph-shuffle',
         subtitle:
-          'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks',
+          'Merge PDFs by alternating pages from each PDF. Preserves Bookmarks.',
+      },
+      {
+        href: import.meta.env.BASE_URL + 'duplex-collate.html',
+        name: 'Duplex Collate',
+        icon: 'ph-arrows-vertical',
+        subtitle:
+          'Reorder front/back scan blocks into collated page order in one PDF.',
       },
       {
         href: import.meta.env.BASE_URL + 'organize-pdf.html',

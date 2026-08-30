@@ -56,6 +56,11 @@ const connectOrigins = uniq([
 ]);
 const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
 
+const githubStarsDisabled =
+  process.env.DISABLE_GITHUB_STARS === 'true' ||
+  process.env.SIMPLE_MODE === 'true';
+const githubApiSource = githubStarsDisabled ? '' : ' https://api.github.com';
+
 const directives = [
   `default-src 'self'`,
   `script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval' blob: ${scriptOrigins.join(' ')}`.trim(),
@@ -63,7 +68,7 @@ const directives = [
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `img-src 'self' data: blob: https:`,
   `font-src 'self' data: https://fonts.gstatic.com ${fontOrigins.join(' ')}`.trim(),
-  `connect-src 'self' blob: https://api.github.com https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
+  `connect-src 'self' blob:${githubApiSource} https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
   `frame-src 'self' blob:`,
@@ -77,7 +82,7 @@ const docsDirectives = [
   `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`,
   `img-src 'self' data: blob: https:`,
   `font-src 'self' data: https://fonts.gstatic.com ${fontOrigins.join(' ')}`.trim(),
-  `connect-src 'self' https://api.github.com https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
+  `connect-src 'self'${githubApiSource} https://fonts.gstatic.com ${connectOrigins.join(' ')}`.trim(),
   `object-src 'none'`,
   `base-uri 'self'`,
   `frame-ancestors 'self'`,

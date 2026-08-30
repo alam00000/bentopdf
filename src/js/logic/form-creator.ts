@@ -30,10 +30,6 @@ import * as bwipjs from 'bwip-js/browser';
 import 'pdfjs-dist/web/pdf_viewer.css';
 
 // Initialize PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
 
 import {
   ExtractExistingFieldsResult,
@@ -43,6 +39,7 @@ import {
 } from '@/types';
 import { extractExistingFields as extractExistingPdfFields } from './form-creator-extraction.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import '../utils/setup-pdf-worker.js';
 
 let fields: FormField[] = [];
 let selectedField: FormField | null = null;

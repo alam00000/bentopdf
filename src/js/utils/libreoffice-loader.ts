@@ -21,6 +21,30 @@ export type ProgressCallback = (progress: LoadProgress) => void;
 // Singleton for converter instance
 let converterInstance: LibreOfficeConverter | null = null;
 
+const GZIP_MAGIC_FIRST = 0x1f;
+const GZIP_MAGIC_SECOND = 0x8b;
+
+async function fetchAsDecompressedUrl(
+  url: string,
+  mimeType: string
+): Promise<string> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: HTTP ${response.status}`);
+  }
+
+  let blob = await response.blob();
+  const head = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
+  if (head[0] === GZIP_MAGIC_FIRST && head[1] === GZIP_MAGIC_SECOND) {
+    const decompressed = blob
+      .stream()
+      .pipeThrough(new DecompressionStream('gzip'));
+    blob = await new Response(decompressed).blob();
+  }
+
+  return URL.createObjectURL(new Blob([blob], { type: mimeType }));
+}
+
 export class LibreOfficeConverter {
   private converter: WorkerBrowserConverter | null = null;
   private initialized = false;
@@ -51,10 +75,21 @@ export class LibreOfficeConverter {
         message: 'Loading conversion engine...',
       });
 
+      const [sofficeWasmUrl, sofficeDataUrl] = await Promise.all([
+        fetchAsDecompressedUrl(
+          `${this.basePath}soffice.wasm.gz`,
+          'application/wasm'
+        ),
+        fetchAsDecompressedUrl(
+          `${this.basePath}soffice.data.gz`,
+          'application/octet-stream'
+        ),
+      ]);
+
       this.converter = new WorkerBrowserConverter({
         sofficeJs: `${this.basePath}soffice.js`,
-        sofficeWasm: `${this.basePath}soffice.wasm.gz`,
-        sofficeData: `${this.basePath}soffice.data.gz`,
+        sofficeWasm: sofficeWasmUrl,
+        sofficeData: sofficeDataUrl,
         sofficeWorkerJs: `${this.basePath}soffice.worker.js`,
         browserWorkerJs: `${this.basePath}browser.worker.global.js`,
         verbose: false,

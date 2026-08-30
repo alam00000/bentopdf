@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "Använder ni cookies eller analys för att spåra mig?",
-      "answer": "Vi bryr oss om din integritet. BentoPDF spårar inte personlig information. Vi använder Simple Analytics enbart för att se anonyma besöksantal. Det betyder att vi kan se hur många användare som besöker vår site, men vi vet aldrig vem du är. Simple Analytics är fullt GDPR-kompatibelt och respekterar din integritet."
+      "answer": "Nej. BentoPDF spårar dig inte alls. Vi använder inga cookies, ingen analys och inga spårningsskript – inte ens på den publika webbplatsen bentopdf.com. Vi vet aldrig vem du är eller vad du gör med verktygen."
     }
   },
   "testimonials": {

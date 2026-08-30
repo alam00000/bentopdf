@@ -11,16 +11,17 @@ import {
   addTextWatermark,
   addImageWatermark,
   parsePageRange,
+  computeTileCenters,
 } from '../utils/pdf-operations.js';
-import { AddWatermarkState, PageWatermarkConfig } from '@/types';
+import {
+  AddWatermarkState,
+  PageWatermarkConfig,
+  WatermarkLayout,
+} from '@/types';
 import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import '../utils/setup-pdf-worker.js';
 
 const pageState: AddWatermarkState = {
   file: null,
@@ -31,9 +32,15 @@ const pageState: AddWatermarkState = {
   watermarkY: 0.5,
 };
 
+const WATERMARK_FONT_STACK =
+  '"Noto Sans SC", "Noto Sans JP", "Noto Sans KR", "Noto Sans Arabic", Arial, sans-serif';
+
 let watermarkType: 'text' | 'image' = 'text';
+let watermarkLayout: WatermarkLayout = 'single';
 let imageWatermarkDataUrl: string | null = null;
 let imageWatermarkFile: File | null = null;
+let imageWatermarkBitmap: HTMLImageElement | null = null;
+let measureCanvas: HTMLCanvasElement | null = null;
 let isDragging = false;
 let dragOffsetX = 0;
 let dragOffsetY = 0;
@@ -186,6 +193,7 @@ function resetState() {
   pageState.watermarkY = 0.5;
   imageWatermarkDataUrl = null;
   imageWatermarkFile = null;
+  imageWatermarkBitmap = null;
   cachedPdfjsDoc = null;
   currentPageNum = 1;
   totalPageCount = 1;
@@ -273,9 +281,19 @@ async function changePage(newPageNum: number) {
   updateWatermarkOverlay();
 }
 
+function readNumberInput(id: string, fallback: number): number {
+  const input = document.getElementById(id) as HTMLInputElement | null;
+  if (!input) return fallback;
+  const value = parseFloat(input.value);
+  return Number.isFinite(value) ? value : fallback;
+}
+
 function getDefaultConfig(): PageWatermarkConfig {
   return {
     type: 'text',
+    layout: 'single',
+    tileGapX: 25,
+    tileGapY: 75,
     x: 0.5,
     y: 0.5,
     text: '',
@@ -294,6 +312,9 @@ function getDefaultConfig(): PageWatermarkConfig {
 function getCurrentConfig(): PageWatermarkConfig {
   return {
     type: watermarkType,
+    layout: watermarkLayout,
+    tileGapX: readNumberInput('tile-gap-x', 25),
+    tileGapY: readNumberInput('tile-gap-y', 75),
     x: pageState.watermarkX,
     y: pageState.watermarkY,
     text:
@@ -345,10 +366,26 @@ function loadPageConfig(pageNum: number) {
   }
 
   watermarkType = config.type;
+  watermarkLayout = config.layout;
   pageState.watermarkX = config.x;
   pageState.watermarkY = config.y;
+  if (config.imageDataUrl !== imageWatermarkDataUrl) {
+    loadWatermarkBitmap(config.imageDataUrl);
+  }
   imageWatermarkDataUrl = config.imageDataUrl;
   imageWatermarkFile = config.imageFile;
+
+  const tileGapX = document.getElementById('tile-gap-x') as HTMLInputElement;
+  const tileGapY = document.getElementById('tile-gap-y') as HTMLInputElement;
+  const tileGapXValue = document.getElementById('tile-gap-x-value');
+  const tileGapYValue = document.getElementById('tile-gap-y-value');
+
+  if (tileGapX) tileGapX.value = String(config.tileGapX);
+  if (tileGapY) tileGapY.value = String(config.tileGapY);
+  if (tileGapXValue) tileGapXValue.textContent = String(config.tileGapX);
+  if (tileGapYValue) tileGapYValue.textContent = String(config.tileGapY);
+
+  applyLayoutUI();
 
   const typeTextBtn = document.getElementById('type-text-btn');
   const typeImageBtn = document.getElementById('type-image-btn');
@@ -511,6 +548,36 @@ function setupEditorControls() {
     updateWatermarkOverlay();
   });
 
+  const layoutSingleBtn = document.getElementById('layout-single-btn');
+  const layoutTileBtn = document.getElementById('layout-tile-btn');
+
+  layoutSingleBtn?.addEventListener('click', () => {
+    watermarkLayout = 'single';
+    applyLayoutUI();
+    updateWatermarkOverlay();
+  });
+
+  layoutTileBtn?.addEventListener('click', () => {
+    watermarkLayout = 'tile';
+    applyLayoutUI();
+    updateWatermarkOverlay();
+  });
+
+  const tileGapX = document.getElementById('tile-gap-x') as HTMLInputElement;
+  const tileGapY = document.getElementById('tile-gap-y') as HTMLInputElement;
+  const tileGapXValue = document.getElementById('tile-gap-x-value');
+  const tileGapYValue = document.getElementById('tile-gap-y-value');
+
+  tileGapX?.addEventListener('input', () => {
+    if (tileGapXValue) tileGapXValue.textContent = tileGapX.value;
+    updateWatermarkOverlay();
+  });
+
+  tileGapY?.addEventListener('input', () => {
+    if (tileGapYValue) tileGapYValue.textContent = tileGapY.value;
+    updateWatermarkOverlay();
+  });
+
   const watermarkText = document.getElementById(
     'watermark-text'
   ) as HTMLInputElement;
@@ -571,6 +638,7 @@ function setupEditorControls() {
     const reader = new FileReader();
     reader.onload = () => {
       imageWatermarkDataUrl = reader.result as string;
+      loadWatermarkBitmap(imageWatermarkDataUrl);
       updateWatermarkOverlay();
     };
     reader.readAsDataURL(file);
@@ -604,6 +672,161 @@ function updatePresetHighlight(x: number, y: number) {
   });
 }
 
+function loadWatermarkBitmap(dataUrl: string | null) {
+  if (!dataUrl) {
+    imageWatermarkBitmap = null;
+    return;
+  }
+  const image = new Image();
+  image.onload = () => {
+    if (imageWatermarkDataUrl !== dataUrl) return;
+    imageWatermarkBitmap = image;
+    updateWatermarkOverlay();
+  };
+  image.src = dataUrl;
+}
+
+function applyLayoutUI() {
+  const singleBtn = document.getElementById('layout-single-btn');
+  const tileBtn = document.getElementById('layout-tile-btn');
+  const tileOptions = document.getElementById('tile-options');
+  const positionSection = document.getElementById('position-section');
+  const dragHint = document.getElementById('drag-hint');
+
+  const activeClass =
+    'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors';
+  const inactiveClass =
+    'flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors';
+
+  const isTile = watermarkLayout === 'tile';
+  if (singleBtn) singleBtn.className = isTile ? inactiveClass : activeClass;
+  if (tileBtn) tileBtn.className = isTile ? activeClass : inactiveClass;
+  tileOptions?.classList.toggle('hidden', !isTile);
+  positionSection?.classList.toggle('hidden', isTile);
+  dragHint?.classList.toggle('sm:inline', !isTile);
+}
+
+function measureTextWidth(text: string, fontSize: number): number {
+  if (!measureCanvas) measureCanvas = document.createElement('canvas');
+  const ctx = measureCanvas.getContext('2d');
+  if (!ctx) return 0;
+  ctx.font = `bold ${fontSize}px ${WATERMARK_FONT_STACK}`;
+  return ctx.measureText(text).width + 2;
+}
+
+function renderTilePreview() {
+  const canvas = document.getElementById(
+    'tile-preview-canvas'
+  ) as HTMLCanvasElement;
+  const container = document.getElementById('preview-container');
+  if (!canvas || !container) return;
+
+  const displayWidth = container.clientWidth;
+  const displayHeight = container.clientHeight;
+  if (!displayWidth || !displayHeight || !pdfPageWidth || !pdfPageHeight)
+    return;
+
+  const dpr = 2;
+  canvas.width = Math.round(displayWidth * dpr);
+  canvas.height = Math.round(displayHeight * dpr);
+  canvas.style.width = displayWidth + 'px';
+  canvas.style.height = displayHeight + 'px';
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.scale(dpr, dpr);
+
+  const gapX = readNumberInput('tile-gap-x', 25) / 100;
+  const gapY = readNumberInput('tile-gap-y', 75) / 100;
+
+  let itemWidth: number;
+  let itemHeight: number;
+  let uiAngle: number;
+  let opacity: number;
+
+  if (watermarkType === 'text') {
+    const text =
+      (document.getElementById('watermark-text') as HTMLInputElement)?.value ||
+      'CONFIDENTIAL';
+    const fontSize = readNumberInput('font-size', 72);
+    uiAngle = readNumberInput('angle-text', 0);
+    opacity = readNumberInput('opacity-text', 0.3);
+    itemWidth = measureTextWidth(text, fontSize);
+    itemHeight = fontSize * 1.4;
+
+    const centers = computeTileCenters({
+      pageWidth: pdfPageWidth,
+      pageHeight: pdfPageHeight,
+      itemWidth,
+      itemHeight,
+      angle: -uiAngle,
+      gapX,
+      gapY,
+    });
+
+    ctx.globalAlpha = opacity;
+    ctx.fillStyle =
+      (document.getElementById('text-color') as HTMLInputElement)?.value ||
+      '#888888';
+    ctx.font = `bold ${fontSize * previewScale}px ${WATERMARK_FONT_STACK}`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (const center of centers) {
+      ctx.save();
+      ctx.translate(
+        center.x * previewScale,
+        (pdfPageHeight - center.y) * previewScale
+      );
+      ctx.rotate((uiAngle * Math.PI) / 180);
+      ctx.fillText(text, 0, 0);
+      ctx.restore();
+    }
+    return;
+  }
+
+  const bitmap = imageWatermarkBitmap;
+  if (!bitmap || !bitmap.naturalWidth || !bitmap.naturalHeight) return;
+
+  const scale = readNumberInput('image-scale', 100) / 100;
+  uiAngle = readNumberInput('angle-image', 0);
+  opacity = readNumberInput('opacity-image', 0.3);
+  itemWidth = bitmap.naturalWidth * scale;
+  itemHeight = bitmap.naturalHeight * scale;
+
+  const centers = computeTileCenters({
+    pageWidth: pdfPageWidth,
+    pageHeight: pdfPageHeight,
+    itemWidth,
+    itemHeight,
+    angle: -uiAngle,
+    gapX,
+    gapY,
+  });
+
+  ctx.globalAlpha = opacity;
+  const drawWidth = itemWidth * previewScale;
+  const drawHeight = itemHeight * previewScale;
+
+  for (const center of centers) {
+    ctx.save();
+    ctx.translate(
+      center.x * previewScale,
+      (pdfPageHeight - center.y) * previewScale
+    );
+    ctx.rotate((uiAngle * Math.PI) / 180);
+    ctx.drawImage(
+      bitmap,
+      -drawWidth / 2,
+      -drawHeight / 2,
+      drawWidth,
+      drawHeight
+    );
+    ctx.restore();
+  }
+}
+
 function updateWatermarkOverlay() {
   const box = document.getElementById('watermark-box') as HTMLElement;
   const textOverlay = document.getElementById(
@@ -619,6 +842,18 @@ function updateWatermarkOverlay() {
 
   const containerW = container.clientWidth;
   const containerH = container.clientHeight;
+  const tileCanvas = document.getElementById('tile-preview-canvas');
+
+  if (watermarkLayout === 'tile') {
+    box.classList.add('hidden');
+    textOverlay.classList.add('hidden');
+    imageOverlay.classList.add('hidden');
+    tileCanvas?.classList.remove('hidden');
+    renderTilePreview();
+    return;
+  }
+
+  tileCanvas?.classList.add('hidden');
 
   if (watermarkType === 'text') {
     box.classList.remove('hidden');
@@ -846,6 +1081,9 @@ async function applyWatermark() {
             x: config.x,
             y: posY,
             pageIndices,
+            tile: config.layout === 'tile',
+            tileGapX: config.tileGapX / 100,
+            tileGapY: config.tileGapY / 100,
           })
         );
       } else {
@@ -875,6 +1113,9 @@ async function applyWatermark() {
             x: config.x,
             y: posY,
             pageIndices,
+            tile: config.layout === 'tile',
+            tileGapX: config.tileGapX / 100,
+            tileGapY: config.tileGapY / 100,
           })
         );
       }
@@ -896,6 +1137,9 @@ async function applyWatermark() {
 
         const key = JSON.stringify({
           type: config.type,
+          layout: config.layout,
+          tileGapX: config.tileGapX,
+          tileGapY: config.tileGapY,
           x: config.x,
           y: config.y,
           text: config.text,
@@ -930,6 +1174,9 @@ async function applyWatermark() {
               x: config.x,
               y: posY,
               pageIndices: indices,
+              tile: config.layout === 'tile',
+              tileGapX: config.tileGapX / 100,
+              tileGapY: config.tileGapY / 100,
             })
           );
         } else {
@@ -955,6 +1202,9 @@ async function applyWatermark() {
               x: config.x,
               y: posY,
               pageIndices: indices,
+              tile: config.layout === 'tile',
+              tileGapX: config.tileGapX / 100,
+              tileGapY: config.tileGapY / 100,
             })
           );
         }

@@ -9,8 +9,13 @@ export interface AddWatermarkState {
   watermarkY: number; // 0–1, percentage from top (flipped to bottom for PDF)
 }
 
+export type WatermarkLayout = 'single' | 'tile';
+
 export interface PageWatermarkConfig {
   type: 'text' | 'image';
+  layout: WatermarkLayout;
+  tileGapX: number;
+  tileGapY: number;
   x: number;
   y: number;
   text: string;

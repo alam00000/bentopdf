@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "Vocês usam cookies ou rastreamento?",
-      "answer": "Usamos apenas o Simple Analytics para contar visitas de forma anônima. Sabemos quantos usuários nos visitam, mas nunca quem você é. O sistema respeita totalmente a GDPR."
+      "answer": "Não. O BentoPDF não rastreia você de forma alguma. Não usamos cookies, análises nem scripts de rastreamento, nem mesmo no site ao vivo bentopdf.com. Nunca sabemos quem você é ou o que faz com as ferramentas."
     }
   },
   "testimonials": {

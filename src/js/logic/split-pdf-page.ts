@@ -20,6 +20,7 @@ import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import JSZip from 'jszip';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import type { QpdfInstanceExtended } from '@/types';
+import '../utils/setup-pdf-worker.js';
 import {
   parseRangeGroups,
   evenOddIndices,
@@ -30,11 +31,6 @@ import {
   uniqueZipName,
   extractPagesWithQpdf,
 } from '../utils/split-pdf-helpers.js';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
 
 document.addEventListener('DOMContentLoaded', () => {
   let visualSelectorRendered = false;

@@ -1,3 +1,5 @@
+import './utils/map-upsert-polyfill.js';
+import './utils/setup-pdf-worker.js';
 import { categories } from './config/tools.js';
 import { dom, switchView, hideAlert } from './ui.js';
 import { ShortcutsManager } from './logic/shortcuts.js';
@@ -22,6 +24,11 @@ import {
   isToolDisabled,
   isCurrentPageDisabled,
 } from './utils/disabled-tools.js';
+import {
+  getStoredItem,
+  setStoredItem,
+  removeStoredItem,
+} from './utils/safe-storage.js';
 declare const __BRAND_NAME__: string;
 
 const init = async () => {
@@ -49,10 +56,6 @@ const init = async () => {
     return;
   }
 
-  pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-  ).toString();
   if (__SIMPLE_MODE__) {
     const hideBrandingSections = () => {
       const heroSection = document.getElementById('hero-section');
@@ -171,6 +174,7 @@ const init = async () => {
     'Split PDF': 'tools:splitPdf',
     'Compress PDF': 'tools:compressPdf',
     'PDF Editor': 'tools:pdfEditor',
+    'Edit PDF Text': 'tools:editPdfText',
     'JPG to PDF': 'tools:jpgToPdf',
     'Sign PDF': 'tools:signPdf',
     'Crop PDF': 'tools:cropPdf',
@@ -211,6 +215,7 @@ const init = async () => {
     'PDF to JSON': 'tools:pdfToJson',
     'OCR PDF': 'tools:ocrPdf',
     'Alternate & Mix Pages': 'tools:alternateMerge',
+    'Duplex Collate': 'tools:duplexCollate',
     'PDF Overlay': 'tools:pdfOverlay',
     'Organize & Duplicate': 'tools:duplicateOrganize',
     'Add Attachments': 'tools:addAttachments',
@@ -290,17 +295,14 @@ const init = async () => {
 
     let collapsedCategories: string[] = [];
     try {
-      const stored = localStorage.getItem('collapsedCategories');
+      const stored = getStoredItem('collapsedCategories');
       if (stored) collapsedCategories = JSON.parse(stored);
     } catch {
-      localStorage.removeItem('collapsedCategories');
+      removeStoredItem('collapsedCategories');
     }
 
     function saveCollapsedCategories() {
-      localStorage.setItem(
-        'collapsedCategories',
-        JSON.stringify(collapsedCategories)
-      );
+      setStoredItem('collapsedCategories', JSON.stringify(collapsedCategories));
     }
 
     const filteredCategories = categories
@@ -545,7 +547,11 @@ const init = async () => {
     document.getElementById('github-stars-mobile'),
   ];
 
-  if (githubStarsElements.some((el) => el) && !__SIMPLE_MODE__) {
+  if (
+    githubStarsElements.some((el) => el) &&
+    !__SIMPLE_MODE__ &&
+    !__DISABLE_GITHUB_STARS__
+  ) {
     fetch('https://api.github.com/repos/alam00000/bentopdf')
       .then((response) => response.json())
       .then((data) => {
@@ -611,7 +617,7 @@ const init = async () => {
   ) as HTMLInputElement;
   const toolInterface = document.getElementById('tool-interface');
 
-  const savedFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
+  const savedFullWidth = getStoredItem('fullWidthMode') !== 'false';
   if (fullWidthToggle) {
     fullWidthToggle.checked = savedFullWidth;
     applyFullWidthMode(savedFullWidth);
@@ -648,7 +654,7 @@ const init = async () => {
   if (fullWidthToggle) {
     fullWidthToggle.addEventListener('change', (e) => {
       const enabled = (e.target as HTMLInputElement).checked;
-      localStorage.setItem('fullWidthMode', enabled.toString());
+      setStoredItem('fullWidthMode', enabled.toString());
       applyFullWidthMode(enabled);
     });
   }
@@ -657,7 +663,7 @@ const init = async () => {
     'compact-mode-toggle'
   ) as HTMLInputElement;
 
-  const savedCompactMode = localStorage.getItem('compactMode') === 'true';
+  const savedCompactMode = getStoredItem('compactMode') === 'true';
   if (compactModeToggle) {
     compactModeToggle.checked = savedCompactMode;
   }
@@ -677,7 +683,7 @@ const init = async () => {
   if (compactModeToggle) {
     compactModeToggle.addEventListener('change', (e) => {
       const enabled = (e.target as HTMLInputElement).checked;
-      localStorage.setItem('compactMode', enabled.toString());
+      setStoredItem('compactMode', enabled.toString());
       applyCompactMode(enabled);
     });
   }

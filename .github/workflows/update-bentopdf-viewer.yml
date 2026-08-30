@@ -1,0 +1,198 @@
+name: Update PDF Engine and Viewer
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * *'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-engine
+  cancel-in-progress: false
+
+env:
+  FORK_URL: https://github.com/alam00000/bentopdf-pdfium-viewer
+  HUSKY: 0
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    if: github.repository == 'alam00000/bentopdf'
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Read current upstream marker
+        id: current
+        run: |
+          if [ -f vendor/bentopdf-viewer/.upstream-version ]; then
+            echo "version=$(cat vendor/bentopdf-viewer/.upstream-version)" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Read fork HEAD
+        id: upstream
+        run: echo "version=$(git ls-remote "$FORK_URL" refs/heads/main | cut -c1-12)" >> "$GITHUB_OUTPUT"
+
+      - name: Should update?
+        id: gate
+        run: |
+          if [ "${{ steps.upstream.outputs.version }}" = "${{ steps.current.outputs.version }}" ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Already on ${{ steps.current.outputs.version }}."
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Updating ${{ steps.current.outputs.version }} -> ${{ steps.upstream.outputs.version }}"
+          fi
+
+      - name: Setup Node
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Enable corepack (pnpm)
+        if: steps.gate.outputs.run == 'true'
+        run: corepack enable
+
+      - name: Clone the viewer fork
+        if: steps.gate.outputs.run == 'true'
+        run: git clone --depth 1 --branch main "$FORK_URL" ./_fork
+
+      - name: Require a published engine
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          test -s ./_fork/packages/pdfium/src/vendor/pdfium.wasm
+          test -s ./_fork/packages/pdfium/src/vendor/pdfium.js
+
+      - name: Pack the engine
+        if: steps.gate.outputs.run == 'true'
+        id: engine
+        run: |
+          set -euo pipefail
+          SHA=${{ steps.upstream.outputs.version }}
+          VENDOR=./_fork/packages/pdfium/src/vendor
+          STAGE=$(mktemp -d)/package
+          mkdir -p "$STAGE"
+          cp "$VENDOR/pdfium.js"   "$STAGE/editcore.js"
+          cp "$VENDOR/pdfium.wasm" "$STAGE/editcore.wasm"
+          cat > "$STAGE/package.json" <<JSON
+          {
+            "name": "bentopdf-pdfium",
+            "version": "0.0.0-$SHA",
+            "type": "module",
+            "main": "editcore.js",
+            "exports": { ".": "./editcore.js", "./editcore.wasm": "./editcore.wasm" },
+            "license": "AGPL-3.0"
+          }
+          JSON
+          mkdir -p vendor/bentopdf-pdfium
+          OUT="vendor/bentopdf-pdfium/bentopdf-pdfium-$SHA.tgz"
+          tar -czf "$OUT" -C "$(dirname "$STAGE")" package
+          find vendor/bentopdf-pdfium -maxdepth 1 -name 'bentopdf-pdfium*.tgz' ! -name "$(basename "$OUT")" -delete
+          echo "tarball=$OUT" >> "$GITHUB_OUTPUT"
+
+      - name: Build the viewer
+        if: steps.gate.outputs.run == 'true'
+        working-directory: ./_fork
+        run: |
+          pnpm install --no-frozen-lockfile
+          pnpm run build:snippet
+
+      - name: Pack the viewer without a second engine
+        if: steps.gate.outputs.run == 'true'
+        id: viewer
+        run: |
+          set -euo pipefail
+          SHA=${{ steps.upstream.outputs.version }}
+          WORK=$(mktemp -d)
+          (cd ./_fork && npm pack ./viewers/snippet --pack-destination "$WORK" >/dev/null)
+          TMP=$(mktemp -d)
+          tar -xzf "$WORK"/*.tgz -C "$TMP"
+          rm -f "$TMP/package/dist/pdfium.wasm"
+          PKG="$TMP/package/package.json" node - <<'NODE'
+          const fs = require('fs');
+          const p = process.env.PKG;
+          const pkg = JSON.parse(fs.readFileSync(p, 'utf8'));
+          pkg.name = 'bentopdf-viewer';
+          pkg.dependencies = pkg.dependencies || {};
+          // The rollup bundle inlines every @embedpdf/* package, so these
+          // declared deps would only pull unused copies from upstream npm.
+          for (const k of Object.keys(pkg.dependencies)) {
+            if (k.startsWith('@embedpdf/')) delete pkg.dependencies[k];
+            if (k === 'preact') pkg.dependencies[k] = '^10.17.0';
+          }
+          fs.writeFileSync(p, JSON.stringify(pkg, null, 2) + '\n');
+          NODE
+          mkdir -p vendor/bentopdf-viewer
+          OUT="vendor/bentopdf-viewer/bentopdf-viewer-$SHA.tgz"
+          tar -czf "$OUT" -C "$TMP" package
+          find vendor/bentopdf-viewer -maxdepth 1 -name 'bentopdf-viewer-*.tgz' ! -name "$(basename "$OUT")" -delete
+          echo "tarball=$OUT" >> "$GITHUB_OUTPUT"
+
+      - name: Point dependencies at the new tarballs
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.dependencies['bentopdf-pdfium'] = 'file:' + process.argv[1];
+            pkg.dependencies['bentopdf-viewer'] = 'file:' + process.argv[2];
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          " "${{ steps.engine.outputs.tarball }}" "${{ steps.viewer.outputs.tarball }}"
+
+      - name: Cleanup upstream clone
+        if: steps.gate.outputs.run == 'true'
+        run: rm -rf ./_fork
+
+      - name: Install and verify one shared engine
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          set -euo pipefail
+          npm install
+          test -s node_modules/bentopdf-pdfium/editcore.wasm
+          if find node_modules/bentopdf-viewer -name '*.wasm' | grep -q .; then
+            echo "::error::viewer package still ships a wasm; the engine would be duplicated"
+            exit 1
+          fi
+          if ! grep -q "bentopdf-pdfium/editcore.wasm" src/js/logic/edit-pdf-page.ts; then
+            echo "::error::the PDF editor no longer points at the shared engine"
+            exit 1
+          fi
+          echo "engine sha256: $(sha256sum node_modules/bentopdf-pdfium/editcore.wasm | cut -c1-16)"
+
+      - name: Typecheck and test
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          npx tsc --noEmit
+          npm run test:run
+
+      - name: Write upstream marker
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          echo "${{ steps.upstream.outputs.version }}" > vendor/bentopdf-viewer/.upstream-version
+          echo "${{ steps.upstream.outputs.version }}" > vendor/bentopdf-pdfium/.upstream-version
+
+      - name: Create Pull Request
+        if: steps.gate.outputs.run == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: 'build(deps): bump PDF engine and viewer to ${{ steps.upstream.outputs.version }}'
+          title: 'build(deps): bump PDF engine and viewer to ${{ steps.upstream.outputs.version }}'
+          body: |
+            Both vendored packages built from one clone of the viewer fork at
+            `${{ steps.upstream.outputs.version }}`, so the text editor and the
+            PDF editor run the same engine.
+
+            - `bentopdf-pdfium` — the engine wasm, packed from the fork's published `src/vendor`
+            - `bentopdf-viewer` — the snippet bundle, packed **without** `dist/pdfium.wasm`
+
+            The viewer loads the shared engine through `EmbedPDF.init({ wasmUrl })`.
+            CI verified a single wasm on disk, typecheck, and the test suite.
+          branch: chore/update-pdf-engine
+          delete-branch: true

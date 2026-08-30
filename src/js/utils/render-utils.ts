@@ -1,9 +1,5 @@
 import * as pdfjsLib from 'pdfjs-dist';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import './setup-pdf-worker.js';
 
 /**
  * Configuration for progressive rendering

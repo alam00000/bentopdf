@@ -17,11 +17,7 @@ import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import Sortable from 'sortablejs';
 import type { MergeJob, MergeFile, MergeMessage, MergeResponse } from '@/types';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import '../utils/setup-pdf-worker.js';
 
 interface MergeState {
   pdfDocs: Record<string, pdfjsLib.PDFDocumentProxy>;
@@ -389,12 +385,17 @@ export async function merge() {
       'retain-page-labels'
     ) as HTMLInputElement | null;
 
+    const removeDuplicateFontsCheckbox = document.getElementById(
+      'remove-duplicate-fonts'
+    ) as HTMLInputElement | null;
+
     const message: MergeMessage = {
       command: 'merge',
       files: filesToMerge,
       jobs: jobs,
       cpdfUrl: WasmProvider.getUrl('cpdf')! + 'coherentpdf.browser.min.js',
       retainPageLabels: retainCheckbox?.checked ?? false,
+      removeDuplicateFonts: removeDuplicateFontsCheckbox?.checked ?? false,
     };
 
     mergeWorker.postMessage(

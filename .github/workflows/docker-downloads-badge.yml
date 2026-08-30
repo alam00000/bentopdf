@@ -1,0 +1,59 @@
+name: Update Docker Downloads Badge
+
+on:
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docker-downloads-badge
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.repository == 'alam00000/bentopdf'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sum GHCR download counts
+        id: counts
+        run: |
+          set -euo pipefail
+          total=0
+          for pkg in bentopdf bentopdf-simple; do
+            raw=$(curl -sf --retry 3 --retry-delay 5 --max-time 30 \
+              "https://ghcr-badge.elias.eu.org/api/alam00000/bentopdf/$pkg" \
+              | jq -e -r '.downloadCountRaw')
+            case "$raw" in ''|*[!0-9]*) echo "::error::invalid count for $pkg: $raw"; exit 1 ;; esac
+            echo "$pkg: $raw"
+            total=$((total + raw))
+          done
+          if [ "$total" -le 0 ]; then echo "::error::total is zero"; exit 1; fi
+          message=$(awk -v n="$total" 'BEGIN{
+            if (n >= 1000000) printf "%.1fM", n/1000000;
+            else if (n >= 1000) printf "%.1fk", n/1000;
+            else printf "%d", n
+          }')
+          echo "total=$total" >> "$GITHUB_OUTPUT"
+          echo "message=$message" >> "$GITHUB_OUTPUT"
+          echo "combined: $total -> $message"
+
+      - name: Publish badge JSON to badges branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: ${{ steps.counts.outputs.message }}
+        run: |
+          set -euo pipefail
+          mkdir badges && cd badges
+          jq -n --arg message "$MESSAGE" \
+            '{schemaVersion: 1, label: "Docker Downloads", message: $message, color: "blue", namedLogo: "docker"}' \
+            > docker-downloads.json
+          cat docker-downloads.json
+          git init -q -b badges
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docker-downloads.json
+          git commit -qm "chore: update docker downloads badge ($MESSAGE)"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" badges

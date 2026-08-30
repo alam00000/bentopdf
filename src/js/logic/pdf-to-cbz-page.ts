@@ -18,11 +18,7 @@ import {
 } from '../utils/comic-info.js';
 import type { CbzOptions, ComicMetadata } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import '../utils/setup-pdf-worker.js';
 
 let files: File[] = [];
 

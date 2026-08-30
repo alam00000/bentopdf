@@ -15,11 +15,7 @@ import type Vips from 'wasm-vips';
 import wasmUrl from 'wasm-vips/vips.wasm?url';
 import type { TiffOptions } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
+import '../utils/setup-pdf-worker.js';
 
 let files: File[] = [];
 let vipsInstance: typeof Vips | null = null;
@@ -36,6 +32,7 @@ async function getVips(): Promise<typeof Vips> {
       return fileName;
     },
   });
+  vipsInstance.Cache.max(0);
   return vipsInstance;
 }
 
@@ -145,7 +142,11 @@ async function renderPageToRgba(
   }).promise;
 
   const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-  return { rgba: imageData.data, width: canvas.width, height: canvas.height };
+  const { width, height } = canvas;
+  page.cleanup();
+  canvas.width = 0;
+  canvas.height = 0;
+  return { rgba: imageData.data, width, height };
 }
 
 function encodePageToTiff(
@@ -155,52 +156,60 @@ function encodePageToTiff(
   height: number,
   options: TiffOptions
 ): Uint8Array {
-  let image = vips.Image.newFromMemory(
-    new Uint8Array(rgba.buffer, rgba.byteOffset, rgba.byteLength),
-    width,
-    height,
-    4,
-    vips.BandFormat.uchar
-  );
-
-  image = image.copy();
-  const pixelsPerMm = options.dpi / 25.4;
-  image.setDouble('xres', pixelsPerMm);
-  image.setDouble('yres', pixelsPerMm);
-
-  if (options.colorMode === 'greyscale' || options.colorMode === 'bw') {
-    if (image.bands === 4) {
-      image = image.flatten({ background: [255, 255, 255] });
-    }
-    image = image.colourspace(vips.Interpretation.b_w);
-  } else {
-    if (image.bands === 4) {
-      image = image.flatten({ background: [255, 255, 255] });
-    }
-  }
-
-  const tiffOptions: Parameters<typeof image.tiffsaveBuffer>[0] = {
-    compression: options.compression as Vips.Enum,
-    resunit: vips.ForeignTiffResunit.inch,
-    xres: options.dpi / 25.4,
-    yres: options.dpi / 25.4,
-    predictor:
-      options.compression === 'lzw' || options.compression === 'deflate'
-        ? vips.ForeignTiffPredictor.horizontal
-        : vips.ForeignTiffPredictor.none,
+  const intermediates: Vips.Image[] = [];
+  const track = (img: Vips.Image): Vips.Image => {
+    intermediates.push(img);
+    return img;
   };
 
-  if (options.colorMode === 'bw') {
-    tiffOptions.bitdepth = 1;
-  }
+  try {
+    let image = track(
+      vips.Image.newFromMemory(
+        new Uint8Array(rgba.buffer, rgba.byteOffset, rgba.byteLength),
+        width,
+        height,
+        4,
+        vips.BandFormat.uchar
+      )
+    );
 
-  if (options.compression === 'jpeg') {
-    tiffOptions.Q = 85;
-  }
+    image = track(image.copy());
+    const pixelsPerMm = options.dpi / 25.4;
+    image.setDouble('xres', pixelsPerMm);
+    image.setDouble('yres', pixelsPerMm);
 
-  const buffer = image.tiffsaveBuffer(tiffOptions);
-  image.delete();
-  return buffer;
+    if (image.bands === 4) {
+      image = track(image.flatten({ background: [255, 255, 255] }));
+    }
+    if (options.colorMode === 'greyscale' || options.colorMode === 'bw') {
+      image = track(image.colourspace(vips.Interpretation.b_w));
+    }
+
+    const tiffOptions: Parameters<typeof image.tiffsaveBuffer>[0] = {
+      compression: options.compression as Vips.Enum,
+      resunit: vips.ForeignTiffResunit.inch,
+      xres: options.dpi / 25.4,
+      yres: options.dpi / 25.4,
+      predictor:
+        options.compression === 'lzw' || options.compression === 'deflate'
+          ? vips.ForeignTiffPredictor.horizontal
+          : vips.ForeignTiffPredictor.none,
+    };
+
+    if (options.colorMode === 'bw') {
+      tiffOptions.bitdepth = 1;
+    }
+
+    if (options.compression === 'jpeg') {
+      tiffOptions.Q = 85;
+    }
+
+    return image.tiffsaveBuffer(tiffOptions);
+  } finally {
+    for (const img of intermediates) {
+      if (!img.isDeleted()) img.delete();
+    }
+  }
 }
 
 async function convert() {
@@ -239,68 +248,88 @@ async function convert() {
     if (options.multiPage && pdf.numPages > 1) {
       const pages: Vips.Image[] = [];
 
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const { rgba, width, height } = await renderPageToRgba(
-          page,
-          options.dpi
-        );
+      try {
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const { rgba, width, height } = await renderPageToRgba(
+            page,
+            options.dpi
+          );
 
-        let img = vips.Image.newFromMemory(
-          new Uint8Array(rgba.buffer, rgba.byteOffset, rgba.byteLength),
-          width,
-          height,
-          4,
-          vips.BandFormat.uchar
-        );
+          const intermediates: Vips.Image[] = [];
+          const track = (image: Vips.Image): Vips.Image => {
+            intermediates.push(image);
+            return image;
+          };
 
-        if (options.colorMode === 'greyscale' || options.colorMode === 'bw') {
-          if (img.bands === 4) {
-            img = img.flatten({ background: [255, 255, 255] });
-          }
-          img = img.colourspace(vips.Interpretation.b_w);
-        } else {
-          if (img.bands === 4) {
-            img = img.flatten({ background: [255, 255, 255] });
+          try {
+            let img = track(
+              vips.Image.newFromMemory(
+                new Uint8Array(rgba.buffer, rgba.byteOffset, rgba.byteLength),
+                width,
+                height,
+                4,
+                vips.BandFormat.uchar
+              )
+            );
+
+            if (img.bands === 4) {
+              img = track(img.flatten({ background: [255, 255, 255] }));
+            }
+            if (
+              options.colorMode === 'greyscale' ||
+              options.colorMode === 'bw'
+            ) {
+              img = track(img.colourspace(vips.Interpretation.b_w));
+            }
+
+            pages.push(img.copyMemory());
+          } finally {
+            for (const img of intermediates) {
+              if (!img.isDeleted()) img.delete();
+            }
           }
         }
 
-        pages.push(img);
-      }
+        const firstPage = pages[0];
+        let joined = firstPage;
+        if (pages.length > 1) {
+          joined = vips.Image.arrayjoin(pages, { across: 1 });
+        }
 
-      const firstPage = pages[0];
-      let joined = firstPage;
-      if (pages.length > 1) {
-        joined = vips.Image.arrayjoin(pages, { across: 1 });
-      }
+        try {
+          const tiffOptions: Parameters<typeof joined.tiffsaveBuffer>[0] = {
+            compression: options.compression as Vips.Enum,
+            resunit: vips.ForeignTiffResunit.inch,
+            xres: options.dpi / 25.4,
+            yres: options.dpi / 25.4,
+            page_height: firstPage.height,
+            predictor:
+              options.compression === 'lzw' || options.compression === 'deflate'
+                ? vips.ForeignTiffPredictor.horizontal
+                : vips.ForeignTiffPredictor.none,
+          };
 
-      const tiffOptions: Parameters<typeof joined.tiffsaveBuffer>[0] = {
-        compression: options.compression as Vips.Enum,
-        resunit: vips.ForeignTiffResunit.inch,
-        xres: options.dpi / 25.4,
-        yres: options.dpi / 25.4,
-        page_height: firstPage.height,
-        predictor:
-          options.compression === 'lzw' || options.compression === 'deflate'
-            ? vips.ForeignTiffPredictor.horizontal
-            : vips.ForeignTiffPredictor.none,
-      };
+          if (options.colorMode === 'bw') {
+            tiffOptions.bitdepth = 1;
+          }
 
-      if (options.colorMode === 'bw') {
-        tiffOptions.bitdepth = 1;
-      }
+          if (options.compression === 'jpeg') {
+            tiffOptions.Q = 85;
+          }
 
-      if (options.compression === 'jpeg') {
-        tiffOptions.Q = 85;
-      }
-
-      const buffer = joined.tiffsaveBuffer(tiffOptions);
-      const blob = new Blob([new Uint8Array(buffer)], { type: 'image/tiff' });
-      downloadFile(blob, getCleanPdfFilename(files[0].name) + '.tiff');
-
-      joined.delete();
-      for (const p of pages) {
-        if (!p.isDeleted()) p.delete();
+          const buffer = joined.tiffsaveBuffer(tiffOptions);
+          const blob = new Blob([new Uint8Array(buffer)], {
+            type: 'image/tiff',
+          });
+          downloadFile(blob, getCleanPdfFilename(files[0].name) + '.tiff');
+        } finally {
+          if (joined !== firstPage && !joined.isDeleted()) joined.delete();
+        }
+      } finally {
+        for (const p of pages) {
+          if (!p.isDeleted()) p.delete();
+        }
       }
     } else if (pdf.numPages === 1) {
       const page = await pdf.getPage(1);
@@ -334,7 +363,15 @@ async function convert() {
     );
   } catch (e) {
     console.error(e);
-    showAlert(t('common.error'), t('tools:pdfToTiff.alert.conversionError'));
+    const message = e instanceof Error ? e.message : String(e);
+    if (/memory/i.test(message)) {
+      showAlert(
+        t('common.error'),
+        t('tools:pdfToTiff.alert.conversionOutOfMemory')
+      );
+    } else {
+      showAlert(t('common.error'), t('tools:pdfToTiff.alert.conversionError'));
+    }
   } finally {
     hideLoader();
   }

@@ -216,7 +216,7 @@
     },
     "analytics": {
       "question": "Beni takip etmek için çerez veya analiz kullanıyor musunuz?",
-      "answer": "Gizliliğinizi önemsiyoruz. BentoPDF kişisel bilgileri takip etmez. Sadece anonim ziyaretçi sayılarını görmek için Simple Analytics kullanıyoruz. Bu, sitemizi kaç kişinin ziyaret ettiğini görebileceğimiz, ancak kim olduğunuzu asla bilemeyeceğimiz anlamına gelir. Simple Analytics tamamen GDPR uyumludur ve gizliliğinize saygı gösterir."
+      "answer": "Hayır. BentoPDF sizi hiçbir şekilde takip etmez. Çerez, analiz aracı veya izleme betiği kullanmıyoruz; canlı web sitesi bentopdf.com'da bile. Kim olduğunuzu veya araçlarla ne yaptığınızı asla bilmeyiz."
     }
   },
   "testimonials": {
