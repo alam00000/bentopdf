@@ -1,0 +1,595 @@
+/**
+ * Native app design layer.
+ *
+ * Loaded only by the Capacitor builds (see `src/js/native/index.ts`), so none
+ * of this reaches the website. It sits on top of the existing Tailwind styles
+ * and does three things:
+ *
+ *   1. Replaces web affordances (hover lifts, dense desktop spacing, browser
+ *      scroll behaviour) with touch ones.
+ *   2. Adds the injected native chrome - header, tab bar, sheet, toast.
+ *   3. Adapts to the platform: iOS gets large titles, hairlines and SF-style
+ *      typography; Android gets a Material top app bar and Roboto.
+ *
+ * The palette is deliberately quiet: one near-black ground, two surface steps,
+ * a single accent. Minimalism here means fewer borders and more space, not
+ * fewer affordances.
+ */
+
+.native-app {
+  /* Ground and surfaces */
+  --n-bg: #0b0f17;
+  --n-surface: #131926;
+  --n-surface-raised: #1a2230;
+  --n-hairline: rgba(255, 255, 255, 0.08);
+  --n-hairline-strong: rgba(255, 255, 255, 0.14);
+
+  /* Type */
+  --n-text: #f2f5f9;
+  --n-text-secondary: #9aa6b8;
+  --n-text-tertiary: #6b7789;
+
+  /* Accent */
+  --n-accent: #6d7cff;
+  --n-accent-soft: rgba(109, 124, 255, 0.16);
+
+  /* Metrics */
+  --n-radius: 16px;
+  --n-radius-sm: 12px;
+  --n-gutter: 16px;
+  --n-header-height: 52px;
+  --n-tabbar-height: 56px;
+  --n-safe-top: env(safe-area-inset-top, 0px);
+  --n-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --native-keyboard-height: 0px;
+
+  background-color: var(--n-bg);
+  color: var(--n-text);
+
+  /* A web page bounces and rubber-bands; an app screen does not. */
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+.native-app.native-ios {
+  --n-font:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'DM Sans', system-ui,
+    sans-serif;
+  --n-header-height: 44px;
+  --n-tabbar-height: 49px;
+  --n-radius: 14px;
+}
+
+.native-app.native-android {
+  --n-font: 'Roboto', 'DM Sans', system-ui, sans-serif;
+  --n-header-height: 56px;
+  --n-tabbar-height: 64px;
+  --n-radius: 20px; /* Material 3 leans rounder */
+}
+
+.native-app body {
+  background-color: var(--n-bg);
+  color: var(--n-text);
+  font-family: var(--n-font);
+  /* Room for the fixed header and tab bar. */
+  padding-top: calc(var(--n-header-height) + var(--n-safe-top));
+  padding-bottom: calc(var(--n-tabbar-height) + var(--n-safe-bottom));
+  -webkit-font-smoothing: antialiased;
+}
+
+.native-screen-tab body {
+  /* Tab screens also carry the large title block. */
+  padding-top: calc(var(--n-header-height) + var(--n-safe-top) + 44px);
+}
+
+/* Nothing in an app is selectable by accident, or shows a tap flash. */
+.native-app body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.native-app input,
+.native-app textarea,
+.native-app [contenteditable='true'],
+.native-app .selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.native-hidden {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------- header - */
+
+.native-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  padding-top: var(--n-safe-top);
+  background-color: color-mix(in srgb, var(--n-bg) 82%, transparent);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* The frosted bar is the single most "native iOS" detail in the whole app. */
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+  .native-ios .native-header {
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+.native-android .native-header {
+  background-color: var(--n-bg);
+}
+
+.native-header.is-scrolled {
+  box-shadow: inset 0 -1px 0 0 var(--n-hairline);
+}
+
+.native-android .native-header.is-scrolled {
+  background-color: var(--n-surface);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.native-header-bar {
+  height: var(--n-header-height);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+}
+
+.native-header-title,
+.native-header-title-compact {
+  flex: 1;
+  min-width: 0;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--n-text);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Android titles are left-aligned and sit next to the navigation icon. */
+.native-android .native-header-title,
+.native-android .native-header-title-compact {
+  text-align: left;
+  padding-left: 4px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.native-header-spacer {
+  width: 68px;
+  flex: none;
+}
+
+.native-android .native-header-spacer {
+  width: 0;
+}
+
+.native-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+  min-width: 68px;
+  height: 40px;
+  padding: 0 8px 0 4px;
+  border: 0;
+  background: none;
+  color: var(--n-accent);
+  font-size: 17px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.native-android .native-back {
+  min-width: 40px;
+  color: var(--n-text);
+}
+
+.native-android .native-back-label {
+  display: none; /* Material shows the arrow alone */
+}
+
+.native-back:active {
+  opacity: 0.55;
+}
+
+.native-icon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+
+/* iOS large title: visible at rest, collapses into the bar on scroll. */
+.native-header-large {
+  padding: 0 var(--n-gutter) 8px;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  transform-origin: left center;
+}
+
+.native-title-large {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--n-text);
+}
+
+.native-android .native-title-large {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.native-header-title-compact {
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.native-header.is-scrolled .native-header-title-compact {
+  opacity: 1;
+}
+
+.native-header.is-scrolled .native-header-large {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.96);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------- tab bar - */
+
+.native-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  align-items: stretch;
+  height: calc(var(--n-tabbar-height) + var(--n-safe-bottom));
+  padding-bottom: var(--n-safe-bottom);
+  background-color: color-mix(in srgb, var(--n-bg) 88%, transparent);
+  box-shadow: inset 0 1px 0 0 var(--n-hairline);
+  transition: transform 0.22s ease;
+}
+
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+  .native-ios .native-tabbar {
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+}
+
+.native-android .native-tabbar {
+  background-color: var(--n-surface);
+  box-shadow: none;
+}
+
+/* Get out of the way while the user is typing. */
+.native-keyboard-open .native-tabbar {
+  transform: translateY(100%);
+}
+
+.native-tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--n-text-tertiary);
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.native-tab-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.native-android .native-tab-label {
+  font-size: 12px;
+}
+
+.native-tab[aria-current='page'] {
+  color: var(--n-accent);
+}
+
+/* Material's active tab sits on a pill; iOS just tints the glyph. */
+.native-android .native-tab[aria-current='page'] .native-icon {
+  background-color: var(--n-accent-soft);
+  border-radius: 999px;
+  padding: 4px 16px;
+  width: 56px;
+  box-sizing: content-box;
+}
+
+.native-tab:active {
+  opacity: 0.6;
+}
+
+/* ----------------------------------------------------------------- sheet - */
+
+.native-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+}
+
+.native-sheet.is-open {
+  display: block;
+}
+
+.native-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: native-fade-in 0.2s ease;
+}
+
+.native-sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--n-surface);
+  border-radius: 20px 20px 0 0;
+  padding: 8px var(--n-gutter) calc(20px + var(--n-safe-bottom));
+  animation: native-sheet-up 0.26s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.native-sheet-grabber {
+  width: 36px;
+  height: 4px;
+  margin: 4px auto 12px;
+  border-radius: 999px;
+  background-color: var(--n-hairline-strong);
+}
+
+.native-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.native-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--n-text);
+  font-family: inherit;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.native-list li + li .native-list-row {
+  box-shadow: inset 0 1px 0 0 var(--n-hairline);
+}
+
+.native-list-row:active {
+  background-color: var(--n-surface-raised);
+}
+
+.native-list-chevron {
+  width: 18px;
+  height: 18px;
+  color: var(--n-text-tertiary);
+}
+
+.native-sheet-footnote {
+  margin: 16px 4px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--n-text-tertiary);
+}
+
+/* ----------------------------------------------------------------- toast - */
+
+.native-toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--n-tabbar-height) + var(--n-safe-bottom) + 16px);
+  z-index: 100;
+  max-width: min(90vw, 420px);
+  padding: 12px 18px;
+  border-radius: 999px;
+  background-color: var(--n-surface-raised);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  color: var(--n-text);
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.native-toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@keyframes native-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes native-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+/* ------------------------------------------------- restyling the app body - */
+
+/*
+ * The site's cards are built for a mouse: they lift on hover and sit on a
+ * visible border. On a touch screen that reads as decoration, so they become
+ * quiet filled tiles that respond to the press instead.
+ */
+.native-app .tool-card {
+  background-color: var(--n-surface);
+  border: 0;
+  border-radius: var(--n-radius);
+  padding: 18px 12px;
+  gap: 6px;
+  transition:
+    transform 0.12s ease,
+    background-color 0.12s ease;
+}
+
+.native-app .tool-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.native-app .tool-card:active {
+  transform: scale(0.97);
+  background-color: var(--n-surface-raised);
+}
+
+.native-app .tool-card h3,
+.native-app .tool-card .font-semibold {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.native-app .tool-card p {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--n-text-secondary);
+}
+
+/* Roomier taps, tighter page gutters - the phone-shaped version of the grid. */
+.native-app main,
+.native-app #app,
+.native-app .container {
+  padding-left: var(--n-gutter);
+  padding-right: var(--n-gutter);
+  max-width: none;
+}
+
+.native-app #app {
+  padding-top: 8px;
+}
+
+.native-app section {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.native-app .category-header {
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--n-text-tertiary);
+}
+
+/* Inputs: 16px minimum stops iOS from zooming the viewport on focus. */
+.native-app input,
+.native-app select,
+.native-app textarea {
+  font-size: 16px;
+  border-radius: var(--n-radius-sm);
+}
+
+.native-app input[type='search'],
+.native-app #search-bar,
+.native-app #search-input {
+  background-color: var(--n-surface);
+  border: 0;
+  height: 42px;
+}
+
+/* Primary actions become full-width, thumb-reachable buttons. */
+.native-app button:active,
+.native-app [role='button']:active {
+  transform: scale(0.985);
+}
+
+.native-app .tool-card,
+.native-app button,
+.native-app [role='button'] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
+ * Uploader panels are the first thing on most tool screens. On desktop they
+ * are a floating card; on a phone the screen *is* the card.
+ */
+.native-app #tool-uploader {
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: none;
+}
+
+.native-app #uploader {
+  padding-top: 8px;
+  min-height: 0;
+}
+
+.native-app #drop-zone {
+  border-radius: var(--n-radius);
+  border-color: var(--n-hairline-strong);
+  background-color: var(--n-surface);
+}
+
+.native-app #drop-zone:active {
+  background-color: var(--n-surface-raised);
+}
+
+/* The desktop keyboard-shortcut hints mean nothing on a phone. */
+.native-app #shortcut,
+.native-app kbd {
+  display: none;
+}
+
+/* Smooth scroll fights the OS scroller - `.native-app` is <html> itself. */
+html.native-app,
+.native-app body {
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .native-app *,
+  .native-app *::before,
+  .native-app *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

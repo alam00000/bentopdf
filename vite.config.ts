@@ -513,10 +513,60 @@ function rewriteHtmlPathsPlugin(): Plugin {
   };
 }
 
+/**
+ * Native (Capacitor) builds have no web server in front of them: the WebView
+ * serves the bundled `dist/` directory as-is. The site's own extensionless
+ * links (`href="/merge-pdf"`) rely on an nginx/.htaccess rewrite that simply
+ * does not exist inside the app, so we resolve them to real files at build
+ * time. Only links that map to an emitted page are touched.
+ */
+function nativeLinkRewritePlugin(): Plugin {
+  return {
+    name: 'native-link-rewrite',
+    enforce: 'post',
+    writeBundle(options) {
+      const outDir = options.dir;
+      if (!outDir) return;
+
+      const pages = new Set<string>();
+      for (const file of fs.readdirSync(outDir)) {
+        if (file.endsWith('.html')) pages.add(file.slice(0, -'.html'.length));
+      }
+
+      let rewritten = 0;
+      for (const file of fs.readdirSync(outDir)) {
+        if (!file.endsWith('.html')) continue;
+        const diskPath = resolve(outDir, file);
+        const source = fs.readFileSync(diskPath, 'utf8');
+        const updated = source.replace(
+          /href="\/([a-z0-9-]+)"/gi,
+          (match, page: string) =>
+            pages.has(page) ? `href="/${page}.html"` : match
+        );
+        if (updated !== source) {
+          fs.writeFileSync(diskPath, updated);
+          rewritten += 1;
+        }
+      }
+      console.log(
+        `[Vite] native-link-rewrite: resolved extensionless links in ${rewritten} page(s)`
+      );
+    },
+  };
+}
+
 export default defineConfig(() => {
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
-  if (USE_CDN) {
+  // Native (Capacitor) builds are packaged into the Android/iOS app bundle and
+  // served from the WebView's own local origin. They never hit a CDN, never
+  // need a service worker, and gain nothing from pre-compressed .br/.gz copies
+  // (those would just double the size of the installed app).
+  const IS_NATIVE = process.env.BUILD_TARGET === 'native';
+
+  if (IS_NATIVE) {
+    console.log('[Vite] Building for the native (Capacitor) app shell');
+  } else if (USE_CDN) {
     console.log('[Vite] Using CDN for WASM files (with local fallback)');
   } else {
     console.log('[Vite] Using local WASM files only');
@@ -543,7 +593,11 @@ export default defineConfig(() => {
       languageRouterPlugin(),
       flattenPagesPlugin(),
       rewriteHtmlPathsPlugin(),
-      swPrecachePlugin(),
+      // The service worker only exists to make the *web* build installable and
+      // offline-capable. Inside the native shell every asset is already on
+      // disk, a stale SW cache would just fight app updates, and the links it
+      // would cache need resolving to real files instead.
+      ...(IS_NATIVE ? [nativeLinkRewritePlugin()] : [swPrecachePlugin()]),
       tailwindcss(),
       nodePolyfills({
         include: ['buffer', 'stream', 'util', 'zlib', 'process'],
@@ -553,32 +607,37 @@ export default defineConfig(() => {
           process: true,
         },
       }),
-      viteCompression({
-        algorithm: 'brotliCompress',
-        ext: '.br',
-        threshold: 1024,
-        filter: /\.(js|mjs|json|css|html|wasm|svg)$/i,
-        compressionOptions: {
-          params: {
-            [zlibConstants.BROTLI_PARAM_QUALITY]: 11,
-            [zlibConstants.BROTLI_PARAM_MODE]:
-              zlibConstants.BROTLI_MODE_GENERIC,
-          },
-        },
-        deleteOriginFile: false,
-      }),
-      viteCompression({
-        algorithm: 'gzip',
-        ext: '.gz',
-        threshold: 1024,
-        filter: /\.(js|mjs|json|css|html|wasm|svg)$/i,
-        compressionOptions: {
-          level: 9,
-        },
-        deleteOriginFile: false,
-      }),
+      ...(IS_NATIVE
+        ? []
+        : [
+            viteCompression({
+              algorithm: 'brotliCompress',
+              ext: '.br',
+              threshold: 1024,
+              filter: /\.(js|mjs|json|css|html|wasm|svg)$/i,
+              compressionOptions: {
+                params: {
+                  [zlibConstants.BROTLI_PARAM_QUALITY]: 11,
+                  [zlibConstants.BROTLI_PARAM_MODE]:
+                    zlibConstants.BROTLI_MODE_GENERIC,
+                },
+              },
+              deleteOriginFile: false,
+            }),
+            viteCompression({
+              algorithm: 'gzip',
+              ext: '.gz',
+              threshold: 1024,
+              filter: /\.(js|mjs|json|css|html|wasm|svg)$/i,
+              compressionOptions: {
+                level: 9,
+              },
+              deleteOriginFile: false,
+            }),
+          ]),
     ],
     define: {
+      __NATIVE_APP__: JSON.stringify(IS_NATIVE),
       __SIMPLE_MODE__: JSON.stringify(process.env.SIMPLE_MODE === 'true'),
       __DISABLE_GITHUB_STARS__: JSON.stringify(
         process.env.DISABLE_GITHUB_STARS === 'true'

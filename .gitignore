@@ -54,3 +54,9 @@ test
 # Sibling checkouts of the engine/viewer forks
 bentopdf-pdfium-viewer/
 bentopdf-pymupdf-wasm/
+
+# Native app projects (Capacitor) - regenerate with `npm run native:init`.
+# These are build output: everything that defines them lives in
+# capacitor.config.ts, assets/ and the web build.
+/android/
+/ios/

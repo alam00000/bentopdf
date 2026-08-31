@@ -34,6 +34,16 @@ declare const __BRAND_NAME__: string;
 const init = async () => {
   await initI18n();
   await loadRuntimeConfig();
+
+  // Native (Capacitor) builds only. Runs before applyTranslations() so the
+  // injected native header/tab bar get translated in the same pass, and before
+  // the disabled-tool early return below so the splash always gets dismissed.
+  // The web build strips this branch entirely.
+  if (__NATIVE_APP__) {
+    const { initNativeApp } = await import('./native/index.js');
+    await initNativeApp();
+  }
+
   injectLanguageSwitcher();
   applyTranslations();
 

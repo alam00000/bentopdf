@@ -6,8 +6,11 @@
  * conflicts with Vite's HMR (Hot Module Replacement)
  */
 
-// Skip service worker registration in development mode
+// Skip service worker registration in development mode, and in the native
+// (Capacitor) apps - there every asset is already installed on the device, so
+// a second cache layer would only serve stale files after an app update.
 const isDevelopment =
+  __NATIVE_APP__ ||
   window.location.hostname === 'localhost' ||
   window.location.hostname === '127.0.0.1' ||
   window.location.port !== '';
