@@ -283,9 +283,16 @@ const openDocument = ({ bytes, ext }) => {
   step('close-previous');
   closeDocument();
 
-  step('write-file');
   currentPath = `/tmp/input/document.${ext || 'docx'}`;
-  wasm.FS.writeFile(currentPath, new Uint8Array(bytes));
+  const incoming = new Uint8Array(bytes);
+  step(`write-file: ${incoming.byteLength} bytes`);
+  if (!incoming.byteLength) {
+    throw new Error(
+      'The document arrived empty - its buffer was probably detached in transit'
+    );
+  }
+  wasm.FS.writeFile(currentPath, incoming);
+  step(`wrote: ${wasm.FS.stat(currentPath).size} bytes on disk`);
 
   step('document-load');
   docPtr = withStrings([fileUrl(currentPath)], (ptr) =>
