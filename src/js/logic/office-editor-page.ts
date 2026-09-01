@@ -255,9 +255,7 @@ const handlePointerDown = async (event: PointerEvent): Promise<void> => {
   event.preventDefault();
 
   const { x, y } = pointerToTwips(event);
-  const sink = $<HTMLTextAreaElement>('key-sink');
-  sink.focus({ preventScroll: true });
-  console.log('[office-editor] pointerdown twips', x, y, 'focus=', document.activeElement?.id);
+  $<HTMLTextAreaElement>('key-sink').focus({ preventScroll: true });
   try {
     await client.postMouse(LokMouse.ButtonDown, x, y, 1, 1, 0);
     await client.postMouse(LokMouse.ButtonUp, x, y, 1, 1, 0);
@@ -302,7 +300,6 @@ const specialKeyCode = (key: string): number | null => {
 };
 
 const handleKeyDown = async (event: KeyboardEvent): Promise<void> => {
-  console.log('[office-editor] keydown', JSON.stringify(event.key));
   if (!state.file) return;
 
   // Let the browser own its own shortcuts, except the ones we implement.
@@ -355,7 +352,6 @@ const handleKeyDown = async (event: KeyboardEvent): Promise<void> => {
  * discrete key events, so mirror anything that lands in the sink.
  */
 const handleSinkInput = async (event: Event): Promise<void> => {
-  console.log('[office-editor] sink input');
   const sink = event.target as HTMLTextAreaElement;
   const text = sink.value;
   sink.value = '';
