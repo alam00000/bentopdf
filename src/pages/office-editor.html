@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Word Editor - Edit DOCX and ODT in Your Browser | BentoPDF</title>
+    <meta
+      name="title"
+      content="Word Editor - Edit DOCX and ODT in Your Browser | BentoPDF"
+    />
+    <meta
+      name="description"
+      content="★ Edit Word and OpenDocument files directly in your browser ★ Real typing and formatting ★ Powered by LibreOffice ★ Nothing is uploaded"
+    />
+    <meta
+      name="keywords"
+      content="edit docx online, word editor, odt editor, edit word document browser, libreoffice online"
+    />
+    <meta name="author" content="BentoPDF" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.bentopdf.com/office-editor" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.bentopdf.com/office-editor" />
+    <meta property="og:title" content="Word Editor | BentoPDF" />
+    <meta
+      property="og:description"
+      content="Edit Word and OpenDocument files in your browser. Nothing is uploaded."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Word Editor | BentoPDF" />
+    <meta
+      name="twitter:description"
+      content="Edit Word and OpenDocument files in your browser. Nothing is uploaded."
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  </head>
+
+  <body class="antialiased bg-gray-900">
+    {{> navbar }}
+
+    <!-- ---------------------------------------------------------- upload -->
+    <div
+      id="uploader"
+      class="min-h-screen flex flex-col items-center justify-start py-12 p-4 bg-gray-900"
+    >
+      <div
+        id="tool-uploader"
+        class="bg-gray-800 rounded-xl shadow-xl px-4 py-8 md:p-8 max-w-2xl w-full text-gray-200 border border-gray-700"
+      >
+        <button
+          id="back-to-tools"
+          class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-6 font-semibold"
+        >
+          <i data-lucide="arrow-left" class="cursor-pointer"></i>
+          <span class="cursor-pointer" data-i18n="tools.backToTools">
+            Back to Tools
+          </span>
+        </button>
+
+        <h1
+          class="text-2xl font-bold text-white mb-2"
+          data-i18n="tools:officeEditor.name"
+        >
+          Word Editor
+        </h1>
+        <p class="text-gray-400 mb-6" data-i18n="tools:officeEditor.subtitle">
+          Open a Word or OpenDocument file and edit it for real - type, format,
+          and save it back. Runs LibreOffice on your device; nothing is
+          uploaded.
+        </p>
+
+        <div
+          id="drop-zone"
+          class="relative flex flex-col items-center justify-center w-full h-48 md:h-64 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-900 hover:bg-gray-700 transition-colors duration-300"
+        >
+          <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i class="ph ph-pencil-simple-line text-4xl mb-3 text-gray-400"></i>
+            <p class="mb-2 text-sm text-gray-400">
+              <span class="font-semibold" data-i18n="upload.clickToSelect"
+                >Click to select a file</span
+              >
+              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+            </p>
+            <p class="text-xs text-gray-500">DOCX, DOC, ODT, RTF, TXT</p>
+            <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
+              Your files never leave your device.
+            </p>
+          </div>
+          <input
+            id="file-input"
+            type="file"
+            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+            accept=".doc,.docx,.odt,.rtf,.txt"
+          />
+        </div>
+
+        <div class="flex items-center gap-2 text-gray-500 text-xs mt-4">
+          <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
+          <p data-i18n="tools.firstLoadNotice">
+            First load takes a moment as we download our conversion engine.
+            After that, all loads will be instant.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------- workspace -->
+    <div id="workspace" class="hidden bg-gray-900 text-gray-200">
+      <div
+        class="sticky top-16 z-20 bg-gray-800 border-b border-gray-700 px-3 py-2"
+      >
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            id="close-document"
+            class="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 font-semibold text-sm px-2"
+          >
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Open another</span>
+          </button>
+
+          <span class="w-px h-6 bg-gray-700"></span>
+
+          <!-- Character formatting -->
+          <button class="uno-btn" data-uno=".uno:Bold" title="Bold">
+            <i data-lucide="bold" class="w-4 h-4"></i>
+          </button>
+          <button class="uno-btn" data-uno=".uno:Italic" title="Italic">
+            <i data-lucide="italic" class="w-4 h-4"></i>
+          </button>
+          <button class="uno-btn" data-uno=".uno:Underline" title="Underline">
+            <i data-lucide="underline" class="w-4 h-4"></i>
+          </button>
+
+          <span class="w-px h-6 bg-gray-700"></span>
+
+          <!-- Paragraph alignment -->
+          <button class="uno-btn" data-uno=".uno:LeftPara" title="Align left">
+            <i data-lucide="align-left" class="w-4 h-4"></i>
+          </button>
+          <button class="uno-btn" data-uno=".uno:CenterPara" title="Centre">
+            <i data-lucide="align-center" class="w-4 h-4"></i>
+          </button>
+          <button class="uno-btn" data-uno=".uno:RightPara" title="Align right">
+            <i data-lucide="align-right" class="w-4 h-4"></i>
+          </button>
+          <button class="uno-btn" data-uno=".uno:JustifyPara" title="Justify">
+            <i data-lucide="align-justify" class="w-4 h-4"></i>
+          </button>
+
+          <span class="w-px h-6 bg-gray-700"></span>
+
+          <!-- Lists -->
+          <button
+            class="uno-btn"
+            data-uno=".uno:DefaultBullet"
+            title="Bulleted list"
+          >
+            <i data-lucide="list" class="w-4 h-4"></i>
+          </button>
+          <button
+            class="uno-btn"
+            data-uno=".uno:DefaultNumbering"
+            title="Numbered list"
+          >
+            <i data-lucide="list-ordered" class="w-4 h-4"></i>
+          </button>
+
+          <span class="w-px h-6 bg-gray-700"></span>
+
+          <button class="uno-btn" data-uno=".uno:Undo" title="Undo">
+            <i data-lucide="undo-2" class="w-4 h-4"></i>
+          </button>
+          <button class="uno-btn" data-uno=".uno:Redo" title="Redo">
+            <i data-lucide="redo-2" class="w-4 h-4"></i>
+          </button>
+
+          <div class="ml-auto flex items-center gap-2">
+            <span
+              id="doc-name"
+              class="text-sm text-gray-400 truncate max-w-40"
+            ></span>
+            <select
+              id="save-format"
+              class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg px-2 py-2"
+              aria-label="Save format"
+            >
+              <option value="docx">DOCX</option>
+              <option value="odt">ODT</option>
+              <option value="rtf">RTF</option>
+              <option value="txt">TXT</option>
+              <option value="pdf">PDF</option>
+              <option value="html">HTML</option>
+            </select>
+            <button
+              id="save-btn"
+              class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 text-sm"
+            >
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Save</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!--
+        The scroller holds a spacer the full height of the document, with the
+        canvas absolutely positioned over the visible slice. Only that slice is
+        ever painted, so page count does not drive memory.
+      -->
+      <div
+        id="scroller"
+        class="relative overflow-auto bg-gray-950"
+        style="height: calc(100vh - 8.5rem)"
+        tabindex="0"
+      >
+        <div id="doc-spacer" class="relative mx-auto">
+          <canvas
+            id="doc-canvas"
+            class="absolute left-0 shadow-2xl bg-white"
+          ></canvas>
+          <div
+            id="caret"
+            class="absolute w-0.5 bg-indigo-500 hidden pointer-events-none"
+          ></div>
+        </div>
+      </div>
+
+      <!--
+        A real focusable field is what brings up the on-screen keyboard on a
+        phone and gives us IME-free key events on a desktop. It is visually
+        hidden but must stay focusable, so it cannot use `display: none`.
+      -->
+      <textarea
+        id="key-sink"
+        class="absolute opacity-0 pointer-events-none"
+        style="width: 1px; height: 1px; left: -9999px"
+        aria-label="Document text input"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      ></textarea>
+
+      <div
+        class="bg-gray-800 border-t border-gray-700 px-4 py-2 text-xs text-gray-400 flex items-center gap-4"
+      >
+        <span id="status-line">Ready</span>
+        <span class="ml-auto" id="zoom-line"></span>
+      </div>
+    </div>
+
+    <div
+      id="status-overlay"
+      class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-gray-800 border border-gray-700 rounded-xl p-6 max-w-sm w-full text-center"
+      >
+        <div
+          class="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"
+        ></div>
+        <p id="status-text" class="text-gray-200 text-sm"></p>
+      </div>
+    </div>
+
+    <div
+      id="error-banner"
+      class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded-lg text-sm max-w-lg"
+    ></div>
+
+    <script type="module" src="/src/js/utils/lucide-init.ts"></script>
+    <script type="module" src="/src/js/utils/full-width.ts"></script>
+    <script type="module" src="/src/js/logic/office-editor-page.ts"></script>
+    <script type="module" src="/src/js/mobileMenu.ts"></script>
+    <script type="module" src="/src/js/main.ts"></script>
+  </body>
+</html>
