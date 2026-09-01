@@ -312,6 +312,13 @@ const baseCategories = [
         subtitle: 'Convert RTF (Rich Text Format) documents to PDF.',
       },
       {
+        href: import.meta.env.BASE_URL + 'office-viewer.html',
+        name: 'Office Viewer & Editor',
+        icon: 'ph-file-doc',
+        subtitle:
+          'Open Word, Excel, PowerPoint, OpenDocument, Visio, Publisher and WordPerfect files, then export them to any supported format.',
+      },
+      {
         href: import.meta.env.BASE_URL + 'word-to-pdf.html',
         name: 'Word to PDF',
         icon: 'ph-microsoft-word-logo',

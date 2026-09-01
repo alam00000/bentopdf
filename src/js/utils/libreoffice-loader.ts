@@ -6,7 +6,10 @@
  */
 
 import { WorkerBrowserConverter } from '@matbee/libreoffice-converter/browser';
-import type { InputFormat } from '@matbee/libreoffice-converter/browser';
+import type {
+  InputFormat,
+  OutputFormat,
+} from '@matbee/libreoffice-converter/browser';
 
 const LIBREOFFICE_LOCAL_PATH = import.meta.env.BASE_URL + 'libreoffice-wasm/';
 
@@ -17,6 +20,53 @@ export interface LoadProgress {
 }
 
 export type ProgressCallback = (progress: LoadProgress) => void;
+
+/** What the engine can tell us about a document before we render it. */
+export interface OfficeDocumentInfo {
+  documentTypeName: string;
+  pageCount: number;
+  validOutputFormats: OutputFormat[];
+}
+
+/** One rendered page, as raw RGBA ready for a canvas. */
+export interface RenderedPage {
+  page: number;
+  width: number;
+  height: number;
+  data: Uint8Array;
+}
+
+/** A document held open in the engine so edits can accumulate. */
+export interface OfficeSession {
+  sessionId: string;
+  documentType: 'writer' | 'calc' | 'impress' | 'draw' | string;
+  pageCount: number;
+}
+
+export interface OfficeParagraph {
+  index: number;
+  text: string;
+  style?: string;
+  charCount?: number;
+}
+
+export interface OfficeSheet {
+  index: number;
+  name: string;
+  usedRange?: string;
+  rowCount?: number;
+  colCount?: number;
+}
+
+/** Shape of `getStructure`, narrowed to the parts we actually display. */
+export interface OfficeStructure {
+  type?: string;
+  paragraphs?: OfficeParagraph[];
+  sheets?: OfficeSheet[];
+  slides?: Array<{ index: number; title?: string }>;
+  pageCount?: number;
+  wordCount?: number;
+}
 
 // Singleton for converter instance
 let converterInstance: LibreOfficeConverter | null = null;
@@ -103,6 +153,13 @@ async function fetchAsDecompressedUrl(
 
   return URL.createObjectURL(new Blob([blob], { type: mimeType }));
 }
+
+/** LibreOffice keys its import filters off the extension, not the MIME type. */
+const formatOf = (file: File): InputFormat =>
+  (file.name.split('.').pop()?.toLowerCase() ?? '') as InputFormat;
+
+const describeError = (error: unknown): string =>
+  error instanceof Error ? error.message : String(error);
 
 export class LibreOfficeConverter {
   private converter: WorkerBrowserConverter | null = null;
@@ -243,6 +300,119 @@ export class LibreOfficeConverter {
       });
       throw error;
     }
+  }
+
+  /**
+   * Convert to any format LibreOffice reports as valid for this document.
+   * `convertToPdf` is the common case; this is the general one.
+   */
+  async convertTo(file: File, outputFormat: OutputFormat): Promise<Blob> {
+    const converter = this.requireConverter();
+    const result = await converter.convert(
+      new Uint8Array(await file.arrayBuffer()),
+      { outputFormat, inputFormat: formatOf(file) },
+      file.name
+    );
+    // Copy out of the worker's buffer to avoid SharedArrayBuffer typing issues.
+    return new Blob([new Uint8Array(result.data)], { type: result.mimeType });
+  }
+
+  /** Document type, page count and the formats it can be exported to. */
+  async getDocumentInfo(file: File): Promise<OfficeDocumentInfo> {
+    const converter = this.requireConverter();
+    const info = await converter.getDocumentInfo(
+      new Uint8Array(await file.arrayBuffer()),
+      { inputFormat: formatOf(file) }
+    );
+    return {
+      documentTypeName: info.documentTypeName,
+      pageCount: info.pageCount,
+      validOutputFormats: info.validOutputFormats,
+    };
+  }
+
+  /**
+   * Render one page as RGBA pixels. Pages are rendered on demand rather than
+   * all at once - a long document would otherwise pin hundreds of megabytes.
+   */
+  async renderPage(
+    file: File,
+    pageIndex: number,
+    maxWidth = 1000
+  ): Promise<RenderedPage> {
+    const converter = this.requireConverter();
+    return converter.renderSinglePage(
+      new Uint8Array(await file.arrayBuffer()),
+      { inputFormat: formatOf(file) },
+      pageIndex,
+      maxWidth
+    );
+  }
+
+  /** The document's full plain text, for search and copy-out. */
+  async extractText(file: File): Promise<string> {
+    const converter = this.requireConverter();
+    const info = await converter.getLokInfo(
+      new Uint8Array(await file.arrayBuffer()),
+      { inputFormat: formatOf(file) }
+    );
+    return info.allText ?? '';
+  }
+
+  /** Open a document for editing. Close it to get the modified bytes back. */
+  async openDocument(file: File): Promise<OfficeSession> {
+    const converter = this.requireConverter();
+    const session = await converter.openDocument(
+      new Uint8Array(await file.arrayBuffer()),
+      { inputFormat: formatOf(file) }
+    );
+    return {
+      sessionId: session.sessionId,
+      documentType: session.documentType,
+      pageCount: session.pageCount,
+    };
+  }
+
+  /**
+   * Run an editor operation against an open session.
+   *
+   * Not every operation the engine advertises actually works in this WASM
+   * build - the ones routed through LibreOffice's search (find, replace,
+   * replaceParagraph, deleteParagraph) raise a WebAssembly exception. Callers
+   * get `{ ok: false }` rather than a throw, so the UI can stay honest about
+   * what succeeded.
+   */
+  async editorOperation<T = unknown>(
+    sessionId: string,
+    method: string,
+    args?: unknown[]
+  ): Promise<{ ok: boolean; data?: T; error?: string }> {
+    const converter = this.requireConverter();
+    try {
+      const result = await converter.editorOperation<T>(
+        sessionId,
+        method,
+        args
+      );
+      return result?.success
+        ? { ok: true, data: result.data }
+        : { ok: false, error: result?.error ?? 'Operation failed' };
+    } catch (error) {
+      return { ok: false, error: describeError(error) };
+    }
+  }
+
+  /** Close a session and get the edited document, if anything changed. */
+  async closeDocument(sessionId: string): Promise<Uint8Array | undefined> {
+    const converter = this.requireConverter();
+    return converter.closeDocument(sessionId);
+  }
+
+  private requireConverter(): WorkerBrowserConverter {
+    if (!this.converter) {
+      throw new Error('Converter not initialized');
+    }
+    return this.converter;
   }
 
   async wordToPdf(file: File): Promise<Blob> {
