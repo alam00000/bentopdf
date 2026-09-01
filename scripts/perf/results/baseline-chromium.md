@@ -1,14 +1,14 @@
 # Merge Baseline
 
-Run: 2026-09-01T14:45:16.710Z browser=chromium
+Run: 2026-09-01T17:03:03.717Z browser=chromium
 
 | combo                         | browser  | load+parse(ms) | merge(ms) | outcome | dl bytes  | mem after load(MB) | mem after merge(MB) |
 | ----------------------------- | -------- | -------------- | --------- | ------- | --------- | ------------------ | ------------------- |
-| sample                        | chromium | 241            | 1539      | ok      | 18328     | 22                 | 22                  |
-| 190826                        | chromium | 354            | 1588      | ok      | 53978495  | 121                | 122                 |
-| 100826WE+120826               | chromium | 889            | 3758      | ok      | 307665250 | 598                | 602                 |
-| 170826+190826                 | chromium | 3018           | 2621      | ok      | 135291395 | 273                | 149                 |
-| 100826WE+120826+170826+190826 | chromium | 1515           | 5164      | ok      | 442980891 | 436                | 442                 |
+| sample                        | chromium | 246            | 1557      | ok      | 18328     | 23                 | 23                  |
+| 190826                        | chromium | 339            | 1571      | ok      | 53978495  | 121                | 122                 |
+| 100826WE+120826               | chromium | 942            | 3716      | ok      | 307665250 | 598                | 313                 |
+| 170826+190826                 | chromium | 3026           | 2583      | ok      | 135291395 | 273                | 149                 |
+| 100826WE+120826+170826+190826 | chromium | 1509           | 5041      | ok      | 442980891 | 436                | 442                 |
 
 ## cpdf build(s) loaded (expected: none - merge runs on the qpdf engine)
 

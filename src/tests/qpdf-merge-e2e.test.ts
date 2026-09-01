@@ -114,6 +114,20 @@ describe('qpdf merge pipeline (real qpdf)', () => {
     return doc.getPages().map((p) => p.getRotation().angle);
   }
 
+  function weaveSeries(
+    files: Uint8Array[],
+    series: ReturnType<typeof buildInterleaveSeries>
+  ): { files: Uint8Array[]; specs: Array<string | null> } {
+    // replay the worker's assembly: one <file> <page> term pair per step
+    const wovenFiles: Uint8Array[] = [];
+    const wovenSpecs: Array<string | null> = [];
+    for (const step of series) {
+      wovenFiles.push(files[step.fileIndex]);
+      wovenSpecs.push(String(step.page));
+    }
+    return { files: wovenFiles, specs: wovenSpecs };
+  }
+
   beforeAll(async () => {
     const wasmBinary = fs.readFileSync(
       path.resolve(
@@ -180,16 +194,8 @@ describe('qpdf merge pipeline (real qpdf)', () => {
     const a = await makePdf(3, 100);
     const b = await makePdf(2, 200);
     const c = await makePdf(1, 300);
-    const files = [a, b, c];
-    const series = buildInterleaveSeries([3, 2, 1]);
-    // replay the worker's assembly: one <file> <page> term pair per step
-    const wovenFiles: Uint8Array[] = [];
-    const wovenSpecs: Array<string | null> = [];
-    for (const step of series) {
-      wovenFiles.push(files[step.fileIndex]);
-      wovenSpecs.push(String(step.page));
-    }
-    const out = mergeWithQpdf(wovenFiles, wovenSpecs);
+    const woven = weaveSeries([a, b, c], buildInterleaveSeries([3, 2, 1]));
+    const out = mergeWithQpdf(woven.files, woven.specs);
     expect(await pageWidths(out)).toEqual([100, 200, 300, 101, 201, 102]);
   });
 
@@ -199,5 +205,43 @@ describe('qpdf merge pipeline (real qpdf)', () => {
     expect(() => mergeWithQpdf([bad, good], ['1-z', '1-z'])).toThrow(
       /exit code 2/
     );
+  });
+
+  it('produces correct output across repeated merges on one runtime instance', async () => {
+    const a = await makePdf(3, 100);
+    const b = await makePdf(2, 200);
+    const first = mergeWithQpdf([a, b], ['1-z', '1-z']);
+    expect(await pageWidths(first)).toEqual([100, 101, 102, 200, 201]);
+
+    const c = await makePdf(2, 300);
+    const second = mergeWithQpdf([c, a], ['1-z', '1-z']);
+    expect(await pageWidths(second)).toEqual([300, 301, 100, 101, 102]);
+
+    const third = mergeWithQpdf([a, b], ['1-z', '1-z']);
+    const decode = (bytes: Uint8Array) =>
+      new TextDecoder('latin1').decode(bytes);
+    expect(decode(third)).toEqual(decode(first));
+  });
+
+  it('stays usable after a failed merge on the same runtime instance', async () => {
+    const bad = new Uint8Array([1, 2, 3, 4]);
+    const good = await makePdf(1, 100);
+    expect(() => mergeWithQpdf([bad, good], ['1-z', '1-z'])).toThrow(
+      /exit code 2/
+    );
+
+    const out = mergeWithQpdf([good], ['1-z']);
+    expect(await pageWidths(out)).toEqual([100]);
+  });
+
+  it('supports interleave and merge against the same runtime instance', async () => {
+    const a = await makePdf(3, 100);
+    const b = await makePdf(2, 200);
+    const woven = weaveSeries([a, b], buildInterleaveSeries([3, 2]));
+    const interleaved = mergeWithQpdf(woven.files, woven.specs);
+    expect(await pageWidths(interleaved)).toEqual([100, 200, 101, 201, 102]);
+
+    const merged = mergeWithQpdf([a, b], ['1-z', '1-z']);
+    expect(await pageWidths(merged)).toEqual([100, 101, 102, 200, 201]);
   });
 });
