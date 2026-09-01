@@ -121,6 +121,8 @@ Then hit Run in Android Studio / Xcode again. `native:android` and
 | ------------------------------------------------------------------------------ | ---------------------------------------------- |
 | App id, name, splash, status bar, WebView settings                             | `capacitor.config.ts`                          |
 | Native build target (no service worker, no gzip/brotli copies, resolved links) | `vite.config.ts`, behind `BUILD_TARGET=native` |
+| Size trimming for the app bundle                                               | `nativeSlimPlugin` in `vite.config.ts`         |
+| Brotli recompression of the LibreOffice payloads                               | `scripts/prepare-native-wasm.mjs`              |
 | Native runtime shell                                                           | `src/js/native/`                               |
 | Native design layer                                                            | `src/css/native.css`                           |
 | Icon and splash sources                                                        | `assets/`                                      |
@@ -142,13 +144,39 @@ Want different tabs? They are a plain list in `src/js/native/routes.ts`.
 
 ---
 
+## What the app build strips
+
+The web bundle carries ~155 MB of files; the app installs at ~68 MB. The
+native build removes only things no feature depends on:
+
+| Removed                                                            | Saved (installed) |
+| ------------------------------------------------------------------ | ----------------- |
+| LibreOffice recompressed from gzip to brotli                       | 26.9 MB           |
+| Open Graph preview images (link previews only)                     | 3.4 MB            |
+| `.ttf` / `.woff` / `.svg` font variants, keeping `woff2`           | 2.6 MB            |
+| Source maps                                                        | 2.4 MB            |
+| PDF.js viewer locales for languages the app has no translation for | 0.9 MB            |
+| The second, byte-identical copy of the PDF.js character maps       | 0.9 MB            |
+
+Every tool, every supported language and every PDF.js runtime font is intact.
+
+The brotli step is the only one with a cost: LibreOffice ships pre-gzipped, and
+an APK cannot compress it further, so `scripts/prepare-native-wasm.mjs`
+recompresses it (74 MB -> 47 MB). Quality 11 takes about ten minutes, so the
+result is cached under `.native-cache/` and only regenerated when the upstream
+payload changes. At runtime the app decodes it with a 210 KB WASM brotli
+decoder instead of the browser's built-in gzip, which makes the _first_ Office
+conversion of a session slightly slower.
+
 ## Things worth knowing
 
 - **App size.** BentoPDF bundles a lot of WebAssembly (LibreOffice, Ghostscript,
-  Tesseract, PDFium, vips). The installed app is large - expect several hundred
-  MB. That is the cost of every tool working with no server; if you only want a
-  subset, `DISABLE_TOOLS` in `.env` trims the UI, and you can drop the matching
-  WASM payloads from `public/`.
+  Tesseract, PDFium, vips), so the app is large: roughly **68 MB** to install.
+  The native build already strips everything it can without losing a feature
+  (see below). If you want it smaller than that, something has to go -
+  `DISABLE_TOOLS` in `.env` trims the UI, and you can then drop the matching
+  WASM payloads from `public/`. LibreOffice alone is ~47 MB of the total, so
+  dropping the Office converters is by far the biggest single saving.
 - **Very large files.** Handing a file to the OS goes through an in-memory
   base64 copy, so a multi-hundred-MB PDF can be tight on an older phone.
 - **Threaded WASM.** A few tools use `SharedArrayBuffer` for multi-threading,

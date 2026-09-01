@@ -555,6 +555,248 @@ function nativeLinkRewritePlugin(): Plugin {
   };
 }
 
+/**
+ * Strips weight from the native app bundle that no feature depends on.
+ *
+ * Everything here is either a build artefact (source maps), a format variant
+ * no target WebView will ever request (ttf/woff/svg fonts alongside woff2),
+ * something only a web crawler sees (Open Graph images), a localisation for a
+ * language the app cannot be switched to, or a byte-identical duplicate.
+ *
+ * The one substantive change is LibreOffice: it ships pre-gzipped, so the
+ * APK/IPA cannot compress it further, and it alone accounts for roughly 70%
+ * of the install. `scripts/prepare-native-wasm.mjs` recompresses it to brotli
+ * (74 MB -> 47 MB) and this swaps the payloads in.
+ */
+function nativeSlimPlugin(): Plugin {
+  const removed: Array<[string, number]> = [];
+
+  const sizeOf = (target: string): number => {
+    const stat = fs.statSync(target);
+    if (!stat.isDirectory()) return stat.size;
+    let total = 0;
+    for (const entry of fs.readdirSync(target)) {
+      total += sizeOf(resolve(target, entry));
+    }
+    return total;
+  };
+
+  const drop = (target: string, label: string): void => {
+    if (!fs.existsSync(target)) return;
+    const bytes = sizeOf(target);
+    fs.rmSync(target, { recursive: true, force: true });
+    const existing = removed.find(([name]) => name === label);
+    if (existing) existing[1] += bytes;
+    else removed.push([label, bytes]);
+  };
+
+  const walk = function* (dir: string): Generator<string> {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = resolve(dir, entry.name);
+      if (entry.isDirectory()) yield* walk(full);
+      else yield full;
+    }
+  };
+
+  /** Swap the gzipped LibreOffice payloads for the brotli ones. */
+  const useBrotliLibreOffice = (outDir: string): void => {
+    const cacheDir = resolve(__dirname, '.native-cache/libreoffice-wasm');
+    const targetDir = resolve(outDir, 'libreoffice-wasm');
+    const payloads = ['soffice.wasm', 'soffice.data'];
+
+    const missing = payloads.filter(
+      (name) => !fs.existsSync(resolve(cacheDir, `${name}.br`))
+    );
+    if (missing.length) {
+      throw new Error(
+        `[native-slim] Missing brotli payloads: ${missing.join(', ')}.\n` +
+          'Run `node scripts/prepare-native-wasm.mjs` (npm run native:build does this for you).'
+      );
+    }
+
+    for (const name of payloads) {
+      fs.copyFileSync(
+        resolve(cacheDir, `${name}.br`),
+        resolve(targetDir, `${name}.br`)
+      );
+      drop(resolve(targetDir, `${name}.gz`), 'LibreOffice gzip -> brotli');
+    }
+  };
+
+  /**
+   * Every @font-face lists woff2 first, then woff/ttf/svg for browsers that
+   * predate it. Android 7+ and iOS 15+ - Capacitor's own floors - have
+   * supported woff2 for a decade, so the fallbacks are dead bytes.
+   */
+  const dropLegacyFontFormats = (outDir: string): void => {
+    const legacy =
+      /url\([^)#]*\.(?:woff|ttf|otf|eot|svg)(?:#[^)]*)?\)\s*format\("(?:woff|truetype|opentype|embedded-opentype|svg)"\),?\s*/g;
+
+    // Some pages get their Tailwind injected through a JS chunk, so the same
+    // @font-face lists show up there too.
+    for (const file of walk(outDir)) {
+      if (!/\.(css|js|mjs)$/.test(file)) continue;
+      const source = fs.readFileSync(file, 'utf8');
+      // Anchored on a src list that still offers woff2, so a face is never
+      // left without a source, and nothing outside @font-face is touched.
+      const updated = source.replace(
+        /src:([^;}]*\.woff2[^;}]*)/g,
+        (match, list: string) => `src:${list.replace(legacy, '')}`
+      );
+      if (updated !== source) fs.writeFileSync(file, updated);
+    }
+
+    // Now remove any font file nothing references any more.
+    const referenced = new Set<string>();
+    for (const file of walk(outDir)) {
+      if (!/\.(css|js|mjs|html)$/.test(file)) continue;
+      const source = fs.readFileSync(file, 'utf8');
+      for (const match of source.matchAll(
+        /[\w.-]+\.(?:woff2|woff|ttf|otf|eot)/g
+      )) {
+        referenced.add(match[0]);
+      }
+    }
+
+    for (const file of walk(outDir)) {
+      const name = file.split('/').pop() ?? '';
+      const isFont = /\.(?:woff|ttf|otf|eot)$/.test(name);
+      const isSvgFont = name.startsWith('Phosphor-') && name.endsWith('.svg');
+      if ((isFont || isSvgFont) && !referenced.has(name)) {
+        drop(file, 'legacy font formats');
+      }
+    }
+  };
+
+  /** Trims viewer localisations to the languages the app can switch to. */
+  const trimViewerLocales = (outDir: string): void => {
+    const supported = new Set<string>(
+      SUPPORTED_LANGUAGES.map((lang) => lang.split('-')[0].toLowerCase())
+    );
+
+    for (const localeDir of [
+      resolve(outDir, 'pdfjs-viewer/locale'),
+      resolve(outDir, 'pdfjs-annotation-viewer/web/locale'),
+    ]) {
+      if (!fs.existsSync(localeDir)) continue;
+
+      const keep = (tag: string): boolean =>
+        supported.has(tag.split('-')[0].toLowerCase());
+
+      for (const entry of fs.readdirSync(localeDir, { withFileTypes: true })) {
+        if (!entry.isDirectory() || keep(entry.name)) continue;
+        drop(resolve(localeDir, entry.name), 'unreachable viewer locales');
+      }
+
+      // The index must agree with what is on disk, or the viewer will request
+      // a .ftl that is no longer there.
+      const index = resolve(localeDir, 'locale.json');
+      if (!fs.existsSync(index)) continue;
+      const entries = JSON.parse(fs.readFileSync(index, 'utf8')) as Record<
+        string,
+        string
+      >;
+      fs.writeFileSync(
+        index,
+        JSON.stringify(
+          Object.fromEntries(
+            Object.entries(entries).filter(([tag]) => keep(tag))
+          )
+        )
+      );
+    }
+  };
+
+  /**
+   * The two vendored PDF.js copies ship byte-identical character maps. Point
+   * the annotation viewer at the other copy's set and drop the duplicate.
+   */
+  const dedupeCmaps = (outDir: string): void => {
+    const viewerCmaps = resolve(outDir, 'pdfjs-viewer/cmaps');
+    const duplicate = resolve(outDir, 'pdfjs-annotation-viewer/web/cmaps');
+    const viewerJs = resolve(outDir, 'pdfjs-annotation-viewer/web/viewer.mjs');
+    if (
+      !fs.existsSync(viewerCmaps) ||
+      !fs.existsSync(duplicate) ||
+      !fs.existsSync(viewerJs)
+    ) {
+      return;
+    }
+
+    // Only safe while the two sets really are the same bytes.
+    const names = fs.readdirSync(duplicate);
+    const identical =
+      names.length === fs.readdirSync(viewerCmaps).length &&
+      names.every((name) => {
+        const a = resolve(duplicate, name);
+        const b = resolve(viewerCmaps, name);
+        return (
+          fs.existsSync(b) && fs.readFileSync(a).equals(fs.readFileSync(b))
+        );
+      });
+    if (!identical) {
+      console.log(
+        '[Vite] native-slim: PDF.js cmaps differ between viewers - keeping both'
+      );
+      return;
+    }
+
+    const source = fs.readFileSync(viewerJs, 'utf8');
+    const updated = source.replace(
+      '"../web/cmaps/"',
+      '"../../pdfjs-viewer/cmaps/"'
+    );
+    if (updated === source) {
+      console.log(
+        '[Vite] native-slim: could not repoint the annotation viewer cMapUrl - keeping both'
+      );
+      return;
+    }
+    fs.writeFileSync(viewerJs, updated);
+    drop(duplicate, 'duplicate PDF.js cmaps');
+  };
+
+  return {
+    name: 'native-slim',
+    enforce: 'post',
+    writeBundle(options) {
+      const outDir = options.dir;
+      if (!outDir) return;
+
+      useBrotliLibreOffice(outDir);
+
+      for (const file of walk(outDir)) {
+        if (file.endsWith('.map')) drop(file, 'source maps');
+      }
+
+      dropLegacyFontFormats(outDir);
+
+      // Open Graph cards exist for link previews; nothing in the app renders
+      // them.
+      const images = resolve(outDir, 'images');
+      if (fs.existsSync(images)) {
+        for (const name of fs.readdirSync(images)) {
+          if (name.startsWith('og-')) {
+            drop(resolve(images, name), 'Open Graph preview images');
+          }
+        }
+      }
+
+      trimViewerLocales(outDir);
+      dedupeCmaps(outDir);
+
+      const mb = (bytes: number): string =>
+        `${(bytes / 1048576).toFixed(1)} MB`;
+      const total = removed.reduce((sum, [, bytes]) => sum + bytes, 0);
+      console.log('[Vite] native-slim removed:');
+      for (const [label, bytes] of removed.sort((a, b) => b[1] - a[1])) {
+        console.log(`         ${mb(bytes).padStart(9)}  ${label}`);
+      }
+      console.log(`         ${mb(total).padStart(9)}  total`);
+    },
+  };
+}
+
 export default defineConfig(() => {
   const USE_CDN = process.env.VITE_USE_CDN === 'true';
 
@@ -597,7 +839,9 @@ export default defineConfig(() => {
       // offline-capable. Inside the native shell every asset is already on
       // disk, a stale SW cache would just fight app updates, and the links it
       // would cache need resolving to real files instead.
-      ...(IS_NATIVE ? [nativeLinkRewritePlugin()] : [swPrecachePlugin()]),
+      ...(IS_NATIVE
+        ? [nativeLinkRewritePlugin(), nativeSlimPlugin()]
+        : [swPrecachePlugin()]),
       tailwindcss(),
       nodePolyfills({
         include: ['buffer', 'stream', 'util', 'zlib', 'process'],

@@ -60,3 +60,7 @@ bentopdf-pymupdf-wasm/
 # capacitor.config.ts, assets/ and the web build.
 /android/
 /ios/
+
+# Cached brotli-recompressed WASM payloads for the native builds
+# (scripts/prepare-native-wasm.mjs regenerates them on demand)
+/.native-cache/

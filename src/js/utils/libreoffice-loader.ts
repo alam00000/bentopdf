@@ -24,6 +24,57 @@ let converterInstance: LibreOfficeConverter | null = null;
 const GZIP_MAGIC_FIRST = 0x1f;
 const GZIP_MAGIC_SECOND = 0x8b;
 
+/**
+ * The native apps ship these payloads as brotli rather than gzip. LibreOffice
+ * dominates the install size (74 MB of ~105 MB when gzipped) and it arrives
+ * pre-compressed, so the APK/IPA cannot squeeze it further - brotli takes the
+ * same two files to ~47 MB. See `scripts/prepare-native-wasm.mjs`.
+ *
+ * The web build stays on gzip: `DecompressionStream` handles it natively, and
+ * a web server negotiates its own encoding anyway.
+ */
+const PAYLOAD_EXTENSION = __NATIVE_APP__ ? '.br' : '.gz';
+
+/** Output buffer handed to the decoder per step. */
+const BROTLI_CHUNK_BYTES = 8 * 1024 * 1024;
+
+/**
+ * Decodes brotli in a stream rather than one shot. The payloads expand to
+ * 141 MB and 95 MB; asking the decoder for that in a single buffer would need
+ * it live in the WASM heap and again in JS. Collecting chunks and letting the
+ * Blob own them keeps the peak to roughly one copy.
+ */
+async function brotliDecompressToBlob(source: Blob): Promise<Blob> {
+  const brotli = await (await import('brotli-dec-wasm')).default;
+  const stream = new brotli.DecompressStream();
+  const chunks: Uint8Array[] = [];
+
+  const reader = source.stream().getReader();
+  try {
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      let input = value;
+      // One input chunk can produce many output chunks.
+      for (;;) {
+        const result = stream.decompress(input, BROTLI_CHUNK_BYTES);
+        if (result.buf.length) chunks.push(result.buf);
+
+        if (result.code === brotli.BrotliStreamResultCode.NeedsMoreOutput) {
+          input = input.subarray(result.input_offset);
+          continue;
+        }
+        break;
+      }
+    }
+  } finally {
+    reader.releaseLock();
+  }
+
+  return new Blob(chunks as BlobPart[]);
+}
+
 async function fetchAsDecompressedUrl(
   url: string,
   mimeType: string
@@ -34,12 +85,20 @@ async function fetchAsDecompressedUrl(
   }
 
   let blob = await response.blob();
-  const head = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
-  if (head[0] === GZIP_MAGIC_FIRST && head[1] === GZIP_MAGIC_SECOND) {
-    const decompressed = blob
-      .stream()
-      .pipeThrough(new DecompressionStream('gzip'));
-    blob = await new Response(decompressed).blob();
+
+  // The `__NATIVE_APP__` guard is what lets the web build drop the brotli
+  // decoder entirely - without it the dynamic import is still emitted as a
+  // chunk the website would never load.
+  if (__NATIVE_APP__ && url.endsWith('.br')) {
+    blob = await brotliDecompressToBlob(blob);
+  } else {
+    const head = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
+    if (head[0] === GZIP_MAGIC_FIRST && head[1] === GZIP_MAGIC_SECOND) {
+      const decompressed = blob
+        .stream()
+        .pipeThrough(new DecompressionStream('gzip'));
+      blob = await new Response(decompressed).blob();
+    }
   }
 
   return URL.createObjectURL(new Blob([blob], { type: mimeType }));
@@ -77,11 +136,11 @@ export class LibreOfficeConverter {
 
       const [sofficeWasmUrl, sofficeDataUrl] = await Promise.all([
         fetchAsDecompressedUrl(
-          `${this.basePath}soffice.wasm.gz`,
+          `${this.basePath}soffice.wasm${PAYLOAD_EXTENSION}`,
           'application/wasm'
         ),
         fetchAsDecompressedUrl(
-          `${this.basePath}soffice.data.gz`,
+          `${this.basePath}soffice.data${PAYLOAD_EXTENSION}`,
           'application/octet-stream'
         ),
       ]);
