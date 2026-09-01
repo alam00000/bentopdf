@@ -439,6 +439,18 @@ const HANDLERS = {
     return { events: lok.pollCallbacks() };
   },
   documentSize: () => lok.documentSize(),
+  /** Re-assert the editing view after an event that may have stolen focus. */
+  reassert: () => {
+    const view = wasm._lok_documentGetView(docPtr);
+    if (view >= 0) wasm._lok_documentSetView(docPtr, view);
+    wasm._lok_documentSetEditMode(docPtr, 1);
+    return {};
+  },
+  editState: () => ({
+    editMode: wasm._lok_documentGetEditMode(docPtr),
+    view: wasm._lok_documentGetView(docPtr),
+    views: wasm._lok_documentGetViewsCount?.(docPtr) ?? -1,
+  }),
   save: (msg) => {
     const data = saveAs(msg.format || 'docx');
     return { data, transfer: [data.buffer] };
