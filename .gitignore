@@ -64,3 +64,10 @@ bentopdf-pymupdf-wasm/
 # Cached brotli-recompressed WASM payloads for the native builds
 # (scripts/prepare-native-wasm.mjs regenerates them on demand)
 /.native-cache/
+
+# PWA side-output of `npm run native:assets` (@capacitor/assets). The native
+# icons it writes into android/ and ios/ are what we want; these extras are
+# unreferenced, point at ../icons/ which does not resolve from the web root,
+# and would otherwise ship in the web build.
+/icons/
+/public/manifest.webmanifest
