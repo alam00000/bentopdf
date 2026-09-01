@@ -16,10 +16,7 @@
     "subtitle": "Flet, opdel, organisér, slet, roter, tilføj tomme sider, udtræk og duplikér i én samlet grænseflade."
   },
   "mergePdf": {
-    "name": "Flet PDF",
-    "subtitle": "Kombinér flere PDF’er til én fil. Bevarer bogmærker.",
-    "retainPageLabels": "Behold de oprindelige sideetiketter fra hver fil",
-    "retainPageLabelsHint": "Fra (standard): den sammenflettede PDF bruger naturlig sidenummerering 1–N. Til: hver fils oprindelige sideetiketter bevares (kan give dublerede etiketter)."
+    "name": "Flet PDF"
   },
   "splitPdf": {
     "name": "Opdel PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Vælg flere sprog for dokumenter med blandet sprogindhold."
   },
   "alternateMerge": {
-    "name": "Alternér og miks sider",
-    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil. Bevarer bogmærker.",
-    "retainPageLabels": "Behold de oprindelige sideetiketter fra hver fil",
-    "retainPageLabelsHint": "Fra (standard): den sammenflettede PDF bruger naturlig sidenummerering 1–N. Til: hver fils oprindelige sideetiketter bevares (kan give dublerede etiketter)."
+    "name": "Alternér og miks sider"
   },
   "duplexCollate": {
     "name": "Sortér dupleks-scanning",

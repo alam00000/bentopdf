@@ -58,6 +58,7 @@ export * from './password-prompt-type.ts';
 export * from './config-types.ts';
 export * from './utils-types.ts';
 export * from './merge-worker-type.ts';
+export * from './interleave-worker-type.ts';
 export * from './canvas-editor-type.ts';
 export * from './edit-pdf-type.ts';
 export * from './redact-type.ts';

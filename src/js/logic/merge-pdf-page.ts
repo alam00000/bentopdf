@@ -7,11 +7,10 @@ import {
   cleanupLazyRendering,
 } from '../utils/render-utils.js';
 import { initPagePreview } from '../utils/page-preview.js';
-import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import {
-  showWasmRequiredDialog,
-  WasmProvider,
-} from '../utils/wasm-provider.js';
+  mergeJobToPageSpec,
+  validatePageRangeString,
+} from '../utils/qpdf-merge-helpers.js';
 
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -276,12 +275,6 @@ const resetState = async () => {
 };
 
 export async function merge() {
-  // Check if CPDF is configured
-  if (!isCpdfAvailable()) {
-    showWasmRequiredDialog('cpdf');
-    return;
-  }
-
   showLoader('Merging PDFs...');
   try {
     const jobs: MergeJob[] = [];
@@ -305,10 +298,21 @@ export async function merge() {
         uniqueFileNames.add(fileKey);
 
         if (rangeInput && rangeInput.value.trim()) {
+          const rawRange = rangeInput.value.trim();
+          const totalPages = mergeState.pdfDocs[fileKey]?.numPages ?? 0;
+          const spec = validatePageRangeString(rawRange, totalPages);
+          if (!spec) {
+            showAlert(
+              'Error',
+              `Invalid page range "${rawRange}" — this file has ${totalPages} pages.`
+            );
+            hideLoader();
+            return;
+          }
           jobs.push({
             fileName: fileKey,
             rangeType: 'specific',
-            rangeString: rangeInput.value.trim(),
+            rangeString: spec,
           });
         } else {
           jobs.push({
@@ -381,21 +385,14 @@ export async function merge() {
       }
     }
 
-    const retainCheckbox = document.getElementById(
-      'retain-page-labels'
-    ) as HTMLInputElement | null;
-
-    const removeDuplicateFontsCheckbox = document.getElementById(
-      'remove-duplicate-fonts'
-    ) as HTMLInputElement | null;
+    for (const job of jobs) {
+      job.pageSpec = mergeJobToPageSpec(job) ?? '1-z';
+    }
 
     const message: MergeMessage = {
       command: 'merge',
       files: filesToMerge,
       jobs: jobs,
-      cpdfUrl: WasmProvider.getUrl('cpdf')! + 'coherentpdf.browser.min.js',
-      retainPageLabels: retainCheckbox?.checked ?? false,
-      removeDuplicateFonts: removeDuplicateFontsCheckbox?.checked ?? false,
     };
 
     mergeWorker.postMessage(

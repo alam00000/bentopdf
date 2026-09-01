@@ -16,10 +16,7 @@
     "subtitle": "Spojiť, rozdeliť, organizovať, mazať, otáčať, pridávať prázdne strany, extrahovať a duplikovať v jednotnom rozhraní."
   },
   "mergePdf": {
-    "name": "Spojiť PDF",
-    "subtitle": "Spojiť viacero PDF do jedného súboru. Zachováva záložky.",
-    "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
-    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia)."
+    "name": "Spojiť PDF"
   },
   "splitPdf": {
     "name": "Rozdeliť PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Vyberte viacero jazykov pre dokumenty, ktoré obsahujú zmiešaný text v rôznych jazykoch."
   },
   "alternateMerge": {
-    "name": "Striedavo spojiť a zmiešať strany",
-    "subtitle": "Spojiť PDF striedaním strán z každého PDF. Zachováva záložky.",
-    "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
-    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia)."
+    "name": "Striedavo spojiť a zmiešať strany"
   },
   "duplexCollate": {
     "name": "Usporiadať obojstranné skenovanie",

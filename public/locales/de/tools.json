@@ -16,10 +16,7 @@
     "subtitle": "Zusammenführen, Teilen, Organisieren, Löschen, Drehen, Leere Seiten hinzufügen, Extrahieren und Duplizieren in einer einheitlichen Oberfläche."
   },
   "mergePdf": {
-    "name": "PDF zusammenführen",
-    "subtitle": "Mehrere PDFs zu einer Datei kombinieren. Lesezeichen werden beibehalten.",
-    "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
-    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
+    "name": "PDF zusammenführen"
   },
   "splitPdf": {
     "name": "PDF teilen",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Wählen Sie mehrere Sprachen für Dokumente mit gemischten Sprachinhalten aus."
   },
   "alternateMerge": {
-    "name": "Seiten abwechselnd mischen",
-    "subtitle": "PDFs durch abwechselnde Seiten aus jedem PDF zusammenführen. Lesezeichen werden beibehalten.",
-    "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
-    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
+    "name": "Seiten abwechselnd mischen"
   },
   "duplexCollate": {
     "name": "Seitenfolge für Duplex-Scans neu anordnen",

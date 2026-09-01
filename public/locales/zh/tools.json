@@ -16,10 +16,7 @@
     "subtitle": "在一个统一的界面中合并、分割、组织、删除、旋转、添加空白页、提取和复制。"
   },
   "mergePdf": {
-    "name": "合并 PDF",
-    "subtitle": "将多个 PDF 合并为一个文件。保留书签。",
-    "retainPageLabels": "保留每个文件的原始页面标签",
-    "retainPageLabelsHint": "关闭（默认）：合并后的 PDF 使用自然页码 1–N。开启：保留每个文件的原始页面标签（可能产生重复标签）。"
+    "name": "合并 PDF"
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "为包含混合语言内容的文档选择多种语言。"
   },
   "alternateMerge": {
-    "name": "交替混合页面",
-    "subtitle": "通过交替每个 PDF 的页面来合并 PDF。保留书签。",
-    "retainPageLabels": "保留每个文件的原始页面标签",
-    "retainPageLabelsHint": "关闭（默认）：合并后的 PDF 使用自然页码 1–N。开启：保留每个文件的原始页面标签（可能产生重复标签）。"
+    "name": "交替混合页面"
   },
   "duplexCollate": {
     "name": "双面扫描整理",

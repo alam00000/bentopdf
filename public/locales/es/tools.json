@@ -16,10 +16,7 @@
     "subtitle": "Fusionar, Dividir, Organizar, Eliminar, Rotar, Agregar Páginas en Blanco, Extraer y Duplicar en una interfaz unificada."
   },
   "mergePdf": {
-    "name": "Fusionar PDF",
-    "subtitle": "Combina múltiples PDFs en un solo archivo. Preserva Marcadores.",
-    "retainPageLabels": "Conservar las etiquetas de página originales de cada archivo",
-    "retainPageLabelsHint": "Desactivado (predeterminado): el PDF combinado usa numeración natural 1–N. Activado: se conservan las etiquetas de página originales de cada archivo (puede producir etiquetas duplicadas)."
+    "name": "Fusionar PDF"
   },
   "splitPdf": {
     "name": "Dividir PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Selecciona varios idiomas para documentos que contengan contenido en idiomas mixtos."
   },
   "alternateMerge": {
-    "name": "Alternar y Mezclar Páginas",
-    "subtitle": "Fusiona PDFs alternando páginas de cada PDF. Preserva Marcadores.",
-    "retainPageLabels": "Conservar las etiquetas de página originales de cada archivo",
-    "retainPageLabelsHint": "Desactivado (predeterminado): el PDF combinado usa numeración natural 1–N. Activado: se conservan las etiquetas de página originales de cada archivo (puede producir etiquetas duplicadas)."
+    "name": "Alternar y Mezclar Páginas"
   },
   "duplexCollate": {
     "name": "Intercalar escaneo a doble cara",

@@ -16,10 +16,7 @@
     "subtitle": "透過統一介面合併、分割、整理、刪除、旋轉、新增空白頁面、擷取及複製頁面。"
   },
   "mergePdf": {
-    "name": "合併 PDF",
-    "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。",
-    "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "name": "合併 PDF"
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "為包含混合語言內容的文件選擇多種語言。"
   },
   "alternateMerge": {
-    "name": "交錯混合頁面",
-    "subtitle": "將每個 PDF 的頁面交錯合併。保留書籤。",
-    "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "name": "交錯混合頁面"
   },
   "duplexCollate": {
     "name": "雙面掃描整理",

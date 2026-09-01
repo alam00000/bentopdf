@@ -1,128 +1,77 @@
-let cpdfLoaded = false;
-
-function loadCpdf(cpdfUrl) {
-  if (cpdfLoaded) return Promise.resolve();
-
-  return new Promise((resolve, reject) => {
-    if (typeof coherentpdf !== 'undefined') {
-      cpdfLoaded = true;
-      resolve();
-      return;
-    }
-
-    try {
-      self.importScripts(cpdfUrl);
-      cpdfLoaded = true;
-      resolve();
-    } catch (error) {
-      reject(new Error('Failed to load CoherentPDF: ' + error.message));
-    }
-  });
-}
+importScripts('qpdf-loader.js');
 
 self.onmessage = async function (e) {
-  const {
-    command,
-    files,
-    jobs,
-    cpdfUrl,
-    retainPageLabels,
-    removeDuplicateFonts,
-  } = e.data;
+  const { command, files, jobs } = e.data;
 
-  if (!cpdfUrl) {
+  try {
+    const qpdf = await loadQpdfRuntime();
+    if (command === 'merge') {
+      mergePDFs(qpdf, files, jobs);
+    }
+  } catch (error) {
     self.postMessage({
       status: 'error',
       message:
-        'CoherentPDF URL not provided. Please configure it in WASM Settings.',
+        (error && error.message) ||
+        'Unknown error while merging PDFs. Please try again.',
     });
-    return;
-  }
-
-  try {
-    await loadCpdf(cpdfUrl);
-  } catch (error) {
-    self.postMessage({
-      status: 'error',
-      message: error.message,
-    });
-    return;
-  }
-
-  if (command === 'merge') {
-    mergePDFs(
-      files,
-      jobs,
-      retainPageLabels === true,
-      removeDuplicateFonts === true
-    );
   }
 };
 
-function mergePDFs(files, jobs, retainPageLabels, removeDuplicateFonts) {
+function mergePDFs(qpdf, files, jobs) {
+  const written = [];
   try {
-    const loadedPdfs = {};
-    const pdfsToMerge = [];
-    const rangesToMerge = [];
+    const pathForName = new Map();
+    files.forEach((file, i) => {
+      const path = `/in${i}.pdf`;
+      qpdf.FS.writeFile(path, new Uint8Array(file.data));
+      written.push(path);
+      pathForName.set(file.name, path);
+    });
 
-    for (const file of files) {
-      const uint8Array = new Uint8Array(file.data);
-      const pdfDoc = coherentpdf.fromMemory(uint8Array, '');
-      loadedPdfs[file.name] = pdfDoc;
-    }
-
+    const args = ['--empty', '--pages'];
     for (const job of jobs) {
-      const sourcePdf = loadedPdfs[job.fileName];
-      if (!sourcePdf) continue;
-
-      let range;
-      if (job.rangeType === 'all') {
-        range = coherentpdf.all(sourcePdf);
-      } else if (job.rangeType === 'specific') {
-        if (coherentpdf.validatePagespec(job.rangeString)) {
-          range = coherentpdf.parsePagespec(sourcePdf, job.rangeString);
-        } else {
-          range = coherentpdf.all(sourcePdf);
-        }
-      } else if (job.rangeType === 'single') {
-        const pageNum = job.pageIndex + 1;
-        range = coherentpdf.range(pageNum, pageNum);
-      } else if (job.rangeType === 'range') {
-        range = coherentpdf.range(job.startPage, job.endPage);
-      }
-
-      pdfsToMerge.push(sourcePdf);
-      rangesToMerge.push(range);
+      const path = pathForName.get(job.fileName);
+      if (!path) continue;
+      args.push(path, job.pageSpec || '1-z');
     }
 
-    if (pdfsToMerge.length === 0) {
+    if (args.length < 4) {
       throw new Error('No valid files or pages to merge.');
     }
 
-    const mergedPdf = coherentpdf.mergeSame(
-      pdfsToMerge,
-      retainPageLabels,
-      removeDuplicateFonts,
-      rangesToMerge
+    args.push('--', '/out.pdf');
+
+    const exitCode = qpdf.callMain(args);
+    if (exitCode !== 0) {
+      throw new Error(
+        'Merge failed (qpdf exit code ' +
+          exitCode +
+          '). Check the page ranges and make sure all PDFs are valid.'
+      );
+    }
+
+    const bytes = qpdf.FS.readFile('/out.pdf', { encoding: 'binary' });
+    if (!bytes || bytes.length === 0) {
+      throw new Error('Merge produced an empty PDF.');
+    }
+
+    const buffer = bytes.buffer.slice(
+      bytes.byteOffset,
+      bytes.byteOffset + bytes.byteLength
     );
 
-    const mergedPdfBytes = coherentpdf.toMemory(mergedPdf, false, true);
-    const buffer = mergedPdfBytes.buffer;
-
-    coherentpdf.deletePdf(mergedPdf);
-    Object.values(loadedPdfs).forEach((pdf) => coherentpdf.deletePdf(pdf));
-
-    self.postMessage(
-      {
-        status: 'success',
-        pdfBytes: buffer,
-      },
-      [buffer]
-    );
-  } catch (error) {
-    self.postMessage({
-      status: 'error',
-      message: error.message || 'Unknown error during merge',
-    });
+    self.postMessage({ status: 'success', pdfBytes: buffer }, [buffer]);
+  } finally {
+    for (const path of written) {
+      try {
+        qpdf.FS.unlink(path);
+      } catch {}
+    }
+    try {
+      qpdf.FS.unlink('/out.pdf');
+    } catch (cleanupError) {
+      void cleanupError;
+    }
   }
 }

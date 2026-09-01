@@ -16,10 +16,7 @@
     "subtitle": "Fusionner, scinder, organiser, supprimer, faire pivoter, ajouter des pages vierges, extraire et dupliquer dans une interface unifiée."
   },
   "mergePdf": {
-    "name": "Fusionner des PDF",
-    "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets.",
-    "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
-    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
+    "name": "Fusionner des PDF"
   },
   "splitPdf": {
     "name": "Scinder un PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Sélectionnez plusieurs langues pour les documents contenant un contenu multilingue."
   },
   "alternateMerge": {
-    "name": "Alterner et mélanger les pages",
-    "subtitle": "Fusionner des PDF en alternant les pages de chaque fichier, tout en conservant les signets.",
-    "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
-    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
+    "name": "Alterner et mélanger les pages"
   },
   "duplexCollate": {
     "name": "Assembler un scan recto/verso",

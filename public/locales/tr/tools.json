@@ -16,10 +16,7 @@
     "subtitle": "Birleştir, Böl, Düzenle, Sil, Döndür, Boş Sayfa Ekle, Çıkar ve Çoğalt işlemlerini tek bir arayüzde yapın."
   },
   "mergePdf": {
-    "name": "PDF Birleştir",
-    "subtitle": "Birden fazla PDF'yi tek bir dosyada birleştirin. Yer imlerini korur.",
-    "retainPageLabels": "Her dosyanın orijinal sayfa etiketlerini koru",
-    "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir)."
+    "name": "PDF Birleştir"
   },
   "splitPdf": {
     "name": "PDF Böl",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Karışık dil içeriği olan belgeler için birden fazla dil seçin."
   },
   "alternateMerge": {
-    "name": "Sayfaları Karıştır & Birleştir",
-    "subtitle": "PDF'leri her birinden sayfaları sırayla birleştirin. Yer imlerini korur.",
-    "retainPageLabels": "Her dosyanın orijinal sayfa etiketlerini koru",
-    "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir)."
+    "name": "Sayfaları Karıştır & Birleştir"
   },
   "duplexCollate": {
     "name": "Çift taraflı taramayı harmanla",

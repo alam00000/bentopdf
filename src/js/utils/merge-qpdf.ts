@@ -1,28 +1,22 @@
-import { WasmProvider } from './wasm-provider';
 import { wfError } from '../workflow/errors';
+import { mergeJobToPageSpec } from './qpdf-merge-helpers';
 
 export interface MergeFile {
   name: string;
   data: ArrayBuffer;
 }
 
-export async function mergePdfsCpdf(
-  files: MergeFile[],
-  options?: { retainPageLabels?: boolean }
+export async function mergePdfsWithQpdf(
+  files: MergeFile[]
 ): Promise<Uint8Array> {
   if (files.length === 0) {
     throw new Error(wfError('noPdfsConnected', { node: 'Merge' }));
   }
 
-  const cpdfBaseUrl = WasmProvider.getUrl('cpdf');
-  if (!cpdfBaseUrl) {
-    throw new Error(wfError('cpdfNotConfigured'));
-  }
-
-  const jobs = files.map((f) => ({
-    fileName: f.name,
-    rangeType: 'all' as const,
-  }));
+  const jobs = files.map((f) => {
+    const job = { fileName: f.name, rangeType: 'all' as const };
+    return { ...job, pageSpec: mergeJobToPageSpec(job) ?? '1-z' };
+  });
 
   return new Promise<Uint8Array>((resolve, reject) => {
     const worker = new Worker(
@@ -52,8 +46,6 @@ export async function mergePdfsCpdf(
         command: 'merge',
         files,
         jobs,
-        cpdfUrl: cpdfBaseUrl + 'coherentpdf.browser.min.js',
-        retainPageLabels: options?.retainPageLabels === true,
       },
       files.map((f) => f.data)
     );

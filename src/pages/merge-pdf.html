@@ -241,47 +241,41 @@
             ></div>
           </div>
 
-          <label
-            class="mt-4 flex items-start gap-2 text-sm text-gray-300 cursor-pointer"
-          >
-            <input
-              type="checkbox"
-              id="retain-page-labels"
-              class="mt-0.5 w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600"
-            />
+          <div class="mt-4 flex items-start gap-2 text-sm text-gray-300">
             <span>
               <span
                 class="font-medium"
                 data-i18n="tools:mergePdf.retainPageLabels"
               >
-                Keep original page labels from each file
+                Page labels are preserved automatically
               </span>
               <span
                 class="block text-xs text-gray-400 mt-0.5"
                 data-i18n="tools:mergePdf.retainPageLabelsHint"
               >
-                Off (default): the merged PDF uses natural page numbering 1 to
-                N. On: each file's original page labels are preserved (may
-                produce duplicate labels).
+                Each file's original page labels are carried over to the merged
+                PDF. Labels can't be removed when merging.
               </span>
             </span>
-          </label>
+          </div>
 
-          <label
-            class="mt-4 flex items-start gap-2 text-sm text-gray-300 cursor-pointer"
-          >
-            <input
-              type="checkbox"
-              id="remove-duplicate-fonts"
-              class="mt-0.5 w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600"
-            />
-            <span
-              class="font-medium"
-              data-i18n="tools:mergePdf.removeDuplicateFonts"
-            >
-              Remove duplicate fonts
+          <div class="mt-4 flex items-start gap-2 text-sm text-gray-300">
+            <span>
+              <span
+                class="font-medium"
+                data-i18n="tools:mergePdf.removeDuplicateFonts"
+              >
+                Fonts are kept as-is
+              </span>
+              <span
+                class="block text-xs text-gray-400 mt-0.5"
+                data-i18n="tools:mergePdf.removeDuplicateFontsHint"
+              >
+                Removing duplicate fonts isn't supported by the current merge
+                engine.
+              </span>
             </span>
-          </label>
+          </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
             Merge PDFs

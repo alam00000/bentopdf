@@ -16,10 +16,7 @@
     "subtitle": "병합, 분할, 정리, 삭제, 회전, 빈 페이지 추가, 추출, 복제를 하나의 화면에서."
   },
   "mergePdf": {
-    "name": "PDF 병합",
-    "subtitle": "여러 PDF를 하나로 합칩니다. 북마크도 유지됩니다.",
-    "retainPageLabels": "각 파일의 원래 페이지 레이블 유지",
-    "retainPageLabelsHint": "꺼짐(기본): 병합된 PDF는 1–N의 자연스러운 페이지 번호를 사용합니다. 켜짐: 각 파일의 원래 페이지 레이블이 유지됩니다(중복 레이블이 발생할 수 있음)."
+    "name": "PDF 병합"
   },
   "splitPdf": {
     "name": "PDF 분할",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "혼합된 언어 콘텐츠가 포함된 문서를 위해 여러 언어를 선택하세요."
   },
   "alternateMerge": {
-    "name": "페이지 교차 병합",
-    "subtitle": "각 PDF의 페이지를 번갈아 가며 병합합니다. 북마크도 유지됩니다.",
-    "retainPageLabels": "각 파일의 원래 페이지 레이블 유지",
-    "retainPageLabelsHint": "꺼짐(기본): 병합된 PDF는 1–N의 자연스러운 페이지 번호를 사용합니다. 켜짐: 각 파일의 원래 페이지 레이블이 유지됩니다(중복 레이블이 발생할 수 있음)."
+    "name": "페이지 교차 병합"
   },
   "duplexCollate": {
     "name": "양면 스캔 정렬",

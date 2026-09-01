@@ -16,10 +16,7 @@
     "subtitle": "Samenvoegen, Splitsen, Organiseren, Verwijderen, Roteren, Blanco pagina's toevoegen, Extraheren and Dupliceren in één enkele werkomgeving."
   },
   "mergePdf": {
-    "name": "PDF Samenvoegen",
-    "subtitle": "Meerdere PDF's combineren tot één bestand. Bladwijzers behouden.",
-    "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
-    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
+    "name": "PDF Samenvoegen"
   },
   "splitPdf": {
     "name": "PDF Splitsen",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Selecteer meerdere talen voor documenten met inhoud in gemengde talen."
   },
   "alternateMerge": {
-    "name": "Pagina's Afwisselen & Mixen",
-    "subtitle": "PDF's samenvoegen met afwisselende pagina's vanuit elke PDF. Bladwijzers behouden.",
-    "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
-    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
+    "name": "Pagina's Afwisselen & Mixen"
   },
   "duplexCollate": {
     "name": "Dubbelzijdige scan sorteren",

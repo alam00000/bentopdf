@@ -16,10 +16,7 @@
     "subtitle": "Sammanfoga, dela, organisera, ta bort, rotera, lägg till tomma sidor, extrahera och duplicera i ett enhetligt gränssnitt."
   },
   "mergePdf": {
-    "name": "Sammanfoga PDF",
-    "subtitle": "Kombinera flera PDF-filer till en fil. Bevarar bokmärken.",
-    "retainPageLabels": "Behåll de ursprungliga sidetiketterna från varje fil",
-    "retainPageLabelsHint": "Av (standard): den sammanslagna PDF:en använder naturlig sidnumrering 1–N. På: varje fils ursprungliga sidetiketter bevaras (kan ge duplicerade etiketter)."
+    "name": "Sammanfoga PDF"
   },
   "splitPdf": {
     "name": "Dela PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Välj flera språk för dokument som innehåller blandat språkinnehåll."
   },
   "alternateMerge": {
-    "name": "Alternera & blanda sidor",
-    "subtitle": "Sammanfoga PDF:er genom att alternera sidor från varje PDF. Bevarar bokmärken.",
-    "retainPageLabels": "Behåll de ursprungliga sidetiketterna från varje fil",
-    "retainPageLabelsHint": "Av (standard): den sammanslagna PDF:en använder naturlig sidnumrering 1–N. På: varje fils ursprungliga sidetiketter bevaras (kan ge duplicerade etiketter)."
+    "name": "Alternera & blanda sidor"
   },
   "duplexCollate": {
     "name": "Sortera dubbelsidig skanning",

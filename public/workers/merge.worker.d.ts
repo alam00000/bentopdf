@@ -1,12 +1,6 @@
-declare const coherentpdf: typeof import('../../src/types/coherentpdf.global').coherentpdf;
-
 interface MergeJob {
   fileName: string;
-  rangeType: 'all' | 'specific' | 'single' | 'range';
-  rangeString?: string;
-  pageIndex?: number;
-  startPage?: number;
-  endPage?: number;
+  pageSpec?: string;
 }
 
 interface MergeFile {
@@ -18,7 +12,6 @@ interface MergeMessage {
   command: 'merge';
   files: MergeFile[];
   jobs: MergeJob[];
-  cpdfUrl?: string;
 }
 
 interface MergeSuccessResponse {

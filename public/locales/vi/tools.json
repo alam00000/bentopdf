@@ -16,10 +16,7 @@
     "subtitle": "Gộp, Chia, Sắp xếp, Xóa, Xoay, Thêm trang trống, Trích xuất và Nhân đôi trong một giao diện thống nhất."
   },
   "mergePdf": {
-    "name": "Gộp PDF",
-    "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark.",
-    "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
-    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
+    "name": "Gộp PDF"
   },
   "splitPdf": {
     "name": "Chia PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Chọn nhiều ngôn ngữ cho tài liệu chứa nội dung ngôn ngữ hỗn hợp."
   },
   "alternateMerge": {
-    "name": "Xen kẽ & Trộn trang",
-    "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark.",
-    "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
-    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
+    "name": "Xen kẽ & Trộn trang"
   },
   "duplexCollate": {
     "name": "Sắp xếp bản quét hai mặt",

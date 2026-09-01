@@ -21,6 +21,7 @@ export default [
       'public/pdfjs-viewer/**',
       'public/pdfjs-annotation-viewer/**',
       'public/coherentpdf.browser.min.js',
+      'public/qpdf.js',
       'public/libreoffice-wasm/**',
       'public/workers/**',
     ],

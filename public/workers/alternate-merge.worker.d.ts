@@ -1,4 +1,7 @@
-declare const coherentpdf: typeof import('../../src/types/coherentpdf.global').coherentpdf;
+interface InterleaveStep {
+  fileIndex: number;
+  page: number;
+}
 
 interface InterleaveFile {
   name: string;
@@ -8,7 +11,7 @@ interface InterleaveFile {
 interface InterleaveMessage {
   command: 'interleave';
   files: InterleaveFile[];
-  cpdfUrl?: string;
+  series: InterleaveStep[];
 }
 
 interface InterleaveSuccessResponse {

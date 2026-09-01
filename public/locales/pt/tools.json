@@ -16,10 +16,7 @@
     "subtitle": "Mesclar, dividir, organizar, excluir, girar, adicionar páginas em branco, extrair e duplicar em uma única interface."
   },
   "mergePdf": {
-    "name": "Mesclar PDF",
-    "subtitle": "Combine vários PDFs em um único arquivo. Preserva os favoritos (bookmarks).",
-    "retainPageLabels": "Manter os rótulos de página originais de cada ficheiro",
-    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada ficheiro são preservados (pode produzir rótulos duplicados)."
+    "name": "Mesclar PDF"
   },
   "splitPdf": {
     "name": "Dividir PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Selecione vários idiomas para documentos com conteúdo em idiomas mistos."
   },
   "alternateMerge": {
-    "name": "Alternar e Misturar Páginas",
-    "subtitle": "Mescle PDFs alternando as páginas de cada arquivo. Preserva os favoritos.",
-    "retainPageLabels": "Manter os rótulos de página originais de cada ficheiro",
-    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada ficheiro são preservados (pode produzir rótulos duplicados)."
+    "name": "Alternar e Misturar Páginas"
   },
   "duplexCollate": {
     "name": "Intercalar digitalização frente e verso",

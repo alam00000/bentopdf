@@ -16,10 +16,7 @@
     "subtitle": "Unisci, dividi, organizza, elimina, ruota, aggiungi pagine vuote, estrai e duplica in un'interfaccia unificata."
   },
   "mergePdf": {
-    "name": "Unisci PDF",
-    "subtitle": "Unisci più PDF in un unico file. Conserva i segnalibri.",
-    "retainPageLabels": "Mantieni le etichette di pagina originali di ogni file",
-    "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate)."
+    "name": "Unisci PDF"
   },
   "splitPdf": {
     "name": "Dividi PDF",
@@ -625,10 +622,7 @@
     "multiLanguageSupportDescription": "Seleziona più lingue per documenti contenenti contenuto in lingue miste."
   },
   "alternateMerge": {
-    "name": "Alterna e Riordina Pagine",
-    "subtitle": "Unisci i PDF alternando le pagine di ogni file. Conserva i segnalibri.",
-    "retainPageLabels": "Mantieni le etichette di pagina originali di ogni file",
-    "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate)."
+    "name": "Alterna e Riordina Pagine"
   },
   "duplexCollate": {
     "name": "Fascicola scansione fronte/retro",

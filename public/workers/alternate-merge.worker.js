@@ -1,109 +1,85 @@
-let cpdfLoaded = false;
-
-function loadCpdf(cpdfUrl) {
-  if (cpdfLoaded) return Promise.resolve();
-
-  return new Promise((resolve, reject) => {
-    if (typeof coherentpdf !== 'undefined') {
-      cpdfLoaded = true;
-      resolve();
-      return;
-    }
-
-    try {
-      self.importScripts(cpdfUrl);
-      cpdfLoaded = true;
-      resolve();
-    } catch (error) {
-      reject(new Error('Failed to load CoherentPDF: ' + error.message));
-    }
-  });
-}
+importScripts('qpdf-loader.js');
 
 self.onmessage = async function (e) {
-  const { command, files, cpdfUrl, retainPageLabels } = e.data;
+  const { command, files, series } = e.data;
 
-  if (!cpdfUrl) {
+  try {
+    const qpdf = await loadQpdfRuntime();
+    if (command === 'interleave') {
+      interleavePDFs(qpdf, files, series);
+    }
+  } catch (error) {
     self.postMessage({
       status: 'error',
       message:
-        'CoherentPDF URL not provided. Please configure it in WASM Settings.',
+        (error && error.message) ||
+        'Unknown error while mixing PDFs. Please try again.',
     });
-    return;
-  }
-
-  try {
-    await loadCpdf(cpdfUrl);
-  } catch (error) {
-    self.postMessage({
-      status: 'error',
-      message: error.message,
-    });
-    return;
-  }
-
-  if (command === 'interleave') {
-    interleavePDFs(files, retainPageLabels === true);
   }
 };
 
-function interleavePDFs(files, retainPageLabels) {
+function interleavePDFs(qpdf, files, series) {
+  const written = [];
   try {
-    const loadedPdfs = [];
-    const pageCounts = [];
+    files.forEach((file, i) => {
+      const path = `/in${i}.pdf`;
+      qpdf.FS.writeFile(path, new Uint8Array(file.data));
+      written.push(path);
+    });
 
-    for (const file of files) {
-      const uint8Array = new Uint8Array(file.data);
-      const pdfDoc = coherentpdf.fromMemory(uint8Array, '');
-      loadedPdfs.push(pdfDoc);
-      pageCounts.push(coherentpdf.pages(pdfDoc));
-    }
-
-    if (loadedPdfs.length < 2) {
+    if (files.length < 2) {
       throw new Error('At least two PDF files are required for interleaving.');
     }
+    if (!Array.isArray(series) || series.length === 0) {
+      throw new Error('No pages to interleave.');
+    }
 
-    const maxPages = Math.max(...pageCounts);
-
-    const pdfsToMerge = [];
-    const rangesToMerge = [];
-
-    for (let i = 1; i <= maxPages; i++) {
-      for (let j = 0; j < loadedPdfs.length; j++) {
-        if (i <= pageCounts[j]) {
-          pdfsToMerge.push(loadedPdfs[j]);
-          rangesToMerge.push(coherentpdf.range(i, i));
-        }
+    const args = ['--empty', '--pages'];
+    for (const step of series) {
+      if (
+        !step ||
+        typeof step.fileIndex !== 'number' ||
+        typeof step.page !== 'number' ||
+        step.fileIndex < 0 ||
+        step.fileIndex >= files.length
+      ) {
+        throw new Error('Invalid interleave series received by the worker.');
       }
+      args.push(`/in${step.fileIndex}.pdf`, String(step.page));
     }
 
-    if (pdfsToMerge.length === 0) {
-      throw new Error('No valid pages to merge.');
+    args.push('--', '/out.pdf');
+
+    const exitCode = qpdf.callMain(args);
+    if (exitCode !== 0) {
+      throw new Error(
+        'Mixing failed (qpdf exit code ' +
+          exitCode +
+          '). Please check that all PDFs are valid and try again.'
+      );
     }
 
-    const mergedPdf = coherentpdf.mergeSame(
-      pdfsToMerge,
-      retainPageLabels,
-      true,
-      rangesToMerge
+    const bytes = qpdf.FS.readFile('/out.pdf', { encoding: 'binary' });
+    if (!bytes || bytes.length === 0) {
+      throw new Error('Mixing produced an empty PDF.');
+    }
+
+    const buffer = bytes.buffer.slice(
+      bytes.byteOffset,
+      bytes.byteOffset + bytes.byteLength
     );
 
-    const mergedPdfBytes = coherentpdf.toMemory(mergedPdf, false, true);
-    const buffer = mergedPdfBytes.buffer;
-    coherentpdf.deletePdf(mergedPdf);
-    loadedPdfs.forEach((pdf) => coherentpdf.deletePdf(pdf));
-
-    self.postMessage(
-      {
-        status: 'success',
-        pdfBytes: buffer,
-      },
-      [buffer]
-    );
-  } catch (error) {
-    self.postMessage({
-      status: 'error',
-      message: error.message || 'Unknown error during interleave merge',
-    });
+    self.postMessage({ status: 'success', pdfBytes: buffer }, [buffer]);
+  } finally {
+    for (const path of written) {
+      try {
+        qpdf.FS.unlink(path);
+      } catch {}
+    }
+    try {
+      qpdf.FS.unlink('/out.pdf');
+    } catch (cleanupError) {
+      void cleanupError;
+    }
   }
 }
