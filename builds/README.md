@@ -8,8 +8,8 @@ device. Not for store distribution.
 | Package | `com.bentopdf.personal` |
 | Label | BentoPDF |
 | targetSdk | 36 |
-| Size | 75 MB (78,525,724 bytes) |
-| SHA-256 | `31dd3075166bab07ab5eca79290e7c81030b9f56291e24e670a96431c69d24b5` |
+| Size | 75 MB (78,525,715 bytes) |
+| SHA-256 | `3a8ce50506565801ac5ce7c7c07382f7850ff2f0faa7466e7706e66f46ba8851` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
@@ -33,6 +33,16 @@ Editor and everything else in the Office Viewer.
 Android content URIs rarely carry a filename, so a shared document may arrive
 named `document.pdf` rather than its real name. The contents are correct; only
 the label is inferred from the file type.
+
+## Built for the device, not the browser
+
+The app drops the web build's upload/download framing: no "your files never
+leave your device" notices (nothing leaves it), no drag-and-drop hints, and
+"Download" buttons read "Save" because results go to the Android share sheet.
+
+Once a document is open the tab bar hides and the page gutters collapse, so
+the document gets the full width and roughly 120-140px more height. The back
+button in the header returns you to the tools.
 
 ## What is in it
 
