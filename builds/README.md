@@ -8,8 +8,8 @@ device. Not for store distribution.
 | Package | `com.bentopdf.personal` |
 | Label | BentoPDF |
 | targetSdk | 36 |
-| Size | 75 MB (78,525,715 bytes) |
-| SHA-256 | `3a8ce50506565801ac5ce7c7c07382f7850ff2f0faa7466e7706e66f46ba8851` |
+| Size | 75 MB (78,842,027 bytes) |
+| SHA-256 | `a0ed30b2e9431c4e74cb454804ebcdd2b20453232dd7a9d174dd39eafa35aa53` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
@@ -48,6 +48,9 @@ button in the header returns you to the tools.
 
 Everything in the web app, plus the two new tools:
 
+- **PDF Viewer** - opens a PDF and lets you read it: continuous scrolling,
+  fit-to-width, zoom from 50% to 400%. Tapping a PDF elsewhere on the phone
+  opens it here.
 - **Office Viewer** - opens Word, Excel, PowerPoint, OpenDocument, Visio,
   Publisher, WordPerfect and Apple Pages files, renders the pages, and exports
   to any format the engine supports.
