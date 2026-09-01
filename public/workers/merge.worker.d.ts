@@ -1,6 +1,6 @@
 interface MergeJob {
   fileName: string;
-  pageSpec?: string;
+  pageSpec: string;
 }
 
 interface MergeFile {

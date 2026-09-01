@@ -58,3 +58,5 @@ bentopdf-pymupdf-wasm/
 # perf harness outputs (large, reproducible)
 scripts/perf/results/*.pdf
 scripts/perf/results/run.log
+# perf harness corpus inputs (large)
+examples/

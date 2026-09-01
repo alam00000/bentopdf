@@ -1,3 +1,5 @@
+import type { MergeFile } from './merge-worker-type';
+
 export interface InterleaveStep {
   fileIndex: number;
   page: number;
@@ -5,7 +7,7 @@ export interface InterleaveStep {
 
 export interface InterleaveMessage {
   command: 'interleave';
-  files: { name: string; data: ArrayBuffer }[];
+  files: MergeFile[];
   series: InterleaveStep[];
 }
 

@@ -23,6 +23,11 @@ function mergePDFs(qpdf, files, jobs) {
   try {
     const pathForName = new Map();
     files.forEach((file, i) => {
+      if (pathForName.has(file.name)) {
+        throw new Error(
+          'Merge received two files with the same name: ' + file.name
+        );
+      }
       const path = `/in${i}.pdf`;
       qpdf.FS.writeFile(path, new Uint8Array(file.data));
       written.push(path);
@@ -32,8 +37,15 @@ function mergePDFs(qpdf, files, jobs) {
     const args = ['--empty', '--pages'];
     for (const job of jobs) {
       const path = pathForName.get(job.fileName);
-      if (!path) continue;
-      args.push(path, job.pageSpec || '1-z');
+      if (!path) {
+        throw new Error(
+          'Merge job references an unknown file: ' + job.fileName
+        );
+      }
+      if (!job.pageSpec) {
+        throw new Error('Merge job is missing a page range: ' + job.fileName);
+      }
+      args.push(path, job.pageSpec);
     }
 
     if (args.length < 4) {

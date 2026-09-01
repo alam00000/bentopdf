@@ -1,10 +1,5 @@
 import { wfError } from '../workflow/errors';
-import { mergeJobToPageSpec } from './qpdf-merge-helpers';
-
-export interface MergeFile {
-  name: string;
-  data: ArrayBuffer;
-}
+import type { MergeFile } from '@/types';
 
 export async function mergePdfsWithQpdf(
   files: MergeFile[]
@@ -13,10 +8,17 @@ export async function mergePdfsWithQpdf(
     throw new Error(wfError('noPdfsConnected', { node: 'Merge' }));
   }
 
-  const jobs = files.map((f) => {
-    const job = { fileName: f.name, rangeType: 'all' as const };
-    return { ...job, pageSpec: mergeJobToPageSpec(job) ?? '1-z' };
-  });
+  const jobs = files.map((f, idx) => ({
+    fileName: `input-${idx}.pdf`,
+    pageSpec: '1-z',
+  }));
+
+  const uniqueFiles = files.map(
+    (f, idx): MergeFile => ({
+      name: `input-${idx}.pdf`,
+      data: f.data,
+    })
+  );
 
   return new Promise<Uint8Array>((resolve, reject) => {
     const worker = new Worker(
@@ -44,10 +46,10 @@ export async function mergePdfsWithQpdf(
     worker.postMessage(
       {
         command: 'merge',
-        files,
+        files: uniqueFiles,
         jobs,
       },
-      files.map((f) => f.data)
+      uniqueFiles.map((f) => f.data)
     );
   });
 }

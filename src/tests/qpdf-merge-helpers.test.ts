@@ -84,11 +84,27 @@ describe('validatePageRangeString', () => {
     expect(validatePageRangeString('3-1', 5)).toBeNull();
   });
 
+  it('accepts the qpdf z idioms for the last page', () => {
+    expect(validatePageRangeString('z', 10)).toBe('z');
+    expect(validatePageRangeString('1-z', 10)).toBe('1-z');
+    expect(validatePageRangeString('5-z', 10)).toBe('5-z');
+    expect(validatePageRangeString('1-3,7-z', 20)).toBe('1-3,7-z');
+    expect(validatePageRangeString('1,z', 10)).toBe('1,z');
+  });
+
+  it('normalizes leading zeros in z-idiom starts', () => {
+    expect(validatePageRangeString('05-z', 10)).toBe('5-z');
+  });
+
+  it('rejects z idioms whose start is invalid or out of bounds', () => {
+    expect(validatePageRangeString('0-z', 10)).toBeNull();
+    expect(validatePageRangeString('11-z', 10)).toBeNull();
+    expect(validatePageRangeString('z-3', 10)).toBeNull();
+  });
+
   it('rejects non-numeric and malformed input', () => {
     expect(validatePageRangeString('abc', 10)).toBeNull();
     expect(validatePageRangeString('1.5', 10)).toBeNull();
-    expect(validatePageRangeString('1,z', 10)).toBeNull();
-    expect(validatePageRangeString('z', 10)).toBeNull();
     expect(validatePageRangeString('', 10)).toBeNull();
     expect(validatePageRangeString(' , ', 10)).toBeNull();
   });

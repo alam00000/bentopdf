@@ -107,7 +107,6 @@ async function measurePage(browser, comboKeys) {
   const pageErrors = [];
   const workerErrors = [];
   const workerRequests = [];
-  const downloads = [];
   let crashed = false;
 
   page.on('console', (m) => {

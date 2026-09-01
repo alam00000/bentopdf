@@ -30,6 +30,19 @@ export function validatePageRangeString(
 
   const normalized: string[] = [];
   for (const part of parts) {
+    const zIdiom = /^(\d*)-?(z)$/i.exec(part);
+    if (zIdiom) {
+      const startStr = zIdiom[1];
+      if (startStr.length === 0) {
+        normalized.push('z');
+        continue;
+      }
+      const start = Number(startStr);
+      if (start < 1 || start > totalPages) return null;
+      normalized.push(`${start}-z`);
+      continue;
+    }
+
     const rangeMatch = /^(\d+)-(\d+)$/.exec(part);
     if (!rangeMatch && !/^\d+$/.test(part)) return null;
 

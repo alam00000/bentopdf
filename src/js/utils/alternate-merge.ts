@@ -1,14 +1,10 @@
 import { wfError } from '../workflow/errors';
 import { buildInterleaveSeries } from './qpdf-merge-helpers';
 import { getPDFDocument } from './helpers';
-
-export interface InterleaveFile {
-  name: string;
-  data: ArrayBuffer;
-}
+import type { MergeFile } from '@/types';
 
 export async function interleavePdfs(
-  files: InterleaveFile[],
+  files: MergeFile[],
   options?: { pageCounts?: number[] }
 ): Promise<Uint8Array> {
   if (files.length < 2) {

@@ -30,8 +30,8 @@ export class AlternateMergeNode extends BaseWorkflowNode {
       throw new Error(wfError('alternateMergeNeedsTwo'));
     }
 
-    const filesToMerge = allPdfs.map((p) => ({
-      name: p.filename,
+    const filesToMerge = allPdfs.map((p, idx) => ({
+      name: `input-${idx}.pdf`,
       data: p.bytes.slice().buffer as ArrayBuffer,
     }));
 
