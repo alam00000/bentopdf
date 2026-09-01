@@ -8,8 +8,8 @@ device. Not for store distribution.
 | Package | `com.bentopdf.personal` |
 | Label | BentoPDF |
 | targetSdk | 36 |
-| Size | 75 MB (78,425,462 bytes) |
-| SHA-256 | `ec8c69326ce0994c5bd05c63128703142f438581db4d3691e44a16758135e480` |
+| Size | 75 MB (78,525,724 bytes) |
+| SHA-256 | `31dd3075166bab07ab5eca79290e7c81030b9f56291e24e670a96431c69d24b5` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
@@ -22,6 +22,17 @@ device. Not for store distribution.
 The debug keystore is Android's auto-generated one. That is fine for your own
 devices - it just cannot be published to Play, which is the point of this
 build.
+
+## Opening documents with it
+
+The app registers as a handler for PDF, Word, Excel, PowerPoint, OpenDocument
+and RTF files, so it appears in Android's "Open with" list and share sheets.
+Tapping a PDF routes it to the PDF editor; Writer documents open in the Word
+Editor and everything else in the Office Viewer.
+
+Android content URIs rarely carry a filename, so a shared document may arrive
+named `document.pdf` rather than its real name. The contents are correct; only
+the label is inferred from the file type.
 
 ## What is in it
 
