@@ -9,7 +9,7 @@ device. Not for store distribution.
 | Label | BentoPDF |
 | targetSdk | 36 |
 | Size | 75 MB (78,842,278 bytes) |
-| SHA-256 | `e690b49f2a3bd0f313e48653cdb022061d28c3054382b0fbd76a95cf75346a54` |
+| SHA-256 | `cc879747e65b0482e81d0f8e456a5dbafb99bde8fef2d679a304169b546397ee` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
@@ -22,6 +22,12 @@ device. Not for store distribution.
 The debug keystore is Android's auto-generated one. That is fine for your own
 devices - it just cannot be published to Play, which is the point of this
 build.
+
+## Reading PDFs
+
+Pinch with two fingers to zoom; the point under your fingers stays put.
+Drag with one finger to pan a zoomed page. The +/- buttons still step
+through fixed sizes from wherever a pinch left off.
 
 ## Opening one document in another tool
 
