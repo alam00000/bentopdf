@@ -8,8 +8,8 @@ device. Not for store distribution.
 | Package | `com.bentopdf.personal` |
 | Label | BentoPDF |
 | targetSdk | 36 |
-| Size | 75 MB (78,842,027 bytes) |
-| SHA-256 | `a0ed30b2e9431c4e74cb454804ebcdd2b20453232dd7a9d174dd39eafa35aa53` |
+| Size | 75 MB (78,842,278 bytes) |
+| SHA-256 | `1ab22f829c1bbecf4aa5b74050b85d63b4d5e041c8cc7cebf625caff6e531fed` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
@@ -22,6 +22,15 @@ device. Not for store distribution.
 The debug keystore is Android's auto-generated one. That is fine for your own
 devices - it just cannot be published to Play, which is the point of this
 build.
+
+## Opening one document in another tool
+
+The viewer toolbars carry an **Open in...** button. With a document on screen,
+it hands that exact file to another tool - the editor, a converter, the signer
+- without saving it and picking it again. The shortlist is per file type, and
+"All tools" keeps the document waiting while you browse the full list.
+
+Available from the PDF Viewer, the Office Viewer and the Word Editor.
 
 ## Opening documents with it
 
