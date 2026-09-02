@@ -19,7 +19,8 @@
     "name": "PDF Samenvoegen",
     "subtitle": "Meerdere PDF's combineren tot één bestand. Bladwijzers behouden.",
     "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
-    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
+    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren).",
+    "removeDuplicateFonts": "Duplicaatlettertypen verwijderen"
   },
   "splitPdf": {
     "name": "PDF Splitsen",
@@ -31,7 +32,7 @@
     "algorithmLabel": "Compressie-algoritme",
     "condense": "Condense (Aanbevolen)",
     "photon": "Photon (Voor PDF's met veel foto's)",
-    "condenseInfo": "Condense gebruikt geavanceerde compressie: verwijdert overbodige onderdelen, optimaliseert afbeeldingen en kiest alleen de benodigde letters uit fonts. Ideaal voor de meeste PDF's.",
+    "condenseInfo": "Condense gebruikt geavanceerde compressie: verwijdert overbodige onderdelen, optimaliseert afbeeldingen en kiest alleen de benodigde letters uit lettertypen. Ideaal voor de meeste PDF's.",
     "photonInfo": "Photon zet pagina's om in afbeeldingen. Handig voor PDF's met veel foto's of gescande documenten.",
     "photonWarning": "Let op: De tekst kan dan niet meer geselecteerd worden en links werken niet meer.",
     "levelLabel": "Compressieniveau",
@@ -515,7 +516,8 @@
       "noFile": "Geen bestand",
       "noFileExplanation": "Laad eerst een PDF-bestand.",
       "conversionSuccess": "PDF met succes omgezet naar TIFF's!",
-      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn."
+      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn.",
+      "conversionOutOfMemory": "De browser had geen geheugen meer tijdens het converteren. Probeer een lagere DPI of schakel de TIFF-optie voor meerdere pagina's uit om pagina's één voor één te converteren."
     }
   },
   "pdfToCbz": {
@@ -1002,8 +1004,7 @@
     "subtitle": "Tekst uit een PDF-bestanden halen en opslaan als gewone tekst (.txt). Ondersteunt meerdere bestanden.",
     "noteLabel": "Opmerking:",
     "noteText": "Deze tool werkt ALLEEN met digitaal aangemaakte PDF's. Voor gescande documenten of PDF's op basis van afbeeldingen gebruik je in plaats daarvan onze OCR PDF-tool.",
-    "convertButton": "Tekst extraheren",
-    "note": "Dit hulpmiddel werkt ALLEEN met digitaal gemaakte PDF's. Gebruik voor gescande documenten of op afbeeldingen gebaseerde PDF's in plaats hiervan de OCR PDF-tool."
+    "convertButton": "Tekst extraheren"
   },
   "digitalSignPdf": {
     "name": "Digitale handtekening",
