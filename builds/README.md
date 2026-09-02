@@ -9,7 +9,7 @@ device. Not for store distribution.
 | Label | BentoPDF |
 | targetSdk | 36 |
 | Size | 75 MB (78,842,278 bytes) |
-| SHA-256 | `cc879747e65b0482e81d0f8e456a5dbafb99bde8fef2d679a304169b546397ee` |
+| SHA-256 | `541a4652ad2d43e91bb9c652fee4724bfd4679c59be9da99df76afdf543ff81a` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
@@ -25,7 +25,8 @@ build.
 
 ## Reading PDFs
 
-Pinch with two fingers to zoom; the point under your fingers stays put.
+Pinch with two fingers to zoom - one gesture goes as far as you take it,
+and the point under your fingers stays put.
 Drag with one finger to pan a zoomed page. The +/- buttons still step
 through fixed sizes from wherever a pinch left off.
 
