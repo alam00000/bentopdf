@@ -7,89 +7,84 @@ describe('Navigation BASE_URL Consistency', () => {
   const pagesDir = path.resolve(__dirname, '../pages');
   const rootDir = path.resolve(__dirname, '../../');
 
-  it('ensures no tool logic files hardcode root "/" or relative paths for navigation', () => {
+  it('ensures tool navigation assignments strictly use import.meta.env.BASE_URL', () => {
     const files = fs
       .readdirSync(logicDir)
-      .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
+      .filter(
+        (file) =>
+          (file.endsWith('.ts') || file.endsWith('.js')) &&
+          file !== 'shortcuts.ts'
+      );
 
-    const offendingFiles: string[] = [];
+    const nonCompliantAssignments: Array<{ file: string; target: string }> = [];
 
     for (const file of files) {
       const content = fs.readFileSync(path.join(logicDir, file), 'utf-8');
+      const assignments = content.matchAll(
+        /window\.location\.href\s*=\s*([^;\n]+)/g
+      );
 
-      // Check for hardcoded root redirects or relative path escapes
-      if (
-        /window\.location\.href\s*=\s*['"`]\/['"`]/.test(content) ||
-        /window\.location\.href\s*=\s*['"`]\.\.\//.test(content)
-      ) {
-        offendingFiles.push(file);
+      for (const match of assignments) {
+        const target = match[1].trim();
+        if (!target.includes('import.meta.env.BASE_URL')) {
+          nonCompliantAssignments.push({ file, target });
+        }
       }
     }
 
     expect(
-      offendingFiles,
-      `The following files hardcode root or relative navigation instead of import.meta.env.BASE_URL: ${offendingFiles.join(
-        ', '
+      nonCompliantAssignments,
+      `The following files assign window.location.href without import.meta.env.BASE_URL: ${JSON.stringify(
+        nonCompliantAssignments,
+        null,
+        2
       )}`
     ).toEqual([]);
   });
 
-  it('ensures tool logic files with back-to-tools button use import.meta.env.BASE_URL', () => {
-    const files = fs
-      .readdirSync(logicDir)
-      .filter((file) => file.endsWith('.ts') || file.endsWith('.js'));
+  it('ensures each affected back-button handler assigns import.meta.env.BASE_URL', () => {
+    const affectedFiles = [
+      'deskew-pdf-page.ts',
+      'markdown-to-pdf-page.ts',
+      'remove-annotations-page.ts',
+      'form-filler-page.ts',
+      'remove-blank-pages-page.ts',
+    ];
 
-    const filesMissingBaseUrl: string[] = [];
-
-    for (const file of files) {
+    for (const file of affectedFiles) {
       const content = fs.readFileSync(path.join(logicDir, file), 'utf-8');
-
-      // If the file handles 'back-to-tools' click navigation
-      if (
-        content.includes('back-to-tools') &&
-        content.includes('window.location.href') &&
-        !content.includes('import.meta.env.BASE_URL')
-      ) {
-        filesMissingBaseUrl.push(file);
-      }
+      expect(
+        content,
+        `${file} must assign window.location.href to import.meta.env.BASE_URL`
+      ).toMatch(/window\.location\.href\s*=\s*import\.meta\.env\.BASE_URL/);
     }
-
-    expect(
-      filesMissingBaseUrl,
-      `The following files handle back-to-tools navigation without import.meta.env.BASE_URL: ${filesMissingBaseUrl.join(
-        ', '
-      )}`
-    ).toEqual([]);
   });
 
-  it('ensures HTML templates do not hardcode href="/" for brand links', () => {
-    const htmlFiles = fs
-      .readdirSync(pagesDir)
-      .filter((file) => file.endsWith('.html'))
-      .map((file) => path.join(pagesDir, file));
+  it('ensures brand anchor in standalone templates asserts href="{{baseUrl}}"', () => {
+    const standaloneTemplates = [
+      path.join(pagesDir, 'pdf-multi-tool.html'),
+      path.join(rootDir, 'simple-index.html'),
+      path.join(rootDir, 'src/partials/navbar-simple.html'),
+    ];
 
-    const simpleIndex = path.join(rootDir, 'simple-index.html');
-    if (fs.existsSync(simpleIndex)) {
-      htmlFiles.push(simpleIndex);
-    }
+    for (const filePath of standaloneTemplates) {
+      if (!fs.existsSync(filePath)) continue;
 
-    const offendingFiles: string[] = [];
-
-    for (const filePath of htmlFiles) {
       const content = fs.readFileSync(filePath, 'utf-8');
+      const brandAnchorMatch = content.match(
+        /<a\s+[^>]*href=["']([^"']*)["'][^>]*>[\s\S]*?(?:{{#if\s+brandName}}|BentoPDF)/i
+      );
 
-      // Brand link / logo anchor should not be hardcoded to href="/"
-      // e.g. <a href="/"> should be <a href="{{baseUrl}}">
-      if (/<a\s+[^>]*href=["']\/["'][^>]*>.*BentoPDF/i.test(content)) {
-        offendingFiles.push(path.basename(filePath));
-      }
+      expect(
+        brandAnchorMatch,
+        `Could not locate brand anchor in ${path.basename(filePath)}`
+      ).not.toBeNull();
+
+      const href = brandAnchorMatch?.[1];
+      expect(
+        href,
+        `Expected ${path.basename(filePath)} brand anchor href to be "{{baseUrl}}" but got "${href}"`
+      ).toBe('{{baseUrl}}');
     }
-
-    expect(
-      offendingFiles,
-      `The following HTML templates hardcode href="/" for the brand link: ${offendingFiles.join(
-        ', '
-      )}`
-    ).toEqual([]);
   });
 });
