@@ -6,7 +6,7 @@ import {
   renderPagesProgressively,
   cleanupLazyRendering,
 } from '../utils/render-utils.js';
-import { initPagePreview } from '../utils/page-preview.js';
+import { initPagePreview, attachPreviewButton } from '../utils/page-preview.js';
 import {
   mergeJobToPageSpec,
   validatePageRangeString,
@@ -203,6 +203,14 @@ async function renderPageMergeThumbnails() {
           },
           onBatchComplete: () => {
             createIcons({ icons });
+          },
+          onPageRendered: (pageIndex, element) => {
+            attachPreviewButton(
+              element,
+              pdfjsDoc,
+              pageIndex + 1,
+              pdfjsDoc.numPages
+            );
           },
         }
       );
