@@ -9,7 +9,7 @@ device. Not for store distribution.
 | Label | BentoPDF |
 | targetSdk | 36 |
 | Size | 75 MB (78,842,278 bytes) |
-| SHA-256 | `541a4652ad2d43e91bb9c652fee4724bfd4679c59be9da99df76afdf543ff81a` |
+| SHA-256 | `30db077f6f6e511dfc43cb81c3b401a94e05fb7211336ca6038a0a399e0f2a05` |
 | Signing | v2 scheme, debug keystore - verified with `apksigner verify` |
 
 ## Installing
