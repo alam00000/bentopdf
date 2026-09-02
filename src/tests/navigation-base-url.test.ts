@@ -62,7 +62,6 @@ describe('Navigation BASE_URL Consistency', () => {
 
   it('ensures brand anchor in standalone templates asserts href="{{baseUrl}}"', () => {
     const standaloneTemplates = [
-      path.join(pagesDir, 'pdf-multi-tool.html'),
       path.join(rootDir, 'simple-index.html'),
       path.join(rootDir, 'src/partials/navbar-simple.html'),
     ];
@@ -71,20 +70,32 @@ describe('Navigation BASE_URL Consistency', () => {
       if (!fs.existsSync(filePath)) continue;
 
       const content = fs.readFileSync(filePath, 'utf-8');
-      const brandAnchorMatch = content.match(
-        /<a\s+[^>]*href=["']([^"']*)["'][^>]*>[\s\S]*?(?:{{#if\s+brandName}}|BentoPDF)/i
+      const anchors = [
+        ...content.matchAll(
+          /<a\b[^>]*href=["']([^"']*)["'][^>]*>([\s\S]*?)<\/a\s*>/gi
+        ),
+      ];
+
+      const brandAnchor = anchors.find(([, , innerContent]) =>
+        /{{#if\s+brandName}}|BentoPDF/i.test(innerContent)
       );
 
       expect(
-        brandAnchorMatch,
+        brandAnchor,
         `Could not locate brand anchor in ${path.basename(filePath)}`
-      ).not.toBeNull();
+      ).toBeDefined();
 
-      const href = brandAnchorMatch?.[1];
+      const href = brandAnchor?.[1];
       expect(
         href,
         `Expected ${path.basename(filePath)} brand anchor href to be "{{baseUrl}}" but got "${href}"`
       ).toBe('{{baseUrl}}');
     }
+  });
+
+  it('ensures pdf-multi-tool uses standard navbar partial', () => {
+    const pdfMultiTool = path.join(pagesDir, 'pdf-multi-tool.html');
+    const content = fs.readFileSync(pdfMultiTool, 'utf-8');
+    expect(content).toContain('{{> navbar }}');
   });
 });
