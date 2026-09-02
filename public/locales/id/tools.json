@@ -629,7 +629,7 @@
   },
   "alternateMerge": {
     "name": "Alternatif & Campur Halaman",
-    "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF.",
+    "subtitle": "Gabungkan PDF dengan menempatkan halaman dari setiap PDF secara bergantian.",
     "retainPageLabels": "Label halaman dipertahankan secara otomatis",
     "retainPageLabelsHint": "Label halaman asli dari setiap file dibawa ke PDF yang dicampur. Label tidak dapat dihapus saat pencampuran."
   },

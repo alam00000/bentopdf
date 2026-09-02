@@ -1,6 +1,9 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
-import { renderPagesProgressively } from '@/js/utils/render-utils';
+import {
+  cleanupLazyRendering,
+  renderPagesProgressively,
+} from '@/js/utils/render-utils';
 
 /**
  * The merge tool calls renderPagesProgressively once per file against the
@@ -234,5 +237,40 @@ describe('renderPagesProgressively with multiple files (lazy loading)', () => {
       Array.from({ length: 25 }, () => 'a')
     );
     expect(info.tags.slice(25)).toEqual(Array.from({ length: 25 }, () => 'b'));
+  });
+
+  it('disconnects every active lazy render on cleanup, not every other one', async () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    const config = {
+      batchSize: 5,
+      useLazyLoading: true,
+      eagerLoadBatches: 0,
+      lazyLoadMargin: '10px',
+    };
+    await renderPagesProgressively(
+      fakeDoc(25, 'a'),
+      container,
+      makeWrapper,
+      config
+    );
+    await renderPagesProgressively(
+      fakeDoc(25, 'b'),
+      container,
+      makeWrapper,
+      config
+    );
+
+    expect(FakeIntersectionObserver.instances).toHaveLength(2);
+    for (const io of FakeIntersectionObserver.instances) {
+      expect(io.observed.size).toBeGreaterThan(0);
+    }
+
+    cleanupLazyRendering();
+
+    for (const io of FakeIntersectionObserver.instances) {
+      expect(io.observed.size).toBe(0);
+    }
   });
 });

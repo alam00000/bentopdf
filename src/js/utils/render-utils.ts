@@ -414,7 +414,7 @@ function renderEagerBatch(config: RenderConfig, state: LazyLoadState): void {
  * Cleanup function to disconnect observers
  */
 export function cleanupLazyRendering(): void {
-  for (const state of activeRenders) {
+  for (const state of [...activeRenders]) {
     retireLazyRender(state);
   }
   activeRenders.length = 0;

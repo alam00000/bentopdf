@@ -7,8 +7,8 @@
 //   node scripts/perf/merge-baseline.mjs [--browser chromium|firefox] [--combo "a,b|c,d"]
 //
 // Requires a running dev server on http://localhost:5173 and playwright-core
-// (npm i --no-save playwright-core@1.62.1). Browsers are resolved from the
-// Playwright cache with an executablePath override (see BROWSERS below).
+// (npm i --no-save playwright-core@1.62.1). Browsers resolve from the Playwright
+// cache; override with CHROMIUM_PATH / FIREFOX_PATH env vars.
 
 import { chromium, firefox } from 'playwright-core';
 import {
@@ -44,9 +44,9 @@ const BROWSERS = {
   chromium: {
     launch: () =>
       chromium.launch({
-        executablePath:
-          process.env.HOME +
-          '/.cache/ms-playwright/chromium-1234/chrome-linux64/chrome',
+        ...(process.env.CHROMIUM_PATH
+          ? { executablePath: process.env.CHROMIUM_PATH }
+          : {}),
         headless: true,
         args: ['--no-sandbox'],
       }),
@@ -55,9 +55,9 @@ const BROWSERS = {
   firefox: {
     launch: () =>
       firefox.launch({
-        executablePath:
-          process.env.HOME +
-          '/.cache/ms-playwright/firefox-1532/firefox/firefox',
+        ...(process.env.FIREFOX_PATH
+          ? { executablePath: process.env.FIREFOX_PATH }
+          : {}),
         headless: true,
       }),
     hasMemory: false,
@@ -317,7 +317,8 @@ async function measurePage(browser, comboKeys) {
         .catch(() => null);
       if (alertText) out.consoleLines.push('alert: ' + alertText);
     } else if (out.outcome === 'ok' && !dl) {
-      out.outcome = 'no-download';
+      out.outcome =
+        Date.now() - tMergeStart >= maxWaitMs ? 'hang' : 'no-download';
     }
     if (out.outcome === 'hang' || Date.now() - tMergeStart >= maxWaitMs) {
       const state = await page
