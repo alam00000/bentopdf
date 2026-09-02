@@ -17,11 +17,13 @@ interface InterleaveMessage {
 interface InterleaveSuccessResponse {
   status: 'success';
   pdfBytes: ArrayBuffer;
+  files: InterleaveFile[];
 }
 
 interface InterleaveErrorResponse {
   status: 'error';
   message: string;
+  files: InterleaveFile[];
 }
 
 type InterleaveResponse = InterleaveSuccessResponse | InterleaveErrorResponse;

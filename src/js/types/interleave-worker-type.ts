@@ -14,11 +14,13 @@ export interface InterleaveMessage {
 export interface InterleaveSuccessResponse {
   status: 'success';
   pdfBytes: ArrayBuffer;
+  files: MergeFile[];
 }
 
 export interface InterleaveErrorResponse {
   status: 'error';
   message: string;
+  files: MergeFile[];
 }
 
 export type InterleaveResponse =

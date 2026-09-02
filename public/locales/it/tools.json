@@ -16,7 +16,12 @@
     "subtitle": "Unisci, dividi, organizza, elimina, ruota, aggiungi pagine vuote, estrai e duplica in un'interfaccia unificata."
   },
   "mergePdf": {
-    "name": "Unisci PDF"
+    "name": "Unisci PDF",
+    "subtitle": "Unisci più PDF in un unico file.",
+    "retainPageLabels": "Le etichette di pagina si mantengono automaticamente",
+    "retainPageLabelsHint": "Le etichette di pagina originali di ogni file vengono riportate nel PDF unito. Le etichette non possono essere rimosse durante l'unione.",
+    "removeDuplicateFonts": "I font restano invariati",
+    "removeDuplicateFontsHint": "La rimozione dei font duplicati non è supportata dal motore di unione attuale."
   },
   "splitPdf": {
     "name": "Dividi PDF",
@@ -512,7 +517,8 @@
       "noFile": "Nessun file",
       "noFileExplanation": "Carica prima un file PDF.",
       "conversionSuccess": "PDF convertito in TIFF con successo!",
-      "conversionError": "Impossibile convertire il PDF in TIFF. Il file potrebbe essere danneggiato."
+      "conversionError": "Impossibile convertire il PDF in TIFF. Il file potrebbe essere danneggiato.",
+      "conversionOutOfMemory": "La memoria del browser si è esaurita durante la conversione. Prova con un DPI più basso, oppure deseleziona l'opzione TIFF multi-pagina per convertire le pagine una alla volta."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Seleziona più lingue per documenti contenenti contenuto in lingue miste."
   },
   "alternateMerge": {
-    "name": "Alterna e Riordina Pagine"
+    "name": "Alterna e Riordina Pagine",
+    "subtitle": "Unisci i PDF alternando le pagine di ogni file.",
+    "retainPageLabels": "Le etichette di pagina si mantengono automaticamente",
+    "retainPageLabelsHint": "Le etichette di pagina originali di ogni file vengono riportate nel PDF miscelato. Le etichette non possono essere rimosse durante la miscelazione."
   },
   "duplexCollate": {
     "name": "Fascicola scansione fronte/retro",
@@ -996,8 +1005,7 @@
     "subtitle": "Estrai il testo dai file PDF e salvalo come testo semplice (.txt). Supporta più file.",
     "noteLabel": "Nota:",
     "noteText": "Questo strumento funziona SOLO con PDF creati digitalmente. Per documenti scansionati o PDF basati su immagini, usa invece il nostro strumento OCR PDF.",
-    "convertButton": "Estrai testo",
-    "note": "Questo strumento funziona SOLO con PDF creati digitalmente. Per documenti scansionati o basati su immagini, usa invece il nostro strumento OCR PDF."
+    "convertButton": "Estrai testo"
   },
   "digitalSignPdf": {
     "name": "Firma digitale PDF",

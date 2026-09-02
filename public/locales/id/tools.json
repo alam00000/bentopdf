@@ -16,7 +16,12 @@
     "subtitle": "Gabung, Pisah, Atur, Hapus, Putar, Tambah Halaman Kosong, Ekstrak dan Duplikat dalam antarmuka terpadu."
   },
   "mergePdf": {
-    "name": "Gabung PDF"
+    "name": "Gabung PDF",
+    "subtitle": "Gabungkan beberapa PDF menjadi satu file.",
+    "retainPageLabels": "Label halaman dipertahankan secara otomatis",
+    "retainPageLabelsHint": "Label halaman asli dari setiap file dibawa ke PDF yang digabungkan. Label tidak dapat dihapus saat penggabungan.",
+    "removeDuplicateFonts": "Font dipertahankan apa adanya",
+    "removeDuplicateFontsHint": "Penghapusan font duplikat tidak didukung oleh mesin penggabungan saat ini."
   },
   "splitPdf": {
     "name": "Pisah PDF",
@@ -512,7 +517,8 @@
       "noFile": "Tidak Ada File",
       "noFileExplanation": "Silakan unggah file PDF terlebih dahulu.",
       "conversionSuccess": "PDF berhasil dikonversi ke TIFF!",
-      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak."
+      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak.",
+      "conversionOutOfMemory": "Memori browser habis saat konversi. Coba DPI yang lebih rendah, atau hapus centang opsi TIFF multi-halaman untuk mengonversi halaman satu per satu."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Pilih beberapa bahasa untuk dokumen yang berisi konten bahasa campuran."
   },
   "alternateMerge": {
-    "name": "Alternatif & Campur Halaman"
+    "name": "Alternatif & Campur Halaman",
+    "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF.",
+    "retainPageLabels": "Label halaman dipertahankan secara otomatis",
+    "retainPageLabelsHint": "Label halaman asli dari setiap file dibawa ke PDF yang dicampur. Label tidak dapat dihapus saat pencampuran."
   },
   "duplexCollate": {
     "name": "Susun Ulang Pindaian Dupleks",
@@ -996,8 +1005,7 @@
     "subtitle": "Ekstrak teks dari file PDF dan simpan sebagai teks biasa (.txt). Mendukung beberapa file.",
     "noteLabel": "Catatan:",
     "noteText": "Alat ini HANYA bekerja dengan PDF yang dibuat secara digital. Untuk dokumen pindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya.",
-    "convertButton": "Ekstrak Teks",
-    "note": "Alat ini bekerja HANYA dengan PDF yang dibuat secara digital. Untuk dokumen terpindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya."
+    "convertButton": "Ekstrak Teks"
   },
   "digitalSignPdf": {
     "name": "Tanda Tangan Digital PDF",

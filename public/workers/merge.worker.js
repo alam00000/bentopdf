@@ -2,23 +2,40 @@ importScripts('qpdf-loader.js');
 
 self.onmessage = async function (e) {
   const { command, files, jobs } = e.data;
+  const inputFiles = files || [];
+  const inputBuffers = inputFiles.map(function (file) {
+    return file.data;
+  });
 
   try {
     const qpdf = await loadQpdfRuntime();
     if (command === 'merge') {
-      mergePDFs(qpdf, files, jobs);
+      mergePDFs(qpdf, inputFiles, jobs, inputBuffers);
+    } else {
+      self.postMessage(
+        {
+          status: 'error',
+          message: 'Unknown merge command received.',
+          files: inputFiles,
+        },
+        inputBuffers
+      );
     }
   } catch (error) {
-    self.postMessage({
-      status: 'error',
-      message:
-        (error && error.message) ||
-        'Unknown error while merging PDFs. Please try again.',
-    });
+    self.postMessage(
+      {
+        status: 'error',
+        message:
+          (error && error.message) ||
+          'Unknown error while merging PDFs. Please try again.',
+        files: inputFiles,
+      },
+      inputBuffers
+    );
   }
 };
 
-function mergePDFs(qpdf, files, jobs) {
+function mergePDFs(qpdf, files, jobs, inputBuffers) {
   const written = [];
   try {
     const pathForName = new Map();
@@ -73,7 +90,10 @@ function mergePDFs(qpdf, files, jobs) {
       bytes.byteOffset + bytes.byteLength
     );
 
-    self.postMessage({ status: 'success', pdfBytes: buffer }, [buffer]);
+    self.postMessage(
+      { status: 'success', pdfBytes: buffer, files: files },
+      [buffer].concat(inputBuffers)
+    );
   } finally {
     for (const path of written) {
       try {

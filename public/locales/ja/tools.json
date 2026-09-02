@@ -16,7 +16,12 @@
     "subtitle": "統合インターフェースで結合、分割、整理、削除、回転、空白ページの追加、抽出、複製を行えます。"
   },
   "mergePdf": {
-    "name": "PDFの結合"
+    "name": "PDFの結合",
+    "subtitle": "複数のPDFを1つのファイルに結合します。",
+    "retainPageLabels": "ページラベルは自動的に保持されます",
+    "retainPageLabelsHint": "各ファイルの元のページラベルは、結合されたPDFに引き継がれます。結合時にラベルを削除することはできません。",
+    "removeDuplicateFonts": "フォントはそのまま保持されます",
+    "removeDuplicateFontsHint": "重複フォントの削除は、現在の結合エンジンではサポートされていません。"
   },
   "splitPdf": {
     "name": "PDFの分割",
@@ -512,7 +517,8 @@
       "noFile": "ファイルがありません",
       "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
       "conversionSuccess": "PDFからTIFFへの変換に成功しました。",
-      "conversionError": "PDFからTIFFへの変換に失敗しました。ファイルが破損している可能性があります。"
+      "conversionError": "PDFからTIFFへの変換に失敗しました。ファイルが破損している可能性があります。",
+      "conversionOutOfMemory": "変換中にブラウザのメモリが不足しました。DPIを下げるか、複数ページTIFFオプションのチェックを外して、ページを1枚ずつ変換してください。"
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "複数言語が混在する文書のために複数の言語を選択します。"
   },
   "alternateMerge": {
-    "name": "代替ページと混合ページ"
+    "name": "代替ページと混合ページ",
+    "subtitle": "各PDFのページを交互に配置してPDFを結合します。",
+    "retainPageLabels": "ページラベルは自動的に保持されます",
+    "retainPageLabelsHint": "各ファイルの元のページラベルは、混在されたPDFに引き継がれます。混在時にラベルを削除することはできません。"
   },
   "duplexCollate": {
     "name": "両面スキャンの並べ替え",
@@ -996,8 +1005,7 @@
     "subtitle": "PDFファイルからテキストを抽出し、プレーンテキスト (.txt) として保存します。複数のファイルをサポートします。",
     "noteLabel": "注:",
     "noteText": "このツールはデジタルで作成されたPDFのみで動作します。スキャン文書や画像ベースのPDFには、代わりにOCR PDFツールを使用してください。",
-    "convertButton": "テキストの抽出",
-    "note": "このツールはデジタルで作成されたPDFでのみ機能します。スキャンされたドキュメントまたは画像ベースのPDFの場合は、代わりにOCR PDFツールを使用してください。"
+    "convertButton": "テキストの抽出"
   },
   "digitalSignPdf": {
     "name": "PDFへの電子署名",

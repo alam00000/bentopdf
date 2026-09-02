@@ -16,7 +16,12 @@
     "subtitle": "Mesclar, dividir, organizar, excluir, girar, adicionar páginas em branco, extrair e duplicar em uma única interface."
   },
   "mergePdf": {
-    "name": "Mesclar PDF"
+    "name": "Mesclar PDF",
+    "subtitle": "Combine vários PDFs em um único arquivo.",
+    "retainPageLabels": "Os rótulos de página são preservados automaticamente",
+    "retainPageLabelsHint": "Os rótulos de página originais de cada ficheiro são mantidos no PDF mesclado. Os rótulos não podem ser removidos ao mesclar.",
+    "removeDuplicateFonts": "As fontes são mantidas como estão",
+    "removeDuplicateFontsHint": "A remoção de fontes duplicadas não é suportada pelo motor de mesclagem atual."
   },
   "splitPdf": {
     "name": "Dividir PDF",
@@ -512,7 +517,8 @@
       "noFile": "Sem arquivo",
       "noFileExplanation": "Por favor envie um arquivo PDF primeiro.",
       "conversionSuccess": "PDF convertido para TIFF com sucesso!",
-      "conversionError": "Falha ao converter PDF para TIFF. O arquivo pode estar corrompido."
+      "conversionError": "Falha ao converter PDF para TIFF. O arquivo pode estar corrompido.",
+      "conversionOutOfMemory": "A memória do navegador acabou durante a conversão. Tente um DPI mais baixo, ou desmarque a opção de TIFF de várias páginas para converter as páginas uma por uma."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Selecione vários idiomas para documentos com conteúdo em idiomas mistos."
   },
   "alternateMerge": {
-    "name": "Alternar e Misturar Páginas"
+    "name": "Alternar e Misturar Páginas",
+    "subtitle": "Mescle PDFs alternando as páginas de cada arquivo.",
+    "retainPageLabels": "Os rótulos de página são preservados automaticamente",
+    "retainPageLabelsHint": "Os rótulos de página originais de cada ficheiro são mantidos no PDF misturado. Os rótulos não podem ser removidos ao misturar."
   },
   "duplexCollate": {
     "name": "Intercalar digitalização frente e verso",
@@ -996,8 +1005,7 @@
     "subtitle": "Extrai texto de arquivos PDF e salva como texto simples (.txt). Suporta múltiplos arquivos.",
     "noteLabel": "Nota:",
     "noteText": "Esta ferramenta funciona APENAS com PDFs criados digitalmente. Para documentos digitalizados ou PDFs baseados em imagens, use nossa ferramenta OCR PDF.",
-    "convertButton": "Extrair Texto",
-    "note": "Esta ferrament funciona SOMENTE com PDFs criados digitalmente. Para documentos escaneados ou PDFs baseados em imagens, use nossa ferramenta OCR para PDF no lugar."
+    "convertButton": "Extrair Texto"
   },
   "digitalSignPdf": {
     "name": "Assinatura Digital PDF",

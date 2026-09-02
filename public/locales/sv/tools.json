@@ -16,7 +16,12 @@
     "subtitle": "Sammanfoga, dela, organisera, ta bort, rotera, lägg till tomma sidor, extrahera och duplicera i ett enhetligt gränssnitt."
   },
   "mergePdf": {
-    "name": "Sammanfoga PDF"
+    "name": "Sammanfoga PDF",
+    "subtitle": "Kombinera flera PDF-filer till en fil.",
+    "retainPageLabels": "Sidetiketter bevaras automatiskt",
+    "retainPageLabelsHint": "Varje fils ursprungliga sidetiketter förs över till den sammanslagna PDF:en. Etiketter kan inte tas bort vid sammanslagning.",
+    "removeDuplicateFonts": "Typsnitt behålls oförändrade",
+    "removeDuplicateFontsHint": "Borttagning av dubbletter av typsnitt stöds inte av den aktuella sammanslagningsmotorn."
   },
   "splitPdf": {
     "name": "Dela PDF",
@@ -512,7 +517,8 @@
       "noFile": "Ingen fil",
       "noFileExplanation": "Ladda upp en PDF-fil först.",
       "conversionSuccess": "PDF konverterad till TIFF!",
-      "conversionError": "Kunde inte konvertera PDF till TIFF. Filen kan vara skadad."
+      "conversionError": "Kunde inte konvertera PDF till TIFF. Filen kan vara skadad.",
+      "conversionOutOfMemory": "Webbläsaren fick slut på minne under konverteringen. Prova lägre DPI, eller avmarkera alternativet för flersidig TIFF för att konvertera sidorna en i taget."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Välj flera språk för dokument som innehåller blandat språkinnehåll."
   },
   "alternateMerge": {
-    "name": "Alternera & blanda sidor"
+    "name": "Alternera & blanda sidor",
+    "subtitle": "Sammanfoga PDF:er genom att alternera sidor från varje PDF.",
+    "retainPageLabels": "Sidetiketter bevaras automatiskt",
+    "retainPageLabelsHint": "Varje fils ursprungliga sidetiketter förs över till den blandade PDF:en. Etiketter kan inte tas bort vid blandning."
   },
   "duplexCollate": {
     "name": "Sortera dubbelsidig skanning",
@@ -996,8 +1005,7 @@
     "subtitle": "Extrahera text från PDF-filer och spara som vanlig text (.txt). Stöder flera filer.",
     "noteLabel": "Obs:",
     "noteText": "Detta verktyg fungerar ENDAST med digitalt skapade PDF:er. För skannade dokument eller bildbaserade PDF:er, använd istället vårt OCR PDF-verktyg.",
-    "convertButton": "Extrahera text",
-    "note": "Detta verktyg fungerar ENDAST med digitalt skapade PDF:er. För scannade dokument eller bildbaserade PDF:er, använd vårt OCR PDF-verktyg istället."
+    "convertButton": "Extrahera text"
   },
   "digitalSignPdf": {
     "name": "Digital signatur PDF",

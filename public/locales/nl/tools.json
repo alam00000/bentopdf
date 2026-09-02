@@ -16,7 +16,12 @@
     "subtitle": "Samenvoegen, Splitsen, Organiseren, Verwijderen, Roteren, Blanco pagina's toevoegen, Extraheren and Dupliceren in één enkele werkomgeving."
   },
   "mergePdf": {
-    "name": "PDF Samenvoegen"
+    "name": "PDF Samenvoegen",
+    "subtitle": "Meerdere PDF's combineren tot één bestand.",
+    "retainPageLabels": "Pagina-labels worden automatisch behouden",
+    "retainPageLabelsHint": "De originele pagina-labels van elk bestand worden overgenomen in de samengevoegde PDF. Labels kunnen niet worden verwijderd bij het samenvoegen.",
+    "removeDuplicateFonts": "Lettertypen blijven ongewijzigd",
+    "removeDuplicateFontsHint": "Het verwijderen van dubbele lettertypen wordt niet ondersteund door de huidige samenvoegengine."
   },
   "splitPdf": {
     "name": "PDF Splitsen",
@@ -512,7 +517,8 @@
       "noFile": "Geen bestand",
       "noFileExplanation": "Laad eerst een PDF-bestand.",
       "conversionSuccess": "PDF met succes omgezet naar TIFF's!",
-      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn."
+      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn.",
+      "conversionOutOfMemory": "Het browsergeheugen raakte op tijdens de conversie. Probeer een lagere DPI, of vink de optie voor meerbladige TIFF uit om de pagina’s één voor één te converteren."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Selecteer meerdere talen voor documenten met inhoud in gemengde talen."
   },
   "alternateMerge": {
-    "name": "Pagina's Afwisselen & Mixen"
+    "name": "Pagina's Afwisselen & Mixen",
+    "subtitle": "PDF's samenvoegen met afwisselende pagina's vanuit elke PDF.",
+    "retainPageLabels": "Pagina-labels worden automatisch behouden",
+    "retainPageLabelsHint": "De originele pagina-labels van elk bestand worden overgenomen in de gemengde PDF. Labels kunnen niet worden verwijderd bij het mengen."
   },
   "duplexCollate": {
     "name": "Dubbelzijdige scan sorteren",
@@ -996,8 +1005,7 @@
     "subtitle": "Tekst uit een PDF-bestanden halen en opslaan als gewone tekst (.txt). Ondersteunt meerdere bestanden.",
     "noteLabel": "Opmerking:",
     "noteText": "Deze tool werkt ALLEEN met digitaal aangemaakte PDF's. Voor gescande documenten of PDF's op basis van afbeeldingen gebruik je in plaats daarvan onze OCR PDF-tool.",
-    "convertButton": "Tekst extraheren",
-    "note": "Dit hulpmiddel werkt ALLEEN met digitaal gemaakte PDF's. Gebruik voor gescande documenten of op afbeeldingen gebaseerde PDF's in plaats hiervan de OCR PDF-tool."
+    "convertButton": "Tekst extraheren"
   },
   "digitalSignPdf": {
     "name": "Digitale handtekening",

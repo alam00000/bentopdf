@@ -6,6 +6,7 @@ import Sortable from 'sortablejs';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { interleavePdfs } from '../utils/alternate-merge.js';
+import { applyReturnedFiles } from '../utils/qpdf-merge-helpers.js';
 
 const pageState: AlternateMergeState = {
   files: [],
@@ -169,7 +170,12 @@ async function mixPages() {
       return;
     }
 
-    const mergedBytes = await interleavePdfs(filesToMerge, { pageCounts });
+    const mergedBytes = await interleavePdfs(filesToMerge, {
+      pageCounts,
+      onFilesReturned: (files) => {
+        applyReturnedFiles(pageState.pdfBytes, files);
+      },
+    });
     hideLoader();
     const blob = new Blob([new Uint8Array(mergedBytes)], {
       type: 'application/pdf',

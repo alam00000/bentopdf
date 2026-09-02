@@ -261,9 +261,18 @@ async function measurePage(browser, comboKeys) {
         })
         .catch(() => null);
       if (state && state.alertVisible) {
-        out.outcome = 'error-alert';
-        out.consoleLines.push('alert: ' + state.alertText);
-        break;
+        if (/^success\|/i.test(state.alertText)) {
+          // The success alert proves the merge produced output; the download
+          // event may lag this poll by a tick — keep polling for it instead of
+          // misclassifying as error-alert.
+          if (!out.consoleLines.some((l) => l.startsWith('alert: Success'))) {
+            out.consoleLines.push('alert: ' + state.alertText);
+          }
+        } else {
+          out.outcome = 'error-alert';
+          out.consoleLines.push('alert: ' + state.alertText);
+          break;
+        }
       }
       if (
         state &&

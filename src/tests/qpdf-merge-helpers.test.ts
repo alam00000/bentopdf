@@ -1,9 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import type { MergeJob } from '@/types';
+import type { MergeFile, MergeJob } from '@/types';
 import {
   mergeJobToPageSpec,
   validatePageRangeString,
   buildInterleaveSeries,
+  applyReturnedFiles,
 } from '@/js/utils/qpdf-merge-helpers';
 
 describe('mergeJobToPageSpec', () => {
@@ -152,5 +153,42 @@ describe('buildInterleaveSeries', () => {
   it('returns an empty series for no files or zero-page files', () => {
     expect(buildInterleaveSeries([])).toEqual([]);
     expect(buildInterleaveSeries([0, 0])).toEqual([]);
+  });
+});
+
+describe('applyReturnedFiles', () => {
+  it('replaces stored buffers with the returned ones by file name', () => {
+    const store = new Map<string, ArrayBuffer>();
+    const original = new ArrayBuffer(8);
+    store.set('a.pdf', original);
+    const replacement = new ArrayBuffer(16);
+    applyReturnedFiles(store, [{ name: 'a.pdf', data: replacement }]);
+    expect(store.get('a.pdf')).toBe(replacement);
+    expect(store.size).toBe(1);
+  });
+
+  it('adds buffers for names the store did not have yet', () => {
+    const store = new Map<string, ArrayBuffer>();
+    const bytes = new ArrayBuffer(4);
+    applyReturnedFiles(store, [{ name: 'b.pdf', data: bytes }]);
+    expect(store.get('b.pdf')).toBe(bytes);
+  });
+
+  it('skips entries without a name or data', () => {
+    const store = new Map<string, ArrayBuffer>();
+    const original = new ArrayBuffer(8);
+    store.set('a.pdf', original);
+    applyReturnedFiles(store, [
+      { name: '', data: new ArrayBuffer(4) },
+      { name: 'b.pdf' } as MergeFile,
+      {} as MergeFile,
+    ]);
+    expect(store.get('a.pdf')).toBe(original);
+    expect(store.size).toBe(1);
+  });
+
+  it('tolerates an undefined reply payload', () => {
+    const store = new Map<string, ArrayBuffer>();
+    expect(() => applyReturnedFiles(store, undefined)).not.toThrow();
   });
 });

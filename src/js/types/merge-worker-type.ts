@@ -22,11 +22,13 @@ export interface MergeMessage {
 export interface MergeSuccessResponse {
   status: 'success';
   pdfBytes: ArrayBuffer;
+  files: MergeFile[];
 }
 
 export interface MergeErrorResponse {
   status: 'error';
   message: string;
+  files: MergeFile[];
 }
 
 export type MergeResponse = MergeSuccessResponse | MergeErrorResponse;

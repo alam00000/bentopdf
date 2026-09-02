@@ -10,6 +10,7 @@ import { initPagePreview } from '../utils/page-preview.js';
 import {
   mergeJobToPageSpec,
   validatePageRangeString,
+  applyReturnedFiles,
 } from '../utils/qpdf-merge-helpers.js';
 
 import { createIcons, icons } from 'lucide';
@@ -386,7 +387,16 @@ export async function merge() {
     }
 
     for (const job of jobs) {
-      job.pageSpec = mergeJobToPageSpec(job) ?? '1-z';
+      const pageSpec = mergeJobToPageSpec(job);
+      if (pageSpec === null) {
+        showAlert(
+          'Error',
+          `Could not determine the page range for ${job.fileName}.`
+        );
+        hideLoader();
+        return;
+      }
+      job.pageSpec = pageSpec;
     }
 
     const message: MergeMessage = {
@@ -401,6 +411,15 @@ export async function merge() {
     );
 
     mergeWorker.onmessage = (e: MessageEvent<MergeResponse>) => {
+      applyReturnedFiles(
+        {
+          get: (name) => mergeState.pdfBytes[name],
+          set: (name, data) => {
+            mergeState.pdfBytes[name] = data;
+          },
+        },
+        e.data.files
+      );
       hideLoader();
       if (e.data.status === 'success') {
         const blob = new Blob([e.data.pdfBytes], { type: 'application/pdf' });

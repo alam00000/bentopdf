@@ -2,23 +2,40 @@ importScripts('qpdf-loader.js');
 
 self.onmessage = async function (e) {
   const { command, files, series } = e.data;
+  const inputFiles = files || [];
+  const inputBuffers = inputFiles.map(function (file) {
+    return file.data;
+  });
 
   try {
     const qpdf = await loadQpdfRuntime();
     if (command === 'interleave') {
-      interleavePDFs(qpdf, files, series);
+      interleavePDFs(qpdf, inputFiles, series, inputBuffers);
+    } else {
+      self.postMessage(
+        {
+          status: 'error',
+          message: 'Unknown interleave command received.',
+          files: inputFiles,
+        },
+        inputBuffers
+      );
     }
   } catch (error) {
-    self.postMessage({
-      status: 'error',
-      message:
-        (error && error.message) ||
-        'Unknown error while mixing PDFs. Please try again.',
-    });
+    self.postMessage(
+      {
+        status: 'error',
+        message:
+          (error && error.message) ||
+          'Unknown error while mixing PDFs. Please try again.',
+        files: inputFiles,
+      },
+      inputBuffers
+    );
   }
 };
 
-function interleavePDFs(qpdf, files, series) {
+function interleavePDFs(qpdf, files, series, inputBuffers) {
   const written = [];
   try {
     files.forEach((file, i) => {
@@ -69,7 +86,10 @@ function interleavePDFs(qpdf, files, series) {
       bytes.byteOffset + bytes.byteLength
     );
 
-    self.postMessage({ status: 'success', pdfBytes: buffer }, [buffer]);
+    self.postMessage(
+      { status: 'success', pdfBytes: buffer, files: files },
+      [buffer].concat(inputBuffers)
+    );
   } finally {
     for (const path of written) {
       try {

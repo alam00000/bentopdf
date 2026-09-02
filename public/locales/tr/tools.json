@@ -16,7 +16,12 @@
     "subtitle": "Birleştir, Böl, Düzenle, Sil, Döndür, Boş Sayfa Ekle, Çıkar ve Çoğalt işlemlerini tek bir arayüzde yapın."
   },
   "mergePdf": {
-    "name": "PDF Birleştir"
+    "name": "PDF Birleştir",
+    "subtitle": "Birden fazla PDF'yi tek bir dosyada birleştirin.",
+    "retainPageLabels": "Sayfa etiketleri otomatik olarak korunur",
+    "retainPageLabelsHint": "Her dosyanın orijinal sayfa etiketleri birleştirilmiş PDF'e aktarılır. Etiketler birleştirme sırasında kaldırılamaz.",
+    "removeDuplicateFonts": "Yazı tipleri olduğu gibi korunur",
+    "removeDuplicateFontsHint": "Yinelenen yazı tiplerinin kaldırılması mevcut birleştirme motoru tarafından desteklenmiyor."
   },
   "splitPdf": {
     "name": "PDF Böl",
@@ -512,7 +517,8 @@
       "noFile": "Dosya Yok",
       "noFileExplanation": "Lütfen önce bir PDF dosyası yükleyin.",
       "conversionSuccess": "PDF başarıyla TIFF'e dönüştürüldü!",
-      "conversionError": "PDF TIFF'e dönüştürülemedi. Dosya bozulmuş olabilir."
+      "conversionError": "PDF TIFF'e dönüştürülemedi. Dosya bozulmuş olabilir.",
+      "conversionOutOfMemory": "Dönüştürme sırasında tarayıcı belleği tükendi. Daha düşük bir DPI deneyin veya sayfaları tek tek dönüştürmek için çok sayfalı TIFF seçeneğinin işaretini kaldırın."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Karışık dil içeriği olan belgeler için birden fazla dil seçin."
   },
   "alternateMerge": {
-    "name": "Sayfaları Karıştır & Birleştir"
+    "name": "Sayfaları Karıştır & Birleştir",
+    "subtitle": "PDF'leri her birinden sayfaları sırayla birleştirin.",
+    "retainPageLabels": "Sayfa etiketleri otomatik olarak korunur",
+    "retainPageLabelsHint": "Her dosyanın orijinal sayfa etiketleri karıştırılmış PDF'e aktarılır. Etiketler karıştırma sırasında kaldırılamaz."
   },
   "duplexCollate": {
     "name": "Çift taraflı taramayı harmanla",
@@ -996,8 +1005,7 @@
     "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
     "noteLabel": "Not:",
     "noteText": "Bu araç YALNIZCA dijital olarak oluşturulmuş PDF'lerle çalışır. Taranmış belgeler veya görüntü tabanlı PDF'ler için bunun yerine OCR PDF aracımızı kullanın.",
-    "convertButton": "Extract Text",
-    "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead."
+    "convertButton": "Extract Text"
   },
   "digitalSignPdf": {
     "name": "Digital Signature PDF",

@@ -1,11 +1,14 @@
 import { wfError } from '../workflow/errors';
 import { buildInterleaveSeries } from './qpdf-merge-helpers';
 import { getPDFDocument } from './helpers';
-import type { MergeFile } from '@/types';
+import type { InterleaveResponse, MergeFile } from '@/types';
 
 export async function interleavePdfs(
   files: MergeFile[],
-  options?: { pageCounts?: number[] }
+  options?: {
+    pageCounts?: number[];
+    onFilesReturned?: (files: MergeFile[]) => void;
+  }
 ): Promise<Uint8Array> {
   if (files.length < 2) {
     throw new Error(wfError('alternateMergeNeedsTwo'));
@@ -30,8 +33,9 @@ export async function interleavePdfs(
       import.meta.env.BASE_URL + 'workers/alternate-merge.worker.js'
     );
 
-    worker.onmessage = (e: MessageEvent) => {
+    worker.onmessage = (e: MessageEvent<InterleaveResponse>) => {
       worker.terminate();
+      options?.onFilesReturned?.(e.data.files);
       if (e.data.status === 'success') {
         resolve(new Uint8Array(e.data.pdfBytes));
       } else {

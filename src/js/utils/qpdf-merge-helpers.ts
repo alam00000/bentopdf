@@ -1,4 +1,4 @@
-import type { MergeJob, InterleaveStep } from '@/types';
+import type { MergeFile, MergeJob, InterleaveStep } from '@/types';
 
 export function mergeJobToPageSpec(job: MergeJob): string | null {
   switch (job.rangeType) {
@@ -68,4 +68,18 @@ export function buildInterleaveSeries(pageCounts: number[]): InterleaveStep[] {
     }
   }
   return series;
+}
+
+export function applyReturnedFiles(
+  store: {
+    get(name: string): ArrayBuffer | undefined;
+    set(name: string, data: ArrayBuffer): void;
+  },
+  files: MergeFile[] | undefined
+): void {
+  for (const file of files || []) {
+    if (file && file.name && file.data) {
+      store.set(file.name, file.data);
+    }
+  }
 }

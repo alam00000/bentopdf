@@ -17,11 +17,13 @@ interface MergeMessage {
 interface MergeSuccessResponse {
   status: 'success';
   pdfBytes: ArrayBuffer;
+  files: MergeFile[];
 }
 
 interface MergeErrorResponse {
   status: 'error';
   message: string;
+  files: MergeFile[];
 }
 
 type MergeResponse = MergeSuccessResponse | MergeErrorResponse;

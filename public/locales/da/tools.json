@@ -16,7 +16,12 @@
     "subtitle": "Flet, opdel, organisér, slet, roter, tilføj tomme sider, udtræk og duplikér i én samlet grænseflade."
   },
   "mergePdf": {
-    "name": "Flet PDF"
+    "name": "Flet PDF",
+    "subtitle": "Kombinér flere PDF’er til én fil.",
+    "retainPageLabels": "Sideetiketter bevares automatisk",
+    "retainPageLabelsHint": "Hver fils oprindelige sideetiketter overføres til den sammenflettede PDF. Etiketter kan ikke fjernes ved sammenfletning.",
+    "removeDuplicateFonts": "Skrifttyper bevares uændret",
+    "removeDuplicateFontsHint": "Fjernelse af duplikerede skrifttyper understøttes ikke af den aktuelle sammenfletningsmotor."
   },
   "splitPdf": {
     "name": "Opdel PDF",
@@ -512,7 +517,8 @@
       "noFile": "Ingen fil",
       "noFileExplanation": "Upload venligst en PDF-fil først.",
       "conversionSuccess": "PDF konverteret til TIFF!",
-      "conversionError": "Kunne ikke konvertere PDF til TIFF. Filen kan være beskadiget."
+      "conversionError": "Kunne ikke konvertere PDF til TIFF. Filen kan være beskadiget.",
+      "conversionOutOfMemory": "Browseren løb tør for hukommelse under konverteringen. Prøv en lavere DPI, eller fjern markeringen i valgmuligheden for flere TIFF-sider for at konvertere én side ad gangen."
     }
   },
   "pdfToCbz": {
@@ -622,7 +628,10 @@
     "multiLanguageSupportDescription": "Vælg flere sprog for dokumenter med blandet sprogindhold."
   },
   "alternateMerge": {
-    "name": "Alternér og miks sider"
+    "name": "Alternér og miks sider",
+    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil.",
+    "retainPageLabels": "Sideetiketter bevares automatisk",
+    "retainPageLabelsHint": "Hver fils oprindelige sideetiketter overføres til den blandede PDF. Etiketter kan ikke fjernes ved blanding."
   },
   "duplexCollate": {
     "name": "Sortér dupleks-scanning",
@@ -996,8 +1005,7 @@
     "subtitle": "Udtræk tekst fra PDF og gem som almindelig tekst (.txt). Understøtter flere filer.",
     "noteLabel": "Bemærk:",
     "noteText": "Dette værktøj fungerer KUN med digitalt oprettede PDF'er. Brug i stedet vores OCR PDF-værktøj til scannede dokumenter eller billedbaserede PDF'er.",
-    "convertButton": "Udtræk tekst",
-    "note": "Dette værktøj virker KUN med digitalt oprettede PDF’er. Brug OCR PDF til scannede dokumenter."
+    "convertButton": "Udtræk tekst"
   },
   "digitalSignPdf": {
     "name": "Digital signatur PDF",
