@@ -1,28 +1,24 @@
-import { WasmProvider } from './wasm-provider';
 import { wfError } from '../workflow/errors';
+import type { MergeFile } from '@/types';
 
-export interface MergeFile {
-  name: string;
-  data: ArrayBuffer;
-}
-
-export async function mergePdfsCpdf(
-  files: MergeFile[],
-  options?: { retainPageLabels?: boolean }
+export async function mergePdfsWithQpdf(
+  files: MergeFile[]
 ): Promise<Uint8Array> {
   if (files.length === 0) {
     throw new Error(wfError('noPdfsConnected', { node: 'Merge' }));
   }
 
-  const cpdfBaseUrl = WasmProvider.getUrl('cpdf');
-  if (!cpdfBaseUrl) {
-    throw new Error(wfError('cpdfNotConfigured'));
-  }
-
-  const jobs = files.map((f) => ({
-    fileName: f.name,
-    rangeType: 'all' as const,
+  const jobs = files.map((f, idx) => ({
+    fileName: `input-${idx}.pdf`,
+    pageSpec: '1-z',
   }));
+
+  const uniqueFiles = files.map(
+    (f, idx): MergeFile => ({
+      name: `input-${idx}.pdf`,
+      data: f.data,
+    })
+  );
 
   return new Promise<Uint8Array>((resolve, reject) => {
     const worker = new Worker(
@@ -50,12 +46,10 @@ export async function mergePdfsCpdf(
     worker.postMessage(
       {
         command: 'merge',
-        files,
+        files: uniqueFiles,
         jobs,
-        cpdfUrl: cpdfBaseUrl + 'coherentpdf.browser.min.js',
-        retainPageLabels: options?.retainPageLabels === true,
       },
-      files.map((f) => f.data)
+      uniqueFiles.map((f) => f.data)
     );
   });
 }

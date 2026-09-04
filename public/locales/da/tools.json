@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "Flet PDF",
-    "subtitle": "Kombinér flere PDF’er til én fil. Bevarer bogmærker.",
-    "retainPageLabels": "Behold de oprindelige sideetiketter fra hver fil",
-    "retainPageLabelsHint": "Fra (standard): den sammenflettede PDF bruger naturlig sidenummerering 1–N. Til: hver fils oprindelige sideetiketter bevares (kan give dublerede etiketter)."
+    "subtitle": "Kombinér flere PDF’er til én fil.",
+    "retainPageLabels": "Sideetiketter bevares automatisk",
+    "retainPageLabelsHint": "Hver fils oprindelige sideetiketter overføres til den sammenflettede PDF. Etiketter kan ikke fjernes ved sammenfletning.",
+    "removeDuplicateFonts": "Skrifttyper bevares uændret",
+    "removeDuplicateFontsHint": "Fjernelse af duplikerede skrifttyper understøttes ikke af den aktuelle sammenfletningsmotor."
   },
   "splitPdf": {
     "name": "Opdel PDF",
@@ -515,7 +517,8 @@
       "noFile": "Ingen fil",
       "noFileExplanation": "Upload venligst en PDF-fil først.",
       "conversionSuccess": "PDF konverteret til TIFF!",
-      "conversionError": "Kunne ikke konvertere PDF til TIFF. Filen kan være beskadiget."
+      "conversionError": "Kunne ikke konvertere PDF til TIFF. Filen kan være beskadiget.",
+      "conversionOutOfMemory": "Browseren løb tør for hukommelse under konverteringen. Prøv en lavere DPI, eller fjern markeringen i valgmuligheden for flere TIFF-sider for at konvertere én side ad gangen."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "Alternér og miks sider",
-    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil. Bevarer bogmærker.",
-    "retainPageLabels": "Behold de oprindelige sideetiketter fra hver fil",
-    "retainPageLabelsHint": "Fra (standard): den sammenflettede PDF bruger naturlig sidenummerering 1–N. Til: hver fils oprindelige sideetiketter bevares (kan give dublerede etiketter)."
+    "subtitle": "Flet PDF’er ved at skifte mellem sider fra hver fil.",
+    "retainPageLabels": "Sideetiketter bevares automatisk",
+    "retainPageLabelsHint": "Hver fils oprindelige sideetiketter overføres til den blandede PDF. Etiketter kan ikke fjernes ved blanding."
   },
   "duplexCollate": {
     "name": "Sortér dupleks-scanning",
@@ -1002,8 +1005,7 @@
     "subtitle": "Udtræk tekst fra PDF og gem som almindelig tekst (.txt). Understøtter flere filer.",
     "noteLabel": "Bemærk:",
     "noteText": "Dette værktøj fungerer KUN med digitalt oprettede PDF'er. Brug i stedet vores OCR PDF-værktøj til scannede dokumenter eller billedbaserede PDF'er.",
-    "convertButton": "Udtræk tekst",
-    "note": "Dette værktøj virker KUN med digitalt oprettede PDF’er. Brug OCR PDF til scannede dokumenter."
+    "convertButton": "Udtræk tekst"
   },
   "digitalSignPdf": {
     "name": "Digital signatur PDF",

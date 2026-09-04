@@ -1,2 +1,7 @@
 # Handlebars partials with template syntax inside HTML attributes
 src/partials/footer.html
+
+# Vendored third-party runtimes: byte-identity with the npm artifacts is
+# pinned by src/tests/qpdf-vendoring.test.ts and must not be reformatted
+public/qpdf.js
+public/coherentpdf.browser.min.js

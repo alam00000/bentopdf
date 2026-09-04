@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "Fusionner des PDF",
-    "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets.",
-    "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
-    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
+    "subtitle": "Assembler plusieurs PDF en un seul fichier.",
+    "retainPageLabels": "Les étiquettes de page sont préservées automatiquement",
+    "retainPageLabelsHint": "Les étiquettes de page d'origine de chaque fichier sont reportées dans le PDF fusionné. Les étiquettes ne peuvent pas être retirées lors de la fusion.",
+    "removeDuplicateFonts": "Les polices sont conservées telles quelles",
+    "removeDuplicateFontsHint": "La suppression des polices en double n'est pas prise en charge par le moteur de fusion actuel."
   },
   "splitPdf": {
     "name": "Scinder un PDF",
@@ -515,7 +517,8 @@
       "noFile": "Aucun fichier",
       "noFileExplanation": "Veuillez d'abord téléverser un fichier PDF.",
       "conversionSuccess": "PDF converti en TIFF avec succès !",
-      "conversionError": "Échec de la conversion du PDF en TIFF. Le fichier est peut-être corrompu."
+      "conversionError": "Échec de la conversion du PDF en TIFF. Le fichier est peut-être corrompu.",
+      "conversionOutOfMemory": "Le navigateur est tombé à court de mémoire pendant la conversion. Essayez un DPI plus faible, ou décochez l'option TIFF multipage pour convertir les pages une par une."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "Alterner et mélanger les pages",
-    "subtitle": "Fusionner des PDF en alternant les pages de chaque fichier, tout en conservant les signets.",
-    "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
-    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
+    "subtitle": "Fusionner des PDF en alternant les pages de chaque fichier.",
+    "retainPageLabels": "Les étiquettes de page sont préservées automatiquement",
+    "retainPageLabelsHint": "Les étiquettes de page d'origine de chaque fichier sont reportées dans le PDF mélangé. Les étiquettes ne peuvent pas être retirées lors du mélange."
   },
   "duplexCollate": {
     "name": "Assembler un scan recto/verso",
@@ -1002,8 +1005,7 @@
     "subtitle": "Extraire le texte des fichiers PDF et l’enregistrer en texte brut (.txt). Prend en charge plusieurs fichiers.",
     "noteLabel": "Note :",
     "noteText": "Cet outil ne fonctionne QUE avec des PDF créés numériquement. Pour les documents numérisés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF.",
-    "convertButton": "Extraire le texte",
-    "note": "Cet outil fonctionne UNIQUEMENT avec des PDF créés numériquement. Pour les documents scannés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF."
+    "convertButton": "Extraire le texte"
   },
   "digitalSignPdf": {
     "name": "Signature numérique PDF",

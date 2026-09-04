@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "Gộp PDF",
-    "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark.",
-    "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
-    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
+    "subtitle": "Kết hợp nhiều PDF thành một tệp.",
+    "retainPageLabels": "Nhãn trang được giữ lại tự động",
+    "retainPageLabelsHint": "Nhãn trang gốc của từng tệp được chuyển sang PDF đã hợp nhất. Không thể xóa nhãn khi hợp nhất.",
+    "removeDuplicateFonts": "Phông chữ được giữ nguyên",
+    "removeDuplicateFontsHint": "Việc xóa phông chữ trùng lặp không được hỗ trợ bởi công cụ hợp nhất hiện tại."
   },
   "splitPdf": {
     "name": "Chia PDF",
@@ -515,7 +517,8 @@
       "noFile": "Không có tệp",
       "noFileExplanation": "Vui lòng tải lên tệp PDF trước.",
       "conversionSuccess": "Đã chuyển đổi PDF thành TIFF thành công!",
-      "conversionError": "Không thể chuyển đổi PDF sang TIFF. Tệp có thể bị hỏng."
+      "conversionError": "Không thể chuyển đổi PDF sang TIFF. Tệp có thể bị hỏng.",
+      "conversionOutOfMemory": "Trình duyệt hết bộ nhớ trong quá trình chuyển đổi. Hãy thử DPI thấp hơn, hoặc bỏ chọn tùy chọn TIFF nhiều trang để chuyển đổi từng trang một."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "Xen kẽ & Trộn trang",
-    "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF. Giữ nguyên Bookmark.",
-    "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
-    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
+    "subtitle": "Gộp PDF bằng cách xen kẽ trang từ mỗi PDF.",
+    "retainPageLabels": "Nhãn trang được giữ lại tự động",
+    "retainPageLabelsHint": "Nhãn trang gốc của từng tệp được chuyển sang PDF đã trộn. Không thể xóa nhãn khi trộn."
   },
   "duplexCollate": {
     "name": "Sắp xếp bản quét hai mặt",
@@ -1002,8 +1005,7 @@
     "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
     "noteLabel": "Lưu ý:",
     "noteText": "Công cụ này CHỈ hoạt động với PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi thay thế.",
-    "convertButton": "Trích xuất văn bản",
-    "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi."
+    "convertButton": "Trích xuất văn bản"
   },
   "digitalSignPdf": {
     "name": "Chữ ký số PDF",

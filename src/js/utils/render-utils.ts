@@ -33,25 +33,37 @@ interface PageTask {
 }
 
 /**
- * Lazy loading state
+ * Lazy loading state — one per renderPagesProgressively call, so sequential
+ * calls (one per file, same container) never observe or render each other's
+ * tasks. Tasks are keyed by their placeholder element, which is unique per
+ * page per file; a bare page number would collide across files.
  */
 interface LazyLoadState {
   observer: IntersectionObserver | null;
   pendingTasks: Map<HTMLElement, PageTask>;
-  pendingTasksByPageNumber: Map<number, PageTask>;
-  isRendering: boolean;
   eagerLoadQueue: PageTask[];
   nextEagerIndex: number;
 }
 
-const lazyLoadState: LazyLoadState = {
-  observer: null,
-  pendingTasks: new Map(),
-  pendingTasksByPageNumber: new Map(),
-  isRendering: false,
-  eagerLoadQueue: [],
-  nextEagerIndex: 0,
-};
+const activeRenders: LazyLoadState[] = [];
+
+function createLazyLoadState(): LazyLoadState {
+  return {
+    observer: null,
+    pendingTasks: new Map(),
+    eagerLoadQueue: [],
+    nextEagerIndex: 0,
+  };
+}
+
+function retireLazyRender(state: LazyLoadState): void {
+  if (state.observer) {
+    state.observer.disconnect();
+    state.observer = null;
+  }
+  const idx = activeRenders.indexOf(state);
+  if (idx >= 0) activeRenders.splice(idx, 1);
+}
 
 /**
  * Creates a placeholder element for a page that will be lazy-loaded
@@ -116,7 +128,10 @@ export async function renderPageToCanvas(
 /**
  * Renders a batch of pages
  */
-async function renderPageBatch(tasks: PageTask[]): Promise<void> {
+async function renderPageBatch(
+  tasks: PageTask[],
+  config?: RenderConfig
+): Promise<void> {
   for (const task of tasks) {
     try {
       const canvas = await renderPageToCanvas(
@@ -131,47 +146,15 @@ async function renderPageBatch(tasks: PageTask[]): Promise<void> {
         task.fileName
       );
 
-      let placeholder: Element | null = task.placeholderElement || null;
-      if (!placeholder) {
-        placeholder = task.container.querySelector(
-          `[data-page-number="${task.pageNumber}"][data-lazy-load="true"]`
-        );
-      }
-
+      const placeholder: HTMLElement | null = task.placeholderElement || null;
       if (placeholder && placeholder.parentNode) {
         const parent = placeholder.parentNode;
         parent.insertBefore(wrapper, placeholder);
         parent.removeChild(placeholder);
-      } else {
-        const existingRendered = task.container.querySelector(
-          `[data-page-number="${task.pageNumber}"]:not([data-lazy-load="true"])`
-        );
-        if (existingRendered) {
-          continue;
-        }
-
-        const allChildren = Array.from(
-          task.container.children
-        ) as HTMLElement[];
-        let insertBefore: Element | null = null;
-
-        for (const child of allChildren) {
-          const childPageNum = parseInt(child.dataset.pageNumber || '0', 10);
-          if (childPageNum > task.pageNumber) {
-            insertBefore = child;
-            break;
-          }
-        }
-
-        if (insertBefore) {
-          task.container.insertBefore(wrapper, insertBefore);
-        } else {
-          task.container.appendChild(wrapper);
-        }
-        console.warn(
-          `Placeholder not found for page ${task.pageNumber}, inserted at calculated position`
-        );
+        config?.onPageRendered?.(task.pageNumber - 1, wrapper);
       }
+      // a missing placeholder means the container was cleared mid-render:
+      // this render is stale, drop it instead of guessing a position
     } catch (error) {
       console.error(`Error rendering page ${task.pageNumber}:`, error);
     }
@@ -183,7 +166,8 @@ async function renderPageBatch(tasks: PageTask[]): Promise<void> {
  */
 function setupLazyRendering(
   container: HTMLElement,
-  config: RenderConfig
+  config: RenderConfig,
+  state: LazyLoadState
 ): IntersectionObserver {
   const options = {
     root: container.closest('.overflow-auto') || null,
@@ -195,22 +179,17 @@ function setupLazyRendering(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const placeholder = entry.target as HTMLElement;
-        const pageNumberStr = placeholder.dataset.pageNumber;
-        if (!pageNumberStr) return;
-
-        const pageNumber = parseInt(pageNumberStr, 10);
-        const task = lazyLoadState.pendingTasksByPageNumber.get(pageNumber);
+        const task = state.pendingTasks.get(placeholder);
 
         if (task) {
           // Immediately unobserve to prevent multiple triggers
           observer.unobserve(placeholder);
-          lazyLoadState.pendingTasks.delete(placeholder);
-          lazyLoadState.pendingTasksByPageNumber.delete(pageNumber);
+          state.pendingTasks.delete(placeholder);
 
           task.placeholderElement = placeholder;
 
           // Render this page immediately (not waiting for isRendering flag)
-          renderPageBatch([task])
+          renderPageBatch([task], config)
             .then(() => {
               // Trigger callback after lazy load batch
               if (config.onBatchComplete) {
@@ -218,12 +197,8 @@ function setupLazyRendering(
               }
 
               // Check if all pages are rendered
-              if (
-                lazyLoadState.pendingTasks.size === 0 &&
-                lazyLoadState.observer
-              ) {
-                lazyLoadState.observer.disconnect();
-                lazyLoadState.observer = null;
+              if (state.pendingTasks.size === 0 && state.observer) {
+                retireLazyRender(state);
               }
             })
             .catch((error) => {
@@ -237,7 +212,7 @@ function setupLazyRendering(
     });
   }, options);
 
-  lazyLoadState.observer = observer;
+  state.observer = observer;
   return observer;
 }
 
@@ -301,15 +276,16 @@ export async function renderPagesProgressively(
   }
 
   // If lazy loading is enabled, set up observer for pages beyond initial render
+  const state = createLazyLoadState();
   if (useLazyLoading && totalPages > initialRenderCount) {
-    const observer = setupLazyRendering(container, config);
+    activeRenders.push(state);
+    const observer = setupLazyRendering(container, config, state);
 
     for (let i = initialRenderCount + 1; i <= totalPages; i++) {
       const placeholder = placeholders[i - 1];
       const task = tasks[i - 1];
       // Store the task for lazy rendering
-      lazyLoadState.pendingTasks.set(placeholder, task);
-      lazyLoadState.pendingTasksByPageNumber.set(task.pageNumber, task);
+      state.pendingTasks.set(placeholder, task);
       observer.observe(placeholder);
     }
 
@@ -319,8 +295,8 @@ export async function renderPagesProgressively(
       eagerStartIndex + eagerLoadBatches * batchSize,
       totalPages
     );
-    lazyLoadState.eagerLoadQueue = tasks.slice(eagerStartIndex, eagerEndIndex);
-    lazyLoadState.nextEagerIndex = 0;
+    state.eagerLoadQueue = tasks.slice(eagerStartIndex, eagerEndIndex);
+    state.nextEagerIndex = 0;
   }
 
   // Render initial pages in batches
@@ -333,7 +309,7 @@ export async function renderPagesProgressively(
 
     await new Promise<void>((resolve, reject) => {
       requestIdleCallbackPolyfill(() => {
-        renderPageBatch(batch)
+        renderPageBatch(batch, config)
           .then(() => {
             if (onProgress) {
               onProgress(
@@ -359,89 +335,77 @@ export async function renderPagesProgressively(
     eagerLoadBatches > 0 &&
     totalPages > initialRenderCount
   ) {
-    renderEagerBatch(config);
+    renderEagerBatch(config, state);
   }
-}
-
-/**
- * Manually observe a placeholder element (useful for dynamically created placeholders)
- */
-export function observePlaceholder(
-  placeholder: HTMLElement,
-  task: PageTask
-): void {
-  if (!lazyLoadState.observer) {
-    console.warn('No active observer to register placeholder');
-    return;
-  }
-  lazyLoadState.pendingTasks.set(placeholder, task);
-  lazyLoadState.pendingTasksByPageNumber.set(task.pageNumber, task);
-  lazyLoadState.observer.observe(placeholder);
 }
 
 /**
  * Eagerly renders the next batch in the background
  */
-function renderEagerBatch(config: RenderConfig): void {
+function renderEagerBatch(config: RenderConfig, state: LazyLoadState): void {
   const { eagerLoadBatches = 2, batchSize = 8 } = config;
 
-  if (eagerLoadBatches <= 0 || lazyLoadState.eagerLoadQueue.length === 0) {
+  if (eagerLoadBatches <= 0 || state.eagerLoadQueue.length === 0) {
     return;
   }
 
   if (config.shouldCancel?.()) return;
 
-  const { nextEagerIndex, eagerLoadQueue } = lazyLoadState;
+  const { eagerLoadQueue } = state;
 
-  if (nextEagerIndex >= eagerLoadQueue.length) {
+  if (state.nextEagerIndex >= eagerLoadQueue.length) {
     return; // All eager batches rendered
   }
 
-  const batchEnd = Math.min(nextEagerIndex + batchSize, eagerLoadQueue.length);
-  const batch = eagerLoadQueue.slice(nextEagerIndex, batchEnd);
+  const batchEnd = Math.min(
+    state.nextEagerIndex + batchSize,
+    eagerLoadQueue.length
+  );
+  const batch = eagerLoadQueue.slice(state.nextEagerIndex, batchEnd);
 
   requestIdleCallbackPolyfill(async () => {
     if (config.shouldCancel?.()) return;
 
     const tasksToRender = batch.filter((task) =>
-      lazyLoadState.pendingTasksByPageNumber.has(task.pageNumber)
+      task.placeholderElement
+        ? state.pendingTasks.has(task.placeholderElement)
+        : false
     );
 
     tasksToRender.forEach((task) => {
       const placeholder = task.placeholderElement;
-      if (placeholder && lazyLoadState.observer) {
-        lazyLoadState.observer.unobserve(placeholder);
-        lazyLoadState.pendingTasks.delete(placeholder);
-        lazyLoadState.pendingTasksByPageNumber.delete(task.pageNumber);
+      if (placeholder && state.observer) {
+        state.observer.unobserve(placeholder);
+        state.pendingTasks.delete(placeholder);
       }
     });
 
     if (tasksToRender.length === 0) {
-      lazyLoadState.nextEagerIndex = batchEnd;
+      state.nextEagerIndex = batchEnd;
       const remainingBatches = Math.ceil(
         (eagerLoadQueue.length - batchEnd) / batchSize
       );
       if (remainingBatches > 0 && remainingBatches < eagerLoadBatches) {
-        renderEagerBatch(config);
+        renderEagerBatch(config, state);
       }
       return;
     }
 
-    await renderPageBatch(tasksToRender);
+    await renderPageBatch(tasksToRender, config);
 
     if (config.onBatchComplete) {
       config.onBatchComplete();
     }
 
     // Update next eager index
-    lazyLoadState.nextEagerIndex = batchEnd;
+    state.nextEagerIndex = batchEnd;
 
     // Queue next eager batch
     const remainingBatches = Math.ceil(
       (eagerLoadQueue.length - batchEnd) / batchSize
     );
     if (remainingBatches > 0 && remainingBatches < eagerLoadBatches) {
-      renderEagerBatch(config);
+      renderEagerBatch(config, state);
     }
   });
 }
@@ -450,13 +414,8 @@ function renderEagerBatch(config: RenderConfig): void {
  * Cleanup function to disconnect observers
  */
 export function cleanupLazyRendering(): void {
-  if (lazyLoadState.observer) {
-    lazyLoadState.observer.disconnect();
-    lazyLoadState.observer = null;
+  for (const state of [...activeRenders]) {
+    retireLazyRender(state);
   }
-  lazyLoadState.pendingTasks.clear();
-  lazyLoadState.pendingTasksByPageNumber.clear();
-  lazyLoadState.isRendering = false;
-  lazyLoadState.eagerLoadQueue = [];
-  lazyLoadState.nextEagerIndex = 0;
+  activeRenders.length = 0;
 }

@@ -5,6 +5,7 @@ export interface MergeJob {
   pageIndex?: number;
   startPage?: number;
   endPage?: number;
+  pageSpec?: string;
 }
 
 export interface MergeFile {
@@ -16,19 +17,18 @@ export interface MergeMessage {
   command: 'merge';
   files: MergeFile[];
   jobs: MergeJob[];
-  cpdfUrl?: string;
-  retainPageLabels?: boolean;
-  removeDuplicateFonts?: boolean;
 }
 
 export interface MergeSuccessResponse {
   status: 'success';
   pdfBytes: ArrayBuffer;
+  files: MergeFile[];
 }
 
 export interface MergeErrorResponse {
   status: 'error';
   message: string;
+  files: MergeFile[];
 }
 
 export type MergeResponse = MergeSuccessResponse | MergeErrorResponse;

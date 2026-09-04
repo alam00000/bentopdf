@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "PDF zusammenführen",
-    "subtitle": "Mehrere PDFs zu einer Datei kombinieren. Lesezeichen werden beibehalten.",
-    "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
-    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
+    "subtitle": "Mehrere PDFs zu einer Datei kombinieren.",
+    "retainPageLabels": "Seitenbeschriftungen werden automatisch beibehalten",
+    "retainPageLabelsHint": "Die ursprünglichen Seitenbeschriftungen jeder Datei werden in das zusammengeführte PDF übernommen. Beschriftungen lassen sich beim Zusammenführen nicht entfernen.",
+    "removeDuplicateFonts": "Schriftarten bleiben unverändert",
+    "removeDuplicateFontsHint": "Das Entfernen doppelter Schriftarten wird von der aktuellen Merge-Engine nicht unterstützt."
   },
   "splitPdf": {
     "name": "PDF teilen",
@@ -515,7 +517,8 @@
       "noFile": "Keine Datei",
       "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
       "conversionSuccess": "PDF erfolgreich in TIFF konvertiert!",
-      "conversionError": "PDF konnte nicht in TIFF konvertiert werden. Die Datei könnte beschädigt sein."
+      "conversionError": "PDF konnte nicht in TIFF konvertiert werden. Die Datei könnte beschädigt sein.",
+      "conversionOutOfMemory": "Der Browser-Speicher ging während der Konvertierung aus. Versuchen Sie einen niedrigeren DPI-Wert oder deaktivieren Sie die Option „Mehrseitiges TIFF“, um die Seiten einzeln zu konvertieren."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "Seiten abwechselnd mischen",
-    "subtitle": "PDFs durch abwechselnde Seiten aus jedem PDF zusammenführen. Lesezeichen werden beibehalten.",
-    "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
-    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
+    "subtitle": "PDFs durch abwechselnde Seiten aus jedem PDF zusammenführen.",
+    "retainPageLabels": "Seitenbeschriftungen werden automatisch beibehalten",
+    "retainPageLabelsHint": "Die ursprünglichen Seitenbeschriftungen jeder Datei werden in das gemischte PDF übernommen. Beschriftungen lassen sich beim Mischen nicht entfernen."
   },
   "duplexCollate": {
     "name": "Seitenfolge für Duplex-Scans neu anordnen",

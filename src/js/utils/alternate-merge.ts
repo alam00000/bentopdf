@@ -1,31 +1,41 @@
-import { WasmProvider } from './wasm-provider';
 import { wfError } from '../workflow/errors';
-
-export interface InterleaveFile {
-  name: string;
-  data: ArrayBuffer;
-}
+import { buildInterleaveSeries } from './qpdf-merge-helpers';
+import { getPDFDocument } from './helpers';
+import type { InterleaveResponse, MergeFile } from '@/types';
 
 export async function interleavePdfs(
-  files: InterleaveFile[],
-  options?: { retainPageLabels?: boolean }
+  files: MergeFile[],
+  options?: {
+    pageCounts?: number[];
+    onFilesReturned?: (files: MergeFile[]) => void;
+  }
 ): Promise<Uint8Array> {
   if (files.length < 2) {
     throw new Error(wfError('alternateMergeNeedsTwo'));
   }
 
-  const cpdfBaseUrl = WasmProvider.getUrl('cpdf');
-  if (!cpdfBaseUrl) {
-    throw new Error(wfError('cpdfNotConfigured'));
+  let pageCounts = options?.pageCounts;
+  if (!pageCounts || pageCounts.length !== files.length) {
+    pageCounts = await Promise.all(
+      files.map(async (f) => {
+        const doc = await getPDFDocument({ data: f.data.slice(0) }).promise;
+        const count = doc.numPages;
+        await doc.destroy();
+        return count;
+      })
+    );
   }
+
+  const series = buildInterleaveSeries(pageCounts);
 
   return new Promise<Uint8Array>((resolve, reject) => {
     const worker = new Worker(
       import.meta.env.BASE_URL + 'workers/alternate-merge.worker.js'
     );
 
-    worker.onmessage = (e: MessageEvent) => {
+    worker.onmessage = (e: MessageEvent<InterleaveResponse>) => {
       worker.terminate();
+      options?.onFilesReturned?.(e.data.files);
       if (e.data.status === 'success') {
         resolve(new Uint8Array(e.data.pdfBytes));
       } else {
@@ -50,8 +60,7 @@ export async function interleavePdfs(
       {
         command: 'interleave',
         files,
-        cpdfUrl: cpdfBaseUrl + 'coherentpdf.browser.min.js',
-        retainPageLabels: options?.retainPageLabels === true,
+        series,
       },
       files.map((f) => f.data)
     );

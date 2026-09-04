@@ -54,3 +54,9 @@ test
 # Sibling checkouts of the engine/viewer forks
 bentopdf-pdfium-viewer/
 bentopdf-pymupdf-wasm/
+
+# perf harness outputs (large, reproducible)
+scripts/perf/results/*.pdf
+scripts/perf/results/run.log
+# perf harness corpus inputs (large)
+examples/

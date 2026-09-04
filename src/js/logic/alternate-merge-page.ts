@@ -3,11 +3,10 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes, getPDFDocument } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import Sortable from 'sortablejs';
-import { isCpdfAvailable } from '../utils/cpdf-helper.js';
 import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
-import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { interleavePdfs } from '../utils/alternate-merge.js';
+import { applyReturnedFiles } from '../utils/qpdf-merge-helpers.js';
 
 const pageState: AlternateMergeState = {
   files: [],
@@ -137,12 +136,6 @@ async function mixPages() {
     return;
   }
 
-  // Check if CPDF is configured
-  if (!isCpdfAvailable()) {
-    showWasmRequiredDialog('cpdf');
-    return;
-  }
-
   showLoader('Alternating and mixing pages...');
 
   try {
@@ -161,10 +154,13 @@ async function mixPages() {
     }
 
     const filesToMerge: InterleaveFile[] = [];
+    const pageCounts: number[] = [];
     for (const name of sortedFileNames) {
       const bytes = pageState.pdfBytes.get(name);
-      if (bytes) {
+      const doc = pageState.pdfDocs.get(name);
+      if (bytes && doc) {
         filesToMerge.push({ name, data: bytes });
+        pageCounts.push(doc.numPages);
       }
     }
 
@@ -174,11 +170,11 @@ async function mixPages() {
       return;
     }
 
-    const retainCheckbox = document.getElementById(
-      'retain-page-labels'
-    ) as HTMLInputElement | null;
     const mergedBytes = await interleavePdfs(filesToMerge, {
-      retainPageLabels: retainCheckbox?.checked ?? false,
+      pageCounts,
+      onFilesReturned: (files) => {
+        applyReturnedFiles(pageState.pdfBytes, files);
+      },
     });
     hideLoader();
     const blob = new Blob([new Uint8Array(mergedBytes)], {

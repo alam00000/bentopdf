@@ -1,4 +1,3 @@
-import * as pdfjsLib from 'pdfjs-dist';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import { PreviewState } from '@/types';
 import './setup-pdf-worker.js';
@@ -147,6 +146,37 @@ function handleKeydown(e: KeyboardEvent): void {
 
 document.addEventListener('keydown', handleKeydown);
 
+export function attachPreviewButton(
+  thumb: HTMLElement,
+  pdfjsDoc: PDFDocumentProxy,
+  pageNum: number,
+  totalPages: number
+): void {
+  if (thumb.dataset.previewInit) return;
+  thumb.dataset.previewInit = 'true';
+
+  const icon = document.createElement('button');
+  icon.className =
+    'page-preview-btn absolute bottom-1 right-1 bg-gray-900/80 hover:bg-indigo-600 text-white/70 hover:text-white rounded-full w-7 h-7 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10';
+  icon.title = 'Preview';
+  icon.innerHTML =
+    '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>';
+  icon.addEventListener('click', (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    showPreview(pdfjsDoc, pageNum, totalPages);
+  });
+
+  if (!thumb.classList.contains('relative')) {
+    thumb.classList.add('relative');
+  }
+  if (!thumb.classList.contains('group')) {
+    thumb.classList.add('group');
+  }
+
+  thumb.appendChild(icon);
+}
+
 export function initPagePreview(
   container: HTMLElement,
   pdfjsDoc: PDFDocumentProxy,
@@ -159,52 +189,26 @@ export function initPagePreview(
   );
 
   thumbnails.forEach((thumb) => {
-    if (thumb.dataset.previewInit) return;
-    thumb.dataset.previewInit = 'true';
-
     let pageNum = 1;
     if (thumb.dataset.pageNumber) {
       pageNum = parseInt(thumb.dataset.pageNumber, 10);
     } else if (thumb.dataset.pageIndex !== undefined) {
       pageNum = parseInt(thumb.dataset.pageIndex, 10) + 1;
     }
-
-    const icon = document.createElement('button');
-    icon.className =
-      'page-preview-btn absolute bottom-1 right-1 bg-gray-900/80 hover:bg-indigo-600 text-white/70 hover:text-white rounded-full w-7 h-7 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10';
-    icon.title = 'Preview';
-    icon.innerHTML =
-      '<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>';
-    icon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      showPreview(pdfjsDoc, pageNum, totalPages);
-    });
-
-    if (!thumb.classList.contains('relative')) {
-      thumb.classList.add('relative');
-    }
-    if (!thumb.classList.contains('group')) {
-      thumb.classList.add('group');
-    }
-
-    thumb.appendChild(icon);
+    attachPreviewButton(thumb, pdfjsDoc, pageNum, totalPages);
   });
+
+  if (container.dataset.previewKeydownInit) return;
+  container.dataset.previewKeydownInit = 'true';
 
   container.addEventListener('keydown', (e) => {
     if (e.key === ' ' && !state.isOpen) {
-      const hovered = container.querySelector<HTMLElement>(
-        '[data-preview-init]:hover'
+      const hoveredBtn = container.querySelector<HTMLButtonElement>(
+        '[data-preview-init]:hover .page-preview-btn'
       );
-      if (hovered) {
+      if (hoveredBtn) {
         e.preventDefault();
-        let pageNum = 1;
-        if (hovered.dataset.pageNumber) {
-          pageNum = parseInt(hovered.dataset.pageNumber, 10);
-        } else if (hovered.dataset.pageIndex !== undefined) {
-          pageNum = parseInt(hovered.dataset.pageIndex, 10) + 1;
-        }
-        showPreview(pdfjsDoc, pageNum, totalPages);
+        hoveredBtn.click();
       }
     }
   });

@@ -327,8 +327,6 @@ class WasmProviderManager {
       ],
       ghostscript: ['PDF/A Conversion', 'Font to Outline'],
       cpdf: [
-        'Merge PDF',
-        'Alternate Merge',
         'Split by Bookmarks',
         'Table of Contents',
         'PDF to JSON',

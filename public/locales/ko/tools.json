@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "PDF 병합",
-    "subtitle": "여러 PDF를 하나로 합칩니다. 북마크도 유지됩니다.",
-    "retainPageLabels": "각 파일의 원래 페이지 레이블 유지",
-    "retainPageLabelsHint": "꺼짐(기본): 병합된 PDF는 1–N의 자연스러운 페이지 번호를 사용합니다. 켜짐: 각 파일의 원래 페이지 레이블이 유지됩니다(중복 레이블이 발생할 수 있음)."
+    "subtitle": "여러 PDF를 하나의 파일로 합칩니다.",
+    "retainPageLabels": "페이지 레이블은 자동으로 유지됩니다",
+    "retainPageLabelsHint": "각 파일의 원래 페이지 레이블은 병합된 PDF에 그대로 반영됩니다. 병합 시 레이블을 제거할 수 없습니다.",
+    "removeDuplicateFonts": "글꼴은 그대로 유지됩니다",
+    "removeDuplicateFontsHint": "중복 글꼴 제거는 현재 병합 엔진에서 지원되지 않습니다."
   },
   "splitPdf": {
     "name": "PDF 분할",
@@ -515,7 +517,8 @@
       "noFile": "파일 없음",
       "noFileExplanation": "먼저 PDF 파일을 업로드하세요.",
       "conversionSuccess": "PDF가 TIFF로 변환되었습니다!",
-      "conversionError": "PDF를 TIFF로 변환하지 못했습니다. 파일이 손상되었을 수 있습니다."
+      "conversionError": "PDF를 TIFF로 변환하지 못했습니다. 파일이 손상되었을 수 있습니다.",
+      "conversionOutOfMemory": "변환 중에 브라우저 메모리가 부족합니다. DPI를 낮추거나 멀티페이지 TIFF 옵션의 선택을 해제하여 페이지를 한 장씩 변환해 보세요."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "페이지 교차 병합",
-    "subtitle": "각 PDF의 페이지를 번갈아 가며 병합합니다. 북마크도 유지됩니다.",
-    "retainPageLabels": "각 파일의 원래 페이지 레이블 유지",
-    "retainPageLabelsHint": "꺼짐(기본): 병합된 PDF는 1–N의 자연스러운 페이지 번호를 사용합니다. 켜짐: 각 파일의 원래 페이지 레이블이 유지됩니다(중복 레이블이 발생할 수 있음)."
+    "subtitle": "각 PDF의 페이지를 번갈아 배치하여 PDF를 합칩니다.",
+    "retainPageLabels": "페이지 레이블은 자동으로 유지됩니다",
+    "retainPageLabelsHint": "각 파일의 원래 페이지 레이블은 섞인 PDF에 그대로 반영됩니다. 섞을 때 레이블을 제거할 수 없습니다."
   },
   "duplexCollate": {
     "name": "양면 스캔 정렬",
@@ -1002,8 +1005,7 @@
     "subtitle": "PDF에서 텍스트를 추출하여 텍스트 파일(.txt)로 저장합니다. 여러 파일 지원.",
     "noteLabel": "참고:",
     "noteText": "이 도구는 디지털로 만든 PDF에서만 작동합니다. 스캔된 문서나 이미지 기반 PDF의 경우 OCR PDF 도구를 사용하세요.",
-    "convertButton": "텍스트 추출",
-    "note": "이 도구는 디지털로 생성된 PDF에서만 작동합니다. 스캔 문서나 이미지 기반 PDF는 OCR PDF 도구를 사용해 주세요."
+    "convertButton": "텍스트 추출"
   },
   "digitalSignPdf": {
     "name": "PDF 디지털 서명",

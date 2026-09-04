@@ -6,12 +6,12 @@ import {
   renderPagesProgressively,
   cleanupLazyRendering,
 } from '../utils/render-utils.js';
-import { initPagePreview } from '../utils/page-preview.js';
-import { isCpdfAvailable } from '../utils/cpdf-helper.js';
+import { initPagePreview, attachPreviewButton } from '../utils/page-preview.js';
 import {
-  showWasmRequiredDialog,
-  WasmProvider,
-} from '../utils/wasm-provider.js';
+  mergeJobToPageSpec,
+  validatePageRangeString,
+  applyReturnedFiles,
+} from '../utils/qpdf-merge-helpers.js';
 
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -204,6 +204,14 @@ async function renderPageMergeThumbnails() {
           onBatchComplete: () => {
             createIcons({ icons });
           },
+          onPageRendered: (pageIndex, element) => {
+            attachPreviewButton(
+              element,
+              pdfjsDoc,
+              pageIndex + 1,
+              pdfjsDoc.numPages
+            );
+          },
         }
       );
 
@@ -276,12 +284,6 @@ const resetState = async () => {
 };
 
 export async function merge() {
-  // Check if CPDF is configured
-  if (!isCpdfAvailable()) {
-    showWasmRequiredDialog('cpdf');
-    return;
-  }
-
   showLoader('Merging PDFs...');
   try {
     const jobs: MergeJob[] = [];
@@ -305,10 +307,21 @@ export async function merge() {
         uniqueFileNames.add(fileKey);
 
         if (rangeInput && rangeInput.value.trim()) {
+          const rawRange = rangeInput.value.trim();
+          const totalPages = mergeState.pdfDocs[fileKey]?.numPages ?? 0;
+          const spec = validatePageRangeString(rawRange, totalPages);
+          if (!spec) {
+            showAlert(
+              'Error',
+              `Invalid page range "${rawRange}" — this file has ${totalPages} pages.`
+            );
+            hideLoader();
+            return;
+          }
           jobs.push({
             fileName: fileKey,
             rangeType: 'specific',
-            rangeString: rangeInput.value.trim(),
+            rangeString: spec,
           });
         } else {
           jobs.push({
@@ -381,21 +394,23 @@ export async function merge() {
       }
     }
 
-    const retainCheckbox = document.getElementById(
-      'retain-page-labels'
-    ) as HTMLInputElement | null;
-
-    const removeDuplicateFontsCheckbox = document.getElementById(
-      'remove-duplicate-fonts'
-    ) as HTMLInputElement | null;
+    for (const job of jobs) {
+      const pageSpec = mergeJobToPageSpec(job);
+      if (pageSpec === null) {
+        showAlert(
+          'Error',
+          `Could not determine the page range for ${job.fileName}.`
+        );
+        hideLoader();
+        return;
+      }
+      job.pageSpec = pageSpec;
+    }
 
     const message: MergeMessage = {
       command: 'merge',
       files: filesToMerge,
       jobs: jobs,
-      cpdfUrl: WasmProvider.getUrl('cpdf')! + 'coherentpdf.browser.min.js',
-      retainPageLabels: retainCheckbox?.checked ?? false,
-      removeDuplicateFonts: removeDuplicateFontsCheckbox?.checked ?? false,
     };
 
     mergeWorker.postMessage(
@@ -404,6 +419,15 @@ export async function merge() {
     );
 
     mergeWorker.onmessage = (e: MessageEvent<MergeResponse>) => {
+      applyReturnedFiles(
+        {
+          get: (name) => mergeState.pdfBytes[name],
+          set: (name, data) => {
+            mergeState.pdfBytes[name] = data;
+          },
+        },
+        e.data.files
+      );
       hideLoader();
       if (e.data.status === 'success') {
         const blob = new Blob([e.data.pdfBytes], { type: 'application/pdf' });

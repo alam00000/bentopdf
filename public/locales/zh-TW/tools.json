@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "合併 PDF",
-    "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。",
-    "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "subtitle": "將多個 PDF 合併為一個檔案。",
+    "retainPageLabels": "頁面標籤會自動保留",
+    "retainPageLabelsHint": "每個檔案的原始頁面標籤都會帶入合併後的 PDF。合併時無法移除標籤。",
+    "removeDuplicateFonts": "字型會保持原樣",
+    "removeDuplicateFontsHint": "目前的合併引擎不支援移除重複字型。"
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -515,7 +517,8 @@
       "noFile": "沒有檔案",
       "noFileExplanation": "請先上傳 PDF 檔案。",
       "conversionSuccess": "PDF 已成功轉換為 TIFF！",
-      "conversionError": "無法將 PDF 轉換為 TIFF。檔案可能已損壞。"
+      "conversionError": "無法將 PDF 轉換為 TIFF。檔案可能已損壞。",
+      "conversionOutOfMemory": "轉換時瀏覽器記憶體不足。請嘗試較低的 DPI，或取消勾選多頁 TIFF 選項以逐頁轉換。"
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "交錯混合頁面",
-    "subtitle": "將每個 PDF 的頁面交錯合併。保留書籤。",
-    "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "subtitle": "將每個 PDF 的頁面交錯合併。",
+    "retainPageLabels": "頁面標籤會自動保留",
+    "retainPageLabelsHint": "每個檔案的原始頁面標籤都會帶入混合後的 PDF。混合時無法移除標籤。"
   },
   "duplexCollate": {
     "name": "雙面掃描整理",

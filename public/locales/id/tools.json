@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "Gabung PDF",
-    "subtitle": "Gabungkan beberapa PDF menjadi satu file. Mempertahankan Bookmark.",
-    "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
-    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
+    "subtitle": "Gabungkan beberapa PDF menjadi satu file.",
+    "retainPageLabels": "Label halaman dipertahankan secara otomatis",
+    "retainPageLabelsHint": "Label halaman asli dari setiap file dibawa ke PDF yang digabungkan. Label tidak dapat dihapus saat penggabungan.",
+    "removeDuplicateFonts": "Font dipertahankan apa adanya",
+    "removeDuplicateFontsHint": "Penghapusan font duplikat tidak didukung oleh mesin penggabungan saat ini."
   },
   "splitPdf": {
     "name": "Pisah PDF",
@@ -515,7 +517,8 @@
       "noFile": "Tidak Ada File",
       "noFileExplanation": "Silakan unggah file PDF terlebih dahulu.",
       "conversionSuccess": "PDF berhasil dikonversi ke TIFF!",
-      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak."
+      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak.",
+      "conversionOutOfMemory": "Memori browser habis saat konversi. Coba DPI yang lebih rendah, atau hapus centang opsi TIFF multi-halaman untuk mengonversi halaman satu per satu."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "Alternatif & Campur Halaman",
-    "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF. Mempertahankan Bookmark.",
-    "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
-    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
+    "subtitle": "Gabungkan PDF dengan menempatkan halaman dari setiap PDF secara bergantian.",
+    "retainPageLabels": "Label halaman dipertahankan secara otomatis",
+    "retainPageLabelsHint": "Label halaman asli dari setiap file dibawa ke PDF yang dicampur. Label tidak dapat dihapus saat pencampuran."
   },
   "duplexCollate": {
     "name": "Susun Ulang Pindaian Dupleks",
@@ -1002,8 +1005,7 @@
     "subtitle": "Ekstrak teks dari file PDF dan simpan sebagai teks biasa (.txt). Mendukung beberapa file.",
     "noteLabel": "Catatan:",
     "noteText": "Alat ini HANYA bekerja dengan PDF yang dibuat secara digital. Untuk dokumen pindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya.",
-    "convertButton": "Ekstrak Teks",
-    "note": "Alat ini bekerja HANYA dengan PDF yang dibuat secara digital. Untuk dokumen terpindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya."
+    "convertButton": "Ekstrak Teks"
   },
   "digitalSignPdf": {
     "name": "Tanda Tangan Digital PDF",

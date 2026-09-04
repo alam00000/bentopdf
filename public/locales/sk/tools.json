@@ -17,9 +17,11 @@
   },
   "mergePdf": {
     "name": "Spojiť PDF",
-    "subtitle": "Spojiť viacero PDF do jedného súboru. Zachováva záložky.",
-    "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
-    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia)."
+    "subtitle": "Spojiť viacero PDF do jedného súboru.",
+    "retainPageLabels": "Označenia strán sa zachovávajú automaticky",
+    "retainPageLabelsHint": "Pôvodné označenia strán každého súboru sa prenášajú do spojeného PDF. Označenia nemožno pri spájaní odstrániť.",
+    "removeDuplicateFonts": "Písma zostávajú nezmenené",
+    "removeDuplicateFontsHint": "Odstránenie duplicitných písiem nie je v aktuálnom nástroji na spájanie podporované."
   },
   "splitPdf": {
     "name": "Rozdeliť PDF",
@@ -515,7 +517,8 @@
       "noFile": "Žiadny súbor",
       "noFileExplanation": "Najskôr nahrajte PDF súbor.",
       "conversionSuccess": "PDF bolo úspešne skonvertované do TIFF!",
-      "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený."
+      "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený.",
+      "conversionOutOfMemory": "Pamäť prehliadača sa počas konverzie minula. Skúste nižší DPI, alebo zrušte zaškrtnutie voľby viacstránkového TIFF a konvertujte stránky po jednej."
     }
   },
   "pdfToCbz": {
@@ -626,9 +629,9 @@
   },
   "alternateMerge": {
     "name": "Striedavo spojiť a zmiešať strany",
-    "subtitle": "Spojiť PDF striedaním strán z každého PDF. Zachováva záložky.",
-    "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
-    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia)."
+    "subtitle": "Spojiť PDF striedaním strán z každého PDF.",
+    "retainPageLabels": "Označenia strán sa zachovávajú automaticky",
+    "retainPageLabelsHint": "Pôvodné označenia strán každého súboru sa prenášajú do zmiešaného PDF. Označenia nemožno pri miešaní odstrániť."
   },
   "duplexCollate": {
     "name": "Usporiadať obojstranné skenovanie",
