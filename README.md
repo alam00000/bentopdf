@@ -304,6 +304,7 @@ BentoPDF is available in multiple languages:
 | Vietnamese          | [![Vietnamese](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/vi/common.json)             |
 | Korean              | [![Korean](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/ko/common.json)                 |
 | Russian             | [![Russian](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/ru/common.json)                |
+| Persian (Farsi)     | [![Persian](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/fa/common.json)                |
 
 Want to help translate BentoPDF into your language? Check out our [Translation Guide](TRANSLATION.md)!
 
