@@ -177,7 +177,7 @@
   },
   "signPdf": {
     "name": "PDF Ondertekenen",
-    "subtitle": "Een handtekening tekenen, typen, of invoegen."
+    "subtitle": "Een handtekening tekenen, typen of invoegen."
   },
   "cropPdf": {
     "name": "PDF Bijsnijden",
@@ -263,13 +263,13 @@
     "fileMeta": "{{size}} • {{count}} pagina's",
     "ruleTitle": "Labelregel {{number}}",
     "pageRangeLabel": "Paginabereik",
-    "pageRangePlaceholder": "Alle pagina's, of bijv. 1-4, 7, oneven",
+    "pageRangePlaceholder": "Alle pagina's of bijv. 1-4, 7, oneven",
     "labelStyleLabel": "Labelstijl",
     "labelPrefixLabel": "Labelvoorvoegsel",
     "labelPrefixPlaceholder": "Optioneel voorvoegsel, bijv. A-",
     "startValueLabel": "Startwaarde",
     "continueNumbering": "Nummering voortzetten over onderbroken bereiken",
-    "examplesNote": "Voorbeelden: 1-4 voor voorwerk met Romeinse cijfers, 15-20 met voorvoegsel A- en startwaarde 0, of oneven pagina's met voortgang ingeschakeld.",
+    "examplesNote": "Voorbeelden: 1-4 voor voorwerk met Romeinse cijfers, 15-20 met voorvoegsel A- en startwaarde 0 of oneven pagina's met voortgang ingeschakeld.",
     "uploadFirstMessage": "Upload eerst een PDF-bestand.",
     "applyingLabels": "Paginalabels toepassen...",
     "invalidRangeMessage": "Regel {{number}} heeft een ongeldig paginabereik: {{range}}",
@@ -669,7 +669,7 @@
     "howItWorksStep2Title": "Stel het splitspunt in",
     "howItWorksStep2": "Geef aan waar het voorkantblok eindigt en kies of het achterkantblok omgekeerd moet worden.",
     "howItWorksStep3Title": "Sorteer en download",
-    "howItWorksStep3": "Je krijgt één PDF met afwisselende pagina's, of een ZIP met een apart bestand per origineel document.",
+    "howItWorksStep3": "Je krijgt één PDF met afwisselende pagina's of een ZIP met een apart bestand per origineel document.",
     "faqOddPagesQuestion": "Wat als mijn scan een oneven aantal pagina's heeft?",
     "faqOddPagesAnswer": "Een dubbelzijdige scan hoort een even aantal pagina's te hebben. Is dat niet zo, dan is er waarschijnlijk een pagina dubbel gescand of overgeslagen. De tool waarschuwt je voor het verwerken, en pagina's zonder tegenhanger worden achteraan toegevoegd zodat er niets verloren gaat.",
     "faqBackOrderQuestion": "Waarom zou ik het achterkantblok ongewijzigd laten?",
