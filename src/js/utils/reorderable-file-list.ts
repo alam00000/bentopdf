@@ -38,13 +38,18 @@ export function renderReorderableFileList({
   destroyReorderableFileList(container);
   container.textContent = '';
 
-  files.forEach((file, index) => {
+  // The rows are re-indexed in place after every drag and the caller only
+  // rebinds its own array, so the order has to be tracked here: reading the
+  // render-time `files` again would map fresh indices onto a stale array.
+  let currentFiles = [...files];
+
+  currentFiles.forEach((file, index) => {
     container.appendChild(createFileRow(file, index, onRemove));
   });
 
   createIcons({ icons });
 
-  if (files.length === 0) return;
+  if (currentFiles.length === 0) return;
 
   const instance = Sortable.create(container, {
     handle: '.drag-handle',
@@ -59,7 +64,8 @@ export function renderReorderableFileList({
       evt.item.style.opacity = '1';
       // Sync in place rather than re-rendering: destroying the Sortable
       // instance from inside its own onEnd handler is not safe.
-      onReorder(syncOrderWithDom(container, files));
+      currentFiles = syncOrderWithDom(container, currentFiles);
+      onReorder(currentFiles);
     },
   });
 
