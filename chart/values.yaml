@@ -88,3 +88,7 @@ readinessProbe:
   httpGet:
     path: /
     port: http
+
+extraVolumes: []
+
+extraVolumeMounts: []
