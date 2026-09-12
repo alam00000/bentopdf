@@ -1,8 +1,9 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { TIMESTAMP_TSA_PRESETS } from '@/js/config/timestamp-tsa';
 
-const mockSign = vi.fn();
+const { mockSign } = vi.hoisted(() => ({ mockSign: vi.fn() }));
 
 vi.mock('zgapdfsigner', () => {
   const MockPdfSigner = vi.fn(function (this: { sign: typeof mockSign }) {
@@ -12,7 +13,13 @@ vi.mock('zgapdfsigner', () => {
 });
 
 import { PdfSigner } from 'zgapdfsigner';
-import { timestampPdf } from '@/js/logic/digital-sign-pdf';
+
+function stubPageOrigin(origin: string): void {
+  vi.stubGlobal('window', {
+    location: new URL(origin),
+    fetch: vi.fn().mockRejectedValue(new Error('Unexpected network request')),
+  });
+}
 
 const SAMPLE_PDF_PATH = path.resolve(__dirname, './fixtures/sample.pdf');
 const SAMPLE_PDF_SHA256 =
@@ -30,12 +37,41 @@ async function sha256(data: Uint8Array): Promise<string> {
 
 describe('timestampPdf', () => {
   let samplePdfBytes: Uint8Array;
+  let timestampPdf: typeof import('@/js/logic/digital-sign-pdf').timestampPdf;
 
-  beforeEach(() => {
-    vi.clearAllMocks();
+  beforeEach(async () => {
+    vi.resetAllMocks();
+    vi.resetModules();
     vi.stubEnv('VITE_CORS_PROXY_URL', '');
     vi.stubEnv('VITE_CORS_PROXY_SECRET', '');
+    stubPageOrigin('http://localhost');
+    ({ timestampPdf } = await import('@/js/logic/digital-sign-pdf'));
     samplePdfBytes = new Uint8Array(fs.readFileSync(SAMPLE_PDF_PATH));
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.unstubAllEnvs();
+    vi.resetAllMocks();
+    vi.resetModules();
+  });
+
+  it('should use the unchanged HTTPS default without a proxy on an HTTPS page', async () => {
+    stubPageOrigin('https://www.bentopdf.com');
+    const fetchSpy = window.fetch;
+    const fakeSigned = new Uint8Array([1, 2, 3]);
+    mockSign.mockResolvedValueOnce(fakeSigned);
+    const defaultUrl = TIMESTAMP_TSA_PRESETS[0].url;
+
+    const result = await timestampPdf(samplePdfBytes, defaultUrl);
+
+    expect(new URL(defaultUrl).protocol).toBe('https:');
+    expect(PdfSigner).toHaveBeenCalledExactlyOnceWith({
+      signdate: { url: defaultUrl },
+    });
+    expect(mockSign).toHaveBeenCalledExactlyOnceWith(samplePdfBytes);
+    expect(result).toEqual(fakeSigned);
+    expect(fetchSpy).not.toHaveBeenCalled();
   });
 
   it('should load the correct sample PDF', async () => {
@@ -117,6 +153,7 @@ describe('timestampPdf', () => {
   });
 
   it('should pre-proxy the TSA URL when CORS proxy is configured', async () => {
+    stubPageOrigin('https://www.bentopdf.com');
     vi.stubEnv(
       'VITE_CORS_PROXY_URL',
       'https://bentopdf-cors-proxy.bentopdf.workers.dev'
@@ -131,26 +168,19 @@ describe('timestampPdf', () => {
     const callArg = vi.mocked(PdfSigner).mock.calls[0][0] as {
       signdate: { url: string };
     };
-    expect(callArg.signdate.url).toMatch(
-      /^https:\/\/bentopdf-cors-proxy\.bentopdf\.workers\.dev\?url=/
-    );
-    expect(callArg.signdate.url).toContain(
-      encodeURIComponent('http://timestamp.digicert.com')
+    expect(callArg.signdate.url).toBe(
+      'https://bentopdf-cors-proxy.bentopdf.workers.dev?url=' +
+        encodeURIComponent('http://timestamp.digicert.com')
     );
   });
 
   it('should throw a clear error when HTTPS page targets HTTP TSA without proxy', async () => {
-    vi.stubEnv('VITE_CORS_PROXY_URL', '');
-    Object.defineProperty(window, 'location', {
-      configurable: true,
-      value: { protocol: 'https:', origin: 'https://www.bentopdf.com' },
-    });
-    vi.resetModules();
-    const { timestampPdf: freshTimestamp } =
-      await import('@/js/logic/digital-sign-pdf');
+    stubPageOrigin('https://www.bentopdf.com');
 
     await expect(
-      freshTimestamp(samplePdfBytes, 'http://timestamp.digicert.com')
+      timestampPdf(samplePdfBytes, 'http://timestamp.digicert.com')
     ).rejects.toThrow(/HTTPS page|VITE_CORS_PROXY_URL/);
+    expect(PdfSigner).not.toHaveBeenCalled();
+    expect(mockSign).not.toHaveBeenCalled();
   });
 });
