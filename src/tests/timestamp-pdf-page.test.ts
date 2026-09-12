@@ -1,5 +1,26 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { TIMESTAMP_TSA_PRESETS } from '@/js/config/timestamp-tsa';
+import { readFileAsArrayBuffer, downloadFile } from '@/js/utils/helpers';
+import { timestampPdf } from '@/js/logic/digital-sign-pdf';
+
+vi.mock('lucide', () => ({ createIcons: vi.fn(), icons: {} }));
+vi.mock('@/js/ui', () => ({
+  showAlert: vi.fn(),
+  showLoader: vi.fn(),
+  hideLoader: vi.fn(),
+}));
+vi.mock('@/js/i18n/i18n', () => ({ t: (key: string) => key }));
+vi.mock('@/js/utils/helpers', () => ({
+  readFileAsArrayBuffer: vi.fn(),
+  formatBytes: vi.fn(() => '3 bytes'),
+  downloadFile: vi.fn(),
+  getPDFDocument: vi.fn(() => ({
+    promise: Promise.resolve({ numPages: 1 }),
+  })),
+}));
+vi.mock('@/js/logic/digital-sign-pdf', () => ({
+  timestampPdf: vi.fn(),
+}));
 
 /**
  * Tests for the Timestamp PDF page logic.
@@ -27,28 +48,31 @@ describe('Timestamp PDF Page', () => {
   });
 
   describe('TSA Preset Population', () => {
+    beforeEach(async () => {
+      vi.clearAllMocks();
+      vi.resetModules();
+      const addListener = vi.spyOn(document, 'addEventListener');
+      try {
+        await import('@/js/logic/timestamp-pdf-page');
+        document.dispatchEvent(new Event('DOMContentLoaded'));
+      } finally {
+        // The page module registers a new listener on every fresh import.
+        for (const [type, listener, options] of addListener.mock.calls) {
+          if (type === 'DOMContentLoaded') {
+            document.removeEventListener(type, listener, options);
+          }
+        }
+        addListener.mockRestore();
+      }
+    });
+
     it('should populate the TSA preset select element with all presets', () => {
       const select = document.getElementById('tsa-preset') as HTMLSelectElement;
-
-      for (const preset of TIMESTAMP_TSA_PRESETS) {
-        const option = document.createElement('option');
-        option.value = preset.url;
-        option.textContent = preset.label;
-        select.append(option);
-      }
-
       expect(select.options.length).toBe(TIMESTAMP_TSA_PRESETS.length);
     });
 
     it('should set option values to TSA URLs', () => {
       const select = document.getElementById('tsa-preset') as HTMLSelectElement;
-
-      for (const preset of TIMESTAMP_TSA_PRESETS) {
-        const option = document.createElement('option');
-        option.value = preset.url;
-        option.textContent = preset.label;
-        select.append(option);
-      }
 
       for (let i = 0; i < TIMESTAMP_TSA_PRESETS.length; i++) {
         expect(select.options[i].value).toBe(TIMESTAMP_TSA_PRESETS[i].url);
@@ -57,6 +81,51 @@ describe('Timestamp PDF Page', () => {
         );
       }
     });
+
+    it('should select the HTTPS default during page initialization', () => {
+      const select = document.getElementById('tsa-preset') as HTMLSelectElement;
+      expect(select.value).toBe(TIMESTAMP_TSA_PRESETS[0].url);
+      expect(new URL(select.value).protocol).toBe('https:');
+    });
+
+    it.each([undefined, 'http://timestamp.digicert.com'])(
+      'should timestamp an uploaded PDF with the default or explicit selection (%s)',
+      async (explicitUrl) => {
+        const pdfBytes = new Uint8Array([1, 2, 3]);
+        vi.mocked(readFileAsArrayBuffer).mockResolvedValueOnce(pdfBytes.buffer);
+        vi.mocked(timestampPdf).mockResolvedValueOnce(
+          new Uint8Array([4, 5, 6])
+        );
+        const select = document.getElementById(
+          'tsa-preset'
+        ) as HTMLSelectElement;
+        if (explicitUrl) select.value = explicitUrl;
+        const selectedUrl = select.value;
+        if (!explicitUrl) expect(new URL(selectedUrl).protocol).toBe('https:');
+
+        const fileInput = document.getElementById(
+          'file-input'
+        ) as HTMLInputElement;
+        const file = new File([pdfBytes], 'document.pdf', {
+          type: 'application/pdf',
+        });
+        Object.defineProperty(fileInput, 'files', { value: [file] });
+        fileInput.dispatchEvent(new Event('change'));
+
+        const processBtn = document.getElementById(
+          'process-btn'
+        ) as HTMLButtonElement;
+        await vi.waitFor(() => expect(processBtn.disabled).toBe(false));
+        processBtn.click();
+
+        await vi.waitFor(() => expect(downloadFile).toHaveBeenCalledOnce());
+        expect(timestampPdf).toHaveBeenCalledExactlyOnceWith(
+          pdfBytes,
+          selectedUrl
+        );
+        expect(processBtn.disabled).toBe(true);
+      }
+    );
   });
 
   describe('File Validation', () => {

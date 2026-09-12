@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TIMESTAMP_TSA_PRESETS } from '@/js/config/timestamp-tsa';
+import type { ClassicPreset } from 'rete';
 
 // Mock external dependencies before importing the node
 vi.mock('rete', () => ({
@@ -38,11 +39,15 @@ vi.mock('@/js/workflow/sockets', () => ({
   pdfSocket: {},
 }));
 
+vi.mock('@/js/i18n/i18n', () => ({ t: (key: string) => key }));
+
 vi.mock('@/js/workflow/nodes/base-node', () => ({
   BaseWorkflowNode: class {
     addInput() {}
     addOutput() {}
-    addControl() {}
+    addControl(key: string, control: unknown) {
+      this.controls[key] = control;
+    }
     controls: Record<string, unknown> = {};
     sanitizeControlValue(key: string, value: unknown): unknown {
       const control = this.controls[key];
@@ -120,10 +125,13 @@ describe('TimestampNode', () => {
     expect(presets.length).toBeGreaterThan(0);
   });
 
-  it('should use the first TSA preset as default URL', () => {
+  it('should initialize the TSA control with the HTTPS default', () => {
     const node = new TimestampNode();
-    const presets = node.getTsaPresets();
-    expect(presets[0].url).toBe(TIMESTAMP_TSA_PRESETS[0].url);
+    const control = node.controls[
+      'tsaUrl'
+    ] as ClassicPreset.InputControl<'text'>;
+    expect(control.value).toBe(TIMESTAMP_TSA_PRESETS[0].url);
+    expect(new URL(control.value).protocol).toBe('https:');
   });
 
   it('should call timestampPdf with correct TSA URL via data()', async () => {
@@ -139,10 +147,63 @@ describe('TimestampNode', () => {
 
     await node.data({ pdf: mockInput });
 
-    expect(timestampPdf).toHaveBeenCalledWith(
+    const control = node.controls[
+      'tsaUrl'
+    ] as ClassicPreset.InputControl<'text'>;
+    expect(new URL(control.value).protocol).toBe('https:');
+    expect(timestampPdf).toHaveBeenCalledExactlyOnceWith(
       mockInput[0].bytes,
-      TIMESTAMP_TSA_PRESETS[0].url
+      control.value
     );
+  });
+
+  it.each(['absent', 'empty', 'invalid import'])(
+    'should use the HTTPS default for an %s TSA control',
+    async (scenario) => {
+      const node = new TimestampNode();
+      const control = node.controls[
+        'tsaUrl'
+      ] as ClassicPreset.InputControl<'text'>;
+      if (scenario === 'absent') {
+        delete node.controls['tsaUrl'];
+      } else {
+        control.value =
+          scenario === 'empty'
+            ? ''
+            : (node.sanitizeControlValue(
+                'tsaUrl',
+                'https://attacker.example.com/steal-tsr'
+              ) as string);
+      }
+      const bytes = new Uint8Array([1, 2, 3]);
+      await node.data({
+        pdf: [
+          { type: 'pdf', document: {} as never, bytes, filename: 'test.pdf' },
+        ],
+      });
+      expect(new URL(TIMESTAMP_TSA_PRESETS[0].url).protocol).toBe('https:');
+      expect(timestampPdf).toHaveBeenCalledExactlyOnceWith(
+        bytes,
+        TIMESTAMP_TSA_PRESETS[0].url
+      );
+    }
+  );
+
+  it('should preserve and use an explicitly imported HTTP provider', async () => {
+    const node = new TimestampNode();
+    const control = node.controls[
+      'tsaUrl'
+    ] as ClassicPreset.InputControl<'text'>;
+    const explicitUrl = 'http://timestamp.digicert.com';
+    control.value = node.sanitizeControlValue('tsaUrl', explicitUrl) as string;
+    expect(control.value).toBe(explicitUrl);
+    const bytes = new Uint8Array([1, 2, 3]);
+    await node.data({
+      pdf: [
+        { type: 'pdf', document: {} as never, bytes, filename: 'test.pdf' },
+      ],
+    });
+    expect(timestampPdf).toHaveBeenCalledExactlyOnceWith(bytes, explicitUrl);
   });
 
   it('should generate _timestamped suffix in output filename via data()', async () => {
