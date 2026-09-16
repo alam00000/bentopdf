@@ -243,7 +243,7 @@ function processFileForLanguage(
   const document = dom.window.document;
 
   document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.dir = ['ar', 'fa'].includes(lang) ? 'rtl' : 'ltr';
 
   applyServerTranslations(document, translations[lang]);
 
