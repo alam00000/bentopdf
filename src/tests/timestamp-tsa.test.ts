@@ -1,8 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterEach, vi } from 'vitest';
 import {
+  DEFAULT_TIMESTAMP_TSA_PRESETS,
   TIMESTAMP_TSA_PRESETS,
   isAllowedTsaUrl,
   isValidTsaRequestUrl,
+  parseTsaEndpoints,
+  resolveTimestampTsaPresets,
   type TimestampTsaPreset,
 } from '@/js/config/timestamp-tsa';
 
@@ -101,5 +104,120 @@ describe('isValidTsaRequestUrl', () => {
     expect(isValidTsaRequestUrl('   ')).toBe(false);
     expect(isValidTsaRequestUrl(42)).toBe(false);
     expect(isValidTsaRequestUrl(null)).toBe(false);
+  });
+});
+
+describe('parseTsaEndpoints', () => {
+  it('returns an empty list when nothing is configured', () => {
+    expect(parseTsaEndpoints(undefined)).toEqual([]);
+    expect(parseTsaEndpoints('')).toEqual([]);
+    expect(parseTsaEndpoints('   ')).toEqual([]);
+    expect(parseTsaEndpoints(',, ,')).toEqual([]);
+  });
+
+  it('labels a bare URL with its hostname', () => {
+    expect(parseTsaEndpoints('https://tsa.example.org/tsr')).toEqual([
+      { label: 'tsa.example.org', url: 'https://tsa.example.org/tsr' },
+    ]);
+  });
+
+  it('accepts "Label=URL" entries and keeps the given label', () => {
+    expect(parseTsaEndpoints('My TSA=https://tsa.example.org/tsr')).toEqual([
+      { label: 'My TSA', url: 'https://tsa.example.org/tsr' },
+    ]);
+  });
+
+  it('parses several comma-separated entries and trims whitespace', () => {
+    expect(
+      parseTsaEndpoints(
+        ' A=https://a.example.org/tsr , https://b.example.org , '
+      )
+    ).toEqual([
+      { label: 'A', url: 'https://a.example.org/tsr' },
+      { label: 'b.example.org', url: 'https://b.example.org' },
+    ]);
+  });
+
+  it('drops duplicate URLs, keeping the first entry', () => {
+    expect(
+      parseTsaEndpoints(
+        'First=https://tsa.example.org/tsr,Second=https://tsa.example.org/tsr'
+      )
+    ).toEqual([{ label: 'First', url: 'https://tsa.example.org/tsr' }]);
+  });
+
+  it('skips malformed and non-http(s) entries with a warning', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      expect(
+        parseTsaEndpoints(
+          'not a url,javascript:alert(1),file:///etc/passwd,https://ok.example.org'
+        )
+      ).toEqual([{ label: 'ok.example.org', url: 'https://ok.example.org' }]);
+      expect(warn).toHaveBeenCalledTimes(3);
+    } finally {
+      warn.mockRestore();
+    }
+  });
+});
+
+describe('resolveTimestampTsaPresets', () => {
+  it('falls back to the built-in providers when unset', () => {
+    expect(resolveTimestampTsaPresets({})).toEqual([
+      ...DEFAULT_TIMESTAMP_TSA_PRESETS,
+    ]);
+    expect(resolveTimestampTsaPresets({ VITE_TSA_ENDPOINTS: '' })).toEqual([
+      ...DEFAULT_TIMESTAMP_TSA_PRESETS,
+    ]);
+  });
+
+  it('falls back to the built-in providers when every entry is unusable', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      expect(
+        resolveTimestampTsaPresets({ VITE_TSA_ENDPOINTS: 'nonsense' })
+      ).toEqual([...DEFAULT_TIMESTAMP_TSA_PRESETS]);
+    } finally {
+      warn.mockRestore();
+    }
+  });
+
+  it('replaces the built-in providers when configured', () => {
+    expect(
+      resolveTimestampTsaPresets({
+        VITE_TSA_ENDPOINTS: 'Mine=https://tsa.example.org/tsr',
+      })
+    ).toEqual([{ label: 'Mine', url: 'https://tsa.example.org/tsr' }]);
+  });
+
+  it('does not hand out the shared default objects', () => {
+    const resolved = resolveTimestampTsaPresets({});
+    resolved[0].label = 'mutated';
+    expect(DEFAULT_TIMESTAMP_TSA_PRESETS[0].label).not.toBe('mutated');
+  });
+});
+
+describe('configured TSA endpoints at module scope', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
+  it('drives the preset list and the import allow-list together', async () => {
+    vi.stubEnv('VITE_TSA_ENDPOINTS', 'Mine=https://tsa.example.org/tsr');
+    vi.resetModules();
+    const freshModule = await import('@/js/config/timestamp-tsa');
+
+    expect(freshModule.TIMESTAMP_TSA_PRESETS).toEqual([
+      { label: 'Mine', url: 'https://tsa.example.org/tsr' },
+    ]);
+    // A workflow saved against the configured TSA must survive sanitization...
+    expect(freshModule.isAllowedTsaUrl('https://tsa.example.org/tsr')).toBe(
+      true
+    );
+    // ...while providers this build no longer offers are rejected.
+    expect(freshModule.isAllowedTsaUrl('http://timestamp.digicert.com')).toBe(
+      false
+    );
   });
 });

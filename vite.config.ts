@@ -264,6 +264,26 @@ function buildCorsProxyAllowedHosts(): Set<string> {
     }
   }
 
+  // VITE_TSA_ENDPOINTS entries are "URL" or "Label=URL", comma separated (see
+  // src/js/config/timestamp-tsa.ts).
+  const tsaEndpoints = process.env.VITE_TSA_ENDPOINTS;
+  if (tsaEndpoints) {
+    for (const rawEntry of tsaEndpoints.split(',')) {
+      const entry = rawEntry.trim();
+      if (!entry) continue;
+      const separatorIndex = entry.indexOf('=');
+      const rawUrl =
+        separatorIndex > 0 ? entry.slice(separatorIndex + 1).trim() : entry;
+      try {
+        hosts.add(new URL(rawUrl).hostname);
+      } catch {
+        console.warn(
+          `[vite] Ignoring malformed VITE_TSA_ENDPOINTS entry in dev CORS proxy allowlist: ${entry}`
+        );
+      }
+    }
+  }
+
   const extra = process.env.VITE_DEV_CORS_PROXY_EXTRA_HOSTS;
   if (extra) {
     for (const host of extra.split(',').map((s) => s.trim())) {

@@ -133,6 +133,15 @@ function resolveCorsProxyUrl(): string {
 const CORS_PROXY_URL = resolveCorsProxyUrl();
 
 /**
+ * Whether this build has a relay available for requests that the browser
+ * cannot make directly. Exposed so the timestamp UI can explain a blocked
+ * request instead of surfacing an opaque "Failed to fetch".
+ */
+export function isCorsProxyConfigured(): boolean {
+  return CORS_PROXY_URL.length > 0;
+}
+
+/**
  * Shared secret for signing proxy requests (HMAC-SHA256).
  *
  * SECURITY NOTE FOR PRODUCTION:
@@ -372,6 +381,59 @@ export async function signPdf(
   }
 }
 
+export const TSA_PROXY_DOC_URL =
+  'https://www.bentopdf.com/docs/self-hosting/cors-proxy';
+
+/**
+ * Thrown when the RFC 3161 request never left the page and this build has no
+ * relay to route it through.
+ *
+ * The built-in TSA providers do not answer a CORS preflight, so on a
+ * deployment without a relay the browser blocks the request and reports an
+ * opaque "Failed to fetch". Reporting that verbatim sends people hunting for a
+ * working provider (there is none in the list) or blaming their network, so
+ * name the actual requirement instead.
+ */
+export class TimestampProxyRequiredError extends Error {
+  readonly tsaUrl: string;
+
+  constructor(tsaUrl: string, options?: { cause?: unknown }) {
+    super(
+      `The browser blocked the timestamp request to ${tsaUrl}. This build has ` +
+        `no CORS relay configured (VITE_CORS_PROXY_URL), and the built-in TSA ` +
+        `providers do not send Access-Control-Allow-Origin, so the request is ` +
+        `refused before it reaches the network. Either deploy a relay (see ` +
+        `cloudflare/cors-proxy-worker.js) and rebuild with ` +
+        `VITE_CORS_PROXY_URL, or rebuild with VITE_TSA_ENDPOINTS pointing at a ` +
+        `timestamp authority that allows cross-origin requests. Both variables ` +
+        `also feed the generated Content-Security-Policy, so rebuilding is what ` +
+        `adds the origin to connect-src. See ${TSA_PROXY_DOC_URL}`,
+      options
+    );
+    this.name = 'TimestampProxyRequiredError';
+    this.tsaUrl = tsaUrl;
+  }
+}
+
+/**
+ * A request the browser refuses to send surfaces as an opaque network error:
+ * a failed CORS preflight, a CSP connect-src violation and an unreachable host
+ * are indistinguishable from script. Match the wordings the engines use.
+ */
+function isBlockedRequestError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return /failed to fetch|networkerror|load failed|network request failed|refused to connect/i.test(
+    message
+  );
+}
+
+function explainTimestampFailure(error: unknown, tsaUrl: string): unknown {
+  if (isCorsProxyConfigured() || !isBlockedRequestError(error)) {
+    return error;
+  }
+  return new TimestampProxyRequiredError(tsaUrl, { cause: error });
+}
+
 export async function timestampPdf(
   pdfBytes: Uint8Array,
   tsaUrl: string
@@ -391,7 +453,9 @@ export async function timestampPdf(
       `This TSA endpoint uses HTTP (${tsaUrl}). The browser blocks insecure ` +
         `requests from this HTTPS page. Either choose a TSA with an HTTPS ` +
         `endpoint or configure VITE_CORS_PROXY_URL at build time so the ` +
-        `request can be relayed through your proxy.`
+        `request can be relayed through your proxy. Self-hosted builds can ` +
+        `also replace the provider list with VITE_TSA_ENDPOINTS. See ` +
+        `${TSA_PROXY_DOC_URL}`
     );
   }
 
@@ -420,6 +484,8 @@ export async function timestampPdf(
   try {
     const timestampedPdfBytes = await signer.sign(pdfBytes);
     return new Uint8Array(timestampedPdfBytes);
+  } catch (error) {
+    throw explainTimestampFailure(error, tsaUrl);
   } finally {
     restore();
   }

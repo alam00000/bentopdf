@@ -158,6 +158,83 @@ describe('timestampPdf', () => {
     ).rejects.toThrow(/HTTPS page|VITE_CORS_PROXY_URL/);
   });
 
+  it('should explain the missing relay when the browser blocks the request', async () => {
+    // Regression test for #874: on a self-hosted instance with no relay the
+    // RFC 3161 POST never leaves the page (failed CORS preflight, or a
+    // connect-src violation), and the browser only says "Failed to fetch".
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'https:',
+        origin: 'https://pdf.example.org',
+        hostname: 'pdf.example.org',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp, TimestampProxyRequiredError } =
+      await import('@/js/logic/digital-sign-pdf');
+
+    const blocked = new TypeError('Failed to fetch');
+    mockSign.mockRejectedValueOnce(blocked);
+
+    const rejection = await freshTimestamp(
+      samplePdfBytes,
+      'https://freetsa.org/tsr'
+    ).catch((error: unknown) => error);
+
+    expect(rejection).toBeInstanceOf(TimestampProxyRequiredError);
+    const error = rejection as InstanceType<typeof TimestampProxyRequiredError>;
+    expect(error.tsaUrl).toBe('https://freetsa.org/tsr');
+    expect(error.message).toContain('VITE_CORS_PROXY_URL');
+    expect(error.message).toContain('VITE_TSA_ENDPOINTS');
+    expect(error.message).toContain('freetsa.org/tsr');
+    expect(error.cause).toBe(blocked);
+  });
+
+  it('should not rewrite signer failures unrelated to a blocked request', async () => {
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'https:',
+        origin: 'https://pdf.example.org',
+        hostname: 'pdf.example.org',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp } =
+      await import('@/js/logic/digital-sign-pdf');
+
+    mockSign.mockRejectedValueOnce(new Error('TSA returned a bad token'));
+
+    await expect(
+      freshTimestamp(samplePdfBytes, 'https://freetsa.org/tsr')
+    ).rejects.toThrow('TSA returned a bad token');
+  });
+
+  it('should keep the original error when a relay is configured', async () => {
+    vi.stubEnv('VITE_CORS_PROXY_URL', 'https://proxy.example.org');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'https:',
+        origin: 'https://pdf.example.org',
+        hostname: 'pdf.example.org',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp, isCorsProxyConfigured } =
+      await import('@/js/logic/digital-sign-pdf');
+
+    expect(isCorsProxyConfigured()).toBe(true);
+    mockSign.mockRejectedValueOnce(new TypeError('Failed to fetch'));
+
+    await expect(
+      freshTimestamp(samplePdfBytes, 'https://freetsa.org/tsr')
+    ).rejects.toThrow('Failed to fetch');
+  });
+
   it('should fall back to the default proxy on official domains', async () => {
     vi.stubEnv('VITE_CORS_PROXY_URL', '');
     Object.defineProperty(window, 'location', {

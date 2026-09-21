@@ -73,6 +73,26 @@ function urlOrDefault(value, fallback) {
   return originOf(value) ? value : fallback;
 }
 
+// VITE_TSA_ENDPOINTS entries are "URL" or "Label=URL", comma separated (see
+// src/js/config/timestamp-tsa.ts). A configured TSA is contacted directly, so
+// its origin has to be in connect-src or the RFC 3161 POST is refused by the
+// CSP before it reaches the network. The built-in providers are not added:
+// they are only reachable through the CORS proxy origin.
+function tsaOriginsFromEnv(value) {
+  if (!value) return [];
+  return value
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      const separatorIndex = entry.indexOf('=');
+      return separatorIndex > 0
+        ? entry.slice(separatorIndex + 1).trim()
+        : entry;
+    })
+    .map(originOf);
+}
+
 export function buildSecurityHeaders(env = process.env) {
   const wasmUrls = [
     urlOrDefault(env.VITE_WASM_PYMUPDF_URL, DEFAULT_WASM_URLS.pymupdf),
@@ -89,6 +109,8 @@ export function buildSecurityHeaders(env = process.env) {
 
   const corsProxyOrigin =
     originOf(env.VITE_CORS_PROXY_URL) || DEFAULT_CORS_PROXY_ORIGIN;
+
+  const tsaOrigins = uniq(tsaOriginsFromEnv(env.VITE_TSA_ENDPOINTS));
 
   const ocrFontOrigin =
     originOf(env.VITE_OCR_FONT_BASE_URL) || DEFAULT_OCR_FONT_CDN_ORIGIN;
@@ -107,6 +129,7 @@ export function buildSecurityHeaders(env = process.env) {
     ...tesseractOrigins,
     corsProxyOrigin,
     ocrFontOrigin,
+    ...tsaOrigins,
   ]);
   const fontOrigins = uniq([ocrFontOrigin]);
 
