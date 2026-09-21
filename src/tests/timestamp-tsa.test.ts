@@ -127,6 +127,22 @@ describe('parseTsaEndpoints', () => {
     ]);
   });
 
+  it('keeps a bare URL whole when its query string contains "="', () => {
+    expect(
+      parseTsaEndpoints('https://tsa.example.org/tsr?policy=1.2.3')
+    ).toEqual([
+      {
+        label: 'tsa.example.org',
+        url: 'https://tsa.example.org/tsr?policy=1.2.3',
+      },
+    ]);
+    expect(
+      parseTsaEndpoints('My TSA=https://tsa.example.org/tsr?policy=1.2.3')
+    ).toEqual([
+      { label: 'My TSA', url: 'https://tsa.example.org/tsr?policy=1.2.3' },
+    ]);
+  });
+
   it('parses several comma-separated entries and trims whitespace', () => {
     expect(
       parseTsaEndpoints(

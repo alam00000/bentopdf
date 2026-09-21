@@ -94,7 +94,9 @@ If you're self-hosting BentoPDF, you'll need to deploy your own CORS proxy for d
 
 ### Option 2: Custom Backend Proxy
 
-You can also create your own proxy endpoint. The requirements are:
+You can also create your own proxy endpoint. The example below covers **certificate fetching only**; the Timestamp PDF tool needs the additional `POST` route described after it.
+
+For certificates, the requirements are:
 
 1. Accept GET requests with a `url` query parameter
 2. Fetch the URL from your server (no CORS restrictions server-side)
@@ -127,6 +129,15 @@ app.get('/api/cert-proxy', async (req, res) => {
   }
 });
 ```
+
+To support the **Timestamp PDF** tool as well, the same endpoint (or a second route) must also:
+
+1. Answer the `OPTIONS` preflight with `Access-Control-Allow-Methods: GET, POST, OPTIONS` and `Access-Control-Allow-Headers: Content-Type`
+2. Accept `POST` requests with a `url` query parameter and a body of type `application/timestamp-query`
+3. Only forward to timestamp authorities on an allow-list of your own (the Cloudflare worker uses `ALLOWED_TSA_HOSTS`), so it cannot serve as an open relay
+4. Forward the body unchanged with the same `Content-Type`, and return the upstream `application/timestamp-reply` with the same CORS headers as above
+
+Without that route, the built-in providers keep failing on the Timestamp PDF tool even though certificate fetching works.
 
 ## Security Considerations
 
@@ -172,10 +183,10 @@ curl -s -i -X OPTIONS https://tsa.example.org/tsr \
   -H 'Origin: https://your-domain.com' \
   -H 'Access-Control-Request-Method: POST' \
   -H 'Access-Control-Request-Headers: content-type' \
-  | grep -i access-control-allow-origin
+  | grep -iE 'access-control-allow-(origin|methods|headers)'
 ```
 
-An empty result means the authority is not reachable from the browser and needs the proxy.
+The authority is usable only if all three headers come back: `Access-Control-Allow-Origin` matching your origin (or `*`), `Access-Control-Allow-Methods` including `POST`, and `Access-Control-Allow-Headers` including `content-type`. If any of them is missing, the browser rejects the preflight and the authority needs the proxy.
 
 ### DNS rebinding (self-hosting off Cloudflare)
 

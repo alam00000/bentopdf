@@ -213,6 +213,29 @@ describe('timestampPdf', () => {
     ).rejects.toThrow('TSA returned a bad token');
   });
 
+  it('should keep the original error for a TSA that is not a built-in provider', async () => {
+    // A TSA configured through VITE_TSA_ENDPOINTS was picked because it does
+    // answer the preflight: a blocked request there is not a missing relay.
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'https:',
+        origin: 'https://pdf.example.org',
+        hostname: 'pdf.example.org',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp } =
+      await import('@/js/logic/digital-sign-pdf');
+
+    mockSign.mockRejectedValueOnce(new TypeError('Failed to fetch'));
+
+    await expect(
+      freshTimestamp(samplePdfBytes, 'https://tsa.example.org/tsr')
+    ).rejects.toThrow('Failed to fetch');
+  });
+
   it('should keep the original error when a relay is configured', async () => {
     vi.stubEnv('VITE_CORS_PROXY_URL', 'https://proxy.example.org');
     Object.defineProperty(window, 'location', {

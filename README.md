@@ -1089,10 +1089,10 @@ curl -s -i -X OPTIONS https://tsa.example.org/tsr \
   -H 'Origin: https://your-domain.com' \
   -H 'Access-Control-Request-Method: POST' \
   -H 'Access-Control-Request-Headers: content-type' \
-  | grep -i access-control-allow-origin
+  | grep -iE 'access-control-allow-(origin|methods|headers)'
 ```
 
-An empty result means the authority is not reachable from the browser and needs the proxy.
+The authority is usable only if all three headers come back: `Access-Control-Allow-Origin` matching your origin (or `*`), `Access-Control-Allow-Methods` including `POST`, and `Access-Control-Allow-Headers` including `content-type`. If any of them is missing, the browser rejects the preflight and the authority needs the proxy.
 
 #### Production Security Features
 

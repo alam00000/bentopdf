@@ -1,7 +1,10 @@
 import { PdfSigner, type SignOption } from 'zgapdfsigner';
 import forge from 'node-forge';
 import { CertificateData, SignPdfOptions } from '@/types';
-import { isValidTsaRequestUrl } from '../config/timestamp-tsa.js';
+import {
+  isBuiltInTsaUrl,
+  isValidTsaRequestUrl,
+} from '../config/timestamp-tsa.js';
 
 export function parsePfxFile(
   pfxBytes: ArrayBuffer,
@@ -428,7 +431,15 @@ function isBlockedRequestError(error: unknown): boolean {
 }
 
 function explainTimestampFailure(error: unknown, tsaUrl: string): unknown {
-  if (isCorsProxyConfigured() || !isBlockedRequestError(error)) {
+  // The "missing relay" explanation is only true for the built-in providers.
+  // A TSA configured through VITE_TSA_ENDPOINTS was chosen because it does
+  // answer the preflight, so a blocked request there is a different problem
+  // (CSP, network, the authority itself) and its original error is kept.
+  if (
+    isCorsProxyConfigured() ||
+    !isBuiltInTsaUrl(tsaUrl) ||
+    !isBlockedRequestError(error)
+  ) {
     return error;
   }
   return new TimestampProxyRequiredError(tsaUrl, { cause: error });

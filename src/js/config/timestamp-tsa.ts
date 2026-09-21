@@ -28,6 +28,22 @@ export const DEFAULT_TIMESTAMP_TSA_PRESETS: readonly TimestampTsaPreset[] = [
   { label: 'MeSign', url: 'http://tsa.mesign.com' },
 ];
 
+const BUILT_IN_TSA_HOSTS: ReadonlySet<string> = new Set(
+  DEFAULT_TIMESTAMP_TSA_PRESETS.map((preset) => new URL(preset.url).hostname)
+);
+
+/**
+ * True when the URL points at one of the built-in providers, none of which
+ * answers a CORS preflight. Used to tell a "missing relay" failure apart from
+ * a failure against a TSA the deployment configured itself.
+ */
+export function isBuiltInTsaUrl(value: unknown): value is string {
+  if (!isValidTsaRequestUrl(value)) {
+    return false;
+  }
+  return BUILT_IN_TSA_HOSTS.has(new URL(value).hostname);
+}
+
 export function isValidTsaRequestUrl(value: unknown): value is string {
   if (typeof value !== 'string') {
     return false;
@@ -68,11 +84,18 @@ export function parseTsaEndpoints(
       continue;
     }
 
-    const separatorIndex = entry.indexOf('=');
-    const label =
-      separatorIndex > 0 ? entry.slice(0, separatorIndex).trim() : '';
-    const url =
-      separatorIndex > 0 ? entry.slice(separatorIndex + 1).trim() : entry;
+    // A bare URL may itself contain '=' (e.g. "?policy=1.2.3"), so try the
+    // whole entry as a URL before treating the first '=' as the label separator.
+    let label = '';
+    let url: string = entry;
+    const entryIsUrl: boolean = isValidTsaRequestUrl(entry);
+    if (!entryIsUrl) {
+      const separatorIndex = entry.indexOf('=');
+      if (separatorIndex > 0) {
+        label = entry.slice(0, separatorIndex).trim();
+        url = entry.slice(separatorIndex + 1).trim();
+      }
+    }
 
     if (!isValidTsaRequestUrl(url)) {
       console.warn(
