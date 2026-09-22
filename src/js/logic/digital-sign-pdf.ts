@@ -103,8 +103,34 @@ export function parseCombinedPem(
  * and set VITE_CORS_PROXY_URL environment variable.
  *
  * If not set, certificates requiring external chain fetching will fail.
+ *
+ * On the official BentoPDF domains we fall back to the project-operated proxy.
+ * The generated CSP already allows that origin by default (see
+ * scripts/generate-security-headers.mjs), but the runtime never used it, which
+ * left the timestamp tool broken on the official HTTPS site. The fallback is
+ * deliberately scoped to the official domains so self-hosted instances keep
+ * requiring their own proxy.
  */
-const CORS_PROXY_URL = import.meta.env.VITE_CORS_PROXY_URL || '';
+const DEFAULT_CORS_PROXY_URL =
+  'https://bentopdf-cors-proxy.bentopdf.workers.dev';
+
+const OFFICIAL_HOSTNAMES = new Set(['bentopdf.com', 'www.bentopdf.com']);
+
+function resolveCorsProxyUrl(): string {
+  const configured = import.meta.env.VITE_CORS_PROXY_URL || '';
+  if (configured) {
+    return configured;
+  }
+
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const hostname = window.location?.hostname?.toLowerCase() ?? '';
+  return OFFICIAL_HOSTNAMES.has(hostname) ? DEFAULT_CORS_PROXY_URL : '';
+}
+
+const CORS_PROXY_URL = resolveCorsProxyUrl();
 
 /**
  * Shared secret for signing proxy requests (HMAC-SHA256).

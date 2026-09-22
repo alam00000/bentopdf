@@ -1,0 +1,1154 @@
+{
+  "categories": {
+    "popularTools": "Popularne narzędzia",
+    "editAnnotate": "Edytuj i adnotuj",
+    "convertToPdf": "Konwertuj na PDF",
+    "convertFromPdf": "Konwertuj z PDF",
+    "organizeManage": "Organizuj i zarządzaj",
+    "optimizeRepair": "Optymalizuj i napraw",
+    "securePdf": "Zabezpiecz PDF",
+    "input": "Wejście",
+    "output": "Wyjście"
+  },
+  "convertToPdf": "Konwertuj na PDF",
+  "pdfMultiTool": {
+    "name": "Wielofunkcyjne narzędzie PDF",
+    "subtitle": "Łącz, dziel, organizuj, usuwaj, obracaj, dodawaj puste strony, wyodrębniaj i powielaj w ujednoliconym interfejsie."
+  },
+  "mergePdf": {
+    "name": "Połącz PDF",
+    "subtitle": "Połącz wiele plików PDF w jeden plik. Zachowuje zakładki.",
+    "retainPageLabels": "Zachowaj oryginalne etykiety stron z każdego pliku",
+    "retainPageLabelsHint": "Wyłączone (domyślnie): połączony PDF używa naturalnej numeracji stron 1–N. Włączone: oryginalne etykiety stron z każdego pliku są zachowane (może to powodować duplikaty etykiet)."
+  },
+  "splitPdf": {
+    "name": "Podziel PDF",
+    "subtitle": "Wyodrębnij zakres stron do nowego pliku PDF."
+  },
+  "compressPdf": {
+    "name": "Kompresuj PDF",
+    "subtitle": "Zmniejsz rozmiar pliku PDF.",
+    "algorithmLabel": "Algorytm kompresji",
+    "condense": "Kondensacja (Zalecane)",
+    "photon": "Foton (Dla PDF z dużą ilością zdjęć)",
+    "condenseInfo": "Kondensacja wykorzystuje zaawansowaną kompresję: usuwa zbędny balast, optymalizuje obrazy, zmniejsza liczbę czcionek. Najlepsze dla większości plików PDF.",
+    "photonInfo": "Foton konwertuje strony na obrazy. Używaj dla zeskanowanych/fotograficznych PDF.",
+    "photonWarning": "Ostrzeżenie: Tekst stanie się niemożliwy do zaznaczenia, a linki przestaną działać.",
+    "levelLabel": "Poziom kompresji",
+    "light": "Lekki (Zachowaj jakość)",
+    "balanced": "Zbalansowany (Zalecane)",
+    "aggressive": "Agresywny (Mniejsze pliki)",
+    "extreme": "Ekstremalny (Maksymalna kompresja)",
+    "grayscale": "Konwertuj na odcienie szarości",
+    "grayscaleHint": "Zmniejsza rozmiar pliku usuwając informacje o kolorze",
+    "customSettings": "Ustawienia niestandardowe",
+    "customSettingsHint": "Dostrój parametry kompresji:",
+    "outputQuality": "Jakość wyjściowa",
+    "resizeImagesTo": "Zmień rozmiar obrazów do",
+    "onlyProcessAbove": "Przetwarzaj tylko powyżej",
+    "removeMetadata": "Usuń metadane",
+    "subsetFonts": "Zredukuj czcionki (usuń nieużywane glify)",
+    "removeThumbnails": "Usuń osadzone miniatury",
+    "compressButton": "Kompresuj PDF"
+  },
+  "pdfEditor": {
+    "name": "Edytor PDF",
+    "subtitle": "Dodawaj adnotacje, zakreślaj, redaguj, komentuj, dodawaj kształty/obrazy, wyszukuj i przeglądaj PDF."
+  },
+  "jpgToPdf": {
+    "name": "JPG na PDF",
+    "subtitle": "Utwórz plik PDF z obrazów JPG, JPEG i JPEG2000 (JP2/JPX)."
+  },
+  "signPdf": {
+    "name": "Podpisz PDF",
+    "subtitle": "Narysuj, wpisz lub prześlij swój podpis."
+  },
+  "cropPdf": {
+    "name": "Przytnij PDF",
+    "subtitle": "Przytnij marginesy każdej strony w pliku PDF."
+  },
+  "extractPages": {
+    "name": "Wyodrębnij strony",
+    "subtitle": "Zapisz wybrane strony jako nowe pliki."
+  },
+  "duplicateOrganize": {
+    "name": "Duplikuj i organizuj",
+    "subtitle": "Duplikuj, zmieniaj kolejność i usuwaj strony.",
+    "saveChanges": "Zapisz zmiany"
+  },
+  "deletePages": {
+    "name": "Usuń strony",
+    "subtitle": "Usuń określone strony ze swojego dokumentu."
+  },
+  "editBookmarks": {
+    "name": "Edytuj zakładki",
+    "subtitle": "Dodawaj, edytuj, importuj, usuwaj i wyodrębniaj zakładki PDF.",
+    "autoExtractExisting": "Automatycznie wyodrębnij istniejące zakładki",
+    "importSectionTitle": "Lub zaimportuj zakładki",
+    "csvFormat": "Format CSV: tytuł,strona,poziom",
+    "jsonFormat": "Format JSON",
+    "uploadCsvAction": "Kliknij, aby przesłać CSV",
+    "uploadJsonAction": "Kliknij, aby przesłać JSON",
+    "orDragHere": "lub przeciągnij tutaj"
+  },
+  "tableOfContents": {
+    "name": "Spis treści",
+    "subtitle": "Wygeneruj stronę spisu treści na podstawie zakładek PDF.",
+    "titleLabel": "Tytuł spisu treści",
+    "fontSize": "Rozmiar czcionki",
+    "fontFamily": "Krój czcionki",
+    "addBookmark": "Dodaj zakładkę dla strony spisu treści",
+    "generateButton": "Generuj spis treści",
+    "selectPdfFirst": "Proszę najpierw wybrać plik PDF.",
+    "statusReadingFileMainThread": "Odczytywanie pliku (Główny wątek)...",
+    "statusGenerating": "Generowanie spisu treści...",
+    "errorReadingFileWithMessage": "Błąd odczytu pliku: {{message}}",
+    "successGeneratedDownloadStarted": "Pomyślnie wygenerowano spis treści! Rozpoczęto pobieranie.",
+    "workerErrorWithMessage": "Błąd: {{message}}",
+    "workerErrorOccurred": "Wystąpił błąd workera. Sprawdź konsolę, aby uzyskać szczegóły."
+  },
+  "pageNumbers": {
+    "name": "Numery stron",
+    "subtitle": "Wstaw numery stron do swojego dokumentu."
+  },
+  "addPageLabels": {
+    "name": "Dodaj etykiety stron",
+    "subtitle": "Zastosuj etykiety stron PDF z cyframi rzymskimi, prefiksami i niestandardowymi wartościami początkowymi.",
+    "uploadHint": "Plik PDF",
+    "howLabelsWorkTitle": "Jak działają etykiety",
+    "howLabelsWorkStep1": "Pozostaw pole Zakres stron puste, aby dodać etykiety do wszystkich stron.",
+    "howLabelsWorkStep2": "Używaj stylów, takich jak cyfry rzymskie dla stron wprowadzających i numeracji dziesiętnej dla głównej treści.",
+    "howLabelsWorkStep3": "Użyj prefiksu z wartością początkową 0, aby utworzyć etykiety takie jak A-0, A-1, A-2.",
+    "howLabelsWorkStep4": "Włącz postęp, gdy jedna reguła używa rozłącznego zakresu, np. 1-9,30-40 lub nieparzyste.",
+    "labelRulesTitle": "Reguły etykiet",
+    "addRule": "Dodaj regułę",
+    "removeExistingLabels": "Usuń istniejące etykiety stron przed zastosowaniem tych reguł",
+    "cpdfNote": "To narzędzie korzysta z CoherentPDF w Twojej przeglądarce. Jeśli CoherentPDF nie jest skonfigurowany, zostaniesz poproszony o jego konfigurację w Ustawieniach WASM.",
+    "processButton": "Dodaj etykiety stron",
+    "howItWorksUploadTitle": "Prześlij plik",
+    "howItWorksUploadDescription": "Wybierz plik PDF, dla którego chcesz zmienić etykiety.",
+    "howItWorksDefineTitle": "Zdefiniuj reguły",
+    "howItWorksDefineDescription": "Ustaw jedną lub więcej reguł etykiet stron z zakresami stron, stylami, prefiksami i wartościami początkowymi.",
+    "howItWorksDownloadTitle": "Pobierz",
+    "howItWorksDownloadDescription": "Zapisz zaktualizowany plik PDF z nowymi etykietami stron.",
+    "relatedToolsTitle": "Powiązane narzędzia PDF",
+    "faqWhatIsQuestion": "Co to jest etykieta strony?",
+    "faqWhatIsAnswer": "Etykieta strony to numeracja wyświetlana przez czytniki PDF na miniaturach, w nawigacji po stronach i w oknach dialogowych drukowania. Nie nadrukowuje ona nowego tekstu na samej stronie.",
+    "faqMixQuestion": "Czy mogę łączyć cyfry rzymskie ze zwykłymi liczbami?",
+    "faqMixAnswer": "Tak. Dodaj wiele reguł, takich jak 1-4 z małych liter rzymskich (LowercaseRoman) i 5-20 z dziesiętnych arabskich (DecimalArabic).",
+    "faqPrivacyQuestion": "Czy moje pliki pozostają prywatne?",
+    "faqPrivacyAnswer": "Tak. Przetwarzanie odbywa się w Twojej przeglądarce za pomocą CoherentPDF WASM. Twój plik PDF nie opuszcza Twojego urządzenia.",
+    "invalidFileTitle": "Nieprawidłowy plik",
+    "invalidFileMessage": "Proszę przesłać prawidłowy plik PDF.",
+    "loadingPdf": "Wczytywanie pliku PDF...",
+    "protectedPdfTitle": "Chroniony plik PDF",
+    "protectedPdfMessage": "Ten plik PDF jest chroniony hasłem. Użyj najpierw narzędzia Odszyfruj lub Zmień uprawnienia.",
+    "loadErrorMessage": "Nie udało się załadować pliku PDF. Plik może być nieprawidłowy, uszkodzony lub chroniony hasłem.",
+    "fileMeta": "{{size}} • {{count}} stron",
+    "ruleTitle": "Reguła etykiety {{number}}",
+    "pageRangeLabel": "Zakres stron",
+    "pageRangePlaceholder": "Wszystkie strony lub np. 1-4, 7, nieparzyste",
+    "labelStyleLabel": "Styl etykiety",
+    "labelPrefixLabel": "Prefiks etykiety",
+    "labelPrefixPlaceholder": "Opcjonalny prefiks, np. A-",
+    "startValueLabel": "Wartość początkowa",
+    "continueNumbering": "Kontynuuj numerację przez rozłączne zakresy",
+    "examplesNote": "Przykłady: 1-4 dla początkowych stron rzymskich, 15-20 z prefiksem A- i wartością początkową 0, lub nieparzyste z włączonym postępem.",
+    "uploadFirstMessage": "Proszę najpierw przesłać plik PDF.",
+    "applyingLabels": "Stosowanie etykiet stron...",
+    "invalidRangeMessage": "Reguła {{number}} ma nieprawidłowy zakres stron: {{range}}",
+    "allPages": "wszystkie strony",
+    "emptyOutputMessage": "CoherentPDF wygenerował pusty plik.",
+    "successMessage": "Etykiety stron zostały pomyślnie dodane!",
+    "processErrorMessage": "Nie udało się dodać etykiet stron.",
+    "styleOptions": {
+      "DecimalArabic": "Dziesiętne Arabskie",
+      "LowercaseRoman": "Małe Rzymskie",
+      "UppercaseRoman": "Wielkie Rzymskie",
+      "LowercaseLetters": "Małe Litery",
+      "UppercaseLetters": "Wielkie Litery",
+      "NoLabelPrefixOnly": "Brak Etykiety, Tylko Prefiks"
+    }
+  },
+  "batesNumbering": {
+    "name": "Numeracja Batesa",
+    "subtitle": "Dodaj sekwencyjną numerację Batesa do jednego lub wielu plików PDF."
+  },
+  "addWatermark": {
+    "name": "Dodaj znak wodny",
+    "subtitle": "Odbij tekst lub obraz na swoich stronach PDF.",
+    "applyToAllPages": "Zastosuj do wszystkich stron"
+  },
+  "headerFooter": {
+    "name": "Nagłówek i Stopka",
+    "subtitle": "Dodaj tekst na górze i na dole stron."
+  },
+  "invertColors": {
+    "name": "Odwróć kolory",
+    "subtitle": "Utwórz wersję \"trybu ciemnego\" swojego pliku PDF."
+  },
+  "scannerEffect": {
+    "name": "Efekt skanera",
+    "subtitle": "Spraw, by Twój PDF wyglądał jak zeskanowany dokument.",
+    "scanSettings": "Ustawienia skanowania",
+    "colorspace": "Przestrzeń barw",
+    "gray": "Szary",
+    "border": "Obramowanie",
+    "rotate": "Obrót",
+    "rotateVariance": "Wariancja obrotu",
+    "brightness": "Jasność",
+    "contrast": "Kontrast",
+    "blur": "Rozmycie",
+    "noise": "Szum",
+    "yellowish": "Zażółcenie",
+    "resolution": "Rozdzielczość",
+    "processButton": "Zastosuj efekt skanera"
+  },
+  "adjustColors": {
+    "name": "Dostosuj kolory",
+    "subtitle": "Dostrój jasność, kontrast, nasycenie i wiele innych w swoim pliku PDF.",
+    "colorSettings": "Ustawienia kolorów",
+    "brightness": "Jasność",
+    "contrast": "Kontrast",
+    "saturation": "Nasycenie",
+    "hueShift": "Przesunięcie odcienia",
+    "temperature": "Temperatura",
+    "tint": "Odcień (Tint)",
+    "gamma": "Gamma",
+    "sepia": "Sepia",
+    "processButton": "Zastosuj dostosowanie kolorów"
+  },
+  "backgroundColor": {
+    "name": "Kolor tła",
+    "subtitle": "Zmień kolor tła swojego pliku PDF."
+  },
+  "changeTextColor": {
+    "name": "Zmień kolor tekstu",
+    "subtitle": "Zmień kolor tekstu w swoim pliku PDF."
+  },
+  "addStamps": {
+    "name": "Dodaj pieczątki",
+    "subtitle": "Dodaj pieczątki graficzne do swojego PDF za pomocą paska adnotacji.",
+    "usernameLabel": "Nazwa użytkownika pieczątki",
+    "usernamePlaceholder": "Wpisz swoje imię (dla pieczątek)",
+    "usernameHint": "To imię pojawi się na tworzonych przez Ciebie pieczątkach.",
+    "saveButton": "Zapisz opieczętowany PDF"
+  },
+  "removeAnnotations": {
+    "name": "Usuń adnotacje",
+    "subtitle": "Usuń komentarze, podświetlenia i linki."
+  },
+  "pdfFormFiller": {
+    "name": "Wypełnianie formularzy PDF",
+    "subtitle": "Wypełniaj formularze bezpośrednio w przeglądarce. Obsługuje również formularze XFA.",
+    "uploadHint": "Prześlij plik PDF z polami formularza. Wypełnij je bezpośrednio w przeglądarce poniżej, a następnie kliknij przycisk, aby zapisać i pobrać wypełniony formularz. Obsługuje również formularze XFA.",
+    "xfaNoteTitle": "Uwaga dotycząca formularzy XFA:",
+    "xfaNoteDescription": "XFA (XML Forms Architecture) to starszy format obsługiwany tylko przez niektóre przeglądarki PDF, takie jak BentoPDF i Firefox. Jeśli otworzysz plik PDF z XFA w innym oprogramowaniu i zobaczysz puste strony lub brak pól formularza, oznacza to, że dana przeglądarka nie obsługuje XFA. Aby poprawnie wyświetlać i wypełniać formularze XFA, użyj Firefoksa lub narzędzia Form Filler w BentoPDF."
+  },
+  "createPdfForm": {
+    "name": "Utwórz formularz PDF",
+    "subtitle": "Twórz interaktywne formularze PDF za pomocą pól tekstowych typu „przeciągnij i upuść”.",
+    "orSeparator": "LUB",
+    "createBlankPdf": "Utwórz pusty PDF"
+  },
+  "removeBlankPages": {
+    "name": "Usuń puste strony",
+    "subtitle": "Automatycznie wykrywaj i usuwaj puste strony.",
+    "sensitivityHint": "Wyższa = bardziej rygorystyczna, tylko całkowicie puste strony. Niższa = pozwala na strony z niewielką ilością treści."
+  },
+  "imageToPdf": {
+    "name": "Obrazy do PDF",
+    "subtitle": "Konwertuj formaty JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP na PDF."
+  },
+  "pngToPdf": {
+    "name": "PNG na PDF",
+    "subtitle": "Utwórz plik PDF z jednego lub wielu obrazów PNG."
+  },
+  "webpToPdf": {
+    "name": "WebP na PDF",
+    "subtitle": "Utwórz plik PDF z jednego lub wielu obrazów WebP."
+  },
+  "svgToPdf": {
+    "name": "SVG na PDF",
+    "subtitle": "Utwórz plik PDF z jednego lub wielu obrazów SVG."
+  },
+  "bmpToPdf": {
+    "name": "BMP na PDF",
+    "subtitle": "Utwórz plik PDF z jednego lub wielu obrazów BMP."
+  },
+  "heicToPdf": {
+    "name": "HEIC na PDF",
+    "subtitle": "Utwórz plik PDF z jednego lub wielu obrazów HEIC."
+  },
+  "tiffToPdf": {
+    "name": "TIFF na PDF",
+    "subtitle": "Utwórz plik PDF z jednego lub wielu obrazów TIFF."
+  },
+  "textToPdf": {
+    "name": "Tekst na PDF",
+    "subtitle": "Konwertuj plik ze zwykłym tekstem na plik PDF.",
+    "uploadFiles": "Prześlij pliki",
+    "typeText": "Wpisz tekst",
+    "acceptedFormats": "Pliki tekstowe (.txt)",
+    "fontFamily": "Krój czcionki",
+    "fontSize": "Rozmiar czcionki",
+    "textColor": "Kolor tekstu",
+    "pageSize": "Rozmiar strony",
+    "rtlAutoDetectNote": "Języki od prawej do lewej (arabski, urdu, perski itp.) są wykrywane automatycznie, a kierunek tekstu jest dostosowywany.",
+    "createButton": "Utwórz PDF"
+  },
+  "jsonToPdf": {
+    "name": "JSON na PDF",
+    "subtitle": "Konwertuj pliki JSON do formatu PDF.",
+    "noteLabel": "Uwaga:",
+    "noteText": "Obsługiwane są wyłącznie pliki JSON utworzone przez narzędzie konwertera PDF na JSON. Standardowe pliki JSON z innych narzędzi nie będą działać.",
+    "acceptedFormats": "Wiele plików JSON",
+    "status": {
+      "selectAtLeastOne": "Proszę wybrać co najmniej 1 plik JSON",
+      "selectedReady": "Wybrano {{count}} plik(i/ów). Gotowe do konwersji!",
+      "readingFiles": "Odczytywanie plików (Główny wątek)...",
+      "converting": "Konwertowanie plików JSON na PDF...",
+      "readError": "Błąd odczytu plików: {{message}}",
+      "creatingZip": "Tworzenie pliku ZIP...",
+      "success": "Pliki JSON pomyślnie przekonwertowano na PDF! Rozpoczęto pobieranie pliku ZIP.",
+      "zipError": "Błąd tworzenia ZIP: {{message}}",
+      "workerError": "Błąd workera: {{message}}",
+      "getStarted": "Wybierz pliki JSON, aby rozpocząć"
+    }
+  },
+  "pdfToJpg": {
+    "name": "PDF na JPG",
+    "subtitle": "Konwertuj każdą stronę PDF na obraz JPG.",
+    "imageQuality": "Jakość obrazu",
+    "imageQualityExplanation": "Wyższa jakość = większy rozmiar pliku",
+    "alert": {
+      "invalidFile": "Nieprawidłowy plik",
+      "invalidFileExplanation": "Proszę przesłać plik PDF.",
+      "noFile": "Brak pliku",
+      "noFileExplanation": "Proszę najpierw przesłać plik PDF.",
+      "conversionSuccess": "Pomyślnie przekonwertowano PDF na pliki JPG!",
+      "conversionError": "Nie udało się przekonwertować PDF na JPG. Plik może być uszkodzony."
+    },
+    "loader": {
+      "converting": "Konwertowanie na JPG..."
+    }
+  },
+  "pdfToPng": {
+    "name": "PDF na PNG",
+    "subtitle": "Konwertuj każdą stronę PDF na obraz PNG.",
+    "imageScale": "Skala obrazu",
+    "imageScaleExplanation": "Wyższa skala = lepsza jakość, ale większy rozmiar pliku",
+    "alert": {
+      "invalidFile": "Nieprawidłowy plik",
+      "invalidFileExplanation": "Proszę przesłać plik PDF.",
+      "noFile": "Brak pliku",
+      "noFileExplanation": "Proszę najpierw przesłać plik PDF.",
+      "conversionSuccess": "Pomyślnie przekonwertowano PDF na pliki PNG!",
+      "conversionError": "Nie udało się przekonwertować PDF na PNG. Plik może być uszkodzony."
+    },
+    "loader": {
+      "converting": "Konwertowanie na PNG..."
+    }
+  },
+  "pdfToWebp": {
+    "name": "PDF na WebP",
+    "subtitle": "Konwertuj każdą stronę PDF na obraz WebP.",
+    "imageQuality": "Jakość obrazu",
+    "imageQualityExplanation": "Wyższa jakość = większy rozmiar pliku",
+    "alert": {
+      "invalidFile": "Nieprawidłowy plik",
+      "invalidFileExplanation": "Proszę przesłać plik PDF.",
+      "noFile": "Brak pliku",
+      "noFileExplanation": "Proszę najpierw przesłać plik PDF.",
+      "conversionSuccess": "Pomyślnie przekonwertowano PDF na pliki WebP!",
+      "conversionError": "Nie udało się przekonwertować PDF na WebP. Plik może być uszkodzony."
+    },
+    "loader": {
+      "converting": "Konwertowanie na WebP..."
+    }
+  },
+  "pdfToBmp": {
+    "name": "PDF na BMP",
+    "subtitle": "Konwertuj każdą stronę PDF na obraz BMP.",
+    "alert": {
+      "invalidFile": "Nieprawidłowy plik",
+      "invalidFileExplanation": "Proszę przesłać plik PDF.",
+      "noFile": "Brak pliku",
+      "noFileExplanation": "Proszę najpierw przesłać plik PDF.",
+      "conversionSuccess": "Pomyślnie przekonwertowano PDF na pliki BMP!",
+      "conversionError": "Nie udało się przekonwertować PDF na BMP. Plik może być uszkodzony."
+    },
+    "loader": {
+      "converting": "Konwertowanie na BMP..."
+    }
+  },
+  "pdfToTiff": {
+    "name": "PDF na TIFF",
+    "subtitle": "Konwertuj każdą stronę PDF na obraz TIFF.",
+    "dpi": "DPI (Rozdzielczość)",
+    "dpiExplanation": "Wyższe DPI = lepsza jakość do druku, większy rozmiar pliku",
+    "compression": "Kompresja",
+    "compressionExplanation": "LZW i Deflate są bezstratne. CCITT Group 4 jest najlepsze dla czarno-białych zeskanowanych dokumentów.",
+    "colorMode": "Tryb kolorów",
+    "multiPage": "Zapisz jako wielostronicowy TIFF (pojedynczy plik)",
+    "loadingVips": "Wczytywanie procesora obrazów...",
+    "converting": "Konwertowanie na TIFF...",
+    "alert": {
+      "invalidFile": "Nieprawidłowy plik",
+      "invalidFileExplanation": "Proszę przesłać plik PDF.",
+      "noFile": "Brak pliku",
+      "noFileExplanation": "Proszę najpierw przesłać plik PDF.",
+      "conversionSuccess": "Pomyślnie przekonwertowano PDF na pliki TIFF!",
+      "conversionError": "Nie udało się przekonwertować PDF na TIFF. Plik może być uszkodzony."
+    }
+  },
+  "pdfToCbz": {
+    "name": "PDF na CBZ",
+    "subtitle": "Konwertuj plik PDF na plik CBZ (Comic Book Archive) do czytników komiksów.",
+    "imageFormat": "Format obrazu",
+    "quality": "Jakość obrazu",
+    "qualityExplanation": "Wyższa jakość = większy rozmiar pliku",
+    "scale": "Skala",
+    "scaleExplanation": "Wyższa skala = lepsza jakość dla ekranów o wysokiej rozdzielczości",
+    "grayscale": "Konwertuj na odcienie szarości",
+    "manga": "Tryb Manga (od prawej do lewej)",
+    "includeMetadata": "Dołącz metadane ComicInfo.xml",
+    "titleLabel": "Tytuł",
+    "seriesLabel": "Seria",
+    "authorLabel": "Autor(zy)",
+    "numberLabel": "Nr",
+    "volumeLabel": "Tom",
+    "publisherLabel": "Wydawca",
+    "tagsLabel": "Tagi / Gatunek",
+    "yearLabel": "Rok wydania",
+    "ratingLabel": "Ocena (0-5)",
+    "converting": "Konwertowanie na CBZ...",
+    "alert": {
+      "invalidFile": "Nieprawidłowy plik",
+      "invalidFileExplanation": "Proszę przesłać plik PDF.",
+      "noFile": "Brak pliku",
+      "noFileExplanation": "Proszę najpierw przesłać plik PDF.",
+      "conversionSuccess": "Pomyślnie przekonwertowano PDF na CBZ!",
+      "conversionError": "Nie udało się przekonwertować PDF na CBZ. Plik może być uszkodzony."
+    }
+  },
+  "pdfToGreyscale": {
+    "name": "PDF na odcienie szarości",
+    "subtitle": "Konwertuj wszystkie kolory na czarno-białe."
+  },
+  "pdfToJson": {
+    "name": "PDF na JSON",
+    "subtitle": "Konwertuj pliki PDF do formatu JSON.",
+    "convertButton": "Konwertuj na JSON",
+    "status": {
+      "selectAtLeastOne": "Proszę wybrać co najmniej 1 plik PDF",
+      "selectedReady": "Wybrano {{count}} plik(i/ów). Gotowe do konwersji!",
+      "checkingEncrypted": "Sprawdzanie pod kątem zaszyfrowanych plików PDF...",
+      "readingFiles": "Odczytywanie plików (Główny wątek)...",
+      "converting": "Konwertowanie plików PDF na JSON...",
+      "readError": "Błąd odczytu plików: {{message}}",
+      "creatingZip": "Tworzenie pliku ZIP...",
+      "success": "Pomyślnie przekonwertowano PDF na JSON! Rozpoczęto pobieranie pliku ZIP.",
+      "zipError": "Błąd tworzenia ZIP: {{message}}",
+      "workerError": "Błąd workera: {{message}}",
+      "getStarted": "Wybierz pliki PDF, aby rozpocząć"
+    }
+  },
+  "ocrPdf": {
+    "name": "OCR PDF",
+    "subtitle": "Zrób PDF przeszukiwalnym i dającym się kopiować.",
+    "languagesInDocument": "Języki w dokumencie",
+    "searchLanguagesPlaceholder": "Szukaj języków...",
+    "selectedLabel": "Wybrane:",
+    "none": "Brak",
+    "advancedSettingsSummary": "Ustawienia zaawansowane (Zalecane dla poprawy dokładności)",
+    "resolutionLabel": "Rozdzielczość",
+    "resolutionStandard": "Standardowa (192 DPI)",
+    "resolutionHigh": "Wysoka (288 DPI)",
+    "resolutionUltra": "Ultra (384 DPI)",
+    "binarizeLabel": "Binaryzuj obraz (Zwiększ kontrast dla czystych skanów)",
+    "embedFullFontsLabel": "Osadź pełne czcionki (Większy plik, lepsza kompatybilność)",
+    "whitelistPresetLabel": "Zestaw dozwolonych znaków (Whitelist)",
+    "whitelistNone": "Brak (Wszystkie znaki)",
+    "whitelistAlphanumeric": "Alfanumeryczne + Podstawowa Interpunkcja",
+    "whitelistNumbersCurrency": "Liczby + Symbole Walut",
+    "whitelistLettersOnly": "Tylko litery (A-Z, a-z)",
+    "whitelistNumbersOnly": "Tylko liczby (0-9)",
+    "whitelistInvoice": "Faktura/Paragon (Liczby, $, ., -, /)",
+    "whitelistForms": "Formularze (Alfanumeryczne + Powszechne Symbole)",
+    "whitelistCustom": "Niestandardowe...",
+    "whitelistHelp": "Tylko te znaki będą rozpoznawane. Pozostaw puste dla wszystkich znaków.",
+    "whitelistInputLabel": "Dozwolone znaki (Opcjonalnie)",
+    "whitelistInputPlaceholder": "np. abcdefghijklmnopqrstuvwxyz0123456789$.,",
+    "startButton": "Rozpocznij OCR",
+    "progressInitializing": "Inicjowanie...",
+    "resultsTitle": "OCR Zakończone",
+    "resultsDescription": "Twój przeszukiwalny plik PDF jest gotowy. Możesz również skopiować lub pobrać wyodrębniony tekst poniżej.",
+    "copyToClipboard": "Skopiuj do schowka",
+    "downloadTxt": "Pobierz jako .txt",
+    "downloadSearchablePdf": "Pobierz przeszukiwalny PDF",
+    "statusPrefix": "Status: {{status}}",
+    "availabilityInvalidConfig": "To wdrożenie nie udostępnia żadnych prawidłowych języków OCR. Przebuduj je z VITE_TESSERACT_AVAILABLE_LANGUAGES ustawionym na prawidłowe kody Tesseract.",
+    "availabilityBundles": "To wdrożenie zawiera wbudowane pakiety OCR dla: {{languages}}.",
+    "noLanguagesAvailable": "W tym wdrożeniu nie ma dostępnych języków OCR.",
+    "noLanguagesTitle": "Nie wybrano języków",
+    "noLanguagesMessage": "Proszę wybrać co najmniej jeden język dla OCR.",
+    "noFileTitle": "Brak pliku",
+    "noFileMessage": "Proszę najpierw przesłać plik PDF.",
+    "languageUnavailableTitle": "Język OCR niedostępny",
+    "ocrErrorTitle": "Błąd OCR",
+    "ocrErrorMessage": "Wystąpił błąd podczas procesu OCR. Worker mógł nie zostać poprawnie załadowany. Spróbuj ponownie.",
+    "howItWorksTitle": "Jak to działa:",
+    "extractTextLabel": "Wyodrębnij tekst:",
+    "extractTextDescription": "Używa Tesseract OCR do rozpoznawania tekstu z zeskanowanych obrazów lub plików PDF.",
+    "searchableOutputLabel": "Wynik przeszukiwalny:",
+    "searchableOutputDescription": "Tworzy nowy plik PDF z niewidoczną warstwą tekstu, dzięki czemu dokument staje się w pełni przeszukiwalny, z zachowaniem oryginalnego wyglądu.",
+    "characterFilteringLabel": "Filtrowanie znaków:",
+    "characterFilteringDescription": "Używaj białych list, aby odfiltrować niechciane znaki i poprawić dokładność dla określonych typów dokumentów (faktury, formularze itp.).",
+    "multiLanguageSupportLabel": "Obsługa wielu języków:",
+    "multiLanguageSupportDescription": "Wybierz wiele języków dla dokumentów zawierających treść w różnych językach."
+  },
+  "alternateMerge": {
+    "name": "Naprzemienne i mieszane strony",
+    "subtitle": "Połącz PDF, układając strony naprzemiennie z każdego PDF. Zachowuje zakładki.",
+    "retainPageLabels": "Zachowaj oryginalne etykiety stron z każdego pliku",
+    "retainPageLabelsHint": "Wyłączone (domyślnie): połączony PDF używa naturalnej numeracji stron 1–N. Włączone: oryginalne etykiety stron z każdego pliku są zachowane (może to powodować duplikaty etykiet)."
+  },
+  "addAttachments": {
+    "name": "Dodaj załączniki",
+    "subtitle": "Osadź jeden lub wiele plików w swoim PDF."
+  },
+  "extractAttachments": {
+    "name": "Wyodrębnij załączniki",
+    "subtitle": "Wyodrębnij wszystkie osadzone pliki z PDF jako plik ZIP."
+  },
+  "editAttachments": {
+    "name": "Edytuj załączniki",
+    "subtitle": "Wyświetl lub usuń załączniki w swoim pliku PDF."
+  },
+  "dividePages": {
+    "name": "Podziel strony",
+    "subtitle": "Podziel strony w poziomie lub w pionie."
+  },
+  "addBlankPage": {
+    "name": "Dodaj pustą stronę",
+    "subtitle": "Wstaw pustą stronę w dowolnym miejscu pliku PDF."
+  },
+  "reversePages": {
+    "name": "Odwróć strony",
+    "subtitle": "Odwróć kolejność wszystkich stron w swoim dokumencie."
+  },
+  "rotatePdf": {
+    "name": "Obróć PDF",
+    "subtitle": "Obracaj strony w krokach co 90 stopni."
+  },
+  "rotateCustom": {
+    "name": "Obróć o niestandardowy kąt",
+    "subtitle": "Obróć strony o dowolny, niestandardowy kąt."
+  },
+  "nUpPdf": {
+    "name": "PDF N-Up",
+    "subtitle": "Rozmieść wiele stron na jednym arkuszu."
+  },
+  "combineToSinglePage": {
+    "name": "Połącz w jedną stronę",
+    "subtitle": "Połącz wszystkie strony w jeden przewijany arkusz."
+  },
+  "viewMetadata": {
+    "name": "Wyświetl metadane",
+    "subtitle": "Zbadaj ukryte właściwości swojego pliku PDF."
+  },
+  "editMetadata": {
+    "name": "Edytuj metadane",
+    "subtitle": "Zmień autora, tytuł i inne właściwości."
+  },
+  "pdfsToZip": {
+    "name": "PDF na ZIP",
+    "subtitle": "Zapakuj wiele plików PDF do archiwum ZIP."
+  },
+  "comparePdfs": {
+    "name": "Porównaj PDF",
+    "subtitle": "Porównaj dwa pliki PDF obok siebie.",
+    "firstPdf": "Pierwszy PDF",
+    "secondPdf": "Drugi PDF",
+    "clickOrDrop": "Kliknij lub upuść",
+    "page": "Strona",
+    "overlay": "Nakładka",
+    "sideBySide": "Obok siebie",
+    "flicker": "Migotanie",
+    "syncScroll": "Zsynchronizowane przewijanie",
+    "export": "Eksportuj",
+    "exportAsPdf": "Eksportuj jako PDF",
+    "splitView": "Widok podzielony",
+    "alternating": "Naprzemienny",
+    "leftDocument": "Lewy dokument",
+    "rightDocument": "Prawy dokument",
+    "original": "Oryginał",
+    "modified": "Zmodyfikowany",
+    "searchChanges": "Szukaj zmian...",
+    "deleted": "Usunięto",
+    "added": "Dodano",
+    "prevPage": "Poprzednia strona",
+    "nextPage": "Następna strona",
+    "prevChange": "Poprzednia zmiana",
+    "nextChange": "Następna zmiana",
+    "uploadTwoPdfs": "Prześlij dwa pliki PDF, aby zobaczyć różnice.",
+    "noDifferences": "Nie wykryto różnic na tej stronie.",
+    "noMatchingChanges": "Żadne zmiany nie pasują do obecnego filtra.",
+    "pageNotExist": "Strona {{page}} nie istnieje w tym pliku PDF.",
+    "noPairedPage": "Brak sparowanej strony dla tej strony.",
+    "buildingModel": "Budowanie modelu parowania stron...",
+    "indexingPdf": "Indeksowanie PDF {{num}} strona {{page}} z {{total}}...",
+    "loadingComparison": "Wczytywanie porównania {{current}} z {{total}}...",
+    "runningOcr": "Uruchamianie OCR na stronie {{page}}...",
+    "preparingExport": "Przygotowywanie eksportu pliku PDF...",
+    "renderingPage": "Renderowanie strony {{current}} z {{total}}...",
+    "exportError": "Błąd eksportu",
+    "exportFailed": "Nie udało się wyeksportować porównawczego pliku PDF.",
+    "loadingFile": "Wczytywanie {{name}}...",
+    "invalidFile": "Nieprawidłowy plik",
+    "invalidFileMsg": "Wybierz prawidłowy plik PDF.",
+    "loadError": "Nie udało się załadować pliku PDF. Może być uszkodzony lub chroniony hasłem."
+  },
+  "posterizePdf": {
+    "name": "Plakatowanie PDF",
+    "subtitle": "Podziel dużą stronę na wiele mniejszych stron."
+  },
+  "fixPageSize": {
+    "name": "Napraw rozmiar strony",
+    "subtitle": "Znormalizuj wszystkie strony do jednolitego rozmiaru."
+  },
+  "linearizePdf": {
+    "name": "Linearyzuj PDF",
+    "subtitle": "Zoptymalizuj PDF do szybkiego przeglądania w sieci."
+  },
+  "pageDimensions": {
+    "name": "Wymiary strony",
+    "subtitle": "Analizuj rozmiar, orientację i jednostki stron."
+  },
+  "removeRestrictions": {
+    "name": "Usuń restrykcje",
+    "subtitle": "Usuń ochronę hasłem i ograniczenia bezpieczeństwa powiązane z podpisanymi cyfrowo plikami PDF."
+  },
+  "repairPdf": {
+    "name": "Napraw PDF",
+    "subtitle": "Odzyskaj dane z uszkodzonych lub zepsutych plików PDF."
+  },
+  "encryptPdf": {
+    "name": "Szyfruj PDF",
+    "subtitle": "Zablokuj swój PDF, dodając hasło."
+  },
+  "sanitizePdf": {
+    "name": "Sanityzuj PDF",
+    "subtitle": "Usuń metadane, adnotacje, skrypty i inne elementy."
+  },
+  "decryptPdf": {
+    "name": "Odszyfruj PDF",
+    "subtitle": "Odblokuj PDF, usuwając ochronę hasłem."
+  },
+  "flattenPdf": {
+    "name": "Spłaszcz PDF",
+    "subtitle": "Spraw, aby pola formularza i adnotacje były nieedytowalne."
+  },
+  "removeMetadata": {
+    "name": "Usuń metadane",
+    "subtitle": "Usuń ukryte dane ze swojego pliku PDF."
+  },
+  "changePermissions": {
+    "name": "Zmień uprawnienia",
+    "subtitle": "Ustaw lub zmień uprawnienia użytkownika dla pliku PDF."
+  },
+  "odtToPdf": {
+    "name": "ODT na PDF",
+    "subtitle": "Konwertuj pliki OpenDocument Text do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki ODT",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "csvToPdf": {
+    "name": "CSV na PDF",
+    "subtitle": "Konwertuj arkusze kalkulacyjne CSV do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki CSV",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "rtfToPdf": {
+    "name": "RTF na PDF",
+    "subtitle": "Konwertuj dokumenty w formacie Rich Text na PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki RTF",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "wordToPdf": {
+    "name": "Word na PDF",
+    "subtitle": "Konwertuj dokumenty Word (DOCX, DOC, ODT, RTF) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki DOCX, DOC, ODT, RTF",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "excelToPdf": {
+    "name": "Excel na PDF",
+    "subtitle": "Konwertuj arkusze kalkulacyjne Excel (XLSX, XLS, ODS, CSV) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki XLSX, XLS, ODS, CSV",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "powerpointToPdf": {
+    "name": "PowerPoint na PDF",
+    "subtitle": "Konwertuj prezentacje PowerPoint (PPTX, PPT, ODP) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki PPTX, PPT, ODP",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "markdownToPdf": {
+    "name": "Markdown na PDF",
+    "subtitle": "Napisz lub wklej Markdown i wyeksportuj jako pięknie sformatowany PDF.",
+    "paneMarkdown": "Markdown",
+    "panePreview": "Podgląd",
+    "btnUpload": "Prześlij",
+    "btnSyncScroll": "Zsynchronizowane przewijanie",
+    "btnSettings": "Ustawienia",
+    "btnExportPdf": "Eksportuj PDF",
+    "settingsTitle": "Ustawienia Markdown",
+    "settingsPreset": "Predefiniowane ustawienia",
+    "presetDefault": "Domyślne (styl GFM)",
+    "presetCommonmark": "CommonMark (ścisłe)",
+    "presetZero": "Minimalne (brak dodatkowych funkcji)",
+    "settingsOptions": "Opcje Markdown",
+    "optAllowHtml": "Zezwalaj na tagi HTML",
+    "optBreaks": "Konwertuj nowe linie na <br>",
+    "optLinkify": "Automatycznie konwertuj URL na linki",
+    "optTypographer": "Typograf (inteligentne cudzysłowy itp.)"
+  },
+  "pdfBooklet": {
+    "name": "Broszura PDF",
+    "subtitle": "Zmień układ stron do dwustronnego druku broszur. Złóż i zszyj, aby stworzyć książeczkę.",
+    "howItWorks": "Jak to działa:",
+    "step1": "Prześlij plik PDF.",
+    "step2": "Strony zostaną ułożone w kolejności odpowiedniej dla broszury.",
+    "step3": "Wydrukuj dwustronnie, obracając wzdłuż krótkiej krawędzi, złóż i zszyj.",
+    "paperSize": "Rozmiar papieru",
+    "orientation": "Orientacja",
+    "portrait": "Pionowa",
+    "landscape": "Pozioma",
+    "pagesPerSheet": "Liczba stron na arkusz",
+    "createBooklet": "Utwórz broszurę",
+    "processing": "Przetwarzanie...",
+    "pageCount": "Liczba stron zostanie w razie potrzeby uzupełniona do wielokrotności liczby 4."
+  },
+  "xpsToPdf": {
+    "name": "XPS na PDF",
+    "subtitle": "Konwertuj dokumenty XPS/OXPS do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki XPS, OXPS",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "mobiToPdf": {
+    "name": "MOBI na PDF",
+    "subtitle": "Konwertuj e-booki MOBI do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki MOBI",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "epubToPdf": {
+    "name": "EPUB na PDF",
+    "subtitle": "Konwertuj e-booki EPUB do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki EPUB",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "fb2ToPdf": {
+    "name": "FB2 na PDF",
+    "subtitle": "Konwertuj e-booki FictionBook (FB2) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki FB2",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "cbzToPdf": {
+    "name": "CBZ na PDF",
+    "subtitle": "Konwertuj archiwa komiksów (CBZ/CBR) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki CBZ, CBR",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "wpdToPdf": {
+    "name": "WPD na PDF",
+    "subtitle": "Konwertuj dokumenty WordPerfect (WPD) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki WPD",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "wpsToPdf": {
+    "name": "WPS na PDF",
+    "subtitle": "Konwertuj dokumenty WPS Office do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki WPS",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "xmlToPdf": {
+    "name": "XML na PDF",
+    "subtitle": "Konwertuj dokumenty XML do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki XML",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "pagesToPdf": {
+    "name": "Pages na PDF",
+    "subtitle": "Konwertuj dokumenty Apple Pages do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki Pages",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "odgToPdf": {
+    "name": "ODG na PDF",
+    "subtitle": "Konwertuj pliki OpenDocument Graphics (ODG) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki ODG",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "odsToPdf": {
+    "name": "ODS na PDF",
+    "subtitle": "Konwertuj pliki arkuszy kalkulacyjnych OpenDocument (ODS) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki ODS",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "odpToPdf": {
+    "name": "ODP na PDF",
+    "subtitle": "Konwertuj pliki prezentacji OpenDocument (ODP) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki ODP",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "pubToPdf": {
+    "name": "PUB na PDF",
+    "subtitle": "Konwertuj pliki Microsoft Publisher (PUB) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki PUB",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "vsdToPdf": {
+    "name": "VSD na PDF",
+    "subtitle": "Konwertuj pliki Microsoft Visio (VSD, VSDX) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki VSD, VSDX",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "psdToPdf": {
+    "name": "PSD na PDF",
+    "subtitle": "Konwertuj pliki Adobe Photoshop (PSD) do formatu PDF. Obsługuje wiele plików.",
+    "acceptedFormats": "Pliki PSD",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "pdfToSvg": {
+    "name": "PDF na SVG",
+    "subtitle": "Konwertuj każdą stronę pliku PDF na skalowalną grafikę wektorową (SVG), aby uzyskać idealną jakość w dowolnym rozmiarze."
+  },
+  "extractTables": {
+    "name": "Wyodrębnij tabele PDF",
+    "subtitle": "Wyodrębniaj tabele z plików PDF i eksportuj je jako pliki CSV, JSON lub Markdown."
+  },
+  "pdfToCsv": {
+    "name": "PDF na CSV",
+    "subtitle": "Wyodrębnij tabele z PDF i skonwertuj je do formatu CSV."
+  },
+  "pdfToExcel": {
+    "name": "PDF na Excel",
+    "subtitle": "Wyodrębnij tabele z PDF i skonwertuj je do formatu Excel (XLSX)."
+  },
+  "pdfToText": {
+    "name": "PDF na Tekst",
+    "subtitle": "Wyodrębnij tekst z plików PDF i zapisz jako zwykły tekst (.txt). Obsługuje wiele plików.",
+    "noteLabel": "Uwaga:",
+    "noteText": "To narzędzie działa WYŁĄCZNIE z cyfrowo utworzonymi plikami PDF. W przypadku zeskanowanych dokumentów lub plików PDF opartych na obrazach użyj naszego narzędzia OCR PDF.",
+    "convertButton": "Wyodrębnij tekst"
+  },
+  "digitalSignPdf": {
+    "name": "Podpis cyfrowy PDF",
+    "pageTitle": "Podpis cyfrowy PDF - Dodaj podpis kryptograficzny | BentoPDF",
+    "subtitle": "Dodaj kryptograficzny podpis cyfrowy do pliku PDF, używając certyfikatów X.509. Obsługuje formaty PKCS#12 (.pfx, .p12) i PEM. Twój klucz prywatny nigdy nie opuszcza przeglądarki.",
+    "certificateSection": "Certyfikat",
+    "uploadCert": "Prześlij certyfikat (.pfx, .p12, .pem)",
+    "certPassword": "Hasło certyfikatu",
+    "privateKeyPassword": "Hasło klucza prywatnego",
+    "certPasswordPlaceholder": "Wpisz hasło certyfikatu",
+    "certInfo": "Informacje o certyfikacie",
+    "certSubject": "Podmiot",
+    "certIssuer": "Wystawca",
+    "certValidity": "Ważność",
+    "signatureDetails": "Szczegóły podpisu (Opcjonalnie)",
+    "reason": "Powód",
+    "reasonPlaceholder": "np. Zatwierdzam ten dokument",
+    "location": "Lokalizacja",
+    "locationPlaceholder": "np. Warszawa, Polska",
+    "contactInfo": "Dane kontaktowe",
+    "contactPlaceholder": "np. email@example.com",
+    "visibleSignature": "Podpis widoczny",
+    "visibleSignatureDescription": "Gdy opcja ta jest włączona, na pliku PDF pojawia się widoczne pole podpisu. Możesz przesłać obraz/logo lub dodać tekst. Jeśli nie podasz żadnego z nich, nazwa sygnatariusza z certyfikatu zostanie wyświetlona automatycznie.",
+    "signatureImage": "Obraz/Logo podpisu (Opcjonalnie)",
+    "uploadSignatureImage": "Prześlij obraz (PNG, JPG, WebP)",
+    "signaturePreviewAlt": "Podgląd podpisu",
+    "remove": "Usuń",
+    "page": "Strona",
+    "firstPage": "Pierwsza strona",
+    "lastPage": "Ostatnia strona",
+    "allPages": "Wszystkie strony",
+    "customPage": "Strona niestandardowa nr",
+    "pageNumber": "Strona nr",
+    "xPosition": "Pozycja X (od lewej)",
+    "yPosition": "Pozycja Y (od góry)",
+    "width": "Szerokość",
+    "height": "Wysokość",
+    "addTextOverlay": "Dodaj nakładkę tekstową",
+    "text": "Tekst",
+    "textPlaceholder": "np. Podpisane cyfrowo przez Jan Kowalski",
+    "textColor": "Kolor tekstu",
+    "fontSize": "Rozmiar czcionki",
+    "invalidImageTitle": "Nieprawidłowy obraz",
+    "invalidImageMessage": "Proszę wybrać obraz w formacie PNG, JPG lub WebP.",
+    "invalidFileTitle": "Nieprawidłowy plik",
+    "invalidFileMessage": "Proszę wybrać plik PDF.",
+    "invalidCertificateTitle": "Nieprawidłowy certyfikat",
+    "invalidCertificateMessage": "Proszę wybrać plik certyfikatu .pfx, .p12 lub .pem.",
+    "certificateLoaded": "Certyfikat załadowany",
+    "certificateUnlocked": "Certyfikat odblokowany",
+    "failedParsePem": "Nie udało się sparsować pliku PEM",
+    "enterPasswordToUnlock": "Wprowadź hasło, aby odblokować",
+    "invalidPasswordOrCertificate": "Nieprawidłowe hasło lub certyfikat",
+    "incorrectPassword": "Nieprawidłowe hasło",
+    "failedParseCertificate": "Nie udało się sparsować certyfikatu",
+    "missingDataTitle": "Brakujące dane",
+    "missingDataMessage": "Proszę przesłać zarówno plik PDF, jak i ważny certyfikat.",
+    "applyingSignature": "Aplikowanie podpisu cyfrowego...",
+    "signingFailedTitle": "Podpisywanie nie powiodło się",
+    "chainFetchFailed": "Nie udało się pobrać łańcucha certyfikatów. Może to być spowodowane problemami z siecią lub niedostępnością serwera proxy certyfikatów. Sprawdź swoje połączenie internetowe i spróbuj ponownie. Jeśli problem będzie się powtarzał, skontaktuj się z pomocą techniczną.",
+    "failedToSignPdf": "Nie udało się podpisać pliku PDF: {{message}}",
+    "defaultSignatureText": "Podpisane cyfrowo przez {{signer}}\n{{date}}",
+    "pageCount": "{{count}} stron(y)",
+    "howToStep1Title": "Prześlij PDF",
+    "howToStep1Text": "Wybierz dokument PDF, który chcesz podpisać",
+    "howToStep2Title": "Prześlij certyfikat",
+    "howToStep2Text": "Dostarcz plik certyfikatu .pfx lub .p12 i hasło",
+    "howToStep3Title": "Podpisz i Pobierz",
+    "howToStep3Text": "Zastosuj podpis cyfrowy i pobierz podpisany PDF",
+    "relatedEncryptDesc": "Zabezpiecz swój PDF hasłem",
+    "relatedDecryptDesc": "Usuń hasło z PDF",
+    "relatedFlattenDesc": "Utwardź adnotacje na stałe",
+    "relatedSanitizeDesc": "Usuń ukryte dane",
+    "relatedPermissionsDesc": "Ustaw uprawnienia PDF",
+    "faqWhatIsQuestion": "Co to jest podpis cyfrowy?",
+    "faqWhatIsAnswer": "Podpis cyfrowy to mechanizm kryptograficzny weryfikujący autentyczność i integralność dokumentu. W przeciwieństwie do narysowanego podpisu używa on kryptografii klucza publicznego (certyfikatów X.509) do udowodnienia tożsamości osoby podpisującej.",
+    "faqFormatsQuestion": "Jakie formaty certyfikatów są obsługiwane?",
+    "faqFormatsAnswer": "Obsługujemy certyfikaty w formacie PKCS#12 (.pfx, .p12), które zawierają zarówno Twój certyfikat, jak i klucz prywatny w jednym zaszyfrowanym pliku. Są one powszechnie wydawane przez urzędy certyfikacji.",
+    "faqPrivateKeyQuestion": "Czy mój klucz prywatny jest bezpieczny?",
+    "faqPrivateKeyAnswer": "Tak! Całe przetwarzanie odbywa się całkowicie w Twojej przeglądarce. Twój certyfikat, klucz prywatny i pliki PDF nigdy nie opuszczają Twojego urządzenia i nie są przesyłane na żaden serwer.",
+    "faqValidReadersQuestion": "Czy podpis będzie ważny w czytnikach PDF?",
+    "faqValidReadersAnswer": "Tak, narzędzie tworzy standardowe oddzielone podpisy PKCS#7, które są rozpoznawane przez wszystkie główne przeglądarki PDF. Aby uzyskać pełną weryfikację, użyj certyfikatu od zaufanego Urzędu Certyfikacji.",
+    "applySignature": "Zastosuj podpis cyfrowy",
+    "successMessage": "PDF został pomyślnie podpisany! Podpis można zweryfikować w dowolnym czytniku PDF.",
+    "internetRequiredTitle": "Wymagane połączenie z internetem",
+    "internetRequiredDescription": "Podpisywanie może wymagać pobrania informacji o łańcuchu certyfikatów z serwera wystawcy certyfikatu w celu zwalidowania podpisu."
+  },
+  "validateSignaturePdf": {
+    "name": "Zweryfikuj podpis PDF",
+    "pageTitle": "Zweryfikuj podpis PDF - Sprawdź podpisy cyfrowe | BentoPDF",
+    "subtitle": "Zweryfikuj podpisy cyfrowe w plikach PDF. Sprawdź ważność certyfikatu, zobacz dane osoby podpisującej i potwierdź integralność dokumentu. Całe przetwarzanie odbywa się w Twojej przeglądarce."
+  },
+  "timestampPdf": {
+    "name": "Znakowanie czasem PDF",
+    "pageTitle": "Znakowanie czasem PDF Online Za Darmo - Znacznik Czasu Dokumentu RFC 3161 | BentoPDF",
+    "subtitle": "Dodaj znacznik czasu RFC 3161 do pliku PDF, korzystając z serwera zaufanego urzędu znakowania czasem (TSA). Udowadnia, że Twój dokument istniał w określonym momencie w czasie. Certyfikat nie jest wymagany.",
+    "tsaSectionTitle": "Serwer znacznika czasu (TSA)",
+    "selectTsa": "Wybierz serwer TSA",
+    "applyTimestamp": "Zastosuj znacznik czasu",
+    "successMessage": "PDF został pomyślnie oznaczony czasem! Znacznik czasu można zweryfikować w dowolnym czytniku PDF."
+  },
+  "emailToPdf": {
+    "name": "E-mail na PDF",
+    "subtitle": "Konwertuj pliki wiadomości e-mail (EML, MSG) do formatu PDF. Obsługuje eksporty z programu Outlook oraz standardowe formaty poczty elektronicznej.",
+    "acceptedFormats": "Pliki EML, MSG",
+    "convertButton": "Konwertuj na PDF"
+  },
+  "fontToOutline": {
+    "name": "Czcionka na krzywe",
+    "subtitle": "Konwertuj wszystkie czcionki na krzywe wektorowe, aby zapewnić spójne renderowanie na wszystkich urządzeniach."
+  },
+  "deskewPdf": {
+    "name": "Wyprostuj PDF",
+    "subtitle": "Automatycznie wyprostuj przekrzywione zeskanowane strony używając OpenCV."
+  },
+  "pdfToWord": {
+    "name": "PDF na Word",
+    "subtitle": "Konwertuj pliki PDF na edytowalne dokumenty Word."
+  },
+  "extractImages": {
+    "name": "Wyodrębnij obrazy",
+    "subtitle": "Wyodrębnij wszystkie osadzone obrazy ze swoich plików PDF."
+  },
+  "pdfToMarkdown": {
+    "name": "PDF na Markdown",
+    "subtitle": "Konwertuj tekst i tabele z PDF do formatu Markdown."
+  },
+  "preparePdfForAi": {
+    "name": "Przygotuj PDF dla AI",
+    "subtitle": "Wyodrębnij zawartość PDF w formacie LlamaIndex JSON dla rurociągów RAG/LLM."
+  },
+  "pdfOcg": {
+    "name": "Warstwy PDF (OCG)",
+    "subtitle": "Przeglądaj, przełączaj, dodawaj i usuwaj warstwy OCG w swoim pliku PDF."
+  },
+  "pdfToPdfa": {
+    "name": "PDF na PDF/A",
+    "subtitle": "Konwertuj PDF na PDF/A w celu długoterminowej archiwizacji."
+  },
+  "rasterizePdf": {
+    "name": "Rasteryzuj PDF",
+    "subtitle": "Konwertuj PDF na plik PDF oparty na obrazach. Spłaszcz warstwy i usuń możliwość zaznaczania tekstu."
+  },
+  "pdfWorkflow": {
+    "name": "Kreator przepływów PDF",
+    "subtitle": "Zbuduj niestandardowe rurociągi przetwarzania PDF w wizualnym edytorze węzłów.",
+    "nodes": "Węzły",
+    "searchNodes": "Szukaj węzłów...",
+    "run": "Uruchom",
+    "clear": "Wyczyść",
+    "save": "Zapisz",
+    "load": "Wczytaj",
+    "export": "Eksportuj",
+    "import": "Importuj",
+    "ready": "Gotowe",
+    "settings": "Ustawienia",
+    "processing": "Przetwarzanie...",
+    "saveTemplate": "Zapisz szablon",
+    "templateName": "Nazwa szablonu",
+    "templatePlaceholder": "np. Przepływ Faktur",
+    "cancel": "Anuluj",
+    "loadTemplate": "Wczytaj szablon",
+    "noTemplates": "Brak zapisanych szablonów.",
+    "ok": "OK",
+    "workflowCompleted": "Przepływ zakończony",
+    "errorDuringExecution": "Błąd podczas wykonywania",
+    "addNodeError": "Dodaj co najmniej jeden węzeł, aby uruchomić przepływ.",
+    "needInputOutput": "Twój przepływ wymaga co najmniej jednego węzła wejściowego i jednego węzła wyjściowego do uruchomienia.",
+    "enterName": "Proszę wpisać nazwę.",
+    "templateExists": "Szablon o tej nazwie już istnieje.",
+    "templateSaved": "Szablon \"{{name}}\" został zapisany.",
+    "templateLoaded": "Szablon \"{{name}}\" został wczytany.",
+    "failedLoadTemplate": "Nie udało się wczytać szablonu.",
+    "noSettings": "Brak konfigurowalnych ustawień dla tego węzła.",
+    "advancedSettings": "Ustawienia zaawansowane",
+    "specialNodes": {
+      "pdfInput": {
+        "name": "Wejście PDF",
+        "description": "Prześlij jeden lub więcej plików PDF"
+      },
+      "download": {
+        "name": "Pobieranie",
+        "description": "Pobierz jako PDF lub ZIP automatycznie"
+      }
+    },
+    "errors": {
+      "noPdfsConnected": "Brak plików PDF podłączonych do węzła {{node}}",
+      "noPdfInputs": "Brak plików PDF na wejściu",
+      "expectedPdfInput": "Oczekiwano wejścia PDF",
+      "failedToRenderPage": "Nie udało się wyrenderować strony {{page}}",
+      "failedToGetCanvasContext": "Nie udało się uzyskać kontekstu płótna (canvas) dla strony {{page}}",
+      "failedToRenderPageToImage": "Nie udało się wyrenderować strony {{page}} na obraz",
+      "noPagesProcessed": "Żadne strony nie zostały przetworzone",
+      "cpdfNotConfigured": "CoherentPDF nie jest skonfigurowany. Proszę skonfigurować go w Ustawieniach Zaawansowanych.",
+      "workerError": "Błąd workera: {{message}}",
+      "alternateMergeWorkerError": "Błąd workera naprzemiennego łączenia: {{message}}",
+      "noPdfFilesUploaded": "Brak przesłanych plików PDF w węźle Wejścia PDF",
+      "failedToLoadFile": "Nie udało się wczytać \"{{file}}\" - plik może być uszkodzony",
+      "noImagesUploaded": "Brak przesłanych obrazów w węźle Wejścia Obrazów",
+      "noWordDocsUploaded": "Brak przesłanych dokumentów w węźle Wejścia Word",
+      "noExcelUploaded": "Brak przesłanych arkuszy w węźle Wejścia Excel",
+      "noPowerPointUploaded": "Brak przesłanych prezentacji w węźle Wejścia PowerPoint",
+      "noCbzUploaded": "Brak przesłanych archiwów komiksów w węźle Wejścia CBZ",
+      "noEmailUploaded": "Brak przesłanych plików poczty w węźle Wejścia Email",
+      "noEpubUploaded": "Brak przesłanych plików EPUB w węźle Wejścia EPUB",
+      "noFb2Uploaded": "Brak przesłanych plików FB2 w węźle Wejścia FB2",
+      "noJsonUploaded": "Brak przesłanych plików JSON w węźle Wejścia JSON",
+      "noMarkdownUploaded": "Brak przesłanych plików Markdown w węźle Wejścia Markdown",
+      "noMobiUploaded": "Brak przesłanych plików MOBI w węźle Wejścia MOBI",
+      "noOdgUploaded": "Brak przesłanych plików ODG w węźle Wejścia ODG",
+      "noPagesUploaded": "Brak przesłanych plików Pages w węźle Wejścia Pages",
+      "noPubUploaded": "Brak przesłanych plików PUB w węźle Wejścia PUB",
+      "noSvgUploaded": "Brak przesłanych plików SVG w węźle Wejścia SVG",
+      "noTextUploaded": "Brak przesłanych plików tekstowych w węźle Wejścia Tekstu",
+      "noVsdUploaded": "Brak przesłanych plików Visio w węźle Wejścia VSD",
+      "noWpdUploaded": "Brak przesłanych plików WPD w węźle Wejścia WPD",
+      "noWpsUploaded": "Brak przesłanych plików WPS w węźle Wejścia WPS",
+      "noXmlUploaded": "Brak przesłanych plików XML w węźle Wejścia XML",
+      "noXpsUploaded": "Brak przesłanych plików XPS w węźle Wejścia XPS",
+      "alternateMergeNeedsTwo": "Naprzemienne Łączenie potrzebuje co najmniej dwóch plików PDF podłączonych do wejścia",
+      "cropMarginsExceed": "Marginesy przycinania przekraczają wymiary strony. Zmniejsz wartości przycięcia.",
+      "digitalSignNoCertificate": "Brak wczytanego certyfikatu w węźle Podpisu Cyfrowego",
+      "encryptUserPasswordRequired": "Do zaszyfrowania wymagane jest hasło użytkownika",
+      "extractImagesNoneFound": "Nie znaleziono obrazów w żadnym z podłączonych plików PDF",
+      "invertColorsFailedReadImage": "Nie udało się odczytać danych obrazu",
+      "overlayRequiresPdf": "Węzeł nakładki wymaga podania wejściowego pliku PDF nakładki.",
+      "pdfToCsvNoTables": "Nie znaleziono tabel w pliku PDF",
+      "pdfToXlsxNoTables": "Nie znaleziono tabel w pliku {{file}}",
+      "posterizeFailedTileCanvas": "Nie udało się uzyskać kontekstu płótna (canvas) kafelka",
+      "redactNoText": "Redaguj: Nie określono tekstu do zredagowania",
+      "removeBlankPagesAllBlank": "Wszystkie strony są puste",
+      "svgFailedToConvert": "Nie udało się przekonwertować SVG",
+      "svgFailedToLoad": "Nie udało się wczytać SVG",
+      "timestampFailed": "Oznaczenie czasem za pomocą TSA {{tsa}} nie powiodło się: {{message}}",
+      "noOutputNodes": "Nie znaleziono węzłów wyjściowych. Dodaj węzeł Pobierania, aby ukończyć swój przepływ.",
+      "circularDependency": "Wykryto zapętlenie zależnosci w przepływie. Usuń wszelkie pętle pomiędzy węzłami.",
+      "encryptOrdering": "Węzeł szyfrowania zasila \"{{target}}\", co może spowodować błędy na zaszyfrowanych danych. Przenieś Szyfrowanie bezpośrednio przed węzeł wyjściowy.",
+      "invalidWorkflowFile": "Nieprawidłowy plik przepływu: brakuje tablic węzłów lub połączeń.",
+      "storageQuotaExceeded": "Nie udało się zapisać przepływu: przekroczono limit pojemności pamięci. Spróbuj usunąć stare szablony.",
+      "failedToImport": "Nie udało się zaimportować przepływu: {{message}}"
+    }
+  },
+  "wasmSettings": {
+    "title": "Ustawienia Zaawansowanych Funkcji",
+    "description": "Skonfiguruj zewnętrzne moduły przetwarzania, aby włączyć zaawansowane funkcje PDF. Te moduły są opcjonalne i licencjonowane osobno.",
+    "status": {
+      "testing": "Testowanie...",
+      "customOverride": "Niestandardowe nadpisanie",
+      "preConfigured": "Wstępnie skonfigurowane",
+      "notConfigured": "Nieskonfigurowane"
+    },
+    "preconfiguredTitle": "Wstępnie skonfigurowane i gotowe do użycia.",
+    "preconfiguredDescription": "Zaawansowane moduły przetwarzania są ładowane automatycznie z CDN. Możesz nadpisać poniższe adresy URL, jeśli musisz użyć niestandardowego źródła (np. dla wdrożeń izolowanych sieciowo lub hostowanych na własnym serwerze).",
+    "usingDefault": "Używanie domyślnego: {{url}}",
+    "pymupdfSubtitle": "Silnik Przetwarzania Dokumentów",
+    "pymupdfFeatures": "Umożliwia: PDF na Tekst, Markdown, SVG, DOCX, Excel • Wyodrębnianie Obrazów/Tabel • Konwersję Formatów",
+    "testButton": "Testuj",
+    "recommendedLabel": "Zalecane:",
+    "copyTitle": "Skopiuj do schowka",
+    "ghostscriptSubtitle": "Silnik Konwersji PDF/A",
+    "ghostscriptFeatures": "Umożliwia: Konwersję do PDF/A-1b, PDF/A-2b, PDF/A-3b • Zamianę czcionki na krzywe",
+    "cpdfSubtitle": "Silnik Zakładek i Metadanych",
+    "cpdfFeatures": "Umożliwia: Podział wg Zakładek • Edycję Zakładek • Metadane PDF",
+    "saveConfiguration": "Zapisz Konfigurację",
+    "savingConfiguration": "Zapisywanie konfiguracji...",
+    "savedTitle": "Zapisano",
+    "savedMessage": "Konfiguracja pomyślnie zapisana!",
+    "errorTitle": "Błąd",
+    "failedSave": "Nie udało się zapisać konfiguracji: {{message}}",
+    "emptyUrlTitle": "Pusty adres URL",
+    "emptyUrlMessage": "Proszę wprowadzić adres URL do przetestowania.",
+    "testSuccessTitle": "Sukces",
+    "connectionSuccess": "Połączenie z {{package}} powiodło się!",
+    "connectionFailedTitle": "Połączenie Nie Powiodło Się",
+    "connectionFailedMessage": "Nie można było połączyć się z adresem URL.",
+    "resetDefaults": "Przywróć Domyślne",
+    "resetTitle": "Reset",
+    "resetWithDefaults": "Niestandardowe ustawienia zostały wyczyszczone. Aktywne są wstępnie skonfigurowane ustawienia domyślne.",
+    "resetNoDefaults": "Wszystkie konfiguracje i moduły z pamięci podręcznej zostały wyczyszczone.",
+    "licenseTitle": "Informacja licencyjna:",
+    "licenseDescription": "Zewnętrzne moduły (PyMuPDF, Ghostscript, CoherentPDF) są licencjonowane na podstawie AGPL-3.0 lub podobnych licencji copyleft. Konfigurując i używając tych modułów, zgadzasz się na ich odpowiednie warunki licencyjne. BentoPDF jest kompatybilne z dowolną implementacją Ghostscript WASM i PyMuPDF WASM, która podąża za oczekiwanym interfejsem."
+  },
+  "pdfOverlay": {
+    "name": "Nakładka PDF",
+    "subtitle": "Nakładaj lub podkładaj strony z jednego pliku PDF na inny.",
+    "basePdfLabel": "Bazowy PDF",
+    "uploadBasePdf": "Prześlij bazowy plik PDF",
+    "overlayPdfLabel": "PDF jako Nakładka / Podkład",
+    "uploadOverlayPdf": "Prześlij PDF nakładki/podkładu",
+    "modeLabel": "Tryb",
+    "overlayOption": "Nakładka (na wierzchu stron)",
+    "underlayOption": "Podkład (pod stronami)",
+    "pageRangeLabel": "Zastosuj do stron (opcjonalnie)",
+    "pageRangeHint": "Użyj \"z\" dla ostatniej strony. Pozostaw puste, aby zastosować do wszystkich stron.",
+    "repeatLabel": "Zapętl strony nakładki/podkładu, jeśli baza jest dłuższa",
+    "processButton": "Zastosuj Nakładkę / Podkład",
+    "howItWorksUploadTitle": "Prześlij Dwa Pliki PDF",
+    "howItWorksUploadDescription": "Prześlij bazowy plik PDF oraz PDF, który chcesz nałożyć na wierzch lub pod spód.",
+    "howItWorksModeTitle": "Wybierz Tryb",
+    "howItWorksModeDescription": "Wybierz nakładkę (na wierzchu) lub podkład (pod spodem). Opcjonalnie ustaw zakres stron i powtarzanie.",
+    "howItWorksDownloadTitle": "Pobierz",
+    "howItWorksDownloadDescription": "Pobierz plik PDF z nałożoną nakładką lub podkładem.",
+    "faqDifferenceQuestion": "Jaka jest różnica między nakładką a podkładem?",
+    "faqDifferenceAnswer": "Nakładka umieszcza strony na wierzchu Twojego bazowego pliku PDF (jak znak wodny). Podkład umieszcza strony pod Twoim bazowym plikiem PDF (jak papier firmowy lub tło).",
+    "faqSinglePageQuestion": "Czy mogę użyć jednostronicowego PDF jako nakładki na wszystkie strony?",
+    "faqSinglePageAnswer": "Tak! Włącz opcję \"Zapętl\", a strony Twojego PDF-a z nakładką będą powtarzane na wszystkich stronach bazowych. Jednostronicowy znak wodny zostanie nałożony na każdą stronę.",
+    "faqPrivacyQuestion": "Czy moje pliki są prywatne i bezpieczne?",
+    "faqPrivacyAnswer": "Zdecydowanie tak! Całe przetwarzanie odbywa się w Twojej przeglądarce. Twoje pliki nigdy nie opuszczają Twojego urządzenia, co zapewnia całkowitą prywatność."
+  }
+}

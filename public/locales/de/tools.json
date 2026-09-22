@@ -60,6 +60,8 @@
     "subtitle": "Auf einen beliebigen Absatz klicken und ihn direkt bearbeiten – mit Live-Umbruch, Schriftarten und Formatierung.",
     "saved": "PDF erfolgreich gespeichert! ({{size}} KB)",
     "failedToLoad": "Der PDF-Texteditor konnte nicht geladen werden.",
+    "loadingFonts": "Schriftarten werden geladen...",
+    "fontsUnavailable": "Eine für einige Zeichen benötigte Schriftart konnte nicht heruntergeladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut, sonst werden diese Zeichen im gespeicherten PDF möglicherweise nicht korrekt angezeigt.",
     "howToUpload": "PDF hochladen",
     "howToClick": "Absatz anklicken",
     "howToRestyle": "Alles umgestalten",

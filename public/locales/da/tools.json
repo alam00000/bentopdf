@@ -60,6 +60,8 @@
     "subtitle": "Klik på et hvilket som helst afsnit, og redigér det direkte med live-ombrydning, skrifttyper og formatering.",
     "saved": "PDF blev gemt! ({{size}} KB)",
     "failedToLoad": "PDF-teksteditoren kunne ikke indlæses.",
+    "loadingFonts": "Indlæser skrifttyper...",
+    "fontsUnavailable": "En skrifttype, der er nødvendig for nogle tegn, kunne ikke downloades. Tjek din forbindelse, og prøv igen, ellers vises disse tegn muligvis ikke korrekt i den gemte PDF.",
     "howToUpload": "Upload PDF",
     "howToClick": "Klik på et afsnit",
     "howToRestyle": "Giv alt ny stil",

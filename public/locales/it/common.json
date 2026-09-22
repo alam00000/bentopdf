@@ -288,7 +288,8 @@
       "noCompromises": "Nessun compromesso."
     },
     "mission": {
-      "title": "La nostra missione",
+      "title": "La nostra",
+      "titleDim": "missione",
       "description": "Fornire la cassetta degli attrezzi per PDF più completa che rispetti la tua privacy e non richieda mai pagamenti. Crediamo che gli strumenti essenziali per i documenti debbano essere accessibili a tutti, ovunque, senza barriere."
     },
     "philosophy": {

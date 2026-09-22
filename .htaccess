@@ -99,7 +99,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Remove trailing slash (except for language root directories)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/$
+RewriteCond %{REQUEST_URI} !^/(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/$
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
 
@@ -117,11 +117,11 @@ RewriteRule ^en/(.+)$ /$1 [R=301,L]
 
 # Language prefix root (e.g., /de/ -> /de/index.html)
 RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /$1/index.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/?$ /$1/index.html [L]
 
 # Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
 RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/([^/]+)/?$ /$1/$2.html [L]
 
 # ============================================
 # 5.5. DOCS ROUTING (VitePress)

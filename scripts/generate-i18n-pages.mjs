@@ -225,18 +225,31 @@ function resolveToolName(translationKey, langTools) {
   return enEntry && enEntry.name ? enEntry.name : null;
 }
 
+function translationKeyForFile(filenameNoExt) {
+  return KEY_MAPPING[filenameNoExt] || toCamelCase(filenameNoExt);
+}
+
+function translatedLangsForFile(filenameNoExt, translations) {
+  const translationKey = translationKeyForFile(filenameNoExt);
+  return languages.filter(
+    (l) =>
+      l === 'en' ||
+      filenameNoExt === 'index' ||
+      Boolean(translations[l] && translations[l].tools[translationKey])
+  );
+}
+
 function processFileForLanguage(
   originalContent,
   file,
   lang,
   translations,
-  langDir
+  langDir,
+  translatedLangs
 ) {
   const filenameNoExt = file.replace('.html', '');
-  let translationKey = toCamelCase(filenameNoExt);
-  if (KEY_MAPPING[filenameNoExt]) {
-    translationKey = KEY_MAPPING[filenameNoExt];
-  }
+  const translationKey = translationKeyForFile(filenameNoExt);
+  const isTranslated = translatedLangs.includes(lang);
 
   const { tools } = translations[lang];
   const dom = new JSDOM(originalContent);
@@ -288,33 +301,37 @@ function processFileForLanguage(
 
   const pagePath = filenameNoExt === 'index' ? '' : filenameNoExt;
 
-  languages.forEach((l) => {
-    const link = document.createElement('link');
-    link.rel = 'alternate';
-    link.hreflang = l;
-    link.href = buildUrl(l === 'en' ? '' : l, pagePath);
-    document.head.appendChild(link);
-  });
+  if (isTranslated) {
+    translatedLangs.forEach((l) => {
+      const link = document.createElement('link');
+      link.rel = 'alternate';
+      link.hreflang = l;
+      link.href = buildUrl(l === 'en' ? '' : l, pagePath);
+      document.head.appendChild(link);
+    });
 
-  const defaultLink = document.createElement('link');
-  defaultLink.rel = 'alternate';
-  defaultLink.hreflang = 'x-default';
-  defaultLink.href = buildUrl('', pagePath);
-  document.head.appendChild(defaultLink);
+    const defaultLink = document.createElement('link');
+    defaultLink.rel = 'alternate';
+    defaultLink.hreflang = 'x-default';
+    defaultLink.href = buildUrl('', pagePath);
+    document.head.appendChild(defaultLink);
+  }
 
+  const englishUrl = buildUrl('', pagePath);
   const localizedUrl = buildUrl(lang, pagePath);
+  const canonicalUrl = isTranslated ? localizedUrl : englishUrl;
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {
     canonical = document.createElement('link');
     canonical.rel = 'canonical';
     document.head.appendChild(canonical);
   }
-  canonical.href = localizedUrl;
+  canonical.href = canonicalUrl;
 
   const ogUrl = document.querySelector('meta[property="og:url"]');
-  if (ogUrl) ogUrl.content = localizedUrl;
+  if (ogUrl) ogUrl.content = canonicalUrl;
   const twitterUrl = document.querySelector('meta[name="twitter:url"]');
-  if (twitterUrl) twitterUrl.content = localizedUrl;
+  if (twitterUrl) twitterUrl.content = canonicalUrl;
 
   injectOrganizationLd(document);
 
@@ -370,7 +387,7 @@ function processFileForLanguage(
   fs.writeFileSync(path.join(langDir, file), result);
 }
 
-function updateEnglishFile(filePath, originalContent) {
+function updateEnglishFile(filePath, originalContent, translatedLangs) {
   const filenameNoExt = path.basename(filePath, '.html');
   const dom = new JSDOM(originalContent);
   const document = dom.window.document;
@@ -382,7 +399,7 @@ function updateEnglishFile(filePath, originalContent) {
   const pagePath = filenameNoExt === 'index' ? '' : filenameNoExt;
   const canonicalUrl = buildUrl('', pagePath);
 
-  languages.forEach((l) => {
+  translatedLangs.forEach((l) => {
     const link = document.createElement('link');
     link.rel = 'alternate';
     link.hreflang = l;
@@ -459,6 +476,10 @@ async function generateI18nPages() {
   for (const file of htmlFiles) {
     const filePath = path.join(DIST_DIR, file);
     const originalContent = fs.readFileSync(filePath, 'utf-8');
+    const translatedLangs = translatedLangsForFile(
+      file.replace('.html', ''),
+      translations
+    );
 
     for (const lang of languages) {
       if (lang === 'en') continue;
@@ -470,7 +491,8 @@ async function generateI18nPages() {
         file,
         lang,
         translations,
-        langDir
+        langDir,
+        translatedLangs
       );
 
       processed++;
@@ -482,7 +504,7 @@ async function generateI18nPages() {
       await new Promise((resolve) => setImmediate(resolve));
     }
 
-    updateEnglishFile(filePath, originalContent);
+    updateEnglishFile(filePath, originalContent, translatedLangs);
   }
 
   console.log('✅ i18n pages generated successfully!');

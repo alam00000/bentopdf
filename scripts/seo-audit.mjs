@@ -73,15 +73,35 @@ const LOCALE_DIRS = new Set(
     .filter((d) => fs.statSync(path.join(LOCALES_DIR, d)).isDirectory())
 );
 
+const KEY_MAPPING = { index: 'home', 404: 'notFound' };
+const toCamelCase = (str) =>
+  str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+const toolsByLang = {};
+for (const lang of LOCALE_DIRS) {
+  const toolsPath = path.join(LOCALES_DIR, lang, 'tools.json');
+  toolsByLang[lang] = fs.existsSync(toolsPath)
+    ? JSON.parse(fs.readFileSync(toolsPath, 'utf-8'))
+    : {};
+}
+
 function expectedCanonicalForFile(rel) {
   const parts = rel.split('/');
   const fileName = parts.pop();
   const baseName = fileName.replace(/\.html$/, '');
   const slug = baseName === 'index' ? '' : baseName;
+  const translationKey = KEY_MAPPING[baseName] || toCamelCase(baseName);
   const segments = [SITE_URL];
   if (BASE_PATH) segments.push(BASE_PATH.replace(/^\//, ''));
   for (const dir of parts) {
-    if (LOCALE_DIRS.has(dir) || dir === 'blog') segments.push(dir);
+    if (dir === 'blog') {
+      segments.push(dir);
+    } else if (LOCALE_DIRS.has(dir)) {
+      const translated =
+        baseName === 'index' ||
+        Boolean(toolsByLang[dir] && toolsByLang[dir][translationKey]);
+      if (translated) segments.push(dir);
+    }
   }
   if (slug) segments.push(slug);
   return segments.join('/').replace(/\/+$/, '') || SITE_URL;

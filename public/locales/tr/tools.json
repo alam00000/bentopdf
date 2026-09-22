@@ -60,6 +60,8 @@
     "subtitle": "Herhangi bir paragrafa tıklayın ve canlı yeniden akış, yazı tipleri ve stillerle yerinde düzenleyin.",
     "saved": "PDF başarıyla kaydedildi! ({{size}} KB)",
     "failedToLoad": "PDF Metin Düzenleyici yüklenemedi.",
+    "loadingFonts": "Yazı tipleri yükleniyor...",
+    "fontsUnavailable": "Bazı karakterler için gereken bir yazı tipi indirilemedi. Bağlantınızı kontrol edip tekrar deneyin, aksi takdirde bu karakterler kaydedilen PDF'de doğru görünmeyebilir.",
     "howToUpload": "PDF yükle",
     "howToClick": "Bir paragrafa tıklayın",
     "howToRestyle": "Her şeyi yeniden biçimlendirin",

@@ -60,6 +60,8 @@
     "subtitle": "Klicka på valfritt stycke och redigera det på plats med direkt textomflöde, typsnitt och stilar.",
     "saved": "PDF-filen sparades! ({{size}} KB)",
     "failedToLoad": "Det gick inte att läsa in PDF-textredigeraren.",
+    "loadingFonts": "Läser in typsnitt...",
+    "fontsUnavailable": "Ett typsnitt som behövs för vissa tecken kunde inte laddas ned. Kontrollera anslutningen och försök igen, annars kanske tecknen inte visas korrekt i den sparade PDF-filen.",
     "howToUpload": "Ladda upp PDF",
     "howToClick": "Klicka på ett stycke",
     "howToRestyle": "Ge allt ny stil",

@@ -60,6 +60,8 @@
     "subtitle": "Haz clic en cualquier párrafo y edítalo directamente con reajuste de texto en vivo, fuentes y estilos.",
     "saved": "¡PDF guardado correctamente! ({{size}} KB)",
     "failedToLoad": "No se pudo cargar el editor de texto PDF.",
+    "loadingFonts": "Cargando fuentes...",
+    "fontsUnavailable": "No se pudo descargar una fuente necesaria para algunos caracteres. Comprueba tu conexión e inténtalo de nuevo; de lo contrario, es posible que esos caracteres no se vean correctamente en el PDF guardado.",
     "howToUpload": "Subir PDF",
     "howToClick": "Haz clic en un párrafo",
     "howToRestyle": "Cambia el estilo de todo",

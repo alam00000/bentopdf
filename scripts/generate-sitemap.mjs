@@ -18,6 +18,26 @@ const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
   return fs.statSync(path.join(LOCALES_DIR, file)).isDirectory();
 });
 
+const toCamelCase = (str) => {
+  return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+};
+
+const toolsByLang = {};
+for (const lang of languages) {
+  const toolsPath = path.join(LOCALES_DIR, lang, 'tools.json');
+  toolsByLang[lang] = fs.existsSync(toolsPath)
+    ? JSON.parse(fs.readFileSync(toolsPath, 'utf-8'))
+    : {};
+}
+
+function alternateLangsFor(pageName) {
+  if (pageName === 'index') return languages;
+  const translationKey = toCamelCase(pageName);
+  return languages.filter(
+    (l) => l === 'en' || Boolean(toolsByLang[l][translationKey])
+  );
+}
+
 const PRIORITY_MAP = {
   index: 1.0,
   tools: 0.9,
@@ -136,7 +156,7 @@ function generateSitemap() {
     <priority>${priority}</priority>
 `;
 
-    for (const altLang of languages) {
+    for (const altLang of alternateLangsFor(pageName)) {
       const altUrl = buildUrl(altLang, pageName);
       sitemap += `    <xhtml:link rel="alternate" hreflang="${altLang}" href="${altUrl}"/>
 `;

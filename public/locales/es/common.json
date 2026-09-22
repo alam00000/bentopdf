@@ -288,7 +288,8 @@
       "noCompromises": "Sin compromisos."
     },
     "mission": {
-      "title": "Nuestra Misión",
+      "title": "Nuestra",
+      "titleDim": "Misión",
       "description": "Proporcionar la caja de herramientas PDF más completa que respete tu privacidad y nunca pida pago. Creemos que las herramientas de documentos esenciales deben ser accesibles para todos, en todas partes, sin barreras."
     },
     "philosophy": {

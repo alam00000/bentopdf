@@ -222,7 +222,7 @@
   "testimonials": {
     "title": "Kullanıcılarımız",
     "users": "Ne Diyor",
-    "say": ""
+    "say": " "
   },
   "support": {
     "title": "Çalışmamı Beğendiniz mi?",
@@ -289,6 +289,7 @@
     },
     "mission": {
       "title": "Misyonumuz",
+      "titleDim": " ",
       "description": "Gizliliğinize saygı duyan ve asla ödeme talep etmeyen en kapsamlı PDF araç setini sağlamak. Temel belge araçlarının her yerde, herkes için erişilebilir olması gerektiğine inanıyoruz."
     },
     "philosophy": {

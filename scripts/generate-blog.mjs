@@ -16,6 +16,7 @@ const AUTHOR = {
   profiles: [
     'https://github.com/alam00000',
     'https://www.linkedin.com/in/abdullah-alam01/',
+    'https://x.com/alamdraws',
   ],
 };
 

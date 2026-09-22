@@ -288,7 +288,8 @@
       "noCompromises": "Không thỏa hiệp."
     },
     "mission": {
-      "title": "Sứ mệnh của chúng tôi",
+      "title": "Sứ mệnh",
+      "titleDim": "của chúng tôi",
       "description": "Cung cấp bộ công cụ PDF toàn diện nhất tôn trọng quyền riêng tư của bạn và không bao giờ yêu cầu thanh toán. Chúng tôi tin rằng các công cụ tài liệu thiết yếu nên có thể truy cập được cho mọi người, ở mọi nơi, không có rào cản."
     },
     "philosophy": {

@@ -60,6 +60,8 @@
     "subtitle": "Klik op een alinea en bewerk deze direct, met live tekstomloop, lettertypen en opmaak.",
     "saved": "PDF is opgeslagen! ({{size}} KB)",
     "failedToLoad": "Kan de PDF-teksteditor niet laden.",
+    "loadingFonts": "Lettertypen laden…",
+    "fontsUnavailable": "Een lettertype dat nodig is voor sommige tekens kon niet worden gedownload. Controleer de verbinding en probeer het opnieuw, anders worden deze tekens mogelijk niet correct weergegeven in de opgeslagen PDF.",
     "howToUpload": "PDF uploaden",
     "howToClick": "Klik op een alinea",
     "howToRestyle": "Alles opnieuw vormgeven",

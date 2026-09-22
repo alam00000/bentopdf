@@ -39,6 +39,7 @@ const SUPPORTED_LANGUAGES = [
   'it',
   'nl',
   'pt',
+  'pl',
   'sv',
   'tr',
   'vi',

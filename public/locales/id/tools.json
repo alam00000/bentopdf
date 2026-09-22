@@ -60,6 +60,8 @@
     "subtitle": "Klik paragraf mana pun dan edit langsung di tempat dengan penyusunan ulang teks secara langsung, font, dan gaya.",
     "saved": "PDF berhasil disimpan! ({{size}} KB)",
     "failedToLoad": "Gagal memuat Editor Teks PDF.",
+    "loadingFonts": "Memuat font...",
+    "fontsUnavailable": "Font yang diperlukan untuk beberapa karakter tidak dapat diunduh. Periksa koneksi Anda dan coba lagi, atau karakter tersebut mungkin tidak tampil dengan benar di PDF yang disimpan.",
     "howToUpload": "Unggah PDF",
     "howToClick": "Klik sebuah paragraf",
     "howToRestyle": "Ubah gaya apa pun",

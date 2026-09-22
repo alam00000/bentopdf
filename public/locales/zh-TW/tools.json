@@ -60,6 +60,8 @@
     "subtitle": "點擊任意段落即可就地編輯，支援即時重排、字型與樣式設定。",
     "saved": "PDF 儲存成功！（{{size}} KB）",
     "failedToLoad": "無法載入 PDF 文字編輯器。",
+    "loadingFonts": "正在載入字型…",
+    "fontsUnavailable": "無法下載部分字元所需的字型。請檢查網路連線後再試一次，否則這些字元在儲存的 PDF 中可能無法正確顯示。",
     "howToUpload": "上傳 PDF",
     "howToClick": "點擊段落",
     "howToRestyle": "隨意變更樣式",

@@ -61,6 +61,8 @@
     "subtitle": "Click any paragraph and edit it in place with live reflow, fonts, and styling.",
     "saved": "PDF saved successfully! ({{size}} KB)",
     "failedToLoad": "Failed to load the PDF Text Editor.",
+    "loadingFonts": "Loading fonts...",
+    "fontsUnavailable": "A font needed for some characters could not be downloaded. Check your connection and try again, or those characters may not appear correctly in the saved PDF.",
     "howToUpload": "Upload PDF",
     "howToClick": "Click a Paragraph",
     "howToRestyle": "Restyle Anything",

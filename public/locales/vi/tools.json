@@ -60,6 +60,8 @@
     "subtitle": "Nhấp vào bất kỳ đoạn văn nào và chỉnh sửa ngay tại chỗ với tính năng tự động dàn lại văn bản, phông chữ và kiểu dáng.",
     "saved": "Đã lưu PDF thành công! ({{size}} KB)",
     "failedToLoad": "Không thể tải Trình chỉnh sửa văn bản PDF.",
+    "loadingFonts": "Đang tải phông chữ...",
+    "fontsUnavailable": "Không thể tải xuống phông chữ cần cho một số ký tự. Hãy kiểm tra kết nối và thử lại, nếu không các ký tự đó có thể không hiển thị đúng trong tệp PDF đã lưu.",
     "howToUpload": "Tải PDF lên",
     "howToClick": "Nhấp vào một đoạn văn",
     "howToRestyle": "Đổi kiểu mọi thứ",

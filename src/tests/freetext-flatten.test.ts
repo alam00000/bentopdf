@@ -1,6 +1,9 @@
 // @vitest-environment node
-import { describe, it, expect, beforeAll, afterAll } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { flattenFreeTextToPageText } from '@/js/utils/freetext-flatten';
+import type { FreeTextSystemFontAnnotation } from '@/types';
 import {
   createEngine,
   modelOf,
@@ -111,6 +114,49 @@ describe('flattening FreeText annotations into page text', () => {
     expect(target).toBeDefined();
     expect(target?.editable).toBe(true);
     expect(target?.lockReason).toBe(0);
+  });
+
+  it('keeps Czech and Croatian letters when no system font is available', async () => {
+    const font = readFileSync(
+      resolve(
+        'node_modules/pdfjs-dist/standard_fonts/LiberationSans-Regular.ttf'
+      )
+    );
+    const fetchFont = vi.fn(async () => new Response(font));
+    vi.stubGlobal('fetch', fetchFont);
+    const czech = 'Příliš žluťoučký kůň, úpěl ďábelské ódy.!?';
+    const croatian = 'ŠĐČĆŽ šđčćž';
+    const style = (id: string, contents: string) =>
+      ({
+        id,
+        pageIndex: 0,
+        contents,
+        fontSize: 12,
+        fontColor: '#000000',
+        textAlign: 0,
+        verticalAlign: 0,
+        opacity: 1,
+        rect: { origin: { x: 0, y: 0 }, size: { width: 0, height: 0 } },
+        fontPostScriptName: '',
+      }) satisfies FreeTextSystemFontAnnotation;
+    try {
+      const source = freeTextAnnotationPdf([
+        { rect: [72, 600, 540, 640], contents: 'x', name: 'cs' },
+        { rect: [72, 500, 540, 540], contents: 'x', name: 'hr' },
+      ]);
+      const { bytes, flattened } = await flattenFreeTextToPageText(
+        source,
+        [style('cs', czech), style('hr', croatian)],
+        1
+      );
+      expect(flattened).toBe(2);
+      expect(fetchFont).toHaveBeenCalledTimes(1);
+      const text = allText(modelOf(engine, bytes));
+      expect(text).toContain(czech);
+      expect(text).toContain(croatian);
+    } finally {
+      vi.unstubAllGlobals();
+    }
   });
 
   it('returns the original bytes when the document cannot be opened', async () => {

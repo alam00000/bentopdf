@@ -288,7 +288,8 @@
       "noCompromises": "Tidak ada kompromi."
     },
     "mission": {
-      "title": "Misi Kami",
+      "title": "Misi",
+      "titleDim": "Kami",
       "description": "Untuk menyediakan toolbox PDF paling komprehensif yang menghormati privasi Anda dan tidak pernah meminta pembayaran. Kami percaya alat dokumen penting harus dapat diakses oleh semua orang, di mana saja, tanpa hambatan."
     },
     "philosophy": {

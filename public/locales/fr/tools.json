@@ -60,6 +60,8 @@
     "subtitle": "Cliquer sur un paragraphe et le modifier directement, avec remise en page instantanée, polices et styles.",
     "saved": "PDF enregistré avec succès ! ({{size}} Ko)",
     "failedToLoad": "Impossible de charger l'éditeur de texte PDF.",
+    "loadingFonts": "Chargement des polices...",
+    "fontsUnavailable": "Impossible de télécharger une police nécessaire à certains caractères. Vérifiez votre connexion et réessayez, sinon ces caractères risquent de ne pas s'afficher correctement dans le PDF enregistré.",
     "howToUpload": "Importer un PDF",
     "howToClick": "Cliquer sur un paragraphe",
     "howToRestyle": "Tout restyler",

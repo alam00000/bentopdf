@@ -1,6 +1,6 @@
 {
   "nav": {
-    "home": "Thuis",
+    "home": "Startpagina",
     "about": "Over",
     "contact": "Contact",
     "licensing": "Licentie",
@@ -288,7 +288,8 @@
       "noCompromises": "Geen compromissen."
     },
     "mission": {
-      "title": "Onze missie",
+      "title": "Onze",
+      "titleDim": "missie",
       "description": "Ons doel is om de meest complete PDF-toolbox te bieden die je privacy respecteert en nooit om betaling vraagt. Wij geloven dat essentiële documententools voor iedereen, overal en zonder obstakels toegankelijk moeten zijn."
     },
     "philosophy": {
@@ -384,6 +385,6 @@
     "title": "Tool niet beschikbaar",
     "heading": "Deze tool is uitgeschakeld",
     "message": "Deze tool is niet beschikbaar in deze implementatie. Neem contact op met de beheerder voor meer informatie.",
-    "backHome": "Terug naar Thuis"
+    "backHome": "Terug naar Startpagina"
   }
 }

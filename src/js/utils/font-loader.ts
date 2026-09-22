@@ -3,6 +3,7 @@ import {
   getFontUrlForFamily,
   languageToFontFamily,
 } from '../config/font-mappings.js';
+import { needsFontEmbedding } from './freetext-script.js';
 
 const fontCache: Map<string, ArrayBuffer> = new Map();
 
@@ -132,6 +133,56 @@ export async function getFontForLanguage(lang: string): Promise<ArrayBuffer> {
 
     throw error;
   }
+}
+
+const fallbackFontLoads = new Map<string, Promise<boolean>>();
+
+const fallbackFontFamily = (lang: string): string =>
+  languageToFontFamily[lang] || 'Noto Sans';
+
+export function fallbackFontLanguages(text: string): Set<string> {
+  const langs = new Set<string>();
+  for (const ch of text) {
+    if (needsFontEmbedding(ch)) langs.add(getLanguageForChar(ch));
+  }
+  return langs;
+}
+
+export function hasFallbackFonts(
+  loaded: Map<string, Uint8Array>,
+  langs: Iterable<string>
+): boolean {
+  return [...langs].every((lang) => loaded.has(fallbackFontFamily(lang)));
+}
+
+export async function loadFallbackFonts(
+  into: Map<string, Uint8Array>,
+  langs: Iterable<string>
+): Promise<boolean> {
+  const results = await Promise.all(
+    [...langs].map((lang) => {
+      const family = fallbackFontFamily(lang);
+      let load = fallbackFontLoads.get(family);
+      if (!load) {
+        load = getFontForLanguage(lang)
+          .then((buffer) => {
+            if (!fontCache.has(family)) {
+              throw new Error('Only a substitute font was available');
+            }
+            into.set(family, new Uint8Array(buffer));
+            return true;
+          })
+          .catch((error: unknown) => {
+            fallbackFontLoads.delete(family);
+            console.warn(`Fallback font unavailable for ${family}`, error);
+            return false;
+          });
+        fallbackFontLoads.set(family, load);
+      }
+      return load;
+    })
+  );
+  return results.every(Boolean);
 }
 
 export function detectScripts(text: string): string[] {

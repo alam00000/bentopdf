@@ -222,7 +222,7 @@
   "testimonials": {
     "title": "Ce que disent",
     "users": "nos utilisateurs",
-    "say": ""
+    "say": " "
   },
   "support": {
     "title": "Vous aimez ce projet ?",
@@ -288,7 +288,8 @@
       "noCompromises": "Sans compromis."
     },
     "mission": {
-      "title": "Notre mission",
+      "title": "Notre",
+      "titleDim": "mission",
       "description": "Proposer la palette d’outils PDF la plus complète, tout en respectant votre vie privée et sans jamais demander de paiement. Les outils essentiels doivent être accessibles à tous, partout, sans barrières."
     },
     "philosophy": {

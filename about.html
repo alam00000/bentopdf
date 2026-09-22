@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>About BentoPDF - Privacy-First Free PDF Tools | Our Mission</title>
+    <title>About BentoPDF - Privacy-First Free PDF Tools | Our Story</title>
     <meta
       name="description"
       content="Learn about BentoPDF - 100% free, privacy-first PDF toolkit. All tools run in your browser, no uploads, no signup. Fast, secure, and forever free."
@@ -82,22 +82,114 @@
     {{> navbar }}
 
     <div id="app">
-      <section id="about-hero" class="lp-sec lp-sec--first">
+      <section id="story-section" class="lp-sec lp-sec--first">
         <div class="lp-frame">
-          <div class="lp-head lp-head--center">
-            <div>
+          <div class="lp-story">
+            <div class="lp-story-head">
               <h1 class="lp-h2">
-                <span class="line" data-i18n="about.hero.title"
-                  >We believe PDF tools should be</span
-                >
-                <span class="line dim" data-i18n="about.hero.subtitle"
-                  >fast, private, and free.</span
-                >
+                <span class="line">Hi, I'm Alam.</span>
+                <span class="line dim">I build BentoPDF.</span>
               </h1>
-              <p class="lp-head-p" data-i18n="about.hero.noCompromises">
-                No compromises.
+              <div class="lp-story-by">
+                <img
+                  class="lp-avatar"
+                  src="/images/author-alam.jpg"
+                  alt="Alam"
+                  width="44"
+                  height="44"
+                />
+                <a
+                  href="https://github.com/alam00000"
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  >GitHub</a
+                >
+                <a
+                  href="https://www.linkedin.com/in/abdullah-alam01/"
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  >LinkedIn</a
+                >
+                <a
+                  href="https://x.com/alamdraws"
+                  target="_blank"
+                  rel="me noopener noreferrer"
+                  >X</a
+                >
+              </div>
+            </div>
+            <div class="lp-story-body">
+              <p>
+                BentoPDF started off as just a simple internal tool I used for
+                quickly merging and splitting PDFs.
+              </p>
+              <p>
+                At some point, I decided to
+                <a
+                  href="https://www.reddit.com/r/webdev/comments/1nr937y/i_made_bentopdf_a_privacy_first_pdf_toolkit_that/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >share it on Reddit</a
+                >. Someone in the comments
+                <a
+                  href="https://www.reddit.com/r/webdev/comments/1nr937y/comment/ngdeqby/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >asked if it was open source</a
+                >. I thought, “Why not?” So a couple of weeks later, I
+                <a
+                  href="https://github.com/alam00000/bentopdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >put the code on GitHub</a
+                >.
+              </p>
+              <p>
+                I posted it on
+                <a
+                  href="https://www.reddit.com/r/selfhosted/comments/1o5borw/bentopdf_is_a_self_hostable_pdf_toolkit/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >r/selfhosted</a
+                >
+                the next day, and that's when things really started to take off.
+              </p>
+              <p>
+                I honestly never thought BentoPDF would grow into what it is
+                today. It started as a little tool I made for myself, and
+                somehow it turned into a much bigger project used by people all
+                over the world.
               </p>
             </div>
+          </div>
+          <div class="lp-grid lp-grid--4 lp-cross">
+            <div class="lp-cell lp-stat lp-cell--accent lp-reveal">
+              <b>15K+</b><span>GitHub stars</span>
+            </div>
+            <div class="lp-cell lp-stat lp-cell--white lp-reveal">
+              <b>10M+</b><span>Downloads</span>
+            </div>
+            <div class="lp-cell lp-stat lp-cell--hatch lp-reveal">
+              <b>1.3K+</b><span>Forks</span>
+            </div>
+            <a
+              href="https://github.com/alam00000/bentopdf/graphs/contributors"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="lp-cell lp-stat lp-cell--raised lp-reveal lp-stat-link"
+            >
+              <b>60+</b
+              ><span>Contributors <i data-lucide="arrow-up-right"></i></span>
+            </a>
+          </div>
+          <div class="lp-story-outro">
+            <p>
+              I don't build BentoPDF alone anymore. More than 60 people have
+              contributed code, translations and fixes, and thousands more have
+              starred it, shared it, reported bugs and asked for features. Thank
+              you.
+            </p>
+            <p>Enough about me. Here's more about BentoPDF.</p>
           </div>
         </div>
       </section>
@@ -105,7 +197,12 @@
       <section id="mission-section" class="lp-sec lp-band">
         <div class="lp-frame">
           <figure class="lp-manifesto lp-reveal">
-            <p class="lp-kicker" data-i18n="about.mission.title">Our Mission</p>
+            <h2 class="lp-h2">
+              <span class="line" data-i18n="about.mission.title">Our</span>
+              <span class="line dim" data-i18n="about.mission.titleDim"
+                >Mission</span
+              >
+            </h2>
             <blockquote
               class="lp-manifesto-text"
               data-i18n="about.mission.description"
@@ -115,18 +212,6 @@
               tools should be accessible to everyone, everywhere, without
               barriers.
             </blockquote>
-            <figcaption class="lp-manifesto-by">
-              <img
-                src="images/favicon-no-bg.svg"
-                alt=""
-                width="28"
-                height="28"
-              />
-              <span>BentoPDF</span>
-              <a href="index.html#tools-header" data-i18n="about.cta.button"
-                >Explore All Tools</a
-              >
-            </figcaption>
           </figure>
         </div>
       </section>
@@ -136,17 +221,20 @@
           <div class="lp-head lp-head--center">
             <div>
               <h2 class="lp-h2">
-                <span class="line" data-i18n="about.philosophy.title"
-                  >Privacy First. Always.</span
+                <span class="line" data-i18n="about.hero.title"
+                  >PDF tools should be</span
+                >
+                <span class="line dim" data-i18n="about.hero.subtitle"
+                  >fast, private, and free.</span
                 >
               </h2>
+              <p class="lp-head-p" data-i18n="about.hero.noCompromises">
+                No compromises.
+              </p>
               <p class="lp-head-p" data-i18n="about.philosophy.description">
-                In an era where data is a commodity, we take a different
-                approach. All processing for BentoPDF tools happens locally in
-                your browser. This means your files never touch our servers, we
-                never see your documents, and we don't track what you do. Your
-                documents remain completely and unequivocally private. It's not
-                just a feature; it's our foundation.
+                Every BentoPDF tool runs locally in your browser. Your files are
+                never uploaded, nobody else sees your documents, and nothing
+                tracks what you do.
               </p>
             </div>
           </div>
@@ -183,20 +271,19 @@
               <span class="lp-tile"><i data-lucide="zap"></i></span>
               <h3 data-i18n="about.whyBentopdf.speed.title">Built for Speed</h3>
               <p data-i18n="about.whyBentopdf.speed.description">
-                No waiting for uploads or downloads to a server. By processing
-                files directly in your browser using modern web technologies
-                like WebAssembly, we offer unparalleled speed for all our tools.
+                There's no upload or download step. Files are processed right in
+                your browser using WebAssembly, so you're never waiting on a
+                server.
               </p>
             </div>
             <div class="lp-cell lp-reveal">
               <span class="lp-tile"
                 ><i data-lucide="badge-dollar-sign"></i
               ></span>
-              <h3 data-i18n="about.whyBentopdf.free.title">Completely Free</h3>
+              <h3 data-i18n="about.whyBentopdf.free.title">Free to Use</h3>
               <p data-i18n="about.whyBentopdf.free.description">
-                No trials, no subscriptions, no hidden fees, and no "premium"
-                features held hostage. We believe powerful PDF tools should be a
-                public utility, not a profit center.
+                Every tool is free, with no trials, no subscriptions and no
+                watermarks. Development is funded by commercial licenses.
               </p>
             </div>
             <div class="lp-cell lp-reveal">
@@ -205,21 +292,19 @@
                 No Account Required
               </h3>
               <p data-i18n="about.whyBentopdf.noAccount.description">
-                Start using any tool immediately. We don't need your email, a
-                password, or any personal information. Your workflow should be
-                frictionless and anonymous.
+                Open any tool and start right away. No email, no password, no
+                personal information.
               </p>
             </div>
             <div class="lp-cell lp-reveal">
               <span class="lp-tile"><i data-lucide="code-2"></i></span>
               <h3 data-i18n="about.whyBentopdf.openSource.title">
-                Open Source Spirit
+                Open Source
               </h3>
               <p data-i18n="about.whyBentopdf.openSource.description">
-                Built with transparency in mind. We leverage incredible
-                open-source libraries like PDF-lib and PDF.js, and believe in
-                the community-driven effort to make powerful tools accessible to
-                everyone.
+                The code is public on GitHub under AGPL-3.0, so you can check
+                exactly how your files are handled. It builds on open-source
+                projects like PDF.js, pdf-lib, qpdf and LibreOffice.
               </p>
             </div>
           </div>
@@ -270,8 +355,20 @@
         "@context": "https://schema.org",
         "@type": "AboutPage",
         "name": "About BentoPDF",
-        "description": "Learn about BentoPDF's mission to provide free, privacy-first PDF tools",
-        "url": "https://www.bentopdf.com/about"
+        "description": "How BentoPDF started, told by its creator Alam",
+        "url": "https://www.bentopdf.com/about",
+        "mainEntity": {
+          "@type": "Person",
+          "name": "Alam",
+          "url": "https://www.bentopdf.com/blog/author-alam",
+          "image": "https://www.bentopdf.com/images/author-alam.jpg",
+          "jobTitle": "Creator and maintainer of BentoPDF",
+          "sameAs": [
+            "https://github.com/alam00000",
+            "https://www.linkedin.com/in/abdullah-alam01/",
+            "https://x.com/alamdraws"
+          ]
+        }
       }
     </script>
   </body>

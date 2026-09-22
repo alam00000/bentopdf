@@ -288,7 +288,8 @@
       "noCompromises": "Bez kompromisov."
     },
     "mission": {
-      "title": "Naša misia",
+      "title": "Naša",
+      "titleDim": "misia",
       "description": "Poskytnúť najkomplexnejšiu sadu PDF nástrojov, ktorá rešpektuje vaše súkromie a nikdy nepožaduje platbu. Veríme, že základné nástroje pre prácu s dokumentmi by mali byť dostupné pre každého, všade a bez bariér."
     },
     "philosophy": {

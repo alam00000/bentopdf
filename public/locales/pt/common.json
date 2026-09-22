@@ -288,7 +288,8 @@
       "noCompromises": "Sem concessões."
     },
     "mission": {
-      "title": "Nossa Missão",
+      "title": "Nossa",
+      "titleDim": "Missão",
       "description": "Fornecer o kit de ferramentas PDF mais completo, respeitando sua privacidade e sem cobrar por isso. Ferramentas essenciais devem ser acessíveis a todos, sem barreiras."
     },
     "philosophy": {

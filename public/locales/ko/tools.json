@@ -60,6 +60,8 @@
     "subtitle": "아무 단락이나 클릭해 실시간 리플로우, 글꼴, 스타일과 함께 바로 편집하세요.",
     "saved": "PDF를 저장했습니다! ({{size}} KB)",
     "failedToLoad": "PDF 텍스트 편집기를 불러오지 못했습니다.",
+    "loadingFonts": "글꼴을 불러오는 중...",
+    "fontsUnavailable": "일부 문자에 필요한 글꼴을 다운로드하지 못했습니다. 연결을 확인하고 다시 시도하세요. 그렇지 않으면 저장된 PDF에서 해당 문자가 올바르게 표시되지 않을 수 있습니다.",
     "howToUpload": "PDF 업로드",
     "howToClick": "문단 클릭",
     "howToRestyle": "무엇이든 스타일 변경",

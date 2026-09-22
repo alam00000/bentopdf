@@ -288,7 +288,8 @@
       "noCompromises": "Inga kompromisser."
     },
     "mission": {
-      "title": "Vårt uppdrag",
+      "title": "Vårt",
+      "titleDim": "uppdrag",
       "description": "Att tillhandahålla den mest omfattande PDF-verktygslådan som respekterar din integritet och aldrig ber om betalning. Vi tycker att viktiga dokumentverktyg ska vara tillgängliga för alla, överallt, utan hinder."
     },
     "philosophy": {

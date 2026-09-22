@@ -288,7 +288,8 @@
       "noCompromises": "Ingen kompromiser."
     },
     "mission": {
-      "title": "Vores mission",
+      "title": "Vores",
+      "titleDim": "mission",
       "description": "At give den mest komplette PDF-værktøjskasse uden betaling og med fuldt fokus på privatliv."
     },
     "philosophy": {

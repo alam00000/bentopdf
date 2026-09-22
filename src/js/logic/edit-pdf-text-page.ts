@@ -3,6 +3,11 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { t } from '../i18n/i18n';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import {
+  fallbackFontLanguages,
+  hasFallbackFonts,
+  loadFallbackFonts,
+} from '../utils/font-loader.js';
 import { setupFormatDock, setupFindSheet } from './edit-pdf-text-dock';
 
 interface DocDescription {
@@ -276,6 +281,8 @@ interface EditorAppModule {
   getZoom: () => number;
   getDocDescription: () => DocDescription;
   setOnSaved: (fn: ((kb: number, fileName: string) => void) | null) => void;
+  endEdit: (commit: boolean) => void;
+  saveFile: () => Promise<void>;
 }
 
 function relocateAddText() {
@@ -422,6 +429,155 @@ function fitMobileWidth() {
   mod.setZoom(target);
 }
 
+function setupFallbackFonts(
+  app: EditorAppModule,
+  fonts: Map<string, Uint8Array>
+) {
+  const pending = new Set<Promise<boolean>>();
+  let failed = false;
+  let warned = false;
+  let loaderShown = false;
+  let swallowGesture = false;
+  let resume: (() => void) | null = null;
+
+  const saveIfEnabled = () => {
+    const save = document.getElementById('save');
+    if (save instanceof HTMLButtonElement && !save.disabled) {
+      void app.saveFile();
+    }
+  };
+  const commitEdit = () => app.endEdit(true);
+
+  const track = (text: string | null | undefined) => {
+    const langs = fallbackFontLanguages(text ?? '');
+    if (langs.size === 0 || hasFallbackFonts(fonts, langs)) return;
+    const load = loadFallbackFonts(fonts, langs);
+    if (warned) return;
+    pending.add(load);
+    void load.then((ok) => {
+      pending.delete(load);
+      if (!ok) failed = true;
+      if (pending.size > 0) return;
+      const next = resume;
+      const actionHeld = loaderShown;
+      resume = null;
+      if (loaderShown) {
+        loaderShown = false;
+        hideLoader();
+      }
+      if (failed) {
+        failed = false;
+        if (actionHeld || !warned) {
+          warned = true;
+          showAlert(
+            t('warning.title'),
+            t('tools:editPdfText.fontsUnavailable'),
+            'warning'
+          );
+        }
+        return;
+      }
+      next?.();
+    });
+  };
+
+  const hold = (e: Event, next: (() => void) | null) => {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (next) resume = next;
+    if (!loaderShown) {
+      loaderShown = true;
+      showLoader(t('tools:editPdfText.loadingFonts'));
+    }
+  };
+
+  void loadFallbackFonts(fonts, ['eng']);
+
+  document.addEventListener(
+    'beforeinput',
+    (e) => track(e.data ?? e.dataTransfer?.getData('text/plain')),
+    true
+  );
+
+  document.addEventListener(
+    'paste',
+    (e) => {
+      const data = e.clipboardData;
+      track(data?.getData('text/plain') || data?.getData('text/html'));
+      const target = e.target;
+      const intoField =
+        target instanceof HTMLElement &&
+        (target.isContentEditable ||
+          target instanceof HTMLInputElement ||
+          target instanceof HTMLTextAreaElement);
+      if (pending.size > 0 && !intoField) hold(e, null);
+    },
+    true
+  );
+
+  window.addEventListener(
+    'pointerdown',
+    (e) => {
+      const target = e.target instanceof Element ? e.target : null;
+      swallowGesture =
+        pending.size > 0 && !target?.closest('.editor, .edit-chrome');
+      if (!swallowGesture) return;
+      hold(
+        e,
+        target?.closest('#save')
+          ? saveIfEnabled
+          : target?.closest('#stage')
+            ? commitEdit
+            : null
+      );
+    },
+    true
+  );
+
+  for (const type of [
+    'mousedown',
+    'mouseup',
+    'pointerup',
+    'click',
+    'dblclick',
+    'contextmenu',
+    'touchstart',
+    'touchend',
+  ]) {
+    window.addEventListener(
+      type,
+      (e) => {
+        if (!swallowGesture) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        if (type === 'click') swallowGesture = false;
+      },
+      { capture: true, passive: false }
+    );
+  }
+
+  window.addEventListener(
+    'keydown',
+    (e) => {
+      swallowGesture = false;
+      if (pending.size === 0) return;
+      const key = e.key.toLowerCase();
+      const meta = e.metaKey || e.ctrlKey;
+      if (meta && key === 's') hold(e, saveIfEnabled);
+      else if (e.key === 'Escape') hold(e, commitEdit);
+      else if (meta && (key === 'z' || key === 'y' || key === 'f')) {
+        hold(e, null);
+      } else if (
+        (e.key === 'Enter' || e.key === ' ') &&
+        e.target instanceof HTMLButtonElement
+      ) {
+        hold(e, e.target.id === 'save' ? saveIfEnabled : null);
+      }
+    },
+    true
+  );
+}
+
 async function launchEditor(file: File) {
   if (launching) return;
   launching = true;
@@ -436,6 +592,11 @@ async function launchEditor(file: File) {
     document.getElementById('text-editor-app')?.removeAttribute('hidden');
     if (!appModule) {
       appModule = (await import('../editcore/app.js')) as EditorAppModule;
+      const { PdfEngine } =
+        (await import('../editcore/core.js')) as unknown as {
+          PdfEngine: { fallbackFonts: Map<string, Uint8Array> };
+        };
+      setupFallbackFonts(appModule, PdfEngine.fallbackFonts);
       appModule.setOnSaved((kb) => {
         showAlert(
           t('common.success'),

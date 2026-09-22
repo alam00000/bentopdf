@@ -60,6 +60,8 @@
     "subtitle": "点击任意段落即可就地编辑，支持实时重排、字体和样式设置。",
     "saved": "PDF 保存成功！（{{size}} KB）",
     "failedToLoad": "无法加载 PDF 文本编辑器。",
+    "loadingFonts": "正在加载字体...",
+    "fontsUnavailable": "无法下载部分字符所需的字体。请检查网络连接后重试，否则这些字符在保存的 PDF 中可能无法正确显示。",
     "howToUpload": "上传 PDF",
     "howToClick": "点击段落",
     "howToRestyle": "随意restyle",

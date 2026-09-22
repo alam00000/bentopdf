@@ -996,6 +996,7 @@ body.lp ::selection {
 .lp-quote-cell {
   justify-content: flex-start;
   min-height: 0;
+  margin: 0;
   padding: 30px var(--lp-pad) 32px;
 }
 
@@ -1013,12 +1014,43 @@ body.lp ::selection {
   color: var(--lp-text);
 }
 
+.lp-quote::before {
+  content: '\201C';
+  display: block;
+  height: 26px;
+  margin-bottom: 8px;
+  font-family: var(--lp-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--lp-accent-2);
+}
+
 .lp-cite {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   margin-top: auto;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;
   color: var(--lp-text-2);
+}
+
+.lp-cite a {
+  font-size: 14px;
+  color: var(--lp-text);
+  transition: color 0.2s;
+}
+
+.lp-cite a:hover {
+  color: var(--lp-accent-3);
+}
+
+.lp-cite span {
+  font-weight: 400;
+  color: var(--lp-dim);
 }
 
 @media (min-width: 640px) {
@@ -1656,9 +1688,14 @@ body.lp ::selection {
 .lp-manifesto {
   display: grid;
   gap: 28px;
-  max-width: 980px;
+  justify-items: center;
   margin: 0;
-  padding: clamp(64px, 9vw, 112px) var(--lp-pad);
+  padding: clamp(56px, 7vw, 80px) var(--lp-pad) clamp(8px, 2vw, 24px);
+  text-align: center;
+}
+
+.lp-manifesto .lp-h2 {
+  margin-top: 0;
 }
 
 .lp-manifesto-text {
@@ -1684,29 +1721,95 @@ body.lp ::selection {
   color: var(--lp-accent-2);
 }
 
-.lp-manifesto-by {
+.lp-story {
+  display: grid;
+  gap: 32px;
+  max-width: calc(720px + 2 * var(--lp-pad));
+  margin: 0 auto;
+  padding: clamp(64px, 9vw, 112px) var(--lp-pad) clamp(48px, 6vw, 80px);
+}
+
+.lp-story .lp-h2 {
+  margin-top: 0;
+}
+
+.lp .lp-story .lp-h2 .line {
+  display: block;
+}
+
+.lp-story-by {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  margin-top: 28px;
   font-size: 14px;
+  font-weight: 500;
+}
+
+.lp-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--lp-line-2);
+}
+
+.lp-story-body {
+  display: grid;
+  gap: 20px;
+  max-width: 720px;
+}
+
+.lp-story-body p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
   color: var(--lp-text-2);
 }
 
-.lp-manifesto-by img {
-  width: 28px;
-  height: 28px;
+.lp-story-outro {
+  display: grid;
+  gap: 14px;
+  max-width: calc(720px + 2 * var(--lp-pad));
+  margin: 0 auto;
+  padding: clamp(48px, 6vw, 72px) var(--lp-pad) clamp(24px, 3vw, 40px);
+  text-align: left;
 }
 
-.lp-manifesto-by span {
-  font-family: var(--lp-display);
-  font-weight: 600;
+.lp-story-outro p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--lp-text-2);
+  max-width: 720px;
+}
+
+.lp-stat-link span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lp-stat-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s;
+}
+
+.lp .lp-cell--raised.lp-stat-link:hover {
+  background-color: #3e3e40;
+}
+
+.lp-stat-link:hover span {
   color: var(--lp-text);
 }
 
-.lp-manifesto-by a {
-  margin-left: auto;
-  font-weight: 500;
+.lp-stat-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.lp-story-by a,
+.lp-story-body a {
   color: var(--lp-accent-3);
   text-decoration: underline;
   text-decoration-color: rgba(165, 180, 252, 0.4);
@@ -1716,7 +1819,8 @@ body.lp ::selection {
     text-decoration-color 0.2s;
 }
 
-.lp-manifesto-by a:hover {
+.lp-story-by a:hover,
+.lp-story-body a:hover {
   color: var(--lp-text);
   text-decoration-color: currentColor;
 }

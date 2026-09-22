@@ -60,6 +60,8 @@
     "subtitle": "Clicca su un paragrafo qualsiasi e modificalo direttamente con ricomposizione del testo in tempo reale, caratteri e stili.",
     "saved": "PDF salvato correttamente! ({{size}} KB)",
     "failedToLoad": "Impossibile caricare l'editor di testo PDF.",
+    "loadingFonts": "Caricamento dei font...",
+    "fontsUnavailable": "Impossibile scaricare un font necessario per alcuni caratteri. Controlla la connessione e riprova, altrimenti questi caratteri potrebbero non essere visualizzati correttamente nel PDF salvato.",
     "howToUpload": "Carica PDF",
     "howToClick": "Fai clic su un paragrafo",
     "howToRestyle": "Ridefinisci lo stile",

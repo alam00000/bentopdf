@@ -288,7 +288,8 @@
       "noCompromises": "Ohne Kompromisse."
     },
     "mission": {
-      "title": "Unsere Mission",
+      "title": "Unsere",
+      "titleDim": "Mission",
       "description": "Die umfassendste PDF-Toolbox bereitzustellen, die deine Privatsphäre respektiert und niemals Geld kostet. Wir glauben, dass wichtige Dokumentenwerkzeuge für jede*n, überall und ohne Barrieren zugänglich sein sollten."
     },
     "philosophy": {

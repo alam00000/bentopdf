@@ -10260,4 +10260,6 @@ export {
   getZoom,
   getDocDescription,
   setOnSaved,
+  endEdit,
+  saveFile,
 };

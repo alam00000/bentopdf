@@ -222,7 +222,7 @@
   "testimonials": {
     "title": "사용자",
     "users": "후기",
-    "say": ""
+    "say": " "
   },
   "support": {
     "title": "도움이 되셨나요?",
@@ -288,7 +288,8 @@
       "noCompromises": "타협 없이."
     },
     "mission": {
-      "title": "우리의 목표",
+      "title": "우리의",
+      "titleDim": "목표",
       "description": "프라이버시를 지키면서도 비용 부담 없는, 가장 완벽한 PDF 도구를 만드는 것입니다. 꼭 필요한 문서 도구는 누구나, 어디서든 자유롭게 쓸 수 있어야 합니다."
     },
     "philosophy": {

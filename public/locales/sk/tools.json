@@ -60,6 +60,8 @@
     "subtitle": "Kliknite na ľubovoľný odsek a upravte ho priamo na mieste s okamžitým preformátovaním textu, písmami a štýlmi.",
     "saved": "PDF bolo úspešne uložené! ({{size}} KB)",
     "failedToLoad": "Nepodarilo sa načítať textový editor PDF.",
+    "loadingFonts": "Načítavajú sa písma...",
+    "fontsUnavailable": "Písmo potrebné pre niektoré znaky sa nepodarilo stiahnuť. Skontrolujte pripojenie a skúste to znova, inak sa tieto znaky v uloženom PDF nemusia zobraziť správne.",
     "howToUpload": "Nahrať PDF",
     "howToClick": "Kliknite na odsek",
     "howToRestyle": "Zmeňte štýl čohokoľvek",

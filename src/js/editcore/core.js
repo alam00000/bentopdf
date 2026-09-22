@@ -6,6 +6,7 @@ const devBust = '';
 
 import { applyType3LeftoverSurgery } from './type3surgery.js';
 import { probePdfBytes } from './shadingsurgery.js';
+import { needsFontEmbedding } from '../utils/freetext-script';
 
 const RUN_SIZE = 60;
 const FMT_SIZE = 36;
@@ -338,6 +339,7 @@ const PAGE_CACHE_MAX = 6;
 
 export class PdfEngine {
   static localFonts = new Map();
+  static fallbackFonts = new Map();
 
   constructor(module) {
     this.M = module;
@@ -396,6 +398,17 @@ export class PdfEngine {
           if (bytes) break;
         }
         if (!bytes) bytes = normLookup(fam, styleKey, want);
+        if (
+          !bytes &&
+          want.some((cp) => needsFontEmbedding(String.fromCodePoint(cp)))
+        ) {
+          for (const b of PdfEngine.fallbackFonts.values()) {
+            if (b && b.length && sfntCovers(b, want)) {
+              bytes = b;
+              break;
+            }
+          }
+        }
         if (!bytes || !bytes.length) return 0;
         const buf = M._ec_buffer_alloc(bytes.length);
         if (!buf) return 0;

@@ -60,6 +60,8 @@
     "subtitle": "Clique em qualquer parágrafo e edite-o no local com reorganização do texto em tempo real, fontes e estilos.",
     "saved": "PDF salvo com sucesso! ({{size}} KB)",
     "failedToLoad": "Não foi possível carregar o editor de texto PDF.",
+    "loadingFonts": "Carregando fontes...",
+    "fontsUnavailable": "Não foi possível baixar uma fonte necessária para alguns caracteres. Verifique sua conexão e tente novamente; caso contrário, esses caracteres podem não aparecer corretamente no PDF salvo.",
     "howToUpload": "Enviar PDF",
     "howToClick": "Clique em um parágrafo",
     "howToRestyle": "Reestilize tudo",
