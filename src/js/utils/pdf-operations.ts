@@ -27,6 +27,36 @@ export async function splitPdf(
   return new Uint8Array(await newPdf.save());
 }
 
+/**
+ * Rotates only landscape pages by 90° (clockwise by default) so every page
+ * ends up portrait. Portrait pages are left untouched. Orientation is judged
+ * by the visible (crop box + existing /Rotate) layout. Lossless: only the
+ * page /Rotate value changes, content is not re-rendered.
+ */
+export async function rotateLandscapeToPortrait(
+  pdfBytes: Uint8Array,
+  direction: 90 | 270 = 90
+): Promise<Uint8Array> {
+  const srcDoc = await loadPdfDocument(pdfBytes);
+  const newPdfDoc = await PDFDocument.create();
+  const copiedPages = await newPdfDoc.copyPages(
+    srcDoc,
+    srcDoc.getPageIndices()
+  );
+  const norm = (a: number) => ((a % 360) + 360) % 360;
+
+  for (const page of copiedPages) {
+    newPdfDoc.addPage(page);
+    const rotation = norm(page.getRotation().angle);
+    const { width, height } = page.getCropBox();
+    const isLandscape = rotation % 180 === 0 ? width > height : height > width;
+    if (isLandscape) {
+      page.setRotation(degrees(norm(rotation + direction)));
+    }
+  }
+  return new Uint8Array(await newPdfDoc.save());
+}
+
 export async function rotatePdfUniform(
   pdfBytes: Uint8Array,
   angle: number
