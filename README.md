@@ -363,6 +363,10 @@ podman run -p 3000:8080 docker.io/bentopdfteam/bentopdf-simple:latest
 
 </details>
 
+### ☁️ Easypanel
+
+[Easypanel](https://easypanel.io/) can deploy BentoPDF with one click using its [official template](https://easypanel.io/templates/bentopdf), without needing to manually run Docker commands.
+
 ### Static Hosting using Netlify, Vercel, and GitHub Pages
 
 It is very straightforward to host your own instance of BentoPDF using a static web page hosting service. Plus, services such as Netlify, Vercel, and GitHub Pages all offer a free tier for getting started. See [Static Hosting](https://github.com/alam00000/bentopdf/blob/main/STATIC-HOSTING.md) for details.
