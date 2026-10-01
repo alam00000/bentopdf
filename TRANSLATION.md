@@ -40,6 +40,7 @@ BentoPDF uses **i18next** for internationalization (i18n). Currently supported l
 - **Danish** (`da`)
 - **Swedish** (`sv`)
 - **Japanese** (`ja`)
+- **Persian (Farsi)** (`fa`)
 
 The app automatically detects the language from the URL path:
 
@@ -617,6 +618,7 @@ Current translation coverage:
 | Danish              | `da`    | ✅ Complete    | Community  |
 | Swedish             | `sv`    | ✅ Complete    | Community  |
 | Japanese            | `ja`    | ✅ Complete    | Community  |
+| Persian (Farsi)     | `fa`    | ✅ Complete    | Community  |
 | Your Language       | `??`    | 🚧 In Progress | You?       |
 
 ---
