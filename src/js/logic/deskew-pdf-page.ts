@@ -273,7 +273,7 @@ function initPage(): void {
 
   if (backBtn) {
     backBtn.addEventListener('click', () => {
-      window.location.href = '/';
+      window.location.href = import.meta.env.BASE_URL;
     });
   }
 
