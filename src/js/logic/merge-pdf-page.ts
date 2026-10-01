@@ -12,6 +12,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
+import { t } from '../i18n/i18n';
 
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -199,7 +200,7 @@ async function renderPageMergeThumbnails() {
           lazyLoadMargin: '300px',
           onProgress: () => {
             currentPageNumber++;
-            showLoader(`Rendering page previews...`);
+            showLoader(t('tools:mergePdf.loader.renderingPreviews'));
           },
           onBatchComplete: () => {
             createIcons({ icons });
@@ -216,7 +217,7 @@ async function renderPageMergeThumbnails() {
     initializePageThumbnailsSortable();
   } catch (error) {
     console.error('Error rendering page thumbnails:', error);
-    showAlert('Error', 'Failed to render page thumbnails');
+    showAlert(t('common.error'), t('tools:mergePdf.alert.thumbnailError'));
   } finally {
     hideLoader();
     mergeState.isRendering = false;
@@ -282,7 +283,7 @@ export async function merge() {
     return;
   }
 
-  showLoader('Merging PDFs...');
+  showLoader(t('tools:mergePdf.loader.merging'));
   try {
     const jobs: MergeJob[] = [];
     const filesToMerge: MergeFile[] = [];
@@ -369,7 +370,7 @@ export async function merge() {
     }
 
     if (jobs.length === 0) {
-      showAlert('Error', 'No files or pages selected to merge.');
+      showAlert(t('common.error'), t('tools:mergePdf.alert.noSelection'));
       hideLoader();
       return;
     }
@@ -410,30 +411,29 @@ export async function merge() {
         downloadFile(blob, 'merged.pdf');
         mergeState.mergeSuccess = true;
         showAlert(
-          'Success',
-          'PDFs merged successfully!',
+          t('common.success'),
+          t('tools:mergePdf.alert.mergeSuccess'),
           'success',
           async () => {
             await resetState();
           }
         );
       } else {
+        // The worker has no access to i18next: its message is technical and
+        // English-only, so it goes to the console, not to the user.
         console.error('Worker merge error:', e.data.message);
-        showAlert('Error', e.data.message || 'Failed to merge PDFs.');
+        showAlert(t('common.error'), t('tools:mergePdf.alert.mergeFailed'));
       }
     };
 
     mergeWorker.onerror = (e) => {
       hideLoader();
       console.error('Worker error:', e);
-      showAlert('Error', 'An unexpected error occurred in the merge worker.');
+      showAlert(t('common.error'), t('tools:mergePdf.alert.workerError'));
     };
   } catch (e) {
     console.error('Merge error:', e);
-    showAlert(
-      'Error',
-      'Failed to merge PDFs. Please check that all files are valid and not password-protected.'
-    );
+    showAlert(t('common.error'), t('tools:mergePdf.alert.mergeError'));
     hideLoader();
   }
 }
@@ -447,14 +447,14 @@ export async function refreshMergeUI() {
 
   const wasInPageMode = mergeState.activeMode === 'page';
 
-  showLoader('Loading PDF documents...');
+  showLoader(t('tools:mergePdf.loader.loadingDocuments'));
   try {
     mergeState.pdfDocs = {};
     mergeState.pdfBytes = {};
 
     hideLoader();
     state.files = await batchDecryptIfNeeded(state.files);
-    showLoader('Loading PDF documents...');
+    showLoader(t('tools:mergePdf.loader.loadingDocuments'));
 
     for (let i = 0; i < state.files.length; i++) {
       const file = state.files[i];
@@ -472,7 +472,7 @@ export async function refreshMergeUI() {
     }
   } catch (error) {
     console.error('Error loading PDFs:', error);
-    showAlert('Error', 'Failed to load one or more PDF files');
+    showAlert(t('common.error'), t('tools:mergePdf.alert.loadError'));
     return;
   } finally {
     hideLoader();
