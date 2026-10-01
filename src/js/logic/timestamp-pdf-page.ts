@@ -8,7 +8,11 @@ import {
   getPDFDocument,
 } from '../utils/helpers.js';
 import { TIMESTAMP_TSA_PRESETS } from '../config/timestamp-tsa.js';
-import { timestampPdf } from './digital-sign-pdf.js';
+import {
+  timestampPdf,
+  TimestampProxyRequiredError,
+  TSA_PROXY_DOC_URL,
+} from './digital-sign-pdf.js';
 
 interface TimestampState {
   pdfFile: File | null;
@@ -236,6 +240,18 @@ async function processTimestamp(): Promise<void> {
     resetState();
   } catch (error) {
     console.error('Timestamp error:', error);
+    if (error instanceof TimestampProxyRequiredError) {
+      // Trying another provider cannot help: none of them answers a CORS
+      // preflight. Say what actually has to change.
+      showAlert(
+        t('tools:timestampPdf.proxyRequiredTitle'),
+        t('tools:timestampPdf.proxyRequiredMessage', {
+          tsaUrl: error.tsaUrl,
+          docUrl: TSA_PROXY_DOC_URL,
+        })
+      );
+      return;
+    }
     const message = error instanceof Error ? error.message : 'Unknown error';
     showAlert(
       'Timestamp Failed',

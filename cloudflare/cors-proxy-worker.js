@@ -10,6 +10,15 @@
  *
  * Required Environment Variables (set in wrangler.toml or Cloudflare dashboard):
  * - PROXY_SECRET: Shared secret for HMAC signature verification
+ *
+ * Optional Environment Variables (see cloudflare/wrangler.toml):
+ * - ALLOWED_ORIGINS: comma-separated list of origins allowed to call this
+ *   proxy. Self-hosters set this to their own origin(s) so they can deploy the
+ *   worker as-is instead of editing this file. Defaults to the official
+ *   BentoPDF origins.
+ * - ALLOWED_TSA_HOSTS: comma-separated list of RFC 3161 timestamp hosts this
+ *   proxy may POST to. Defaults to the built-in providers. Anything not on the
+ *   list is refused, so a misconfigured value fails closed.
  */
 
 const ALLOWED_PATH_PATTERNS = [
@@ -20,15 +29,42 @@ const ALLOWED_PATH_PATTERNS = [
   /(^|\/)caissuers(\/|$)/i,
 ];
 
-const ALLOWED_TSA_HOSTS = new Set([
+const DEFAULT_ALLOWED_TSA_HOSTS = [
   'timestamp.digicert.com',
   'timestamp.sectigo.com',
   'ts.ssl.com',
   'freetsa.org',
   'tsa.mesign.com',
-]);
+];
 
-const ALLOWED_ORIGINS = ['https://www.bentopdf.com', 'https://bentopdf.com'];
+const DEFAULT_ALLOWED_ORIGINS = [
+  'https://www.bentopdf.com',
+  'https://bentopdf.com',
+];
+
+/**
+ * Splits a comma-separated environment variable into trimmed entries.
+ * Returns null when nothing usable was configured, so callers keep their
+ * defaults rather than ending up with an empty allow-list.
+ */
+function parseListVar(value) {
+  if (typeof value !== 'string') return null;
+  const entries = value
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+  return entries.length > 0 ? entries : null;
+}
+
+function resolveAllowedOrigins(env) {
+  return parseListVar(env?.ALLOWED_ORIGINS) || DEFAULT_ALLOWED_ORIGINS;
+}
+
+function resolveAllowedTsaHosts(env) {
+  return new Set(
+    parseListVar(env?.ALLOWED_TSA_HOSTS) || DEFAULT_ALLOWED_TSA_HOSTS
+  );
+}
 
 const SAFE_CONTENT_TYPES = [
   'application/x-x509-ca-cert',
@@ -76,9 +112,9 @@ async function verifySignature(message, signature, secret) {
   }
 }
 
-function isAllowedOrigin(origin) {
+function isAllowedOrigin(origin, allowedOrigins) {
   if (!origin) return false;
-  return ALLOWED_ORIGINS.includes(origin);
+  return allowedOrigins.includes(origin);
 }
 
 function isPrivateOrReservedHost(hostname) {
@@ -166,12 +202,12 @@ function isValidCertificateUrl(urlString) {
   }
 }
 
-function isValidTsaUrl(urlString) {
+function isValidTsaUrl(urlString, allowedTsaHosts) {
   try {
     const url = new URL(urlString);
     if (!['http:', 'https:'].includes(url.protocol)) return false;
     if (isPrivateOrReservedHost(url.hostname)) return false;
-    return ALLOWED_TSA_HOSTS.has(url.hostname);
+    return allowedTsaHosts.has(url.hostname);
   } catch {
     return false;
   }
@@ -194,9 +230,9 @@ function corsHeaders(origin) {
   };
 }
 
-function handleOptions(request) {
+function handleOptions(request, allowedOrigins) {
   const origin = request.headers.get('Origin');
-  if (!isAllowedOrigin(origin)) {
+  if (!isAllowedOrigin(origin, allowedOrigins)) {
     return new Response(null, { status: 403 });
   }
   return new Response(null, {
@@ -209,17 +245,19 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin');
+    const allowedOrigins = resolveAllowedOrigins(env);
+    const allowedTsaHosts = resolveAllowedTsaHosts(env);
 
     if (request.method === 'OPTIONS') {
-      return handleOptions(request);
+      return handleOptions(request, allowedOrigins);
     }
 
-    // NOTE: If you are selfhosting this proxy, you can remove this check, or can set it to only accept requests from your own domain
+    // NOTE: If you are selfhosting this proxy, set the ALLOWED_ORIGINS variable to your own origin(s) in wrangler.toml
     // SECURITY: The Origin allow-list and the optional PROXY_SECRET HMAC are anti-abuse controls, NOT a security boundary — the Origin
     // header is forgeable by non-browser clients and the HMAC secret ships in the public client bundle. The real SSRF defense is the
     // private/reserved-IP resolution check (hostnameResolvesToPrivate). Deployments running this off Cloudflare cannot fully close the
     // DNS-rebinding gap in code and MUST add network egress filtering (see docs/self-hosting/cors-proxy.md).
-    if (!isAllowedOrigin(origin)) {
+    if (!isAllowedOrigin(origin, allowedOrigins)) {
       return new Response(
         JSON.stringify({
           error: 'Forbidden',
@@ -265,11 +303,11 @@ export default {
       requestContentType === 'application/timestamp-query';
 
     if (isTsaQuery) {
-      if (!isValidTsaUrl(targetUrl)) {
+      if (!isValidTsaUrl(targetUrl, allowedTsaHosts)) {
         return new Response(
           JSON.stringify({
             error: 'Disallowed TSA host',
-            message: `Only known RFC 3161 TSA hosts are accepted: ${[...ALLOWED_TSA_HOSTS].join(', ')}`,
+            message: `Only known RFC 3161 TSA hosts are accepted: ${[...allowedTsaHosts].join(', ')}`,
           }),
           {
             status: 403,
