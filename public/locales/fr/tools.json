@@ -1105,7 +1105,9 @@
     "tsaSectionTitle": "Serveur d'horodatage (TSA)",
     "selectTsa": "Sélectionner un serveur TSA",
     "applyTimestamp": "Appliquer l'horodatage",
-    "successMessage": "PDF horodaté avec succès ! L'horodatage peut être vérifié dans n'importe quel lecteur PDF."
+    "successMessage": "PDF horodaté avec succès ! L'horodatage peut être vérifié dans n'importe quel lecteur PDF.",
+    "proxyRequiredTitle": "L'horodatage nécessite un relais sur cette instance",
+    "proxyRequiredMessage": "Le navigateur a bloqué la requête vers {{tsaUrl}}. Les serveurs d'horodatage publics n'autorisent pas les requêtes multi-origines, et cette version n'a aucun relais configuré : aucun serveur de la liste ne peut fonctionner. Changer de serveur n'y changera rien.\n\nPour corriger, reconstruisez cette instance soit avec VITE_CORS_PROXY_URL pointant vers un relais que vous déployez, soit avec VITE_TSA_ENDPOINTS pointant vers un serveur d'horodatage qui autorise les requêtes multi-origines.\n\nGuide de configuration : {{docUrl}}"
   },
   "emailToPdf": {
     "name": "Email vers PDF",

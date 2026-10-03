@@ -110,6 +110,7 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_TESSERACT_LANG_URL`            | OCR traineddata directory                                                                                                    | _(empty; use Tesseract.js default CDN)_                        |
 | `VITE_TESSERACT_AVAILABLE_LANGUAGES` | Comma-separated OCR languages exposed in UI                                                                                  | _(empty; show full catalog)_                                   |
 | `VITE_OCR_FONT_BASE_URL`             | OCR text-layer font directory                                                                                                | _(empty; use remote Noto font URLs)_                           |
+| `VITE_TSA_ENDPOINTS`                 | Comma-separated `URL` or `Label=URL` timestamp authorities, replacing the built-in list                                      | _(empty; use the built-in providers)_                          |
 | `VITE_DEFAULT_LANGUAGE`              | Default UI language                                                                                                          | `en`                                                           |
 | `VITE_BRAND_NAME`                    | Custom brand name                                                                                                            | `BentoPDF`                                                     |
 | `VITE_BRAND_LOGO`                    | Logo path relative to `public/`                                                                                              | `images/favicon-no-bg.svg`                                     |
@@ -128,6 +129,7 @@ As a result:
 - If you override `VITE_CORS_PROXY_URL` or `VITE_WASM_*_URL` at build time, the CSP permits those origins automatically — no extra config needed.
 - If you configure custom WASM URLs at _runtime_ via the in-app Advanced Settings page, those origins are **not** in the CSP and the browser will block fetches to them. Runtime configuration is intended for experimentation; for permanent custom URLs set the matching `VITE_*` build arg.
 - Air-gapped deployments that override all three `VITE_WASM_*_URL` values also get the public `cdn.jsdelivr.net` removed from CSP (each default is replaced, not appended). Similarly, setting `VITE_CORS_PROXY_URL` replaces the public `bentopdf-cors-proxy.bentopdf.workers.dev` default.
+- `VITE_TSA_ENDPOINTS` origins are **added** to `connect-src`, because a configured timestamp authority is contacted directly rather than through the proxy. See [CORS Proxy](/self-hosting/cors-proxy) for why the Timestamp PDF tool needs one of the two.
 
 The CSP includes `'unsafe-eval'` in `script-src` because the LibreOffice WASM runtime (used by Word/Excel/PowerPoint conversion tools) compiles internal dispatch code via `new Function()`. Removing it would break all LibreOffice-backed tools. If you build in `SIMPLE_MODE` (without LibreOffice), you can manually edit the generated `security-headers.conf` to drop `'unsafe-eval'` for a stricter policy.
 
