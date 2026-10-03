@@ -33,6 +33,53 @@ function resolveStreamDict(obj: unknown): PDFDict | null {
   return null;
 }
 
+const IDENTITY_MATRIX = [1, 0, 0, 1, 0, 0];
+
+function readFormMatrix(dict: PDFDict | null): number[] {
+  if (!dict) return IDENTITY_MATRIX;
+  const matrixObj = dict.lookup(PDFName.of('Matrix'));
+  if (!(matrixObj instanceof PDFArray) || matrixObj.size() !== 6) {
+    return IDENTITY_MATRIX;
+  }
+  return extractNumbers(matrixObj, 6) ?? IDENTITY_MATRIX;
+}
+
+// ISO 32000-1 §12.5.5: map the matrix-transformed BBox onto Rect.
+// Do still applies the form Matrix, so this cm must not include it again.
+function alignAppearanceToRect(
+  bbox: number[],
+  matrix: number[],
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number
+): [number, number, number, number] | null {
+  const [a, b, c, d, e, f] = matrix;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const x of [bbox[0], bbox[2]]) {
+    for (const y of [bbox[1], bbox[3]]) {
+      const px = a * x + c * y + e;
+      const py = b * x + d * y + f;
+      if (px < minX) minX = px;
+      if (py < minY) minY = py;
+      if (px > maxX) maxX = px;
+      if (py > maxY) maxY = py;
+    }
+  }
+
+  const bw = maxX - minX;
+  const bh = maxY - minY;
+  if (bw < 0.001 || bh < 0.001) return null;
+
+  const sx = (x2 - x1) / bw;
+  const sy = (y2 - y1) / bh;
+  return [sx, sy, x1 - minX * sx, y1 - minY * sy];
+}
+
 export function flattenAnnotations(pdfDoc: PDFDocument): void {
   const pages = pdfDoc.getPages();
 
@@ -132,6 +179,20 @@ export function flattenAnnotations(pdfDoc: PDFDocument): void {
         }
       }
 
+      const placement = alignAppearanceToRect(
+        bbox,
+        readFormMatrix(streamDict),
+        x1,
+        y1,
+        x2,
+        y2
+      );
+      if (!placement) {
+        hasChanges = true;
+        continue;
+      }
+      const [sx, sy, tx, ty] = placement;
+
       let appRef: PDFRef;
       if (normalAppRef instanceof PDFRef) {
         appRef = normalAppRef;
@@ -139,13 +200,6 @@ export function flattenAnnotations(pdfDoc: PDFDocument): void {
         appRef = pdfDoc.context.register(normalAppRef as PDFDict);
       }
       const xObjKey = pageNode.newXObject('FlatAnnot', appRef);
-
-      const bw = bbox[2] - bbox[0];
-      const bh = bbox[3] - bbox[1];
-      const sx = Math.abs(bw) > 0.001 ? (x2 - x1) / bw : 1;
-      const sy = Math.abs(bh) > 0.001 ? (y2 - y1) / bh : 1;
-      const tx = x1 - bbox[0] * sx;
-      const ty = y1 - bbox[1] * sy;
 
       page.pushOperators(
         PDFOperator.of(PDFOperatorNames.PushGraphicsState),
