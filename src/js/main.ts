@@ -29,6 +29,7 @@ import {
   setStoredItem,
   removeStoredItem,
 } from './utils/safe-storage.js';
+import { calculateSearchRelevance } from './utils/search-utils.js';
 declare const __BRAND_NAME__: string;
 
 const init = async () => {
@@ -460,18 +461,18 @@ const init = async () => {
       searchResultsContainer.classList.remove('hidden');
 
       const seenToolIds = new Set<string>();
-      const allTools: HTMLElement[] = [];
+      const scoredTools: { card: HTMLElement; score: number; order: number }[] =
+        [];
+      let naturalOrder = 0;
 
       categoryGroups.forEach((group) => {
         const toolCards = Array.from(group.querySelectorAll('.tool-card'));
 
         toolCards.forEach((card) => {
-          const toolName = (
-            card.querySelector('h3')?.textContent || ''
-          ).toLowerCase();
+          const toolName = (card.querySelector('h3')?.textContent || '').trim();
           const toolSubtitle = (
             card.querySelector('p')?.textContent || ''
-          ).toLowerCase();
+          ).trim();
           const toolHref =
             (card as HTMLAnchorElement).href ||
             (card as HTMLElement).dataset.toolId ||
@@ -480,20 +481,30 @@ const init = async () => {
           const toolId =
             toolHref.split('/').pop()?.replace('.html', '') || toolName;
 
-          const isMatch =
-            toolName.includes(searchTerm) || toolSubtitle.includes(searchTerm);
-          const isDuplicate = seenToolIds.has(toolId);
+          if (seenToolIds.has(toolId)) return;
 
-          if (isMatch && !isDuplicate) {
+          const relevanceScore = calculateSearchRelevance(
+            toolName,
+            toolSubtitle,
+            searchTerm
+          );
+
+          if (relevanceScore > 0) {
             seenToolIds.add(toolId);
-            allTools.push(card.cloneNode(true) as HTMLElement);
+            scoredTools.push({
+              card: card.cloneNode(true) as HTMLElement,
+              score: relevanceScore,
+              order: naturalOrder++,
+            });
           }
         });
       });
 
-      allTools.forEach((tool) => {
-        searchResultsContainer.appendChild(tool);
-      });
+      scoredTools
+        .sort((a, b) => b.score - a.score || a.order - b.order)
+        .forEach(({ card }) => {
+          searchResultsContainer.appendChild(card);
+        });
 
       createIcons({ icons });
     });
