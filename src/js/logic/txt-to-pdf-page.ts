@@ -1,5 +1,9 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes } from '../utils/helpers.js';
+import { downloadFile } from '../utils/helpers.js';
+import {
+  renderReorderableFileList,
+  destroyReorderableFileList,
+} from '../utils/reorderable-file-list.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 
@@ -27,32 +31,19 @@ const updateUI = () => {
     dropZone.classList.add('hidden');
     fileControls.classList.remove('hidden');
 
-    files.forEach((file, index) => {
-      const fileDiv = document.createElement('div');
-      fileDiv.className =
-        'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
-
-      const infoSpan = document.createElement('span');
-      infoSpan.className = 'truncate font-medium text-gray-200';
-      infoSpan.textContent = file.name;
-
-      const sizeSpan = document.createElement('span');
-      sizeSpan.className = 'text-gray-400 text-xs ml-2';
-      sizeSpan.textContent = `(${formatBytes(file.size)})`;
-
-      const removeBtn = document.createElement('button');
-      removeBtn.className = 'ml-4 text-red-400 hover:text-red-300';
-      removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-      removeBtn.onclick = () => {
+    renderReorderableFileList({
+      container: fileDisplayArea,
+      files,
+      onReorder: (reordered) => {
+        files = reordered;
+      },
+      onRemove: (index) => {
         files = files.filter((_, i) => i !== index);
         updateUI();
-      };
-
-      fileDiv.append(infoSpan, sizeSpan, removeBtn);
-      fileDisplayArea.appendChild(fileDiv);
+      },
     });
-    createIcons({ icons });
   } else {
+    destroyReorderableFileList(fileDisplayArea);
     dropZone.classList.remove('hidden');
     fileControls.classList.add('hidden');
   }
