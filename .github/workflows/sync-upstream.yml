@@ -1,0 +1,39 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    # Runs daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allows manual trigger from Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/alam00000/bentopdf.git || true
+          git fetch upstream
+
+      - name: Sync with upstream
+        run: |
+          git checkout main
+          git merge upstream/main --no-edit --allow-unrelated-histories || echo "No changes to merge or merge conflict occurred"
+
+      - name: Push changes
+        run: |
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
