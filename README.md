@@ -1,8 +1,13 @@
 <p align="center"><img src="public/images/favicon-no-bg.svg" width="80"></p>
 <h1 align="center">BentoPDF</h1>
+<p align="center"><sub>Supported by</sub></p>
 <p align="center">
+  <a href="https://vercel.com/open-source-program">
+    <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" height="30" />
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://www.digitalocean.com/?refcode=d93c189ef6d0&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
-    <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge">
+    <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge" height="44">
   </a>
 </p>
 

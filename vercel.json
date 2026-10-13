@@ -1,0 +1,239 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "buildCommand": "npm run build:with-docs",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/ua/:path*", "destination": "/uk/:path*", "permanent": true },
+    { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
+    {
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/src/pages/:page",
+      "destination": "/:locale/:page",
+      "permanent": true
+    },
+    {
+      "source": "/src/pages/:page",
+      "destination": "/:page",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/change-text-color",
+      "destination": "/:locale/text-color",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/pdf-to-docx",
+      "destination": "/:locale/pdf-to-word",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/decrypt-pdf",
+      "destination": "/:locale/unlock-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/encrypt-pdf",
+      "destination": "/:locale/protect-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/change-text-color",
+      "destination": "/text-color",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-docx",
+      "destination": "/pdf-to-word",
+      "permanent": true
+    },
+    {
+      "source": "/decrypt-pdf",
+      "destination": "/unlock-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/encrypt-pdf",
+      "destination": "/protect-pdf",
+      "permanent": true
+    },
+    { "source": "/tools/:page", "destination": "/:page", "permanent": true },
+    {
+      "source": "/getting-started",
+      "destination": "/docs/getting-started",
+      "permanent": true
+    },
+    {
+      "source": "/contributing",
+      "destination": "/docs/contributing",
+      "permanent": true
+    },
+    {
+      "source": "/self-hosting/:path*",
+      "destination": "/docs/self-hosting/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/docs/tools/pdf-to-docx",
+      "destination": "/docs/tools/pdf-to-word",
+      "permanent": true
+    },
+    {
+      "source": "/docs/tools/decrypt-pdf",
+      "destination": "/docs/tools/unlock-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/docs/tools/encrypt-pdf",
+      "destination": "/docs/tools/protect-pdf",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval' blob: https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://rawcdn.githack.com; connect-src 'self' blob: https://api.github.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://bentopdf-cors-proxy.bentopdf.workers.dev https://rawcdn.githack.com; object-src 'none'; base-uri 'self'; frame-src 'self' blob:; frame-ancestors 'self'; form-action 'self'"
+        },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+        },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
+        { "key": "Cross-Origin-Embedder-Policy", "value": "credentialless" },
+        { "key": "Cross-Origin-Resource-Policy", "value": "cross-origin" },
+        { "key": "Cache-Control", "value": "public, max-age=300" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
+    },
+    {
+      "source": "/(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+    },
+    {
+      "source": "/(.*)\\.(js|mjs|css|woff|woff2|ttf|eot|otf)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|jpg|jpeg|gif|ico|svg|webp|avif|mp4|webm|pdf)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(wasm|wasm\\.gz|data|data\\.gz)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/pdfjs-viewer/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    },
+    {
+      "source": "/pdfjs-annotation-viewer/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    },
+    {
+      "source": "/docs",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://rawcdn.githack.com; connect-src 'self' https://api.github.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://bentopdf-cors-proxy.bentopdf.workers.dev https://rawcdn.githack.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/docs/:path*",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://rawcdn.githack.com; connect-src 'self' https://api.github.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://bentopdf-cors-proxy.bentopdf.workers.dev https://rawcdn.githack.com; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'"
+        }
+      ]
+    },
+    {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/coherentpdf.browser.min.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/qpdf.wasm",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/workers/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/libreoffice-wasm/soffice.wasm.gz",
+      "headers": [
+        { "key": "Content-Type", "value": "application/wasm" },
+        { "key": "Content-Encoding", "value": "gzip" },
+        { "key": "Vary", "value": "Accept-Encoding" },
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    },
+    {
+      "source": "/libreoffice-wasm/soffice.data.gz",
+      "headers": [
+        { "key": "Content-Type", "value": "application/octet-stream" },
+        { "key": "Content-Encoding", "value": "gzip" },
+        { "key": "Vary", "value": "Accept-Encoding" },
+        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+      ]
+    }
+  ]
+}
