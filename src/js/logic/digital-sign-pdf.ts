@@ -174,7 +174,11 @@ export function parsePemFiles(
 
   const certificate = findCertificateForKey(certs, privateKey);
   const p12Password = keyPassword || crypto.randomUUID();
-  const p12Buffer = wrapAsPkcs12(privateKey, [certificate], p12Password);
+  const p12Buffer = wrapAsPkcs12(
+    privateKey,
+    [certificate, ...certs.filter((c) => c !== certificate)],
+    p12Password
+  );
 
   return { p12Buffer, password: p12Password, certificate };
 }
