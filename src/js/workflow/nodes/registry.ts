@@ -10,6 +10,7 @@ import { AlternateMergeNode } from './alternate-merge-node';
 import { SplitNode } from './split-node';
 import { ExtractPagesNode } from './extract-pages-node';
 import { RotateNode } from './rotate-node';
+import { AutoPortraitNode } from './auto-portrait-node';
 import { DeletePagesNode } from './delete-pages-node';
 import { ReversePagesNode } from './reverse-pages-node';
 import { AddBlankPageNode } from './add-blank-page-node';
@@ -302,6 +303,13 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
     description: 'Rotate all pages',
     factory: () => new RotateNode(),
     toolPageId: 'rotate-pdf',
+  },
+  AutoPortraitNode: {
+    label: 'Auto Portrait',
+    category: 'Organize & Manage',
+    icon: 'ph-device-mobile-camera',
+    description: 'Rotate only landscape pages to portrait',
+    factory: () => new AutoPortraitNode(),
   },
   DeletePagesNode: {
     label: 'Delete Pages',
