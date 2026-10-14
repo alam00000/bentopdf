@@ -674,7 +674,7 @@ export class MarkdownEditor {
         .use(emoji) // Emoji: :smile: -> 😄
         .use(ins) // Inserted text: ++text++ -> <ins>text</ins>
         .use(mark) // Marked text: ==text== -> <mark>text</mark>
-        .use(taskLists, { enabled: true, label: true, labelAfter: true }) // Task lists: - [x] done
+        .use(taskLists, { enabled: true, label: false }) // Task lists: - [x] done
         .use(anchor, { permalink: false }) // Header anchors
         .use(tocDoneRight); // Table of contents: ${toc}
     }
