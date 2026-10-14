@@ -19,7 +19,22 @@
     "name": "Fusionner des PDF",
     "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets.",
     "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
-    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
+    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double).",
+    "removeDuplicateFonts": "Supprimer les polices en double",
+    "alert": {
+      "thumbnailError": "Échec du rendu des aperçus de pages",
+      "noSelection": "Aucun fichier ni page sélectionné pour la fusion.",
+      "mergeSuccess": "PDF fusionnés avec succès !",
+      "mergeFailed": "Échec de la fusion des PDF.",
+      "mergeError": "Échec de la fusion des PDF. Veuillez vérifier que tous les fichiers sont valides et non protégés par mot de passe.",
+      "workerError": "Une erreur inattendue s'est produite dans le worker de fusion.",
+      "loadError": "Impossible de charger un ou plusieurs fichiers PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Génération des aperçus de pages…",
+      "merging": "Fusion des PDF…",
+      "loadingDocuments": "Chargement des documents PDF…"
+    }
   },
   "splitPdf": {
     "name": "Scinder un PDF",
