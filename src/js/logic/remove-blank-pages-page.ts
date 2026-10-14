@@ -366,6 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
   processBtn?.addEventListener('click', processRemoveBlankPages);
 
   document.getElementById('back-to-tools')?.addEventListener('click', () => {
-    window.location.href = '../../index.html';
+    window.location.href = import.meta.env.BASE_URL;
   });
 });
