@@ -1,0 +1,390 @@
+{
+  "nav": {
+    "home": "Inici",
+    "about": "Quant a",
+    "contact": "Contacte",
+    "licensing": "Llicències",
+    "allTools": "Totes les eines",
+    "docs": "Documentació",
+    "openMainMenu": "Obre el menú principal",
+    "language": "Idioma",
+    "searchLanguage": "Cerca un idioma…",
+    "noLanguagesFound": "No s'ha trobat cap idioma"
+  },
+  "donation": {
+    "message": "T'agrada BentoPDF? Ajuda'ns a mantenir-lo gratuït i de codi obert!",
+    "button": "Fes una donació"
+  },
+  "hero": {
+    "title": "El",
+    "pdfToolkit": "conjunt d'eines PDF",
+    "builtForPrivacy": "pensat per protegir la privadesa",
+    "noSignups": "Sense registre",
+    "unlimitedUse": "Ús il·limitat",
+    "worksOffline": "Funciona sense connexió",
+    "startUsing": "Comença a utilitzar-lo"
+  },
+  "usedBy": {
+    "title": "Utilitzat per empreses i persones que treballen a"
+  },
+  "features": {
+    "title": "Per què triar",
+    "bentoPdf": "BentoPDF?",
+    "noSignup": {
+      "title": "Sense registre",
+      "description": "Comença immediatament, sense comptes ni correus electrònics."
+    },
+    "noUploads": {
+      "title": "Sense càrregues de fitxers",
+      "description": "100 % al navegador: els fitxers no surten mai del dispositiu."
+    },
+    "foreverFree": {
+      "title": "Gratuït per sempre",
+      "description": "Totes les eines, sense períodes de prova ni pagaments."
+    },
+    "noLimits": {
+      "title": "Sense límits",
+      "description": "Utilitza'l tant com vulguis, sense límits ocults."
+    },
+    "batchProcessing": {
+      "title": "Processament per lots",
+      "description": "Processa tants PDF com vulguis alhora."
+    },
+    "lightningFast": {
+      "title": "Extremadament ràpid",
+      "description": "Processa PDF a l'instant, sense esperes ni retards."
+    }
+  },
+  "tools": {
+    "title": "Comença amb les",
+    "toolsLabel": "Eines",
+    "subtitle": "Fes clic en una eina per obrir el selector de fitxers",
+    "searchPlaceholder": "Cerca una eina (p. ex., «dividir», «organitzar»...)",
+    "backToTools": "Torna a les eines",
+    "firstLoadNotice": "La primera càrrega pot trigar una mica mentre es descarrega el motor de conversió. Les següents seran instantànies."
+  },
+  "upload": {
+    "clickToSelect": "Fes clic per seleccionar un fitxer",
+    "orDragAndDrop": "o arrossega'l i deixa'l anar",
+    "pdfOrImages": "PDF o imatges",
+    "filesNeverLeave": "Els teus fitxers no surten mai del dispositiu.",
+    "addMore": "Afegeix més fitxers",
+    "clearAll": "Neteja-ho tot",
+    "clearFiles": "Elimina els fitxers",
+    "hints": {
+      "singlePdf": "Un únic fitxer PDF",
+      "pdfFile": "Fitxer PDF",
+      "multiplePdfs2": "Diversos fitxers PDF (com a mínim 2)",
+      "bmpImages": "Imatges BMP",
+      "oneOrMorePdfs": "Un o més fitxers PDF",
+      "pdfDocuments": "Documents PDF",
+      "oneOrMoreCsv": "Un o més fitxers CSV",
+      "multiplePdfsSupported": "S'admeten diversos fitxers PDF",
+      "singleOrMultiplePdfs": "S'admeten un o diversos fitxers PDF",
+      "singlePdfFile": "Un únic fitxer PDF",
+      "pdfWithForms": "Fitxer PDF amb camps de formulari",
+      "heicImages": "Imatges HEIC/HEIF",
+      "jpgImages": "Imatges JPG, JPEG, JP2 i JPX",
+      "pdfsOrImages": "PDF o imatges",
+      "oneOrMoreOdt": "Un o més fitxers ODT",
+      "singlePdfOnly": "Només un fitxer PDF",
+      "pdfFiles": "Fitxers PDF",
+      "multiplePdfs": "Diversos fitxers PDF",
+      "pngImages": "Imatges PNG",
+      "pdfFilesOneOrMore": "Fitxers PDF (un o més)",
+      "oneOrMoreRtf": "Un o més fitxers RTF",
+      "svgGraphics": "Gràfics SVG",
+      "tiffImages": "Imatges TIFF",
+      "webpImages": "Imatges WebP"
+    }
+  },
+  "howItWorks": {
+    "title": "Com funciona",
+    "step1Title": "Puja el fitxer",
+    "step1": "Fes clic o arrossega i deixa anar el fitxer per començar",
+    "step2Title": "Processa",
+    "step2": "Fes clic al botó de processament per començar",
+    "step3Title": "Descarrega",
+    "step3": "Desa el fitxer processat a l'instant"
+  },
+  "relatedTools": {
+    "title": "Eines PDF relacionades"
+  },
+  "loader": {
+    "processing": "S'està processant..."
+  },
+  "alert": {
+    "title": "Avís",
+    "ok": "D'acord"
+  },
+  "preview": {
+    "title": "Previsualització del document",
+    "downloadAsPdf": "Descarrega com a PDF",
+    "close": "Tanca"
+  },
+  "settings": {
+    "title": "Configuració",
+    "shortcuts": "Dreceres de teclat",
+    "preferences": "Preferències",
+    "displayPreferences": "Preferències de visualització",
+    "searchShortcuts": "Cerca dreceres...",
+    "shortcutsInfo": "Mantén premudes les tecles per definir una drecera. Els canvis es desen automàticament.",
+    "shortcutsWarning": "⚠️ Evita les dreceres habituals del navegador (Cmd/Ctrl+W, Cmd/Ctrl+T, Cmd/Ctrl+N, etc.), perquè poden no funcionar correctament.",
+    "import": "Importa",
+    "export": "Exporta",
+    "resetToDefaults": "Restableix els valors predeterminats",
+    "fullWidthMode": "Mode d'amplada completa",
+    "fullWidthDescription": "Utilitza tota l'amplada de la pantalla per a totes les eines en lloc d'un contenidor centrat",
+    "compactMode": "Mode compacte",
+    "compactModeDescription": "Mostra les eines en una llista compacta en lloc de targetes",
+    "advancedSettings": "Configuració avançada",
+    "advancedSettingsDescription": "Configura els mòduls de processament externs (PyMuPDF, Ghostscript, CoherentPDF)",
+    "settingsAutoSaved": "La configuració es desa automàticament",
+    "clickToSet": "Fes clic per definir-la",
+    "pressKeys": "Prem les tecles...",
+    "warnings": {
+      "alreadyInUse": "La drecera ja s'utilitza",
+      "assignedTo": "ja està assignada a:",
+      "chooseDifferent": "Tria una altra drecera.",
+      "reserved": "Avís de drecera reservada",
+      "commonlyUsed": "s'utilitza habitualment per a:",
+      "unreliable": "Aquesta drecera pot no funcionar correctament o pot entrar en conflicte amb el navegador o el sistema.",
+      "useAnyway": "La vols utilitzar igualment?",
+      "resetTitle": "Restableix les dreceres",
+      "resetMessage": "Segur que vols restablir totes les dreceres als valors predeterminats?<br><br>Aquesta acció no es pot desfer.",
+      "importSuccessTitle": "Importació correcta",
+      "importSuccessMessage": "Les dreceres s'han importat correctament!",
+      "importFailTitle": "Error d'importació",
+      "importFailMessage": "No s'han pogut importar les dreceres. El format del fitxer no és vàlid."
+    }
+  },
+  "warning": {
+    "title": "Advertiment",
+    "cancel": "Cancel·la",
+    "proceed": "Continua"
+  },
+  "compliance": {
+    "title": "Les dades no surten mai del dispositiu",
+    "weKeep": "Mantenim",
+    "yourInfoSafe": "la teva informació segura",
+    "byFollowingStandards": "seguint les normes internacionals de seguretat.",
+    "processingLocal": "Tot el processament es fa localment al teu dispositiu.",
+    "gdpr": {
+      "title": "Compliment del RGPD",
+      "description": "Protegeix les dades personals i la privadesa de les persones a la Unió Europea."
+    },
+    "ccpa": {
+      "title": "Compliment de la CCPA",
+      "description": "Reconeix drets als residents de Califòrnia sobre la recopilació, l'ús i la compartició de la seva informació personal."
+    },
+    "hipaa": {
+      "title": "Compliment de la HIPAA",
+      "description": "Estableix garanties per tractar informació sanitària sensible al sistema sanitari dels Estats Units."
+    }
+  },
+  "faq": {
+    "title": "Preguntes",
+    "questions": "freqüents",
+    "sectionTitle": "Preguntes freqüents",
+    "isFree": {
+      "question": "BentoPDF és realment gratuït?",
+      "answer": "Sí, del tot. Totes les eines de BentoPDF són 100 % gratuïtes, sense límits de fitxers, registres ni marques d'aigua. Creiem que tothom hauria de tenir accés a eines PDF senzilles i potents sense haver de pagar."
+    },
+    "areFilesSecure": {
+      "question": "Els meus fitxers són segurs? On es processen?",
+      "answer": "Els teus fitxers es mantenen tan segurs com és possible perquè no surten mai de l'ordinador. Tot el processament es fa directament al navegador web (al dispositiu). No enviem mai els fitxers a cap servidor, de manera que mantens la privadesa i el control dels documents."
+    },
+    "platforms": {
+      "question": "Funciona a Mac, Windows i dispositius mòbils?",
+      "answer": "Sí! Com que BentoPDF funciona íntegrament al navegador, és compatible amb qualsevol sistema operatiu que tingui un navegador modern, com ara Windows, macOS, Linux, iOS i Android."
+    },
+    "gdprCompliant": {
+      "question": "BentoPDF compleix el RGPD?",
+      "answer": "Sí. BentoPDF compleix plenament el RGPD. Com que els fitxers es processen localment al navegador i mai no els recopilem ni els transmetem a cap servidor, no tenim accés a les teves dades. Això garanteix que sempre mantens el control dels documents."
+    },
+    "dataStorage": {
+      "question": "Emmagatzemeu o feu seguiment dels meus fitxers?",
+      "answer": "No. Mai no desem, seguim ni registrem els teus fitxers. Tot el que fas a BentoPDF té lloc a la memòria del navegador i desapareix quan tanques la pàgina. No hi ha càrregues de fitxers, historials ni servidors implicats."
+    },
+    "different": {
+      "question": "Què diferencia BentoPDF d'altres eines PDF?",
+      "answer": "La majoria d'eines PDF envien els fitxers a un servidor per processar-los. BentoPDF no ho fa mai. Utilitzem tecnologia web moderna i segura per processar els fitxers directament al navegador. Això permet més rapidesa, més privadesa i més tranquil·litat."
+    },
+    "browserBased": {
+      "question": "Com protegeix les meves dades el processament al navegador?",
+      "answer": "Com que funciona íntegrament al navegador, BentoPDF garanteix que els fitxers no surten mai del dispositiu. Això elimina els riscos de pirateig de servidors, filtracions de dades o accessos no autoritzats. Els teus fitxers sempre són teus."
+    },
+    "analytics": {
+      "question": "Utilitzeu galetes o eines d'analítica per fer-me seguiment?",
+      "answer": "No. BentoPDF no et fa cap seguiment. No utilitzem galetes, analítica ni scripts de seguiment, ni tan sols al web públic bentopdf.com. No sabem mai qui ets ni què fas amb les eines."
+    }
+  },
+  "testimonials": {
+    "title": "Què diuen els nostres",
+    "users": "usuaris",
+    "say": "sobre nosaltres"
+  },
+  "support": {
+    "title": "T'agrada la meva feina?",
+    "description": "BentoPDF és un projecte fet amb passió per oferir a tothom un conjunt d'eines PDF gratuït, privat i potent. Si et resulta útil, planteja't donar suport al seu desenvolupament. Cada cafè ajuda!",
+    "buyMeCoffee": "Convida'm a un cafè"
+  },
+  "footer": {
+    "copyright": "© 2026 BentoPDF. Tots els drets reservats.",
+    "version": "Versió",
+    "company": "Empresa",
+    "aboutUs": "Sobre nosaltres",
+    "faqLink": "Preguntes freqüents",
+    "contactUs": "Contacta amb nosaltres",
+    "legal": "Informació legal",
+    "termsAndConditions": "Termes i condicions",
+    "privacyPolicy": "Política de privadesa",
+    "followUs": "Segueix-nos",
+    "privacyShort": "Privadesa",
+    "termsShort": "Condicions"
+  },
+  "merge": {
+    "title": "Fusiona PDF",
+    "description": "Combina fitxers sencers o selecciona pàgines concretes per fusionar-les en un document nou.",
+    "fileMode": "Mode de fitxers",
+    "pageMode": "Mode de pàgines",
+    "howItWorks": "Com funciona:",
+    "fileModeInstructions": [
+      "Fes clic a la icona i arrossega-la per canviar l'ordre dels fitxers.",
+      "Al camp «Pàgines» de cada fitxer, pots indicar intervals (p. ex., «1-3, 5») per fusionar només aquestes pàgines.",
+      "Deixa el camp «Pàgines» buit per incloure totes les pàgines del fitxer."
+    ],
+    "pageModeInstructions": [
+      "A continuació es mostren totes les pàgines dels PDF que has pujat.",
+      "Arrossega i deixa anar les miniatures de cada pàgina per establir l'ordre exacte del fitxer nou."
+    ],
+    "mergePdfs": "Fusiona PDF"
+  },
+  "common": {
+    "page": "Pàgina",
+    "pages": "Pàgines",
+    "of": "de",
+    "download": "Descarrega",
+    "cancel": "Cancel·la",
+    "save": "Desa",
+    "delete": "Suprimeix",
+    "edit": "Edita",
+    "add": "Afegeix",
+    "remove": "Elimina",
+    "loading": "S'està carregant...",
+    "loadingPageCount": "S'estan carregant les pàgines...",
+    "error": "Error",
+    "success": "Correcte",
+    "file": "Fitxer",
+    "files": "Fitxers",
+    "close": "Tanca",
+    "convert": "Converteix",
+    "unknownError": "Error desconegut"
+  },
+  "about": {
+    "hero": {
+      "title": "Les eines PDF han de ser",
+      "subtitle": "ràpides, privades i gratuïtes.",
+      "noCompromises": "Sense concessions."
+    },
+    "mission": {
+      "title": "La nostra",
+      "titleDim": "missió",
+      "description": "Oferir el conjunt d'eines PDF més complet, respectuós amb la privadesa i que no exigeixi cap pagament. Creiem que les eines essencials per treballar amb documents han de ser accessibles per a tothom, arreu i sense barreres."
+    },
+    "philosophy": {
+      "label": "La nostra filosofia fonamental",
+      "title": "La privadesa, primer. Sempre.",
+      "description": "Totes les eines de BentoPDF funcionen localment al navegador. Els fitxers no es pugen mai a cap servidor, ningú més no veu els documents i no es fa seguiment de la teva activitat."
+    },
+    "whyBentopdf": {
+      "title": "Per què",
+      "speed": {
+        "title": "Pensat per ser ràpid",
+        "description": "No cal pujar ni descarregar fitxers al servidor. Els fitxers es processen al navegador mitjançant WebAssembly, sense haver d'esperar cap servidor."
+      },
+      "free": {
+        "title": "Ús gratuït",
+        "description": "Totes les eines són gratuïtes, sense proves, subscripcions ni marques d'aigua. El desenvolupament es finança amb llicències comercials."
+      },
+      "noAccount": {
+        "title": "Sense compte",
+        "description": "Obre qualsevol eina i comença de seguida. Sense correu electrònic, contrasenya ni dades personals."
+      },
+      "openSource": {
+        "title": "Codi obert",
+        "description": "El codi és públic a GitHub amb llicència AGPL-3.0, perquè puguis comprovar com es tracten els fitxers. Es basa en projectes de codi obert com PDF.js, pdf-lib, qpdf i LibreOffice."
+      }
+    },
+    "cta": {
+      "title": "Ja ho tens tot a punt per començar?",
+      "description": "Uneix-te als milers d'usuaris que confien en BentoPDF per treballar amb documents cada dia. Descobreix com la privadesa i el rendiment marquen la diferència.",
+      "button": "Explora totes les eines"
+    }
+  },
+  "contact": {
+    "title": "Contacta amb nosaltres",
+    "subtitle": "Ens agradarà saber de tu. Si tens una pregunta, un comentari o una proposta de funcionalitat, no dubtis a escriure'ns.",
+    "email": "Pots contactar directament amb nosaltres per correu electrònic a:"
+  },
+  "licensing": {
+    "title": "Llicències per a",
+    "subtitle": "Tria la llicència que s'adapti a les teves necessitats."
+  },
+  "multiTool": {
+    "uploadPdfs": "Puja fitxers PDF",
+    "upload": "Puja",
+    "addBlankPage": "Afegeix una pàgina en blanc",
+    "edit": "Edita:",
+    "undo": "Desfés",
+    "redo": "Refés",
+    "reset": "Restableix",
+    "selection": "Selecció:",
+    "selectAll": "Selecciona-ho tot",
+    "deselectAll": "Desselecciona-ho tot",
+    "rotate": "Gira:",
+    "rotateLeft": "Esquerra",
+    "rotateRight": "Dreta",
+    "transform": "Transforma:",
+    "duplicate": "Duplica",
+    "split": "Divideix",
+    "clear": "Neteja:",
+    "delete": "Suprimeix",
+    "download": "Descarrega:",
+    "downloadSelected": "Descarrega la selecció",
+    "exportPdf": "Exporta el PDF",
+    "uploadPdfFiles": "Selecciona fitxers PDF o d'imatge",
+    "dragAndDrop": "Arrossega i deixa anar aquí fitxers PDF o imatges, o fes clic per seleccionar-los",
+    "selectFiles": "Selecciona fitxers",
+    "dropToAdd": "Deixa anar fitxers PDF o d'imatge per afegir-los",
+    "convertingImages": "S'estan convertint les imatges a PDF...",
+    "failedToConvertImages": "No s'han pogut convertir les imatges a PDF.",
+    "renderingPages": "S'estan representant les pàgines...",
+    "actions": {
+      "duplicatePage": "Duplica aquesta pàgina",
+      "deletePage": "Suprimeix aquesta pàgina",
+      "insertPdf": "Insereix un PDF després d'aquesta pàgina",
+      "toggleSplit": "Activa o desactiva la divisió després d'aquesta pàgina"
+    },
+    "pleaseWait": "Espera, si us plau",
+    "pagesRendering": "Encara s'estan representant les pàgines. Espera, si us plau...",
+    "noPagesSelected": "No hi ha pàgines seleccionades",
+    "selectOnePage": "Selecciona com a mínim una pàgina per descarregar-la.",
+    "noPages": "No hi ha pàgines",
+    "noPagesToExport": "No hi ha pàgines per exportar.",
+    "renderingTitle": "S'estan generant les previsualitzacions de les pàgines",
+    "errorRendering": "No s'han pogut generar les miniatures de les pàgines",
+    "error": "Error",
+    "failedToLoad": "No s'ha pogut carregar"
+  },
+  "simpleMode": {
+    "title": "Eines PDF",
+    "subtitle": "Selecciona una eina per començar"
+  },
+  "disabledTool": {
+    "title": "Eina no disponible",
+    "heading": "Aquesta eina s'ha desactivat",
+    "message": "Aquesta eina no està disponible en aquesta instal·lació. Contacta amb l'administrador per obtenir més informació.",
+    "backHome": "Torna a l'inici"
+  }
+}

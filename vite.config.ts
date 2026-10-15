@@ -49,6 +49,7 @@ const SUPPORTED_LANGUAGES = [
   'ja',
   'uk',
   'sk',
+  'ca',
 ] as const;
 const LANG_REGEX = new RegExp(
   `^/(${SUPPORTED_LANGUAGES.join('|')})(?:/(.*))?$`
