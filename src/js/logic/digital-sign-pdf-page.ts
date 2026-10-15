@@ -14,6 +14,7 @@ import {
   getCertificateInfo,
 } from './digital-sign-pdf.js';
 import {
+  CertificateData,
   SignatureInfo,
   VisibleSignatureOptions,
   DigitalSignState,
@@ -28,7 +29,12 @@ const state: DigitalSignState = {
   sigImageType: null,
 };
 
+// Incremented whenever the loaded certificate changes or is cleared, so that
+// slower async parses of an older file/password can't overwrite newer state.
+let certLoadId = 0;
+
 function resetState(): void {
+  certLoadId++;
   state.pdfFile = null;
   state.pdfBytes = null;
   state.certFile = null;
@@ -340,6 +346,7 @@ function hideCertificateSection(): void {
     signatureOptions.classList.add('hidden');
   }
 
+  certLoadId++;
   state.certFile = null;
   state.certData = null;
 
@@ -382,16 +389,25 @@ async function handleCertFile(file: File): Promise<void> {
     return;
   }
 
+  const loadId = ++certLoadId;
   state.certFile = file;
   state.certData = null;
 
   updateCertDisplay();
+  // Clear everything left over from a previously loaded certificate.
+  hidePasswordSection();
+  hideSignatureOptions();
+  hideCertInfo();
+  clearSignatureDetails();
+  resetVisibleSignature();
+  updateProcessButton();
 
   const isPemFile = file.name.toLowerCase().endsWith('.pem');
 
   if (isPemFile) {
     try {
       const pemContent = await file.text();
+      if (loadId !== certLoadId) return;
       const isEncrypted = pemContent.includes('ENCRYPTED');
 
       if (isEncrypted) {
@@ -399,30 +415,56 @@ async function handleCertFile(file: File): Promise<void> {
         updatePasswordLabel(t('tools:digitalSignPdf.privateKeyPassword'));
       } else {
         state.certData = parseCombinedPem(pemContent);
-        updateCertInfo();
-        showSignatureOptions();
-
-        const certStatus = getElement<HTMLDivElement>('cert-status');
-        if (certStatus) {
-          certStatus.innerHTML = `${t('tools:digitalSignPdf.certificateLoaded')} <i data-lucide="check" class="inline w-4 h-4"></i>`;
-          createIcons({ icons });
-          certStatus.className = 'text-xs text-green-400';
-        }
+        showCertReady(false);
       }
-    } catch {
+    } catch (error) {
+      if (loadId !== certLoadId) return;
+      console.error('PEM parse error:', error);
+      state.certData = null;
       const certStatus = getElement<HTMLDivElement>('cert-status');
       if (certStatus) {
-        certStatus.textContent = t('tools:digitalSignPdf.failedParsePem');
+        const detail = error instanceof Error ? `: ${error.message}` : '';
+        certStatus.textContent =
+          t('tools:digitalSignPdf.failedParsePem') + detail;
         certStatus.className = 'text-xs text-red-400';
       }
     }
   } else {
+    // PFX/P12 files created without a password should not force a prompt:
+    // try an empty password first and only ask if that fails.
+    try {
+      const certBytes = (await readFileAsArrayBuffer(file)) as ArrayBuffer;
+      if (loadId !== certLoadId) return;
+      state.certData = parsePfxFile(certBytes, '');
+      showCertReady(false);
+      return;
+    } catch {
+      if (loadId !== certLoadId) return;
+      state.certData = null;
+    }
     showPasswordSection();
     updatePasswordLabel(t('tools:digitalSignPdf.certPassword'));
   }
 
-  hideSignatureOptions();
   updateProcessButton();
+}
+
+/** Shows the certificate details/signature options after a successful parse. */
+function showCertReady(unlocked: boolean): void {
+  updateCertInfo();
+  showSignatureOptions();
+  updateProcessButton();
+
+  const certStatus = getElement<HTMLDivElement>('cert-status');
+  if (certStatus) {
+    const label = unlocked
+      ? t('tools:digitalSignPdf.certificateUnlocked')
+      : t('tools:digitalSignPdf.certificateLoaded');
+    const icon = unlocked ? 'check-circle' : 'check';
+    certStatus.innerHTML = `${label} <i data-lucide="${icon}" class="inline w-4 h-4"></i>`;
+    createIcons({ icons });
+    certStatus.className = 'text-xs text-green-400';
+  }
 }
 
 function updateCertDisplay(): void {
@@ -454,6 +496,7 @@ function updateCertDisplay(): void {
   removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
   removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   removeBtn.onclick = () => {
+    certLoadId++;
     state.certFile = null;
     state.certData = null;
     certDisplayArea.innerHTML = '';
@@ -525,6 +568,57 @@ function hideSignatureOptions(): void {
   }
 }
 
+function clearSignatureDetails(): void {
+  for (const id of ['sign-reason', 'sign-location', 'sign-contact']) {
+    const input = getElement<HTMLInputElement>(id);
+    if (input) input.value = '';
+  }
+}
+
+function resetVisibleSignature(): void {
+  state.sigImageData = null;
+  state.sigImageType = null;
+
+  // Toggles back to off
+  for (const id of ['enable-visible-sig', 'enable-sig-text']) {
+    const checkbox = getElement<HTMLInputElement>(id);
+    if (checkbox) checkbox.checked = false;
+  }
+
+  // Inputs back to the defaults from digital-sign-pdf.html
+  const defaults: Record<string, string> = {
+    'sig-custom-page': '1',
+    'sig-x': '25',
+    'sig-y': '700',
+    'sig-width': '150',
+    'sig-height': '70',
+    'sig-text': '',
+    'sig-text-color': '#000000',
+    'sig-text-size': '12',
+    'sig-image-input': '',
+  };
+  for (const [id, value] of Object.entries(defaults)) {
+    const input = getElement<HTMLInputElement>(id);
+    if (input) input.value = value;
+  }
+
+  const sigPage = getElement<HTMLSelectElement>('sig-page');
+  if (sigPage) sigPage.selectedIndex = 0;
+
+  const sigImageThumb = getElement<HTMLImageElement>('sig-image-thumb');
+  if (sigImageThumb) sigImageThumb.removeAttribute('src');
+
+  // Collapsible panels back to hidden
+  for (const id of [
+    'visible-sig-options',
+    'custom-page-wrapper',
+    'sig-text-options',
+    'sig-image-preview',
+  ]) {
+    getElement<HTMLDivElement>(id)?.classList.add('hidden');
+  }
+}
+
 function hideCertInfo(): void {
   const certInfo = getElement<HTMLDivElement>('cert-info');
   if (certInfo) {
@@ -540,32 +634,30 @@ async function handlePasswordInput(): Promise<void> {
     return;
   }
 
+  const loadId = ++certLoadId;
+
   try {
     const isPemFile = state.certFile.name.toLowerCase().endsWith('.pem');
+    let certData: CertificateData;
 
     if (isPemFile) {
       const pemContent = await state.certFile.text();
-      state.certData = parseCombinedPem(pemContent, password);
+      certData = parseCombinedPem(pemContent, password);
     } else {
       const certBytes = (await readFileAsArrayBuffer(
         state.certFile
       )) as ArrayBuffer;
-      state.certData = parsePfxFile(certBytes, password);
+      certData = parsePfxFile(certBytes, password);
     }
 
-    updateCertInfo();
-    showSignatureOptions();
-    updateProcessButton();
-
-    const certStatus = getElement<HTMLDivElement>('cert-status');
-    if (certStatus) {
-      certStatus.innerHTML = `${t('tools:digitalSignPdf.certificateUnlocked')} <i data-lucide="check-circle" class="inline w-4 h-4"></i>`;
-      createIcons({ icons });
-      certStatus.className = 'text-xs text-green-400';
-    }
+    if (loadId !== certLoadId) return;
+    state.certData = certData;
+    showCertReady(true);
   } catch (error) {
+    if (loadId !== certLoadId) return;
     state.certData = null;
     hideSignatureOptions();
+    hideCertInfo();
     updateProcessButton();
 
     const certStatus = getElement<HTMLDivElement>('cert-status');
@@ -574,9 +666,9 @@ async function handlePasswordInput(): Promise<void> {
         error instanceof Error
           ? error.message
           : t('tools:digitalSignPdf.invalidPasswordOrCertificate');
-      certStatus.textContent = errorMessage.includes('password')
+      certStatus.textContent = errorMessage.toLowerCase().includes('password')
         ? t('tools:digitalSignPdf.incorrectPassword')
-        : t('tools:digitalSignPdf.failedParseCertificate');
+        : `${t('tools:digitalSignPdf.failedParseCertificate')}: ${errorMessage}`;
       certStatus.className = 'text-xs text-red-400';
     }
   }
