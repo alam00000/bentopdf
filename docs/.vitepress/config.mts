@@ -198,6 +198,7 @@ export default defineConfig({
                         { text: 'Cloudflare Pages', link: '/self-hosting/cloudflare' },
                         { text: 'AWS S3 + CloudFront', link: '/self-hosting/aws' },
                         { text: 'Hostinger', link: '/self-hosting/hostinger' },
+                        { text: 'Pethost', link: '/self-hosting/pethost' },
                         { text: 'Nginx', link: '/self-hosting/nginx' },
                         { text: 'Apache', link: '/self-hosting/apache' }
                     ]

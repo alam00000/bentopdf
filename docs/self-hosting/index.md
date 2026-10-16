@@ -228,6 +228,7 @@ Choose your platform:
 - [Cloudflare Pages](/self-hosting/cloudflare)
 - [AWS S3 + CloudFront](/self-hosting/aws)
 - [Hostinger](/self-hosting/hostinger)
+- [Pethost](/self-hosting/pethost)
 - [Nginx](/self-hosting/nginx)
 - [Apache](/self-hosting/apache)
 - [Docker](/self-hosting/docker)
