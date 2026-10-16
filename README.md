@@ -1015,9 +1015,8 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
 
 **When is the proxy needed?**
 
-- Only when using the Digital Signature tool
-- Only if your certificate requires fetching issuer certificates from external URLs
-- Self-signed certificates typically don't need this
+- When using the Digital Signature tool, if your certificate requires fetching issuer certificates from external URLs (self-signed certificates typically don't need this)
+- **Always when using the Timestamp PDF tool with the built-in providers.** None of the five built-in timestamp authorities answers a CORS preflight, so on a self-hosted deployment every provider fails until you deploy a proxy or set `VITE_TSA_ENDPOINTS` (see [Timestamping without a proxy](#timestamping-without-a-proxy)). `https://www.bentopdf.com` works because it falls back to the project-operated proxy, which only accepts the official origins.
 
 **Deploying the CORS Proxy (Cloudflare Workers):**
 
@@ -1033,14 +1032,14 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
    npx wrangler login
    ```
 
-3. **Update allowed origins** — open `cors-proxy-worker.js` and change `ALLOWED_ORIGINS` to your domain:
+3. **Declare your allowed origins** — open `wrangler.toml` and set `ALLOWED_ORIGINS` to your origin(s):
 
-   ```js
-   const ALLOWED_ORIGINS = [
-     'https://your-domain.com',
-     'https://www.your-domain.com',
-   ];
+   ```toml
+   [vars]
+   ALLOWED_ORIGINS = "https://your-domain.com,https://www.your-domain.com"
    ```
+
+   Add `ALLOWED_TSA_HOSTS` too if you point `VITE_TSA_ENDPOINTS` at a timestamp authority outside the built-in providers. Both variables are comma-separated, and a blank value keeps the built-in defaults rather than allowing everything.
 
    > [!IMPORTANT]
    > Without this step, the proxy will reject all requests from your site with a 403 error. The default only allows `bentopdf.com`.
@@ -1065,14 +1064,45 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
     -t your-bentopdf .
    ```
 
+<h4 id="timestamping-without-a-proxy">Timestamping Without a Proxy</h4>
+
+If you only need the **Timestamp PDF** tool and would rather not run a relay, replace the provider list at build time with `VITE_TSA_ENDPOINTS` and point it at a timestamp authority that sends CORS headers. Entries are comma-separated, each either a bare URL or a `Label=URL` pair:
+
+```bash
+VITE_TSA_ENDPOINTS="My TSA=https://tsa.example.org/tsr" npm run build
+```
+
+Or with Docker:
+
+```bash
+docker build \
+  --build-arg VITE_TSA_ENDPOINTS="My TSA=https://tsa.example.org/tsr" \
+  -t your-bentopdf .
+```
+
+The configured list replaces the built-in providers in the Timestamp PDF dropdown, in the workflow node default, and in the allow-list that sanitizes imported workflows. Configured origins are added to `connect-src` in the generated CSP, so the variable has to be set at **build time** — an origin missing from `connect-src` fails with the same opaque `TypeError: Failed to fetch` as a CORS rejection.
+
+To check whether a candidate authority is usable from a browser:
+
+```bash
+curl -s -i -X OPTIONS https://tsa.example.org/tsr \
+  -H 'Origin: https://your-domain.com' \
+  -H 'Access-Control-Request-Method: POST' \
+  -H 'Access-Control-Request-Headers: content-type' \
+  | grep -iE 'access-control-allow-(origin|methods|headers)'
+```
+
+The authority is usable only if all three headers come back: `Access-Control-Allow-Origin` matching your origin (or `*`), `Access-Control-Allow-Methods` including `POST`, and `Access-Control-Allow-Headers` including `content-type`. If any of them is missing, the browser rejects the preflight and the authority needs the proxy.
+
 #### Production Security Features
 
 The CORS proxy includes several security measures:
 
 | Feature                 | Description                                                                            |
 | ----------------------- | -------------------------------------------------------------------------------------- |
-| **Origin Validation**   | Only allows requests from domains listed in `ALLOWED_ORIGINS`                          |
+| **Origin Validation**   | Only allows requests from origins listed in the `ALLOWED_ORIGINS` variable             |
 | **URL Restrictions**    | Only allows certificate URLs (`.crt`, `.cer`, `.pem`, `/certs/`, `/ocsp`, `/crl`)      |
+| **TSA Allow-List**      | RFC 3161 `POST`s only reach hosts listed in the `ALLOWED_TSA_HOSTS` variable           |
 | **Private IP Blocking** | Blocks IPv4/IPv6 private ranges, link-local, loopback, decimal IPs, and cloud metadata |
 | **Content-Type Safety** | Only returns safe certificate MIME types, blocks upstream content-type injection       |
 | **File Size Limit**     | Streams response with 10MB limit, aborts mid-download if exceeded                      |

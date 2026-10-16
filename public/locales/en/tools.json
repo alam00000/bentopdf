@@ -1106,7 +1106,9 @@
     "tsaSectionTitle": "Timestamp Server (TSA)",
     "selectTsa": "Select a TSA server",
     "applyTimestamp": "Apply Timestamp",
-    "successMessage": "PDF timestamped successfully! The timestamp can be verified in any PDF reader."
+    "successMessage": "PDF timestamped successfully! The timestamp can be verified in any PDF reader.",
+    "proxyRequiredTitle": "Timestamping needs a relay on this deployment",
+    "proxyRequiredMessage": "The browser blocked the request to {{tsaUrl}}. Public timestamp authorities do not allow cross-origin requests, and this build has no relay configured, so no provider in the list can work. Another provider will not help.\n\nTo fix it, rebuild this instance either with VITE_CORS_PROXY_URL pointing at a relay you deploy, or with VITE_TSA_ENDPOINTS pointing at a timestamp authority that allows cross-origin requests.\n\nSetup guide: {{docUrl}}"
   },
   "emailToPdf": {
     "name": "Email to PDF",

@@ -44,6 +44,28 @@ const tesseractOrigins = uniq([
 const corsProxyOrigin =
   originOf(process.env.VITE_CORS_PROXY_URL) || DEFAULT_CORS_PROXY_ORIGIN;
 
+// VITE_TSA_ENDPOINTS entries are "URL" or "Label=URL", comma separated (see
+// src/js/config/timestamp-tsa.ts). A configured TSA is contacted directly, so
+// its origin has to be in connect-src or the RFC 3161 POST is refused by the
+// CSP before it reaches the network. The built-in providers are not added:
+// they are only reachable through the proxy origin above.
+function tsaOriginsFromEnv(value) {
+  if (!value) return [];
+  return value
+    .split(',')
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    .map((entry) => {
+      const separatorIndex = entry.indexOf('=');
+      return separatorIndex > 0
+        ? entry.slice(separatorIndex + 1).trim()
+        : entry;
+    })
+    .map(originOf);
+}
+
+const tsaOrigins = uniq(tsaOriginsFromEnv(process.env.VITE_TSA_ENDPOINTS));
+
 const ocrFontOrigin =
   originOf(process.env.VITE_OCR_FONT_BASE_URL) || DEFAULT_OCR_FONT_CDN_ORIGIN;
 
@@ -53,6 +75,7 @@ const connectOrigins = uniq([
   ...tesseractOrigins,
   corsProxyOrigin,
   ocrFontOrigin,
+  ...tsaOrigins,
 ]);
 const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
 
