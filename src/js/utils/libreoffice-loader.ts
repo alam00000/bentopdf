@@ -10,6 +10,38 @@ import type { InputFormat } from '@matbee/libreoffice-converter/browser';
 
 const LIBREOFFICE_LOCAL_PATH = import.meta.env.BASE_URL + 'libreoffice-wasm/';
 
+/**
+ * Extra fonts injected into LibreOffice's virtual filesystem (comma-separated URLs).
+ * The bundled soffice.data has no CJK fonts, so Chinese/Japanese/Korean text in
+ * Word/Excel/PowerPoint documents renders as boxes unless a CJK font is provided,
+ * e.g. VITE_LIBREOFFICE_FONT_URLS=/fonts/NotoSansCJKtc-Regular.otf
+ */
+const LIBREOFFICE_FONT_URLS = (import.meta.env.VITE_LIBREOFFICE_FONT_URLS || '')
+  .split(',')
+  .map((url) => url.trim())
+  .filter(Boolean);
+
+async function fetchExtraFonts(): Promise<
+  { filename: string; data: ArrayBuffer }[]
+> {
+  const fonts = await Promise.all(
+    LIBREOFFICE_FONT_URLS.map(async (url) => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const filename = decodeURIComponent(
+          new URL(url, location.href).pathname.split('/').pop() || 'font'
+        );
+        return [{ filename, data: await response.arrayBuffer() }];
+      } catch (error) {
+        console.warn(`[LibreOffice] Failed to load font ${url}:`, error);
+        return [];
+      }
+    })
+  );
+  return fonts.flat();
+}
+
 export interface LoadProgress {
   phase: 'loading' | 'initializing' | 'converting' | 'complete' | 'ready';
   percent: number;
@@ -75,7 +107,7 @@ export class LibreOfficeConverter {
         message: 'Loading conversion engine...',
       });
 
-      const [sofficeWasmUrl, sofficeDataUrl] = await Promise.all([
+      const [sofficeWasmUrl, sofficeDataUrl, fonts] = await Promise.all([
         fetchAsDecompressedUrl(
           `${this.basePath}soffice.wasm.gz`,
           'application/wasm'
@@ -84,9 +116,11 @@ export class LibreOfficeConverter {
           `${this.basePath}soffice.data.gz`,
           'application/octet-stream'
         ),
+        fetchExtraFonts(),
       ]);
 
       this.converter = new WorkerBrowserConverter({
+        fonts,
         sofficeJs: `${this.basePath}soffice.js`,
         sofficeWasm: sofficeWasmUrl,
         sofficeData: sofficeDataUrl,
