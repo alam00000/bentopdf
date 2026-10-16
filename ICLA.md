@@ -85,16 +85,16 @@ This Agreement shall be governed by and construed in accordance with the laws of
 
 By submitting a pull request or other Contribution to the Project, and by typing your name and date below (or by signing electronically via CLA Assistant), you agree to the terms of this Individual Contributor License Agreement.
 
-**Full Legal Name:** Stephan Paternotte
+**Full Legal Name:** Kelsey White
 
-**GitHub Username:** Stephan-P
+**GitHub Username:** kelseyjmw
 
-**Email Address:** stephan@paternottes.net
+**Email Address:** kelsey.white@dal.ca
 
-**Date:** 20-12-2025
+**Date:** 16-10-2026
 
-**Signature:** ___________________________
+**Signature:** ************\_\_\_************
 
 ---
 
-*This CLA is based on the Apache Individual Contributor License Agreement and has been adapted for BentoPDF's dual licensing model.*
+_This CLA is based on the Apache Individual Contributor License Agreement and has been adapted for BentoPDF's dual licensing model._
