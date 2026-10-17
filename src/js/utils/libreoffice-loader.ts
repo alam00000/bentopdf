@@ -21,6 +21,11 @@ const LIBREOFFICE_FONT_URLS = (import.meta.env.VITE_LIBREOFFICE_FONT_URLS || '')
   .map((url) => url.trim())
   .filter(Boolean);
 
+/**
+ * Fetch the fonts listed in VITE_LIBREOFFICE_FONT_URLS for injection into
+ * LibreOffice. Fonts that fail to load are skipped with a warning so the
+ * converter still starts with its bundled fonts.
+ */
 async function fetchExtraFonts(): Promise<
   { filename: string; data: ArrayBuffer }[]
 > {
