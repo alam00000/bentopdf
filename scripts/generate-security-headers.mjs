@@ -47,12 +47,20 @@ const corsProxyOrigin =
 const ocrFontOrigin =
   originOf(process.env.VITE_OCR_FONT_BASE_URL) || DEFAULT_OCR_FONT_CDN_ORIGIN;
 
+// Fonts injected into LibreOffice are loaded with fetch(); relative URLs stay same-origin.
+const libreOfficeFontOrigins = uniq(
+  (process.env.VITE_LIBREOFFICE_FONT_URLS || '')
+    .split(',')
+    .map((url) => originOf(url.trim()))
+);
+
 const scriptOrigins = uniq([...wasmOrigins, ...tesseractOrigins]);
 const connectOrigins = uniq([
   ...wasmOrigins,
   ...tesseractOrigins,
   corsProxyOrigin,
   ocrFontOrigin,
+  ...libreOfficeFontOrigins,
 ]);
 const fontOrigins = uniq([ocrFontOrigin].filter(Boolean));
 
