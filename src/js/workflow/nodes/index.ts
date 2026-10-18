@@ -63,6 +63,7 @@ export * from './remove-blank-pages-node';
 export * from './repair-node';
 export * from './reverse-pages-node';
 export * from './rotate-node';
+export * from './auto-portrait-node';
 export * from './sanitize-node';
 export * from './scanner-effect-node';
 export * from './split-node';

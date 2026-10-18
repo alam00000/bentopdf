@@ -1186,6 +1186,10 @@ function showNodeSettings(node: BaseWorkflowNode) {
       { label: 'Simple (1, 2, 3)', value: 'simple' },
       { label: 'Page X of Y', value: 'page_x_of_y' },
     ],
+    turnDirection: [
+      { label: '90° Clockwise', value: '90' },
+      { label: '90° Counter-clockwise', value: '270' },
+    ],
     angle: [
       { label: '90° Clockwise', value: '90' },
       { label: '180°', value: '180' },
