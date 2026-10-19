@@ -6,8 +6,7 @@ on:
     - cron: '17 4 * * *'
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
   group: update-engine
@@ -18,12 +17,19 @@ env:
   HUSKY: 0
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     if: github.repository == 'alam00000/bentopdf'
+    permissions:
+      contents: read
+    outputs:
+      run: ${{ steps.gate.outputs.run }}
+      version: ${{ steps.gate.outputs.version }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Read current upstream marker
         id: current
@@ -40,13 +46,21 @@ jobs:
 
       - name: Should update?
         id: gate
+        env:
+          CURRENT: ${{ steps.current.outputs.version }}
+          UPSTREAM: ${{ steps.upstream.outputs.version }}
         run: |
-          if [ "${{ steps.upstream.outputs.version }}" = "${{ steps.current.outputs.version }}" ]; then
+          if ! [[ "$UPSTREAM" =~ ^[0-9a-f]{12}$ ]]; then
+            echo "::error::Unexpected fork HEAD: $UPSTREAM"
+            exit 1
+          fi
+          echo "version=$UPSTREAM" >> "$GITHUB_OUTPUT"
+          if [ "$UPSTREAM" = "$CURRENT" ]; then
             echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "Already on ${{ steps.current.outputs.version }}."
+            echo "Already on $CURRENT."
           else
             echo "run=true" >> "$GITHUB_OUTPUT"
-            echo "Updating ${{ steps.current.outputs.version }} -> ${{ steps.upstream.outputs.version }}"
+            echo "Updating $CURRENT -> $UPSTREAM"
           fi
 
       - name: Setup Node
@@ -73,9 +87,10 @@ jobs:
       - name: Pack the engine
         if: steps.gate.outputs.run == 'true'
         id: engine
+        env:
+          SHA: ${{ steps.gate.outputs.version }}
         run: |
           set -euo pipefail
-          SHA=${{ steps.upstream.outputs.version }}
           VENDOR=./_fork/packages/pdfium/src/vendor
           STAGE=$(mktemp -d)/package
           mkdir -p "$STAGE"
@@ -107,9 +122,10 @@ jobs:
       - name: Pack the viewer without a second engine
         if: steps.gate.outputs.run == 'true'
         id: viewer
+        env:
+          SHA: ${{ steps.gate.outputs.version }}
         run: |
           set -euo pipefail
-          SHA=${{ steps.upstream.outputs.version }}
           WORK=$(mktemp -d)
           (cd ./_fork && npm pack ./viewers/snippet --pack-destination "$WORK" >/dev/null)
           TMP=$(mktemp -d)
@@ -137,14 +153,17 @@ jobs:
 
       - name: Point dependencies at the new tarballs
         if: steps.gate.outputs.run == 'true'
+        env:
+          ENGINE_TARBALL: ${{ steps.engine.outputs.tarball }}
+          VIEWER_TARBALL: ${{ steps.viewer.outputs.tarball }}
         run: |
           node -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-            pkg.dependencies['bentopdf-pdfium'] = 'file:' + process.argv[1];
-            pkg.dependencies['bentopdf-viewer'] = 'file:' + process.argv[2];
+            pkg.dependencies['bentopdf-pdfium'] = 'file:' + process.env.ENGINE_TARBALL;
+            pkg.dependencies['bentopdf-viewer'] = 'file:' + process.env.VIEWER_TARBALL;
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
-          " "${{ steps.engine.outputs.tarball }}" "${{ steps.viewer.outputs.tarball }}"
+          "
 
       - name: Cleanup upstream clone
         if: steps.gate.outputs.run == 'true'
@@ -174,19 +193,66 @@ jobs:
 
       - name: Write upstream marker
         if: steps.gate.outputs.run == 'true'
+        env:
+          SHA: ${{ steps.gate.outputs.version }}
         run: |
-          echo "${{ steps.upstream.outputs.version }}" > vendor/bentopdf-viewer/.upstream-version
-          echo "${{ steps.upstream.outputs.version }}" > vendor/bentopdf-pdfium/.upstream-version
+          echo "$SHA" > vendor/bentopdf-viewer/.upstream-version
+          echo "$SHA" > vendor/bentopdf-pdfium/.upstream-version
+
+      - name: Upload update
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-update
+          include-hidden-files: true
+          retention-days: 1
+          path: |
+            package.json
+            package-lock.json
+            vendor/bentopdf-pdfium/
+            vendor/bentopdf-viewer/
+
+  pull-request:
+    runs-on: ubuntu-latest
+    needs: build
+    if: needs.build.outputs.run == 'true'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download update
+        uses: actions/download-artifact@v4
+        with:
+          name: engine-update
+          path: ${{ runner.temp }}/engine-update
+
+      - name: Apply update
+        id: apply
+        env:
+          UPDATE: ${{ runner.temp }}/engine-update
+        run: |
+          set -euo pipefail
+          rm -rf vendor/bentopdf-pdfium vendor/bentopdf-viewer
+          mkdir -p vendor
+          cp -R "$UPDATE/vendor/bentopdf-pdfium" "$UPDATE/vendor/bentopdf-viewer" vendor/
+          cp "$UPDATE/package.json" "$UPDATE/package-lock.json" .
+          {
+            echo 'checksums<<EOF'
+            sha256sum vendor/bentopdf-pdfium/*.tgz vendor/bentopdf-viewer/*.tgz
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
-        if: steps.gate.outputs.run == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
         with:
-          commit-message: 'build(deps): bump PDF engine and viewer to ${{ steps.upstream.outputs.version }}'
-          title: 'build(deps): bump PDF engine and viewer to ${{ steps.upstream.outputs.version }}'
+          commit-message: 'build(deps): bump PDF engine and viewer to ${{ needs.build.outputs.version }}'
+          title: 'build(deps): bump PDF engine and viewer to ${{ needs.build.outputs.version }}'
           body: |
             Both vendored packages built from one clone of the viewer fork at
-            `${{ steps.upstream.outputs.version }}`, so the text editor and the
+            `${{ needs.build.outputs.version }}`, so the text editor and the
             PDF editor run the same engine.
 
             - `bentopdf-pdfium` — the engine wasm, packed from the fork's published `src/vendor`
@@ -194,5 +260,11 @@ jobs:
 
             The viewer loads the shared engine through `EmbedPDF.init({ wasmUrl })`.
             CI verified a single wasm on disk, typecheck, and the test suite.
+
+            Built in a read-only job. Tarball checksums:
+
+            ```
+            ${{ steps.apply.outputs.checksums }}
+            ```
           branch: chore/update-pdf-engine
           delete-branch: true

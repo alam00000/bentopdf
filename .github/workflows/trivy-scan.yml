@@ -51,7 +51,7 @@ jobs:
 
       - name: Upload Trivy results to GitHub Security
         uses: github/codeql-action/upload-sarif@v4
-        if: always()
+        if: always() && hashFiles('trivy-*.sarif') != ''
         with:
           sarif_file: trivy-${{ matrix.image.name }}.sarif
           category: trivy-${{ matrix.image.name }}
@@ -74,7 +74,7 @@ jobs:
 
       - name: Upload dependency scan results
         uses: github/codeql-action/upload-sarif@v4
-        if: always()
+        if: always() && hashFiles('trivy-deps.sarif') != ''
         with:
           sarif_file: trivy-deps.sarif
           category: trivy-dependencies
@@ -96,7 +96,7 @@ jobs:
 
       - name: Upload config scan results
         uses: github/codeql-action/upload-sarif@v4
-        if: always()
+        if: always() && hashFiles('trivy-config.sarif') != ''
         with:
           sarif_file: trivy-config.sarif
           category: trivy-config

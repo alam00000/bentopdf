@@ -5,7 +5,7 @@
  * Version: 1.1.0
  */
 
-const CACHE_VERSION = 'bentopdf-v11';
+const CACHE_VERSION = 'bentopdf-v13';
 const CACHE_NAME = `${CACHE_VERSION}-static`;
 
 const trustedCdnOrigins = new Set(['https://cdn.jsdelivr.net']);
@@ -126,7 +126,7 @@ async function cacheFirstStrategyWithDedup(request, isCDN) {
   const fileName = url.pathname.split('/').pop();
 
   try {
-    const cachedResponse = await findCachedFile(fileName, request.url);
+    const cachedResponse = await findCachedFile(request.url);
     if (cachedResponse) {
       // console.log('⚡ [Cache HIT] Instant load:', fileName);
       return cachedResponse;
@@ -136,7 +136,11 @@ async function cacheFirstStrategyWithDedup(request, isCDN) {
 
     const networkResponse = await fetch(request);
 
-    if (networkResponse && networkResponse.status === 200) {
+    if (
+      networkResponse &&
+      networkResponse.status === 200 &&
+      !networkResponse.redirected
+    ) {
       const clone = networkResponse.clone();
       const buffer = await clone.arrayBuffer();
       if (buffer.byteLength > 0) {
@@ -163,8 +167,18 @@ async function cacheFirstStrategyWithDedup(request, isCDN) {
       if (localPath) {
         const localUrl = `${basePath}${localPath}${fileName}`;
         try {
+          const cachedLocal = await findCachedFile(
+            new URL(localUrl, location.origin).href
+          );
+          if (cachedLocal) {
+            return cachedLocal;
+          }
           const fallbackResponse = await fetch(localUrl);
-          if (fallbackResponse && fallbackResponse.status === 200) {
+          if (
+            fallbackResponse &&
+            fallbackResponse.status === 200 &&
+            !fallbackResponse.redirected
+          ) {
             const fbClone = fallbackResponse.clone();
             const fbBuffer = await fbClone.arrayBuffer();
             if (fbBuffer.byteLength > 0) {
@@ -192,7 +206,7 @@ async function cacheFirstStrategyWithDedup(request, isCDN) {
   }
 }
 
-async function findCachedFile(fileName, requestUrl) {
+async function findCachedFile(requestUrl) {
   const cache = await caches.open(CACHE_NAME);
 
   const exactMatch = await cache.match(requestUrl);
@@ -203,24 +217,6 @@ async function findCachedFile(fileName, requestUrl) {
       return exactMatch;
     }
     await cache.delete(requestUrl);
-  }
-
-  const requests = await cache.keys();
-  for (const req of requests) {
-    const reqUrl = new URL(req.url);
-    const trustedOrigin =
-      reqUrl.origin === location.origin || trustedCdnOrigins.has(reqUrl.origin);
-    if (trustedOrigin && reqUrl.pathname.split('/').pop() === fileName) {
-      const response = await cache.match(req);
-      if (response) {
-        const clone = response.clone();
-        const buffer = await clone.arrayBuffer();
-        if (buffer.byteLength > 0) {
-          return response;
-        }
-        await cache.delete(req);
-      }
-    }
   }
   return null;
 }
@@ -247,7 +243,11 @@ async function networkFirstStrategy(request) {
   try {
     const networkResponse = await fetch(request);
 
-    if (networkResponse && networkResponse.status === 200) {
+    if (
+      networkResponse &&
+      networkResponse.status === 200 &&
+      !networkResponse.redirected
+    ) {
       const clone = networkResponse.clone();
       const buffer = await clone.arrayBuffer();
       if (buffer.byteLength > 0) {

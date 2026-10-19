@@ -4,13 +4,16 @@ import { initializeQpdf } from './helpers.js';
 type LoadOptions = Parameters<typeof PDFDocument.load>[1];
 type PDFDocumentInstance = Awaited<ReturnType<typeof PDFDocument.load>>;
 
-async function repairPdfBytes(pdf: Uint8Array): Promise<Uint8Array | null> {
+async function runQpdf(
+  pdf: Uint8Array,
+  args: string[]
+): Promise<Uint8Array | null> {
   try {
     const qpdf = await initializeQpdf();
     qpdf.FS.writeFile('/input.pdf', pdf);
 
     try {
-      qpdf.callMain(['/input.pdf', '--decrypt', '/output.pdf']);
+      qpdf.callMain(['/input.pdf', ...args, '/output.pdf']);
     } catch (e) {
       console.warn('[loadPdfDocument] qpdf repair warning:', e);
     }
@@ -38,6 +41,23 @@ async function repairPdfBytes(pdf: Uint8Array): Promise<Uint8Array | null> {
     console.warn('[loadPdfDocument] qpdf not available for repair:', e);
     return null;
   }
+}
+
+function repairPdfBytes(pdf: Uint8Array): Promise<Uint8Array | null> {
+  return runQpdf(pdf, ['--decrypt']);
+}
+
+export async function removeUnreferencedObjects(
+  pdf: Uint8Array | ArrayBuffer
+): Promise<Uint8Array> {
+  const cleaned = await runQpdf(
+    pdf instanceof Uint8Array ? pdf : new Uint8Array(pdf),
+    []
+  );
+  if (!cleaned) {
+    throw new Error('Could not remove leftover data from the PDF.');
+  }
+  return cleaned;
 }
 
 export async function loadPdfDocument(

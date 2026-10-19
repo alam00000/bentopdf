@@ -4,7 +4,10 @@ import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFName } from 'pdf-lib';
-import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../../utils/load-pdf-document.js';
 
 export class RemoveAnnotationsNode extends BaseWorkflowNode {
   readonly category = 'Edit & Annotate' as const;
@@ -34,11 +37,11 @@ export class RemoveAnnotationsNode extends BaseWorkflowNode {
           }
         }
 
-        const pdfBytes = await pdfDoc.save();
+        const pdfBytes = await removeUnreferencedObjects(await pdfDoc.save());
         return {
           type: 'pdf',
           document: pdfDoc,
-          bytes: new Uint8Array(pdfBytes),
+          bytes: pdfBytes,
           filename: input.filename.replace(/\.pdf$/i, '_clean.pdf'),
         };
       }),

@@ -7,7 +7,10 @@ import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { FlattenPdfState } from '@/types';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../utils/load-pdf-document.js';
 
 const pageState: FlattenPdfState = {
   files: [],
@@ -134,7 +137,7 @@ async function flattenPdf() {
         console.warn('Could not flatten annotations:', msg);
       }
 
-      const newPdfBytes = await pdfDoc.save();
+      const newPdfBytes = await removeUnreferencedObjects(await pdfDoc.save());
       downloadFile(
         new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
         `flattened_${file.name}`
@@ -173,7 +176,9 @@ async function flattenPdf() {
             console.warn('Could not flatten annotations:', msg);
           }
 
-          const flattenedBytes = await pdfDoc.save();
+          const flattenedBytes = await removeUnreferencedObjects(
+            await pdfDoc.save()
+          );
           const zipEntryName = deduplicateFileName(file.name, usedNames);
           zip.file(zipEntryName, flattenedBytes);
           processedCount++;

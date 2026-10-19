@@ -113,6 +113,8 @@ export async function validateSignature(
         authenticatedAttributes?: forge.asn1.Asn1[];
         signature?: string;
         signatureAlgorithm?: forge.asn1.Asn1[];
+        issuer?: forge.asn1.Asn1;
+        serial?: string;
       };
     };
 
@@ -121,7 +123,12 @@ export async function validateSignature(
       return result;
     }
 
-    const signerCert = p7.certificates[0] as forge.pki.Certificate;
+    const certificates = p7.certificates as forge.pki.Certificate[];
+    const signerCert = findSignerCertificate(
+      certificates,
+      p7.rawCapture?.issuer,
+      p7.rawCapture?.serial
+    );
 
     const subjectCN = signerCert.subject.getField('CN');
     const subjectO = signerCert.subject.getField('O');
@@ -148,27 +155,11 @@ export async function validateSignature(
     // Check trust against provided certificate (cryptographic, not name/serial match)
     if (trustedCert) {
       try {
-        const trustedPem = forge.pki.certificateToPem(trustedCert);
-        const isSameCert =
-          forge.pki.certificateToPem(signerCert) === trustedPem;
-
-        let cryptoIssued = false;
-        const chain = [
+        result.isTrusted = chainsToTrustedCert(
           signerCert,
-          ...(p7.certificates as forge.pki.Certificate[]),
-        ];
-        for (const cert of chain) {
-          try {
-            if (trustedCert.verify(cert)) {
-              cryptoIssued = true;
-              break;
-            }
-          } catch {
-            continue;
-          }
-        }
-
-        result.isTrusted = isSameCert || cryptoIssued;
+          certificates,
+          trustedCert
+        );
       } catch {
         result.isTrusted = false;
       }
@@ -265,6 +256,70 @@ export async function validateSignature(
   }
 
   return result;
+}
+
+function findSignerCertificate(
+  certificates: forge.pki.Certificate[],
+  issuer: forge.asn1.Asn1 | undefined,
+  serial: string | undefined
+): forge.pki.Certificate {
+  if (issuer && serial) {
+    const serialHex = forge.util.createBuffer(serial).toHex();
+    const issuerDer = forge.asn1.toDer(issuer).getBytes();
+    const match = certificates.find(
+      (cert) =>
+        cert.serialNumber === serialHex &&
+        forge.asn1
+          .toDer(forge.pki.distinguishedNameToAsn1(cert.issuer))
+          .getBytes() === issuerDer
+    );
+    if (match) return match;
+  }
+  return certificates[0];
+}
+
+function isIssuedBy(
+  issuer: forge.pki.Certificate,
+  child: forge.pki.Certificate
+): boolean {
+  try {
+    return issuer.verify(child);
+  } catch {
+    return false;
+  }
+}
+
+function isCertificateAuthority(cert: forge.pki.Certificate): boolean {
+  const basicConstraints = cert.getExtension('basicConstraints') as
+    | { cA?: boolean }
+    | undefined;
+  return basicConstraints?.cA === true;
+}
+
+function chainsToTrustedCert(
+  signerCert: forge.pki.Certificate,
+  certificates: forge.pki.Certificate[],
+  trustedCert: forge.pki.Certificate
+): boolean {
+  const trustedPem = forge.pki.certificateToPem(trustedCert);
+  const visited = new Set<string>();
+  let current = signerCert;
+
+  for (let depth = 0; depth < 10; depth++) {
+    const currentPem = forge.pki.certificateToPem(current);
+    if (currentPem === trustedPem || isIssuedBy(trustedCert, current)) {
+      return true;
+    }
+    if (visited.has(currentPem)) return false;
+    visited.add(currentPem);
+
+    const parent = certificates.find(
+      (cert) => isCertificateAuthority(cert) && isIssuedBy(cert, current)
+    );
+    if (!parent) return false;
+    current = parent;
+  }
+  return false;
 }
 
 export async function validatePdfSignatures(

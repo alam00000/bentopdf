@@ -3,7 +3,10 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../utils/load-pdf-document.js';
 
 interface PageState {
   file: File | null;
@@ -155,9 +158,9 @@ async function removeMetadata() {
 
     removeMetadataFromDoc(pdfDoc);
 
-    const newPdfBytes = await pdfDoc.save();
+    const newPdfBytes = await removeUnreferencedObjects(await pdfDoc.save());
     downloadFile(
-      new Blob([newPdfBytes as BlobPart], { type: 'application/pdf' }),
+      new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Metadata removed successfully!', 'success', () => {

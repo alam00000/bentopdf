@@ -1,5 +1,8 @@
-import { PDFDocument, PDFName, PDFDict, PDFArray } from 'pdf-lib';
-import { loadPdfDocument } from './load-pdf-document.js';
+import { PDFDocument, PDFName, PDFDict, PDFArray, PDFStream } from 'pdf-lib';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from './load-pdf-document.js';
 import type { PDFDocumentInternal } from '@/types';
 
 function getCatalogDict(pdfDoc: PDFDocument): PDFDict {
@@ -278,6 +281,14 @@ function removeEmbeddedFilesFromDoc(pdfDoc: PDFDocument) {
       console.warn(
         `Could not process page for attachments: ${getErrorMessage(pageError)}`
       );
+    }
+  }
+
+  for (const [, object] of pdfDoc.context.enumerateIndirectObjects()) {
+    if (object instanceof PDFDict) {
+      object.delete(PDFName.of('AF'));
+    } else if (object instanceof PDFStream) {
+      object.dict.delete(PDFName.of('AF'));
     }
   }
 
@@ -641,5 +652,5 @@ export async function sanitizePdf(
   }
 
   const savedBytes = await pdfDoc.save();
-  return { pdfDoc, bytes: new Uint8Array(savedBytes) };
+  return { pdfDoc, bytes: await removeUnreferencedObjects(savedBytes) };
 }
