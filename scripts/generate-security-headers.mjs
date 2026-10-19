@@ -85,6 +85,9 @@ function tsaOriginsFromEnv(value) {
     .map((entry) => entry.trim())
     .filter(Boolean)
     .map((entry) => {
+      // A bare URL may itself contain '=' (e.g. "?policy=1.2.3"), so only
+      // split on the first '=' when the whole entry is not a URL.
+      if (originOf(entry)) return entry;
       const separatorIndex = entry.indexOf('=');
       return separatorIndex > 0
         ? entry.slice(separatorIndex + 1).trim()
