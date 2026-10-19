@@ -35,6 +35,7 @@ describe('timestampPdf', () => {
     vi.clearAllMocks();
     vi.stubEnv('VITE_CORS_PROXY_URL', '');
     vi.stubEnv('VITE_CORS_PROXY_SECRET', '');
+    vi.stubEnv('VITE_TSA_ENDPOINTS', '');
     samplePdfBytes = new Uint8Array(fs.readFileSync(SAMPLE_PDF_PATH));
   });
 
@@ -233,6 +234,30 @@ describe('timestampPdf', () => {
 
     await expect(
       freshTimestamp(samplePdfBytes, 'https://tsa.example.org/tsr')
+    ).rejects.toThrow('Failed to fetch');
+  });
+
+  it('should keep the original error for a configured TSA on a bundled hostname', async () => {
+    // Same host as a built-in provider, different port: this is the
+    // deployment's own endpoint, so a blocked request is not a missing relay.
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    vi.stubEnv('VITE_TSA_ENDPOINTS', 'http://timestamp.digicert.com:8080');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'http:',
+        origin: 'http://pdf.example.org',
+        hostname: 'pdf.example.org',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp } =
+      await import('@/js/logic/digital-sign-pdf');
+
+    mockSign.mockRejectedValueOnce(new TypeError('Failed to fetch'));
+
+    await expect(
+      freshTimestamp(samplePdfBytes, 'http://timestamp.digicert.com:8080')
     ).rejects.toThrow('Failed to fetch');
   });
 

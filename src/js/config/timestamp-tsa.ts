@@ -28,20 +28,28 @@ export const DEFAULT_TIMESTAMP_TSA_PRESETS: readonly TimestampTsaPreset[] = [
   { label: 'MeSign', url: 'http://tsa.mesign.com' },
 ];
 
-const BUILT_IN_TSA_HOSTS: ReadonlySet<string> = new Set(
-  DEFAULT_TIMESTAMP_TSA_PRESETS.map((preset) => new URL(preset.url).hostname)
+function normalizeTsaUrl(value: string): string {
+  return new URL(value).toString();
+}
+
+const BUILT_IN_TSA_URLS: ReadonlySet<string> = new Set(
+  DEFAULT_TIMESTAMP_TSA_PRESETS.map((preset) => normalizeTsaUrl(preset.url))
 );
 
 /**
- * True when the URL points at one of the built-in providers, none of which
- * answers a CORS preflight. Used to tell a "missing relay" failure apart from
- * a failure against a TSA the deployment configured itself.
+ * True when the URL is one of the built-in providers, none of which answers a
+ * CORS preflight. Used to tell a "missing relay" failure apart from a failure
+ * against a TSA the deployment configured itself.
+ *
+ * The whole URL is compared, not just the hostname: a deployment may point
+ * VITE_TSA_ENDPOINTS at its own endpoint on a bundled host (another port or
+ * path), and that endpoint is not one of the built-in ones.
  */
 export function isBuiltInTsaUrl(value: unknown): value is string {
   if (!isValidTsaRequestUrl(value)) {
     return false;
   }
-  return BUILT_IN_TSA_HOSTS.has(new URL(value).hostname);
+  return BUILT_IN_TSA_URLS.has(normalizeTsaUrl(value));
 }
 
 export function isValidTsaRequestUrl(value: unknown): value is string {

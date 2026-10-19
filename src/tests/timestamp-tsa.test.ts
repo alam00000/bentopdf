@@ -3,6 +3,7 @@ import {
   DEFAULT_TIMESTAMP_TSA_PRESETS,
   TIMESTAMP_TSA_PRESETS,
   isAllowedTsaUrl,
+  isBuiltInTsaUrl,
   isValidTsaRequestUrl,
   parseTsaEndpoints,
   resolveTimestampTsaPresets,
@@ -87,6 +88,27 @@ describe('isAllowedTsaUrl', () => {
     expect(isAllowedTsaUrl(undefined)).toBe(false);
     expect(isAllowedTsaUrl(1234)).toBe(false);
     expect(isAllowedTsaUrl({ url: 'https://freetsa.org/tsr' })).toBe(false);
+  });
+});
+
+describe('isBuiltInTsaUrl', () => {
+  it('accepts every bundled provider URL', () => {
+    for (const preset of DEFAULT_TIMESTAMP_TSA_PRESETS) {
+      expect(isBuiltInTsaUrl(preset.url)).toBe(true);
+    }
+  });
+
+  it('rejects a self-configured endpoint that shares a bundled hostname', () => {
+    // Same host, different port or path: this is the deployment's own
+    // endpoint, so a blocked request there is not a "missing relay" failure.
+    expect(isBuiltInTsaUrl('http://timestamp.digicert.com:8080')).toBe(false);
+    expect(isBuiltInTsaUrl('https://freetsa.org/my-tsr')).toBe(false);
+  });
+
+  it('rejects unrelated hosts and non-URL values', () => {
+    expect(isBuiltInTsaUrl('https://tsa.example.org/tsr')).toBe(false);
+    expect(isBuiltInTsaUrl('not a url')).toBe(false);
+    expect(isBuiltInTsaUrl(null)).toBe(false);
   });
 });
 
