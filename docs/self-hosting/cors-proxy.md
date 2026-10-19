@@ -130,14 +130,14 @@ app.get('/api/cert-proxy', async (req, res) => {
 });
 ```
 
-To support the **Timestamp PDF** tool as well, the same endpoint (or a second route) must also:
+The frontend builds both the certificate and the timestamp request from the single `VITE_CORS_PROXY_URL` base, so there is no separate timestamp endpoint to configure. To support the **Timestamp PDF** tool as well, that same endpoint must also:
 
 1. Answer the `OPTIONS` preflight with `Access-Control-Allow-Methods: GET, POST, OPTIONS` and `Access-Control-Allow-Headers: Content-Type`
 2. Accept `POST` requests with a `url` query parameter and a body of type `application/timestamp-query`
 3. Only forward to timestamp authorities on an allow-list of your own (the Cloudflare worker uses `ALLOWED_TSA_HOSTS`), so it cannot serve as an open relay
 4. Forward the body unchanged with the same `Content-Type`, and return the upstream `application/timestamp-reply` with the same CORS headers as above
 
-Without that route, the built-in providers keep failing on the Timestamp PDF tool even though certificate fetching works.
+Routing those `POST`s to a separate backend route behind the same endpoint is fine; exposing them under a different URL is not, since the frontend never calls it. Without that handling, the built-in providers keep failing on the Timestamp PDF tool even though certificate fetching works.
 
 ## Security Considerations
 
