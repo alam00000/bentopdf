@@ -3,6 +3,52 @@ import forge from 'node-forge';
 import { CertificateData, SignPdfOptions } from '@/types';
 import { isValidTsaRequestUrl } from '../config/timestamp-tsa.js';
 
+function binaryStringToArrayBuffer(binary: string) {
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+/**
+ * Picks the certificate that belongs to the private key. PFX/PEM files that
+ * contain a chain do not always list the end-entity certificate first, and the
+ * first certificate is not necessarily the one that matches the key.
+ * Falls back to the first certificate if no match can be determined.
+ */
+function findCertificateForKey(
+  certs: forge.pki.Certificate[],
+  privateKey: forge.pki.PrivateKey | undefined
+): forge.pki.Certificate {
+  if (privateKey && certs.length > 1) {
+    try {
+      const rsaKey = privateKey as forge.pki.rsa.PrivateKey;
+      const keyPublicPem = forge.pki.publicKeyToPem(
+        forge.pki.rsa.setPublicKey(rsaKey.n, rsaKey.e)
+      );
+      const match = certs.find(
+        (c) => forge.pki.publicKeyToPem(c.publicKey) === keyPublicPem
+      );
+      if (match) return match;
+    } catch {
+      // fall through to the first certificate
+    }
+  }
+  return certs[0];
+}
+
+function wrapAsPkcs12(
+  privateKey: forge.pki.PrivateKey,
+  certChain: forge.pki.Certificate[],
+  password: string
+) {
+  const p12Asn1 = forge.pkcs12.toPkcs12Asn1(privateKey, certChain, password, {
+    algorithm: '3des',
+  });
+  return binaryStringToArrayBuffer(forge.asn1.toDer(p12Asn1).getBytes());
+}
+
 export function parsePfxFile(
   pfxBytes: ArrayBuffer,
   password: string
@@ -10,29 +56,77 @@ export function parsePfxFile(
   const pfxAsn1 = forge.asn1.fromDer(
     forge.util.createBuffer(new Uint8Array(pfxBytes))
   );
-  const pfx = forge.pkcs12.pkcs12FromAsn1(pfxAsn1, password);
 
-  const certBags = pfx.getBags({ bagType: forge.pki.oids.certBag });
-  const keyBags = pfx.getBags({ bagType: forge.pki.oids.pkcs8ShroudedKeyBag });
+  // PKCS#12 distinguishes an empty-string password from "no password".
+  // Files exported without a password can use either, so when the caller
+  // passes '' and it fails the MAC check, retry with no password at all.
+  let pfx: forge.pkcs12.Pkcs12Pfx;
+  let usedNullPassword = false;
+  try {
+    pfx = forge.pkcs12.pkcs12FromAsn1(pfxAsn1, password);
+  } catch (error) {
+    if (password !== '') throw error;
+    try {
+      pfx = forge.pkcs12.pkcs12FromAsn1(pfxAsn1);
+      usedNullPassword = true;
+    } catch {
+      throw error;
+    }
+  }
 
-  const certBagArray = certBags[forge.pki.oids.certBag];
-  const keyBagArray = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag];
+  const certBagArray = pfx.getBags({ bagType: forge.pki.oids.certBag })[
+    forge.pki.oids.certBag
+  ];
+  const shroudedKeyBagArray = pfx.getBags({
+    bagType: forge.pki.oids.pkcs8ShroudedKeyBag,
+  })[forge.pki.oids.pkcs8ShroudedKeyBag];
+  const plainKeyBagArray = pfx.getBags({ bagType: forge.pki.oids.keyBag })[
+    forge.pki.oids.keyBag
+  ];
 
   if (!certBagArray || certBagArray.length === 0) {
     throw new Error('No certificate found in PFX file');
   }
 
-  if (!keyBagArray || keyBagArray.length === 0) {
+  const hasShroudedKey = !!shroudedKeyBagArray?.length;
+  if (!hasShroudedKey && !plainKeyBagArray?.length) {
     throw new Error('No private key found in PFX file');
   }
 
-  const certificate = certBagArray[0].cert;
+  const privateKey =
+    shroudedKeyBagArray?.[0]?.key ?? plainKeyBagArray?.[0]?.key;
+  const certs = certBagArray
+    .map((bag) => bag.cert)
+    .filter((c): c is forge.pki.Certificate => !!c);
 
-  if (!certificate) {
+  if (certs.length === 0) {
     throw new Error('Failed to extract certificate from PFX file');
   }
 
-  return { p12Buffer: pfxBytes, password, certificate };
+  const certificate = findCertificateForKey(certs, privateKey);
+
+  // Only hand the original file to the signer when it is protected by a real,
+  // non-empty password and the key is stored encrypted. Otherwise (empty or
+  // null password, or an unencrypted key bag) re-wrap the key and certificates
+  // into a standard PKCS#12 with a throwaway password, the same approach
+  // parsePemFiles uses, so the signer never has to deal with an empty password.
+  const needsRewrap = password === '' || usedNullPassword || !hasShroudedKey;
+  if (!needsRewrap) {
+    return { p12Buffer: pfxBytes, password, certificate };
+  }
+
+  if (!privateKey) {
+    throw new Error('Failed to extract private key from PFX file');
+  }
+
+  const wrappedPassword = crypto.randomUUID();
+  const p12Buffer = wrapAsPkcs12(
+    privateKey,
+    [certificate, ...certs.filter((c) => c !== certificate)],
+    wrappedPassword
+  );
+
+  return { p12Buffer, password: wrappedPassword, certificate };
 }
 
 export function parsePemFiles(
@@ -40,57 +134,92 @@ export function parsePemFiles(
   keyPem: string,
   keyPassword?: string
 ): CertificateData {
-  const certificate = forge.pki.certificateFromPem(certPem);
+  const certPems =
+    certPem.match(
+      /-----BEGIN CERTIFICATE-----[\s\S]*?-----END CERTIFICATE-----/g
+    ) ?? [];
+  if (certPems.length === 0) {
+    throw new Error('No certificate found in PEM file');
+  }
+  const certs = certPems.map((pem) => forge.pki.certificateFromPem(pem));
 
   let privateKey: forge.pki.PrivateKey;
   if (keyPem.includes('ENCRYPTED')) {
     if (!keyPassword) {
       throw new Error('Password required for encrypted private key');
     }
-    privateKey = forge.pki.decryptRsaPrivateKey(keyPem, keyPassword);
-    if (!privateKey) {
-      throw new Error('Failed to decrypt private key');
+    let decrypted: forge.pki.PrivateKey | null;
+    try {
+      decrypted = forge.pki.decryptRsaPrivateKey(keyPem, keyPassword);
+    } catch {
+      decrypted = null;
     }
+    if (!decrypted) {
+      throw new Error(
+        'Failed to decrypt private key. Incorrect password or unsupported encryption.'
+      );
+    }
+    privateKey = decrypted;
   } else {
-    privateKey = forge.pki.privateKeyFromPem(keyPem);
+    try {
+      privateKey = forge.pki.privateKeyFromPem(keyPem);
+    } catch (error) {
+      const detail = error instanceof Error ? `: ${error.message}` : '';
+      throw new Error(
+        `Could not read the private key. Only RSA keys are supported in PEM files${detail}`,
+        { cause: error }
+      );
+    }
   }
 
+  const certificate = findCertificateForKey(certs, privateKey);
   const p12Password = keyPassword || crypto.randomUUID();
-  const p12Asn1 = forge.pkcs12.toPkcs12Asn1(
+  const p12Buffer = wrapAsPkcs12(
     privateKey,
-    [certificate],
-    p12Password,
-    { algorithm: '3des' }
+    [certificate, ...certs.filter((c) => c !== certificate)],
+    p12Password
   );
-  const p12Der = forge.asn1.toDer(p12Asn1).getBytes();
-  const p12Buffer = new Uint8Array(p12Der.length);
-  for (let i = 0; i < p12Der.length; i++) {
-    p12Buffer[i] = p12Der.charCodeAt(i);
-  }
 
-  return { p12Buffer: p12Buffer.buffer, password: p12Password, certificate };
+  return { p12Buffer, password: p12Password, certificate };
 }
 
 export function parseCombinedPem(
   pemContent: string,
   password?: string
 ): CertificateData {
-  const certMatch = pemContent.match(
-    /-----BEGIN CERTIFICATE-----[\s\S]*?-----END CERTIFICATE-----/
+  const certMatches = pemContent.match(
+    /-----BEGIN CERTIFICATE-----[\s\S]*?-----END CERTIFICATE-----/g
   );
   const keyMatch = pemContent.match(
     /-----BEGIN (RSA |EC |ENCRYPTED )?PRIVATE KEY-----[\s\S]*?-----END (RSA |EC |ENCRYPTED )?PRIVATE KEY-----/
   );
+  const blockTypes = Array.from(
+    pemContent.matchAll(/-----BEGIN ([^-\r\n]+)-----/g),
+    (m) => m[1]
+  );
 
-  if (!certMatch) {
-    throw new Error('No certificate found in PEM file');
+  if (!certMatches) {
+    throw new Error(
+      `No certificate found in PEM file (found: ${blockTypes.join(', ') || 'no PEM blocks'})`
+    );
   }
 
   if (!keyMatch) {
-    throw new Error('No private key found in PEM file');
+    const unsupportedKey = blockTypes.find((type) =>
+      type.includes('PRIVATE KEY')
+    );
+    if (unsupportedKey) {
+      throw new Error(
+        `Unsupported private key format "${unsupportedKey}". Convert it to an RSA PEM/PKCS#8 key or use a .pfx/.p12 file`
+      );
+    }
+    throw new Error(
+      `No private key found in PEM file (found: ${blockTypes.join(', ') || 'no PEM blocks'}). ` +
+        'The PEM must contain both the certificate and its private key, e.g. cat cert.pem key.pem > combined.pem'
+    );
   }
 
-  return parsePemFiles(certMatch[0], keyMatch[0], password);
+  return parsePemFiles(certMatches.join('\n'), keyMatch[0], password);
 }
 
 /**
