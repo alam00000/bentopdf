@@ -49,6 +49,14 @@ ENV VITE_TESSERACT_LANG_URL=$VITE_TESSERACT_LANG_URL
 ENV VITE_TESSERACT_AVAILABLE_LANGUAGES=$VITE_TESSERACT_AVAILABLE_LANGUAGES
 ENV VITE_OCR_FONT_BASE_URL=$VITE_OCR_FONT_BASE_URL
 
+# Timestamp authorities offered by the Timestamp PDF tool (optional).
+# Comma-separated "URL" or "Label=URL" entries. Point this at a TSA that allows
+# cross-origin requests to run the tool without a CORS relay; the origin is
+# added to connect-src in the generated CSP. Leave empty for the built-in
+# providers, which need VITE_CORS_PROXY_URL.
+ARG VITE_TSA_ENDPOINTS
+ENV VITE_TSA_ENDPOINTS=$VITE_TSA_ENDPOINTS
+
 # Default UI language (e.g. en, fr, de, es, zh, ar)
 ARG VITE_DEFAULT_LANGUAGE
 ENV VITE_DEFAULT_LANGUAGE=$VITE_DEFAULT_LANGUAGE

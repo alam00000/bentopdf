@@ -123,6 +123,33 @@ describe('CSP script-src', () => {
   });
 });
 
+describe('CSP connect-src for VITE_TSA_ENDPOINTS', () => {
+  it('adds configured timestamp authorities, labelled or bare', () => {
+    const { csp } = buildSecurityHeaders({
+      VITE_TSA_ENDPOINTS:
+        'My TSA=https://tsa.example.org/tsr,https://tsa2.example.net/tsr?policy=1.2.3',
+    });
+    const connectSrc = directive(csp, 'connect-src');
+    expect(connectSrc).toContain('https://tsa.example.org');
+    expect(connectSrc).toContain('https://tsa2.example.net');
+  });
+
+  it('keeps the proxy origin alongside them', () => {
+    const { csp } = buildSecurityHeaders({
+      VITE_TSA_ENDPOINTS: 'https://tsa.example.org/tsr',
+    });
+    expect(directive(csp, 'connect-src')).toContain(
+      'https://bentopdf-cors-proxy.bentopdf.workers.dev'
+    );
+  });
+
+  it('adds no TSA origin when unset', () => {
+    expect(directive(defaults.csp, 'connect-src')).not.toContain(
+      'https://freetsa.org'
+    );
+  });
+});
+
 describe('deployment configs match the generator', () => {
   it('vercel.json', () => {
     expect(headerRuleCsp('vercel.json', '/(.*)')).toBe(defaults.csp);

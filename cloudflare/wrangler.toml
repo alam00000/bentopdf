@@ -40,6 +40,19 @@ id = "b88e030b308941118cd484e3fcb3ae49"
 #   { pattern = "cors-proxy.bentopdf.com/*", zone_name = "bentopdf.com" }
 # ]
 
-# Optional: Environment variables (for non-secret config)
+# =============================================================================
+# ALLOWED ORIGINS AND DESTINATIONS (non-secret config)
+# =============================================================================
+#
+# ALLOWED_ORIGINS — origins allowed to call this proxy. Set it to your own
+# origin(s) when self-hosting; the worker then needs no source edit. Defaults to
+# the official BentoPDF origins, so leaving it unset makes the proxy reject your
+# instance with 403 Forbidden.
+#
+# ALLOWED_TSA_HOSTS — RFC 3161 timestamp hosts this proxy may POST to. Defaults
+# to the built-in providers. Anything not listed is refused, so add your own TSA
+# here if you point VITE_TSA_ENDPOINTS at one.
+#
 # [vars]
-# ALLOWED_ORIGINS = "https://www.bentopdf.com,https://bentopdf.com"
+# ALLOWED_ORIGINS = "https://pdf.example.org"
+# ALLOWED_TSA_HOSTS = "timestamp.digicert.com,timestamp.sectigo.com,ts.ssl.com,freetsa.org,tsa.mesign.com"

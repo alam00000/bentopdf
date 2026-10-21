@@ -230,6 +230,15 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
   };
 }
 
+function isHttpUrl(value: string): boolean {
+  try {
+    const { protocol } = new URL(value);
+    return protocol === 'http:' || protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 function buildCorsProxyAllowedHosts(): Set<string> {
   const hosts = new Set<string>([
     'cdn.jsdelivr.net',
@@ -261,6 +270,30 @@ function buildCorsProxyAllowedHosts(): Set<string> {
       console.warn(
         `[vite] Ignoring malformed VITE_* URL in dev CORS proxy allowlist: ${raw}`
       );
+    }
+  }
+
+  // VITE_TSA_ENDPOINTS entries are "URL" or "Label=URL", comma separated (see
+  // src/js/config/timestamp-tsa.ts).
+  const tsaEndpoints = process.env.VITE_TSA_ENDPOINTS;
+  if (tsaEndpoints) {
+    for (const rawEntry of tsaEndpoints.split(',')) {
+      const entry = rawEntry.trim();
+      if (!entry) continue;
+      // A bare URL may itself contain '=' (e.g. "?policy=1.2.3"), so only
+      // split on the first '=' when the whole entry is not a URL.
+      const separatorIndex = entry.indexOf('=');
+      const rawUrl =
+        !isHttpUrl(entry) && separatorIndex > 0
+          ? entry.slice(separatorIndex + 1).trim()
+          : entry;
+      try {
+        hosts.add(new URL(rawUrl).hostname);
+      } catch {
+        console.warn(
+          `[vite] Ignoring malformed VITE_TSA_ENDPOINTS entry in dev CORS proxy allowlist: ${entry}`
+        );
+      }
     }
   }
 
