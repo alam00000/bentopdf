@@ -20,7 +20,7 @@
   },
   "convertToPdf": "Previesť do PDF",
   "pdfMultiTool": {
-    "name": "PDF Multi Nástroj",
+    "name": "Multifunkčný nástroj PDF",
     "subtitle": "Spojiť, rozdeliť, organizovať, mazať, otáčať, pridávať prázdne strany, extrahovať a duplikovať v jednotnom rozhraní."
   },
   "mergePdf": {
@@ -45,11 +45,7 @@
     },
     "ui": {
       "clickDrag": "Kliknite a potiahnite ikonu",
-      "iconToChangeOrderFiles": "a zmeňte tak poradie súborov.",
-      "inPagesBoxEachFile": "V poli „Strany“ pri každom súbore môžete zadať rozsahy (napr. „1-3, 5“) a spojiť len tieto strany.",
-      "leavePagesBoxBlankTo": "Ak chcete zahrnúť všetky strany súboru, nechajte pole „Strany“ prázdne.",
-      "allPagesUploadedPdfsShown": "Nižšie sú zobrazené všetky strany z nahraných PDF.",
-      "simplyDragDropIndividualPage": "Pretiahnite miniatúry jednotlivých strán do presného poradia, aké chcete mať v novom súbore."
+      "iconToChangeOrderFiles": "a zmeňte tak poradie súborov."
     }
   },
   "splitPdf": {
@@ -116,7 +112,7 @@
     "landing": {
       "forEmail": {
         "shrinkPdfsToFitAny": "Zmenšite PDF tak, aby sa zmestilo do limitu príloh akéhokoľvek e-mailu.",
-        "toEmailLargePdfCompress": "Ak chcete poslať veľké PDF e-mailom, najskôr ho skomprimujte pod limit príloh vášho poskytovateľa: pridajte súbor nižšie a kliknite na Komprimovať PDF. Cieľová veľkosť je nastavená na 10 MB, čo vyhovuje aj prísnym firemným poštovým serverom; podľa potreby ju upravte. Všetko prebieha vo vašom prehliadači, takže dôverná zmluva sa cestou do odoslanej pošty nikdy nedostane na server tretej strany.",
+        "toEmailLargePdfCompress": "Ak chcete poslať veľké PDF e-mailom, najskôr ho skomprimujte pod limit príloh vášho poskytovateľa: pridajte súbor nižšie a kliknite na Komprimovať PDF. Cieľová veľkosť je nastavená na 10 MB, čo vyhovuje aj prísnym firemným poštovým serverom; podľa potreby ju upravte. Všetko prebieha vo vašom prehliadači, takže dôverná zmluva sa na ceste k adresátovi nikdy nedostane na server tretej strany.",
         "emailAttachmentLimitsInPractice": "Limity e-mailových príloh v praxi",
         "gmailAllows25mbPerMessage": "Gmail povoľuje 25 MB na správu, Outlook.com 20 MB, Yahoo 25 MB, iCloud 20 MB a firemné poštové servery sú často oveľa prísnejšie, bežne 10 MB a niekedy 5 MB. Limit platí pre celú správu po zakódovaní, ktoré zväčší prílohy asi o tretinu, takže do limitu „25 MB“ sa zmestí súbor s veľkosťou približne 18 MB. Ak si nie ste istí, zvoľte cieľ výrazne pod limitom.",
         "betterThanDownloadLink": "Lepšie ako odkaz na stiahnutie",
@@ -128,7 +124,7 @@
         "getPdfUnder100kbPortals": "Zmenšite PDF pod 100 KB pre portály s prísnym limitom nahrávania.",
         "toCompressPdfTo100kb": "Ak chcete PDF skomprimovať na 100 KB, pridajte súbor nižšie a kliknite na Komprimovať PDF. Cieľová veľkosť je už nastavená na 100 KB, takže Hyper Compress zvolí najlepšiu kvalitu obrázkov, ktorá sa ešte zmestí. Všetko prebieha vo vašom prehliadači a PDF sa nikdy nenahrá na server, takže aj citlivé dokumenty, napríklad skeny dokladov či žiadosti, zostanú vo vašom zariadení.",
         "whenNeedPdfUnder100kb": "Kedy potrebujete PDF pod 100 KB",
-        "capCommonOnJobApplication": "Limit 100 KB je bežný na portáloch pre uchádzačov o zamestnanie, v systémoch elektronického podávania na úradoch, v prihláškach na vysoké školy a na vízových či imigračných stránkach. Tieto systémy väčšie súbory zvyčajne rovno odmietnu, často bez zrozumiteľnej chybovej správy, takže kompresia pred nahraním vás ušetrí neúspešného podania.",
+        "capCommonOnJobApplication": "Limit 100 KB je bežný na portáloch pre uchádzačov o zamestnanie, v systémoch elektronického podávania na úradoch, v prihláškach na vysoké školy a na vízových či imigračných stránkach. Tieto systémy väčšie súbory zvyčajne rovno odmietnu, často bez zrozumiteľnej chybovej správy, takže kompresia pred nahraním vám ušetrí neúspešné podanie.",
         "whatToExpect100kb": "Čo očakávať pri 100 KB",
         "textBasedPdfFewPages": "Textové PDF s niekoľkými stranami – životopis, motivačný list alebo vyplnený formulár – sa ľahko skomprimuje pod 100 KB bez viditeľnej zmeny. Naskenované dokumenty a súbory s množstvom fotografií sú náročnejšie: na dosiahnutie 100 KB potrebujú výraznejšie zmenšenie obrázkov, preto počítajte s viditeľne menej ostrými obrázkami. Ak sa sken stále nedostane na 100 KB, výsledok ukáže najmenšiu veľkosť, akú sa podarilo dosiahnuť. Ak sken nemá textovú vrstvu, zapnite vo Vlastných nastaveniach možnosť Rastrovať strany, ktorá z každej strany vytvorí jeden optimalizovaný obrázok, alebo dokument rozdeľte a skomprimujte len strany, ktoré naozaj potrebujete odovzdať.",
         "tipsSmallestPossibleFile": "Tipy na čo najmenší súbor",
@@ -151,7 +147,7 @@
         "ifScannedDocumentStaysAbove": "Ak naskenovaný dokument zostane nad 200 KB, výsledok ukáže, ako blízko sa podarilo dostať. Pri skene bez textovej vrstvy môže funkcia Rastrovať strany vo Vlastných nastaveniach dosiahnuť menšiu veľkosť. Pri viacstranových skenoch pomôže najskôr odstrániť prázdne alebo nepotrebné strany: každá odstránená naskenovaná strana často ušetrí 100 KB ešte pred začiatkom kompresie."
       },
       "to2mb": {
-        "meet2mbPortalLimitsWhile": "Splňte limit portálov 2 MB pri zachovaní vysokej kvality obrázkov.",
+        "meet2mbPortalLimitsWhile": "Dodržte limit 2 MB na portáloch a zachovajte vysokú kvalitu obrázkov.",
         "toCompressPdfTo2mb": "Ak chcete PDF skomprimovať na 2 MB, pridajte súbor nižšie, pre najlepšiu kvalitu obrázkov zvoľte nízku úroveň a kliknite na Komprimovať PDF. Cieľová veľkosť je už nastavená na 2 MB, pri ktorých si portfóliá a správy zachovajú vysokú kvalitu obrázkov, a kompresia prebieha celá vo vašom zariadení.",
         "qualityFirstCompression": "Kompresia s dôrazom na kvalitu",
         "toWorkRarelyNeedDestructive": "S rezervou 2 MB len zriedka potrebujete stratové nastavenia. Nízka úroveň odstráni zbytočnú záťaž, napríklad duplicitné písma, nepoužívané objekty a pozostatky po úpravách, a obrázky ponechá vo vysokej kvalite. To vyhovuje dizajnérskym portfóliám, správam s množstvom fotografií a dokumentom pripraveným na tlač, ktoré aj tak musia prejsť kontrolou pri nahrávaní.",
@@ -178,7 +174,7 @@
       "compressPdfTo1mb": "Komprimovať PDF na 1 MB",
       "reduceLargePdfsBelowMost": "Zmenšite veľké PDF pod najbežnejší limit nahrávania 1 MB.",
       "compressPdfTo2mb": "Komprimovať PDF na 2 MB",
-      "meet2mbPortalLimitsWhile": "Splňte limit portálov 2 MB pri zachovaní vysokej kvality obrázkov.",
+      "meet2mbPortalLimitsWhile": "Dodržte limit 2 MB na portáloch a zachovajte vysokú kvalitu obrázkov.",
       "compressPdfEmail": "Komprimovať PDF na e-mail",
       "shrinkPdfsToFitAny": "Zmenšite PDF tak, aby sa zmestilo do limitu príloh akéhokoľvek e-mailu.",
       "compressionLevel": "Úroveň kompresie",
@@ -189,7 +185,7 @@
       "custom": "Vlastná",
       "poweredHyperCompressRecompressesImages": "Využíva Hyper Compress: prekomprimuje obrázky, zredukuje a zlúči písma a odstráni zbytočnú záťaž, pričom text, odkazy a formuláre fungujú ďalej. Pri skenoch, ktoré obsahujú len obrázky, zapnite vo Vlastných nastaveniach možnosť Rastrovať strany.",
       "targetFileSizeOptional": "Cieľová veľkosť súboru (voliteľné)",
-      "noTargetPlaceholder": "Bez cieľa",
+      "noTargetPlaceholder": "Bez cieľovej veľkosti",
       "hyperCompressFindsBestQuality": "Hyper Compress nájde najlepšiu kvalitu, ktorá sa zmestí. Ak chcete použiť úroveň bez zmeny, nechajte pole prázdne.",
       "customSettings": "Vlastné nastavenia",
       "fineTuneHyperCompressPicking": "Podrobné nastavenia Hyper Compress. Výberom úrovne kompresie sa tieto nastavenia vrátia na predvolené hodnoty, okrem možností Obísť ochranu obsahu, Previesť do odtieňov sivej, Zachovať PDF/A a Brotli.",
@@ -390,7 +386,7 @@
     "ui": {
       "previousPage": "Predchádzajúca strana",
       "nextPage": "Nasledujúca strana",
-      "flatteningCropConvertsPagesTo": "Orezanie so zlúčením (prevedie strany na obrázky)",
+      "flatteningCropConvertsPagesTo": "Trvalé orezanie (prevedie strany na obrázky)",
       "applyToAllPages": "Použiť na všetky strany",
       "cropDownload": "Orezať a stiahnuť"
     }
@@ -480,8 +476,8 @@
       "searchBookmarksPlaceholder": "Hľadať záložky...",
       "bookmarkTitlePlaceholder": "Názov záložky...",
       "addToPage": "Pridať na stranu",
-      "batchMode": "Hromadný režim (",
-      "selected": "vo výbere)",
+      "batchMode": "Hromadný režim",
+      "selected": "vybraných",
       "batchOperations": "Hromadné operácie",
       "setColor": "Nastaviť farbu...",
       "none": "Žiadna",
@@ -491,8 +487,8 @@
       "yellow": "Žltá",
       "purple": "Fialová",
       "setStyle": "Nastaviť štýl...",
-      "normal": "Normálny",
-      "bold": "Tučný",
+      "normal": "Normálne",
+      "bold": "Tučné",
       "italic": "Kurzíva",
       "boldItalic": "Tučná kurzíva",
       "deleteSelected": "Odstrániť vybrané",
@@ -656,7 +652,7 @@
       "dragWatermarkToPosition": "Potiahnutím umiestnite vodoznak",
       "image": "Obrázok",
       "layout": "Rozloženie",
-      "single": "Jeden",
+      "single": "Jeden vodoznak",
       "tiled": "Dlaždice",
       "tiledRepeatsWatermarkAcrossWhole": "Režim Dlaždice opakuje vodoznak po celej strane.",
       "pageRange": "Rozsah strán",
@@ -678,7 +674,7 @@
       "bottom": "Dole",
       "bottomRight": "Vpravo dole",
       "flattenWatermark": "Zlúčiť vodoznak so stranou",
-      "bakesWatermarkIntoPagePixels": "Vodoznak sa vpečie do obrazových bodov strany, takže ho nemožno ľahko odstrániť. Text už nebude možné označiť."
+      "bakesWatermarkIntoPagePixels": "Vodoznak sa natrvalo vloží do obrazu strany, takže ho nemožno ľahko odstrániť. Text už nebude možné označiť."
     }
   },
   "headerFooter": {
@@ -851,7 +847,7 @@
       "inchPoints1": "1 palec = 72 bodov",
       "startCreating": "Začať vytvárať",
       "properties": "Vlastnosti",
-      "field": "pole/polia/polí",
+      "fieldCount": "Počet polí:",
       "pressDeleteToRemoveSelected": "Vybrané pole odstránite klávesom Delete",
       "goTo": "Prejsť na:",
       "go": "Prejsť",
@@ -1144,7 +1140,7 @@
     },
     "ui": {
       "autoDetectedFilenamePlaceholder": "Automaticky zistené z názvu súboru",
-      "actionAdventureSciFiPlaceholder": "Akčný, Dobrodružný, Sci-fi"
+      "actionAdventureSciFiPlaceholder": "akčný, dobrodružný, sci-fi"
     }
   },
   "pdfToGreyscale": {
@@ -1603,7 +1599,7 @@
       "couldNotPosterizePdf": "Plagát z PDF sa nepodarilo vytvoriť."
     },
     "ui": {
-      "pagePreview": "Náhľad strany (",
+      "pagePreview": "Náhľad strany",
       "gridLayout": "Rozloženie mriežky",
       "rows": "Riadky",
       "columns": "Stĺpce",
@@ -2351,7 +2347,7 @@
       "pdf3bModernAllowsAttachments": "PDF/A-3b (moderné, povoľuje prílohy)",
       "preFlattenPdfRecommendedComplex": "Pred prevodom zlúčiť vrstvy PDF (odporúčané pri zložitých súboroch)",
       "convertsPdfToImagesFirst": "Najskôr prevedie PDF na obrázky, čím zlepší súlad s PDF/A. Odporúča sa, ak bežný prevod neprejde overením.",
-      "convertToPdf": "Previesť do PDF/A"
+      "convertToPdfa": "Previesť do PDF/A"
     }
   },
   "rasterizePdf": {

@@ -11,7 +11,7 @@
     "searchLanguage": "Hľadať jazyk…",
     "noLanguagesFound": "Nenašli sa žiadne jazyky",
     "products": "Produkty",
-    "pdfPdfUaPdfConversion": "Nástroj na prevod do PDF/A, PDF/UA a PDF/X.",
+    "kuraDescription": "Nástroj na prevod do PDF/A, PDF/UA a PDF/X.",
     "contentPreservingPdfCompressionEngine": "Kompresia PDF so zachovaním obsahu."
   },
   "donation": {
@@ -301,8 +301,8 @@
     "howItWorks": "Ako to funguje:",
     "fileModeInstructions": [
       "Kliknite a potiahnite ikonu pre zmenu poradia súborov.",
-      "V poli \"Strany\" pri každom súbore môžete zadať rozsahy (napr. \"1-3, 5\") na zlúčenie iba týchto strán.",
-      "Ak chcete zahrnúť všetky strany z daného súboru, nechajte pole \"Strany\" prázdne."
+      "V poli „Strany“ pri každom súbore môžete zadať rozsahy (napr. „1-3, 5“) na zlúčenie iba týchto strán.",
+      "Ak chcete zahrnúť všetky strany z daného súboru, nechajte pole „Strany“ prázdne."
     ],
     "pageModeInstructions": [
       "Všetky strany z vašich nahratých PDF dokumentov sú zobrazené nižšie.",

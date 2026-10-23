@@ -45,11 +45,7 @@
     },
     "ui": {
       "clickDrag": "Click and drag the",
-      "iconToChangeOrderFiles": "icon to change the order of the files.",
-      "inPagesBoxEachFile": "In the \"Pages\" box for each file, you can specify ranges (e.g., \"1-3, 5\") to merge only those pages.",
-      "leavePagesBoxBlankTo": "Leave the \"Pages\" box blank to include all pages from that file.",
-      "allPagesUploadedPdfsShown": "All pages from your uploaded PDFs are shown below.",
-      "simplyDragDropIndividualPage": "Simply drag and drop the individual page thumbnails to create the exact order you want for your new file."
+      "iconToChangeOrderFiles": "icon to change the order of the files."
     }
   },
   "splitPdf": {
@@ -480,8 +476,8 @@
       "searchBookmarksPlaceholder": "Search bookmarks...",
       "bookmarkTitlePlaceholder": "Bookmark title...",
       "addToPage": "Add to Page",
-      "batchMode": "Batch Mode (",
-      "selected": "selected)",
+      "batchMode": "Batch Mode",
+      "selected": "selected",
       "batchOperations": "Batch Operations",
       "setColor": "Set Color...",
       "none": "None",
@@ -851,7 +847,7 @@
       "inchPoints1": "1 inch = 72 points",
       "startCreating": "Start Creating",
       "properties": "Properties",
-      "field": "field(s)",
+      "fieldCount": "Fields:",
       "pressDeleteToRemoveSelected": "Press Delete to remove selected field",
       "goTo": "Go to:",
       "go": "Go",
@@ -1603,7 +1599,7 @@
       "couldNotPosterizePdf": "Could not posterize the PDF."
     },
     "ui": {
-      "pagePreview": "Page Preview (",
+      "pagePreview": "Page Preview",
       "gridLayout": "Grid Layout",
       "rows": "Rows",
       "columns": "Columns",
@@ -2351,7 +2347,7 @@
       "pdf3bModernAllowsAttachments": "PDF/A-3b (Modern, allows attachments)",
       "preFlattenPdfRecommendedComplex": "Pre-flatten PDF (recommended for complex files)",
       "convertsPdfToImagesFirst": "Converts the PDF to images first, ensuring better PDF/A compliance. Recommended if validation fails on the normal conversion.",
-      "convertToPdf": "Convert to PDF/A"
+      "convertToPdfa": "Convert to PDF/A"
     }
   },
   "rasterizePdf": {
