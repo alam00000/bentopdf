@@ -7,6 +7,7 @@ import {
   getSelectedQuality,
   compressImageFile,
 } from '../utils/image-compress.js';
+import { t } from '../i18n/i18n';
 
 const SUPPORTED_FORMATS = '.jpg,.jpeg,.jp2,.jpx';
 const SUPPORTED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/jp2'];
@@ -103,8 +104,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only JPG, JPEG, JP2, and JPX files are allowed.'
+      t('alert.invalidFiles'),
+      t('tools:jpgToPdf.alert.someFilesWereSkipped')
     );
   }
 
@@ -178,16 +179,16 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one JPG or JPEG2000 image.');
+    showAlert(t('alert.noFiles'), t('tools:jpgToPdf.alert.selectLeastOneJpg'));
     return;
   }
 
-  showLoader('Loading engine...');
+  showLoader(t('loader.loadingEngine'));
 
   try {
     const mupdf = await ensurePyMuPDF();
 
-    showLoader('Converting images to PDF...');
+    showLoader(t('multiTool.convertingImages'));
     const quality = getSelectedQuality();
     const compressedFiles: File[] = [];
     for (const file of files) {
@@ -198,14 +199,19 @@ async function convertToPdf() {
 
     downloadFile(pdfBlob, 'from_jpgs.pdf');
 
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e: unknown) {
     console.error('[JpgToPdf]', e);
     showAlert(
-      'Conversion Error',
-      e instanceof Error ? e.message : 'Failed to convert images to PDF.'
+      t('alert.conversionError'),
+      e instanceof Error ? e.message : t('multiTool.failedToConvertImages')
     );
   } finally {
     hideLoader();

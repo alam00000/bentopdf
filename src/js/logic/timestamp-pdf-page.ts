@@ -114,7 +114,10 @@ async function handlePdfFile(file: File): Promise<void> {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:duplexCollate.invalidFileMessage')
+    );
     return;
   }
 
@@ -210,14 +213,17 @@ function getTsaUrl(): string | null {
 
 async function processTimestamp(): Promise<void> {
   if (!state.pdfBytes || !state.pdfFile) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
   const tsaUrl = getTsaUrl();
   if (!tsaUrl) return;
 
-  showLoader('Applying timestamp...');
+  showLoader(t('tools:timestampPdf.loader.applyingTimestamp'));
 
   try {
     const timestampedBytes = await timestampPdf(state.pdfBytes, tsaUrl);
@@ -238,7 +244,7 @@ async function processTimestamp(): Promise<void> {
     console.error('Timestamp error:', error);
     const message = error instanceof Error ? error.message : 'Unknown error';
     showAlert(
-      'Timestamp Failed',
+      t('tools:timestampPdf.alert.timestampFailed'),
       `Failed to timestamp PDF: ${message}\n\nPlease try a different TSA server or check your internet connection.`
     );
   } finally {

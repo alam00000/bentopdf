@@ -241,7 +241,10 @@ document.addEventListener('DOMContentLoaded', () => {
           } catch (err) {
             console.error('Failed to set layer visibility:', err);
             target.checked = !isOn;
-            showAlert('Error', 'Failed to toggle layer visibility');
+            showAlert(
+              t('common.error'),
+              t('tools:pdfOcg.alert.failedToggleLayerVisibility')
+            );
           }
         });
       });
@@ -256,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         if (!layer) {
-          showAlert('Error', 'Layer not found');
+          showAlert(t('common.error'), t('tools:pdfOcg.alert.layerNotFound'));
           return;
         }
 
@@ -266,7 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
           renderLayers();
         } catch (err) {
           console.error('Failed to delete layer:', err);
-          showAlert('Error', 'Failed to delete layer');
+          showAlert(
+            t('common.error'),
+            t('tools:pdfOcg.alert.failedDeleteLayer')
+          );
         }
       });
     });
@@ -312,7 +318,10 @@ document.addEventListener('DOMContentLoaded', () => {
           renderLayers();
         } catch (err) {
           console.error('Failed to add child layer:', err);
-          showAlert('Error', 'Failed to add child layer');
+          showAlert(
+            t('common.error'),
+            t('tools:pdfOcg.alert.failedAddChildLayer')
+          );
         }
       });
     });
@@ -320,12 +329,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loadLayers = async () => {
     if (!currentFile) {
-      showAlert('No File', 'Please select a PDF file.');
+      showAlert(
+        t('tools:pdfToJpg.alert.noFile'),
+        t('tools:duplexCollate.invalidFileMessage')
+      );
       return;
     }
 
     try {
-      showLoader('Loading engine...');
+      showLoader(t('loader.loadingEngine'));
       const pymupdf = await loadPyMuPDF();
 
       showLoader(`Loading layers from ${currentFile.name}...`);
@@ -333,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pymupdf as { open: (file: File) => Promise<PyMuPDFDocument> }
       ).open(currentFile);
 
-      showLoader('Reading layer configuration...');
+      showLoader(t('tools:pdfOcg.loader.readingLayerConfiguration'));
       const existingLayers = currentDoc.getLayerConfig();
 
       layersMap.clear();
@@ -367,8 +379,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        error instanceof Error ? error.message : 'Failed to load PDF layers'
+        t('common.error'),
+        error instanceof Error
+          ? error.message
+          : t('tools:pdfOcg.alert.failedLoadPdfLayers')
       );
       console.error('Layers error:', error);
     }
@@ -385,7 +399,10 @@ document.addEventListener('DOMContentLoaded', () => {
       addLayerBtn.onclick = () => {
         const name = newLayerInput.value.trim();
         if (!name) {
-          showAlert('Invalid Name', 'Please enter a layer name');
+          showAlert(
+            t('tools:pdfOcg.alert.invalidName'),
+            t('tools:pdfOcg.alert.enterLayerName')
+          );
           return;
         }
 
@@ -408,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
           renderLayers();
         } catch (err: unknown) {
           showAlert(
-            'Error',
+            t('common.error'),
             'Failed to add layer: ' +
               (err instanceof Error ? err.message : String(err))
           );
@@ -419,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (saveLayersBtn) {
       saveLayersBtn.onclick = () => {
         try {
-          showLoader('Saving PDF with layer changes...');
+          showLoader(t('tools:pdfOcg.loader.savingPdfWithLayer'));
           const pdfBytes = currentDoc.save();
           const blob = new Blob([new Uint8Array(pdfBytes)], {
             type: 'application/pdf',
@@ -427,11 +444,15 @@ document.addEventListener('DOMContentLoaded', () => {
           downloadFile(blob, currentFile!.name);
           hideLoader();
           resetState();
-          showAlert('Success', 'PDF with layer changes saved!', 'success');
+          showAlert(
+            t('common.success'),
+            t('tools:pdfOcg.alert.pdfWithLayerChanges'),
+            'success'
+          );
         } catch (err: unknown) {
           hideLoader();
           showAlert(
-            'Error',
+            t('common.error'),
             'Failed to save PDF: ' +
               (err instanceof Error ? err.message : String(err))
           );
@@ -453,7 +474,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentFile = result.file;
         updateUI();
       } else {
-        showAlert('Invalid File', 'Please select a PDF file.');
+        showAlert(
+          t('tools:addPageLabels.invalidFileTitle'),
+          t('tools:duplexCollate.invalidFileMessage')
+        );
       }
     }
   };

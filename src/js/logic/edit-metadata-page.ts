@@ -5,6 +5,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFName, PDFString } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const pageState: EditMetadataState = {
   file: null,
@@ -226,7 +227,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
@@ -241,7 +242,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -251,11 +252,11 @@ async function updateUI() {
 
 async function saveMetadata() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
-  showLoader('Updating metadata...');
+  showLoader(t('tools:editMetadata.loader.updatingMetadata'));
 
   try {
     const titleInput = document.getElementById(
@@ -357,8 +358,8 @@ async function saveMetadata() {
     );
 
     showAlert(
-      'Success',
-      'Metadata updated successfully!',
+      t('common.success'),
+      t('tools:editMetadata.alert.metadataUpdatedSuccessfully'),
       'success',
       function () {
         resetState();
@@ -367,8 +368,8 @@ async function saveMetadata() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Could not update metadata. Please check that date formats are correct.'
+      t('common.error'),
+      t('tools:editMetadata.alert.couldNotUpdateMetadata')
     );
   } finally {
     hideLoader();

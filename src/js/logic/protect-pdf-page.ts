@@ -7,6 +7,7 @@ import {
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import { EncryptPdfState, QpdfInstanceExtended } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: EncryptPdfState = {
   file: null,
@@ -93,7 +94,10 @@ function handleFileSelect(files: FileList | null) {
 
 async function encryptPdf() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
@@ -105,7 +109,10 @@ async function encryptPdf() {
       ?.value || '';
 
   if (!userPassword) {
-    showAlert('Input Required', 'Please enter a user password.');
+    showAlert(
+      t('alert.inputRequired'),
+      t('tools:protectPdf.alert.enterUserPassword')
+    );
     return;
   }
 
@@ -183,15 +190,15 @@ async function encryptPdf() {
         ' Note: Without a separate owner password, the PDF has no usage restrictions.';
     }
 
-    showAlert('Success', successMessage, 'success', () => {
+    showAlert(t('common.success'), successMessage, 'success', () => {
       resetState();
     });
   } catch (error: unknown) {
     console.error('Error during PDF encryption:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
-      'Encryption Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'The PDF might be corrupted.'}`
+      t('tools:protectPdf.alert.encryptionFailed'),
+      `An error occurred: ${error instanceof Error ? error.message : t('tools:protectPdf.alert.pdfMightCorrupted')}`
     );
   } finally {
     try {

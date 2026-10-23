@@ -46,15 +46,51 @@
   },
   "splitPdf": {
     "name": "Split PDF",
-    "subtitle": "Extract a range of pages into a new PDF."
+    "subtitle": "Extract a range of pages into a new PDF.",
+    "alert": {
+      "failedRenderPagePreviews": "Failed to render page previews.",
+      "pdfSplitSuccessfully": "PDF split successfully!",
+      "failedSplitPdfCheck": "Failed to split PDF. Please check your selection."
+    },
+    "loader": {
+      "splittingPdf": "Splitting PDF..."
+    }
   },
   "compressPdf": {
     "name": "Compress PDF",
-    "subtitle": "Reduce the file size of your PDF."
+    "subtitle": "Reduce the file size of your PDF.",
+    "loader": {
+      "compressing": "Compressing...",
+      "compressingMultiplePdfs": "Compressing multiple PDFs...",
+      "creatingZip": "Creating ZIP..."
+    },
+    "alert": {
+      "signedPdfNotChanged": "Signed PDF Not Changed",
+      "compressionFinished": "Compression Finished",
+      "compressionComplete": "Compression Complete",
+      "passwordNeeded": "Password Needed",
+      "notPdf": "Not a PDF"
+    }
   },
   "pdfEditor": {
     "name": "PDF Editor",
-    "subtitle": "Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs."
+    "subtitle": "Annotate, highlight, redact, comment, add shapes/images, search, and view PDFs.",
+    "alert": {
+      "renderError": "Render Error",
+      "couldNotDisplayPage": "Could not display the page.",
+      "noAreaSelected": "No Area Selected",
+      "drawRectangleLeastOne": "Please draw a rectangle on at least one page to select the crop area.",
+      "pdfHasBeenCropped": "Your PDF has been cropped and the download has started.",
+      "redactionFailed": "Redaction Failed",
+      "someRedactionMarksCould": "Some redaction marks could not be applied, so the file was not downloaded. Apply or remove them in the editor and try again.",
+      "couldNotRemoveRedacted": "Could not remove the redacted text from the document data, so the file was not downloaded.",
+      "failedDownloadEditedPdf": "Failed to download the edited PDF.",
+      "failedLoadPdfEditor": "Failed to load the PDF Editor."
+    },
+    "loader": {
+      "loadingPdfEditor": "Loading PDF Editor...",
+      "removingRedactedTextFrom": "Removing redacted text from document data..."
+    }
   },
   "editPdfText": {
     "name": "Edit PDF Text",
@@ -172,15 +208,34 @@
     "tipNextPage": "Next page",
     "tipDocumentProperties": "Document properties",
     "tipHideBar": "Hide bar",
-    "tipShowBar": "Show bar"
+    "tipShowBar": "Show bar",
+    "loader": {
+      "loadingPdfTextEditor": "Loading PDF Text Editor..."
+    }
   },
   "jpgToPdf": {
     "name": "JPG to PDF",
-    "subtitle": "Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images."
+    "subtitle": "Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images.",
+    "alert": {
+      "someFilesWereSkipped": "Some files were skipped. Only JPG, JPEG, JP2, and JPX files are allowed.",
+      "selectLeastOneJpg": "Please select at least one JPG or JPEG2000 image."
+    }
   },
   "signPdf": {
     "name": "Sign PDF",
-    "subtitle": "Draw, type, or upload your signature."
+    "subtitle": "Draw, type, or upload your signature.",
+    "loader": {
+      "loadingPdfViewer": "Loading PDF viewer...",
+      "flatteningSavingPdf": "Flattening and saving PDF..."
+    },
+    "alert": {
+      "waitPdfViewerLoad": "Please wait for the PDF viewer to load.",
+      "pdfViewerStillInitializing": "The PDF viewer is still initializing.",
+      "signedPdfSavedSuccessfully": "Signed PDF saved successfully!",
+      "signedPdfDownloadedSuccessfully": "Signed PDF downloaded successfully!",
+      "exportFailed": "Export failed",
+      "couldNotExportSigned": "Could not export the signed PDF. Please try again."
+    }
   },
   "cropPdf": {
     "name": "Crop PDF",
@@ -188,16 +243,50 @@
   },
   "extractPages": {
     "name": "Extract Pages",
-    "subtitle": "Save a selection of pages as new files."
+    "subtitle": "Save a selection of pages as new files.",
+    "alert": {
+      "enterPageNumbersExtract": "Please enter page numbers to extract.",
+      "invalidPages": "Invalid Pages",
+      "noValidPageNumbers": "No valid page numbers found.",
+      "failedExtractPages": "Failed to extract pages."
+    },
+    "loader": {
+      "extractingPages": "Extracting pages..."
+    }
   },
   "duplicateOrganize": {
     "name": "Duplicate & Organize",
     "subtitle": "Duplicate, reorder, and delete pages.",
-    "saveChanges": "Save Changes"
+    "saveChanges": "Save Changes",
+    "alert": {
+      "failedRenderPagePreviews": "Failed to render page previews",
+      "somePagesCouldNot": "Some pages could not be processed. Please try again.",
+      "failedSaveNewPdf": "Failed to save the new PDF. Check console for details.",
+      "invalidOrder": "Invalid Order",
+      "enterPageOrder": "Please enter a page order.",
+      "invalidPageNumbers": "Invalid Page Numbers",
+      "enterPositiveNumbers": "Please enter positive numbers.",
+      "incorrectPageCount": "Incorrect Page Count",
+      "duplicatePageNumbers": "Duplicate Page Numbers",
+      "ensureAllPageNumbers": "Please ensure all page numbers in the order are unique.",
+      "invalidPageOrder": "Invalid Page Order",
+      "specifiedPageOrderIncomplete": "The specified page order is incomplete or contains invalid page numbers. Please ensure you provide a new position for every original page.",
+      "pagesHaveBeenReordered": "Pages have been reordered.",
+      "pdfOrganizedSuccessfully": "PDF organized successfully!",
+      "failedSaveChanges": "Failed to save changes."
+    }
   },
   "deletePages": {
     "name": "Delete Pages",
-    "subtitle": "Remove specific pages from your document."
+    "subtitle": "Remove specific pages from your document.",
+    "alert": {
+      "selectPagesDelete": "Please select pages to delete.",
+      "cannotDeleteAllPages": "Cannot delete all pages.",
+      "failedDeletePages": "Failed to delete pages."
+    },
+    "loader": {
+      "deletingPages": "Deleting pages..."
+    }
   },
   "editBookmarks": {
     "name": "Edit Bookmarks",
@@ -228,7 +317,14 @@
   },
   "pageNumbers": {
     "name": "Page Numbers",
-    "subtitle": "Insert page numbers into your document."
+    "subtitle": "Insert page numbers into your document.",
+    "loader": {
+      "addingPageNumbers": "Adding page numbers..."
+    },
+    "alert": {
+      "pageNumbersAddedSuccessfully": "Page numbers added successfully!",
+      "couldNotAddPage": "Could not add page numbers."
+    }
   },
   "addPageLabels": {
     "name": "Add Page Labels",
@@ -291,20 +387,49 @@
   },
   "batesNumbering": {
     "name": "Bates Numbering",
-    "subtitle": "Add sequential Bates numbers across one or more PDF files."
+    "subtitle": "Add sequential Bates numbers across one or more PDF files.",
+    "loader": {
+      "loadingPdfs": "Loading PDFs...",
+      "applyingBatesNumbers": "Applying Bates numbers..."
+    },
+    "alert": {
+      "uploadValidPdfFiles": "Please upload valid PDF files.",
+      "failedApplyBatesNumbers": "Failed to apply Bates numbers."
+    }
   },
   "addWatermark": {
     "name": "Add Watermark",
     "subtitle": "Stamp text or an image over your PDF pages.",
-    "applyToAllPages": "Apply to all pages"
+    "applyToAllPages": "Apply to all pages",
+    "loader": {
+      "addingWatermark": "Adding watermark..."
+    },
+    "alert": {
+      "watermarkAddedSuccessfully": "Watermark added successfully!",
+      "couldNotAddWatermark": "Could not add the watermark."
+    }
   },
   "headerFooter": {
     "name": "Header & Footer",
-    "subtitle": "Add text to the top and bottom of pages."
+    "subtitle": "Add text to the top and bottom of pages.",
+    "loader": {
+      "addingHeaderFooter": "Adding header & footer..."
+    },
+    "alert": {
+      "headerFooterAddedSuccessfully": "Header & Footer added successfully!",
+      "couldNotAddHeader": "Could not add header or footer."
+    }
   },
   "invertColors": {
     "name": "Invert Colors",
-    "subtitle": "Create a \"dark mode\" version of your PDF."
+    "subtitle": "Create a \"dark mode\" version of your PDF.",
+    "loader": {
+      "invertingPdfColors": "Inverting PDF colors..."
+    },
+    "alert": {
+      "colorsInvertedSuccessfully": "Colors inverted successfully!",
+      "couldNotInvertPdf": "Could not invert PDF colors."
+    }
   },
   "scannerEffect": {
     "name": "Scanner Effect",
@@ -321,7 +446,14 @@
     "noise": "Noise",
     "yellowish": "Yellowish",
     "resolution": "Resolution",
-    "processButton": "Apply Scanner Effect"
+    "processButton": "Apply Scanner Effect",
+    "loader": {
+      "applyingScannerEffect": "Applying scanner effect..."
+    },
+    "alert": {
+      "scannerEffectAppliedSuccessfully": "Scanner effect applied successfully!",
+      "failedApplyScannerEffect": "Failed to apply scanner effect. The file might be corrupted."
+    }
   },
   "adjustColors": {
     "name": "Adjust Colors",
@@ -335,15 +467,36 @@
     "tint": "Tint",
     "gamma": "Gamma",
     "sepia": "Sepia",
-    "processButton": "Apply Color Adjustments"
+    "processButton": "Apply Color Adjustments",
+    "loader": {
+      "applyingColorAdjustments": "Applying color adjustments..."
+    },
+    "alert": {
+      "colorAdjustmentsAppliedSuccessfully": "Color adjustments applied successfully!",
+      "failedApplyColorAdjustments": "Failed to apply color adjustments. The file might be corrupted."
+    }
   },
   "backgroundColor": {
     "name": "Background Color",
-    "subtitle": "Change the background color of your PDF."
+    "subtitle": "Change the background color of your PDF.",
+    "loader": {
+      "changingBackgroundColor": "Changing background color..."
+    },
+    "alert": {
+      "backgroundColorChangedSuccessfully": "Background color changed successfully!",
+      "couldNotChangeBackground": "Could not change the background color."
+    }
   },
   "changeTextColor": {
     "name": "Change Text Color",
-    "subtitle": "Change the color of text in your PDF."
+    "subtitle": "Change the color of text in your PDF.",
+    "loader": {
+      "changingTextColor": "Changing text color..."
+    },
+    "alert": {
+      "textColorChangedSuccessfully": "Text color changed successfully!",
+      "couldNotChangeText": "Could not change text color."
+    }
   },
   "addStamps": {
     "name": "Add Stamps",
@@ -355,14 +508,30 @@
   },
   "removeAnnotations": {
     "name": "Remove Annotations",
-    "subtitle": "Strip comments, highlights, and links."
+    "subtitle": "Strip comments, highlights, and links.",
+    "loader": {
+      "removingAnnotations": "Removing annotations..."
+    },
+    "alert": {
+      "annotationsRemovedSuccessfully": "Annotations removed successfully!",
+      "couldNotRemoveAnnotations": "Could not remove annotations."
+    }
   },
   "pdfFormFiller": {
     "name": "PDF Form Filler",
     "subtitle": "Fill in forms directly in the browser. Also supports XFA forms.",
     "uploadHint": "Upload a PDF with form fields. Fill them directly in the viewer below, then click the button to save and download the filled form. Also supports XFA forms.",
     "xfaNoteTitle": "Note on XFA Forms:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) is a legacy format that's only supported by certain PDF viewers like BentoPDF and Firefox. If you open an XFA PDF in other software and see blank pages or no form fields, it means that viewer doesn't support XFA. To view and fill XFA forms properly, use Firefox or BentoPDF's Form Filler."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) is a legacy format that's only supported by certain PDF viewers like BentoPDF and Firefox. If you open an XFA PDF in other software and see blank pages or no form fields, it means that viewer doesn't support XFA. To view and fill XFA forms properly, use Firefox or BentoPDF's Form Filler.",
+    "loader": {
+      "loadingPdfForm": "Loading PDF form..."
+    },
+    "alert": {
+      "failedLoadPdfForm": "Failed to load PDF form viewer.",
+      "waitFormFinishLoading": "Please wait for the form to finish loading.",
+      "useDownloadButtonPdf": "Please use the Download button in the PDF viewer toolbar above.",
+      "cannotAccessViewerControls": "Cannot access viewer controls. Please use the Download button in the PDF viewer toolbar above."
+    }
   },
   "createPdfForm": {
     "name": "Create PDF Form",
@@ -373,35 +542,89 @@
   "removeBlankPages": {
     "name": "Remove Blank Pages",
     "subtitle": "Automatically detect and delete blank pages.",
-    "sensitivityHint": "Higher = stricter, only purely blank pages. Lower = allows pages with some content."
+    "sensitivityHint": "Higher = stricter, only purely blank pages. Lower = allows pages with some content.",
+    "loader": {
+      "detectingBlankPages": "Detecting blank pages..."
+    },
+    "alert": {
+      "info": "Info",
+      "noBlankPagesDetected": "No blank pages detected in this PDF.",
+      "couldNotDetectBlank": "Could not detect blank pages.",
+      "noPagesSelectedRemoval": "No pages selected for removal.",
+      "couldNotRemoveBlank": "Could not remove blank pages."
+    }
   },
   "imageToPdf": {
     "name": "Images to PDF",
-    "subtitle": "Convert JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP to PDF."
+    "subtitle": "Convert JPG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2, PSD, SVG, HEIC, WebP to PDF.",
+    "alert": {
+      "someFilesWereSkipped": "Some files were skipped. Only supported image formats are allowed.",
+      "selectLeastOneImage": "Please select at least one image file."
+    },
+    "loader": {
+      "processingImages": "Processing images..."
+    }
   },
   "pngToPdf": {
     "name": "PNG to PDF",
-    "subtitle": "Create a PDF from one or more PNG images."
+    "subtitle": "Create a PDF from one or more PNG images.",
+    "alert": {
+      "someFilesWereSkipped": "Some files were skipped. Only PNG images are allowed."
+    }
   },
   "webpToPdf": {
     "name": "WebP to PDF",
-    "subtitle": "Create a PDF from one or more WebP images."
+    "subtitle": "Create a PDF from one or more WebP images.",
+    "alert": {
+      "someFilesWereSkipped": "Some files were skipped. Only WebP images are allowed."
+    }
   },
   "svgToPdf": {
     "name": "SVG to PDF",
-    "subtitle": "Create a PDF from one or more SVG images."
+    "subtitle": "Create a PDF from one or more SVG images.",
+    "alert": {
+      "someFilesWereSkipped": "Some files were skipped. Only SVG graphics are allowed.",
+      "selectLeastOneSvg": "Please select at least one SVG file."
+    },
+    "loader": {
+      "creatingPdfFromSvg": "Creating PDF from SVG files..."
+    }
   },
   "bmpToPdf": {
     "name": "BMP to PDF",
-    "subtitle": "Create a PDF from one or more BMP images."
+    "subtitle": "Create a PDF from one or more BMP images.",
+    "alert": {
+      "selectLeastOneBmp": "Please select at least one BMP file.",
+      "failedConvertBmpPdf": "Failed to convert BMP to PDF. One of the files may be invalid.",
+      "someFilesWereSkipped": "Some files were skipped. Only BMP files are allowed."
+    },
+    "loader": {
+      "convertingBmpPdf": "Converting BMP to PDF..."
+    }
   },
   "heicToPdf": {
     "name": "HEIC to PDF",
-    "subtitle": "Create a PDF from one or more HEIC images."
+    "subtitle": "Create a PDF from one or more HEIC images.",
+    "alert": {
+      "selectLeastOneHeic": "Please select at least one HEIC file.",
+      "failedConvertHeicPdf": "Failed to convert HEIC to PDF. One of the files may be invalid.",
+      "someFilesWereSkipped": "Some files were skipped. Only HEIC/HEIF files are allowed."
+    },
+    "loader": {
+      "convertingHeicPdf": "Converting HEIC to PDF..."
+    }
   },
   "tiffToPdf": {
     "name": "TIFF to PDF",
-    "subtitle": "Create a PDF from one or more TIFF images."
+    "subtitle": "Create a PDF from one or more TIFF images.",
+    "alert": {
+      "selectLeastOneTiff": "Please select at least one TIFF file.",
+      "failedConvertTiffPdf": "Failed to convert TIFF to PDF. One of the files may be invalid.",
+      "someFilesWereSkipped": "Some files were skipped. Only TIFF files are allowed."
+    },
+    "loader": {
+      "convertingTiffPdf": "Converting TIFF to PDF..."
+    }
   },
   "textToPdf": {
     "name": "Text to PDF",
@@ -414,7 +637,17 @@
     "textColor": "Text Color",
     "pageSize": "Page Size",
     "rtlAutoDetectNote": "RTL languages (Arabic, Urdu, Persian, etc.) are automatically detected and text direction is adjusted.",
-    "createButton": "Create PDF"
+    "createButton": "Create PDF",
+    "alert": {
+      "selectLeastOneText": "Please select at least one text file.",
+      "noText": "No Text",
+      "enterSomeTextConvert": "Please enter some text to convert.",
+      "textConvertedPdfSuccessfully": "Text converted to PDF successfully!",
+      "someFilesWereSkipped": "Some files were skipped. Only text files are allowed."
+    },
+    "loader": {
+      "creatingPdf": "Creating PDF..."
+    }
   },
   "jsonToPdf": {
     "name": "JSON to PDF",
@@ -519,7 +752,8 @@
       "noFileExplanation": "Please upload a PDF file first.",
       "conversionSuccess": "PDF converted to TIFFs successfully!",
       "conversionError": "Failed to convert PDF to TIFF. The file might be corrupted.",
-      "conversionOutOfMemory": "The browser ran out of memory while converting. Try a lower DPI, or uncheck the multi-page TIFF option to convert pages one at a time."
+      "conversionOutOfMemory": "The browser ran out of memory while converting. Try a lower DPI, or uncheck the multi-page TIFF option to convert pages one at a time.",
+      "failedLoadImageProcessor": "Failed to load the image processor. Please ensure your browser supports SharedArrayBuffer (requires HTTPS or localhost)."
     }
   },
   "pdfToCbz": {
@@ -554,7 +788,14 @@
   },
   "pdfToGreyscale": {
     "name": "PDF to Greyscale",
-    "subtitle": "Convert all colors to black and white."
+    "subtitle": "Convert all colors to black and white.",
+    "loader": {
+      "convertingGreyscale": "Converting to greyscale..."
+    },
+    "alert": {
+      "pdfConvertedGreyscaleSuccessfully": "PDF converted to greyscale successfully!",
+      "failedConvertPdfGreyscale": "Failed to convert PDF to greyscale. The file might be corrupted."
+    }
   },
   "pdfToJson": {
     "name": "PDF to JSON",
@@ -632,7 +873,17 @@
     "name": "Alternate & Mix Pages",
     "subtitle": "Merge PDFs by alternating pages from each PDF. Preserves Bookmarks.",
     "retainPageLabels": "Keep original page labels from each file",
-    "retainPageLabelsHint": "Off (default): the merged PDF uses natural page numbering 1–N. On: each file's original page labels are preserved (may produce duplicate labels)."
+    "retainPageLabelsHint": "Off (default): the merged PDF uses natural page numbering 1–N. On: each file's original page labels are preserved (may produce duplicate labels).",
+    "loader": {
+      "loadingPdfFiles": "Loading PDF files...",
+      "alternatingMixingPages": "Alternating and mixing pages..."
+    },
+    "alert": {
+      "notEnoughFiles": "Not Enough Files",
+      "uploadLeastTwoPdf": "Please upload at least two PDF files to alternate and mix.",
+      "leastTwoValidPdfs": "At least two valid PDFs are required.",
+      "pdfsHaveBeenMixed": "PDFs have been mixed successfully!"
+    }
   },
   "duplexCollate": {
     "name": "Duplex Collate",
@@ -681,27 +932,73 @@
   },
   "addAttachments": {
     "name": "Add Attachments",
-    "subtitle": "Embed one or more files into your PDF."
+    "subtitle": "Embed one or more files into your PDF.",
+    "alert": {
+      "selectLeastOneFile": "Please select at least one file to attach.",
+      "specifyPageRangePage": "Please specify a page range for page-level attachments."
+    },
+    "loader": {
+      "embeddingFilesIntoPdf": "Embedding files into PDF...",
+      "attachingFilesPdf": "Attaching files to PDF..."
+    }
   },
   "extractAttachments": {
     "name": "Extract Attachments",
-    "subtitle": "Extract all embedded files from PDF(s) as a ZIP."
+    "subtitle": "Extract all embedded files from PDF(s) as a ZIP.",
+    "alert": {
+      "noAttachments": "No Attachments",
+      "pdfFileSDo": "The PDF file(s) do not contain any attachments to extract."
+    },
+    "loader": {
+      "readingFiles": "Reading files..."
+    }
   },
   "editAttachments": {
     "name": "Edit Attachments",
-    "subtitle": "View or remove attachments in your PDF."
+    "subtitle": "View or remove attachments in your PDF.",
+    "alert": {
+      "attachmentsUpdatedSuccessfully": "Attachments updated successfully!",
+      "failedLoadAttachmentsFrom": "Failed to load attachments from PDF.",
+      "noPdfFileLoaded": "No PDF file loaded.",
+      "noAttachmentsSelectedRemoval": "No attachments selected for removal.",
+      "failedEditAttachments": "Failed to edit attachments."
+    },
+    "loader": {
+      "loadingAttachments": "Loading attachments...",
+      "processingAttachments": "Processing attachments..."
+    }
   },
   "dividePages": {
     "name": "Divide Pages",
-    "subtitle": "Divide pages horizontally or vertically."
+    "subtitle": "Divide pages horizontally or vertically.",
+    "alert": {
+      "invalidRange": "Invalid Range",
+      "enterValidPageRange": "Please enter a valid page range (e.g., 1-5, 8, 11-13).",
+      "pagesHaveBeenDivided": "Pages have been divided successfully!",
+      "errorOccurredWhileDividing": "An error occurred while dividing the PDF."
+    },
+    "loader": {
+      "splittingPdfPages": "Splitting PDF pages..."
+    }
   },
   "addBlankPage": {
     "name": "Add Blank Page",
-    "subtitle": "Insert an empty page anywhere in your PDF."
+    "subtitle": "Insert an empty page anywhere in your PDF.",
+    "alert": {
+      "invalidInput": "Invalid Input",
+      "enterValidNumberPages": "Please enter a valid number of pages (1 or more)."
+    }
   },
   "reversePages": {
     "name": "Reverse Pages",
-    "subtitle": "Flip the order of all pages in your document."
+    "subtitle": "Flip the order of all pages in your document.",
+    "loader": {
+      "reversingPageOrder": "Reversing page order..."
+    },
+    "alert": {
+      "pagesHaveBeenReversed": "Pages have been reversed successfully!",
+      "couldNotReversePdf": "Could not reverse the PDF pages. Please check that your files are valid PDFs."
+    }
   },
   "rotatePdf": {
     "name": "Rotate PDF",
@@ -713,23 +1010,57 @@
   },
   "nUpPdf": {
     "name": "N-Up PDF",
-    "subtitle": "Arrange multiple pages onto a single sheet."
+    "subtitle": "Arrange multiple pages onto a single sheet.",
+    "loader": {
+      "creatingNUpPdf": "Creating N-Up PDF..."
+    },
+    "alert": {
+      "nUpPdfCreated": "N-Up PDF created successfully!",
+      "errorOccurredWhileCreating": "An error occurred while creating the N-Up PDF."
+    }
   },
   "combineToSinglePage": {
     "name": "Combine to Single Page",
-    "subtitle": "Stitch all pages into one continuous scroll."
+    "subtitle": "Stitch all pages into one continuous scroll.",
+    "loader": {
+      "combiningPages": "Combining pages..."
+    },
+    "alert": {
+      "pagesCombinedSuccessfully": "Pages combined successfully!",
+      "errorOccurredWhileCombining": "An error occurred while combining pages."
+    }
   },
   "viewMetadata": {
     "name": "View Metadata",
-    "subtitle": "Inspect the hidden properties of your PDF."
+    "subtitle": "Inspect the hidden properties of your PDF.",
+    "alert": {
+      "copied": "Copied",
+      "metadataCopiedClipboardAs": "Metadata copied to clipboard as JSON.",
+      "failedCopyMetadataClipboard": "Failed to copy metadata to clipboard."
+    }
   },
   "editMetadata": {
     "name": "Edit Metadata",
-    "subtitle": "Change the author, title, and other properties."
+    "subtitle": "Change the author, title, and other properties.",
+    "loader": {
+      "updatingMetadata": "Updating metadata..."
+    },
+    "alert": {
+      "metadataUpdatedSuccessfully": "Metadata updated successfully!",
+      "couldNotUpdateMetadata": "Could not update metadata. Please check that date formats are correct."
+    }
   },
   "pdfsToZip": {
     "name": "PDFs to ZIP",
-    "subtitle": "Package multiple PDF files into a ZIP archive."
+    "subtitle": "Package multiple PDF files into a ZIP archive.",
+    "alert": {
+      "selectPdfFilesCreate": "Please select PDF files to create a ZIP archive.",
+      "zipArchiveCreatedSuccessfully": "ZIP archive created successfully!",
+      "couldNotCreateZip": "Could not create ZIP archive."
+    },
+    "loader": {
+      "generatingZipFile": "Generating ZIP file..."
+    }
   },
   "comparePdfs": {
     "name": "Compare PDFs",
@@ -777,15 +1108,30 @@
   },
   "posterizePdf": {
     "name": "Posterize PDF",
-    "subtitle": "Split a large page into multiple smaller pages."
+    "subtitle": "Split a large page into multiple smaller pages.",
+    "loader": {
+      "posterizingPdf": "Posterizing PDF..."
+    },
+    "alert": {
+      "pdfHasBeenPosterized": "Your PDF has been posterized.",
+      "couldNotPosterizePdf": "Could not posterize the PDF."
+    }
   },
   "fixPageSize": {
     "name": "Fix Page Size",
-    "subtitle": "Standardize all pages to a uniform size."
+    "subtitle": "Standardize all pages to a uniform size.",
+    "alert": {
+      "pageSizesStandardizedSuccessfully": "Page sizes standardized successfully!",
+      "errorOccurredWhileStandardizing": "An error occurred while standardizing pages."
+    }
   },
   "linearizePdf": {
     "name": "Linearize PDF",
-    "subtitle": "Optimize PDF for fast web viewing."
+    "subtitle": "Optimize PDF for fast web viewing.",
+    "alert": {
+      "noPdfFiles": "No PDF Files",
+      "linearizationFailed": "Linearization Failed"
+    }
   },
   "pageDimensions": {
     "name": "Page Dimensions",
@@ -793,11 +1139,26 @@
   },
   "removeRestrictions": {
     "name": "Remove Restrictions",
-    "subtitle": "Remove password protection and security restrictions associated with digitally signed PDF files."
+    "subtitle": "Remove password protection and security restrictions associated with digitally signed PDF files.",
+    "alert": {
+      "pdfRestrictionsRemovedSuccessfully": "PDF restrictions removed successfully! The file is now fully editable and printable.",
+      "operationFailed": "Operation Failed",
+      "pdfMightCorruptedPassword": "The PDF might be corrupted or password-protected."
+    }
   },
   "repairPdf": {
     "name": "Repair PDF",
-    "subtitle": "Recover data from corrupted or damaged PDF files."
+    "subtitle": "Recover data from corrupted or damaged PDF files.",
+    "loader": {
+      "initializingRepairEngine": "Initializing repair engine..."
+    },
+    "alert": {
+      "repairFailed": "Repair Failed",
+      "unableRepairAnyUploaded": "Unable to repair any of the uploaded PDF files.",
+      "partialSuccess": "Partial Success",
+      "allFilesRepairedSuccessfully": "All files repaired successfully!",
+      "unexpectedErrorOccurredDuring": "An unexpected error occurred during the repair process."
+    }
   },
   "encryptPdf": {
     "name": "Encrypt PDF",
@@ -805,7 +1166,13 @@
   },
   "sanitizePdf": {
     "name": "Sanitize PDF",
-    "subtitle": "Remove metadata, annotations, scripts, and more."
+    "subtitle": "Remove metadata, annotations, scripts, and more.",
+    "alert": {
+      "noPdfDocumentLoaded": "No PDF document loaded.",
+      "noItemsWereSelected": "No items were selected for removal or none were found in the PDF.",
+      "sanitizedWithWarnings": "Sanitized With Warnings",
+      "pdfHasBeenSanitized": "PDF has been sanitized and downloaded."
+    }
   },
   "decryptPdf": {
     "name": "Decrypt PDF",
@@ -817,47 +1184,89 @@
   },
   "removeMetadata": {
     "name": "Remove Metadata",
-    "subtitle": "Strip hidden data from your PDF."
+    "subtitle": "Strip hidden data from your PDF.",
+    "alert": {
+      "metadataRemovedSuccessfully": "Metadata removed successfully!",
+      "errorOccurredWhileTrying": "An error occurred while trying to remove metadata."
+    }
   },
   "changePermissions": {
     "name": "Change Permissions",
-    "subtitle": "Set or change user permissions on a PDF."
+    "subtitle": "Set or change user permissions on a PDF.",
+    "alert": {
+      "ownerPasswordRequired": "Owner Password Required",
+      "ownerPasswordRequiredWhen": "An owner password is required when setting permissions",
+      "currentPasswordYouEntered": "The current password you entered is incorrect. Please try again.",
+      "passwordRequired": "Password Required",
+      "pdfPasswordProtectedEnter": "This PDF is password-protected. Please enter the current password to proceed.",
+      "pdfMightCorruptedPassword": "The PDF might be corrupted or password protected."
+    }
   },
   "odtToPdf": {
     "name": "ODT to PDF",
     "subtitle": "Convert OpenDocument Text files to PDF format. Supports multiple files.",
     "acceptedFormats": "ODT files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "alert": {
+      "selectLeastOneOdt": "Please select at least one ODT file."
+    }
   },
   "csvToPdf": {
     "name": "CSV to PDF",
     "subtitle": "Convert CSV spreadsheet files to PDF format. Supports multiple files.",
     "acceptedFormats": "CSV files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "alert": {
+      "selectLeastOneCsv": "Please select at least one CSV file."
+    },
+    "loader": {
+      "preparingConversion": "Preparing conversion..."
+    }
   },
   "rtfToPdf": {
     "name": "RTF to PDF",
     "subtitle": "Convert Rich Text Format documents to PDF. Supports multiple files.",
     "acceptedFormats": "RTF files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "alert": {
+      "selectLeastOneRtf": "Please select at least one RTF file."
+    },
+    "loader": {
+      "convertingMultipleRtfFiles": "Converting multiple RTF files to PDF..."
+    }
   },
   "wordToPdf": {
     "name": "Word to PDF",
     "subtitle": "Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files.",
     "acceptedFormats": "DOCX, DOC, ODT, RTF files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "alert": {
+      "selectLeastOneWord": "Please select at least one Word document.",
+      "uploadDocxFileFirst": "Please upload a .docx file first.",
+      "previewError": "Preview Error"
+    },
+    "loader": {
+      "preparingPreview": "Preparing preview...",
+      "generatingHighQualityPdf": "Generating High-Quality PDF..."
+    }
   },
   "excelToPdf": {
     "name": "Excel to PDF",
     "subtitle": "Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files.",
     "acceptedFormats": "XLSX, XLS, ODS, CSV files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "alert": {
+      "selectLeastOneExcel": "Please select at least one Excel file."
+    }
   },
   "powerpointToPdf": {
     "name": "PowerPoint to PDF",
     "subtitle": "Convert PowerPoint presentations (PPTX, PPT, ODP) to PDF format. Supports multiple files.",
     "acceptedFormats": "PPTX, PPT, ODP files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "alert": {
+      "selectLeastOnePowerpoint": "Please select at least one PowerPoint file."
+    }
   },
   "markdownToPdf": {
     "name": "Markdown to PDF",
@@ -893,7 +1302,14 @@
     "pagesPerSheet": "Pages per Sheet",
     "createBooklet": "Create Booklet",
     "processing": "Processing...",
-    "pageCount": "Page count will be padded to multiple of 4 if needed."
+    "pageCount": "Page count will be padded to multiple of 4 if needed.",
+    "alert": {
+      "loadPdfFirst": "Please load a PDF first.",
+      "errorOccurredWhileCreating": "An error occurred while creating the booklet."
+    },
+    "loader": {
+      "creatingBooklet": "Creating Booklet..."
+    }
   },
   "xpsToPdf": {
     "name": "XPS to PDF",
@@ -987,26 +1403,52 @@
   },
   "pdfToSvg": {
     "name": "PDF to SVG",
-    "subtitle": "Convert each page of a PDF file into a scalable vector graphic (SVG) for perfect quality at any size."
+    "subtitle": "Convert each page of a PDF file into a scalable vector graphic (SVG) for perfect quality at any size.",
+    "loader": {
+      "convertingSvg": "Converting to SVG..."
+    },
+    "alert": {
+      "pdfConvertedSvgSuccessfully": "PDF converted to SVG successfully!",
+      "uploadPdfFiles": "Please upload PDF files."
+    }
   },
   "extractTables": {
     "name": "Extract PDF Tables",
-    "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown."
+    "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown.",
+    "alert": {
+      "extracted1TableSuccessfully": "Extracted 1 table successfully!"
+    }
   },
   "pdfToCsv": {
     "name": "PDF to CSV",
-    "subtitle": "Extract tables from PDF and convert to CSV format."
+    "subtitle": "Extract tables from PDF and convert to CSV format.",
+    "alert": {
+      "pdfConvertedCsvSuccessfully": "PDF converted to CSV successfully!"
+    }
   },
   "pdfToExcel": {
     "name": "PDF to Excel",
-    "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format."
+    "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format.",
+    "loader": {
+      "creatingExcelFile": "Creating Excel file..."
+    }
   },
   "pdfToText": {
     "name": "PDF to Text",
     "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
     "noteLabel": "Note:",
     "noteText": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead.",
-    "convertButton": "Extract Text"
+    "convertButton": "Extract Text",
+    "alert": {
+      "someFilesWereSkipped": "Some files were skipped. Only PDF files are allowed.",
+      "textExtractedSuccessfully": "Text extracted successfully!",
+      "extractionError": "Extraction Error",
+      "failedExtractTextFrom": "Failed to extract text from PDF."
+    },
+    "loader": {
+      "extractingText": "Extracting text...",
+      "extractingTextFromMultiple": "Extracting text from multiple files..."
+    }
   },
   "digitalSignPdf": {
     "name": "Digital Signature PDF",
@@ -1097,7 +1539,15 @@
   "validateSignaturePdf": {
     "name": "Validate PDF Signature",
     "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
-    "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
+    "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser.",
+    "alert": {
+      "selectPemCrtCer": "Please select a .pem, .crt, .cer, or .der certificate file.",
+      "failedParseCertificateFile": "Failed to parse the certificate file.",
+      "failedValidateSignaturesFile": "Failed to validate signatures. The file may be corrupted."
+    },
+    "loader": {
+      "analyzingSignatures": "Analyzing signatures..."
+    }
   },
   "timestampPdf": {
     "name": "Timestamp PDF",
@@ -1106,13 +1556,24 @@
     "tsaSectionTitle": "Timestamp Server (TSA)",
     "selectTsa": "Select a TSA server",
     "applyTimestamp": "Apply Timestamp",
-    "successMessage": "PDF timestamped successfully! The timestamp can be verified in any PDF reader."
+    "successMessage": "PDF timestamped successfully! The timestamp can be verified in any PDF reader.",
+    "loader": {
+      "applyingTimestamp": "Applying timestamp..."
+    },
+    "alert": {
+      "timestampFailed": "Timestamp Failed"
+    }
   },
   "emailToPdf": {
     "name": "Email to PDF",
     "subtitle": "Convert email files (EML, MSG) to PDF format. Supports Outlook exports and standard email formats.",
     "acceptedFormats": "EML, MSG files",
-    "convertButton": "Convert to PDF"
+    "convertButton": "Convert to PDF",
+    "loader": {
+      "loadingPdfEngine": "Loading PDF engine...",
+      "generatingPdf": "Generating PDF...",
+      "convertingEmails": "Converting emails..."
+    }
   },
   "fontToOutline": {
     "name": "Font to Outline",
@@ -1120,7 +1581,13 @@
   },
   "deskewPdf": {
     "name": "Deskew PDF",
-    "subtitle": "Automatically straighten tilted scanned pages using OpenCV."
+    "subtitle": "Automatically straighten tilted scanned pages using OpenCV.",
+    "loader": {
+      "initializingPymupdf": "Initializing PyMuPDF..."
+    },
+    "alert": {
+      "downloadsStartedAllFiles": "Downloads started for all files."
+    }
   },
   "pdfToWord": {
     "name": "PDF to Word",
@@ -1128,27 +1595,73 @@
   },
   "extractImages": {
     "name": "Extract Images",
-    "subtitle": "Extract all embedded images from your PDF files."
+    "subtitle": "Extract all embedded images from your PDF files.",
+    "loader": {
+      "loadingPdfProcessor": "Loading PDF processor..."
+    },
+    "alert": {
+      "noImagesFound": "No Images Found",
+      "noEmbeddedImagesWere": "No embedded images were found in the selected PDF(s)."
+    }
   },
   "pdfToMarkdown": {
     "name": "PDF to Markdown",
-    "subtitle": "Convert PDF text and tables to Markdown format."
+    "subtitle": "Convert PDF text and tables to Markdown format.",
+    "loader": {
+      "convertingMarkdown": "Converting to Markdown..."
+    },
+    "alert": {
+      "failedConvertPdfMay": "Failed to convert PDF. It may be image-based or corrupted."
+    }
   },
   "preparePdfForAi": {
     "name": "Prepare PDF for AI",
-    "subtitle": "Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines."
+    "subtitle": "Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines.",
+    "loader": {
+      "extracting": "Extracting..."
+    },
+    "alert": {
+      "successfullyExtractedPdfAi": "Successfully extracted PDF for AI/LLM use.",
+      "extractionPartial": "Extraction Partial"
+    }
   },
   "pdfOcg": {
     "name": "PDF OCG",
-    "subtitle": "View, toggle, add, and delete OCG layers in your PDF."
+    "subtitle": "View, toggle, add, and delete OCG layers in your PDF.",
+    "alert": {
+      "failedToggleLayerVisibility": "Failed to toggle layer visibility",
+      "layerNotFound": "Layer not found",
+      "failedDeleteLayer": "Failed to delete layer",
+      "failedAddChildLayer": "Failed to add child layer",
+      "failedLoadPdfLayers": "Failed to load PDF layers",
+      "invalidName": "Invalid Name",
+      "enterLayerName": "Please enter a layer name",
+      "pdfWithLayerChanges": "PDF with layer changes saved!"
+    },
+    "loader": {
+      "readingLayerConfiguration": "Reading layer configuration...",
+      "savingPdfWithLayer": "Saving PDF with layer changes..."
+    }
   },
   "pdfToPdfa": {
     "name": "PDF to PDF/A",
-    "subtitle": "Convert PDF to PDF/A for long-term archiving."
+    "subtitle": "Convert PDF to PDF/A for long-term archiving.",
+    "loader": {
+      "preFlatteningPdf": "Pre-flattening PDF...",
+      "initializingGhostscript": "Initializing Ghostscript...",
+      "convertingMultiplePdfsPdf": "Converting multiple PDFs to PDF/A..."
+    }
   },
   "rasterizePdf": {
     "name": "Rasterize PDF",
-    "subtitle": "Convert PDF to image-based PDF. Flatten layers and remove selectable text."
+    "subtitle": "Convert PDF to image-based PDF. Flatten layers and remove selectable text.",
+    "loader": {
+      "rasterizing": "Rasterizing..."
+    },
+    "alert": {
+      "rasterizationComplete": "Rasterization Complete",
+      "rasterizationPartial": "Rasterization Partial"
+    }
   },
   "pdfWorkflow": {
     "name": "PDF Workflow Builder",
@@ -1247,6 +1760,9 @@
       "invalidWorkflowFile": "Invalid workflow file: missing nodes or connections array.",
       "storageQuotaExceeded": "Failed to save workflow: storage quota exceeded. Try deleting old templates.",
       "failedToImport": "Failed to import workflow: {{message}}"
+    },
+    "alert": {
+      "loaded": "Loaded"
     }
   },
   "wasmSettings": {
@@ -1314,14 +1830,46 @@
     "faqSinglePageQuestion": "Can I use a single-page PDF as overlay for all pages?",
     "faqSinglePageAnswer": "Yes! Enable the \"Loop\" option and your overlay PDF pages will repeat across all base pages. A single-page watermark will apply to every page.",
     "faqPrivacyQuestion": "Are my files private and secure?",
-    "faqPrivacyAnswer": "Absolutely! All processing happens in your browser. Your files never leave your device, ensuring complete privacy."
+    "faqPrivacyAnswer": "Absolutely! All processing happens in your browser. Your files never leave your device, ensuring complete privacy.",
+    "alert": {
+      "missingFiles": "Missing Files",
+      "uploadBothBasePdf": "Please upload both a base PDF and an overlay/underlay PDF."
+    }
   },
   "unlockPdf": {
     "name": "Unlock PDF",
-    "subtitle": "Remove the password from a PDF so it opens freely. Requires the current password."
+    "subtitle": "Remove the password from a PDF so it opens freely. Requires the current password.",
+    "alert": {
+      "enterPdfPassword": "Please enter the PDF password.",
+      "pdfDecryptedSuccessfullyDownload": "PDF decrypted successfully! Your download has started.",
+      "passwordYouEnteredIncorrect": "The password you entered is incorrect. Please try again.",
+      "passwordError": "Password Error",
+      "unableDecryptPdfWith": "Unable to decrypt the PDF with the provided password.",
+      "decryptionFailed": "Decryption Failed",
+      "passwordYouEnteredWrong": "The password you entered is wrong or the file is corrupted."
+    }
   },
   "protectPdf": {
     "name": "Protect PDF",
-    "subtitle": "Password protect a PDF with strong AES encryption."
+    "subtitle": "Password protect a PDF with strong AES encryption.",
+    "alert": {
+      "enterUserPassword": "Please enter a user password.",
+      "encryptionFailed": "Encryption Failed",
+      "pdfMightCorrupted": "The PDF might be corrupted."
+    }
+  },
+  "cropper": {
+    "alert": {
+      "selectAreaCrop": "Please select an area to crop.",
+      "failedLoadPdfCropping": "Failed to load PDF for cropping."
+    }
+  },
+  "redact": {
+    "loader": {
+      "applyingRedactions": "Applying redactions..."
+    },
+    "alert": {
+      "failedApplyRedactions": "Failed to apply redactions."
+    }
   }
 }

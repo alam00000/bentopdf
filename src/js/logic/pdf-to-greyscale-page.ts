@@ -88,13 +88,16 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(files[0], files, 0);
     if (!result) return;
-    showLoader('Converting to greyscale...');
+    showLoader(t('tools:pdfToGreyscale.loader.convertingGreyscale'));
     const { pdf: pdfjsDoc } = result;
     const newPdfDoc = await PDFDocument.create();
 
@@ -141,8 +144,8 @@ async function convert() {
       files[0]?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'PDF converted to greyscale successfully!',
+      t('common.success'),
+      t('tools:pdfToGreyscale.alert.pdfConvertedGreyscaleSuccessfully'),
       'success',
       () => {
         resetState();
@@ -151,8 +154,8 @@ async function convert() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert PDF to greyscale. The file might be corrupted.'
+      t('common.error'),
+      t('tools:pdfToGreyscale.alert.failedConvertPdfGreyscale')
     );
   } finally {
     hideLoader();
@@ -178,7 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:addPageLabels.invalidFileTitle'),
+        t('tools:pdfToJpg.alert.invalidFileExplanation')
+      );
       return;
     }
 

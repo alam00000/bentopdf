@@ -13,6 +13,7 @@ import {
   isValidImageFile,
   preprocessImageFile,
 } from '@/js/utils/image-input-utils.js';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 let pymupdf: PyMuPDFInstance | null = null;
@@ -100,8 +101,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only supported image formats are allowed.'
+      t('alert.invalidFiles'),
+      t('tools:imageToPdf.alert.someFilesWereSkipped')
     );
   }
 
@@ -175,11 +176,14 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one image file.');
+    showAlert(
+      t('alert.noFiles'),
+      t('tools:imageToPdf.alert.selectLeastOneImage')
+    );
     return;
   }
 
-  showLoader('Processing images...');
+  showLoader(t('tools:imageToPdf.loader.processingImages'));
 
   try {
     const quality = getSelectedQuality();
@@ -195,22 +199,27 @@ async function convertToPdf() {
       }
     }
 
-    showLoader('Loading engine...');
+    showLoader(t('loader.loadingEngine'));
     const mupdf = await ensurePyMuPDF();
 
-    showLoader('Converting images to PDF...');
+    showLoader(t('multiTool.convertingImages'));
     const pdfBlob = await mupdf.imagesToPdf(processedFiles);
 
     downloadFile(pdfBlob, 'images_to_pdf.pdf');
 
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e: unknown) {
     console.error('[ImageToPDF]', e);
     showAlert(
-      'Conversion Error',
-      e instanceof Error ? e.message : 'Failed to convert images to PDF.'
+      t('alert.conversionError'),
+      e instanceof Error ? e.message : t('multiTool.failedToConvertImages')
     );
   } finally {
     hideLoader();

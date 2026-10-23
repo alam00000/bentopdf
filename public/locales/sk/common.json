@@ -111,11 +111,58 @@
     "title": "Súvisiace PDF nástroje"
   },
   "loader": {
-    "processing": "Spracováva sa..."
+    "processing": "Spracováva sa...",
+    "analyzingFullPdfMetadata": "Analyzujú sa úplné metadáta PDF...",
+    "loadingPreview": "Načítava sa náhľad...",
+    "convertingFiles": "Konvertujú sa súbory...",
+    "applyingCrop": "Orezáva sa...",
+    "creatingZipArchive": "Vytvára sa ZIP archív...",
+    "buildingNewPdf": "Vytvára sa nové PDF...",
+    "loadingEngine": "Načítava sa jadro...",
+    "loadingEngine2": "Načítava sa jadro...",
+    "extractingTables": "Extrahujú sa tabuľky...",
+    "convertingMultipleFiles": "Konvertuje sa viacero súborov...",
+    "loadingPdfConverter": "Načítava sa konvertor PDF...",
+    "converting": "Konvertuje sa...",
+    "creatingPdfFromJpgs": "Vytvára sa PDF z JPG...",
+    "applyingRotations": "Používajú sa otočenia..."
   },
   "alert": {
     "title": "Upozornenie",
-    "ok": "OK"
+    "ok": "OK",
+    "couldNotFullyAnalyze": "PDF sa nepodarilo úplne analyzovať. Môže byť poškodené alebo mať neobvyklú štruktúru.",
+    "invalidFiles": "Neplatné súbory",
+    "unknownErrorOccurred": "Nastala neznáma chyba.",
+    "uploadPdfFirst": "Najskôr nahrajte PDF súbor.",
+    "noFiles": "Žiadne súbory",
+    "failedLoadPdfPreview": "PDF sa nepodarilo načítať na náhľad.",
+    "uploadLeastOnePdf": "Nahrajte aspoň jeden PDF súbor.",
+    "pdfCreatedSuccessfully": "PDF bolo úspešne vytvorené!",
+    "conversionComplete": "Konverzia dokončená",
+    "processingFailed": "Spracovanie zlyhalo",
+    "selectLeastOnePdf": "Vyberte aspoň jeden PDF súbor.",
+    "failedRenderPage": "Stranu sa nepodarilo vykresliť.",
+    "noCropArea": "Žiadna oblasť orezania",
+    "selectAreaCropFirst": "Najskôr vyberte oblasť na orezanie.",
+    "selectAreaLeastOne": "Vyberte oblasť na orezanie aspoň na jednej strane.",
+    "cropCompleteDownloadHas": "Orezanie dokončené! Sťahovanie sa začalo.",
+    "errorOccurredDuringCropping": "Pri orezávaní nastala chyba.",
+    "cannotDelete": "Nie je možné odstrániť",
+    "youCannotDeleteLast": "Poslednú stranu dokumentu nie je možné odstrániť.",
+    "noValidPagesSave": "Žiadne platné strany na uloženie.",
+    "noChanges": "Žiadne zmeny",
+    "extractionComplete": "Extrahovanie dokončené",
+    "noTablesFound": "Nenašli sa žiadne tabuľky",
+    "noTablesWereDetected": "V tomto PDF sa nenašli žiadne tabuľky.",
+    "noPdfsCouldProcessed": "Nepodarilo sa spracovať žiadne PDF.",
+    "viewerNotReady": "Prehliadač nie je pripravený",
+    "conversionError": "Chyba konverzie",
+    "processingComplete": "Spracovanie dokončené",
+    "selectLeastOneJpg": "Vyberte aspoň jeden súbor JPG.",
+    "inputRequired": "Vyžaduje sa vstup",
+    "selectOneMorePdf": "Vyberte jeden alebo viac PDF súborov.",
+    "rotationsAppliedSuccessfully": "Otočenia boli úspešne použité!",
+    "couldNotApplyRotations": "Otočenia sa nepodarilo použiť."
   },
   "preview": {
     "title": "Náhľad dokumentu",
@@ -279,7 +326,14 @@
     "files": "Súbory",
     "close": "Zavrieť",
     "convert": "Konvertovať",
-    "unknownError": "Neznáma chyba"
+    "unknownError": "Neznáma chyba",
+    "loader": {
+      "initializingPdfEngine": "Inicializuje sa PDF jadro..."
+    },
+    "alert": {
+      "initializationError": "Chyba inicializácie",
+      "couldNotLoadPdf": "PDF jadro sa nepodarilo načítať. Obnovte stránku a skúste to znova."
+    }
   },
   "about": {
     "hero": {
@@ -325,7 +379,12 @@
   "contact": {
     "title": "Kontaktujte nás",
     "subtitle": "Radi o vás budeme počuť. Či už máte otázku, spätnú väzbu, alebo návrh na novú funkciu, neváhajte sa ozvať.",
-    "email": "Môžete nás kontaktovať priamo e-mailom na:"
+    "email": "Môžete nás kontaktovať priamo e-mailom na:",
+    "emailTitle": "E-mail",
+    "githubText": "Nahláste chybu, navrhnite funkciu alebo si prečítajte zdrojový kód.",
+    "discordText": "Pridajte sa ku komunite a porozprávajte sa s nami aj s ďalšími používateľmi.",
+    "faqText": "Nájdite rýchle odpovede na najčastejšie otázky.",
+    "faqLink": "Prečítať časté otázky"
   },
   "licensing": {
     "title": "Licencovanie pre",
@@ -386,5 +445,11 @@
     "heading": "Tento nástroj bol zakázaný",
     "message": "Tento nástroj nie je vo vašom nasadení dostupný. Pre viac informácií kontaktujte svojho administrátora.",
     "backHome": "Späť domov"
+  },
+  "fileHandler": {
+    "alert": {
+      "couldNotLoadPdf": "PDF sa nepodarilo načítať. Súbor môže byť neplatný, poškodený alebo chránený heslom.",
+      "someFilesWereSkipped": "Niektoré súbory boli preskočené, pretože nie sú podporované obrázky."
+    }
   }
 }

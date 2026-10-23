@@ -7,6 +7,7 @@ import {
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import { RemoveRestrictionsState, QpdfInstanceExtended } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: RemoveRestrictionsState = {
   file: null,
@@ -88,7 +89,10 @@ function handleFileSelect(files: FileList | null) {
 
 async function removeRestrictions() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
@@ -158,8 +162,8 @@ async function removeRestrictions() {
     if (loaderModal) loaderModal.classList.add('hidden');
 
     showAlert(
-      'Success',
-      'PDF restrictions removed successfully! The file is now fully editable and printable.',
+      t('common.success'),
+      t('tools:removeRestrictions.alert.pdfRestrictionsRemovedSuccessfully'),
       'success',
       () => {
         resetState();
@@ -169,8 +173,8 @@ async function removeRestrictions() {
     console.error('Error during restriction removal:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
-      'Operation Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'The PDF might be corrupted or password-protected.'}`
+      t('tools:removeRestrictions.alert.operationFailed'),
+      `An error occurred: ${error instanceof Error ? error.message : t('tools:removeRestrictions.alert.pdfMightCorruptedPassword')}`
     );
   } finally {
     try {

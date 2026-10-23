@@ -10,6 +10,7 @@ import {
   getSelectedQuality,
   compressImageBytes,
 } from '../utils/image-compress.js';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 
@@ -94,8 +95,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only WebP images are allowed.'
+      t('alert.invalidFiles'),
+      t('tools:webpToPdf.alert.someFilesWereSkipped')
     );
   }
 
@@ -206,11 +207,11 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one JPG file.');
+    showAlert(t('alert.noFiles'), t('alert.selectLeastOneJpg'));
     return;
   }
 
-  showLoader('Creating PDF from JPGs...');
+  showLoader(t('loader.creatingPdfFromJpgs'));
 
   try {
     const pdfDoc = await PDFLibDocument.create();
@@ -249,12 +250,20 @@ async function convertToPdf() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_webps.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e: unknown) {
     console.error(e);
-    showAlert('Conversion Error', e instanceof Error ? e.message : String(e));
+    showAlert(
+      t('alert.conversionError'),
+      e instanceof Error ? e.message : String(e)
+    );
   } finally {
     hideLoader();
   }

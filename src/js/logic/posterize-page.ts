@@ -10,6 +10,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { createIcons, icons } from 'lucide';
 import { PosterizeState } from '@/types';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const pageState: PosterizeState = {
   file: null,
@@ -159,11 +160,14 @@ function updatePreviewNav() {
 
 async function posterize() {
   if (!pageState.pdfJsDoc || !pageState.pdfBytes) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
-  showLoader('Posterizing PDF...');
+  showLoader(t('tools:posterizePdf.loader.posterizingPdf'));
 
   try {
     const rows =
@@ -309,10 +313,16 @@ async function posterize() {
       pageState.file?.name || 'document.pdf'
     );
 
-    showAlert('Success', 'Your PDF has been posterized.');
+    showAlert(
+      t('common.success'),
+      t('tools:posterizePdf.alert.pdfHasBeenPosterized')
+    );
   } catch (e) {
     console.error(e);
-    showAlert('Error', (e as Error).message || 'Could not posterize the PDF.');
+    showAlert(
+      t('common.error'),
+      (e as Error).message || t('tools:posterizePdf.alert.couldNotPosterizePdf')
+    );
   } finally {
     hideLoader();
   }

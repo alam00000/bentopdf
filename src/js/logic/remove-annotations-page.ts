@@ -6,6 +6,7 @@ import {
   removeUnreferencedObjects,
 } from '../utils/load-pdf-document.js';
 import { escapeHtml } from '../utils/helpers.js';
+import { t } from '../i18n/i18n';
 
 // State management
 const pageState: { pdfDoc: PDFDocument | null; file: File | null } = {
@@ -104,14 +105,14 @@ function resetState() {
 // File handling
 async function handleFileUpload(file: File) {
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Error', 'Please upload a valid PDF file.');
+    showAlert(t('common.error'), t('tools:addPageLabels.invalidFileMessage'));
     return;
   }
 
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -119,7 +120,7 @@ async function handleFileUpload(file: File) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   } finally {
     hideLoader();
   }
@@ -128,11 +129,11 @@ async function handleFileUpload(file: File) {
 // Process function
 async function processRemoveAnnotations() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert(t('common.error'), t('tools:addPageLabels.uploadFirstMessage'));
     return;
   }
 
-  showLoader('Removing annotations...');
+  showLoader(t('tools:removeAnnotations.loader.removingAnnotations'));
   try {
     const pages = pageState.pdfDoc.getPages();
 
@@ -152,12 +153,20 @@ async function processRemoveAnnotations() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Annotations removed successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('tools:removeAnnotations.alert.annotationsRemovedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not remove annotations.');
+    showAlert(
+      t('common.error'),
+      t('tools:removeAnnotations.alert.couldNotRemoveAnnotations')
+    );
   } finally {
     hideLoader();
   }

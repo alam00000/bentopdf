@@ -46,6 +46,7 @@ import {
 import { getControlSpec } from '@/js/workflow/nodes/control-specs';
 import { isToolDisabled } from '@/js/utils/disabled-tools.js';
 import { IMAGE_ACCEPT } from '@/js/utils/image-input-utils.js';
+import { t } from '../i18n/i18n';
 
 let workflowEditor: WorkflowEditor | null = null;
 let selectedNodeId: string | null = null;
@@ -84,16 +85,13 @@ async function initializePage() {
   document.getElementById('run-btn')?.addEventListener('click', async () => {
     const allNodes = editor.getNodes() as BaseWorkflowNode[];
     if (allNodes.length === 0) {
-      showAlert('Error', 'Add at least one node to run the workflow.');
+      showAlert(t('common.error'), t('tools:pdfWorkflow.addNodeError'));
       return;
     }
     const hasInput = allNodes.some((n) => n.category === 'Input');
     const hasOutput = allNodes.some((n) => n.category === 'Output');
     if (!hasInput || !hasOutput) {
-      showAlert(
-        'Error',
-        'Your workflow needs at least one input node and one output node to run.'
-      );
+      showAlert(t('common.error'), t('tools:pdfWorkflow.needInputOutput'));
       return;
     }
 
@@ -110,7 +108,7 @@ async function initializePage() {
       if (statusText) statusText.textContent = 'Workflow completed';
     } catch (err) {
       if (statusText) statusText.textContent = 'Error during execution';
-      showAlert('Error', (err as Error).message);
+      showAlert(t('common.error'), (err as Error).message);
     } finally {
       runBtn.disabled = false;
       runBtn.classList.remove('opacity-50', 'pointer-events-none');
@@ -331,7 +329,11 @@ function showSaveTemplateModal(
     }
     saveWorkflow(editor, area, name);
     cleanup();
-    showAlert('Saved', `Template "${name}" saved.`, 'success');
+    showAlert(
+      t('tools:wasmSettings.savedTitle'),
+      `Template "${name}" saved.`,
+      'success'
+    );
   };
 
   const onKeydown = (e: KeyboardEvent) => {
@@ -387,9 +389,16 @@ function showLoadTemplateModal(
         cleanup();
         if (loaded) {
           updateNodeCount();
-          showAlert('Loaded', `Template "${name}" loaded.`, 'success');
+          showAlert(
+            t('tools:pdfWorkflow.alert.loaded'),
+            `Template "${name}" loaded.`,
+            'success'
+          );
         } else {
-          showAlert('Error', 'Failed to load template.');
+          showAlert(
+            t('common.error'),
+            t('tools:pdfWorkflow.failedLoadTemplate')
+          );
         }
       });
       row.appendChild(loadBtn);
@@ -709,13 +718,16 @@ function showNodeSettings(node: BaseWorkflowNode) {
                 await node.addDecryptedFile(file, password);
               } catch {
                 showAlert(
-                  'Error',
+                  t('common.error'),
                   `Wrong password or failed to decrypt "${file.name}".`
                 );
               }
             }
           } else {
-            showAlert('Error', 'Failed to load PDF: ' + (err as Error).message);
+            showAlert(
+              t('common.error'),
+              'Failed to load PDF: ' + (err as Error).message
+            );
           }
         }
       }
@@ -769,7 +781,10 @@ function showNodeSettings(node: BaseWorkflowNode) {
         await node.addFiles(files);
         showNodeSettings(node);
       } catch (err) {
-        showAlert('Error', 'Failed to load images: ' + (err as Error).message);
+        showAlert(
+          t('common.error'),
+          'Failed to load images: ' + (err as Error).message
+        );
       }
     });
 
@@ -1096,7 +1111,10 @@ function showNodeSettings(node: BaseWorkflowNode) {
         await fileNode.addFiles(files);
         showNodeSettings(node);
       } catch (err) {
-        showAlert('Error', `Failed to load files: ${(err as Error).message}`);
+        showAlert(
+          t('common.error'),
+          `Failed to load files: ${(err as Error).message}`
+        );
       }
     });
 

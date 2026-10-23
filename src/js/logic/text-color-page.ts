@@ -13,6 +13,7 @@ import { TextColorState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const pageState: TextColorState = { file: null, pdfDoc: null };
 
@@ -64,13 +65,16 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -78,7 +82,7 @@ async function handleFiles(files: FileList) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   } finally {
     hideLoader();
   }
@@ -121,7 +125,7 @@ function resetState() {
 
 async function changeTextColor() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert(t('common.error'), t('tools:addPageLabels.uploadFirstMessage'));
     return;
   }
   const colorHex = (
@@ -129,7 +133,7 @@ async function changeTextColor() {
   ).value;
   const { r, g, b } = hexToRgb(colorHex);
   const darknessThreshold = 120;
-  showLoader('Changing text color...');
+  showLoader(t('tools:changeTextColor.loader.changingTextColor'));
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pdf = await getPDFDocument(
@@ -184,12 +188,20 @@ async function changeTextColor() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Text color changed successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('tools:changeTextColor.alert.textColorChangedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not change text color.');
+    showAlert(
+      t('common.error'),
+      t('tools:changeTextColor.alert.couldNotChangeText')
+    );
   } finally {
     hideLoader();
   }

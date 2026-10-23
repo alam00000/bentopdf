@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 let file: File | null = null;
 
 const updateUI = () => {
@@ -76,11 +77,14 @@ function tableToCsv(rows: (string | null)[][]): string {
 
 async function convert() {
   if (!file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
-  showLoader('Loading Engine...');
+  showLoader(t('loader.loadingEngine2'));
 
   try {
     const pymupdf = await loadPyMuPDF();
@@ -91,7 +95,7 @@ async function convert() {
     pwResult.pdf.destroy();
     file = pwResult.file;
 
-    showLoader('Extracting tables...');
+    showLoader(t('loader.extractingTables'));
 
     const doc = await pymupdf.open(file);
     const pageCount = doc.pageCount;
@@ -111,7 +115,7 @@ async function convert() {
     }
 
     if (allRows.length === 0) {
-      showAlert('No Tables Found', 'No tables were detected in this PDF.');
+      showAlert(t('alert.noTablesFound'), t('alert.noTablesWereDetected'));
       return;
     }
 
@@ -119,15 +123,15 @@ async function convert() {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     downloadFile(blob, `${baseName}.csv`);
     showAlert(
-      'Success',
-      'PDF converted to CSV successfully!',
+      t('common.success'),
+      t('tools:pdfToCsv.alert.pdfConvertedCsvSuccessfully'),
       'success',
       resetState
     );
   } catch (e) {
     console.error(e);
     const message = e instanceof Error ? e.message : 'Unknown error';
-    showAlert('Error', `Failed to convert PDF to CSV. ${message}`);
+    showAlert(t('common.error'), `Failed to convert PDF to CSV. ${message}`);
   } finally {
     hideLoader();
   }
@@ -152,7 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (!validFile) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:addPageLabels.invalidFileTitle'),
+        t('tools:pdfToJpg.alert.invalidFileExplanation')
+      );
       return;
     }
 

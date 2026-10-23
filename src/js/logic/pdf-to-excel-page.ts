@@ -4,6 +4,7 @@ import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import * as XLSX from 'xlsx';
+import { t } from '../i18n/i18n';
 let file: File | null = null;
 
 const updateUI = () => {
@@ -57,11 +58,14 @@ const resetState = () => {
 
 async function convert() {
   if (!file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
-  showLoader('Loading Engine...');
+  showLoader(t('loader.loadingEngine2'));
 
   try {
     const pymupdf = await loadPyMuPDF();
@@ -72,7 +76,7 @@ async function convert() {
     pwResult.pdf.destroy();
     file = pwResult.file;
 
-    showLoader('Extracting tables...');
+    showLoader(t('loader.extractingTables'));
 
     const doc = await pymupdf.open(file);
     const pageCount = doc.pageCount;
@@ -99,11 +103,11 @@ async function convert() {
     }
 
     if (allTables.length === 0) {
-      showAlert('No Tables Found', 'No tables were detected in this PDF.');
+      showAlert(t('alert.noTablesFound'), t('alert.noTablesWereDetected'));
       return;
     }
 
-    showLoader('Creating Excel file...');
+    showLoader(t('tools:pdfToExcel.loader.creatingExcelFile'));
 
     const workbook = XLSX.utils.book_new();
 
@@ -127,7 +131,7 @@ async function convert() {
     });
     downloadFile(blob, `${baseName}.xlsx`);
     showAlert(
-      'Success',
+      t('common.success'),
       `Extracted ${allTables.length} table(s) to Excel!`,
       'success',
       resetState
@@ -135,7 +139,7 @@ async function convert() {
   } catch (e) {
     console.error(e);
     const message = e instanceof Error ? e.message : 'Unknown error';
-    showAlert('Error', `Failed to convert PDF to Excel. ${message}`);
+    showAlert(t('common.error'), `Failed to convert PDF to Excel. ${message}`);
   } finally {
     hideLoader();
   }
@@ -160,7 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (!validFile) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:addPageLabels.invalidFileTitle'),
+        t('tools:pdfToJpg.alert.invalidFileExplanation')
+      );
       return;
     }
 

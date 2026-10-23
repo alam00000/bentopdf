@@ -6,6 +6,7 @@ import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 interface ReverseState {
   files: File[];
@@ -98,13 +99,13 @@ async function reverseSingleFile(file: File): Promise<Uint8Array> {
 
 async function reversePages() {
   if (reverseState.files.length === 0) {
-    showAlert('No Files', 'Please select one or more PDF files.');
+    showAlert(t('alert.noFiles'), t('alert.selectOneMorePdf'));
     return;
   }
 
   try {
     const decryptedFiles = await batchDecryptIfNeeded(reverseState.files);
-    showLoader('Reversing page order...');
+    showLoader(t('tools:reversePages.loader.reversingPageOrder'));
     reverseState.files = decryptedFiles;
 
     const validFiles = reverseState.files.filter(function (f) {
@@ -141,8 +142,8 @@ async function reversePages() {
     }
 
     showAlert(
-      'Success',
-      'Pages have been reversed successfully!',
+      t('common.success'),
+      t('tools:reversePages.alert.pagesHaveBeenReversed'),
       'success',
       function () {
         resetState();
@@ -151,8 +152,8 @@ async function reversePages() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Could not reverse the PDF pages. Please check that your files are valid PDFs.'
+      t('common.error'),
+      t('tools:reversePages.alert.couldNotReversePdf')
     );
   } finally {
     hideLoader();

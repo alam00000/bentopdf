@@ -8,6 +8,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import Sortable from 'sortablejs';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 interface OrganizeState {
   file: File | null;
@@ -80,7 +81,10 @@ function applyCustomOrder() {
 
   const orderString = orderInput.value;
   if (!orderString) {
-    showAlert('Invalid Order', 'Please enter a page order.');
+    showAlert(
+      t('tools:duplicateOrganize.alert.invalidOrder'),
+      t('tools:duplicateOrganize.alert.enterPageOrder')
+    );
     return;
   }
 
@@ -90,13 +94,16 @@ function applyCustomOrder() {
   const currentGridCount = grid.children.length;
   const validNumbers = newOrder.every((n) => !isNaN(n) && n > 0); // Basic check, will validate against available thumbnails
   if (!validNumbers) {
-    showAlert('Invalid Page Numbers', `Please enter positive numbers.`);
+    showAlert(
+      t('tools:duplicateOrganize.alert.invalidPageNumbers'),
+      t('tools:duplicateOrganize.alert.enterPositiveNumbers')
+    );
     return;
   }
 
   if (newOrder.length !== currentGridCount) {
     showAlert(
-      'Incorrect Page Count',
+      t('tools:duplicateOrganize.alert.incorrectPageCount'),
       `The number of pages specified (${newOrder.length}) does not match the current number of pages in the document (${currentGridCount}). Please provide a complete ordering for all pages.`
     );
     return;
@@ -105,8 +112,8 @@ function applyCustomOrder() {
   const uniqueNumbers = new Set(newOrder);
   if (uniqueNumbers.size !== newOrder.length) {
     showAlert(
-      'Duplicate Page Numbers',
-      'Please ensure all page numbers in the order are unique.'
+      t('tools:duplicateOrganize.alert.duplicatePageNumbers'),
+      t('tools:duplicateOrganize.alert.ensureAllPageNumbers')
     );
     return;
   }
@@ -137,8 +144,8 @@ function applyCustomOrder() {
     !allOriginalIndicesPresent
   ) {
     showAlert(
-      'Invalid Page Order',
-      'The specified page order is incomplete or contains invalid page numbers. Please ensure you provide a new position for every original page.'
+      t('tools:duplicateOrganize.alert.invalidPageOrder'),
+      t('tools:duplicateOrganize.alert.specifiedPageOrderIncomplete')
     );
     return;
   }
@@ -149,7 +156,11 @@ function applyCustomOrder() {
 
   initializeSortable(); // Re-initialize sortable on the new order
 
-  showAlert('Success', 'Pages have been reordered.', 'success');
+  showAlert(
+    t('common.success'),
+    t('tools:duplicateOrganize.alert.pagesHaveBeenReordered'),
+    'success'
+  );
 }
 
 function handleFileUpload(e: Event) {
@@ -162,7 +173,10 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:duplexCollate.invalidFileMessage')
+    );
     return;
   }
 
@@ -171,7 +185,7 @@ async function handleFile(file: File) {
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
 
     organizeState.pdfDoc = await loadPdfDocument(result.bytes);
     organizeState.pdfJsDoc = result.pdf;
@@ -184,7 +198,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   }
 }
 
@@ -251,10 +265,7 @@ function attachEventListeners(element: HTMLElement) {
       renumberPages();
       initializeSortable();
     } else {
-      showAlert(
-        'Cannot Delete',
-        'You cannot delete the last page of the document.'
-      );
+      showAlert(t('alert.cannotDelete'), t('alert.youCannotDeleteLast'));
     }
   });
 }
@@ -350,7 +361,7 @@ function initializeSortable() {
 }
 
 async function saveChanges() {
-  showLoader('Building new PDF...');
+  showLoader(t('loader.buildingNewPdf'));
 
   try {
     const grid = document.getElementById('page-grid');
@@ -364,7 +375,7 @@ async function saveChanges() {
       .filter((index) => !isNaN(index) && index >= 0);
 
     if (finalIndices.length === 0) {
-      showAlert('Error', 'No valid pages to save.');
+      showAlert(t('common.error'), t('alert.noValidPagesSave'));
       return;
     }
 
@@ -382,13 +393,19 @@ async function saveChanges() {
     );
 
     hideLoader();
-    showAlert('Success', 'PDF organized successfully!', 'success', () =>
-      resetState()
+    showAlert(
+      t('common.success'),
+      t('tools:duplicateOrganize.alert.pdfOrganizedSuccessfully'),
+      'success',
+      () => resetState()
     );
   } catch (error) {
     console.error('Error saving changes:', error);
     hideLoader();
-    showAlert('Error', 'Failed to save changes.');
+    showAlert(
+      t('common.error'),
+      t('tools:duplicateOrganize.alert.failedSaveChanges')
+    );
   }
 }
 

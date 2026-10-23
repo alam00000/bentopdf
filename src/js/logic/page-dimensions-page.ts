@@ -12,6 +12,7 @@ import {
   UniqueSizeEntry,
 } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const pageState: PageDimensionsState = {
   file: null,
@@ -351,7 +352,7 @@ async function handleFileSelect(files: FileList | null) {
         analyzeAndDisplayDimensions();
       } catch (e) {
         console.error('Error loading PDF:', e);
-        showAlert('Error', 'Failed to load PDF file.');
+        showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       }
     }
   }

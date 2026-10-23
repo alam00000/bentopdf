@@ -4,6 +4,7 @@ import { fixPageSize as fixPageSizeCore } from '../utils/pdf-operations';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { icons, createIcons } from 'lucide';
 import { FixPageSizeState } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: FixPageSizeState = {
   file: null,
@@ -83,7 +84,10 @@ async function handleFileSelect(files: FileList | null) {
 
 async function fixPageSize() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
@@ -138,8 +142,8 @@ async function fixPageSize() {
       pageState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Page sizes standardized successfully!',
+      t('common.success'),
+      t('tools:fixPageSize.alert.pageSizesStandardizedSuccessfully'),
       'success',
       () => {
         resetState();
@@ -147,7 +151,10 @@ async function fixPageSize() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while standardizing pages.');
+    showAlert(
+      t('common.error'),
+      t('tools:fixPageSize.alert.errorOccurredWhileStandardizing')
+    );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }

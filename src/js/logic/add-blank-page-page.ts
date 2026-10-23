@@ -5,6 +5,7 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { AddBlankPageState } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const pageState: AddBlankPageState = {
   file: null,
@@ -83,7 +84,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       result.pdf.destroy();
@@ -103,7 +104,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -113,7 +114,7 @@ async function updateUI() {
 
 async function addBlankPages() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
@@ -130,7 +131,7 @@ async function addBlankPages() {
 
   if (isNaN(position) || position < 0 || position > totalPages) {
     showAlert(
-      'Invalid Input',
+      t('tools:addBlankPage.alert.invalidInput'),
       `Please enter a number between 0 and ${totalPages}.`
     );
     return;
@@ -138,8 +139,8 @@ async function addBlankPages() {
 
   if (isNaN(insertCount) || insertCount < 1) {
     showAlert(
-      'Invalid Input',
-      'Please enter a valid number of pages (1 or more).'
+      t('tools:addBlankPage.alert.invalidInput'),
+      t('tools:addBlankPage.alert.enterValidNumberPages')
     );
     return;
   }
@@ -184,7 +185,7 @@ async function addBlankPages() {
     );
 
     showAlert(
-      'Success',
+      t('common.success'),
       `Added ${insertCount} blank page${insertCount > 1 ? 's' : ''} successfully!`,
       'success',
       function () {
@@ -194,7 +195,7 @@ async function addBlankPages() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
+      t('common.error'),
       `Could not add blank page${insertCount > 1 ? 's' : ''}.`
     );
   } finally {

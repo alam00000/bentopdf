@@ -98,16 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const convert = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
         return;
       }
 
-      showLoader('Loading PDF converter...');
+      showLoader(t('loader.loadingPdfConverter'));
       const pymupdf = await loadPyMuPDF();
 
       hideLoader();
       state.files = await batchDecryptIfNeeded(state.files);
-      showLoader('Converting...');
+      showLoader(t('loader.converting'));
 
       if (state.files.length === 1) {
         const file = state.files[0];
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${file.name} to DOCX.`,
           'success',
           () => resetState()
@@ -150,14 +150,14 @@ document.addEventListener('DOMContentLoaded', () => {
           zip.file(zipEntryName, arrayBuffer);
         }
 
-        showLoader('Creating ZIP archive...');
+        showLoader(t('loader.creatingZipArchive'));
         const zipBlob = await zip.generateAsync({ type: 'blob' });
 
         downloadFile(zipBlob, 'converted-documents.zip');
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} PDF(s) to DOCX.`,
           'success',
           () => resetState()
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

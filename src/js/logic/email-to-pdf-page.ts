@@ -4,6 +4,7 @@ import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { parseEmailFile, renderEmailToHtml } from './email-to-pdf.js';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import { t } from '../i18n/i18n';
 
 const EXTENSIONS = ['.eml', '.msg'];
 const TOOL_NAME = 'Email';
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       if (state.files.length === 0) {
         showAlert(
-          'No Files',
+          t('alert.noFiles'),
           `Please select at least one ${TOOL_NAME} file (.eml or .msg).`
         );
         return;
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const includeCcBcc = includeCcBccCheckbox?.checked ?? true;
       const includeAttachments = includeAttachmentsCheckbox?.checked ?? true;
 
-      showLoader('Loading PDF engine...');
+      showLoader(t('tools:emailToPdf.loader.loadingPdfEngine'));
       const pymupdf = await loadPyMuPDF();
 
       if (state.files.length === 1) {
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const email = await parseEmailFile(originalFile);
 
-        showLoader('Generating PDF...');
+        showLoader(t('tools:emailToPdf.loader.generatingPdf'));
         const htmlContent = renderEmailToHtml(email, {
           includeCcBcc,
           includeAttachments,
@@ -143,13 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting emails...');
+        showLoader(t('tools:emailToPdf.loader.convertingEmails'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
@@ -196,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} ${TOOL_NAME} file(s) to PDF.`,
           'success',
           () => resetState()
@@ -206,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

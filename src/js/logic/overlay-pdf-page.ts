@@ -7,6 +7,7 @@ import {
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import type { OverlayPdfState, QpdfInstanceExtended } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: OverlayPdfState = {
   baseFile: null,
@@ -110,8 +111,8 @@ function isPdf(file: File): boolean {
 async function processOverlay() {
   if (!pageState.baseFile || !pageState.overlayFile) {
     showAlert(
-      'Missing Files',
-      'Please upload both a base PDF and an overlay/underlay PDF.'
+      t('tools:pdfOverlay.alert.missingFiles'),
+      t('tools:pdfOverlay.alert.uploadBothBasePdf')
     );
     return;
   }
@@ -183,7 +184,7 @@ async function processOverlay() {
     );
 
     showAlert(
-      'Success',
+      t('common.success'),
       `PDF ${modeLabel} applied successfully.`,
       'success',
       () => {
@@ -193,8 +194,8 @@ async function processOverlay() {
   } catch (error: unknown) {
     console.error('Overlay/underlay error:', error);
     showAlert(
-      'Processing Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}.`
+      t('alert.processingFailed'),
+      `An error occurred: ${error instanceof Error ? error.message : t('common.unknownError')}.`
     );
   } finally {
     try {
