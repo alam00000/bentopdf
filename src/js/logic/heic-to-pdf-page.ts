@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import heic2any from 'heic2any';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 
@@ -63,10 +64,13 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one HEIC file.');
+    showAlert(
+      t('alert.noFiles'),
+      t('tools:heicToPdf.alert.selectLeastOneHeic')
+    );
     return;
   }
-  showLoader('Converting HEIC to PDF...');
+  showLoader(t('tools:heicToPdf.loader.convertingHeicPdf'));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of files) {
@@ -93,14 +97,19 @@ async function convert() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_heic.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert HEIC to PDF. One of the files may be invalid.'
+      t('common.error'),
+      t('tools:heicToPdf.alert.failedConvertHeicPdf')
     );
   } finally {
     hideLoader();
@@ -131,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only HEIC/HEIF files are allowed.'
+        t('alert.invalidFiles'),
+        t('tools:heicToPdf.alert.someFilesWereSkipped')
       );
     }
 

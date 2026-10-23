@@ -6,6 +6,7 @@ import {
   getLibreOfficeConverter,
   type LoadProgress,
 } from '../utils/libreoffice-loader.js';
+import { t } from '../i18n/i18n';
 
 document.addEventListener('DOMContentLoaded', () => {
   state.files = [];
@@ -86,7 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const convertToPdf = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one Excel file.');
+        showAlert(
+          t('alert.noFiles'),
+          t('tools:excelToPdf.alert.selectLeastOneExcel')
+        );
         hideLoader();
         return;
       }
@@ -101,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.files.length === 1) {
         const originalFile = state.files[0];
 
-        showLoader('Processing...');
+        showLoader(t('loader.processing'));
 
         const pdfBlob = await converter.convertToPdf(originalFile);
 
@@ -113,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Processing...');
+        showLoader(t('loader.processing'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
@@ -143,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} Excel file(s) to PDF.`,
           'success',
           () => resetState()
@@ -152,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

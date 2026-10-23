@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import { t } from '../i18n/i18n';
 
 const FILETYPE = 'mobi';
 const EXTENSIONS = ['.mobi'];
@@ -83,11 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const convertToPdf = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', `Please select at least one ${TOOL_NAME} file.`);
+        showAlert(
+          t('alert.noFiles'),
+          `Please select at least one ${TOOL_NAME} file.`
+        );
         return;
       }
 
-      showLoader('Loading engine...');
+      showLoader(t('loader.loadingEngine'));
       const pymupdf = await loadPyMuPDF();
 
       if (state.files.length === 1) {
@@ -103,13 +107,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting files...');
+        showLoader(t('loader.convertingFiles'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
@@ -133,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} ${TOOL_NAME} file(s) to PDF.`,
           'success',
           () => resetState()
@@ -143,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

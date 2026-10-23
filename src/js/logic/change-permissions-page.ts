@@ -7,6 +7,7 @@ import {
 } from '../utils/helpers.js';
 import { icons, createIcons } from 'lucide';
 import { ChangePermissionsState, QpdfInstanceExtended } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: ChangePermissionsState = {
   file: null,
@@ -98,7 +99,10 @@ function handleFileSelect(files: FileList | null) {
 
 async function changePermissions() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
@@ -114,8 +118,8 @@ async function changePermissions() {
 
   if (newUserPassword && !newOwnerPassword) {
     showAlert(
-      'Owner Password Required',
-      'An owner password is required when setting permissions'
+      t('tools:changePermissions.alert.ownerPasswordRequired'),
+      t('tools:changePermissions.alert.ownerPasswordRequiredWhen')
     );
     return;
   }
@@ -240,7 +244,7 @@ async function changePermissions() {
         'PDF decrypted successfully! All encryption and restrictions removed.';
     }
 
-    showAlert('Success', successMessage, 'success', () => {
+    showAlert(t('common.success'), successMessage, 'success', () => {
       resetState();
     });
   } catch (error: unknown) {
@@ -250,18 +254,18 @@ async function changePermissions() {
     const errorMessage = error instanceof Error ? error.message : '';
     if (errorMessage === 'INVALID_PASSWORD') {
       showAlert(
-        'Incorrect Password',
-        'The current password you entered is incorrect. Please try again.'
+        t('tools:digitalSignPdf.incorrectPassword'),
+        t('tools:changePermissions.alert.currentPasswordYouEntered')
       );
     } else if (errorMessage === 'PASSWORD_REQUIRED') {
       showAlert(
-        'Password Required',
-        'This PDF is password-protected. Please enter the current password to proceed.'
+        t('tools:changePermissions.alert.passwordRequired'),
+        t('tools:changePermissions.alert.pdfPasswordProtectedEnter')
       );
     } else {
       showAlert(
-        'Processing Failed',
-        `An error occurred: ${errorMessage || 'The PDF might be corrupted or password protected.'}`
+        t('alert.processingFailed'),
+        `An error occurred: ${errorMessage || t('tools:changePermissions.alert.pdfMightCorruptedPassword')}`
       );
     }
   } finally {

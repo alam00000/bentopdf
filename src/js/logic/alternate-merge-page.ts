@@ -8,6 +8,7 @@ import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { interleavePdfs } from '../utils/alternate-merge.js';
+import { t } from '../i18n/i18n';
 
 const pageState: AlternateMergeState = {
   files: [],
@@ -66,7 +67,7 @@ async function updateUI() {
     // Load PDFs and populate list
     hideLoader();
     pageState.files = await batchDecryptIfNeeded(pageState.files);
-    showLoader('Loading PDF files...');
+    showLoader(t('tools:alternateMerge.loader.loadingPdfFiles'));
     fileList.innerHTML = '';
 
     try {
@@ -120,7 +121,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDFs:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load one or more PDF files.');
+      showAlert(t('common.error'), t('tools:mergePdf.alert.loadError'));
       resetState();
     }
   } else {
@@ -131,8 +132,8 @@ async function updateUI() {
 async function mixPages() {
   if (pageState.pdfBytes.size < 2) {
     showAlert(
-      'Not Enough Files',
-      'Please upload at least two PDF files to alternate and mix.'
+      t('tools:alternateMerge.alert.notEnoughFiles'),
+      t('tools:alternateMerge.alert.uploadLeastTwoPdf')
     );
     return;
   }
@@ -143,7 +144,7 @@ async function mixPages() {
     return;
   }
 
-  showLoader('Alternating and mixing pages...');
+  showLoader(t('tools:alternateMerge.loader.alternatingMixingPages'));
 
   try {
     const fileList = document.getElementById('file-list');
@@ -169,7 +170,10 @@ async function mixPages() {
     }
 
     if (filesToMerge.length < 2) {
-      showAlert('Error', 'At least two valid PDFs are required.');
+      showAlert(
+        t('common.error'),
+        t('tools:alternateMerge.alert.leastTwoValidPdfs')
+      );
       hideLoader();
       return;
     }
@@ -186,8 +190,8 @@ async function mixPages() {
     });
     downloadFile(blob, 'alternated-mixed.pdf');
     showAlert(
-      'Success',
-      'PDFs have been mixed successfully!',
+      t('common.success'),
+      t('tools:alternateMerge.alert.pdfsHaveBeenMixed'),
       'success',
       function () {
         resetState();
@@ -200,7 +204,7 @@ async function mixPages() {
       e instanceof Error
         ? e.message
         : 'An error occurred while mixing the PDFs.';
-    showAlert('Error', message);
+    showAlert(t('common.error'), message);
   }
 }
 

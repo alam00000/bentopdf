@@ -11,6 +11,7 @@ import { icons, createIcons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const duplicateOrganizeState: {
   sortableInstances: { pageGrid?: Sortable };
@@ -76,10 +77,7 @@ function attachEventListeners(element: HTMLElement) {
       renumberPages();
       initializePageGridSortable();
     } else {
-      showAlert(
-        'Cannot Delete',
-        'You cannot delete the last page of the document.'
-      );
+      showAlert(t('alert.cannotDelete'), t('alert.youCannotDeleteLast'));
     }
   });
 }
@@ -91,7 +89,7 @@ export async function renderDuplicateOrganizeThumbnails() {
   // Cleanup any previous lazy loading observers
   cleanupLazyRendering();
 
-  showLoader('Rendering page previews...');
+  showLoader(t('tools:mergePdf.loader.renderingPreviews'));
   const pdfData = await state.pdfDoc.save();
   hideLoader();
   const loadResult = await loadPdfWithPasswordPrompt(
@@ -100,7 +98,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     0
   );
   if (!loadResult) return;
-  showLoader('Rendering page previews...');
+  showLoader(t('tools:mergePdf.loader.renderingPreviews'));
   const pdfjsDoc = loadResult.pdf;
 
   grid.textContent = '';
@@ -173,14 +171,17 @@ export async function renderDuplicateOrganizeThumbnails() {
     initializePageGridSortable();
   } catch (error) {
     console.error('Error rendering thumbnails:', error);
-    showAlert('Error', 'Failed to render page previews');
+    showAlert(
+      t('common.error'),
+      t('tools:duplicateOrganize.alert.failedRenderPagePreviews')
+    );
   } finally {
     hideLoader();
   }
 }
 
 export async function processAndSave() {
-  showLoader('Building new PDF...');
+  showLoader(t('loader.buildingNewPdf'));
   try {
     const grid = document.getElementById('page-grid');
     const finalPageElements = grid.querySelectorAll('.page-thumbnail');
@@ -195,7 +196,7 @@ export async function processAndSave() {
     console.log('Original PDF Page Count:', state.pdfDoc?.getPageCount());
 
     if (finalIndices.length === 0) {
-      showAlert('Error', 'No valid pages to save.');
+      showAlert(t('common.error'), t('alert.noValidPagesSave'));
       return;
     }
 
@@ -206,8 +207,8 @@ export async function processAndSave() {
     if (invalidIndices.length > 0) {
       console.error('Found invalid indices:', invalidIndices);
       showAlert(
-        'Error',
-        'Some pages could not be processed. Please try again.'
+        t('common.error'),
+        t('tools:duplicateOrganize.alert.somePagesCouldNot')
       );
       return;
     }
@@ -223,8 +224,8 @@ export async function processAndSave() {
   } catch (e) {
     console.error('Save error:', e);
     showAlert(
-      'Error',
-      'Failed to save the new PDF. Check console for details.'
+      t('common.error'),
+      t('tools:duplicateOrganize.alert.failedSaveNewPdf')
     );
   } finally {
     hideLoader();

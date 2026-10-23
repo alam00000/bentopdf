@@ -12,6 +12,7 @@ import { CombineSinglePageState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const pageState: CombineSinglePageState = {
   file: null,
@@ -75,7 +76,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
@@ -88,7 +89,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -98,7 +99,7 @@ async function updateUI() {
 
 async function combineToSinglePage() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
@@ -126,7 +127,7 @@ async function combineToSinglePage() {
   const backgroundColor = hexToRgb(backgroundColorHex);
   const separatorColor = hexToRgb(separatorColorHex);
 
-  showLoader('Combining pages...');
+  showLoader(t('tools:combineToSinglePage.loader.combiningPages'));
 
   try {
     const sourceDoc = pageState.pdfDoc;
@@ -245,8 +246,8 @@ async function combineToSinglePage() {
     );
 
     showAlert(
-      'Success',
-      'Pages combined successfully!',
+      t('common.success'),
+      t('tools:combineToSinglePage.alert.pagesCombinedSuccessfully'),
       'success',
       function () {
         resetState();
@@ -254,7 +255,10 @@ async function combineToSinglePage() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while combining pages.');
+    showAlert(
+      t('common.error'),
+      t('tools:combineToSinglePage.alert.errorOccurredWhileCombining')
+    );
   } finally {
     hideLoader();
   }

@@ -8,6 +8,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { decode } from 'tiff';
 import { tiffIfdToRgba } from '../utils/tiff-utils.js';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 
@@ -72,7 +73,10 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one TIFF file.');
+    showAlert(
+      t('alert.noFiles'),
+      t('tools:tiffToPdf.alert.selectLeastOneTiff')
+    );
     return;
   }
   const qualitySelect = document.getElementById(
@@ -87,7 +91,7 @@ async function convert() {
   const useJpeg = quality !== 'high';
   const jpegQuality = jpegQualityMap[quality] || 0.75;
 
-  showLoader('Converting TIFF to PDF...');
+  showLoader(t('tools:tiffToPdf.loader.convertingTiffPdf'));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of files) {
@@ -145,14 +149,19 @@ async function convert() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_tiff.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert TIFF to PDF. One of the files may be invalid.'
+      t('common.error'),
+      t('tools:tiffToPdf.alert.failedConvertTiffPdf')
     );
   } finally {
     hideLoader();
@@ -184,8 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only TIFF files are allowed.'
+        t('alert.invalidFiles'),
+        t('tools:tiffToPdf.alert.someFilesWereSkipped')
       );
     }
 

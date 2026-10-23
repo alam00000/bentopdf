@@ -8,6 +8,7 @@ import { decryptPdfBytes } from '../utils/pdf-decrypt.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { DecryptPdfState } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: DecryptPdfState = {
   files: [],
@@ -100,7 +101,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function decryptPdf() {
   if (pageState.files.length === 0) {
-    showAlert('No File', 'Please upload at least one PDF file.');
+    showAlert(t('tools:pdfToJpg.alert.noFile'), t('alert.uploadLeastOnePdf'));
     return;
   }
 
@@ -109,7 +110,10 @@ async function decryptPdf() {
   )?.value;
 
   if (!password) {
-    showAlert('Input Required', 'Please enter the PDF password.');
+    showAlert(
+      t('alert.inputRequired'),
+      t('tools:unlockPdf.alert.enterPdfPassword')
+    );
     return;
   }
 
@@ -141,8 +145,8 @@ async function decryptPdf() {
 
       if (loaderModal) loaderModal.classList.add('hidden');
       showAlert(
-        'Success',
-        'PDF decrypted successfully! Your download has started.',
+        t('common.success'),
+        t('tools:unlockPdf.alert.pdfDecryptedSuccessfullyDownload'),
         'success',
         () => {
           resetState();
@@ -190,7 +194,7 @@ async function decryptPdf() {
       if (errorCount > 0) {
         alertMessage += ` ${errorCount} file(s) failed.`;
       }
-      showAlert('Processing Complete', alertMessage, 'success', () => {
+      showAlert(t('alert.processingComplete'), alertMessage, 'success', () => {
         resetState();
       });
     }
@@ -200,18 +204,18 @@ async function decryptPdf() {
     const errorMessage = error instanceof Error ? error.message : '';
     if (errorMessage === 'INVALID_PASSWORD') {
       showAlert(
-        'Incorrect Password',
-        'The password you entered is incorrect. Please try again.'
+        t('tools:digitalSignPdf.incorrectPassword'),
+        t('tools:unlockPdf.alert.passwordYouEnteredIncorrect')
       );
     } else if (errorMessage.includes('password')) {
       showAlert(
-        'Password Error',
-        'Unable to decrypt the PDF with the provided password.'
+        t('tools:unlockPdf.alert.passwordError'),
+        t('tools:unlockPdf.alert.unableDecryptPdfWith')
       );
     } else {
       showAlert(
-        'Decryption Failed',
-        `An error occurred: ${errorMessage || 'The password you entered is wrong or the file is corrupted.'}`
+        t('tools:unlockPdf.alert.decryptionFailed'),
+        `An error occurred: ${errorMessage || t('tools:unlockPdf.alert.passwordYouEnteredWrong')}`
       );
     }
   } finally {

@@ -6,6 +6,7 @@ import {
   getLibreOfficeConverter,
   type LoadProgress,
 } from '../utils/libreoffice-loader.js';
+import { t } from '../i18n/i18n';
 
 const ACCEPTED_EXTENSIONS = ['.ods'];
 const FILETYPE_NAME = 'ODS';
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const convert = async () => {
     if (state.files.length === 0) {
       showAlert(
-        'No Files',
+        t('alert.noFiles'),
         `Please select at least one ${FILETYPE_NAME} file.`
       );
       return;
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const converter = getLibreOfficeConverter();
 
-      showLoader('Loading engine...');
+      showLoader(t('loader.loadingEngine'));
       await converter.initialize((progress: LoadProgress) => {
         showLoader(progress.message, progress.percent);
       });
@@ -112,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hideLoader();
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${file.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple files...');
+        showLoader(t('loader.convertingMultipleFiles'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
@@ -138,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hideLoader();
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} files to PDF.`,
           'success',
           () => resetState()
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = err instanceof Error ? err.message : 'Unknown error';
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, err);
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${message}`
       );
     }

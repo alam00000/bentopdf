@@ -8,6 +8,7 @@ import { InvertColorsState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const pageState: InvertColorsState = { file: null, pdfDoc: null };
 
@@ -59,13 +60,16 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -73,7 +77,7 @@ async function handleFiles(files: FileList) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   } finally {
     hideLoader();
   }
@@ -116,10 +120,10 @@ function resetState() {
 
 async function invertColors() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert(t('common.error'), t('tools:addPageLabels.uploadFirstMessage'));
     return;
   }
-  showLoader('Inverting PDF colors...');
+  showLoader(t('tools:invertColors.loader.invertingPdfColors'));
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pdfBytes = await pageState.pdfDoc.save();
@@ -162,12 +166,20 @@ async function invertColors() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Colors inverted successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('tools:invertColors.alert.colorsInvertedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not invert PDF colors.');
+    showAlert(
+      t('common.error'),
+      t('tools:invertColors.alert.couldNotInvertPdf')
+    );
   } finally {
     hideLoader();
   }

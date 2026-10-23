@@ -9,6 +9,7 @@ import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { LinearizePdfState, QpdfInstanceExtended } from '@/types';
+import { t } from '../i18n/i18n';
 
 const pageState: LinearizePdfState = {
   files: [],
@@ -99,7 +100,10 @@ async function linearizePdf() {
     (file: File) => file.type === 'application/pdf'
   );
   if (!pdfFiles || pdfFiles.length === 0) {
-    showAlert('No PDF Files', 'Please upload at least one PDF file.');
+    showAlert(
+      t('tools:linearizePdf.alert.noPdfFiles'),
+      t('alert.uploadLeastOnePdf')
+    );
     return;
   }
 
@@ -184,14 +188,14 @@ async function linearizePdf() {
     if (errorCount > 0) {
       alertMessage += ` ${errorCount} file(s) failed.`;
     }
-    showAlert('Processing Complete', alertMessage, 'success', () => {
+    showAlert(t('alert.processingComplete'), alertMessage, 'success', () => {
       resetState();
     });
   } catch (error: unknown) {
     console.error('Linearization process error:', error);
     showAlert(
-      'Linearization Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}.`
+      t('tools:linearizePdf.alert.linearizationFailed'),
+      `An error occurred: ${error instanceof Error ? error.message : t('common.unknownError')}.`
     );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');

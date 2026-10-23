@@ -2,6 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 let currentMode: 'upload' | 'text' = 'upload';
@@ -85,7 +86,10 @@ async function convert() {
     '#000000';
 
   if (currentMode === 'upload' && files.length === 0) {
-    showAlert('No Files', 'Please select at least one text file.');
+    showAlert(
+      t('alert.noFiles'),
+      t('tools:textToPdf.alert.selectLeastOneText')
+    );
     return;
   }
 
@@ -94,12 +98,15 @@ async function convert() {
       'text-input'
     ) as HTMLTextAreaElement;
     if (!textInput.value.trim()) {
-      showAlert('No Text', 'Please enter some text to convert.');
+      showAlert(
+        t('tools:textToPdf.alert.noText'),
+        t('tools:textToPdf.alert.enterSomeTextConvert')
+      );
       return;
     }
   }
 
-  showLoader('Loading engine...');
+  showLoader(t('loader.loadingEngine'));
 
   try {
     const pymupdf = await loadPyMuPDF();
@@ -118,7 +125,7 @@ async function convert() {
       textContent = textInput.value;
     }
 
-    showLoader('Creating PDF...');
+    showLoader(t('tools:textToPdf.loader.creatingPdf'));
 
     const pdfBlob = await pymupdf.textToPdf(textContent, {
       fontSize,
@@ -131,8 +138,8 @@ async function convert() {
     downloadFile(pdfBlob, 'text_to_pdf.pdf');
 
     showAlert(
-      'Success',
-      'Text converted to PDF successfully!',
+      t('common.success'),
+      t('tools:textToPdf.alert.textConvertedPdfSuccessfully'),
       'success',
       () => {
         resetState();
@@ -141,7 +148,7 @@ async function convert() {
   } catch (e: unknown) {
     console.error('[TxtToPDF] Error:', e);
     showAlert(
-      'Error',
+      t('common.error'),
       `Failed to convert text to PDF. ${e instanceof Error ? e.message : ''}`
     );
   } finally {
@@ -223,8 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only text files are allowed.'
+        t('alert.invalidFiles'),
+        t('tools:textToPdf.alert.someFilesWereSkipped')
       );
     }
 

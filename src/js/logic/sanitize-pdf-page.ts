@@ -4,6 +4,7 @@ import { icons, createIcons } from 'lucide';
 import { SanitizePdfState } from '@/types';
 import { sanitizePdf } from '../utils/sanitize.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 
 const pageState: SanitizePdfState = {
   file: null,
@@ -82,7 +83,10 @@ async function handleFileSelect(files: FileList | null) {
 
 async function runSanitize() {
   if (!pageState.file) {
-    showAlert('Error', 'No PDF document loaded.');
+    showAlert(
+      t('common.error'),
+      t('tools:sanitizePdf.alert.noPdfDocumentLoaded')
+    );
     return;
   }
 
@@ -126,8 +130,8 @@ async function runSanitize() {
     const hasAnyOption = Object.values(options).some(Boolean);
     if (!hasAnyOption) {
       showAlert(
-        'No Changes',
-        'No items were selected for removal or none were found in the PDF.'
+        t('alert.noChanges'),
+        t('tools:sanitizePdf.alert.noItemsWereSelected')
       );
       if (loaderModal) loaderModal.classList.add('hidden');
       return;
@@ -151,7 +155,7 @@ async function runSanitize() {
     );
     if (result.skipped.length > 0) {
       showAlert(
-        'Sanitized With Warnings',
+        t('tools:sanitizePdf.alert.sanitizedWithWarnings'),
         `The PDF was downloaded, but these steps could not be completed: ${result.skipped.join(', ')}. The content they cover may still be in the file.`,
         'warning',
         () => {
@@ -160,8 +164,8 @@ async function runSanitize() {
       );
     } else {
       showAlert(
-        'Success',
-        'PDF has been sanitized and downloaded.',
+        t('common.success'),
+        t('tools:sanitizePdf.alert.pdfHasBeenSanitized'),
         'success',
         () => {
           resetState();
@@ -171,7 +175,10 @@ async function runSanitize() {
   } catch (e: unknown) {
     console.error('Sanitization Error:', e);
     const msg = e instanceof Error ? e.message : String(e);
-    showAlert('Error', `An error occurred during sanitization: ${msg}`);
+    showAlert(
+      t('common.error'),
+      `An error occurred during sanitization: ${msg}`
+    );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }

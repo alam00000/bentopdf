@@ -168,11 +168,14 @@ const resetState = () => {
 
 async function processAllPages(): Promise<void> {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
-  showLoader('Applying color adjustments...');
+  showLoader(t('tools:adjustColors.loader.applyingColorAdjustments'));
 
   try {
     const settings = getSettings();
@@ -233,8 +236,8 @@ async function processAllPages(): Promise<void> {
       files[0]?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Color adjustments applied successfully!',
+      t('common.success'),
+      t('tools:adjustColors.alert.colorAdjustmentsAppliedSuccessfully'),
       'success',
       () => {
         resetState();
@@ -243,8 +246,8 @@ async function processAllPages(): Promise<void> {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to apply color adjustments. The file might be corrupted.'
+      t('common.error'),
+      t('tools:adjustColors.alert.failedApplyColorAdjustments')
     );
   } finally {
     hideLoader();
@@ -350,21 +353,24 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:addPageLabels.invalidFileTitle'),
+        t('tools:pdfToJpg.alert.invalidFileExplanation')
+      );
       return;
     }
 
     try {
       const result = await loadPdfWithPasswordPrompt(validFiles[0]);
       if (!result) return;
-      showLoader('Loading preview...');
+      showLoader(t('loader.loadingPreview'));
       files = [result.file];
       updateUI();
       pdfjsDoc = result.pdf;
       await renderPreview();
     } catch (e) {
       console.error(e);
-      showAlert('Error', 'Failed to load PDF for preview.');
+      showAlert(t('common.error'), t('alert.failedLoadPdfPreview'));
     } finally {
       hideLoader();
     }

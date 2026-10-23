@@ -6,6 +6,7 @@ import { state, resetState } from '../state.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import DOMPurify from 'dompurify';
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api';
+import { t } from '../i18n/i18n';
 
 const STANDARD_SIZES = {
   A4: { width: 595.28, height: 841.89 },
@@ -170,7 +171,7 @@ let qpdfInstance: QpdfInstanceExtended | null = null;
 export async function initializeQpdf(): Promise<QpdfInstanceExtended> {
   if (qpdfInstance) return qpdfInstance;
 
-  showLoader('Initializing PDF engine...');
+  showLoader(t('common.loader.initializingPdfEngine'));
   try {
     qpdfInstance = (await createModule({
       locateFile: () => import.meta.env.BASE_URL + 'qpdf.wasm',
@@ -178,8 +179,8 @@ export async function initializeQpdf(): Promise<QpdfInstanceExtended> {
   } catch (error) {
     console.error('Failed to initialize qpdf-wasm:', error);
     showAlert(
-      'Initialization Error',
-      'Could not load the PDF engine. Please refresh the page and try again.'
+      t('common.alert.initializationError'),
+      t('common.alert.couldNotLoadPdf')
     );
     throw error;
   } finally {

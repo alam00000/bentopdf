@@ -4,6 +4,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument, rgb, PageSizes } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 interface NUpState {
   file: File | null;
@@ -72,7 +73,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
@@ -85,7 +86,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -95,7 +96,7 @@ async function updateUI() {
 
 async function nUpTool() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
@@ -117,7 +118,7 @@ async function nUpTool() {
     (document.getElementById('border-color') as HTMLInputElement).value
   );
 
-  showLoader('Creating N-Up PDF...');
+  showLoader(t('tools:nUpPdf.loader.creatingNUpPdf'));
 
   try {
     const sourceDoc = pageState.pdfDoc;
@@ -206,8 +207,8 @@ async function nUpTool() {
     );
 
     showAlert(
-      'Success',
-      'N-Up PDF created successfully!',
+      t('common.success'),
+      t('tools:nUpPdf.alert.nUpPdfCreated'),
       'success',
       function () {
         resetState();
@@ -215,7 +216,10 @@ async function nUpTool() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while creating the N-Up PDF.');
+    showAlert(
+      t('common.error'),
+      t('tools:nUpPdf.alert.errorOccurredWhileCreating')
+    );
   } finally {
     hideLoader();
   }

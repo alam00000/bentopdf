@@ -9,6 +9,7 @@ import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const pageState: DividePagesState = {
   file: null,
@@ -86,7 +87,7 @@ async function updateUI() {
       }
       result.pdf.destroy();
       pageState.file = result.file;
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
 
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       pageState.totalPages = pageState.pdfDoc.getPageCount();
@@ -98,7 +99,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -108,7 +109,7 @@ async function updateUI() {
 
 async function dividePages() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
@@ -133,14 +134,14 @@ async function dividePages() {
 
     if (pagesToDivide.size === 0) {
       showAlert(
-        'Invalid Range',
-        'Please enter a valid page range (e.g., 1-5, 8, 11-13).'
+        t('tools:dividePages.alert.invalidRange'),
+        t('tools:dividePages.alert.enterValidPageRange')
       );
       return;
     }
   }
 
-  showLoader('Splitting PDF pages...');
+  showLoader(t('tools:dividePages.loader.splittingPdfPages'));
 
   try {
     const newPdfDoc = await PDFLibDocument.create();
@@ -183,8 +184,8 @@ async function dividePages() {
     );
 
     showAlert(
-      'Success',
-      'Pages have been divided successfully!',
+      t('common.success'),
+      t('tools:dividePages.alert.pagesHaveBeenDivided'),
       'success',
       function () {
         resetState();
@@ -192,7 +193,10 @@ async function dividePages() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while dividing the PDF.');
+    showAlert(
+      t('common.error'),
+      t('tools:dividePages.alert.errorOccurredWhileDividing')
+    );
   } finally {
     hideLoader();
   }

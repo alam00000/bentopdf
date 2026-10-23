@@ -7,6 +7,7 @@ import {
   loadPdfDocument,
   removeUnreferencedObjects,
 } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 interface PageState {
   file: File | null;
@@ -135,7 +136,10 @@ function handleFileSelect(files: FileList | null) {
 
 async function removeMetadata() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
@@ -163,12 +167,20 @@ async function removeMetadata() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Metadata removed successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('tools:removeMetadata.alert.metadataRemovedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while trying to remove metadata.');
+    showAlert(
+      t('common.error'),
+      t('tools:removeMetadata.alert.errorOccurredWhileTrying')
+    );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }

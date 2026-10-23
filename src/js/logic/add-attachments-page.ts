@@ -9,6 +9,7 @@ import {
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/add-attachments.worker.js'
@@ -71,7 +72,7 @@ worker.onmessage = function (e) {
     );
 
     showAlert(
-      'Success',
+      t('common.success'),
       `${pageState.attachments.length} file(s) attached successfully.`,
       'success',
       function () {
@@ -80,14 +81,17 @@ worker.onmessage = function (e) {
     );
   } else if (data.status === 'error') {
     hideLoader();
-    showAlert('Error', data.message || 'Unknown error occurred.');
+    showAlert(
+      t('common.error'),
+      data.message || t('alert.unknownErrorOccurred')
+    );
   }
 };
 
 worker.onerror = function (error) {
   hideLoader();
   console.error('Worker error:', error);
-  showAlert('Error', 'Worker error occurred. Check console for details.');
+  showAlert(t('common.error'), t('tools:tableOfContents.workerErrorOccurred'));
 };
 
 async function updateUI() {
@@ -135,7 +139,7 @@ async function updateUI() {
       }
       result.pdf.destroy();
       pageState.file = result.file;
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
 
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
@@ -151,7 +155,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -199,12 +203,15 @@ function updateAttachmentList() {
 
 async function addAttachments() {
   if (!pageState.file || !pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
   if (pageState.attachments.length === 0) {
-    showAlert('No Files', 'Please select at least one file to attach.');
+    showAlert(
+      t('alert.noFiles'),
+      t('tools:addAttachments.alert.selectLeastOneFile')
+    );
     return;
   }
 
@@ -231,14 +238,14 @@ async function addAttachments() {
 
     if (!pageRange) {
       showAlert(
-        'Error',
-        'Please specify a page range for page-level attachments.'
+        t('common.error'),
+        t('tools:addAttachments.alert.specifyPageRangePage')
       );
       return;
     }
   }
 
-  showLoader('Embedding files into PDF...');
+  showLoader(t('tools:addAttachments.loader.embeddingFilesIntoPdf'));
 
   try {
     const pdfBuffer = await pageState.file.arrayBuffer();
@@ -257,7 +264,7 @@ async function addAttachments() {
       attachmentNames.push(file.name);
     }
 
-    showLoader('Attaching files to PDF...');
+    showLoader(t('tools:addAttachments.loader.attachingFilesPdf'));
 
     const message = {
       command: 'add-attachments',
@@ -275,8 +282,8 @@ async function addAttachments() {
     console.error('Error attaching files:', error);
     hideLoader();
     showAlert(
-      'Error',
-      `Failed to attach files: ${error instanceof Error ? error.message : 'Unknown error'}`
+      t('common.error'),
+      `Failed to attach files: ${error instanceof Error ? error.message : t('common.unknownError')}`
     );
   }
 }

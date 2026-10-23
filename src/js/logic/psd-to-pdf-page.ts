@@ -4,6 +4,7 @@ import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
+import { t } from '../i18n/i18n';
 
 const ACCEPTED_EXTENSIONS = ['.psd'];
 const FILETYPE_NAME = 'PSD';
@@ -80,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const convert = async () => {
     if (state.files.length === 0) {
       showAlert(
-        'No Files',
+        t('alert.noFiles'),
         `Please select at least one ${FILETYPE_NAME} file.`
       );
       return;
     }
     try {
-      showLoader('Loading engine...');
+      showLoader(t('loader.loadingEngine'));
       const mupdf = await ensurePyMuPDF();
 
       if (state.files.length === 1) {
@@ -97,18 +98,18 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadFile(pdfBlob, `${baseName}.pdf`);
         hideLoader();
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${file.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple files...');
+        showLoader(t('loader.convertingMultipleFiles'));
         const pdfBlob = await mupdf.imagesToPdf(state.files);
         downloadFile(pdfBlob, 'psd_to_pdf.pdf');
         hideLoader();
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} PSD files to a single PDF.`,
           'success',
           () => resetState()
@@ -119,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = err instanceof Error ? err.message : 'Unknown error';
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, err);
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${message}`
       );
     }

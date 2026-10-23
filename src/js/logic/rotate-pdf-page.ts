@@ -11,6 +11,7 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 interface RotateState {
   file: File | null;
@@ -202,7 +203,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
 
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
@@ -220,7 +221,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -230,11 +231,11 @@ async function updateUI() {
 
 async function applyRotations() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert(t('common.error'), t('alert.uploadPdfFirst'));
     return;
   }
 
-  showLoader('Applying rotations...');
+  showLoader(t('loader.applyingRotations'));
 
   try {
     const pdfBytes = await pageState.pdfDoc.save();
@@ -250,8 +251,8 @@ async function applyRotations() {
     );
 
     showAlert(
-      'Success',
-      'Rotations applied successfully!',
+      t('common.success'),
+      t('alert.rotationsAppliedSuccessfully'),
       'success',
       function () {
         resetState();
@@ -259,7 +260,7 @@ async function applyRotations() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not apply rotations.');
+    showAlert(t('common.error'), t('alert.couldNotApplyRotations'));
   } finally {
     hideLoader();
   }

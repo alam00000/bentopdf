@@ -6,6 +6,7 @@ import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
 import JSZip from 'jszip';
 import { PDFDocument } from 'pdf-lib';
+import { t } from '../i18n/i18n';
 
 const EXTENSIONS = ['.cbz', '.cbr'];
 const TOOL_NAME = 'CBZ';
@@ -272,7 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const convertToPdf = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', `Please select at least one ${TOOL_NAME} file.`);
+        showAlert(
+          t('alert.noFiles'),
+          `Please select at least one ${TOOL_NAME} file.`
+        );
         return;
       }
 
@@ -292,13 +296,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting files...');
+        showLoader(t('loader.convertingFiles'));
         const outputZip = new JSZip();
 
         for (let i = 0; i < state.files.length; i++) {
@@ -325,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} ${TOOL_NAME} file(s) to PDF.`,
           'success',
           () => resetState()
@@ -335,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

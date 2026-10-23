@@ -581,12 +581,12 @@ function setupFallbackFonts(
 async function launchEditor(file: File) {
   if (launching) return;
   launching = true;
-  showLoader('Loading PDF Text Editor...');
+  showLoader(t('tools:editPdfText.loader.loadingPdfTextEditor'));
   try {
     hideLoader();
     const decrypted = await batchDecryptIfNeeded([file]);
     if (decrypted.length === 0) return;
-    showLoader('Loading PDF Text Editor...');
+    showLoader(t('tools:editPdfText.loader.loadingPdfTextEditor'));
     document.getElementById('uploader')?.classList.add('hidden');
     document.getElementById('tool-landing')?.classList.add('hidden');
     document.getElementById('text-editor-app')?.removeAttribute('hidden');
@@ -634,7 +634,10 @@ function handleFiles(files: FileList) {
     (f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name)
   );
   if (!pdf) {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
   void launchEditor(pdf);

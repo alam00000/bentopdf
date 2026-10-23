@@ -27,6 +27,7 @@ import {
   targetSizeToBytes,
   verifyHyperPassword,
 } from '../utils/compress.js';
+import { t } from '../i18n/i18n';
 
 type OptionChangeHandler = (
   key: keyof HyperCompressOptions,
@@ -841,7 +842,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = isProtected(lock) ? lock.password : '';
     showLoader(
       targetBytes === undefined
-        ? 'Compressing...'
+        ? t('tools:compressPdf.loader.compressing')
         : `Compressing to ${formatBytes(targetBytes)}...`
     );
     const result = await compressWithHyper(await file.arrayBuffer(), {
@@ -853,7 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (result.signed) {
       showAlert(
-        'Signed PDF Not Changed',
+        t('tools:compressPdf.alert.signedPdfNotChanged'),
         `${file.name} is digitally signed, so it was left as it is. Compressing it would break the signature. To compress it anyway, turn on Override content protection under Custom Settings; its signatures will be removed.`,
         'warning',
         () => resetState()
@@ -885,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
     runOptions: HyperCompressOptions,
     targetBytes: number | undefined
   ) => {
-    showLoader('Compressing multiple PDFs...');
+    showLoader(t('tools:compressPdf.loader.compressingMultiplePdfs'));
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();
     let totalOriginalSize = 0;
@@ -930,13 +931,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (compressedCount === 0) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `None of the files could be compressed: ${failures.join(', ')}.`
       );
       return;
     }
 
-    showLoader('Creating ZIP...');
+    showLoader(t('tools:compressPdf.loader.creatingZip'));
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     downloadFile(zipBlob, 'compressed-pdfs.zip');
     hideLoader();
@@ -978,7 +979,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hasProblems = failures.length > 0 || missedTargetCount > 0;
     showAlert(
-      hasProblems ? 'Compression Finished' : 'Compression Complete',
+      hasProblems
+        ? t('tools:compressPdf.alert.compressionFinished')
+        : t('tools:compressPdf.alert.compressionComplete'),
       parts.join(' '),
       hasProblems ? 'warning' : totalSavings > 0 ? 'success' : 'info',
       () => resetState()
@@ -987,7 +990,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const compress = async () => {
     if (state.files.length === 0) {
-      showAlert('No Files', 'Please select at least one PDF file.');
+      showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
       return;
     }
 
@@ -997,7 +1000,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (needPassword.length > 0) {
       showAlert(
-        'Password Needed',
+        t('tools:compressPdf.alert.passwordNeeded'),
         needPassword.length === 1
           ? `${needPassword[0].name} is password protected. Enter its password on the file card, then compress again.`
           : `These files are password protected: ${needPassword.map((file) => file.name).join(', ')}. Enter their passwords on the file cards, or remove them, then compress again.`,
@@ -1031,7 +1034,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateUI();
         showAlert(
-          'Password Needed',
+          t('tools:compressPdf.alert.passwordNeeded'),
           `${file.name} is password protected. Enter its password on the file card, then compress again.`,
           'warning',
           () => lockViews.get(file)?.input.focus()
@@ -1040,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       console.error('[CompressPDF] Error:', e);
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during compression. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
@@ -1059,7 +1062,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (rejected.length > 0) {
         showAlert(
-          'Not a PDF',
+          t('tools:compressPdf.alert.notPdf'),
           rejected.length === 1
             ? `${rejected[0]} is not a valid PDF, so it was not added.`
             : `These files are not valid PDFs, so they were not added: ${rejected.join(', ')}.`,

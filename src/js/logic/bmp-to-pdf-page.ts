@@ -2,6 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 
@@ -96,10 +97,10 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one BMP file.');
+    showAlert(t('alert.noFiles'), t('tools:bmpToPdf.alert.selectLeastOneBmp'));
     return;
   }
-  showLoader('Converting BMP to PDF...');
+  showLoader(t('tools:bmpToPdf.loader.convertingBmpPdf'));
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of files) {
@@ -118,15 +119,17 @@ async function convert() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_bmps.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
-    showAlert(
-      'Error',
-      'Failed to convert BMP to PDF. One of the files may be invalid.'
-    );
+    showAlert(t('common.error'), t('tools:bmpToPdf.alert.failedConvertBmpPdf'));
   } finally {
     hideLoader();
   }
@@ -155,8 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only BMP files are allowed.'
+        t('alert.invalidFiles'),
+        t('tools:bmpToPdf.alert.someFilesWereSkipped')
       );
     }
 

@@ -6,6 +6,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 interface BookletState {
   file: File | null;
@@ -90,7 +91,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader(t('tools:addPageLabels.loadingPdf'));
       pageState.file = result.file;
       pageState.pdfBytes = new Uint8Array(result.bytes);
       pageState.pdfjsDoc = result.pdf;
@@ -111,7 +112,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
       resetState();
     }
   } else {
@@ -169,7 +170,7 @@ function getSheetDimensions(isBookletMode: boolean): {
 
 async function generatePreview() {
   if (!pageState.pdfDoc || !pageState.pdfjsDoc) {
-    showAlert('Error', 'Please load a PDF first.');
+    showAlert(t('common.error'), t('tools:pdfBooklet.alert.loadPdfFirst'));
     return;
   }
 
@@ -418,11 +419,11 @@ function applyRotation(doc: PDFLibDocument, mode: string) {
 
 async function createBooklet() {
   if (!pageState.pdfBytes) {
-    showAlert('Error', 'Please load a PDF first.');
+    showAlert(t('common.error'), t('tools:pdfBooklet.alert.loadPdfFirst'));
     return;
   }
 
-  showLoader('Creating Booklet...');
+  showLoader(t('tools:pdfBooklet.loader.creatingBooklet'));
 
   try {
     const sourceDoc = await loadPdfDocument(pageState.pdfBytes.slice());
@@ -526,7 +527,7 @@ async function createBooklet() {
     );
 
     showAlert(
-      'Success',
+      t('common.success'),
       `Booklet created with ${numSheets} sheets!`,
       'success',
       function () {
@@ -535,7 +536,10 @@ async function createBooklet() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while creating the booklet.');
+    showAlert(
+      t('common.error'),
+      t('tools:pdfBooklet.alert.errorOccurredWhileCreating')
+    );
   } finally {
     hideLoader();
   }

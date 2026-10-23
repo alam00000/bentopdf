@@ -2,6 +2,7 @@
 import { createIcons, icons } from 'lucide';
 import { getPDFDocument } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 
 let viewerIframe: HTMLIFrameElement | null = null;
 let viewerReady = false;
@@ -127,7 +128,7 @@ function resetState() {
 // File handling
 async function handleFileUpload(file: File) {
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Error', 'Please upload a valid PDF file.');
+    showAlert(t('common.error'), t('tools:addPageLabels.invalidFileMessage'));
     return;
   }
 
@@ -140,7 +141,7 @@ async function handleFileUpload(file: File) {
     await setupFormViewer();
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
     hideLoader();
   }
 }
@@ -170,7 +171,7 @@ async function adjustViewerHeight(file: File) {
 async function setupFormViewer() {
   if (!currentFile) return;
 
-  showLoader('Loading PDF form...');
+  showLoader(t('tools:pdfFormFiller.loader.loadingPdfForm'));
   const pdfViewerContainer = document.getElementById('pdf-viewer-container');
 
   if (!pdfViewerContainer) {
@@ -214,7 +215,10 @@ async function setupFormViewer() {
     if (formFillerOptions) formFillerOptions.classList.remove('hidden');
   } catch (e) {
     console.error('Critical error setting up form filler:', e);
-    showAlert('Error', 'Failed to load PDF form viewer.');
+    showAlert(
+      t('common.error'),
+      t('tools:pdfFormFiller.alert.failedLoadPdfForm')
+    );
     hideLoader();
   }
 }
@@ -222,8 +226,8 @@ async function setupFormViewer() {
 async function processAndDownloadForm() {
   if (!viewerIframe || !viewerReady) {
     showAlert(
-      'Viewer not ready',
-      'Please wait for the form to finish loading.'
+      t('alert.viewerNotReady'),
+      t('tools:pdfFormFiller.alert.waitFormFinishLoading')
     );
     return;
   }
@@ -233,8 +237,8 @@ async function processAndDownloadForm() {
     if (!viewerWindow) {
       console.error('Cannot access iframe window');
       showAlert(
-        'Download',
-        'Please use the Download button in the PDF viewer toolbar above.'
+        t('common.download'),
+        t('tools:pdfFormFiller.alert.useDownloadButtonPdf')
       );
       return;
     }
@@ -243,8 +247,8 @@ async function processAndDownloadForm() {
     if (!viewerDoc) {
       console.error('Cannot access iframe document');
       showAlert(
-        'Download',
-        'Please use the Download button in the PDF viewer toolbar above.'
+        t('common.download'),
+        t('tools:pdfFormFiller.alert.useDownloadButtonPdf')
       );
       return;
     }
@@ -266,16 +270,16 @@ async function processAndDownloadForm() {
         secondaryDownload.click();
       } else {
         showAlert(
-          'Download',
-          'Please use the Download button in the PDF viewer toolbar above.'
+          t('common.download'),
+          t('tools:pdfFormFiller.alert.useDownloadButtonPdf')
         );
       }
     }
   } catch (e) {
     console.error('Failed to trigger download:', e);
     showAlert(
-      'Download',
-      'Cannot access viewer controls. Please use the Download button in the PDF viewer toolbar above.'
+      t('common.download'),
+      t('tools:pdfFormFiller.alert.cannotAccessViewerControls')
     );
   }
 }

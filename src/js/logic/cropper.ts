@@ -14,6 +14,7 @@ import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import type { CropPercentages } from '@/types';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const cropperState: {
   pdfDoc: PDFDocumentProxy | null;
@@ -105,11 +106,14 @@ async function displayPageAsImage(num: number) {
       updatePageInfo();
       enableControls();
       hideLoader();
-      showAlert('Ready', 'Please select an area to crop.');
+      showAlert(
+        t('tools:pdfWorkflow.ready'),
+        t('tools:cropper.alert.selectAreaCrop')
+      );
     };
   } catch (error) {
     console.error('Error rendering page:', error);
-    showAlert('Error', 'Failed to render page.');
+    showAlert(t('common.error'), t('alert.failedRenderPage'));
     hideLoader();
   }
 }
@@ -300,7 +304,10 @@ export async function setupCropperTool() {
     await displayPageAsImage(cropperState.currentPageNum);
   } catch (error) {
     console.error('Error setting up cropper tool:', error);
-    showAlert('Error', 'Failed to load PDF for cropping.');
+    showAlert(
+      t('common.error'),
+      t('tools:cropper.alert.failedLoadPdfCropping')
+    );
   }
 
   document
@@ -325,7 +332,7 @@ export async function setupCropperTool() {
     if (isApplyToAll) {
       const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
       if (!currentCrop) {
-        showAlert('No Crop Area', 'Please select an area to crop first.');
+        showAlert(t('alert.noCropArea'), t('alert.selectAreaCropFirst'));
         return;
       }
       // Apply the active page's crop to all pages
@@ -344,14 +351,11 @@ export async function setupCropperTool() {
     }
 
     if (Object.keys(finalCropData).length === 0) {
-      showAlert(
-        'No Crop Area',
-        'Please select an area on at least one page to crop.'
-      );
+      showAlert(t('alert.noCropArea'), t('alert.selectAreaLeastOne'));
       return;
     }
 
-    showLoader('Applying crop...');
+    showLoader(t('loader.applyingCrop'));
 
     try {
       let finalPdfBytes;
@@ -373,10 +377,10 @@ export async function setupCropperTool() {
         new Blob([new Uint8Array(finalPdfBytes)], { type: 'application/pdf' }),
         fileName
       );
-      showAlert('Success', 'Crop complete! Your download has started.');
+      showAlert(t('common.success'), t('alert.cropCompleteDownloadHas'));
     } catch (e) {
       console.error(e);
-      showAlert('Error', 'An error occurred during cropping.');
+      showAlert(t('common.error'), t('alert.errorOccurredDuringCropping'));
     } finally {
       hideLoader();
     }

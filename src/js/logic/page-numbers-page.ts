@@ -9,6 +9,7 @@ import {
   type PageNumberFormat,
 } from '../utils/pdf-operations.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 interface PageState {
   file: File | null;
@@ -81,14 +82,17 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
 
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
 
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -98,7 +102,7 @@ async function handleFiles(files: FileList) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   } finally {
     hideLoader();
   }
@@ -148,11 +152,11 @@ function resetState() {
 
 async function addPageNumbers() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert(t('common.error'), t('tools:addPageLabels.uploadFirstMessage'));
     return;
   }
 
-  showLoader('Adding page numbers...');
+  showLoader(t('tools:pageNumbers.loader.addingPageNumbers'));
   try {
     const position = (document.getElementById('position') as HTMLSelectElement)
       .value as PageNumberPosition;
@@ -183,12 +187,17 @@ async function addPageNumbers() {
       }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Page numbers added successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('tools:pageNumbers.alert.pageNumbersAddedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not add page numbers.');
+    showAlert(t('common.error'), t('tools:pageNumbers.alert.couldNotAddPage'));
   } finally {
     hideLoader();
   }

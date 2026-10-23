@@ -7,6 +7,7 @@ import JSZip from 'jszip';
 import Sortable from 'sortablejs';
 import { FileEntry, Position, StylePreset } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const FONT_MAP: Record<string, keyof typeof StandardFonts> = {
   Helvetica: 'Helvetica',
@@ -176,21 +177,24 @@ function initSortable() {
 }
 
 async function handleFiles(fileList: FileList) {
-  showLoader('Loading PDFs...');
+  showLoader(t('tools:batesNumbering.loader.loadingPdfs'));
   try {
     for (const file of Array.from(fileList)) {
       if (file.type !== 'application/pdf') continue;
       hideLoader();
       const result = await loadPdfWithPasswordPrompt(file);
       if (!result) continue;
-      showLoader('Loading PDFs...');
+      showLoader(t('tools:batesNumbering.loader.loadingPdfs'));
       result.pdf.destroy();
       const pdfDoc = await loadPdfDocument(result.bytes);
       files.push({ file: result.file, pageCount: pdfDoc.getPageCount() });
     }
 
     if (files.length === 0) {
-      showAlert('Invalid File', 'Please upload valid PDF files.');
+      showAlert(
+        t('tools:addPageLabels.invalidFileTitle'),
+        t('tools:batesNumbering.alert.uploadValidPdfFiles')
+      );
       return;
     }
 
@@ -200,7 +204,7 @@ async function handleFiles(fileList: FileList) {
     updatePreview();
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load one or more PDF files.');
+    showAlert(t('common.error'), t('tools:mergePdf.alert.loadError'));
   } finally {
     hideLoader();
   }
@@ -436,11 +440,11 @@ function resetState() {
 
 async function applyBatesNumbers() {
   if (files.length === 0) {
-    showAlert('Error', 'Please upload at least one PDF file.');
+    showAlert(t('common.error'), t('alert.uploadLeastOnePdf'));
     return;
   }
 
-  showLoader('Applying Bates numbers...');
+  showLoader(t('tools:batesNumbering.loader.applyingBatesNumbers'));
   try {
     const template = (
       document.getElementById('bates-template') as HTMLInputElement
@@ -538,7 +542,7 @@ async function applyBatesNumbers() {
     }
 
     showAlert(
-      'Success',
+      t('common.success'),
       `Bates numbers applied successfully! (${batesStart} through ${batesCounter - 1})`,
       'success',
       () => {
@@ -547,7 +551,10 @@ async function applyBatesNumbers() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to apply Bates numbers.');
+    showAlert(
+      t('common.error'),
+      t('tools:batesNumbering.alert.failedApplyBatesNumbers')
+    );
   } finally {
     hideLoader();
   }

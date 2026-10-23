@@ -174,11 +174,14 @@ const resetState = () => {
 
 async function processAllPages(): Promise<void> {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert(
+      t('tools:pdfToJpg.alert.noFile'),
+      t('tools:addPageLabels.uploadFirstMessage')
+    );
     return;
   }
 
-  showLoader('Applying scanner effect...');
+  showLoader(t('tools:scannerEffect.loader.applyingScannerEffect'));
 
   try {
     const settings = getSettings();
@@ -256,8 +259,8 @@ async function processAllPages(): Promise<void> {
       files[0]?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Scanner effect applied successfully!',
+      t('common.success'),
+      t('tools:scannerEffect.alert.scannerEffectAppliedSuccessfully'),
       'success',
       () => {
         resetState();
@@ -266,8 +269,8 @@ async function processAllPages(): Promise<void> {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to apply scanner effect. The file might be corrupted.'
+      t('common.error'),
+      t('tools:scannerEffect.alert.failedApplyScannerEffect')
     );
   } finally {
     hideLoader();
@@ -395,21 +398,24 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert(
+        t('tools:addPageLabels.invalidFileTitle'),
+        t('tools:pdfToJpg.alert.invalidFileExplanation')
+      );
       return;
     }
 
     try {
       const result = await loadPdfWithPasswordPrompt(validFiles[0]);
       if (!result) return;
-      showLoader('Loading preview...');
+      showLoader(t('loader.loadingPreview'));
       files = [result.file];
       updateUI();
       pdfjsDoc = result.pdf;
       await renderPreview();
     } catch (e) {
       console.error(e);
-      showAlert('Error', 'Failed to load PDF for preview.');
+      showAlert(t('common.error'), t('alert.failedLoadPdfPreview'));
     } finally {
       hideLoader();
     }

@@ -10,6 +10,7 @@ import { rgb, StandardFonts } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { HeaderFooterState } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 const pageState: HeaderFooterState = { file: null, pdfDoc: null };
 
@@ -61,13 +62,16 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
 
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -80,7 +84,7 @@ async function handleFiles(files: FileList) {
       totalPagesSpan.textContent = String(pageState.pdfDoc.getPageCount());
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   } finally {
     hideLoader();
   }
@@ -123,10 +127,10 @@ function resetState() {
 
 async function addHeaderFooter() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert(t('common.error'), t('tools:addPageLabels.uploadFirstMessage'));
     return;
   }
-  showLoader('Adding header & footer...');
+  showLoader(t('tools:headerFooter.loader.addingHeaderFooter'));
   try {
     const helveticaFont = await pageState.pdfDoc.embedFont(
       StandardFonts.Helvetica
@@ -245,8 +249,8 @@ async function addHeaderFooter() {
       pageState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Header & Footer added successfully!',
+      t('common.success'),
+      t('tools:headerFooter.alert.headerFooterAddedSuccessfully'),
       'success',
       () => {
         resetState();
@@ -255,8 +259,10 @@ async function addHeaderFooter() {
   } catch (e: unknown) {
     console.error(e);
     showAlert(
-      'Error',
-      e instanceof Error ? e.message : 'Could not add header or footer.'
+      t('common.error'),
+      e instanceof Error
+        ? e.message
+        : t('tools:headerFooter.alert.couldNotAddHeader')
     );
   } finally {
     hideLoader();

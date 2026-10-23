@@ -22,6 +22,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const pageState: AddWatermarkState = {
   file: null,
@@ -121,13 +122,16 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     const pdfBytes = new Uint8Array(result.bytes);
     pageState.pdfDoc = await loadPdfDocument(pdfBytes);
     pageState.file = result.file;
@@ -153,7 +157,7 @@ async function handleFiles(files: FileList) {
     updateWatermarkOverlay();
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   } finally {
     hideLoader();
   }
@@ -1041,11 +1045,11 @@ function setupDragHandlers(container: HTMLElement) {
 
 async function applyWatermark() {
   if (!pageState.pdfDoc || !pageState.pdfBytes) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert(t('common.error'), t('tools:addPageLabels.uploadFirstMessage'));
     return;
   }
 
-  showLoader('Adding watermark...');
+  showLoader(t('tools:addWatermark.loader.addingWatermark'));
 
   try {
     saveCurrentPageConfig();
@@ -1262,12 +1266,18 @@ async function applyWatermark() {
       new Blob([new Uint8Array(resultBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Watermark added successfully!', 'success');
+    showAlert(
+      t('common.success'),
+      t('tools:addWatermark.alert.watermarkAddedSuccessfully'),
+      'success'
+    );
   } catch (e: unknown) {
     console.error(e);
     showAlert(
-      'Error',
-      e instanceof Error ? e.message : 'Could not add the watermark.'
+      t('common.error'),
+      e instanceof Error
+        ? e.message
+        : t('tools:addWatermark.alert.couldNotAddWatermark')
     );
   } finally {
     hideLoader();

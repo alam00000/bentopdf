@@ -4,6 +4,7 @@ import { readFileAsArrayBuffer, formatBytes } from '../utils/helpers.js';
 import { validatePdfSignatures } from './validate-signature-pdf.js';
 import forge from 'node-forge';
 import { SignatureValidationResult, ValidateSignatureState } from '@/types';
+import { t } from '../i18n/i18n';
 
 const state: ValidateSignatureState = {
   pdfFile: null,
@@ -131,7 +132,10 @@ async function handlePdfFile(file: File): Promise<void> {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:duplexCollate.invalidFileMessage')
+    );
     return;
   }
 
@@ -198,8 +202,8 @@ async function handleCertFile(file: File): Promise<void> {
 
   if (!hasValidExtension) {
     showAlert(
-      'Invalid Certificate',
-      'Please select a .pem, .crt, .cer, or .der certificate file.'
+      t('tools:digitalSignPdf.invalidCertificateTitle'),
+      t('tools:validateSignaturePdf.alert.selectPemCrtCer')
     );
     return;
   }
@@ -228,7 +232,10 @@ async function handleCertFile(file: File): Promise<void> {
     }
   } catch (error) {
     console.error('Error parsing certificate:', error);
-    showAlert('Invalid Certificate', 'Failed to parse the certificate file.');
+    showAlert(
+      t('tools:digitalSignPdf.invalidCertificateTitle'),
+      t('tools:validateSignaturePdf.alert.failedParseCertificateFile')
+    );
     resetCertState();
   }
 }
@@ -277,7 +284,7 @@ function updateCertDisplay(): void {
 async function validateSignatures(): Promise<void> {
   if (!state.pdfBytes) return;
 
-  showLoader('Analyzing signatures...');
+  showLoader(t('tools:validateSignaturePdf.loader.analyzingSignatures'));
 
   try {
     state.results = await validatePdfSignatures(
@@ -288,8 +295,8 @@ async function validateSignatures(): Promise<void> {
   } catch (error) {
     console.error('Validation error:', error);
     showAlert(
-      'Error',
-      'Failed to validate signatures. The file may be corrupted.'
+      t('common.error'),
+      t('tools:validateSignaturePdf.alert.failedValidateSignaturesFile')
     );
   } finally {
     hideLoader();
