@@ -255,8 +255,17 @@ const HYPER_OPTION_SECTIONS: HyperOptionSection[] = [
   },
 ];
 
-const hyperOptionText = (id: string, english: string): string =>
-  t(`tools:compressPdf.hyperOptions.${id}`, { defaultValue: english });
+// The panel can be built before initI18n() resolves; data-i18n lets
+// applyTranslations() in main.ts relabel it once the language is loaded.
+const setHyperOptionText = (
+  element: HTMLElement,
+  id: string,
+  english: string
+): void => {
+  const key = `tools:compressPdf.hyperOptions.${id}`;
+  element.dataset.i18n = key;
+  element.textContent = t(key, { defaultValue: english });
+};
 
 function buildOptionField(
   field: HyperOptionField,
@@ -268,7 +277,7 @@ function buildOptionField(
   if (field.help) {
     help = document.createElement('p');
     help.className = 'text-xs text-gray-500 mt-0.5';
-    help.textContent = hyperOptionText(`${field.key}Help`, field.help);
+    setHyperOptionText(help, `${field.key}Help`, field.help);
   }
 
   if (field.type === 'bool') {
@@ -282,7 +291,7 @@ function buildOptionField(
     const text = document.createElement('span');
     const title = document.createElement('span');
     title.className = 'block text-sm text-gray-300';
-    title.textContent = hyperOptionText(field.key, field.label);
+    setHyperOptionText(title, field.key, field.label);
     text.append(title);
     if (help) text.append(help);
     label.append(input, text);
@@ -298,7 +307,7 @@ function buildOptionField(
   const label = document.createElement('label');
   label.htmlFor = id;
   label.className = 'block mb-1 text-xs font-medium text-gray-400';
-  label.textContent = hyperOptionText(field.key, field.label);
+  setHyperOptionText(label, field.key, field.label);
   wrapper.append(label);
   const controlClass =
     'w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm';
@@ -310,10 +319,11 @@ function buildOptionField(
     for (const choice of DPI_CHOICES) {
       const option = document.createElement('option');
       option.value = String(choice.value);
-      option.textContent =
-        choice.value === 0
-          ? hyperOptionText('dpiNone', choice.label)
-          : choice.label;
+      if (choice.value === 0) {
+        setHyperOptionText(option, 'dpiNone', choice.label);
+      } else {
+        option.textContent = choice.label;
+      }
       select.append(option);
     }
     select.addEventListener('change', () =>
@@ -369,10 +379,13 @@ function renderHyperOptions(
     const summary = document.createElement('summary');
     summary.className =
       'flex items-center justify-between cursor-pointer select-none list-none px-3 py-2 text-sm font-medium text-gray-200 [&::-webkit-details-marker]:hidden';
-    summary.textContent = hyperOptionText(
+    const summaryText = document.createElement('span');
+    setHyperOptionText(
+      summaryText,
       `sections.${section.title.toLowerCase()}`,
       section.title
     );
+    summary.append(summaryText);
     const chevron = document.createElement('i');
     chevron.setAttribute('data-lucide', 'chevron-down');
     chevron.className =
