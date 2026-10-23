@@ -451,5 +451,17 @@
       "couldNotLoadPdf": "PDF sa nepodarilo načítať. Súbor môže byť neplatný, poškodený alebo chránený heslom.",
       "someFilesWereSkipped": "Niektoré súbory boli preskočené, pretože nie sú podporované obrázky."
     }
+  },
+  "toolPage": {
+    "backgroundColor": "Farba pozadia",
+    "fit": "Prispôsobiť",
+    "text": "Text",
+    "totalPages": "Počet strán:",
+    "orientation": "Orientácia",
+    "portrait": "Na výšku",
+    "landscape": "Na šírku"
+  },
+  "pageHeading": {
+    "pdfMultiTool": "Multifunkčný nástroj PDF – upravte a usporiadajte PDF online zadarmo"
   }
 }

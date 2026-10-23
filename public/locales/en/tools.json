@@ -42,6 +42,14 @@
       "renderingPreviews": "Rendering page previews...",
       "merging": "Merging PDFs...",
       "loadingDocuments": "Loading PDF documents..."
+    },
+    "ui": {
+      "clickDrag": "Click and drag the",
+      "iconToChangeOrderFiles": "icon to change the order of the files.",
+      "inPagesBoxEachFile": "In the \"Pages\" box for each file, you can specify ranges (e.g., \"1-3, 5\") to merge only those pages.",
+      "leavePagesBoxBlankTo": "Leave the \"Pages\" box blank to include all pages from that file.",
+      "allPagesUploadedPdfsShown": "All pages from your uploaded PDFs are shown below.",
+      "simplyDragDropIndividualPage": "Simply drag and drop the individual page thumbnails to create the exact order you want for your new file."
     }
   },
   "splitPdf": {
@@ -54,6 +62,40 @@
     },
     "loader": {
       "splittingPdf": "Splitting PDF..."
+    },
+    "ui": {
+      "splitMode": "Split Mode",
+      "extractPageRangeDefault": "Extract by Page Range (Default)",
+      "splitEvenOddPages": "Split by Even/Odd Pages",
+      "splitAllPagesIntoSeparate": "Split All Pages into Separate Files",
+      "selectPagesVisually": "Select Pages Visually",
+      "splitBookmarks": "Split by Bookmarks",
+      "splitTimes": "Split N Times",
+      "enterPageNumbersSeparatedCommas": "Enter page numbers separated by commas (e.g., 2, 8, 14).",
+      "enterPageRangesUsingHyphen": "Enter page ranges using a hyphen (e.g., 5-10).",
+      "combineThemComplexSelections": "Combine them for complex selections (e.g., 1-3, 7, 12-15).",
+      "pageRange": "Page Range",
+      "pageRangePlaceholder": "e.g. 1-5, 8, 11-13",
+      "extractAllEvenPagesAll": "Extract all even pages (2, 4, 6...) or all odd pages (1, 3, 5...) into a new PDF.",
+      "evenPages": "Even Pages",
+      "oddPages": "Odd Pages",
+      "everySinglePagePdfSaved": "Every single page of the PDF will be saved as a separate PDF file.",
+      "resultDownloadedZipFileContaining": "The result will be downloaded as a ZIP file containing all the pages.",
+      "clickOnPageThumbnailsBelow": "Click on the page thumbnails below to select the pages you want to extract.",
+      "selectedPagesHighlighted": "Selected pages will be highlighted.",
+      "splitPdfBasedOnIts": "Split the PDF based on its bookmarks (outline).",
+      "selectBookmarkLevelToSplit": "Select the bookmark level to split at.",
+      "bookmarkLevel": "Bookmark Level",
+      "allLevels": "All Levels",
+      "levelTopLevelOnly": "Level 0 (Top Level Only)",
+      "level1": "Level 1",
+      "level2": "Level 2",
+      "level3": "Level 3",
+      "splitPdfIntoMultipleFiles": "Split the PDF into multiple files, each containing N pages.",
+      "pagesPerFile": "Pages per file (N)",
+      "output": "Output",
+      "singleCombinedPdf": "Single combined PDF",
+      "multipleFilesDownloadedTogetherZip": "Multiple files are downloaded together as a ZIP."
     }
   },
   "compressPdf": {
@@ -252,6 +294,11 @@
     },
     "loader": {
       "extractingPages": "Extracting pages..."
+    },
+    "ui": {
+      "enterPagesToExtract": "Enter pages to extract (e.g., 2, 4-6, 9):",
+      "pageRangePlaceholder": "e.g., 2, 4-6, 9",
+      "extractDownloadZip": "Extract & Download ZIP"
     }
   },
   "duplicateOrganize": {
@@ -274,6 +321,11 @@
       "pagesHaveBeenReordered": "Pages have been reordered.",
       "pdfOrganizedSuccessfully": "PDF organized successfully!",
       "failedSaveChanges": "Failed to save changes."
+    },
+    "ui": {
+      "pageOrderCommaSeparated": "Page Order (comma-separated)",
+      "pageRangePlaceholder": "e.g., 3,1,4,2",
+      "applyOrder": "Apply Order"
     }
   },
   "deletePages": {
@@ -286,6 +338,11 @@
     },
     "loader": {
       "deletingPages": "Deleting pages..."
+    },
+    "ui": {
+      "enterPagesToDelete": "Enter pages to delete (e.g., 2, 4-6, 9):",
+      "pageRangePlaceholder": "e.g., 2, 4-6, 9",
+      "deletePagesDownload": "Delete Pages & Download"
     }
   },
   "editBookmarks": {
@@ -883,6 +940,11 @@
       "uploadLeastTwoPdf": "Please upload at least two PDF files to alternate and mix.",
       "leastTwoValidPdfs": "At least two valid PDFs are required.",
       "pdfsHaveBeenMixed": "PDFs have been mixed successfully!"
+    },
+    "ui": {
+      "filesOrder": "Files Order",
+      "dragToReorderPagesInterleaved": "Drag to reorder. Pages will be interleaved in this order.",
+      "mixPages": "Mix Pages"
     }
   },
   "duplexCollate": {
@@ -940,6 +1002,16 @@
     "loader": {
       "embeddingFilesIntoPdf": "Embedding files into PDF...",
       "attachingFilesPdf": "Attaching files to PDF..."
+    },
+    "ui": {
+      "selectFilesToAttach": "Select Files to Attach",
+      "clickDropFilesToAttach": "Click or drop files to attach",
+      "anyFileType": "Any file type",
+      "attachmentLevel": "Attachment Level",
+      "documentLevel": "Document Level",
+      "pageLevel": "Page Level",
+      "pageRangeTotal": "Page Range (e.g., 1,3,5-7) - Total:",
+      "pages": "pages"
     }
   },
   "extractAttachments": {
@@ -966,6 +1038,10 @@
     "loader": {
       "loadingAttachments": "Loading attachments...",
       "processingAttachments": "Processing attachments..."
+    },
+    "ui": {
+      "attachments": "Attachments",
+      "saveChanges": "Save Changes"
     }
   },
   "dividePages": {
@@ -979,6 +1055,20 @@
     },
     "loader": {
       "splittingPdfPages": "Splitting PDF pages..."
+    },
+    "ui": {
+      "vertical": "Vertical:",
+      "splitEachPageIntoLeft": "Split each page into left and right halves.",
+      "horizontal": "Horizontal:",
+      "splitEachPageIntoTop": "Split each page into top and bottom halves.",
+      "specifyWhichPagesToDivide": "Specify which pages to divide. Other pages will be kept as-is.",
+      "leaveBlankUseAllTo": "Leave blank or use \"all\" to divide all pages.",
+      "pagesToDivide": "Pages to Divide",
+      "leaveBlankAllPagesPlaceholder": "e.g. 1-5, 8, 11-13 (leave blank for all pages)",
+      "enterPageNumbersSeparatedCommas": "Enter page numbers separated by commas or ranges with hyphens.",
+      "splitDirection": "Split Direction",
+      "verticalLeftRight": "Vertical (Left & Right)",
+      "horizontalTopBottom": "Horizontal (Top & Bottom)"
     }
   },
   "addBlankPage": {
@@ -987,6 +1077,14 @@
     "alert": {
       "invalidInput": "Invalid Input",
       "enterValidNumberPages": "Please enter a valid number of pages (1 or more)."
+    },
+    "ui": {
+      "specifyPositionWhereBlankPages": "Specify the position where blank pages should be inserted.",
+      "positionInsertsBeginningPositionEqual": "Position 0 inserts at the beginning, position equal to page count inserts at the end.",
+      "blankPagesMatchSizeFirst": "Blank pages will match the size of the first page in your document.",
+      "insertAfterPage": "Insert after page",
+      "numberBlankPages": "Number of blank pages",
+      "addBlankPages": "Add Blank Pages"
     }
   },
   "reversePages": {
@@ -998,15 +1096,30 @@
     "alert": {
       "pagesHaveBeenReversed": "Pages have been reversed successfully!",
       "couldNotReversePdf": "Could not reverse the PDF pages. Please check that your files are valid PDFs."
+    },
+    "ui": {
+      "allPagesReversedFirstBecomes": "All pages will be reversed (first becomes last, last becomes first).",
+      "ifUploadMultiplePdfsEach": "If you upload multiple PDFs, each will be reversed and downloaded as a ZIP file."
     }
   },
   "rotatePdf": {
     "name": "Rotate PDF",
-    "subtitle": "Turn pages in 90-degree increments."
+    "subtitle": "Turn pages in 90-degree increments.",
+    "ui": {
+      "batchActions": "Batch Actions",
+      "left": "Left",
+      "right": "Right",
+      "applyRotations": "Apply Rotations"
+    }
   },
   "rotateCustom": {
     "name": "Rotate by Custom Degrees",
-    "subtitle": "Rotate pages by any custom angle."
+    "subtitle": "Rotate pages by any custom angle.",
+    "ui": {
+      "batchRotation": "Batch Rotation",
+      "applyToAll": "Apply to All",
+      "applyRotations": "Apply Rotations"
+    }
   },
   "nUpPdf": {
     "name": "N-Up PDF",
@@ -1017,6 +1130,22 @@
     "alert": {
       "nUpPdfCreated": "N-Up PDF created successfully!",
       "errorOccurredWhileCreating": "An error occurred while creating the N-Up PDF."
+    },
+    "ui": {
+      "chooseHowManyPagesTo": "Choose how many pages to fit on each sheet (2, 4, 9, or 16).",
+      "selectOutputPageSizeOrientation": "Select output page size and orientation.",
+      "optionallyAddMarginsBordersAround": "Optionally add margins and borders around each page.",
+      "pagesPerSheet": "Pages per Sheet",
+      "up1x2": "2-up (1x2)",
+      "up2x4": "4-up (2x2)",
+      "up3x9": "9-up (3x3)",
+      "up4x16": "16-up (4x4)",
+      "outputPageSize": "Output Page Size",
+      "auto": "Auto",
+      "addMargins": "Add Margins",
+      "addBorder": "Add Border",
+      "borderColor": "Border Color",
+      "createUpPdf": "Create N-Up PDF"
     }
   },
   "combineToSinglePage": {
@@ -1028,6 +1157,16 @@
     "alert": {
       "pagesCombinedSuccessfully": "Pages combined successfully!",
       "errorOccurredWhileCombining": "An error occurred while combining pages."
+    },
+    "ui": {
+      "layoutDirection": "Layout Direction",
+      "verticalTopToBottom": "Vertical (Top to Bottom)",
+      "horizontalLeftToRight": "Horizontal (Left to Right)",
+      "spacingPixels": "Spacing (pixels)",
+      "addSeparatorLines": "Add Separator Lines",
+      "separatorThickness": "Separator Thickness",
+      "separatorColor": "Separator Color",
+      "combinePages": "Combine Pages"
     }
   },
   "viewMetadata": {
@@ -1037,6 +1176,10 @@
       "copied": "Copied",
       "metadataCopiedClipboardAs": "Metadata copied to clipboard as JSON.",
       "failedCopyMetadataClipboard": "Failed to copy metadata to clipboard."
+    },
+    "ui": {
+      "documentMetadata": "Document Metadata",
+      "copyMetadataJson": "Copy Metadata as JSON"
     }
   },
   "editMetadata": {
@@ -1048,6 +1191,20 @@
     "alert": {
       "metadataUpdatedSuccessfully": "Metadata updated successfully!",
       "couldNotUpdateMetadata": "Could not update metadata. Please check that date formats are correct."
+    },
+    "ui": {
+      "title": "Title",
+      "author": "Author",
+      "subject": "Subject",
+      "keywordsCommaSeparated": "Keywords (comma-separated)",
+      "creator": "Creator",
+      "producer": "Producer",
+      "creationDate": "Creation Date",
+      "modificationDate": "Modification Date",
+      "customFields": "Custom Fields",
+      "noteCustomFieldsNotSupported": "Note: Custom fields are not supported by all PDF readers.",
+      "addCustomField": "Add Custom Field",
+      "saveMetadata": "Save Metadata"
     }
   },
   "pdfsToZip": {
@@ -1060,6 +1217,11 @@
     },
     "loader": {
       "generatingZipFile": "Generating ZIP file..."
+    },
+    "ui": {
+      "allSelectedPdfFilesPackaged": "All selected PDF files will be packaged into a single ZIP archive.",
+      "fileNamesPreservedInArchive": "File names will be preserved in the archive.",
+      "createZipArchive": "Create ZIP Archive"
     }
   },
   "comparePdfs": {
@@ -1104,7 +1266,24 @@
     "loadingFile": "Loading {{name}}...",
     "invalidFile": "Invalid File",
     "invalidFileMsg": "Please select a valid PDF file.",
-    "loadError": "Could not load PDF. It may be corrupt or password-protected."
+    "loadError": "Could not load PDF. It may be corrupt or password-protected.",
+    "ui": {
+      "zoomOut": "Zoom out",
+      "zoomIn": "Zoom in",
+      "resetZoomToFit": "Reset zoom to fit",
+      "allChanges": "All changes",
+      "contentOnly": "Content only",
+      "overlayView": "Overlay view",
+      "changeType": "Change Type",
+      "moved": "Moved",
+      "style": "Style",
+      "content": "Content",
+      "images": "Images",
+      "headers": "Headers",
+      "annotations": "Annotations",
+      "formatting": "Formatting",
+      "backgrounds": "Backgrounds"
+    }
   },
   "posterizePdf": {
     "name": "Posterize PDF",
@@ -1115,6 +1294,26 @@
     "alert": {
       "pdfHasBeenPosterized": "Your PDF has been posterized.",
       "couldNotPosterizePdf": "Could not posterize the PDF."
+    },
+    "ui": {
+      "pagePreview": "Page Preview (",
+      "gridLayout": "Grid Layout",
+      "rows": "Rows",
+      "columns": "Columns",
+      "outputPageSettings": "Output Page Settings",
+      "pageSize": "Page Size",
+      "automaticRecommended": "Automatic (Recommended)",
+      "advancedOptions": "Advanced Options",
+      "contentScaling": "Content Scaling",
+      "preservesAllContentMayAdd": "Preserves all content, may add margins.",
+      "fillCrop": "Fill (Crop)",
+      "fillsPageMayCropContent": "Fills the page, may crop content.",
+      "overlapAssembly": "Overlap (for assembly)",
+      "points": "Points",
+      "inches": "Inches",
+      "pageRangeOptional": "Page Range (optional)",
+      "pageRangePlaceholder": "e.g., 1-3, 5",
+      "totalPages": "Total pages:"
     }
   },
   "fixPageSize": {
@@ -1309,6 +1508,17 @@
     },
     "loader": {
       "creatingBooklet": "Creating Booklet..."
+    },
+    "ui": {
+      "sourceRotation": "Source Rotation",
+      "noRotation": "No rotation",
+      "rotateClockwise": "Rotate clockwise (90°)",
+      "rotateCounterClockwise": "Rotate counter-clockwise (90°)",
+      "alternateOddCwEvenCcw": "Alternate (odd→CW, even→CCW)",
+      "gridMode": "Grid Mode",
+      "booklet1": "1×2 (Booklet)",
+      "autoBestLayout": "Auto (best for layout)",
+      "generatePreview": "Generate Preview"
     }
   },
   "xpsToPdf": {
@@ -1417,6 +1627,10 @@
     "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown.",
     "alert": {
       "extracted1TableSuccessfully": "Extracted 1 table successfully!"
+    },
+    "ui": {
+      "exportFormat": "Export Format",
+      "extractTables": "Extract Tables"
     }
   },
   "pdfToCsv": {
@@ -1641,6 +1855,13 @@
     "loader": {
       "readingLayerConfiguration": "Reading layer configuration...",
       "savingPdfWithLayer": "Saving PDF with layer changes..."
+    },
+    "ui": {
+      "loadLayers": "Load Layers",
+      "enterNewLayerNamePlaceholder": "Enter new layer name...",
+      "addLayer": "Add Layer",
+      "downloadModifiedPdf": "Download Modified PDF",
+      "layerNamePlaceholder": "Layer Name"
     }
   },
   "pdfToPdfa": {
@@ -1834,6 +2055,9 @@
     "alert": {
       "missingFiles": "Missing Files",
       "uploadBothBasePdf": "Please upload both a base PDF and an overlay/underlay PDF."
+    },
+    "ui": {
+      "pageRangePlaceholder": "e.g. 1-5, 8, 10-z (leave empty for all)"
     }
   },
   "unlockPdf": {

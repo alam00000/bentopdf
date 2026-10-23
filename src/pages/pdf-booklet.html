@@ -173,7 +173,9 @@
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div class="bg-gray-900 rounded-lg border border-gray-700 p-4">
-              <label class="block mb-3 text-sm font-medium text-white"
+              <label
+                data-i18n="tools:pdfBooklet.ui.sourceRotation"
+                class="block mb-3 text-sm font-medium text-white"
                 >Source Rotation</label
               >
               <div class="space-y-2">
@@ -187,7 +189,9 @@
                     checked
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>No rotation</span>
+                  <span data-i18n="tools:pdfBooklet.ui.noRotation"
+                    >No rotation</span
+                  >
                 </label>
                 <label
                   class="flex items-center gap-2 cursor-pointer text-sm text-gray-300"
@@ -198,7 +202,9 @@
                     value="90cw"
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>Rotate clockwise (90°)</span>
+                  <span data-i18n="tools:pdfBooklet.ui.rotateClockwise"
+                    >Rotate clockwise (90°)</span
+                  >
                 </label>
                 <label
                   class="flex items-center gap-2 cursor-pointer text-sm text-gray-300"
@@ -209,7 +215,9 @@
                     value="90ccw"
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>Rotate counter-clockwise (90°)</span>
+                  <span data-i18n="tools:pdfBooklet.ui.rotateCounterClockwise"
+                    >Rotate counter-clockwise (90°)</span
+                  >
                 </label>
                 <label
                   class="flex items-center gap-2 cursor-pointer text-sm text-gray-300"
@@ -220,7 +228,9 @@
                     value="alternate"
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>Alternate (odd→CW, even→CCW)</span>
+                  <span data-i18n="tools:pdfBooklet.ui.alternateOddCwEvenCcw"
+                    >Alternate (odd→CW, even→CCW)</span
+                  >
                 </label>
               </div>
             </div>
@@ -277,7 +287,9 @@
                 </select>
               </div>
 
-              <label class="block mb-3 text-sm font-medium text-white"
+              <label
+                data-i18n="tools:pdfBooklet.ui.gridMode"
+                class="block mb-3 text-sm font-medium text-white"
                 >Grid Mode</label
               >
               <div class="space-y-2">
@@ -291,7 +303,9 @@
                     checked
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>1×2 (Booklet)</span>
+                  <span data-i18n="tools:pdfBooklet.ui.booklet1"
+                    >1×2 (Booklet)</span
+                  >
                 </label>
                 <label
                   class="flex items-center gap-2 cursor-pointer text-sm text-gray-300"
@@ -328,7 +342,9 @@
                 </label>
               </div>
 
-              <label class="block mt-4 mb-3 text-sm font-medium text-white"
+              <label
+                data-i18n="tools:pdfBooklet.orientation"
+                class="block mt-4 mb-3 text-sm font-medium text-white"
                 >Orientation</label
               >
               <div class="space-y-2">
@@ -342,7 +358,9 @@
                     checked
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>Auto (best for layout)</span>
+                  <span data-i18n="tools:pdfBooklet.ui.autoBestLayout"
+                    >Auto (best for layout)</span
+                  >
                 </label>
                 <label
                   class="flex items-center gap-2 cursor-pointer text-sm text-gray-300"
@@ -353,7 +371,7 @@
                     value="portrait"
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>Portrait</span>
+                  <span data-i18n="tools:pdfBooklet.portrait">Portrait</span>
                 </label>
                 <label
                   class="flex items-center gap-2 cursor-pointer text-sm text-gray-300"
@@ -364,7 +382,7 @@
                     value="landscape"
                     class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600"
                   />
-                  <span>Landscape</span>
+                  <span data-i18n="tools:pdfBooklet.landscape">Landscape</span>
                 </label>
               </div>
             </div>
@@ -377,7 +395,9 @@
               disabled
             >
               <i data-lucide="eye" class="w-4 h-4 inline-block mr-2"></i>
-              Generate Preview
+              <span data-i18n="tools:pdfBooklet.ui.generatePreview"
+                >Generate Preview</span
+              >
             </button>
             <button
               id="download-btn"

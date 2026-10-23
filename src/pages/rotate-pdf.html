@@ -157,6 +157,7 @@
           <!-- Batch Actions -->
           <div class="bg-gray-900 rounded-lg border border-gray-700 p-4 mb-4">
             <h3
+              data-i18n="tools:rotatePdf.ui.batchActions"
               class="text-center text-sm font-semibold text-white mb-4 uppercase tracking-wider"
             >
               Batch Actions
@@ -168,13 +169,15 @@
                   id="rotate-all-left"
                   class="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm border border-gray-600"
                 >
-                  <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Left
+                  <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                  <span data-i18n="tools:rotatePdf.ui.left">Left</span>
                 </button>
                 <button
                   id="rotate-all-right"
                   class="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg text-sm border border-gray-600"
                 >
-                  <i data-lucide="rotate-cw" class="w-4 h-4"></i> Right
+                  <i data-lucide="rotate-cw" class="w-4 h-4"></i>
+                  <span data-i18n="tools:rotatePdf.ui.right">Right</span>
                 </button>
               </div>
             </div>
@@ -186,7 +189,11 @@
             class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-4"
           ></div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:rotatePdf.ui.applyRotations"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Apply Rotations
           </button>
         </div>

@@ -168,21 +168,29 @@
 
         <!-- Advanced Settings -->
         <div id="advanced-settings" class="hidden mt-6 space-y-3">
-          <h3 class="text-lg font-semibold text-white">Advanced Settings</h3>
+          <h3
+            data-i18n="settings.advancedSettings"
+            class="text-lg font-semibold text-white"
+          >
+            Advanced Settings
+          </h3>
           <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-700">
             <label
+              data-i18n="tools:duplicateOrganize.ui.pageOrderCommaSeparated"
               for="page-order-input"
               class="block text-sm font-medium text-gray-300 mb-2"
               >Page Order (comma-separated)</label
             >
             <div class="flex gap-3">
               <input
+                data-i18n-placeholder="tools:duplicateOrganize.ui.pageRangePlaceholder"
                 type="text"
                 id="page-order-input"
                 class="flex-1 bg-gray-900 text-white rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 border border-gray-600 placeholder-gray-500"
                 placeholder="e.g., 3,1,4,2"
               />
               <button
+                data-i18n="tools:duplicateOrganize.ui.applyOrder"
                 id="apply-order-btn"
                 class="btn-gradient whitespace-nowrap !px-5 !py-2.5 text-sm"
               >

@@ -451,5 +451,17 @@
       "couldNotLoadPdf": "Could not load PDF. The file may be invalid, corrupted, or password-protected.",
       "someFilesWereSkipped": "Some files were skipped because they are not supported images."
     }
+  },
+  "toolPage": {
+    "backgroundColor": "Background Color",
+    "fit": "Fit",
+    "text": "Text",
+    "totalPages": "Total Pages:",
+    "orientation": "Orientation",
+    "portrait": "Portrait",
+    "landscape": "Landscape"
+  },
+  "pageHeading": {
+    "pdfMultiTool": "PDF Multi Tool Free Online - Edit & Organize PDFs"
   }
 }

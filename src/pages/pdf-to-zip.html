@@ -157,20 +157,28 @@
         <div id="tool-options" class="hidden mt-6">
           <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
             <p class="text-sm text-gray-300">
-              <strong class="text-white">How it works:</strong>
+              <strong data-i18n="merge.howItWorks" class="text-white"
+                >How it works:</strong
+              >
             </p>
             <ul
               class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
             >
-              <li>
+              <li data-i18n="tools:pdfsToZip.ui.allSelectedPdfFilesPackaged">
                 All selected PDF files will be packaged into a single ZIP
                 archive.
               </li>
-              <li>File names will be preserved in the archive.</li>
+              <li data-i18n="tools:pdfsToZip.ui.fileNamesPreservedInArchive">
+                File names will be preserved in the archive.
+              </li>
             </ul>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:pdfsToZip.ui.createZipArchive"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Create ZIP Archive
           </button>
         </div>
