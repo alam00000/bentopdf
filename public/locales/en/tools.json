@@ -1018,6 +1018,16 @@
       "conversionError": "Failed to convert PDF to TIFF. The file might be corrupted.",
       "conversionOutOfMemory": "The browser ran out of memory while converting. Try a lower DPI, or uncheck the multi-page TIFF option to convert pages one at a time.",
       "failedLoadImageProcessor": "Failed to load the image processor. Please ensure your browser supports SharedArrayBuffer (requires HTTPS or localhost)."
+    },
+    "ui": {
+      "lzwLossless": "LZW (Lossless)",
+      "deflateZipLossless": "Deflate / ZIP (Lossless)",
+      "ccittGroupDocuments": "CCITT Group 4 (B&W documents)",
+      "jpegLossy": "JPEG (Lossy)",
+      "noneUncompressed": "None (Uncompressed)",
+      "colorRgb": "Color (RGB)",
+      "greyscale": "Greyscale",
+      "blackWhiteBit": "Black & White (1-bit)"
     }
   },
   "pdfToCbz": {
@@ -1048,6 +1058,10 @@
       "noFileExplanation": "Please upload a PDF file first.",
       "conversionSuccess": "PDF converted to CBZ successfully!",
       "conversionError": "Failed to convert PDF to CBZ. The file might be corrupted."
+    },
+    "ui": {
+      "autoDetectedFilenamePlaceholder": "Auto-detected from filename",
+      "actionAdventureSciFiPlaceholder": "Action, Adventure, Sci-Fi"
     }
   },
   "pdfToGreyscale": {
@@ -1059,6 +1073,9 @@
     "alert": {
       "pdfConvertedGreyscaleSuccessfully": "PDF converted to greyscale successfully!",
       "failedConvertPdfGreyscale": "Failed to convert PDF to greyscale. The file might be corrupted."
+    },
+    "ui": {
+      "convertToGreyscale": "Convert to Greyscale"
     }
   },
   "pdfToJson": {
@@ -1827,6 +1844,9 @@
     "alert": {
       "pdfConvertedSvgSuccessfully": "PDF converted to SVG successfully!",
       "uploadPdfFiles": "Please upload PDF files."
+    },
+    "ui": {
+      "convertToSvg": "Convert to SVG"
     }
   },
   "extractTables": {
@@ -1845,6 +1865,9 @@
     "subtitle": "Extract tables from PDF and convert to CSV format.",
     "alert": {
       "pdfConvertedCsvSuccessfully": "PDF converted to CSV successfully!"
+    },
+    "ui": {
+      "convertToCsv": "Convert to CSV"
     }
   },
   "pdfToExcel": {
@@ -1852,6 +1875,9 @@
     "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format.",
     "loader": {
       "creatingExcelFile": "Creating Excel file..."
+    },
+    "ui": {
+      "convertToExcel": "Convert to Excel"
     }
   },
   "pdfToText": {
@@ -2018,7 +2044,10 @@
   },
   "pdfToWord": {
     "name": "PDF to Word",
-    "subtitle": "Convert PDF files to editable Word documents."
+    "subtitle": "Convert PDF files to editable Word documents.",
+    "ui": {
+      "convertToDocx": "Convert to DOCX"
+    }
   },
   "extractImages": {
     "name": "Extract Images",
@@ -2029,6 +2058,10 @@
     "alert": {
       "noImagesFound": "No Images Found",
       "noEmbeddedImagesWere": "No embedded images were found in the selected PDF(s)."
+    },
+    "ui": {
+      "extractedImages": "Extracted Images",
+      "downloadAllZip": "Download All (ZIP)"
     }
   },
   "pdfToMarkdown": {
@@ -2039,6 +2072,10 @@
     },
     "alert": {
       "failedConvertPdfMay": "Failed to convert PDF. It may be image-based or corrupted."
+    },
+    "ui": {
+      "includeImagesBase64": "Include images as base64",
+      "convertToMarkdown": "Convert to Markdown"
     }
   },
   "preparePdfForAi": {
@@ -2050,6 +2087,14 @@
     "alert": {
       "successfullyExtractedPdfAi": "Successfully extracted PDF for AI/LLM use.",
       "extractionPartial": "Extraction Partial"
+    },
+    "ui": {
+      "outputFormat": "Output Format:",
+      "eachPdfExtractedJsonFile": "Each PDF will be extracted as a JSON file containing an array of LlamaIndex Document objects with:",
+      "extractedTextContentPerPage": "- Extracted text content per page",
+      "pageNumberHeadingsDocumentInfo": "- Page number, headings, and document info",
+      "additionalContextRagSystems": "- Additional context for RAG systems",
+      "extractAi": "Extract for AI"
     }
   },
   "pdfOcg": {

@@ -1018,6 +1018,16 @@
       "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený.",
       "conversionOutOfMemory": "Prehliadaču došla pamäť počas konverzie. Skúste nižšie DPI alebo vypnite možnosť viacstranového TIFF, aby sa strany konvertovali po jednej.",
       "failedLoadImageProcessor": "Nástroj na spracovanie obrázkov sa nepodarilo načítať. Skontrolujte, či váš prehliadač podporuje SharedArrayBuffer (vyžaduje HTTPS alebo localhost)."
+    },
+    "ui": {
+      "lzwLossless": "LZW (bezstratová)",
+      "deflateZipLossless": "Deflate / ZIP (bezstratová)",
+      "ccittGroupDocuments": "CCITT Group 4 (čiernobiele dokumenty)",
+      "jpegLossy": "JPEG (stratová)",
+      "noneUncompressed": "Žiadna (bez kompresie)",
+      "colorRgb": "Farebne (RGB)",
+      "greyscale": "V odtieňoch sivej",
+      "blackWhiteBit": "Čiernobielo (1 bit)"
     }
   },
   "pdfToCbz": {
@@ -1048,6 +1058,10 @@
       "noFileExplanation": "Najskôr nahrajte PDF súbor.",
       "conversionSuccess": "PDF bolo úspešne skonvertované do CBZ!",
       "conversionError": "Nepodarilo sa skonvertovať PDF do CBZ. Súbor môže byť poškodený."
+    },
+    "ui": {
+      "autoDetectedFilenamePlaceholder": "Automaticky zistené z názvu súboru",
+      "actionAdventureSciFiPlaceholder": "Akčný, Dobrodružný, Sci-fi"
     }
   },
   "pdfToGreyscale": {
@@ -1059,6 +1073,9 @@
     "alert": {
       "pdfConvertedGreyscaleSuccessfully": "PDF bolo úspešne skonvertované do odtieňov sivej!",
       "failedConvertPdfGreyscale": "Nepodarilo sa skonvertovať PDF do odtieňov sivej. Súbor môže byť poškodený."
+    },
+    "ui": {
+      "convertToGreyscale": "Previesť do odtieňov sivej"
     }
   },
   "pdfToJson": {
@@ -1827,6 +1844,9 @@
     "alert": {
       "pdfConvertedSvgSuccessfully": "PDF bolo úspešne skonvertované do SVG!",
       "uploadPdfFiles": "Nahrajte PDF súbory."
+    },
+    "ui": {
+      "convertToSvg": "Previesť do SVG"
     }
   },
   "extractTables": {
@@ -1845,6 +1865,9 @@
     "subtitle": "Extrahovať tabuľky z PDF a previesť ich do formátu CSV.",
     "alert": {
       "pdfConvertedCsvSuccessfully": "PDF bolo úspešne skonvertované do CSV!"
+    },
+    "ui": {
+      "convertToCsv": "Previesť do CSV"
     }
   },
   "pdfToExcel": {
@@ -1852,6 +1875,9 @@
     "subtitle": "Extrahovať tabuľky z PDF a previesť ich do formátu Excel (XLSX).",
     "loader": {
       "creatingExcelFile": "Vytvára sa súbor Excel..."
+    },
+    "ui": {
+      "convertToExcel": "Previesť do Excelu"
     }
   },
   "pdfToText": {
@@ -2018,7 +2044,10 @@
   },
   "pdfToWord": {
     "name": "PDF do Wordu",
-    "subtitle": "Previesť PDF súbory do upraviteľných dokumentov Word."
+    "subtitle": "Previesť PDF súbory do upraviteľných dokumentov Word.",
+    "ui": {
+      "convertToDocx": "Previesť do DOCX"
+    }
   },
   "extractImages": {
     "name": "Extrahovať obrázky",
@@ -2029,6 +2058,10 @@
     "alert": {
       "noImagesFound": "Nenašli sa žiadne obrázky",
       "noEmbeddedImagesWere": "Vo vybraných PDF súboroch sa nenašli žiadne vložené obrázky."
+    },
+    "ui": {
+      "extractedImages": "Extrahované obrázky",
+      "downloadAllZip": "Stiahnuť všetko (ZIP)"
     }
   },
   "pdfToMarkdown": {
@@ -2039,6 +2072,10 @@
     },
     "alert": {
       "failedConvertPdfMay": "PDF sa nepodarilo skonvertovať. Môže obsahovať len obrázky alebo byť poškodené."
+    },
+    "ui": {
+      "includeImagesBase64": "Zahrnúť obrázky ako base64",
+      "convertToMarkdown": "Previesť do Markdownu"
     }
   },
   "preparePdfForAi": {
@@ -2050,6 +2087,14 @@
     "alert": {
       "successfullyExtractedPdfAi": "PDF bolo úspešne extrahované na použitie s AI/LLM.",
       "extractionPartial": "Extrahovanie čiastočne úspešné"
+    },
+    "ui": {
+      "outputFormat": "Výstupný formát:",
+      "eachPdfExtractedJsonFile": "Každé PDF sa extrahuje ako súbor JSON s poľom objektov LlamaIndex Document, ktoré obsahujú:",
+      "extractedTextContentPerPage": "– extrahovaný text každej strany",
+      "pageNumberHeadingsDocumentInfo": "– číslo strany, nadpisy a údaje o dokumente",
+      "additionalContextRagSystems": "– doplňujúci kontext pre systémy RAG",
+      "extractAi": "Extrahovať pre AI"
     }
   },
   "pdfOcg": {

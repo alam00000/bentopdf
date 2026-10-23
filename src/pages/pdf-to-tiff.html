@@ -188,12 +188,31 @@
               id="tiff-compression"
               class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             >
-              <option value="lzw">LZW (Lossless)</option>
-              <option value="deflate">Deflate / ZIP (Lossless)</option>
-              <option value="ccittfax4">CCITT Group 4 (B&W documents)</option>
-              <option value="jpeg">JPEG (Lossy)</option>
+              <option data-i18n="tools:pdfToTiff.ui.lzwLossless" value="lzw">
+                LZW (Lossless)
+              </option>
+              <option
+                data-i18n="tools:pdfToTiff.ui.deflateZipLossless"
+                value="deflate"
+              >
+                Deflate / ZIP (Lossless)
+              </option>
+              <option
+                data-i18n="tools:pdfToTiff.ui.ccittGroupDocuments"
+                value="ccittfax4"
+              >
+                CCITT Group 4 (B&W documents)
+              </option>
+              <option data-i18n="tools:pdfToTiff.ui.jpegLossy" value="jpeg">
+                JPEG (Lossy)
+              </option>
               <option value="packbits">PackBits</option>
-              <option value="none">None (Uncompressed)</option>
+              <option
+                data-i18n="tools:pdfToTiff.ui.noneUncompressed"
+                value="none"
+              >
+                None (Uncompressed)
+              </option>
             </select>
             <p
               class="mt-1 text-xs text-gray-400"
@@ -215,9 +234,18 @@
               id="tiff-color-mode"
               class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             >
-              <option value="rgb">Color (RGB)</option>
-              <option value="greyscale">Greyscale</option>
-              <option value="bw">Black & White (1-bit)</option>
+              <option data-i18n="tools:pdfToTiff.ui.colorRgb" value="rgb">
+                Color (RGB)
+              </option>
+              <option
+                data-i18n="tools:pdfToTiff.ui.greyscale"
+                value="greyscale"
+              >
+                Greyscale
+              </option>
+              <option data-i18n="tools:pdfToTiff.ui.blackWhiteBit" value="bw">
+                Black & White (1-bit)
+              </option>
             </select>
           </div>
 

@@ -166,13 +166,15 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
@@ -180,28 +182,46 @@
 
         <div id="extract-options" class="hidden mt-6 space-y-6">
           <div class="bg-gray-700 rounded-lg p-4 text-sm text-gray-300">
-            <p class="font-medium text-white mb-2">Output Format:</p>
-            <p>
+            <p
+              data-i18n="tools:preparePdfForAi.ui.outputFormat"
+              class="font-medium text-white mb-2"
+            >
+              Output Format:
+            </p>
+            <p data-i18n="tools:preparePdfForAi.ui.eachPdfExtractedJsonFile">
               Each PDF will be extracted as a JSON file containing an array of
               LlamaIndex Document objects with:
             </p>
             <ul class="list-disc list-inside mt-2 space-y-1 text-gray-400">
               <li>
-                <code class="text-indigo-400">text</code> - Extracted text
-                content per page
+                <code class="text-indigo-400">text</code>
+                <span
+                  data-i18n="tools:preparePdfForAi.ui.extractedTextContentPerPage"
+                  >- Extracted text content per page</span
+                >
               </li>
               <li>
-                <code class="text-indigo-400">metadata</code> - Page number,
-                headings, and document info
+                <code class="text-indigo-400">metadata</code>
+                <span
+                  data-i18n="tools:preparePdfForAi.ui.pageNumberHeadingsDocumentInfo"
+                  >- Page number, headings, and document info</span
+                >
               </li>
               <li>
-                <code class="text-indigo-400">extra_info</code> - Additional
-                context for RAG systems
+                <code class="text-indigo-400">extra_info</code>
+                <span
+                  data-i18n="tools:preparePdfForAi.ui.additionalContextRagSystems"
+                  >- Additional context for RAG systems</span
+                >
               </li>
             </ul>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:preparePdfForAi.ui.extractAi"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Extract for AI
           </button>
         </div>
