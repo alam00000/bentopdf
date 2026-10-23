@@ -279,7 +279,8 @@
     "files": "Fichiers",
     "close": "Fermer",
     "convert": "Convertir",
-    "unknownError": "Erreur inconnue"
+    "unknownError": "Erreur inconnue",
+    "removeFile": "Supprimer le fichier"
   },
   "about": {
     "hero": {

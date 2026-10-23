@@ -42,6 +42,10 @@
       "renderingPreviews": "Génération des aperçus de pages…",
       "merging": "Fusion des PDF…",
       "loadingDocuments": "Chargement des documents PDF…"
+    },
+    "ui": {
+      "pagesRangeTotal": "Pages (ex. : 1-3, 5) - Total : {{count}}",
+      "leaveBlankAllPages": "Laisser vide pour toutes les pages"
     }
   },
   "splitPdf": {

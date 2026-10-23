@@ -336,7 +336,9 @@
     "alert": {
       "initializationError": "Chyba inicializácie",
       "couldNotLoadPdf": "PDF jadro sa nepodarilo načítať. Obnovte stránku a skúste to znova."
-    }
+    },
+    "pageCountLabel": "Počet strán: {{count}}",
+    "removeFile": "Odstrániť súbor"
   },
   "about": {
     "hero": {

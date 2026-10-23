@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
           result.pdf.destroy();
           state.files[0] = result.file;
           state.pdfDoc = await loadPdfDocument(result.bytes);
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pageCount} pages`;
+          metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.pageCountLabel', { count: pageCount })}`;
         } catch (error) {
           console.error('Error loading PDF:', error);
           showAlert(
@@ -605,12 +605,16 @@ document.addEventListener('DOMContentLoaded', () => {
         rangePanel?.classList.remove('hidden');
         outputModeWrapper?.classList.remove('hidden');
         if (outputSeparateLabel)
-          outputSeparateLabel.textContent = 'One PDF per range';
+          outputSeparateLabel.textContent = t(
+            'tools:splitPdf.ui.onePdfPerRange'
+          );
       } else if (mode === 'visual') {
         visualPanel?.classList.remove('hidden');
         outputModeWrapper?.classList.remove('hidden');
         if (outputSeparateLabel)
-          outputSeparateLabel.textContent = 'One PDF per page';
+          outputSeparateLabel.textContent = t(
+            'tools:splitPdf.ui.onePdfPerPage'
+          );
         renderVisualSelector();
       } else if (mode === 'even-odd') {
         evenOddPanel?.classList.remove('hidden');

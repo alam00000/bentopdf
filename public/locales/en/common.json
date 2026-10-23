@@ -336,7 +336,9 @@
     "alert": {
       "initializationError": "Initialization Error",
       "couldNotLoadPdf": "Could not load the PDF engine. Please refresh the page and try again."
-    }
+    },
+    "pageCountLabel": "Pages: {{count}}",
+    "removeFile": "Remove file"
   },
   "about": {
     "hero": {

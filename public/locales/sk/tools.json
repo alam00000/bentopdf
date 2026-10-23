@@ -45,7 +45,9 @@
     },
     "ui": {
       "clickDrag": "Kliknite a potiahnite ikonu",
-      "iconToChangeOrderFiles": "a zmeňte tak poradie súborov."
+      "iconToChangeOrderFiles": "a zmeňte tak poradie súborov.",
+      "pagesRangeTotal": "Strany (napr. 1-3, 5) – celkom: {{count}}",
+      "leaveBlankAllPages": "Prázdne pole = všetky strany"
     }
   },
   "splitPdf": {
@@ -91,7 +93,9 @@
       "pagesPerFile": "Strán na súbor (N)",
       "output": "Výstup",
       "singleCombinedPdf": "Jedno spojené PDF",
-      "multipleFilesDownloadedTogetherZip": "Viacero súborov sa stiahne spolu ako ZIP."
+      "multipleFilesDownloadedTogetherZip": "Viacero súborov sa stiahne spolu ako ZIP.",
+      "onePdfPerRange": "Samostatné PDF pre každý rozsah",
+      "onePdfPerPage": "Samostatné PDF pre každú stranu"
     }
   },
   "compressPdf": {

@@ -70,7 +70,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(pageState.file.size)} • Loading...`;
+    metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${t('common.loading')}`;
 
     infoContainer.append(nameSpan, metaSpan);
 
@@ -101,7 +101,7 @@ async function updateUI() {
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;
+      metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${t('common.pageCountLabel', { count: pageCount })}`;
 
       if (toolOptions) toolOptions.classList.remove('hidden');
 
