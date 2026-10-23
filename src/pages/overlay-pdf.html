@@ -387,10 +387,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I apply the overlay to only some pages?
+            <span data-i18n-faq="overlay-pdf.1.q"
+              >How do I apply the overlay to only some pages?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.1.a">
             Type a range in the Apply to pages field using the base document's
             page numbers, for example 1-5, 8, 10-z, where z stands for the last
             page. Leave it empty to cover every page.
@@ -398,10 +400,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens when the two PDFs have different page counts?
+            <span data-i18n-faq="overlay-pdf.2.q"
+              >What happens when the two PDFs have different page counts?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.2.a">
             With the loop option on, the overlay's pages repeat in order until
             every base page is covered, so a 2-page overlay on a 5-page document
             is applied as 1, 2, 1, 2, 1. With it off, pages are matched one to
@@ -410,10 +414,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do the page sizes need to match?
+            <span data-i18n-faq="overlay-pdf.3.q"
+              >Do the page sizes need to match?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.3.a">
             No. An overlay page larger than the base page is scaled down to fit
             and a smaller one is centered without being enlarged. There are no
             controls for position, scale, or opacity, so build the overlay PDF
@@ -422,10 +428,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the base PDF stay searchable and editable?
+            <span data-i18n-faq="overlay-pdf.4.q"
+              >Does the base PDF stay searchable and editable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.4.a">
             Yes. The base document's text, links, form fields, and bookmarks are
             untouched; the overlay is added to each page as an extra drawing
             layer, and any text in it remains selectable too.
@@ -433,11 +441,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are links, form fields, or comments from the overlay PDF copied
-            over?
+            <span data-i18n-faq="overlay-pdf.5.q"
+              >Are links, form fields, or comments from the overlay PDF copied
+              over?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.5.a">
             No. Only the visible page content of the overlay is used.
             Annotations on the overlay pages, including links, form fields, and
             comments, don't transfer to the result.
@@ -445,10 +455,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which mode should I use for a letterhead?
+            <span data-i18n-faq="overlay-pdf.6.q"
+              >Which mode should I use for a letterhead?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.6.a">
             Underlay, so the letterhead sits behind the page content, with the
             loop option on if the letterhead is a single page. For text or image
             watermarks with adjustable opacity, rotation, and placement,
@@ -462,10 +474,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it fail on a password-protected PDF?
+            <span data-i18n-faq="overlay-pdf.7.q"
+              >Why does it fail on a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.7.a">
             The tool doesn't ask for passwords. If either file needs a password
             to open, remove it first with the
             <a href="/unlock-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -475,10 +489,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do both PDFs get uploaded?
+            <span data-i18n-faq="overlay-pdf.8.q"
+              >Do both PDFs get uploaded?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="overlay-pdf.8.a">
             No. The overlay is applied by qpdf compiled to WebAssembly, which
             runs entirely in your browser, so neither the base document nor the
             overlay file leaves your device. The combined PDF downloads under

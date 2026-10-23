@@ -330,10 +330,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the PDF keep the formatting, images, and fonts from my EPUB?
+            <span data-i18n-faq="epub-to-pdf.1.q"
+              >Will the PDF keep the formatting, images, and fonts from my
+              EPUB?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.1.a">
             Text, images, tables, and embedded fonts carry over. Because the
             reflowable book is laid out into fixed pages, the page breaks won't
             match what you see in an ebook reader. For heavily styled EPUBs,
@@ -342,21 +345,25 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a DRM-protected EPUB from Kindle, Apple Books, or
-            Kobo?
+            <span data-i18n-faq="epub-to-pdf.2.q"
+              >Can I convert a DRM-protected EPUB from Kindle, Apple Books, or
+              Kobo?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.2.a">
             No. The tool reads the EPUB file directly and doesn't remove DRM, so
             protected books fail to convert. It works with DRM-free EPUB files.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it support both EPUB 2 and EPUB 3?
+            <span data-i18n-faq="epub-to-pdf.3.q"
+              >Does it support both EPUB 2 and EPUB 3?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.3.a">
             Yes, both versions convert. EPUB 3 extras such as embedded audio and
             video have no PDF equivalent and are dropped, while the text,
             images, and tables are kept.
@@ -364,10 +371,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several EPUB files at once?
+            <span data-i18n-faq="epub-to-pdf.4.q"
+              >Can I convert several EPUB files at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.4.a">
             Yes. Add multiple files and click Convert to PDF; the results
             download as epub-converted.zip with one PDF per book. A single file
             downloads directly as a PDF with the same base name.
@@ -375,20 +384,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I choose the page size, margins, or font size?
+            <span data-i18n-faq="epub-to-pdf.5.q"
+              >Can I choose the page size, margins, or font size?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.5.a">
             Not in this tool. There are no settings; the PyMuPDF engine renders
             the book with its default layout into standard page dimensions.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the text in the converted PDF selectable and searchable?
+            <span data-i18n-faq="epub-to-pdf.6.q"
+              >Is the text in the converted PDF selectable and searchable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.6.a">
             Yes. The EPUB text is written into the PDF as real text rather than
             page images, so you can search, select, copy, highlight, and
             annotate it in any PDF reader.
@@ -396,10 +409,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my ebook uploaded to a server for conversion?
+            <span data-i18n-faq="epub-to-pdf.7.q"
+              >Is my ebook uploaded to a server for conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.7.a">
             No. The PyMuPDF engine loads into your browser as WebAssembly and
             renders the book there, so the EPUB never leaves your device. Large
             books with many images just take a little longer on slower machines.
@@ -407,10 +422,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first conversion take longer than later ones?
+            <span data-i18n-faq="epub-to-pdf.8.q"
+              >Why does the first conversion take longer than later ones?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="epub-to-pdf.8.a">
             On the first run the browser downloads the PyMuPDF engine before it
             can start. After that the engine stays loaded, so converting more
             books in the same session starts right away.

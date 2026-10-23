@@ -322,10 +322,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I combine several BMP files into one PDF?
+            <span data-i18n-faq="bmp-to-pdf.1.q"
+              >Can I combine several BMP files into one PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.1.a">
             Yes. Every BMP you add becomes its own page in a single PDF, in the
             order shown in the file list. There's no option to produce one PDF
             per file, so convert files separately if you need them split.
@@ -333,10 +335,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF smaller than my BMP files?
+            <span data-i18n-faq="bmp-to-pdf.2.q"
+              >Why is the PDF smaller than my BMP files?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.2.a">
             BMP stores uncompressed pixels, so the files are large. The
             converter redraws each image and stores it in the PDF as lossless
             PNG, which usually shrinks it considerably without changing a single
@@ -345,10 +349,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is any image quality lost in the conversion?
+            <span data-i18n-faq="bmp-to-pdf.3.q"
+              >Is any image quality lost in the conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.3.a">
             No. Pixels are stored losslessly and there's no quality setting on
             this tool, so the output has the same resolution and colors as the
             source. If you need a smaller file afterward, run the PDF through
@@ -361,10 +367,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size does the PDF get when I convert a BMP?
+            <span data-i18n-faq="bmp-to-pdf.4.q"
+              >What page size does the PDF get when I convert a BMP?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.4.a">
             Each page is sized to the image's pixel dimensions at one point per
             pixel, so a 2480 by 3508 pixel scan produces a page about 34 by 49
             inches rather than A4. Viewers and printers scale it to fit, and
@@ -378,10 +386,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it say one of my files is invalid?
+            <span data-i18n-faq="bmp-to-pdf.5.q"
+              >Why does it say one of my files is invalid?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.5.a">
             Images are decoded by your browser, which handles standard Windows
             bitmaps. Unusual variants such as OS/2 headers or rare compression
             modes can fail; re-saving the file as a standard 24-bit BMP or as
@@ -390,10 +400,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I mix BMP with JPG or PNG files?
+            <span data-i18n-faq="bmp-to-pdf.6.q"
+              >Can I mix BMP with JPG or PNG files?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.6.a">
             This tool accepts only .bmp files and skips anything else you add.
             Use
             <a
@@ -406,10 +418,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the BMP's DPI setting affect the result?
+            <span data-i18n-faq="bmp-to-pdf.7.q"
+              >Does the BMP's DPI setting affect the result?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.7.a">
             No. The resolution stored in the file header is ignored and page
             size comes purely from pixel count, so two images with the same
             pixel dimensions produce identical pages regardless of their DPI.
@@ -417,10 +431,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my BMP files uploaded anywhere?
+            <span data-i18n-faq="bmp-to-pdf.8.q"
+              >Are my BMP files uploaded anywhere?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="bmp-to-pdf.8.a">
             No. Decoding uses your browser's own image support and the PDF is
             assembled locally with pdf-lib, so scanner or medical imaging
             exports never leave your computer.

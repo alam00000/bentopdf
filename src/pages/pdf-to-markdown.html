@@ -336,10 +336,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How well does PDF to Markdown preserve the document structure?
+            <span data-i18n-faq="pdf-to-markdown.1.q"
+              >How well does PDF to Markdown preserve the document
+              structure?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.1.a">
             Headings, paragraphs, lists, and basic bold and italic formatting
             are converted, and each page is separated by a horizontal rule (---)
             in the output. Heading levels are inferred from font sizes, so a
@@ -349,10 +352,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the Include Images option do?
+            <span data-i18n-faq="pdf-to-markdown.2.q"
+              >What does the Include Images option do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.2.a">
             When it's checked, pictures from the PDF are embedded directly in
             the Markdown as base64 data, so the single .md file is
             self-contained but can get large. Leave it off for text-heavy
@@ -361,10 +366,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the Markdown empty or almost empty?
+            <span data-i18n-faq="pdf-to-markdown.3.q"
+              >Why is the Markdown empty or almost empty?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.3.a">
             The converter reads the PDF's text layer, so a scanned document
             that's only images has nothing to convert. Run it through
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -375,10 +382,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does it handle multi-column layouts, footnotes, and sidebars?
+            <span data-i18n-faq="pdf-to-markdown.4.q"
+              >How does it handle multi-column layouts, footnotes, and
+              sidebars?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.4.a">
             Complex layouts are the weak spot: multi-column text can be
             interleaved, and sidebars or footnotes may land in the wrong place.
             Expect to review and tidy the output for magazine-style pages, while
@@ -387,10 +397,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several PDFs to Markdown at once?
+            <span data-i18n-faq="pdf-to-markdown.5.q"
+              >Can I convert several PDFs to Markdown at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.5.a">
             Upload multiple PDFs and click Convert once. One file downloads as
             filename.md; several come back as markdown-files.zip with one .md
             per PDF, and duplicate names get a numbered suffix.
@@ -398,10 +410,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is this the same as PDF to Text?
+            <span data-i18n-faq="pdf-to-markdown.6.q"
+              >Is this the same as PDF to Text?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.6.a">
             No.
             <a href="/pdf-to-text" class="text-indigo-300 hover:text-indigo-400"
               >PDF to Text</a
@@ -414,10 +428,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a password-protected PDF?
+            <span data-i18n-faq="pdf-to-markdown.7.q"
+              >Can I convert a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.7.a">
             If the file needs a password to open, you're prompted for it before
             conversion starts and the text is extracted as usual. The password
             isn't stored anywhere, and the Markdown output has no protection of
@@ -426,10 +442,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded to convert it to Markdown?
+            <span data-i18n-faq="pdf-to-markdown.8.q"
+              >Is my PDF uploaded to convert it to Markdown?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-markdown.8.a">
             No. Conversion runs on a PyMuPDF engine loaded into your browser as
             WebAssembly, and the .md file or ZIP is generated on your machine.
             Research papers, contracts, and internal docs stay private.

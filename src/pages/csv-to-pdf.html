@@ -327,10 +327,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How is the CSV laid out in the PDF?
+            <span data-i18n-faq="csv-to-pdf.1.q"
+              >How is the CSV laid out in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.1.a">
             The first row becomes a bold header with a blue background and the
             remaining rows become striped table rows in 9-point text on
             landscape A4 pages. Long tables continue over as many pages as
@@ -339,10 +341,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            My file uses semicolons or tabs instead of commas. Will it work?
+            <span data-i18n-faq="csv-to-pdf.2.q"
+              >My file uses semicolons or tabs instead of commas. Will it
+              work?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.2.a">
             Yes. The parser detects the delimiter automatically, so comma,
             semicolon, tab, and pipe separated files all convert. Quoted fields
             containing commas or line breaks are handled according to standard
@@ -351,10 +356,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            My CSV has many columns. Why is the table squashed?
+            <span data-i18n-faq="csv-to-pdf.3.q"
+              >My CSV has many columns. Why is the table squashed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.3.a">
             All columns are shrunk to fit the page width and cell text wraps
             onto extra lines, so very wide files end up with narrow columns.
             There's no setting for page size or orientation, so split wide
@@ -363,10 +370,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several CSV files at once?
+            <span data-i18n-faq="csv-to-pdf.4.q"
+              >Can I convert several CSV files at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.4.a">
             Yes. A single file downloads as a PDF with the same base name, while
             several files are packaged into csv-converted.zip with one PDF per
             file.
@@ -374,10 +383,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle accented or non-Latin characters?
+            <span data-i18n-faq="csv-to-pdf.5.q"
+              >Does it handle accented or non-Latin characters?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.5.a">
             The file is read as UTF-8 and the PDF uses the built-in Helvetica
             font, which covers Latin characters including accents. Text in
             scripts such as Chinese, Arabic, or Cyrillic may not display
@@ -387,10 +398,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it say the CSV file is empty?
+            <span data-i18n-faq="csv-to-pdf.6.q"
+              >Why does it say the CSV file is empty?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.6.a">
             Rows that are completely blank are dropped before the table is
             built, so a file containing only empty lines or whitespace triggers
             that error. Open the file in a text editor and confirm it has at
@@ -399,11 +412,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I keep spreadsheet formatting such as column widths, colors, or
-            multiple sheets?
+            <span data-i18n-faq="csv-to-pdf.7.q"
+              >Can I keep spreadsheet formatting such as column widths, colors,
+              or multiple sheets?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.7.a">
             No. CSV holds only raw values, so there's no formatting to preserve.
             For .xlsx or .xls files with formatting and several sheets, use
             <a
@@ -416,10 +431,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my spreadsheet data sent anywhere?
+            <span data-i18n-faq="csv-to-pdf.8.q"
+              >Is my spreadsheet data sent anywhere?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="csv-to-pdf.8.a">
             No. The CSV is parsed and the PDF is generated in your browser with
             JavaScript libraries (PapaParse and jsPDF), so financial or customer
             data in the file stays on your machine.

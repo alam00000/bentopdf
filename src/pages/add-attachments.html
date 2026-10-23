@@ -385,10 +385,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What kinds of files can I embed in a PDF?
+            <span data-i18n-faq="add-attachments.1.q"
+              >What kinds of files can I embed in a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.1.a">
             Any file type: spreadsheets, images, ZIP archives, CAD drawings,
             even executables. The tool doesn't inspect or convert the file; it
             stores the bytes inside the PDF under the original file name, and
@@ -397,11 +399,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between document-level and page-level
-            attachments?
+            <span data-i18n-faq="add-attachments.2.q"
+              >What's the difference between document-level and page-level
+              attachments?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.2.a">
             Document-level attachments belong to the PDF as a whole and appear
             in the reader's attachments panel. Page-level attachments are tied
             to the pages you list in the page range field (for example 1,3,5-7),
@@ -412,10 +416,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Where do the attached files show up when someone opens the PDF?
+            <span data-i18n-faq="add-attachments.3.q"
+              >Where do the attached files show up when someone opens the
+              PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.3.a">
             In readers that have an attachments panel, such as Adobe Acrobat
             Reader or Firefox's built-in viewer, they're listed by file name and
             can be opened or saved from there. Viewers without that panel won't
@@ -424,10 +431,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does embedding files make the PDF bigger?
+            <span data-i18n-faq="add-attachments.4.q"
+              >Does embedding files make the PDF bigger?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.4.a">
             Yes, by roughly the size of each attachment, since the file's bytes
             are stored inside the PDF. A 40 MB spreadsheet attached to a 1 MB
             report yields a PDF of about 41 MB, so keep attachment size in mind
@@ -436,10 +445,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the file I attach uploaded anywhere when I embed it?
+            <span data-i18n-faq="add-attachments.5.q"
+              >Is the file I attach uploaded anywhere when I embed it?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.5.a">
             No. The PDF and the attachments are read and combined in your
             browser by the CoherentPDF WebAssembly module, and the result is
             downloaded straight from the page. Nothing is sent to a server.
@@ -447,10 +458,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool say an advanced processing module is required?
+            <span data-i18n-faq="add-attachments.6.q"
+              >Why does the tool say an advanced processing module is
+              required?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.6.a">
             Embedding uses the CoherentPDF (cpdf) module, which loads on demand
             from a CDN the first time you use it rather than shipping with the
             main site. If you self-host BentoPDF or work in an air-gapped setup,
@@ -465,10 +479,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I remove an attachment later?
+            <span data-i18n-faq="add-attachments.7.q"
+              >Can I remove an attachment later?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.7.a">
             Yes.
             <a
               href="/edit-attachments"
@@ -482,10 +498,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will attaching files break a digital signature on the PDF?
+            <span data-i18n-faq="add-attachments.8.q"
+              >Will attaching files break a digital signature on the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="add-attachments.8.a">
             Yes. Adding attachments rewrites the file, which invalidates any
             existing digital signature. Attach the files first, then sign the
             finished PDF with

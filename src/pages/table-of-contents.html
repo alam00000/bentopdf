@@ -377,10 +377,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I add a table of contents page to a PDF?
+            <span data-i18n-faq="table-of-contents.1.q"
+              >How do I add a table of contents page to a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.1.a">
             Upload a PDF that has bookmarks, set the title, font size, and font,
             and click Generate Table of Contents. A new page listing every
             bookmark with its page number is inserted at the front of the
@@ -389,10 +391,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it say my PDF has no bookmarks?
+            <span data-i18n-faq="table-of-contents.2.q"
+              >Why does it say my PDF has no bookmarks?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.2.a">
             The TOC is built entirely from the PDF's bookmark outline, not from
             headings in the text, so a document without bookmarks has nothing to
             list. Create them first with
@@ -403,10 +407,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the entries in the table of contents clickable?
+            <span data-i18n-faq="table-of-contents.3.q"
+              >Are the entries in the table of contents clickable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.3.a">
             Each entry links to the page it refers to, so readers can jump
             straight there in any viewer that supports links, and the printed
             page number is there for paper copies.
@@ -414,20 +420,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle nested bookmarks?
+            <span data-i18n-faq="table-of-contents.4.q"
+              >Does it handle nested bookmarks?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.4.a">
             Sub-bookmarks are indented under their parent entries, so a chapter
             and section hierarchy comes through as a multi-level list.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which fonts and sizes can I use?
+            <span data-i18n-faq="table-of-contents.5.q"
+              >Which fonts and sizes can I use?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.5.a">
             You can pick from the 12 standard PDF fonts, which are Times,
             Helvetica, and Courier in regular, bold, italic, and bold italic, at
             sizes from 10pt to 72pt; Helvetica at 12pt is the default. These
@@ -437,10 +447,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the new TOC page mess up my existing bookmarks or page numbers?
+            <span data-i18n-faq="table-of-contents.6.q"
+              >Will the new TOC page mess up my existing bookmarks or page
+              numbers?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.6.a">
             Existing bookmarks are kept and still point at the right pages after
             the new page goes in at the front. Numbers printed on your pages
             don't change, so a page labeled 1 is now the second physical page;
@@ -450,10 +463,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add a table of contents to a PDF I just merged?
+            <span data-i18n-faq="table-of-contents.7.q"
+              >Can I add a table of contents to a PDF I just merged?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.7.a">
             As long as the merged file has bookmarks, it works like any other
             PDF. Generate the TOC as the last step so the page numbers match the
             final page order.
@@ -461,10 +476,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded to generate the table of contents?
+            <span data-i18n-faq="table-of-contents.8.q"
+              >Is my PDF uploaded to generate the table of contents?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="table-of-contents.8.a">
             No. The bookmark outline is read and the TOC page is typeset by a
             cpdf engine running as WebAssembly in a background thread of your
             browser, and the updated file is downloaded from there. The document

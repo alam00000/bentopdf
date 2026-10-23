@@ -329,10 +329,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does converting a CBZ to PDF reduce the image quality?
+            <span data-i18n-faq="cbz-to-pdf.1.q"
+              >Does converting a CBZ to PDF reduce the image quality?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.1.a">
             JPEG and PNG pages are copied into the PDF as they are, with no
             re-encoding, so the artwork looks exactly like the original and the
             file size stays about the same. Other formats such as WebP, GIF, or
@@ -341,10 +343,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the tool decide the page order?
+            <span data-i18n-faq="cbz-to-pdf.2.q"
+              >How does the tool decide the page order?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.2.a">
             Pages are sorted by filename using natural ordering, so page2.jpg
             comes before page10.jpg. Files in subfolders are included and sorted
             by their full path, and non-image files such as ComicInfo.xml are
@@ -353,10 +357,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size do the comic pages get in the PDF?
+            <span data-i18n-faq="cbz-to-pdf.3.q"
+              >What page size do the comic pages get in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.3.a">
             Each page is sized to the pixel dimensions of its image, one point
             per pixel, so a double-page spread comes out as a wide landscape
             page and single pages stay portrait. There's no option to force one
@@ -370,10 +376,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert CBR files as well as CBZ?
+            <span data-i18n-faq="cbz-to-pdf.4.q"
+              >Can I convert CBR files as well as CBZ?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.4.a">
             .cbr archives are accepted and can be mixed with .cbz files in the
             same batch. CBR files are routed through the PyMuPDF engine, which
             downloads on first use, so they take a little longer than CBZ files,
@@ -382,10 +390,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which image formats inside the archive are supported?
+            <span data-i18n-faq="cbz-to-pdf.5.q"
+              >Which image formats inside the archive are supported?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.5.a">
             JPEG and PNG are embedded directly. GIF, BMP, WebP, AVIF, TIFF,
             HEIC, and JXL are converted to PNG by your browser first, so those
             less common formats only work if your browser can display them;
@@ -396,10 +406,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is there a limit on archive size or page count?
+            <span data-i18n-faq="cbz-to-pdf.6.q"
+              >Is there a limit on archive size or page count?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.6.a">
             A single CBZ can hold up to 2,000 images, with each image capped at
             100 MB and 500 MB of uncompressed image data per archive. Those
             limits keep the browser from running out of memory, and they're far
@@ -408,10 +420,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens when I convert several comics at once?
+            <span data-i18n-faq="cbz-to-pdf.7.q"
+              >What happens when I convert several comics at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.7.a">
             Each archive becomes its own PDF named after the original file. One
             file downloads directly; two or more are bundled into
             comic-converted.zip.
@@ -419,10 +433,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my comic files uploaded anywhere?
+            <span data-i18n-faq="cbz-to-pdf.8.q"
+              >Are my comic files uploaded anywhere?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="cbz-to-pdf.8.a">
             No. CBZ archives are unzipped and rebuilt as PDFs entirely inside
             your browser, and CBR files are handled by an engine that also runs
             locally. Nothing from your collection leaves your device.

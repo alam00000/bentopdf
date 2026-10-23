@@ -372,10 +372,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which PDF/A version should I choose?
+            <span data-i18n-faq="pdf-to-pdfa.1.q"
+              >Which PDF/A version should I choose?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.1.a">
             PDF/A-2b, the default, suits most archiving and accepts transparency
             and JPEG 2000 images. Pick PDF/A-1b only when a recipient demands
             it, since it's the strictest level and forbids transparency and
@@ -385,10 +387,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the conversion actually change in my file?
+            <span data-i18n-faq="pdf-to-pdfa.2.q"
+              >What does the conversion actually change in my file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.2.a">
             Ghostscript rewrites the PDF so it meets the standard: every font is
             embedded as a subset, colors are converted to device-independent
             color with an sRGB output intent, and features the chosen level
@@ -398,10 +402,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF/A file bigger than the original?
+            <span data-i18n-faq="pdf-to-pdfa.3.q"
+              >Why is the PDF/A file bigger than the original?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.3.a">
             PDF/A requires all fonts to be embedded, so any font the original
             referenced but didn't include is now stored inside the file, and the
             sRGB color profile is added too.
@@ -416,10 +422,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            When should I turn on Pre-flatten?
+            <span data-i18n-faq="pdf-to-pdfa.4.q"
+              >When should I turn on Pre-flatten?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.4.a">
             Only if the normal conversion fails. Pre-flatten renders every page
             to a 300 DPI image before Ghostscript runs, which gets around broken
             fonts or unusual transparency but leaves you with no selectable
@@ -429,10 +437,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the output guaranteed to pass a PDF/A validator?
+            <span data-i18n-faq="pdf-to-pdfa.5.q"
+              >Is the output guaranteed to pass a PDF/A validator?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.5.a">
             Not guaranteed. Ghostscript produces conformant output for the vast
             majority of files, but it isn't a validator, so if a court,
             repository, or auditor requires proof, check the result with a
@@ -441,10 +451,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert multiple PDFs to PDF/A at once?
+            <span data-i18n-faq="pdf-to-pdfa.6.q"
+              >Can I convert multiple PDFs to PDF/A at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.6.a">
             Yes. Add multiple files and they're converted one after another with
             the same settings; a single file downloads directly and several
             download together as pdfa-converted.zip.
@@ -452,10 +464,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my records uploaded to a server for PDF/A conversion?
+            <span data-i18n-faq="pdf-to-pdfa.7.q"
+              >Are my records uploaded to a server for PDF/A conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.7.a">
             No. Ghostscript runs as a WebAssembly module inside your browser, so
             the conversion happens on your machine and the files never leave it.
             The module itself is fetched from a CDN the first time you use the
@@ -464,10 +478,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a password-protected PDF to PDF/A?
+            <span data-i18n-faq="pdf-to-pdfa.8.q"
+              >Can I convert a password-protected PDF to PDF/A?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-pdfa.8.a">
             The tool asks for the open password first, then converts the
             decrypted file. PDF/A itself forbids encryption, so the output is
             always unprotected; a password-protected PDF/A isn't possible.

@@ -359,10 +359,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the tool decide a page is blank?
+            <span data-i18n-faq="remove-blank-pages.1.q"
+              >How does the tool decide a page is blank?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.1.a">
             Each page is rendered at reduced size and the tool counts pixels
             that are noticeably darker than white. If that share is below the
             limit set by the sensitivity slider, the page is flagged, so pages
@@ -371,10 +373,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the sensitivity slider actually change?
+            <span data-i18n-faq="remove-blank-pages.2.q"
+              >What does the sensitivity slider actually change?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.2.a">
             It sets how much ink a page may contain and still count as blank. At
             100% only pages with under 0.1% non-white pixels are flagged, at 0%
             pages with up to 5% are, and the default 80% sits at about 1%.
@@ -382,11 +386,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            It missed pages that look blank, or flagged pages I want to keep.
-            What now?
+            <span data-i18n-faq="remove-blank-pages.3.q"
+              >It missed pages that look blank, or flagged pages I want to keep.
+              What now?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.3.a">
             Lower the sensitivity if pages that look empty were missed, and
             raise it if pages with a light header, footer, or watermark were
             flagged. Then click Detect Blank Pages again and check the
@@ -395,10 +401,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I review the pages before they're removed?
+            <span data-i18n-faq="remove-blank-pages.4.q"
+              >Can I review the pages before they're removed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.4.a">
             After detection the tool shows a thumbnail of every flagged page,
             and clicking a thumbnail deselects it so it stays in the document.
             Only the pages that remain selected are removed when you confirm.
@@ -406,10 +414,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will a page with only a page number be treated as blank?
+            <span data-i18n-faq="remove-blank-pages.5.q"
+              >Will a page with only a page number be treated as blank?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.5.a">
             A lone page number covers well under 0.1% of the page, so even the
             strictest setting can flag it as blank. That's why the thumbnail
             review matters when such pages need to stay.
@@ -417,10 +427,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the remaining pages changed in any way?
+            <span data-i18n-faq="remove-blank-pages.6.q"
+              >Are the remaining pages changed in any way?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.6.a">
             The kept pages are copied over exactly, with their content, fonts,
             and order untouched. Bookmarks aren't carried into the new file,
             since the pages are assembled into a fresh PDF, so rebuild them with
@@ -432,10 +444,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does detection take a while on long documents?
+            <span data-i18n-faq="remove-blank-pages.7.q"
+              >Why does detection take a while on long documents?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.7.a">
             Every page has to be rendered to pixels before it can be measured,
             so the time grows with page count and page complexity. Progress is
             shown while it works, and nothing else is needed from you until the
@@ -444,10 +458,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the PDF leave my computer for the scan?
+            <span data-i18n-faq="remove-blank-pages.8.q"
+              >Does the PDF leave my computer for the scan?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-blank-pages.8.a">
             No. Pages are rendered and analyzed in your browser, and the cleaned
             PDF is written locally. That's also why the scan speed depends on
             your own device rather than a server.

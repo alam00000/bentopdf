@@ -346,10 +346,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does linearizing a PDF actually change?
+            <span data-i18n-faq="linearize-pdf.1.q"
+              >What does linearizing a PDF actually change?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.1.a">
             QPDF rewrites the file so the objects needed for the first page come
             first, adds a linearization dictionary and hint tables, and rebuilds
             the cross-reference table. The pages, fonts, images, links, and form
@@ -359,10 +361,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does this fix a PDF that shows Fast Web View: No in Acrobat?
+            <span data-i18n-faq="linearize-pdf.2.q"
+              >Does this fix a PDF that shows Fast Web View: No in
+              Acrobat?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.2.a">
             Fast Web View is Acrobat's name for linearization, and running the
             file through this tool sets it to Yes. That holds only if you don't
             edit the PDF again afterward, because almost any later change, such
@@ -372,10 +377,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does linearizing make the file smaller?
+            <span data-i18n-faq="linearize-pdf.3.q"
+              >Does linearizing make the file smaller?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.3.a">
             No. It's a structural reorder, not compression, and the hint tables
             add a small amount, typically under 1 percent. To shrink the file,
             run
@@ -389,10 +396,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will my web server or viewer actually load it faster?
+            <span data-i18n-faq="linearize-pdf.4.q"
+              >Will my web server or viewer actually load it faster?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.4.a">
             Only if the server supports HTTP byte-range requests, which most
             static hosts and CDNs do. A viewer such as pdf.js or a browser's
             built-in viewer can then fetch the first page and start rendering
@@ -401,10 +410,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did I get a ZIP when I only uploaded one PDF?
+            <span data-i18n-faq="linearize-pdf.5.q"
+              >Why did I get a ZIP when I only uploaded one PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.5.a">
             The tool always packages its output as linearized-pdfs.zip, with
             each file inside renamed to linearized- followed by the original
             name. Unzip it to get the PDF.
@@ -412,10 +423,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What if a file fails to linearize?
+            <span data-i18n-faq="linearize-pdf.6.q"
+              >What if a file fails to linearize?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.6.a">
             The batch continues with the other files, and the completion message
             tells you how many succeeded and how many failed. Damaged files are
             the usual cause; run them through
@@ -427,10 +440,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the PDFs uploaded to be optimized?
+            <span data-i18n-faq="linearize-pdf.7.q"
+              >Are the PDFs uploaded to be optimized?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="linearize-pdf.7.a">
             No. QPDF runs as WebAssembly inside your browser, reading and
             writing the files in memory on your device, and the ZIP is generated
             locally. Nothing is sent to a server even though the output is meant

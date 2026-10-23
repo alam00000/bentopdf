@@ -327,10 +327,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first RTF file take longer to convert?
+            <span data-i18n-faq="rtf-to-pdf.1.q"
+              >Why does the first RTF file take longer to convert?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.1.a">
             The converter is LibreOffice compiled to WebAssembly, and the engine
             is about 77 MB compressed. It's downloaded and started the first
             time you convert in a session; after that, each file takes only a
@@ -339,10 +341,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What RTF formatting is preserved in the PDF?
+            <span data-i18n-faq="rtf-to-pdf.2.q"
+              >What RTF formatting is preserved in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.2.a">
             Font styles such as bold and italic, paragraph alignment, lists,
             tables, and embedded images come through as they would if you
             exported the file from LibreOffice Writer. Embedded OLE objects,
@@ -351,10 +355,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will my fonts look the same?
+            <span data-i18n-faq="rtf-to-pdf.3.q"
+              >Will my fonts look the same?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.3.a">
             Only fonts bundled with the engine are available, which covers
             common Latin, Arabic, and Hebrew faces. Fonts that aren't bundled
             are replaced with the closest substitute, so line breaks and spacing
@@ -363,10 +369,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert many RTF files at once?
+            <span data-i18n-faq="rtf-to-pdf.4.q"
+              >Can I convert many RTF files at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.4.a">
             Yes. One file downloads as a PDF with the same base name; several
             files download together as rtf-converted.zip with one PDF per file,
             and duplicate names are numbered automatically.
@@ -374,10 +382,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between this and Word to PDF?
+            <span data-i18n-faq="rtf-to-pdf.5.q"
+              >What's the difference between this and Word to PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.5.a">
             Both use the same LibreOffice engine and produce the same result for
             RTF.
             <a href="/word-to-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -389,11 +399,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle RTF from WordPad, TextEdit, or legal and medical
-            software?
+            <span data-i18n-faq="rtf-to-pdf.6.q"
+              >Does it handle RTF from WordPad, TextEdit, or legal and medical
+              software?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.6.a">
             RTF written by any standard word processor converts, including files
             from WordPad, TextEdit, and exports from records systems.
             Proprietary extensions inside such files may be dropped, but the
@@ -402,10 +414,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What about text in Chinese, Japanese, Korean, or Indic scripts?
+            <span data-i18n-faq="rtf-to-pdf.7.q"
+              >What about text in Chinese, Japanese, Korean, or Indic
+              scripts?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.7.a">
             Those fonts aren't bundled with the browser engine, so text in these
             scripts may render with a fallback font or as boxes. Latin, Arabic,
             and Hebrew scripts are covered.
@@ -413,10 +428,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document sent to a LibreOffice server?
+            <span data-i18n-faq="rtf-to-pdf.8.q"
+              >Is my document sent to a LibreOffice server?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rtf-to-pdf.8.a">
             No. The whole LibreOffice engine runs inside your browser tab as
             WebAssembly. Your file is converted locally, and the only thing
             downloaded is the engine itself.

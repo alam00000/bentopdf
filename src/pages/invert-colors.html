@@ -314,10 +314,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens to photos and colored graphics when I invert a PDF?
+            <span data-i18n-faq="invert-colors.1.q"
+              >What happens to photos and colored graphics when I invert a
+              PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.1.a">
             Every pixel is flipped to its complementary value, so photos look
             like film negatives and brand colors shift (blue turns orange, red
             turns cyan). The tool suits text-heavy documents where you want
@@ -332,10 +335,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will I still be able to select or search text after inverting?
+            <span data-i18n-faq="invert-colors.2.q"
+              >Will I still be able to select or search text after
+              inverting?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.2.a">
             No. Each page is rendered as an image, inverted, and rebuilt as an
             image-only PDF, so the text layer is gone. If you need searchable
             text again, run the inverted file through
@@ -346,10 +352,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the inverted PDF look blurry?
+            <span data-i18n-faq="invert-colors.3.q"
+              >Does the inverted PDF look blurry?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.3.a">
             Pages are rendered at 1.5x scale, roughly 108 dots per inch. That's
             sharp on a screen at normal zoom, which is where dark-mode reading
             happens, but it can look soft if you print the file or zoom in far.
@@ -357,10 +365,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the output file larger than the original?
+            <span data-i18n-faq="invert-colors.4.q"
+              >Why is the output file larger than the original?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.4.a">
             The inverted pages are stored as full-page PNG images instead of
             text and vector drawings, which often takes more space. For a
             smaller file, pass the result through
@@ -373,10 +383,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are hyperlinks, bookmarks, and form fields kept?
+            <span data-i18n-faq="invert-colors.5.q"
+              >Are hyperlinks, bookmarks, and form fields kept?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.5.a">
             No. Because the output is a fresh image-based document, interactive
             elements such as links, form fields, comments, and bookmarks are not
             carried over. Keep the original if you need them.
@@ -384,10 +396,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I invert only some pages?
+            <span data-i18n-faq="invert-colors.6.q"
+              >Can I invert only some pages?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.6.a">
             Not with this tool; it processes every page. If you only want a few
             pages inverted, separate them first with
             <a href="/split-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -397,10 +411,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on scanned documents?
+            <span data-i18n-faq="invert-colors.7.q"
+              >Does it work on scanned documents?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.7.a">
             Yes. Scans are already images, so they invert cleanly, and it can
             rescue a scan captured as a negative or with reversed exposure.
             Grayscale scans keep their gray levels, just reversed.
@@ -408,10 +424,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded to be inverted?
+            <span data-i18n-faq="invert-colors.8.q"
+              >Is my document uploaded to be inverted?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="invert-colors.8.a">
             No. Rendering and pixel inversion happen on a canvas in your
             browser, and the new PDF is assembled locally. Nothing leaves your
             computer, and there's no server queue, so the speed depends only on

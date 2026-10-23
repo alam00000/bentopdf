@@ -322,10 +322,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does it know which pixels are text?
+            <span data-i18n-faq="text-color.1.q"
+              >How does it know which pixels are text?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.1.a">
             It doesn't read the text; each page is rendered to an image and
             every dark pixel (red, green, and blue all below 120 on a 0 to 255
             scale) is repainted in your chosen color. Black and dark gray type
@@ -335,10 +337,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did lines, borders, and my logo change color too?
+            <span data-i18n-faq="text-color.2.q"
+              >Why did lines, borders, and my logo change color too?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.2.a">
             Because the tool works on dark pixels rather than text objects, any
             dark element, including table rules, underlines, and black artwork,
             is recolored along with the text. There's no way to exclude regions
@@ -347,10 +351,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I recolor only certain words or paragraphs?
+            <span data-i18n-faq="text-color.3.q"
+              >Can I recolor only certain words or paragraphs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.3.a">
             No. One color is applied to all dark content on every page. To
             change individual words or headings while leaving the rest alone,
             edit the text directly in the
@@ -361,10 +367,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the text still be selectable and searchable?
+            <span data-i18n-faq="text-color.4.q"
+              >Will the text still be selectable and searchable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.4.a">
             No. The output is image-based: each page is rendered at 2x and
             embedded as a PNG, so text can no longer be selected, searched, or
             copied. Keep the original if you need an editable version, or run
@@ -376,10 +384,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did the file get much bigger?
+            <span data-i18n-faq="text-color.5.q"
+              >Why did the file get much bigger?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.5.a">
             A page of text weighs a few kilobytes as text but becomes a
             full-page PNG image when recolored, so multi-page documents can grow
             many times over.
@@ -393,10 +403,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I turn black text white for a dark background?
+            <span data-i18n-faq="text-color.6.q"
+              >Can I turn black text white for a dark background?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.6.a">
             Yes, any color works, including white, but the page background isn't
             changed, so white text on the original white page disappears. Choose
             a color that contrasts with the background the page already has.
@@ -404,10 +416,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded to change the text color?
+            <span data-i18n-faq="text-color.7.q"
+              >Is my document uploaded to change the text color?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.7.a">
             No. Each page is rendered and recolored on a canvas in your browser,
             and the new PDF is assembled there too, so the file never leaves
             your device. A progress indicator shows which page is being
@@ -416,10 +430,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is colored or light gray text unchanged?
+            <span data-i18n-faq="text-color.8.q"
+              >Why is colored or light gray text unchanged?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="text-color.8.a">
             Only pixels dark enough to pass the threshold are repainted. Red
             headings, blue links, mid-gray captions, and anti-aliased edges
             lighter than the cutoff keep their original color, which can leave a

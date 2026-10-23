@@ -3,6 +3,7 @@ import path from 'path';
 import { JSDOM } from 'jsdom';
 import { fileURLToPath } from 'url';
 import { serializeJsonLd } from './json-ld.mjs';
+import { applyLinkedText } from './i18n-linked-text.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,12 +35,16 @@ function loadAllTranslations() {
     if (lang === 'en') continue;
     const commonPath = path.join(LOCALES_DIR, `${lang}/common.json`);
     const toolsPath = path.join(LOCALES_DIR, `${lang}/tools.json`);
+    const faqPath = path.join(LOCALES_DIR, `${lang}/faq.json`);
     translations[lang] = {
       common: fs.existsSync(commonPath)
         ? JSON.parse(fs.readFileSync(commonPath, 'utf-8'))
         : {},
       tools: fs.existsSync(toolsPath)
         ? JSON.parse(fs.readFileSync(toolsPath, 'utf-8'))
+        : {},
+      faq: fs.existsSync(faqPath)
+        ? JSON.parse(fs.readFileSync(faqPath, 'utf-8'))
         : {},
     };
   }
@@ -99,6 +104,17 @@ function applyServerTranslations(document, langResources) {
     if (!key) return;
     const translation = resolveTranslation(langResources, key);
     if (translation) element.setAttribute('title', translation);
+  });
+
+  // Tool page FAQs are translated here only; the faq namespace is not loaded
+  // at runtime, so English pages keep the text in the HTML.
+  document.querySelectorAll('[data-i18n-faq]').forEach((element) => {
+    const key = element.getAttribute('data-i18n-faq');
+    if (!key) return;
+    const translation = resolveTranslation(langResources, `faq:${key}`);
+    if (translation && !applyLinkedText(element, translation)) {
+      console.warn(`[i18n] Skipped malformed FAQ translation: ${key}`);
+    }
   });
 }
 

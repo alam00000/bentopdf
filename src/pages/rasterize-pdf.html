@@ -367,10 +367,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does rasterizing a PDF actually do?
+            <span data-i18n-faq="rasterize-pdf.1.q"
+              >What does rasterizing a PDF actually do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.1.a">
             Every page is rendered to a bitmap and the bitmaps are reassembled
             into a new PDF. The result looks the same but contains no text
             objects, fonts, layers, form fields, or hidden content, only a
@@ -379,10 +381,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which DPI should I choose when rasterizing?
+            <span data-i18n-faq="rasterize-pdf.2.q"
+              >Which DPI should I choose when rasterizing?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.2.a">
             150, the default, is fine for reading on screen and ordinary office
             printing. Use 300 for print-quality output or when someone will zoom
             in on fine print, 600 only for archival or professional printing,
@@ -391,10 +395,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            PNG or JPEG?
+            <span data-i18n-faq="rasterize-pdf.3.q">PNG or JPEG?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.3.a">
             PNG is lossless, so text edges stay crisp, but files are bigger.
             JPEG (saved at quality 95) is noticeably smaller and works well for
             scanned or photographic pages, but can leave faint artifacts around
@@ -404,10 +408,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the rasterized file bigger than the original?
+            <span data-i18n-faq="rasterize-pdf.4.q"
+              >Why is the rasterized file bigger than the original?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.4.a">
             A text PDF stores a few kilobytes of font and glyph data per page,
             whereas a 300 DPI image of a Letter page is 2550 x 3300 pixels.
             Lower the DPI, switch to JPEG, or run the result through
@@ -421,10 +427,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I make the text selectable again afterward?
+            <span data-i18n-faq="rasterize-pdf.5.q"
+              >Can I make the text selectable again afterward?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.5.a">
             Not from the rasterized file itself; the operation is one-way, so
             keep the original. You can add a searchable text layer back with
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -434,10 +442,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How is this different from flattening a PDF?
+            <span data-i18n-faq="rasterize-pdf.6.q"
+              >How is this different from flattening a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.6.a">
             Flattening merges form fields and annotations into the page but
             keeps text as text. Rasterizing goes further and turns everything,
             text included, into pixels. If you only need to lock form fields or
@@ -450,10 +460,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my confidential documents uploaded to be rasterized?
+            <span data-i18n-faq="rasterize-pdf.7.q"
+              >Are my confidential documents uploaded to be rasterized?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.7.a">
             No. Rendering is done by the PyMuPDF WebAssembly module running in
             your browser, so the pages are drawn and repacked on your own
             machine. That's what makes the tool a safe way to strip hidden text
@@ -462,10 +474,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I rasterize several PDFs at once?
+            <span data-i18n-faq="rasterize-pdf.8.q"
+              >Can I rasterize several PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="rasterize-pdf.8.a">
             Yes. Add as many as you like; each is processed with the same DPI,
             format, and grayscale settings, and the results download together as
             rasterized-pdfs.zip. A single file downloads on its own.

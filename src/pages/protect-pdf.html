@@ -363,11 +363,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between the user password and the owner
-            password?
+            <span data-i18n-faq="protect-pdf.1.q"
+              >What is the difference between the user password and the owner
+              password?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.1.a">
             The user password is required and is what anyone must type to open
             the file. The owner password is optional; when you set a different
             one, the PDF also gets usage restrictions, so someone who opens it
@@ -377,10 +379,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What encryption does Protect PDF use?
+            <span data-i18n-faq="protect-pdf.2.q"
+              >What encryption does Protect PDF use?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.2.a">
             256-bit AES, applied with QPDF's implementation of the PDF 2.0
             encryption standard. There is no option to pick a weaker cipher, so
             the strength of the protection comes down to how strong your
@@ -389,10 +393,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if I forget the password?
+            <span data-i18n-faq="protect-pdf.3.q"
+              >What happens if I forget the password?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.3.a">
             There is no recovery. AES-256 can't be brute-forced in any practical
             time, and BentoPDF keeps no copy of the file or the password. Store
             the password somewhere safe and keep an unprotected original for
@@ -401,10 +407,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I still get restrictions if I only enter a user password?
+            <span data-i18n-faq="protect-pdf.4.q"
+              >Do I still get restrictions if I only enter a user
+              password?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.4.a">
             No. With only a user password the file needs the password to open,
             but once opened there are no limits on printing, copying, or
             editing. Add a separate owner password if you want those
@@ -413,11 +422,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I restrict printing or copying without requiring a password to
-            open the file?
+            <span data-i18n-faq="protect-pdf.5.q"
+              >Can I restrict printing or copying without requiring a password
+              to open the file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.5.a">
             Not with this tool, because the user password is mandatory here. Use
             <a
               href="/change-permissions"
@@ -430,10 +441,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I remove the password later?
+            <span data-i18n-faq="protect-pdf.6.q"
+              >How do I remove the password later?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.6.a">
             Open the protected file in the
             <a href="/unlock-pdf" class="text-indigo-300 hover:text-indigo-400"
               >password removal tool</a
@@ -443,10 +456,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the protected PDF open in any reader?
+            <span data-i18n-faq="protect-pdf.7.q"
+              >Will the protected PDF open in any reader?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.7.a">
             Any current PDF reader, including Adobe Reader, Preview, Chrome,
             Firefox, and Edge, opens AES-256 encrypted files. Very old readers
             released before AES-256 support was added may refuse the file.
@@ -454,10 +469,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF or my password sent anywhere?
+            <span data-i18n-faq="protect-pdf.8.q"
+              >Is my PDF or my password sent anywhere?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="protect-pdf.8.a">
             No. QPDF runs as WebAssembly in your browser, so the file is
             encrypted on your device and neither the document nor the passwords
             are transmitted. Share the password with your recipient through a

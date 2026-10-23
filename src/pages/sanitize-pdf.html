@@ -422,10 +422,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does Sanitize PDF actually remove?
+            <span data-i18n-faq="sanitize-pdf.1.q"
+              >What does Sanitize PDF actually remove?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.1.a">
             Ten things, each with its own checkbox: form fields are flattened,
             and metadata, annotations, JavaScript, embedded files, layers,
             links, the structure tree, MarkInfo, and optionally embedded fonts
@@ -434,10 +436,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the sanitized PDF look different?
+            <span data-i18n-faq="sanitize-pdf.2.q"
+              >Will the sanitized PDF look different?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.2.a">
             The page content itself is untouched, but some interactive parts
             become static. Form fields turn into plain text, hyperlinks stop
             being clickable, and comments, highlights, and sticky notes
@@ -446,10 +450,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Should I check Remove Embedded Fonts?
+            <span data-i18n-faq="sanitize-pdf.3.q"
+              >Should I check Remove Embedded Fonts?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.3.a">
             Usually not. It deletes the font programs the PDF relies on, and if
             the reader can't substitute a matching font the text can render
             incorrectly or not at all. Leave it unchecked unless you have a
@@ -458,10 +464,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it remove the author name, creation date, and editing software?
+            <span data-i18n-faq="sanitize-pdf.4.q"
+              >Does it remove the author name, creation date, and editing
+              software?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.4.a">
             Remove Metadata clears the Info dictionary, the XMP metadata stream,
             the document ID, and application-specific PieceInfo, so the author,
             title, dates, and producing software are gone. If that's all you
@@ -476,10 +485,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it stop scripts that run when the PDF is opened?
+            <span data-i18n-faq="sanitize-pdf.5.q"
+              >Does it stop scripts that run when the PDF is opened?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.5.a">
             Remove JavaScript deletes the document's script tree, its open
             action, and the automatic actions attached to the document, pages,
             annotations, and form fields. That covers the usual places a PDF can
@@ -488,10 +499,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does sanitizing redact sensitive text on the pages?
+            <span data-i18n-faq="sanitize-pdf.6.q"
+              >Does sanitizing redact sensitive text on the pages?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.6.a">
             No. It strips hidden and interactive data around the content, not
             the visible words or images, so anything you can read on the page is
             still there. If you need the page content reduced to a flat picture
@@ -505,10 +518,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I sanitize a password-protected PDF?
+            <span data-i18n-faq="sanitize-pdf.7.q"
+              >Can I sanitize a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.7.a">
             You'll be asked for the password after upload. The sanitized copy is
             written without encryption, so if the document should stay
             protected, run it through
@@ -520,10 +535,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is it safe to sanitize a PDF I don't trust here?
+            <span data-i18n-faq="sanitize-pdf.8.q"
+              >Is it safe to sanitize a PDF I don't trust here?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="sanitize-pdf.8.a">
             The file is parsed as data in your browser and never uploaded, and
             the tool doesn't execute any script inside it. Keep the original in
             case a stripped element turns out to be needed, since sanitizing

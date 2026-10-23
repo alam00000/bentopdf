@@ -325,10 +325,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the text in the SVG still selectable?
+            <span data-i18n-faq="pdf-to-svg.1.q"
+              >Is the text in the SVG still selectable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.1.a">
             No. Each page is exported with text drawn as vector outlines, so it
             scales cleanly and doesn't depend on fonts being installed, but it
             isn't live text you can select or search. If you need the words
@@ -341,10 +343,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I get one SVG for the whole document or one per page?
+            <span data-i18n-faq="pdf-to-svg.2.q"
+              >Do I get one SVG for the whole document or one per page?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.2.a">
             One per page, since SVG has no concept of pages. A single-page PDF
             downloads as filename.svg, a multi-page PDF becomes filename_svg.zip
             containing page_1.svg, page_2.svg and so on, and several PDFs at
@@ -353,10 +357,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I edit the result in Illustrator or Inkscape?
+            <span data-i18n-faq="pdf-to-svg.3.q"
+              >Can I edit the result in Illustrator or Inkscape?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.3.a">
             The output is standard SVG that opens in Inkscape, Illustrator,
             Figma, and any web browser. Shapes, paths, and text outlines arrive
             as editable vector objects, while photos embedded in the PDF stay as
@@ -365,10 +371,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my SVG file so large?
+            <span data-i18n-faq="pdf-to-svg.4.q"
+              >Why is my SVG file so large?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.4.a">
             Scanned or photo-heavy PDFs produce big SVGs because every raster
             image is embedded in the file as base64 data, and pages with
             thousands of tiny vector paths add up too. For image-based pages,
@@ -380,10 +388,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert multiple PDFs at once?
+            <span data-i18n-faq="pdf-to-svg.5.q"
+              >Can I convert multiple PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.5.a">
             Drop as many PDFs as you like into the tool and click Convert. Each
             file is processed in turn and the results are collected in
             pdf_to_svg.zip, named after their source document.
@@ -391,10 +401,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are there any options like page range or size?
+            <span data-i18n-faq="pdf-to-svg.6.q"
+              >Are there any options like page range or size?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.6.a">
             No. Every page of every uploaded file is converted at its native
             page size, with no scaling or range selection. To convert only
             certain pages, split them out first with
@@ -407,10 +419,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a password-protected PDF to SVG?
+            <span data-i18n-faq="pdf-to-svg.7.q"
+              >Can I convert a password-protected PDF to SVG?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.7.a">
             You're prompted for the password after upload, and conversion
             proceeds once it's accepted. The SVG files themselves carry no
             password.
@@ -418,10 +432,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded for the conversion?
+            <span data-i18n-faq="pdf-to-svg.8.q"
+              >Is my PDF uploaded for the conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-svg.8.a">
             No. PyMuPDF runs inside your browser as WebAssembly and writes the
             SVG files locally, so the PDF never leaves your machine. The engine
             is fetched on first use, which is why the first conversion takes a

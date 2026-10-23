@@ -381,10 +381,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my PDF still large after compressing it?
+            <span data-i18n-faq="compress-pdf.1.q"
+              >Why is my PDF still large after compressing it?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.1.a">
             Most of a PDF's size comes from images, so a file with few images,
             or images that are already small, won't shrink much, and the result
             message tells you when the size couldn't be reduced. Try the High
@@ -395,10 +397,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How much does each compression level reduce image quality?
+            <span data-i18n-faq="compress-pdf.2.q"
+              >How much does each compression level reduce image quality?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.2.a">
             Low re-encodes images at JPEG quality 80 and downsamples anything
             above 200 DPI, Medium uses quality 50 and 150 DPI, and High uses
             quality 20 and 72 DPI. Lossless leaves images untouched and only
@@ -409,10 +413,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will I still be able to select and search text after compression?
+            <span data-i18n-faq="compress-pdf.3.q"
+              >Will I still be able to select and search text after
+              compression?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.3.a">
             Yes. Compression recompresses images, subsets fonts, and cleans up
             the file structure without touching the text layer, so selection,
             search, and links keep working. Rasterize pages only applies to
@@ -423,10 +430,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does compressing remove metadata from my PDF?
+            <span data-i18n-faq="compress-pdf.4.q"
+              >Does compressing remove metadata from my PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.4.a">
             Compression keeps document details such as the title and author. It
             drops embedded page thumbnails and private data that editing apps
             leave behind, and a PDF/A file loses its PDF/A label unless you turn
@@ -441,10 +450,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I compress a scanned PDF?
+            <span data-i18n-faq="compress-pdf.5.q"
+              >Can I compress a scanned PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.5.a">
             Scanned PDFs are full-page images, so they respond well to
             compression. Medium or High downsamples the scans in place and keeps
             any OCR text layer. If the scan has no text layer at all, turning on
@@ -453,10 +464,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the Custom Settings do?
+            <span data-i18n-faq="compress-pdf.6.q"
+              >What do the Custom Settings do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.6.a">
             They fine-tune Hyper Compress. You can set image quality and maximum
             resolution, control how fonts are subset and merged, flatten
             annotations, form fields, or links, remove thumbnails and other
@@ -469,10 +482,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I compress a PDF to a specific size like 1 MB?
+            <span data-i18n-faq="compress-pdf.7.q"
+              >Can I compress a PDF to a specific size like 1 MB?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.7.a">
             Yes. Enter the size under Target File Size and Hyper Compress
             searches for the best image quality that still fits. If the file
             can't get that small, you get the smallest version it can make and a
@@ -487,10 +502,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded to a server for compression?
+            <span data-i18n-faq="compress-pdf.8.q"
+              >Is my PDF uploaded to a server for compression?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="compress-pdf.8.a">
             No. Compression runs
             <a
               href="/hyper-compress"

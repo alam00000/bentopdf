@@ -346,10 +346,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle multi-page TIFFs?
+            <span data-i18n-faq="tiff-to-pdf.1.q"
+              >Does it handle multi-page TIFFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.1.a">
             Yes. Every page (IFD) inside a TIFF becomes a separate PDF page, so
             a 10-page fax file gives a 10-page PDF without splitting it first.
             Pages from several TIFF files are appended in list order into one
@@ -358,10 +360,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which TIFF variants are supported?
+            <span data-i18n-faq="tiff-to-pdf.2.q"
+              >Which TIFF variants are supported?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.2.a">
             Grayscale and RGB images at 8, 16, or 32 bits per channel, with or
             without an alpha channel, stored uncompressed or with LZW or Deflate
             compression. TIFFs using CCITT Group 3 or 4 fax compression,
@@ -371,10 +375,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the quality options do?
+            <span data-i18n-faq="tiff-to-pdf.3.q"
+              >What do the quality options do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.3.a">
             High stores each page as lossless PNG, keeping every pixel. Medium
             and Low re-encode pages as JPEG at 75% and 50% quality, which is
             much smaller for scanned photos but can blur fine text. Pixel
@@ -383,10 +389,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size does a converted TIFF get?
+            <span data-i18n-faq="tiff-to-pdf.4.q"
+              >What page size does a converted TIFF get?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.4.a">
             The page is sized to the pixel dimensions at one point per pixel,
             and the TIFF's own DPI tag is ignored. A 300 DPI Letter scan of 2550
             by 3300 pixels therefore becomes a page about 35 by 46 inches; run
@@ -401,10 +409,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the PDF be searchable?
+            <span data-i18n-faq="tiff-to-pdf.5.q"
+              >Will the PDF be searchable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.5.a">
             No. Scanned TIFFs are images, and the PDF contains the same images
             with no text layer. Run the output through
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -415,10 +425,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens with 16-bit or floating-point images?
+            <span data-i18n-faq="tiff-to-pdf.6.q"
+              >What happens with 16-bit or floating-point images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.6.a">
             They're reduced to 8 bits per channel for the PDF, so medical or
             scientific TIFFs lose their extended range. WhiteIsZero grayscale
             files are inverted correctly so black stays black.
@@ -426,10 +438,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does a large TIFF take so long or fail?
+            <span data-i18n-faq="tiff-to-pdf.7.q"
+              >Why does a large TIFF take so long or fail?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.7.a">
             The whole file is decoded into browser memory and each page is
             expanded to raw pixels before being re-encoded. Files of several
             hundred megabytes can exhaust that memory, so split very large TIFFs
@@ -438,10 +452,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my scans uploaded?
+            <span data-i18n-faq="tiff-to-pdf.8.q">Are my scans uploaded?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="tiff-to-pdf.8.a">
             No. The TIFF is decoded with a JavaScript decoder in your browser
             and the PDF is assembled locally, so medical images or confidential
             faxes never leave your device.

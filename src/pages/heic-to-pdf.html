@@ -325,10 +325,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work with HEIF files as well as HEIC?
+            <span data-i18n-faq="heic-to-pdf.1.q"
+              >Does it work with HEIF files as well as HEIC?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.1.a">
             Yes. Both .heic and .heif extensions are accepted, including HEIF
             screenshots and photos from iPhones and iPads. Files with any other
             extension are skipped when you add them.
@@ -336,10 +338,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF so much larger than my HEIC photos?
+            <span data-i18n-faq="heic-to-pdf.2.q"
+              >Why is the PDF so much larger than my HEIC photos?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.2.a">
             HEIC is heavily compressed, and the converter decodes each photo to
             a lossless PNG before placing it in the PDF at full resolution, so a
             12 megapixel photo can take tens of megabytes. Run the result
@@ -354,10 +358,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are the photos arranged, and what size are the pages?
+            <span data-i18n-faq="heic-to-pdf.3.q"
+              >How are the photos arranged, and what size are the pages?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.3.a">
             Each photo becomes its own page in the order listed. The page is
             sized to the photo's pixel dimensions at one point per pixel, so a
             4032 by 3024 photo produces a page about 56 by 42 inches, which
@@ -366,20 +372,25 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the GPS location or other EXIF data kept in the PDF?
+            <span data-i18n-faq="heic-to-pdf.4.q"
+              >Is the GPS location or other EXIF data kept in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.4.a">
             No. The decoded image is stored as plain pixels, so location, camera
             model, and capture date from the phone aren't carried into the PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What about burst shots or HEIC files that contain several images?
+            <span data-i18n-faq="heic-to-pdf.5.q"
+              >What about burst shots or HEIC files that contain several
+              images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.5.a">
             Only the first image in the container is converted; additional
             frames stored in the same file are ignored. For a Live Photo, the
             still image is used and the video part, which lives in a separate
@@ -388,10 +399,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first HEIC file take longer to convert?
+            <span data-i18n-faq="heic-to-pdf.6.q"
+              >Why does the first HEIC file take longer to convert?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.6.a">
             The HEIC decoder is libheif compiled to WebAssembly and loads in the
             browser when first needed. Later conversions in the same session
             skip that step, though large photos still take a few seconds each to
@@ -400,10 +413,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I combine HEIC photos with JPG or PNG images in one PDF?
+            <span data-i18n-faq="heic-to-pdf.7.q"
+              >Can I combine HEIC photos with JPG or PNG images in one
+              PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.7.a">
             Not here; this tool accepts only HEIC and HEIF.
             <a
               href="/image-to-pdf"
@@ -416,10 +432,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my photos uploaded to convert them?
+            <span data-i18n-faq="heic-to-pdf.8.q"
+              >Are my photos uploaded to convert them?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="heic-to-pdf.8.a">
             No. Decoding and PDF creation happen in your browser, so private
             photos never leave your phone or computer.
           </p>

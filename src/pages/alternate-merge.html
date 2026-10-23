@@ -356,10 +356,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does alternate merge do that a normal merge doesn't?
+            <span data-i18n-faq="alternate-merge.1.q"
+              >What does alternate merge do that a normal merge doesn't?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.1.a">
             A normal merge appends whole files one after another. Alternate
             merge takes page 1 from each file in turn, then page 2 from each,
             and so on, so the pages of two or more PDFs are interleaved into a
@@ -371,11 +373,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I fix a double-sided scan where the fronts and backs are in
-            separate PDFs?
+            <span data-i18n-faq="alternate-merge.2.q"
+              >How do I fix a double-sided scan where the fronts and backs are
+              in separate PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.2.a">
             Upload the fronts PDF first and the backs PDF second, then click Mix
             Pages. The output alternates front 1, back 1, front 2, back 2 and so
             on. If the backs were scanned last page first, flip that file with
@@ -389,11 +393,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            The fronts and backs are in the same PDF, not separate files. Which
-            tool do I need?
+            <span data-i18n-faq="alternate-merge.3.q"
+              >The fronts and backs are in the same PDF, not separate files.
+              Which tool do I need?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.3.a">
             This tool interleaves separate files. If one PDF holds all the
             fronts followed by all the backs,
             <a
@@ -407,10 +413,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if the PDFs have different page counts?
+            <span data-i18n-faq="alternate-merge.4.q"
+              >What happens if the PDFs have different page counts?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.4.a">
             Interleaving continues until the shorter file runs out, and the
             remaining pages from the longer file are appended in order at the
             end. No pages are dropped.
@@ -418,10 +426,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I interleave more than two PDFs?
+            <span data-i18n-faq="alternate-merge.5.q"
+              >Can I interleave more than two PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.5.a">
             Any number of files from two upward. With three files the output
             goes A1, B1, C1, A2, B2, C2 and so on, following the order shown in
             the file list, which you can change by dragging the grip handles.
@@ -429,11 +439,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the output keep bookmarks and page numbers from the original
-            files?
+            <span data-i18n-faq="alternate-merge.6.q"
+              >Does the output keep bookmarks and page numbers from the original
+              files?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.6.a">
             Bookmarks from each source file are carried into the mixed PDF. Page
             labels are reset to a plain 1 to N sequence by default; turn on the
             option to keep original page labels if you want each file's own
@@ -443,10 +455,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I alternate pages from password-protected PDFs?
+            <span data-i18n-faq="alternate-merge.7.q"
+              >Can I alternate pages from password-protected PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.7.a">
             If a file is encrypted you're asked for its password when it loads,
             and the decrypted copy is used for mixing. The output isn't
             encrypted, so use
@@ -458,10 +472,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the PDFs uploaded to a server while they're being interleaved?
+            <span data-i18n-faq="alternate-merge.8.q"
+              >Are the PDFs uploaded to a server while they're being
+              interleaved?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="alternate-merge.8.a">
             No. The files are read in your browser and interleaved by a
             WebAssembly build of cpdf running in a background worker on your
             device, and the finished alternated-mixed.pdf is saved straight from

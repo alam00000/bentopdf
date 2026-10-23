@@ -325,10 +325,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need Photoshop installed?
+            <span data-i18n-faq="psd-to-pdf.1.q"
+              >Do I need Photoshop installed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.1.a">
             No. The PSD is read by PyMuPDF running in your browser, which uses
             the flattened composite image stored inside the file, so the
             conversion works on any computer with a modern browser.
@@ -336,10 +338,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the layers kept in the PDF?
+            <span data-i18n-faq="psd-to-pdf.2.q"
+              >Are the layers kept in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.2.a">
             No. The PDF contains one flattened image of the composite, so
             individual layers, adjustment layers, masks, and layer effects can't
             be toggled or edited afterward. It's a picture of the document as it
@@ -348,10 +352,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does my PSD convert to a blank or wrong-looking page?
+            <span data-i18n-faq="psd-to-pdf.3.q"
+              >Why does my PSD convert to a blank or wrong-looking page?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.3.a">
             The converter relies on the composite image Photoshop writes when
             Maximize Compatibility is on. If that option was off when the file
             was saved, the composite may be missing or stale; resave the PSD
@@ -360,10 +366,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What resolution will the PDF have?
+            <span data-i18n-faq="psd-to-pdf.4.q"
+              >What resolution will the PDF have?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.4.a">
             The composite is embedded at its full pixel dimensions with no
             downsampling, so a 300 DPI print file stays at print quality. That
             also means large artwork produces a large PDF; run it through
@@ -377,10 +385,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens when I convert several PSDs together?
+            <span data-i18n-faq="psd-to-pdf.5.q"
+              >What happens when I convert several PSDs together?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.5.a">
             They're combined into one PDF named psd_to_pdf.pdf, with each PSD
             becoming a page in the order listed. To get separate PDFs, convert
             the files one at a time.
@@ -388,10 +398,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert other Photoshop or image formats here?
+            <span data-i18n-faq="psd-to-pdf.6.q"
+              >Can I convert other Photoshop or image formats here?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.6.a">
             Only files with a .psd extension are accepted. For PNG, JPG, TIFF,
             or WebP exports use
             <a
@@ -403,10 +415,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my design files uploaded?
+            <span data-i18n-faq="psd-to-pdf.7.q"
+              >Are my design files uploaded?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="psd-to-pdf.7.a">
             No. The PSD is decoded and the PDF written by PyMuPDF compiled to
             WebAssembly in your browser, so unreleased designs and client work
             never leave your machine.

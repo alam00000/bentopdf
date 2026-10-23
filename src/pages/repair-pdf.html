@@ -335,10 +335,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What kinds of damaged PDF can this fix?
+            <span data-i18n-faq="repair-pdf.1.q"
+              >What kinds of damaged PDF can this fix?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.1.a">
             It rebuilds the file's internal structure, which recovers broken or
             missing cross-reference tables, wrong object numbers and stream
             lengths, endings cut off by an incomplete download, and quirks left
@@ -348,10 +350,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What can't Repair PDF recover?
+            <span data-i18n-faq="repair-pdf.2.q"
+              >What can't Repair PDF recover?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.2.a">
             Files where most of the content bytes are gone, files that aren't
             really PDFs despite the extension, and encrypted files whose
             password you don't have. It also can't regenerate image data: a
@@ -360,10 +364,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the repair work?
+            <span data-i18n-faq="repair-pdf.3.q"
+              >How does the repair work?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.3.a">
             Each file is passed through QPDF, which reads whatever structure it
             can find, reconstructs the object table, and writes a clean new PDF.
             The rewritten file downloads as repaired-&lt;original name&gt;.pdf.
@@ -371,10 +377,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I repair a password-protected PDF?
+            <span data-i18n-faq="repair-pdf.4.q"
+              >Can I repair a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.4.a">
             Yes, if you know the password. You're asked for it before the repair
             starts, and the repaired copy is written without encryption, so run
             it through
@@ -386,10 +394,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I repair several PDFs at once?
+            <span data-i18n-faq="repair-pdf.5.q"
+              >Can I repair several PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.5.a">
             Yes. One repaired file downloads directly, and several download
             together as repaired_pdfs.zip. Files that couldn't be repaired are
             listed by name in a message, and the rest still download.
@@ -397,10 +407,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            The repair failed. What else can I try?
+            <span data-i18n-faq="repair-pdf.6.q"
+              >The repair failed. What else can I try?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.6.a">
             Open the file in a web browser such as Chrome or Firefox, which have
             their own recovery logic, and use the browser's print or save
             function to write a new PDF. If the file is encrypted, remove the
@@ -413,20 +425,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will repairing change how my PDF looks?
+            <span data-i18n-faq="repair-pdf.7.q"
+              >Will repairing change how my PDF looks?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.7.a">
             No. The page content, fonts, and images are carried over as they
             are; only the surrounding file structure is rewritten.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my damaged PDF uploaded to a server for repair?
+            <span data-i18n-faq="repair-pdf.8.q"
+              >Is my damaged PDF uploaded to a server for repair?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="repair-pdf.8.a">
             No. QPDF runs as WebAssembly inside your browser, so the broken file
             is read and rewritten on your own device. A file that fails to
             repair here was never copied anywhere either.

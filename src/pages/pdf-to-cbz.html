@@ -561,10 +561,10 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What scale should I use?
+            <span data-i18n-faq="pdf-to-cbz.1.q">What scale should I use?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.1.a">
             Scale multiplies the page's native size, from 1.0x to 4.0x with 2.0x
             as the default. 2.0x suits phones and most tablets; 3.0x or 4.0x
             gives sharper pages on high-resolution screens at the cost of a much
@@ -573,10 +573,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my CBZ bigger than the original PDF?
+            <span data-i18n-faq="pdf-to-cbz.2.q"
+              >Why is my CBZ bigger than the original PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.2.a">
             Every page is rendered to a bitmap at the chosen scale, which
             discards the PDF's compact vector text and compression. Lowering the
             scale, choosing JPEG or WebP at around 80% quality, or turning on
@@ -585,10 +587,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does Manga mode change?
+            <span data-i18n-faq="pdf-to-cbz.3.q"
+              >What does Manga mode change?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.3.a">
             It writes a right-to-left reading direction flag into the
             ComicInfo.xml metadata so readers that honor the flag page from
             right to left. The page images themselves are unchanged.
@@ -596,10 +600,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the pages stay in the right order?
+            <span data-i18n-faq="pdf-to-cbz.4.q"
+              >Will the pages stay in the right order?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.4.a">
             Yes. Images are named with zero-padded numbers, such as 01.jpg or
             001.jpg depending on the page count, so readers that sort filenames
             alphabetically keep the sequence even past page 100.
@@ -607,10 +613,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which metadata will Calibre pick up?
+            <span data-i18n-faq="pdf-to-cbz.5.q"
+              >Which metadata will Calibre pick up?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.5.a">
             Calibre reads the metadata.opf file inside the archive: title,
             author, publisher, year, tags, and series with its index. Komga,
             Kavita, CDisplayEx, Mylar, and ComicRack use ComicInfo.xml, and a
@@ -620,30 +628,36 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several PDFs to CBZ in one go?
+            <span data-i18n-faq="pdf-to-cbz.6.q"
+              >Can I convert several PDFs to CBZ in one go?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.6.a">
             No. This tool handles one PDF per run, and adding another file
             replaces the current one. Convert them one at a time.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can a password-protected PDF be converted to CBZ?
+            <span data-i18n-faq="pdf-to-cbz.7.q"
+              >Can a password-protected PDF be converted to CBZ?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.7.a">
             If the PDF needs a password to open, you're prompted for it and the
             pages are rendered from a decrypted copy held in memory.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the comic pages rendered on a server?
+            <span data-i18n-faq="pdf-to-cbz.8.q"
+              >Are the comic pages rendered on a server?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-cbz.8.a">
             No. Pages are drawn with PDF.js in your browser and zipped locally,
             so the comic never leaves your device.
           </p>

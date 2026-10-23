@@ -324,10 +324,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the tool decide what the PDF looks like?
+            <span data-i18n-faq="xml-to-pdf.1.q"
+              >How does the tool decide what the PDF looks like?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.1.a">
             It parses the XML, groups repeating sibling elements by tag name,
             and renders each group as a table with one column per child element,
             using element names as the headers. If the root has no repeating
@@ -337,10 +339,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What kind of XML works best?
+            <span data-i18n-faq="xml-to-pdf.2.q"
+              >What kind of XML works best?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.2.a">
             Data-style XML: records with the same set of child elements repeated
             under one parent, such as database exports, invoice line items,
             product feeds, RSS feeds, or sitemaps. Deeply nested or
@@ -350,10 +354,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why do I get an Invalid XML error?
+            <span data-i18n-faq="xml-to-pdf.3.q"
+              >Why do I get an Invalid XML error?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.3.a">
             The file isn't well-formed: an unclosed tag, a missing root element,
             an unescaped &amp; or &lt; character, or a bad encoding. The message
             includes the parser's reason, so fix the file in an editor or
@@ -362,10 +368,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are XML attributes included in the PDF?
+            <span data-i18n-faq="xml-to-pdf.4.q"
+              >Are XML attributes included in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.4.a">
             Partly. In the table view only child elements become columns, so
             attributes on the repeated records are not shown. In the Property
             and Value view for a non-repeating root, attributes are listed after
@@ -374,10 +382,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert multiple XML files at once?
+            <span data-i18n-faq="xml-to-pdf.5.q"
+              >Can I convert multiple XML files at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.5.a">
             Yes. Add several files and they're converted in one batch into
             xml-to-pdf.zip with one PDF per file. A single file downloads
             directly with the same base name and a .pdf extension.
@@ -385,10 +395,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it apply my XSLT stylesheet or CSS?
+            <span data-i18n-faq="xml-to-pdf.6.q"
+              >Does it apply my XSLT stylesheet or CSS?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.6.a">
             No. Stylesheet instructions and DOCTYPE declarations are stripped
             before parsing, and the layout is generated from the data structure
             alone. If you need the styled rendering, open the XML in a browser
@@ -397,10 +409,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will Chinese, Arabic, Cyrillic, or other non-Latin text render?
+            <span data-i18n-faq="xml-to-pdf.7.q"
+              >Will Chinese, Arabic, Cyrillic, or other non-Latin text
+              render?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.7.a">
             Not reliably. The PDF is built with jsPDF's standard Helvetica font,
             which covers Latin characters, so text in other scripts may show up
             as wrong or missing characters.
@@ -408,10 +423,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the XML file uploaded to convert it?
+            <span data-i18n-faq="xml-to-pdf.8.q"
+              >Is the XML file uploaded to convert it?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="xml-to-pdf.8.a">
             No. Parsing uses a JavaScript XML parser and the PDF is generated
             with jsPDF, both inside your browser, so invoices, transaction logs,
             and other sensitive data in the file never leave your device.

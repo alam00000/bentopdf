@@ -441,11 +441,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between a user password and an owner
-            password?
+            <span data-i18n-faq="change-permissions.1.q"
+              >What is the difference between a user password and an owner
+              password?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.1.a">
             The user password is required to open the PDF at all. The owner
             password protects the permission settings and is what someone needs
             to change or remove them later. Set only an owner password if anyone
@@ -455,10 +457,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool ask for an owner password when I set permissions?
+            <span data-i18n-faq="change-permissions.2.q"
+              >Why does the tool ask for an owner password when I set
+              permissions?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.2.a">
             Permission flags are only enforced when an owner password exists;
             without one, PDF readers treat the file as unrestricted. The tool
             therefore requires a New Owner Password whenever you set permissions
@@ -467,10 +472,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I stop people from copying text or printing my PDF?
+            <span data-i18n-faq="change-permissions.3.q"
+              >How do I stop people from copying text or printing my PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.3.a">
             Uncheck "Allow Copying Text" and "Allow Printing", enter a New Owner
             Password, and click Change Permissions. Adobe Reader and other
             compliant viewers will then block those actions. Some third-party
@@ -485,10 +492,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which permissions can I control?
+            <span data-i18n-faq="change-permissions.4.q"
+              >Which permissions can I control?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.4.a">
             Seven checkboxes: printing, copying text, modifying content,
             annotating, filling forms, document assembly (inserting, deleting,
             or rotating pages), and page extraction. An unchecked box means the
@@ -497,10 +506,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What encryption does Change Permissions use?
+            <span data-i18n-faq="change-permissions.5.q"
+              >What encryption does Change Permissions use?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.5.a">
             The output is encrypted with 256-bit AES. That also makes this a
             quick way to upgrade an old RC4-encrypted PDF: enter its current
             password, set new passwords, and the file is rewritten with AES-256.
@@ -508,11 +519,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I change permissions on a PDF that is already password
-            protected?
+            <span data-i18n-faq="change-permissions.6.q"
+              >Can I change permissions on a PDF that is already password
+              protected?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.6.a">
             Yes, enter the existing password in the Current Password field. The
             tool opens the file with it, then re-encrypts it with your new
             passwords and permission settings; a wrong current password produces
@@ -521,10 +534,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I remove all restrictions instead of changing them?
+            <span data-i18n-faq="change-permissions.7.q"
+              >How do I remove all restrictions instead of changing them?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.7.a">
             Leave both new password fields empty and click Change Permissions.
             The output is fully decrypted with no passwords and no permission
             flags. If you don't have the current password, use
@@ -538,11 +553,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF or its owner password sent anywhere when I change
-            permissions?
+            <span data-i18n-faq="change-permissions.8.q"
+              >Is my PDF or its owner password sent anywhere when I change
+              permissions?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="change-permissions.8.a">
             No. The encryption is done by QPDF compiled to WebAssembly inside
             your browser tab, so the file and every password you type stay on
             your device.
