@@ -181,6 +181,7 @@
         <div id="jpg-to-pdf-options" class="hidden mt-6">
           <div class="mb-4">
             <label
+              data-i18n="toolPage.pdfQuality"
               for="jpg-pdf-quality"
               class="block mb-2 text-sm font-medium text-gray-300"
             >
@@ -190,16 +191,33 @@
               id="jpg-pdf-quality"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             >
-              <option value="high">High Quality (Larger file)</option>
-              <option value="medium" selected>Medium Quality (Balanced)</option>
-              <option value="low">Low Quality (Smaller file)</option>
+              <option data-i18n="toolPage.highQualityLargerFile" value="high">
+                High Quality (Larger file)
+              </option>
+              <option
+                data-i18n="toolPage.mediumQualityBalanced"
+                value="medium"
+                selected
+              >
+                Medium Quality (Balanced)
+              </option>
+              <option data-i18n="toolPage.lowQualitySmallerFile" value="low">
+                Low Quality (Smaller file)
+              </option>
             </select>
-            <p class="mt-1 text-xs text-gray-400">
+            <p
+              data-i18n="toolPage.controlsImageCompressionWhenEmbedding"
+              class="mt-1 text-xs text-gray-400"
+            >
               Controls image compression when embedding into PDF
             </p>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-6">
+          <button
+            data-i18n="toolPage.convertToPdf"
+            id="process-btn"
+            class="btn-gradient w-full mt-6"
+          >
             Convert to PDF
           </button>
         </div>

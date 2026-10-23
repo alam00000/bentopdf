@@ -463,7 +463,13 @@
     "fontSize": "Veľkosť písma",
     "color": "Farba",
     "position": "Pozícia",
-    "reset": "Obnoviť"
+    "reset": "Obnoviť",
+    "convertToPdf": "Previesť do PDF",
+    "pdfQuality": "Kvalita PDF",
+    "highQualityLargerFile": "Vysoká kvalita (väčší súbor)",
+    "mediumQualityBalanced": "Stredná kvalita (vyvážená)",
+    "lowQualitySmallerFile": "Nízka kvalita (menší súbor)",
+    "controlsImageCompressionWhenEmbedding": "Určuje kompresiu obrázkov pri vkladaní do PDF"
   },
   "pageHeading": {
     "pdfMultiTool": "Multifunkčný nástroj PDF – upravte a usporiadajte PDF online zadarmo"

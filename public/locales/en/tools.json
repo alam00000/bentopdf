@@ -908,6 +908,9 @@
     },
     "loader": {
       "creatingPdf": "Creating PDF..."
+    },
+    "ui": {
+      "startTypingHerePlaceholder": "Start typing here..."
     }
   },
   "jsonToPdf": {
@@ -1991,6 +1994,12 @@
       "loadingPdfEngine": "Loading PDF engine...",
       "generatingPdf": "Generating PDF...",
       "convertingEmails": "Converting emails..."
+    },
+    "ui": {
+      "conversionOptions": "Conversion Options",
+      "pageSize": "Page Size",
+      "includeCcBccRecipientsIn": "Include CC and BCC recipients in header",
+      "includeEmailAttachmentsList": "Include email attachments list"
     }
   },
   "fontToOutline": {

@@ -908,6 +908,9 @@
     },
     "loader": {
       "creatingPdf": "Vytvára sa PDF..."
+    },
+    "ui": {
+      "startTypingHerePlaceholder": "Začnite písať..."
     }
   },
   "jsonToPdf": {
@@ -1991,6 +1994,12 @@
       "loadingPdfEngine": "Načítava sa PDF jadro...",
       "generatingPdf": "Generuje sa PDF...",
       "convertingEmails": "Konvertujú sa e-maily..."
+    },
+    "ui": {
+      "conversionOptions": "Možnosti prevodu",
+      "pageSize": "Veľkosť strany",
+      "includeCcBccRecipientsIn": "Zahrnúť do hlavičky príjemcov kópie a skrytej kópie",
+      "includeEmailAttachmentsList": "Zahrnúť zoznam príloh e-mailu"
     }
   },
   "fontToOutline": {

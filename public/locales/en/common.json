@@ -463,7 +463,13 @@
     "fontSize": "Font Size",
     "color": "Color",
     "position": "Position",
-    "reset": "Reset"
+    "reset": "Reset",
+    "convertToPdf": "Convert to PDF",
+    "pdfQuality": "PDF Quality",
+    "highQualityLargerFile": "High Quality (Larger file)",
+    "mediumQualityBalanced": "Medium Quality (Balanced)",
+    "lowQualitySmallerFile": "Low Quality (Smaller file)",
+    "controlsImageCompressionWhenEmbedding": "Controls image compression when embedding into PDF"
   },
   "pageHeading": {
     "pdfMultiTool": "PDF Multi Tool Free Online - Edit & Organize PDFs"
