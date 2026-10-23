@@ -112,6 +112,89 @@
       "compressionComplete": "Compression Complete",
       "passwordNeeded": "Password Needed",
       "notPdf": "Not a PDF"
+    },
+    "landing": {
+      "forEmail": {
+        "shrinkPdfsToFitAny": "Shrink PDFs to fit any email attachment limit.",
+        "toEmailLargePdfCompress": "To email a large PDF, compress it below your provider's attachment limit first: add the file below and click Compress PDF. The target size is set to 10 MB, which fits even strict corporate mail servers; change it to match your provider. The work happens in your browser, so a confidential contract never touches a third-party server on its way to your outbox.",
+        "emailAttachmentLimitsInPractice": "Email attachment limits in practice",
+        "gmailAllows25mbPerMessage": "Gmail allows 25MB per message, Outlook.com 20MB, Yahoo 25MB, iCloud 20MB. and corporate mail servers are often far stricter, commonly 10MB and sometimes 5MB. The limit applies to the whole message after encoding, which inflates attachments by about a third, so a \"25MB\" limit really fits roughly an 18MB file. When in doubt, aim well below the ceiling.",
+        "betterThanDownloadLink": "Better than a download link",
+        "cloudLinksExpireNeedPermissions": "Cloud links expire, need permissions, and get quarantined by security filters. A compressed attachment simply arrives. The Medium level often cuts a scanned contract or slide deck by 60 to 90%, which turns most too-big files into comfortable attachments while keeping them readable and printable.",
+        "recurringEmailWorkflows": "For recurring email workflows",
+        "ifRegularlySendBatchesDocuments": "If you regularly send batches of documents, compress them all at once. each file processes independently in your browser. Pair with the Merge PDF tool to combine several attachments into one tidy file before compressing."
+      },
+      "to100kb": {
+        "getPdfUnder100kbPortals": "Get your PDF under 100KB for portals with strict upload limits.",
+        "toCompressPdfTo100kb": "To compress a PDF to 100KB, add your file below and click Compress PDF. The target size is already set to 100 KB, so Hyper Compress picks the best image quality that still fits. Everything runs inside your browser and the PDF is never uploaded to a server, so even sensitive documents like ID scans and application forms stay on your device.",
+        "whenNeedPdfUnder100kb": "When you need a PDF under 100KB",
+        "capCommonOnJobApplication": "A 100KB cap is common on job application portals, government e-filing systems, university admission forms, and visa or immigration websites. These systems usually reject larger files outright, often without a helpful error message, so compressing before you upload saves a failed submission.",
+        "whatToExpect100kb": "What to expect at 100KB",
+        "textBasedPdfFewPages": "A text-based PDF of a few pages. a resume, cover letter, or typed form. compresses below 100KB easily with no visible change. Scanned documents and photo-heavy files are harder: to hit 100KB they need stronger image downscaling, so expect visibly softer images. If your scan still will not reach 100KB, the result tells you the smallest size it could make. If the scan has no text layer, turn on Rasterize pages under Custom Settings to rebuild each page as one optimized image, or split the document and compress the pages you actually need to submit.",
+        "tipsSmallestPossibleFile": "Tips for the smallest possible file",
+        "removePagesDoNotNeed": "Remove pages you do not need before compressing. Prefer documents exported straight from an editor over scans. a re-typed one-page form is often 20KB while the same page scanned is 500KB. If you control the scanner, scan at 150 DPI in grayscale instead of 300 DPI color."
+      },
+      "to1mb": {
+        "reduceLargePdfsBelowMost": "Reduce large PDFs below the most common 1MB upload limit.",
+        "toCompressPdfTo1mb": "To compress a PDF to 1MB, add the file below and click Compress PDF. The target size is already set to 1 MB. One megabyte is the most common upload ceiling on the web, nearly every document reaches it without visible quality loss, and everything is processed privately in your browser.",
+        "mostCommonUploadLimit": "The most common upload limit",
+        "countlessWebFormsCapAttachments": "Countless web forms cap attachments at 1MB: HR systems, insurance claim uploads, property portals, CRM attachments. Even large reports with photos usually compress below 1MB at the Medium level, because most PDF weight is unoptimized images and duplicate embedded fonts that compression removes losslessly first.",
+        "veryLargeFiles": "Very large files",
+        "to100mbScannedBookBrochure": "A 50 to 100MB scanned book or brochure needs much stronger image compression to get under 1MB, which the target size handles by lowering quality step by step, and extremely long documents may not fit at any quality. In that case, split the PDF into logical parts, such as chapters or sections, and compress each part under 1MB."
+      },
+      "to200kb": {
+        "reducePdfBelow200kbWithout": "Reduce your PDF below 200KB without losing readability.",
+        "toGetPdfUnder200kb": "To get a PDF under 200KB, add the file below and click Compress PDF. The target size is already set to 200 KB, so Hyper Compress finds the best quality that fits. The compression happens locally in your browser, with no upload, no signup, and no file limit.",
+        "when200kbTarget": "When 200KB is the target",
+        "ceilingShowsUpOnBank": "A 200KB ceiling shows up on bank KYC uploads, scholarship and exam registration portals, and many national e-government services. It is a friendlier target than 100KB: most everyday documents reach it at the Medium level with no visible quality loss.",
+        "gettingStubbornFileUnder200kb": "Getting a stubborn file under 200KB",
+        "ifScannedDocumentStaysAbove": "If a scanned document stays above 200KB, the result tells you how close it got. For a scan with no text layer, Rasterize pages under Custom Settings can go smaller. Multi-page scans benefit from removing blank or irrelevant pages first: every scanned page you delete is often 100KB saved before compression even starts."
+      },
+      "to2mb": {
+        "meet2mbPortalLimitsWhile": "Meet 2MB portal limits while keeping high image quality.",
+        "toCompressPdfTo2mb": "To compress a PDF to 2MB, add your file below, pick the Low level for the best image quality, and click Compress PDF. The target size is already set to 2 MB, a budget that lets you keep high image quality for portfolios and reports, and the compression runs entirely on your device.",
+        "qualityFirstCompression": "Quality-first compression",
+        "toWorkRarelyNeedDestructive": "With 2MB to work with, you rarely need destructive settings. The Low level removes dead weight, such as duplicate fonts, unused objects, and editing leftovers, and keeps images at high quality, which suits design portfolios, photography-heavy reports, and print-ready documents that still have to pass an upload check.",
+        "common2mbSituations": "Common 2MB situations",
+        "universityThesisSubmissionSystemsConference": "University thesis submission systems, conference paper uploads, and many procurement portals cap files at 2MB. Documents exported from Word or Google Docs almost always fit at the Low level; for InDesign or Canva exports with full-resolution imagery, the 2 MB target lowers image quality only as far as it has to."
+      },
+      "to500kb": {
+        "bringPdfUnder500kbWhile": "Bring your PDF under 500KB while keeping images sharp.",
+        "toCompressPdfTo500kb": "To compress a PDF to 500KB, add your file below and click Compress PDF. The target size is already set to 500 KB. It is a comfortable target: most documents reach it with no visible difference, and your file never leaves your browser.",
+        "sweetSpotTarget": "The sweet spot target",
+        "halfMegabyteMostForgivingCommon": "Half a megabyte is the most forgiving of the common upload limits, used by CMS uploads, tender portals, and course submission systems. The Medium level often gets an office document or light scan under 500KB on its own, keeping images sharp and text perfectly crisp.",
+        "ifJustOverLine": "If you are just over the line",
+        "whenMediumLevelAloneLands": "When the Medium level alone lands just above 500KB, the target size makes Hyper Compress lower image quality a little further until the file fits. Check for an embedded photo cover page or a high-resolution logo on every page: repeated images are a common hidden cost that compression handles well."
+      }
+    },
+    "ui": {
+      "compressToSpecificSize": "Compress to a Specific Size",
+      "compressPdfTo100kb": "Compress PDF to 100KB",
+      "getPdfUnder100kbPortals": "Get your PDF under 100KB for portals with strict upload limits.",
+      "compressPdfTo200kb": "Compress PDF to 200KB",
+      "reducePdfBelow200kbWithout": "Reduce your PDF below 200KB without losing readability.",
+      "compressPdfTo500kb": "Compress PDF to 500KB",
+      "bringPdfUnder500kbWhile": "Bring your PDF under 500KB while keeping images sharp.",
+      "compressPdfTo1mb": "Compress PDF to 1MB",
+      "reduceLargePdfsBelowMost": "Reduce large PDFs below the most common 1MB upload limit.",
+      "compressPdfTo2mb": "Compress PDF to 2MB",
+      "meet2mbPortalLimitsWhile": "Meet 2MB portal limits while keeping high image quality.",
+      "compressPdfEmail": "Compress PDF for Email",
+      "shrinkPdfsToFitAny": "Shrink PDFs to fit any email attachment limit.",
+      "compressionLevel": "Compression Level",
+      "lowBestQuality": "Low (Best Quality)",
+      "mediumRecommended": "Medium (Recommended)",
+      "highSmallestFiles": "High (Smallest Files)",
+      "losslessNoQualityLoss": "Lossless (No Quality Loss)",
+      "custom": "Custom",
+      "poweredHyperCompressRecompressesImages": "Powered by Hyper Compress: it recompresses images, subsets and merges fonts, and strips dead weight while text, links, and forms keep working. For image-only scans, turn on Rasterize pages under Custom Settings.",
+      "targetFileSizeOptional": "Target File Size (Optional)",
+      "noTargetPlaceholder": "No target",
+      "hyperCompressFindsBestQuality": "Hyper Compress finds the best quality that fits. Leave it empty to use the level as is.",
+      "customSettings": "Custom Settings",
+      "fineTuneHyperCompressPicking": "Fine-tune Hyper Compress. Picking a compression level resets these, except Override content protection, Convert to grayscale, Preserve PDF/A, and Brotli.",
+      "overrideContentProtection": "Override content protection",
+      "defaultHyperCompressPreservesContent": "By default, Hyper Compress preserves content: it leaves digitally signed PDFs untouched and won't rasterize pages that have text. Turn this on to bypass both. Signed PDFs lose their signatures, and Rasterize pages also turns text into images."
     }
   },
   "pdfEditor": {
@@ -1546,6 +1629,21 @@
     "alert": {
       "pageSizesStandardizedSuccessfully": "Page sizes standardized successfully!",
       "errorOccurredWhileStandardizing": "An error occurred while standardizing pages."
+    },
+    "ui": {
+      "targetPageSize": "Target Page Size",
+      "custom": "Custom...",
+      "width": "Width",
+      "height": "Height",
+      "units": "Units",
+      "inches": "Inches",
+      "millimeters": "Millimeters",
+      "autoKeepOriginal": "Auto (Keep Original)",
+      "contentScaling": "Content Scaling",
+      "preservesAllContentMayAdd": "Preserves all content, may add margins.",
+      "fillCrop": "Fill (Crop)",
+      "fillsPageMayCropContent": "Fills the page, may crop content.",
+      "colorMarginsPadding": "Color for margins/padding"
     }
   },
   "linearizePdf": {
@@ -1554,11 +1652,33 @@
     "alert": {
       "noPdfFiles": "No PDF Files",
       "linearizationFailed": "Linearization Failed"
+    },
+    "ui": {
+      "whatLinearization": "What is linearization?",
+      "optimizesPdfStructureWebViewing": "Optimizes PDF structure for web viewing",
+      "enablesProgressiveLoadingFirstPage": "Enables progressive loading (first page displays faster)",
+      "improvesUserExperienceOnlinePdfs": "Improves user experience for online PDFs",
+      "alsoKnownFastWebView": "Also known as \"Fast Web View\" or \"Optimized\"",
+      "linearizePdf": "Linearize PDF(s)"
     }
   },
   "pageDimensions": {
     "name": "Page Dimensions",
-    "subtitle": "Analyze page size, orientation, and units."
+    "subtitle": "Analyze page size, orientation, and units.",
+    "ui": {
+      "units": "Units:",
+      "pointsPt": "Points (pt)",
+      "inchesIn": "Inches (in)",
+      "millimetersMm": "Millimeters (mm)",
+      "pixelsPx": "Pixels (px)",
+      "exportToCsv": "Export to CSV",
+      "page": "Page #",
+      "dimensions": "Dimensions",
+      "standardSize": "Standard Size",
+      "aspectRatio": "Aspect Ratio",
+      "area": "Area",
+      "rotation": "Rotation"
+    }
   },
   "removeRestrictions": {
     "name": "Remove Restrictions",
@@ -1567,6 +1687,17 @@
       "pdfRestrictionsRemovedSuccessfully": "PDF restrictions removed successfully! The file is now fully editable and printable.",
       "operationFailed": "Operation Failed",
       "pdfMightCorruptedPassword": "The PDF might be corrupted or password-protected."
+    },
+    "ui": {
+      "ownerPasswordOptional": "Owner Password (Optional)",
+      "enterOwnerPasswordIfRequiredPlaceholder": "Enter owner password if required",
+      "leaveEmptyIfPdfHas": "Leave empty if the PDF has no owner password.",
+      "whatRemoved": "What will be removed:",
+      "passwordProtection": "Password protection",
+      "printingRestrictions": "Printing restrictions",
+      "editingRestrictions": "Editing restrictions",
+      "copyingRestrictions": "Copying restrictions",
+      "allOtherSecurityLimitations": "All other security limitations"
     }
   },
   "repairPdf": {
@@ -2089,7 +2220,16 @@
   },
   "fontToOutline": {
     "name": "Font to Outline",
-    "subtitle": "Convert all fonts to vector outlines for consistent rendering across all devices."
+    "subtitle": "Convert all fonts to vector outlines for consistent rendering across all devices.",
+    "ui": {
+      "whatToolDoes": "What this tool does:",
+      "convertsAllTextToVector": "Converts all text to vector paths/curves",
+      "eliminatesFontDependencyIssues": "Eliminates font dependency issues",
+      "ensuresConsistentRenderingAcrossAll": "Ensures consistent rendering across all devices",
+      "idealPrintReadyPdfs": "Ideal for print-ready PDFs",
+      "noteTextNoLongerSelectable": "Note: Text will no longer be selectable or searchable after conversion.",
+      "convertToOutlines": "Convert to Outlines"
+    }
   },
   "deskewPdf": {
     "name": "Deskew PDF",
@@ -2099,6 +2239,21 @@
     },
     "alert": {
       "downloadsStartedAllFiles": "Downloads started for all files."
+    },
+    "ui": {
+      "skewThresholdDegrees": "Skew Threshold (degrees)",
+      "verySensitive01": "0.1° (Very Sensitive)",
+      "default05": "0.5° (Default)",
+      "normal10": "1.0° (Normal)",
+      "lessSensitive20": "2.0° (Less Sensitive)",
+      "pagesSkewBelowThresholdWon": "Pages with skew below this threshold won't be corrected.",
+      "processingQualityDpi": "Processing Quality (DPI)",
+      "fast100": "100 (Fast)",
+      "default150": "150 (Default)",
+      "better200": "200 (Better)",
+      "bestQuality300": "300 (Best Quality)",
+      "deskewResults": "Deskew Results",
+      "pagesCorrected": "Pages Corrected:"
     }
   },
   "pdfToWord": {
@@ -2188,6 +2343,15 @@
       "preFlatteningPdf": "Pre-flattening PDF...",
       "initializingGhostscript": "Initializing Ghostscript...",
       "convertingMultiplePdfsPdf": "Converting multiple PDFs to PDF/A..."
+    },
+    "ui": {
+      "pdfVersion": "PDF/A Version",
+      "pdf1bStrictNoTransparency": "PDF/A-1b (Strict, no transparency)",
+      "pdf2bRecommendedAllowsTransparency": "PDF/A-2b (Recommended, allows transparency)",
+      "pdf3bModernAllowsAttachments": "PDF/A-3b (Modern, allows attachments)",
+      "preFlattenPdfRecommendedComplex": "Pre-flatten PDF (recommended for complex files)",
+      "convertsPdfToImagesFirst": "Converts the PDF to images first, ensuring better PDF/A compliance. Recommended if validation fails on the normal conversion.",
+      "convertToPdf": "Convert to PDF/A"
     }
   },
   "rasterizePdf": {
@@ -2199,6 +2363,18 @@
     "alert": {
       "rasterizationComplete": "Rasterization Complete",
       "rasterizationPartial": "Rasterization Partial"
+    },
+    "ui": {
+      "dpiResolution": "DPI (Resolution)",
+      "screen72": "72 (Screen)",
+      "default150": "150 (Default)",
+      "good200": "200 (Good)",
+      "print300": "300 (Print)",
+      "highQuality600": "600 (High Quality)",
+      "imageFormat": "Image Format",
+      "pngLossless": "PNG (Lossless)",
+      "jpegSmallerFileSize": "JPEG (Smaller file size)",
+      "convertToGrayscale": "Convert to Grayscale"
     }
   },
   "pdfWorkflow": {

@@ -173,20 +173,32 @@
 
         <div id="options-container" class="hidden mt-6 space-y-6">
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-300"
+            <label
+              data-i18n="tools:pdfToPdfa.ui.pdfVersion"
+              class="block mb-2 text-sm font-medium text-gray-300"
               >PDF/A Version</label
             >
             <select
               id="pdfa-level"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="PDF/A-1b">
+              <option
+                data-i18n="tools:pdfToPdfa.ui.pdf1bStrictNoTransparency"
+                value="PDF/A-1b"
+              >
                 PDF/A-1b (Strict, no transparency)
               </option>
-              <option value="PDF/A-2b" selected>
+              <option
+                data-i18n="tools:pdfToPdfa.ui.pdf2bRecommendedAllowsTransparency"
+                value="PDF/A-2b"
+                selected
+              >
                 PDF/A-2b (Recommended, allows transparency)
               </option>
-              <option value="PDF/A-3b">
+              <option
+                data-i18n="tools:pdfToPdfa.ui.pdf3bModernAllowsAttachments"
+                value="PDF/A-3b"
+              >
                 PDF/A-3b (Modern, allows attachments)
               </option>
             </select>
@@ -202,12 +214,16 @@
             />
             <div>
               <label
+                data-i18n="tools:pdfToPdfa.ui.preFlattenPdfRecommendedComplex"
                 for="pre-flatten"
                 class="text-sm font-medium text-gray-200 cursor-pointer"
               >
                 Pre-flatten PDF (recommended for complex files)
               </label>
-              <p class="text-xs text-gray-400 mt-1">
+              <p
+                data-i18n="tools:pdfToPdfa.ui.convertsPdfToImagesFirst"
+                class="text-xs text-gray-400 mt-1"
+              >
                 Converts the PDF to images first, ensuring better PDF/A
                 compliance. Recommended if validation fails on the normal
                 conversion.
@@ -215,7 +231,11 @@
             </div>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:pdfToPdfa.ui.convertToPdf"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Convert to PDF/A
           </button>
         </div>

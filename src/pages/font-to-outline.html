@@ -159,13 +159,15 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
@@ -173,21 +175,43 @@
 
         <div id="tool-options" class="hidden mt-6">
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-            <h3 class="text-sm font-semibold text-white mb-2">
+            <h3
+              data-i18n="tools:fontToOutline.ui.whatToolDoes"
+              class="text-sm font-semibold text-white mb-2"
+            >
               What this tool does:
             </h3>
             <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-              <li>Converts all text to vector paths/curves</li>
-              <li>Eliminates font dependency issues</li>
-              <li>Ensures consistent rendering across all devices</li>
-              <li>Ideal for print-ready PDFs</li>
+              <li data-i18n="tools:fontToOutline.ui.convertsAllTextToVector">
+                Converts all text to vector paths/curves
+              </li>
+              <li
+                data-i18n="tools:fontToOutline.ui.eliminatesFontDependencyIssues"
+              >
+                Eliminates font dependency issues
+              </li>
+              <li
+                data-i18n="tools:fontToOutline.ui.ensuresConsistentRenderingAcrossAll"
+              >
+                Ensures consistent rendering across all devices
+              </li>
+              <li data-i18n="tools:fontToOutline.ui.idealPrintReadyPdfs">
+                Ideal for print-ready PDFs
+              </li>
             </ul>
-            <p class="text-xs text-gray-500 mt-2">
+            <p
+              data-i18n="tools:fontToOutline.ui.noteTextNoLongerSelectable"
+              class="text-xs text-gray-500 mt-2"
+            >
               Note: Text will no longer be selectable or searchable after
               conversion.
             </p>
           </div>
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:fontToOutline.ui.convertToOutlines"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Convert to Outlines
           </button>
         </div>

@@ -150,13 +150,15 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
@@ -165,6 +167,7 @@
         <div id="deskew-options" class="hidden mt-6 space-y-6">
           <div>
             <label
+              data-i18n="tools:deskewPdf.ui.skewThresholdDegrees"
               for="deskew-threshold"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Skew Threshold (degrees)</label
@@ -173,18 +176,40 @@
               id="deskew-threshold"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="0.1">0.1° (Very Sensitive)</option>
-              <option value="0.5" selected>0.5° (Default)</option>
-              <option value="1.0">1.0° (Normal)</option>
-              <option value="2.0">2.0° (Less Sensitive)</option>
+              <option
+                data-i18n="tools:deskewPdf.ui.verySensitive01"
+                value="0.1"
+              >
+                0.1° (Very Sensitive)
+              </option>
+              <option
+                data-i18n="tools:deskewPdf.ui.default05"
+                value="0.5"
+                selected
+              >
+                0.5° (Default)
+              </option>
+              <option data-i18n="tools:deskewPdf.ui.normal10" value="1.0">
+                1.0° (Normal)
+              </option>
+              <option
+                data-i18n="tools:deskewPdf.ui.lessSensitive20"
+                value="2.0"
+              >
+                2.0° (Less Sensitive)
+              </option>
             </select>
-            <p class="text-xs text-gray-500 mt-1">
+            <p
+              data-i18n="tools:deskewPdf.ui.pagesSkewBelowThresholdWon"
+              class="text-xs text-gray-500 mt-1"
+            >
               Pages with skew below this threshold won't be corrected.
             </p>
           </div>
 
           <div>
             <label
+              data-i18n="tools:deskewPdf.ui.processingQualityDpi"
               for="deskew-dpi"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Processing Quality (DPI)</label
@@ -193,27 +218,54 @@
               id="deskew-dpi"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="100">100 (Fast)</option>
-              <option value="150" selected>150 (Default)</option>
-              <option value="200">200 (Better)</option>
-              <option value="300">300 (Best Quality)</option>
+              <option data-i18n="tools:deskewPdf.ui.fast100" value="100">
+                100 (Fast)
+              </option>
+              <option
+                data-i18n="tools:deskewPdf.ui.default150"
+                value="150"
+                selected
+              >
+                150 (Default)
+              </option>
+              <option data-i18n="tools:deskewPdf.ui.better200" value="200">
+                200 (Better)
+              </option>
+              <option data-i18n="tools:deskewPdf.ui.bestQuality300" value="300">
+                300 (Best Quality)
+              </option>
             </select>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:deskewPdf.name"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Deskew PDF
           </button>
         </div>
 
         <div id="results-area" class="hidden mt-6 p-4 bg-gray-700 rounded-lg">
-          <h3 class="text-lg font-semibold text-white mb-3">Deskew Results</h3>
+          <h3
+            data-i18n="tools:deskewPdf.ui.deskewResults"
+            class="text-lg font-semibold text-white mb-3"
+          >
+            Deskew Results
+          </h3>
           <div class="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span class="text-gray-400">Total Pages:</span>
+              <span data-i18n="toolPage.totalPages" class="text-gray-400"
+                >Total Pages:</span
+              >
               <span id="result-total" class="text-white ml-2">-</span>
             </div>
             <div>
-              <span class="text-gray-400">Pages Corrected:</span>
+              <span
+                data-i18n="tools:deskewPdf.ui.pagesCorrected"
+                class="text-gray-400"
+                >Pages Corrected:</span
+              >
               <span id="result-corrected" class="text-white ml-2">-</span>
             </div>
           </div>

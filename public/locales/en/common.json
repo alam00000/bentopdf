@@ -472,6 +472,12 @@
     "controlsImageCompressionWhenEmbedding": "Controls image compression when embedding into PDF"
   },
   "pageHeading": {
-    "pdfMultiTool": "PDF Multi Tool Free Online - Edit & Organize PDFs"
+    "pdfMultiTool": "PDF Multi Tool Free Online - Edit & Organize PDFs",
+    "compressPdfForEmail": "Compress PDF for Email",
+    "compressPdfTo100kb": "Compress PDF to 100KB",
+    "compressPdfTo1mb": "Compress PDF to 1MB",
+    "compressPdfTo200kb": "Compress PDF to 200KB",
+    "compressPdfTo2mb": "Compress PDF to 2MB",
+    "compressPdfTo500kb": "Compress PDF to 500KB"
   }
 }

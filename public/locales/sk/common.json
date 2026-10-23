@@ -472,6 +472,12 @@
     "controlsImageCompressionWhenEmbedding": "Určuje kompresiu obrázkov pri vkladaní do PDF"
   },
   "pageHeading": {
-    "pdfMultiTool": "Multifunkčný nástroj PDF – upravte a usporiadajte PDF online zadarmo"
+    "pdfMultiTool": "Multifunkčný nástroj PDF – upravte a usporiadajte PDF online zadarmo",
+    "compressPdfForEmail": "Komprimovať PDF na e-mail",
+    "compressPdfTo100kb": "Komprimovať PDF na 100 KB",
+    "compressPdfTo1mb": "Komprimovať PDF na 1 MB",
+    "compressPdfTo200kb": "Komprimovať PDF na 200 KB",
+    "compressPdfTo2mb": "Komprimovať PDF na 2 MB",
+    "compressPdfTo500kb": "Komprimovať PDF na 500 KB"
   }
 }
