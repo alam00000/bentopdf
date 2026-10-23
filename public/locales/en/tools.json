@@ -1595,6 +1595,20 @@
       "noItemsWereSelected": "No items were selected for removal or none were found in the PDF.",
       "sanitizedWithWarnings": "Sanitized With Warnings",
       "pdfHasBeenSanitized": "PDF has been sanitized and downloaded."
+    },
+    "ui": {
+      "sanitizationOptions": "Sanitization Options:",
+      "flattenForms": "Flatten Forms",
+      "removeMetadata": "Remove Metadata",
+      "removeAnnotations": "Remove Annotations",
+      "removeJavascript": "Remove JavaScript",
+      "removeEmbeddedFiles": "Remove Embedded Files",
+      "removeLayersOcg": "Remove Layers (OCG)",
+      "removeLinks": "Remove Links",
+      "removeStructureTree": "Remove Structure Tree",
+      "removeMarkinfo": "Remove MarkInfo",
+      "removeEmbeddedFonts": "Remove Embedded Fonts",
+      "sanitizationRemovesSensitiveContentPermanently": "Sanitization removes sensitive content permanently. Some options may affect PDF rendering."
     }
   },
   "decryptPdf": {
@@ -1603,7 +1617,15 @@
   },
   "flattenPdf": {
     "name": "Flatten PDF",
-    "subtitle": "Make form fields and annotations non-editable."
+    "subtitle": "Make form fields and annotations non-editable.",
+    "ui": {
+      "whatFlattened": "What will be flattened:",
+      "formFieldsTextFieldsCheckboxes": "Form fields (text fields, checkboxes, radio buttons, etc.)",
+      "annotationsComments": "Annotations and comments",
+      "interactiveElements": "Interactive elements",
+      "noteFlattenedContentCannotEdited": "Note: Flattened content cannot be edited or filled out.",
+      "flattenPdf": "Flatten PDF(s)"
+    }
   },
   "removeMetadata": {
     "name": "Remove Metadata",
@@ -1611,6 +1633,16 @@
     "alert": {
       "metadataRemovedSuccessfully": "Metadata removed successfully!",
       "errorOccurredWhileTrying": "An error occurred while trying to remove metadata."
+    },
+    "ui": {
+      "whatRemoved": "What will be removed:",
+      "titleAuthorSubjectKeywords": "Title, Author, Subject, Keywords",
+      "creatorProducerInformation": "Creator and Producer information",
+      "creationModificationDates": "Creation and Modification dates",
+      "xmpMetadataStreams": "XMP Metadata streams",
+      "documentIds": "Document IDs",
+      "pieceinfoPrivateApplicationData": "PieceInfo (private application data)",
+      "removeAllMetadata": "Remove All Metadata"
     }
   },
   "changePermissions": {
@@ -1623,6 +1655,23 @@
       "passwordRequired": "Password Required",
       "pdfPasswordProtectedEnter": "This PDF is password-protected. Please enter the current password to proceed.",
       "pdfMightCorruptedPassword": "The PDF might be corrupted or password protected."
+    },
+    "ui": {
+      "currentPasswordIfEncrypted": "Current Password (if encrypted)",
+      "enterCurrentPasswordPlaceholder": "Enter current password",
+      "newUserPassword": "New User Password",
+      "passwordToOpenPdfPlaceholder": "Password to open PDF",
+      "newOwnerPassword": "New Owner Password",
+      "passwordPermissionsPlaceholder": "Password for permissions",
+      "requiredWhenSettingPermissionsUser": "Required when setting permissions or a user password. Leave all fields empty to decrypt the PDF instead.",
+      "permissionsRequiresOwnerPassword": "Permissions (requires owner password)",
+      "allowPrinting": "Allow Printing",
+      "allowCopyingText": "Allow Copying Text",
+      "allowModifying": "Allow Modifying",
+      "allowAnnotating": "Allow Annotating",
+      "allowFillingForms": "Allow Filling Forms",
+      "allowDocumentAssembly": "Allow Document Assembly",
+      "allowPageExtraction": "Allow Page Extraction"
     }
   },
   "odtToPdf": {
@@ -1994,6 +2043,12 @@
     },
     "loader": {
       "analyzingSignatures": "Analyzing signatures..."
+    },
+    "ui": {
+      "customCertificateFileOptional": "Custom Certificate File X.509 (Optional)",
+      "uploadTrustedCertificateToValidate": "Upload a trusted X.509 certificate to validate against a custom trust source.",
+      "uploadCertificatePemCrtCer": "Upload certificate (.pem, .crt, .cer)",
+      "signatureValidationResults": "Signature Validation Results"
     }
   },
   "timestampPdf": {
@@ -2009,6 +2064,10 @@
     },
     "alert": {
       "timestampFailed": "Timestamp Failed"
+    },
+    "ui": {
+      "internetConnectionRequired": "Internet connection required",
+      "timestampingRequiresContactingSelectedTsa": "Timestamping requires contacting the selected TSA server to obtain a trusted timestamp token."
     }
   },
   "emailToPdf": {
@@ -2329,6 +2388,12 @@
       "unableDecryptPdfWith": "Unable to decrypt the PDF with the provided password.",
       "decryptionFailed": "Decryption Failed",
       "passwordYouEnteredWrong": "The password you entered is wrong or the file is corrupted."
+    },
+    "ui": {
+      "pdfPassword": "PDF Password",
+      "enterPdfPasswordPlaceholder": "Enter the PDF password",
+      "enterPasswordUsedToProtect": "Enter the password used to protect this PDF.",
+      "decryptPdf": "Decrypt PDF"
     }
   },
   "protectPdf": {
@@ -2338,6 +2403,20 @@
       "enterUserPassword": "Please enter a user password.",
       "encryptionFailed": "Encryption Failed",
       "pdfMightCorrupted": "The PDF might be corrupted."
+    },
+    "ui": {
+      "userPasswordRequired": "User Password (Required)",
+      "enterPasswordToOpenPdfPlaceholder": "Enter password to open PDF",
+      "passwordRequiredToOpenPdf": "This password will be required to open the PDF.",
+      "ownerPasswordOptional": "Owner Password (Optional)",
+      "enterPasswordPermissionsOptionalPlaceholder": "Enter password for permissions (optional)",
+      "ifProvidedUsageRestrictionsApplied": "If provided, usage restrictions will be applied. Leave empty for no restrictions.",
+      "encryptionDetails": "Encryption Details:",
+      "bitAesEncryptionHighestSecurity256": "256-bit AES encryption (highest security)",
+      "userPasswordRequiredToOpen": "User password required to open PDF",
+      "ownerPasswordEnablesUsageRestrictions": "Owner password enables usage restrictions",
+      "withoutOwnerPasswordNoRestrictions": "Without owner password: no restrictions applied",
+      "encryptPdf": "Encrypt PDF"
     }
   },
   "cropper": {

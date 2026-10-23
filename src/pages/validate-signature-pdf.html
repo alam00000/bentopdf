@@ -166,11 +166,17 @@
 
         <div id="custom-cert-section" class="hidden mt-6 space-y-3">
           <div class="flex items-center justify-between">
-            <h2 class="text-sm font-semibold text-gray-300">
+            <h2
+              data-i18n="tools:validateSignaturePdf.ui.customCertificateFileOptional"
+              class="text-sm font-semibold text-gray-300"
+            >
               Custom Certificate File X.509 (Optional)
             </h2>
           </div>
-          <p class="text-xs text-gray-500">
+          <p
+            data-i18n="tools:validateSignaturePdf.ui.uploadTrustedCertificateToValidate"
+            class="text-xs text-gray-500"
+          >
             Upload a trusted X.509 certificate to validate against a custom
             trust source.
           </p>
@@ -180,7 +186,10 @@
           >
             <div class="flex flex-col items-center justify-center py-2">
               <i data-lucide="shield" class="w-6 h-6 mb-1 text-gray-400"></i>
-              <p class="text-xs text-gray-400">
+              <p
+                data-i18n="tools:validateSignaturePdf.ui.uploadCertificatePemCrtCer"
+                class="text-xs text-gray-400"
+              >
                 Upload certificate (.pem, .crt, .cer)
               </p>
             </div>
@@ -195,7 +204,10 @@
         </div>
 
         <div id="results-section" class="hidden mt-6">
-          <h2 class="text-lg font-semibold text-white mb-4">
+          <h2
+            data-i18n="tools:validateSignaturePdf.ui.signatureValidationResults"
+            class="text-lg font-semibold text-white mb-4"
+          >
             Signature Validation Results
           </h2>
           <div id="results-container"></div>

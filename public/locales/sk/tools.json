@@ -1595,6 +1595,20 @@
       "noItemsWereSelected": "Na odstránenie neboli vybrané žiadne položky alebo sa v PDF nenašli.",
       "sanitizedWithWarnings": "Vyčistené s upozorneniami",
       "pdfHasBeenSanitized": "PDF bolo vyčistené a stiahnuté."
+    },
+    "ui": {
+      "sanitizationOptions": "Možnosti vyčistenia:",
+      "flattenForms": "Zlúčiť formulárové polia so stranou",
+      "removeMetadata": "Odstrániť metadáta",
+      "removeAnnotations": "Odstrániť anotácie",
+      "removeJavascript": "Odstrániť JavaScript",
+      "removeEmbeddedFiles": "Odstrániť vložené súbory",
+      "removeLayersOcg": "Odstrániť vrstvy (OCG)",
+      "removeLinks": "Odstrániť odkazy",
+      "removeStructureTree": "Odstrániť strom štruktúry",
+      "removeMarkinfo": "Odstrániť MarkInfo",
+      "removeEmbeddedFonts": "Odstrániť vložené písma",
+      "sanitizationRemovesSensitiveContentPermanently": "Vyčistenie natrvalo odstráni citlivý obsah. Niektoré možnosti môžu ovplyvniť zobrazenie PDF."
     }
   },
   "decryptPdf": {
@@ -1603,7 +1617,15 @@
   },
   "flattenPdf": {
     "name": "Zlúčiť vrstvy PDF",
-    "subtitle": "Urobiť formulárové polia a anotácie neupraviteľnými."
+    "subtitle": "Urobiť formulárové polia a anotácie neupraviteľnými.",
+    "ui": {
+      "whatFlattened": "Čo sa zlúči:",
+      "formFieldsTextFieldsCheckboxes": "Polia formulára (textové polia, začiarkavacie políčka, prepínače atď.)",
+      "annotationsComments": "Anotácie a komentáre",
+      "interactiveElements": "Interaktívne prvky",
+      "noteFlattenedContentCannotEdited": "Poznámka: Zlúčený obsah už nebude možné upravovať ani vypĺňať.",
+      "flattenPdf": "Zlúčiť vrstvy PDF"
+    }
   },
   "removeMetadata": {
     "name": "Odstrániť metadáta",
@@ -1611,6 +1633,16 @@
     "alert": {
       "metadataRemovedSuccessfully": "Metadáta boli úspešne odstránené!",
       "errorOccurredWhileTrying": "Pri odstraňovaní metadát nastala chyba."
+    },
+    "ui": {
+      "whatRemoved": "Čo sa odstráni:",
+      "titleAuthorSubjectKeywords": "Názov, autor, predmet, kľúčové slová",
+      "creatorProducerInformation": "Údaje o aplikácii a tvorcovi PDF",
+      "creationModificationDates": "Dátum vytvorenia a úpravy",
+      "xmpMetadataStreams": "Metadáta XMP",
+      "documentIds": "Identifikátory dokumentu",
+      "pieceinfoPrivateApplicationData": "PieceInfo (súkromné údaje aplikácií)",
+      "removeAllMetadata": "Odstrániť všetky metadáta"
     }
   },
   "changePermissions": {
@@ -1623,6 +1655,23 @@
       "passwordRequired": "Vyžaduje sa heslo",
       "pdfPasswordProtectedEnter": "Toto PDF je chránené heslom. Pokračujte zadaním aktuálneho hesla.",
       "pdfMightCorruptedPassword": "PDF môže byť poškodené alebo chránené heslom."
+    },
+    "ui": {
+      "currentPasswordIfEncrypted": "Aktuálne heslo (ak je PDF zašifrované)",
+      "enterCurrentPasswordPlaceholder": "Zadajte aktuálne heslo",
+      "newUserPassword": "Nové heslo používateľa",
+      "passwordToOpenPdfPlaceholder": "Heslo na otvorenie PDF",
+      "newOwnerPassword": "Nové heslo vlastníka",
+      "passwordPermissionsPlaceholder": "Heslo pre oprávnenia",
+      "requiredWhenSettingPermissionsUser": "Povinné pri nastavovaní oprávnení alebo hesla používateľa. Ak chcete PDF namiesto toho dešifrovať, nechajte všetky polia prázdne.",
+      "permissionsRequiresOwnerPassword": "Oprávnenia (vyžadujú heslo vlastníka)",
+      "allowPrinting": "Povoliť tlač",
+      "allowCopyingText": "Povoliť kopírovanie textu",
+      "allowModifying": "Povoliť úpravy",
+      "allowAnnotating": "Povoliť anotácie",
+      "allowFillingForms": "Povoliť vypĺňanie formulárov",
+      "allowDocumentAssembly": "Povoliť zostavenie dokumentu",
+      "allowPageExtraction": "Povoliť extrahovanie strán"
     }
   },
   "odtToPdf": {
@@ -1994,6 +2043,12 @@
     },
     "loader": {
       "analyzingSignatures": "Analyzujú sa podpisy..."
+    },
+    "ui": {
+      "customCertificateFileOptional": "Vlastný súbor certifikátu X.509 (voliteľné)",
+      "uploadTrustedCertificateToValidate": "Nahrajte dôveryhodný certifikát X.509 na overenie voči vlastnému zdroju dôvery.",
+      "uploadCertificatePemCrtCer": "Nahrať certifikát (.pem, .crt, .cer)",
+      "signatureValidationResults": "Výsledky overenia podpisov"
     }
   },
   "timestampPdf": {
@@ -2009,6 +2064,10 @@
     },
     "alert": {
       "timestampFailed": "Časová pečiatka zlyhala"
+    },
+    "ui": {
+      "internetConnectionRequired": "Vyžaduje sa pripojenie na internet",
+      "timestampingRequiresContactingSelectedTsa": "Pridanie časovej pečiatky vyžaduje spojenie s vybraným serverom TSA, ktorý vydá dôveryhodný token časovej pečiatky."
     }
   },
   "emailToPdf": {
@@ -2329,6 +2388,12 @@
       "unableDecryptPdfWith": "PDF sa nepodarilo dešifrovať zadaným heslom.",
       "decryptionFailed": "Dešifrovanie zlyhalo",
       "passwordYouEnteredWrong": "Zadané heslo je nesprávne alebo je súbor poškodený."
+    },
+    "ui": {
+      "pdfPassword": "Heslo k PDF",
+      "enterPdfPasswordPlaceholder": "Zadajte heslo k PDF",
+      "enterPasswordUsedToProtect": "Zadajte heslo, ktorým je toto PDF chránené.",
+      "decryptPdf": "Dešifrovať PDF"
     }
   },
   "protectPdf": {
@@ -2338,6 +2403,20 @@
       "enterUserPassword": "Zadajte heslo používateľa.",
       "encryptionFailed": "Šifrovanie zlyhalo",
       "pdfMightCorrupted": "PDF môže byť poškodené."
+    },
+    "ui": {
+      "userPasswordRequired": "Heslo používateľa (povinné)",
+      "enterPasswordToOpenPdfPlaceholder": "Zadajte heslo na otvorenie PDF",
+      "passwordRequiredToOpenPdf": "Toto heslo sa bude vyžadovať pri otvorení PDF.",
+      "ownerPasswordOptional": "Heslo vlastníka (voliteľné)",
+      "enterPasswordPermissionsOptionalPlaceholder": "Zadajte heslo pre oprávnenia (voliteľné)",
+      "ifProvidedUsageRestrictionsApplied": "Ak ho zadáte, uplatnia sa obmedzenia používania. Ak nechcete žiadne obmedzenia, nechajte pole prázdne.",
+      "encryptionDetails": "Podrobnosti šifrovania:",
+      "bitAesEncryptionHighestSecurity256": "256-bitové šifrovanie AES (najvyššia bezpečnosť)",
+      "userPasswordRequiredToOpen": "Na otvorenie PDF sa vyžaduje heslo používateľa",
+      "ownerPasswordEnablesUsageRestrictions": "Heslo vlastníka zapína obmedzenia používania",
+      "withoutOwnerPasswordNoRestrictions": "Bez hesla vlastníka sa neuplatnia žiadne obmedzenia",
+      "encryptPdf": "Zašifrovať PDF"
     }
   },
   "cropper": {
