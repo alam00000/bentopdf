@@ -238,10 +238,10 @@ export const applyTranslations = (): void => {
 
   document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
     const key = element.getAttribute('data-i18n-placeholder');
-    if (key && element instanceof HTMLInputElement) {
+    if (key) {
       const translation = t(key);
       if (translation && translation !== key) {
-        element.placeholder = translation;
+        element.setAttribute('placeholder', translation);
       }
     }
   });

@@ -8,3 +8,19 @@ describe('t() before initI18n()', () => {
     expect(t('tools:missing.key')).toBe('tools:missing.key');
   });
 });
+
+describe('applyTranslations()', () => {
+  it('translates placeholders on textareas as well as inputs', async () => {
+    const { applyTranslations } = await import('../js/i18n/i18n');
+    document.body.innerHTML =
+      '<input data-i18n-placeholder="tools:mergePdf.loader.merging">' +
+      '<textarea data-i18n-placeholder="alert.uploadPdfFirst"></textarea>';
+    applyTranslations();
+    expect(document.querySelector('input')!.placeholder).toBe(
+      'Merging PDFs...'
+    );
+    expect(document.querySelector('textarea')!.placeholder).toBe(
+      'Please upload a PDF first.'
+    );
+  });
+});
