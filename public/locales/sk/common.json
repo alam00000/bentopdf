@@ -9,7 +9,10 @@
     "openMainMenu": "Otvoriť hlavné menu",
     "language": "Jazyk",
     "searchLanguage": "Hľadať jazyk…",
-    "noLanguagesFound": "Nenašli sa žiadne jazyky"
+    "noLanguagesFound": "Nenašli sa žiadne jazyky",
+    "products": "Produkty",
+    "pdfPdfUaPdfConversion": "Nástroj na prevod do PDF/A, PDF/UA a PDF/X.",
+    "contentPreservingPdfCompressionEngine": "Kompresia PDF so zachovaním obsahu."
   },
   "donation": {
     "message": "Páči sa vám BentoPDF? Pomôžte nám udržať ho bezplatný a open source!",
