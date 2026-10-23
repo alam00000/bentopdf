@@ -25,7 +25,7 @@
     "startUsing": "立刻開始使用"
   },
   "usedBy": {
-    "title": "被下列公司及其員工採用"
+    "title": "下列公司及其員工都在使用"
   },
   "features": {
     "title": "為何您該選擇",
@@ -58,7 +58,7 @@
   "tools": {
     "title": "立即開始使用",
     "toolsLabel": "PDF 工具",
-    "subtitle": "點選任意工具即可開啟檔案上傳器",
+    "subtitle": "點選工具即可開啟檔案上傳介面",
     "searchPlaceholder": "搜尋工具（例如「分割」或「整理」…）",
     "backToTools": "回到工具清單",
     "firstLoadNotice": "首次載入需要一點時間，因為我們正在下載轉換引擎。之後所有載入將即時完成。"
@@ -134,7 +134,7 @@
     "export": "匯出",
     "resetToDefaults": "還原為預設值",
     "fullWidthMode": "全寬模式",
-    "fullWidthDescription": "使用全螢幕寬度而非置中容器顯示所有工具",
+    "fullWidthDescription": "取消版面寬度限制，讓所有工具使用頁面的完整可用寬度",
     "compactMode": "精簡模式",
     "compactModeDescription": "以精簡清單取代卡片顯示工具",
     "advancedSettings": "進階設定",
@@ -175,7 +175,7 @@
     },
     "ccpa": {
       "title": "符合 CCPA 規範",
-      "description": "賦予加州居民對其個人資料如何被蒐集、使用及分享的權利。"
+      "description": "保障加州居民對其個人資料蒐集、使用及分享方式的相關權利。"
     },
     "hipaa": {
       "title": "符合 HIPAA 規範",
@@ -188,7 +188,7 @@
     "sectionTitle": "常見問題",
     "isFree": {
       "question": "BentoPDF 真的是免費的嗎？",
-      "answer": "是的，完全免費。BentoPDF 上的所有工具皆為 100% 免費使用，並且沒有檔案大小或數量限制、無需註冊，也沒有任何浮水印。我們相信每個人都應該享有簡單且強大的免費 PDF 工具。"
+      "answer": "是的，完全免費。BentoPDF 上的所有工具皆可完全免費使用，沒有檔案限制、無需註冊，也不會加上浮水印。我們相信每個人都應該能使用簡單而強大的 PDF 工具，不受付費牆限制。"
     },
     "areFilesSecure": {
       "question": "我的檔案安全嗎？它們是在哪裡進行處理的？",
@@ -200,7 +200,7 @@
     },
     "gdprCompliant": {
       "question": "BentoPDF 符合 GDPR 規範嗎？",
-      "answer": "是的。BentoPDF 完全符合 GDPR 規範。由於所有檔案處理都在您的瀏覽器本機進行，且我們絕不蒐集或傳送您的檔案到任何伺服器，我們完全無法存取您的資料。這確保您的文件永遠處於您的掌控之中。"
+      "answer": "是的，BentoPDF 完全符合 GDPR 規範。所有檔案都直接在本機瀏覽器中處理，我們絕不蒐集檔案或將檔案傳送至任何伺服器，因此無法存取您的資料。文件始終由您掌控。"
     },
     "dataStorage": {
       "question": "你們會儲存或追蹤我的檔案嗎？",
@@ -212,7 +212,7 @@
     },
     "browserBased": {
       "question": "瀏覽器端（本機）處理如何確保我的安全？",
-      "answer": "透過完全在您的瀏覽器內運作，BentoPDF 可確保您的檔案絕不離開您的裝置。這徹底消除了伺服器遭駭、資料外洩與未授權存取的風險。您的檔案永遠只屬於您自己。"
+      "answer": "BentoPDF 完全在瀏覽器中執行，確保檔案絕不離開裝置。這能消除伺服器遭駭、資料外洩或未經授權存取的風險。檔案始終屬於您。"
     },
     "analytics": {
       "question": "BentoPDF 會使用 Cookie 或網站分析工具追蹤我嗎？",
@@ -226,7 +226,7 @@
   },
   "support": {
     "title": "喜歡我的作品嗎？",
-    "description": "BentoPDF 是一個出於熱情開發的專案，為每個人提供一個免費、注重隱私且強大的 PDF 工具組。如果有幫上您的忙，請考慮支援它的開發。每杯咖啡都意義重大！",
+    "description": "BentoPDF 是一個出於熱情開發的專案，為每個人提供一個免費、注重隱私且強大的 PDF 工具箱。如果有幫上您的忙，請考慮贊助開發工作。每杯咖啡都能幫上忙！",
     "buyMeCoffee": "買杯咖啡給我"
   },
   "footer": {
@@ -251,7 +251,7 @@
     "howItWorks": "使用說明：",
     "fileModeInstructions": [
       "拖曳圖示以調整檔案順序。",
-      "在每個檔案的「頁數」輸入框中，您可以指定要合併的特定頁面範圍（例如「1-3, 5」）。",
+      "在每個檔案的「Pages（頁面）」輸入框中，您可以指定要合併的頁面範圍（例如「1-3, 5」）。",
       "留空則會包含該檔案的所有頁面。"
     ],
     "pageModeInstructions": [
@@ -284,7 +284,7 @@
   "about": {
     "hero": {
       "title": "我們相信 PDF 工具應該",
-      "subtitle": "快速、私密且免費。",
+      "subtitle": "快速、注重隱私且免費。",
       "noCompromises": "絕不妥協。"
     },
     "mission": {
@@ -295,25 +295,25 @@
     "philosophy": {
       "label": "我們的核心理念",
       "title": "隱私至上，始終如一。",
-      "description": "在個人資料被商品化的時代，我們採取截然不同的做法。所有 BentoPDF 工具的處理流程皆在您的瀏覽器本機完成。這代表您的檔案絕不會觸及我們的伺服器，我們無法查看您的文件內容，更不會追蹤您的行為。您的文件將始終保持絕對的私密性。這不僅是一項功能，更是我們的立身之本。"
+      "description": "所有 BentoPDF 工具都在本機瀏覽器中執行。檔案絕不上傳，其他人無法查看文件內容，也不會有任何機制追蹤操作。"
     },
     "whyBentopdf": {
       "title": "為何選擇",
       "speed": {
         "title": "極速處理",
-        "description": "無需等待檔案上傳與下載至伺服器。透過在您的瀏覽器中使用 WebAssembly 等現代網頁技術來處理檔案，我們得以提供所有工具無與倫比的處理速度。"
+        "description": "無需將檔案上傳至伺服器或從伺服器下載。檔案直接在瀏覽器中透過 WebAssembly 處理，因此不必等待伺服器回應。"
       },
       "free": {
         "title": "完全免費",
-        "description": "沒有試用期、訂閱制、隱藏費用，也不會將「進階」功能封鎖在付費牆後。我們相信強大的 PDF 工具應該是每個人都能享有的公共設施，而非營利手段。"
+        "description": "所有工具皆可免費使用，沒有試用期、訂閱制，也不會加上浮水印。開發經費來自商業授權收入。"
       },
       "noAccount": {
         "title": "無需註冊帳號",
-        "description": "立即開始使用任何工具。我們不需要您的電子郵件、密碼或任何個人資料。您的工作流程應當匿名且順暢無阻。"
+        "description": "開啟任何工具即可立即使用，無需提供電子郵件、密碼或任何個人資料。"
       },
       "openSource": {
-        "title": "開放原始碼精神",
-        "description": "以透明度為核心打造。我們採用了如 PDF-lib 和 PDF.js 等優秀的開放原始碼函式庫，並深信社群驅動的力量能讓強大的工具造福每一個人。"
+        "title": "開放原始碼",
+        "description": "程式碼以 AGPL-3.0 授權條款公開於 GitHub，可檢查檔案的實際處理方式。BentoPDF 以 PDF.js、pdf-lib、qpdf 和 LibreOffice 等開放原始碼專案為基礎。"
       }
     },
     "cta": {
@@ -345,7 +345,7 @@
     "rotate": "旋轉：",
     "rotateLeft": "向左",
     "rotateRight": "向右",
-    "transform": "轉換：",
+    "transform": "操作：",
     "duplicate": "複製",
     "split": "分割",
     "clear": "清除：",
