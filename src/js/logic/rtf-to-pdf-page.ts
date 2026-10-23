@@ -7,6 +7,7 @@ import {
   type LoadProgress,
 } from '../utils/libreoffice-loader.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { t } from '../i18n/i18n';
 
 document.addEventListener('DOMContentLoaded', () => {
   state.files = [];
@@ -87,7 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const convertToPdf = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one RTF file.');
+        showAlert(
+          t('alert.noFiles'),
+          t('tools:rtfToPdf.alert.selectLeastOneRtf')
+        );
         hideLoader();
         return;
       }
@@ -102,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.files.length === 1) {
         const originalFile = state.files[0];
 
-        showLoader('Processing...');
+        showLoader(t('loader.processing'));
 
         const pdfBlob = await converter.convertToPdf(originalFile);
 
@@ -113,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple RTF files to PDF...');
+        showLoader(t('tools:rtfToPdf.loader.convertingMultipleRtfFiles'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -148,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} RTF file(s) to PDF.`,
           'success',
           () => resetState()
@@ -157,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

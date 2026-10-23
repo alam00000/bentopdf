@@ -7,6 +7,7 @@ import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { t } from '../i18n/i18n';
 
 interface FontToOutlineState {
   files: File[];
@@ -98,7 +99,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function processFiles() {
   if (pageState.files.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
     return;
   }
 
@@ -154,7 +155,7 @@ async function processFiles() {
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         downloadFile(zipBlob, 'outlined_pdfs.zip');
         showAlert(
-          'Success',
+          t('common.success'),
           `Processed ${processedCount} PDFs.`,
           'success',
           () => {
@@ -162,7 +163,7 @@ async function processFiles() {
           }
         );
       } else {
-        showAlert('Error', 'No PDFs could be processed.');
+        showAlert(t('common.error'), t('alert.noPdfsCouldProcessed'));
       }
       if (loaderModal) loaderModal.classList.add('hidden');
     }
@@ -171,7 +172,7 @@ async function processFiles() {
     if (loaderModal) loaderModal.classList.add('hidden');
     const errorMessage =
       e instanceof Error ? e.message : 'An unexpected error occurred.';
-    showAlert('Error', errorMessage);
+    showAlert(t('common.error'), errorMessage);
   }
 }
 

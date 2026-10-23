@@ -256,33 +256,40 @@
                 class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
                 disabled
               >
-                <i data-lucide="undo-2" class="w-4 h-4"></i> Undo
+                <i data-lucide="undo-2" class="w-4 h-4"></i>
+                <span data-i18n="multiTool.undo">Undo</span>
               </button>
               <button
                 id="redo-btn"
                 class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
                 disabled
               >
-                <i data-lucide="redo-2" class="w-4 h-4"></i> Redo
+                <i data-lucide="redo-2" class="w-4 h-4"></i>
+                <span data-i18n="multiTool.redo">Redo</span>
               </button>
               <button
                 id="delete-all-btn"
                 class="px-3 py-2 text-sm bg-red-600 hover:bg-red-700 text-white rounded flex items-center gap-1"
               >
-                <i data-lucide="trash-2" class="w-4 h-4"></i> Delete All
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                <span data-i18n="tools:editBookmarks.ui.deleteAll"
+                  >Delete All</span
+                >
               </button>
               <button
                 id="reset-btn"
                 class="px-3 py-2 text-sm bg-orange-600 hover:bg-orange-700 text-white rounded flex items-center gap-1"
               >
-                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span data-i18n="toolPage.reset">Reset</span>
               </button>
 
               <button
                 id="back-btn"
                 class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded flex items-center gap-1"
               >
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Tools
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span data-i18n="tools.backToTools">Back to Tools</span>
               </button>
             </div>
           </div>
@@ -292,12 +299,14 @@
       <div class="lg:hidden bg-gray-800 border-b border-gray-700">
         <div class="flex">
           <button
+            data-i18n="tools:editBookmarks.ui.pdfViewer"
             id="show-viewer-btn"
             class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white"
           >
             PDF Viewer
           </button>
           <button
+            data-i18n="tools:editBookmarks.ui.bookmarks"
             id="show-bookmarks-btn"
             class="flex-1 py-3 text-sm font-medium text-gray-300 hover:text-white"
           >
@@ -339,7 +348,11 @@
                   </button>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-sm text-gray-600">Go to:</span>
+                  <span
+                    data-i18n="tools:editBookmarks.ui.goTo"
+                    class="text-sm text-gray-600"
+                    >Go to:</span
+                  >
                   <input
                     type="number"
                     id="goto-page"
@@ -347,6 +360,7 @@
                     class="w-16 px-2 py-1 border border-gray-300 rounded text-sm"
                   />
                   <button
+                    data-i18n="tools:editBookmarks.ui.go"
                     id="goto-btn"
                     class="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm"
                   >
@@ -355,6 +369,7 @@
                 </div>
                 <div class="flex items-center gap-2">
                   <button
+                    data-i18n-title="tools:editBookmarks.ui.zoomOut"
                     id="zoom-out-btn"
                     class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded text-sm"
                     title="Zoom Out"
@@ -367,6 +382,7 @@
                     >100%</span
                   >
                   <button
+                    data-i18n-title="tools:editBookmarks.ui.zoomIn"
                     id="zoom-in-btn"
                     class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded text-sm"
                     title="Zoom In"
@@ -374,6 +390,8 @@
                     <i data-lucide="plus" class="w-5 h-5 text-blue-600"></i>
                   </button>
                   <button
+                    data-i18n="toolPage.fit"
+                    data-i18n-title="tools:editBookmarks.ui.fitToWidth"
                     id="zoom-fit-btn"
                     class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-sm"
                     title="Fit to Width"
@@ -393,11 +411,14 @@
                       data-lucide="crosshair"
                       class="w-5 h-5 text-blue-600"
                     ></i>
-                    <span class="text-sm font-medium text-blue-800"
+                    <span
+                      data-i18n="tools:editBookmarks.ui.clickOnPdfToSet"
+                      class="text-sm font-medium text-blue-800"
                       >Click on the PDF to set bookmark destination</span
                     >
                   </div>
                   <button
+                    data-i18n="common.cancel"
                     id="cancel-picking-btn"
                     class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-xs"
                   >
@@ -425,7 +446,12 @@
             class="hidden lg:block w-full lg:w-[50%] flex-shrink-0"
           >
             <div class="bg-white rounded-lg shadow-lg p-4">
-              <h3 class="text-lg font-bold text-gray-800 mb-4">Bookmarks</h3>
+              <h3
+                data-i18n="tools:editBookmarks.ui.bookmarks"
+                class="text-lg font-bold text-gray-800 mb-4"
+              >
+                Bookmarks
+              </h3>
 
               <div class="mb-4">
                 <div class="relative">
@@ -434,6 +460,7 @@
                     class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400"
                   ></i>
                   <input
+                    data-i18n-placeholder="tools:editBookmarks.ui.searchBookmarksPlaceholder"
                     type="text"
                     id="search-bookmarks"
                     placeholder="Search bookmarks..."
@@ -444,6 +471,7 @@
 
               <div class="mb-4 p-3 bg-gray-50 rounded-lg">
                 <input
+                  data-i18n-placeholder="tools:editBookmarks.ui.bookmarkTitlePlaceholder"
                   type="text"
                   id="bookmark-title"
                   placeholder="Bookmark title..."
@@ -455,7 +483,10 @@
                 >
                   <i data-lucide="plus" class="w-4 h-4"></i>
                   <span
-                    >Add to Page <span id="current-page-display">1</span></span
+                    ><span data-i18n="tools:editBookmarks.ui.addToPage"
+                      >Add to Page</span
+                    >
+                    <span id="current-page-display">1</span></span
                   >
                 </button>
               </div>
@@ -470,8 +501,13 @@
                     class="w-4 h-4"
                   />
                   <span
-                    >Batch Mode (<span id="selected-count">0</span>
-                    selected)</span
+                    ><span data-i18n="tools:editBookmarks.ui.batchMode"
+                      >Batch Mode</span
+                    >
+                    (<span id="selected-count">0</span>
+                    <span data-i18n="tools:editBookmarks.ui.selected"
+                      >selected</span
+                    >)</span
                   >
                 </label>
 
@@ -479,7 +515,10 @@
                   id="batch-operations"
                   class="hidden p-3 bg-blue-50 rounded-lg border border-blue-200"
                 >
-                  <div class="text-xs font-semibold text-gray-700 mb-2">
+                  <div
+                    data-i18n="tools:editBookmarks.ui.batchOperations"
+                    class="text-xs font-semibold text-gray-700 mb-2"
+                  >
                     Batch Operations
                   </div>
                   <div class="flex flex-col gap-2">
@@ -489,14 +528,16 @@
                         class="flex-1 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs flex items-center justify-center gap-1"
                       >
                         <i data-lucide="check-square" class="w-3 h-3"></i>
-                        Select All
+                        <span data-i18n="multiTool.selectAll">Select All</span>
                       </button>
                       <button
                         id="deselect-all-btn"
                         class="flex-1 px-3 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded text-xs flex items-center justify-center gap-1"
                       >
-                        <i data-lucide="square" class="w-3 h-3"></i> Deselect
-                        All
+                        <i data-lucide="square" class="w-3 h-3"></i>
+                        <span data-i18n="multiTool.deselectAll"
+                          >Deselect All</span
+                        >
                       </button>
                     </div>
 
@@ -504,32 +545,94 @@
                       id="batch-color-select"
                       class="text-xs p-2 border rounded"
                     >
-                      <option value="">Set Color...</option>
-                      <option value="null">None</option>
-                      <option value="red">Red</option>
-                      <option value="blue">Blue</option>
-                      <option value="green">Green</option>
-                      <option value="yellow">Yellow</option>
-                      <option value="purple">Purple</option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.setColor"
+                        value=""
+                      >
+                        Set Color...
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.none"
+                        value="null"
+                      >
+                        None
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.red"
+                        value="red"
+                      >
+                        Red
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.blue"
+                        value="blue"
+                      >
+                        Blue
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.green"
+                        value="green"
+                      >
+                        Green
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.yellow"
+                        value="yellow"
+                      >
+                        Yellow
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.purple"
+                        value="purple"
+                      >
+                        Purple
+                      </option>
                     </select>
 
                     <select
                       id="batch-style-select"
                       class="text-xs p-2 border rounded"
                     >
-                      <option value="">Set Style...</option>
-                      <option value="null">Normal</option>
-                      <option value="bold">Bold</option>
-                      <option value="italic">Italic</option>
-                      <option value="bold-italic">Bold & Italic</option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.setStyle"
+                        value=""
+                      >
+                        Set Style...
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.normal"
+                        value="null"
+                      >
+                        Normal
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.bold"
+                        value="bold"
+                      >
+                        Bold
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.italic"
+                        value="italic"
+                      >
+                        Italic
+                      </option>
+                      <option
+                        data-i18n="tools:editBookmarks.ui.boldItalic"
+                        value="bold-italic"
+                      >
+                        Bold & Italic
+                      </option>
                     </select>
 
                     <button
                       id="batch-delete-btn"
                       class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded text-xs flex items-center justify-center gap-1"
                     >
-                      <i data-lucide="trash-2" class="w-3 h-3"></i> Delete
-                      Selected
+                      <i data-lucide="trash-2" class="w-3 h-3"></i>
+                      <span data-i18n="tools:editBookmarks.ui.deleteSelected"
+                        >Delete Selected</span
+                      >
                     </button>
                   </div>
                 </div>
@@ -540,13 +643,19 @@
                   id="expand-all-btn"
                   class="flex-1 px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                 >
-                  <i data-lucide="chevrons-down" class="w-4 h-4"></i> Expand All
+                  <i data-lucide="chevrons-down" class="w-4 h-4"></i>
+                  <span data-i18n="tools:editBookmarks.ui.expandAll"
+                    >Expand All</span
+                  >
                 </button>
                 <button
                   id="collapse-all-btn"
                   class="flex-1 px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                 >
-                  <i data-lucide="chevrons-up" class="w-4 h-4"></i> Collapse All
+                  <i data-lucide="chevrons-up" class="w-4 h-4"></i>
+                  <span data-i18n="tools:editBookmarks.ui.collapseAll"
+                    >Collapse All</span
+                  >
                 </button>
               </div>
 
@@ -556,7 +665,8 @@
                     id="import-dropdown-btn"
                     class="w-full px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                   >
-                    <i data-lucide="upload" class="w-4 h-4"></i> Import
+                    <i data-lucide="upload" class="w-4 h-4"></i>
+                    <span data-i18n="settings.import">Import</span>
                     <i data-lucide="chevron-down" class="w-3 h-3"></i>
                   </button>
                   <div
@@ -571,14 +681,18 @@
                         data-lucide="file-text"
                         class="w-4 h-4 text-gray-600"
                       ></i>
-                      Import CSV
+                      <span data-i18n="tools:editBookmarks.ui.importCsv"
+                        >Import CSV</span
+                      >
                     </button>
                     <button
                       id="import-json-btn"
                       class="w-full px-3 py-2 text-sm text-left flex items-center gap-2 rounded-b-lg bg-gradient-to-b from-gray-50 to-gray-100 hover:shadow-sm hover:from-gray-100 hover:to-gray-200 transition duration-150"
                     >
                       <i data-lucide="braces" class="w-4 h-4 text-gray-600"></i>
-                      Import JSON
+                      <span data-i18n="tools:editBookmarks.ui.importJson"
+                        >Import JSON</span
+                      >
                     </button>
                   </div>
                 </div>
@@ -588,7 +702,8 @@
                     id="export-dropdown-btn"
                     class="w-full px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                   >
-                    <i data-lucide="download" class="w-4 h-4"></i> Export
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span data-i18n="settings.export">Export</span>
                     <i data-lucide="chevron-down" class="w-3 h-3"></i>
                   </button>
                   <div
@@ -599,13 +714,19 @@
                       id="export-csv-btn"
                       class="w-full px-3 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 rounded-t-lg"
                     >
-                      <i data-lucide="file-text" class="w-4 h-4"></i> Export CSV
+                      <i data-lucide="file-text" class="w-4 h-4"></i>
+                      <span data-i18n="tools:editBookmarks.ui.exportCsv"
+                        >Export CSV</span
+                      >
                     </button>
                     <button
                       id="export-json-btn"
                       class="w-full px-3 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 rounded-b-lg"
                     >
-                      <i data-lucide="braces" class="w-4 h-4"></i> Export JSON
+                      <i data-lucide="braces" class="w-4 h-4"></i>
+                      <span data-i18n="tools:editBookmarks.ui.exportJson"
+                        >Export JSON</span
+                      >
                     </button>
                   </div>
                 </div>
@@ -616,6 +737,7 @@
               >
                 <ul id="bookmark-tree-list" class="space-y-2"></ul>
                 <div
+                  data-i18n="tools:editBookmarks.ui.noBookmarksYetAddOne"
                   id="no-bookmarks"
                   class="text-center py-8 text-gray-400 text-sm"
                 >
@@ -625,12 +747,14 @@
 
               <div class="space-y-2">
                 <button
+                  data-i18n="tools:editBookmarks.ui.savePdfBookmarks"
                   id="download-btn"
                   class="w-full px-4 py-2 btn-gradient hover:shadow-xl text-white rounded font-medium !flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200"
                 >
                   Save PDF with Bookmarks
                 </button>
                 <button
+                  data-i18n="tools:editBookmarks.ui.extractExistingBookmarks"
                   id="extract-existing-btn"
                   class="w-full px-4 py-2 bg-gray-50 text-gray-800 border border-gray-200 rounded-xl font-medium flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition duration-200"
                 >

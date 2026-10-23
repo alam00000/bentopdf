@@ -3,12 +3,13 @@ import { downloadFile } from '../utils/helpers.js';
 import { state } from '../state.js';
 
 import type { RedactionRect } from '@/types';
+import { t } from '../i18n/i18n';
 
 // @ts-expect-error TS(2339) FIXME: Property 'PDFLib' does not exist on type 'Window &... Remove this comment to see the full error message
 const { rgb } = window.PDFLib;
 
 export async function redact(redactions: RedactionRect[], canvasScale: number) {
-  showLoader('Applying redactions...');
+  showLoader(t('tools:redact.loader.applyingRedactions'));
   try {
     const pdfPages = state.pdfDoc.getPages();
     const conversionScale = 1 / canvasScale;
@@ -39,7 +40,7 @@ export async function redact(redactions: RedactionRect[], canvasScale: number) {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to apply redactions.');
+    showAlert(t('common.error'), t('tools:redact.alert.failedApplyRedactions'));
   } finally {
     hideLoader();
   }

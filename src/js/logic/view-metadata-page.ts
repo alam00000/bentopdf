@@ -3,6 +3,7 @@ import { formatBytes, formatIsoDate } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import { ViewMetadataState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 
 const pageState: ViewMetadataState = {
   file: null,
@@ -166,7 +167,7 @@ async function displayMetadata() {
   try {
     const result = await loadPdfWithPasswordPrompt(pageState.file);
     if (!result) return;
-    showLoader('Analyzing full PDF metadata...');
+    showLoader(t('loader.analyzingFullPdfMetadata'));
     const { pdf: pdfjsDoc, file: currentFile } = result;
     pageState.file = currentFile;
 
@@ -267,10 +268,7 @@ async function displayMetadata() {
     createIcons({ icons });
   } catch (e) {
     console.error('Failed to view metadata or fields:', e);
-    showAlert(
-      'Error',
-      'Could not fully analyze the PDF. It may be corrupted or have an unusual structure.'
-    );
+    showAlert(t('common.error'), t('alert.couldNotFullyAnalyze'));
   } finally {
     hideLoader();
   }
@@ -326,11 +324,17 @@ function copyMetadataAsJson() {
   navigator.clipboard
     .writeText(jsonString)
     .then(function () {
-      showAlert('Copied', 'Metadata copied to clipboard as JSON.');
+      showAlert(
+        t('tools:viewMetadata.alert.copied'),
+        t('tools:viewMetadata.alert.metadataCopiedClipboardAs')
+      );
     })
     .catch(function (err) {
       console.error('Failed to copy:', err);
-      showAlert('Error', 'Failed to copy metadata to clipboard.');
+      showAlert(
+        t('common.error'),
+        t('tools:viewMetadata.alert.failedCopyMetadataClipboard')
+      );
     });
 }
 

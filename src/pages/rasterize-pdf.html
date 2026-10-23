@@ -158,13 +158,15 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
@@ -173,6 +175,7 @@
         <div id="rasterize-options" class="hidden mt-6 space-y-6">
           <div>
             <label
+              data-i18n="tools:rasterizePdf.ui.dpiResolution"
               for="rasterize-dpi"
               class="block mb-2 text-sm font-medium text-gray-300"
               >DPI (Resolution)</label
@@ -181,16 +184,34 @@
               id="rasterize-dpi"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="72">72 (Screen)</option>
-              <option value="150" selected>150 (Default)</option>
-              <option value="200">200 (Good)</option>
-              <option value="300">300 (Print)</option>
-              <option value="600">600 (High Quality)</option>
+              <option data-i18n="tools:rasterizePdf.ui.screen72" value="72">
+                72 (Screen)
+              </option>
+              <option
+                data-i18n="tools:rasterizePdf.ui.default150"
+                value="150"
+                selected
+              >
+                150 (Default)
+              </option>
+              <option data-i18n="tools:rasterizePdf.ui.good200" value="200">
+                200 (Good)
+              </option>
+              <option data-i18n="tools:rasterizePdf.ui.print300" value="300">
+                300 (Print)
+              </option>
+              <option
+                data-i18n="tools:rasterizePdf.ui.highQuality600"
+                value="600"
+              >
+                600 (High Quality)
+              </option>
             </select>
           </div>
 
           <div>
             <label
+              data-i18n="tools:rasterizePdf.ui.imageFormat"
               for="rasterize-format"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Image Format</label
@@ -199,8 +220,19 @@
               id="rasterize-format"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="png" selected>PNG (Lossless)</option>
-              <option value="jpeg">JPEG (Smaller file size)</option>
+              <option
+                data-i18n="tools:rasterizePdf.ui.pngLossless"
+                value="png"
+                selected
+              >
+                PNG (Lossless)
+              </option>
+              <option
+                data-i18n="tools:rasterizePdf.ui.jpegSmallerFileSize"
+                value="jpeg"
+              >
+                JPEG (Smaller file size)
+              </option>
             </select>
           </div>
 
@@ -211,13 +243,18 @@
               class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
             />
             <label
+              data-i18n="tools:rasterizePdf.ui.convertToGrayscale"
               for="rasterize-grayscale"
               class="ml-2 text-sm font-medium text-gray-300"
               >Convert to Grayscale</label
             >
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:rasterizePdf.name"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Rasterize PDF
           </button>
         </div>

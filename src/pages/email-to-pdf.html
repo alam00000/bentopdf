@@ -179,6 +179,7 @@
           <!-- Options Panel -->
           <div class="bg-gray-700/50 rounded-lg p-4 space-y-4">
             <h3
+              data-i18n="tools:emailToPdf.ui.conversionOptions"
               class="text-sm font-semibold text-gray-300 uppercase tracking-wide"
             >
               Conversion Options
@@ -186,7 +187,10 @@
 
             <!-- Page Size -->
             <div class="flex items-center justify-between">
-              <label for="page-size" class="text-gray-300 text-sm"
+              <label
+                data-i18n="tools:emailToPdf.ui.pageSize"
+                for="page-size"
+                class="text-gray-300 text-sm"
                 >Page Size</label
               >
               <select
@@ -207,7 +211,10 @@
                 checked
                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
               />
-              <label for="include-cc-bcc" class="ml-3 text-gray-300 text-sm"
+              <label
+                data-i18n="tools:emailToPdf.ui.includeCcBccRecipientsIn"
+                for="include-cc-bcc"
+                class="ml-3 text-gray-300 text-sm"
                 >Include CC and BCC recipients in header</label
               >
             </div>
@@ -221,6 +228,7 @@
                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
               />
               <label
+                data-i18n="tools:emailToPdf.ui.includeEmailAttachmentsList"
                 for="include-attachments"
                 class="ml-3 text-gray-300 text-sm"
                 >Include email attachments list</label

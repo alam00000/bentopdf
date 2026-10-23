@@ -151,14 +151,17 @@
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="delete-options" class="hidden mt-6">
           <p class="mb-2 font-medium text-white">
-            Total Pages: <span id="total-pages"></span>
+            <span data-i18n="toolPage.totalPages">Total Pages:</span>
+            <span id="total-pages"></span>
           </p>
           <label
+            data-i18n="tools:deletePages.ui.enterPagesToDelete"
             for="pages-to-delete"
             class="block mb-2 text-sm font-medium text-gray-300"
             >Enter pages to delete (e.g., 2, 4-6, 9):</label
           >
           <input
+            data-i18n-placeholder="tools:deletePages.ui.pageRangePlaceholder"
             type="text"
             id="pages-to-delete"
             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4"
@@ -168,7 +171,11 @@
             id="delete-pages-preview"
             class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 my-6"
           ></div>
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:deletePages.ui.deletePagesDownload"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Delete Pages & Download
           </button>
         </div>

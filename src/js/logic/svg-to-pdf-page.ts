@@ -6,6 +6,7 @@ import {
   getSelectedQuality,
   compressImageBytes,
 } from '../utils/image-compress.js';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 
@@ -90,8 +91,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only SVG graphics are allowed.'
+      t('alert.invalidFiles'),
+      t('tools:svgToPdf.alert.someFilesWereSkipped')
     );
   }
 
@@ -207,11 +208,11 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one SVG file.');
+    showAlert(t('alert.noFiles'), t('tools:svgToPdf.alert.selectLeastOneSvg'));
     return;
   }
 
-  showLoader('Creating PDF from SVG files...');
+  showLoader(t('tools:svgToPdf.loader.creatingPdfFromSvg'));
 
   try {
     const pdfDoc = await PDFLibDocument.create();
@@ -254,12 +255,20 @@ async function convertToPdf() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_svgs.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
-    });
+    showAlert(
+      t('common.success'),
+      t('alert.pdfCreatedSuccessfully'),
+      'success',
+      () => {
+        resetState();
+      }
+    );
   } catch (e: unknown) {
     console.error(e);
-    showAlert('Conversion Error', e instanceof Error ? e.message : String(e));
+    showAlert(
+      t('alert.conversionError'),
+      e instanceof Error ? e.message : String(e)
+    );
   } finally {
     hideLoader();
   }

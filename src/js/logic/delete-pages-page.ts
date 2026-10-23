@@ -11,6 +11,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { DeletePagesState } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const deleteState: DeletePagesState = {
   file: null,
@@ -76,7 +77,10 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:duplexCollate.invalidFileMessage')
+    );
     return;
   }
 
@@ -88,7 +92,7 @@ async function handleFile(file: File) {
       deleteState.file = null;
       return;
     }
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     deleteState.file = result.file;
     deleteState.pdfDoc = await loadPdfDocument(result.bytes);
     deleteState.pdfJsDoc = result.pdf;
@@ -102,7 +106,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   }
 }
 
@@ -246,16 +250,22 @@ function updatePreview() {
 
 async function deletePages() {
   if (deleteState.pagesToDelete.size === 0) {
-    showAlert('No Pages', 'Please select pages to delete.');
+    showAlert(
+      t('multiTool.noPages'),
+      t('tools:deletePages.alert.selectPagesDelete')
+    );
     return;
   }
 
   if (deleteState.pagesToDelete.size >= deleteState.totalPages) {
-    showAlert('Error', 'Cannot delete all pages.');
+    showAlert(
+      t('common.error'),
+      t('tools:deletePages.alert.cannotDeleteAllPages')
+    );
     return;
   }
 
-  showLoader('Deleting pages...');
+  showLoader(t('tools:deletePages.loader.deletingPages'));
 
   try {
     const srcBytes = await deleteState.pdfDoc.save();
@@ -272,7 +282,7 @@ async function deletePages() {
 
     hideLoader();
     showAlert(
-      'Success',
+      t('common.success'),
       `Deleted ${deleteState.pagesToDelete.size} page(s) successfully!`,
       'success',
       () => resetState()
@@ -280,7 +290,10 @@ async function deletePages() {
   } catch (error) {
     console.error('Error deleting pages:', error);
     hideLoader();
-    showAlert('Error', 'Failed to delete pages.');
+    showAlert(
+      t('common.error'),
+      t('tools:deletePages.alert.failedDeletePages')
+    );
   }
 }
 

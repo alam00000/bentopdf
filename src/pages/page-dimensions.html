@@ -161,6 +161,7 @@
           >
             <div class="flex items-center gap-2">
               <label
+                data-i18n="tools:pageDimensions.ui.units"
                 for="units-select"
                 class="text-sm font-medium text-gray-300"
                 >Units:</label
@@ -169,10 +170,21 @@
                 id="units-select"
                 class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg p-2"
               >
-                <option value="pt">Points (pt)</option>
-                <option value="in">Inches (in)</option>
-                <option value="mm">Millimeters (mm)</option>
-                <option value="px">Pixels (px)</option>
+                <option data-i18n="tools:pageDimensions.ui.pointsPt" value="pt">
+                  Points (pt)
+                </option>
+                <option data-i18n="tools:pageDimensions.ui.inchesIn" value="in">
+                  Inches (in)
+                </option>
+                <option
+                  data-i18n="tools:pageDimensions.ui.millimetersMm"
+                  value="mm"
+                >
+                  Millimeters (mm)
+                </option>
+                <option data-i18n="tools:pageDimensions.ui.pixelsPx" value="px">
+                  Pixels (px)
+                </option>
               </select>
             </div>
             <button
@@ -180,7 +192,9 @@
               class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
             >
               <i data-lucide="download" class="w-4 h-4"></i>
-              <span>Export to CSV</span>
+              <span data-i18n="tools:pageDimensions.ui.exportToCsv"
+                >Export to CSV</span
+              >
             </button>
           </div>
 
@@ -188,13 +202,45 @@
             <table class="w-full text-sm text-left">
               <thead class="text-xs uppercase bg-gray-900 text-gray-400">
                 <tr>
-                  <th class="px-4 py-3">Page #</th>
-                  <th class="px-4 py-3">Dimensions</th>
-                  <th class="px-4 py-3">Standard Size</th>
-                  <th class="px-4 py-3">Orientation</th>
-                  <th class="px-4 py-3">Aspect Ratio</th>
-                  <th class="px-4 py-3">Area</th>
-                  <th class="px-4 py-3">Rotation</th>
+                  <th
+                    data-i18n="tools:pageDimensions.ui.page"
+                    class="px-4 py-3"
+                  >
+                    Page #
+                  </th>
+                  <th
+                    data-i18n="tools:pageDimensions.ui.dimensions"
+                    class="px-4 py-3"
+                  >
+                    Dimensions
+                  </th>
+                  <th
+                    data-i18n="tools:pageDimensions.ui.standardSize"
+                    class="px-4 py-3"
+                  >
+                    Standard Size
+                  </th>
+                  <th data-i18n="toolPage.orientation" class="px-4 py-3">
+                    Orientation
+                  </th>
+                  <th
+                    data-i18n="tools:pageDimensions.ui.aspectRatio"
+                    class="px-4 py-3"
+                  >
+                    Aspect Ratio
+                  </th>
+                  <th
+                    data-i18n="tools:pageDimensions.ui.area"
+                    class="px-4 py-3"
+                  >
+                    Area
+                  </th>
+                  <th
+                    data-i18n="tools:pageDimensions.ui.rotation"
+                    class="px-4 py-3"
+                  >
+                    Rotation
+                  </th>
                 </tr>
               </thead>
               <tbody

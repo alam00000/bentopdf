@@ -27,6 +27,7 @@ import {
   targetSizeToBytes,
   verifyHyperPassword,
 } from '../utils/compress.js';
+import { t } from '../i18n/i18n';
 
 type OptionChangeHandler = (
   key: keyof HyperCompressOptions,
@@ -254,6 +255,18 @@ const HYPER_OPTION_SECTIONS: HyperOptionSection[] = [
   },
 ];
 
+// The panel can be built before initI18n() resolves; data-i18n lets
+// applyTranslations() in main.ts relabel it once the language is loaded.
+const setHyperOptionText = (
+  element: HTMLElement,
+  id: string,
+  english: string
+): void => {
+  const key = `tools:compressPdf.hyperOptions.${id}`;
+  element.dataset.i18n = key;
+  element.textContent = t(key, { defaultValue: english });
+};
+
 function buildOptionField(
   field: HyperOptionField,
   onChange: OptionChangeHandler
@@ -264,7 +277,7 @@ function buildOptionField(
   if (field.help) {
     help = document.createElement('p');
     help.className = 'text-xs text-gray-500 mt-0.5';
-    help.textContent = field.help;
+    setHyperOptionText(help, `${field.key}Help`, field.help);
   }
 
   if (field.type === 'bool') {
@@ -278,7 +291,7 @@ function buildOptionField(
     const text = document.createElement('span');
     const title = document.createElement('span');
     title.className = 'block text-sm text-gray-300';
-    title.textContent = field.label;
+    setHyperOptionText(title, field.key, field.label);
     text.append(title);
     if (help) text.append(help);
     label.append(input, text);
@@ -294,7 +307,7 @@ function buildOptionField(
   const label = document.createElement('label');
   label.htmlFor = id;
   label.className = 'block mb-1 text-xs font-medium text-gray-400';
-  label.textContent = field.label;
+  setHyperOptionText(label, field.key, field.label);
   wrapper.append(label);
   const controlClass =
     'w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm';
@@ -306,7 +319,11 @@ function buildOptionField(
     for (const choice of DPI_CHOICES) {
       const option = document.createElement('option');
       option.value = String(choice.value);
-      option.textContent = choice.label;
+      if (choice.value === 0) {
+        setHyperOptionText(option, 'dpiNone', choice.label);
+      } else {
+        option.textContent = choice.label;
+      }
       select.append(option);
     }
     select.addEventListener('change', () =>
@@ -362,7 +379,13 @@ function renderHyperOptions(
     const summary = document.createElement('summary');
     summary.className =
       'flex items-center justify-between cursor-pointer select-none list-none px-3 py-2 text-sm font-medium text-gray-200 [&::-webkit-details-marker]:hidden';
-    summary.textContent = section.title;
+    const summaryText = document.createElement('span');
+    setHyperOptionText(
+      summaryText,
+      `sections.${section.title.toLowerCase()}`,
+      section.title
+    );
+    summary.append(summaryText);
     const chevron = document.createElement('i');
     chevron.setAttribute('data-lucide', 'chevron-down');
     chevron.className =
@@ -841,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = isProtected(lock) ? lock.password : '';
     showLoader(
       targetBytes === undefined
-        ? 'Compressing...'
+        ? t('tools:compressPdf.loader.compressing')
         : `Compressing to ${formatBytes(targetBytes)}...`
     );
     const result = await compressWithHyper(await file.arrayBuffer(), {
@@ -853,7 +876,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (result.signed) {
       showAlert(
-        'Signed PDF Not Changed',
+        t('tools:compressPdf.alert.signedPdfNotChanged'),
         `${file.name} is digitally signed, so it was left as it is. Compressing it would break the signature. To compress it anyway, turn on Override content protection under Custom Settings; its signatures will be removed.`,
         'warning',
         () => resetState()
@@ -885,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
     runOptions: HyperCompressOptions,
     targetBytes: number | undefined
   ) => {
-    showLoader('Compressing multiple PDFs...');
+    showLoader(t('tools:compressPdf.loader.compressingMultiplePdfs'));
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();
     let totalOriginalSize = 0;
@@ -930,13 +953,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (compressedCount === 0) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `None of the files could be compressed: ${failures.join(', ')}.`
       );
       return;
     }
 
-    showLoader('Creating ZIP...');
+    showLoader(t('tools:compressPdf.loader.creatingZip'));
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     downloadFile(zipBlob, 'compressed-pdfs.zip');
     hideLoader();
@@ -978,7 +1001,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hasProblems = failures.length > 0 || missedTargetCount > 0;
     showAlert(
-      hasProblems ? 'Compression Finished' : 'Compression Complete',
+      hasProblems
+        ? t('tools:compressPdf.alert.compressionFinished')
+        : t('tools:compressPdf.alert.compressionComplete'),
       parts.join(' '),
       hasProblems ? 'warning' : totalSavings > 0 ? 'success' : 'info',
       () => resetState()
@@ -987,7 +1012,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const compress = async () => {
     if (state.files.length === 0) {
-      showAlert('No Files', 'Please select at least one PDF file.');
+      showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
       return;
     }
 
@@ -997,7 +1022,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (needPassword.length > 0) {
       showAlert(
-        'Password Needed',
+        t('tools:compressPdf.alert.passwordNeeded'),
         needPassword.length === 1
           ? `${needPassword[0].name} is password protected. Enter its password on the file card, then compress again.`
           : `These files are password protected: ${needPassword.map((file) => file.name).join(', ')}. Enter their passwords on the file cards, or remove them, then compress again.`,
@@ -1031,7 +1056,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateUI();
         showAlert(
-          'Password Needed',
+          t('tools:compressPdf.alert.passwordNeeded'),
           `${file.name} is password protected. Enter its password on the file card, then compress again.`,
           'warning',
           () => lockViews.get(file)?.input.focus()
@@ -1040,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       console.error('[CompressPDF] Error:', e);
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during compression. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
@@ -1059,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (rejected.length > 0) {
         showAlert(
-          'Not a PDF',
+          t('tools:compressPdf.alert.notPdf'),
           rejected.length === 1
             ? `${rejected[0]} is not a valid PDF, so it was not added.`
             : `These files are not valid PDFs, so they were not added: ${rejected.join(', ')}.`,

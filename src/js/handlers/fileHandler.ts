@@ -30,6 +30,7 @@ import {
 import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 export {
   getRotationState,
@@ -43,7 +44,7 @@ let imageSortableInstance: Sortable | null = null;
 const activeImageUrls = new Map<File, string>();
 
 async function handleSinglePdfUpload(toolId: string, file: File) {
-  showLoader('Loading PDF...');
+  showLoader(t('tools:addPageLabels.loadingPdf'));
   try {
     if (toolId === 'form-filler') {
       hideLoader();
@@ -218,7 +219,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
 
     if (toolId === 'view-metadata') {
       const resultsDiv = document.getElementById('metadata-results');
-      showLoader('Analyzing full PDF metadata...');
+      showLoader(t('loader.analyzingFullPdfMetadata'));
 
       try {
         const pdfBytes = await readFileAsArrayBuffer(state.files[0]);
@@ -450,10 +451,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
         resultsDiv.classList.remove('hidden');
       } catch (e) {
         console.error('Failed to view metadata or fields:', e);
-        showAlert(
-          'Error',
-          'Could not fully analyze the PDF. It may be corrupted or have an unusual structure.'
-        );
+        showAlert(t('common.error'), t('alert.couldNotFullyAnalyze'));
       } finally {
         hideLoader();
       }
@@ -584,10 +582,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
     }
   } catch (e) {
     hideLoader();
-    showAlert(
-      'Error',
-      'Could not load PDF. The file may be invalid, corrupted, or password-protected.'
-    );
+    showAlert(t('common.error'), t('fileHandler.alert.couldNotLoadPdf'));
     console.error(e);
   }
 }
@@ -598,7 +593,7 @@ async function handleMultiFileUpload(toolId: string) {
     toolId === 'alternate-merge' ||
     toolId === 'reverse-pages'
   ) {
-    showLoader('Loading PDF documents...');
+    showLoader(t('tools:mergePdf.loader.loadingDocuments'));
 
     const pdfFilesUnloaded: File[] = [];
 
@@ -657,7 +652,7 @@ async function handleMultiFileUpload(toolId: string) {
         return;
       }
 
-      showLoader('Loading PDF documents...');
+      showLoader(t('tools:mergePdf.loader.loadingDocuments'));
     }
   }
 
@@ -848,8 +843,8 @@ export function setupFileInputHandler(toolId: string) {
 
       if (validFiles.length < newFiles.length) {
         showAlert(
-          'Invalid Files',
-          'Some files were skipped because they are not supported images.'
+          t('alert.invalidFiles'),
+          t('fileHandler.alert.someFilesWereSkipped')
         );
       }
 

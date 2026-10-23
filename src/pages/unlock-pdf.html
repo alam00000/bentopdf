@@ -179,22 +179,31 @@
         <div id="tool-options" class="hidden mt-6 space-y-4">
           <div>
             <label
+              data-i18n="tools:unlockPdf.ui.pdfPassword"
               for="password-input"
               class="block mb-2 text-sm font-medium text-gray-300"
               >PDF Password</label
             >
             <input
+              data-i18n-placeholder="tools:unlockPdf.ui.enterPdfPasswordPlaceholder"
               type="password"
               id="password-input"
               placeholder="Enter the PDF password"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
-            <p class="text-xs text-gray-500 mt-1">
+            <p
+              data-i18n="tools:unlockPdf.ui.enterPasswordUsedToProtect"
+              class="text-xs text-gray-500 mt-1"
+            >
               Enter the password used to protect this PDF.
             </p>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:unlockPdf.ui.decryptPdf"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Decrypt PDF
           </button>
         </div>

@@ -153,12 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const extract = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
         return;
       }
 
       const decryptedFiles = await batchDecryptIfNeeded(state.files);
-      showLoader('Loading PDF processor...');
+      showLoader(t('tools:extractImages.loader.loadingPdfProcessor'));
       state.files = decryptedFiles;
       const pymupdf = await loadPyMuPDF();
 
@@ -199,13 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (extractedImages.length === 0) {
         showAlert(
-          'No Images Found',
-          'No embedded images were found in the selected PDF(s).'
+          t('tools:extractImages.alert.noImagesFound'),
+          t('tools:extractImages.alert.noEmbeddedImagesWere')
         );
       } else {
         displayImages();
         showAlert(
-          'Extraction Complete',
+          t('alert.extractionComplete'),
           `Found ${extractedImages.length} image(s) in ${state.files.length} PDF(s).`,
           'success'
         );
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during extraction. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const downloadAll = async () => {
     if (extractedImages.length === 0) return;
 
-    showLoader('Creating ZIP archive...');
+    showLoader(t('loader.creatingZipArchive'));
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();
 

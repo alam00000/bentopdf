@@ -160,32 +160,46 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="extract-options" class="hidden mt-6 space-y-6">
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:extractImages.name"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Extract Images
           </button>
         </div>
 
         <div id="images-container" class="hidden mt-8">
           <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold text-white">Extracted Images</h2>
+            <h2
+              data-i18n="tools:extractImages.ui.extractedImages"
+              class="text-xl font-bold text-white"
+            >
+              Extracted Images
+            </h2>
             <button
               id="download-all-btn"
               class="btn bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
             >
-              <i data-lucide="download"></i> <span>Download All (ZIP)</span>
+              <i data-lucide="download"></i>
+              <span data-i18n="tools:extractImages.ui.downloadAllZip"
+                >Download All (ZIP)</span
+              >
             </button>
           </div>
           <div

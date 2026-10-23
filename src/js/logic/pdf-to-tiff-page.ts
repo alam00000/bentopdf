@@ -229,8 +229,8 @@ async function convert() {
     console.error('Failed to load wasm-vips:', e);
     hideLoader();
     showAlert(
-      'Error',
-      'Failed to load the image processor. Please ensure your browser supports SharedArrayBuffer (requires HTTPS or localhost).'
+      t('common.error'),
+      t('tools:pdfToTiff.alert.failedLoadImageProcessor')
     );
     return;
   }

@@ -174,21 +174,37 @@
 
         <div id="tool-options" class="hidden mt-6">
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700 mb-4">
-            <h3 class="text-sm font-semibold text-white mb-2">
+            <h3
+              data-i18n="tools:flattenPdf.ui.whatFlattened"
+              class="text-sm font-semibold text-white mb-2"
+            >
               What will be flattened:
             </h3>
             <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-              <li>
+              <li
+                data-i18n="tools:flattenPdf.ui.formFieldsTextFieldsCheckboxes"
+              >
                 Form fields (text fields, checkboxes, radio buttons, etc.)
               </li>
-              <li>Annotations and comments</li>
-              <li>Interactive elements</li>
+              <li data-i18n="tools:flattenPdf.ui.annotationsComments">
+                Annotations and comments
+              </li>
+              <li data-i18n="tools:flattenPdf.ui.interactiveElements">
+                Interactive elements
+              </li>
             </ul>
-            <p class="text-xs text-gray-500 mt-2">
+            <p
+              data-i18n="tools:flattenPdf.ui.noteFlattenedContentCannotEdited"
+              class="text-xs text-gray-500 mt-2"
+            >
               Note: Flattened content cannot be edited or filled out.
             </p>
           </div>
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:flattenPdf.ui.flattenPdf"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Flatten PDF(s)
           </button>
         </div>

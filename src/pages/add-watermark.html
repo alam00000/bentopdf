@@ -165,7 +165,9 @@
             class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 font-semibold text-sm"
           >
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
-            <span>Change File</span>
+            <span data-i18n="tools:addWatermark.ui.changeFile"
+              >Change File</span
+            >
           </button>
           <div
             id="editor-file-info"
@@ -179,7 +181,9 @@
               class="bg-gray-800 rounded-xl border border-gray-700 p-2 sm:p-4 flex-1 flex flex-col"
             >
               <div class="flex items-center justify-between mb-2 sm:mb-3">
-                <span class="text-xs sm:text-sm font-medium text-gray-300"
+                <span
+                  data-i18n="tools:addWatermark.ui.preview"
+                  class="text-xs sm:text-sm font-medium text-gray-300"
                   >Preview</span
                 >
                 <div class="flex items-center gap-2">
@@ -209,6 +213,7 @@
                   </button>
                 </div>
                 <span
+                  data-i18n="tools:addWatermark.ui.dragWatermarkToPosition"
                   id="drag-hint"
                   class="text-xs text-gray-500 hidden sm:inline"
                   >Drag watermark to position</span
@@ -273,12 +278,14 @@
             >
               <div class="flex gap-2">
                 <button
+                  data-i18n="toolPage.text"
                   id="type-text-btn"
                   class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors"
                 >
                   Text
                 </button>
                 <button
+                  data-i18n="tools:addWatermark.ui.image"
                   id="type-image-btn"
                   class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors"
                 >
@@ -287,24 +294,31 @@
               </div>
 
               <div>
-                <label class="block mb-1.5 text-sm font-medium text-gray-300"
+                <label
+                  data-i18n="tools:addWatermark.ui.layout"
+                  class="block mb-1.5 text-sm font-medium text-gray-300"
                   >Layout</label
                 >
                 <div class="flex gap-2">
                   <button
+                    data-i18n="tools:addWatermark.ui.single"
                     id="layout-single-btn"
                     class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors"
                   >
                     Single
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.tiled"
                     id="layout-tile-btn"
                     class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors"
                   >
                     Tiled
                   </button>
                 </div>
-                <p class="text-xs text-gray-500 mt-1.5">
+                <p
+                  data-i18n="tools:addWatermark.ui.tiledRepeatsWatermarkAcrossWhole"
+                  class="text-xs text-gray-500 mt-1.5"
+                >
                   Tiled repeats the watermark across the whole page.
                 </p>
               </div>
@@ -328,18 +342,23 @@
 
               <div id="page-range-section" class="space-y-1.5">
                 <label
+                  data-i18n="tools:addWatermark.ui.pageRange"
                   for="page-range-input"
                   class="block text-sm font-medium text-gray-300"
                   >Page Range</label
                 >
                 <input
+                  data-i18n-placeholder="tools:addWatermark.ui.pageRangePlaceholder"
                   type="text"
                   id="page-range-input"
                   value="all"
                   placeholder="all  or  1-3, 5, 7-9"
                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 text-sm placeholder-gray-500"
                 />
-                <p class="text-xs text-gray-500">
+                <p
+                  data-i18n="tools:addWatermark.ui.useAllSpecifyPages"
+                  class="text-xs text-gray-500"
+                >
                   Use "all" or specify pages, e.g. 1-3, 5, 7-9
                 </p>
               </div>
@@ -348,6 +367,7 @@
                 <div class="space-y-4">
                   <div>
                     <label
+                      data-i18n="toolPage.text"
                       for="watermark-text"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                       >Text</label
@@ -362,6 +382,7 @@
                   <div class="grid grid-cols-2 gap-3">
                     <div>
                       <label
+                        data-i18n="toolPage.fontSize"
                         for="font-size"
                         class="block mb-1.5 text-sm font-medium text-gray-300"
                         >Font Size</label
@@ -377,6 +398,7 @@
                     </div>
                     <div>
                       <label
+                        data-i18n="toolPage.color"
                         for="text-color"
                         class="block mb-1.5 text-sm font-medium text-gray-300"
                         >Color</label
@@ -394,7 +416,10 @@
                       for="opacity-text"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                     >
-                      Opacity: <span id="opacity-value-text">0.3</span>
+                      <span data-i18n="tools:addWatermark.ui.opacity"
+                        >Opacity:</span
+                      >
+                      <span id="opacity-value-text">0.3</span>
                     </label>
                     <input
                       type="range"
@@ -411,7 +436,10 @@
                       for="angle-text"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                     >
-                      Angle: <span id="angle-value-text">-45</span>&deg;
+                      <span data-i18n="tools:addWatermark.ui.angle"
+                        >Angle:</span
+                      >
+                      <span id="angle-value-text">-45</span>&deg;
                     </label>
                     <input
                       type="range"
@@ -430,6 +458,7 @@
                 <div class="space-y-4">
                   <div>
                     <label
+                      data-i18n="tools:addWatermark.ui.watermarkImage"
                       for="image-watermark-input"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                       >Watermark Image</label
@@ -446,7 +475,10 @@
                       for="image-scale"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                     >
-                      Scale: <span id="image-scale-value">100</span>%
+                      <span data-i18n="tools:addWatermark.ui.scale"
+                        >Scale:</span
+                      >
+                      <span id="image-scale-value">100</span>%
                     </label>
                     <input
                       type="range"
@@ -463,7 +495,10 @@
                       for="opacity-image"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                     >
-                      Opacity: <span id="opacity-value-image">0.3</span>
+                      <span data-i18n="tools:addWatermark.ui.opacity"
+                        >Opacity:</span
+                      >
+                      <span id="opacity-value-image">0.3</span>
                     </label>
                     <input
                       type="range"
@@ -480,7 +515,10 @@
                       for="angle-image"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
                     >
-                      Angle: <span id="angle-value-image">0</span>&deg;
+                      <span data-i18n="tools:addWatermark.ui.angle"
+                        >Angle:</span
+                      >
+                      <span id="angle-value-image">0</span>&deg;
                     </label>
                     <input
                       type="range"
@@ -501,7 +539,10 @@
                     for="tile-gap-x"
                     class="block mb-1.5 text-sm font-medium text-gray-300"
                   >
-                    Horizontal gap: <span id="tile-gap-x-value">25</span>%
+                    <span data-i18n="tools:addWatermark.ui.horizontalGap"
+                      >Horizontal gap:</span
+                    >
+                    <span id="tile-gap-x-value">25</span>%
                   </label>
                   <input
                     type="range"
@@ -518,7 +559,10 @@
                     for="tile-gap-y"
                     class="block mb-1.5 text-sm font-medium text-gray-300"
                   >
-                    Vertical gap: <span id="tile-gap-y-value">75</span>%
+                    <span data-i18n="tools:addWatermark.ui.verticalGap"
+                      >Vertical gap:</span
+                    >
+                    <span id="tile-gap-y-value">75</span>%
                   </label>
                   <input
                     type="range"
@@ -533,59 +577,70 @@
               </div>
 
               <div id="position-section">
-                <label class="block mb-1.5 text-sm font-medium text-gray-300"
+                <label
+                  data-i18n="toolPage.position"
+                  class="block mb-1.5 text-sm font-medium text-gray-300"
                   >Position</label
                 >
                 <div class="grid grid-cols-3 gap-1.5">
                   <button
+                    data-i18n="tools:addWatermark.ui.topLeft"
                     data-pos="0.15,0.15"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Top Left
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.top"
                     data-pos="0.5,0.15"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Top
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.topRight"
                     data-pos="0.85,0.15"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Top Right
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.left"
                     data-pos="0.15,0.5"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Left
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.center"
                     data-pos="0.5,0.5"
                     class="pos-preset-btn py-1.5 text-xs bg-indigo-600 hover:bg-indigo-500 text-white rounded-md transition-colors"
                   >
                     Center
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.right"
                     data-pos="0.85,0.5"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Right
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.bottomLeft"
                     data-pos="0.15,0.85"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Bottom Left
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.bottom"
                     data-pos="0.5,0.85"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
                     Bottom
                   </button>
                   <button
+                    data-i18n="tools:addWatermark.ui.bottomRight"
                     data-pos="0.85,0.85"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
@@ -602,18 +657,26 @@
                 />
                 <div>
                   <label
+                    data-i18n="tools:addWatermark.ui.flattenWatermark"
                     for="flatten-watermark"
                     class="text-sm font-medium text-gray-300 cursor-pointer"
                     >Flatten watermark</label
                   >
-                  <p class="text-xs text-gray-500 mt-0.5">
+                  <p
+                    data-i18n="tools:addWatermark.ui.bakesWatermarkIntoPagePixels"
+                    class="text-xs text-gray-500 mt-0.5"
+                  >
                     Bakes the watermark into page pixels, making it
                     tamper-resistant. Text will no longer be selectable.
                   </p>
                 </div>
               </div>
 
-              <button id="process-btn" class="btn-gradient w-full">
+              <button
+                data-i18n="tools:addWatermark.name"
+                id="process-btn"
+                class="btn-gradient w-full"
+              >
                 Add Watermark
               </button>
             </div>

@@ -23,6 +23,7 @@ import type {
   ViewerCommandsPlugin,
   RedactionPluginLite,
 } from '@/types';
+import { t } from '../i18n/i18n';
 
 const FREETEXT_SUBTYPE = 3;
 
@@ -298,11 +299,14 @@ async function handleFiles(files: FileList) {
     (f) => f.type === 'application/pdf'
   );
   if (pdfFiles.length === 0) {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:addPageLabels.invalidFileMessage')
+    );
     return;
   }
 
-  showLoader('Loading PDF Editor...');
+  showLoader(t('tools:pdfEditor.loader.loadingPdfEditor'));
 
   try {
     const pdfWrapper = document.getElementById('embed-pdf-wrapper');
@@ -313,7 +317,7 @@ async function handleFiles(files: FileList) {
 
     hideLoader();
     const decryptedFiles = await batchDecryptIfNeeded(pdfFiles);
-    showLoader('Loading PDF Editor...');
+    showLoader(t('tools:pdfEditor.loader.loadingPdfEditor'));
 
     if (decryptedFiles.length === 0) {
       hideLoader();
@@ -444,8 +448,8 @@ async function handleFiles(files: FileList) {
             }
             if (redactionPlugin.getState().pendingCount > 0) {
               showAlert(
-                'Redaction Failed',
-                'Some redaction marks could not be applied, so the file was not downloaded. Apply or remove them in the editor and try again.'
+                t('tools:pdfEditor.alert.redactionFailed'),
+                t('tools:pdfEditor.alert.someRedactionMarksCould')
               );
               return;
             }
@@ -511,7 +515,7 @@ async function handleFiles(files: FileList) {
               );
               if (!shouldDownload) return;
             } else {
-              showLoader('Removing redacted text from document data...');
+              showLoader(t('tools:pdfEditor.loader.removingRedactedTextFrom'));
               try {
                 outBytes = await scrubRedactedText(
                   outBytes,
@@ -520,8 +524,8 @@ async function handleFiles(files: FileList) {
               } catch (err) {
                 console.error('Redaction cleanup failed:', err);
                 showAlert(
-                  'Error',
-                  'Could not remove the redacted text from the document data, so the file was not downloaded.'
+                  t('common.error'),
+                  t('tools:pdfEditor.alert.couldNotRemoveRedacted')
                 );
                 return;
               } finally {
@@ -535,7 +539,10 @@ async function handleFiles(files: FileList) {
           downloadFile(blob, currentFileName);
         } catch (err) {
           console.error('Error downloading PDF:', err);
-          showAlert('Error', 'Failed to download the edited PDF.');
+          showAlert(
+            t('common.error'),
+            t('tools:pdfEditor.alert.failedDownloadEditedPdf')
+          );
         }
       };
       downloadBtn.onclick = downloadEditedPdf;
@@ -575,7 +582,10 @@ async function handleFiles(files: FileList) {
     }
   } catch (error) {
     console.error('Error loading PDF Editor:', error);
-    showAlert('Error', 'Failed to load the PDF Editor.');
+    showAlert(
+      t('common.error'),
+      t('tools:pdfEditor.alert.failedLoadPdfEditor')
+    );
   } finally {
     hideLoader();
   }

@@ -3,6 +3,7 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { t } from '../i18n/i18n';
 
 interface PdfToZipState {
   files: File[];
@@ -77,11 +78,14 @@ function updateUI() {
 
 async function createZipArchive() {
   if (pageState.files.length === 0) {
-    showAlert('No Files', 'Please select PDF files to create a ZIP archive.');
+    showAlert(
+      t('alert.noFiles'),
+      t('tools:pdfsToZip.alert.selectPdfFilesCreate')
+    );
     return;
   }
 
-  showLoader('Creating ZIP archive...');
+  showLoader(t('loader.creatingZipArchive'));
 
   try {
     const zip = new JSZip();
@@ -95,14 +99,14 @@ async function createZipArchive() {
       zip.file(zipEntryName, arrayBuffer);
     }
 
-    showLoader('Generating ZIP file...');
+    showLoader(t('tools:pdfsToZip.loader.generatingZipFile'));
     const zipBlob = await zip.generateAsync({ type: 'blob' });
 
     downloadFile(zipBlob, 'pdfs_archive.zip');
 
     showAlert(
-      'Success',
-      'ZIP archive created successfully!',
+      t('common.success'),
+      t('tools:pdfsToZip.alert.zipArchiveCreatedSuccessfully'),
       'success',
       function () {
         resetState();
@@ -110,7 +114,7 @@ async function createZipArchive() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not create ZIP archive.');
+    showAlert(t('common.error'), t('tools:pdfsToZip.alert.couldNotCreateZip'));
   } finally {
     hideLoader();
   }

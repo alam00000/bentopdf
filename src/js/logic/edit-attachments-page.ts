@@ -8,6 +8,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/edit-attachments.worker.js'
@@ -66,8 +67,8 @@ worker.onmessage = function (e) {
     );
 
     showAlert(
-      'Success',
-      'Attachments updated successfully!',
+      t('common.success'),
+      t('tools:editAttachments.alert.attachmentsUpdatedSuccessfully'),
       'success',
       function () {
         resetState();
@@ -75,14 +76,17 @@ worker.onmessage = function (e) {
     );
   } else if (data.status === 'error') {
     hideLoader();
-    showAlert('Error', data.message || 'Unknown error occurred.');
+    showAlert(
+      t('common.error'),
+      data.message || t('alert.unknownErrorOccurred')
+    );
   }
 };
 
 worker.onerror = function (error) {
   hideLoader();
   console.error('Worker error:', error);
-  showAlert('Error', 'Worker error occurred. Check console for details.');
+  showAlert(t('common.error'), t('tools:tableOfContents.workerErrorOccurred'));
 };
 
 function displayAttachments(attachments: AttachmentInfo[]) {
@@ -219,7 +223,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
 async function loadAttachments() {
   if (!pageState.file) return;
 
-  showLoader('Loading attachments...');
+  showLoader(t('tools:editAttachments.loader.loadingAttachments'));
 
   // Check if CPDF is configured
   if (!isCpdfAvailable()) {
@@ -242,22 +246,31 @@ async function loadAttachments() {
   } catch (error) {
     console.error('Error loading attachments:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load attachments from PDF.');
+    showAlert(
+      t('common.error'),
+      t('tools:editAttachments.alert.failedLoadAttachmentsFrom')
+    );
   }
 }
 
 async function saveChanges() {
   if (!pageState.file) {
-    showAlert('Error', 'No PDF file loaded.');
+    showAlert(
+      t('common.error'),
+      t('tools:editAttachments.alert.noPdfFileLoaded')
+    );
     return;
   }
 
   if (pageState.attachmentsToRemove.size === 0) {
-    showAlert('No Changes', 'No attachments selected for removal.');
+    showAlert(
+      t('alert.noChanges'),
+      t('tools:editAttachments.alert.noAttachmentsSelectedRemoval')
+    );
     return;
   }
 
-  showLoader('Processing attachments...');
+  showLoader(t('tools:editAttachments.loader.processingAttachments'));
 
   // Check if CPDF is configured (double check)
   if (!isCpdfAvailable()) {
@@ -281,7 +294,10 @@ async function saveChanges() {
   } catch (error) {
     console.error('Error editing attachments:', error);
     hideLoader();
-    showAlert('Error', 'Failed to edit attachments.');
+    showAlert(
+      t('common.error'),
+      t('tools:editAttachments.alert.failedEditAttachments')
+    );
   }
 }
 

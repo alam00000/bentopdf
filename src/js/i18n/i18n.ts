@@ -149,7 +149,28 @@ export const initI18n = async (): Promise<typeof i18next> => {
   return i18next;
 };
 
+// Before initI18n() finishes (e.g. a loader shown on page start), answer from
+// the bundled English strings instead of returning undefined.
+const englishFallback = (
+  key: string,
+  options?: Record<string, unknown>
+): string => {
+  const [ns, path] = key.includes(':') ? key.split(':', 2) : ['common', key];
+  const bundle = ns === 'tools' ? enTools : enCommon;
+  const value = path
+    .split('.')
+    .reduce<unknown>(
+      (node, part) => (node as Record<string, unknown> | undefined)?.[part],
+      bundle
+    );
+  if (typeof value !== 'string') return key;
+  return value.replace(/\{\{\s*(\w+)\s*\}\}/g, (match, name: string) =>
+    options?.[name] != null ? String(options[name]) : match
+  );
+};
+
 export const t = (key: string, options?: Record<string, unknown>): string => {
+  if (!i18next.isInitialized) return englishFallback(key, options);
   return i18next.t(key, options);
 };
 
@@ -217,10 +238,10 @@ export const applyTranslations = (): void => {
 
   document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
     const key = element.getAttribute('data-i18n-placeholder');
-    if (key && element instanceof HTMLInputElement) {
+    if (key) {
       const translation = t(key);
       if (translation && translation !== key) {
-        element.placeholder = translation;
+        element.setAttribute('placeholder', translation);
       }
     }
   });

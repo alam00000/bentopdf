@@ -9,7 +9,10 @@
     "openMainMenu": "Open main menu",
     "language": "Language",
     "searchLanguage": "Search language…",
-    "noLanguagesFound": "No languages found"
+    "noLanguagesFound": "No languages found",
+    "products": "Products",
+    "kuraDescription": "PDF/A, PDF/UA and PDF/X conversion engine.",
+    "contentPreservingPdfCompressionEngine": "Content-preserving PDF compression engine."
   },
   "donation": {
     "message": "Love BentoPDF? Help us keep it free and open source!",
@@ -111,11 +114,58 @@
     "title": "Related PDF Tools"
   },
   "loader": {
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "analyzingFullPdfMetadata": "Analyzing full PDF metadata...",
+    "loadingPreview": "Loading preview...",
+    "convertingFiles": "Converting files...",
+    "applyingCrop": "Applying crop...",
+    "creatingZipArchive": "Creating ZIP archive...",
+    "buildingNewPdf": "Building new PDF...",
+    "loadingEngine": "Loading engine...",
+    "loadingEngine2": "Loading Engine...",
+    "extractingTables": "Extracting tables...",
+    "convertingMultipleFiles": "Converting multiple files...",
+    "loadingPdfConverter": "Loading PDF converter...",
+    "converting": "Converting...",
+    "creatingPdfFromJpgs": "Creating PDF from JPGs...",
+    "applyingRotations": "Applying rotations..."
   },
   "alert": {
     "title": "Alert",
-    "ok": "OK"
+    "ok": "OK",
+    "couldNotFullyAnalyze": "Could not fully analyze the PDF. It may be corrupted or have an unusual structure.",
+    "invalidFiles": "Invalid Files",
+    "unknownErrorOccurred": "Unknown error occurred.",
+    "uploadPdfFirst": "Please upload a PDF first.",
+    "noFiles": "No Files",
+    "failedLoadPdfPreview": "Failed to load PDF for preview.",
+    "uploadLeastOnePdf": "Please upload at least one PDF file.",
+    "pdfCreatedSuccessfully": "PDF created successfully!",
+    "conversionComplete": "Conversion Complete",
+    "processingFailed": "Processing Failed",
+    "selectLeastOnePdf": "Please select at least one PDF file.",
+    "failedRenderPage": "Failed to render page.",
+    "noCropArea": "No Crop Area",
+    "selectAreaCropFirst": "Please select an area to crop first.",
+    "selectAreaLeastOne": "Please select an area on at least one page to crop.",
+    "cropCompleteDownloadHas": "Crop complete! Your download has started.",
+    "errorOccurredDuringCropping": "An error occurred during cropping.",
+    "cannotDelete": "Cannot Delete",
+    "youCannotDeleteLast": "You cannot delete the last page of the document.",
+    "noValidPagesSave": "No valid pages to save.",
+    "noChanges": "No Changes",
+    "extractionComplete": "Extraction Complete",
+    "noTablesFound": "No Tables Found",
+    "noTablesWereDetected": "No tables were detected in this PDF.",
+    "noPdfsCouldProcessed": "No PDFs could be processed.",
+    "viewerNotReady": "Viewer not ready",
+    "conversionError": "Conversion Error",
+    "processingComplete": "Processing Complete",
+    "selectLeastOneJpg": "Please select at least one JPG file.",
+    "inputRequired": "Input Required",
+    "selectOneMorePdf": "Please select one or more PDF files.",
+    "rotationsAppliedSuccessfully": "Rotations applied successfully!",
+    "couldNotApplyRotations": "Could not apply rotations."
   },
   "preview": {
     "title": "Document Preview",
@@ -279,7 +329,16 @@
     "files": "Files",
     "close": "Close",
     "convert": "Convert",
-    "unknownError": "Unknown error"
+    "unknownError": "Unknown error",
+    "loader": {
+      "initializingPdfEngine": "Initializing PDF engine..."
+    },
+    "alert": {
+      "initializationError": "Initialization Error",
+      "couldNotLoadPdf": "Could not load the PDF engine. Please refresh the page and try again."
+    },
+    "pageCountLabel": "Pages: {{count}}",
+    "removeFile": "Remove file"
   },
   "about": {
     "hero": {
@@ -325,7 +384,12 @@
   "contact": {
     "title": "Get in Touch",
     "subtitle": "We'd love to hear from you. Whether you have a question, feedback, or a feature request, please don't hesitate to reach out.",
-    "email": "You can reach us directly by email at:"
+    "email": "You can reach us directly by email at:",
+    "emailTitle": "Email",
+    "githubText": "Report a bug, request a feature, or read the source.",
+    "discordText": "Join the community to chat with us and other users.",
+    "faqText": "Find quick answers to the questions we get most often.",
+    "faqLink": "Read the FAQ"
   },
   "licensing": {
     "title": "Licensing for",
@@ -386,5 +450,40 @@
     "heading": "This tool has been disabled",
     "message": "This tool is not available in your deployment. Contact your administrator for more information.",
     "backHome": "Back to Home"
+  },
+  "fileHandler": {
+    "alert": {
+      "couldNotLoadPdf": "Could not load PDF. The file may be invalid, corrupted, or password-protected.",
+      "someFilesWereSkipped": "Some files were skipped because they are not supported images."
+    }
+  },
+  "toolPage": {
+    "backgroundColor": "Background Color",
+    "fit": "Fit",
+    "text": "Text",
+    "totalPages": "Total Pages:",
+    "orientation": "Orientation",
+    "portrait": "Portrait",
+    "landscape": "Landscape",
+    "fontSize": "Font Size",
+    "color": "Color",
+    "position": "Position",
+    "reset": "Reset",
+    "convertToPdf": "Convert to PDF",
+    "pdfQuality": "PDF Quality",
+    "highQualityLargerFile": "High Quality (Larger file)",
+    "mediumQualityBalanced": "Medium Quality (Balanced)",
+    "lowQualitySmallerFile": "Low Quality (Smaller file)",
+    "controlsImageCompressionWhenEmbedding": "Controls image compression when embedding into PDF"
+  },
+  "pageHeading": {
+    "pdfMultiTool": "PDF Multi Tool Free Online - Edit & Organize PDFs",
+    "compressPdfForEmail": "Compress PDF for Email",
+    "compressPdfTo100kb": "Compress PDF to 100KB",
+    "compressPdfTo1mb": "Compress PDF to 1MB",
+    "compressPdfTo200kb": "Compress PDF to 200KB",
+    "compressPdfTo2mb": "Compress PDF to 2MB",
+    "compressPdfTo500kb": "Compress PDF to 500KB",
+    "pdfWorkflow": "PDF Workflow Builder Free Online - Chain PDF Tools Into One Run"
   }
 }

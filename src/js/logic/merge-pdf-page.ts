@@ -523,14 +523,16 @@ export async function refreshMergeUI() {
     const label = document.createElement('label');
     label.htmlFor = `range-${safeFileName}`;
     label.className = 'text-xs text-gray-400';
-    label.textContent = `Pages (e.g., 1-3, 5) - Total: ${pageCount}`;
+    label.textContent = t('tools:mergePdf.ui.pagesRangeTotal', {
+      count: pageCount,
+    });
 
     const input = document.createElement('input');
     input.type = 'text';
     input.id = `range-${safeFileName}`;
     input.className =
       'w-full bg-gray-800 border border-gray-600 text-white rounded-md p-2 text-sm mt-1 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors';
-    input.placeholder = 'Leave blank for all pages';
+    input.placeholder = t('tools:mergePdf.ui.leaveBlankAllPages');
 
     inputWrapper.append(label, input);
 
@@ -538,7 +540,7 @@ export async function refreshMergeUI() {
     deleteBtn.className =
       'text-red-400 hover:text-red-300 p-2 flex-shrink-0 self-end';
     deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-    deleteBtn.title = 'Remove file';
+    deleteBtn.title = t('common.removeFile');
     deleteBtn.onclick = (e) => {
       e.stopPropagation();
       state.files = state.files.filter((_, i) => i !== index);

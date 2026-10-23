@@ -25,6 +25,7 @@ import {
   computeComparisonForPair,
   getComparisonCacheKey,
 } from './compare-render.ts';
+import { t } from '../i18n/i18n';
 
 const pageState: CompareState = {
   pdfDoc1: null,
@@ -491,7 +492,7 @@ function syncComparePaneHeights() {
 async function buildPagePairs() {
   if (!pageState.pdfDoc1 || !pageState.pdfDoc2) return;
 
-  showLoader('Building page pairing model...', 0);
+  showLoader(t('tools:comparePdfs.buildingModel'), 0);
 
   const leftSignatures = await extractDocumentSignatures(
     pageState.pdfDoc1,
@@ -710,7 +711,10 @@ async function handleFileInput(
 
   async function handleFile(file: File) {
     if (!file || file.type !== 'application/pdf') {
-      showAlert('Invalid File', 'Please select a valid PDF file.');
+      showAlert(
+        t('tools:comparePdfs.invalidFile'),
+        t('tools:comparePdfs.invalidFileMsg')
+      );
       return;
     }
 
@@ -763,10 +767,7 @@ async function handleFileInput(
         await renderBothPages();
       }
     } catch (e) {
-      showAlert(
-        'Error',
-        'Could not load PDF. It may be corrupt or password-protected.'
-      );
+      showAlert(t('common.error'), t('tools:comparePdfs.loadError'));
       console.error(e);
     } finally {
       hideLoader();
@@ -1158,7 +1159,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!mode || pageState.pagePairs.length === 0) return;
         exportDropdownMenu.classList.add('hidden');
         try {
-          showLoader('Preparing PDF export...');
+          showLoader(t('tools:comparePdfs.preparingExport'));
           await exportComparePdf(
             mode,
             pageState.pdfDoc1,
@@ -1185,7 +1186,10 @@ document.addEventListener('DOMContentLoaded', function () {
           );
         } catch (e) {
           console.error('PDF export failed:', e);
-          showAlert('Export Error', 'Could not export comparison PDF.');
+          showAlert(
+            t('tools:comparePdfs.exportError'),
+            t('tools:comparePdfs.exportFailed')
+          );
         } finally {
           hideLoader();
         }

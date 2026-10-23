@@ -273,7 +273,11 @@
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="process-btn-container" class="hidden mt-6">
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:pdfOcg.ui.loadLayers"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Load Layers
           </button>
         </div>
@@ -282,18 +286,25 @@
           <div class="layers-container">
             <div class="add-layer-form">
               <input
+                data-i18n-placeholder="tools:pdfOcg.ui.enterNewLayerNamePlaceholder"
                 type="text"
                 id="new-layer-name"
                 placeholder="Enter new layer name..."
               />
-              <button id="add-layer-btn">Add Layer</button>
+              <button data-i18n="tools:pdfOcg.ui.addLayer" id="add-layer-btn">
+                Add Layer
+              </button>
             </div>
             <div id="layers-list" class="layers-list">
               <div class="layers-empty">
                 <p>Loading layers...</p>
               </div>
             </div>
-            <button id="save-layers-btn" class="btn-gradient w-full mt-4">
+            <button
+              data-i18n="tools:pdfOcg.ui.downloadModifiedPdf"
+              id="save-layers-btn"
+              class="btn-gradient w-full mt-4"
+            >
               Download Modified PDF
             </button>
           </div>
@@ -330,6 +341,7 @@
           Enter name for the new layer:
         </p>
         <input
+          data-i18n-placeholder="tools:pdfOcg.ui.layerNamePlaceholder"
           type="text"
           id="input-value"
           class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4 focus:ring-indigo-500 focus:border-indigo-500"
@@ -337,12 +349,14 @@
         />
         <div class="flex justify-end gap-3">
           <button
+            data-i18n="common.cancel"
             id="input-cancel"
             class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg transition-colors"
           >
             Cancel
           </button>
           <button
+            data-i18n="common.add"
             id="input-confirm"
             class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors"
           >

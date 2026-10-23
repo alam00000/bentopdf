@@ -163,6 +163,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label
+                data-i18n="tools:combineToSinglePage.ui.layoutDirection"
                 for="combine-orientation"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Layout Direction</label
@@ -171,14 +172,24 @@
                 id="combine-orientation"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
               >
-                <option value="vertical" selected>
+                <option
+                  data-i18n="tools:combineToSinglePage.ui.verticalTopToBottom"
+                  value="vertical"
+                  selected
+                >
                   Vertical (Top to Bottom)
                 </option>
-                <option value="horizontal">Horizontal (Left to Right)</option>
+                <option
+                  data-i18n="tools:combineToSinglePage.ui.horizontalLeftToRight"
+                  value="horizontal"
+                >
+                  Horizontal (Left to Right)
+                </option>
               </select>
             </div>
             <div>
               <label
+                data-i18n="tools:combineToSinglePage.ui.spacingPixels"
                 for="page-spacing"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Spacing (pixels)</label
@@ -196,6 +207,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label
+                data-i18n="toolPage.backgroundColor"
                 for="background-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Background Color</label
@@ -209,7 +221,11 @@
                   id="add-separator"
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600"
                 />
-                <span class="text-sm text-gray-300">Add Separator Lines</span>
+                <span
+                  data-i18n="tools:combineToSinglePage.ui.addSeparatorLines"
+                  class="text-sm text-gray-300"
+                  >Add Separator Lines</span
+                >
               </label>
             </div>
           </div>
@@ -220,6 +236,7 @@
           >
             <div>
               <label
+                data-i18n="tools:combineToSinglePage.ui.separatorThickness"
                 for="separator-thickness"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Separator Thickness</label
@@ -235,6 +252,7 @@
             </div>
             <div>
               <label
+                data-i18n="tools:combineToSinglePage.ui.separatorColor"
                 for="separator-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Separator Color</label
@@ -243,7 +261,11 @@
             </div>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:combineToSinglePage.ui.combinePages"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Combine Pages
           </button>
         </div>

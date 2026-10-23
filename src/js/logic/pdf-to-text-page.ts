@@ -5,6 +5,7 @@ import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { t } from '../i18n/i18n';
 
 let files: File[] = [];
 let pymupdf: PyMuPDFInstance | null = null;
@@ -92,8 +93,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only PDF files are allowed.'
+      t('alert.invalidFiles'),
+      t('tools:pdfToText.alert.someFilesWereSkipped')
     );
   }
 
@@ -167,18 +168,18 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 
 async function extractText() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
     return;
   }
 
-  showLoader('Loading engine...');
+  showLoader(t('loader.loadingEngine'));
 
   try {
     const mupdf = await ensurePyMuPDF();
 
     hideLoader();
     files = await batchDecryptIfNeeded(files);
-    showLoader('Extracting text...');
+    showLoader(t('tools:pdfToText.loader.extractingText'));
 
     if (files.length === 1) {
       const file = files[0];
@@ -193,11 +194,16 @@ async function extractText() {
       downloadFile(textBlob, `${baseName}.txt`);
 
       hideLoader();
-      showAlert('Success', 'Text extracted successfully!', 'success', () => {
-        resetState();
-      });
+      showAlert(
+        t('common.success'),
+        t('tools:pdfToText.alert.textExtractedSuccessfully'),
+        'success',
+        () => {
+          resetState();
+        }
+      );
     } else {
-      showLoader('Extracting text from multiple files...');
+      showLoader(t('tools:pdfToText.loader.extractingTextFromMultiple'));
 
       const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
@@ -221,7 +227,7 @@ async function extractText() {
 
       hideLoader();
       showAlert(
-        'Success',
+        t('common.success'),
         `Extracted text from ${files.length} PDF files!`,
         'success',
         () => {
@@ -233,8 +239,10 @@ async function extractText() {
     console.error('[PDFToText]', e);
     hideLoader();
     showAlert(
-      'Extraction Error',
-      e instanceof Error ? e.message : 'Failed to extract text from PDF.'
+      t('tools:pdfToText.alert.extractionError'),
+      e instanceof Error
+        ? e.message
+        : t('tools:pdfToText.alert.failedExtractTextFrom')
     );
   }
 }

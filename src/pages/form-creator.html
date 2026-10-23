@@ -185,7 +185,9 @@
           </button>
 
           <div id="pageSizeSelector" class="mt-4 hidden">
-            <label class="block text-sm font-semibold text-gray-300 mb-2"
+            <label
+              data-i18n="tools:createPdfForm.ui.pageSize"
+              class="block text-sm font-semibold text-gray-300 mb-2"
               >Page Size:</label
             >
             <select
@@ -198,13 +200,17 @@
               <option value="legal">Legal (8.5" × 14")</option>
               <option value="tabloid">Tabloid (11" × 17")</option>
               <option value="a3">A3 (297mm × 420mm)</option>
-              <option value="custom">Custom</option>
+              <option data-i18n="tools:createPdfForm.ui.custom" value="custom">
+                Custom
+              </option>
             </select>
 
             <div id="customDimensionsInput" class="mt-3 hidden space-y-2">
               <div class="flex gap-2">
                 <div class="flex-1">
-                  <label class="block text-xs text-gray-400 mb-1"
+                  <label
+                    data-i18n="tools:createPdfForm.ui.widthPts"
+                    class="block text-xs text-gray-400 mb-1"
                     >Width (pts)</label
                   >
                   <input
@@ -217,7 +223,9 @@
                   />
                 </div>
                 <div class="flex-1">
-                  <label class="block text-xs text-gray-400 mb-1"
+                  <label
+                    data-i18n="tools:createPdfForm.ui.heightPts"
+                    class="block text-xs text-gray-400 mb-1"
                     >Height (pts)</label
                   >
                   <input
@@ -230,10 +238,16 @@
                   />
                 </div>
               </div>
-              <p class="text-xs text-gray-500 italic">1 inch = 72 points</p>
+              <p
+                data-i18n="tools:createPdfForm.ui.inchPoints1"
+                class="text-xs text-gray-500 italic"
+              >
+                1 inch = 72 points
+              </p>
             </div>
 
             <button
+              data-i18n="tools:createPdfForm.ui.startCreating"
               id="confirmBlankBtn"
               class="w-full mt-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded transition-colors"
             >
@@ -280,7 +294,9 @@
                 class="font-semibold text-gray-200 mb-3 flex items-center gap-2"
               >
                 <i data-lucide="settings" class="w-4 h-4"></i>
-                Properties
+                <span data-i18n="tools:createPdfForm.ui.properties"
+                  >Properties</span
+                >
               </h2>
               <div id="propertiesPanel" class="space-y-3">
                 <p class="text-gray-500 text-sm">
@@ -292,12 +308,17 @@
             <!-- Field Count -->
             <div class="mt-4 bg-gray-700 rounded-lg p-3 text-center">
               <p class="text-sm text-gray-400">
+                <span data-i18n="tools:createPdfForm.ui.fieldCount"
+                  >Fields:</span
+                >
                 <span id="fieldCount" class="text-indigo-400 font-bold text-lg"
                   >0</span
                 >
-                field(s)
               </p>
-              <p class="text-xs text-gray-500 mt-1">
+              <p
+                data-i18n="tools:createPdfForm.ui.pressDeleteToRemoveSelected"
+                class="text-xs text-gray-500 mt-1"
+              >
                 Press Delete to remove selected field
               </p>
             </div>
@@ -332,7 +353,11 @@
                 <div
                   class="flex items-center gap-2 md:ml-2 md:border-l border-gray-600 md:pl-2"
                 >
-                  <span class="text-sm text-gray-400">Go to:</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.goTo"
+                    class="text-sm text-gray-400"
+                    >Go to:</span
+                  >
                   <input
                     type="number"
                     id="gotoPageInput"
@@ -340,6 +365,7 @@
                     class="w-16 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500"
                   />
                   <button
+                    data-i18n="tools:createPdfForm.ui.go"
                     id="gotoPageBtn"
                     class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded text-sm transition-colors"
                   >
@@ -355,7 +381,10 @@
                     checked
                     class="mr-1"
                   />
-                  <label for="enableGridCheckbox" class="text-sm text-gray-400"
+                  <label
+                    data-i18n="tools:createPdfForm.ui.grid"
+                    for="enableGridCheckbox"
+                    class="text-sm text-gray-400"
                     >Grid:</label
                   >
                   <input
@@ -378,6 +407,7 @@
                     class="w-12 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500"
                   />
                   <button
+                    data-i18n-title="tools:createPdfForm.ui.toggleGrid"
                     id="toggleGridBtn"
                     class="bg-gray-600 hover:bg-gray-500 text-white p-1 rounded transition-colors"
                     title="Toggle Grid"
@@ -392,14 +422,18 @@
                   class="bg-gray-600 hover:bg-gray-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors"
                 >
                   <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                  <span class="text-sm">Reset</span>
+                  <span data-i18n="toolPage.reset" class="text-sm">Reset</span>
                 </button>
                 <button
                   id="addPageBtn"
                   class="bg-indigo-600 hover:bg-indigo-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors"
                 >
                   <i data-lucide="file-plus" class="w-4 h-4"></i>
-                  <span class="text-sm">Add Page</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.addPage"
+                    class="text-sm"
+                    >Add Page</span
+                  >
                 </button>
               </div>
             </div>
@@ -414,107 +448,146 @@
                 <div
                   class="text-gray-400 text-sm font-semibold mr-2 flex items-center gap-1"
                 >
-                  <i data-lucide="wrench" class="w-4 h-4"></i> Fields:
+                  <i data-lucide="wrench" class="w-4 h-4"></i>
+                  <span data-i18n="tools:createPdfForm.ui.fields">Fields:</span>
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.textField"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="text"
                   title="Text Field"
                 >
                   <i data-lucide="type" class="w-4 h-4"></i>
-                  <span class="text-xs">Text</span>
+                  <span data-i18n="toolPage.text" class="text-xs">Text</span>
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.checkbox"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="checkbox"
                   title="Checkbox"
                 >
                   <i data-lucide="check-square" class="w-4 h-4"></i>
-                  <span class="text-xs">Checkbox</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.checkbox"
+                    class="text-xs"
+                    >Checkbox</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.radioButton"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="radio"
                   title="Radio Button"
                 >
                   <i data-lucide="circle-dot" class="w-4 h-4"></i>
-                  <span class="text-xs">Radio</span>
+                  <span data-i18n="tools:createPdfForm.ui.radio" class="text-xs"
+                    >Radio</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.dropdown"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="dropdown"
                   title="Dropdown"
                 >
                   <i data-lucide="chevron-down-square" class="w-4 h-4"></i>
-                  <span class="text-xs">Dropdown</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.dropdown"
+                    class="text-xs"
+                    >Dropdown</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.optionList"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="optionlist"
                   title="Option List"
                 >
                   <i data-lucide="list" class="w-4 h-4"></i>
-                  <span class="text-xs">List</span>
+                  <span data-i18n="tools:createPdfForm.ui.list" class="text-xs"
+                    >List</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.button"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="button"
                   title="Button"
                 >
                   <i data-lucide="square-mouse-pointer" class="w-4 h-4"></i>
-                  <span class="text-xs">Button</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.button"
+                    class="text-xs"
+                    >Button</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.signature"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="signature"
                   title="Signature"
                 >
                   <i data-lucide="pen-tool" class="w-4 h-4"></i>
-                  <span class="text-xs">Signature</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.signature"
+                    class="text-xs"
+                    >Signature</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.dateField"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="date"
                   title="Date Field"
                 >
                   <i data-lucide="calendar" class="w-4 h-4"></i>
-                  <span class="text-xs">Date</span>
+                  <span data-i18n="tools:createPdfForm.ui.date" class="text-xs"
+                    >Date</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.imageField"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="image"
                   title="Image Field"
                 >
                   <i data-lucide="image" class="w-4 h-4"></i>
-                  <span class="text-xs">Image</span>
+                  <span data-i18n="tools:createPdfForm.ui.image" class="text-xs"
+                    >Image</span
+                  >
                 </div>
 
                 <div
+                  data-i18n-title="tools:createPdfForm.ui.barcodeField"
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="barcode"
                   title="Barcode Field"
                 >
                   <i data-lucide="qr-code" class="w-4 h-4"></i>
-                  <span class="text-xs">Barcode</span>
+                  <span
+                    data-i18n="tools:createPdfForm.ui.barcode"
+                    class="text-xs"
+                    >Barcode</span
+                  >
                 </div>
               </div>
             </div>
@@ -537,7 +610,9 @@
               id="downloadBtn"
               class="btn-gradient w-full flex items-center justify-center gap-2 py-3"
             >
-              <span>Download PDF Form</span>
+              <span data-i18n="tools:createPdfForm.ui.downloadPdfForm"
+                >Download PDF Form</span
+              >
             </button>
           </main>
         </div>

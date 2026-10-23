@@ -153,22 +153,29 @@
         <div id="tool-options" class="hidden mt-6">
           <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
             <p class="text-sm text-gray-300">
-              <strong class="text-white">How it works:</strong>
+              <strong data-i18n="merge.howItWorks" class="text-white"
+                >How it works:</strong
+              >
             </p>
             <ul
               class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
             >
-              <li>
+              <li data-i18n="tools:nUpPdf.ui.chooseHowManyPagesTo">
                 Choose how many pages to fit on each sheet (2, 4, 9, or 16).
               </li>
-              <li>Select output page size and orientation.</li>
-              <li>Optionally add margins and borders around each page.</li>
+              <li data-i18n="tools:nUpPdf.ui.selectOutputPageSizeOrientation">
+                Select output page size and orientation.
+              </li>
+              <li data-i18n="tools:nUpPdf.ui.optionallyAddMarginsBordersAround">
+                Optionally add margins and borders around each page.
+              </li>
             </ul>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label
+                data-i18n="tools:nUpPdf.ui.pagesPerSheet"
                 for="pages-per-sheet"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Pages per Sheet</label
@@ -177,14 +184,23 @@
                 id="pages-per-sheet"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
               >
-                <option value="2">2-up (1x2)</option>
-                <option value="4" selected>4-up (2x2)</option>
-                <option value="9">9-up (3x3)</option>
-                <option value="16">16-up (4x4)</option>
+                <option data-i18n="tools:nUpPdf.ui.up1x2" value="2">
+                  2-up (1x2)
+                </option>
+                <option data-i18n="tools:nUpPdf.ui.up2x4" value="4" selected>
+                  4-up (2x2)
+                </option>
+                <option data-i18n="tools:nUpPdf.ui.up3x9" value="9">
+                  9-up (3x3)
+                </option>
+                <option data-i18n="tools:nUpPdf.ui.up4x16" value="16">
+                  16-up (4x4)
+                </option>
               </select>
             </div>
             <div>
               <label
+                data-i18n="tools:nUpPdf.ui.outputPageSize"
                 for="output-page-size"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Output Page Size</label
@@ -204,6 +220,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label
+                data-i18n="toolPage.orientation"
                 for="output-orientation"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Orientation</label
@@ -212,9 +229,15 @@
                 id="output-orientation"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
               >
-                <option value="auto" selected>Auto</option>
-                <option value="portrait">Portrait</option>
-                <option value="landscape">Landscape</option>
+                <option data-i18n="tools:nUpPdf.ui.auto" value="auto" selected>
+                  Auto
+                </option>
+                <option data-i18n="toolPage.portrait" value="portrait">
+                  Portrait
+                </option>
+                <option data-i18n="toolPage.landscape" value="landscape">
+                  Landscape
+                </option>
               </select>
             </div>
             <div class="flex items-end gap-4">
@@ -224,7 +247,11 @@
                   id="add-margins"
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600"
                 />
-                <span class="text-sm text-gray-300">Add Margins</span>
+                <span
+                  data-i18n="tools:nUpPdf.ui.addMargins"
+                  class="text-sm text-gray-300"
+                  >Add Margins</span
+                >
               </label>
             </div>
           </div>
@@ -236,10 +263,15 @@
                 id="add-border"
                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600"
               />
-              <span class="text-sm text-gray-300">Add Border</span>
+              <span
+                data-i18n="tools:nUpPdf.ui.addBorder"
+                class="text-sm text-gray-300"
+                >Add Border</span
+              >
             </label>
             <div id="border-color-wrapper" class="hidden">
               <label
+                data-i18n="tools:nUpPdf.ui.borderColor"
                 for="border-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Border Color</label
@@ -248,7 +280,11 @@
             </div>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:nUpPdf.ui.createUpPdf"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Create N-Up PDF
           </button>
         </div>

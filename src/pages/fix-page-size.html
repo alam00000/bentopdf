@@ -152,6 +152,7 @@
           <!-- Target Size -->
           <div>
             <label
+              data-i18n="tools:fixPageSize.ui.targetPageSize"
               for="target-size"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Target Page Size</label
@@ -166,7 +167,9 @@
               <option value="A3">A3 (297 × 420 mm)</option>
               <option value="A5">A5 (148 × 210 mm)</option>
               <option value="Tabloid">Tabloid (11 × 17 in)</option>
-              <option value="Custom">Custom...</option>
+              <option data-i18n="tools:fixPageSize.ui.custom" value="Custom">
+                Custom...
+              </option>
             </select>
           </div>
 
@@ -175,6 +178,7 @@
             <div class="grid grid-cols-2 gap-3">
               <div>
                 <label
+                  data-i18n="tools:fixPageSize.ui.width"
                   for="custom-width"
                   class="block mb-1 text-xs font-medium text-gray-400"
                   >Width</label
@@ -190,6 +194,7 @@
               </div>
               <div>
                 <label
+                  data-i18n="tools:fixPageSize.ui.height"
                   for="custom-height"
                   class="block mb-1 text-xs font-medium text-gray-400"
                   >Height</label
@@ -206,6 +211,7 @@
             </div>
             <div>
               <label
+                data-i18n="tools:fixPageSize.ui.units"
                 for="custom-units"
                 class="block mb-1 text-xs font-medium text-gray-400"
                 >Units</label
@@ -214,8 +220,12 @@
                 id="custom-units"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
               >
-                <option value="in">Inches</option>
-                <option value="mm">Millimeters</option>
+                <option data-i18n="tools:fixPageSize.ui.inches" value="in">
+                  Inches
+                </option>
+                <option data-i18n="tools:fixPageSize.ui.millimeters" value="mm">
+                  Millimeters
+                </option>
               </select>
             </div>
           </div>
@@ -223,6 +233,7 @@
           <!-- Orientation -->
           <div>
             <label
+              data-i18n="toolPage.orientation"
               for="orientation"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Orientation</label
@@ -231,15 +242,26 @@
               id="orientation"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             >
-              <option value="auto">Auto (Keep Original)</option>
-              <option value="portrait">Portrait</option>
-              <option value="landscape">Landscape</option>
+              <option
+                data-i18n="tools:fixPageSize.ui.autoKeepOriginal"
+                value="auto"
+              >
+                Auto (Keep Original)
+              </option>
+              <option data-i18n="toolPage.portrait" value="portrait">
+                Portrait
+              </option>
+              <option data-i18n="toolPage.landscape" value="landscape">
+                Landscape
+              </option>
             </select>
           </div>
 
           <!-- Scaling Mode -->
           <div>
-            <label class="block mb-2 text-sm font-medium text-gray-300"
+            <label
+              data-i18n="tools:fixPageSize.ui.contentScaling"
+              class="block mb-2 text-sm font-medium text-gray-300"
               >Content Scaling</label
             >
             <div class="flex gap-4 p-2 rounded-lg bg-gray-900">
@@ -254,8 +276,15 @@
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500"
                 />
                 <div>
-                  <span class="font-semibold text-white">Fit</span>
-                  <p class="text-xs text-gray-400">
+                  <span
+                    data-i18n="toolPage.fit"
+                    class="font-semibold text-white"
+                    >Fit</span
+                  >
+                  <p
+                    data-i18n="tools:fixPageSize.ui.preservesAllContentMayAdd"
+                    class="text-xs text-gray-400"
+                  >
                     Preserves all content, may add margins.
                   </p>
                 </div>
@@ -270,8 +299,15 @@
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500"
                 />
                 <div>
-                  <span class="font-semibold text-white">Fill (Crop)</span>
-                  <p class="text-xs text-gray-400">
+                  <span
+                    data-i18n="tools:fixPageSize.ui.fillCrop"
+                    class="font-semibold text-white"
+                    >Fill (Crop)</span
+                  >
+                  <p
+                    data-i18n="tools:fixPageSize.ui.fillsPageMayCropContent"
+                    class="text-xs text-gray-400"
+                  >
                     Fills the page, may crop content.
                   </p>
                 </div>
@@ -282,19 +318,26 @@
           <!-- Background Color -->
           <div>
             <label
+              data-i18n="toolPage.backgroundColor"
               for="background-color"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Background Color</label
             >
             <div class="flex items-center gap-3">
               <input type="color" id="background-color" value="#ffffff" />
-              <span class="text-sm text-gray-400"
+              <span
+                data-i18n="tools:fixPageSize.ui.colorMarginsPadding"
+                class="text-sm text-gray-400"
                 >Color for margins/padding</span
               >
             </div>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:fixPageSize.name"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Fix Page Size
           </button>
         </div>

@@ -2,6 +2,7 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
+import { t } from '../i18n/i18n';
 
 document.addEventListener('DOMContentLoaded', () => {
   state.files = [];
@@ -85,7 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('[CSV2PDF] Number of files:', state.files.length);
 
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one CSV file.');
+        showAlert(
+          t('alert.noFiles'),
+          t('tools:csvToPdf.alert.selectLeastOneCsv')
+        );
         hideLoader();
         return;
       }
@@ -122,14 +126,14 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
         );
       } else {
         console.log('[CSV2PDF] Converting multiple files:', state.files.length);
-        showLoader('Preparing conversion...');
+        showLoader(t('tools:csvToPdf.loader.preparingConversion'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
@@ -162,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         console.log('[CSV2PDF] Generating ZIP file...');
-        showLoader('Creating ZIP archive...');
+        showLoader(t('loader.creatingZipArchive'));
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         console.log('[CSV2PDF] ZIP size:', zipBlob.size);
 
@@ -171,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} CSV file(s) to PDF.`,
           'success',
           () => resetState()
@@ -185,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

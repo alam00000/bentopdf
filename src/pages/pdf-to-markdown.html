@@ -163,13 +163,15 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
@@ -182,11 +184,18 @@
               id="include-images"
               class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-indigo-600 focus:ring-indigo-500"
             />
-            <label for="include-images" class="text-sm text-gray-300"
+            <label
+              data-i18n="tools:pdfToMarkdown.ui.includeImagesBase64"
+              for="include-images"
+              class="text-sm text-gray-300"
               >Include images as base64</label
             >
           </div>
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:pdfToMarkdown.ui.convertToMarkdown"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Convert to Markdown
           </button>
         </div>

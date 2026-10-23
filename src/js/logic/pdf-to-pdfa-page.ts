@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
         return;
       }
 
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
           }
 
-          showLoader('Pre-flattening PDF...');
+          showLoader(t('tools:pdfToPdfa.loader.preFlatteningPdf'));
           const pymupdf = await loadPyMuPDF();
 
           // Rasterize PDF to images and back to PDF (300 DPI for quality)
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
 
-        showLoader('Initializing Ghostscript...');
+        showLoader(t('tools:pdfToPdfa.loader.initializingGhostscript'));
 
         const convertedBlob = await convertFileToPdfA(
           fileToConvert,
@@ -163,13 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to ${level}.`,
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple PDFs to PDF/A...');
+        showLoader(t('tools:pdfToPdfa.loader.convertingMultiplePdfsPdf'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} PDF(s) to ${level}.`,
           'success',
           () => resetState()
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

@@ -8,6 +8,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
+import { t } from '../i18n/i18n';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/extract-attachments.worker.js'
@@ -75,8 +76,8 @@ worker.onmessage = function (e) {
 
     if (attachments.length === 0) {
       showAlert(
-        'No Attachments',
-        'The PDF file(s) do not contain any attachments to extract.'
+        t('tools:extractAttachments.alert.noAttachments'),
+        t('tools:extractAttachments.alert.pdfFileSDo')
       );
       resetState();
       return;
@@ -113,7 +114,7 @@ worker.onmessage = function (e) {
       downloadFile(zipBlob, 'extracted-attachments.zip');
 
       showAlert(
-        'Success',
+        t('common.success'),
         `${attachments.length} attachment(s) extracted successfully!`
       );
 
@@ -130,8 +131,8 @@ worker.onmessage = function (e) {
 
     if (errorMessage.includes('No attachments were found')) {
       showAlert(
-        'No Attachments',
-        'The PDF file(s) do not contain any attachments to extract.'
+        t('tools:extractAttachments.alert.noAttachments'),
+        t('tools:extractAttachments.alert.pdfFileSDo')
       );
       resetState();
     } else {
@@ -219,7 +220,7 @@ async function extractAttachments() {
 
   try {
     pageState.files = await batchDecryptIfNeeded(pageState.files);
-    showLoader('Reading files...');
+    showLoader(t('tools:extractAttachments.loader.readingFiles'));
 
     const fileBuffers: ArrayBuffer[] = [];
     const fileNames: string[] = [];

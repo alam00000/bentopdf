@@ -5,6 +5,7 @@ import { createIcons, icons } from 'lucide';
 import { downloadFile } from '../utils/helpers';
 import { isWasmAvailable } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
+import { t } from '../i18n/i18n';
 
 interface DeskewResult {
   totalPages: number;
@@ -154,7 +155,7 @@ function displayResults(result: DeskewResult): void {
 
 async function processDeskew(): Promise<void> {
   if (selectedFiles.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
     return;
   }
 
@@ -174,7 +175,7 @@ async function processDeskew(): Promise<void> {
 
   selectedFiles = await batchDecryptIfNeeded(selectedFiles);
 
-  showLoader('Initializing PyMuPDF...');
+  showLoader(t('tools:deskewPdf.loader.initializingPymupdf'));
 
   try {
     const pdf = await initPyMuPDF();
@@ -195,15 +196,15 @@ async function processDeskew(): Promise<void> {
 
     hideLoader();
     showAlert(
-      'Success',
-      `Deskewed ${selectedFiles.length} file(s). ${selectedFiles.length > 1 ? 'Downloads started for all files.' : ''}`
+      t('common.success'),
+      `Deskewed ${selectedFiles.length} file(s). ${selectedFiles.length > 1 ? t('tools:deskewPdf.alert.downloadsStartedAllFiles') : ''}`
     );
   } catch (error) {
     hideLoader();
     console.error('Deskew error:', error);
     showAlert(
-      'Error',
-      `Failed to deskew PDF: ${error instanceof Error ? error.message : 'Unknown error'}`
+      t('common.error'),
+      `Failed to deskew PDF: ${error instanceof Error ? error.message : t('common.unknownError')}`
     );
   }
 }

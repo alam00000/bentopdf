@@ -8,6 +8,7 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { CropperState, CropPercentages } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import { t } from '../i18n/i18n';
 
 const cropperState: CropperState = {
   pdfDoc: null,
@@ -77,7 +78,10 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:duplexCollate.invalidFileMessage')
+    );
     return;
   }
 
@@ -90,7 +94,7 @@ async function handleFile(file: File) {
       cropperState.file = null;
       return;
     }
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     cropperState.file = result.file;
     cropperState.originalPdfBytes = result.bytes;
     cropperState.pdfDoc = result.pdf;
@@ -102,7 +106,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   }
 }
 
@@ -209,7 +213,7 @@ async function displayPageAsImage(num: number) {
     };
   } catch (error) {
     console.error('Error rendering page:', error);
-    showAlert('Error', 'Failed to render page.');
+    showAlert(t('common.error'), t('alert.failedRenderPage'));
     hideLoader();
   }
 }
@@ -256,7 +260,7 @@ async function performCrop() {
   if (isApplyToAll) {
     const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
     if (!currentCrop) {
-      showAlert('No Crop Area', 'Please select an area to crop first.');
+      showAlert(t('alert.noCropArea'), t('alert.selectAreaCropFirst'));
       return;
     }
     for (let i = 1; i <= cropperState.pdfDoc.numPages; i++) {
@@ -267,14 +271,11 @@ async function performCrop() {
   }
 
   if (Object.keys(finalCropData).length === 0) {
-    showAlert(
-      'No Crop Area',
-      'Please select an area on at least one page to crop.'
-    );
+    showAlert(t('alert.noCropArea'), t('alert.selectAreaLeastOne'));
     return;
   }
 
-  showLoader('Applying crop...');
+  showLoader(t('loader.applyingCrop'));
 
   try {
     let finalPdfBytes;
@@ -289,14 +290,14 @@ async function performCrop() {
       cropperState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Crop complete! Your download has started.',
+      t('common.success'),
+      t('alert.cropCompleteDownloadHas'),
       'success',
       () => resetState()
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred during cropping.');
+    showAlert(t('common.error'), t('alert.errorOccurredDuringCropping'));
   } finally {
     hideLoader();
   }

@@ -162,35 +162,59 @@
         <div id="tool-options" class="hidden mt-6 space-y-4">
           <div>
             <label
+              data-i18n="tools:removeRestrictions.ui.ownerPasswordOptional"
               for="owner-password-remove"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Owner Password (Optional)</label
             >
             <input
+              data-i18n-placeholder="tools:removeRestrictions.ui.enterOwnerPasswordIfRequiredPlaceholder"
               type="password"
               id="owner-password-remove"
               placeholder="Enter owner password if required"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
-            <p class="text-xs text-gray-500 mt-1">
+            <p
+              data-i18n="tools:removeRestrictions.ui.leaveEmptyIfPdfHas"
+              class="text-xs text-gray-500 mt-1"
+            >
               Leave empty if the PDF has no owner password.
             </p>
           </div>
 
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
-            <h3 class="text-sm font-semibold text-white mb-2">
+            <h3
+              data-i18n="tools:removeRestrictions.ui.whatRemoved"
+              class="text-sm font-semibold text-white mb-2"
+            >
               What will be removed:
             </h3>
             <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-              <li>Password protection</li>
-              <li>Printing restrictions</li>
-              <li>Editing restrictions</li>
-              <li>Copying restrictions</li>
-              <li>All other security limitations</li>
+              <li data-i18n="tools:removeRestrictions.ui.passwordProtection">
+                Password protection
+              </li>
+              <li data-i18n="tools:removeRestrictions.ui.printingRestrictions">
+                Printing restrictions
+              </li>
+              <li data-i18n="tools:removeRestrictions.ui.editingRestrictions">
+                Editing restrictions
+              </li>
+              <li data-i18n="tools:removeRestrictions.ui.copyingRestrictions">
+                Copying restrictions
+              </li>
+              <li
+                data-i18n="tools:removeRestrictions.ui.allOtherSecurityLimitations"
+              >
+                All other security limitations
+              </li>
             </ul>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full">
+          <button
+            data-i18n="tools:removeRestrictions.name"
+            id="process-btn"
+            class="btn-gradient w-full"
+          >
             Remove Restrictions
           </button>
         </div>

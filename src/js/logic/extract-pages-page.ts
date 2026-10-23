@@ -9,6 +9,7 @@ import { PDFDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import JSZip from 'jszip';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import { t } from '../i18n/i18n';
 
 interface ExtractState {
   file: File | null;
@@ -85,7 +86,10 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert(
+      t('tools:addPageLabels.invalidFileTitle'),
+      t('tools:duplexCollate.invalidFileMessage')
+    );
     return;
   }
 
@@ -97,7 +101,7 @@ async function handleFile(file: File) {
       extractState.file = null;
       return;
     }
-    showLoader('Loading PDF...');
+    showLoader(t('tools:addPageLabels.loadingPdf'));
     extractState.file = result.file;
     result.pdf.destroy();
     extractState.pdfDoc = await loadPdfDocument(result.bytes);
@@ -109,7 +113,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert(t('common.error'), t('tools:duplexCollate.loadErrorMessage'));
   }
 }
 
@@ -162,7 +166,10 @@ async function extractPages() {
     'pages-to-extract'
   ) as HTMLInputElement;
   if (!pagesInput || !pagesInput.value.trim()) {
-    showAlert('No Pages', 'Please enter page numbers to extract.');
+    showAlert(
+      t('multiTool.noPages'),
+      t('tools:extractPages.alert.enterPageNumbersExtract')
+    );
     return;
   }
 
@@ -171,11 +178,14 @@ async function extractPages() {
     extractState.totalPages
   ).map((i) => i + 1);
   if (pagesToExtract.length === 0) {
-    showAlert('Invalid Pages', 'No valid page numbers found.');
+    showAlert(
+      t('tools:extractPages.alert.invalidPages'),
+      t('tools:extractPages.alert.noValidPageNumbers')
+    );
     return;
   }
 
-  showLoader('Extracting pages...');
+  showLoader(t('tools:extractPages.loader.extractingPages'));
 
   try {
     const zip = new JSZip();
@@ -196,7 +206,7 @@ async function extractPages() {
 
     hideLoader();
     showAlert(
-      'Success',
+      t('common.success'),
       `Extracted ${pagesToExtract.length} page(s) successfully!`,
       'success',
       () => {
@@ -206,7 +216,10 @@ async function extractPages() {
   } catch (error) {
     console.error('Error extracting pages:', error);
     hideLoader();
-    showAlert('Error', 'Failed to extract pages.');
+    showAlert(
+      t('common.error'),
+      t('tools:extractPages.alert.failedExtractPages')
+    );
   }
 }
 

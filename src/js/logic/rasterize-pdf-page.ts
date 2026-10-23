@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const rasterize = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert(t('alert.noFiles'), t('alert.selectLeastOnePdf'));
         return;
       }
 
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      showLoader('Loading engine...');
+      showLoader(t('loader.loadingEngine'));
       const pymupdf = await loadPyMuPDF();
 
       // Get options from UI
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       hideLoader();
       state.files = await batchDecryptIfNeeded(state.files);
-      showLoader('Rasterizing...');
+      showLoader(t('tools:rasterizePdf.loader.rasterizing'));
 
       const total = state.files.length;
       let completed = 0;
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hideLoader();
         showAlert(
-          'Rasterization Complete',
+          t('tools:rasterizePdf.alert.rasterizationComplete'),
           `Successfully rasterized PDF at ${dpi} DPI.`,
           'success',
           () => resetState()
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        showLoader('Creating ZIP archive...');
+        showLoader(t('loader.creatingZipArchive'));
         const zipBlob = await zip.generateAsync({ type: 'blob' });
 
         downloadFile(zipBlob, 'rasterized-pdfs.zip');
@@ -198,14 +198,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (failed === 0) {
           showAlert(
-            'Rasterization Complete',
+            t('tools:rasterizePdf.alert.rasterizationComplete'),
             `Successfully rasterized ${completed} PDF(s) at ${dpi} DPI.`,
             'success',
             () => resetState()
           );
         } else {
           showAlert(
-            'Rasterization Partial',
+            t('tools:rasterizePdf.alert.rasterizationPartial'),
             `Rasterized ${completed} PDF(s), failed ${failed}.`,
             'warning',
             () => resetState()
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during rasterization. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }

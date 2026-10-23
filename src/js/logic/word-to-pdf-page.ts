@@ -7,6 +7,7 @@ import {
   type LoadProgress,
 } from '../utils/libreoffice-loader.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
+import { t } from '../i18n/i18n';
 
 document.addEventListener('DOMContentLoaded', () => {
   state.files = [];
@@ -90,7 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log('[Word2PDF] Number of files:', state.files.length);
 
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one Word document.');
+        showAlert(
+          t('alert.noFiles'),
+          t('tools:wordToPdf.alert.selectLeastOneWord')
+        );
         hideLoader();
         return;
       }
@@ -114,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const originalFile = state.files[0];
         console.log('[Word2PDF] Converting single file:', originalFile.name);
 
-        showLoader('Processing...');
+        showLoader(t('loader.processing'));
 
         const pdfBlob = await converter.convertToPdf(originalFile);
         console.log('[Word2PDF] Conversion complete! PDF size:', pdfBlob.size);
@@ -128,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${originalFile.name} to PDF.`,
           'success',
           () => resetState()
@@ -138,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
           '[Word2PDF] Converting multiple files:',
           state.files.length
         );
-        showLoader('Processing...');
+        showLoader(t('loader.processing'));
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -177,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          t('alert.conversionComplete'),
           `Successfully converted ${state.files.length} Word document(s) to PDF.`,
           'success',
           () => resetState()
@@ -191,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       hideLoader();
       showAlert(
-        'Error',
+        t('common.error'),
         `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
       );
     }
