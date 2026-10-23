@@ -2477,6 +2477,11 @@
     },
     "alert": {
       "loaded": "Načítané"
+    },
+    "ui": {
+      "protectedPdf": "Chránené PDF",
+      "enterPasswordPlaceholder": "Zadajte heslo",
+      "skip": "Preskočiť"
     }
   },
   "wasmSettings": {

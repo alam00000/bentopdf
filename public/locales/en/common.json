@@ -478,6 +478,7 @@
     "compressPdfTo1mb": "Compress PDF to 1MB",
     "compressPdfTo200kb": "Compress PDF to 200KB",
     "compressPdfTo2mb": "Compress PDF to 2MB",
-    "compressPdfTo500kb": "Compress PDF to 500KB"
+    "compressPdfTo500kb": "Compress PDF to 500KB",
+    "pdfWorkflow": "PDF Workflow Builder Free Online - Chain PDF Tools Into One Run"
   }
 }
