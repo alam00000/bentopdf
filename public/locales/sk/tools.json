@@ -253,6 +253,24 @@
     "tipShowBar": "Zobraziť panel",
     "loader": {
       "loadingPdfTextEditor": "Načítava sa editor textu PDF..."
+    },
+    "ui": {
+      "spelling": "Kontrola pravopisu",
+      "rulers": "Pravítka",
+      "findReplace": "Nájsť a nahradiť",
+      "matchCase": "Rozlišovať veľké a malé písmená",
+      "wholeWord": "Celé slová",
+      "ignoreAccents": "Ignorovať diakritiku",
+      "everythingRunsLocallyInBrowser": "Všetko prebieha lokálne vo vašom prehliadači a nič sa nenahráva.",
+      "saveImagePngEditIn": "Uložte tento obrázok ako PNG a upravte ho v ľubovoľnej aplikácii; uložené zmeny sa automaticky znova načítajú",
+      "format": "Formát",
+      "lineSpacing": "Riadkovanie",
+      "paragraphSpacing": "Medzera medzi odsekmi",
+      "characterSpacing": "Medzery medzi znakmi",
+      "wordSpacing": "Medzery medzi slovami",
+      "horizontalScale": "Vodorovná mierka %",
+      "firstLineIndent": "Odsadenie prvého riadka",
+      "hangingIndent": "Predsadenie"
     }
   },
   "jpgToPdf": {
@@ -277,11 +295,22 @@
       "signedPdfDownloadedSuccessfully": "Podpísané PDF bolo úspešne stiahnuté!",
       "exportFailed": "Export zlyhal",
       "couldNotExportSigned": "Podpísané PDF sa nepodarilo exportovať. Skúste to znova."
+    },
+    "ui": {
+      "flattenPdfUseSaveButton": "Zlúčiť vrstvy PDF (použite tlačidlo Uložiť nižšie)",
+      "saveDownloadSignedPdf": "Uložiť a stiahnuť podpísané PDF"
     }
   },
   "cropPdf": {
     "name": "Orezať PDF",
-    "subtitle": "Orezať okraje každej strany vo vašom PDF."
+    "subtitle": "Orezať okraje každej strany vo vašom PDF.",
+    "ui": {
+      "previousPage": "Predchádzajúca strana",
+      "nextPage": "Nasledujúca strana",
+      "flatteningCropConvertsPagesTo": "Orezanie so zlúčením (prevedie strany na obrázky)",
+      "applyToAllPages": "Použiť na všetky strany",
+      "cropDownload": "Orezať a stiahnuť"
+    }
   },
   "extractPages": {
     "name": "Extrahovať strany",
@@ -354,7 +383,46 @@
     "jsonFormat": "JSON formát",
     "uploadCsvAction": "Kliknutím nahrajte CSV",
     "uploadJsonAction": "Kliknutím nahrajte JSON",
-    "orDragHere": "alebo potiahnite sem"
+    "orDragHere": "alebo potiahnite sem",
+    "ui": {
+      "deleteAll": "Odstrániť všetky",
+      "pdfViewer": "Prehliadač PDF",
+      "bookmarks": "Záložky",
+      "goTo": "Prejsť na:",
+      "go": "Prejsť",
+      "zoomOut": "Oddialiť",
+      "zoomIn": "Priblížiť",
+      "fitToWidth": "Prispôsobiť šírke",
+      "clickOnPdfToSet": "Kliknutím do PDF nastavíte cieľ záložky",
+      "searchBookmarksPlaceholder": "Hľadať záložky...",
+      "bookmarkTitlePlaceholder": "Názov záložky...",
+      "addToPage": "Pridať na stranu",
+      "batchMode": "Hromadný režim (",
+      "selected": "vo výbere)",
+      "batchOperations": "Hromadné operácie",
+      "setColor": "Nastaviť farbu...",
+      "none": "Žiadna",
+      "red": "Červená",
+      "blue": "Modrá",
+      "green": "Zelená",
+      "yellow": "Žltá",
+      "purple": "Fialová",
+      "setStyle": "Nastaviť štýl...",
+      "normal": "Normálny",
+      "bold": "Tučný",
+      "italic": "Kurzíva",
+      "boldItalic": "Tučná kurzíva",
+      "deleteSelected": "Odstrániť vybrané",
+      "expandAll": "Rozbaliť všetko",
+      "collapseAll": "Zbaliť všetko",
+      "importCsv": "Importovať CSV",
+      "importJson": "Importovať JSON",
+      "exportCsv": "Exportovať CSV",
+      "exportJson": "Exportovať JSON",
+      "noBookmarksYetAddOne": "Zatiaľ žiadne záložky. Pridajte prvú vyššie!",
+      "savePdfBookmarks": "Uložiť PDF so záložkami",
+      "extractExistingBookmarks": "Extrahovať existujúce záložky"
+    }
   },
   "tableOfContents": {
     "name": "Obsah",
@@ -381,6 +449,16 @@
     "alert": {
       "pageNumbersAddedSuccessfully": "Čísla strán boli úspešne pridané!",
       "couldNotAddPage": "Čísla strán sa nepodarilo pridať."
+    },
+    "ui": {
+      "bottomCenter": "Dole v strede",
+      "bottomLeft": "Vľavo dole",
+      "bottomRight": "Vpravo dole",
+      "topCenter": "Hore v strede",
+      "topLeft": "Vľavo hore",
+      "topRight": "Vpravo hore",
+      "format": "Formát",
+      "addPageNumbers": "Pridať čísla strán"
     }
   },
   "addPageLabels": {
@@ -452,6 +530,30 @@
     "alert": {
       "uploadValidPdfFiles": "Nahrajte platné PDF súbory.",
       "failedApplyBatesNumbers": "Batesovo číslovanie sa nepodarilo pridať."
+    },
+    "ui": {
+      "pdfFilesMultipleSupported": "PDF súbory (aj viacero)",
+      "selectStyle": "Vyberte štýl",
+      "customStyleOther": "Vlastný štýl (iný)",
+      "customizeStyle": "Upraviť štýl",
+      "placeholdersBatesPageFileFilename": "Zástupné symboly: [BATES] [PAGE] [FILE] [FILENAME]",
+      "preview": "Náhľad:",
+      "batesPadding": "Doplnenie Batesovho čísla nulami",
+      "digits6": "6 číslic (000001)",
+      "digits5": "5 číslic (00001)",
+      "digits4": "4 číslice (0001)",
+      "digits3": "3 číslice (001)",
+      "noPadding": "Bez doplnenia (1)",
+      "headerCenter": "Hlavička – v strede",
+      "headerLeft": "Hlavička – vľavo",
+      "headerRight": "Hlavička – vpravo",
+      "footerCenter": "Päta – v strede",
+      "footerLeft": "Päta – vľavo",
+      "footerRight": "Päta – vpravo",
+      "batesStarts": "Batesovo číslo začína od",
+      "fileCounterStarts": "Počítadlo súborov začína od",
+      "font": "Písmo",
+      "applyBatesNumbers": "Použiť Batesovo číslovanie"
     }
   },
   "addWatermark": {
@@ -464,6 +566,36 @@
     "alert": {
       "watermarkAddedSuccessfully": "Vodoznak bol úspešne pridaný!",
       "couldNotAddWatermark": "Vodoznak sa nepodarilo pridať."
+    },
+    "ui": {
+      "changeFile": "Zmeniť súbor",
+      "preview": "Náhľad",
+      "dragWatermarkToPosition": "Potiahnutím umiestnite vodoznak",
+      "image": "Obrázok",
+      "layout": "Rozloženie",
+      "single": "Jeden",
+      "tiled": "Dlaždice",
+      "tiledRepeatsWatermarkAcrossWhole": "Režim Dlaždice opakuje vodoznak po celej strane.",
+      "pageRange": "Rozsah strán",
+      "pageRangePlaceholder": "all (všetky) alebo 1-3, 5, 7-9",
+      "useAllSpecifyPages": "Zadajte „all“ (všetky strany) alebo konkrétne strany, napr. 1-3, 5, 7-9",
+      "opacity": "Nepriehľadnosť:",
+      "angle": "Uhol:",
+      "watermarkImage": "Obrázok vodoznaku",
+      "scale": "Mierka:",
+      "horizontalGap": "Vodorovná medzera:",
+      "verticalGap": "Zvislá medzera:",
+      "topLeft": "Vľavo hore",
+      "top": "Hore",
+      "topRight": "Vpravo hore",
+      "left": "Vľavo",
+      "center": "V strede",
+      "right": "Vpravo",
+      "bottomLeft": "Vľavo dole",
+      "bottom": "Dole",
+      "bottomRight": "Vpravo dole",
+      "flattenWatermark": "Zlúčiť vodoznak so stranou",
+      "bakesWatermarkIntoPagePixels": "Vodoznak sa vpečie do obrazových bodov strany, takže ho nemožno ľahko odstrániť. Text už nebude možné označiť."
     }
   },
   "headerFooter": {
@@ -475,6 +607,20 @@
     "alert": {
       "headerFooterAddedSuccessfully": "Hlavička a päta boli úspešne pridané!",
       "couldNotAddHeader": "Hlavičku ani pätu sa nepodarilo pridať."
+    },
+    "ui": {
+      "formattingOptions": "Možnosti formátovania",
+      "pageRangeOptional": "Rozsah strán (voliteľné)",
+      "pageRangePlaceholder": "napr. 1-3, 5",
+      "totalPages": "Počet strán:",
+      "fontColor": "Farba písma",
+      "headerLeft": "Hlavička – vľavo",
+      "headerCenter": "Hlavička – v strede",
+      "headerRight": "Hlavička – vpravo",
+      "footerLeft": "Päta – vľavo",
+      "footerCenter": "Päta – v strede",
+      "footerRight": "Päta – vpravo",
+      "addHeaderFooter": "Pridať hlavičku a pätu"
     }
   },
   "invertColors": {
@@ -486,6 +632,9 @@
     "alert": {
       "colorsInvertedSuccessfully": "Farby boli úspešne invertované!",
       "couldNotInvertPdf": "Farby PDF sa nepodarilo invertovať."
+    },
+    "ui": {
+      "clickButtonBelowToInvert": "Kliknutím na tlačidlo nižšie invertujete všetky farby vo vašom PDF."
     }
   },
   "scannerEffect": {
@@ -542,6 +691,9 @@
     "alert": {
       "backgroundColorChangedSuccessfully": "Farba pozadia bola úspešne zmenená!",
       "couldNotChangeBackground": "Farbu pozadia sa nepodarilo zmeniť."
+    },
+    "ui": {
+      "changeBackgroundColor": "Zmeniť farbu pozadia"
     }
   },
   "changeTextColor": {
@@ -553,6 +705,9 @@
     "alert": {
       "textColorChangedSuccessfully": "Farba textu bola úspešne zmenená!",
       "couldNotChangeText": "Farbu textu sa nepodarilo zmeniť."
+    },
+    "ui": {
+      "newTextColor": "Nová farba textu"
     }
   },
   "addStamps": {
@@ -561,7 +716,11 @@
     "usernameLabel": "Používateľské meno pečiatky",
     "usernamePlaceholder": "Zadajte svoje meno (pre pečiatky)",
     "usernameHint": "Toto meno sa zobrazí na vami vytvorených pečiatkach.",
-    "saveButton": "Uložiť opečiatkované PDF"
+    "saveButton": "Uložiť opečiatkované PDF",
+    "ui": {
+      "stampEditor": "Editor pečiatok",
+      "useToolbarImageStampTool": "Na umiestnenie pečiatok použite nástroj obrázkovej pečiatky na paneli nástrojov."
+    }
   },
   "removeAnnotations": {
     "name": "Odstrániť anotácie",
@@ -572,6 +731,9 @@
     "alert": {
       "annotationsRemovedSuccessfully": "Anotácie boli úspešne odstránené!",
       "couldNotRemoveAnnotations": "Anotácie sa nepodarilo odstrániť."
+    },
+    "ui": {
+      "clickButtonBelowToRemove": "Kliknutím na tlačidlo nižšie odstránite všetky anotácie z vášho PDF."
     }
   },
   "pdfFormFiller": {
@@ -588,13 +750,49 @@
       "waitFormFinishLoading": "Počkajte, kým sa formulár načíta.",
       "useDownloadButtonPdf": "Použite tlačidlo Stiahnuť v paneli nástrojov prehliadača PDF vyššie.",
       "cannotAccessViewerControls": "Ovládacie prvky prehliadača nie sú dostupné. Použite tlačidlo Stiahnuť v paneli nástrojov prehliadača PDF vyššie."
+    },
+    "ui": {
+      "saveDownloadFilledForm": "Uložiť a stiahnuť vyplnený formulár"
     }
   },
   "createPdfForm": {
     "name": "Vytvoriť PDF formulár",
     "subtitle": "Vytvárajte vyplniteľné PDF formuláre s textovými poľami (drag-and-drop).",
     "orSeparator": "ALEBO",
-    "createBlankPdf": "Vytvoriť prázdne PDF"
+    "createBlankPdf": "Vytvoriť prázdne PDF",
+    "ui": {
+      "pageSize": "Veľkosť strany:",
+      "custom": "Vlastná",
+      "widthPts": "Šírka (pt)",
+      "heightPts": "Výška (pt)",
+      "inchPoints1": "1 palec = 72 bodov",
+      "startCreating": "Začať vytvárať",
+      "properties": "Vlastnosti",
+      "field": "pole/polia/polí",
+      "pressDeleteToRemoveSelected": "Vybrané pole odstránite klávesom Delete",
+      "goTo": "Prejsť na:",
+      "go": "Prejsť",
+      "grid": "Mriežka:",
+      "toggleGrid": "Zobraziť/skryť mriežku",
+      "addPage": "Pridať stranu",
+      "fields": "Polia:",
+      "textField": "Textové pole",
+      "checkbox": "Začiarkavacie políčko",
+      "radioButton": "Prepínač",
+      "radio": "Prepínač",
+      "dropdown": "Rozbaľovací zoznam",
+      "optionList": "Zoznam možností",
+      "list": "Zoznam",
+      "button": "Tlačidlo",
+      "signature": "Podpis",
+      "dateField": "Pole dátumu",
+      "date": "Dátum",
+      "imageField": "Pole obrázka",
+      "image": "Obrázok",
+      "barcodeField": "Pole čiarového kódu",
+      "barcode": "Čiarový kód",
+      "downloadPdfForm": "Stiahnuť PDF formulár"
+    }
   },
   "removeBlankPages": {
     "name": "Odstrániť prázdne strany",
@@ -609,6 +807,12 @@
       "couldNotDetectBlank": "Prázdne strany sa nepodarilo zistiť.",
       "noPagesSelectedRemoval": "Nie sú vybrané žiadne strany na odstránenie.",
       "couldNotRemoveBlank": "Prázdne strany sa nepodarilo odstrániť."
+    },
+    "ui": {
+      "sensitivity": "Citlivosť:",
+      "detectBlankPages": "Zistiť prázdne strany",
+      "detectedBlankPages": "Zistené prázdne strany",
+      "removeSelectedBlankPages": "Odstrániť vybrané prázdne strany"
     }
   },
   "imageToPdf": {

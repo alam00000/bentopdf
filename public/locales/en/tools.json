@@ -253,6 +253,24 @@
     "tipShowBar": "Show bar",
     "loader": {
       "loadingPdfTextEditor": "Loading PDF Text Editor..."
+    },
+    "ui": {
+      "spelling": "Spelling",
+      "rulers": "Rulers",
+      "findReplace": "Find & Replace",
+      "matchCase": "Match case",
+      "wholeWord": "Whole word",
+      "ignoreAccents": "Ignore accents",
+      "everythingRunsLocallyInBrowser": "Everything runs locally in your browser, and nothing is uploaded.",
+      "saveImagePngEditIn": "Save this image as a PNG, edit it in any app; saved changes re-import automatically",
+      "format": "Format",
+      "lineSpacing": "Line Spacing",
+      "paragraphSpacing": "Paragraph Spacing",
+      "characterSpacing": "Character Spacing",
+      "wordSpacing": "Word Spacing",
+      "horizontalScale": "Horizontal Scale %",
+      "firstLineIndent": "First-line Indent",
+      "hangingIndent": "Hanging Indent"
     }
   },
   "jpgToPdf": {
@@ -277,11 +295,22 @@
       "signedPdfDownloadedSuccessfully": "Signed PDF downloaded successfully!",
       "exportFailed": "Export failed",
       "couldNotExportSigned": "Could not export the signed PDF. Please try again."
+    },
+    "ui": {
+      "flattenPdfUseSaveButton": "Flatten PDF (use the Save button below)",
+      "saveDownloadSignedPdf": "Save & Download Signed PDF"
     }
   },
   "cropPdf": {
     "name": "Crop PDF",
-    "subtitle": "Trim the margins of every page in your PDF."
+    "subtitle": "Trim the margins of every page in your PDF.",
+    "ui": {
+      "previousPage": "Previous Page",
+      "nextPage": "Next Page",
+      "flatteningCropConvertsPagesTo": "Flattening Crop (converts pages to images)",
+      "applyToAllPages": "Apply to all pages",
+      "cropDownload": "Crop & Download"
+    }
   },
   "extractPages": {
     "name": "Extract Pages",
@@ -354,7 +383,46 @@
     "jsonFormat": "JSON format",
     "uploadCsvAction": "Click to upload CSV",
     "uploadJsonAction": "Click to upload JSON",
-    "orDragHere": "or drag here"
+    "orDragHere": "or drag here",
+    "ui": {
+      "deleteAll": "Delete All",
+      "pdfViewer": "PDF Viewer",
+      "bookmarks": "Bookmarks",
+      "goTo": "Go to:",
+      "go": "Go",
+      "zoomOut": "Zoom Out",
+      "zoomIn": "Zoom In",
+      "fitToWidth": "Fit to Width",
+      "clickOnPdfToSet": "Click on the PDF to set bookmark destination",
+      "searchBookmarksPlaceholder": "Search bookmarks...",
+      "bookmarkTitlePlaceholder": "Bookmark title...",
+      "addToPage": "Add to Page",
+      "batchMode": "Batch Mode (",
+      "selected": "selected)",
+      "batchOperations": "Batch Operations",
+      "setColor": "Set Color...",
+      "none": "None",
+      "red": "Red",
+      "blue": "Blue",
+      "green": "Green",
+      "yellow": "Yellow",
+      "purple": "Purple",
+      "setStyle": "Set Style...",
+      "normal": "Normal",
+      "bold": "Bold",
+      "italic": "Italic",
+      "boldItalic": "Bold & Italic",
+      "deleteSelected": "Delete Selected",
+      "expandAll": "Expand All",
+      "collapseAll": "Collapse All",
+      "importCsv": "Import CSV",
+      "importJson": "Import JSON",
+      "exportCsv": "Export CSV",
+      "exportJson": "Export JSON",
+      "noBookmarksYetAddOne": "No bookmarks yet. Add one above!",
+      "savePdfBookmarks": "Save PDF with Bookmarks",
+      "extractExistingBookmarks": "Extract Existing Bookmarks"
+    }
   },
   "tableOfContents": {
     "name": "Table of Contents",
@@ -381,6 +449,16 @@
     "alert": {
       "pageNumbersAddedSuccessfully": "Page numbers added successfully!",
       "couldNotAddPage": "Could not add page numbers."
+    },
+    "ui": {
+      "bottomCenter": "Bottom Center",
+      "bottomLeft": "Bottom Left",
+      "bottomRight": "Bottom Right",
+      "topCenter": "Top Center",
+      "topLeft": "Top Left",
+      "topRight": "Top Right",
+      "format": "Format",
+      "addPageNumbers": "Add Page Numbers"
     }
   },
   "addPageLabels": {
@@ -452,6 +530,30 @@
     "alert": {
       "uploadValidPdfFiles": "Please upload valid PDF files.",
       "failedApplyBatesNumbers": "Failed to apply Bates numbers."
+    },
+    "ui": {
+      "pdfFilesMultipleSupported": "PDF files (multiple supported)",
+      "selectStyle": "Select Style",
+      "customStyleOther": "Custom style (other)",
+      "customizeStyle": "Customize Style",
+      "placeholdersBatesPageFileFilename": "Placeholders: [BATES] [PAGE] [FILE] [FILENAME]",
+      "preview": "Preview:",
+      "batesPadding": "Bates Padding",
+      "digits6": "6 digits (000001)",
+      "digits5": "5 digits (00001)",
+      "digits4": "4 digits (0001)",
+      "digits3": "3 digits (001)",
+      "noPadding": "No padding (1)",
+      "headerCenter": "Header Center",
+      "headerLeft": "Header Left",
+      "headerRight": "Header Right",
+      "footerCenter": "Footer Center",
+      "footerLeft": "Footer Left",
+      "footerRight": "Footer Right",
+      "batesStarts": "Bates Starts From",
+      "fileCounterStarts": "File Counter Starts From",
+      "font": "Font",
+      "applyBatesNumbers": "Apply Bates Numbers"
     }
   },
   "addWatermark": {
@@ -464,6 +566,36 @@
     "alert": {
       "watermarkAddedSuccessfully": "Watermark added successfully!",
       "couldNotAddWatermark": "Could not add the watermark."
+    },
+    "ui": {
+      "changeFile": "Change File",
+      "preview": "Preview",
+      "dragWatermarkToPosition": "Drag watermark to position",
+      "image": "Image",
+      "layout": "Layout",
+      "single": "Single",
+      "tiled": "Tiled",
+      "tiledRepeatsWatermarkAcrossWhole": "Tiled repeats the watermark across the whole page.",
+      "pageRange": "Page Range",
+      "pageRangePlaceholder": "all or 1-3, 5, 7-9",
+      "useAllSpecifyPages": "Use \"all\" or specify pages, e.g. 1-3, 5, 7-9",
+      "opacity": "Opacity:",
+      "angle": "Angle:",
+      "watermarkImage": "Watermark Image",
+      "scale": "Scale:",
+      "horizontalGap": "Horizontal gap:",
+      "verticalGap": "Vertical gap:",
+      "topLeft": "Top Left",
+      "top": "Top",
+      "topRight": "Top Right",
+      "left": "Left",
+      "center": "Center",
+      "right": "Right",
+      "bottomLeft": "Bottom Left",
+      "bottom": "Bottom",
+      "bottomRight": "Bottom Right",
+      "flattenWatermark": "Flatten watermark",
+      "bakesWatermarkIntoPagePixels": "Bakes the watermark into page pixels, making it tamper-resistant. Text will no longer be selectable."
     }
   },
   "headerFooter": {
@@ -475,6 +607,20 @@
     "alert": {
       "headerFooterAddedSuccessfully": "Header & Footer added successfully!",
       "couldNotAddHeader": "Could not add header or footer."
+    },
+    "ui": {
+      "formattingOptions": "Formatting Options",
+      "pageRangeOptional": "Page Range (optional)",
+      "pageRangePlaceholder": "e.g., 1-3, 5",
+      "totalPages": "Total pages:",
+      "fontColor": "Font Color",
+      "headerLeft": "Header Left",
+      "headerCenter": "Header Center",
+      "headerRight": "Header Right",
+      "footerLeft": "Footer Left",
+      "footerCenter": "Footer Center",
+      "footerRight": "Footer Right",
+      "addHeaderFooter": "Add Header & Footer"
     }
   },
   "invertColors": {
@@ -486,6 +632,9 @@
     "alert": {
       "colorsInvertedSuccessfully": "Colors inverted successfully!",
       "couldNotInvertPdf": "Could not invert PDF colors."
+    },
+    "ui": {
+      "clickButtonBelowToInvert": "Click the button below to invert all colors in your PDF."
     }
   },
   "scannerEffect": {
@@ -542,6 +691,9 @@
     "alert": {
       "backgroundColorChangedSuccessfully": "Background color changed successfully!",
       "couldNotChangeBackground": "Could not change the background color."
+    },
+    "ui": {
+      "changeBackgroundColor": "Change Background Color"
     }
   },
   "changeTextColor": {
@@ -553,6 +705,9 @@
     "alert": {
       "textColorChangedSuccessfully": "Text color changed successfully!",
       "couldNotChangeText": "Could not change text color."
+    },
+    "ui": {
+      "newTextColor": "New Text Color"
     }
   },
   "addStamps": {
@@ -561,7 +716,11 @@
     "usernameLabel": "Stamp Username",
     "usernamePlaceholder": "Enter your name (for stamps)",
     "usernameHint": "This name will appear on stamps you create.",
-    "saveButton": "Save Stamped PDF"
+    "saveButton": "Save Stamped PDF",
+    "ui": {
+      "stampEditor": "Stamp Editor",
+      "useToolbarImageStampTool": "Use the toolbar's image stamp tool to place stamps."
+    }
   },
   "removeAnnotations": {
     "name": "Remove Annotations",
@@ -572,6 +731,9 @@
     "alert": {
       "annotationsRemovedSuccessfully": "Annotations removed successfully!",
       "couldNotRemoveAnnotations": "Could not remove annotations."
+    },
+    "ui": {
+      "clickButtonBelowToRemove": "Click the button below to remove all annotations from your PDF."
     }
   },
   "pdfFormFiller": {
@@ -588,13 +750,49 @@
       "waitFormFinishLoading": "Please wait for the form to finish loading.",
       "useDownloadButtonPdf": "Please use the Download button in the PDF viewer toolbar above.",
       "cannotAccessViewerControls": "Cannot access viewer controls. Please use the Download button in the PDF viewer toolbar above."
+    },
+    "ui": {
+      "saveDownloadFilledForm": "Save & Download Filled Form"
     }
   },
   "createPdfForm": {
     "name": "Create PDF Form",
     "subtitle": "Create fillable PDF forms with drag-and-drop text fields.",
     "orSeparator": "OR",
-    "createBlankPdf": "Create Blank PDF"
+    "createBlankPdf": "Create Blank PDF",
+    "ui": {
+      "pageSize": "Page Size:",
+      "custom": "Custom",
+      "widthPts": "Width (pts)",
+      "heightPts": "Height (pts)",
+      "inchPoints1": "1 inch = 72 points",
+      "startCreating": "Start Creating",
+      "properties": "Properties",
+      "field": "field(s)",
+      "pressDeleteToRemoveSelected": "Press Delete to remove selected field",
+      "goTo": "Go to:",
+      "go": "Go",
+      "grid": "Grid:",
+      "toggleGrid": "Toggle Grid",
+      "addPage": "Add Page",
+      "fields": "Fields:",
+      "textField": "Text Field",
+      "checkbox": "Checkbox",
+      "radioButton": "Radio Button",
+      "radio": "Radio",
+      "dropdown": "Dropdown",
+      "optionList": "Option List",
+      "list": "List",
+      "button": "Button",
+      "signature": "Signature",
+      "dateField": "Date Field",
+      "date": "Date",
+      "imageField": "Image Field",
+      "image": "Image",
+      "barcodeField": "Barcode Field",
+      "barcode": "Barcode",
+      "downloadPdfForm": "Download PDF Form"
+    }
   },
   "removeBlankPages": {
     "name": "Remove Blank Pages",
@@ -609,6 +807,12 @@
       "couldNotDetectBlank": "Could not detect blank pages.",
       "noPagesSelectedRemoval": "No pages selected for removal.",
       "couldNotRemoveBlank": "Could not remove blank pages."
+    },
+    "ui": {
+      "sensitivity": "Sensitivity:",
+      "detectBlankPages": "Detect Blank Pages",
+      "detectedBlankPages": "Detected Blank Pages",
+      "removeSelectedBlankPages": "Remove Selected Blank Pages"
     }
   },
   "imageToPdf": {

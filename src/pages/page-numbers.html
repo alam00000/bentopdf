@@ -154,6 +154,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label
+                data-i18n="toolPage.position"
                 for="position"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Position</label
@@ -162,17 +163,48 @@
                 id="position"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="bottom-center">Bottom Center</option>
-                <option value="bottom-left">Bottom Left</option>
-                <option value="bottom-right">Bottom Right</option>
-                <option value="top-center">Top Center</option>
-                <option value="top-left">Top Left</option>
-                <option value="top-right">Top Right</option>
+                <option
+                  data-i18n="tools:pageNumbers.ui.bottomCenter"
+                  value="bottom-center"
+                >
+                  Bottom Center
+                </option>
+                <option
+                  data-i18n="tools:pageNumbers.ui.bottomLeft"
+                  value="bottom-left"
+                >
+                  Bottom Left
+                </option>
+                <option
+                  data-i18n="tools:pageNumbers.ui.bottomRight"
+                  value="bottom-right"
+                >
+                  Bottom Right
+                </option>
+                <option
+                  data-i18n="tools:pageNumbers.ui.topCenter"
+                  value="top-center"
+                >
+                  Top Center
+                </option>
+                <option
+                  data-i18n="tools:pageNumbers.ui.topLeft"
+                  value="top-left"
+                >
+                  Top Left
+                </option>
+                <option
+                  data-i18n="tools:pageNumbers.ui.topRight"
+                  value="top-right"
+                >
+                  Top Right
+                </option>
               </select>
             </div>
 
             <div>
               <label
+                data-i18n="tools:pageNumbers.ui.format"
                 for="number-format"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Format</label
@@ -190,6 +222,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label
+                data-i18n="toolPage.fontSize"
                 for="font-size"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Font Size</label
@@ -206,6 +239,7 @@
 
             <div>
               <label
+                data-i18n="toolPage.color"
                 for="text-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Color</label
@@ -214,7 +248,11 @@
             </div>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:pageNumbers.ui.addPageNumbers"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Add Page Numbers
           </button>
         </div>

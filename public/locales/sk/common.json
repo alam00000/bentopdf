@@ -459,7 +459,11 @@
     "totalPages": "Počet strán:",
     "orientation": "Orientácia",
     "portrait": "Na výšku",
-    "landscape": "Na šírku"
+    "landscape": "Na šírku",
+    "fontSize": "Veľkosť písma",
+    "color": "Farba",
+    "position": "Pozícia",
+    "reset": "Obnoviť"
   },
   "pageHeading": {
     "pdfMultiTool": "Multifunkčný nástroj PDF – upravte a usporiadajte PDF online zadarmo"

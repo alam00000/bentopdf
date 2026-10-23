@@ -459,7 +459,11 @@
     "totalPages": "Total Pages:",
     "orientation": "Orientation",
     "portrait": "Portrait",
-    "landscape": "Landscape"
+    "landscape": "Landscape",
+    "fontSize": "Font Size",
+    "color": "Color",
+    "position": "Position",
+    "reset": "Reset"
   },
   "pageHeading": {
     "pdfMultiTool": "PDF Multi Tool Free Online - Edit & Organize PDFs"

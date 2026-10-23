@@ -103,7 +103,12 @@
               >
               <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
             </p>
-            <p class="text-xs text-gray-500">PDF files (multiple supported)</p>
+            <p
+              data-i18n="tools:batesNumbering.ui.pdfFilesMultipleSupported"
+              class="text-xs text-gray-500"
+            >
+              PDF files (multiple supported)
+            </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
               Your files never leave your device.
             </p>
@@ -123,14 +128,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span>Add More Files</span>
+            <span data-i18n="upload.addMore">Add More Files</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span>Clear All</span>
+            <span data-i18n="upload.clearAll">Clear All</span>
           </button>
         </div>
 
@@ -139,6 +144,7 @@
         <div id="options-panel" class="hidden mt-6 space-y-4">
           <div>
             <label
+              data-i18n="tools:batesNumbering.ui.selectStyle"
               for="style-preset"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Select Style</label
@@ -175,12 +181,18 @@
                 <option value="bates-3">001, 002, 003</option>
                 <option value="bates-0">1, 2, 3</option>
               </optgroup>
-              <option value="custom">Custom style (other)</option>
+              <option
+                data-i18n="tools:batesNumbering.ui.customStyleOther"
+                value="custom"
+              >
+                Custom style (other)
+              </option>
             </select>
           </div>
 
           <div>
             <label
+              data-i18n="tools:batesNumbering.ui.customizeStyle"
               for="bates-template"
               class="block mb-2 text-sm font-medium text-gray-300"
               >Customize Style</label
@@ -191,7 +203,10 @@
               value="[BATES]"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500 font-mono"
             />
-            <p class="text-xs text-gray-500 mt-1">
+            <p
+              data-i18n="tools:batesNumbering.ui.placeholdersBatesPageFileFilename"
+              class="text-xs text-gray-500 mt-1"
+            >
               Placeholders: [BATES] [PAGE] [FILE] [FILENAME]
             </p>
           </div>
@@ -200,13 +215,19 @@
             id="preview-box"
             class="bg-gray-900 border border-gray-700 rounded-lg p-4 text-sm text-gray-300 font-mono"
           >
-            <div class="text-xs text-gray-500 mb-1">Preview:</div>
+            <div
+              data-i18n="tools:batesNumbering.ui.preview"
+              class="text-xs text-gray-500 mb-1"
+            >
+              Preview:
+            </div>
             <div id="preview-content"></div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div id="padding-group" class="hidden">
               <label
+                data-i18n="tools:batesNumbering.ui.batesPadding"
                 for="bates-padding"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Bates Padding</label
@@ -215,16 +236,31 @@
                 id="bates-padding"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="6" selected>6 digits (000001)</option>
-                <option value="5">5 digits (00001)</option>
-                <option value="4">4 digits (0001)</option>
-                <option value="3">3 digits (001)</option>
-                <option value="0">No padding (1)</option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.digits6"
+                  value="6"
+                  selected
+                >
+                  6 digits (000001)
+                </option>
+                <option data-i18n="tools:batesNumbering.ui.digits5" value="5">
+                  5 digits (00001)
+                </option>
+                <option data-i18n="tools:batesNumbering.ui.digits4" value="4">
+                  4 digits (0001)
+                </option>
+                <option data-i18n="tools:batesNumbering.ui.digits3" value="3">
+                  3 digits (001)
+                </option>
+                <option data-i18n="tools:batesNumbering.ui.noPadding" value="0">
+                  No padding (1)
+                </option>
               </select>
             </div>
 
             <div>
               <label
+                data-i18n="toolPage.position"
                 for="position"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Position</label
@@ -233,12 +269,43 @@
                 id="position"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="top-center">Header Center</option>
-                <option value="top-left">Header Left</option>
-                <option value="top-right">Header Right</option>
-                <option value="bottom-center" selected>Footer Center</option>
-                <option value="bottom-left">Footer Left</option>
-                <option value="bottom-right">Footer Right</option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.headerCenter"
+                  value="top-center"
+                >
+                  Header Center
+                </option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.headerLeft"
+                  value="top-left"
+                >
+                  Header Left
+                </option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.headerRight"
+                  value="top-right"
+                >
+                  Header Right
+                </option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.footerCenter"
+                  value="bottom-center"
+                  selected
+                >
+                  Footer Center
+                </option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.footerLeft"
+                  value="bottom-left"
+                >
+                  Footer Left
+                </option>
+                <option
+                  data-i18n="tools:batesNumbering.ui.footerRight"
+                  value="bottom-right"
+                >
+                  Footer Right
+                </option>
               </select>
             </div>
           </div>
@@ -246,6 +313,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label
+                data-i18n="tools:batesNumbering.ui.batesStarts"
                 for="bates-start"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Bates Starts From</label
@@ -261,6 +329,7 @@
 
             <div>
               <label
+                data-i18n="tools:batesNumbering.ui.fileCounterStarts"
                 for="file-start"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >File Counter Starts From</label
@@ -278,6 +347,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label
+                data-i18n="tools:batesNumbering.ui.font"
                 for="font-family"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Font</label
@@ -294,6 +364,7 @@
 
             <div>
               <label
+                data-i18n="toolPage.fontSize"
                 for="font-size"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Font Size</label
@@ -310,6 +381,7 @@
 
             <div>
               <label
+                data-i18n="toolPage.color"
                 for="text-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 >Color</label
@@ -318,7 +390,11 @@
             </div>
           </div>
 
-          <button id="process-btn" class="btn-gradient w-full mt-4">
+          <button
+            data-i18n="tools:batesNumbering.ui.applyBatesNumbers"
+            id="process-btn"
+            class="btn-gradient w-full mt-4"
+          >
             Apply Bates Numbers
           </button>
         </div>
