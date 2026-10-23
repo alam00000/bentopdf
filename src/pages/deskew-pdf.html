@@ -358,10 +358,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the tool detect that a page is tilted?
+            <span data-i18n-faq="deskew-pdf.1.q"
+              >How does the tool detect that a page is tilted?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.1.a">
             Each page is rendered to an image at the DPI you choose, then OpenCV
             analyzes it: it fits a minimum-area rectangle around the dark pixels
             and, as a fallback, measures the angle of dominant text lines with a
@@ -371,10 +373,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the Skew Threshold setting do?
+            <span data-i18n-faq="deskew-pdf.2.q"
+              >What does the Skew Threshold setting do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.2.a">
             Pages whose detected tilt is below the threshold are left alone. The
             default of 0.5 degrees catches visible tilt without touching pages
             that are already straight; drop it to 0.1 degrees when you want the
@@ -384,10 +388,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does deskewing keep the text selectable?
+            <span data-i18n-faq="deskew-pdf.3.q"
+              >Does deskewing keep the text selectable?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.3.a">
             No. Every page in the output, including pages that didn't need
             correction, is written as an image at the processing DPI, so any
             existing text layer is lost. Run the result through
@@ -400,10 +406,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which DPI should I use when deskewing a scan?
+            <span data-i18n-faq="deskew-pdf.4.q"
+              >Which DPI should I use when deskewing a scan?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.4.a">
             150 DPI is fast and accurate for ordinary letter-sized scans. Use
             200 or 300 DPI for small print or fine detail, and 100 DPI when
             speed matters more than precision. The setting also controls the
@@ -413,10 +421,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the page size change after rotation?
+            <span data-i18n-faq="deskew-pdf.5.q"
+              >Will the page size change after rotation?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.5.a">
             Output pages keep the original page dimensions. The rotated image is
             padded with white in the corners exposed by the rotation and then
             fitted onto the page, so content may shrink by a hair but nothing is
@@ -425,10 +435,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on every kind of scan?
+            <span data-i18n-faq="deskew-pdf.6.q"
+              >Does it work on every kind of scan?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.6.a">
             It works best on pages with clear horizontal lines of text. Pages
             that are mostly photos, drawings, or diagonal design elements give
             the detector little to measure, so the angle can be off; check the
@@ -437,10 +449,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I know which pages were corrected?
+            <span data-i18n-faq="deskew-pdf.7.q"
+              >How do I know which pages were corrected?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.7.a">
             After processing, a results panel lists every page with its detected
             angle and marks the ones that were rotated; pages under the
             threshold show their angle but are labeled as untouched. If you
@@ -450,10 +464,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my scans uploaded for processing?
+            <span data-i18n-faq="deskew-pdf.8.q"
+              >Are my scans uploaded for processing?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="deskew-pdf.8.a">
             No. The PDF rendering and the OpenCV analysis both run in your
             browser through WebAssembly. The engine is downloaded the first time
             you use it, but your documents never leave your computer.

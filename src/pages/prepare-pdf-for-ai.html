@@ -351,10 +351,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the JSON output contain?
+            <span data-i18n-faq="prepare-pdf-for-ai.1.q"
+              >What does the JSON output contain?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.1.a">
             It follows the LlamaIndex document schema: one document per page
             with that page's text and metadata fields. It's produced by
             PyMuPDF's LlamaIndex integration, so it can be loaded directly into
@@ -363,10 +365,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How is this different from PDF to Text or PDF to Markdown?
+            <span data-i18n-faq="prepare-pdf-for-ai.2.q"
+              >How is this different from PDF to Text or PDF to Markdown?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.2.a">
             <a href="/pdf-to-text" class="text-indigo-300 hover:text-indigo-400"
               >PDF to Text</a
             >
@@ -378,10 +382,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on scanned PDFs?
+            <span data-i18n-faq="prepare-pdf-for-ai.3.q"
+              >Does it work on scanned PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.3.a">
             Only if they already have a text layer. Scanned images produce empty
             or near-empty output, so run them through
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -392,10 +398,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I process a whole batch of PDFs?
+            <span data-i18n-faq="prepare-pdf-for-ai.4.q"
+              >Can I process a whole batch of PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.4.a">
             Yes. Upload multiple files and you get pdf-for-ai.zip containing one
             yourfile_llm.json per PDF; a single file downloads as
             yourfile_llm.json directly. If one file in the batch fails, the rest
@@ -404,10 +412,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I choose which pages to extract or control the chunk size?
+            <span data-i18n-faq="prepare-pdf-for-ai.5.q"
+              >Can I choose which pages to extract or control the chunk
+              size?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.5.a">
             No. There are no options; every page is extracted with its full text
             and metadata. Do chunking in your own pipeline, where you can pick
             sizes that fit your embedding model, and drop pages you don't need
@@ -416,20 +427,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I prepare a password-protected PDF for AI tools?
+            <span data-i18n-faq="prepare-pdf-for-ai.6.q"
+              >Can I prepare a password-protected PDF for AI tools?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.6.a">
             Yes. If a file is encrypted, you're prompted for its password before
             extraction starts, and the text is pulled from the decrypted copy.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document sent to an AI service?
+            <span data-i18n-faq="prepare-pdf-for-ai.7.q"
+              >Is my document sent to an AI service?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.7.a">
             No. Despite the name, nothing is sent to an AI provider or any
             server; the extraction runs with PyMuPDF compiled to WebAssembly
             inside your browser. You decide afterward where the JSON goes.
@@ -437,10 +452,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What can I do with the JSON file?
+            <span data-i18n-faq="prepare-pdf-for-ai.8.q"
+              >What can I do with the JSON file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="prepare-pdf-for-ai.8.a">
             Feed it to a RAG pipeline, build a knowledge base for a chatbot, run
             LLM analysis over reports, or turn a PDF collection into training
             data. Because the content is split per page with metadata, answers

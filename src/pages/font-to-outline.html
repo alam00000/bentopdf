@@ -332,10 +332,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does converting fonts to outlines do to a PDF?
+            <span data-i18n-faq="font-to-outline.1.q"
+              >What does converting fonts to outlines do to a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.1.a">
             Every character of text is replaced by a vector path that draws the
             same shape, and the output no longer references any font. It renders
             the same on any device or printer, even ones without the original
@@ -344,10 +346,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            When should I outline fonts before printing?
+            <span data-i18n-faq="font-to-outline.2.q"
+              >When should I outline fonts before printing?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.2.a">
             Print shops often ask for outlined fonts to avoid font substitution
             or licensing problems on their equipment. Do it as the last step,
             after all text edits are finished, because the text can't be edited
@@ -356,10 +360,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I still select, search, or copy text after outlining?
+            <span data-i18n-faq="font-to-outline.3.q"
+              >Can I still select, search, or copy text after outlining?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.3.a">
             No. Outlined text is just shapes, so selection, Ctrl+F search, copy
             and paste, and screen reader access all stop working. Keep the
             original PDF for anything that needs live text.
@@ -367,10 +373,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert outlines back to editable text?
+            <span data-i18n-faq="font-to-outline.4.q"
+              >Can I convert outlines back to editable text?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.4.a">
             No, the conversion is one-way. If you have lost the original,
             running
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -382,10 +390,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my PDF larger after outlining fonts?
+            <span data-i18n-faq="font-to-outline.5.q"
+              >Why is my PDF larger after outlining fonts?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.5.a">
             Each character is stored as a bezier path instead of a short
             reference into a font program, and a page of body text can contain
             thousands of them. The file often grows noticeably; run it through
@@ -399,10 +409,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does outlining change how the document looks?
+            <span data-i18n-faq="font-to-outline.6.q"
+              >Does outlining change how the document looks?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.6.a">
             Fonts embedded in the PDF are traced exactly, so the appearance
             stays the same. If a font isn't embedded, Ghostscript substitutes a
             similar one before outlining, so check the result when a document
@@ -411,10 +423,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I outline fonts in several PDFs at once?
+            <span data-i18n-faq="font-to-outline.7.q"
+              >Can I outline fonts in several PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.7.a">
             Yes. Upload multiple PDFs and convert them together; one file
             downloads as a PDF, and several download as outlined_pdfs.zip with
             one entry per input.
@@ -422,10 +436,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded during the font conversion?
+            <span data-i18n-faq="font-to-outline.8.q"
+              >Is my PDF uploaded during the font conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="font-to-outline.8.a">
             No. Ghostscript runs as WebAssembly inside your browser, so the file
             is processed on your device and the outlined copy is written locally
             without any upload.

@@ -350,10 +350,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the quality setting do for PNG images?
+            <span data-i18n-faq="png-to-pdf.1.q"
+              >What does the quality setting do for PNG images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.1.a">
             High embeds each PNG as-is, losslessly and at full size. Medium
             re-encodes the image as JPEG at 75% quality and shrinks anything
             larger than 2500 pixels on its longest side; Low uses JPEG at 50%
@@ -362,10 +364,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which setting should I use for screenshots?
+            <span data-i18n-faq="png-to-pdf.2.q"
+              >Which setting should I use for screenshots?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.2.a">
             High. Screenshots and diagrams have sharp edges and small text, and
             the JPEG compression at Medium or Low adds visible blur and
             artifacts around them. Medium or Low make sense mainly for photos
@@ -374,10 +378,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens to transparent areas?
+            <span data-i18n-faq="png-to-pdf.3.q"
+              >What happens to transparent areas?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.3.a">
             At High the PNG keeps its alpha channel and transparent regions show
             the page behind them, which viewers display as white. Medium and Low
             convert to JPEG, which has no transparency, so use High for images
@@ -386,10 +392,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size will each page be?
+            <span data-i18n-faq="png-to-pdf.4.q"
+              >What page size will each page be?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.4.a">
             The page matches the image's pixel dimensions at one point per
             pixel, so a 1920 by 1080 screenshot gives a page about 26.7 by 15
             inches; at Medium or Low a downscaled image gives a proportionally
@@ -404,10 +412,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I put several PNGs into one PDF and control the order?
+            <span data-i18n-faq="png-to-pdf.5.q"
+              >Can I put several PNGs into one PDF and control the order?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.5.a">
             Yes. Every file you add becomes one page in the order shown in the
             list; remove and re-add files to change the order. The output is
             always a single PDF, not one file per image.
@@ -415,10 +425,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF about the same size as my PNGs?
+            <span data-i18n-faq="png-to-pdf.6.q"
+              >Why is the PDF about the same size as my PNGs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.6.a">
             At High the PNG data is stored unchanged, so the PDF is roughly the
             sum of the image sizes plus a little overhead. If that's too large,
             choose Medium or Low, or run the PDF through
@@ -431,10 +443,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What if a PNG can't be embedded?
+            <span data-i18n-faq="png-to-pdf.7.q"
+              >What if a PNG can't be embedded?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.7.a">
             PNGs with unusual color profiles or bit depths that the PDF library
             rejects are redrawn and stored as JPEG at 90% quality instead, so
             the conversion still completes with a small quality trade-off.
@@ -442,10 +456,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the images uploaded?
+            <span data-i18n-faq="png-to-pdf.8.q">Are the images uploaded?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="png-to-pdf.8.a">
             No. Each PNG is read, optionally recompressed, and embedded with
             pdf-lib inside your browser, so screenshots of internal tools or
             private conversations never leave your device.

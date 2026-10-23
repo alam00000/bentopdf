@@ -644,10 +644,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I know if my PDF needs OCR?
+            <span data-i18n-faq="ocr-pdf.1.q"
+              >How do I know if my PDF needs OCR?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.1.a">
             Open the file in any viewer and try to select a line of text. If
             nothing highlights or search finds no matches, the pages are just
             images (a scan or a photo) and OCR is what adds the missing text. A
@@ -656,10 +658,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which languages can it recognize?
+            <span data-i18n-faq="ocr-pdf.2.q"
+              >Which languages can it recognize?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.2.a">
             Over 100 Tesseract language packs are listed, from English and
             Spanish to Arabic, Hindi, Japanese, and Chinese. Tick every language
             that appears in the document; the packs are loaded together so
@@ -670,10 +674,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does OCR change how my document looks?
+            <span data-i18n-faq="ocr-pdf.3.q"
+              >Does OCR change how my document looks?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.3.a">
             No. The original pages are copied unchanged and an invisible text
             layer is drawn on top, positioned word by word to match the scan.
             You see the same image as before, but you can now search, select,
@@ -682,10 +688,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which resolution setting should I use?
+            <span data-i18n-faq="ocr-pdf.4.q"
+              >Which resolution setting should I use?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.4.a">
             High (288 DPI) is the default and handles typical office documents.
             Drop to Standard (192 DPI) when speed matters or the file is long,
             and use Ultra (384 DPI) for small print, footnotes, or poor scans.
@@ -695,10 +703,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the character whitelist do?
+            <span data-i18n-faq="ocr-pdf.5.q"
+              >What does the character whitelist do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.5.a">
             It restricts the output to a fixed set of characters, which cuts
             down on errors like a lowercase l being read as a 1. The Invoice
             preset allows only digits and the symbols $ . , / - # :, Numbers
@@ -708,10 +718,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can it read handwriting?
+            <span data-i18n-faq="ocr-pdf.6.q">Can it read handwriting?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.6.a">
             Not reliably. Tesseract is trained on printed text, so neat block
             capitals sometimes work but cursive mostly produces noise. Results
             are best on clean, well-lit printed pages; the Binarize option helps
@@ -724,10 +734,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I get just the recognized text instead of a PDF?
+            <span data-i18n-faq="ocr-pdf.7.q"
+              >Can I get just the recognized text instead of a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.7.a">
             Yes. When OCR finishes, the extracted text appears in a box where
             you can review it, copy it to the clipboard, or download it as
             ocr-text.txt. The searchable PDF download is separate, so you can
@@ -736,10 +748,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does OCR upload my scans to a server?
+            <span data-i18n-faq="ocr-pdf.8.q"
+              >Does OCR upload my scans to a server?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ocr-pdf.8.a">
             No. Tesseract runs as WebAssembly inside your browser; the only
             downloads are the OCR engine and the language packs you selected,
             fetched the first time they're needed. The scanned pages and the

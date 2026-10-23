@@ -337,10 +337,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the PDF include every sheet in the workbook?
+            <span data-i18n-faq="ods-to-pdf.1.q"
+              >Does the PDF include every sheet in the workbook?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.1.a">
             All sheets are included, in the order they appear in the workbook,
             following the print layout saved in the file. Hidden sheets and
             print ranges are handled the way LibreOffice Calc would handle them
@@ -349,10 +351,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does my wide spreadsheet get split across several pages?
+            <span data-i18n-faq="ods-to-pdf.2.q"
+              >Why does my wide spreadsheet get split across several
+              pages?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.2.a">
             The converter uses the page style stored in the ODS file, so columns
             that don't fit the page width continue on following pages, the same
             way Calc prints them. To keep a table on one page, set landscape
@@ -362,10 +367,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I change page size or orientation during conversion?
+            <span data-i18n-faq="ods-to-pdf.3.q"
+              >Can I change page size or orientation during conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.3.a">
             There are no conversion settings; the PDF follows the paper size,
             orientation, margins, and scaling saved in the spreadsheet. Adjust
             those in Calc under Format and Page Style, save the file, and
@@ -374,10 +381,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will charts, merged cells, and cell colors come through?
+            <span data-i18n-faq="ods-to-pdf.4.q"
+              >Will charts, merged cells, and cell colors come through?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.4.a">
             The conversion is done by LibreOffice itself running in your
             browser, so cell formatting, borders, merged cells, and embedded
             charts are rendered the way Calc would print them.
@@ -385,10 +394,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a Google Sheets file?
+            <span data-i18n-faq="ods-to-pdf.5.q"
+              >Can I convert a Google Sheets file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.5.a">
             Download the sheet from Google Sheets as OpenDocument (.ods) and
             upload that file. XLSX files aren't accepted here; use
             <a
@@ -401,10 +412,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first ODS spreadsheet take longer to convert?
+            <span data-i18n-faq="ods-to-pdf.6.q"
+              >Why does the first ODS spreadsheet take longer to convert?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.6.a">
             The LibreOffice engine is a large WebAssembly download that's
             fetched the first time you convert in a session, and the progress
             bar shows it loading. Once it's loaded, further conversions in the
@@ -413,10 +426,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the output called when I convert several files?
+            <span data-i18n-faq="ods-to-pdf.7.q"
+              >What is the output called when I convert several files?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.7.a">
             One file downloads under the same name with a .pdf extension. Two or
             more are converted in sequence and packaged as ods-to-pdf.zip with
             one PDF per spreadsheet.
@@ -424,10 +439,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my spreadsheet uploaded to a LibreOffice server?
+            <span data-i18n-faq="ods-to-pdf.8.q"
+              >Is my spreadsheet uploaded to a LibreOffice server?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="ods-to-pdf.8.a">
             No. The conversion engine is a WebAssembly build of LibreOffice that
             runs in a worker inside your browser, so budgets, timesheets, and
             financial records stay on your computer for the whole process.

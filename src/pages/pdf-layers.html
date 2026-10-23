@@ -481,10 +481,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What are PDF layers, and why does my PDF have none?
+            <span data-i18n-faq="pdf-layers.1.q"
+              >What are PDF layers, and why does my PDF have none?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.1.a">
             Layers are Optional Content Groups (OCGs): named groups of page
             content that a viewer can show or hide, common in CAD exports, maps,
             and print files with separate language or markup layers. Most PDFs
@@ -494,10 +496,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does hiding a layer delete its content?
+            <span data-i18n-faq="pdf-layers.2.q"
+              >Does hiding a layer delete its content?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.2.a">
             No. Unchecking a layer changes the default visibility state saved in
             the PDF, so it opens hidden but can be switched back on in any
             viewer with a layers panel. Deleting a layer with the X button
@@ -506,10 +510,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why can't I toggle or delete some layers?
+            <span data-i18n-faq="pdf-layers.3.q"
+              >Why can't I toggle or delete some layers?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.3.a">
             Layers shown with a lock icon were marked locked by the PDF's
             creator, so their visibility can't be changed and the add-child and
             delete buttons are hidden for them. That lock is part of the file
@@ -518,10 +524,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add a new layer and put content on it?
+            <span data-i18n-faq="pdf-layers.4.q"
+              >Can I add a new layer and put content on it?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.4.a">
             You can add top-level layers and nested child layers by name, and
             they're saved into the PDF's layer configuration. This tool doesn't
             draw content onto a layer; it manages the layer list, so a new layer
@@ -530,10 +538,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the changes show in Acrobat and other viewers?
+            <span data-i18n-faq="pdf-layers.5.q"
+              >Will the changes show in Acrobat and other viewers?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.5.a">
             Layer names and visibility states are written into the PDF's
             standard optional content dictionary, so any viewer with layer
             support reads them. Viewers without a layers panel still honor the
@@ -542,10 +552,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the downloaded file called?
+            <span data-i18n-faq="pdf-layers.6.q"
+              >What is the downloaded file called?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.6.a">
             Download Modified PDF saves the edited document under the same
             filename as the original, so rename it afterward if you want to keep
             both versions.
@@ -553,20 +565,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I inspect layers in a password-protected PDF?
+            <span data-i18n-faq="pdf-layers.7.q"
+              >Can I inspect layers in a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.7.a">
             You're prompted for the password on upload, and the layer editor
             works on the decrypted copy. The saved file isn't encrypted.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the drawing uploaded when I edit its layers?
+            <span data-i18n-faq="pdf-layers.8.q"
+              >Is the drawing uploaded when I edit its layers?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-layers.8.a">
             No. The PDF is opened by PyMuPDF running as WebAssembly in your
             browser, layer changes are applied in memory, and the download is
             written on your device, which matters for CAD drawings and site

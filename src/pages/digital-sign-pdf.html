@@ -805,10 +805,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between Digital Signature and Sign PDF?
+            <span data-i18n-faq="digital-sign-pdf.1.q"
+              >What is the difference between Digital Signature and Sign
+              PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.1.a">
             <a href="/sign-pdf" class="text-indigo-300 hover:text-indigo-400"
               >Sign PDF</a
             >
@@ -821,10 +824,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I sign with a PEM certificate instead of a .pfx or .p12 file?
+            <span data-i18n-faq="digital-sign-pdf.2.q"
+              >Can I sign with a PEM certificate instead of a .pfx or .p12
+              file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.2.a">
             Yes. Upload a single .pem file that contains both the certificate
             and the private key. Encrypted private keys work too; enter the key
             password in the Certificate Password field. If your certificate and
@@ -833,10 +839,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need an internet connection to sign?
+            <span data-i18n-faq="digital-sign-pdf.3.q"
+              >Do I need an internet connection to sign?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.3.a">
             Often, yes. The signing library fetches the issuer certificate chain
             from the URLs in your certificate's Authority Information Access
             extension, and if those servers can't be reached, signing fails for
@@ -847,10 +855,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does Adobe Reader say the signature validity is unknown?
+            <span data-i18n-faq="digital-sign-pdf.4.q"
+              >Why does Adobe Reader say the signature validity is
+              unknown?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.4.a">
             The reader can't trace the certificate back to a root it trusts.
             That's expected for self-signed certificates, which are fine for
             testing but always show a warning. For documents other people need
@@ -860,10 +871,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I have to add a visible signature on the page?
+            <span data-i18n-faq="digital-sign-pdf.5.q"
+              >Do I have to add a visible signature on the page?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.5.a">
             No. The cryptographic signature is embedded whether or not the
             visible block is enabled. Turn on Visible Signature if you want a
             stamp on the page: pick the first, last, all, or a specific page,
@@ -874,10 +887,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What are the Reason, Location, and Contact Info fields for?
+            <span data-i18n-faq="digital-sign-pdf.6.q"
+              >What are the Reason, Location, and Contact Info fields for?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.6.a">
             They're optional metadata stored inside the signature itself. Reason
             records why you signed, such as "Approved" or "Reviewed", Location
             where it happened, and Contact Info how to reach you. PDF readers
@@ -886,10 +901,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can a digitally signed PDF still be edited?
+            <span data-i18n-faq="digital-sign-pdf.7.q"
+              >Can a digitally signed PDF still be edited?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.7.a">
             The file can still be opened and edited, but any change made after
             signing breaks the integrity check and readers will report the
             document as modified. If the PDF has form fields or annotations that
@@ -902,10 +919,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How can I check that the signature was applied correctly?
+            <span data-i18n-faq="digital-sign-pdf.8.q"
+              >How can I check that the signature was applied correctly?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="digital-sign-pdf.8.a">
             Open the signed file in
             <a
               href="/validate-signature-pdf"

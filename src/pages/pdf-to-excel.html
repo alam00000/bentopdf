@@ -300,10 +300,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does PDF to Excel say no tables were found?
+            <span data-i18n-faq="pdf-to-excel.1.q"
+              >Why does PDF to Excel say no tables were found?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.1.a">
             The detector looks for table structure such as ruling lines and
             aligned cells. Text arranged in columns with spaces, or a table that
             exists only as part of a scanned image, doesn't register. For scans,
@@ -317,10 +319,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are multiple tables organized in the spreadsheet?
+            <span data-i18n-faq="pdf-to-excel.2.q"
+              >How are multiple tables organized in the spreadsheet?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.2.a">
             Each detected table gets its own worksheet, named Table 1 (Page 3),
             Table 2 (Page 5), and so on, so you can see which page it came from.
             A PDF with a single table produces one sheet called Table. Sheet
@@ -329,10 +333,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are formatting, colors, and merged cells preserved?
+            <span data-i18n-faq="pdf-to-excel.3.q"
+              >Are formatting, colors, and merged cells preserved?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.3.a">
             No. Only the cell text is transferred; fonts, fills, borders, column
             widths, and merged cells aren't reproduced. Numbers may arrive as
             text cells, so if a column won't sum, select it and use Excel's
@@ -341,10 +347,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert only certain pages to Excel?
+            <span data-i18n-faq="pdf-to-excel.4.q"
+              >Can I convert only certain pages to Excel?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.4.a">
             There are no page options; every page is scanned and all tables
             found are exported. If you only need one table, pull those pages
             into a separate PDF first, or use
@@ -358,11 +366,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between PDF to Excel, PDF to CSV, and Extract
-            Tables?
+            <span data-i18n-faq="pdf-to-excel.5.q"
+              >What's the difference between PDF to Excel, PDF to CSV, and
+              Extract Tables?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.5.a">
             PDF to Excel packs every table into one .xlsx workbook with a sheet
             per table.
             <a href="/pdf-to-csv" class="text-indigo-300 hover:text-indigo-400"
@@ -375,20 +385,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle password-protected PDFs?
+            <span data-i18n-faq="pdf-to-excel.6.q"
+              >Does it handle password-protected PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.6.a">
             If the file needs a password to open, the tool asks for it before
             extraction starts. The output .xlsx is not password-protected.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my financial data uploaded during conversion?
+            <span data-i18n-faq="pdf-to-excel.7.q"
+              >Is my financial data uploaded during conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-excel.7.a">
             No. Table detection runs in a PDF engine loaded into your browser as
             WebAssembly, and the spreadsheet is built locally by a JavaScript
             library. Bank statements and invoices never leave your machine.

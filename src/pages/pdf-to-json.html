@@ -281,10 +281,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the JSON contain?
+            <span data-i18n-faq="pdf-to-json.1.q"
+              >What does the JSON contain?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.1.a">
             The full object structure of the PDF as cpdf reads it: the trailer,
             catalog, page tree, every dictionary, and each page's content stream
             parsed into a list of drawing and text operators. It's a complete
@@ -293,10 +295,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is this the right tool to get the text out of a PDF as JSON?
+            <span data-i18n-faq="pdf-to-json.2.q"
+              >Is this the right tool to get the text out of a PDF as
+              JSON?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.2.a">
             Usually not. The text here is scattered across content stream
             operators in the order it was drawn, with fonts and positions but no
             paragraphs. For readable page text in a structured format use
@@ -309,10 +314,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert the JSON back into a PDF?
+            <span data-i18n-faq="pdf-to-json.3.q"
+              >Can I convert the JSON back into a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.3.a">
             Not with BentoPDF. The output follows cpdf's own JSON format, which
             the cpdf command line tool can read back into a PDF, but the browser
             tool only goes in one direction.
@@ -320,10 +327,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the JSON so much bigger than the PDF?
+            <span data-i18n-faq="pdf-to-json.4.q"
+              >Why is the JSON so much bigger than the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.4.a">
             Content streams are expanded into operator arrays, binary stream
             data such as images is encoded as text, and every object is written
             out with its keys, so a JSON file several times the size of the
@@ -333,10 +342,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert multiple PDFs to JSON at once?
+            <span data-i18n-faq="pdf-to-json.5.q"
+              >Can I convert multiple PDFs to JSON at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.5.a">
             Select as many as you like; each is converted in a background worker
             and the results are packaged into pdfs-to-json.zip with one .json
             per PDF, named after the source file. A single PDF also arrives as a
@@ -345,10 +356,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on encrypted PDFs?
+            <span data-i18n-faq="pdf-to-json.6.q"
+              >Does it work on encrypted PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.6.a">
             You're asked for the password before conversion starts and the
             decrypted copy is serialized. Without the password the object
             structure can't be read.
@@ -356,10 +369,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is this useful for?
+            <span data-i18n-faq="pdf-to-json.7.q"
+              >What is this useful for?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.7.a">
             Inspecting a PDF's internals when debugging a generator, checking
             what a page's content stream contains, comparing two versions
             structurally, or feeding the object tree into a script. For document
@@ -374,10 +389,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF uploaded to produce the JSON?
+            <span data-i18n-faq="pdf-to-json.8.q"
+              >Is the PDF uploaded to produce the JSON?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-json.8.a">
             No. cpdf runs as WebAssembly in a web worker in your browser, and
             the JSON is written and zipped on your device before download.
           </p>

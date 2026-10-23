@@ -328,10 +328,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the Word document look like the PDF?
+            <span data-i18n-faq="pdf-to-word.1.q"
+              >Will the Word document look like the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.1.a">
             Text, basic formatting, and page layout are reconstructed into a
             .docx that stays close to the original for simple documents.
             Multi-column layouts, text placed over graphics, embedded forms, and
@@ -341,10 +343,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my converted Word file empty?
+            <span data-i18n-faq="pdf-to-word.2.q"
+              >Why is my converted Word file empty?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.2.a">
             The PDF is a scan with no text layer, so there's nothing for the
             converter to reconstruct and you get blank pages or a few stray
             characters. Run the file through
@@ -356,10 +360,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I edit the text after converting?
+            <span data-i18n-faq="pdf-to-word.3.q"
+              >Can I edit the text after converting?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.3.a">
             The output is a normal .docx with real paragraphs, not an image of
             the page, so you can edit, restyle, and copy from it in Word,
             LibreOffice Writer, or Google Docs.
@@ -367,10 +373,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle CMYK or print-ready PDFs?
+            <span data-i18n-faq="pdf-to-word.4.q"
+              >Does it handle CMYK or print-ready PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.4.a">
             Before conversion the PDF is passed through Ghostscript to convert
             it to RGB, which avoids the image errors that CMYK print files
             otherwise cause in the converter. If that step fails, the original
@@ -379,10 +387,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert many PDFs at once?
+            <span data-i18n-faq="pdf-to-word.5.q"
+              >Can I convert many PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.5.a">
             Add as many files as you want; they're converted one after another
             and downloaded as converted-documents.zip with one .docx per PDF. A
             single file downloads directly under its own name with a .docx
@@ -391,10 +401,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What about password-protected PDFs?
+            <span data-i18n-faq="pdf-to-word.6.q"
+              >What about password-protected PDFs?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.6.a">
             You're prompted for the password when conversion starts, and the
             decrypted copy is converted. The resulting .docx isn't password
             protected.
@@ -402,10 +414,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need Microsoft Word installed to convert PDF to Word?
+            <span data-i18n-faq="pdf-to-word.7.q"
+              >Do I need Microsoft Word installed to convert PDF to Word?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.7.a">
             No. The conversion is done by PyMuPDF and pdf2docx running in your
             browser, and the .docx it produces opens in Word, LibreOffice
             Writer, Pages, and Google Docs. To go the other way, use
@@ -416,10 +430,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF uploaded to convert it to Word?
+            <span data-i18n-faq="pdf-to-word.8.q"
+              >Is the PDF uploaded to convert it to Word?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-word.8.a">
             No. The whole pipeline, from reading the PDF to writing the .docx,
             runs in WebAssembly inside your browser, so contracts and reports
             stay on your device.

@@ -319,10 +319,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What information can a PDF reveal about me?
+            <span data-i18n-faq="view-metadata.1.q"
+              >What information can a PDF reveal about me?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.1.a">
             The Info dictionary often holds the author's name (usually the
             operating system or Office username), the software used, and
             creation and modification timestamps. XMP metadata can add document
@@ -339,10 +341,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between the Info dictionary and XMP metadata?
+            <span data-i18n-faq="view-metadata.2.q"
+              >What is the difference between the Info dictionary and XMP
+              metadata?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.2.a">
             The Info dictionary is the older set of fixed fields: Title, Author,
             Subject, Keywords, Creator, Producer, and dates. XMP is an XML block
             with namespaces such as Dublin Core, xmp, and pdf, and it can hold
@@ -352,10 +357,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why are the dates shown differently from what Acrobat displays?
+            <span data-i18n-faq="view-metadata.3.q"
+              >Why are the dates shown differently from what Acrobat
+              displays?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.3.a">
             PDF dates are stored as strings like D:20240101120000Z. The tool
             converts them to a readable date in your local time zone, so the
             hour can differ from a viewer that shows the raw value or uses a
@@ -364,10 +372,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How can I tell which program created the PDF?
+            <span data-i18n-faq="view-metadata.4.q"
+              >How can I tell which program created the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.4.a">
             Look at the Creator field (the application that made the original
             document, such as Word or InDesign) and the Producer field (the
             library that wrote the PDF, such as Acrobat Distiller or a PDF
@@ -377,10 +387,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it show the values filled into form fields?
+            <span data-i18n-faq="view-metadata.5.q"
+              >Does it show the values filled into form fields?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.5.a">
             The Interactive Form Fields section lists each field name with its
             current value, or Not Set when empty, which is a quick way to check
             what data a filled form contains before sending it.
@@ -388,10 +400,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I copy or export the metadata?
+            <span data-i18n-faq="view-metadata.6.q"
+              >Can I copy or export the metadata?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.6.a">
             The Copy Metadata as JSON button puts the Info dictionary fields on
             your clipboard as a JSON object. The XMP tree and form field values
             are displayed on the page but aren't included in the copied JSON.
@@ -399,10 +413,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I change what I see here?
+            <span data-i18n-faq="view-metadata.7.q"
+              >Can I change what I see here?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.7.a">
             This tool is read-only. Use
             <a
               href="/edit-metadata"
@@ -415,10 +431,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF uploaded to read its metadata?
+            <span data-i18n-faq="view-metadata.8.q"
+              >Is the PDF uploaded to read its metadata?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="view-metadata.8.a">
             No. The file is parsed by pdf.js in your browser as soon as you
             select it, and nothing is transmitted, so you can inspect a
             sensitive document before deciding where it goes.

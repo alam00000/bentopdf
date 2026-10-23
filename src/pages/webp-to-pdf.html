@@ -353,10 +353,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does each WebP image become its own page?
+            <span data-i18n-faq="webp-to-pdf.1.q"
+              >Does each WebP image become its own page?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.1.a">
             Yes. Every image is placed on a separate page sized to the image
             itself, in the order the files appear in the list, and the whole set
             downloads as one file named from_webps.pdf.
@@ -364,10 +366,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size will my WebP images get in the PDF?
+            <span data-i18n-faq="webp-to-pdf.2.q"
+              >What page size will my WebP images get in the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.2.a">
             The page matches the image's pixel dimensions at one point per
             pixel, so a 1600 x 1200 image produces a 1600 x 1200 point page,
             roughly 22 x 17 inches. To get standard A4 or Letter pages, run the
@@ -381,10 +385,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the quality settings change for WebP images?
+            <span data-i18n-faq="webp-to-pdf.3.q"
+              >What do the quality settings change for WebP images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.3.a">
             High keeps the full pixel dimensions with the lightest compression.
             Medium, the default, re-encodes as JPEG at about 75 percent and
             scales images down so the longest side is at most 2500 pixels; Low
@@ -394,10 +400,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will transparent areas stay transparent?
+            <span data-i18n-faq="webp-to-pdf.4.q"
+              >Will transparent areas stay transparent?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.4.a">
             No. Images are re-encoded through the browser's canvas as JPEG when
             they're embedded, and JPEG has no alpha channel, so see-through
             regions come out as a solid background. Flatten the image onto a
@@ -406,10 +414,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert an animated WebP?
+            <span data-i18n-faq="webp-to-pdf.5.q"
+              >Can I convert an animated WebP?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.5.a">
             Only the first frame is used, since the browser decodes the file as
             a still image before it's placed on the page. Each animation becomes
             a single static page.
@@ -417,10 +427,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I mix WebP with JPG or PNG files in the same PDF?
+            <span data-i18n-faq="webp-to-pdf.6.q"
+              >Can I mix WebP with JPG or PNG files in the same PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.6.a">
             Not on this page; the file picker accepts .webp only. Use
             <a
               href="/image-to-pdf"
@@ -432,10 +444,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my images uploaded to make the PDF?
+            <span data-i18n-faq="webp-to-pdf.7.q"
+              >Are my images uploaded to make the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.7.a">
             No. Each WebP is decoded by your browser's own image engine and
             written into the PDF locally, so the pictures never leave your
             device.
@@ -443,10 +457,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I reorder or remove images before converting?
+            <span data-i18n-faq="webp-to-pdf.8.q"
+              >Can I reorder or remove images before converting?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="webp-to-pdf.8.a">
             You can remove any file from the list with its delete icon, but
             there's no drag reordering on this page, so pages follow the order
             in which you selected the files. Pick them in the order you want

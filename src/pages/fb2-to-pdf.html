@@ -329,10 +329,10 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is an FB2 file?
+            <span data-i18n-faq="fb2-to-pdf.1.q">What is an FB2 file?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.1.a">
             FB2 is the FictionBook 2 ebook format, an XML-based format that is
             common in Russia and Eastern Europe. It stores the book's text,
             chapter structure, and any embedded images in a single file, but
@@ -342,10 +342,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the conversion keep chapters, formatting, and images?
+            <span data-i18n-faq="fb2-to-pdf.2.q"
+              >Does the conversion keep chapters, formatting, and images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.2.a">
             Chapter breaks, basic text formatting, and images embedded in the
             FB2 file are all carried into the PDF. The PyMuPDF engine reads the
             XML structure directly, so nothing needs to be configured.
@@ -353,20 +355,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert an .fb2.zip file?
+            <span data-i18n-faq="fb2-to-pdf.3.q"
+              >Can I convert an .fb2.zip file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.3.a">
             Not directly. The tool only accepts plain .fb2 files, so extract the
             archive first and upload the .fb2 inside it.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several FB2 books at once?
+            <span data-i18n-faq="fb2-to-pdf.4.q"
+              >Can I convert several FB2 books at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.4.a">
             Select or drop as many files as you like and click Convert to PDF. A
             single book downloads as a PDF with the same name, while several are
             packed into fb2-converted.zip with one PDF per book.
@@ -374,10 +380,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I change the page size or font before converting?
+            <span data-i18n-faq="fb2-to-pdf.5.q"
+              >Can I change the page size or font before converting?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.5.a">
             No. There are no layout options in this converter; the engine
             paginates the book with its default page size and typography. If you
             need a different page size afterward, run the result through
@@ -390,10 +398,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will Russian or other Cyrillic text convert correctly?
+            <span data-i18n-faq="fb2-to-pdf.6.q"
+              >Will Russian or other Cyrillic text convert correctly?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.6.a">
             FB2 files are Unicode XML and the converter renders Unicode text, so
             Cyrillic books convert with their original characters intact. The
             text stays selectable and searchable in the PDF.
@@ -401,10 +411,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my ebook uploaded during conversion?
+            <span data-i18n-faq="fb2-to-pdf.7.q"
+              >Is my ebook uploaded during conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.7.a">
             No. The FB2 file is parsed and laid out by a PDF engine running in
             your browser, and only the finished PDF is saved to your device.
             Nothing is sent to a server, so the conversion also works for drafts
@@ -413,11 +425,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the PDF have a different number of pages than my e-reader
-            shows?
+            <span data-i18n-faq="fb2-to-pdf.8.q"
+              >Why does the PDF have a different number of pages than my
+              e-reader shows?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="fb2-to-pdf.8.a">
             FB2 is a reflowable format, so page counts depend on screen size and
             font settings in each reader. The PDF fixes the layout at conversion
             time, which usually produces a different, and now permanent, page

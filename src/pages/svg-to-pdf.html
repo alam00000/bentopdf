@@ -353,10 +353,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF vector or an image?
+            <span data-i18n-faq="svg-to-pdf.1.q"
+              >Is the PDF vector or an image?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.1.a">
             An image. Each SVG is rendered by your browser onto a canvas and the
             bitmap is placed on a PDF page, so the result won't scale without
             loss and the text isn't selectable. If you need true vector output,
@@ -365,10 +367,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What size will the page be?
+            <span data-i18n-faq="svg-to-pdf.2.q"
+              >What size will the page be?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.2.a">
             The page matches the SVG's width and height attributes in pixels,
             one pixel per PDF point. An SVG with no width and height (only a
             viewBox) renders at 800 by 600, so set explicit dimensions in the
@@ -377,10 +381,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the quality settings change for SVG conversion?
+            <span data-i18n-faq="svg-to-pdf.3.q"
+              >What do the quality settings change for SVG conversion?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.3.a">
             High keeps the lossless PNG at full size. Medium re-encodes it as
             JPEG at 75 percent quality and limits the longest side to 2500
             pixels; Low uses 50 percent and 1500 pixels, which also shrinks the
@@ -389,10 +395,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I control the output resolution, for example 300 DPI?
+            <span data-i18n-faq="svg-to-pdf.4.q"
+              >Can I control the output resolution, for example 300 DPI?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.4.a">
             There is no DPI setting; the render uses the SVG's own pixel
             dimensions. To get more pixels, increase the width and height
             attributes in the SVG source while keeping the viewBox, then
@@ -401,10 +409,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did my SVG come out with missing text, fonts, or images?
+            <span data-i18n-faq="svg-to-pdf.5.q"
+              >Why did my SVG come out with missing text, fonts, or
+              images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.5.a">
             The SVG is rendered from its own markup, so references to external
             files (linked images, imported fonts, external CSS) can't be loaded
             in that context and fall back or disappear. Embed images as data
@@ -413,20 +424,22 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is transparency kept?
+            <span data-i18n-faq="svg-to-pdf.6.q">Is transparency kept?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.6.a">
             No. The canvas is filled with white before the SVG is drawn, so
             transparent areas become white in the PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I put several SVGs into one PDF?
+            <span data-i18n-faq="svg-to-pdf.7.q"
+              >Can I put several SVGs into one PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.7.a">
             Upload multiple files and they become consecutive pages of a single
             from_svgs.pdf, in the order shown in the file list. Each page takes
             the size of its own SVG.
@@ -434,10 +447,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the SVG uploaded to be converted?
+            <span data-i18n-faq="svg-to-pdf.8.q"
+              >Is the SVG uploaded to be converted?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="svg-to-pdf.8.a">
             No. Rendering happens on a canvas in your browser and the PDF is
             built with pdf-lib on your device; nothing is sent anywhere.
           </p>

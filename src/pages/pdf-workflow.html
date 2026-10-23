@@ -605,10 +605,12 @@
           <div class="faq-list">
             <details class="faq-d">
               <summary class="faq-d-q">
-                What is the PDF Workflow Builder for?
+                <span data-i18n-faq="pdf-workflow.1.q"
+                  >What is the PDF Workflow Builder for?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.1.a">
                 It chains several PDF operations into one run. Instead of
                 opening a tool, downloading, and feeding the result into the
                 next tool for each step, you connect nodes on a canvas, such as
@@ -618,10 +620,12 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Can I run the same workflow on many PDFs at once?
+                <span data-i18n-faq="pdf-workflow.2.q"
+                  >Can I run the same workflow on many PDFs at once?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.2.a">
                 Yes. The PDF Input node accepts multiple files; a Merge node
                 combines them into one document, while other nodes process each
                 PDF separately. When more than one file comes out the end, the
@@ -630,10 +634,12 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Why won't it let me connect two nodes?
+                <span data-i18n-faq="pdf-workflow.3.q"
+                  >Why won't it let me connect two nodes?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.3.a">
                 Sockets are typed: PDF (a single document), MultiPDF (several
                 documents), and Image. A node that expects a single PDF won't
                 accept a MultiPDF output, so put a Merge node in between, and
@@ -643,10 +649,13 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Why does it complain that Encrypt must be the last step?
+                <span data-i18n-faq="pdf-workflow.4.q"
+                  >Why does it complain that Encrypt must be the last
+                  step?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.4.a">
                 Once a PDF is encrypted, later nodes can't read it, so the
                 engine rejects a workflow where anything other than the output
                 sits after Encrypt. Move Encrypt to just before Download.
@@ -656,10 +665,12 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                What happens if one step fails?
+                <span data-i18n-faq="pdf-workflow.5.q"
+                  >What happens if one step fails?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.5.a">
                 The run stops at that node, which turns red with an error
                 message, and nothing downstream is produced. Fix the setting or
                 the input and run again; it's easiest to build a two-node
@@ -668,10 +679,12 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Can I save a workflow and reuse it later?
+                <span data-i18n-faq="pdf-workflow.6.q"
+                  >Can I save a workflow and reuse it later?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.6.a">
                 Yes. Save stores it as a named template in your browser's local
                 storage, and Load brings it back in a later session on the same
                 browser. Export writes the layout to a workflow.json file you
@@ -681,10 +694,12 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Does a saved workflow contain my documents?
+                <span data-i18n-faq="pdf-workflow.7.q"
+                  >Does a saved workflow contain my documents?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.7.a">
                 No. Templates and exported JSON files hold only the node types,
                 their settings, positions, and connections; the PDFs are chosen
                 fresh each time you run. Settings are saved as typed, so avoid
@@ -694,10 +709,12 @@
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Are the files processed on a server?
+                <span data-i18n-faq="pdf-workflow.8.q"
+                  >Are the files processed on a server?</span
+                >
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
-              <p class="faq-d-a">
+              <p class="faq-d-a" data-i18n-faq="pdf-workflow.8.a">
                 No. Every node runs in your browser with the same engines as the
                 individual tools, and the only network activity is fetching a
                 processing module such as Ghostscript the first time a node

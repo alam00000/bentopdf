@@ -294,10 +294,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the tool find tables in a PDF?
+            <span data-i18n-faq="pdf-to-csv.1.q"
+              >How does the tool find tables in a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.1.a">
             It runs PyMuPDF's table detection on every page, which looks for the
             ruling lines and aligned text that make up a table. Each table it
             finds is written to the CSV row by row, and all pages are scanned in
@@ -306,10 +308,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if my PDF has several tables?
+            <span data-i18n-faq="pdf-to-csv.2.q"
+              >What happens if my PDF has several tables?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.2.a">
             All of them are written into one .csv file in page order, with the
             rows of one table following the rows of the previous one and no
             separator between them. If you need each table in its own file or on
@@ -324,10 +328,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does PDF to CSV say no tables were found?
+            <span data-i18n-faq="pdf-to-csv.3.q"
+              >Why does PDF to CSV say no tables were found?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.3.a">
             Usually the PDF lays out its data with spaces and tabs that only
             look like a table, without the structure the detector needs, or the
             page is a scan with no text layer at all. For scans, run
@@ -339,10 +345,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are commas, quotes, and line breaks inside cells handled?
+            <span data-i18n-faq="pdf-to-csv.4.q"
+              >How are commas, quotes, and line breaks inside cells
+              handled?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.4.a">
             Cells that contain a comma, a double quote, or a newline are wrapped
             in double quotes, and any quotes inside them are doubled, following
             RFC 4180. The file is saved as UTF-8, so accented characters and
@@ -351,10 +360,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the CSV keep the formatting from the PDF?
+            <span data-i18n-faq="pdf-to-csv.5.q"
+              >Will the CSV keep the formatting from the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.5.a">
             No. CSV is plain text, so bold text, colors, merged cells, and
             column widths are dropped and only the cell values remain. Numbers
             are exported as the text shown in the PDF, including any currency
@@ -363,10 +374,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract tables from a password-protected PDF?
+            <span data-i18n-faq="pdf-to-csv.6.q"
+              >Can I extract tables from a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.6.a">
             You'll be asked for the password after upload, and extraction
             continues once it's entered. The password is used only to open the
             file in your browser.
@@ -374,10 +387,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF uploaded to extract the tables?
+            <span data-i18n-faq="pdf-to-csv.7.q"
+              >Is the PDF uploaded to extract the tables?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.7.a">
             No. The table detection engine is loaded into your browser as
             WebAssembly and the CSV is generated locally, so the document never
             leaves your device. The first run takes a little longer while the
@@ -386,10 +401,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I open the CSV in Excel without breaking the columns?
+            <span data-i18n-faq="pdf-to-csv.8.q"
+              >How do I open the CSV in Excel without breaking the
+              columns?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-csv.8.a">
             Double-clicking the file works in most setups, since the tool uses
             the standard comma delimiter. If your Excel is set to a locale that
             expects semicolons, use Data &gt; From Text/CSV and pick comma as

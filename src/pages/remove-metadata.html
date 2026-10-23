@@ -329,10 +329,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What metadata exactly gets removed?
+            <span data-i18n-faq="remove-metadata.1.q"
+              >What metadata exactly gets removed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.1.a">
             The document info fields (Title, Author, Subject, Keywords, Creator,
             Producer, and the creation and modification dates), the XMP metadata
             stream, the document ID pair in the trailer, and
@@ -342,10 +344,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What stays in the file?
+            <span data-i18n-faq="remove-metadata.2.q"
+              >What stays in the file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.2.a">
             All visible content, plus form fields, annotations, bookmarks,
             links, and any file attachments. Names stored inside those elements,
             such as the author on a sticky-note comment, are not touched. To
@@ -359,10 +363,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it remove metadata from images inside the PDF?
+            <span data-i18n-faq="remove-metadata.3.q"
+              >Does it remove metadata from images inside the PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.3.a">
             No. Image data is left as it is, so any EXIF or XMP information a
             photo carried when it was placed into the PDF stays with that image.
             If that matters,
@@ -377,10 +383,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How can I confirm the metadata is gone?
+            <span data-i18n-faq="remove-metadata.4.q"
+              >How can I confirm the metadata is gone?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.4.a">
             Open the cleaned file in
             <a
               href="/view-metadata"
@@ -393,10 +401,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can this be undone?
+            <span data-i18n-faq="remove-metadata.5.q">Can this be undone?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.5.a">
             No. The cleaned file keeps no record of the removed values. Keep
             your original copy if you may need the author, dates, or other
             details later.
@@ -404,10 +412,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will removing metadata reduce the file size?
+            <span data-i18n-faq="remove-metadata.6.q"
+              >Will removing metadata reduce the file size?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.6.a">
             A little, since the XMP block and info fields are dropped, usually
             only a few kilobytes. For a real reduction, follow up with
             <a
@@ -419,10 +429,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it remove comments, annotations, or hidden text?
+            <span data-i18n-faq="remove-metadata.7.q"
+              >Does it remove comments, annotations, or hidden text?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.7.a">
             No, it only targets metadata. Comments and markup are annotations,
             which stay;
             <a
@@ -437,10 +449,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded while the metadata is removed?
+            <span data-i18n-faq="remove-metadata.8.q"
+              >Is my PDF uploaded while the metadata is removed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="remove-metadata.8.a">
             No. The file is opened and rewritten by a PDF library in your
             browser, which is the point when the goal is anonymity: the document
             never touches a server, and no server log records what you cleaned.

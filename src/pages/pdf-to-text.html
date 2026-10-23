@@ -353,10 +353,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the .txt file empty?
+            <span data-i18n-faq="pdf-to-text.1.q"
+              >Why is the .txt file empty?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.1.a">
             The PDF is most likely a scan or a photo, which has no text layer to
             extract. Run it through
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -368,10 +370,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the text come out in the right order?
+            <span data-i18n-faq="pdf-to-text.2.q"
+              >Does the text come out in the right order?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.2.a">
             Text is read left to right, top to bottom, following the PDF's
             internal structure, which is correct for most single-column
             documents. Multi-column layouts, sidebars, and tables can come out
@@ -381,10 +385,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is any formatting kept?
+            <span data-i18n-faq="pdf-to-text.3.q">Is any formatting kept?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.3.a">
             No. The output is plain UTF-8 text, so accented characters,
             Cyrillic, CJK, and Arabic are preserved, but bold, headings, links,
             and images are not, and line breaks follow the PDF's lines rather
@@ -398,10 +402,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract text from several PDFs at once?
+            <span data-i18n-faq="pdf-to-text.4.q"
+              >Can I extract text from several PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.4.a">
             Yes. Add as many PDFs as you like and click Extract once; each
             becomes its own .txt file named after the source, and they download
             together as pdf-to-text.zip. A single PDF downloads directly as
@@ -410,10 +416,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are pages separated in the output?
+            <span data-i18n-faq="pdf-to-text.5.q"
+              >How are pages separated in the output?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.5.a">
             Pages follow one another with a line break between them. There are
             no page markers or form feeds, so the file reads as one continuous
             stream of text.
@@ -421,10 +429,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I pick specific pages or a page range?
+            <span data-i18n-faq="pdf-to-text.6.q"
+              >Can I pick specific pages or a page range?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.6.a">
             No, this tool always extracts every page. Pull the pages you need
             into a separate PDF first with
             <a
@@ -436,10 +446,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on password-protected files?
+            <span data-i18n-faq="pdf-to-text.7.q"
+              >Does it work on password-protected files?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.7.a">
             If a PDF asks for a password when you open it, the tool prompts you
             for that password before extracting. Without the password, the text
             can't be read.
@@ -447,10 +459,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do my documents get uploaded to extract the text?
+            <span data-i18n-faq="pdf-to-text.8.q"
+              >Do my documents get uploaded to extract the text?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-text.8.a">
             No. Extraction runs in a PDF engine loaded into your browser as
             WebAssembly, so contracts, medical records, and anything else stay
             on your device from start to finish.

@@ -341,10 +341,13 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I check whether a signed PDF was changed after it was signed?
+            <span data-i18n-faq="validate-signature-pdf.1.q"
+              >How do I check whether a signed PDF was changed after it was
+              signed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.1.a">
             Upload the PDF and validation starts on its own. For each signature
             the tool hashes the bytes the signature covers, compares that hash
             with the digest stored inside the signature, and then verifies the
@@ -356,10 +359,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do Valid, Invalid, and Unverified mean?
+            <span data-i18n-faq="validate-signature-pdf.2.q"
+              >What do Valid, Invalid, and Unverified mean?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.2.a">
             Valid means the signature was cryptographically verified, covers the
             whole file, and uses a secure digest. Invalid means verification ran
             and failed, for example because the bytes changed or the key doesn't
@@ -370,10 +375,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which signature algorithms are supported?
+            <span data-i18n-faq="validate-signature-pdf.3.q"
+              >Which signature algorithms are supported?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.3.a">
             RSA with PKCS#1 v1.5 padding, RSA-PSS, and ECDSA on the P-256,
             P-384, and P-521 curves, with SHA-224, SHA-256, SHA-384, or SHA-512
             digests. Signatures hashed with MD5 or SHA-1 are flagged with an
@@ -383,10 +390,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the card say Signer Identity Not Verified?
+            <span data-i18n-faq="validate-signature-pdf.4.q"
+              >Why does the card say Signer Identity Not Verified?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.4.a">
             The tool has no built-in list of certificate authorities, so on its
             own it can confirm the signature is intact but not who is behind the
             certificate. Upload your organization's root or intermediate
@@ -397,10 +406,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does partial coverage mean the document was tampered with?
+            <span data-i18n-faq="validate-signature-pdf.5.q"
+              >Does partial coverage mean the document was tampered with?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.5.a">
             It means bytes were appended after this signature was applied. The
             part that was signed is still intact, so the tool shows a Modified
             After Signing warning instead of marking the signature invalid. That
@@ -412,10 +423,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it check whether the signing certificate was revoked?
+            <span data-i18n-faq="validate-signature-pdf.6.q"
+              >Does it check whether the signing certificate was revoked?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.6.a">
             No. The tool checks the certificate's validity dates, the trust
             chain against a certificate you provide, and the cryptographic
             integrity of the signature, but it doesn't query OCSP responders or
@@ -425,11 +438,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if the certificate has expired since the document was
-            signed?
+            <span data-i18n-faq="validate-signature-pdf.7.q"
+              >What happens if the certificate has expired since the document
+              was signed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.7.a">
             Expiry is judged against today's date, so a certificate that is now
             past its Valid Until date shows a Certificate Expired status and
             isn't counted as valid in the summary, even if the signature itself
@@ -440,10 +455,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the signed PDF or my trusted certificate uploaded anywhere?
+            <span data-i18n-faq="validate-signature-pdf.8.q"
+              >Is the signed PDF or my trusted certificate uploaded
+              anywhere?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="validate-signature-pdf.8.a">
             No. Signature parsing and the cryptographic checks run in your
             browser using node-forge and the Web Crypto API, so the document and
             any certificate you add stay on your device.

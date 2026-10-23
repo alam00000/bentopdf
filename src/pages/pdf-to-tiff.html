@@ -399,10 +399,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I get all pages in a single multi-page TIFF?
+            <span data-i18n-faq="pdf-to-tiff.1.q"
+              >Can I get all pages in a single multi-page TIFF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.1.a">
             Yes. Check "Save as multi-page TIFF (single file)" and every page is
             written into one .tiff named after the PDF. Leave it unchecked and a
             multi-page PDF downloads as a ZIP containing page_1.tiff,
@@ -411,10 +413,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What DPI should I use?
+            <span data-i18n-faq="pdf-to-tiff.2.q">What DPI should I use?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.2.a">
             The slider runs from 72 to 600 and defaults to 300, the usual choice
             for print and archival scans. Fax and document management systems
             typically expect 200 to 300, and 150 is enough for screen use. Very
@@ -424,10 +426,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which compression should I choose?
+            <span data-i18n-faq="pdf-to-tiff.3.q"
+              >Which compression should I choose?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.3.a">
             LZW, the default, and Deflate are lossless and suit any content.
             CCITT Group 4 gives the smallest files for black-and-white scans and
             automatically switches the color mode to 1-bit. JPEG is lossy
@@ -437,10 +441,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I make a black-and-white TIFF for fax or e-filing?
+            <span data-i18n-faq="pdf-to-tiff.4.q"
+              >How do I make a black-and-white TIFF for fax or e-filing?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.4.a">
             Set Color Mode to "Black &amp; White (1-bit)" and Compression to
             CCITT Group 4, then pick 200 or 300 DPI. That combination is what
             most fax gateways and document management systems expect, and it
@@ -449,10 +455,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my TIFF so large?
+            <span data-i18n-faq="pdf-to-tiff.5.q"
+              >Why is my TIFF so large?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.5.a">
             TIFF stores a bitmap of every page. An uncompressed 300 DPI color
             Letter page is roughly 25 MB, so lower the DPI, switch the color
             mode to grayscale or black and white, or use CCITT Group 4 for text
@@ -465,20 +473,24 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I batch-convert PDFs to TIFF?
+            <span data-i18n-faq="pdf-to-tiff.6.q"
+              >Can I batch-convert PDFs to TIFF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.6.a">
             No. This tool takes one PDF at a time; if you drop several, only the
             first is used. Convert them one after another.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will a password-protected PDF convert to TIFF?
+            <span data-i18n-faq="pdf-to-tiff.7.q"
+              >Will a password-protected PDF convert to TIFF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.7.a">
             Yes. If the PDF needs a password to open, you're asked for it before
             conversion, and the pages are rendered once it's entered. The TIFF
             output itself has no password protection.
@@ -486,10 +498,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my pages uploaded to convert them?
+            <span data-i18n-faq="pdf-to-tiff.8.q"
+              >Are my pages uploaded to convert them?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-tiff.8.a">
             No. Pages are rendered with PDF.js and encoded with libvips compiled
             to WebAssembly, all inside your browser. That does require a browser
             with SharedArrayBuffer support, which is why the tool must run over

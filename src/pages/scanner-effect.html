@@ -544,10 +544,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which settings give the most realistic scan look?
+            <span data-i18n-faq="scanner-effect.1.q"
+              >Which settings give the most realistic scan look?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.1.a">
             Subtle values work best: noise around 10 to 20, a rotation of about
             0.5 degrees with a little Rotate Variance so each page tilts
             differently, and a touch of blur. Turn on Grayscale for a
@@ -557,10 +559,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does Rotate Variance do?
+            <span data-i18n-faq="scanner-effect.2.q"
+              >What does Rotate Variance do?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.2.a">
             It adds a random amount, up to the value you set (0 to 3 degrees),
             to the base rotation on every page, so a ten-page document doesn't
             have ten identically tilted pages. The preview shows only the base
@@ -569,10 +573,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I still select or search the text afterward?
+            <span data-i18n-faq="scanner-effect.3.q"
+              >Can I still select or search the text afterward?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.3.a">
             No. Each page is rendered, processed as pixels, and saved as a JPEG
             image, so the output is image-only. That's usually the point of a
             scan effect, but keep the original if you need editable text later.
@@ -580,10 +586,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the preview look different from the final file?
+            <span data-i18n-faq="scanner-effect.4.q"
+              >Why does the preview look different from the final file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.4.a">
             The preview renders the first page at screen resolution and ignores
             the Resolution slider, so noise and blur can look slightly stronger
             or weaker in the final output, and it can't show the per-page
@@ -592,10 +600,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the Resolution setting affect the file?
+            <span data-i18n-faq="scanner-effect.5.q"
+              >How does the Resolution setting affect the file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.5.a">
             It sets the DPI at which pages are rendered before the effects are
             applied, from 72 to 300. Lower values make pages softer and more
             pixelated, like a cheap scanner, and produce smaller files; 300 DPI
@@ -604,10 +614,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I make the paper look old or yellowed?
+            <span data-i18n-faq="scanner-effect.6.q"
+              >Can I make the paper look old or yellowed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.6.a">
             Raise the Yellowish slider to add a warm tint that mimics aged or
             recycled paper. Combine it with Grayscale for a
             photocopy-of-a-photocopy look, and nudge Brightness down and
@@ -616,10 +628,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it process more than one PDF at a time?
+            <span data-i18n-faq="scanner-effect.7.q"
+              >Does it process more than one PDF at a time?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.7.a">
             No. This tool works on a single PDF per run, applying your settings
             to every page of that file. Load the next file after the first
             download finishes.
@@ -627,10 +641,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does my document get uploaded to apply the effect?
+            <span data-i18n-faq="scanner-effect.8.q"
+              >Does my document get uploaded to apply the effect?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="scanner-effect.8.a">
             No. Rendering, noise, blur, and rotation are all applied on a canvas
             in your browser, and the output PDF is assembled locally, so the
             file never leaves your computer.

@@ -330,10 +330,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What counts as an attachment in a PDF?
+            <span data-i18n-faq="extract-attachments.1.q"
+              >What counts as an attachment in a PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.1.a">
             Files embedded inside the PDF, either at the document level (the
             paperclip panel in Acrobat) or attached to a specific page as a file
             attachment annotation. Images drawn on the page, fonts, and form
@@ -347,10 +349,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it say the PDF has no attachments?
+            <span data-i18n-faq="extract-attachments.2.q"
+              >Why does it say the PDF has no attachments?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.2.a">
             It means cpdf found no embedded files at either the document or page
             level. Pictures on the page, hyperlinks to external files, and form
             field data can look like attachments in a viewer but aren't stored
@@ -359,10 +363,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are the extracted files named?
+            <span data-i18n-faq="extract-attachments.3.q"
+              >How are the extracted files named?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.3.a">
             Each file keeps the name it was embedded with. Attachments tied to a
             specific page get the PDF's name and page number added as a prefix,
             and if two attachments share a name the second gets a _1 suffix so
@@ -371,10 +377,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract attachments from several PDFs at once?
+            <span data-i18n-faq="extract-attachments.4.q"
+              >Can I extract attachments from several PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.4.a">
             Upload as many PDFs as you like and click Extract Attachments once.
             Everything found across all of them is placed in one
             extracted-attachments.zip, and the status message reports the total
@@ -383,10 +391,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What file types can be extracted?
+            <span data-i18n-faq="extract-attachments.5.q"
+              >What file types can be extracted?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.5.a">
             Anything that was embedded: spreadsheets, XML data files, images,
             ZIP archives, other PDFs, and so on. The tool copies the bytes out
             exactly as they were stored and doesn't convert or open them.
@@ -394,10 +404,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract attachments from a password-protected PDF?
+            <span data-i18n-faq="extract-attachments.6.q"
+              >Can I extract attachments from a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.6.a">
             Encrypted PDFs prompt for their password when loaded, and extraction
             then runs on the decrypted copy held in memory. Without the correct
             password the embedded files can't be read.
@@ -405,11 +417,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I view or delete individual attachments instead of extracting
-            all of them?
+            <span data-i18n-faq="extract-attachments.7.q"
+              >Can I view or delete individual attachments instead of extracting
+              all of them?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.7.a">
             This tool extracts everything in one pass. To inspect, remove, or
             replace individual attachments inside the PDF use
             <a
@@ -421,10 +435,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the embedded files uploaded during extraction?
+            <span data-i18n-faq="extract-attachments.8.q"
+              >Are the embedded files uploaded during extraction?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-attachments.8.a">
             No. The PDFs are parsed by a WebAssembly build of cpdf in a
             background worker in your browser, the ZIP is assembled locally, and
             the download comes straight from your device. Attachments often

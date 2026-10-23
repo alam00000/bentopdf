@@ -293,10 +293,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert any JSON file into a PDF with this tool?
+            <span data-i18n-faq="json-to-pdf.1.q"
+              >Can I convert any JSON file into a PDF with this tool?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.1.a">
             No. It only rebuilds PDFs from JSON files created by BentoPDF's
             <a href="/pdf-to-json" class="text-indigo-300 hover:text-indigo-400"
               >PDF to JSON</a
@@ -308,10 +310,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I turn API data or a config file into a readable PDF instead?
+            <span data-i18n-faq="json-to-pdf.2.q"
+              >How do I turn API data or a config file into a readable PDF
+              instead?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.2.a">
             Paste or upload the JSON as plain text in
             <a href="/txt-to-pdf" class="text-indigo-300 hover:text-indigo-400"
               >Text to PDF</a
@@ -321,10 +326,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the rebuilt PDF match the original?
+            <span data-i18n-faq="json-to-pdf.3.q"
+              >Will the rebuilt PDF match the original?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.3.a">
             The JSON produced by PDF to JSON captures the document's objects, so
             converting it back reproduces the pages, text, and images of the
             source. Converting back and comparing is also a quick way to confirm
@@ -333,10 +340,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the output when I convert multiple JSON files?
+            <span data-i18n-faq="json-to-pdf.4.q"
+              >What is the output when I convert multiple JSON files?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.4.a">
             Every conversion downloads as jsons-to-pdf.zip, even for a single
             file. Inside, each PDF carries the name of its source JSON, so
             report.json becomes report.pdf.
@@ -344,10 +353,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I edit the JSON before converting it back?
+            <span data-i18n-faq="json-to-pdf.5.q"
+              >Can I edit the JSON before converting it back?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.5.a">
             Yes, as long as the structure stays valid for the CPDF engine.
             Programmatic changes to the JSON, such as edited metadata or text
             objects, are rebuilt into the PDF; a malformed edit produces a
@@ -356,10 +367,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool say the CPDF engine isn't available?
+            <span data-i18n-faq="json-to-pdf.6.q"
+              >Why does the tool say the CPDF engine isn't available?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.6.a">
             The conversion depends on the CPDF WebAssembly build. On
             bentopdf.com it's included, but a self-hosted copy needs the CPDF
             WASM files configured in
@@ -373,10 +386,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my JSON file uploaded to a server?
+            <span data-i18n-faq="json-to-pdf.7.q"
+              >Is my JSON file uploaded to a server?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="json-to-pdf.7.a">
             No. The files are read in your browser and rebuilt into PDFs by a
             Web Worker running the CPDF engine locally, so nothing is
             transmitted and the page stays responsive during large conversions.

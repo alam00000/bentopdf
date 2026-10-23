@@ -339,10 +339,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What format are the extracted images saved in?
+            <span data-i18n-faq="extract-images.1.q"
+              >What format are the extracted images saved in?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.1.a">
             Each image comes out in the format it's stored in inside the PDF,
             most often JPEG or PNG, with no re-encoding. Files are numbered in
             the order they're found, for example image_1.jpg and image_2.png,
@@ -351,10 +353,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool say no images were found?
+            <span data-i18n-faq="extract-images.2.q"
+              >Why does the tool say no images were found?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.2.a">
             It only pulls out embedded raster images. If the graphics are vector
             drawings, charts, or text drawn as paths, there's nothing to
             extract, and you'd need to render the page as a picture with
@@ -366,10 +370,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will I get the original full-resolution images?
+            <span data-i18n-faq="extract-images.3.q"
+              >Will I get the original full-resolution images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.3.a">
             You get the image data exactly as it's embedded, at its stored
             resolution rather than the size it appears on the page. If whoever
             made the PDF downsampled the images before embedding them, that
@@ -378,10 +384,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract images from a scanned PDF?
+            <span data-i18n-faq="extract-images.4.q"
+              >Can I extract images from a scanned PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.4.a">
             A scanned PDF stores each page as one large image, so you'll get one
             full-page picture per page rather than the individual photos or
             figures on it. Crop what you need from those page images afterward.
@@ -389,10 +397,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why do I get duplicate images?
+            <span data-i18n-faq="extract-images.5.q"
+              >Why do I get duplicate images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.5.a">
             Images are collected page by page, so a logo or header graphic
             that's reused on many pages is extracted once for every page it
             appears on. Keep the first copy and discard the rest.
@@ -400,10 +410,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract images from several PDFs at once?
+            <span data-i18n-faq="extract-images.6.q"
+              >Can I extract images from several PDFs at once?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.6.a">
             Upload as many PDFs as you want and click Extract once. Images from
             all the files are numbered continuously and shown in a single grid,
             and Download All puts everything into one ZIP.
@@ -411,10 +423,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I choose which images or pages to extract?
+            <span data-i18n-faq="extract-images.7.q"
+              >Can I choose which images or pages to extract?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.7.a">
             There are no page or selection options; every embedded image on
             every page is extracted. You can still save only the ones you want
             from the preview grid, since each thumbnail has its own download
@@ -423,10 +437,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my PDF's images uploaded during extraction?
+            <span data-i18n-faq="extract-images.8.q"
+              >Are my PDF's images uploaded during extraction?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-images.8.a">
             No. The PDF is opened by a PyMuPDF engine running as WebAssembly
             inside your browser, and the images are pulled out of the file in
             memory on your device. The preview grid, the individual downloads,

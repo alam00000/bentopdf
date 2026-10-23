@@ -352,10 +352,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which timestamp servers can I use?
+            <span data-i18n-faq="timestamp-pdf.1.q"
+              >Which timestamp servers can I use?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.1.a">
             The menu offers five public RFC 3161 authorities: DigiCert, Sectigo,
             SSL.com, FreeTSA, and MeSign. There is no field for a custom URL, so
             the choice is limited to those presets.
@@ -363,10 +365,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does timestamping work offline?
+            <span data-i18n-faq="timestamp-pdf.2.q"
+              >Does timestamping work offline?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.2.a">
             No. The tool has to contact the chosen TSA over the internet to
             obtain the signed timestamp token; everything else, including
             hashing the file and embedding the token, happens in your browser.
@@ -375,10 +379,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between a timestamp and a digital signature?
+            <span data-i18n-faq="timestamp-pdf.3.q"
+              >What's the difference between a timestamp and a digital
+              signature?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.3.a">
             A digital signature proves who signed the document and needs your
             own certificate, while a document timestamp proves only when the
             document existed, vouched for by the TSA. If you need both, sign
@@ -393,10 +400,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I timestamp a PDF that is already signed?
+            <span data-i18n-faq="timestamp-pdf.4.q"
+              >Can I timestamp a PDF that is already signed?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.4.a">
             The timestamp is appended as an incremental update rather than a
             rewrite of the file, so an existing signature stays intact and
             verifiable, and the timestamp shows as its own entry in the reader's
@@ -405,10 +414,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will anything appear on the page?
+            <span data-i18n-faq="timestamp-pdf.5.q"
+              >Will anything appear on the page?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.5.a">
             No. The timestamp is invisible; it lives in the file's signature
             data and shows up in the signature panel of Acrobat and similar
             readers, not as a stamp on the page. The downloaded file keeps its
@@ -417,10 +428,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did I get a Timestamp Failed error?
+            <span data-i18n-faq="timestamp-pdf.6.q"
+              >Why did I get a Timestamp Failed error?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.6.a">
             Most often the TSA didn't respond or your connection dropped, so try
             another server from the list. On self-hosted copies of BentoPDF
             served over HTTPS, the servers that only offer HTTP endpoints need a
@@ -430,10 +443,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How long does the timestamp stay valid?
+            <span data-i18n-faq="timestamp-pdf.7.q"
+              >How long does the timestamp stay valid?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.7.a">
             Readers validate the token against the TSA's certificate chain, so
             it verifies as long as that chain is trusted. This tool doesn't
             embed long-term validation (LTV) data, so verification years later
@@ -443,10 +458,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I check the timestamp after downloading?
+            <span data-i18n-faq="timestamp-pdf.8.q"
+              >How do I check the timestamp after downloading?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="timestamp-pdf.8.a">
             Open the signature panel in Adobe Acrobat Reader or another
             signature-aware viewer; the timestamp is listed there with its time
             and the authority that issued it. If the reader trusts the TSA's

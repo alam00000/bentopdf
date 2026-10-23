@@ -343,10 +343,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which output format should I choose?
+            <span data-i18n-faq="extract-tables.1.q"
+              >Which output format should I choose?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.1.a">
             CSV opens in Excel, Google Sheets, or any database import. JSON
             gives an array of rows, each an array of cell strings, for scripts
             and APIs. Markdown gives a pipe table you can paste into GitHub, a
@@ -355,10 +357,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do I get when the PDF contains several tables?
+            <span data-i18n-faq="extract-tables.2.q"
+              >What do I get when the PDF contains several tables?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.2.a">
             Each table is saved as its own file, named like table_1_page3.csv,
             and all of them are bundled into filename_tables.zip. A single table
             downloads directly as filename_table.csv, .json, or .md. If you'd
@@ -370,10 +374,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it say no tables were found?
+            <span data-i18n-faq="extract-tables.3.q"
+              >Why does it say no tables were found?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.3.a">
             Detection works on the document's text layer. Scanned PDFs contain
             only an image, so run them through
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
@@ -385,10 +391,13 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            A table continues over several pages. Will it come out as one file?
+            <span data-i18n-faq="extract-tables.4.q"
+              >A table continues over several pages. Will it come out as one
+              file?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.4.a">
             No. Each page is scanned separately, so a table that spans pages is
             exported as one file per page, each with the page number in its
             name. Join the pieces in a spreadsheet after extraction.
@@ -396,10 +405,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract tables from only some pages?
+            <span data-i18n-faq="extract-tables.5.q"
+              >Can I extract tables from only some pages?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.5.a">
             The whole document is always scanned, though the page number in each
             filename tells you where a table came from. To limit the scan, save
             the pages you need first with
@@ -413,10 +424,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the CSV handle commas and line breaks inside cells?
+            <span data-i18n-faq="extract-tables.6.q"
+              >Does the CSV handle commas and line breaks inside cells?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.6.a">
             Yes. Cells containing commas, quotes, or newlines are wrapped in
             double quotes with inner quotes doubled, so spreadsheet software
             reads them correctly. Empty cells are written as empty fields.
@@ -424,10 +437,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can tables be extracted from a password-protected PDF?
+            <span data-i18n-faq="extract-tables.7.q"
+              >Can tables be extracted from a password-protected PDF?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.7.a">
             If the file needs a password to open, you're asked for it before
             extraction starts, and the tables are read from a decrypted copy
             held in memory.
@@ -435,10 +450,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF uploaded for table detection?
+            <span data-i18n-faq="extract-tables.8.q"
+              >Is the PDF uploaded for table detection?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="extract-tables.8.a">
             No. The detection engine (PyMuPDF compiled to WebAssembly) is
             downloaded from a CDN the first time you use it, then runs inside
             your browser. Your PDF stays on your device.

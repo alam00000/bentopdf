@@ -341,10 +341,12 @@
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What resolution do the PNGs have?
+            <span data-i18n-faq="pdf-to-png.1.q"
+              >What resolution do the PNGs have?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.1.a">
             Scale 1.0x renders at 72 pixels per inch of page, so a Letter page
             becomes 612 by 792 pixels. The default 2.0x doubles that to 1224 by
             1584, and 3.0x gives 1836 by 2376, which is 216 pixels per inch.
@@ -352,10 +354,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I export at 300 DPI for print?
+            <span data-i18n-faq="pdf-to-png.2.q"
+              >Can I export at 300 DPI for print?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.2.a">
             Not directly. The slider tops out at 3.0x, about 216 DPI on a
             standard page, and there's no field for entering a custom DPI in
             this tool.
@@ -363,10 +367,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the background transparent?
+            <span data-i18n-faq="pdf-to-png.3.q"
+              >Is the background transparent?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.3.a">
             No. Pages are drawn onto a white background, so areas with no
             content come out white rather than transparent, even though PNG
             supports transparency.
@@ -374,10 +380,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert only certain pages to PNG?
+            <span data-i18n-faq="pdf-to-png.4.q"
+              >Can I convert only certain pages to PNG?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.4.a">
             Every page is converted; there's no page-range field. Pull out the
             pages you need with
             <a
@@ -390,10 +398,10 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are the files named?
+            <span data-i18n-faq="pdf-to-png.5.q">How are the files named?</span>
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.5.a">
             A one-page PDF downloads as filename.png. Multi-page documents
             download as filename_pngs.zip containing page_1.png, page_2.png, and
             so on in document order.
@@ -401,10 +409,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why are the PNG files so large?
+            <span data-i18n-faq="pdf-to-png.6.q"
+              >Why are the PNG files so large?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.6.a">
             PNG is lossless, so a full page at 2.0x is often several megabytes,
             especially for scans and photos. If some compression is acceptable,
             <a href="/pdf-to-jpg" class="text-indigo-300 hover:text-indigo-400"
@@ -415,10 +425,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do annotations and filled form fields appear in the images?
+            <span data-i18n-faq="pdf-to-png.7.q"
+              >Do annotations and filled form fields appear in the images?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.7.a">
             Visible markup such as highlights, stamps, and filled form fields is
             rendered as it appears on the page. The text inside pop-up comments
             isn't drawn, only the note icon.
@@ -426,10 +438,12 @@
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF rendered on a server?
+            <span data-i18n-faq="pdf-to-png.8.q"
+              >Is the PDF rendered on a server?</span
+            >
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
-          <p class="faq-d-a">
+          <p class="faq-d-a" data-i18n-faq="pdf-to-png.8.a">
             No. Rendering uses PDF.js inside your browser and the ZIP is built
             locally, so the document never leaves your computer. If the PDF
             needs a password, you're asked for it first.
