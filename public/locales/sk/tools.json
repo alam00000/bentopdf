@@ -21,11 +21,11 @@
   "convertToPdf": "Previesť do PDF",
   "pdfMultiTool": {
     "name": "Multifunkčný nástroj PDF",
-    "subtitle": "Spojiť, rozdeliť, organizovať, mazať, otáčať, pridávať prázdne strany, extrahovať a duplikovať v jednotnom rozhraní."
+    "subtitle": "Zlúčiť, rozdeliť, organizovať, mazať, otáčať, pridávať prázdne strany, extrahovať a duplikovať v jednotnom rozhraní."
   },
   "mergePdf": {
-    "name": "Spojiť PDF",
-    "subtitle": "Spojiť viacero PDF do jedného súboru. Zachováva záložky.",
+    "name": "Zlúčiť PDF",
+    "subtitle": "Zlúčiť viacero PDF do jedného súboru. Zachováva záložky.",
     "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
     "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia).",
     "removeDuplicateFonts": "Odstrániť duplicitné písma",
@@ -1292,7 +1292,7 @@
   },
   "alternateMerge": {
     "name": "Striedavo spojiť a zmiešať strany",
-    "subtitle": "Spojiť PDF striedaním strán z každého PDF. Zachováva záložky.",
+    "subtitle": "Zlúčiť PDF striedaním strán z každého PDF. Zachováva záložky.",
     "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
     "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia).",
     "loader": {
