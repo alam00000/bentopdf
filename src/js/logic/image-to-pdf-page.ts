@@ -1,6 +1,11 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '@/js/ui.js';
 import { downloadFile, formatBytes } from '@/js/utils/helpers.js';
+import {
+  createDragHandle,
+  enableFileListReorder,
+  moveItem,
+} from '@/js/utils/sortable-file-list.js';
 import { loadPyMuPDF } from '@/js/utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
 import {
@@ -145,7 +150,7 @@ function updateUI() {
       sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
       sizeSpan.textContent = `(${formatBytes(file.size)})`;
 
-      infoContainer.append(nameSpan, sizeSpan);
+      infoContainer.append(createDragHandle(), nameSpan, sizeSpan);
 
       const removeBtn = document.createElement('button');
       removeBtn.className =
@@ -158,6 +163,10 @@ function updateUI() {
 
       fileDiv.append(infoContainer, removeBtn);
       fileDisplayArea.appendChild(fileDiv);
+    });
+    enableFileListReorder(fileDisplayArea, (oldIndex, newIndex) => {
+      files = moveItem(files, oldIndex, newIndex);
+      updateUI();
     });
     createIcons({ icons });
   } else {
