@@ -7,7 +7,7 @@
     "convertFromPdf": "從 PDF 轉換",
     "organizeManage": "整理與管理",
     "optimizeRepair": "最佳化與修復",
-    "securePdf": "安全 PDF",
+    "securePdf": "保護 PDF",
     "input": "輸入",
     "output": "輸出"
   },
@@ -27,7 +27,22 @@
     "name": "合併 PDF",
     "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。",
     "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 頁碼會依序編為 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。",
+    "removeDuplicateFonts": "移除重複字型",
+    "alert": {
+      "thumbnailError": "無法繪製頁面縮圖。",
+      "noSelection": "尚未選取要合併的檔案或頁面。",
+      "mergeSuccess": "PDF 合併成功！",
+      "mergeFailed": "無法合併 PDF。",
+      "mergeError": "無法合併 PDF。請確認所有檔案均有效且未受密碼保護。",
+      "workerError": "合併 Worker 發生未預期的錯誤。",
+      "loadError": "無法載入一或多個 PDF 檔案。"
+    },
+    "loader": {
+      "renderingPreviews": "正在繪製頁面預覽…",
+      "merging": "正在合併 PDF…",
+      "loadingDocuments": "正在載入 PDF 文件…"
+    }
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -35,26 +50,26 @@
   },
   "compressPdf": {
     "name": "壓縮 PDF",
-    "subtitle": "降低您的 PDF 檔案大小。"
+    "subtitle": "縮小 PDF 檔案大小。"
   },
   "pdfEditor": {
     "name": "PDF 編輯器",
-    "subtitle": "註解、螢光標註、塗黑、評論、新增圖形或圖片、搜尋與檢視 PDF。"
+    "subtitle": "標註、螢光標註、塗黑、註解、新增圖形或圖片、搜尋與檢視 PDF。"
   },
   "editPdfText": {
     "name": "編輯 PDF 文字",
-    "subtitle": "點擊任意段落即可就地編輯，支援即時重排、字型與樣式設定。",
+    "subtitle": "點選任意段落即可直接編輯，支援即時重新排版、字型與樣式設定。",
     "saved": "PDF 儲存成功！（{{size}} KB）",
     "failedToLoad": "無法載入 PDF 文字編輯器。",
     "loadingFonts": "正在載入字型…",
     "fontsUnavailable": "無法下載部分字元所需的字型。請檢查網路連線後再試一次，否則這些字元在儲存的 PDF 中可能無法正確顯示。",
     "howToUpload": "上傳 PDF",
-    "howToClick": "點擊段落",
+    "howToClick": "點選段落",
     "howToRestyle": "隨意變更樣式",
     "relatedPdfEditor": "為 PDF 加上註解與標記",
-    "relatedSignPdf": "手寫、輸入或上傳簽名",
-    "relatedWatermark": "疊加文字或圖片",
-    "relatedStamps": "在頁面上加入印章",
+    "relatedSignPdf": "繪製、輸入或上傳簽名",
+    "relatedWatermark": "加上文字或圖片浮水印",
+    "relatedStamps": "在頁面上新增印章",
     "relatedCompress": "縮小檔案大小",
     "relatedOrganizeName": "整理 PDF",
     "relatedOrganize": "重新排序與管理頁面",
@@ -63,15 +78,15 @@
     "filterAll": "全部",
     "filterText": "文字",
     "filterImages": "圖片",
-    "filterShapes": "形狀",
-    "addText": "加入文字",
+    "filterShapes": "圖形",
+    "addText": "新增文字",
     "langAuto": "自動",
     "change": "變更",
     "ignore": "忽略",
     "next": "下一個",
     "replace": "取代",
     "replaceAll": "全部取代",
-    "emptyState": "開啟 PDF 即可編輯其中的文字、圖片與形狀。",
+    "emptyState": "開啟 PDF 即可編輯其中的文字、圖片與圖形。",
     "choosePdf": "選擇 PDF…",
     "font": "字型",
     "systemFonts": "系統字型",
@@ -84,18 +99,18 @@
     "direction": "方向",
     "dirAuto": "自動",
     "pathStroke": "路徑筆畫",
-    "tipBackToUpload": "返回上傳",
+    "tipBackToUpload": "回到上傳畫面",
     "tipOpenAnotherPdf": "開啟其他 PDF",
-    "tipExportS": "匯出 (⌘S)",
-    "tipUndoZ": "復原 (⌘Z)",
-    "tipRedoZ": "重做 (⇧⌘Z)",
+    "tipExportS": "匯出（⌘S）",
+    "tipUndoZ": "復原（⌘Z）",
+    "tipRedoZ": "重做（⇧⌘Z）",
     "tipFileDetails": "檔案詳細資料",
     "tipEditExistingContent": "編輯現有內容",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "編輯工具的作用範圍——在內容密集的頁面上縮小範圍",
-    "tipClickThePageToAddATextBox": "點擊頁面以加入文字方塊",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "頁面內容繁多時，可縮小編輯工具的作用範圍",
+    "tipClickThePageToAddATextBox": "點選頁面以新增文字方塊",
     "tipSpellCheckLanguage": "拼字檢查語言",
     "tipFindAndReplace": "尋找與取代",
-    "tipAddAnImage": "加入圖片",
+    "tipAddAnImage": "新增圖片",
     "tipCopyThisPageSTextInReadingOrder": "依閱讀順序複製本頁文字",
     "tipCheckTheSpellingOfThisPage": "檢查本頁拼字",
     "tipShowOrHideTheFormatPanel": "顯示或隱藏格式面板",
@@ -115,9 +130,9 @@
     "tipSendToBack": "移至最下層",
     "tipDuplicate": "複製",
     "tipDelete": "刪除",
-    "tipAlignLeftEdges": "靠左邊緣對齊",
+    "tipAlignLeftEdges": "靠左對齊",
     "tipAlignHorizontalCenters": "水平置中對齊",
-    "tipAlignRightEdges": "靠右邊緣對齊",
+    "tipAlignRightEdges": "靠右對齊",
     "tipAlignTops": "靠上對齊",
     "tipAlignVerticalCenters": "垂直置中對齊",
     "tipAlignBottoms": "靠下對齊",
@@ -137,13 +152,13 @@
     "tipSuperscript": "上標",
     "tipSubscript": "下標",
     "tipToggleBulletedItem": "切換項目符號",
-    "tipToggleNumberedItem": "切換編號項目",
+    "tipToggleNumberedItem": "切換項目編號",
     "tipNumberedListMarkerStyle": "編號清單標記樣式",
-    "tipDecreaseListIndentTab": "減少縮排 (⇧Tab)",
-    "tipIncreaseListIndentTab": "增加縮排 (Tab)",
+    "tipDecreaseListIndentTab": "減少清單縮排（⇧Tab）",
+    "tipIncreaseListIndentTab": "增加清單縮排（Tab）",
     "tipTextOutlineColor": "文字外框顏色",
     "tipOutlineWidth0None": "外框寬度（0 = 無）",
-    "tipFromContent": "來自內容",
+    "tipFromContent": "依內容決定",
     "tipLeftToRight": "由左至右",
     "tipRightToLeft": "由右至左",
     "tipStrokeColor": "筆畫顏色",
@@ -176,7 +191,7 @@
     "subtitle": "將選取的頁面儲存為新的檔案。"
   },
   "duplicateOrganize": {
-    "name": "複製與組織",
+    "name": "複製與整理",
     "subtitle": "複製、重新排序與刪除頁面。",
     "saveChanges": "儲存變更"
   },
@@ -204,8 +219,8 @@
     "addBookmark": "為目錄頁新增書籤",
     "generateButton": "產生目錄",
     "selectPdfFirst": "請先選擇 PDF 檔案。",
-    "statusReadingFileMainThread": "正在讀取檔案（主執行緒）...",
-    "statusGenerating": "正在產生目錄...",
+    "statusReadingFileMainThread": "正在讀取檔案（主執行緒）…",
+    "statusGenerating": "正在產生目錄…",
     "errorReadingFileWithMessage": "讀取檔案時發生錯誤：{{message}}",
     "successGeneratedDownloadStarted": "目錄產生成功！下載已開始。",
     "workerErrorWithMessage": "錯誤：{{message}}",
@@ -223,11 +238,11 @@
     "howLabelsWorkStep1": "將頁面範圍留空即可為所有頁面套用標籤。",
     "howLabelsWorkStep2": "前置頁可使用羅馬數字，正文則可使用十進位編號等樣式。",
     "howLabelsWorkStep3": "將前綴搭配起始值 0，可建立像 A-0、A-1、A-2 這樣的標籤。",
-    "howLabelsWorkStep4": "當規則使用 1-9,30-40 或 odd 等不連續範圍時，請啟用連續編號。",
+    "howLabelsWorkStep4": "當規則使用 1-9,30-40 或 odd 等不連續範圍時，請啟用持續編號。",
     "labelRulesTitle": "標籤規則",
     "addRule": "新增規則",
     "removeExistingLabels": "套用這些規則前先移除現有頁面標籤",
-    "cpdfNote": "此工具會在您的瀏覽器中使用 CoherentPDF。若 CoherentPDF 尚未設定，系統會提示您在 WASM 設定中完成設定。",
+    "cpdfNote": "此工具會在您的瀏覽器中使用 CoherentPDF。若 CoherentPDF 尚未設定，系統會提示您在 [進階功能設定] 中完成設定。",
     "processButton": "新增頁面標籤",
     "howItWorksUploadTitle": "上傳檔案",
     "howItWorksUploadDescription": "選擇您要重新標記的 PDF 檔案。",
@@ -239,30 +254,30 @@
     "faqWhatIsQuestion": "什麼是頁面標籤？",
     "faqWhatIsAnswer": "頁面標籤是 PDF 閱讀器在縮圖、頁面導覽與列印對話框中顯示的編號。它不會在頁面本身額外列印新文字。",
     "faqMixQuestion": "我可以混用羅馬數字和一般數字嗎？",
-    "faqMixAnswer": "可以。請新增多條規則，例如將 1-4 設為 LowercaseRoman，並將 5-20 設為 DecimalArabic。",
+    "faqMixAnswer": "可以。請新增多條規則，例如將 1-4 設為 [小寫羅馬數字]，並將 5-20 設為 [十進位數字]。",
     "faqPrivacyQuestion": "我的檔案會保持私密嗎？",
     "faqPrivacyAnswer": "會。處理程序會在您的瀏覽器中使用 CoherentPDF WASM 完成，PDF 不會離開您的裝置。",
     "invalidFileTitle": "無效檔案",
     "invalidFileMessage": "請上傳有效的 PDF 檔案。",
-    "loadingPdf": "正在載入 PDF...",
+    "loadingPdf": "正在載入 PDF…",
     "protectedPdfTitle": "受保護的 PDF",
     "protectedPdfMessage": "此 PDF 受密碼保護。請先使用解密或變更權限工具。",
     "loadErrorMessage": "無法載入 PDF 檔案。該檔案可能無效、毀損或受密碼保護。",
     "fileMeta": "{{size}} • {{count}} 頁",
     "ruleTitle": "標籤規則 {{number}}",
     "pageRangeLabel": "頁面範圍",
-    "pageRangePlaceholder": "所有頁面，例如 1-4, 7, odd",
+    "pageRangePlaceholder": "所有頁面，或指定範圍（例如 1-4, 7, odd）",
     "labelStyleLabel": "標籤樣式",
     "labelPrefixLabel": "標籤前綴",
     "labelPrefixPlaceholder": "選填的前綴，例如 A-",
     "startValueLabel": "起始值",
     "continueNumbering": "在不連續範圍中持續編號",
-    "examplesNote": "例如：前置頁 1-4 使用羅馬數字、15-20 使用前綴 A- 且起始值為 0，或輸入 odd 並啟用連續編號。",
+    "examplesNote": "例如：前置頁 1-4 使用羅馬數字、15-20 使用前綴 A- 且起始值為 0，或輸入 odd 並啟用持續編號。",
     "uploadFirstMessage": "請先上傳 PDF 檔案。",
-    "applyingLabels": "正在套用頁面標籤...",
+    "applyingLabels": "正在套用頁面標籤…",
     "invalidRangeMessage": "規則 {{number}} 的頁面範圍無效：{{range}}",
     "allPages": "所有頁面",
-    "emptyOutputMessage": "CoherentPDF 產生了空白檔案。",
+    "emptyOutputMessage": "CoherentPDF 產生了空檔案。",
     "successMessage": "頁面標籤新增成功！",
     "processErrorMessage": "無法新增頁面標籤。",
     "styleOptions": {
@@ -280,7 +295,7 @@
   },
   "addWatermark": {
     "name": "新增浮水印",
-    "subtitle": "在您的 PDF 頁面上壓印文字或圖片。",
+    "subtitle": "在 PDF 頁面上加上文字或圖片浮水印。",
     "applyToAllPages": "套用至所有頁面"
   },
   "headerFooter": {
@@ -299,7 +314,7 @@
     "gray": "灰階",
     "border": "邊框",
     "rotate": "旋轉",
-    "rotateVariance": "旋轉變異",
+    "rotateVariance": "隨機旋轉幅度",
     "brightness": "亮度",
     "contrast": "對比度",
     "blur": "模糊",
@@ -319,7 +334,7 @@
     "temperature": "色溫",
     "tint": "色調",
     "gamma": "伽瑪值",
-    "sepia": "復古色",
+    "sepia": "深褐色調",
     "processButton": "套用顏色調整"
   },
   "backgroundColor": {
@@ -340,7 +355,7 @@
   },
   "removeAnnotations": {
     "name": "移除註解",
-    "subtitle": "移除留言、螢光標註與連結。"
+    "subtitle": "移除註解、螢光標註與連結。"
   },
   "pdfFormFiller": {
     "name": "PDF 表單填寫器",
@@ -351,14 +366,14 @@
   },
   "createPdfForm": {
     "name": "建立 PDF 表單",
-    "subtitle": "透過拖放文字框建立可填寫的 PDF 表單。",
+    "subtitle": "透過拖放文字欄位建立可填寫的 PDF 表單。",
     "orSeparator": "或",
     "createBlankPdf": "建立空白 PDF"
   },
   "removeBlankPages": {
     "name": "移除空白頁面",
     "subtitle": "自動偵測並刪除空白頁面。",
-    "sensitivityHint": "數值越高，判定條件越嚴格，只會偵測完全空白的頁面；數值越低，則允許頁面包含少量內容。"
+    "sensitivityHint": "數值越高，判定條件越嚴格，只會偵測完全空白的頁面；數值越低，則可能將含有少量內容的頁面視為空白頁。"
   },
   "imageToPdf": {
     "name": "圖片轉 PDF",
@@ -410,10 +425,10 @@
     "status": {
       "selectAtLeastOne": "請至少選擇 1 個 JSON 檔案",
       "selectedReady": "已選擇 {{count}} 個檔案。準備轉換！",
-      "readingFiles": "正在讀取檔案（主執行緒）...",
-      "converting": "正在將 JSON 檔案轉換為 PDF...",
+      "readingFiles": "正在讀取檔案（主執行緒）…",
+      "converting": "正在將 JSON 檔案轉換為 PDF…",
       "readError": "讀取檔案時發生錯誤：{{message}}",
-      "creatingZip": "正在建立 ZIP 檔案...",
+      "creatingZip": "正在建立 ZIP 檔案…",
       "success": "JSON 檔案已成功轉換為 PDF！ZIP 下載已開始。",
       "zipError": "建立 ZIP 時發生錯誤：{{message}}",
       "workerError": "Worker 錯誤：{{message}}",
@@ -434,7 +449,7 @@
       "conversionError": "無法將 PDF 轉換為 JPG。檔案可能已損壞。"
     },
     "loader": {
-      "converting": "正在轉換為 JPG..."
+      "converting": "正在轉換為 JPG…"
     }
   },
   "pdfToPng": {
@@ -451,7 +466,7 @@
       "conversionError": "無法將 PDF 轉換為 PNG。檔案可能已損壞。"
     },
     "loader": {
-      "converting": "正在轉換為 PNG..."
+      "converting": "正在轉換為 PNG…"
     }
   },
   "pdfToWebp": {
@@ -468,7 +483,7 @@
       "conversionError": "無法將 PDF 轉換為 WebP。檔案可能已損壞。"
     },
     "loader": {
-      "converting": "正在轉換為 WebP..."
+      "converting": "正在轉換為 WebP…"
     }
   },
   "pdfToBmp": {
@@ -483,7 +498,7 @@
       "conversionError": "無法將 PDF 轉換為 BMP。檔案可能已損壞。"
     },
     "loader": {
-      "converting": "正在轉換為 BMP..."
+      "converting": "正在轉換為 BMP…"
     }
   },
   "pdfToTiff": {
@@ -495,20 +510,21 @@
     "compressionExplanation": "LZW 和 Deflate 為無損壓縮。CCITT Group 4 最適合黑白掃描文件。",
     "colorMode": "色彩模式",
     "multiPage": "儲存為多頁 TIFF（單一檔案）",
-    "loadingVips": "正在載入影像處理器...",
-    "converting": "正在轉換為 TIFF...",
+    "loadingVips": "正在載入影像處理器…",
+    "converting": "正在轉換為 TIFF…",
     "alert": {
       "invalidFile": "無效檔案",
       "invalidFileExplanation": "請上傳 PDF 檔案。",
       "noFile": "沒有檔案",
       "noFileExplanation": "請先上傳 PDF 檔案。",
       "conversionSuccess": "PDF 已成功轉換為 TIFF！",
-      "conversionError": "無法將 PDF 轉換為 TIFF。檔案可能已損壞。"
+      "conversionError": "無法將 PDF 轉換為 TIFF。檔案可能已損壞。",
+      "conversionOutOfMemory": "轉換時瀏覽器記憶體不足。請嘗試降低 DPI，或取消勾選多頁 TIFF 選項，改為逐頁轉換。"
     }
   },
   "pdfToCbz": {
     "name": "PDF 轉 CBZ",
-    "subtitle": "將 PDF 轉換為 CBZ（漫畫書封存）檔案，適用於漫畫閱讀器。",
+    "subtitle": "將 PDF 轉換為 CBZ（漫畫封存檔），供漫畫閱讀器使用。",
     "imageFormat": "圖片格式",
     "quality": "圖片品質",
     "qualityExplanation": "品質越高，檔案越大",
@@ -523,10 +539,10 @@
     "numberLabel": "編號",
     "volumeLabel": "卷",
     "publisherLabel": "出版社",
-    "tagsLabel": "標籤 / 類型",
+    "tagsLabel": "標籤／類型",
     "yearLabel": "出版年份",
     "ratingLabel": "評分（0-5）",
-    "converting": "正在轉換為 CBZ...",
+    "converting": "正在轉換為 CBZ…",
     "alert": {
       "invalidFile": "無效檔案",
       "invalidFileExplanation": "請上傳 PDF 檔案。",
@@ -547,11 +563,11 @@
     "status": {
       "selectAtLeastOne": "請至少選擇 1 個 PDF 檔案",
       "selectedReady": "已選擇 {{count}} 個檔案。準備轉換！",
-      "checkingEncrypted": "正在檢查加密的 PDF...",
-      "readingFiles": "正在讀取檔案（主執行緒）...",
-      "converting": "正在將 PDF 轉換為 JSON...",
+      "checkingEncrypted": "正在檢查加密的 PDF…",
+      "readingFiles": "正在讀取檔案（主執行緒）…",
+      "converting": "正在將 PDF 轉換為 JSON…",
       "readError": "讀取檔案時發生錯誤：{{message}}",
-      "creatingZip": "正在建立 ZIP 檔案...",
+      "creatingZip": "正在建立 ZIP 檔案…",
       "success": "PDF 已成功轉換為 JSON！ZIP 下載已開始。",
       "zipError": "建立 ZIP 時發生錯誤：{{message}}",
       "workerError": "Worker 錯誤：{{message}}",
@@ -559,10 +575,10 @@
     }
   },
   "ocrPdf": {
-    "name": "PDF 文字辨識 (OCR)",
-    "subtitle": "使 PDF 可搜尋且可複製。",
+    "name": "PDF 文字辨識（OCR）",
+    "subtitle": "讓 PDF 中的文字可供搜尋與複製。",
     "languagesInDocument": "文件中的語言",
-    "searchLanguagesPlaceholder": "搜尋語言...",
+    "searchLanguagesPlaceholder": "搜尋語言…",
     "selectedLabel": "已選擇：",
     "none": "無",
     "advancedSettingsSummary": "進階設定（建議使用，可提高準確度）",
@@ -570,22 +586,22 @@
     "resolutionStandard": "標準（192 DPI）",
     "resolutionHigh": "高（288 DPI）",
     "resolutionUltra": "超高（384 DPI）",
-    "binarizeLabel": "將圖片二值化（提高對比度，改善清晰掃描文件的辨識效果）",
+    "binarizeLabel": "將辨識用影像轉為純黑白（提高對比度）",
     "embedFullFontsLabel": "嵌入完整字型（檔案較大，相容性更好）",
     "whitelistPresetLabel": "字元白名單預設組合",
     "whitelistNone": "無（所有字元）",
-    "whitelistAlphanumeric": "字母數字 + 基本標點",
+    "whitelistAlphanumeric": "英數字元 + 基本標點",
     "whitelistNumbersCurrency": "數字 + 貨幣符號",
     "whitelistLettersOnly": "僅字母（A-Z、a-z）",
     "whitelistNumbersOnly": "僅數字（0-9）",
-    "whitelistInvoice": "發票/收據（數字、$、.、-、/）",
-    "whitelistForms": "表單（字母數字 + 常用符號）",
-    "whitelistCustom": "自訂...",
+    "whitelistInvoice": "發票／收據（數字、$、.、-、/）",
+    "whitelistForms": "表單（英數字元 + 常用符號）",
+    "whitelistCustom": "自訂…",
     "whitelistHelp": "系統只會辨識這些字元；若留空，則會辨識所有字元。",
     "whitelistInputLabel": "字元白名單（選填）",
     "whitelistInputPlaceholder": "例如：abcdefghijklmnopqrstuvwxyz0123456789$.,",
     "startButton": "開始 OCR",
-    "progressInitializing": "正在初始化...",
+    "progressInitializing": "正在初始化…",
     "resultsTitle": "OCR 完成",
     "resultsDescription": "可搜尋的 PDF 已準備完成。也可以在下方複製或下載擷取出的文字。",
     "copyToClipboard": "複製到剪貼簿",
@@ -616,11 +632,11 @@
     "name": "交錯混合頁面",
     "subtitle": "將每個 PDF 的頁面交錯合併。保留書籤。",
     "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 頁碼會依序編為 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
   },
   "duplexCollate": {
     "name": "雙面掃描整理",
-    "subtitle": "將分兩個區塊掃描的 PDF（先全部正面，再全部背面）重新排列成正確的正面/背面順序。",
+    "subtitle": "將分兩個區塊掃描的 PDF（先全部正面，再全部背面）重新排列成正確的正面／背面順序。",
     "totalPagesLabel": "總頁數：",
     "splitAfterPageLabel": "在此頁後分割",
     "splitAfterPagePlaceholder": "例如 50",
@@ -628,27 +644,27 @@
     "backBlockReverseOption": "反轉背面區塊（紙疊翻面掃描時常見）",
     "backBlockKeepOption": "保持背面區塊原樣",
     "autoSplitButton": "自動偵測分割點（對半）",
-    "exportGroupedLabel": "依原始文件長度分組匯出檔案",
+    "exportGroupedLabel": "依原始文件頁數分組匯出檔案",
     "pagesPerDocumentLabel": "每份原始文件的頁數",
     "groupedHelp": "啟用後，輸出為 ZIP 檔，其中每份分組文件對應一個 PDF。",
     "collateButton": "整理 PDF",
     "invalidFileTitle": "檔案無效",
     "invalidFileMessage": "請選擇 PDF 檔案。",
-    "loadingPdf": "正在載入 PDF...",
+    "loadingPdf": "正在載入 PDF…",
     "loadErrorMessage": "無法載入 PDF 檔案。",
     "fileMeta": "{{size}} - {{count}} 頁",
     "oddPageWarning": "頁數為奇數（{{count}} 頁）。雙面掃描的頁數應為偶數，可能缺少或多出一頁。",
-    "previewSummary": "正面區塊：{{frontCount}} 頁，背面區塊：{{backCount}} 頁。輸出：{{outputCount}} 頁，依正面/背面順序排列。",
-    "previewMismatchWarning": "正面與背面區塊頁數不一致（正面 {{frontCount}} 頁，背面 {{backCount}} 頁）。較長一側多出的 {{extraCount}} 頁將不配對地附加在結尾。",
+    "previewSummary": "正面區塊：{{frontCount}} 頁，背面區塊：{{backCount}} 頁。輸出：{{outputCount}} 頁，依正面／背面順序排列。",
+    "previewMismatchWarning": "正面與背面區塊頁數不一致（正面 {{frontCount}} 頁，背面 {{backCount}} 頁）。較長一側多出的 {{extraCount}} 頁將直接附加在結尾，不另配對。",
     "missingFileTitle": "缺少檔案",
     "missingFileMessage": "請先上傳至少 2 頁的 PDF 再進行處理。",
     "invalidSplitTitle": "分割點無效",
     "invalidSplitMessage": "分割點必須介於第 1 頁與第 {{maxSplit}} 頁之間。",
-    "unevenConfirmTitle": "區塊不均等",
-    "unevenConfirmMessage": "正面區塊有 {{frontCount}} 頁，背面區塊有 {{backCount}} 頁。\n這通常表示某一頁被掃描兩次或缺失。\n\n未配對的 {{extraCount}} 頁將附加在結尾。\n\n仍要繼續嗎？",
+    "unevenConfirmTitle": "正反面頁數不一致",
+    "unevenConfirmMessage": "正面區塊有 {{frontCount}} 頁，背面區塊有 {{backCount}} 頁。\n這通常表示有頁面重複掃描或遺漏。\n\n未配對的 {{extraCount}} 頁將附加在結尾。\n\n仍要繼續嗎？",
     "invalidGroupTitle": "分組大小無效",
     "invalidGroupMessage": "請輸入有效的每份原始文件頁數。",
-    "collatingLoader": "正在整理雙面掃描...",
+    "collatingLoader": "正在整理雙面掃描…",
     "successMessage": "已成功產生整理後的 PDF。",
     "successGroupedMessage": "整理完成，已產生 {{fileCount}} 個分組檔案。",
     "processErrorMessage": "無法整理 PDF。",
@@ -657,7 +673,7 @@
     "howItWorksStep2Title": "設定分割點",
     "howItWorksStep2": "標出正面區塊結束的位置，然後選擇背面區塊是否需要反轉。",
     "howItWorksStep3Title": "整理並下載",
-    "howItWorksStep3": "取得一個正反交錯排列的 PDF，或一個為每份原始文件各自成檔的 ZIP。",
+    "howItWorksStep3": "下載正反面交錯排列的單一 PDF，或下載 ZIP 檔，其中每份原始文件各自存成一個 PDF。",
     "faqOddPagesQuestion": "如果掃描檔的頁數是奇數怎麼辦？",
     "faqOddPagesAnswer": "雙面掃描的頁數應為偶數。若不是，通常表示某一頁被掃描兩次或被漏掉。處理前工具會提醒你，未配對的頁面會附加在結尾，因此不會遺失任何內容。",
     "faqBackOrderQuestion": "什麼情況下要保持背面區塊原樣？",
@@ -684,7 +700,7 @@
     "subtitle": "在您的 PDF 中的任一位置插入空白頁面。"
   },
   "reversePages": {
-    "name": "反轉頁面",
+    "name": "反轉頁面順序",
     "subtitle": "反轉您的文件中所有頁面的順序。"
   },
   "rotatePdf": {
@@ -696,12 +712,12 @@
     "subtitle": "以任意自訂角度旋轉頁面。"
   },
   "nUpPdf": {
-    "name": "多頁併一頁 (N-Up)",
+    "name": "多頁併一頁（N-Up）",
     "subtitle": "將多個頁面排列在單張紙上。"
   },
   "combineToSinglePage": {
     "name": "合併為單一頁面",
-    "subtitle": "將所有頁面縫合為一個連續的捲動頁面。"
+    "subtitle": "將所有頁面拼接成一個可連續捲動的頁面。"
   },
   "viewMetadata": {
     "name": "檢視中繼資料",
@@ -734,7 +750,7 @@
     "rightDocument": "右側文件",
     "original": "原始",
     "modified": "修改後",
-    "searchChanges": "搜尋變更...",
+    "searchChanges": "搜尋變更…",
     "deleted": "已刪除",
     "added": "已新增",
     "prevPage": "上一頁",
@@ -746,15 +762,15 @@
     "noMatchingChanges": "沒有符合目前篩選條件的變更。",
     "pageNotExist": "此 PDF 中不存在第 {{page}} 頁。",
     "noPairedPage": "此側沒有配對頁面。",
-    "buildingModel": "正在建立頁面配對模型...",
-    "indexingPdf": "正在索引 PDF {{num}}，第 {{page}} / {{total}} 頁...",
-    "loadingComparison": "正在載入比較 {{current}} / {{total}}...",
-    "runningOcr": "正在對第 {{page}} 頁執行 OCR...",
-    "preparingExport": "正在準備 PDF 匯出...",
-    "renderingPage": "正在轉譯第 {{current}} / {{total}} 頁...",
+    "buildingModel": "正在建立頁面配對模型…",
+    "indexingPdf": "正在為 PDF {{num}} 建立索引（第 {{page}} / {{total}} 頁）…",
+    "loadingComparison": "正在載入比較 {{current}} / {{total}}…",
+    "runningOcr": "正在對第 {{page}} 頁執行 OCR…",
+    "preparingExport": "正在準備 PDF 匯出…",
+    "renderingPage": "正在繪製第 {{current}} / {{total}} 頁…",
     "exportError": "匯出錯誤",
     "exportFailed": "無法匯出比較 PDF。",
-    "loadingFile": "正在載入 {{name}}...",
+    "loadingFile": "正在載入 {{name}}…",
     "invalidFile": "無效檔案",
     "invalidFileMsg": "請選擇有效的 PDF 檔案。",
     "loadError": "無法載入 PDF。檔案可能已損毀或受密碼保護。"
@@ -789,7 +805,7 @@
   },
   "sanitizePdf": {
     "name": "清理 PDF",
-    "subtitle": "移除中繼資料、註解、腳本與其他資料。"
+    "subtitle": "移除中繼資料、註解、指令碼與其他資料。"
   },
   "decryptPdf": {
     "name": "解密 PDF",
@@ -845,7 +861,7 @@
   },
   "markdownToPdf": {
     "name": "Markdown 轉 PDF",
-    "subtitle": "編寫或貼上 Markdown 並匯出為精美格式的 PDF。",
+    "subtitle": "編寫或貼上 Markdown 並匯出為排版精美的 PDF。",
     "paneMarkdown": "Markdown",
     "panePreview": "預覽",
     "btnUpload": "選擇",
@@ -853,10 +869,10 @@
     "btnSettings": "設定",
     "btnExportPdf": "匯出 PDF",
     "settingsTitle": "Markdown 設定",
-    "settingsPreset": "預設",
+    "settingsPreset": "預設組合",
     "presetDefault": "預設（GFM 風格）",
     "presetCommonmark": "CommonMark（嚴格）",
-    "presetZero": "最小（無功能）",
+    "presetZero": "極簡（無額外功能）",
     "settingsOptions": "Markdown 選項",
     "optAllowHtml": "允許 HTML 標籤",
     "optBreaks": "將換行轉換為 <br>",
@@ -865,7 +881,7 @@
   },
   "pdfBooklet": {
     "name": "PDF 小手冊",
-    "subtitle": "重新排列頁面以利雙面小手冊列印。折疊並裝訂以製作小手冊。",
+    "subtitle": "重新排列頁面，以便雙面列印後摺疊，再用訂書機裝訂成小手冊。",
     "howItWorks": "運作方式：",
     "step1": "上傳 PDF 檔案。",
     "step2": "頁面將按小手冊順序重新排列。",
@@ -876,7 +892,7 @@
     "landscape": "橫向",
     "pagesPerSheet": "每張紙的頁數",
     "createBooklet": "建立小手冊",
-    "processing": "處理中...",
+    "processing": "處理中…",
     "pageCount": "必要時，系統會將頁數補齊為 4 的倍數。"
   },
   "xpsToPdf": {
@@ -989,7 +1005,7 @@
     "name": "PDF 轉文字",
     "subtitle": "從 PDF 檔案擷取文字並儲存為純文字檔案（.txt）。支援多個檔案。",
     "noteLabel": "注意：",
-    "noteText": "此工具僅適用於數位建立的 PDF。對於掃描文件或基於圖片的 PDF，請改用我們的 OCR PDF 工具。",
+    "noteText": "此工具僅適用於以數位方式建立的 PDF。若為掃描文件或只包含影像資料的 PDF，請改用 [PDF 文字辨識（OCR）] 工具。",
     "convertButton": "擷取文字"
   },
   "digitalSignPdf": {
@@ -1004,7 +1020,7 @@
     "certInfo": "憑證資訊",
     "certSubject": "主體",
     "certIssuer": "簽發者",
-    "certValidity": "有效",
+    "certValidity": "有效期限",
     "signatureDetails": "簽章詳細資料（選填）",
     "reason": "原因",
     "reasonPlaceholder": "例如：我核准此文件",
@@ -1028,7 +1044,7 @@
     "yPosition": "Y 位置（上）",
     "width": "寬度",
     "height": "高度",
-    "addTextOverlay": "新增文字覆蓋",
+    "addTextOverlay": "疊加文字",
     "text": "文字",
     "textPlaceholder": "例如：由王小明數位簽署",
     "textColor": "文字顏色",
@@ -1062,7 +1078,7 @@
     "howToStep3Text": "套用數位簽章並下載已簽署的 PDF",
     "relatedEncryptDesc": "用密碼保護您的 PDF",
     "relatedDecryptDesc": "移除 PDF 密碼",
-    "relatedFlattenDesc": "使註解永久化",
+    "relatedFlattenDesc": "將註解併入頁面內容",
     "relatedSanitizeDesc": "移除隱藏資料",
     "relatedPermissionsDesc": "設定 PDF 權限",
     "faqWhatIsQuestion": "什麼是數位簽章？",
@@ -1094,7 +1110,7 @@
   },
   "emailToPdf": {
     "name": "電子郵件轉 PDF",
-    "subtitle": "將電子郵件檔案（EML、MSG）轉換為 PDF 格式。支援 Outlook 匯出和標準電子郵件格式。",
+    "subtitle": "將電子郵件檔案（EML、MSG）轉換為 PDF 格式。支援 Outlook 匯出的檔案和標準電子郵件格式。",
     "acceptedFormats": "EML、MSG 檔案",
     "convertButton": "轉換為 PDF"
   },
@@ -1132,13 +1148,13 @@
   },
   "rasterizePdf": {
     "name": "光柵化 PDF",
-    "subtitle": "將 PDF 轉換為基於影像的 PDF。展平圖層並移除可選取的文字。"
+    "subtitle": "將 PDF 轉換為只包含圖片的 PDF，合併圖層並移除可選取的文字。"
   },
   "pdfWorkflow": {
     "name": "PDF 工作流程建構器",
     "subtitle": "使用視覺化節點編輯器建構自訂 PDF 處理管線。",
     "nodes": "節點",
-    "searchNodes": "搜尋節點...",
+    "searchNodes": "搜尋節點…",
     "run": "執行",
     "clear": "清除",
     "save": "儲存",
@@ -1147,7 +1163,7 @@
     "import": "匯入",
     "ready": "就緒",
     "settings": "設定",
-    "processing": "處理中...",
+    "processing": "處理中…",
     "saveTemplate": "儲存範本",
     "templateName": "範本名稱",
     "templatePlaceholder": "例如：發票處理工作流程",
@@ -1184,9 +1200,9 @@
       "failedToGetCanvasContext": "無法取得頁面 {{page}} 的 Canvas 繪圖環境",
       "failedToRenderPageToImage": "無法將頁面 {{page}} 轉譯為影像",
       "noPagesProcessed": "未處理任何頁面",
-      "cpdfNotConfigured": "CoherentPDF 未設定。請在進階設定中設定。",
+      "cpdfNotConfigured": "尚未設定 CoherentPDF。請至 [進階功能設定] 完成設定。",
       "workerError": "Worker 錯誤：{{message}}",
-      "alternateMergeWorkerError": "交替合併 Worker 錯誤：{{message}}",
+      "alternateMergeWorkerError": "交錯混合頁面 Worker 錯誤：{{message}}",
       "noPdfFilesUploaded": "PDF 輸入節點中未上傳 PDF 檔案",
       "failedToLoadFile": "無法載入「{{file}}」— 檔案可能已損毀",
       "noImagesUploaded": "影像輸入節點中未上傳影像",
@@ -1210,7 +1226,7 @@
       "noWpsUploaded": "WPS 輸入節點中未上傳 WPS 檔案",
       "noXmlUploaded": "XML 輸入節點中未上傳 XML 檔案",
       "noXpsUploaded": "XPS 輸入節點中未上傳 XPS 檔案",
-      "alternateMergeNeedsTwo": "交替合併需要至少連接兩個 PDF 到其輸入",
+      "alternateMergeNeedsTwo": "交錯混合頁面的輸入端至少須連接兩個 PDF。",
       "cropMarginsExceed": "裁切邊距超出頁面尺寸。請縮小裁切值。",
       "digitalSignNoCertificate": "數位簽章節點中未載入憑證",
       "encryptUserPasswordRequired": "加密需要使用者密碼",
@@ -1227,7 +1243,7 @@
       "timestampFailed": "使用 TSA {{tsa}} 加蓋時間戳記失敗：{{message}}",
       "noOutputNodes": "找不到輸出節點。新增下載節點以完成您的工作流程。",
       "circularDependency": "工作流程中偵測到循環相依性。請移除節點之間的任何循環。",
-      "encryptOrdering": "加密節點會將資料傳送至「{{target}}」，但該節點可能無法處理加密資料。請將加密節點移至緊鄰輸出節點的位置。",
+      "encryptOrdering": "加密節點會將資料傳送至「{{target}}」，但該節點可能無法處理加密資料。請將加密節點移到輸出節點的前一步。",
       "invalidWorkflowFile": "無效的工作流程檔案：缺少節點或連接陣列。",
       "storageQuotaExceeded": "儲存工作流程失敗：超出儲存配額。請嘗試刪除舊範本。",
       "failedToImport": "匯入工作流程失敗：{{message}}"
@@ -1237,7 +1253,7 @@
     "title": "進階功能設定",
     "description": "設定外部處理模組以啟用進階 PDF 功能。這些模組為選用且另行授權。",
     "status": {
-      "testing": "正在測試...",
+      "testing": "正在測試…",
       "customOverride": "自訂覆寫",
       "preConfigured": "預先設定",
       "notConfigured": "未設定"
@@ -1246,7 +1262,7 @@
     "preconfiguredDescription": "進階處理模組會從 CDN 自動載入。如需使用自訂來源（例如用於隔離環境或自架部署），可以覆寫下列 URL。",
     "usingDefault": "使用預設值：{{url}}",
     "pymupdfSubtitle": "文件處理引擎",
-    "pymupdfFeatures": "啟用：PDF 轉文字、Markdown、SVG、DOCX、Excel • 擷取圖片/表格 • 格式轉換",
+    "pymupdfFeatures": "啟用：PDF 轉文字、Markdown、SVG、DOCX、Excel • 擷取圖片／表格 • 格式轉換",
     "testButton": "測試",
     "recommendedLabel": "建議：",
     "copyTitle": "複製到剪貼簿",
@@ -1255,7 +1271,7 @@
     "cpdfSubtitle": "書籤和中繼資料引擎",
     "cpdfFeatures": "啟用：按書籤分割 • 編輯書籤 • PDF 中繼資料",
     "saveConfiguration": "儲存設定",
-    "savingConfiguration": "正在儲存設定...",
+    "savingConfiguration": "正在儲存設定…",
     "savedTitle": "已儲存",
     "savedMessage": "設定儲存成功！",
     "errorTitle": "錯誤",
@@ -1275,7 +1291,7 @@
   },
   "pdfOverlay": {
     "name": "PDF 疊加",
-    "subtitle": "將一個 PDF 的頁面疊加在另一個 PDF 上，或襯於其下。",
+    "subtitle": "將一個 PDF 的頁面疊加在另一個 PDF 上方，或放在下方作為襯底。",
     "basePdfLabel": "基礎 PDF",
     "uploadBasePdf": "上傳基礎 PDF",
     "overlayPdfLabel": "疊加／襯底 PDF",
@@ -1284,7 +1300,7 @@
     "overlayOption": "疊加（在頁面上方）",
     "underlayOption": "襯底（在頁面下方）",
     "pageRangeLabel": "套用到頁面（選填）",
-    "pageRangeHint": "使用 \"z\" 表示最後一頁。留空則套用到所有頁面。",
+    "pageRangeHint": "使用「z」表示最後一頁。留空則套用到所有頁面。",
     "repeatLabel": "若基礎 PDF 頁數較多，則重複使用疊加／襯底頁面",
     "processButton": "套用疊加／襯底",
     "howItWorksUploadTitle": "上傳兩個 PDF",
@@ -1302,10 +1318,10 @@
   },
   "unlockPdf": {
     "name": "解密 PDF",
-    "subtitle": "透過移除密碼保護解鎖 PDF。"
+    "subtitle": "移除 PDF 密碼保護，讓檔案可直接開啟。需要提供目前的密碼。"
   },
   "protectPdf": {
     "name": "加密 PDF",
-    "subtitle": "透過新增密碼為您的 PDF 上鎖。"
+    "subtitle": "使用高強度 AES 加密為 PDF 加上密碼保護。"
   }
 }

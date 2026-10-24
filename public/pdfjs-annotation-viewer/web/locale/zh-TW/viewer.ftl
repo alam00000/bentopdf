@@ -13,7 +13,7 @@ pdfjs-next-button-label = 下一頁
 
 # .title: Tooltip for the pageNumber input.
 pdfjs-page-input =
-    .title = 第
+    .title = 頁碼
 
 # Variables:
 #   $pagesCount (Number) - the total number of pages in the document
@@ -83,8 +83,8 @@ pdfjs-cursor-hand-tool-button =
     .title = 開啟頁面移動工具
 pdfjs-cursor-hand-tool-button-label = 頁面移動工具
 pdfjs-scroll-page-button =
-    .title = 使用頁面捲動功能
-pdfjs-scroll-page-button-label = 頁面捲動功能
+    .title = 使用單頁捲動版面
+pdfjs-scroll-page-button-label = 單頁捲動
 pdfjs-scroll-vertical-button =
     .title = 使用垂直捲動版面
 pdfjs-scroll-vertical-button-label = 垂直捲動
@@ -109,8 +109,8 @@ pdfjs-spread-even-button-label = 偶數跨頁
 pdfjs-document-properties-button =
     .title = 文件內容…
 pdfjs-document-properties-button-label = 文件內容…
-pdfjs-document-properties-file-name = 檔案名稱:
-pdfjs-document-properties-file-size = 檔案大小:
+pdfjs-document-properties-file-name = 檔案名稱：
+pdfjs-document-properties-file-size = 檔案大小：
 
 # Variables:
 #   $size_kb (Number) - the PDF file size in kilobytes
@@ -122,27 +122,27 @@ pdfjs-document-properties-kb = { $size_kb } KB（{ $size_b } 位元組）
 #   $size_b (Number) - the PDF file size in bytes
 pdfjs-document-properties-mb = { $size_mb } MB（{ $size_b } 位元組）
 
-pdfjs-document-properties-title = 標題:
-pdfjs-document-properties-author = 作者:
-pdfjs-document-properties-subject = 主旨:
-pdfjs-document-properties-keywords = 關鍵字:
-pdfjs-document-properties-creation-date = 建立日期:
-pdfjs-document-properties-modification-date = 修改日期:
+pdfjs-document-properties-title = 標題：
+pdfjs-document-properties-author = 作者：
+pdfjs-document-properties-subject = 主旨：
+pdfjs-document-properties-keywords = 關鍵字：
+pdfjs-document-properties-creation-date = 建立日期：
+pdfjs-document-properties-modification-date = 修改日期：
 
 # Variables:
 #   $date (Date) - the creation/modification date of the PDF file
 #   $time (Time) - the creation/modification time of the PDF file
 pdfjs-document-properties-date-string = { $date } { $time }
 
-pdfjs-document-properties-creator = 建立者:
-pdfjs-document-properties-producer = PDF 產生器:
-pdfjs-document-properties-version = PDF 版本:
-pdfjs-document-properties-page-count = 頁數:
-pdfjs-document-properties-page-size = 頁面大小:
+pdfjs-document-properties-creator = 建立者：
+pdfjs-document-properties-producer = PDF 產生器：
+pdfjs-document-properties-version = PDF 版本：
+pdfjs-document-properties-page-count = 頁數：
+pdfjs-document-properties-page-size = 頁面大小：
 pdfjs-document-properties-page-size-unit-inches = in
 pdfjs-document-properties-page-size-unit-millimeters = mm
-pdfjs-document-properties-page-size-orientation-portrait = 垂直
-pdfjs-document-properties-page-size-orientation-landscape = 水平
+pdfjs-document-properties-page-size-orientation-portrait = 直向
+pdfjs-document-properties-page-size-orientation-landscape = 橫向
 pdfjs-document-properties-page-size-name-a-three = A3
 pdfjs-document-properties-page-size-name-a-four = A4
 pdfjs-document-properties-page-size-name-letter = Letter
@@ -162,7 +162,7 @@ pdfjs-document-properties-page-size-dimension-name-string = { $width } × { $hei
 
 # The linearization status of the document; usually called "Fast Web View" in
 # English locales of Adobe software.
-pdfjs-document-properties-linearized = 快速 Web 檢視:
+pdfjs-document-properties-linearized = 快速 Web 檢視：
 pdfjs-document-properties-linearized-yes = 是
 pdfjs-document-properties-linearized-no = 否
 pdfjs-document-properties-close-button = 關閉
@@ -176,24 +176,24 @@ pdfjs-print-progress-message = 正在準備列印文件…
 pdfjs-print-progress-percent = { $progress }%
 
 pdfjs-print-progress-close-button = 取消
-pdfjs-printing-not-supported = 警告: 此瀏覽器未完整支援列印功能。
-pdfjs-printing-not-ready = 警告: 此 PDF 未完成下載以供列印。
+pdfjs-printing-not-supported = 警告：此瀏覽器未完整支援列印功能。
+pdfjs-printing-not-ready = 警告：此 PDF 尚未完整載入，無法列印。
 
 ## Tooltips and alt text for side panel toolbar buttons
 
 pdfjs-toggle-sidebar-button =
     .title = 切換側邊欄
 pdfjs-toggle-sidebar-notification-button =
-    .title = 切換側邊欄（包含大綱、附件、圖層的文件）
+    .title = 切換側邊欄（文件含有大綱、附件或圖層）
 pdfjs-toggle-sidebar-button-label = 切換側邊欄
 pdfjs-document-outline-button =
-    .title = 顯示文件大綱（雙擊展開/摺疊所有項目）
+    .title = 顯示文件大綱（按兩下展開／摺疊所有項目）
 pdfjs-document-outline-button-label = 文件大綱
 pdfjs-attachments-button =
     .title = 顯示附件
 pdfjs-attachments-button-label = 附件
 pdfjs-layers-button =
-    .title = 顯示圖層（滑鼠雙擊即可將所有圖層重設為預設狀態）
+    .title = 顯示圖層（按兩下即可將所有圖層重設為預設狀態）
 pdfjs-layers-button-label = 圖層
 pdfjs-thumbs-button =
     .title = 顯示縮圖
@@ -231,8 +231,8 @@ pdfjs-find-next-button =
 pdfjs-find-next-button-label = 下一個
 pdfjs-find-highlight-checkbox = 強調全部
 pdfjs-find-match-case-checkbox-label = 區分大小寫
-pdfjs-find-match-diacritics-checkbox-label = 符合變音符號
-pdfjs-find-entire-word-checkbox-label = 符合整個字
+pdfjs-find-match-diacritics-checkbox-label = 區分變音符號
+pdfjs-find-entire-word-checkbox-label = 全字比對
 pdfjs-find-reached-top = 已搜尋至文件頂端，自底端繼續搜尋
 pdfjs-find-reached-bottom = 已搜尋至文件底端，自頂端繼續搜尋
 
@@ -241,16 +241,16 @@ pdfjs-find-reached-bottom = 已搜尋至文件底端，自頂端繼續搜尋
 #   $total (Number) - the total number of matches in the document
 pdfjs-find-match-count =
     { $total ->
-        [one] 第 { $current } 筆符合，共符合 { $total } 筆
-       *[other] 第 { $current } 筆符合，共符合 { $total } 筆
+        [one] { $current } / { $total } 筆相符
+       *[other] { $current } / { $total } 筆相符
     }
 
 # Variables:
 #   $limit (Number) - the maximum number of matches
 pdfjs-find-match-count-limit =
     { $limit ->
-        [one] 符合超過 { $limit } 項
-       *[other] 符合超過 { $limit } 項
+        [one] 超過 { $limit } 筆相符結果
+       *[other] 超過 { $limit } 筆相符結果
     }
 
 pdfjs-find-not-found = 找不到指定文字
@@ -278,7 +278,7 @@ pdfjs-page-landmark =
 pdfjs-loading-error = 載入 PDF 時發生錯誤。
 pdfjs-invalid-file-error = 無效或毀損的 PDF 檔案。
 pdfjs-missing-file-error = 找不到 PDF 檔案。
-pdfjs-unexpected-response-error = 伺服器回應未預期的內容。
+pdfjs-unexpected-response-error = 收到非預期的伺服器回應。
 pdfjs-rendering-error = 描繪頁面時發生錯誤。
 
 ## Annotations
@@ -302,7 +302,7 @@ pdfjs-password-label = 請輸入用來開啟此 PDF 檔案的密碼。
 pdfjs-password-invalid = 密碼不正確，請再試一次。
 pdfjs-password-ok-button = 確定
 pdfjs-password-cancel-button = 取消
-pdfjs-web-fonts-disabled = 已停用網路字型 (Web fonts): 無法使用 PDF 內嵌字型。
+pdfjs-web-fonts-disabled = 已停用網路字型（Web fonts）：無法使用 PDF 內嵌字型。
 
 ## Editing
 
@@ -316,12 +316,12 @@ pdfjs-editor-stamp-button =
     .title = 新增或編輯圖片
 pdfjs-editor-stamp-button-label = 新增或編輯圖片
 pdfjs-editor-highlight-button =
-    .title = 強調
-pdfjs-editor-highlight-button-label = 強調
+    .title = 螢光標註
+pdfjs-editor-highlight-button-label = 螢光標註
 pdfjs-highlight-floating-button1 =
-    .title = 強調
-    .aria-label = 強調
-pdfjs-highlight-floating-button-label = 強調
+    .title = 螢光標註
+    .aria-label = 螢光標註
+pdfjs-highlight-floating-button-label = 螢光標註
 
 ## Remove button for the various kind of editor.
 
@@ -332,7 +332,7 @@ pdfjs-editor-remove-freetext-button =
 pdfjs-editor-remove-stamp-button =
     .title = 移除圖片
 pdfjs-editor-remove-highlight-button =
-    .title = 移除強調範圍
+    .title = 移除螢光標註
 
 ##
 
@@ -341,20 +341,20 @@ pdfjs-editor-free-text-color-input = 色彩
 pdfjs-editor-free-text-size-input = 大小
 pdfjs-editor-ink-color-input = 色彩
 pdfjs-editor-ink-thickness-input = 線條粗細
-pdfjs-editor-ink-opacity-input = 透​明度
+pdfjs-editor-ink-opacity-input = 透明度
 pdfjs-editor-stamp-add-image-button =
     .title = 新增圖片
 pdfjs-editor-stamp-add-image-button-label = 新增圖片
 # This refers to the thickness of the line used for free highlighting (not bound to text)
 pdfjs-editor-free-highlight-thickness-input = 線條粗細
 pdfjs-editor-free-highlight-thickness-title =
-    .title = 更改強調文字以外的項目時的線條粗細
+    .title = 調整非文字內容的螢光標註粗細
 
 pdfjs-free-text =
-    .aria-label = 文本編輯器
+    .aria-label = 文字編輯器
 pdfjs-free-text-default-content = 開始打字…
 pdfjs-ink =
-    .aria-label = 圖形編輯器
+    .aria-label = 繪圖編輯器
 pdfjs-ink-canvas =
     .aria-label = 使用者建立的圖片
 
@@ -365,11 +365,11 @@ pdfjs-editor-alt-text-button-label = 替代文字
 
 pdfjs-editor-alt-text-edit-button-label = 編輯替代文字
 pdfjs-editor-alt-text-dialog-label = 挑選一種
-pdfjs-editor-alt-text-dialog-description = 替代文字可協助盲人，或於圖片無法載入時提供說明。
+pdfjs-editor-alt-text-dialog-description = 替代文字可在使用者看不到圖片或圖片無法載入時提供說明。
 pdfjs-editor-alt-text-add-description-label = 新增描述
-pdfjs-editor-alt-text-add-description-description = 用 1-2 句文字描述主題、背景或動作。
+pdfjs-editor-alt-text-add-description-description = 用 1-2 句文字描述主體、背景或動作。
 pdfjs-editor-alt-text-mark-decorative-label = 標示為裝飾性內容
-pdfjs-editor-alt-text-mark-decorative-description = 這是裝飾性圖片，例如邊框或浮水印。
+pdfjs-editor-alt-text-mark-decorative-description = 用於裝飾性圖片，例如邊框或浮水印。
 pdfjs-editor-alt-text-cancel-button = 取消
 pdfjs-editor-alt-text-save-button = 儲存
 pdfjs-editor-alt-text-decorative-tooltip = 已標示為裝飾性內容
@@ -393,7 +393,7 @@ pdfjs-editor-resizer-label-middle-left = 中間左方 — 調整大小
 ## Color picker
 
 # This means "Color used to highlight text"
-pdfjs-editor-highlight-colorpicker-label = 強調色彩
+pdfjs-editor-highlight-colorpicker-label = 螢光標註色彩
 
 pdfjs-editor-colorpicker-button =
     .title = 更改色彩
