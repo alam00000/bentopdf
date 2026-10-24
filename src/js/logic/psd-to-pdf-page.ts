@@ -1,7 +1,10 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile, formatBytes } from '../utils/helpers.js';
+import { downloadFile } from '../utils/helpers.js';
+import {
+  renderReorderableFileList,
+  destroyReorderableFileList,
+} from '../utils/reorderable-file-list.js';
 import { state } from '../state.js';
-import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
 
@@ -36,36 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const updateUI = async () => {
     if (!fileDisplayArea || !processBtn || !fileControls) return;
     if (state.files.length > 0) {
-      fileDisplayArea.innerHTML = '';
-      for (let index = 0; index < state.files.length; index++) {
-        const file = state.files[index];
-        const fileDiv = document.createElement('div');
-        fileDiv.className =
-          'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
-        const infoContainer = document.createElement('div');
-        infoContainer.className = 'flex flex-col overflow-hidden';
-        const nameSpan = document.createElement('div');
-        nameSpan.className = 'truncate font-medium text-gray-200 text-sm mb-1';
-        nameSpan.textContent = file.name;
-        const metaSpan = document.createElement('div');
-        metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = formatBytes(file.size);
-        infoContainer.append(nameSpan, metaSpan);
-        const removeBtn = document.createElement('button');
-        removeBtn.className =
-          'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
-        removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-        removeBtn.onclick = () => {
+      renderReorderableFileList({
+        container: fileDisplayArea,
+        files: state.files as File[],
+        onReorder: (reordered) => {
+          state.files = reordered;
+        },
+        onRemove: (index) => {
           state.files = state.files.filter((_, i) => i !== index);
           updateUI();
-        };
-        fileDiv.append(infoContainer, removeBtn);
-        fileDisplayArea.appendChild(fileDiv);
-      }
-      createIcons({ icons });
+        },
+      });
       fileControls.classList.remove('hidden');
       processBtn.classList.remove('hidden');
     } else {
+      destroyReorderableFileList(fileDisplayArea);
       fileDisplayArea.innerHTML = '';
       fileControls.classList.add('hidden');
       processBtn.classList.add('hidden');
