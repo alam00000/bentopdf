@@ -5,6 +5,11 @@ import {
   readFileAsArrayBuffer,
   formatBytes,
 } from '../utils/helpers.js';
+import {
+  createDragHandle,
+  enableFileListReorder,
+  moveItem,
+} from '../utils/sortable-file-list.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import {
   getSelectedQuality,
@@ -139,7 +144,7 @@ function updateUI() {
       sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
       sizeSpan.textContent = `(${formatBytes(file.size)})`;
 
-      infoContainer.append(nameSpan, sizeSpan);
+      infoContainer.append(createDragHandle(), nameSpan, sizeSpan);
 
       const removeBtn = document.createElement('button');
       removeBtn.className =
@@ -152,6 +157,10 @@ function updateUI() {
 
       fileDiv.append(infoContainer, removeBtn);
       fileDisplayArea.appendChild(fileDiv);
+    });
+    enableFileListReorder(fileDisplayArea, (oldIndex, newIndex) => {
+      files = moveItem(files, oldIndex, newIndex);
+      updateUI();
     });
     createIcons({ icons });
   } else {
