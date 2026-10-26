@@ -22,6 +22,11 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
+import {
+  clearWatermarkSettings,
+  loadWatermarkSettings,
+  saveWatermarkSettings,
+} from '../utils/watermark-settings.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -135,6 +140,12 @@ async function handleFiles(files: FileList) {
     totalPageCount = cachedPdfjsDoc.numPages;
     currentPageNum = 1;
     pageWatermarks.clear();
+
+    const storedSettings = loadWatermarkSettings(getDefaultConfig());
+    if (storedSettings) {
+      pageWatermarks.set(1, storedSettings);
+      loadPageConfig(1);
+    }
 
     updateFileDisplay();
 
@@ -648,6 +659,12 @@ function setupEditorControls() {
     reader.readAsDataURL(file);
   });
 
+  document
+    .getElementById('reset-watermark-settings')
+    ?.addEventListener('click', () => {
+      resetWatermarkSettings(imageInput);
+    });
+
   document.querySelectorAll('.pos-preset-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       const pos = (btn as HTMLElement).dataset.pos;
@@ -659,6 +676,15 @@ function setupEditorControls() {
       updateWatermarkOverlay();
     });
   });
+}
+
+function resetWatermarkSettings(imageInput: HTMLInputElement | null) {
+  clearWatermarkSettings();
+  pageWatermarks.clear();
+  pageWatermarks.set(1, getDefaultConfig());
+  loadPageConfig(currentPageNum);
+  if (imageInput) imageInput.value = '';
+  updateWatermarkOverlay();
 }
 
 function updatePresetHighlight(x: number, y: number) {
@@ -1275,6 +1301,7 @@ async function applyWatermark() {
       new Blob([new Uint8Array(resultBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
+    saveWatermarkSettings(getCurrentConfig());
     showAlert('Success', 'Watermark added successfully!', 'success');
   } catch (e: unknown) {
     console.error(e);
