@@ -89,6 +89,10 @@ export function loadWatermarkSettings(
   );
 }
 
+export function hasWatermarkSettings(): boolean {
+  return getStoredItem(WATERMARK_SETTINGS_KEY) !== null;
+}
+
 export function clearWatermarkSettings(): void {
   removeStoredItem(WATERMARK_SETTINGS_KEY);
 }

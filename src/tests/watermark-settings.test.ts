@@ -3,6 +3,7 @@ import type { PageWatermarkConfig } from '@/types';
 import {
   WATERMARK_SETTINGS_KEY,
   clearWatermarkSettings,
+  hasWatermarkSettings,
   loadWatermarkSettings,
   parseWatermarkSettings,
   saveWatermarkSettings,
@@ -111,5 +112,13 @@ describe('save, load and clear', () => {
     saveWatermarkSettings(custom);
     clearWatermarkSettings();
     expect(loadWatermarkSettings(defaults)).toBeNull();
+  });
+
+  it('should report whether settings are saved', () => {
+    expect(hasWatermarkSettings()).toBe(false);
+    saveWatermarkSettings(custom);
+    expect(hasWatermarkSettings()).toBe(true);
+    clearWatermarkSettings();
+    expect(hasWatermarkSettings()).toBe(false);
   });
 });

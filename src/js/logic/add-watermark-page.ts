@@ -24,6 +24,7 @@ import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
 import {
   clearWatermarkSettings,
+  hasWatermarkSettings,
   loadWatermarkSettings,
   saveWatermarkSettings,
 } from '../utils/watermark-settings.js';
@@ -659,6 +660,18 @@ function setupEditorControls() {
     reader.readAsDataURL(file);
   });
 
+  const rememberCheckbox = getRememberCheckbox();
+  if (rememberCheckbox) {
+    rememberCheckbox.checked = hasWatermarkSettings();
+    rememberCheckbox.addEventListener('change', () => {
+      if (rememberCheckbox.checked) {
+        saveWatermarkSettings(getCurrentConfig());
+      } else {
+        clearWatermarkSettings();
+      }
+    });
+  }
+
   document
     .getElementById('reset-watermark-settings')
     ?.addEventListener('click', () => {
@@ -678,8 +691,16 @@ function setupEditorControls() {
   });
 }
 
+function getRememberCheckbox(): HTMLInputElement | null {
+  return document.getElementById(
+    'remember-watermark-settings'
+  ) as HTMLInputElement | null;
+}
+
 function resetWatermarkSettings(imageInput: HTMLInputElement | null) {
   clearWatermarkSettings();
+  const rememberCheckbox = getRememberCheckbox();
+  if (rememberCheckbox) rememberCheckbox.checked = false;
   pageWatermarks.clear();
   pageWatermarks.set(1, getDefaultConfig());
   loadPageConfig(currentPageNum);
@@ -1301,7 +1322,9 @@ async function applyWatermark() {
       new Blob([new Uint8Array(resultBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    saveWatermarkSettings(getCurrentConfig());
+    if (getRememberCheckbox()?.checked) {
+      saveWatermarkSettings(getCurrentConfig());
+    }
     showAlert('Success', 'Watermark added successfully!', 'success');
   } catch (e: unknown) {
     console.error(e);
