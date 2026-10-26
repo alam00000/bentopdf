@@ -29,6 +29,7 @@ export interface SignatureValidationResult {
   cryptoVerificationStatus?: 'verified' | 'failed' | 'unsupported';
   unsupportedAlgorithmReason?: string;
   usesInsecureDigest?: boolean;
+  isTimestamp?: boolean;
 }
 
 export interface ExtractedSignature {
@@ -40,6 +41,7 @@ export interface ExtractedSignature {
   contactInfo?: string;
   name?: string;
   signingTime?: string;
+  isTimestamp?: boolean;
 }
 
 export interface ValidateSignatureState {

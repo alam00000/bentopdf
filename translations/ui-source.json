@@ -2155,6 +2155,12 @@
     ],
     "fileCount": 1
   },
+  "Could not read the timestamp token": {
+    "files": [
+      "logic/validate-signature-pdf.ts"
+    ],
+    "fileCount": 1
+  },
   "Could not reduce file size further. Original: {{originalSize}}, New: {{compressedSize}}.": {
     "files": [
       "logic/compress-pdf-page.ts"
@@ -2580,9 +2586,21 @@
     ],
     "fileCount": 1
   },
+  "Document Timestamp {{n}}": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
   "Document Type": {
     "files": [
       "logic/page-dimensions-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Document hash does not match the timestamp: PDF was modified after timestamping": {
+    "files": [
+      "logic/validate-signature-pdf.ts"
     ],
     "fileCount": 1
   },
@@ -5241,6 +5259,12 @@
     "fileCount": 2
   },
   "Modified After Signing (signed part intact)": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Modified After Timestamping (timestamped part intact)": {
     "files": [
       "logic/validate-signature-pdf-page.ts"
     ],
@@ -8977,6 +9001,24 @@
     ],
     "fileCount": 1
   },
+  "Timestamp Intact: Timestamp Authority Not Verified": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Timestamped By": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Timestamped On": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
   "Tint": {
     "files": [
       "workflow/nodes/adjust-colors-node.ts"
@@ -9509,6 +9551,12 @@
     "fileCount": 1
   },
   "Valid Signature": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Valid Timestamp": {
     "files": [
       "logic/validate-signature-pdf-page.ts"
     ],

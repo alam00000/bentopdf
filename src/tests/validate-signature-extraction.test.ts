@@ -167,13 +167,25 @@ describe('validatePdfSignatures extraction and coverage', () => {
     const pdfBytes = new TextEncoder().encode(
       '%PDF-1.7\n' +
         '1 0 obj\n<< /Subtype /Text /Contents (A note) >>\nendobj\n' +
-        '2 0 obj\n<< /Filter /Adobe.PPKLite /SubFilter /ETSI.RFC3161 ' +
-        '/ByteRange [0 10 20 10] /Contents <00> >>\nendobj\n' +
-        '3 0 obj\n<< /Type /DocTimeStamp /ByteRange [0 10 20 10] ' +
+        '2 0 obj\n<< /Type /Annot /ByteRange [0 10 20 10] ' +
         '/Contents <00> >>\nendobj\n%%EOF\n'
     );
 
     expect(countSignatures(pdfBytes)).toBe(0);
+  });
+
+  it('reports document timestamps as timestamps, typed or not', () => {
+    const pdfBytes = new TextEncoder().encode(
+      '%PDF-1.7\n' +
+        '1 0 obj\n<< /Filter /Adobe.PPKLite /SubFilter /ETSI.RFC3161 ' +
+        '/ByteRange [0 10 20 10] /Contents <00> >>\nendobj\n' +
+        '2 0 obj\n<< /Type /DocTimeStamp /ByteRange [0 10 20 10] ' +
+        '/Contents <00> >>\nendobj\n%%EOF\n'
+    );
+
+    const signatures = extractSignatures(pdfBytes);
+    expect(signatures).toHaveLength(2);
+    expect(signatures.every((sig) => sig.isTimestamp)).toBe(true);
   });
 
   it('reports an intact signature as partial when an incremental update follows', async () => {

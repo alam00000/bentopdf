@@ -367,7 +367,10 @@ function createSignatureCard(
 
   let statusColor = 'text-green-400';
   let statusIcon = 'check-circle';
-  let statusText = trText('Valid Signature');
+  const isTimestamp = result.isTimestamp === true;
+  let statusText = isTimestamp
+    ? trText('Valid Timestamp')
+    : trText('Valid Signature');
 
   if (!result.isValid) {
     if (result.cryptoVerificationStatus === 'unsupported') {
@@ -380,7 +383,9 @@ function createSignatureCard(
     ) {
       statusColor = 'text-yellow-400';
       statusIcon = 'alert-triangle';
-      statusText = trText('Modified After Signing (signed part intact)');
+      statusText = isTimestamp
+        ? trText('Modified After Timestamping (timestamped part intact)')
+        : trText('Modified After Signing (signed part intact)');
     } else {
       statusColor = 'text-red-400';
       statusIcon = 'x-circle';
@@ -400,9 +405,11 @@ function createSignatureCard(
   } else if (!result.isTrusted) {
     statusColor = 'text-yellow-400';
     statusIcon = 'alert-triangle';
-    statusText = result.isSelfSigned
-      ? trText('Self-Signed: Signer Identity Not Verified')
-      : trText('Signature Intact: Signer Identity Not Verified');
+    statusText = isTimestamp
+      ? trText('Timestamp Intact: Timestamp Authority Not Verified')
+      : result.isSelfSigned
+        ? trText('Self-Signed: Signer Identity Not Verified')
+        : trText('Signature Intact: Signer Identity Not Verified');
   }
 
   const formatDate = (date: Date) => {
@@ -430,7 +437,7 @@ function createSignatureCard(
             <div class="flex items-center gap-3">
                 <i data-lucide="${statusIcon}" class="w-6 h-6 ${statusColor}"></i>
                 <div>
-                    <h3 class="font-semibold text-white">${trHtml('Signature {{n}}', { n: index + 1 })}</h3>
+                    <h3 class="font-semibold text-white">${isTimestamp ? trHtml('Document Timestamp {{n}}', { n: index + 1 }) : trHtml('Signature {{n}}', { n: index + 1 })}</h3>
                     <p class="text-sm ${statusColor}">${statusText}</p>
                 </div>
             </div>
@@ -448,7 +455,7 @@ function createSignatureCard(
         <div class="space-y-3 text-sm">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <p class="text-gray-400">${trHtml('Signed By')}</p>
+                    <p class="text-gray-400">${isTimestamp ? trHtml('Timestamped By') : trHtml('Signed By')}</p>
                     <p class="text-white font-medium">${escapeHtml(result.signerName)}</p>
                     ${result.signerOrg ? `<p class="text-gray-400 text-xs">${escapeHtml(result.signerOrg)}</p>` : ''}
                     ${result.signerEmail ? `<p class="text-gray-400 text-xs">${escapeHtml(result.signerEmail)}</p>` : ''}
@@ -464,7 +471,7 @@ function createSignatureCard(
               result.signatureDate
                 ? `
                 <div>
-                    <p class="text-gray-400">${trHtml('Signed On')}</p>
+                    <p class="text-gray-400">${isTimestamp ? trHtml('Timestamped On') : trHtml('Signed On')}</p>
                     <p class="text-white">${formatDate(result.signatureDate)}</p>
                 </div>
             `
