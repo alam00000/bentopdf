@@ -56,8 +56,12 @@ describe('timestampPdf', () => {
     vi.resetModules();
   });
 
-  it('should use the unchanged HTTPS default without a proxy on an HTTPS page', async () => {
-    stubPageOrigin('https://www.bentopdf.com');
+  it('should use the unchanged HTTPS default without a proxy on a self-hosted HTTPS page', async () => {
+    // Proxy selection is read when the module loads, so load it on a
+    // self-hosted HTTPS origin; the official-site proxy has its own test.
+    vi.resetModules();
+    stubPageOrigin('https://pdf.example.com');
+    ({ timestampPdf } = await import('@/js/logic/digital-sign-pdf'));
     const fetchSpy = window.fetch;
     const fakeSigned = new Uint8Array([1, 2, 3]);
     mockSign.mockResolvedValueOnce(fakeSigned);

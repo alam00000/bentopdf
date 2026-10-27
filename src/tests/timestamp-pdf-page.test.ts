@@ -9,7 +9,18 @@ vi.mock('@/js/ui', () => ({
   showLoader: vi.fn(),
   hideLoader: vi.fn(),
 }));
-vi.mock('@/js/i18n/i18n', () => ({ t: (key: string) => key }));
+const page = vi.hoisted(() => ({
+  ready: undefined as undefined | (() => void | Promise<void>),
+}));
+
+vi.mock('@/js/i18n/i18n', () => ({
+  t: (key: string) => key,
+  trText: (text: string, values: Record<string, unknown> = {}) =>
+    text.replace(/{{(\w+)}}/g, (_, name: string) => String(values[name])),
+  onPageReady: (callback: () => void | Promise<void>) => {
+    page.ready = callback;
+  },
+}));
 vi.mock('@/js/utils/helpers', () => ({
   readFileAsArrayBuffer: vi.fn(),
   formatBytes: vi.fn(() => '3 bytes'),
@@ -51,19 +62,9 @@ describe('Timestamp PDF Page', () => {
     beforeEach(async () => {
       vi.clearAllMocks();
       vi.resetModules();
-      const addListener = vi.spyOn(document, 'addEventListener');
-      try {
-        await import('@/js/logic/timestamp-pdf-page');
-        document.dispatchEvent(new Event('DOMContentLoaded'));
-      } finally {
-        // The page module registers a new listener on every fresh import.
-        for (const [type, listener, options] of addListener.mock.calls) {
-          if (type === 'DOMContentLoaded') {
-            document.removeEventListener(type, listener, options);
-          }
-        }
-        addListener.mockRestore();
-      }
+      page.ready = undefined;
+      await import('@/js/logic/timestamp-pdf-page');
+      await page.ready?.();
     });
 
     it('should populate the TSA preset select element with all presets', () => {
