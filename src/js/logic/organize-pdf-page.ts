@@ -9,6 +9,8 @@ import Sortable from 'sortablejs';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 interface OrganizeState {
   file: File | null;
   pdfDoc: PDFDocument | null;
@@ -25,11 +27,7 @@ const organizeState: OrganizeState = {
   sortableInstance: null,
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -97,7 +95,10 @@ function applyCustomOrder() {
   if (newOrder.length !== currentGridCount) {
     showAlert(
       'Incorrect Page Count',
-      `The number of pages specified (${newOrder.length}) does not match the current number of pages in the document (${currentGridCount}). Please provide a complete ordering for all pages.`
+      trText(
+        'The number of pages specified ({{length}}) does not match the current number of pages in the document ({{currentGridCount}}). Please provide a complete ordering for all pages.',
+        { length: newOrder.length, currentGridCount }
+      )
     );
     return;
   }
@@ -206,7 +207,10 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = `${formatBytes(organizeState.file.size)} • ${organizeState.totalPages} pages`;
+  metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+    size: formatBytes(organizeState.file.size),
+    totalPages: organizeState.totalPages,
+  });
 
   infoContainer.append(nameSpan, metaSpan);
 
@@ -306,13 +310,13 @@ async function renderThumbnails() {
     const duplicateBtn = document.createElement('button');
     duplicateBtn.className =
       'duplicate-btn bg-green-600 hover:bg-green-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    duplicateBtn.title = 'Duplicate Page';
+    duplicateBtn.title = trText('Duplicate Page');
     duplicateBtn.innerHTML = '<i data-lucide="copy-plus" class="w-5 h-5"></i>';
 
     const deleteBtn = document.createElement('button');
     deleteBtn.className =
       'delete-btn bg-red-600 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    deleteBtn.title = 'Delete Page';
+    deleteBtn.title = trText('Delete Page');
     deleteBtn.innerHTML = '<i data-lucide="x-circle" class="w-5 h-5"></i>';
 
     controlsDiv.append(duplicateBtn, deleteBtn);

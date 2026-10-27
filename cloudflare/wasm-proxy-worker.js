@@ -39,8 +39,37 @@ const ALLOWED_EXTENSIONS = [
   '.mem',
   '.asm.js',
   '.worker.js',
-  '.html',
+  '.whl',
 ];
+
+const SAFE_SUBPATH = /^\/[A-Za-z0-9._/-]*$/;
+
+function isSafeSubpath(subpath) {
+  return (
+    SAFE_SUBPATH.test(subpath) &&
+    !subpath.split('/').some((segment) => segment === '.' || segment === '..')
+  );
+}
+
+function getRateLimitKey(ip) {
+  if (!ip.includes(':') || ip.includes('.')) return ip;
+  const sections = ip.toLowerCase().split('::');
+  if (sections.length > 2) return ip;
+  const leadingGroups = sections[0] ? sections[0].split(':') : [];
+  const trailingGroups = sections[1] ? sections[1].split(':') : [];
+  const missing = 8 - leadingGroups.length - trailingGroups.length;
+  if (sections.length === 1 ? missing !== 0 : missing < 1) return ip;
+  const groups = [
+    ...leadingGroups,
+    ...Array(missing).fill('0'),
+    ...trailingGroups,
+  ];
+  if (!groups.every((group) => /^[0-9a-f]{1,4}$/.test(group))) return ip;
+  return `${groups
+    .slice(0, 4)
+    .map((group) => parseInt(group, 16).toString(16))
+    .join(':')}::/64`;
+}
 
 function isAllowedOrigin(origin) {
   if (!origin) return true; // Allow no-origin requests (e.g., direct browser navigation)
@@ -66,6 +95,7 @@ function corsHeaders(origin) {
     'Access-Control-Expose-Headers':
       'Content-Length, Content-Range, Content-Type',
     'Access-Control-Max-Age': '86400',
+    'X-Content-Type-Options': 'nosniff',
   };
 }
 
@@ -89,7 +119,6 @@ function getContentType(pathname) {
     '.so': 'application/octet-stream',
     '.zip': 'application/zip',
     '.mem': 'application/octet-stream',
-    '.html': 'text/html',
   };
   return contentTypes[ext] || 'application/octet-stream';
 }
@@ -115,7 +144,34 @@ async function proxyRequest(request, env, sourceBaseUrl, subpath, origin) {
     ? sourceBaseUrl.slice(0, -1)
     : sourceBaseUrl;
   const normalizedPath = subpath.startsWith('/') ? subpath : `/${subpath}`;
-  const targetUrl = `${normalizedBase}${normalizedPath}`;
+
+  let targetUrl = null;
+  if (isSafeSubpath(normalizedPath)) {
+    try {
+      const candidate = new URL(`${normalizedBase}${normalizedPath}`).href;
+      if (candidate.startsWith(new URL(`${normalizedBase}/`).href)) {
+        targetUrl = candidate;
+      }
+    } catch {
+      targetUrl = null;
+    }
+  }
+
+  if (!targetUrl) {
+    return new Response(
+      JSON.stringify({
+        error: 'Invalid path',
+        message: 'The requested path is not allowed.',
+      }),
+      {
+        status: 400,
+        headers: {
+          ...corsHeaders(origin),
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
 
   if (!isAllowedFile(normalizedPath)) {
     return new Response(
@@ -151,8 +207,6 @@ async function proxyRequest(request, env, sourceBaseUrl, subpath, origin) {
           JSON.stringify({
             error: 'Failed to fetch resource',
             status: response.status,
-            statusText: response.statusText,
-            targetUrl: targetUrl,
           }),
           {
             status: response.status,
@@ -204,14 +258,14 @@ async function proxyRequest(request, env, sourceBaseUrl, subpath, origin) {
         'Content-Type': getContentType(normalizedPath),
         'Content-Length': bodyData.byteLength.toString(),
         'Cache-Control': `public, max-age=${CACHE_TTL_SECONDS}`,
-        'X-Proxied-From': new URL(targetUrl).hostname,
       },
     });
   } catch (error) {
+    console.error('[WASM Proxy] Fetch error:', error);
     return new Response(
       JSON.stringify({
         error: 'Proxy error',
-        message: error.message,
+        message: 'Failed to fetch the requested resource',
       }),
       {
         status: 500,
@@ -260,42 +314,49 @@ export default {
 
     if (env.RATE_LIMIT_KV) {
       const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
-      const rateLimitKey = `wasm-ratelimit:${clientIP}`;
+      const rateLimitKey = `wasm-ratelimit:${getRateLimitKey(clientIP)}`;
       const now = Date.now();
 
-      const rateLimitData = await env.RATE_LIMIT_KV.get(rateLimitKey, {
-        type: 'json',
-      });
-      const requests = rateLimitData?.requests || [];
-      const recentRequests = requests.filter(
-        (t) => now - t < RATE_LIMIT_WINDOW_MS
-      );
+      try {
+        const rateLimitData = await env.RATE_LIMIT_KV.get(rateLimitKey, {
+          type: 'json',
+        });
+        const requests = rateLimitData?.requests || [];
+        const recentRequests = requests.filter(
+          (t) => now - t < RATE_LIMIT_WINDOW_MS
+        );
 
-      if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
-        return new Response(
-          JSON.stringify({
-            error: 'Rate limit exceeded',
-            message: `Maximum ${RATE_LIMIT_MAX_REQUESTS} requests per minute.`,
-          }),
+        if (recentRequests.length >= RATE_LIMIT_MAX_REQUESTS) {
+          return new Response(
+            JSON.stringify({
+              error: 'Rate limit exceeded',
+              message: `Maximum ${RATE_LIMIT_MAX_REQUESTS} requests per minute.`,
+            }),
+            {
+              status: 429,
+              headers: {
+                ...corsHeaders(origin),
+                'Content-Type': 'application/json',
+                'Retry-After': '60',
+              },
+            }
+          );
+        }
+
+        recentRequests.push(now);
+        await env.RATE_LIMIT_KV.put(
+          rateLimitKey,
+          JSON.stringify({ requests: recentRequests }),
           {
-            status: 429,
-            headers: {
-              ...corsHeaders(origin),
-              'Content-Type': 'application/json',
-              'Retry-After': '60',
-            },
+            expirationTtl: 120,
           }
         );
+      } catch (error) {
+        console.error(
+          '[WASM Proxy] Rate limit KV error, allowing request:',
+          error
+        );
       }
-
-      recentRequests.push(now);
-      await env.RATE_LIMIT_KV.put(
-        rateLimitKey,
-        JSON.stringify({ requests: recentRequests }),
-        {
-          expirationTtl: 120,
-        }
-      );
     }
 
     if (pathname.startsWith('/pymupdf/')) {

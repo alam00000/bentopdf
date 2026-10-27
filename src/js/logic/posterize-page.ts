@@ -11,6 +11,8 @@ import { createIcons, icons } from 'lucide';
 import { PosterizeState } from '@/types';
 import '../utils/setup-pdf-worker.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: PosterizeState = {
   file: null,
   pdfJsDoc: null,
@@ -48,7 +50,7 @@ async function renderPosterizePreview(pageNum: number) {
   if (!pageState.pdfJsDoc) return;
 
   pageState.currentPage = pageNum;
-  showLoader(`Rendering preview for page ${pageNum}...`);
+  showLoader(trText('Rendering preview for page {{pageNum}}...', { pageNum }));
 
   const canvas = document.getElementById(
     'posterize-preview-canvas'
@@ -205,14 +207,14 @@ async function posterize() {
     const pageIndicesToProcess = parsePageRanges(pageRangeInput, totalPages);
 
     if (pageIndicesToProcess.length === 0) {
-      throw new Error('Invalid page range specified.');
+      throw new Error(trText('Invalid page range specified.'));
     }
 
     const tempCanvas = document.createElement('canvas');
     const tempCtx = tempCanvas.getContext('2d');
 
     if (!tempCtx) {
-      throw new Error('Could not create canvas context.');
+      throw new Error(trText('Could not create canvas context.'));
     }
 
     for (const pageIndex of pageIndicesToProcess) {
@@ -397,7 +399,7 @@ async function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById(

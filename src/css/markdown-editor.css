@@ -115,7 +115,7 @@
 /* Split View Container */
 .md-editor-main {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1rem;
   height: 600px;
   border: 1px solid rgb(55, 65, 81);
@@ -127,6 +127,7 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
+  min-width: 0;
   background: rgb(31, 41, 55);
 }
 
@@ -193,6 +194,7 @@
   flex: 1;
   padding: 1.5rem;
   overflow-y: auto;
+  contain: paint;
   background: rgb(31, 41, 55);
   color: rgb(229, 231, 235);
 }
@@ -282,6 +284,22 @@
 .md-editor-preview ol {
   margin: 1em 0;
   padding-left: 2em;
+}
+
+.md-editor-preview ul {
+  list-style-type: disc;
+}
+
+.md-editor-preview ul ul {
+  list-style-type: circle;
+}
+
+.md-editor-preview ul ul ul {
+  list-style-type: square;
+}
+
+.md-editor-preview ol {
+  list-style-type: decimal;
 }
 
 .md-editor-preview li {
@@ -559,7 +577,6 @@
 
 /* Print Styles */
 @media print {
-
   /* Reset all backgrounds, margins, and padding */
   html,
   body {
@@ -584,10 +601,10 @@
   nav,
   footer,
   #back-to-tools,
-  .bg-gray-800>h1.text-2xl,
-  .bg-gray-800>p.text-gray-400,
-  #markdown-editor-container~h1,
-  #markdown-editor-container~p {
+  .bg-gray-800 > h1.text-2xl,
+  .bg-gray-800 > p.text-gray-400,
+  #markdown-editor-container ~ h1,
+  #markdown-editor-container ~ p {
     display: none !important;
   }
 
@@ -600,7 +617,7 @@
   .py-8,
   .px-4,
   #markdown-editor-container,
-  [class*="container"] {
+  [class*='container'] {
     padding: 0 !important;
     margin: 0 !important;
     background: white !important;
@@ -646,6 +663,7 @@
     background: white !important;
     color: black !important;
     padding: 0 !important;
+    overflow-wrap: break-word;
   }
 
   .md-editor-preview h1,
@@ -658,8 +676,8 @@
     page-break-after: avoid;
   }
 
-  .md-editor-preview>h1:first-child,
-  .md-editor-preview>*:first-child {
+  .md-editor-preview > h1:first-child,
+  .md-editor-preview > *:first-child {
     margin-top: 0 !important;
   }
 
@@ -682,10 +700,13 @@
     background: #f6f8fa !important;
     border: 1px solid #e1e4e8 !important;
     page-break-inside: avoid;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere;
   }
 
   .md-editor-preview pre code {
     color: #24292e !important;
+    white-space: pre-wrap !important;
   }
 
   .md-editor-preview blockquote {
@@ -695,6 +716,11 @@
 
   .md-editor-preview table {
     page-break-inside: avoid;
+  }
+
+  .md-editor-preview table.md-table-break-anywhere th,
+  .md-editor-preview table.md-table-break-anywhere td {
+    overflow-wrap: anywhere;
   }
 
   .md-editor-preview th,
@@ -718,7 +744,7 @@
   }
 
   .md-editor-preview .mermaid-diagram svg {
-    max-width: 100% !important;
+    max-height: 85vh;
   }
 }
 
@@ -750,7 +776,7 @@
   }
 
   .md-editor-main {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     height: auto;
     gap: 0;
   }

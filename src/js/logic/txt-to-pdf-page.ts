@@ -1,7 +1,14 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
+import {
+  createDragHandle,
+  enableFileListReorder,
+  moveItem,
+} from '../utils/sortable-file-list.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
+
+import { trText, onPageReady } from '../i18n/i18n.js';
 
 let files: File[] = [];
 let currentMode: 'upload' | 'text' = 'upload';
@@ -32,24 +39,36 @@ const updateUI = () => {
       fileDiv.className =
         'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
 
+      const infoContainer = document.createElement('div');
+      infoContainer.className = 'flex items-center gap-2 overflow-hidden';
+
       const infoSpan = document.createElement('span');
       infoSpan.className = 'truncate font-medium text-gray-200';
       infoSpan.textContent = file.name;
 
       const sizeSpan = document.createElement('span');
-      sizeSpan.className = 'text-gray-400 text-xs ml-2';
-      sizeSpan.textContent = `(${formatBytes(file.size)})`;
+      sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
+      sizeSpan.textContent = trText('({{size}})', {
+        size: formatBytes(file.size),
+      });
+
+      infoContainer.append(createDragHandle(), infoSpan, sizeSpan);
 
       const removeBtn = document.createElement('button');
-      removeBtn.className = 'ml-4 text-red-400 hover:text-red-300';
+      removeBtn.className =
+        'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
       removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
       removeBtn.onclick = () => {
         files = files.filter((_, i) => i !== index);
         updateUI();
       };
 
-      fileDiv.append(infoSpan, sizeSpan, removeBtn);
+      fileDiv.append(infoContainer, removeBtn);
       fileDisplayArea.appendChild(fileDiv);
+    });
+    enableFileListReorder(fileDisplayArea, (oldIndex, newIndex) => {
+      files = moveItem(files, oldIndex, newIndex);
+      updateUI();
     });
     createIcons({ icons });
   } else {
@@ -142,7 +161,9 @@ async function convert() {
     console.error('[TxtToPDF] Error:', e);
     showAlert(
       'Error',
-      `Failed to convert text to PDF. ${e instanceof Error ? e.message : ''}`
+      trText('Failed to convert text to PDF. {{error}}', {
+        error: e instanceof Error ? e.message : '',
+      })
     );
   } finally {
     hideLoader();
@@ -161,7 +182,7 @@ function updateTextareaDirection(textarea: HTMLTextAreaElement) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const addMoreBtn = document.getElementById('add-more-btn');

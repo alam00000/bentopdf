@@ -4,13 +4,15 @@ import type {
   CompareCategorySummary,
 } from '../types.ts';
 import { diffTextRuns } from './diff-text-runs.ts';
-import { diffTextRunsAsync } from '../worker-api.ts';
+import { diffStrings, diffTextRunsAsync } from '../worker-api.ts';
 import {
   classifyChangeCategory,
   diffAnnotations,
   diffImages,
   buildCategorySummary,
 } from './compare-content.ts';
+
+import { trText } from '../../i18n/i18n.js';
 
 const EMPTY_CATEGORY_SUMMARY: CompareCategorySummary = {
   text: 0,
@@ -54,7 +56,10 @@ function comparePageModelsCore(
           id: 'page-removed',
           type: 'page-removed',
           category: 'text',
-          description: `Page ${leftPage.pageNumber} exists only in the first PDF.`,
+          description: trText(
+            'Page {{pageNumber}} exists only in the first PDF.',
+            { pageNumber: leftPage.pageNumber }
+          ),
           beforeText: leftPage.plainText.slice(0, 200),
           afterText: '',
           beforeRects: [],
@@ -78,7 +83,10 @@ function comparePageModelsCore(
           id: 'page-added',
           type: 'page-added',
           category: 'text',
-          description: `Page ${rightPage.pageNumber} exists only in the second PDF.`,
+          description: trText(
+            'Page {{pageNumber}} exists only in the second PDF.',
+            { pageNumber: rightPage.pageNumber }
+          ),
           beforeText: '',
           afterText: rightPage.plainText.slice(0, 200),
           beforeRects: [],
@@ -150,5 +158,7 @@ function comparePageModelsCore(
     );
   }
 
-  return buildResult(diffTextRuns(leftPage.textItems, rightPage.textItems));
+  return buildResult(
+    diffTextRuns(leftPage.textItems, rightPage.textItems, diffStrings())
+  );
 }

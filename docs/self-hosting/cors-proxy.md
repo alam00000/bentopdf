@@ -123,7 +123,7 @@ The included Cloudflare Worker has several security measures:
 | **Private IP Blocking** | Blocks IPv4/IPv6 private ranges, link-local, loopback, decimal IPs, and cloud metadata |
 | **Content-Type Safety** | Only returns safe certificate MIME types, blocks upstream content-type injection       |
 | **File Size Limit**     | Streams response with 10MB limit, aborts mid-download if exceeded                      |
-| **Rate Limiting**       | 60 requests per IP per minute (requires KV)                                            |
+| **Rate Limiting**       | 60 requests per minute per IP or IPv6 /64 (requires KV, fails open on KV errors)       |
 | **HMAC Signatures**     | Optional client-side signing (deters casual abuse)                                     |
 
 ### DNS rebinding (self-hosting off Cloudflare)

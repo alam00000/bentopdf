@@ -1,7 +1,7 @@
 {{#if simpleMode}} {{> footer-simple}} {{else}}
 <footer class="border-t border-white/10 py-12">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center md:text-left">
       <div class="mb-8 md:mb-0">
         <div class="flex items-center justify-center md:justify-start mb-4">
           <img
@@ -61,6 +61,46 @@
               class="hover:text-indigo-400"
               data-i18n="footer.contactUs"
               >Contact Us</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-white mb-4" data-i18n="footer.tools">
+          Tools
+        </h3>
+        <ul class="space-y-2 text-gray-400">
+          <li>
+            <a
+              href="/#tools-header"
+              class="hover:text-indigo-400"
+              data-i18n="nav.allTools"
+              >All Tools</a
+            >
+          </li>
+          <li>
+            <a
+              href="/pdf-converter"
+              class="hover:text-indigo-400"
+              data-i18n="footer.pdfConverter"
+              >PDF Converter</a
+            >
+          </li>
+          <li>
+            <a
+              href="/pdf-security"
+              class="hover:text-indigo-400"
+              data-i18n="footer.pdfSecurity"
+              >PDF Security</a
+            >
+          </li>
+          <li>
+            <a
+              href="/pdf-merge-split"
+              class="hover:text-indigo-400"
+              data-i18n="footer.mergeSplit"
+              >Merge and Split PDF</a
             >
           </li>
         </ul>

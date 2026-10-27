@@ -1,6 +1,8 @@
 import * as pdfjsLib from 'pdfjs-dist';
 import './setup-pdf-worker.js';
 
+import { trText } from '../i18n/i18n.js';
+
 /**
  * Configuration for progressive rendering
  */
@@ -76,7 +78,7 @@ export function createPlaceholder(
 
   const loadingText = document.createElement('span');
   loadingText.className = 'text-gray-500 text-xs';
-  loadingText.textContent = 'Loading...';
+  loadingText.textContent = trText('Loading...');
 
   skeletonContainer.appendChild(loadingText);
   placeholder.appendChild(skeletonContainer);
@@ -101,7 +103,9 @@ export async function renderPageToCanvas(
 
   const context = canvas.getContext('2d');
   if (!context) {
-    throw new Error(`Failed to get 2D context for page ${pageNumber}`);
+    throw new Error(
+      trText('Failed to get 2D context for page {{pageNumber}}', { pageNumber })
+    );
   }
 
   await page.render({

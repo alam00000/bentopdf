@@ -196,7 +196,7 @@ const engineReady = new Promise((resolve) => {
       }
     : () => {};
   trace('wired');
-  const demo = params.get('demo');
+  const demo = import.meta.env?.DEV ? params.get('demo') : null;
   if (demo) {
     try {
       trace('fetching ' + demo);
@@ -10260,4 +10260,6 @@ export {
   getZoom,
   getDocDescription,
   setOnSaved,
+  endEdit,
+  saveFile,
 };

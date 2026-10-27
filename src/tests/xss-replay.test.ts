@@ -1,20 +1,18 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import MarkdownIt from 'markdown-it';
 import DOMPurify from 'dompurify';
 import forge from 'node-forge';
 import { escapeHtml, sanitizeEmailHtml } from '../js/utils/helpers';
+import { MarkdownEditor } from '../js/utils/markdown-editor';
 import { validateSignature } from '../js/logic/validate-signature-pdf';
 import type { ExtractedSignature } from '@/types';
 
 function renderAsPreviewWould(markdown: string): string {
-  const md = new MarkdownIt({
-    html: true,
-    breaks: false,
-    linkify: true,
-    typographer: true,
-  });
-  const raw = md.render(markdown);
-  return DOMPurify.sanitize(raw, { ADD_ATTR: ['target'] });
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+  new MarkdownEditor(container, { initialContent: markdown });
+  const html = container.querySelector('#mdPreview')!.innerHTML;
+  container.remove();
+  return html;
 }
 
 function assertNoExecutableContent(html: string) {

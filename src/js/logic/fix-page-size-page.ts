@@ -5,6 +5,8 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { icons, createIcons } from 'lucide';
 import { FixPageSizeState } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: FixPageSizeState = {
   file: null,
 };
@@ -105,7 +107,7 @@ async function fixPageSize() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = 'Standardizing pages...';
+  if (loaderText) loaderText.textContent = trText('Standardizing pages...');
 
   try {
     const customWidth =
@@ -153,7 +155,7 @@ async function fixPageSize() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

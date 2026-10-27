@@ -60,11 +60,11 @@ export function generateComicInfoXml(params: ComicMetadata): string {
   lines.push(`  <PageCount>${params.pageCount}</PageCount>`);
 
   if (params.blackAndWhite) {
-    lines.push('  <BlackAndWhite>Yes</BlackAndWhite>');
+    lines.push(`  <BlackAndWhite>Yes</BlackAndWhite>`);
   }
 
   if (params.manga) {
-    lines.push('  <Manga>YesAndRightToLeft</Manga>');
+    lines.push(`  <Manga>YesAndRightToLeft</Manga>`);
   }
 
   lines.push('</ComicInfo>');

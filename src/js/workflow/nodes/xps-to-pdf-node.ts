@@ -3,6 +3,7 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
+import { convertXpsToPdf } from '../../utils/xps-repair.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 import { wfError } from '../errors';
 
@@ -53,7 +54,7 @@ export class XpsToPdfNode extends BaseWorkflowNode {
     const pymupdf = await loadPyMuPDF();
     const results: PDFData[] = [];
     for (const file of this.files) {
-      const blob = await pymupdf.convertToPdf(file, { filetype: 'xps' });
+      const blob = await convertXpsToPdf(pymupdf, file);
       const bytes = new Uint8Array(await blob.arrayBuffer());
       const document = await loadPdfDocument(bytes);
       results.push({

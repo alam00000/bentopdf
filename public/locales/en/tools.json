@@ -1,5 +1,6 @@
 {
   "categories": {
+    "favorites": "Favorites",
     "popularTools": "Popular Tools",
     "editAnnotate": "Edit & Annotate",
     "convertToPdf": "Convert to PDF",
@@ -9,6 +10,13 @@
     "securePdf": "Secure PDF",
     "input": "Input",
     "output": "Output"
+  },
+  "favorites": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "hintLabel": "Tip",
+    "hint": "Press and hold a tool to add it to your favorites.",
+    "hideHint": "Hide tip"
   },
   "convertToPdf": "Convert to PDF",
   "pdfMultiTool": {
@@ -20,7 +28,21 @@
     "subtitle": "Combine multiple PDFs into one file. Preserves Bookmarks.",
     "retainPageLabels": "Keep original page labels from each file",
     "retainPageLabelsHint": "Off (default): the merged PDF uses natural page numbering 1–N. On: each file's original page labels are preserved (may produce duplicate labels).",
-    "removeDuplicateFonts": "Remove duplicate fonts"
+    "removeDuplicateFonts": "Remove duplicate fonts",
+    "alert": {
+      "thumbnailError": "Failed to render page thumbnails",
+      "noSelection": "No files or pages selected to merge.",
+      "mergeSuccess": "PDFs merged successfully!",
+      "mergeFailed": "Failed to merge PDFs.",
+      "mergeError": "Failed to merge PDFs. Please check that all files are valid and not password-protected.",
+      "workerError": "An unexpected error occurred in the merge worker.",
+      "loadError": "Failed to load one or more PDF files"
+    },
+    "loader": {
+      "renderingPreviews": "Rendering page previews...",
+      "merging": "Merging PDFs...",
+      "loadingDocuments": "Loading PDF documents..."
+    }
   },
   "splitPdf": {
     "name": "Split PDF",
@@ -28,29 +50,7 @@
   },
   "compressPdf": {
     "name": "Compress PDF",
-    "subtitle": "Reduce the file size of your PDF.",
-    "algorithmLabel": "Compression Algorithm",
-    "condense": "Condense (Recommended)",
-    "photon": "Photon (For Photo-Heavy PDFs)",
-    "condenseInfo": "Condense uses advanced compression: removes dead-weight, optimizes images, subsets fonts. Best for most PDFs.",
-    "photonInfo": "Photon converts pages to images. Use for photo-heavy/scanned PDFs.",
-    "photonWarning": "Warning: Text will become non-selectable and links will stop working.",
-    "levelLabel": "Compression Level",
-    "light": "Light (Preserve Quality)",
-    "balanced": "Balanced (Recommended)",
-    "aggressive": "Aggressive (Smaller Files)",
-    "extreme": "Extreme (Maximum Compression)",
-    "grayscale": "Convert to Grayscale",
-    "grayscaleHint": "Reduces file size by removing color information",
-    "customSettings": "Custom Settings",
-    "customSettingsHint": "Fine-tune compression parameters:",
-    "outputQuality": "Output Quality",
-    "resizeImagesTo": "Resize Images To",
-    "onlyProcessAbove": "Only Process Above",
-    "removeMetadata": "Remove metadata",
-    "subsetFonts": "Subset fonts (remove unused glyphs)",
-    "removeThumbnails": "Remove embedded thumbnails",
-    "compressButton": "Compress PDF"
+    "subtitle": "Reduce the file size of your PDF."
   },
   "pdfEditor": {
     "name": "PDF Editor",
@@ -61,6 +61,8 @@
     "subtitle": "Click any paragraph and edit it in place with live reflow, fonts, and styling.",
     "saved": "PDF saved successfully! ({{size}} KB)",
     "failedToLoad": "Failed to load the PDF Text Editor.",
+    "loadingFonts": "Loading fonts...",
+    "fontsUnavailable": "A font needed for some characters could not be downloaded. Check your connection and try again, or those characters may not appear correctly in the saved PDF.",
     "howToUpload": "Upload PDF",
     "howToClick": "Click a Paragraph",
     "howToRestyle": "Restyle Anything",
@@ -104,7 +106,7 @@
     "tipRedoZ": "Redo (⇧⌘Z)",
     "tipFileDetails": "File details",
     "tipEditExistingContent": "Edit existing content",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "What the Edit tool touches — narrow the scope on busy pages",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "What the Edit tool touches. Narrow the scope on busy pages.",
     "tipClickThePageToAddATextBox": "Click the page to add a text box",
     "tipSpellCheckLanguage": "Spell-check language",
     "tipFindAndReplace": "Find & replace",
@@ -862,7 +864,7 @@
     "subtitle": "Write or paste Markdown and export it as a beautifully formatted PDF.",
     "paneMarkdown": "Markdown",
     "panePreview": "Preview",
-    "btnUpload": "Upload",
+    "btnUpload": "Select",
     "btnSyncScroll": "Sync Scroll",
     "btnSettings": "Settings",
     "btnExportPdf": "Export PDF",

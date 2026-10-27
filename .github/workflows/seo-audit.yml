@@ -5,9 +5,9 @@ on:
     paths:
       - '**/*.html'
       - 'public/locales/**'
-      - 'scripts/generate-i18n-pages.mjs'
-      - 'scripts/generate-sitemap.mjs'
-      - 'scripts/seo-audit.mjs'
+      - 'scripts/**'
+      - 'translations/**'
+      - 'docs/**'
       - 'src/partials/**'
       - 'package.json'
       - 'package-lock.json'

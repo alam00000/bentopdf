@@ -9,7 +9,8 @@
     "openMainMenu": "Ouvrir le menu principal",
     "language": "Langue",
     "searchLanguage": "Rechercher une langue…",
-    "noLanguagesFound": "Aucune langue trouvée"
+    "noLanguagesFound": "Aucune langue trouvée",
+    "breadcrumb": "Fil d'Ariane"
   },
   "donation": {
     "message": "Vous aimez BentoPDF ? Aidez-nous à le garder open source !",
@@ -222,7 +223,7 @@
   "testimonials": {
     "title": "Ce que disent",
     "users": "nos utilisateurs",
-    "say": ""
+    "say": " "
   },
   "support": {
     "title": "Vous aimez ce projet ?",
@@ -236,6 +237,10 @@
     "aboutUs": "À propos",
     "faqLink": "FAQ",
     "contactUs": "Nous contacter",
+    "tools": "Outils",
+    "pdfConverter": "Convertisseur PDF",
+    "pdfSecurity": "Sécurité PDF",
+    "mergeSplit": "Fusionner et diviser des PDF",
     "legal": "Mentions légales",
     "termsAndConditions": "Conditions générales",
     "privacyPolicy": "Politique de confidentialité",
@@ -288,7 +293,8 @@
       "noCompromises": "Sans compromis."
     },
     "mission": {
-      "title": "Notre mission",
+      "title": "Notre",
+      "titleDim": "mission",
       "description": "Proposer la palette d’outils PDF la plus complète, tout en respectant votre vie privée et sans jamais demander de paiement. Les outils essentiels doivent être accessibles à tous, partout, sans barrières."
     },
     "philosophy": {

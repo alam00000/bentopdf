@@ -7,6 +7,8 @@ import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 let pymupdf: PyMuPDFInstance | null = null;
 let files: File[] = [];
 
@@ -114,7 +116,12 @@ async function convert() {
       } else {
         const zip = new JSZip();
         for (let i = 0; i < pageCount; i++) {
-          showLoader(`Converting page ${i + 1} of ${pageCount}...`);
+          showLoader(
+            trText('Converting page {{n}} of {{pageCount}}...', {
+              n: i + 1,
+              pageCount,
+            })
+          );
           const page = doc.getPage(i);
           const svgContent = page.toSvg();
           zip.file(`page_${i + 1}.svg`, svgContent);
@@ -124,7 +131,7 @@ async function convert() {
         downloadFile(zipBlob, `${baseName}_svg.zip`);
         showAlert(
           'Success',
-          `Converted ${pageCount} pages to SVG!`,
+          trText('Converted {{pageCount}} pages to SVG!', { pageCount }),
           'success',
           () => resetState()
         );
@@ -135,14 +142,24 @@ async function convert() {
 
       for (let f = 0; f < files.length; f++) {
         const file = files[f];
-        showLoader(`Processing file ${f + 1} of ${files.length}...`);
+        showLoader(
+          trText('Processing file {{n}} of {{length}}...', {
+            n: f + 1,
+            length: files.length,
+          })
+        );
         const doc = await pymupdf.open(file);
         const pageCount = doc.pageCount;
         const baseName = file.name.replace(/\.[^/.]+$/, '');
 
         for (let i = 0; i < pageCount; i++) {
           showLoader(
-            `File ${f + 1}/${files.length}: Page ${i + 1}/${pageCount}`
+            trText('File {{n}}/{{length}}: Page {{n2}}/{{pageCount}}', {
+              n: f + 1,
+              length: files.length,
+              n2: i + 1,
+              pageCount,
+            })
           );
           const page = doc.getPage(i);
           const svgContent = page.toSvg();
@@ -160,21 +177,27 @@ async function convert() {
       downloadFile(zipBlob, 'pdf_to_svg.zip');
       showAlert(
         'Success',
-        `Converted ${files.length} files (${totalPages} pages) to SVG!`,
+        trText('Converted {{length}} files ({{totalPages}} pages) to SVG!', {
+          length: files.length,
+          totalPages,
+        }),
         'success',
         () => resetState()
       );
     }
   } catch (e) {
     console.error(e);
-    const message = e instanceof Error ? e.message : 'Unknown error';
-    showAlert('Error', `Failed to convert PDF to SVG. ${message}`);
+    const message = e instanceof Error ? e.message : trText('Unknown error');
+    showAlert(
+      'Error',
+      trText('Failed to convert PDF to SVG. {{message}}', { message })
+    );
   } finally {
     hideLoader();
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

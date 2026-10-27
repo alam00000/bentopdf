@@ -9,6 +9,8 @@ import {
 } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/extract-attachments.worker.js'
 );
@@ -114,18 +116,24 @@ worker.onmessage = function (e) {
 
       showAlert(
         'Success',
-        `${attachments.length} attachment(s) extracted successfully!`
+        trText('{{length}} attachment(s) extracted successfully!', {
+          length: attachments.length,
+        })
       );
 
       showStatus(
-        `Extraction completed! ${attachments.length} attachment(s) in zip file (${formatBytes(totalSize)}). Download started.`,
+        trText(
+          'Extraction completed! {{length}} attachment(s) in zip file ({{totalSize}}). Download started.',
+          { length: attachments.length, totalSize: formatBytes(totalSize) }
+        ),
         'success'
       );
 
       resetState();
     });
   } else if (e.data.status === 'error') {
-    const errorMessage = e.data.message || 'Unknown error occurred in worker.';
+    const errorMessage =
+      e.data.message || trText('Unknown error occurred in worker.');
     console.error('Worker Error:', errorMessage);
 
     if (errorMessage.includes('No attachments were found')) {
@@ -142,7 +150,10 @@ worker.onmessage = function (e) {
 
 worker.onerror = function (error) {
   console.error('Worker error:', error);
-  showStatus('Worker error occurred. Check console for details.', 'error');
+  showStatus(
+    trText('Worker error occurred. Check console for details.'),
+    'error'
+  );
 
   const processBtn = document.getElementById('process-btn');
   if (processBtn) {
@@ -169,7 +180,9 @@ async function updateUI() {
 
     const countSpan = document.createElement('div');
     countSpan.className = 'font-medium text-gray-200 text-sm mb-1';
-    countSpan.textContent = `${pageState.files.length} PDF file(s) selected`;
+    countSpan.textContent = trText('{{length}} PDF file(s) selected', {
+      length: pageState.files.length,
+    });
 
     const sizeSpan = document.createElement('div');
     sizeSpan.className = 'text-xs text-gray-400';
@@ -199,7 +212,7 @@ async function updateUI() {
 
 async function extractAttachments() {
   if (pageState.files.length === 0) {
-    showStatus('No Files', 'error');
+    showStatus(trText('No Files'), 'error');
     return;
   }
 
@@ -215,7 +228,7 @@ async function extractAttachments() {
     processBtn.setAttribute('disabled', 'true');
   }
 
-  showStatus('Reading files...', 'info');
+  showStatus(trText('Reading files...'), 'info');
 
   try {
     pageState.files = await batchDecryptIfNeeded(pageState.files);
@@ -239,7 +252,9 @@ async function extractAttachments() {
     }
 
     showStatus(
-      `Extracting attachments from ${pageState.files.length} file(s)...`,
+      trText('Extracting attachments from {{length}} file(s)...', {
+        length: pageState.files.length,
+      }),
       'info'
     );
 
@@ -257,7 +272,10 @@ async function extractAttachments() {
   } catch (error) {
     console.error('Error reading files:', error);
     showStatus(
-      `Error reading files: ${error instanceof Error ? error.message : 'Unknown error occurred'}`,
+      trText('Error reading files: {{error}}', {
+        error:
+          error instanceof Error ? error.message : 'Unknown error occurred',
+      }),
       'error'
     );
 
@@ -282,7 +300,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

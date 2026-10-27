@@ -84,6 +84,11 @@ export class SanitizeNode extends BaseWorkflowNode {
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
         const result = await sanitizePdf(input.bytes, options);
+        if (result.skipped.length > 0) {
+          console.warn(
+            `[Sanitize] ${input.filename}: could not ${result.skipped.join(', ')}`
+          );
+        }
         return {
           type: 'pdf',
           document: result.pdfDoc,

@@ -5,7 +5,7 @@
 ARG BASE_URL=
 
 # Build stage (identical to main Dockerfile)
-FROM public.ecr.aws/docker/library/node:20-alpine AS builder
+FROM mirror.gcr.io/library/node:26-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 COPY vendor ./vendor
@@ -60,6 +60,8 @@ ENV VITE_FOOTER_TEXT=$VITE_FOOTER_TEXT
 # Public-facing canonical site URL. See Dockerfile for details.
 ARG SITE_URL=https://www.bentopdf.com
 ENV SITE_URL=$SITE_URL
+ARG ALLOW_INDEXING=false
+ENV ALLOW_INDEXING=$ALLOW_INDEXING
 
 ENV NODE_OPTIONS="--max-old-space-size=3072"
 

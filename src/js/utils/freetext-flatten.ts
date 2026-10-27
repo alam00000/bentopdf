@@ -1,5 +1,6 @@
 import type { FreeTextSystemFontAnnotation } from '@/types';
 import { needsFontEmbedding } from './freetext-script.js';
+import { fallbackFontLanguages, loadFallbackFonts } from './font-loader.js';
 
 export const FPDF_ANNOT_FREETEXT = 3;
 
@@ -153,7 +154,7 @@ function buildRuns(
   return [
     {
       text: contents,
-      family: 'Helvetica',
+      family: needsFontEmbedding(contents) ? 'Noto Sans' : 'Helvetica',
       size,
       rgba: hexToRgba(style?.fontColor ?? '#000000'),
       bold: false,
@@ -196,6 +197,7 @@ export async function flattenFreeTextToPageText(
     PdfEngine: {
       create: () => Promise<EngineLike>;
       localFonts: Map<string, Uint8Array>;
+      fallbackFonts: Map<string, Uint8Array>;
     };
     scriptFallbackFamilies: (cps: number[]) => string[];
   };
@@ -245,6 +247,10 @@ export async function flattenFreeTextToPageText(
     return { bytes, flattened: 0 };
   }
   await primeScriptFonts(mod, found);
+  await loadFallbackFonts(
+    mod.PdfEngine.fallbackFonts,
+    fallbackFontLanguages(found.join('\n'))
+  );
 
   for (const pageIndex of [...pages].sort((x, y) => x - y)) {
     if (pageIndex < 0 || pageIndex >= eng.pageCount) continue;

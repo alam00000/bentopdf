@@ -8,7 +8,9 @@ import {
 } from '../utils/libreoffice-loader.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+import { trText, onPageReady } from '../i18n/i18n.js';
+
+onPageReady(() => {
   state.files = [];
 
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -114,7 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${originalFile.name} to PDF.`,
+          trText('Successfully converted {{name}} to PDF.', {
+            name: originalFile.name,
+          }),
           'success',
           () => resetState()
         );
@@ -127,7 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            `Converting ${i + 1}/${state.files.length}: ${file.name}...`
+            trText('Converting {{n}}/{{length}}: {{name}}...', {
+              n: i + 1,
+              length: state.files.length,
+              name: file.name,
+            })
           );
 
           const pdfBlob = await converter.convertToPdf(file);
@@ -149,7 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} RTF file(s) to PDF.`,
+          trText('Successfully converted {{length}} RTF file(s) to PDF.', {
+            length: state.files.length,
+          }),
           'success',
           () => resetState()
         );
@@ -158,7 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during conversion. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

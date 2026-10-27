@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { marked } from 'marked';
 import { fileURLToPath } from 'url';
+import { serializeJsonLd } from './json-ld.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +17,7 @@ const AUTHOR = {
   profiles: [
     'https://github.com/alam00000',
     'https://www.linkedin.com/in/abdullah-alam01/',
+    'https://x.com/alamdraws',
   ],
 };
 
@@ -122,19 +124,15 @@ function faqSchema(entries) {
   if (entries.length === 0) return '';
   return `
     <script type="application/ld+json">
-      ${JSON.stringify(
-        {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: entries.map((f) => ({
-            '@type': 'Question',
-            name: f.q,
-            acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) },
-          })),
-        },
-        null,
-        2
-      )}
+      ${serializeJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: entries.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: plainText(f.a) },
+        })),
+      })}
     </script>`;
 }
 
@@ -245,55 +243,47 @@ ${renderFaqs(meta.faqs)}
     </script>
 
     <script type="application/ld+json">
-      ${JSON.stringify(
-        {
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          headline: meta.h1,
-          description: meta.description,
-          url,
-          datePublished: meta.date,
-          dateModified: updated,
-          image: `${SITE_URL}/images/og-tools.png`,
-          author: {
-            '@type': 'Person',
-            name: AUTHOR.name,
-            url: AUTHOR.url,
-            sameAs: AUTHOR.profiles,
-          },
-          publisher: {
-            '@type': 'Organization',
-            name: 'BentoPDF',
-            url: SITE_URL,
-          },
+      ${serializeJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: meta.h1,
+        description: meta.description,
+        url,
+        datePublished: meta.date,
+        dateModified: updated,
+        image: `${SITE_URL}/images/og-tools.png`,
+        author: {
+          '@type': 'Person',
+          name: AUTHOR.name,
+          url: AUTHOR.url,
+          sameAs: AUTHOR.profiles,
         },
-        null,
-        2
-      )}
+        publisher: {
+          '@type': 'Organization',
+          name: 'BentoPDF',
+          url: SITE_URL,
+        },
+      })}
     </script>
     <script type="application/ld+json">
-      ${JSON.stringify(
-        {
-          '@context': 'https://schema.org',
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Blog',
-              item: `${SITE_URL}/blog/`,
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: meta.breadcrumb,
-              item: url,
-            },
-          ],
-        },
-        null,
-        2
-      )}
+      ${serializeJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Blog',
+            item: `${SITE_URL}/blog`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: meta.breadcrumb,
+            item: url,
+          },
+        ],
+      })}
     </script>${faqSchema(faqEntries)}
   </body>
 </html>
@@ -329,9 +319,9 @@ function renderIndex(posts) {
       content="Guides and honest comparisons from the maintainer of BentoPDF: how PDF tools handle your files, and how to get things done without uploading them."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <link rel="canonical" href="${SITE_URL}/blog/" />
+    <link rel="canonical" href="${SITE_URL}/blog" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="${SITE_URL}/blog/" />
+    <meta property="og:url" content="${SITE_URL}/blog" />
     <meta property="og:title" content="The BentoPDF Blog" />
     <meta
       property="og:description"
@@ -369,23 +359,19 @@ ${cards}
     <script type="module" src="/src/js/mobileMenu.ts"></script>
 
     <script type="application/ld+json">
-      ${JSON.stringify(
-        {
-          '@context': 'https://schema.org',
-          '@type': 'Blog',
-          name: 'The BentoPDF Blog',
-          url: `${SITE_URL}/blog/`,
-          description:
-            'Guides and honest comparisons from the maintainer of BentoPDF.',
-          publisher: {
-            '@type': 'Organization',
-            name: 'BentoPDF',
-            url: SITE_URL,
-          },
+      ${serializeJsonLd({
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        name: 'The BentoPDF Blog',
+        url: `${SITE_URL}/blog`,
+        description:
+          'Guides and honest comparisons from the maintainer of BentoPDF.',
+        publisher: {
+          '@type': 'Organization',
+          name: 'BentoPDF',
+          url: SITE_URL,
         },
-        null,
-        2
-      )}
+      })}
     </script>
   </body>
 </html>

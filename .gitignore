@@ -54,3 +54,10 @@ test
 # Sibling checkouts of the engine/viewer forks
 bentopdf-pdfium-viewer/
 bentopdf-pymupdf-wasm/
+
+/blog/*.html
+!/blog/author-alam.html
+/src/partials/tool-links-static.html
+/security-headers-docs.conf
+/dist-*.zip
+/docs/.vitepress/cache/

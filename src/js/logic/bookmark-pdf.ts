@@ -12,6 +12,7 @@ import {
   escapeHtml,
   hexToRgb,
 } from '../utils/helpers.js';
+import { trText, trHtml, onPageReady } from '../i18n/i18n.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
@@ -262,21 +263,21 @@ placeholder="${escapeHTML(field.placeholder || '')}" />
         <div class="flex items-center gap-2">
           <label class="flex items-center gap-1 text-xs">
             <input type="checkbox" id="modal-use-destination" class="w-4 h-4" ${hasDestination ? 'checked' : ''}>
-              <span class="text-gray-700">Set custom destination</span>
+              <span class="text-gray-700">${trHtml('Set custom destination')}</span>
                 </label>
                 </div>
                 <div id="destination-controls" class="${hasDestination ? '' : 'hidden'} space-y-2">
                   <div class="grid grid-cols-2 gap-2">
                     <div>
-                    <label class="text-xs text-gray-600">Page</label>
+                    <label class="text-xs text-gray-600">${trHtml('Page')}</label>
                       <input type="number" id="modal-dest-page" min="1" max="${escapeHTML(String(field.maxPages || 1))}" value="${escapeHTML(String(defaultValues.destPage || field.page || 1))}"
 class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" step="1" />
   </div>
   <div>
-  <label class="text-xs text-gray-600">Zoom(%)</label>
+  <label class="text-xs text-gray-600">${trHtml('Zoom(%)')}</label>
     <select id="modal-dest-zoom" class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900">
-      <option value="">Inherit</option>
-        <option value="0">Fit Page</option>
+      <option value="">${trHtml('Inherit')}</option>
+        <option value="0">${trHtml('Fit Page')}</option>
           <option value="50">50%</option>
             <option value="75">75%</option>
               <option value="100">100%</option>
@@ -288,20 +289,20 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" st
                       </div>
                       <div class="grid grid-cols-2 gap-2">
                         <div>
-                        <label class="text-xs text-gray-600">X Position</label>
+                        <label class="text-xs text-gray-600">${trHtml('X Position')}</label>
                           <input type="number" id="modal-dest-x" value="0" step="10"
 class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
   </div>
   <div>
-  <label class="text-xs text-gray-600">Y Position</label>
+  <label class="text-xs text-gray-600">${trHtml('Y Position')}</label>
     <input type="number" id="modal-dest-y" value="0" step="10"
 class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
   </div>
   </div>
   <button id="modal-pick-destination" class="w-full px-3 py-2 btn-gradient text-white rounded text-xs !flex items-center justify-center gap-1">
-    <i data-lucide="crosshair" class="w-3 h-3"></i> Click on PDF to Pick Location
+    <i data-lucide="crosshair" class="w-3 h-3"></i> ${trHtml('Click on PDF to Pick Location')}
       </button>
-      <p class="text-xs text-gray-500 italic">Click the button above, then click on the PDF where you want the bookmark to jump to</p>
+      <p class="text-xs text-gray-500 italic">${trHtml('Click the button above, then click on the PDF where you want the bookmark to jump to')}</p>
         </div>
         </div>
         </div>
@@ -311,7 +312,7 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-700 mb-2">${escapeHTML(field.label)}</label>
             <div id="modal-preview" class="style-preview bg-gray-50">
-              <span id="preview-text" style="font-size: 16px;">Preview Text</span>
+              <span id="preview-text" style="font-size: 16px;">${trHtml('Preview Text')}</span>
                 </div>
                 </div>
                   `;
@@ -322,13 +323,13 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
 
     modal.innerHTML = `
                 <div class="p-6">
-                  <h3 class="text-xl font-bold text-gray-800 mb-4">${escapeHTML(title)}</h3>
+                  <h3 class="text-xl font-bold text-gray-800 mb-4">${escapeHTML(trText(title))}</h3>
                     <div class="mb-6">
                       ${fieldsHTML}
 </div>
   <div class="flex gap-2 justify-end">
-    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">Cancel</button>
-      <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">Confirm</button>
+    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${trHtml('Cancel')}</button>
+      <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">${trHtml('Confirm')}</button>
         </div>
         </div>
           `;
@@ -354,11 +355,13 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
           '#modal-color-picker'
         ) as HTMLInputElement | null;
 
-        const titleVal = titleInputEl ? titleInputEl.value : 'Preview Text';
+        const titleVal = titleInputEl
+          ? titleInputEl.value
+          : trText('Preview Text');
         const color = colorSelectEl ? colorSelectEl.value : '';
         const style = styleSelectEl ? styleSelectEl.value : '';
 
-        previewText.textContent = titleVal || 'Preview Text';
+        previewText.textContent = titleVal || trText('Preview Text');
 
         if (color === 'custom' && colorPickerEl) {
           previewText.style.color = colorPickerEl.value;
@@ -695,7 +698,7 @@ function cancelDestinationPicking(): void {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   initializeGlobalShortcuts();
 
   const canvasEl = document.getElementById(
@@ -723,7 +726,10 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasWrapperEl.appendChild(coordTooltip);
     }
 
-    coordTooltip.textContent = `X: ${Math.round(x)}, Y: ${Math.round(y)} `;
+    coordTooltip.textContent = trText('X: {{x}}, Y: {{y}} ', {
+      x: Math.round(x),
+      y: Math.round(y),
+    });
     coordTooltip.style.left = e.clientX - rect.left + 15 + 'px';
     coordTooltip.style.top = e.clientY - rect.top + 15 + 'px';
   });
@@ -797,7 +803,10 @@ document.addEventListener('DOMContentLoaded', () => {
       canvasX + canvasRect.left - wrapperRect.left + 20 + 'px';
     coordDisplay.style.top =
       canvasY + canvasRect.top - wrapperRect.top - 30 + 'px';
-    coordDisplay.textContent = `X: ${Math.round(pdfX)}, Y: ${Math.round(pdfY)} `;
+    coordDisplay.textContent = trText('X: {{pdfX}}, Y: {{pdfY}} ', {
+      pdfX: Math.round(pdfX),
+      pdfY: Math.round(pdfY),
+    });
     canvasWrapperEl.appendChild(coordDisplay);
 
     currentPickingCallback(currentPage, pdfX, pdfY);
@@ -825,11 +834,11 @@ function showConfirmModal(message: string): Promise<boolean> {
 
     modal.innerHTML = `
   <div class="p-6">
-    <h3 class="text-xl font-bold text-gray-800 mb-4">Confirm Action</h3>
-      <p class="text-gray-600 mb-6">${escapeHTML(message)}</p>
+    <h3 class="text-xl font-bold text-gray-800 mb-4">${trHtml('Confirm Action')}</h3>
+      <p class="text-gray-600 mb-6">${escapeHTML(trText(message))}</p>
         <div class="flex gap-2 justify-end">
-          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">Cancel</button>
-            <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">Confirm</button>
+          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${trHtml('Cancel')}</button>
+            <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">${trHtml('Confirm')}</button>
               </div>
               </div>
                 `;
@@ -881,7 +890,7 @@ function showAlertModal(title: string, message: string): Promise<boolean> {
                 <h3 class="text-xl font-bold text-gray-800 mb-4">${escapeHTML(title)}</h3>
                   <p class="text-gray-600 mb-6">${escapeHTML(message)}</p>
                     <div class="flex justify-end">
-                      <button id="modal-ok" class="px-4 py-2 rounded btn-gradient text-white">OK</button>
+                      <button id="modal-ok" class="px-4 py-2 rounded btn-gradient text-white">${trHtml('OK')}</button>
                         </div>
                         </div>
                           `;
@@ -1005,7 +1014,9 @@ redoBtn?.addEventListener('click', redo);
 
 resetBtn?.addEventListener('click', async () => {
   const confirmed = await showConfirmModal(
-    'Reset and go back to file uploader? All unsaved changes will be lost.'
+    trText(
+      'Reset and go back to file uploader? All unsaved changes will be lost.'
+    )
   );
   if (confirmed) {
     resetToUploader();
@@ -1014,12 +1025,14 @@ resetBtn?.addEventListener('click', async () => {
 
 deleteAllBtn?.addEventListener('click', async () => {
   if (bookmarkTree.length === 0) {
-    await showAlertModal('Info', 'No bookmarks to delete.');
+    await showAlertModal('Info', trText('No bookmarks to delete.'));
     return;
   }
 
   const confirmed = await showConfirmModal(
-    `Delete all ${bookmarkTree.length} bookmark(s) ? `
+    trText('Delete all {{length}} bookmark(s) ? ', {
+      length: bookmarkTree.length,
+    })
   );
   if (confirmed) {
     bookmarkTree = [];
@@ -1146,7 +1159,7 @@ batchDeleteBtn?.addEventListener('click', async () => {
   if (selectedBookmarks.size === 0) return;
 
   const confirmed = await showConfirmModal(
-    `Delete ${selectedBookmarks.size} bookmark(s) ? `
+    trText('Delete {{size}} bookmark(s) ? ', { size: selectedBookmarks.size })
   );
   if (!confirmed) return;
 
@@ -1292,8 +1305,10 @@ csvInput?.addEventListener('change', async (e: Event) => {
   csvBookmarks = parseCSV(text);
 
   await showAlertModal(
-    'CSV Loaded',
-    `Loaded ${csvBookmarks.length} bookmarks from CSV. Now upload your PDF.`
+    trText('CSV Loaded'),
+    trText('Loaded {{length}} bookmarks from CSV. Now upload your PDF.', {
+      length: csvBookmarks.length,
+    })
   );
 });
 
@@ -1306,11 +1321,11 @@ jsonInput?.addEventListener('change', async (e: Event) => {
   try {
     jsonBookmarks = JSON.parse(text);
     await showAlertModal(
-      'JSON Loaded',
-      'Loaded bookmarks from JSON. Now upload your PDF.'
+      trText('JSON Loaded'),
+      trText('Loaded bookmarks from JSON. Now upload your PDF.')
     );
   } catch {
-    await showAlertModal('Error', 'Invalid JSON format');
+    await showAlertModal('Error', trText('Invalid JSON format'));
   }
 });
 
@@ -1388,7 +1403,10 @@ async function renderPage(
     ctx.restore();
   }
 
-  pageIndicator!.textContent = `Page ${num} / ${pdfJsDoc.numPages}`;
+  pageIndicator!.textContent = trText('Page {{num}} / {{numPages}}', {
+    num,
+    numPages: pdfJsDoc.numPages,
+  });
   if (gotoPageInput) gotoPageInput.value = String(num);
   currentPage = num;
   if (currentPageDisplay) currentPageDisplay.textContent = String(num);
@@ -1425,7 +1443,9 @@ gotoPageInput?.addEventListener('keypress', (e: KeyboardEvent) => {
 
 function updateZoomIndicator(): void {
   if (zoomIndicator) {
-    zoomIndicator.textContent = `${Math.round(currentZoom * 100)}%`;
+    zoomIndicator.textContent = trText('{{value}}%', {
+      value: Math.round(currentZoom * 100),
+    });
   }
 }
 
@@ -1699,7 +1719,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   titleDiv.innerHTML = `
                 <span class="text-sm block ${styleClass} ${textColorClass}" ${customColorStyle}>${escapeHTML(node.title)}${destinationIcon}</span>
-                <span class="text-xs text-gray-500">Page ${escapeHTML(String(node.page))}</span>
+                <span class="text-xs text-gray-500">${trHtml('Page {{page}}', { page: escapeHTML(String(node.page)) })}</span>
             `;
 
   titleDiv.addEventListener('click', async () => {
@@ -1734,16 +1754,16 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const addChildBtn = document.createElement('button');
   addChildBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
-  addChildBtn.title = 'Add child';
+  addChildBtn.title = trText('Add child');
   addChildBtn.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';
   addChildBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
-    const result = await showInputModal('Add Child Bookmark', [
+    const result = await showInputModal(trText('Add Child Bookmark'), [
       {
         type: 'text',
         name: 'title',
-        label: 'Title',
-        placeholder: 'Enter bookmark title',
+        label: trText('Title'),
+        placeholder: trText('Enter bookmark title'),
       },
     ]);
     if (result && result.title) {
@@ -1767,52 +1787,52 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const editBtn = document.createElement('button');
   editBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
-  editBtn.title = 'Edit';
+  editBtn.title = trText('Edit');
   editBtn.innerHTML = '<i data-lucide="edit-2" class="w-4 h-4"></i>';
   editBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const result = await showInputModal(
-      'Edit Bookmark',
+      trText('Edit Bookmark'),
       [
         {
           type: 'text',
           name: 'title',
-          label: 'Title',
-          placeholder: 'Enter bookmark title',
+          label: trText('Title'),
+          placeholder: trText('Enter bookmark title'),
         },
         {
           type: 'select',
           name: 'color',
-          label: 'Color',
+          label: trText('Color'),
           options: [
-            { value: '', label: 'None' },
-            { value: 'red', label: 'Red' },
-            { value: 'blue', label: 'Blue' },
-            { value: 'green', label: 'Green' },
-            { value: 'yellow', label: 'Yellow' },
-            { value: 'purple', label: 'Purple' },
-            { value: 'custom', label: 'Custom...' },
+            { value: '', label: trText('None') },
+            { value: 'red', label: trText('Red') },
+            { value: 'blue', label: trText('Blue') },
+            { value: 'green', label: trText('Green') },
+            { value: 'yellow', label: trText('Yellow') },
+            { value: 'purple', label: trText('Purple') },
+            { value: 'custom', label: trText('Custom...') },
           ],
         },
         {
           type: 'select',
           name: 'style',
-          label: 'Style',
+          label: trText('Style'),
           options: [
-            { value: '', label: 'Normal' },
-            { value: 'bold', label: 'Bold' },
-            { value: 'italic', label: 'Italic' },
-            { value: 'bold-italic', label: 'Bold & Italic' },
+            { value: '', label: trText('Normal') },
+            { value: 'bold', label: trText('Bold') },
+            { value: 'italic', label: trText('Italic') },
+            { value: 'bold-italic', label: trText('Bold & Italic') },
           ],
         },
         {
           type: 'destination',
           name: 'destination',
-          label: 'Destination',
+          label: trText('Destination'),
           page: node.page,
           maxPages: pdfJsDoc ? pdfJsDoc.numPages : 1,
         },
-        { type: 'preview', label: 'Preview' },
+        { type: 'preview', label: trText('Preview') },
       ],
       {
         title: node.title,
@@ -1845,11 +1865,13 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'p-1 hover:bg-gray-200 rounded text-red-600';
-  deleteBtn.title = 'Delete';
+  deleteBtn.title = trText('Delete');
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   deleteBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
-    const confirmed = await showConfirmModal(`Delete "${node.title}"?`);
+    const confirmed = await showConfirmModal(
+      trText('Delete "{{title}}"?', { title: node.title })
+    );
     if (confirmed) {
       removeNodeById(bookmarkTree, node.id);
       saveState();
@@ -1883,7 +1905,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 addTopLevelBtn?.addEventListener('click', async () => {
   const title = titleInput?.value.trim();
   if (!title) {
-    await showAlertModal('Error', 'Please enter a title.');
+    await showAlertModal('Error', trText('Please enter a title.'));
     return;
   }
 
@@ -1929,7 +1951,10 @@ csvImportHidden?.addEventListener('change', async (e: Event) => {
     bookmarkTree = imported;
     saveState();
     renderBookmarkTree();
-    await showAlertModal('Success', `Imported ${imported.length} bookmarks!`);
+    await showAlertModal(
+      'Success',
+      trText('Imported {{length}} bookmarks!', { length: imported.length })
+    );
   }
 
   if (csvImportHidden) csvImportHidden.value = '';
@@ -1939,7 +1964,7 @@ exportCsvBtn?.addEventListener('click', () => {
   exportDropdown?.classList.add('hidden');
 
   if (bookmarkTree.length === 0) {
-    showAlertModal('Error', 'No bookmarks to export!');
+    showAlertModal('Error', trText('No bookmarks to export!'));
     return;
   }
 
@@ -2045,9 +2070,9 @@ jsonImportHidden?.addEventListener('change', async (e: Event) => {
     bookmarkTree = imported;
     saveState();
     renderBookmarkTree();
-    await showAlertModal('Success', 'Bookmarks imported from JSON!');
+    await showAlertModal('Success', trText('Bookmarks imported from JSON!'));
   } catch {
-    await showAlertModal('Error', 'Invalid JSON format');
+    await showAlertModal('Error', trText('Invalid JSON format'));
   }
 
   if (jsonImportHidden) jsonImportHidden.value = '';
@@ -2057,7 +2082,7 @@ exportJsonBtn?.addEventListener('click', () => {
   exportDropdown?.classList.add('hidden');
 
   if (bookmarkTree.length === 0) {
-    showAlertModal('Error', 'No bookmarks to export!');
+    showAlertModal('Error', trText('No bookmarks to export!'));
     return;
   }
 
@@ -2072,7 +2097,10 @@ extractExistingBtn?.addEventListener('click', async () => {
   const extracted = await extractExistingBookmarks();
   if (extracted.length > 0) {
     const confirmed = await showConfirmModal(
-      `Found ${extracted.length} existing bookmarks. Replace current bookmarks?`
+      trText(
+        'Found {{length}} existing bookmarks. Replace current bookmarks?',
+        { length: extracted.length }
+      )
     );
     if (confirmed) {
       bookmarkTree = extracted;
@@ -2080,7 +2108,10 @@ extractExistingBtn?.addEventListener('click', async () => {
       renderBookmarkTree();
     }
   } else {
-    await showAlertModal('Info', 'No existing bookmarks found in this PDF.');
+    await showAlertModal(
+      'Info',
+      trText('No existing bookmarks found in this PDF.')
+    );
   }
 });
 
@@ -2340,7 +2371,7 @@ downloadBtn?.addEventListener('click', async () => {
     });
     downloadFile(blob, `${originalFileName}.pdf`);
 
-    await showAlertModal('Success', 'PDF saved successfully!');
+    await showAlertModal('Success', trText('PDF saved successfully!'));
 
     setTimeout(() => {
       resetToUploader();
@@ -2349,7 +2380,7 @@ downloadBtn?.addEventListener('click', async () => {
     console.error(err);
     await showAlertModal(
       'Error',
-      'Error saving PDF. Check console for details.'
+      trText('Error saving PDF. Check console for details.')
     );
   }
 });

@@ -1,5 +1,6 @@
 {
   "categories": {
+    "favorites": "我的最愛",
     "popularTools": "熱門工具",
     "editAnnotate": "編輯與註解",
     "convertToPdf": "轉換為 PDF",
@@ -10,6 +11,13 @@
     "input": "輸入",
     "output": "輸出"
   },
+  "favorites": {
+    "add": "加入我的最愛",
+    "remove": "從我的最愛移除",
+    "hintLabel": "提示",
+    "hint": "長按工具即可加入我的最愛。",
+    "hideHint": "隱藏提示"
+  },
   "convertToPdf": "轉換為 PDF",
   "pdfMultiTool": {
     "name": "PDF 多功能工具",
@@ -19,7 +27,22 @@
     "name": "合併 PDF",
     "subtitle": "將多個 PDF 合併為一個檔案。保留書籤。",
     "retainPageLabels": "保留每個檔案的原始頁面標籤",
-    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。"
+    "retainPageLabelsHint": "關閉（預設）：合併後的 PDF 使用自然頁碼 1–N。開啟：保留每個檔案的原始頁面標籤（可能產生重複的標籤）。",
+    "removeDuplicateFonts": "移除重複字型",
+    "alert": {
+      "thumbnailError": "無法轉譯頁面縮圖",
+      "noSelection": "未選取要合併的檔案或頁面。",
+      "mergeSuccess": "PDF 合併成功！",
+      "mergeFailed": "PDF 合併失敗。",
+      "mergeError": "PDF 合併失敗。請確認所有檔案皆有效且未受密碼保護。",
+      "workerError": "合併程序發生未預期的錯誤。",
+      "loadError": "無法載入一個或多個 PDF 檔案"
+    },
+    "loader": {
+      "renderingPreviews": "正在轉譯頁面預覽...",
+      "merging": "正在合併 PDF...",
+      "loadingDocuments": "正在載入 PDF 文件..."
+    }
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -27,29 +50,7 @@
   },
   "compressPdf": {
     "name": "壓縮 PDF",
-    "subtitle": "降低您的 PDF 檔案大小。",
-    "algorithmLabel": "壓縮演算法",
-    "condense": "Condense（建議）",
-    "photon": "Photon（適用於圖片較多的 PDF）",
-    "condenseInfo": "Condense 使用進階壓縮：移除冗餘資料、最佳化圖片、精簡字型。適用於大多數 PDF。",
-    "photonInfo": "Photon 會將頁面轉換為圖片，適合圖片較多或由掃描產生的 PDF。",
-    "photonWarning": "警告：文字將無法選取，連結將失效。",
-    "levelLabel": "壓縮等級",
-    "light": "輕度（保留品質）",
-    "balanced": "平衡（建議）",
-    "aggressive": "強力（檔案較小）",
-    "extreme": "極限（最大壓縮）",
-    "grayscale": "轉換為灰階",
-    "grayscaleHint": "透過移除色彩資訊來縮小檔案大小",
-    "customSettings": "自訂設定",
-    "customSettingsHint": "微調壓縮參數：",
-    "outputQuality": "輸出品質",
-    "resizeImagesTo": "調整圖片至",
-    "onlyProcessAbove": "僅處理高於",
-    "removeMetadata": "移除中繼資料",
-    "subsetFonts": "精簡字型（移除未使用的字元）",
-    "removeThumbnails": "移除嵌入的縮圖",
-    "compressButton": "壓縮 PDF"
+    "subtitle": "降低您的 PDF 檔案大小。"
   },
   "pdfEditor": {
     "name": "PDF 編輯器",
@@ -60,6 +61,8 @@
     "subtitle": "點擊任意段落即可就地編輯，支援即時重排、字型與樣式設定。",
     "saved": "PDF 儲存成功！（{{size}} KB）",
     "failedToLoad": "無法載入 PDF 文字編輯器。",
+    "loadingFonts": "正在載入字型…",
+    "fontsUnavailable": "無法下載部分字元所需的字型。請檢查網路連線後再試一次，否則這些字元在儲存的 PDF 中可能無法正確顯示。",
     "howToUpload": "上傳 PDF",
     "howToClick": "點擊段落",
     "howToRestyle": "隨意變更樣式",
@@ -103,7 +106,7 @@
     "tipRedoZ": "重做 (⇧⌘Z)",
     "tipFileDetails": "檔案詳細資料",
     "tipEditExistingContent": "編輯現有內容",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "編輯工具的作用範圍——在內容密集的頁面上縮小範圍",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "編輯工具的作用範圍：在內容密集的頁面上縮小範圍",
     "tipClickThePageToAddATextBox": "點擊頁面以加入文字方塊",
     "tipSpellCheckLanguage": "拼字檢查語言",
     "tipFindAndReplace": "尋找與取代",
@@ -515,7 +518,8 @@
       "noFile": "沒有檔案",
       "noFileExplanation": "請先上傳 PDF 檔案。",
       "conversionSuccess": "PDF 已成功轉換為 TIFF！",
-      "conversionError": "無法將 PDF 轉換為 TIFF。檔案可能已損壞。"
+      "conversionError": "無法將 PDF 轉換為 TIFF。檔案可能已損壞。",
+      "conversionOutOfMemory": "轉換時瀏覽器記憶體不足。請嘗試降低 DPI，或取消勾選多頁 TIFF 選項以逐頁轉換。"
     }
   },
   "pdfToCbz": {
@@ -860,7 +864,7 @@
     "subtitle": "編寫或貼上 Markdown 並匯出為精美格式的 PDF。",
     "paneMarkdown": "Markdown",
     "panePreview": "預覽",
-    "btnUpload": "上傳",
+    "btnUpload": "選擇",
     "btnSyncScroll": "同步捲動",
     "btnSettings": "設定",
     "btnExportPdf": "匯出 PDF",
@@ -1200,7 +1204,7 @@
       "workerError": "Worker 錯誤：{{message}}",
       "alternateMergeWorkerError": "交替合併 Worker 錯誤：{{message}}",
       "noPdfFilesUploaded": "PDF 輸入節點中未上傳 PDF 檔案",
-      "failedToLoadFile": "無法載入「{{file}}」— 檔案可能已損毀",
+      "failedToLoadFile": "無法載入「{{file}}」，檔案可能已損毀",
       "noImagesUploaded": "影像輸入節點中未上傳影像",
       "noWordDocsUploaded": "Word 輸入節點中未上傳文件",
       "noExcelUploaded": "Excel 輸入節點中未上傳試算表",
@@ -1313,11 +1317,11 @@
     "faqPrivacyAnswer": "當然！所有處理都在您的瀏覽器中進行。您的檔案永遠不會離開您的裝置，確保完全隱私。"
   },
   "unlockPdf": {
-    "name": "解密 PDF",
+    "name": "解除鎖定 PDF",
     "subtitle": "透過移除密碼保護解鎖 PDF。"
   },
   "protectPdf": {
-    "name": "加密 PDF",
+    "name": "保護 PDF",
     "subtitle": "透過新增密碼為您的 PDF 上鎖。"
   }
 }

@@ -9,6 +9,8 @@ import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { interleavePdfs } from '../utils/alternate-merge.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: AlternateMergeState = {
   files: [],
   pdfBytes: new Map(),
@@ -50,7 +52,9 @@ async function updateUI() {
 
     const infoSpan = document.createElement('span');
     infoSpan.className = 'text-gray-200';
-    infoSpan.textContent = `${pageState.files.length} PDF files selected`;
+    infoSpan.textContent = trText('{{length}} PDF files selected', {
+      length: pageState.files.length,
+    });
 
     const clearBtn = document.createElement('button');
     clearBtn.className = 'text-red-400 hover:text-red-300';
@@ -94,7 +98,10 @@ async function updateUI() {
 
         const metaSpan = document.createElement('span');
         metaSpan.className = 'text-sm text-gray-400 flex-shrink-0';
-        metaSpan.textContent = `${formatBytes(file.size)} • ${pageCount} pages`;
+        metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+          size: formatBytes(file.size),
+          pageCount,
+        });
 
         infoDiv.append(nameSpan, metaSpan);
 
@@ -147,7 +154,7 @@ async function mixPages() {
 
   try {
     const fileList = document.getElementById('file-list');
-    if (!fileList) throw new Error('File list not found');
+    if (!fileList) throw new Error(trText('File list not found'));
 
     const sortedFileNames = Array.from(fileList.children)
       .map(function (li) {
@@ -199,7 +206,7 @@ async function mixPages() {
     const message =
       e instanceof Error
         ? e.message
-        : 'An error occurred while mixing the PDFs.';
+        : trText('An error occurred while mixing the PDFs.');
     showAlert('Error', message);
   }
 }
@@ -218,7 +225,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

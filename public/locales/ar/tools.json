@@ -1,5 +1,6 @@
 {
   "categories": {
+    "favorites": "المفضلة",
     "popularTools": "الأدوات الشائعة",
     "editAnnotate": "تعديل وتعليق",
     "convertToPdf": "تحويل إلى PDF",
@@ -10,6 +11,13 @@
     "input": "إدخال",
     "output": "إخراج"
   },
+  "favorites": {
+    "add": "إضافة إلى المفضلة",
+    "remove": "إزالة من المفضلة",
+    "hintLabel": "تلميح",
+    "hint": "اضغط مطولًا على أي أداة لإضافتها إلى المفضلة.",
+    "hideHint": "إخفاء التلميح"
+  },
   "convertToPdf": "تحويل إلى PDF",
   "pdfMultiTool": {
     "name": "أداة PDF المتعددة",
@@ -19,7 +27,22 @@
     "name": "دمج PDF",
     "subtitle": "دمج عدة ملفات PDF في ملف واحد. يحافظ على الإشارات المرجعية.",
     "retainPageLabels": "الاحتفاظ بتسميات الصفحات الأصلية لكل ملف",
-    "retainPageLabelsHint": "غير مفعّل (افتراضي): يستخدم ملف PDF المدمج ترقيمًا طبيعيًا من 1 إلى N. مفعّل: يتم الاحتفاظ بتسميات الصفحات الأصلية لكل ملف (قد ينتج عن ذلك تسميات مكررة)."
+    "retainPageLabelsHint": "غير مفعّل (افتراضي): يستخدم ملف PDF المدمج ترقيمًا طبيعيًا من 1 إلى N. مفعّل: يتم الاحتفاظ بتسميات الصفحات الأصلية لكل ملف (قد ينتج عن ذلك تسميات مكررة).",
+    "removeDuplicateFonts": "إزالة الخطوط المكررة",
+    "alert": {
+      "thumbnailError": "فشل عرض الصور المصغرة للصفحات",
+      "noSelection": "لم يتم تحديد أي ملفات أو صفحات للدمج.",
+      "mergeSuccess": "تم دمج ملفات PDF بنجاح!",
+      "mergeFailed": "فشل دمج ملفات PDF.",
+      "mergeError": "فشل دمج ملفات PDF. يرجى التأكد من أن جميع الملفات صالحة وغير محمية بكلمة مرور.",
+      "workerError": "حدث خطأ غير متوقع في عملية الدمج.",
+      "loadError": "فشل تحميل ملف PDF واحد أو أكثر"
+    },
+    "loader": {
+      "renderingPreviews": "جارٍ عرض معاينات الصفحات...",
+      "merging": "جارٍ دمج ملفات PDF...",
+      "loadingDocuments": "جارٍ تحميل مستندات PDF..."
+    }
   },
   "splitPdf": {
     "name": "تقسيم PDF",
@@ -27,29 +50,7 @@
   },
   "compressPdf": {
     "name": "ضغط PDF",
-    "subtitle": "تقليل حجم ملف PDF الخاص بك.",
-    "algorithmLabel": "خوارزمية الضغط",
-    "condense": "تكثيف (موصى به)",
-    "photon": "فوتون (لملفات PDF كثيرة الصور)",
-    "condenseInfo": "يستخدم التكثيف ضغطًا متقدمًا: يزيل البيانات الزائدة، يحسّن الصور، يقلّص الخطوط. الأفضل لمعظم ملفات PDF.",
-    "photonInfo": "يحول فوتون الصفحات إلى صور. استخدمه لملفات PDF كثيرة الصور/الممسوحة ضوئيًا.",
-    "photonWarning": "تحذير: سيصبح النص غير قابل للتحديد وستتوقف الروابط عن العمل.",
-    "levelLabel": "مستوى الضغط",
-    "light": "خفيف (الحفاظ على الجودة)",
-    "balanced": "متوازن (موصى به)",
-    "aggressive": "عدواني (ملفات أصغر)",
-    "extreme": "أقصى (ضغط أقصى)",
-    "grayscale": "تحويل إلى تدرج الرمادي",
-    "grayscaleHint": "يقلل حجم الملف بإزالة معلومات الألوان",
-    "customSettings": "إعدادات مخصصة",
-    "customSettingsHint": "ضبط دقيق لمعلمات الضغط:",
-    "outputQuality": "جودة المخرجات",
-    "resizeImagesTo": "تغيير حجم الصور إلى",
-    "onlyProcessAbove": "معالجة فقط أعلى من",
-    "removeMetadata": "إزالة البيانات الوصفية",
-    "subsetFonts": "تقليص الخطوط (إزالة الحروف غير المستخدمة)",
-    "removeThumbnails": "إزالة الصور المصغرة المضمنة",
-    "compressButton": "ضغط PDF"
+    "subtitle": "تقليل حجم ملف PDF الخاص بك."
   },
   "pdfEditor": {
     "name": "محرر PDF",
@@ -60,6 +61,8 @@
     "subtitle": "انقر على أي فقرة وحرّرها في مكانها مع إعادة تدفق فوري للنص والخطوط والأنماط.",
     "saved": "تم حفظ ملف PDF بنجاح! ({{size}} كيلوبايت)",
     "failedToLoad": "تعذّر تحميل محرّر نصوص PDF.",
+    "loadingFonts": "جارٍ تحميل الخطوط...",
+    "fontsUnavailable": "تعذّر تنزيل خط مطلوب لبعض الأحرف. تحقّق من اتصالك وحاول مرة أخرى، وإلا فقد لا تظهر هذه الأحرف بشكل صحيح في ملف PDF المحفوظ.",
     "howToUpload": "رفع ملف PDF",
     "howToClick": "انقر على فقرة",
     "howToRestyle": "غيّر تنسيق أي شيء",
@@ -103,7 +106,7 @@
     "tipRedoZ": "إعادة (⇧⌘Z)",
     "tipFileDetails": "تفاصيل الملف",
     "tipEditExistingContent": "تحرير المحتوى الحالي",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "ما تتأثر به أداة التحرير — ضيّق النطاق في الصفحات المزدحمة",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "ما تتأثر به أداة التحرير: ضيّق النطاق في الصفحات المزدحمة",
     "tipClickThePageToAddATextBox": "انقر على الصفحة لإضافة مربع نص",
     "tipSpellCheckLanguage": "لغة التدقيق الإملائي",
     "tipFindAndReplace": "بحث واستبدال",
@@ -515,7 +518,8 @@
       "noFile": "لا يوجد ملف",
       "noFileExplanation": "يرجى تحميل ملف PDF أولاً.",
       "conversionSuccess": "تم تحويل PDF إلى TIFF بنجاح!",
-      "conversionError": "فشل تحويل PDF إلى TIFF. قد يكون الملف تالفًا."
+      "conversionError": "فشل تحويل PDF إلى TIFF. قد يكون الملف تالفًا.",
+      "conversionOutOfMemory": "نفدت ذاكرة المتصفح أثناء التحويل. جرّب قيمة DPI أقل، أو ألغِ تحديد خيار TIFF متعدد الصفحات لتحويل الصفحات واحدة تلو الأخرى."
     }
   },
   "pdfToCbz": {
@@ -860,7 +864,7 @@
     "subtitle": "اكتب أو الصق Markdown وصدّره كـ PDF منسق بشكل جميل.",
     "paneMarkdown": "Markdown",
     "panePreview": "معاينة",
-    "btnUpload": "رفع",
+    "btnUpload": "اختيار",
     "btnSyncScroll": "مزامنة التمرير",
     "btnSettings": "الإعدادات",
     "btnExportPdf": "تصدير PDF",
@@ -1002,8 +1006,7 @@
     "subtitle": "استخراج النص من ملفات PDF وحفظه كنص عادي (.txt). يدعم عدة ملفات.",
     "noteLabel": "ملاحظة:",
     "noteText": "تعمل هذه الأداة فقط مع ملفات PDF التي تم إنشاؤها رقميًا. للمستندات الممسوحة ضوئيًا أو ملفات PDF القائمة على الصور، استخدم أداة OCR PDF بدلاً من ذلك.",
-    "convertButton": "استخراج النص",
-    "note": "تعمل هذه الأداة فقط مع ملفات PDF المنشأة رقميًا. للمستندات الممسوحة ضوئيًا أو ملفات PDF المبنية على الصور، استخدم أداة التعرف الضوئي."
+    "convertButton": "استخراج النص"
   },
   "digitalSignPdf": {
     "name": "توقيع رقمي لـ PDF",
@@ -1201,7 +1204,7 @@
       "workerError": "خطأ في العامل: {{message}}",
       "alternateMergeWorkerError": "خطأ في عامل الدمج المتناوب: {{message}}",
       "noPdfFilesUploaded": "لم يتم تحميل ملفات PDF في عقدة إدخال PDF",
-      "failedToLoadFile": "فشل تحميل \"{{file}}\" — قد يكون الملف تالفًا",
+      "failedToLoadFile": "فشل تحميل \"{{file}}\"، قد يكون الملف تالفًا",
       "noImagesUploaded": "لم يتم تحميل صور في عقدة إدخال الصور",
       "noWordDocsUploaded": "لم يتم تحميل مستندات في عقدة إدخال Word",
       "noExcelUploaded": "لم يتم تحميل جداول بيانات في عقدة إدخال Excel",
@@ -1314,11 +1317,11 @@
     "faqPrivacyAnswer": "بالتأكيد! تتم جميع المعالجة في متصفحك. لا تغادر ملفاتك جهازك أبداً، مما يضمن خصوصية كاملة."
   },
   "unlockPdf": {
-    "name": "فك تشفير PDF",
+    "name": "إلغاء قفل PDF",
     "subtitle": "فتح PDF بإزالة حماية كلمة المرور."
   },
   "protectPdf": {
-    "name": "تشفير PDF",
+    "name": "حماية PDF",
     "subtitle": "قفل PDF بإضافة كلمة مرور."
   }
 }

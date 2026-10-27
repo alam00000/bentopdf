@@ -698,8 +698,8 @@ export const nodeRegistry: Record<string, NodeRegistryEntry> = {
 };
 
 export function createNodeByType(type: string): BaseWorkflowNode | null {
+  if (!Object.hasOwn(nodeRegistry, type)) return null;
   const entry = nodeRegistry[type];
-  if (!entry) return null;
   const node = entry.factory();
   node.nodeType = type;
   node.label = translateNodeLabel(type, entry);

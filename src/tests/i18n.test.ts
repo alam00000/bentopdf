@@ -1,5 +1,9 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { getLanguageFromUrl } from '@/js/i18n/i18n';
+import {
+  changeLanguage,
+  getLanguageFromUrl,
+  LANGUAGE_CHOICE_KEY,
+} from '@/js/i18n/i18n';
 
 describe('getLanguageFromUrl', () => {
   const originalLocation = window.location;
@@ -51,79 +55,92 @@ describe('getLanguageFromUrl', () => {
 
   it('should prioritize URL path over localStorage', () => {
     window.location.pathname = '/fr/';
-    localStorage.setItem('i18nextLng', 'es');
+    localStorage.setItem(LANGUAGE_CHOICE_KEY, 'es');
     expect(getLanguageFromUrl()).toBe('fr');
   });
 
-  it('should return language from localStorage if URL has no language', () => {
+  it('should use English for unprefixed URLs whatever the browser or storage says', () => {
     window.location.pathname = '/about';
     localStorage.setItem('i18nextLng', 'it');
-    expect(getLanguageFromUrl()).toBe('it');
-  });
-
-  it('should return exact match from navigator.languages', () => {
-    window.location.pathname = '/';
+    localStorage.setItem('bentopdf-language', 'de');
     Object.defineProperty(window.navigator, 'languages', {
-      value: ['zh-TW', 'en-US', 'en'],
+      value: ['fr-CA', 'de-DE'],
       configurable: true,
     });
+    vi.stubEnv('VITE_DEFAULT_LANGUAGE', 'vi');
+    expect(getLanguageFromUrl()).toBe('en');
+  });
+
+  it('should match zh-TW from the URL', () => {
+    window.location.pathname = '/zh-TW/merge-pdf';
     expect(getLanguageFromUrl()).toBe('zh-TW');
   });
+});
 
-  it('should return primary language match from navigator.languages', () => {
-    window.location.pathname = '/';
-    // 'de-AT' is not in supportedLanguages, but we should match its primary 'de'
-    Object.defineProperty(window.navigator, 'languages', {
-      value: ['de-AT', 'en-US', 'en'],
-      configurable: true,
-    });
-    expect(getLanguageFromUrl()).toBe('de');
-  });
+describe('changeLanguage', () => {
+  const originalLocation = window.location;
+  let target = '';
 
-  it('should return first matched language from navigator.languages', () => {
-    window.location.pathname = '/';
-    Object.defineProperty(window.navigator, 'languages', {
-      value: ['fr-CA', 'de-DE', 'en'],
-      configurable: true,
-    });
-    expect(getLanguageFromUrl()).toBe('fr');
-  });
-
-  it('should ignore unsupported languages in navigator.languages', () => {
-    window.location.pathname = '/';
-    Object.defineProperty(window.navigator, 'languages', {
-      value: ['xx-XX', 'es-ES'],
-      configurable: true,
-    });
-    expect(getLanguageFromUrl()).toBe('es');
-  });
-
-  it('should fallback to env variable if no earlier match', () => {
-    window.location.pathname = '/';
-    Object.defineProperty(window.navigator, 'languages', {
-      value: ['xx'],
-      configurable: true,
-    }); // unsupported
-    vi.stubEnv('VITE_DEFAULT_LANGUAGE', 'vi');
-    expect(getLanguageFromUrl()).toBe('vi');
-  });
-
-  it('should fallback to en if everything else fails', () => {
-    window.location.pathname = '/';
-    Object.defineProperty(window.navigator, 'languages', {
-      value: [],
-      configurable: true,
-    });
-    vi.stubEnv('VITE_DEFAULT_LANGUAGE', '');
-    expect(getLanguageFromUrl()).toBe('en');
-  });
-
-  it('should handle missing navigator object gracefully', () => {
-    window.location.pathname = '/';
-    Object.defineProperty(window, 'navigator', {
-      value: undefined,
+  function at(pathname: string, search = '', hash = '') {
+    target = '';
+    Object.defineProperty(window, 'location', {
+      value: {
+        pathname,
+        search,
+        hash,
+        set href(value: string) {
+          target = value;
+        },
+      },
       writable: true,
+      configurable: true,
     });
-    expect(getLanguageFromUrl()).toBe('en');
+  }
+
+  beforeEach(() => {
+    localStorage.clear();
+    vi.stubEnv('BASE_URL', '/');
+  });
+
+  afterEach(() => {
+    Object.defineProperty(window, 'location', {
+      value: originalLocation,
+      writable: true,
+      configurable: true,
+    });
+    vi.unstubAllEnvs();
+  });
+
+  it('moves to the same page in the chosen language and remembers it', () => {
+    at('/merge-pdf', '?a=1', '#faq');
+    changeLanguage('de');
+    expect(target).toBe('/de/merge-pdf?a=1#faq');
+    expect(localStorage.getItem(LANGUAGE_CHOICE_KEY)).toBe('de');
+  });
+
+  it('swaps one language for another and drops the prefix for English', () => {
+    at('/de/merge-pdf');
+    changeLanguage('fr');
+    expect(target).toBe('/fr/merge-pdf');
+    at('/fr/merge-pdf');
+    changeLanguage('en');
+    expect(target).toBe('/merge-pdf');
+    expect(localStorage.getItem(LANGUAGE_CHOICE_KEY)).toBe('en');
+  });
+
+  it('handles the home page and zh-TW', () => {
+    at('/');
+    changeLanguage('zh-TW');
+    expect(target).toBe('/zh-TW');
+    at('/zh-TW/');
+    changeLanguage('en');
+    expect(target).toBe('/');
+  });
+
+  it('keeps a base path', () => {
+    vi.stubEnv('BASE_URL', '/pdf/');
+    at('/pdf/de/merge-pdf');
+    changeLanguage('ja');
+    expect(target).toBe('/pdf/ja/merge-pdf');
   });
 });

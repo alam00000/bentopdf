@@ -1,5 +1,7 @@
 import { tesseractLanguages } from '../config/tesseract-languages.js';
 
+import { trText } from '../i18n/i18n.js';
+
 export const TESSERACT_AVAILABLE_LANGUAGES_ENV_KEY =
   'VITE_TESSERACT_AVAILABLE_LANGUAGES' as const;
 
@@ -89,9 +91,16 @@ function buildUnsupportedLanguageMessage(
   const availableText = formatTesseractLanguageList(availableLanguages);
 
   return [
-    `This BentoPDF build only bundles OCR data for ${availableText}.`,
-    `The requested OCR language is not available: ${unavailableText}.`,
-    'Choose one of the bundled languages or rebuild the air-gapped bundle with the missing language added to --ocr-languages.',
+    trText('This BentoPDF build only bundles OCR data for {{availableText}}.', {
+      availableText,
+    }),
+    trText(
+      'The requested OCR language is not available: {{unavailableText}}.',
+      { unavailableText }
+    ),
+    trText(
+      'Choose one of the bundled languages or rebuild the air-gapped bundle with the missing language added to --ocr-languages.'
+    ),
   ].join(' ');
 }
 

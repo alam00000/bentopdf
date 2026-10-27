@@ -1,5 +1,7 @@
 import heic2any from 'heic2any';
 
+import { trText } from '../i18n/i18n.js';
+
 export const IMAGE_EXTENSIONS = [
   '.jpg',
   '.jpeg',
@@ -60,7 +62,10 @@ export async function preprocessImageFile(file: File): Promise<File> {
       });
     } catch (cause) {
       console.error(`Failed to convert HEIC: ${file.name}`, cause);
-      throw new Error(`Failed to process HEIC file: ${file.name}`, { cause });
+      throw new Error(
+        trText('Failed to process HEIC file: {{name}}', { name: file.name }),
+        { cause }
+      );
     }
   }
 
@@ -76,7 +81,7 @@ export async function preprocessImageFile(file: File): Promise<File> {
           const ctx = canvas.getContext('2d');
           if (!ctx) {
             URL.revokeObjectURL(url);
-            reject(new Error('Canvas context failed'));
+            reject(new Error(trText('Canvas context failed')));
             return;
           }
           ctx.drawImage(img, 0, 0);
@@ -89,19 +94,22 @@ export async function preprocessImageFile(file: File): Promise<File> {
                 })
               );
             } else {
-              reject(new Error('Canvas toBlob failed'));
+              reject(new Error(trText('Canvas toBlob failed')));
             }
           }, 'image/png');
         };
         img.onerror = () => {
           URL.revokeObjectURL(url);
-          reject(new Error('Failed to load WebP image'));
+          reject(new Error(trText('Failed to load WebP image')));
         };
         img.src = url;
       });
     } catch (cause) {
       console.error(`Failed to convert WebP: ${file.name}`, cause);
-      throw new Error(`Failed to process WebP file: ${file.name}`, { cause });
+      throw new Error(
+        trText('Failed to process WebP file: {{name}}', { name: file.name }),
+        { cause }
+      );
     }
   }
 

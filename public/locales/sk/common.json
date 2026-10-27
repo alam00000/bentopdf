@@ -9,7 +9,8 @@
     "openMainMenu": "Otvoriť hlavné menu",
     "language": "Jazyk",
     "searchLanguage": "Hľadať jazyk…",
-    "noLanguagesFound": "Nenašli sa žiadne jazyky"
+    "noLanguagesFound": "Nenašli sa žiadne jazyky",
+    "breadcrumb": "Navigačná cesta"
   },
   "donation": {
     "message": "Páči sa vám BentoPDF? Pomôžte nám udržať ho bezplatný a open source!",
@@ -236,6 +237,10 @@
     "aboutUs": "O nás",
     "faqLink": "Časté otázky",
     "contactUs": "Kontaktujte nás",
+    "tools": "Nástroje",
+    "pdfConverter": "Konvertor PDF",
+    "pdfSecurity": "Zabezpečenie PDF",
+    "mergeSplit": "Zlúčenie a rozdelenie PDF",
     "legal": "Právne informácie",
     "termsAndConditions": "Obchodné podmienky",
     "privacyPolicy": "Zásady ochrany osobných údajov",
@@ -288,7 +293,8 @@
       "noCompromises": "Bez kompromisov."
     },
     "mission": {
-      "title": "Naša misia",
+      "title": "Naša",
+      "titleDim": "misia",
       "description": "Poskytnúť najkomplexnejšiu sadu PDF nástrojov, ktorá rešpektuje vaše súkromie a nikdy nepožaduje platbu. Veríme, že základné nástroje pre prácu s dokumentmi by mali byť dostupné pre každého, všade a bez bariér."
     },
     "philosophy": {

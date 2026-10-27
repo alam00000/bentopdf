@@ -175,12 +175,51 @@ describe('timestampPdf', () => {
   });
 
   it('should throw a clear error when HTTPS page targets HTTP TSA without proxy', async () => {
-    stubPageOrigin('https://www.bentopdf.com');
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'https:',
+        origin: 'https://selfhost.example.com',
+        hostname: 'selfhost.example.com',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp } =
+      await import('@/js/logic/digital-sign-pdf');
 
     await expect(
-      timestampPdf(samplePdfBytes, 'http://timestamp.digicert.com')
+      freshTimestamp(samplePdfBytes, 'http://timestamp.digicert.com')
     ).rejects.toThrow(/HTTPS page|VITE_CORS_PROXY_URL/);
     expect(PdfSigner).not.toHaveBeenCalled();
     expect(mockSign).not.toHaveBeenCalled();
+  });
+
+  it('should fall back to the default proxy on official domains', async () => {
+    vi.stubEnv('VITE_CORS_PROXY_URL', '');
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: {
+        protocol: 'https:',
+        origin: 'https://www.bentopdf.com',
+        hostname: 'www.bentopdf.com',
+      },
+    });
+    vi.resetModules();
+    const { timestampPdf: freshTimestamp } =
+      await import('@/js/logic/digital-sign-pdf');
+
+    mockSign.mockResolvedValueOnce(new Uint8Array([1]));
+    await freshTimestamp(samplePdfBytes, 'http://timestamp.digicert.com');
+
+    const callArg = vi.mocked(PdfSigner).mock.calls[0][0] as {
+      signdate: { url: string };
+    };
+    expect(callArg.signdate.url).toMatch(
+      /^https:\/\/bentopdf-cors-proxy\.bentopdf\.workers\.dev\?url=/
+    );
+    expect(callArg.signdate.url).toContain(
+      encodeURIComponent('http://timestamp.digicert.com')
+    );
   });
 });

@@ -3,6 +3,7 @@ import type { AreaPlugin } from 'rete-area-plugin';
 import type { ClassicScheme, LitArea2D } from '@retejs/lit-plugin';
 import type { BaseWorkflowNode } from './nodes/base-node';
 import { createNodeByType } from './nodes/registry';
+import { getControlSpec } from './nodes/control-specs';
 import { ClassicPreset } from 'rete';
 import type {
   SerializedWorkflow,
@@ -16,6 +17,24 @@ type AreaExtra = LitArea2D<ClassicScheme>;
 
 function getNodeType(node: BaseWorkflowNode): string | null {
   return node.nodeType || null;
+}
+
+function clearPasswordControls(workflow: SerializedWorkflow): boolean {
+  let cleared = false;
+  for (const node of Array.isArray(workflow?.nodes) ? workflow.nodes : []) {
+    const controls = node?.controls;
+    if (!controls || typeof controls !== 'object') continue;
+    for (const key of Object.keys(controls)) {
+      if (
+        controls[key] !== '' &&
+        getControlSpec(String(node.type), key)?.kind === 'password'
+      ) {
+        controls[key] = '';
+        cleared = true;
+      }
+    }
+  }
+  return cleared;
 }
 
 function serializeWorkflow(
@@ -56,11 +75,13 @@ function serializeWorkflow(
     });
   }
 
-  return {
+  const workflow: SerializedWorkflow = {
     version: WORKFLOW_VERSION,
     nodes,
     connections,
-  } as SerializedWorkflow;
+  };
+  clearPasswordControls(workflow);
+  return workflow;
 }
 
 async function deserializeWorkflow(
@@ -96,6 +117,7 @@ async function deserializeWorkflow(
     }
 
     for (const [key, value] of Object.entries(serializedNode.controls || {})) {
+      if (!Object.hasOwn(node.controls, key)) continue;
       const control = node.controls[key];
       if (control && 'value' in control) {
         (control as { value: unknown }).value = node.sanitizeControlValue(
@@ -144,7 +166,19 @@ function getStoredTemplates(): StoredTemplates {
   const json = localStorage.getItem(TEMPLATES_KEY);
   if (!json) return {};
   try {
-    return JSON.parse(json) as StoredTemplates;
+    const templates = JSON.parse(json) as StoredTemplates;
+    let cleared = false;
+    for (const template of Object.values(templates)) {
+      if (clearPasswordControls(template)) cleared = true;
+    }
+    if (cleared) {
+      try {
+        localStorage.setItem(TEMPLATES_KEY, JSON.stringify(templates));
+      } catch (e) {
+        console.warn('Failed to clear stored workflow passwords:', e);
+      }
+    }
+    return templates;
   } catch {
     return {};
   }

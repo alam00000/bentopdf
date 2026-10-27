@@ -10,6 +10,7 @@ Sitemap: https://www.bentopdf.com/sitemap.xml
 
 # Disallow internal/system paths
 Disallow: /api/
+Allow: /src/pages/
 Disallow: /src/
 Disallow: /*.wasm$
 Disallow: /*.wasm.gz$

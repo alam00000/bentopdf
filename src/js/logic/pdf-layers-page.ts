@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, trHtml, onPageReady } from '../i18n/i18n';
 import {
   downloadFile,
   escapeHtml,
@@ -41,7 +41,7 @@ let currentDoc: PyMuPDFDocument | null = null;
 const layersMap = new Map<number, LayerData>();
 let nextDisplayOrder = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -75,7 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(currentFile.size)} • ${t('common.loadingPageCount')}`;
+      metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+        size: formatBytes(currentFile.size),
+        loadingPageCount: t('common.loadingPageCount'),
+      });
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -93,10 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const arrayBuffer = await readFileAsArrayBuffer(currentFile);
         const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-        metaSpan.textContent = `${formatBytes(currentFile.size)} • ${pdfDoc.numPages} pages`;
+        metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+          size: formatBytes(currentFile.size),
+          numPages: pdfDoc.numPages,
+        });
       } catch (error) {
         console.error('Error loading PDF:', error);
-        metaSpan.textContent = `${formatBytes(currentFile.size)} • Could not load page count`;
+        metaSpan.textContent = trText('{{size}} • Could not load page count', {
+          size: formatBytes(currentFile.size),
+        });
       }
 
       createIcons({ icons });
@@ -191,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (layersArray.length === 0) {
       layersList.innerHTML = `
                 <div class="layers-empty">
-                    <p>This PDF has no layers (OCG).</p>
-                    <p>Add a new layer to get started!</p>
+                    <p>${trHtml('This PDF has no layers (OCG).')}</p>
+                    <p>${trHtml('Add a new layer to get started!')}</p>
                 </div>
             `;
       return;
@@ -209,12 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="layer-item" data-number="${layer.number}" style="padding-left: ${layer.depth * 24 + 8}px;">
                 <label class="layer-toggle">
                     <input type="checkbox" ${layer.on ? 'checked' : ''} ${layer.locked ? 'disabled' : ''} data-xref="${layer.xref}" />
-                    <span class="layer-name">${layer.depth > 0 ? '└ ' : ''}${escapeHtml(layer.text || `Layer ${layer.number}`)}</span>
+                    <span class="layer-name">${layer.depth > 0 ? '└ ' : ''}${escapeHtml(layer.text || trText('Layer {{number}}', { number: layer.number }))}</span>
                     ${layer.locked ? '<span class="layer-locked">🔒</span>' : ''}
                 </label>
                 <div class="layer-actions">
-                    ${!layer.locked ? `<button class="layer-add-child" data-xref="${layer.xref}" title="Add child layer">+</button>` : ''}
-                    ${!layer.locked ? `<button class="layer-delete" data-xref="${layer.xref}" title="Delete layer">✕</button>` : ''}
+                    ${!layer.locked ? `<button class="layer-add-child" data-xref="${layer.xref}" title="${trHtml('Add child layer')}">+</button>` : ''}
+                    ${!layer.locked ? `<button class="layer-delete" data-xref="${layer.xref}" title="${trHtml('Delete layer')}">✕</button>` : ''}
                 </div>
             </div>
         `
@@ -280,8 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         const childName = await promptForInput(
-          'Add Child Layer',
-          `Enter name for child layer under "${parentLayer?.text || 'Layer'}":`
+          trText('Add Child Layer'),
+          trText('Enter name for child layer under "{{Layer}}":', {
+            Layer: parentLayer?.text || 'Layer',
+          })
         );
 
         if (!childName || !childName.trim()) return;
@@ -328,7 +338,9 @@ document.addEventListener('DOMContentLoaded', () => {
       showLoader('Loading engine...');
       const pymupdf = await loadPyMuPDF();
 
-      showLoader(`Loading layers from ${currentFile.name}...`);
+      showLoader(
+        trText('Loading layers from {{name}}...', { name: currentFile.name })
+      );
       currentDoc = await (
         pymupdf as { open: (file: File) => Promise<PyMuPDFDocument> }
       ).open(currentFile);

@@ -8,6 +8,8 @@ import { getWasmBaseUrl, isWasmAvailable } from '../config/wasm-cdn-config.js';
 import { PDFDict, PDFName, PDFArray } from 'pdf-lib';
 import { loadPdfDocument } from './load-pdf-document.js';
 
+import { trText } from '../i18n/i18n.js';
+
 interface GhostscriptModule {
   FS: {
     writeFile(path: string, data: Uint8Array | string): void;
@@ -37,7 +39,11 @@ export async function loadGsModule(): Promise<GhostscriptModule> {
   const gsJsUrl = `${normalizedUrl}gs.js`;
   const response = await fetch(gsJsUrl);
   if (!response.ok) {
-    throw new Error(`Failed to fetch gs.js: HTTP ${response.status}`);
+    throw new Error(
+      trText('Failed to fetch gs.js: HTTP {{status}}', {
+        status: response.status,
+      })
+    );
   }
   const jsText = await response.text();
   const blob = new Blob([jsText], { type: 'application/javascript' });
@@ -69,11 +75,13 @@ export async function convertToPdfA(
 ): Promise<Uint8Array> {
   if (!isWasmAvailable('ghostscript')) {
     throw new Error(
-      'Ghostscript is not configured. Please configure it in WASM Settings.'
+      trText(
+        'Ghostscript is not configured. Please configure it in WASM Settings.'
+      )
     );
   }
 
-  onProgress?.('Loading Ghostscript...');
+  onProgress?.(trText('Loading Ghostscript...'));
 
   let gs: GhostscriptModule;
 
@@ -98,7 +106,7 @@ export async function convertToPdfA(
   gs.FS.writeFile(inputPath, pdfData);
   console.log('[Ghostscript] Input file size:', pdfData.length);
 
-  onProgress?.(`Converting to ${level}...`);
+  onProgress?.(trText('Converting to {{level}}...', { level }));
 
   try {
     const iccFileName = 'sRGB_IEC61966-2-1_no_black_scaling.icc';
@@ -107,7 +115,10 @@ export async function convertToPdfA(
 
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch ICC profile from ${iccUrl}: HTTP ${response.status}`
+        trText('Failed to fetch ICC profile from {{iccUrl}}: HTTP {{status}}', {
+          iccUrl,
+          status: response.status,
+        })
       );
     }
 
@@ -157,13 +168,16 @@ export async function convertToPdfA(
     );
   } catch (e) {
     console.error('[Ghostscript] Failed to setup PDF/A assets:', e);
-    throw new Error('Conversion failed: could not create PDF/A definition', {
-      cause: e,
-    });
+    throw new Error(
+      trText('Conversion failed: could not create PDF/A definition'),
+      {
+        cause: e,
+      }
+    );
   }
 
   const args = [
-    '-dNOSAFER',
+    '-dSAFER',
     '-dBATCH',
     '-dNOPAUSE',
     '-sDEVICE=pdfwrite',
@@ -199,7 +213,9 @@ export async function convertToPdfA(
     exitCode = gs.callMain(args);
   } catch (e) {
     console.error('[Ghostscript] Exception:', e);
-    throw new Error(`Ghostscript threw an exception: ${e}`, { cause: e });
+    throw new Error(trText('Ghostscript threw an exception: {{e}}', { e }), {
+      cause: e,
+    });
   }
 
   console.log('[Ghostscript] Exit code:', exitCode);
@@ -225,7 +241,11 @@ export async function convertToPdfA(
     } catch (e) {
       console.warn('[Ghostscript] Failed to clean up temp file:', e);
     }
-    throw new Error(`Ghostscript conversion failed with exit code ${exitCode}`);
+    throw new Error(
+      trText('Ghostscript conversion failed with exit code {{exitCode}}', {
+        exitCode,
+      })
+    );
   }
 
   // Read output
@@ -236,7 +256,9 @@ export async function convertToPdfA(
     output = gs.FS.readFile(outputPath);
   } catch (e) {
     console.error('[Ghostscript] Failed to read output:', e);
-    throw new Error('Ghostscript did not produce output file', { cause: e });
+    throw new Error(trText('Ghostscript did not produce output file'), {
+      cause: e,
+    });
   }
 
   // Cleanup
@@ -262,7 +284,7 @@ export async function convertToPdfA(
   }
 
   if (level !== 'PDF/A-1b') {
-    onProgress?.('Post-processing for transparency compliance...');
+    onProgress?.(trText('Post-processing for transparency compliance...'));
     console.log(
       '[Ghostscript] Adding Group dictionaries to pages for transparency compliance...'
     );
@@ -395,11 +417,13 @@ export async function convertFontsToOutlines(
 ): Promise<Uint8Array> {
   if (!isWasmAvailable('ghostscript')) {
     throw new Error(
-      'Ghostscript is not configured. Please configure it in WASM Settings.'
+      trText(
+        'Ghostscript is not configured. Please configure it in WASM Settings.'
+      )
     );
   }
 
-  onProgress?.('Loading Ghostscript...');
+  onProgress?.(trText('Loading Ghostscript...'));
 
   let gs: GhostscriptModule;
 
@@ -415,10 +439,10 @@ export async function convertFontsToOutlines(
 
   gs.FS.writeFile(inputPath, pdfData);
 
-  onProgress?.('Converting fonts to outlines...');
+  onProgress?.(trText('Converting fonts to outlines...'));
 
   const args = [
-    '-dNOSAFER',
+    '-dSAFER',
     '-dBATCH',
     '-dNOPAUSE',
     '-sDEVICE=pdfwrite',
@@ -438,7 +462,9 @@ export async function convertFontsToOutlines(
     } catch (e2) {
       console.warn('[Ghostscript] Failed to clean up temp file:', e2);
     }
-    throw new Error(`Ghostscript threw an exception: ${e}`, { cause: e });
+    throw new Error(trText('Ghostscript threw an exception: {{e}}', { e }), {
+      cause: e,
+    });
   }
 
   if (exitCode !== 0) {
@@ -452,14 +478,20 @@ export async function convertFontsToOutlines(
     } catch (e) {
       console.warn('[Ghostscript] Failed to clean up temp file:', e);
     }
-    throw new Error(`Ghostscript conversion failed with exit code ${exitCode}`);
+    throw new Error(
+      trText('Ghostscript conversion failed with exit code {{exitCode}}', {
+        exitCode,
+      })
+    );
   }
 
   let output: Uint8Array;
   try {
     output = gs.FS.readFile(outputPath);
   } catch (e) {
-    throw new Error('Ghostscript did not produce output file', { cause: e });
+    throw new Error(trText('Ghostscript did not produce output file'), {
+      cause: e,
+    });
   }
 
   try {
@@ -486,4 +518,85 @@ export async function convertFileToOutlines(
   const copy = new Uint8Array(result.length);
   copy.set(result);
   return new Blob([copy], { type: 'application/pdf' });
+}
+
+const CMYK_COLOR_SPACES = /\/DeviceCMYK|\/DeviceN\b|\/Separation\b/;
+const FOUR_CHANNELS = /\/N\s+4\b/g;
+const COUNT_DICTIONARIES = /\/ObjStm|\/Linearized/;
+
+const RGB_ARGS = [
+  '-dSAFER',
+  '-dBATCH',
+  '-dNOPAUSE',
+  '-dQUIET',
+  '-sDEVICE=pdfwrite',
+  '-sColorConversionStrategy=sRGB',
+  '-sColorConversionStrategyForImages=sRGB',
+  '-dConvertCMYKImagesToRGB=true',
+  '-dProcessColorModel=/DeviceRGB',
+  '-dAutoFilterColorImages=true',
+  '-dAutoFilterGrayImages=true',
+  '-dColorImageFilter=/DCTEncode',
+  '-dGrayImageFilter=/DCTEncode',
+  '-dCompatibilityLevel=1.4',
+];
+
+export function pdfUsesCmyk(pdfData: Uint8Array): boolean {
+  const text = new TextDecoder('latin1').decode(pdfData);
+  if (CMYK_COLOR_SPACES.test(text)) return true;
+  for (const match of text.matchAll(FOUR_CHANNELS)) {
+    const start = text.lastIndexOf('<<', match.index);
+    const end = text.indexOf('>>', match.index);
+    if (!COUNT_DICTIONARIES.test(text.slice(start, end))) return true;
+  }
+  return false;
+}
+
+export async function convertPdfToRgb(
+  pdfData: Uint8Array
+): Promise<Uint8Array> {
+  const gs = cachedGsModule ?? (cachedGsModule = await loadGsModule());
+  const inputPath = '/tmp/rgb-input.pdf';
+  const outputPath = '/tmp/rgb-output.pdf';
+  gs.FS.writeFile(inputPath, pdfData);
+  try {
+    const exitCode = gs.callMain([
+      ...RGB_ARGS,
+      `-sOutputFile=${outputPath}`,
+      inputPath,
+    ]);
+    if (exitCode !== 0) {
+      throw new Error(
+        trText(
+          'Ghostscript RGB conversion failed with exit code {{exitCode}}',
+          { exitCode }
+        )
+      );
+    }
+    return gs.FS.readFile(outputPath);
+  } finally {
+    for (const path of [inputPath, outputPath]) {
+      try {
+        gs.FS.unlink(path);
+      } catch {
+        continue;
+      }
+    }
+  }
+}
+
+export async function normalizeCmykForDocx(pdf: Blob): Promise<Blob> {
+  if (!isWasmAvailable('ghostscript')) return pdf;
+  const pdfData = new Uint8Array(await pdf.arrayBuffer());
+  if (!pdfUsesCmyk(pdfData)) return pdf;
+  try {
+    const rgb = await convertPdfToRgb(pdfData);
+    return new Blob([new Uint8Array(rgb)], { type: 'application/pdf' });
+  } catch (e) {
+    console.warn(
+      '[Ghostscript] RGB conversion failed, converting the original PDF:',
+      e
+    );
+    return pdf;
+  }
 }

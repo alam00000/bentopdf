@@ -19,7 +19,7 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
     this.addOutput('pdf', new ClassicPreset.Output(pdfSocket, 'PDF'));
     this.addControl(
       'threshold',
-      new ClassicPreset.InputControl('number', { initial: 250 })
+      new ClassicPreset.InputControl('number', { initial: 5 })
     );
   }
 

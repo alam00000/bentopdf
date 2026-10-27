@@ -1,4 +1,4 @@
-import { t } from '../i18n/i18n';
+import { hasKey, t, trText } from '../i18n/i18n';
 import type { NodeCategory } from './types';
 import type { NodeRegistryEntry } from './nodes/registry';
 
@@ -23,8 +23,7 @@ function toCamelCase(str: string): string {
 }
 
 function translateOrFallback(key: string, fallback: string): string {
-  const value = t(key);
-  return value && value !== key ? value : fallback;
+  return hasKey(key) ? t(key) : trText(fallback);
 }
 
 export function translateCategory(category: NodeCategory): string {
@@ -46,7 +45,7 @@ export function translateNodeLabel(
       entry.label
     );
   }
-  return entry.label;
+  return trText(entry.label);
 }
 
 export function translateNodeDescription(
@@ -63,5 +62,5 @@ export function translateNodeDescription(
       entry.description
     );
   }
-  return entry.description;
+  return trText(entry.description);
 }

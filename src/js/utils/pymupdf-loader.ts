@@ -6,6 +6,8 @@ import type {
   PyMuPDFRasterizeOptions,
 } from '@/types';
 
+import { trText } from '../i18n/i18n.js';
+
 let cachedPyMuPDF: PyMuPDFInstance | null = null;
 let loadPromise: Promise<PyMuPDFInstance> | null = null;
 
@@ -40,17 +42,20 @@ export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
   loadPromise = (async () => {
     if (!WasmProvider.isConfigured('pymupdf')) {
       throw new Error(
-        'PyMuPDF is not configured. Please configure it in Advanced Settings.'
+        trText(
+          'PyMuPDF is not configured. Please configure it in Advanced Settings.'
+        )
       );
     }
     if (!WasmProvider.isConfigured('ghostscript')) {
       throw new Error(
-        'Ghostscript is not configured. PyMuPDF requires Ghostscript for some operations. Please configure both in Advanced Settings.'
+        trText(
+          'Ghostscript is not configured. PyMuPDF requires Ghostscript for some operations. Please configure both in Advanced Settings.'
+        )
       );
     }
 
     const pymupdfUrl = WasmProvider.getUrl('pymupdf')!;
-    const gsUrl = WasmProvider.getUrl('ghostscript')!;
     const normalizedPymupdf = pymupdfUrl.endsWith('/')
       ? pymupdfUrl
       : `${pymupdfUrl}/`;
@@ -61,13 +66,12 @@ export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
 
       if (typeof module.PyMuPDF !== 'function') {
         throw new Error(
-          'PyMuPDF module did not export expected PyMuPDF class.'
+          trText('PyMuPDF module did not export expected PyMuPDF class.')
         );
       }
 
       cachedPyMuPDF = new module.PyMuPDF({
         assetPath: `${normalizedPymupdf}assets/`,
-        ghostscriptUrl: gsUrl,
       });
 
       await cachedPyMuPDF.load();
@@ -77,9 +81,12 @@ export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
     } catch (error: unknown) {
       loadPromise = null;
       const msg = error instanceof Error ? error.message : String(error);
-      throw new Error(`Failed to load PyMuPDF from CDN: ${msg}`, {
-        cause: error,
-      });
+      throw new Error(
+        trText('Failed to load PyMuPDF from CDN: {{msg}}', { msg }),
+        {
+          cause: error,
+        }
+      );
     }
   })();
 

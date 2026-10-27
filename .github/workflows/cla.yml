@@ -11,7 +11,6 @@ permissions:
   actions: write
   contents: write
   pull-requests: write
-  statuses: write
 
 jobs:
   cla-check:
@@ -28,16 +27,15 @@ jobs:
       )
     steps:
       - name: "CLA Assistant"
-        uses: contributor-assistant/github-action@v2.6.1
+        uses: contributor-assistant/github-action@ca4a40a7d1004f18d9960b404b97e5f30a505a08 # v2.6.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PERSONAL_ACCESS_TOKEN: ${{ secrets.CLA_ASSISTANT_TOKEN }}
         with:
           path-to-signatures: 'signatures/cla.json'
           path-to-document: 'https://github.com/${{ github.repository }}/blob/main/ICLA.md'
           
           # Branch to store signatures
-          branch: 'main'
+          branch: 'cla-signatures'
           
           # Allowlist for bot accounts (won't need to sign CLA)
           allowlist: 'bot*,*[bot],dependabot*,renovate*,github-actions*'

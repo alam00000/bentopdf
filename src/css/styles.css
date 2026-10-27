@@ -123,6 +123,196 @@ body {
   transform: rotate(-90deg);
 }
 
+.tool-tile {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+
+.tool-tile > .tool-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.tool-fav-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.375rem;
+  background: none;
+  color: #9ca3af;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    color 0.2s;
+}
+
+.tool-fav-btn svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: currentColor;
+}
+
+.tool-fav-btn .tool-fav-on,
+.tool-fav-btn.is-favorite .tool-fav-off {
+  display: none;
+}
+
+.tool-fav-btn.is-favorite .tool-fav-on {
+  display: inline;
+}
+
+.tool-fav-btn:focus-visible,
+.tool-fav-btn.is-favorite {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .tool-tile:hover .tool-fav-btn {
+    opacity: 1;
+  }
+}
+
+.tool-fav-btn:hover {
+  color: #ffffff;
+}
+
+.tool-fav-btn.is-favorite {
+  color: #e3c46b;
+}
+
+.tool-fav-btn:focus-visible {
+  outline: 2px solid #a5b4fc;
+  outline-offset: 0;
+}
+
+.tool-fav-menu,
+.tool-fav-hint {
+  display: none;
+}
+
+@media (hover: none) {
+  .tool-fav-btn:not(.is-favorite) {
+    visibility: hidden;
+  }
+
+  .tool-tile > .tool-card {
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .tool-fav-menu {
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    display: block;
+    animation: tool-fav-menu-in 0.15s ease-out;
+  }
+
+  .tool-fav-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    background: rgb(52, 52, 52);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    color: #f3f3f1;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .tool-fav-menu-btn svg {
+    flex-shrink: 0;
+    width: 1.125rem;
+    height: 1.125rem;
+    fill: #e3c46b;
+  }
+
+  .tool-fav-menu-btn .tool-fav-on,
+  .tool-fav-menu-btn.is-favorite .tool-fav-off {
+    display: none;
+  }
+
+  .tool-fav-menu-btn.is-favorite .tool-fav-on {
+    display: inline;
+  }
+
+  .tool-fav-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-block: 0.875rem;
+    padding-inline: 1.125rem 0.5rem;
+    border: 1px solid var(--lp-line-2, rgba(255, 255, 255, 0.2));
+    background: var(--lp-bg-2, #2a2a2a);
+    color: var(--lp-text-2, #b4b4b0);
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .tool-fav-hint > span {
+    flex: 1;
+  }
+
+  .tool-fav-hint-label {
+    color: var(--lp-accent-3, #a5b4fc);
+    font-weight: 600;
+  }
+
+  .tool-fav-hint-close {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--lp-text-2, #b4b4b0);
+    font-size: 1rem;
+  }
+
+  #search-results:not(.hidden) ~ .tool-fav-hint {
+    display: none;
+  }
+
+  .compact-mode .tool-fav-menu {
+    top: calc(100% - 0.25rem);
+    bottom: auto;
+  }
+}
+
+@keyframes tool-fav-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.compact-mode .tool-tile > .tool-card {
+  padding-right: 2.75rem;
+}
+
+.compact-mode .tool-fav-btn {
+  top: calc(50% - 1rem);
+}
+
 .compact-mode .category-tools {
   grid-template-columns: 1fr !important;
   gap: 0 !important;

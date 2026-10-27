@@ -18,7 +18,7 @@ BentoPDF's PDF Editor lets you annotate, highlight, redact, comment, add shapes 
 
 - Full annotation toolbar with highlighting, underlining, strikethrough, and freehand drawing
 - Text insertion and commenting
-- Redaction tools for permanently removing sensitive content
+- Redaction tools that permanently remove marked content once you apply the redaction. If any marks haven't been applied when you click **Download Edited PDF**, the editor offers to apply them first.
 - Shape tools for rectangles, circles, lines, and arrows
 - Image insertion onto PDF pages
 - Built-in text search across the document
@@ -37,6 +37,7 @@ BentoPDF's PDF Editor lets you annotate, highlight, redact, comment, add shapes 
 
 - You can open multiple PDFs at once and switch between them using the tab bar at the top of the editor.
 - The editor preserves the original PDF structure, so fonts, layouts, and form fields remain intact.
+- Marking text or an area for redaction doesn't remove anything until the redaction is applied. When you redact selected text, copies of it in the file's properties, bookmarks, comments, and attachments are also removed from the download, unless the file is encrypted.
 - For bulk watermarking or page numbering, use the dedicated tools instead for more control over formatting.
 
 ## Related Tools

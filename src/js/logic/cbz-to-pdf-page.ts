@@ -7,6 +7,8 @@ import type { PyMuPDFInstance } from '@/types';
 import JSZip from 'jszip';
 import { PDFDocument } from 'pdf-lib';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const EXTENSIONS = ['.cbz', '.cbr'];
 const TOOL_NAME = 'CBZ';
 const ALL_IMAGE_EXTENSIONS = [
@@ -99,7 +101,7 @@ async function convertImageToPng(
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        reject(new Error('Failed to get canvas context'));
+        reject(new Error(trText('Failed to get canvas context')));
         return;
       }
       ctx.drawImage(img, 0, 0);
@@ -108,13 +110,19 @@ async function convertImageToPng(
         if (pngBlob) {
           resolve(pngBlob);
         } else {
-          reject(new Error(`Failed to convert ${filename} to PNG`));
+          reject(
+            new Error(
+              trText('Failed to convert {{filename}} to PNG', { filename })
+            )
+          );
         }
       }, 'image/png');
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error(`Failed to load image: ${filename}`));
+      reject(
+        new Error(trText('Failed to load image: {{filename}}', { filename }))
+      );
     };
     img.src = url;
   });
@@ -138,7 +146,11 @@ async function convertCbzToPdf(file: File): Promise<Blob> {
   const MAX_ENTRY_BYTES = 100 * 1024 * 1024;
   const MAX_TOTAL_BYTES = 500 * 1024 * 1024;
   if (imageFiles.length > MAX_CBZ_PAGES) {
-    throw new Error(`Archive has too many images (max ${MAX_CBZ_PAGES}).`);
+    throw new Error(
+      trText('Archive has too many images (max {{MAX_CBZ_PAGES}}).', {
+        MAX_CBZ_PAGES,
+      })
+    );
   }
   let totalBytes = 0;
 
@@ -148,12 +160,12 @@ async function convertCbzToPdf(file: File): Promise<Blob> {
       zipEntry as unknown as { _data?: { uncompressedSize?: number } }
     )._data?.uncompressedSize;
     if (typeof declared === 'number' && declared > MAX_ENTRY_BYTES) {
-      throw new Error('Archive contains an oversized image entry.');
+      throw new Error(trText('Archive contains an oversized image entry.'));
     }
     const imageData = await zipEntry.async('arraybuffer');
     totalBytes += imageData.byteLength;
     if (totalBytes > MAX_TOTAL_BYTES) {
-      throw new Error('Archive is too large when decompressed.');
+      throw new Error(trText('Archive is too large when decompressed.'));
     }
     const dataArray = new Uint8Array(imageData);
     const actualFormat = detectImageFormat(dataArray);
@@ -197,7 +209,7 @@ async function convertCbrToPdf(file: File): Promise<Blob> {
   return await pymupdf.convertToPdf(file, { filetype: 'cbz' });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -272,13 +284,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const convertToPdf = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', `Please select at least one ${TOOL_NAME} file.`);
+        showAlert(
+          'No Files',
+          trText('Please select at least one {{TOOL_NAME}} file.', {
+            TOOL_NAME,
+          })
+        );
         return;
       }
 
       if (state.files.length === 1) {
         const originalFile = state.files[0];
-        showLoader(`Converting ${originalFile.name}...`);
+        showLoader(
+          trText('Converting {{name}}...', { name: originalFile.name })
+        );
 
         let pdfBlob: Blob;
         if (isCbzFile(originalFile.name)) {
@@ -293,7 +312,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${originalFile.name} to PDF.`,
+          trText('Successfully converted {{name}} to PDF.', {
+            name: originalFile.name,
+          }),
           'success',
           () => resetState()
         );
@@ -304,7 +325,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            `Converting ${i + 1}/${state.files.length}: ${file.name}...`
+            trText('Converting {{n}}/{{length}}: {{name}}...', {
+              n: i + 1,
+              length: state.files.length,
+              name: file.name,
+            })
           );
 
           let pdfBlob: Blob;
@@ -326,7 +351,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} ${TOOL_NAME} file(s) to PDF.`,
+          trText(
+            'Successfully converted {{length}} {{TOOL_NAME}} file(s) to PDF.',
+            { length: state.files.length, TOOL_NAME }
+          ),
           'success',
           () => resetState()
         );
@@ -336,7 +364,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during conversion. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

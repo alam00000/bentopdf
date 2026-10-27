@@ -10,7 +10,7 @@ BentoPDF is a free, open-source, privacy-first PDF toolkit that runs **entirely 
 
 ### Option 1: Use the Hosted Version
 
-Visit [bentopdf.com](https://bentopdf.com) to use BentoPDF instantly—no installation required.
+Visit [bentopdf.com](https://www.bentopdf.com) to use BentoPDF instantly—no installation required.
 
 ### Option 2: Self-Host with Docker
 

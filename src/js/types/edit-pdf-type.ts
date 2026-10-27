@@ -14,6 +14,19 @@ export interface DocManagerPlugin {
   saveAsCopy: (id: string) => Promise<Uint8Array>;
 }
 
+export interface ViewerCommand {
+  id: string;
+  labelKey: string;
+  icon: string;
+  categories: string[];
+  action: () => void;
+}
+
+export interface ViewerCommandsPlugin {
+  registerCommand: (command: ViewerCommand) => void;
+  unregisterCommand: (id: string) => void;
+}
+
 export interface EditorAnnotationRect {
   origin: { x: number; y: number };
   size: { width: number; height: number };

@@ -1,5 +1,6 @@
 import { ClassicPreset } from 'rete';
 import type { NodeCategory, NodeMeta, SocketData } from '../types';
+import { getControlSpec, sanitizeWithControlSpec } from './control-specs';
 
 export abstract class BaseWorkflowNode extends ClassicPreset.Node {
   abstract readonly category: NodeCategory;
@@ -41,6 +42,10 @@ export abstract class BaseWorkflowNode extends ClassicPreset.Node {
     if (typeof value !== typeof current) {
       return current;
     }
-    return value;
+    return sanitizeWithControlSpec(
+      getControlSpec(this.nodeType, key),
+      value,
+      current
+    );
   }
 }

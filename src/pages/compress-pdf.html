@@ -175,189 +175,7 @@
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
-        <div id="compress-options" class="hidden mt-6 space-y-6">
-          <div>
-            <label
-              for="compression-algorithm"
-              class="block mb-2 text-sm font-medium text-gray-300"
-              >Compression Algorithm</label
-            >
-            <select
-              id="compression-algorithm"
-              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="condense">Condense (Recommended)</option>
-              <option value="photon">Photon (For Photo-Heavy PDFs)</option>
-            </select>
-            <div id="algorithm-info" class="mt-2 text-xs text-gray-400">
-              <p id="condense-info">
-                <strong>Condense</strong> uses advanced compression: removes
-                dead-weight, optimizes images, subsets fonts. Best for most
-                PDFs.
-              </p>
-              <p id="photon-info" class="hidden">
-                <strong>Photon</strong> converts pages to images. Use for
-                photo-heavy/scanned PDFs.
-                <span class="text-yellow-500"
-                  >⚠️ Warning: Text will become non-selectable and links will
-                  stop working.</span
-                >
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <label
-              for="compression-level"
-              class="block mb-2 text-sm font-medium text-gray-300"
-              >Compression Level</label
-            >
-            <select
-              id="compression-level"
-              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="light">Light (Preserve Quality)</option>
-              <option value="balanced" selected>Balanced (Recommended)</option>
-              <option value="aggressive">Aggressive (Smaller Files)</option>
-              <option value="extreme">Extreme (Maximum Compression)</option>
-            </select>
-          </div>
-
-          <!-- Grayscale toggle - always visible -->
-          <div
-            class="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700"
-          >
-            <input
-              type="checkbox"
-              id="convert-to-grayscale"
-              class="w-5 h-5 rounded cursor-pointer flex-shrink-0"
-            />
-            <div>
-              <label
-                for="convert-to-grayscale"
-                class="text-sm font-medium text-gray-300 cursor-pointer"
-                >Convert to Grayscale</label
-              >
-              <p class="text-xs text-gray-500 mt-0.5">
-                Reduces file size by removing color information
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <button
-              id="toggle-custom-settings"
-              type="button"
-              class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 text-sm font-medium"
-            >
-              <i data-lucide="settings" class="w-4 h-4"></i>
-              <span>Custom Settings</span>
-              <i
-                data-lucide="chevron-down"
-                id="custom-settings-chevron"
-                class="w-4 h-4"
-              ></i>
-            </button>
-
-            <div
-              id="custom-settings-panel"
-              class="hidden mt-4 p-4 bg-gray-900 rounded-lg border border-gray-700 space-y-4"
-            >
-              <div class="text-sm text-gray-400 mb-2">
-                Fine-tune compression parameters:
-              </div>
-
-              <div class="grid grid-cols-3 gap-4">
-                <div>
-                  <label
-                    for="image-quality"
-                    class="block mb-1 text-xs font-medium text-gray-400"
-                    >Output Quality</label
-                  >
-                  <input
-                    type="number"
-                    id="image-quality"
-                    value="75"
-                    min="1"
-                    max="100"
-                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
-                  />
-                  <p class="text-xs text-gray-500 mt-1">1-100%</p>
-                </div>
-                <div>
-                  <label
-                    for="dpi-target"
-                    class="block mb-1 text-xs font-medium text-gray-400"
-                    >Resize Images To</label
-                  >
-                  <input
-                    type="number"
-                    id="dpi-target"
-                    value="96"
-                    min="36"
-                    max="300"
-                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
-                  />
-                  <p class="text-xs text-gray-500 mt-1">DPI</p>
-                </div>
-                <div>
-                  <label
-                    for="dpi-threshold"
-                    class="block mb-1 text-xs font-medium text-gray-400"
-                    >Only Process Above</label
-                  >
-                  <input
-                    type="number"
-                    id="dpi-threshold"
-                    value="150"
-                    min="72"
-                    max="600"
-                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
-                  />
-                  <p class="text-xs text-gray-500 mt-1">DPI</p>
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="remove-metadata"
-                    checked
-                    class="w-4 h-4 rounded"
-                  />
-                  <span class="text-sm text-gray-300">Remove metadata</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="subset-fonts"
-                    checked
-                    class="w-4 h-4 rounded"
-                  />
-                  <span class="text-sm text-gray-300"
-                    >Subset fonts (remove unused glyphs)</span
-                  >
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="remove-thumbnails"
-                    checked
-                    class="w-4 h-4 rounded"
-                  />
-                  <span class="text-sm text-gray-300"
-                    >Remove embedded thumbnails</span
-                  >
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button id="process-btn" class="btn-gradient w-full mt-4">
-            Compress PDF
-          </button>
-        </div>
+        {{> compress-options }}
       </div>
     </div>
 
@@ -430,10 +248,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Choose Algorithm
+              Select Compression Level
             </h3>
             <p class="text-gray-400">
-              Select Condense (recommended) or Photon (for photo-heavy PDFs)
+              Pick Low, Medium, High, or Lossless compression
             </p>
           </div>
         </div>
@@ -445,10 +263,11 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Select Compression Level
+              Customize & Compress
             </h3>
             <p class="text-gray-400">
-              Pick Light, Balanced, Aggressive, or Extreme compression
+              Optionally set a target size or adjust custom settings such as
+              grayscale, then compress
             </p>
           </div>
         </div>
@@ -457,21 +276,6 @@
             class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
           >
             4
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Customize & Compress
-            </h3>
-            <p class="text-gray-400">
-              Optionally enable grayscale or custom settings, then compress
-            </p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div
-            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
-          >
-            5
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
@@ -583,9 +387,10 @@
           <p class="faq-d-a">
             Most of a PDF's size comes from images, so a file with few images,
             or images that are already small, won't shrink much, and the result
-            message tells you when the size couldn't be reduced. Try a stronger
-            level such as Aggressive, turn on Convert to Grayscale, or switch to
-            Photon if the file is a scan.
+            message tells you when the size couldn't be reduced. Try the High
+            level, set a target file size, or turn on Convert to grayscale under
+            Custom Settings. For an image-only scan, turn on Rasterize pages
+            there too.
           </p>
         </details>
         <details class="faq-d">
@@ -594,10 +399,11 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            With Condense, Light keeps images at 90% JPEG quality and 150 DPI,
-            Balanced uses 75% and 96 DPI, Aggressive uses 50% and 72 DPI, and
-            Extreme uses 30% and 60 DPI. Balanced is the default and reads fine
-            on screen; Light is the safer choice for anything that will be
+            Low re-encodes images at JPEG quality 80 and downsamples anything
+            above 200 DPI, Medium uses quality 50 and 150 DPI, and High uses
+            quality 20 and 72 DPI. Lossless leaves images untouched and only
+            optimizes fonts and file structure. Medium is the default and reads
+            fine on screen; Low is the safer choice for anything that will be
             printed.
           </p>
         </details>
@@ -607,10 +413,12 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            With Condense, yes: it recompresses images, subsets fonts, and
-            cleans up the file structure without touching the text layer, so
-            selection, search, and links keep working. Photon renders every page
-            to a JPEG, which permanently removes selectable text and hyperlinks.
+            Yes. Compression recompresses images, subsets fonts, and cleans up
+            the file structure without touching the text layer, so selection,
+            search, and links keep working. Rasterize pages only applies to
+            image-only scans and is skipped whenever a document has selectable
+            text, unless you turn on Override content protection under Custom
+            Settings.
           </p>
         </details>
         <details class="faq-d">
@@ -619,10 +427,16 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It depends on the level. Light keeps the document info fields,
-            Balanced, Aggressive, and Extreme strip them, and the two strongest
-            levels also remove XMP metadata. You can override this either way
-            with the Remove metadata checkbox under Custom Settings.
+            Compression keeps document details such as the title and author. It
+            drops embedded page thumbnails and private data that editing apps
+            leave behind, and a PDF/A file loses its PDF/A label unless you turn
+            on Preserve PDF/A under Custom Settings. To strip document details
+            as well, use
+            <a
+              href="/remove-metadata"
+              class="text-indigo-300 hover:text-indigo-400"
+              >Remove Metadata</a
+            >.
           </p>
         </details>
         <details class="faq-d">
@@ -632,10 +446,9 @@
           </summary>
           <p class="faq-d-a">
             Scanned PDFs are full-page images, so they respond well to
-            compression. Start with Condense at Balanced or Aggressive, which
-            downsamples the scans in place, and use Photon only if you need a
-            smaller result and can accept losing any OCR text layer the scan may
-            have.
+            compression. Medium or High downsamples the scans in place and keeps
+            any OCR text layer. If the scan has no text layer at all, turning on
+            Rasterize pages under Custom Settings can make it smaller still.
           </p>
         </details>
         <details class="faq-d">
@@ -644,11 +457,14 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            They override the preset for the Condense algorithm: Output Quality
-            (1 to 100) sets JPEG quality, Resize Images To sets the target DPI,
-            and Only Process Above leaves images already below that DPI alone.
-            Checkboxes let you remove metadata, subset fonts, and drop embedded
-            thumbnails.
+            They fine-tune Hyper Compress. You can set image quality and maximum
+            resolution, control how fonts are subset and merged, flatten
+            annotations, form fields, or links, remove thumbnails and other
+            hidden data, rasterize image-only scans, keep PDF/A conformance, and
+            turn on Brotli. Override content protection lets you compress signed
+            PDFs by removing their signatures and rasterize pages that have
+            text. Picking a compression level resets the rest to that level's
+            values.
           </p>
         </details>
         <details class="faq-d">
@@ -657,10 +473,11 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            There's no target size box on this page, so step through the levels
-            and check the size in the result message until the file fits. For
-            common limits there are dedicated pages with settings chosen for
-            that ceiling, such as
+            Yes. Enter the size under Target File Size and Hyper Compress
+            searches for the best image quality that still fits. If the file
+            can't get that small, you get the smallest version it can make and a
+            note saying so. For common limits there are pages with the target
+            already filled in, such as
             <a
               href="/compress-pdf-to-1mb"
               class="text-indigo-300 hover:text-indigo-400"
@@ -674,11 +491,15 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Condense runs a PyMuPDF engine compiled to WebAssembly and
-            Photon uses the browser's own page renderer, so everything happens
-            on your device. You can compress one file or a whole batch, which
-            comes back as compressed-pdfs.zip, and none of them leave your
-            computer.
+            No. Compression runs
+            <a
+              href="/hyper-compress"
+              class="text-indigo-300 hover:text-indigo-400"
+              >Hyper Compress</a
+            >, BentoPDF's own engine, compiled to WebAssembly and served with
+            the app, so everything happens on your device. You can compress one
+            file or a whole batch, which comes back as compressed-pdfs.zip, and
+            none of them leave your computer.
           </p>
         </details>
       </div>
@@ -706,11 +527,10 @@
         },
         "featureList": [
           "Reduce PDF file size",
-          "Multiple compression algorithms",
           "Batch processing",
           "No file size limits",
-          "Condense algorithm for smart compression",
-          "Photon algorithm for image-heavy PDFs"
+          "Hyper Compress engine built in",
+          "Compress to a target file size"
         ]
       }
     </script>
@@ -732,17 +552,11 @@
             "@type": "HowToStep",
             "position": 2,
             "name": "Choose Compression Level",
-            "text": "Select your desired compression level: Light, Balanced, Aggressive, or Extreme"
+            "text": "Select your desired compression level: Low, Medium, High, or Lossless"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Select Algorithm",
-            "text": "Choose Condense (recommended) or Photon algorithm based on your PDF type"
-          },
-          {
-            "@type": "HowToStep",
-            "position": 4,
             "name": "Compress and Download",
             "text": "Click 'Compress PDF' and download your optimized file"
           }

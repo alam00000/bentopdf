@@ -1,6 +1,8 @@
+import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { DOCS_INLINE_SCRIPT_HASHES } from './generate-security-headers.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,6 +31,32 @@ function copyDir(src, dest) {
   }
 }
 
+function findUnlistedInlineScripts(dir, unlisted = new Set()) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      findUnlistedInlineScripts(entryPath, unlisted);
+      continue;
+    }
+    if (!entry.name.endsWith('.html')) continue;
+    const html = fs.readFileSync(entryPath, 'utf8');
+    const inlineScripts = html.matchAll(
+      /<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/g
+    );
+    for (const [, attributes, code] of inlineScripts) {
+      if (
+        !code.trim() ||
+        /type=["']?application\/(ld\+)?json/.test(attributes)
+      ) {
+        continue;
+      }
+      const hash = `sha256-${crypto.createHash('sha256').update(code).digest('base64')}`;
+      if (!DOCS_INLINE_SCRIPT_HASHES.includes(hash)) unlisted.add(hash);
+    }
+  }
+  return unlisted;
+}
+
 console.log('Including docs in dist...');
 
 if (!fs.existsSync(docsDistPath)) {
@@ -40,6 +68,18 @@ if (!fs.existsSync(docsDistPath)) {
 if (!fs.existsSync(mainDistPath)) {
   console.error(
     'Error: Main dist folder not found. Please run "npm run build" first.'
+  );
+  process.exit(1);
+}
+
+const unlistedScripts = findUnlistedInlineScripts(docsDistPath);
+if (unlistedScripts.size > 0) {
+  console.error(
+    'Error: The docs contain inline scripts that the docs Content-Security-Policy does not allow:'
+  );
+  for (const hash of unlistedScripts) console.error(`  '${hash}'`);
+  console.error(
+    'Add these hashes to DOCS_INLINE_SCRIPT_HASHES in scripts/generate-security-headers.mjs and to the /docs script-src in vercel.json and serve.json, then rebuild.'
   );
   process.exit(1);
 }
@@ -71,7 +111,14 @@ function listDocsHtml(dir, prefix) {
       );
     } else if (entry.name.endsWith('.html') && entry.name !== '404.html') {
       const slug = entry.name.replace(/\.html$/, '');
-      urls.push(slug === 'index' ? `${prefix}/` : `${prefix}/${slug}`);
+      const html = fs.readFileSync(path.join(dir, entry.name), 'utf-8');
+      const canonical = html.match(
+        /<link[^>]+rel="canonical"[^>]+href="([^"]+)"/
+      );
+      urls.push({
+        url: slug === 'index' ? prefix : `${prefix}/${slug}`,
+        canonical: canonical ? canonical[1] : null,
+      });
     }
   }
   return urls;
@@ -90,9 +137,11 @@ function addDocsToSitemap() {
     return;
   }
   let xml = fs.readFileSync(sitemapPath, 'utf-8');
-  if (xml.includes(`<loc>${siteUrl}/docs/</loc>`)) return;
+  if (xml.includes(`<loc>${siteUrl}/docs</loc>`)) return;
 
-  const urls = listDocsHtml(targetDocsPath, '/docs');
+  const urls = listDocsHtml(targetDocsPath, '/docs')
+    .filter(({ url, canonical }) => canonical === `${siteUrl}${url}`)
+    .map(({ url }) => url);
   const entries = urls
     .map(
       (url) =>

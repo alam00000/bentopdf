@@ -3,6 +3,8 @@ import pixelmatch from 'pixelmatch';
 import type { CompareVisualDiff } from '../types.ts';
 import { VISUAL_DIFF as VISUAL_DIFF_CONFIG } from '../config.ts';
 
+import { trText } from '../../i18n/i18n.js';
+
 type FocusRegion = {
   x: number;
   y: number;
@@ -23,7 +25,7 @@ function drawNormalized(
 ) {
   const context = targetCanvas.getContext('2d');
   if (!context) {
-    throw new Error('Could not create comparison canvas context.');
+    throw new Error(trText('Could not create comparison canvas context.'));
   }
 
   context.fillStyle = '#ffffff';
@@ -56,7 +58,7 @@ export function renderVisualDiff(
   const outputContext = outputCanvas.getContext('2d');
 
   if (!context1 || !context2 || !outputContext) {
-    throw new Error('Could not create visual diff context.');
+    throw new Error(trText('Could not create visual diff context.'));
   }
 
   const image1 = context1.getImageData(0, 0, width, height);
@@ -87,7 +89,7 @@ export function renderVisualDiff(
   const overlayContext = overlayCanvas.getContext('2d');
 
   if (!overlayContext) {
-    throw new Error('Could not create visual diff overlay context.');
+    throw new Error(trText('Could not create visual diff overlay context.'));
   }
 
   overlayContext.putImageData(diffImage, 0, 0);

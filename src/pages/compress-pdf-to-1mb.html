@@ -171,189 +171,7 @@
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
-        <div id="compress-options" class="hidden mt-6 space-y-6">
-          <div>
-            <label
-              for="compression-algorithm"
-              class="block mb-2 text-sm font-medium text-gray-300"
-              >Compression Algorithm</label
-            >
-            <select
-              id="compression-algorithm"
-              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="condense">Condense (Recommended)</option>
-              <option value="photon">Photon (For Photo-Heavy PDFs)</option>
-            </select>
-            <div id="algorithm-info" class="mt-2 text-xs text-gray-400">
-              <p id="condense-info">
-                <strong>Condense</strong> uses advanced compression: removes
-                dead-weight, optimizes images, subsets fonts. Best for most
-                PDFs.
-              </p>
-              <p id="photon-info" class="hidden">
-                <strong>Photon</strong> converts pages to images. Use for
-                photo-heavy/scanned PDFs.
-                <span class="text-yellow-500"
-                  >⚠️ Warning: Text will become non-selectable and links will
-                  stop working.</span
-                >
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <label
-              for="compression-level"
-              class="block mb-2 text-sm font-medium text-gray-300"
-              >Compression Level</label
-            >
-            <select
-              id="compression-level"
-              class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
-            >
-              <option value="light">Light (Preserve Quality)</option>
-              <option value="balanced" selected>Balanced (Recommended)</option>
-              <option value="aggressive">Aggressive (Smaller Files)</option>
-              <option value="extreme">Extreme (Maximum Compression)</option>
-            </select>
-          </div>
-
-          <!-- Grayscale toggle - always visible -->
-          <div
-            class="flex items-center gap-3 p-3 bg-gray-800 rounded-lg border border-gray-700"
-          >
-            <input
-              type="checkbox"
-              id="convert-to-grayscale"
-              class="w-5 h-5 rounded cursor-pointer flex-shrink-0"
-            />
-            <div>
-              <label
-                for="convert-to-grayscale"
-                class="text-sm font-medium text-gray-300 cursor-pointer"
-                >Convert to Grayscale</label
-              >
-              <p class="text-xs text-gray-500 mt-0.5">
-                Reduces file size by removing color information
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <button
-              id="toggle-custom-settings"
-              type="button"
-              class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 text-sm font-medium"
-            >
-              <i data-lucide="settings" class="w-4 h-4"></i>
-              <span>Custom Settings</span>
-              <i
-                data-lucide="chevron-down"
-                id="custom-settings-chevron"
-                class="w-4 h-4"
-              ></i>
-            </button>
-
-            <div
-              id="custom-settings-panel"
-              class="hidden mt-4 p-4 bg-gray-900 rounded-lg border border-gray-700 space-y-4"
-            >
-              <div class="text-sm text-gray-400 mb-2">
-                Fine-tune compression parameters:
-              </div>
-
-              <div class="grid grid-cols-3 gap-4">
-                <div>
-                  <label
-                    for="image-quality"
-                    class="block mb-1 text-xs font-medium text-gray-400"
-                    >Output Quality</label
-                  >
-                  <input
-                    type="number"
-                    id="image-quality"
-                    value="75"
-                    min="1"
-                    max="100"
-                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
-                  />
-                  <p class="text-xs text-gray-500 mt-1">1-100%</p>
-                </div>
-                <div>
-                  <label
-                    for="dpi-target"
-                    class="block mb-1 text-xs font-medium text-gray-400"
-                    >Resize Images To</label
-                  >
-                  <input
-                    type="number"
-                    id="dpi-target"
-                    value="96"
-                    min="36"
-                    max="300"
-                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
-                  />
-                  <p class="text-xs text-gray-500 mt-1">DPI</p>
-                </div>
-                <div>
-                  <label
-                    for="dpi-threshold"
-                    class="block mb-1 text-xs font-medium text-gray-400"
-                    >Only Process Above</label
-                  >
-                  <input
-                    type="number"
-                    id="dpi-threshold"
-                    value="150"
-                    min="72"
-                    max="600"
-                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2 text-sm"
-                  />
-                  <p class="text-xs text-gray-500 mt-1">DPI</p>
-                </div>
-              </div>
-
-              <div class="space-y-2">
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="remove-metadata"
-                    checked
-                    class="w-4 h-4 rounded"
-                  />
-                  <span class="text-sm text-gray-300">Remove metadata</span>
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="subset-fonts"
-                    checked
-                    class="w-4 h-4 rounded"
-                  />
-                  <span class="text-sm text-gray-300"
-                    >Subset fonts (remove unused glyphs)</span
-                  >
-                </label>
-                <label class="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    id="remove-thumbnails"
-                    checked
-                    class="w-4 h-4 rounded"
-                  />
-                  <span class="text-sm text-gray-300"
-                    >Remove embedded thumbnails</span
-                  >
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <button id="process-btn" class="btn-gradient w-full mt-4">
-            Compress PDF
-          </button>
-        </div>
+        {{> compress-options targetSize="1" targetUnit="mb" }}
       </div>
     </div>
 
@@ -398,10 +216,11 @@
 
     <section class="max-w-4xl mx-auto px-4 pt-12">
       <p id="direct-answer" class="text-gray-300 text-lg leading-relaxed">
-        To compress a PDF to 1MB, add the file below, use the Balanced level,
-        and download the smaller copy. One megabyte is the most common upload
-        ceiling on the web, and nearly every document reaches it without visible
-        quality loss. processed privately in your browser.
+        To compress a PDF to 1MB, add the file below and click Compress PDF. The
+        target size is already set to 1 MB. One megabyte is the most common
+        upload ceiling on the web, nearly every document reaches it without
+        visible quality loss, and everything is processed privately in your
+        browser.
       </p>
     </section>
     <section class="max-w-4xl mx-auto px-4 pt-8">
@@ -411,7 +230,7 @@
       <p class="text-gray-400 leading-relaxed">
         Countless web forms cap attachments at 1MB: HR systems, insurance claim
         uploads, property portals, CRM attachments. Even large reports with
-        photos usually compress below 1MB at Balanced level, because most PDF
+        photos usually compress below 1MB at the Medium level, because most PDF
         weight is unoptimized images and duplicate embedded fonts that
         compression removes losslessly first.
       </p>
@@ -419,10 +238,11 @@
     <section class="max-w-4xl mx-auto px-4 pt-8">
       <h2 class="text-2xl font-bold text-white mb-3">Very large files</h2>
       <p class="text-gray-400 leading-relaxed">
-        A 50 to 100MB scanned book or brochure may need the Aggressive level to
-        get under 1MB, and extremely long documents may not fit at any quality.
-        In that case, split the PDF into logical parts. chapters or sections.
-        and compress each part under 1MB.
+        A 50 to 100MB scanned book or brochure needs much stronger image
+        compression to get under 1MB, which the target size handles by lowering
+        quality step by step, and extremely long documents may not fit at any
+        quality. In that case, split the PDF into logical parts, such as
+        chapters or sections, and compress each part under 1MB.
       </p>
     </section>
 
@@ -456,10 +276,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Choose Algorithm
+              Select Compression Level
             </h3>
             <p class="text-gray-400">
-              Select Condense (recommended) or Photon (for photo-heavy PDFs)
+              Pick Low, Medium, High, or Lossless compression
             </p>
           </div>
         </div>
@@ -471,10 +291,11 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Select Compression Level
+              Customize & Compress
             </h3>
             <p class="text-gray-400">
-              Pick Light, Balanced, Aggressive, or Extreme compression
+              Optionally set a target size or adjust custom settings such as
+              grayscale, then compress
             </p>
           </div>
         </div>
@@ -483,21 +304,6 @@
             class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
           >
             4
-          </div>
-          <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Customize & Compress
-            </h3>
-            <p class="text-gray-400">
-              Optionally enable grayscale or custom settings, then compress
-            </p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div
-            class="flex-shrink-0 w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold"
-          >
-            5
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
@@ -585,9 +391,11 @@
             ></i>
           </summary>
           <p class="faq-d-a">
-            The standard engine preserves form fields. A digitally signed PDF,
-            however, will have its signature invalidated by any modification.
-            compress before signing, not after.
+            Compression preserves form fields. A digitally signed PDF is left
+            exactly as it is, because any change would invalidate the signature,
+            so compress before signing, not after. If you need it smaller
+            anyway, turn on Override content protection under Custom Settings to
+            remove the signatures and compress it.
           </p>
         </details>
       </div>
@@ -615,11 +423,10 @@
         },
         "featureList": [
           "Reduce PDF file size",
-          "Multiple compression algorithms",
           "Batch processing",
           "No file size limits",
-          "Condense algorithm for smart compression",
-          "Photon algorithm for image-heavy PDFs"
+          "Hyper Compress engine built in",
+          "Compress to a target file size"
         ]
       }
     </script>
@@ -641,17 +448,11 @@
             "@type": "HowToStep",
             "position": 2,
             "name": "Choose Compression Level",
-            "text": "Select your desired compression level: Light, Balanced, Aggressive, or Extreme"
+            "text": "Select your desired compression level: Low, Medium, High, or Lossless"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Select Algorithm",
-            "text": "Choose Condense (recommended) or Photon algorithm based on your PDF type"
-          },
-          {
-            "@type": "HowToStep",
-            "position": 4,
             "name": "Compress and Download",
             "text": "Click 'Compress PDF' and download your optimized file"
           }

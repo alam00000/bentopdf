@@ -1,5 +1,6 @@
 {
   "categories": {
+    "favorites": "Favoris",
     "popularTools": "Outils populaires",
     "editAnnotate": "Éditer et annoter",
     "convertToPdf": "Convertir en PDF",
@@ -10,6 +11,13 @@
     "input": "Entrée",
     "output": "Sortie"
   },
+  "favorites": {
+    "add": "Ajouter aux favoris",
+    "remove": "Retirer des favoris",
+    "hintLabel": "Astuce",
+    "hint": "Appuyez longuement sur un outil pour l’ajouter à vos favoris.",
+    "hideHint": "Masquer l’astuce"
+  },
   "convertToPdf": "Convertir en PDF",
   "pdfMultiTool": {
     "name": "Outil PDF tout-en-un",
@@ -19,7 +27,22 @@
     "name": "Fusionner des PDF",
     "subtitle": "Assembler plusieurs PDF en un seul fichier, tout en conservant les signets.",
     "retainPageLabels": "Conserver les étiquettes de page d'origine de chaque fichier",
-    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double)."
+    "retainPageLabelsHint": "Désactivé (par défaut) : le PDF fusionné utilise une numérotation naturelle 1–N. Activé : les étiquettes de page d'origine de chaque fichier sont conservées (peut produire des étiquettes en double).",
+    "removeDuplicateFonts": "Supprimer les polices en double",
+    "alert": {
+      "thumbnailError": "Échec du rendu des aperçus de pages",
+      "noSelection": "Aucun fichier ni page sélectionné pour la fusion.",
+      "mergeSuccess": "PDF fusionnés avec succès !",
+      "mergeFailed": "Échec de la fusion des PDF.",
+      "mergeError": "Échec de la fusion des PDF. Veuillez vérifier que tous les fichiers sont valides et non protégés par mot de passe.",
+      "workerError": "Une erreur inattendue s'est produite dans le worker de fusion.",
+      "loadError": "Impossible de charger un ou plusieurs fichiers PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Génération des aperçus de pages…",
+      "merging": "Fusion des PDF…",
+      "loadingDocuments": "Chargement des documents PDF…"
+    }
   },
   "splitPdf": {
     "name": "Scinder un PDF",
@@ -27,29 +50,7 @@
   },
   "compressPdf": {
     "name": "Compresser un PDF",
-    "subtitle": "Réduire la taille du fichier PDF.",
-    "algorithmLabel": "Algorithme de compression",
-    "condense": "Condensé (recommandé)",
-    "photon": "Photon (pour les PDF riches en photos)",
-    "condenseInfo": "Condensé utilise une compression avancée : suppression du superflu, optimisation des images, sous-ensemble des polices. Idéal pour la plupart des PDF.",
-    "photonInfo": "Photon convertit les pages en images. À utiliser pour les PDF contenant beaucoup de photos ou scannés.",
-    "photonWarning": "Attention : le texte ne sera plus sélectionnable et les liens ne fonctionneront plus.",
-    "levelLabel": "Niveau de compression",
-    "light": "Léger (préserver la qualité)",
-    "balanced": "Équilibré (recommandé)",
-    "aggressive": "Agressif (fichiers plus petits)",
-    "extreme": "Extrême (compression maximale)",
-    "grayscale": "Convertir en niveaux de gris",
-    "grayscaleHint": "Réduit la taille du fichier en supprimant les informations de couleur",
-    "customSettings": "Paramètres personnalisés",
-    "customSettingsHint": "Affiner les paramètres de compression :",
-    "outputQuality": "Qualité de sortie",
-    "resizeImagesTo": "Redimensionner les images à",
-    "onlyProcessAbove": "Traiter uniquement au-dessus de",
-    "removeMetadata": "Supprimer les métadonnées",
-    "subsetFonts": "Sous-ensemble des polices (supprimer les glyphes inutilisés)",
-    "removeThumbnails": "Supprimer les vignettes intégrées",
-    "compressButton": "Compresser le PDF"
+    "subtitle": "Réduire la taille du fichier PDF."
   },
   "pdfEditor": {
     "name": "Éditeur PDF",
@@ -60,6 +61,8 @@
     "subtitle": "Cliquer sur un paragraphe et le modifier directement, avec remise en page instantanée, polices et styles.",
     "saved": "PDF enregistré avec succès ! ({{size}} Ko)",
     "failedToLoad": "Impossible de charger l'éditeur de texte PDF.",
+    "loadingFonts": "Chargement des polices...",
+    "fontsUnavailable": "Impossible de télécharger une police nécessaire à certains caractères. Vérifiez votre connexion et réessayez, sinon ces caractères risquent de ne pas s'afficher correctement dans le PDF enregistré.",
     "howToUpload": "Importer un PDF",
     "howToClick": "Cliquer sur un paragraphe",
     "howToRestyle": "Tout restyler",
@@ -103,7 +106,7 @@
     "tipRedoZ": "Rétablir (⇧⌘Z)",
     "tipFileDetails": "Détails du fichier",
     "tipEditExistingContent": "Modifier le contenu existant",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Ce que l'outil Modifier affecte — restreindre la portée sur les pages chargées",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Ce que l'outil Modifier affecte : restreindre la portée sur les pages chargées",
     "tipClickThePageToAddATextBox": "Cliquez sur la page pour ajouter une zone de texte",
     "tipSpellCheckLanguage": "Langue du correcteur orthographique",
     "tipFindAndReplace": "Rechercher et remplacer",
@@ -515,11 +518,12 @@
       "noFile": "Aucun fichier",
       "noFileExplanation": "Veuillez d'abord téléverser un fichier PDF.",
       "conversionSuccess": "PDF converti en TIFF avec succès !",
-      "conversionError": "Échec de la conversion du PDF en TIFF. Le fichier est peut-être corrompu."
+      "conversionError": "Échec de la conversion du PDF en TIFF. Le fichier est peut-être corrompu.",
+      "conversionOutOfMemory": "Le navigateur a manqué de mémoire pendant la conversion. Essayez une résolution (PPP) plus faible, ou décochez l'option TIFF multipage pour convertir les pages une par une."
     }
   },
   "pdfToCbz": {
-    "name": "PDF en CBZ",
+    "name": "PDF vers CBZ",
     "subtitle": "Convertir un PDF en fichier CBZ (archive de bande dessinée) pour les lecteurs de comics.",
     "imageFormat": "Format d'image",
     "quality": "Qualité d'image",
@@ -804,7 +808,7 @@
     "subtitle": "Supprimer les métadonnées, annotations, scripts et autres éléments sensibles."
   },
   "decryptPdf": {
-    "name": "Déverrouiller un PDF",
+    "name": "Déchiffrer un PDF",
     "subtitle": "Supprimer la protection par mot de passe."
   },
   "flattenPdf": {
@@ -860,7 +864,7 @@
     "subtitle": "Écrire ou coller du Markdown et l’exporter en PDF avec une mise en forme soignée.",
     "paneMarkdown": "Markdown",
     "panePreview": "Aperçu",
-    "btnUpload": "Téléverser",
+    "btnUpload": "Sélectionner",
     "btnSyncScroll": "Synchroniser le défilement",
     "btnSettings": "Paramètres",
     "btnExportPdf": "Exporter en PDF",
@@ -1002,8 +1006,7 @@
     "subtitle": "Extraire le texte des fichiers PDF et l’enregistrer en texte brut (.txt). Prend en charge plusieurs fichiers.",
     "noteLabel": "Note :",
     "noteText": "Cet outil ne fonctionne QUE avec des PDF créés numériquement. Pour les documents numérisés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF.",
-    "convertButton": "Extraire le texte",
-    "note": "Cet outil fonctionne UNIQUEMENT avec des PDF créés numériquement. Pour les documents scannés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF."
+    "convertButton": "Extraire le texte"
   },
   "digitalSignPdf": {
     "name": "Signature numérique PDF",
@@ -1201,7 +1204,7 @@
       "workerError": "Erreur du worker : {{message}}",
       "alternateMergeWorkerError": "Erreur du worker de fusion alternée : {{message}}",
       "noPdfFilesUploaded": "Aucun fichier PDF téléversé dans le nœud d’entrée PDF",
-      "failedToLoadFile": "Impossible de charger « {{file}} » — le fichier est peut-être corrompu",
+      "failedToLoadFile": "Impossible de charger « {{file}} » : le fichier est peut-être corrompu",
       "noImagesUploaded": "Aucune image téléversée dans le nœud d’entrée Image",
       "noWordDocsUploaded": "Aucun document téléversé dans le nœud d’entrée Word",
       "noExcelUploaded": "Aucun tableur téléversé dans le nœud d’entrée Excel",
@@ -1318,7 +1321,7 @@
     "subtitle": "Supprimer la protection par mot de passe."
   },
   "protectPdf": {
-    "name": "Chiffrer un PDF",
+    "name": "Protéger un PDF",
     "subtitle": "Protéger le PDF en ajoutant un mot de passe."
   }
 }

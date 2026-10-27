@@ -1,3 +1,4 @@
+import { trText } from '../i18n/i18n.js';
 export type ImageQuality = 'high' | 'medium' | 'low';
 
 interface QualityConfig {
@@ -54,7 +55,7 @@ export async function compressImageFile(
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        reject(new Error('Canvas context failed'));
+        reject(new Error(trText('Canvas context failed')));
         return;
       }
 
@@ -64,7 +65,7 @@ export async function compressImageFile(
       canvas.toBlob(
         (blob) => {
           if (!blob) {
-            reject(new Error('Canvas toBlob failed'));
+            reject(new Error(trText('Canvas toBlob failed')));
             return;
           }
           const newName = file.name.replace(/\.[^.]+$/, '.jpg');
@@ -124,7 +125,7 @@ export async function compressImageBytes(
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        reject(new Error('Canvas context failed'));
+        reject(new Error(trText('Canvas context failed')));
         return;
       }
 
@@ -134,7 +135,7 @@ export async function compressImageBytes(
       canvas.toBlob(
         async (jpegBlob) => {
           if (!jpegBlob) {
-            reject(new Error('Canvas toBlob failed'));
+            reject(new Error(trText('Canvas toBlob failed')));
             return;
           }
           const arrayBuffer = await jpegBlob.arrayBuffer();

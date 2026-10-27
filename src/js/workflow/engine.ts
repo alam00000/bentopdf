@@ -8,6 +8,7 @@ import { WorkflowError } from './types';
 import type { ExecutionProgress } from './types';
 import { updateNodeDisplay } from './editor';
 import { wfError } from './errors';
+import { trText } from '../i18n/i18n';
 
 type AreaExtra = LitArea2D<ClassicScheme>;
 
@@ -140,7 +141,7 @@ export async function executeWorkflow(
       nodeId: node.id,
       nodeName: node.label,
       status: 'running',
-      message: `Processing ${node.label}...`,
+      message: trText('Processing {{name}}...', { name: node.label }),
     });
     await tick();
 

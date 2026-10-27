@@ -1,5 +1,6 @@
 {
   "categories": {
+    "favorites": "Yêu thích",
     "popularTools": "Công cụ phổ biến",
     "editAnnotate": "Chỉnh sửa & Ghi chú",
     "convertToPdf": "Chuyển đổi sang PDF",
@@ -10,6 +11,13 @@
     "input": "Đầu vào",
     "output": "Đầu ra"
   },
+  "favorites": {
+    "add": "Thêm vào yêu thích",
+    "remove": "Xóa khỏi yêu thích",
+    "hintLabel": "Mẹo",
+    "hint": "Nhấn giữ một công cụ để thêm vào mục yêu thích.",
+    "hideHint": "Ẩn mẹo"
+  },
   "convertToPdf": "Chuyển đổi sang PDF",
   "pdfMultiTool": {
     "name": "Công cụ đa năng PDF",
@@ -19,7 +27,22 @@
     "name": "Gộp PDF",
     "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark.",
     "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
-    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
+    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp).",
+    "removeDuplicateFonts": "Xóa phông chữ trùng lặp",
+    "alert": {
+      "thumbnailError": "Không thể hiển thị hình thu nhỏ của trang",
+      "noSelection": "Chưa chọn tệp hoặc trang nào để gộp.",
+      "mergeSuccess": "Đã gộp PDF thành công!",
+      "mergeFailed": "Không thể gộp PDF.",
+      "mergeError": "Không thể gộp PDF. Vui lòng kiểm tra để đảm bảo tất cả tệp đều hợp lệ và không được bảo vệ bằng mật khẩu.",
+      "workerError": "Đã xảy ra lỗi không mong muốn trong quá trình gộp.",
+      "loadError": "Không thể tải một hoặc nhiều tệp PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Đang tạo bản xem trước trang...",
+      "merging": "Đang gộp PDF...",
+      "loadingDocuments": "Đang tải tài liệu PDF..."
+    }
   },
   "splitPdf": {
     "name": "Chia PDF",
@@ -27,29 +50,7 @@
   },
   "compressPdf": {
     "name": "Nén PDF",
-    "subtitle": "Giảm kích thước tệp PDF của bạn.",
-    "algorithmLabel": "Thuật toán nén",
-    "condense": "Condense (Khuyến nghị)",
-    "photon": "Photon (Dành cho PDF nhiều ảnh)",
-    "condenseInfo": "Condense sử dụng nén nâng cao: loại bỏ dữ liệu thừa, tối ưu hóa hình ảnh, gọn phông chữ. Phù hợp với hầu hết PDF.",
-    "photonInfo": "Photon chuyển đổi trang thành hình ảnh. Dùng cho PDF nhiều ảnh/quét.",
-    "photonWarning": "Cảnh báo: Văn bản sẽ không thể chọn được và liên kết sẽ không hoạt động.",
-    "levelLabel": "Mức độ nén",
-    "light": "Nhẹ (Giữ chất lượng)",
-    "balanced": "Cân bằng (Khuyến nghị)",
-    "aggressive": "Mạnh (Tệp nhỏ hơn)",
-    "extreme": "Cực đoan (Nén tối đa)",
-    "grayscale": "Chuyển sang thang xám",
-    "grayscaleHint": "Giảm kích thước tệp bằng cách loại bỏ thông tin màu",
-    "customSettings": "Cài đặt tùy chỉnh",
-    "customSettingsHint": "Tinh chỉnh các thông số nén:",
-    "outputQuality": "Chất lượng đầu ra",
-    "resizeImagesTo": "Thay đổi kích thước ảnh thành",
-    "onlyProcessAbove": "Chỉ xử lý khi trên",
-    "removeMetadata": "Xóa siêu dữ liệu",
-    "subsetFonts": "Gọn phông chữ (xóa ký tự không dùng)",
-    "removeThumbnails": "Xóa hình thu nhỏ nhúng",
-    "compressButton": "Nén PDF"
+    "subtitle": "Giảm kích thước tệp PDF của bạn."
   },
   "pdfEditor": {
     "name": "Trình chỉnh sửa PDF",
@@ -60,6 +61,8 @@
     "subtitle": "Nhấp vào bất kỳ đoạn văn nào và chỉnh sửa ngay tại chỗ với tính năng tự động dàn lại văn bản, phông chữ và kiểu dáng.",
     "saved": "Đã lưu PDF thành công! ({{size}} KB)",
     "failedToLoad": "Không thể tải Trình chỉnh sửa văn bản PDF.",
+    "loadingFonts": "Đang tải phông chữ...",
+    "fontsUnavailable": "Không thể tải xuống phông chữ cần cho một số ký tự. Hãy kiểm tra kết nối và thử lại, nếu không các ký tự đó có thể không hiển thị đúng trong tệp PDF đã lưu.",
     "howToUpload": "Tải PDF lên",
     "howToClick": "Nhấp vào một đoạn văn",
     "howToRestyle": "Đổi kiểu mọi thứ",
@@ -103,7 +106,7 @@
     "tipRedoZ": "Làm lại (⇧⌘Z)",
     "tipFileDetails": "Chi tiết tệp",
     "tipEditExistingContent": "Chỉnh sửa nội dung hiện có",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Phạm vi tác động của công cụ Chỉnh sửa — thu hẹp phạm vi trên trang dày đặc",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Phạm vi tác động của công cụ Chỉnh sửa: thu hẹp phạm vi trên trang dày đặc",
     "tipClickThePageToAddATextBox": "Nhấp vào trang để thêm hộp văn bản",
     "tipSpellCheckLanguage": "Ngôn ngữ kiểm tra chính tả",
     "tipFindAndReplace": "Tìm và thay thế",
@@ -515,7 +518,8 @@
       "noFile": "Không có tệp",
       "noFileExplanation": "Vui lòng tải lên tệp PDF trước.",
       "conversionSuccess": "Đã chuyển đổi PDF thành TIFF thành công!",
-      "conversionError": "Không thể chuyển đổi PDF sang TIFF. Tệp có thể bị hỏng."
+      "conversionError": "Không thể chuyển đổi PDF sang TIFF. Tệp có thể bị hỏng.",
+      "conversionOutOfMemory": "Trình duyệt đã hết bộ nhớ khi chuyển đổi. Hãy thử giảm DPI hoặc bỏ chọn tùy chọn TIFF nhiều trang để chuyển đổi từng trang một."
     }
   },
   "pdfToCbz": {
@@ -772,7 +776,7 @@
     "loadError": "Không thể tải PDF. Có thể tệp bị hỏng hoặc được bảo vệ bằng mật khẩu."
   },
   "posterizePdf": {
-    "name": "Posterize PDF",
+    "name": "Chia PDF thành poster",
     "subtitle": "Chia một trang lớn thành nhiều trang nhỏ hơn."
   },
   "fixPageSize": {
@@ -860,7 +864,7 @@
     "subtitle": "Viết hoặc dán Markdown và xuất nó thành PDF được định dạng đẹp.",
     "paneMarkdown": "Markdown",
     "panePreview": "Xem trước",
-    "btnUpload": "Tải lên",
+    "btnUpload": "Chọn",
     "btnSyncScroll": "Cuộn đồng bộ",
     "btnSettings": "Cài đặt",
     "btnExportPdf": "Xuất PDF",
@@ -998,12 +1002,11 @@
     "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng Excel (XLSX)."
   },
   "pdfToText": {
-    "name": "PDF sang Văn bản",
+    "name": "PDF sang văn bản",
     "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
     "noteLabel": "Lưu ý:",
     "noteText": "Công cụ này CHỈ hoạt động với PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi thay thế.",
-    "convertButton": "Trích xuất văn bản",
-    "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi."
+    "convertButton": "Trích xuất văn bản"
   },
   "digitalSignPdf": {
     "name": "Chữ ký số PDF",
@@ -1144,7 +1147,7 @@
     "subtitle": "Chuyển đổi PDF sang PDF/A để lưu trữ lâu dài."
   },
   "rasterizePdf": {
-    "name": "Rasterize PDF",
+    "name": "Raster hóa PDF",
     "subtitle": "Chuyển đổi PDF thành PDF dựa trên hình ảnh. Làm phẳng các lớp và xóa văn bản có thể chọn."
   },
   "pdfWorkflow": {
@@ -1314,11 +1317,11 @@
     "faqPrivacyAnswer": "Chắc chắn! Toàn bộ quá trình xử lý diễn ra trong trình duyệt của bạn. Tệp của bạn không bao giờ rời khỏi thiết bị, đảm bảo quyền riêng tư hoàn toàn."
   },
   "unlockPdf": {
-    "name": "Giải mã PDF",
+    "name": "Mở khóa PDF",
     "subtitle": "Mở khóa PDF bằng cách xóa bảo vệ mật khẩu."
   },
   "protectPdf": {
-    "name": "Mã hóa PDF",
+    "name": "Bảo vệ PDF",
     "subtitle": "Khóa PDF của bạn bằng cách thêm mật khẩu."
   }
 }

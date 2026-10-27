@@ -83,7 +83,7 @@ npx wrangler deploy -c wasm-wrangler.toml
 ## Security Features
 
 - **Origin validation**: Only allows requests from configured origins
-- **Rate limiting**: 100 requests/minute per IP (requires KV namespace)
+- **Rate limiting**: 100 requests/minute per IP, per /64 for IPv6 (requires KV namespace; fails open on KV errors)
 - **File type restrictions**: Only WASM-related files (.js, .wasm, .data, etc.)
 - **Size limits**: Max 100MB per file
 - **Caching**: Reduces origin requests and improves performance

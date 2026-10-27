@@ -3,7 +3,12 @@ import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { icons, createIcons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../utils/load-pdf-document.js';
+
+import { trText, onPageReady } from '../i18n/i18n.js';
 
 interface PageState {
   file: File | null;
@@ -139,7 +144,7 @@ async function removeMetadata() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = 'Removing all metadata...';
+  if (loaderText) loaderText.textContent = trText('Removing all metadata...');
 
   try {
     if (loaderModal) loaderModal.classList.add('hidden');
@@ -149,15 +154,15 @@ async function removeMetadata() {
       return;
     }
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Removing all metadata...';
+    if (loaderText) loaderText.textContent = trText('Removing all metadata...');
     result.pdf.destroy();
     const pdfDoc = await loadPdfDocument(result.bytes);
 
     removeMetadataFromDoc(pdfDoc);
 
-    const newPdfBytes = await pdfDoc.save();
+    const newPdfBytes = await removeUnreferencedObjects(await pdfDoc.save());
     downloadFile(
-      new Blob([newPdfBytes as BlobPart], { type: 'application/pdf' }),
+      new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
     showAlert('Success', 'Metadata removed successfully!', 'success', () => {
@@ -171,7 +176,7 @@ async function removeMetadata() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

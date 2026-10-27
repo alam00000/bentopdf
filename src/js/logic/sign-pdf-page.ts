@@ -6,10 +6,17 @@ import {
   downloadFile,
 } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { t } from '../i18n/i18n';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
-import { flattenAnnotations } from '../utils/flatten-annotations.js';
+import { t, trText, onPageReady } from '../i18n/i18n';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../utils/load-pdf-document.js';
+import {
+  flattenAnnotations,
+  flattenFormsInDoc,
+} from '../utils/flatten-annotations.js';
 import type { SignState, PDFViewerWindow } from '@/types';
+import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
 
 const signState: SignState = {
   file: null,
@@ -19,11 +26,7 @@ const signState: SignState = {
   blobUrl: null,
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -112,7 +115,10 @@ async function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = `${formatBytes(signState.file.size)} • ${t('common.loadingPageCount')}`;
+  metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+    size: formatBytes(signState.file.size),
+    loadingPageCount: t('common.loadingPageCount'),
+  });
 
   infoContainer.append(nameSpan, metaSpan);
 
@@ -140,7 +146,10 @@ async function updateFileDisplay() {
   }
   signState.file = result.file;
   nameSpan.textContent = result.file.name;
-  metaSpan.textContent = `${formatBytes(result.file.size)} • ${result.pdf.numPages} pages`;
+  metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+    size: formatBytes(result.file.size),
+    numPages: result.pdf.numPages,
+  });
   result.pdf.destroy();
 }
 
@@ -180,7 +189,7 @@ async function setupSignTool() {
   signState.blobUrl = URL.createObjectURL(blob);
 
   try {
-    const existingPrefsRaw = localStorage.getItem('pdfjs.preferences');
+    const existingPrefsRaw = getStoredItem('pdfjs.preferences');
     const existingPrefs: Record<string, unknown> = existingPrefsRaw
       ? JSON.parse(existingPrefsRaw)
       : {};
@@ -190,7 +199,7 @@ async function setupSignTool() {
       enableSignatureEditor: true,
       enablePermissions: false,
     };
-    localStorage.setItem('pdfjs.preferences', JSON.stringify(newPrefs));
+    setStoredItem('pdfjs.preferences', JSON.stringify(newPrefs));
   } catch (e) {
     console.warn('Failed to update pdfjs.preferences in localStorage', e);
   }
@@ -285,7 +294,7 @@ async function applyAndSaveSignatures() {
       const pdfBytes = new Uint8Array(rawPdfBytes);
       const pdfDoc = await loadPdfDocument(pdfBytes);
       try {
-        pdfDoc.getForm().flatten();
+        flattenFormsInDoc(pdfDoc);
       } catch (e: unknown) {
         const msg = e instanceof Error ? e.message : String(e);
         if (!msg.includes('getForm')) {
@@ -298,7 +307,9 @@ async function applyAndSaveSignatures() {
         const msg = e instanceof Error ? e.message : String(e);
         console.warn('Could not flatten annotations:', msg);
       }
-      const flattenedPdfBytes = await pdfDoc.save();
+      const flattenedPdfBytes = await removeUnreferencedObjects(
+        await pdfDoc.save()
+      );
 
       const blob = new Blob([new Uint8Array(flattenedPdfBytes)], {
         type: 'application/pdf',

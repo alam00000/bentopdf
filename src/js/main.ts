@@ -18,6 +18,7 @@ import {
   rewriteLinks,
   injectLanguageSwitcher,
   t,
+  trText,
 } from './i18n/index.js';
 import {
   loadRuntimeConfig,
@@ -29,6 +30,19 @@ import {
   setStoredItem,
   removeStoredItem,
 } from './utils/safe-storage.js';
+import { sanitizeTranslationHtml } from './utils/translation-html.js';
+import type { ToolCategory } from '@/types';
+
+const FAVORITE_STAR_PATHS = [
+  [
+    'off',
+    'M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z',
+  ],
+  [
+    'on',
+    'M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z',
+  ],
+] as const;
 declare const __BRAND_NAME__: string;
 
 const init = async () => {
@@ -38,19 +52,22 @@ const init = async () => {
   applyTranslations();
 
   if (isCurrentPageDisabled()) {
-    document.title = t('disabledTool.title') || 'Tool Unavailable';
+    document.title = t('disabledTool.title') || trText('Tool Unavailable');
     const main = document.querySelector('main') || document.body;
-    const heading = t('disabledTool.heading') || 'This tool has been disabled';
+    const heading =
+      t('disabledTool.heading') || trText('This tool has been disabled');
     const message =
       t('disabledTool.message') ||
-      'This tool is not available in your deployment. Contact your administrator for more information.';
-    const backHome = t('disabledTool.backHome') || 'Back to Home';
+      trText(
+        'This tool is not available in your deployment. Contact your administrator for more information.'
+      );
+    const backHome = t('disabledTool.backHome') || trText('Back to Home');
     main.innerHTML = `
       <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <i class="ph ph-prohibit text-6xl text-gray-500 mb-4"></i>
-        <h1 class="text-2xl font-bold text-white mb-2">${heading}</h1>
-        <p class="text-gray-400 mb-6">${message}</p>
-        <a href="${import.meta.env.BASE_URL}" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">${backHome}</a>
+        <h1 class="text-2xl font-bold text-white mb-2">${sanitizeTranslationHtml(heading)}</h1>
+        <p class="text-gray-400 mb-6">${sanitizeTranslationHtml(message)}</p>
+        <a href="${import.meta.env.BASE_URL}" class="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition">${sanitizeTranslationHtml(backHome)}</a>
       </div>
     `;
     return;
@@ -113,7 +130,10 @@ const init = async () => {
       });
 
       const brandName = __BRAND_NAME__ || 'BentoPDF';
-      document.title = `${brandName} - ${t('simpleMode.title')}`;
+      document.title = trText('{{brandName}} - {{title}}', {
+        brandName,
+        title: t('simpleMode.title'),
+      });
 
       const toolsHeader = document.getElementById('tools-header');
       if (toolsHeader) {
@@ -158,6 +178,7 @@ const init = async () => {
   }
 
   const categoryTranslationKeys: Record<string, string> = {
+    Favorites: 'tools:categories.favorites',
     'Popular Tools': 'tools:categories.popularTools',
     'Edit & Annotate': 'tools:categories.editAnnotate',
     'Convert to PDF': 'tools:categories.convertToPdf',
@@ -240,6 +261,8 @@ const init = async () => {
     'Repair PDF': 'tools:repairPdf',
     'Encrypt PDF': 'tools:encryptPdf',
     'Sanitize PDF': 'tools:sanitizePdf',
+    'Protect PDF': 'tools:protectPdf',
+    'Unlock PDF': 'tools:unlockPdf',
     'Decrypt PDF': 'tools:decryptPdf',
     'Flatten PDF': 'tools:flattenPdf',
     'Remove Metadata': 'tools:removeMetadata',
@@ -312,7 +335,277 @@ const init = async () => {
       }))
       .filter((category) => category.tools.length > 0);
 
-    filteredCategories.forEach((category) => {
+    const availableTools = new Map<string, ToolCategory['tools'][number]>();
+    filteredCategories.forEach((category) =>
+      category.tools.forEach((tool) => {
+        if (!availableTools.has(tool.id)) availableTools.set(tool.id, tool);
+      })
+    );
+
+    let favoriteToolIds: string[] = [];
+    let unavailableFavoriteIds: string[] = [];
+
+    function loadFavorites() {
+      let stored: unknown = [];
+      try {
+        stored = JSON.parse(getStoredItem('favoriteTools') || '[]');
+      } catch {
+        removeStoredItem('favoriteTools');
+      }
+      const ids = Array.isArray(stored)
+        ? [
+            ...new Set(
+              stored.filter((id): id is string => typeof id === 'string')
+            ),
+          ]
+        : [];
+      favoriteToolIds = ids.filter((id) => availableTools.has(id));
+      unavailableFavoriteIds = ids.filter((id) => !availableTools.has(id));
+    }
+
+    loadFavorites();
+
+    function createFavoriteButton(toolId: string): HTMLButtonElement {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'tool-fav-btn';
+      button.dataset.favId = toolId;
+      button.appendChild(createStarIcon());
+      updateFavoriteButton(button);
+      return button;
+    }
+
+    function createStarIcon(): SVGSVGElement {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 256 256');
+      svg.setAttribute('aria-hidden', 'true');
+      for (const [kind, d] of FAVORITE_STAR_PATHS) {
+        const path = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'path'
+        );
+        path.setAttribute('class', `tool-fav-${kind}`);
+        path.setAttribute('d', d);
+        svg.appendChild(path);
+      }
+      return svg;
+    }
+
+    const favoritesHint = document.createElement('div');
+    favoritesHint.className = 'tool-fav-hint col-span-full';
+    const favoritesHintText = document.createElement('span');
+    const favoritesHintLabel = document.createElement('strong');
+    favoritesHintLabel.className = 'tool-fav-hint-label';
+    favoritesHintLabel.textContent = t('tools:favorites.hintLabel');
+    favoritesHintText.append(
+      favoritesHintLabel,
+      document.createTextNode(` ${t('tools:favorites.hint')}`)
+    );
+    const favoritesHintClose = document.createElement('button');
+    favoritesHintClose.type = 'button';
+    favoritesHintClose.className = 'tool-fav-hint-close';
+    favoritesHintClose.setAttribute(
+      'aria-label',
+      t('tools:favorites.hideHint')
+    );
+    const favoritesHintIcon = document.createElement('i');
+    favoritesHintIcon.className = 'ph ph-x';
+    favoritesHintIcon.setAttribute('aria-hidden', 'true');
+    favoritesHintClose.appendChild(favoritesHintIcon);
+    favoritesHint.append(favoritesHintText, favoritesHintClose);
+    favoritesHintClose.addEventListener('click', () => {
+      setStoredItem('favoritesHintHidden', 'true');
+      favoritesHint.remove();
+    });
+
+    function updateFavoritesHint() {
+      if (
+        favoriteToolIds.length > 0 ||
+        getStoredItem('favoritesHintHidden') === 'true'
+      ) {
+        favoritesHint.remove();
+        return;
+      }
+      if (favoritesHint.isConnected) return;
+      const results = document.getElementById('search-results');
+      dom.toolGrid.insertBefore(
+        favoritesHint,
+        results ? results.nextSibling : dom.toolGrid.firstChild
+      );
+    }
+
+    const favoriteMenu = document.createElement('div');
+    favoriteMenu.className = 'tool-fav-menu';
+    const favoriteMenuButton = document.createElement('button');
+    favoriteMenuButton.type = 'button';
+    favoriteMenuButton.className = 'tool-fav-menu-btn';
+    const favoriteMenuLabel = document.createElement('span');
+    favoriteMenuButton.append(createStarIcon(), favoriteMenuLabel);
+    favoriteMenu.appendChild(favoriteMenuButton);
+    let favoriteMenuStar: HTMLElement | null = null;
+
+    function openFavoriteMenu(tile: HTMLElement) {
+      const star = tile.querySelector<HTMLElement>('.tool-fav-btn');
+      if (!star) return;
+      favoriteMenuStar = star;
+      const active = favoriteToolIds.includes(star.dataset.favId || '');
+      favoriteMenuButton.classList.toggle('is-favorite', active);
+      favoriteMenuLabel.textContent = active
+        ? t('tools:favorites.remove')
+        : t('tools:favorites.add');
+      tile.appendChild(favoriteMenu);
+      if (navigator.userActivation?.hasBeenActive) navigator.vibrate?.(10);
+    }
+
+    function closeFavoriteMenu() {
+      favoriteMenu.remove();
+      favoriteMenuStar = null;
+    }
+
+    favoriteMenuButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const star = favoriteMenuStar;
+      closeFavoriteMenu();
+      if (star) toggleFavorite(star);
+    });
+
+    function updateFavoriteButton(button: HTMLElement) {
+      const active = favoriteToolIds.includes(button.dataset.favId || '');
+      button.classList.toggle('is-favorite', active);
+      button.setAttribute('aria-pressed', String(active));
+      const label = active
+        ? t('tools:favorites.remove')
+        : t('tools:favorites.add');
+      button.setAttribute('aria-label', label);
+      button.title = label;
+    }
+
+    function renderFavorites() {
+      const tools = favoriteToolIds.flatMap((id) => {
+        const tool = availableTools.get(id);
+        return tool ? [tool] : [];
+      });
+      if (tools.length === 0) return;
+      const group = createCategoryGroup({ name: 'Favorites', tools });
+      const searchBox = document.getElementById(
+        'search-bar'
+      ) as HTMLInputElement | null;
+      if (searchBox?.value.trim()) group.style.display = 'none';
+      const results = document.getElementById('search-results');
+      dom.toolGrid.insertBefore(
+        group,
+        results ? results.nextSibling : dom.toolGrid.firstChild
+      );
+      createIcons({ icons });
+    }
+
+    function toggleFavorite(button: HTMLElement) {
+      const toolId = button.dataset.favId;
+      const tool = toolId ? availableTools.get(toolId) : undefined;
+      if (!toolId || !tool) return;
+      const adding = !favoriteToolIds.includes(toolId);
+      favoriteToolIds = adding
+        ? [...favoriteToolIds, toolId]
+        : favoriteToolIds.filter((id) => id !== toolId);
+      setStoredItem(
+        'favoriteTools',
+        JSON.stringify([...favoriteToolIds, ...unavailableFavoriteIds])
+      );
+
+      const anchorTop = button.getBoundingClientRect().top;
+      const keyboardFocus = button.matches(':focus-visible');
+      const group = dom.toolGrid.querySelector<HTMLElement>(
+        ':scope > .is-cat-favorites'
+      );
+      let nextFocus: HTMLElement | null = null;
+
+      if (adding && group) {
+        group
+          .querySelector('.category-tools')
+          ?.appendChild(createToolTile(tool));
+        createIcons({ icons });
+      } else if (adding) {
+        renderFavorites();
+      } else if (group) {
+        const tile = group
+          .querySelector(`.tool-fav-btn[data-fav-id="${CSS.escape(toolId)}"]`)
+          ?.closest('.tool-tile');
+        if (tile?.contains(button)) {
+          const neighbor =
+            tile.nextElementSibling ?? tile.previousElementSibling;
+          nextFocus =
+            neighbor?.querySelector<HTMLElement>('.tool-fav-btn') ??
+            group.nextElementSibling?.querySelector<HTMLElement>(
+              '.category-header'
+            ) ??
+            null;
+        }
+        tile?.remove();
+        if (favoriteToolIds.length === 0) group.remove();
+      }
+
+      dom.toolGrid
+        .querySelectorAll<HTMLElement>('.tool-fav-btn')
+        .forEach((other) => {
+          if (other.dataset.favId === toolId) updateFavoriteButton(other);
+        });
+      updateFavoritesHint();
+
+      if (button.isConnected) {
+        const shift = button.getBoundingClientRect().top - anchorTop;
+        if (shift) window.scrollBy({ top: shift, behavior: 'instant' });
+      } else if (keyboardFocus) {
+        nextFocus?.focus({ preventScroll: true });
+      }
+    }
+
+    function createToolTile(tool: ToolCategory['tools'][number]) {
+      const tile = document.createElement('div');
+      tile.className = 'tool-tile';
+      let toolCard: HTMLDivElement | HTMLAnchorElement;
+
+      if (tool.href) {
+        toolCard = document.createElement('a');
+        toolCard.href = tool.href;
+        toolCard.className =
+          'tool-card block bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:shadow-lg transition duration-200';
+      } else {
+        toolCard = document.createElement('div');
+        toolCard.className =
+          'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-lg transition duration-200';
+        toolCard.dataset.toolId = getToolId(tool);
+      }
+
+      const icon = document.createElement('i');
+      icon.className = 'w-10 h-10 mb-3 text-indigo-400';
+
+      if (tool.icon.startsWith('ph-')) {
+        icon.className = `ph ${tool.icon} text-4xl mb-3 text-indigo-400`;
+      } else {
+        icon.setAttribute('data-lucide', tool.icon);
+      }
+
+      const toolName = document.createElement('h3');
+      toolName.className = 'font-semibold text-white';
+      const toolKey = toolTranslationKeys[tool.name];
+      toolName.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
+
+      toolCard.append(icon, toolName);
+
+      if (tool.subtitle) {
+        const toolSubtitle = document.createElement('p');
+        toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
+        toolSubtitle.textContent = toolKey
+          ? t(`${toolKey}.subtitle`)
+          : tool.subtitle;
+        toolCard.appendChild(toolSubtitle);
+      }
+
+      tile.append(toolCard, createFavoriteButton(tool.id));
+      return tile;
+    }
+
+    function createCategoryGroup(category: ToolCategory): HTMLDivElement {
       const categoryGroup = document.createElement('div');
       const categorySlug = category.name
         .toLowerCase()
@@ -375,69 +668,40 @@ const init = async () => {
       });
 
       category.tools.forEach((tool) => {
-        let toolCard: HTMLDivElement | HTMLAnchorElement;
-
-        if (tool.href) {
-          toolCard = document.createElement('a');
-          toolCard.href = tool.href;
-          toolCard.className =
-            'tool-card block bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:shadow-lg transition duration-200';
-        } else {
-          toolCard = document.createElement('div');
-          toolCard.className =
-            'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-lg transition duration-200';
-          toolCard.dataset.toolId = getToolId(tool);
-        }
-
-        const icon = document.createElement('i');
-        icon.className = 'w-10 h-10 mb-3 text-indigo-400';
-
-        if (tool.icon.startsWith('ph-')) {
-          icon.className = `ph ${tool.icon} text-4xl mb-3 text-indigo-400`;
-        } else {
-          icon.setAttribute('data-lucide', tool.icon);
-        }
-
-        const toolName = document.createElement('h3');
-        toolName.className = 'font-semibold text-white';
-        const toolKey = toolTranslationKeys[tool.name];
-        toolName.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
-
-        toolCard.append(icon, toolName);
-
-        if (tool.subtitle) {
-          const toolSubtitle = document.createElement('p');
-          toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
-          toolSubtitle.textContent = toolKey
-            ? t(`${toolKey}.subtitle`)
-            : tool.subtitle;
-          toolCard.appendChild(toolSubtitle);
-        }
-
-        toolsContainer.appendChild(toolCard);
+        toolsContainer.appendChild(createToolTile(tool));
       });
 
       categoryGroup.append(header, toolsContainer);
-      dom.toolGrid.appendChild(categoryGroup);
 
       if (!isCollapsed) {
         toolsContainer.style.maxHeight = 'none';
         toolsContainer.style.overflow = 'visible';
       }
+
+      return categoryGroup;
+    }
+
+    filteredCategories.forEach((category) => {
+      dom.toolGrid.appendChild(createCategoryGroup(category));
     });
 
     const searchBar = document.getElementById('search-bar');
-    const categoryGroups = dom.toolGrid.querySelectorAll('.category-group');
 
     const searchResultsContainer = document.createElement('div');
     searchResultsContainer.id = 'search-results';
     searchResultsContainer.className =
       'hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 col-span-full';
     dom.toolGrid.insertBefore(searchResultsContainer, dom.toolGrid.firstChild);
+    renderFavorites();
+    updateFavoritesHint();
 
     searchBar.addEventListener('input', () => {
       // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
       const searchTerm = searchBar.value.toLowerCase().trim();
+      closeFavoriteMenu();
+      const categoryGroups = dom.toolGrid.querySelectorAll(
+        ':scope > .category-group'
+      );
 
       if (!searchTerm) {
         searchResultsContainer.classList.add('hidden');
@@ -486,7 +750,11 @@ const init = async () => {
 
           if (isMatch && !isDuplicate) {
             seenToolIds.add(toolId);
-            allTools.push(card.cloneNode(true) as HTMLElement);
+            allTools.push(
+              (card.closest('.tool-tile') ?? card).cloneNode(
+                true
+              ) as HTMLElement
+            );
           }
         });
       });
@@ -510,8 +778,110 @@ const init = async () => {
       }
     });
 
-    dom.toolGrid.addEventListener('click', () => {
+    dom.toolGrid.addEventListener('click', (event) => {
       // All tools now use href and navigate directly - no modal handling needed
+      const favoriteButton = (event.target as Element).closest<HTMLElement>(
+        '.tool-fav-btn'
+      );
+      if (favoriteButton) toggleFavorite(favoriteButton);
+    });
+
+    let pressTimer = 0;
+    let pressStart: { x: number; y: number } | null = null;
+    let suppressClick = false;
+    const touchOnly = window.matchMedia('(hover: none)');
+
+    function cancelPress() {
+      window.clearTimeout(pressTimer);
+      pressStart = null;
+    }
+
+    function pressedTile(target: EventTarget | null): HTMLElement | null {
+      const element = target instanceof Element ? target : null;
+      if (!element || element.closest('.tool-fav-btn, .tool-fav-menu')) {
+        return null;
+      }
+      return element.closest<HTMLElement>('.tool-tile');
+    }
+
+    dom.toolGrid.addEventListener('pointerdown', (event) => {
+      suppressClick = false;
+      if (event.pointerType !== 'touch' || !touchOnly.matches) return;
+      const tile = pressedTile(event.target);
+      if (!tile) return;
+      pressStart = { x: event.clientX, y: event.clientY };
+      pressTimer = window.setTimeout(() => {
+        pressStart = null;
+        suppressClick = true;
+        openFavoriteMenu(tile);
+      }, 500);
+    });
+
+    dom.toolGrid.addEventListener('pointermove', (event) => {
+      if (
+        pressStart &&
+        Math.hypot(event.clientX - pressStart.x, event.clientY - pressStart.y) >
+          10
+      ) {
+        cancelPress();
+      }
+    });
+
+    dom.toolGrid.addEventListener('pointerup', cancelPress);
+    dom.toolGrid.addEventListener('pointercancel', cancelPress);
+
+    dom.toolGrid.addEventListener('contextmenu', (event) => {
+      if (!touchOnly.matches) return;
+      const tile = pressedTile(event.target);
+      if (!tile) return;
+      event.preventDefault();
+      cancelPress();
+      if (!tile.contains(favoriteMenu)) {
+        suppressClick = true;
+        openFavoriteMenu(tile);
+      }
+    });
+
+    dom.toolGrid.addEventListener(
+      'click',
+      (event) => {
+        if (!suppressClick) return;
+        suppressClick = false;
+        event.preventDefault();
+        event.stopPropagation();
+      },
+      true
+    );
+
+    document.addEventListener('pointerdown', (event) => {
+      if (
+        favoriteMenu.isConnected &&
+        !(event.target instanceof Node && favoriteMenu.contains(event.target))
+      ) {
+        closeFavoriteMenu();
+      }
+    });
+    window.addEventListener('scroll', closeFavoriteMenu, { passive: true });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeFavoriteMenu();
+    });
+
+    window.addEventListener('storage', (event) => {
+      if (
+        event.key !== null &&
+        event.key !== 'favoriteTools' &&
+        event.key !== 'favoritesHintHidden'
+      ) {
+        return;
+      }
+      closeFavoriteMenu();
+      loadFavorites();
+      dom.toolGrid.querySelector(':scope > .is-cat-favorites')?.remove();
+      renderFavorites();
+      dom.toolGrid
+        .querySelectorAll<HTMLElement>('.tool-fav-btn')
+        .forEach(updateFavoriteButton);
+      updateFavoritesHint();
     });
   }
 
@@ -843,28 +1213,52 @@ const init = async () => {
   // Reserved shortcuts that commonly conflict with browser/OS functions
   const RESERVED_SHORTCUTS: Record<string, { mac?: string; windows?: string }> =
     {
-      'mod+w': { mac: 'Closes tab', windows: 'Closes tab' },
-      'mod+t': { mac: 'Opens new tab', windows: 'Opens new tab' },
-      'mod+n': { mac: 'Opens new window', windows: 'Opens new window' },
+      'mod+w': { mac: trText('Closes tab'), windows: trText('Closes tab') },
+      'mod+t': {
+        mac: trText('Opens new tab'),
+        windows: trText('Opens new tab'),
+      },
+      'mod+n': {
+        mac: trText('Opens new window'),
+        windows: trText('Opens new window'),
+      },
       'mod+shift+n': {
-        mac: 'Opens incognito window',
-        windows: 'Opens incognito window',
+        mac: trText('Opens incognito window'),
+        windows: trText('Opens incognito window'),
       },
-      'mod+q': { mac: 'Quits application (cannot be overridden)' },
-      'mod+m': { mac: 'Minimizes window' },
-      'mod+h': { mac: 'Hides window' },
-      'mod+r': { mac: 'Reloads page', windows: 'Reloads page' },
-      'mod+shift+r': { mac: 'Hard reloads page', windows: 'Hard reloads page' },
-      'mod+l': { mac: 'Focuses address bar', windows: 'Focuses address bar' },
-      'mod+d': { mac: 'Bookmarks page', windows: 'Bookmarks page' },
+      'mod+q': { mac: trText('Quits application (cannot be overridden)') },
+      'mod+m': { mac: trText('Minimizes window') },
+      'mod+h': { mac: trText('Hides window') },
+      'mod+r': { mac: trText('Reloads page'), windows: trText('Reloads page') },
+      'mod+shift+r': {
+        mac: trText('Hard reloads page'),
+        windows: trText('Hard reloads page'),
+      },
+      'mod+l': {
+        mac: trText('Focuses address bar'),
+        windows: trText('Focuses address bar'),
+      },
+      'mod+d': {
+        mac: trText('Bookmarks page'),
+        windows: trText('Bookmarks page'),
+      },
       'mod+shift+t': {
-        mac: 'Reopens closed tab',
-        windows: 'Reopens closed tab',
+        mac: trText('Reopens closed tab'),
+        windows: trText('Reopens closed tab'),
       },
-      'mod+shift+w': { mac: 'Closes window', windows: 'Closes window' },
-      'mod+tab': { mac: 'Switches tabs', windows: 'Switches apps' },
-      'alt+f4': { windows: 'Closes window' },
-      'ctrl+tab': { mac: 'Switches tabs', windows: 'Switches tabs' },
+      'mod+shift+w': {
+        mac: trText('Closes window'),
+        windows: trText('Closes window'),
+      },
+      'mod+tab': {
+        mac: trText('Switches tabs'),
+        windows: trText('Switches apps'),
+      },
+      'alt+f4': { windows: trText('Closes window') },
+      'ctrl+tab': {
+        mac: trText('Switches tabs'),
+        windows: trText('Switches tabs'),
+      },
     };
 
   function getReservedShortcutWarning(
@@ -898,7 +1292,7 @@ const init = async () => {
       }
 
       dom.warningTitle.textContent = title;
-      dom.warningMessage.innerHTML = message;
+      dom.warningMessage.innerHTML = sanitizeTranslationHtml(message);
       dom.warningModal.classList.remove('hidden');
       dom.warningModal.classList.add('flex');
 

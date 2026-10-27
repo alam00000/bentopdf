@@ -6,14 +6,12 @@ import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 let files: File[] = [];
 let pymupdf: PyMuPDFInstance | null = null;
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -135,7 +133,9 @@ function updateUI() {
 
       const sizeSpan = document.createElement('span');
       sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
-      sizeSpan.textContent = `(${formatBytes(file.size)})`;
+      sizeSpan.textContent = trText('({{size}})', {
+        size: formatBytes(file.size),
+      });
 
       infoContainer.append(nameSpan, sizeSpan);
 
@@ -182,7 +182,9 @@ async function extractText() {
 
     if (files.length === 1) {
       const file = files[0];
-      showLoader(`Extracting text from ${file.name}...`);
+      showLoader(
+        trText('Extracting text from {{name}}...', { name: file.name })
+      );
 
       const fullText = await mupdf.pdfToText(file);
 
@@ -206,7 +208,11 @@ async function extractText() {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         showLoader(
-          `Extracting text from file ${i + 1}/${files.length}: ${file.name}...`
+          trText('Extracting text from file {{n}}/{{length}}: {{name}}...', {
+            n: i + 1,
+            length: files.length,
+            name: file.name,
+          })
         );
 
         const fullText = await mupdf.pdfToText(file);
@@ -222,7 +228,9 @@ async function extractText() {
       hideLoader();
       showAlert(
         'Success',
-        `Extracted text from ${files.length} PDF files!`,
+        trText('Extracted text from {{length}} PDF files!', {
+          length: files.length,
+        }),
         'success',
         () => {
           resetState();

@@ -401,12 +401,13 @@
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It means bytes were appended after this signature was applied, and
-            the tool reports it as Invalid with the note Modified After Signing
-            (partial coverage). That is not proof of tampering by itself: a
-            second signature or an incremental save produces the same result,
-            and only the last signature added can cover the entire file. Treat
-            it as a reason to look at what was added.
+            It means bytes were appended after this signature was applied. The
+            part that was signed is still intact, so the tool shows a Modified
+            After Signing warning instead of marking the signature invalid. That
+            is not proof of tampering by itself: a second signature or an
+            incremental save produces the same result, and only the last
+            signature added can cover the entire file. Treat it as a reason to
+            look at what was added.
           </p>
         </details>
         <details class="faq-d">

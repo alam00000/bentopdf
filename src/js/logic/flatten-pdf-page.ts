@@ -1,22 +1,24 @@
 import { showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
-import { PDFDocument } from 'pdf-lib';
-import { flattenAnnotations } from '../utils/flatten-annotations.js';
+import {
+  flattenAnnotations,
+  flattenFormsInDoc,
+} from '../utils/flatten-annotations.js';
 import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { FlattenPdfState } from '@/types';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../utils/load-pdf-document.js';
+
+import { trText, onPageReady } from '../i18n/i18n.js';
 
 const pageState: FlattenPdfState = {
   files: [],
 };
-
-function flattenFormsInDoc(pdfDoc: PDFDocument) {
-  const form = pdfDoc.getForm();
-  form.flatten();
-}
 
 function resetState() {
   pageState.files = [];
@@ -112,7 +114,7 @@ async function flattenPdf() {
   try {
     if (pageState.files.length === 1) {
       if (loaderModal) loaderModal.classList.remove('hidden');
-      if (loaderText) loaderText.textContent = 'Flattening PDF...';
+      if (loaderText) loaderText.textContent = trText('Flattening PDF...');
 
       const file = pageState.files[0];
       const arrayBuffer = await file.arrayBuffer();
@@ -134,7 +136,7 @@ async function flattenPdf() {
         console.warn('Could not flatten annotations:', msg);
       }
 
-      const newPdfBytes = await pdfDoc.save();
+      const newPdfBytes = await removeUnreferencedObjects(await pdfDoc.save());
       downloadFile(
         new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
         `flattened_${file.name}`
@@ -142,7 +144,8 @@ async function flattenPdf() {
       if (loaderModal) loaderModal.classList.add('hidden');
     } else {
       if (loaderModal) loaderModal.classList.remove('hidden');
-      if (loaderText) loaderText.textContent = 'Flattening multiple PDFs...';
+      if (loaderText)
+        loaderText.textContent = trText('Flattening multiple PDFs...');
 
       const zip = new JSZip();
       const usedNames = new Set<string>();
@@ -151,7 +154,10 @@ async function flattenPdf() {
       for (let i = 0; i < pageState.files.length; i++) {
         const file = pageState.files[i];
         if (loaderText)
-          loaderText.textContent = `Flattening ${i + 1}/${pageState.files.length}: ${file.name}...`;
+          loaderText.textContent = trText(
+            'Flattening {{n}}/{{length}}: {{name}}...',
+            { n: i + 1, length: pageState.files.length, name: file.name }
+          );
 
         try {
           const arrayBuffer = await file.arrayBuffer();
@@ -173,7 +179,9 @@ async function flattenPdf() {
             console.warn('Could not flatten annotations:', msg);
           }
 
-          const flattenedBytes = await pdfDoc.save();
+          const flattenedBytes = await removeUnreferencedObjects(
+            await pdfDoc.save()
+          );
           const zipEntryName = deduplicateFileName(file.name, usedNames);
           zip.file(zipEntryName, flattenedBytes);
           processedCount++;
@@ -187,7 +195,7 @@ async function flattenPdf() {
         downloadFile(zipBlob, 'flattened_pdfs.zip');
         showAlert(
           'Success',
-          `Processed ${processedCount} PDFs.`,
+          trText('Processed {{processedCount}} PDFs.', { processedCount }),
           'success',
           () => {
             resetState();
@@ -202,12 +210,12 @@ async function flattenPdf() {
     console.error(e);
     if (loaderModal) loaderModal.classList.add('hidden');
     const errorMessage =
-      e instanceof Error ? e.message : 'An unexpected error occurred.';
+      e instanceof Error ? e.message : trText('An unexpected error occurred.');
     showAlert('Error', errorMessage);
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

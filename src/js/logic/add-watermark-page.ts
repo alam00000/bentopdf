@@ -23,6 +23,8 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: AddWatermarkState = {
   file: null,
   pdfDoc: null,
@@ -58,11 +60,7 @@ let cachedPdfjsDoc: pdfjsLib.PDFDocumentProxy | null = null;
 const pageWatermarks: Map<number, PageWatermarkConfig> = new Map();
 let applyToAllPages = true;
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -145,7 +143,10 @@ async function handleFiles(files: FileList) {
 
     const editorFileInfo = document.getElementById('editor-file-info');
     if (editorFileInfo) {
-      editorFileInfo.textContent = `${file.name} (${formatBytes(file.size)}, ${totalPageCount} pages)`;
+      editorFileInfo.textContent = trText(
+        '{{name}} ({{size}}, {{totalPageCount}} pages)',
+        { name: file.name, size: formatBytes(file.size), totalPageCount }
+      );
     }
 
     updatePageNavUI();
@@ -173,7 +174,10 @@ function updateFileDisplay() {
   nameSpan.textContent = pageState.file.name;
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageState.pdfDoc.getPageCount()} pages`;
+  metaSpan.textContent = trText('{{size}} • {{getPageCount}} pages', {
+    size: formatBytes(pageState.file.size),
+    getPageCount: pageState.pdfDoc.getPageCount(),
+  });
   infoContainer.append(nameSpan, metaSpan);
   const removeBtn = document.createElement('button');
   removeBtn.className = 'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
@@ -1068,7 +1072,7 @@ async function applyWatermark() {
       if (config.type === 'text') {
         const text = config.text;
         if (!text.trim())
-          throw new Error('Please enter text for the watermark.');
+          throw new Error(trText('Please enter text for the watermark.'));
         const textColor = hexToRgb(config.color);
 
         resultBytes = new Uint8Array(
@@ -1089,7 +1093,9 @@ async function applyWatermark() {
       } else {
         const imageFile = config.imageFile;
         if (!imageFile)
-          throw new Error('Please select an image file for the watermark.');
+          throw new Error(
+            trText('Please select an image file for the watermark.')
+          );
         const imageBytes = await readFileAsArrayBuffer(imageFile);
 
         let imageType: 'png' | 'jpg';
@@ -1099,7 +1105,9 @@ async function applyWatermark() {
           imageType = 'jpg';
         } else {
           throw new Error(
-            'Unsupported Image. Please use a PNG or JPG for the watermark.'
+            trText(
+              'Unsupported Image. Please use a PNG or JPG for the watermark.'
+            )
           );
         }
 
@@ -1223,7 +1231,12 @@ async function applyWatermark() {
       const renderScale = 2.5;
 
       for (let i = 1; i <= totalPages; i++) {
-        showLoader(`Flattening page ${i} of ${totalPages}...`);
+        showLoader(
+          trText('Flattening page {{i}} of {{totalPages}}...', {
+            i,
+            totalPages,
+          })
+        );
         const page = await watermarkedPdf.getPage(i);
         const unscaledVP = page.getViewport({ scale: 1 });
         const viewport = page.getViewport({ scale: renderScale });

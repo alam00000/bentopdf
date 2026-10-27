@@ -3,6 +3,8 @@ import forge from 'node-forge';
 import { CertificateData, SignPdfOptions } from '@/types';
 import { isValidTsaRequestUrl } from '../config/timestamp-tsa.js';
 
+import { trText } from '../i18n/i18n.js';
+
 export function parsePfxFile(
   pfxBytes: ArrayBuffer,
   password: string
@@ -19,17 +21,17 @@ export function parsePfxFile(
   const keyBagArray = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag];
 
   if (!certBagArray || certBagArray.length === 0) {
-    throw new Error('No certificate found in PFX file');
+    throw new Error(trText('No certificate found in PFX file'));
   }
 
   if (!keyBagArray || keyBagArray.length === 0) {
-    throw new Error('No private key found in PFX file');
+    throw new Error(trText('No private key found in PFX file'));
   }
 
   const certificate = certBagArray[0].cert;
 
   if (!certificate) {
-    throw new Error('Failed to extract certificate from PFX file');
+    throw new Error(trText('Failed to extract certificate from PFX file'));
   }
 
   return { p12Buffer: pfxBytes, password, certificate };
@@ -45,11 +47,17 @@ export function parsePemFiles(
   let privateKey: forge.pki.PrivateKey;
   if (keyPem.includes('ENCRYPTED')) {
     if (!keyPassword) {
-      throw new Error('Password required for encrypted private key');
+      const error = new Error(
+        trText('Password required for encrypted private key')
+      );
+      error.name = 'PasswordError';
+      throw error;
     }
     privateKey = forge.pki.decryptRsaPrivateKey(keyPem, keyPassword);
     if (!privateKey) {
-      throw new Error('Failed to decrypt private key');
+      const error = new Error(trText('Failed to decrypt private key'));
+      error.name = 'PasswordError';
+      throw error;
     }
   } else {
     privateKey = forge.pki.privateKeyFromPem(keyPem);
@@ -83,11 +91,11 @@ export function parseCombinedPem(
   );
 
   if (!certMatch) {
-    throw new Error('No certificate found in PEM file');
+    throw new Error(trText('No certificate found in PEM file'));
   }
 
   if (!keyMatch) {
-    throw new Error('No private key found in PEM file');
+    throw new Error(trText('No private key found in PEM file'));
   }
 
   return parsePemFiles(certMatch[0], keyMatch[0], password);
@@ -103,8 +111,34 @@ export function parseCombinedPem(
  * and set VITE_CORS_PROXY_URL environment variable.
  *
  * If not set, certificates requiring external chain fetching will fail.
+ *
+ * On the official BentoPDF domains we fall back to the project-operated proxy.
+ * The generated CSP already allows that origin by default (see
+ * scripts/generate-security-headers.mjs), but the runtime never used it, which
+ * left the timestamp tool broken on the official HTTPS site. The fallback is
+ * deliberately scoped to the official domains so self-hosted instances keep
+ * requiring their own proxy.
  */
-const CORS_PROXY_URL = import.meta.env.VITE_CORS_PROXY_URL || '';
+const DEFAULT_CORS_PROXY_URL =
+  'https://bentopdf-cors-proxy.bentopdf.workers.dev';
+
+const OFFICIAL_HOSTNAMES = new Set(['bentopdf.com', 'www.bentopdf.com']);
+
+function resolveCorsProxyUrl(): string {
+  const configured = import.meta.env.VITE_CORS_PROXY_URL || '';
+  if (configured) {
+    return configured;
+  }
+
+  if (typeof window === 'undefined') {
+    return '';
+  }
+
+  const hostname = window.location?.hostname?.toLowerCase() ?? '';
+  return OFFICIAL_HOSTNAMES.has(hostname) ? DEFAULT_CORS_PROXY_URL : '';
+}
+
+const CORS_PROXY_URL = resolveCorsProxyUrl();
 
 /**
  * Shared secret for signing proxy requests (HMAC-SHA256).
@@ -352,7 +386,9 @@ export async function timestampPdf(
 ): Promise<Uint8Array> {
   if (!isValidTsaRequestUrl(tsaUrl)) {
     throw new Error(
-      `Invalid TSA URL. The timestamp authority must be a valid http:// or https:// URL.`
+      trText(
+        'Invalid TSA URL. The timestamp authority must be a valid http:// or https:// URL.'
+      )
     );
   }
 
@@ -410,8 +446,8 @@ export function getCertificateInfo(certificate: forge.pki.Certificate): {
   const issuerCN = certificate.issuer.getField('CN');
 
   return {
-    subject: (subjectCN?.value as string) ?? 'Unknown',
-    issuer: (issuerCN?.value as string) ?? 'Unknown',
+    subject: (subjectCN?.value as string) ?? trText('Unknown'),
+    issuer: (issuerCN?.value as string) ?? trText('Unknown'),
     validFrom: certificate.validity.notBefore,
     validTo: certificate.validity.notAfter,
     serialNumber: certificate.serialNumber,

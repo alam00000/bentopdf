@@ -1,0 +1,110 @@
+<div id="compress-options" class="hidden mt-6 space-y-6">
+  <div>
+    <label
+      for="compression-level"
+      class="block mb-2 text-sm font-medium text-gray-300"
+      >Compression Level</label
+    >
+    <select
+      id="compression-level"
+      autocomplete="off"
+      class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
+    >
+      <option value="low">Low (Best Quality)</option>
+      <option value="medium" selected>Medium (Recommended)</option>
+      <option value="high">High (Smallest Files)</option>
+      <option value="lossless">Lossless (No Quality Loss)</option>
+      <option value="custom">Custom</option>
+    </select>
+    <p class="mt-2 text-xs text-gray-400">
+      Powered by Hyper Compress: it recompresses images, subsets and merges
+      fonts, and strips dead weight while text, links, and forms keep working.
+      For image-only scans, turn on Rasterize pages under Custom Settings.
+    </p>
+  </div>
+
+  <div>
+    <label
+      for="target-size"
+      class="block mb-2 text-sm font-medium text-gray-300"
+      >Target File Size (Optional)</label
+    >
+    <div class="flex gap-2">
+      <input
+        type="number"
+        id="target-size"
+        min="0.01"
+        step="0.01"
+        value="{{targetSize}}"
+        placeholder="No target"
+        autocomplete="off"
+        class="flex-1 min-w-0 bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
+      />
+      <select
+        id="target-size-unit"
+        data-default-unit="{{targetUnit}}"
+        aria-label="Target file size unit"
+        autocomplete="off"
+        class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
+      >
+        <option value="kb">KB</option>
+        <option value="mb" selected>MB</option>
+      </select>
+    </div>
+    <p class="text-xs text-gray-500 mt-1">
+      Hyper Compress finds the best quality that fits. Leave it empty to use the
+      level as is.
+    </p>
+  </div>
+
+  <div>
+    <button
+      id="toggle-custom-settings"
+      type="button"
+      class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 text-sm font-medium"
+    >
+      <i data-lucide="settings" class="w-4 h-4"></i>
+      <span>Custom Settings</span>
+      <i
+        data-lucide="chevron-down"
+        id="custom-settings-chevron"
+        class="w-4 h-4"
+      ></i>
+    </button>
+
+    <div
+      id="custom-settings-panel"
+      class="hidden mt-4 p-4 bg-gray-900 rounded-lg border border-gray-700 space-y-3"
+    >
+      <p class="text-sm text-gray-400">
+        Fine-tune Hyper Compress. Picking a compression level resets these,
+        except Override content protection, Convert to grayscale, Preserve
+        PDF/A, and Brotli.
+      </p>
+      <label class="flex items-start gap-2 cursor-pointer">
+        <input
+          type="checkbox"
+          id="override-protection"
+          autocomplete="off"
+          class="w-4 h-4 mt-0.5 rounded flex-shrink-0"
+        />
+        <span>
+          <span class="block text-sm text-gray-300"
+            >Override content protection</span
+          >
+          <span class="block text-xs text-gray-500 mt-0.5"
+            >By default, Hyper Compress preserves content: it leaves digitally
+            signed PDFs untouched and won't rasterize pages that have text. Turn
+            this on to bypass both. Signed PDFs lose their signatures, and
+            Rasterize pages also turns text into images.</span
+          >
+        </span>
+      </label>
+      <div id="hyper-options" class="space-y-3"></div>
+    </div>
+  </div>
+
+  <button id="process-btn" class="btn-gradient w-full mt-4">
+    Compress PDF
+  </button>
+</div>

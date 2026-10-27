@@ -2,3 +2,10 @@
 src/partials/footer.html
 
 blog/posts/
+
+public/pdfjs-viewer/
+public/pdfjs-annotation-viewer/
+
+translations/source.json
+translations/pages.json
+translations/ui-source.json

@@ -7,6 +7,31 @@ import type {
 } from './types.ts';
 import { diffTextRuns } from './engine/diff-text-runs.ts';
 import { pairPages } from './engine/pair-pages.ts';
+import { trText } from '../i18n/i18n.js';
+
+export function diffStrings(): Record<string, string> {
+  const strings: Record<string, string> = {};
+  const add = (english: string, translated: string) => {
+    strings[english] = translated;
+  };
+  add(
+    'Replaced "{{beforeText}}" with "{{afterText}}"',
+    trText('Replaced "{{beforeText}}" with "{{afterText}}"')
+  );
+  add('Removed "{{beforeText}}"', trText('Removed "{{beforeText}}"'));
+  add('Added "{{afterText}}"', trText('Added "{{afterText}}"'));
+  add(
+    'Style changed ({{length}} regions)',
+    trText('Style changed ({{length}} regions)')
+  );
+  add('Font: {{bFont}} → {{aFont}}', trText('Font: {{bFont}} → {{aFont}}'));
+  add(
+    'Font size: {{bSize}} → {{aSize}}',
+    trText('Font size: {{bSize}} → {{aSize}}')
+  );
+  add('Moved "{{value}}"', trText('Moved "{{value}}"'));
+  return strings;
+}
 
 let worker: Worker | null = null;
 let messageId = 0;
@@ -37,7 +62,7 @@ function getWorker(): Worker | null {
       worker?.terminate();
       worker = null;
       for (const [, p] of pending) {
-        p.reject(new Error('Worker crashed'));
+        p.reject(new Error(trText('Worker crashed')));
       }
       pending.clear();
     };
@@ -49,7 +74,7 @@ function getWorker(): Worker | null {
 
 function postToWorker(msg: Record<string, unknown>): Promise<unknown> {
   const w = getWorker();
-  if (!w) return Promise.reject(new Error('No worker'));
+  if (!w) return Promise.reject(new Error(trText('No worker')));
   const id = ++messageId;
   return new Promise((resolve, reject) => {
     pending.set(id, { resolve, reject });
@@ -66,10 +91,11 @@ export async function diffTextRunsAsync(
       type: 'diff',
       beforeItems,
       afterItems,
+      strings: diffStrings(),
     })) as { changes: CompareTextChange[]; summary: CompareChangeSummary };
     return result;
   } catch {
-    return diffTextRuns(beforeItems, afterItems);
+    return diffTextRuns(beforeItems, afterItems, diffStrings());
   }
 }
 

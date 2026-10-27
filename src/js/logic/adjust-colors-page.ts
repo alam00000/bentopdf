@@ -10,7 +10,7 @@ import { PDFDocument } from 'pdf-lib';
 import { applyColorAdjustments } from '../utils/image-effects.js';
 import * as pdfjsLib from 'pdfjs-dist';
 import type { AdjustColorsSettings } from '../types/adjust-colors-type.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import '../utils/setup-pdf-worker.js';
 
@@ -121,7 +121,10 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+      metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+        size: formatBytes(file.size),
+        loadingPageCount: t('common.loadingPageCount'),
+      });
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -144,7 +147,11 @@ const updateUI = () => {
           return getPDFDocument(buffer).promise;
         })
         .then((pdf: pdfjsLib.PDFDocumentProxy) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} {{value}}', {
+            size: formatBytes(file.size),
+            numPages: pdf.numPages,
+            value: pdf.numPages !== 1 ? t('common.pages') : t('common.page'),
+          });
         })
         .catch(() => {
           metaSpan.textContent = formatBytes(file.size);
@@ -181,7 +188,12 @@ async function processAllPages(): Promise<void> {
     const newPdfDoc = await PDFDocument.create();
 
     for (let i = 1; i <= doc.numPages; i++) {
-      showLoader(`Processing page ${i} of ${doc.numPages}...`);
+      showLoader(
+        trText('Processing page {{i}} of {{numPages}}...', {
+          i,
+          numPages: doc.numPages,
+        })
+      );
 
       const page = await doc.getPage(i);
       const viewport = page.getViewport({ scale: 2.0 });
@@ -331,7 +343,7 @@ function setupSettingsListeners(): void {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

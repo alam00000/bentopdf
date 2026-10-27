@@ -1,8 +1,9 @@
 // Full-width mode utility
 // This script applies the full-width preference from localStorage to page uploaders
+import { getStoredItem } from './safe-storage.js';
 
 export function initFullWidthMode() {
-  const savedFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
+  const savedFullWidth = getStoredItem('fullWidthMode') !== 'false';
 
   if (savedFullWidth) {
     applyFullWidthMode(true);

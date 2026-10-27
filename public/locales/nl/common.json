@@ -1,6 +1,6 @@
 {
   "nav": {
-    "home": "Thuis",
+    "home": "Startpagina",
     "about": "Over",
     "contact": "Contact",
     "licensing": "Licentie",
@@ -9,7 +9,8 @@
     "openMainMenu": "Hoofdmenu openen",
     "language": "Taal",
     "searchLanguage": "Taal zoeken…",
-    "noLanguagesFound": "Geen talen gevonden"
+    "noLanguagesFound": "Geen talen gevonden",
+    "breadcrumb": "Broodkruimelpad"
   },
   "donation": {
     "message": "Vind je BentoPDF geweldig? Help ons het gratis en open source te houden!",
@@ -236,6 +237,10 @@
     "aboutUs": "Over ons",
     "faqLink": "Veelgestelde vragen",
     "contactUs": "Contact",
+    "tools": "Tools",
+    "pdfConverter": "PDF-converter",
+    "pdfSecurity": "PDF-beveiliging",
+    "mergeSplit": "PDF samenvoegen en splitsen",
     "legal": "Juridisch",
     "termsAndConditions": "Algemene voorwaarden",
     "privacyPolicy": "Privacybeleid",
@@ -288,7 +293,8 @@
       "noCompromises": "Geen compromissen."
     },
     "mission": {
-      "title": "Onze missie",
+      "title": "Onze",
+      "titleDim": "missie",
       "description": "Ons doel is om de meest complete PDF-toolbox te bieden die je privacy respecteert en nooit om betaling vraagt. Wij geloven dat essentiële documententools voor iedereen, overal en zonder obstakels toegankelijk moeten zijn."
     },
     "philosophy": {
@@ -384,6 +390,6 @@
     "title": "Tool niet beschikbaar",
     "heading": "Deze tool is uitgeschakeld",
     "message": "Deze tool is niet beschikbaar in deze implementatie. Neem contact op met de beheerder voor meer informatie.",
-    "backHome": "Terug naar Thuis"
+    "backHome": "Terug naar Startpagina"
   }
 }

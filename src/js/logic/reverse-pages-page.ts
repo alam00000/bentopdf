@@ -7,6 +7,8 @@ import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 interface ReverseState {
   files: File[];
 }
@@ -121,7 +123,13 @@ async function reversePages() {
 
     for (let j = 0; j < validFiles.length; j++) {
       const file = validFiles[j];
-      showLoader(`Reversing ${file.name} (${j + 1}/${validFiles.length})...`);
+      showLoader(
+        trText('Reversing {{name}} ({{n}}/{{length}})...', {
+          name: file.name,
+          n: j + 1,
+          length: validFiles.length,
+        })
+      );
 
       const newPdfBytes = await reverseSingleFile(file);
       const zipEntryName = deduplicateFileName(file.name, usedNames);
@@ -173,7 +181,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

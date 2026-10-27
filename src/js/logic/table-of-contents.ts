@@ -6,7 +6,7 @@ import {
   WasmProvider,
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { t } from '../i18n/index.js';
+import { t, trText } from '../i18n/index.js';
 
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/table-of-contents.worker.js'
@@ -90,7 +90,7 @@ function renderFileDisplay(file: File) {
 
 async function handleFileSelect(file: File) {
   if (file.type !== 'application/pdf') {
-    showStatus('Please select a PDF file.', 'error');
+    showStatus(trText('Please select a PDF file.'), 'error');
     return;
   }
 

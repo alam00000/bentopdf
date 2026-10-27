@@ -1,5 +1,6 @@
 {
   "categories": {
+    "favorites": "Obľúbené",
     "popularTools": "Populárne nástroje",
     "editAnnotate": "Úprava a anotácia",
     "convertToPdf": "Previesť do PDF",
@@ -10,16 +11,38 @@
     "input": "Vstup",
     "output": "Výstup"
   },
+  "favorites": {
+    "add": "Pridať do obľúbených",
+    "remove": "Odstrániť z obľúbených",
+    "hintLabel": "Tip",
+    "hint": "Podržte prst na nástroji a pridajte ho do obľúbených.",
+    "hideHint": "Skryť tip"
+  },
   "convertToPdf": "Previesť do PDF",
   "pdfMultiTool": {
-    "name": "PDF Multi Nástroj",
+    "name": "Multinástroj PDF",
     "subtitle": "Spojiť, rozdeliť, organizovať, mazať, otáčať, pridávať prázdne strany, extrahovať a duplikovať v jednotnom rozhraní."
   },
   "mergePdf": {
     "name": "Spojiť PDF",
     "subtitle": "Spojiť viacero PDF do jedného súboru. Zachováva záložky.",
     "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
-    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia)."
+    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia).",
+    "removeDuplicateFonts": "Odstrániť duplicitné písma",
+    "alert": {
+      "thumbnailError": "Nepodarilo sa vykresliť náhľady strán",
+      "noSelection": "Nie sú vybrané žiadne súbory ani strany na spojenie.",
+      "mergeSuccess": "PDF boli úspešne spojené!",
+      "mergeFailed": "Nepodarilo sa spojiť PDF.",
+      "mergeError": "Nepodarilo sa spojiť PDF. Skontrolujte, či sú všetky súbory platné a nie sú chránené heslom.",
+      "workerError": "Pri spájaní nastala neočakávaná chyba.",
+      "loadError": "Nepodarilo sa načítať jeden alebo viac súborov PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Vykresľujú sa náhľady strán...",
+      "merging": "Spájajú sa PDF...",
+      "loadingDocuments": "Načítavajú sa dokumenty PDF..."
+    }
   },
   "splitPdf": {
     "name": "Rozdeliť PDF",
@@ -27,32 +50,10 @@
   },
   "compressPdf": {
     "name": "Komprimovať PDF",
-    "subtitle": "Zmenšiť veľkosť súboru vášho PDF.",
-    "algorithmLabel": "Kompresný algoritmus",
-    "condense": "Kondenzovať (Odporúčané)",
-    "photon": "Photon (Pre PDF s množstvom fotografií)",
-    "condenseInfo": "Kondenzácia využíva pokročilú kompresiu: odstraňuje zbytočné dáta, optimalizuje obrázky, vytvára podmnožiny písiem. Najlepšie pre väčšinu PDF súborov.",
-    "photonInfo": "Photon konvertuje strany na obrázky. Použite pre naskenované PDF alebo PDF s množstvom fotografií.",
-    "photonWarning": "Upozornenie: Text už nebude možné označiť a odkazy prestanú fungovať.",
-    "levelLabel": "Úroveň kompresie",
-    "light": "Mierna (Zachovať kvalitu)",
-    "balanced": "Vyvážená (Odporúčané)",
-    "aggressive": "Agresívna (Menšie súbory)",
-    "extreme": "Extrémna (Maximálna kompresia)",
-    "grayscale": "Previesť do odtieňov sivej",
-    "grayscaleHint": "Znižuje veľkosť súboru odstránením informácií o farbe",
-    "customSettings": "Vlastné nastavenia",
-    "customSettingsHint": "Jemné doladenie parametrov kompresie:",
-    "outputQuality": "Kvalita výstupu",
-    "resizeImagesTo": "Zmeniť veľkosť obrázkov na",
-    "onlyProcessAbove": "Spracovať iba nad",
-    "removeMetadata": "Odstrániť metadáta",
-    "subsetFonts": "Vytvoriť podmnožinu písiem (odstrániť nepoužívané znaky)",
-    "removeThumbnails": "Odstrániť vložené miniatúry",
-    "compressButton": "Komprimovať PDF"
+    "subtitle": "Zmenšiť veľkosť súboru vášho PDF."
   },
   "pdfEditor": {
-    "name": "PDF Editor",
+    "name": "Editor PDF",
     "subtitle": "Anotovať, zvýrazňovať, redigovať, komentovať, pridávať tvary/obrázky, vyhľadávať a prezerať PDF."
   },
   "editPdfText": {
@@ -60,6 +61,8 @@
     "subtitle": "Kliknite na ľubovoľný odsek a upravte ho priamo na mieste s okamžitým preformátovaním textu, písmami a štýlmi.",
     "saved": "PDF bolo úspešne uložené! ({{size}} KB)",
     "failedToLoad": "Nepodarilo sa načítať textový editor PDF.",
+    "loadingFonts": "Načítavajú sa písma...",
+    "fontsUnavailable": "Písmo potrebné pre niektoré znaky sa nepodarilo stiahnuť. Skontrolujte pripojenie a skúste to znova, inak sa tieto znaky v uloženom PDF nemusia zobraziť správne.",
     "howToUpload": "Nahrať PDF",
     "howToClick": "Kliknite na odsek",
     "howToRestyle": "Zmeňte štýl čohokoľvek",
@@ -515,7 +518,8 @@
       "noFile": "Žiadny súbor",
       "noFileExplanation": "Najskôr nahrajte PDF súbor.",
       "conversionSuccess": "PDF bolo úspešne skonvertované do TIFF!",
-      "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený."
+      "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený.",
+      "conversionOutOfMemory": "Prehliadaču počas konverzie došla pamäť. Skúste nižšie DPI alebo zrušte možnosť viacstranového TIFF a konvertujte strany po jednej."
     }
   },
   "pdfToCbz": {
@@ -805,10 +809,10 @@
   },
   "decryptPdf": {
     "name": "Dešifrovať PDF",
-    "subtitle": "Odomknúť PDF odstránením ochrany heslom."
+    "subtitle": "Odstráňte heslo z PDF, aby sa dalo voľne otvoriť. Vyžaduje sa aktuálne heslo."
   },
   "flattenPdf": {
-    "name": "Zlúčiť vrstvy PDF",
+    "name": "Sploštiť PDF",
     "subtitle": "Urobiť formulárové polia a anotácie neupraviteľnými."
   },
   "removeMetadata": {
@@ -860,7 +864,7 @@
     "subtitle": "Napíšte alebo vložte Markdown a exportujte ho ako krásne naformátované PDF.",
     "paneMarkdown": "Markdown",
     "panePreview": "Náhľad",
-    "btnUpload": "Nahrať",
+    "btnUpload": "Vybrať",
     "btnSyncScroll": "Synchrónne posúvanie",
     "btnSettings": "Nastavenia",
     "btnExportPdf": "Exportovať PDF",
@@ -876,7 +880,7 @@
     "optTypographer": "Typografia (chytré úvodzovky, atď.)"
   },
   "pdfBooklet": {
-    "name": "PDF Brožúra",
+    "name": "PDF brožúra",
     "subtitle": "Preusporiadať strany pre obojstrannú tlač brožúry. Preložte a zošijte, aby ste vytvorili brožúru.",
     "howItWorks": "Ako to funguje:",
     "step1": "Nahrajte PDF súbor.",
@@ -998,7 +1002,7 @@
     "subtitle": "Extrahovať tabuľky z PDF a previesť ich do formátu Excel (XLSX)."
   },
   "pdfToText": {
-    "name": "PDF do Textu",
+    "name": "PDF do textu",
     "subtitle": "Extrahovať text z PDF súborov a uložiť ho ako obyčajný text (.txt). Podporuje viacero súborov.",
     "noteLabel": "Poznámka:",
     "noteText": "Tento nástroj funguje IBA s digitálne vytvorenými PDF. Pre naskenované dokumenty alebo PDF založené na obrázkoch použite radšej náš nástroj Rozpoznávanie textu (OCR) PDF.",
@@ -1091,7 +1095,7 @@
     "internetRequiredDescription": "Podpisovanie môže vyžadovať načítanie informácií o reťazci certifikátov zo servera vydavateľa vášho certifikátu, aby sa podpis overil."
   },
   "validateSignaturePdf": {
-    "name": "Overiť PDF podpis",
+    "name": "Overiť podpis PDF",
     "pageTitle": "Overiť PDF podpis - Verifikácia digitálnych podpisov | BentoPDF",
     "subtitle": "Overte digitálne podpisy vo vašich PDF súboroch. Skontrolujte platnosť certifikátu, zobrazte údaje o podpisujúcom a potvrďte integritu dokumentu. Všetko spracovanie prebieha vo vašom prehliadači."
   },
@@ -1135,7 +1139,7 @@
     "subtitle": "Extrahovať obsah PDF ako LlamaIndex JSON pre RAG/LLM procesy."
   },
   "pdfOcg": {
-    "name": "PDF OCG (Vrstvy)",
+    "name": "PDF OCG (vrstvy)",
     "subtitle": "Zobraziť, prepínať, pridávať a odstraňovať vrstvy OCG vo vašom PDF."
   },
   "pdfToPdfa": {
@@ -1313,11 +1317,11 @@
     "faqPrivacyAnswer": "Absolútne! Všetko spracovanie prebieha vo vašom prehliadači. Vaše súbory nikdy neopustia vaše zariadenie, čo zabezpečuje úplné súkromie."
   },
   "unlockPdf": {
-    "name": "Dešifrovať PDF",
+    "name": "Odomknúť PDF",
     "subtitle": "Odomknúť PDF odstránením ochrany heslom."
   },
   "protectPdf": {
-    "name": "Zašifrovať PDF",
+    "name": "Chrániť PDF heslom",
     "subtitle": "Uzamknúť vaše PDF pridaním hesla."
   }
 }

@@ -6,6 +6,8 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { AddBlankPageState } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: AddBlankPageState = {
   file: null,
   pdfDoc: null,
@@ -61,7 +63,9 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(pageState.file.size)} • Loading...`;
+    metaSpan.textContent = trText('{{size}} • Loading...', {
+      size: formatBytes(pageState.file.size),
+    });
 
     infoContainer.append(nameSpan, metaSpan);
 
@@ -90,10 +94,16 @@ async function updateUI() {
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;
+      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+        size: formatBytes(pageState.file.size),
+        pageCount,
+      });
 
       if (pagePositionHint) {
-        pagePositionHint.textContent = `Enter 0 to insert at the beginning, or ${pageCount} to insert at the end.`;
+        pagePositionHint.textContent = trText(
+          'Enter 0 to insert at the beginning, or {{pageCount}} to insert at the end.',
+          { pageCount }
+        );
       }
       if (pagePositionInput) {
         pagePositionInput.max = pageCount.toString();
@@ -131,7 +141,9 @@ async function addBlankPages() {
   if (isNaN(position) || position < 0 || position > totalPages) {
     showAlert(
       'Invalid Input',
-      `Please enter a number between 0 and ${totalPages}.`
+      trText('Please enter a number between 0 and {{totalPages}}.', {
+        totalPages,
+      })
     );
     return;
   }
@@ -145,7 +157,9 @@ async function addBlankPages() {
   }
 
   showLoader(
-    `Adding ${insertCount} blank page${insertCount > 1 ? 's' : ''}...`
+    insertCount > 1
+      ? trText('Adding {{insertCount}} blank pages...', { insertCount })
+      : trText('Adding {{insertCount}} blank page...', { insertCount })
   );
 
   try {
@@ -185,7 +199,13 @@ async function addBlankPages() {
 
     showAlert(
       'Success',
-      `Added ${insertCount} blank page${insertCount > 1 ? 's' : ''} successfully!`,
+      insertCount > 1
+        ? trText('Added {{insertCount}} blank pages successfully!', {
+            insertCount,
+          })
+        : trText('Added {{insertCount}} blank page successfully!', {
+            insertCount,
+          }),
       'success',
       function () {
         resetState();
@@ -195,7 +215,9 @@ async function addBlankPages() {
     console.error(e);
     showAlert(
       'Error',
-      `Could not add blank page${insertCount > 1 ? 's' : ''}.`
+      insertCount > 1
+        ? trText('Could not add blank pages.')
+        : trText('Could not add blank page.')
     );
   } finally {
     hideLoader();
@@ -215,7 +237,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

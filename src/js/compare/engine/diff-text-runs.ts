@@ -15,6 +15,15 @@ import {
 } from './text-normalization.ts';
 import { COMPARE_GEOMETRY } from '../config.ts';
 
+import { fillPlaceholders } from '../../i18n/placeholders.js';
+
+let activeStrings: Record<string, string> = {};
+
+const describeChange = (
+  template: string,
+  params: Record<string, string | number>
+): string => fillPlaceholders(activeStrings[template] ?? template, params);
+
 interface WordToken {
   word: string;
   compareWord: string;
@@ -174,7 +183,13 @@ function createWordChange(
       id,
       type,
       category: 'text',
-      description: `Replaced "${beforeText}" with "${afterText}"`,
+      description: describeChange(
+        'Replaced "{{beforeText}}" with "{{afterText}}"',
+        {
+          beforeText,
+          afterText,
+        }
+      ),
       beforeText,
       afterText,
       beforeRects,
@@ -185,7 +200,7 @@ function createWordChange(
       id,
       type,
       category: 'text',
-      description: `Removed "${beforeText}"`,
+      description: describeChange('Removed "{{beforeText}}"', { beforeText }),
       beforeText,
       afterText: '',
       beforeRects,
@@ -196,7 +211,7 @@ function createWordChange(
       id,
       type,
       category: 'text',
-      description: `Added "${afterText}"`,
+      description: describeChange('Added "{{afterText}}"', { afterText }),
       beforeText: '',
       afterText,
       beforeRects: [],
@@ -221,8 +236,10 @@ function toSummary(changes: CompareTextChange[]): CompareChangeSummary {
 
 export function diffTextRuns(
   beforeItems: CompareTextItem[],
-  afterItems: CompareTextItem[]
+  afterItems: CompareTextItem[],
+  strings: Record<string, string> = {}
 ) {
+  activeStrings = strings;
   const beforeWords = beforeItems.flatMap(splitLineIntoWords);
   const afterWords = afterItems.flatMap(splitLineIntoWords);
 
@@ -383,11 +400,18 @@ function detectStyleChanges(
     const allBeforeRects = groupFrags.flatMap((f) => f.beforeRects);
     const allAfterRects = groupFrags.flatMap((f) => f.afterRects);
 
-    let desc = `Style changed (${groupFrags.length} regions)`;
+    let desc = describeChange('Style changed ({{length}} regions)', {
+      length: groupFrags.length,
+    });
     const details: string[] = [];
-    if (bFont !== aFont) details.push(`Font: ${bFont} → ${aFont}`);
+    if (bFont !== aFont)
+      details.push(
+        describeChange('Font: {{bFont}} → {{aFont}}', { bFont, aFont })
+      );
     if (bSize && aSize && Math.abs(bSize - aSize) > 0.5)
-      details.push(`Font size: ${bSize} → ${aSize}`);
+      details.push(
+        describeChange('Font size: {{bSize}} → {{aSize}}', { bSize, aSize })
+      );
     if (details.length) desc += '\n' + details.map((d) => `• ${d}`).join('\n');
 
     changes.push({
@@ -457,7 +481,9 @@ function detectMovedText(changes: CompareTextChange[]) {
         id: `moved-${changes.length}`,
         type: 'moved',
         category: 'text',
-        description: `Moved "${rem.beforeText.slice(0, 80)}"`,
+        description: describeChange('Moved "{{value}}"', {
+          value: rem.beforeText.slice(0, 80),
+        }),
         beforeText: rem.beforeText,
         afterText: bestMatch.afterText,
         beforeRects: rem.beforeRects,

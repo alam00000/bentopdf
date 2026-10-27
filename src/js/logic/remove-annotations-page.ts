@@ -1,8 +1,13 @@
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { createIcons, icons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../utils/load-pdf-document.js';
 import { escapeHtml } from '../utils/helpers.js';
+
+import { trHtml, trText, onPageReady } from '../i18n/i18n.js';
 
 // State management
 const pageState: { pdfDoc: PDFDocument | null; file: File | null } = {
@@ -15,7 +20,7 @@ function showLoader(message: string = 'Processing...') {
   const loader = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loader) loader.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = message;
+  if (loaderText) loaderText.textContent = trText(message);
 }
 
 function hideLoader() {
@@ -34,8 +39,8 @@ function showAlert(
   const alertMessage = document.getElementById('alert-message');
   const okBtn = document.getElementById('alert-ok');
 
-  if (alertTitle) alertTitle.textContent = title;
-  if (alertMessage) alertMessage.textContent = message;
+  if (alertTitle) alertTitle.textContent = trText(title);
+  if (alertMessage) alertMessage.textContent = trText(message);
   if (modal) modal.classList.remove('hidden');
 
   if (okBtn) {
@@ -72,9 +77,9 @@ function updateFileDisplay() {
             <div class="flex items-center justify-between">
                 <div class="flex-1 min-w-0">
                     <p class="truncate font-medium text-white">${escapeHtml(pageState.file.name)}</p>
-                    <p class="text-gray-400 text-sm">${fileSize} • ${pageCount} page${pageCount !== 1 ? 's' : ''}</p>
+                    <p class="text-gray-400 text-sm">${pageCount === 1 ? trHtml('{{fileSize}} • 1 page', { fileSize }) : trHtml('{{fileSize}} • {{pageCount}} pages', { fileSize, pageCount })}</p>
                 </div>
-                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="Remove file">
+                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="${trHtml('Remove file')}">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -142,7 +147,9 @@ async function processRemoveAnnotations() {
       }
     }
 
-    const newPdfBytes = await pageState.pdfDoc.save();
+    const newPdfBytes = await removeUnreferencedObjects(
+      await pageState.pdfDoc.save()
+    );
     downloadFile(
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
@@ -159,7 +166,7 @@ async function processRemoveAnnotations() {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -189,6 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
   processBtn?.addEventListener('click', processRemoveAnnotations);
 
   backBtn?.addEventListener('click', () => {
-    window.location.href = '../../index.html';
+    window.location.href = import.meta.env.BASE_URL;
   });
 });

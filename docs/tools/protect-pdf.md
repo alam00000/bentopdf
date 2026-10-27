@@ -1,9 +1,9 @@
 ---
-title: Encrypt PDF
+title: Protect PDF
 description: Password-protect PDF files with 256-bit AES encryption. Set user and owner passwords with configurable usage restrictions.
 ---
 
-# Encrypt PDF
+# Protect PDF
 
 Lock your PDF behind a password so only authorized people can open it. BentoPDF uses 256-bit AES encryption -- the same standard used by banks and government agencies -- applied entirely in your browser via QPDF.
 

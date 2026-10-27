@@ -7,7 +7,64 @@ import {
   PDFNumber,
   PDFOperator,
   PDFOperatorNames,
+  PDFObject,
+  PDFTextField,
 } from 'pdf-lib';
+
+const HIDDEN_ANNOTATION_FLAGS = 0x02 | 0x20;
+
+function isHiddenAnnotation(annot: PDFDict): boolean {
+  const flags = annot.lookup(PDFName.of('F'));
+  return (
+    flags instanceof PDFNumber &&
+    (flags.asNumber() & HIDDEN_ANNOTATION_FLAGS) !== 0
+  );
+}
+
+function detachAnnotations(pdfDoc: PDFDocument, refs: Set<PDFObject>) {
+  for (const page of pdfDoc.getPages()) {
+    const annots = page.node.Annots();
+    if (!annots) continue;
+    for (let i = annots.size() - 1; i >= 0; i--) {
+      if (refs.has(annots.get(i))) annots.remove(i);
+    }
+  }
+  for (const ref of refs) {
+    if (ref instanceof PDFRef) pdfDoc.context.delete(ref);
+  }
+}
+
+function removeHiddenFormFields(pdfDoc: PDFDocument) {
+  const form = pdfDoc.getForm();
+  const removedRefs = new Set<PDFObject>();
+  for (const field of form.getFields()) {
+    const removeAll = field instanceof PDFTextField && field.isPassword();
+    const kids = field.acroField.Kids();
+    if (kids) {
+      for (let i = kids.size() - 1; i >= 0; i--) {
+        const widget = kids.lookup(i);
+        if (
+          removeAll ||
+          (widget instanceof PDFDict && isHiddenAnnotation(widget))
+        ) {
+          removedRefs.add(kids.get(i));
+          kids.remove(i);
+        }
+      }
+      if (kids.size() > 0) continue;
+    } else if (!removeAll && !isHiddenAnnotation(field.acroField.dict)) {
+      continue;
+    }
+    form.acroForm.removeField(field.acroField);
+    removedRefs.add(field.ref);
+  }
+  if (removedRefs.size > 0) detachAnnotations(pdfDoc, removedRefs);
+}
+
+export function flattenFormsInDoc(pdfDoc: PDFDocument): void {
+  removeHiddenFormFields(pdfDoc);
+  pdfDoc.getForm().flatten();
+}
 
 function extractNumbers(arr: PDFArray, count: number): number[] | null {
   if (arr.size() < count) return null;
@@ -31,6 +88,53 @@ function resolveStreamDict(obj: unknown): PDFDict | null {
     if (dict instanceof PDFDict) return dict;
   }
   return null;
+}
+
+const IDENTITY_MATRIX = [1, 0, 0, 1, 0, 0];
+
+function readFormMatrix(dict: PDFDict | null): number[] {
+  if (!dict) return IDENTITY_MATRIX;
+  const matrixObj = dict.lookup(PDFName.of('Matrix'));
+  if (!(matrixObj instanceof PDFArray) || matrixObj.size() !== 6) {
+    return IDENTITY_MATRIX;
+  }
+  return extractNumbers(matrixObj, 6) ?? IDENTITY_MATRIX;
+}
+
+// ISO 32000-1 §12.5.5: map the matrix-transformed BBox onto Rect.
+// Do still applies the form Matrix, so this cm must not include it again.
+function alignAppearanceToRect(
+  bbox: number[],
+  matrix: number[],
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number
+): [number, number, number, number] | null {
+  const [a, b, c, d, e, f] = matrix;
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  for (const x of [bbox[0], bbox[2]]) {
+    for (const y of [bbox[1], bbox[3]]) {
+      const px = a * x + c * y + e;
+      const py = b * x + d * y + f;
+      if (px < minX) minX = px;
+      if (py < minY) minY = py;
+      if (px > maxX) maxX = px;
+      if (py > maxY) maxY = py;
+    }
+  }
+
+  const bw = maxX - minX;
+  const bh = maxY - minY;
+  if (bw < 0.001 || bh < 0.001) return null;
+
+  const sx = (x2 - x1) / bw;
+  const sy = (y2 - y1) / bh;
+  return [sx, sy, x1 - minX * sx, y1 - minY * sy];
 }
 
 export function flattenAnnotations(pdfDoc: PDFDocument): void {
@@ -68,9 +172,7 @@ export function flattenAnnotations(pdfDoc: PDFDocument): void {
         continue;
       }
 
-      const flagsObj = annot.get(PDFName.of('F'));
-      const flags = flagsObj instanceof PDFNumber ? flagsObj.asNumber() : 0;
-      if (flags & 0x02) {
+      if (isHiddenAnnotation(annot)) {
         hasChanges = true;
         continue;
       }
@@ -132,6 +234,20 @@ export function flattenAnnotations(pdfDoc: PDFDocument): void {
         }
       }
 
+      const placement = alignAppearanceToRect(
+        bbox,
+        readFormMatrix(streamDict),
+        x1,
+        y1,
+        x2,
+        y2
+      );
+      if (!placement) {
+        hasChanges = true;
+        continue;
+      }
+      const [sx, sy, tx, ty] = placement;
+
       let appRef: PDFRef;
       if (normalAppRef instanceof PDFRef) {
         appRef = normalAppRef;
@@ -139,13 +255,6 @@ export function flattenAnnotations(pdfDoc: PDFDocument): void {
         appRef = pdfDoc.context.register(normalAppRef as PDFDict);
       }
       const xObjKey = pageNode.newXObject('FlatAnnot', appRef);
-
-      const bw = bbox[2] - bbox[0];
-      const bh = bbox[3] - bbox[1];
-      const sx = Math.abs(bw) > 0.001 ? (x2 - x1) / bw : 1;
-      const sy = Math.abs(bh) > 0.001 ? (y2 - y1) / bh : 1;
-      const tx = x1 - bbox[0] * sx;
-      const ty = y1 - bbox[1] * sy;
 
       page.pushOperators(
         PDFOperator.of(PDFOperatorNames.PushGraphicsState),

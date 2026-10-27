@@ -62,6 +62,17 @@ When the build completes, you can find the website at `https://[your-github-user
 
 If/when you merge changes from the source BentoPDF repository, the build and deploy action will automatically be kicked off and the new version will be automatically deployed to GitHub Pages.
 
+> **Note:** GitHub Pages cannot set custom response headers, so a GitHub Pages deployment is served without BentoPDF's Content-Security-Policy and other security headers. If you need them, use one of the other hosts below or put a proxy or CDN that can add headers in front of your Pages site.
+
+## Security headers
+
+BentoPDF ships a Content-Security-Policy and other security headers for each static host:
+
+- **Netlify and Cloudflare Pages** read `_headers` from the deployed folder. `npm run build` writes `dist/_headers` with `scripts/generate-security-headers.mjs`, so any `VITE_WASM_*`, `VITE_TESSERACT_*`, `VITE_CORS_PROXY_URL` or `VITE_OCR_FONT_BASE_URL` values you set at build time are allowed by the policy. If you add your own `public/_headers`, the build ships yours instead. The release `dist-{version}.zip` already contains it.
+- **Vercel** uses the `headers` block in `vercel.json`. It holds the default policy, so if you point the `VITE_*` URLs at your own servers, update the Content-Security-Policy there to match the `dist/_headers` your build produces.
+- **`npx serve`** reads `serve.json` from the folder it serves. To use the repository's `serve.json` with the build output, run `npx serve dist -c ../serve.json`.
+- **GitHub Pages** cannot set headers (see the note above).
+
 ## SEO and search engine indexing
 
 By default, every self-hosted BentoPDF build emits canonical URLs and an
@@ -83,16 +94,19 @@ You have two clean overrides depending on what you want.
 ### Run your own SEO instance (claim canonical for yourself)
 
 If you operate a public deployment and want it to be the indexed copy for
-your audience, set `SITE_URL` at build time to your origin. The build will
-emit canonicals, hreflang, and structured data pointing at your domain.
+your audience, set `SITE_URL` at build time to your origin and also set
+`ALLOW_INDEXING=true`. The build will emit canonicals, hreflang and
+sitemap URLs pointing at your domain. Without `ALLOW_INDEXING=true`, a
+build with a custom `SITE_URL` marks every page `noindex`.
 
 - Docker:
   ```sh
-  docker build --build-arg SITE_URL=https://pdf.example.com -t bentopdf-self .
+  docker build --build-arg SITE_URL=https://pdf.example.com --build-arg ALLOW_INDEXING=true -t bentopdf-self .
   ```
 - Netlify, Vercel, GitHub Pages, or any other static host: set `SITE_URL`
-  in your project's environment variables and re-deploy. The build script
-  reads it during `npm run build`.
+  and `ALLOW_INDEXING=true` in your project's environment variables and
+  re-deploy. The build script reads them during `npm run build`. For the
+  GitHub Pages workflow, add both as repository variables.
 
 ### Stay invisible to search engines (no SEO competition either way)
 
@@ -106,9 +120,10 @@ bentopdf.com as the authoritative source.
 docker run -d -p 8080:8080 -e ROBOTS_NOINDEX=true ghcr.io/alam00000/bentopdf:latest
 ```
 
-You can combine the two: build with your own `SITE_URL` and run with
-`ROBOTS_NOINDEX=true` for a private deployment that's neither competing
-with bentopdf.com nor advertising itself.
+A build with your own `SITE_URL` and without `ALLOW_INDEXING=true` is
+already `noindex`, so it neither competes with bentopdf.com nor advertises
+itself. `ROBOTS_NOINDEX=true` does the same at runtime for the prebuilt
+images.
 
 ### Note on Simple Mode
 

@@ -3,8 +3,14 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
-import { flattenAnnotations } from '../../utils/flatten-annotations.js';
-import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import {
+  flattenAnnotations,
+  flattenFormsInDoc,
+} from '../../utils/flatten-annotations.js';
+import {
+  loadPdfDocument,
+  removeUnreferencedObjects,
+} from '../../utils/load-pdf-document.js';
 
 export class FlattenNode extends BaseWorkflowNode {
   readonly category = 'Secure PDF' as const;
@@ -27,8 +33,7 @@ export class FlattenNode extends BaseWorkflowNode {
         const pdfDoc = await loadPdfDocument(input.bytes);
 
         try {
-          const form = pdfDoc.getForm();
-          form.flatten();
+          flattenFormsInDoc(pdfDoc);
         } catch (err) {
           console.error('Flatten form error (may have no forms):', err);
         }
@@ -39,11 +44,11 @@ export class FlattenNode extends BaseWorkflowNode {
           console.error('Flatten annotations error:', err);
         }
 
-        const pdfBytes = await pdfDoc.save();
+        const pdfBytes = await removeUnreferencedObjects(await pdfDoc.save());
         return {
           type: 'pdf',
           document: pdfDoc,
-          bytes: new Uint8Array(pdfBytes),
+          bytes: pdfBytes,
           filename: input.filename.replace(/\.pdf$/i, '_flattened.pdf'),
         };
       }),

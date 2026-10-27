@@ -12,6 +12,8 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
 import '../utils/setup-pdf-worker.js';
 
+import { trText } from '../i18n/i18n.js';
+
 const duplicateOrganizeState: {
   sortableInstances: { pageGrid?: Sortable };
 } = {
@@ -133,7 +135,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     const duplicateBtn = document.createElement('button');
     duplicateBtn.className =
       'duplicate-btn bg-green-600 hover:bg-green-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    duplicateBtn.title = 'Duplicate Page';
+    duplicateBtn.title = trText('Duplicate Page');
     const duplicateIcon = document.createElement('i');
     duplicateIcon.setAttribute('data-lucide', 'copy-plus');
     duplicateIcon.className = 'w-5 h-5';
@@ -142,7 +144,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     const deleteBtn = document.createElement('button');
     deleteBtn.className =
       'delete-btn bg-red-600 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    deleteBtn.title = 'Delete Page';
+    deleteBtn.title = trText('Delete Page');
     const deleteIcon = document.createElement('i');
     deleteIcon.setAttribute('data-lucide', 'x-circle');
     deleteIcon.className = 'w-5 h-5';
@@ -163,7 +165,12 @@ export async function renderDuplicateOrganizeThumbnails() {
       useLazyLoading: true,
       lazyLoadMargin: '400px',
       onProgress: (current, total) => {
-        showLoader(`Rendering page previews: ${current}/${total}`);
+        showLoader(
+          trText('Rendering page previews: {{current}}/{{total}}', {
+            current,
+            total,
+          })
+        );
       },
       onBatchComplete: () => {
         createIcons({ icons });
