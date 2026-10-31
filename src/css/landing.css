@@ -2238,6 +2238,11 @@ body.lp ::selection {
   font-size: 17px;
 }
 
+.lp-ad-logo svg {
+  width: 60%;
+  height: 60%;
+}
+
 .lp-ad-text {
   display: flex;
   flex-direction: column;
@@ -2280,13 +2285,7 @@ body.lp ::selection {
   color: var(--lp-accent-3);
 }
 
-.lp-ads-note {
-  margin: 12px 0 0;
-  font-size: 13px;
-  color: var(--lp-dim);
-}
-
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .lp-ads-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

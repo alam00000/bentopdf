@@ -1,9 +1,19 @@
-const DODO_API = 'https://test.dodopayments.com';
-
-const PRODUCTS = new Map([
-  ['top', 'pdt_0Nqt0672sYJEtrkIb2K6m'],
-  ['second', 'pdt_0Nqt069LgdQFPo1tFS1yF'],
-]);
+const MODES = {
+  live: {
+    api: 'https://live.dodopayments.com',
+    products: new Map([
+      ['top', 'pdt_0Nqv9McKI1iCBXb7z4DB7'],
+      ['second', 'pdt_0Nqv9OYDLwWZsu1hzpZ0c'],
+    ]),
+  },
+  test: {
+    api: 'https://test.dodopayments.com',
+    products: new Map([
+      ['top', 'pdt_0Nqt0672sYJEtrkIb2K6m'],
+      ['second', 'pdt_0Nqt069LgdQFPo1tFS1yF'],
+    ]),
+  },
+};
 
 const FIELDS = [
   {
@@ -36,11 +46,11 @@ function redirect(location) {
   });
 }
 
-async function createCheckout(productId, page) {
-  const response = await fetch(`${DODO_API}/checkouts`, {
+async function createCheckout(key, api, productId, page) {
+  const response = await fetch(`${api}/checkouts`, {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.DODO_PAYMENTS_API_KEY}`,
+      Authorization: `Bearer ${key}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -60,7 +70,7 @@ async function createCheckout(productId, page) {
     typeof checkout_url !== 'string' ||
     !checkout_url.startsWith('https://')
   ) {
-    throw new Error(`Dodo returned no checkout URL: ${body}`);
+    throw new Error('Dodo returned no checkout URL');
   }
   return checkout_url;
 }
@@ -68,11 +78,13 @@ async function createCheckout(productId, page) {
 export async function GET(request) {
   const url = new URL(request.url);
   const page = `${url.origin}/advertise`;
-  const productId = PRODUCTS.get(url.searchParams.get('row'));
+  const key = process.env.DODO_PAYMENTS_API_KEY ?? '';
+  const mode = key.startsWith('dodo_live_') ? MODES.live : MODES.test;
+  const productId = mode.products.get(url.searchParams.get('row'));
   if (!productId) return redirect(`${page}#pricing`);
 
   try {
-    return redirect(await createCheckout(productId, page));
+    return redirect(await createCheckout(key, mode.api, productId, page));
   } catch (error) {
     console.error(error);
     return redirect(`${page}?checkout=failed`);
