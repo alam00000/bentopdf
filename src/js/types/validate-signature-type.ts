@@ -17,6 +17,7 @@ export interface SignatureValidationResult {
   algorithms: {
     digest: string;
     signature: string;
+    imprint?: string;
   };
   serialNumber: string;
   reason?: string;

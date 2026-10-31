@@ -103,6 +103,9 @@ function readSignatureDictionary(
   isTimestamp: boolean
 ): ExtractedSignatureWithError {
   const text = (key: string) => decodePdfText(pdfBytes, entries.get(key));
+  // A PDF processor should ignore these on ETSI.RFC3161 dictionaries (ISO
+  // 32000-2, Table 255)
+  const signerText = (key: string) => (isTimestamp ? undefined : text(key));
   const timeMatch = text('M')?.match(
     /^D:(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/
   );
@@ -110,10 +113,10 @@ function readSignatureDictionary(
     index,
     contents: new Uint8Array(0),
     byteRange: [],
-    reason: text('Reason'),
-    location: text('Location'),
-    contactInfo: text('ContactInfo'),
-    name: text('Name'),
+    reason: signerText('Reason'),
+    location: signerText('Location'),
+    contactInfo: signerText('ContactInfo'),
+    name: signerText('Name'),
     signingTime: timeMatch
       ? `${timeMatch[1]}-${timeMatch[2]}-${timeMatch[3]}T${timeMatch[4]}:${timeMatch[5]}:${timeMatch[6]}`
       : undefined,
@@ -442,9 +445,15 @@ export async function validateSignature(
         (digestOid && getDigestAlgorithmName(digestOid)) ||
         getDigestAlgorithmName(signerCert.siginfo?.algorithmOid || ''),
       signature: getSignatureAlgorithmName(signerCert.signatureOid || ''),
+      imprint: timestamp
+        ? getDigestAlgorithmName(timestamp.imprintOid)
+        : undefined,
     };
 
     if (digestOid && INSECURE_DIGEST_OIDS.has(digestOid)) {
+      result.usesInsecureDigest = true;
+    }
+    if (timestamp && INSECURE_DIGEST_OIDS.has(timestamp.imprintOid)) {
       result.usesInsecureDigest = true;
     }
 
@@ -666,8 +675,7 @@ interface TimestampToken {
 /**
  * Reads the TSTInfo out of an RFC 3161 timestamp token and relabels its
  * encapsulated content as id-data, because node-forge only parses SignedData
- * that wraps plain data. Only the label changes: the signature covers the
- * signed attributes, which keep the real content type.
+ * that wraps plain data.
  */
 function unwrapTimestampToken(
   contentInfo: forge.asn1.Asn1

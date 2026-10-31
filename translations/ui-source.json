@@ -9001,6 +9001,12 @@
     ],
     "fileCount": 1
   },
+  "Timestamp Imprint Algorithm:": {
+    "files": [
+      "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
   "Timestamp Intact: Timestamp Authority Not Verified": {
     "files": [
       "logic/validate-signature-pdf-page.ts"

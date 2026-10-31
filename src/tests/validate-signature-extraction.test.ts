@@ -188,6 +188,22 @@ describe('validatePdfSignatures extraction and coverage', () => {
     expect(signatures.every((sig) => sig.isTimestamp)).toBe(true);
   });
 
+  it('ignores Reason, Location, ContactInfo and Name on document timestamps', () => {
+    const pdfBytes = new TextEncoder().encode(
+      '%PDF-1.7\n' +
+        '1 0 obj\n<< /Type /DocTimeStamp /SubFilter /ETSI.RFC3161 ' +
+        '/Reason (r) /Location (l) /ContactInfo (c) /Name (n) ' +
+        '/ByteRange [0 10 20 10] /Contents <00> >>\nendobj\n%%EOF\n'
+    );
+
+    const [signature] = extractSignatures(pdfBytes);
+    expect(signature.isTimestamp).toBe(true);
+    expect(signature.reason).toBeUndefined();
+    expect(signature.location).toBeUndefined();
+    expect(signature.contactInfo).toBeUndefined();
+    expect(signature.name).toBeUndefined();
+  });
+
   it('reports an intact signature as partial when an incremental update follows', async () => {
     const signed = await signPdf(samplePdf, certificateData, {
       signatureInfo: { reason: 'Original' },

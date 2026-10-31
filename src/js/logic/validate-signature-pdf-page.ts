@@ -392,12 +392,10 @@ function createSignatureCard(
       statusText =
         result.cryptoVerified === false
           ? trText('Invalid: Cryptographic Verification Failed')
-          : trText('Invalid Signature');
+          : result.usesInsecureDigest
+            ? trText('Insecure Digest (MD5 / SHA-1)')
+            : trText('Invalid Signature');
     }
-  } else if (result.usesInsecureDigest) {
-    statusColor = 'text-red-400';
-    statusIcon = 'x-circle';
-    statusText = trText('Insecure Digest (MD5 / SHA-1)');
   } else if (result.isExpired) {
     statusColor = 'text-yellow-400';
     statusIcon = 'alert-triangle';
@@ -519,6 +517,7 @@ function createSignatureCard(
                     <p><span class="text-gray-400">${trHtml('Serial Number:')}</span> <span class="text-gray-300 font-mono">${escapeHtml(result.serialNumber)}</span></p>
                     <p><span class="text-gray-400">${trHtml('Digest Algorithm:')}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.digest)}</span></p>
                     <p><span class="text-gray-400">${trHtml('Signature Algorithm:')}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.signature)}</span></p>
+                    ${result.algorithms.imprint ? `<p><span class="text-gray-400">${trHtml('Timestamp Imprint Algorithm:')}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.imprint)}</span></p>` : ''}
                     ${result.errorMessage ? `<p class="text-red-400">${trHtml('Error: {{error}}', { error: result.errorMessage })}</p>` : ''}
                     ${result.unsupportedAlgorithmReason ? `<p class="text-yellow-300">${escapeHtml(result.unsupportedAlgorithmReason)}</p>` : ''}
                 </div>

@@ -26,17 +26,14 @@ const node = (type: number, value: string | forge.asn1.Asn1[]) =>
   asn1.create(asn1.Class.UNIVERSAL, type, Array.isArray(value), value);
 const oid = (id: string) => node(asn1.Type.OID, asn1.oidToDer(id).getBytes());
 
-function tstInfoDer(imprint: string): string {
+function tstInfoDer(imprint: string, imprintOid: string): string {
   return asn1
     .toDer(
       node(asn1.Type.SEQUENCE, [
         node(asn1.Type.INTEGER, asn1.integerToDer(1).getBytes()),
         oid('1.2.3.4.1'),
         node(asn1.Type.SEQUENCE, [
-          node(asn1.Type.SEQUENCE, [
-            oid(forge.pki.oids.sha256),
-            node(asn1.Type.NULL, ''),
-          ]),
+          node(asn1.Type.SEQUENCE, [oid(imprintOid), node(asn1.Type.NULL, '')]),
           node(asn1.Type.OCTETSTRING, imprint),
         ]),
         node(asn1.Type.INTEGER, asn1.integerToDer(42).getBytes()),
@@ -47,9 +44,9 @@ function tstInfoDer(imprint: string): string {
 }
 
 /** An RFC 3161 token whose TSTInfo carries the given document hash. */
-function timestampTokenHex(imprint: string): string {
+function timestampTokenHex(imprint: string, imprintOid: string): string {
   const p7 = forge.pkcs7.createSignedData();
-  p7.content = forge.util.createBuffer(tstInfoDer(imprint));
+  p7.content = forge.util.createBuffer(tstInfoDer(imprint, imprintOid));
   p7.addCertificate(tsaCert);
   p7.addSigner({
     key: keys.privateKey,
@@ -78,7 +75,8 @@ function sha256(content: string): string {
 }
 
 function buildTimestampedPdf(
-  imprintFor: (signedContent: string) => string = sha256
+  imprintFor: (signedContent: string) => string = sha256,
+  imprintOid: string = forge.pki.oids.sha256
 ): Uint8Array {
   const headLength = HEAD.length - RANGE_PLACEHOLDER.length + RANGE_WIDTH;
   const gapLength = HEX_LENGTH + 2;
@@ -87,7 +85,7 @@ function buildTimestampedPdf(
     RANGE_PLACEHOLDER,
     `/ByteRange [${byteRange.join(' ')}]`.padEnd(RANGE_WIDTH)
   );
-  const hex = timestampTokenHex(imprintFor(head + TAIL)).padEnd(
+  const hex = timestampTokenHex(imprintFor(head + TAIL), imprintOid).padEnd(
     HEX_LENGTH,
     '0'
   );
@@ -102,10 +100,32 @@ describe('document timestamps (RFC 3161)', () => {
     expect(result.cryptoVerificationStatus).toBe('verified');
     expect(result.coverageStatus).toBe('full');
     expect(result.isValid).toBe(true);
+    expect(result.usesInsecureDigest).toBeFalsy();
+    expect(result.algorithms.imprint).toBe('SHA-256');
     expect(result.signerName).toBe('Test TSA');
     expect(result.signatureDate?.toISOString()).toBe(
       '2026-01-02T03:04:05.000Z'
     );
+  });
+
+  it.each([
+    ['SHA-1', forge.md.sha1, forge.pki.oids.sha1],
+    ['MD5', forge.md.md5, forge.pki.oids.md5],
+  ])('treats a %s messageImprint as insecure', async (name, algorithm, id) => {
+    const imprintFor = (content: string) => {
+      const md = algorithm.create();
+      md.update(content);
+      return md.digest().bytes();
+    };
+
+    const [result] = await validatePdfSignatures(
+      buildTimestampedPdf(imprintFor, id)
+    );
+
+    expect(result.cryptoVerificationStatus).toBe('verified');
+    expect(result.usesInsecureDigest).toBe(true);
+    expect(result.isValid).toBe(false);
+    expect(result.algorithms.imprint).toBe(name);
   });
 
   it('fails when the document no longer matches the timestamped hash', async () => {
