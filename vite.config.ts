@@ -76,6 +76,7 @@ function loadPages(): Set<string> {
     'licensing',
     'kura',
     'hyper-compress',
+    'advertise',
     '404',
     'pdf-converter',
     'pdf-editor',
@@ -803,6 +804,7 @@ export default defineConfig(({ command }) => {
           licensing: resolve(__dirname, 'licensing.html'),
           kura: resolve(__dirname, 'kura.html'),
           'hyper-compress': resolve(__dirname, 'hyper-compress.html'),
+          advertise: resolve(__dirname, 'advertise.html'),
           ...Object.fromEntries(
             fs
               .readdirSync(resolve(__dirname, 'blog'))

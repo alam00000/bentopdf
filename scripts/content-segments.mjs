@@ -507,7 +507,12 @@ export function processDocument(document, options) {
   };
 }
 
-export const ENGLISH_ONLY_PAGES = new Set(['terms', 'privacy', 'licensing']);
+export const ENGLISH_ONLY_PAGES = new Set([
+  'terms',
+  'privacy',
+  'licensing',
+  'advertise',
+]);
 
 export function processPage(document, pageName, options) {
   if (ENGLISH_ONLY_PAGES.has(pageName)) {
