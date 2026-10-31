@@ -424,7 +424,7 @@ async function performFlatteningCrop(
   return newPdfDoc.save();
 }
 
-function resetState() {
+export function resetState() {
   if (cropperState.cropper) {
     cropperState.cropper.destroy();
     cropperState.cropper = null;
@@ -447,4 +447,6 @@ function resetState() {
 
   const cropBtn = document.getElementById('crop-button') as HTMLButtonElement;
   if (cropBtn) cropBtn.disabled = true;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
