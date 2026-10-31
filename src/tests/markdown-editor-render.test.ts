@@ -58,10 +58,17 @@ describe('Markdown to PDF rendering', () => {
         '',
         '```math\n\\int x\n```',
         '',
+        'GitHub $`\\sqrt{3}`$ inline.',
+        '',
         'Price $5 and $10, escaped \\$3, code `$q$`.',
       ].join('\n')
     );
-    expect(root.querySelectorAll('.katex').length).toBe(8);
+    expect(root.querySelectorAll('.katex').length).toBe(9);
+    const github = [...root.querySelectorAll('p')].find((p) =>
+      p.textContent?.startsWith('GitHub')
+    );
+    expect(github?.querySelector('.katex')).not.toBeNull();
+    expect(github?.textContent).not.toMatch(/[$`‘’]/);
     expect(root.querySelectorAll('.katex-display').length).toBe(5);
     expect(root.querySelector('em')).toBeNull();
     expect(root.textContent).toContain('Price $5 and $10, escaped $3');

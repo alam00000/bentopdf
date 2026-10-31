@@ -84,6 +84,7 @@ const ESCAPED_MATH: ReadonlyArray<[string, string, boolean]> = [
   ['\\\\[', '\\\\]', true],
   ['\\\\(', '\\\\)', false],
   ['\\[', '\\]', true],
+  ['$`', '`$', false],
 ];
 
 function escapedMath(state: StateInline, silent: boolean): boolean {
