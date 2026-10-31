@@ -45,6 +45,15 @@ const FAVORITE_STAR_PATHS = [
 ] as const;
 declare const __BRAND_NAME__: string;
 
+const adsSection = document.getElementById('ads-section');
+if (
+  adsSection &&
+  (['bentopdf.com', 'www.bentopdf.com'].includes(window.location.hostname) ||
+    import.meta.env.DEV)
+) {
+  adsSection.hidden = false;
+}
+
 const init = async () => {
   await initI18n();
   await loadRuntimeConfig();
