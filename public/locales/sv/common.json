@@ -9,7 +9,8 @@
     "openMainMenu": "Öppna huvudmenyn",
     "language": "Språk",
     "searchLanguage": "Sök språk…",
-    "noLanguagesFound": "Inga språk hittades"
+    "noLanguagesFound": "Inga språk hittades",
+    "breadcrumb": "Sökväg"
   },
   "donation": {
     "message": "Gillar du BentoPDF? Hjälp oss att hålla det gratis och öppen källkod!",
@@ -227,7 +228,7 @@
   "support": {
     "title": "Gillar du mitt arbete?",
     "description": "BentoPDF är ett passionerat projekt, byggt för att erbjuda en gratis, privat och kraftfull PDF-verktygslåda för alla. Om du tycker det är användbart, överväg att stödja utvecklingen. Varje kaffe hjälper!",
-    "buyMeCoffee": "Buy Me a Coffee"
+    "buyMeCoffee": "Bjud mig på en kaffe"
   },
   "footer": {
     "copyright": "© 2026 BentoPDF. Alla rättigheter reserverade.",
@@ -236,6 +237,10 @@
     "aboutUs": "Om oss",
     "faqLink": "FAQ",
     "contactUs": "Kontakta oss",
+    "tools": "Verktyg",
+    "pdfConverter": "PDF-konverterare",
+    "pdfSecurity": "PDF-säkerhet",
+    "mergeSplit": "Slå ihop och dela PDF",
     "legal": "Juridiskt",
     "termsAndConditions": "Villkor",
     "privacyPolicy": "Integritetspolicy",

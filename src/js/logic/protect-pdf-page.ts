@@ -8,6 +8,8 @@ import {
 import { icons, createIcons } from 'lucide';
 import { EncryptPdfState, QpdfInstanceExtended } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: EncryptPdfState = {
   file: null,
 };
@@ -121,18 +123,19 @@ async function encryptPdf() {
 
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Initializing encryption...';
+    if (loaderText)
+      loaderText.textContent = trText('Initializing encryption...');
 
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = 'Reading PDF...';
+    if (loaderText) loaderText.textContent = trText('Reading PDF...');
     const fileBuffer = await readFileAsArrayBuffer(pageState.file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
     qpdf.FS.writeFile(inputPath, uint8Array);
 
     if (loaderText)
-      loaderText.textContent = 'Encrypting PDF with 256-bit AES...';
+      loaderText.textContent = trText('Encrypting PDF with 256-bit AES...');
 
     const args = [inputPath, '--encrypt', userPassword, ownerPassword, '256'];
 
@@ -163,11 +166,11 @@ async function encryptPdf() {
       );
     }
 
-    if (loaderText) loaderText.textContent = 'Preparing download...';
+    if (loaderText) loaderText.textContent = trText('Preparing download...');
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Encryption resulted in an empty file.');
+      throw new Error(trText('Encryption resulted in an empty file.'));
     }
 
     const blob = new Blob([new Uint8Array(outputFile)], {
@@ -177,10 +180,11 @@ async function encryptPdf() {
 
     if (loaderModal) loaderModal.classList.add('hidden');
 
-    let successMessage = 'PDF encrypted successfully with 256-bit AES!';
+    let successMessage = trText('PDF encrypted successfully with 256-bit AES!');
     if (!hasDistinctOwnerPassword) {
-      successMessage +=
-        ' Note: Without a separate owner password, the PDF has no usage restrictions.';
+      successMessage += ` ${trText(
+        'Note: Without a separate owner password, the PDF has no usage restrictions.'
+      )}`;
     }
 
     showAlert('Success', successMessage, 'success', () => {
@@ -191,7 +195,12 @@ async function encryptPdf() {
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
       'Encryption Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'The PDF might be corrupted.'}`
+      trText('An error occurred: {{error}}', {
+        error:
+          error instanceof Error
+            ? error.message
+            : trText('The PDF might be corrupted.'),
+      })
     );
   } finally {
     try {
@@ -213,7 +222,7 @@ async function encryptPdf() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

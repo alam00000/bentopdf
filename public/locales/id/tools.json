@@ -27,7 +27,22 @@
     "name": "Gabung PDF",
     "subtitle": "Gabungkan beberapa PDF menjadi satu file. Mempertahankan Bookmark.",
     "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
-    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
+    "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda).",
+    "removeDuplicateFonts": "Hapus font duplikat",
+    "alert": {
+      "thumbnailError": "Gagal merender thumbnail halaman",
+      "noSelection": "Tidak ada file atau halaman yang dipilih untuk digabungkan.",
+      "mergeSuccess": "PDF berhasil digabungkan!",
+      "mergeFailed": "Gagal menggabungkan PDF.",
+      "mergeError": "Gagal menggabungkan PDF. Pastikan semua file valid dan tidak dilindungi kata sandi.",
+      "workerError": "Terjadi kesalahan tak terduga saat proses penggabungan.",
+      "loadError": "Gagal memuat satu atau beberapa file PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Merender pratinjau halaman...",
+      "merging": "Menggabungkan PDF...",
+      "loadingDocuments": "Memuat dokumen PDF..."
+    }
   },
   "splitPdf": {
     "name": "Pisah PDF",
@@ -91,7 +106,7 @@
     "tipRedoZ": "Ulangi (⇧⌘Z)",
     "tipFileDetails": "Detail file",
     "tipEditExistingContent": "Edit konten yang ada",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Yang dipengaruhi alat Edit — persempit cakupan pada halaman yang padat",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Yang dipengaruhi alat Edit: persempit cakupan pada halaman yang padat",
     "tipClickThePageToAddATextBox": "Klik halaman untuk menambahkan kotak teks",
     "tipSpellCheckLanguage": "Bahasa pemeriksa ejaan",
     "tipFindAndReplace": "Cari dan ganti",
@@ -284,7 +299,7 @@
     "applyToAllPages": "Terapkan ke semua halaman"
   },
   "headerFooter": {
-    "name": "Header & Footer",
+    "name": "Kepala & Kaki Halaman",
     "subtitle": "Tambah teks ke bagian atas dan bawah halaman."
   },
   "invertColors": {
@@ -302,8 +317,8 @@
     "rotateVariance": "Variasi Putaran",
     "brightness": "Kecerahan",
     "contrast": "Kontras",
-    "blur": "Blur",
-    "noise": "Noise",
+    "blur": "Buram",
+    "noise": "Derau",
     "yellowish": "Kekuningan",
     "resolution": "Resolusi",
     "processButton": "Terapkan Efek Pemindai"
@@ -503,7 +518,8 @@
       "noFile": "Tidak Ada File",
       "noFileExplanation": "Silakan unggah file PDF terlebih dahulu.",
       "conversionSuccess": "PDF berhasil dikonversi ke TIFF!",
-      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak."
+      "conversionError": "Gagal mengonversi PDF ke TIFF. File mungkin rusak.",
+      "conversionOutOfMemory": "Memori browser habis saat konversi. Coba DPI yang lebih rendah, atau hapus centang opsi TIFF multi-halaman untuk mengonversi halaman satu per satu."
     }
   },
   "pdfToCbz": {
@@ -613,7 +629,7 @@
     "multiLanguageSupportDescription": "Pilih beberapa bahasa untuk dokumen yang berisi konten bahasa campuran."
   },
   "alternateMerge": {
-    "name": "Alternatif & Campur Halaman",
+    "name": "Selang-seling & Campur Halaman",
     "subtitle": "Gabung PDF dengan menggantikan halaman dari setiap PDF. Mempertahankan Bookmark.",
     "retainPageLabels": "Pertahankan label halaman asli dari setiap file",
     "retainPageLabelsHint": "Mati (default): PDF yang digabungkan menggunakan penomoran halaman alami 1–N. Aktif: label halaman asli setiap file dipertahankan (dapat menghasilkan label ganda)."
@@ -990,8 +1006,7 @@
     "subtitle": "Ekstrak teks dari file PDF dan simpan sebagai teks biasa (.txt). Mendukung beberapa file.",
     "noteLabel": "Catatan:",
     "noteText": "Alat ini HANYA bekerja dengan PDF yang dibuat secara digital. Untuk dokumen pindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya.",
-    "convertButton": "Ekstrak Teks",
-    "note": "Alat ini bekerja HANYA dengan PDF yang dibuat secara digital. Untuk dokumen terpindai atau PDF berbasis gambar, gunakan alat OCR PDF kami sebagai gantinya."
+    "convertButton": "Ekstrak Teks"
   },
   "digitalSignPdf": {
     "name": "Tanda Tangan Digital PDF",
@@ -1012,7 +1027,7 @@
     "location": "Lokasi",
     "locationPlaceholder": "misalnya, Jakarta, Indonesia",
     "contactInfo": "Info Kontak",
-    "contactPlaceholder": "misalnya, email@contoh.com",
+    "contactPlaceholder": "misalnya, email@example.com",
     "visibleSignature": "Tanda Tangan Terlihat",
     "visibleSignatureDescription": "Saat diaktifkan, kotak tanda tangan terlihat muncul di PDF. Anda dapat mengunggah gambar/logo atau menambahkan teks. Jika tidak ada yang diberikan, nama penanda tangan dari sertifikat akan ditampilkan secara otomatis.",
     "signatureImage": "Gambar/Logo Tanda Tangan (Opsional)",
@@ -1189,7 +1204,7 @@
       "workerError": "Kesalahan worker: {{message}}",
       "alternateMergeWorkerError": "Kesalahan worker penggabungan bergantian: {{message}}",
       "noPdfFilesUploaded": "Tidak ada berkas PDF yang diunggah di node PDF Input",
-      "failedToLoadFile": "Gagal memuat \"{{file}}\" — berkas mungkin rusak",
+      "failedToLoadFile": "Gagal memuat \"{{file}}\", berkas mungkin rusak",
       "noImagesUploaded": "Tidak ada gambar yang diunggah di node Image Input",
       "noWordDocsUploaded": "Tidak ada dokumen yang diunggah di node Word Input",
       "noExcelUploaded": "Tidak ada lembar kerja yang diunggah di node Excel Input",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "Tentu saja! Semua pemrosesan terjadi di browser Anda. File Anda tidak pernah meninggalkan perangkat Anda, memastikan privasi penuh."
   },
   "unlockPdf": {
-    "name": "Dekripsi PDF",
+    "name": "Buka Kunci PDF",
     "subtitle": "Buka kunci PDF dengan menghapus perlindungan kata sandi."
   },
   "protectPdf": {
-    "name": "Enkripsi PDF",
+    "name": "Lindungi PDF",
     "subtitle": "Kunci PDF Anda dengan menambahkan kata sandi."
   }
 }

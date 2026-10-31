@@ -9,7 +9,8 @@
     "openMainMenu": "Åbn hovedmenu",
     "language": "Sprog",
     "searchLanguage": "Søg sprog…",
-    "noLanguagesFound": "Ingen sprog fundet"
+    "noLanguagesFound": "Ingen sprog fundet",
+    "breadcrumb": "Brødkrummesti"
   },
   "donation": {
     "message": "Elsker du BentoPDF? Hjælp os med at holde det gratis og open source!",
@@ -171,7 +172,7 @@
     "processingLocal": "Al behandling foregår lokalt på din enhed.",
     "gdpr": {
       "title": "GDPR-overholdelse",
-      "description": "Beskytter persondata og privatliv for personer i EU."
+      "description": "Beskytter personoplysninger og privatliv for enkeltpersoner i Den Europæiske Union."
     },
     "ccpa": {
       "title": "CCPA-overholdelse",
@@ -188,31 +189,31 @@
     "sectionTitle": "Ofte stillede spørgsmål",
     "isFree": {
       "question": "Er BentoPDF virkelig gratis?",
-      "answer": "Ja, absolut. Alle værktøjer er 100% gratis at bruge, uden filgrænser, uden tilmeldinger og uden vandmærker."
+      "answer": "Ja, helt sikkert. Alle værktøjer på BentoPDF er 100% gratis at bruge, uden filgrænser, uden tilmelding og uden vandmærker. Vi mener, at alle fortjener adgang til enkle, kraftfulde PDF-værktøjer uden betalingsmur."
     },
     "areFilesSecure": {
       "question": "Er mine filer sikre? Hvor bliver de behandlet?",
-      "answer": "Dine filer er så sikre som muligt, fordi de aldrig forlader din computer. Alt behandles direkte i din browser."
+      "answer": "Dine filer er så sikre som muligt, fordi de aldrig forlader din computer. Al behandling sker direkte i din webbrowser (på klientsiden). Vi uploader aldrig dine filer til en server, så du bevarer fuldt privatliv og fuld kontrol over dine dokumenter."
     },
     "platforms": {
       "question": "Virker det på Mac, Windows og mobil?",
-      "answer": "Ja! BentoPDF virker på alle moderne browsere, uanset styresystem."
+      "answer": "Ja! Da BentoPDF kører helt i din browser, virker det på ethvert styresystem med en moderne webbrowser, herunder Windows, macOS, Linux, iOS og Android."
     },
     "gdprCompliant": {
       "question": "Er BentoPDF GDPR-kompatibel?",
-      "answer": "Ja. Da vi ikke indsamler eller behandler dine filer på vores servere, er dine data altid under din kontrol."
+      "answer": "Ja. BentoPDF overholder GDPR fuldt ud. Da al filbehandling sker lokalt i din browser, og vi aldrig indsamler eller sender dine filer til en server, har vi ingen adgang til dine data. Du har altid kontrollen over dine dokumenter."
     },
     "dataStorage": {
       "question": "Gemmer eller sporer I mine filer?",
-      "answer": "Nej. Vi gemmer eller sporer aldrig dine filer. Alt foregår i din browser."
+      "answer": "Nej. Vi gemmer, sporer eller logger aldrig dine filer. Alt, hvad du gør på BentoPDF, foregår i din browsers hukommelse og forsvinder, når du lukker siden. Der er ingen uploads, ingen historiklogge og ingen servere involveret."
     },
     "different": {
-      "question": "Hvad gør BentoPDF anderledes?",
-      "answer": "De fleste PDF-værktøjer uploader dine filer til en server. BentoPDF gør det hele lokalt i din browser."
+      "question": "Hvad gør BentoPDF anderledes end andre PDF-værktøjer?",
+      "answer": "De fleste PDF-værktøjer uploader dine filer til en server til behandling. Det gør BentoPDF aldrig. Vi bruger sikker, moderne webteknologi til at behandle dine filer direkte i din browser. Det giver hurtigere ydeevne, stærkere privatliv og fuld ro i sindet."
     },
     "browserBased": {
       "question": "Hvordan gør browserbaseret behandling mig sikker?",
-      "answer": "Dine filer forlader aldrig enheden, hvilket fjerner risikoen for datalæk, hacks eller uautoriseret adgang."
+      "answer": "Fordi BentoPDF kører helt i din browser, forlader dine filer aldrig din enhed. Det fjerner risikoen for serverhack, datalæk og uautoriseret adgang. Dine filer forbliver dine, altid."
     },
     "analytics": {
       "question": "Bruger I cookies eller analyseværktøjer?",
@@ -226,7 +227,7 @@
   },
   "support": {
     "title": "Kan du lide mit arbejde?",
-    "description": "BentoPDF er et passioneret projekt, bygget for at tilbyde et gratis og privat PDF-værktøj til alle.",
+    "description": "BentoPDF er et passionsprojekt, bygget for at give alle et gratis, privat og kraftfuldt PDF-værktøjssæt. Hvis du finder det nyttigt, så overvej at støtte udviklingen. Hver kop kaffe hjælper!",
     "buyMeCoffee": "Køb en kaffe til mig"
   },
   "footer": {
@@ -236,9 +237,13 @@
     "aboutUs": "Om os",
     "faqLink": "FAQ",
     "contactUs": "Kontakt os",
+    "tools": "Værktøjer",
+    "pdfConverter": "PDF-konverter",
+    "pdfSecurity": "PDF-sikkerhed",
+    "mergeSplit": "Flet og opdel PDF",
     "legal": "Juridisk",
-    "termsAndConditions": "Terms and Conditions",
-    "privacyPolicy": "Privacy Policy",
+    "termsAndConditions": "Vilkår og betingelser",
+    "privacyPolicy": "Privatlivspolitik",
     "followUs": "Følg os",
     "privacyShort": "Privatliv",
     "termsShort": "Vilkår"
@@ -251,12 +256,12 @@
     "howItWorks": "Sådan fungerer det:",
     "fileModeInstructions": [
       "Klik og træk ikonet for at ændre rækkefølge.",
-      "I \"Sider\"-feltet kan du angive intervaller (fx \"1-3, 5\").",
+      "I feltet \"Sider\" for hver fil kan du angive intervaller (fx \"1-3, 5\") for kun at flette de sider.",
       "Lad feltet stå tomt for at inkludere alle sider."
     ],
     "pageModeInstructions": [
       "Alle sider fra dine PDF’er vises nedenfor.",
-      "Træk og slip siderne for at lave den ønskede rækkefølge."
+      "Træk og slip de enkelte sideminiaturer for at skabe præcis den rækkefølge, du ønsker i din nye fil."
     ],
     "mergePdfs": "Flet PDF'er"
   },
@@ -290,41 +295,41 @@
     "mission": {
       "title": "Vores",
       "titleDim": "mission",
-      "description": "At give den mest komplette PDF-værktøjskasse uden betaling og med fuldt fokus på privatliv."
+      "description": "At levere den mest komplette PDF-værktøjskasse, der respekterer dit privatliv og aldrig beder om betaling. Vi mener, at vigtige dokumentværktøjer skal være tilgængelige for alle, overalt, uden barrierer."
     },
     "philosophy": {
       "label": "Vores kernefilosofi",
       "title": "Privatliv først. Altid.",
-      "description": "Alt sker lokalt i din browser. Dine dokumenter er 100% private."
+      "description": "Alle BentoPDF-værktøjer kører lokalt i din browser. Dine filer uploades aldrig, ingen andre ser dine dokumenter, og intet sporer, hvad du gør."
     },
     "whyBentopdf": {
       "title": "Hvorfor",
       "speed": {
         "title": "Bygget til hastighed",
-        "description": "Ingen ventetid på uploads eller downloads — alt behandles lokalt."
+        "description": "Der er intet upload- eller downloadtrin. Filerne behandles direkte i din browser med WebAssembly, så du venter aldrig på en server."
       },
       "free": {
         "title": "Fuldstændig gratis",
-        "description": "Ingen abonnementer, ingen skjulte gebyrer, ingen premiumlås."
+        "description": "Alle værktøjer er gratis, uden prøveperioder, abonnementer eller vandmærker. Udviklingen finansieres af kommercielle licenser."
       },
       "noAccount": {
         "title": "Ingen konto nødvendig",
-        "description": "Brug værktøjerne med det samme — helt uden login."
+        "description": "Åbn et hvilket som helst værktøj, og kom i gang med det samme. Ingen e-mail, ingen adgangskode, ingen personlige oplysninger."
       },
       "openSource": {
         "title": "Open source-ånd",
-        "description": "Bygget med gennemsigtighed og baseret på stærke open source-biblioteker."
+        "description": "Koden er offentlig på GitHub under AGPL-3.0, så du kan se præcis, hvordan dine filer håndteres. Den bygger på open source-projekter som PDF.js, pdf-lib, qpdf og LibreOffice."
       }
     },
     "cta": {
       "title": "Klar til at komme i gang?",
-      "description": "Prøv selv den hurtige og private PDF-oplevelse.",
+      "description": "Slut dig til tusindvis af brugere, der stoler på BentoPDF til deres daglige dokumentbehov. Oplev, hvilken forskel privatliv og ydeevne kan gøre.",
       "button": "Udforsk alle værktøjer"
     }
   },
   "contact": {
     "title": "Kontakt os",
-    "subtitle": "Vi vil gerne høre fra dig — spørgsmål, feedback eller ønsker er velkomne.",
+    "subtitle": "Vi vil meget gerne høre fra dig. Uanset om du har et spørgsmål, feedback eller et ønske om en funktion, så tøv ikke med at kontakte os.",
     "email": "Du kan kontakte os direkte på:"
   },
   "licensing": {

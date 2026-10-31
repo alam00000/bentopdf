@@ -10,6 +10,8 @@ import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import type { QpdfInstanceExtended } from '@/types';
 
+import { trText } from '../i18n/i18n.js';
+
 export async function repairPdfFile(file: File): Promise<Uint8Array | null> {
   const inputPath = '/input.pdf';
   const outputPath = '/repaired_form.pdf';
@@ -75,7 +77,13 @@ export async function repairPdf() {
 
     for (let i = 0; i < state.files.length; i++) {
       const file = state.files[i];
-      showLoader(`Repairing ${file.name} (${i + 1}/${state.files.length})...`);
+      showLoader(
+        trText('Repairing {{name}} ({{n}}/{{length}})...', {
+          name: file.name,
+          n: i + 1,
+          length: state.files.length,
+        })
+      );
 
       const repairedData = await repairPdfFile(file);
 
@@ -103,7 +111,10 @@ export async function repairPdf() {
       const failedList = failedRepairs.join(', ');
       showAlert(
         'Partial Success',
-        `Repaired ${successfulRepairs.length} file(s). Failed to repair: ${failedList}`
+        trText(
+          'Repaired {{length}} file(s). Failed to repair: {{failedList}}',
+          { length: successfulRepairs.length, failedList }
+        )
       );
     }
 

@@ -10,6 +10,8 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import JSZip from 'jszip';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 interface ExtractState {
   file: File | null;
   pdfDoc: PDFDocument | null;
@@ -22,11 +24,7 @@ const extractState: ExtractState = {
   totalPages: 0,
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -131,7 +129,10 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = `${formatBytes(extractState.file.size)} • ${extractState.totalPages} pages`;
+  metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+    size: formatBytes(extractState.file.size),
+    totalPages: extractState.totalPages,
+  });
 
   infoContainer.append(nameSpan, metaSpan);
 
@@ -197,7 +198,9 @@ async function extractPages() {
     hideLoader();
     showAlert(
       'Success',
-      `Extracted ${pagesToExtract.length} page(s) successfully!`,
+      trText('Extracted {{length}} page(s) successfully!', {
+        length: pagesToExtract.length,
+      }),
       'success',
       () => {
         resetState();

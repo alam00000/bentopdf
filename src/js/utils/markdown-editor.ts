@@ -1,4 +1,7 @@
-import MarkdownIt from 'markdown-it';
+import MarkdownIt, {
+  type MarkdownIt as MarkdownItParser,
+  type StateInline,
+} from 'markdown-it';
 import DOMPurify from 'dompurify';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
@@ -17,19 +20,14 @@ import go from 'highlight.js/lib/languages/go';
 import rust from 'highlight.js/lib/languages/rust';
 import yaml from 'highlight.js/lib/languages/yaml';
 import 'highlight.js/styles/github.css';
-import mermaid from 'mermaid';
-import sub from 'markdown-it-sub';
-import sup from 'markdown-it-sup';
-import footnote from 'markdown-it-footnote';
-import deflist from 'markdown-it-deflist';
-import abbr from 'markdown-it-abbr';
-import { full as emoji } from 'markdown-it-emoji';
-import ins from 'markdown-it-ins';
-import mark from 'markdown-it-mark';
-import taskLists from 'markdown-it-task-lists';
-import anchor from 'markdown-it-anchor';
-import tocDoneRight from 'markdown-it-toc-done-right';
-import { applyTranslations } from '../i18n/i18n';
+import type { Mermaid } from 'mermaid';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import { fullEmoji } from '@mdit/plugin-emoji';
+import { tasklist } from '@mdit/plugin-tasklist';
+import { katex as katexPlugin } from '@mdit/plugin-katex-slim';
+import { useMarkdownPlugins } from './markdown-plugins';
+import { applyTranslations, trHtml, trText } from '../i18n/i18n';
 import type {
   WindowWithLucide,
   WindowWithI18next,
@@ -77,6 +75,36 @@ export type { MarkdownItOptions } from '@/types';
 
 const MIN_TABLE_ZOOM = 0.6;
 const TABLE_BREAK_CLASS = 'md-table-break-anywhere';
+const PREVIEW_SANITIZE_OPTIONS = {
+  ADD_ATTR: ['target'],
+  FORBID_TAGS: ['style', 'form', 'dialog'],
+  FORBID_ATTR: ['popover'],
+};
+const ESCAPED_MATH: ReadonlyArray<[string, string, boolean]> = [
+  ['\\\\[', '\\\\]', true],
+  ['\\\\(', '\\\\)', false],
+  ['\\[', '\\]', true],
+];
+
+function escapedMath(state: StateInline, silent: boolean): boolean {
+  for (const [open, close, display] of ESCAPED_MATH) {
+    if (!state.src.startsWith(open, state.pos)) continue;
+    const start = state.pos + open.length;
+    const end = state.src.indexOf(close, start);
+    if (end <= start || end + close.length > state.posMax) return false;
+    if (!silent) {
+      const token = state.push(
+        display ? 'math_display_inline' : 'math_inline',
+        'math',
+        0
+      );
+      token.content = state.src.slice(start, end);
+    }
+    state.pos = end + close.length;
+    return true;
+  }
+  return false;
+}
 
 const DEFAULT_MARKDOWN = `# Welcome to BentoPDF Markdown Editor
 
@@ -131,6 +159,32 @@ def fibonacci(n):
 | Tables | ✓ | With alignment |
 | Emoji | ✓ | :white_check_mark: |
 | Mermaid | ✓ | Diagrams! |
+| Math | ✓ | LaTeX via KaTeX |
+
+## Math
+
+Inline math with dollar signs like $E = mc^2$, or with brackets like \\(a^2 + b^2 = c^2\\).
+
+Display math with double dollar signs:
+
+$$
+\\int_0^\\infty e^{-x^2}\\,dx = \\frac{\\sqrt{\\pi}}{2}
+$$
+
+Or with square brackets:
+
+\\[
+x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}
+\\]
+
+Or in a math code block:
+
+\`\`\`math
+\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}
+\\begin{pmatrix} x \\\\ y \\end{pmatrix}
+=
+\\begin{pmatrix} ax + by \\\\ cx + dy \\end{pmatrix}
+\`\`\`
 
 ## Mermaid Diagrams
 
@@ -265,13 +319,13 @@ Start editing to see the magic happen!
 
 export class MarkdownEditor {
   private container: HTMLElement;
-  private md: MarkdownIt;
+  private md: MarkdownItParser;
   private editor: HTMLTextAreaElement | null = null;
   private preview: HTMLElement | null = null;
   private onBack?: () => void;
   private syncScroll: boolean = false;
   private isSyncing: boolean = false;
-  private mermaidInitialized: boolean = false;
+  private mermaid: Promise<Mermaid> | null = null;
   private mdOptions: MarkdownItOptions = {
     html: true,
     breaks: false,
@@ -283,7 +337,6 @@ export class MarkdownEditor {
     this.container = container;
     this.onBack = options.onBack;
 
-    this.initMermaid();
     this.md = this.createMarkdownIt();
     this.configureLinkRenderer();
 
@@ -296,18 +349,26 @@ export class MarkdownEditor {
     }
   }
 
-  private initMermaid(): void {
-    if (!this.mermaidInitialized) {
-      mermaid.initialize({
-        startOnLoad: false,
-        theme: 'default',
-        securityLevel: 'strict',
-        htmlLabels: false,
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-      });
-      this.mermaidInitialized = true;
-    }
+  private loadMermaid(): Promise<Mermaid> {
+    this.mermaid ??= import('mermaid').then(
+      ({ default: mermaid }) => {
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'default',
+          look: 'classic',
+          securityLevel: 'strict',
+          htmlLabels: false,
+          fontFamily:
+            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        });
+        return mermaid;
+      },
+      (error: unknown) => {
+        this.mermaid = null;
+        throw error;
+      }
+    );
+    return this.mermaid;
   }
 
   private configureLinkRenderer(): void {
@@ -338,52 +399,6 @@ export class MarkdownEditor {
 
   private render(): void {
     this.container.innerHTML = `
-      <div class="md-editor light-mode">
-        <div class="md-editor-wrapper">
-          <div class="md-editor-header">
-            <div class="md-editor-actions">
-              <input type="file" accept=".md,.markdown,.txt" id="mdFileInput" style="display: none;" />
-              <button class="md-editor-btn md-editor-btn-secondary" id="mdUpload">
-                <i data-lucide="upload"></i>
-                <span data-i18n="tools:markdownToPdf.btnUpload">Select</span>
-              </button>
-              <div class="theme-toggle">
-                <i data-lucide="moon" width="16" height="16"></i>
-                <div class="theme-toggle-slider active" id="themeToggle"></div>
-                <i data-lucide="sun" width="16" height="16"></i>
-              </div>
-              <button class="md-editor-btn md-editor-btn-secondary" id="mdSyncScroll" title="Toggle sync scroll">
-                <i data-lucide="git-compare"></i>
-                <span data-i18n="tools:markdownToPdf.btnSyncScroll">Sync Scroll</span>
-              </button>
-              <button class="md-editor-btn md-editor-btn-secondary" id="mdSettings">
-                <i data-lucide="settings"></i>
-                <span data-i18n="tools:markdownToPdf.btnSettings">Settings</span>
-              </button>
-              <button class="md-editor-btn md-editor-btn-primary" id="mdExport">
-                <i data-lucide="download"></i>
-                <span data-i18n="tools:markdownToPdf.btnExportPdf">Export PDF</span>
-              </button>
-            </div>
-          </div>
-          
-          <div class="md-editor-main">
-            <div class="md-editor-pane">
-              <div class="md-editor-pane-header">
-                <span data-i18n="tools:markdownToPdf.paneMarkdown">Markdown</span>
-              </div>
-              <textarea class="md-editor-textarea" id="mdTextarea" spellcheck="false"></textarea>
-            </div>
-            <div class="md-editor-pane">
-              <div class="md-editor-pane-header">
-                <span data-i18n="tools:markdownToPdf.panePreview">Preview</span>
-              </div>
-              <div class="md-editor-preview" id="mdPreview"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
       <!-- Settings Modal (hidden by default) -->
       <div class="md-editor-modal-overlay" id="mdSettingsModal" style="display: none;">
         <div class="md-editor-modal">
@@ -422,6 +437,52 @@ export class MarkdownEditor {
           </div>
         </div>
       </div>
+      <div class="md-editor light-mode">
+        <div class="md-editor-wrapper">
+          <div class="md-editor-header">
+            <div class="md-editor-actions">
+              <input type="file" accept=".md,.markdown,.txt" id="mdFileInput" style="display: none;" />
+              <button class="md-editor-btn md-editor-btn-secondary" id="mdUpload">
+                <i data-lucide="upload"></i>
+                <span data-i18n="tools:markdownToPdf.btnUpload">Select</span>
+              </button>
+              <div class="theme-toggle">
+                <i data-lucide="moon" width="16" height="16"></i>
+                <div class="theme-toggle-slider active" id="themeToggle"></div>
+                <i data-lucide="sun" width="16" height="16"></i>
+              </div>
+              <button class="md-editor-btn md-editor-btn-secondary" id="mdSyncScroll" title="${trHtml('Toggle sync scroll')}">
+                <i data-lucide="git-compare"></i>
+                <span data-i18n="tools:markdownToPdf.btnSyncScroll">Sync Scroll</span>
+              </button>
+              <button class="md-editor-btn md-editor-btn-secondary" id="mdSettings">
+                <i data-lucide="settings"></i>
+                <span data-i18n="tools:markdownToPdf.btnSettings">Settings</span>
+              </button>
+              <button class="md-editor-btn md-editor-btn-primary" id="mdExport">
+                <i data-lucide="download"></i>
+                <span data-i18n="tools:markdownToPdf.btnExportPdf">Export PDF</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="md-editor-main">
+            <div class="md-editor-pane">
+              <div class="md-editor-pane-header">
+                <span data-i18n="tools:markdownToPdf.paneMarkdown">Markdown</span>
+              </div>
+              <textarea class="md-editor-textarea" id="mdTextarea" spellcheck="false"></textarea>
+            </div>
+            <div class="md-editor-pane">
+              <div class="md-editor-pane-header">
+                <span data-i18n="tools:markdownToPdf.panePreview">Preview</span>
+              </div>
+              <div class="md-editor-preview" id="mdPreview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     `;
 
     this.editor = document.getElementById('mdTextarea') as HTMLTextAreaElement;
@@ -646,9 +707,9 @@ export class MarkdownEditor {
     }
   }
 
-  private createMarkdownIt(): MarkdownIt {
+  private createMarkdownIt(): MarkdownItParser {
     // Use preset if commonmark or zero
-    let md: MarkdownIt;
+    let md: MarkdownItParser;
     if (this.currentPreset === 'commonmark') {
       md = new MarkdownIt('commonmark');
     } else if (this.currentPreset === 'zero') {
@@ -676,17 +737,26 @@ export class MarkdownEditor {
 
     // Apply plugins only for default preset (plugins may not work well with commonmark/zero)
     if (this.currentPreset === 'default') {
-      md.use(sub) // Subscript: ~text~ -> <sub>text</sub>
-        .use(sup) // Superscript: ^text^ -> <sup>text</sup>
-        .use(footnote) // Footnotes: [^1] and [^1]: footnote text
-        .use(deflist) // Definition lists
-        .use(abbr) // Abbreviations: *[abbr]: full text
-        .use(emoji) // Emoji: :smile: -> 😄
-        .use(ins) // Inserted text: ++text++ -> <ins>text</ins>
-        .use(mark) // Marked text: ==text== -> <mark>text</mark>
-        .use(taskLists, { enabled: true, label: false }) // Task lists: - [x] done
-        .use(anchor, { permalink: false }) // Header anchors
-        .use(tocDoneRight); // Table of contents: ${toc}
+      useMarkdownPlugins(md)
+        .use(fullEmoji) // Emoji: :smile: -> 😄
+        .use(tasklist, {
+          disabled: false,
+          label: false,
+          containerClass: 'contains-task-list',
+        }) // Task lists: - [x] done
+        .use(katexPlugin, {
+          delimiters: 'all' as const,
+          mathFence: true,
+          throwOnError: false,
+        });
+      md.inline.ruler.before('escape', 'math_escaped', escapedMath);
+      md.renderer.rules.math_display_inline = (tokens, idx) =>
+        katex.renderToString(tokens[idx].content, {
+          displayMode: true,
+          throwOnError: false,
+          strict: (code: string) =>
+            code === 'newLineInDisplayMode' ? 'ignore' : 'warn',
+        });
     }
 
     return md;
@@ -703,9 +773,7 @@ export class MarkdownEditor {
 
     const markdown = this.editor.value;
     const html = this.md.render(markdown);
-    this.preview.innerHTML = DOMPurify.sanitize(html, {
-      ADD_ATTR: ['target'],
-    });
+    this.preview.innerHTML = DOMPurify.sanitize(html, PREVIEW_SANITIZE_OPTIONS);
     this.renderMermaidDiagrams();
   }
 
@@ -724,6 +792,7 @@ export class MarkdownEditor {
       if (pre && code.trim()) {
         try {
           const id = `mermaid-diagram-${i}-${Date.now()}`;
+          const mermaid = await this.loadMermaid();
           const { svg } = await mermaid.render(id, code.trim());
 
           const wrapper = document.createElement('div');
@@ -738,7 +807,9 @@ export class MarkdownEditor {
           console.error('Mermaid rendering error:', error);
           const errorDiv = document.createElement('div');
           errorDiv.className = 'mermaid-error';
-          errorDiv.textContent = `Mermaid Error: ${(error as Error).message}`;
+          errorDiv.textContent = trText('Mermaid Error: {{error}}', {
+            error: (error as Error).message,
+          });
           pre.replaceWith(errorDiv);
         }
       }
@@ -754,12 +825,6 @@ export class MarkdownEditor {
 
   public getContent(): string {
     return this.editor?.value || '';
-  }
-
-  public getHtml(): string {
-    return DOMPurify.sanitize(this.md.render(this.getContent()), {
-      ADD_ATTR: ['target'],
-    });
   }
 
   private fitTablesToPage(printing: boolean): void {
@@ -785,251 +850,6 @@ export class MarkdownEditor {
   private exportPdf(): void {
     // Use browser's native print functionality
     window.print();
-  }
-
-  private getStyledHtml(): string {
-    const content = this.getHtml();
-
-    return `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #333;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
-      font-weight: 600;
-      line-height: 1.25;
-    }
-    h1 { font-size: 2em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
-    h2 { font-size: 1.5em; border-bottom: 1px solid #eee; padding-bottom: 0.3em; }
-    h3 { font-size: 1.25em; }
-    h4 { font-size: 1em; }
-    p { margin: 1em 0; }
-    a { color: #0366d6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    code {
-      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-      font-size: 0.9em;
-      background: #f6f8fa;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-    }
-    pre {
-      background: #f6f8fa;
-      padding: 16px;
-      overflow: auto;
-      border-radius: 6px;
-      line-height: 1.45;
-    }
-    pre code {
-      background: none;
-      padding: 0;
-    }
-    blockquote {
-      margin: 1em 0;
-      padding: 0 1em;
-      color: #6a737d;
-      border-left: 4px solid #dfe2e5;
-    }
-    ul, ol {
-      margin: 1em 0;
-      padding-left: 2em;
-    }
-    li { margin: 0.25em 0; }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin: 1em 0;
-    }
-    th, td {
-      border: 1px solid #dfe2e5;
-      padding: 8px 12px;
-      text-align: left;
-    }
-    th {
-      background: #f6f8fa;
-      font-weight: 600;
-    }
-    tr:nth-child(even) { background: #f6f8fa; }
-    hr {
-      border: none;
-      border-top: 1px solid #eee;
-      margin: 2em 0;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-    /* Syntax highlighting - GitHub style */
-    .hljs {
-      color: #24292e;
-      background: #f6f8fa;
-    }
-    .hljs-comment,
-    .hljs-quote {
-      color: #6a737d;
-      font-style: italic;
-    }
-    .hljs-keyword,
-    .hljs-selector-tag,
-    .hljs-subst {
-      color: #d73a49;
-    }
-    .hljs-number,
-    .hljs-literal,
-    .hljs-variable,
-    .hljs-template-variable,
-    .hljs-tag .hljs-attr {
-      color: #005cc5;
-    }
-    .hljs-string,
-    .hljs-doctag {
-      color: #032f62;
-    }
-    .hljs-title,
-    .hljs-section,
-    .hljs-selector-id {
-      color: #6f42c1;
-      font-weight: bold;
-    }
-    .hljs-type,
-    .hljs-class .hljs-title {
-      color: #6f42c1;
-    }
-    .hljs-tag,
-    .hljs-name,
-    .hljs-attribute {
-      color: #22863a;
-    }
-    .hljs-regexp,
-    .hljs-link {
-      color: #032f62;
-    }
-    .hljs-symbol,
-    .hljs-bullet {
-      color: #e36209;
-    }
-    .hljs-built_in,
-    .hljs-builtin-name {
-      color: #005cc5;
-    }
-    .hljs-meta {
-      color: #6a737d;
-      font-weight: bold;
-    }
-    .hljs-deletion {
-      color: #b31d28;
-      background-color: #ffeef0;
-    }
-    .hljs-addition {
-      color: #22863a;
-      background-color: #f0fff4;
-    }
-    /* Plugin styles */
-    mark {
-      background-color: #fff3cd;
-      padding: 0.1em 0.2em;
-      border-radius: 2px;
-    }
-    ins {
-      text-decoration: none;
-      background-color: #d4edda;
-      padding: 0.1em 0.2em;
-      border-radius: 2px;
-    }
-    sub, sup {
-      font-size: 0.75em;
-    }
-    .task-list-item {
-      list-style-type: none;
-      margin-left: -1.5em;
-    }
-    .task-list-item input[type="checkbox"] {
-      margin-right: 0.5em;
-    }
-    .footnotes {
-      margin-top: 2em;
-      padding-top: 1em;
-      border-top: 1px solid #eee;
-      font-size: 0.9em;
-    }
-    .footnotes-sep {
-      display: none;
-    }
-    .footnote-ref {
-      font-size: 0.75em;
-      vertical-align: super;
-    }
-    .footnote-backref {
-      font-size: 0.75em;
-      margin-left: 0.25em;
-    }
-    dl {
-      margin: 1em 0;
-    }
-    dt {
-      font-weight: 600;
-      margin-top: 1em;
-    }
-    dd {
-      margin-left: 2em;
-      margin-top: 0.25em;
-      color: #6a737d;
-    }
-    abbr {
-      text-decoration: underline dotted;
-      cursor: help;
-    }
-    .table-of-contents {
-      background: #f6f8fa;
-      padding: 1em 1.5em;
-      border-radius: 6px;
-      margin: 1em 0;
-    }
-    .table-of-contents ul {
-      margin: 0;
-      padding-left: 1.5em;
-    }
-    .table-of-contents li {
-      margin: 0.25em 0;
-    }
-    /* Mermaid diagrams */
-    .mermaid-diagram {
-      display: flex;
-      justify-content: center;
-      margin: 1.5em 0;
-      padding: 1em;
-      background: #f6f8fa;
-      border-radius: 6px;
-    }
-    .mermaid-diagram svg {
-      max-width: 100%;
-      height: auto;
-    }
-    .mermaid-error {
-      color: #cb2431;
-      background: #ffeef0;
-      padding: 1em;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 0.9em;
-    }
-  </style>
-</head>
-<body>
-${content}
-</body>
-</html>`;
   }
 
   private applyI18n(): void {

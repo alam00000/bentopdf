@@ -27,7 +27,22 @@
     "name": "دمج PDF",
     "subtitle": "دمج عدة ملفات PDF في ملف واحد. يحافظ على الإشارات المرجعية.",
     "retainPageLabels": "الاحتفاظ بتسميات الصفحات الأصلية لكل ملف",
-    "retainPageLabelsHint": "غير مفعّل (افتراضي): يستخدم ملف PDF المدمج ترقيمًا طبيعيًا من 1 إلى N. مفعّل: يتم الاحتفاظ بتسميات الصفحات الأصلية لكل ملف (قد ينتج عن ذلك تسميات مكررة)."
+    "retainPageLabelsHint": "غير مفعّل (افتراضي): يستخدم ملف PDF المدمج ترقيمًا طبيعيًا من 1 إلى N. مفعّل: يتم الاحتفاظ بتسميات الصفحات الأصلية لكل ملف (قد ينتج عن ذلك تسميات مكررة).",
+    "removeDuplicateFonts": "إزالة الخطوط المكررة",
+    "alert": {
+      "thumbnailError": "فشل عرض الصور المصغرة للصفحات",
+      "noSelection": "لم يتم تحديد أي ملفات أو صفحات للدمج.",
+      "mergeSuccess": "تم دمج ملفات PDF بنجاح!",
+      "mergeFailed": "فشل دمج ملفات PDF.",
+      "mergeError": "فشل دمج ملفات PDF. يرجى التأكد من أن جميع الملفات صالحة وغير محمية بكلمة مرور.",
+      "workerError": "حدث خطأ غير متوقع في عملية الدمج.",
+      "loadError": "فشل تحميل ملف PDF واحد أو أكثر"
+    },
+    "loader": {
+      "renderingPreviews": "جارٍ عرض معاينات الصفحات...",
+      "merging": "جارٍ دمج ملفات PDF...",
+      "loadingDocuments": "جارٍ تحميل مستندات PDF..."
+    }
   },
   "splitPdf": {
     "name": "تقسيم PDF",
@@ -91,7 +106,7 @@
     "tipRedoZ": "إعادة (⇧⌘Z)",
     "tipFileDetails": "تفاصيل الملف",
     "tipEditExistingContent": "تحرير المحتوى الحالي",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "ما تتأثر به أداة التحرير — ضيّق النطاق في الصفحات المزدحمة",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "ما تتأثر به أداة التحرير: ضيّق النطاق في الصفحات المزدحمة",
     "tipClickThePageToAddATextBox": "انقر على الصفحة لإضافة مربع نص",
     "tipSpellCheckLanguage": "لغة التدقيق الإملائي",
     "tipFindAndReplace": "بحث واستبدال",
@@ -503,7 +518,8 @@
       "noFile": "لا يوجد ملف",
       "noFileExplanation": "يرجى تحميل ملف PDF أولاً.",
       "conversionSuccess": "تم تحويل PDF إلى TIFF بنجاح!",
-      "conversionError": "فشل تحويل PDF إلى TIFF. قد يكون الملف تالفًا."
+      "conversionError": "فشل تحويل PDF إلى TIFF. قد يكون الملف تالفًا.",
+      "conversionOutOfMemory": "نفدت ذاكرة المتصفح أثناء التحويل. جرّب قيمة DPI أقل، أو ألغِ تحديد خيار TIFF متعدد الصفحات لتحويل الصفحات واحدة تلو الأخرى."
     }
   },
   "pdfToCbz": {
@@ -990,8 +1006,7 @@
     "subtitle": "استخراج النص من ملفات PDF وحفظه كنص عادي (.txt). يدعم عدة ملفات.",
     "noteLabel": "ملاحظة:",
     "noteText": "تعمل هذه الأداة فقط مع ملفات PDF التي تم إنشاؤها رقميًا. للمستندات الممسوحة ضوئيًا أو ملفات PDF القائمة على الصور، استخدم أداة OCR PDF بدلاً من ذلك.",
-    "convertButton": "استخراج النص",
-    "note": "تعمل هذه الأداة فقط مع ملفات PDF المنشأة رقميًا. للمستندات الممسوحة ضوئيًا أو ملفات PDF المبنية على الصور، استخدم أداة التعرف الضوئي."
+    "convertButton": "استخراج النص"
   },
   "digitalSignPdf": {
     "name": "توقيع رقمي لـ PDF",
@@ -1189,7 +1204,7 @@
       "workerError": "خطأ في العامل: {{message}}",
       "alternateMergeWorkerError": "خطأ في عامل الدمج المتناوب: {{message}}",
       "noPdfFilesUploaded": "لم يتم تحميل ملفات PDF في عقدة إدخال PDF",
-      "failedToLoadFile": "فشل تحميل \"{{file}}\" — قد يكون الملف تالفًا",
+      "failedToLoadFile": "فشل تحميل \"{{file}}\"، قد يكون الملف تالفًا",
       "noImagesUploaded": "لم يتم تحميل صور في عقدة إدخال الصور",
       "noWordDocsUploaded": "لم يتم تحميل مستندات في عقدة إدخال Word",
       "noExcelUploaded": "لم يتم تحميل جداول بيانات في عقدة إدخال Excel",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "بالتأكيد! تتم جميع المعالجة في متصفحك. لا تغادر ملفاتك جهازك أبداً، مما يضمن خصوصية كاملة."
   },
   "unlockPdf": {
-    "name": "فك تشفير PDF",
+    "name": "إلغاء قفل PDF",
     "subtitle": "فتح PDF بإزالة حماية كلمة المرور."
   },
   "protectPdf": {
-    "name": "تشفير PDF",
+    "name": "حماية PDF",
     "subtitle": "قفل PDF بإضافة كلمة مرور."
   }
 }

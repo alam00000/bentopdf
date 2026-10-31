@@ -9,6 +9,8 @@ import {
 } from '../utils/helpers.js';
 import type { EmailAttachment, ParsedEmail, EmailRenderOptions } from '@/types';
 
+import { trText } from '../i18n/i18n.js';
+
 type MsgReaderCtor = typeof MsgReaderDefault;
 const MsgReader: MsgReaderCtor =
   (MsgReaderDefault as unknown as { default?: MsgReaderCtor }).default ??
@@ -333,6 +335,6 @@ export async function parseEmailFile(file: File): Promise<ParsedEmail> {
   } else if (ext === 'msg') {
     return parseMsgFile(file);
   } else {
-    throw new Error(`Unsupported file type: .${ext}`);
+    throw new Error(trText('Unsupported file type: .{{ext}}', { ext }));
   }
 }

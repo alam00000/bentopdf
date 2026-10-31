@@ -9,7 +9,8 @@
     "openMainMenu": "メインメニューを開く",
     "language": "言語",
     "searchLanguage": "言語を検索…",
-    "noLanguagesFound": "言語が見つかりません"
+    "noLanguagesFound": "言語が見つかりません",
+    "breadcrumb": "パンくずリスト"
   },
   "donation": {
     "message": "BentoPDFは好きですか？無料かつオープンソースを維持するためにご協力ください！",
@@ -236,6 +237,10 @@
     "aboutUs": "当社について",
     "faqLink": "よくある質問",
     "contactUs": "お問い合わせ",
+    "tools": "ツール",
+    "pdfConverter": "PDF変換",
+    "pdfSecurity": "PDFセキュリティ",
+    "mergeSplit": "PDFの結合と分割",
     "legal": "法的情報",
     "termsAndConditions": "利用規約",
     "privacyPolicy": "プライバシーポリシー",

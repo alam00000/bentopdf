@@ -20,14 +20,29 @@
   },
   "convertToPdf": "Konvertera till PDF",
   "pdfMultiTool": {
-    "name": "PDF multiverktyg",
+    "name": "PDF-multiverktyg",
     "subtitle": "Sammanfoga, dela, organisera, ta bort, rotera, lägg till tomma sidor, extrahera och duplicera i ett enhetligt gränssnitt."
   },
   "mergePdf": {
     "name": "Sammanfoga PDF",
     "subtitle": "Kombinera flera PDF-filer till en fil. Bevarar bokmärken.",
     "retainPageLabels": "Behåll de ursprungliga sidetiketterna från varje fil",
-    "retainPageLabelsHint": "Av (standard): den sammanslagna PDF:en använder naturlig sidnumrering 1–N. På: varje fils ursprungliga sidetiketter bevaras (kan ge duplicerade etiketter)."
+    "retainPageLabelsHint": "Av (standard): den sammanslagna PDF:en använder naturlig sidnumrering 1–N. På: varje fils ursprungliga sidetiketter bevaras (kan ge duplicerade etiketter).",
+    "removeDuplicateFonts": "Ta bort dubbletter av typsnitt",
+    "alert": {
+      "thumbnailError": "Kunde inte rendera sidminiatyrer",
+      "noSelection": "Inga filer eller sidor har valts för sammanfogning.",
+      "mergeSuccess": "PDF-filerna har sammanfogats!",
+      "mergeFailed": "Kunde inte sammanfoga PDF-filerna.",
+      "mergeError": "Kunde inte sammanfoga PDF-filerna. Kontrollera att alla filer är giltiga och inte lösenordsskyddade.",
+      "workerError": "Ett oväntat fel uppstod vid sammanfogningen.",
+      "loadError": "Kunde inte läsa in en eller flera PDF-filer"
+    },
+    "loader": {
+      "renderingPreviews": "Renderar förhandsvisningar av sidor...",
+      "merging": "Sammanfogar PDF-filer...",
+      "loadingDocuments": "Läser in PDF-dokument..."
+    }
   },
   "splitPdf": {
     "name": "Dela PDF",
@@ -503,7 +518,8 @@
       "noFile": "Ingen fil",
       "noFileExplanation": "Ladda upp en PDF-fil först.",
       "conversionSuccess": "PDF konverterad till TIFF!",
-      "conversionError": "Kunde inte konvertera PDF till TIFF. Filen kan vara skadad."
+      "conversionError": "Kunde inte konvertera PDF till TIFF. Filen kan vara skadad.",
+      "conversionOutOfMemory": "Webbläsaren fick slut på minne under konverteringen. Prova en lägre DPI, eller avmarkera alternativet för flersidig TIFF för att konvertera en sida i taget."
     }
   },
   "pdfToCbz": {
@@ -684,7 +700,7 @@
     "subtitle": "Infoga en tom sida var som helst i din PDF."
   },
   "reversePages": {
-    "name": "Omvänd sidor",
+    "name": "Vänd sidordning",
     "subtitle": "Vänd ordningen på alla sidor i ditt dokument."
   },
   "rotatePdf": {
@@ -692,7 +708,7 @@
     "subtitle": "Vrid sidor i 90-graderssteg."
   },
   "rotateCustom": {
-    "name": "Rotera efter anpassade grader",
+    "name": "Rotera med valfri vinkel",
     "subtitle": "Rotera sidor efter valfri vinkel."
   },
   "nUpPdf": {
@@ -700,7 +716,7 @@
     "subtitle": "Ordna flera sidor på ett enda ark."
   },
   "combineToSinglePage": {
-    "name": "Kombinera till enskild sida",
+    "name": "Kombinera till en sida",
     "subtitle": "Sy ihop alla sidor till en kontinuerlig rullning."
   },
   "viewMetadata": {
@@ -768,7 +784,7 @@
     "subtitle": "Standardisera alla sidor till en enhetlig storlek."
   },
   "linearizePdf": {
-    "name": "Linearizera PDF",
+    "name": "Linjärisera PDF",
     "subtitle": "Optimera PDF för snabb webbvisning."
   },
   "pageDimensions": {
@@ -990,8 +1006,7 @@
     "subtitle": "Extrahera text från PDF-filer och spara som vanlig text (.txt). Stöder flera filer.",
     "noteLabel": "Obs:",
     "noteText": "Detta verktyg fungerar ENDAST med digitalt skapade PDF:er. För skannade dokument eller bildbaserade PDF:er, använd istället vårt OCR PDF-verktyg.",
-    "convertButton": "Extrahera text",
-    "note": "Detta verktyg fungerar ENDAST med digitalt skapade PDF:er. För scannade dokument eller bildbaserade PDF:er, använd vårt OCR PDF-verktyg istället."
+    "convertButton": "Extrahera text"
   },
   "digitalSignPdf": {
     "name": "Digital signatur PDF",
@@ -1189,7 +1204,7 @@
       "workerError": "Worker-fel: {{message}}",
       "alternateMergeWorkerError": "Fel i växelvis sammanslagnings-worker: {{message}}",
       "noPdfFilesUploaded": "Inga PDF-filer uppladdade i PDF Input-noden",
-      "failedToLoadFile": "Kunde inte läsa in \"{{file}}\" — filen kan vara skadad",
+      "failedToLoadFile": "Kunde inte läsa in \"{{file}}\", filen kan vara skadad",
       "noImagesUploaded": "Inga bilder uppladdade i Image Input-noden",
       "noWordDocsUploaded": "Inga dokument uppladdade i Word Input-noden",
       "noExcelUploaded": "Inga kalkylblad uppladdade i Excel Input-noden",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "Absolut! All bearbetning sker i din webbläsare. Dina filer lämnar aldrig din enhet, vilket garanterar fullständig integritet."
   },
   "unlockPdf": {
-    "name": "Dekryptera PDF",
+    "name": "Lås upp PDF",
     "subtitle": "Lås upp PDF genom att ta bort lösenordsskydd."
   },
   "protectPdf": {
-    "name": "Kryptera PDF",
+    "name": "Skydda PDF",
     "subtitle": "Lås din PDF genom att lägga till ett lösenord."
   }
 }

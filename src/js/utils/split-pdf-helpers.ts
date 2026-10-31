@@ -1,5 +1,7 @@
 import type { QpdfInstanceExtended } from '@/types';
 
+import { trText } from '../i18n/i18n.js';
+
 export function parseRangeGroups(
   input: string,
   totalPages: number
@@ -131,11 +133,15 @@ export function extractPagesWithQpdf(
   ]);
   try {
     if (exitCode !== 0 && exitCode !== 3) {
-      throw new Error(`Failed to extract pages (qpdf exit code ${exitCode}).`);
+      throw new Error(
+        trText('Failed to extract pages (qpdf exit code {{exitCode}}).', {
+          exitCode,
+        })
+      );
     }
     const bytes = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
     if (!bytes || bytes.length === 0) {
-      throw new Error('Page extraction produced an empty PDF.');
+      throw new Error(trText('Page extraction produced an empty PDF.'));
     }
     return bytes;
   } finally {

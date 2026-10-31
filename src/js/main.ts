@@ -18,6 +18,7 @@ import {
   rewriteLinks,
   injectLanguageSwitcher,
   t,
+  trText,
 } from './i18n/index.js';
 import {
   loadRuntimeConfig,
@@ -44,6 +45,15 @@ const FAVORITE_STAR_PATHS = [
 ] as const;
 declare const __BRAND_NAME__: string;
 
+const adsSection = document.getElementById('ads-section');
+if (
+  adsSection &&
+  (['bentopdf.com', 'www.bentopdf.com'].includes(window.location.hostname) ||
+    import.meta.env.DEV)
+) {
+  adsSection.hidden = false;
+}
+
 const init = async () => {
   await initI18n();
   await loadRuntimeConfig();
@@ -51,13 +61,16 @@ const init = async () => {
   applyTranslations();
 
   if (isCurrentPageDisabled()) {
-    document.title = t('disabledTool.title') || 'Tool Unavailable';
+    document.title = t('disabledTool.title') || trText('Tool Unavailable');
     const main = document.querySelector('main') || document.body;
-    const heading = t('disabledTool.heading') || 'This tool has been disabled';
+    const heading =
+      t('disabledTool.heading') || trText('This tool has been disabled');
     const message =
       t('disabledTool.message') ||
-      'This tool is not available in your deployment. Contact your administrator for more information.';
-    const backHome = t('disabledTool.backHome') || 'Back to Home';
+      trText(
+        'This tool is not available in your deployment. Contact your administrator for more information.'
+      );
+    const backHome = t('disabledTool.backHome') || trText('Back to Home');
     main.innerHTML = `
       <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <i class="ph ph-prohibit text-6xl text-gray-500 mb-4"></i>
@@ -126,7 +139,10 @@ const init = async () => {
       });
 
       const brandName = __BRAND_NAME__ || 'BentoPDF';
-      document.title = `${brandName} - ${t('simpleMode.title')}`;
+      document.title = trText('{{brandName}} - {{title}}', {
+        brandName,
+        title: t('simpleMode.title'),
+      });
 
       const toolsHeader = document.getElementById('tools-header');
       if (toolsHeader) {
@@ -254,6 +270,8 @@ const init = async () => {
     'Repair PDF': 'tools:repairPdf',
     'Encrypt PDF': 'tools:encryptPdf',
     'Sanitize PDF': 'tools:sanitizePdf',
+    'Protect PDF': 'tools:protectPdf',
+    'Unlock PDF': 'tools:unlockPdf',
     'Decrypt PDF': 'tools:decryptPdf',
     'Flatten PDF': 'tools:flattenPdf',
     'Remove Metadata': 'tools:removeMetadata',
@@ -1204,28 +1222,52 @@ const init = async () => {
   // Reserved shortcuts that commonly conflict with browser/OS functions
   const RESERVED_SHORTCUTS: Record<string, { mac?: string; windows?: string }> =
     {
-      'mod+w': { mac: 'Closes tab', windows: 'Closes tab' },
-      'mod+t': { mac: 'Opens new tab', windows: 'Opens new tab' },
-      'mod+n': { mac: 'Opens new window', windows: 'Opens new window' },
+      'mod+w': { mac: trText('Closes tab'), windows: trText('Closes tab') },
+      'mod+t': {
+        mac: trText('Opens new tab'),
+        windows: trText('Opens new tab'),
+      },
+      'mod+n': {
+        mac: trText('Opens new window'),
+        windows: trText('Opens new window'),
+      },
       'mod+shift+n': {
-        mac: 'Opens incognito window',
-        windows: 'Opens incognito window',
+        mac: trText('Opens incognito window'),
+        windows: trText('Opens incognito window'),
       },
-      'mod+q': { mac: 'Quits application (cannot be overridden)' },
-      'mod+m': { mac: 'Minimizes window' },
-      'mod+h': { mac: 'Hides window' },
-      'mod+r': { mac: 'Reloads page', windows: 'Reloads page' },
-      'mod+shift+r': { mac: 'Hard reloads page', windows: 'Hard reloads page' },
-      'mod+l': { mac: 'Focuses address bar', windows: 'Focuses address bar' },
-      'mod+d': { mac: 'Bookmarks page', windows: 'Bookmarks page' },
+      'mod+q': { mac: trText('Quits application (cannot be overridden)') },
+      'mod+m': { mac: trText('Minimizes window') },
+      'mod+h': { mac: trText('Hides window') },
+      'mod+r': { mac: trText('Reloads page'), windows: trText('Reloads page') },
+      'mod+shift+r': {
+        mac: trText('Hard reloads page'),
+        windows: trText('Hard reloads page'),
+      },
+      'mod+l': {
+        mac: trText('Focuses address bar'),
+        windows: trText('Focuses address bar'),
+      },
+      'mod+d': {
+        mac: trText('Bookmarks page'),
+        windows: trText('Bookmarks page'),
+      },
       'mod+shift+t': {
-        mac: 'Reopens closed tab',
-        windows: 'Reopens closed tab',
+        mac: trText('Reopens closed tab'),
+        windows: trText('Reopens closed tab'),
       },
-      'mod+shift+w': { mac: 'Closes window', windows: 'Closes window' },
-      'mod+tab': { mac: 'Switches tabs', windows: 'Switches apps' },
-      'alt+f4': { windows: 'Closes window' },
-      'ctrl+tab': { mac: 'Switches tabs', windows: 'Switches tabs' },
+      'mod+shift+w': {
+        mac: trText('Closes window'),
+        windows: trText('Closes window'),
+      },
+      'mod+tab': {
+        mac: trText('Switches tabs'),
+        windows: trText('Switches apps'),
+      },
+      'alt+f4': { windows: trText('Closes window') },
+      'ctrl+tab': {
+        mac: trText('Switches tabs'),
+        windows: trText('Switches tabs'),
+      },
     };
 
   function getReservedShortcutWarning(

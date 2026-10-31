@@ -9,7 +9,8 @@
     "openMainMenu": "Abrir menu principal",
     "language": "Idioma",
     "searchLanguage": "Buscar idioma…",
-    "noLanguagesFound": "Nenhum idioma encontrado"
+    "noLanguagesFound": "Nenhum idioma encontrado",
+    "breadcrumb": "Trilha de navegação"
   },
   "donation": {
     "message": "Adora o BentoPDF? Ajude-nos a mantê-lo gratuito e de código aberto!",
@@ -212,7 +213,7 @@
     },
     "browserBased": {
       "question": "Como o processamento no navegador me mantém seguro?",
-      "answer": "Ao rodar no seu dispositivo, eliminamos riscos de ataques a servidores ou vazamentos de dados de terceiros. Seus arquivos permanecem seus — sempre."
+      "answer": "Ao rodar no seu dispositivo, eliminamos riscos de ataques a servidores ou vazamentos de dados de terceiros. Seus arquivos permanecem seus, sempre."
     },
     "analytics": {
       "question": "Vocês usam cookies ou rastreamento?",
@@ -236,6 +237,10 @@
     "aboutUs": "Sobre Nós",
     "faqLink": "FAQ",
     "contactUs": "Contato",
+    "tools": "Ferramentas",
+    "pdfConverter": "Conversor de PDF",
+    "pdfSecurity": "Segurança de PDF",
+    "mergeSplit": "Juntar e dividir PDF",
     "legal": "Jurídico",
     "termsAndConditions": "Termos e Condições",
     "privacyPolicy": "Política de Privacidade",

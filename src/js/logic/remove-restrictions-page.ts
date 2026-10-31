@@ -8,6 +8,8 @@ import {
 import { icons, createIcons } from 'lucide';
 import { RemoveRestrictionsState, QpdfInstanceExtended } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: RemoveRestrictionsState = {
   file: null,
 };
@@ -105,17 +107,17 @@ async function removeRestrictions() {
 
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Initializing...';
+    if (loaderText) loaderText.textContent = trText('Initializing...');
 
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = 'Reading PDF...';
+    if (loaderText) loaderText.textContent = trText('Reading PDF...');
     const fileBuffer = await readFileAsArrayBuffer(pageState.file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
     qpdf.FS.writeFile(inputPath, uint8Array);
 
-    if (loaderText) loaderText.textContent = 'Removing restrictions...';
+    if (loaderText) loaderText.textContent = trText('Removing restrictions...');
 
     const args = [inputPath];
 
@@ -132,7 +134,9 @@ async function removeRestrictions() {
       const qpdfMsg = qpdfError instanceof Error ? qpdfError.message : '';
       if (qpdfMsg.includes('password') || qpdfMsg.includes('encrypt')) {
         throw new Error(
-          'Failed to remove restrictions. The PDF may require the correct owner password.',
+          trText(
+            'Failed to remove restrictions. The PDF may require the correct owner password.'
+          ),
           { cause: qpdfError }
         );
       }
@@ -143,11 +147,11 @@ async function removeRestrictions() {
       );
     }
 
-    if (loaderText) loaderText.textContent = 'Preparing download...';
+    if (loaderText) loaderText.textContent = trText('Preparing download...');
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Operation resulted in an empty file.');
+      throw new Error(trText('Operation resulted in an empty file.'));
     }
 
     const blob = new Blob([new Uint8Array(outputFile)], {
@@ -170,7 +174,12 @@ async function removeRestrictions() {
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
       'Operation Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'The PDF might be corrupted or password-protected.'}`
+      trText('An error occurred: {{error}}', {
+        error:
+          error instanceof Error
+            ? error.message
+            : trText('The PDF might be corrupted or password-protected.'),
+      })
     );
   } finally {
     try {
@@ -192,7 +201,7 @@ async function removeRestrictions() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

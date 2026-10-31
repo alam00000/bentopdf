@@ -5,6 +5,8 @@ import { PDFDocument as PDFLibDocument, rgb, PageSizes } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 interface NUpState {
   file: File | null;
   pdfDoc: PDFLibDocument | null;
@@ -51,7 +53,9 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(pageState.file.size)} • Loading...`;
+    metaSpan.textContent = trText('{{size}} • Loading...', {
+      size: formatBytes(pageState.file.size),
+    });
 
     infoContainer.append(nameSpan, metaSpan);
 
@@ -79,7 +83,10 @@ async function updateUI() {
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;
+      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+        size: formatBytes(pageState.file.size),
+        pageCount,
+      });
 
       if (toolOptions) toolOptions.classList.remove('hidden');
     } catch (error) {
@@ -152,7 +159,9 @@ async function nUpTool() {
     const usableHeight = pageHeight - margin * 2;
 
     for (let i = 0; i < sourcePages.length; i += n) {
-      showLoader(`Processing sheet ${Math.floor(i / n) + 1}...`);
+      showLoader(
+        trText('Processing sheet {{n}}...', { n: Math.floor(i / n) + 1 })
+      );
       const chunk = sourcePages.slice(i, i + n);
       const outputPage = newDoc.addPage([pageWidth, pageHeight]);
 
@@ -234,7 +243,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

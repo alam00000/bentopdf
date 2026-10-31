@@ -9,7 +9,8 @@
     "openMainMenu": "Hoofdmenu openen",
     "language": "Taal",
     "searchLanguage": "Taal zoeken…",
-    "noLanguagesFound": "Geen talen gevonden"
+    "noLanguagesFound": "Geen talen gevonden",
+    "breadcrumb": "Broodkruimelpad"
   },
   "donation": {
     "message": "Vind je BentoPDF geweldig? Help ons het gratis en open source te houden!",
@@ -236,6 +237,10 @@
     "aboutUs": "Over ons",
     "faqLink": "Veelgestelde vragen",
     "contactUs": "Contact",
+    "tools": "Tools",
+    "pdfConverter": "PDF-converter",
+    "pdfSecurity": "PDF-beveiliging",
+    "mergeSplit": "PDF samenvoegen en splitsen",
     "legal": "Juridisch",
     "termsAndConditions": "Algemene voorwaarden",
     "privacyPolicy": "Privacybeleid",

@@ -5,6 +5,8 @@ import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const ACCEPTED_EXTENSIONS = ['.psd'];
 const FILETYPE_NAME = 'PSD';
 
@@ -17,7 +19,7 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
   return pymupdf;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -81,7 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.files.length === 0) {
       showAlert(
         'No Files',
-        `Please select at least one ${FILETYPE_NAME} file.`
+        trText('Please select at least one {{FILETYPE_NAME}} file.', {
+          FILETYPE_NAME,
+        })
       );
       return;
     }
@@ -91,14 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (state.files.length === 1) {
         const file = state.files[0];
-        showLoader(`Converting ${file.name}...`);
+        showLoader(trText('Converting {{name}}...', { name: file.name }));
         const pdfBlob = await mupdf.imageToPdf(file, { imageType: 'psd' });
         const baseName = file.name.replace(/\.[^/.]+$/, '');
         downloadFile(pdfBlob, `${baseName}.pdf`);
         hideLoader();
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${file.name} to PDF.`,
+          trText('Successfully converted {{name}} to PDF.', {
+            name: file.name,
+          }),
           'success',
           () => resetState()
         );
@@ -109,18 +115,24 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} PSD files to a single PDF.`,
+          trText(
+            'Successfully converted {{length}} PSD files to a single PDF.',
+            { length: state.files.length }
+          ),
           'success',
           () => resetState()
         );
       }
     } catch (err) {
       hideLoader();
-      const message = err instanceof Error ? err.message : 'Unknown error';
+      const message =
+        err instanceof Error ? err.message : trText('Unknown error');
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, err);
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${message}`
+        trText('An error occurred during conversion. Error: {{message}}', {
+          message,
+        })
       );
     }
   };

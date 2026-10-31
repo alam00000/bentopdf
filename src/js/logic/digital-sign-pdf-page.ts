@@ -7,7 +7,7 @@ import {
 } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { sanitizeTranslationHtml } from '../utils/translation-html.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   signPdf,
   parsePfxFile,
@@ -286,7 +286,10 @@ async function updatePdfDisplay(): Promise<void> {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = `${formatBytes(state.pdfFile.size)} • ${t('common.loadingPageCount')}`;
+  metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+    size: formatBytes(state.pdfFile.size),
+    loadingPageCount: t('common.loadingPageCount'),
+  });
 
   infoContainer.append(nameSpan, metaSpan);
 
@@ -318,7 +321,12 @@ async function updatePdfDisplay(): Promise<void> {
     state.pdfFile = result.file;
     state.pdfBytes = new Uint8Array(result.bytes);
     nameSpan.textContent = result.file.name;
-    metaSpan.textContent = `${formatBytes(result.file.size)} • ${t('tools:digitalSignPdf.pageCount', { count: result.pdf.numPages })}`;
+    metaSpan.textContent = trText('{{size}} • {{numPages}}', {
+      size: formatBytes(result.file.size),
+      numPages: t('tools:digitalSignPdf.pageCount', {
+        count: result.pdf.numPages,
+      }),
+    });
     result.pdf.destroy();
   }
 }
@@ -575,7 +583,10 @@ async function handlePasswordInput(): Promise<void> {
         error instanceof Error
           ? error.message
           : t('tools:digitalSignPdf.invalidPasswordOrCertificate');
-      certStatus.textContent = errorMessage.includes('password')
+      const passwordProblem =
+        error instanceof Error &&
+        (error.name === 'PasswordError' || /password/i.test(errorMessage));
+      certStatus.textContent = passwordProblem
         ? t('tools:digitalSignPdf.incorrectPassword')
         : t('tools:digitalSignPdf.failedParseCertificate');
       certStatus.className = 'text-xs text-red-400';
@@ -603,7 +614,10 @@ function updateCertInfo(): void {
   }
   if (certValidity) {
     const formatDate = (date: Date) => date.toLocaleDateString();
-    certValidity.textContent = `${formatDate(info.validFrom)} - ${formatDate(info.validTo)}`;
+    certValidity.textContent = trText('{{validFrom}} - {{validTo}}', {
+      validFrom: formatDate(info.validFrom),
+      validTo: formatDate(info.validTo),
+    });
   }
 
   certInfo.classList.remove('hidden');
@@ -787,8 +801,4 @@ async function processSignature(): Promise<void> {
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);

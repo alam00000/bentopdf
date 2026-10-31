@@ -9,7 +9,8 @@
     "openMainMenu": "Ouvrir le menu principal",
     "language": "Langue",
     "searchLanguage": "Rechercher une langue…",
-    "noLanguagesFound": "Aucune langue trouvée"
+    "noLanguagesFound": "Aucune langue trouvée",
+    "breadcrumb": "Fil d'Ariane"
   },
   "donation": {
     "message": "Vous aimez BentoPDF ? Aidez-nous à le garder open source !",
@@ -236,6 +237,10 @@
     "aboutUs": "À propos",
     "faqLink": "FAQ",
     "contactUs": "Nous contacter",
+    "tools": "Outils",
+    "pdfConverter": "Convertisseur PDF",
+    "pdfSecurity": "Sécurité PDF",
+    "mergeSplit": "Fusionner et diviser des PDF",
     "legal": "Mentions légales",
     "termsAndConditions": "Conditions générales",
     "privacyPolicy": "Politique de confidentialité",

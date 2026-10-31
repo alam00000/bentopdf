@@ -5,10 +5,12 @@ import { createIcons, icons } from 'lucide';
 import { convertXmlToPdf } from '../utils/xml-to-pdf.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const ACCEPTED_EXTENSIONS = ['.xml'];
 const FILETYPE_NAME = 'XML';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -81,7 +83,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.files.length === 0) {
       showAlert(
         'No Files',
-        `Please select at least one ${FILETYPE_NAME} file.`
+        trText('Please select at least one {{FILETYPE_NAME}} file.', {
+          FILETYPE_NAME,
+        })
       );
       return;
     }
@@ -101,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${file.name} to PDF.`,
+          trText('Successfully converted {{name}} to PDF.', {
+            name: file.name,
+          }),
           'success',
           () => resetState()
         );
@@ -116,7 +122,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const pdfBlob = await convertXmlToPdf(file, {
             onProgress: (percent, message) => {
               showLoader(
-                `File ${i + 1}/${state.files.length}: ${message}`,
+                trText('File {{n}}/{{length}}: {{message}}', {
+                  n: i + 1,
+                  length: state.files.length,
+                  message,
+                }),
                 percent
               );
             },
@@ -136,18 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} files to PDF.`,
+          trText('Successfully converted {{length}} files to PDF.', {
+            length: state.files.length,
+          }),
           'success',
           () => resetState()
         );
       }
     } catch (err) {
       hideLoader();
-      const message = err instanceof Error ? err.message : 'Unknown error';
+      const message =
+        err instanceof Error ? err.message : trText('Unknown error');
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, err);
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${message}`
+        trText('An error occurred during conversion. Error: {{message}}', {
+          message,
+        })
       );
     }
   };

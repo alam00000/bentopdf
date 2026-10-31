@@ -4,6 +4,8 @@ import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { readFileAsArrayBuffer } from '../utils/helpers.js';
 import { state } from '../state.js';
 
+import { trText } from '../i18n/i18n.js';
+
 export async function wordToPdf() {
   const file = state.files[0];
   if (!file) {
@@ -154,7 +156,10 @@ export async function wordToPdf() {
     hideLoader();
     showAlert(
       'Preview Error',
-      `Could not generate a preview. The file may be corrupt or contain unsupported features. Error: ${e.message}`
+      trText(
+        'Could not generate a preview. The file may be corrupt or contain unsupported features. Error: {{message}}',
+        { message: e.message }
+      )
     );
   }
 }

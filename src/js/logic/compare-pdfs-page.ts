@@ -26,6 +26,8 @@ import {
   getComparisonCacheKey,
 } from './compare-render.ts';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: CompareState = {
   pdfDoc1: null,
   pdfDoc2: null,
@@ -389,8 +391,8 @@ function renderChangeList() {
   if (!comparison || visibleChanges.length === 0) {
     emptyState.textContent =
       comparison?.status === 'match'
-        ? 'No differences detected on this page.'
-        : 'No changes match the current filter.';
+        ? trText('No differences detected on this page.')
+        : trText('No changes match the current filter.');
     emptyState.classList.remove('hidden');
     list.classList.add('hidden');
     prevChangeBtn.disabled = true;
@@ -403,13 +405,13 @@ function renderChangeList() {
   list.classList.remove('hidden');
 
   const typeLabels: Record<string, string> = {
-    added: 'Added',
-    removed: 'Deleted',
-    modified: 'Modified',
-    moved: 'Moved',
-    'style-changed': 'Style Changed',
-    'page-added': 'Page Added',
-    'page-removed': 'Page Removed',
+    added: trText('Added'),
+    removed: trText('Deleted'),
+    modified: trText('Modified'),
+    moved: trText('Moved'),
+    'style-changed': trText('Style Changed'),
+    'page-added': trText('Page Added'),
+    'page-removed': trText('Page Removed'),
   };
 
   const grouped = new Map<
@@ -497,7 +499,10 @@ async function buildPagePairs() {
     pageState.pdfDoc1,
     function (pageNumber, totalPages) {
       showLoader(
-        `Indexing PDF 1 page ${pageNumber} of ${totalPages}...`,
+        trText('Indexing PDF 1 page {{pageNumber}} of {{totalPages}}...', {
+          pageNumber,
+          totalPages,
+        }),
         (pageNumber / Math.max(totalPages * 2, 1)) * 100
       );
     }
@@ -506,7 +511,10 @@ async function buildPagePairs() {
     pageState.pdfDoc2,
     function (pageNumber, totalPages) {
       showLoader(
-        `Indexing PDF 2 page ${pageNumber} of ${totalPages}...`,
+        trText('Indexing PDF 2 page {{pageNumber}} of {{totalPages}}...', {
+          pageNumber,
+          totalPages,
+        }),
         50 + (pageNumber / Math.max(totalPages * 2, 1)) * 100
       );
     }
@@ -558,7 +566,10 @@ async function renderBothPages() {
   const gen = ++renderGeneration;
 
   showLoader(
-    `Loading comparison ${pageState.currentPage} of ${pageState.pagePairs.length}...`
+    trText('Loading comparison {{currentPage}} of {{length}}...', {
+      currentPage: pageState.currentPage,
+      length: pageState.pagePairs.length,
+    })
   );
 
   const canvas1 = getElement<HTMLCanvasElement>(
@@ -744,7 +755,7 @@ async function handleFileInput(
       hideLoader();
       const result = await loadPdfWithPasswordPrompt(file);
       if (!result) return;
-      showLoader(`Loading ${result.file.name}...`);
+      showLoader(trText('Loading {{name}}...', { name: result.file.name }));
       pageState[docKey] = result.pdf;
       caches.pageModelCache.clear();
       caches.comparisonCache.clear();
@@ -792,7 +803,7 @@ async function handleFileInput(
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const backBtn = getElement<HTMLButtonElement>('back-to-tools');
 
   if (backBtn) {
@@ -960,7 +971,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function updateZoomDisplay() {
     if (zoomDisplay) {
-      zoomDisplay.textContent = `${Math.round(pageState.zoomLevel * 100)}%`;
+      zoomDisplay.textContent = trText('{{value}}%', {
+        value: Math.round(pageState.zoomLevel * 100),
+      });
     }
     if (zoomOutBtn) zoomOutBtn.disabled = pageState.zoomLevel <= ZOOM_MIN;
     if (zoomInBtn) zoomInBtn.disabled = pageState.zoomLevel >= ZOOM_MAX;

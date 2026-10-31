@@ -8,6 +8,8 @@ import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import type { CropBox } from '@/types';
 import './utils/setup-pdf-worker.js';
 
+import { trText } from './i18n/i18n.js';
+
 const editorState: {
   pdf: PDFDocumentProxy | null;
   canvas: HTMLCanvasElement | null;
@@ -61,7 +63,7 @@ function calculateFitScale(page: PDFPageProxy) {
  */
 async function renderPage(num: number) {
   editorState.pageRendering = true;
-  showLoader(`Loading page ${num}...`);
+  showLoader(trText('Loading page {{num}}...', { num }));
 
   try {
     const page = await editorState.pdf!.getPage(num);

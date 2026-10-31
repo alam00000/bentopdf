@@ -2,6 +2,8 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { XMLParser } from 'fast-xml-parser';
 
+import { trText } from '../i18n/i18n.js';
+
 export interface XmlToPdfOptions {
   onProgress?: (percent: number, message: string) => void;
 }
@@ -19,14 +21,14 @@ export async function convertXmlToPdf(
 ): Promise<Blob> {
   const { onProgress } = options || {};
 
-  onProgress?.(10, 'Reading XML file...');
+  onProgress?.(10, trText('Reading XML file...'));
   const rawXmlText = await file.text();
   const xmlText = String(rawXmlText)
     .replace(/<!DOCTYPE[\s\S]*?>/gi, '')
     .replace(/<!ENTITY[\s\S]*?>/gi, '')
     .replace(/<\?xml-stylesheet[\s\S]*?\?>/gi, '');
 
-  onProgress?.(30, 'Parsing XML structure...');
+  onProgress?.(30, trText('Parsing XML structure...'));
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: ATTR_PREFIX,
@@ -50,12 +52,12 @@ export async function convertXmlToPdf(
 
   const rootKeys = Object.keys(parsed);
   if (rootKeys.length === 0) {
-    throw new Error('Invalid XML: no root element');
+    throw new Error(trText('Invalid XML: no root element'));
   }
   const rootName = rootKeys[0];
   const rootValue = parsed[rootName];
 
-  onProgress?.(50, 'Analyzing data structure...');
+  onProgress?.(50, trText('Analyzing data structure...'));
 
   const doc: jsPDFWithAutoTable = new jsPDF({
     orientation: 'landscape',
@@ -73,7 +75,7 @@ export async function convertXmlToPdf(
   });
   yPosition += 15;
 
-  onProgress?.(60, 'Generating formatted content...');
+  onProgress?.(60, trText('Generating formatted content...'));
 
   if (isPlainObject(rootValue)) {
     const rootObj = rootValue;
@@ -155,7 +157,7 @@ export async function convertXmlToPdf(
     }
   }
 
-  onProgress?.(90, 'Finalizing PDF...');
+  onProgress?.(90, trText('Finalizing PDF...'));
 
   const pdfBlob = doc.output('blob');
 

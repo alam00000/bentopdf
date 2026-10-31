@@ -21,7 +21,7 @@ ARG SIMPLE_MODE=false
 ENV SIMPLE_MODE=$SIMPLE_MODE
 ARG DISABLE_GITHUB_STARS=false
 ENV DISABLE_GITHUB_STARS=$DISABLE_GITHUB_STARS
-ARG COMPRESSION_MODE=all
+ARG COMPRESSION_MODE=o
 ENV COMPRESSION_MODE=$COMPRESSION_MODE
 
 # global arg to local arg - BASE_URL is read from env by vite.config.ts
@@ -65,10 +65,12 @@ ARG DISABLE_TOOLS
 ENV DISABLE_TOOLS=$DISABLE_TOOLS
 
 # Public-facing canonical site URL. Defaults to the official site so self-hosters
-# consolidate SEO signals back to bentopdf.com. Override with --build-arg
-# SITE_URL=https://your-domain.example to claim canonical for your own deployment.
+# consolidate SEO signals back to bentopdf.com. A custom SITE_URL marks every page
+# noindex unless ALLOW_INDEXING=true is also set.
 ARG SITE_URL=https://www.bentopdf.com
 ENV SITE_URL=$SITE_URL
+ARG ALLOW_INDEXING=false
+ENV ALLOW_INDEXING=$ALLOW_INDEXING
 
 ENV NODE_OPTIONS="--max-old-space-size=3072"
 

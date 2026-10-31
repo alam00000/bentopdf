@@ -20,14 +20,29 @@
   },
   "convertToPdf": "Previesť do PDF",
   "pdfMultiTool": {
-    "name": "PDF Multi Nástroj",
+    "name": "Multinástroj PDF",
     "subtitle": "Spojiť, rozdeliť, organizovať, mazať, otáčať, pridávať prázdne strany, extrahovať a duplikovať v jednotnom rozhraní."
   },
   "mergePdf": {
     "name": "Spojiť PDF",
     "subtitle": "Spojiť viacero PDF do jedného súboru. Zachováva záložky.",
     "retainPageLabels": "Zachovať pôvodné označenia strán z každého súboru",
-    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia)."
+    "retainPageLabelsHint": "Vypnuté (predvolené): spojené PDF používa prirodzené číslovanie strán 1–N. Zapnuté: zachovajú sa pôvodné označenia strán každého súboru (môže produkovať duplicitné označenia).",
+    "removeDuplicateFonts": "Odstrániť duplicitné písma",
+    "alert": {
+      "thumbnailError": "Nepodarilo sa vykresliť náhľady strán",
+      "noSelection": "Nie sú vybrané žiadne súbory ani strany na spojenie.",
+      "mergeSuccess": "PDF boli úspešne spojené!",
+      "mergeFailed": "Nepodarilo sa spojiť PDF.",
+      "mergeError": "Nepodarilo sa spojiť PDF. Skontrolujte, či sú všetky súbory platné a nie sú chránené heslom.",
+      "workerError": "Pri spájaní nastala neočakávaná chyba.",
+      "loadError": "Nepodarilo sa načítať jeden alebo viac súborov PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Vykresľujú sa náhľady strán...",
+      "merging": "Spájajú sa PDF...",
+      "loadingDocuments": "Načítavajú sa dokumenty PDF..."
+    }
   },
   "splitPdf": {
     "name": "Rozdeliť PDF",
@@ -38,7 +53,7 @@
     "subtitle": "Zmenšiť veľkosť súboru vášho PDF."
   },
   "pdfEditor": {
-    "name": "PDF Editor",
+    "name": "Editor PDF",
     "subtitle": "Anotovať, zvýrazňovať, redigovať, komentovať, pridávať tvary/obrázky, vyhľadávať a prezerať PDF."
   },
   "editPdfText": {
@@ -503,7 +518,8 @@
       "noFile": "Žiadny súbor",
       "noFileExplanation": "Najskôr nahrajte PDF súbor.",
       "conversionSuccess": "PDF bolo úspešne skonvertované do TIFF!",
-      "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený."
+      "conversionError": "Nepodarilo sa skonvertovať PDF do TIFF. Súbor môže byť poškodený.",
+      "conversionOutOfMemory": "Prehliadaču počas konverzie došla pamäť. Skúste nižšie DPI alebo zrušte možnosť viacstranového TIFF a konvertujte strany po jednej."
     }
   },
   "pdfToCbz": {
@@ -793,10 +809,10 @@
   },
   "decryptPdf": {
     "name": "Dešifrovať PDF",
-    "subtitle": "Odomknúť PDF odstránením ochrany heslom."
+    "subtitle": "Odstráňte heslo z PDF, aby sa dalo voľne otvoriť. Vyžaduje sa aktuálne heslo."
   },
   "flattenPdf": {
-    "name": "Zlúčiť vrstvy PDF",
+    "name": "Sploštiť PDF",
     "subtitle": "Urobiť formulárové polia a anotácie neupraviteľnými."
   },
   "removeMetadata": {
@@ -864,7 +880,7 @@
     "optTypographer": "Typografia (chytré úvodzovky, atď.)"
   },
   "pdfBooklet": {
-    "name": "PDF Brožúra",
+    "name": "PDF brožúra",
     "subtitle": "Preusporiadať strany pre obojstrannú tlač brožúry. Preložte a zošijte, aby ste vytvorili brožúru.",
     "howItWorks": "Ako to funguje:",
     "step1": "Nahrajte PDF súbor.",
@@ -986,7 +1002,7 @@
     "subtitle": "Extrahovať tabuľky z PDF a previesť ich do formátu Excel (XLSX)."
   },
   "pdfToText": {
-    "name": "PDF do Textu",
+    "name": "PDF do textu",
     "subtitle": "Extrahovať text z PDF súborov a uložiť ho ako obyčajný text (.txt). Podporuje viacero súborov.",
     "noteLabel": "Poznámka:",
     "noteText": "Tento nástroj funguje IBA s digitálne vytvorenými PDF. Pre naskenované dokumenty alebo PDF založené na obrázkoch použite radšej náš nástroj Rozpoznávanie textu (OCR) PDF.",
@@ -1079,7 +1095,7 @@
     "internetRequiredDescription": "Podpisovanie môže vyžadovať načítanie informácií o reťazci certifikátov zo servera vydavateľa vášho certifikátu, aby sa podpis overil."
   },
   "validateSignaturePdf": {
-    "name": "Overiť PDF podpis",
+    "name": "Overiť podpis PDF",
     "pageTitle": "Overiť PDF podpis - Verifikácia digitálnych podpisov | BentoPDF",
     "subtitle": "Overte digitálne podpisy vo vašich PDF súboroch. Skontrolujte platnosť certifikátu, zobrazte údaje o podpisujúcom a potvrďte integritu dokumentu. Všetko spracovanie prebieha vo vašom prehliadači."
   },
@@ -1123,7 +1139,7 @@
     "subtitle": "Extrahovať obsah PDF ako LlamaIndex JSON pre RAG/LLM procesy."
   },
   "pdfOcg": {
-    "name": "PDF OCG (Vrstvy)",
+    "name": "PDF OCG (vrstvy)",
     "subtitle": "Zobraziť, prepínať, pridávať a odstraňovať vrstvy OCG vo vašom PDF."
   },
   "pdfToPdfa": {
@@ -1301,11 +1317,11 @@
     "faqPrivacyAnswer": "Absolútne! Všetko spracovanie prebieha vo vašom prehliadači. Vaše súbory nikdy neopustia vaše zariadenie, čo zabezpečuje úplné súkromie."
   },
   "unlockPdf": {
-    "name": "Dešifrovať PDF",
+    "name": "Odomknúť PDF",
     "subtitle": "Odomknúť PDF odstránením ochrany heslom."
   },
   "protectPdf": {
-    "name": "Zašifrovať PDF",
+    "name": "Chrániť PDF heslom",
     "subtitle": "Uzamknúť vaše PDF pridaním hesla."
   }
 }

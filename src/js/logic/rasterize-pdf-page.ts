@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   downloadFile,
   readFileAsArrayBuffer,
@@ -14,7 +14,7 @@ import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -53,7 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const metaSpan = document.createElement('div');
         metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+        metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+          size: formatBytes(file.size),
+          loadingPageCount: t('common.loadingPageCount'),
+        });
 
         infoContainer.append(nameSpan, metaSpan);
 
@@ -72,10 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+            size: formatBytes(file.size),
+            numPages: pdfDoc.numPages,
+          });
         } catch (error) {
           console.error('Error loading PDF:', error);
-          metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
+          metaSpan.textContent = trText(
+            '{{size}} • Could not load page count',
+            { size: formatBytes(file.size) }
+          );
         }
       }
 
@@ -134,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (total === 1) {
         const file = state.files[0];
-        showLoader(`Rasterizing ${file.name}...`);
+        showLoader(trText('Rasterizing {{name}}...', { name: file.name }));
 
         const rasterizedBlob = await (pymupdf as PyMuPDFInstance).rasterizePdf(
           file,
@@ -151,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
         showAlert(
           'Rasterization Complete',
-          `Successfully rasterized PDF at ${dpi} DPI.`,
+          trText('Successfully rasterized PDF at {{dpi}} DPI.', { dpi }),
           'success',
           () => resetState()
         );
@@ -164,7 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
           try {
             const file = state.files[fi];
             showLoader(
-              `Rasterizing ${file.name} (${completed + 1}/${total})...`
+              trText('Rasterizing {{name}} ({{n}}/{{total}})...', {
+                name: file.name,
+                n: completed + 1,
+                total,
+              })
             );
 
             const rasterizedBlob = await (
@@ -199,14 +212,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (failed === 0) {
           showAlert(
             'Rasterization Complete',
-            `Successfully rasterized ${completed} PDF(s) at ${dpi} DPI.`,
+            trText(
+              'Successfully rasterized {{completed}} PDF(s) at {{dpi}} DPI.',
+              { completed, dpi }
+            ),
             'success',
             () => resetState()
           );
         } else {
           showAlert(
             'Rasterization Partial',
-            `Rasterized ${completed} PDF(s), failed ${failed}.`,
+            trText('Rasterized {{completed}} PDF(s), failed {{failed}}.', {
+              completed,
+              failed,
+            }),
             'warning',
             () => resetState()
           );
@@ -216,7 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during rasterization. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during rasterization. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

@@ -10,6 +10,8 @@ import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 import { LinearizePdfState, QpdfInstanceExtended } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: LinearizePdfState = {
   files: [],
 };
@@ -107,7 +109,9 @@ async function linearizePdf() {
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
   if (loaderText)
-    loaderText.textContent = 'Optimizing PDFs for web view (linearizing)...';
+    loaderText.textContent = trText(
+      'Optimizing PDFs for web view (linearizing)...'
+    );
 
   const zip = new JSZip();
   const usedNames = new Set<string>();
@@ -124,7 +128,10 @@ async function linearizePdf() {
       const outputPath = `/output_${i}.pdf`;
 
       if (loaderText)
-        loaderText.textContent = `Optimizing ${file.name} (${i + 1}/${pdfFiles.length})...`;
+        loaderText.textContent = trText(
+          'Optimizing {{name}} ({{n}}/{{length}})...',
+          { name: file.name, n: i + 1, length: pdfFiles.length }
+        );
 
       try {
         const fileBuffer = await readFileAsArrayBuffer(file);
@@ -141,7 +148,9 @@ async function linearizePdf() {
           console.error(
             `Linearization resulted in an empty file for ${file.name}.`
           );
-          throw new Error(`Processing failed for ${file.name}.`);
+          throw new Error(
+            trText('Processing failed for {{name}}.', { name: file.name })
+          );
         }
 
         const zipEntryName = deduplicateFileName(
@@ -173,16 +182,19 @@ async function linearizePdf() {
     }
 
     if (successCount === 0) {
-      throw new Error('No PDF files could be linearized.');
+      throw new Error(trText('No PDF files could be linearized.'));
     }
 
-    if (loaderText) loaderText.textContent = 'Generating ZIP file...';
+    if (loaderText) loaderText.textContent = trText('Generating ZIP file...');
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     downloadFile(zipBlob, 'linearized-pdfs.zip');
 
-    let alertMessage = `${successCount} PDF(s) linearized successfully.`;
+    let alertMessage = trText(
+      '{{successCount}} PDF(s) linearized successfully.',
+      { successCount }
+    );
     if (errorCount > 0) {
-      alertMessage += ` ${errorCount} file(s) failed.`;
+      alertMessage += ` ${trText('Files that failed: {{errorCount}}.', { errorCount })}`;
     }
     showAlert('Processing Complete', alertMessage, 'success', () => {
       resetState();
@@ -191,14 +203,16 @@ async function linearizePdf() {
     console.error('Linearization process error:', error);
     showAlert(
       'Linearization Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}.`
+      trText('An error occurred: {{error}}.', {
+        error: error instanceof Error ? error.message : trText('Unknown error'),
+      })
     );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

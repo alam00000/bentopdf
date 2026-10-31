@@ -10,7 +10,7 @@ import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFPageProxy } from 'pdfjs-dist';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import type Vips from 'wasm-vips';
 import wasmUrl from 'wasm-vips/vips.wasm?url';
 import type { TiffOptions } from '@/types';
@@ -82,7 +82,10 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+      metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+        size: formatBytes(file.size),
+        loadingPageCount: t('common.loadingPageCount'),
+      });
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -103,7 +106,11 @@ const updateUI = () => {
           return getPDFDocument(buffer).promise;
         })
         .then((pdf) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} {{value}}', {
+            size: formatBytes(file.size),
+            numPages: pdf.numPages,
+            value: pdf.numPages !== 1 ? t('common.pages') : t('common.page'),
+          });
         })
         .catch((e) => {
           console.warn('Error loading PDF page count:', e);
@@ -377,7 +384,7 @@ async function convert() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

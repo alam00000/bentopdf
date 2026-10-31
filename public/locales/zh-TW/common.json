@@ -9,7 +9,8 @@
     "openMainMenu": "開啟主選單",
     "language": "語言",
     "searchLanguage": "搜尋語言…",
-    "noLanguagesFound": "找不到語言"
+    "noLanguagesFound": "找不到語言",
+    "breadcrumb": "導覽路徑"
   },
   "donation": {
     "message": "喜歡 BentoPDF 嗎？請協助我們繼續免費提供 BentoPDF，並維持原始碼開放！",
@@ -236,6 +237,10 @@
     "aboutUs": "關於我們",
     "faqLink": "常見問題",
     "contactUs": "聯絡我們",
+    "tools": "工具",
+    "pdfConverter": "PDF 轉換器",
+    "pdfSecurity": "PDF 安全",
+    "mergeSplit": "合併與分割 PDF",
     "legal": "法律聲明",
     "termsAndConditions": "服務條款",
     "privacyPolicy": "隱私權政策",

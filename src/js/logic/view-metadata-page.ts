@@ -4,6 +4,8 @@ import { createIcons, icons } from 'lucide';
 import { ViewMetadataState } from '@/types';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
+import { trText, trHtml, onPageReady } from '../i18n/i18n.js';
+
 const pageState: ViewMetadataState = {
   file: null,
   metadata: {},
@@ -179,7 +181,7 @@ async function displayMetadata() {
     const rawXmpString = metadata ? metadata.getRaw() : null;
 
     // Info Dictionary Section
-    const infoSection = createSection('Info Dictionary');
+    const infoSection = createSection(trText('Info Dictionary'));
     if (info && Object.keys(info).length > 0) {
       for (const key in info) {
         const value = (info as Record<string, unknown>)[key];
@@ -212,12 +214,12 @@ async function displayMetadata() {
         infoSection.ul.appendChild(createListItem(key, displayValue));
       }
     } else {
-      infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No Info Dictionary data found -</span></li>`;
+      infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No Info Dictionary data found -')}</span></li>`;
     }
     metadataDisplay.appendChild(infoSection.wrapper);
 
     // Interactive Form Fields Section
-    const fieldsSection = createSection('Interactive Form Fields');
+    const fieldsSection = createSection(trText('Interactive Form Fields'));
     if (fieldObjects && Object.keys(fieldObjects).length > 0) {
       for (const fieldName in fieldObjects) {
         const field = (
@@ -227,12 +229,12 @@ async function displayMetadata() {
         fieldsSection.ul.appendChild(createListItem(fieldName, String(value)));
       }
     } else {
-      fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No interactive form fields found -</span></li>`;
+      fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No interactive form fields found -')}</span></li>`;
     }
     metadataDisplay.appendChild(fieldsSection.wrapper);
 
     // XMP Metadata Section
-    const xmpSection = createSection('XMP Metadata');
+    const xmpSection = createSection(trText('XMP Metadata'));
     if (rawXmpString) {
       try {
         const parser = new DOMParser();
@@ -248,18 +250,18 @@ async function displayMetadata() {
         }
 
         if (xmpSection.ul.children.length === 0) {
-          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No parseable XMP properties found -</span></li>`;
+          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No parseable XMP properties found -')}</span></li>`;
         }
       } catch (xmlError) {
         console.error('Failed to parse XMP XML:', xmlError);
-        xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">- Error parsing XMP XML. Displaying raw. -</span></li>`;
+        xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">${trHtml('- Error parsing XMP XML. Displaying raw. -')}</span></li>`;
         const pre = document.createElement('pre');
         pre.className = 'text-xs text-gray-300 whitespace-pre-wrap break-all';
         pre.textContent = rawXmpString;
         xmpSection.ul.appendChild(pre);
       }
     } else {
-      xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No XMP metadata found -</span></li>`;
+      xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No XMP metadata found -')}</span></li>`;
     }
     metadataDisplay.appendChild(xmpSection.wrapper);
 
@@ -298,7 +300,9 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(pageState.file.size)}`;
+    metaSpan.textContent = trText('{{size}}', {
+      size: formatBytes(pageState.file.size),
+    });
 
     infoContainer.append(nameSpan, metaSpan);
 
@@ -347,7 +351,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const copyBtn = document.getElementById('copy-metadata');

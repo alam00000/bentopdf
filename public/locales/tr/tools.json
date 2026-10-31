@@ -27,7 +27,22 @@
     "name": "PDF Birleştir",
     "subtitle": "Birden fazla PDF'yi tek bir dosyada birleştirin. Yer imlerini korur.",
     "retainPageLabels": "Her dosyanın orijinal sayfa etiketlerini koru",
-    "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir)."
+    "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir).",
+    "removeDuplicateFonts": "Yinelenen yazı tiplerini kaldır",
+    "alert": {
+      "thumbnailError": "Sayfa küçük resimleri oluşturulamadı",
+      "noSelection": "Birleştirmek için dosya veya sayfa seçilmedi.",
+      "mergeSuccess": "PDF'ler başarıyla birleştirildi!",
+      "mergeFailed": "PDF'ler birleştirilemedi.",
+      "mergeError": "PDF'ler birleştirilemedi. Lütfen tüm dosyaların geçerli olduğunu ve parola korumalı olmadığını kontrol edin.",
+      "workerError": "Birleştirme işleminde beklenmeyen bir hata oluştu.",
+      "loadError": "Bir veya daha fazla PDF dosyası yüklenemedi"
+    },
+    "loader": {
+      "renderingPreviews": "Sayfa önizlemeleri oluşturuluyor...",
+      "merging": "PDF'ler birleştiriliyor...",
+      "loadingDocuments": "PDF belgeleri yükleniyor..."
+    }
   },
   "splitPdf": {
     "name": "PDF Böl",
@@ -91,7 +106,7 @@
     "tipRedoZ": "Yinele (⇧⌘Z)",
     "tipFileDetails": "Dosya ayrıntıları",
     "tipEditExistingContent": "Mevcut içeriği düzenle",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Düzenle aracının etkilediği öğeler — yoğun sayfalarda kapsamı daraltın",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Düzenle aracının etkilediği öğeler: yoğun sayfalarda kapsamı daraltın",
     "tipClickThePageToAddATextBox": "Metin kutusu eklemek için sayfaya tıklayın",
     "tipSpellCheckLanguage": "Yazım denetimi dili",
     "tipFindAndReplace": "Bul ve değiştir",
@@ -216,7 +231,7 @@
     "subtitle": "Belgenize sayfa numaraları ekleyin."
   },
   "addPageLabels": {
-    "name": "Sayfa etiketleri ekle",
+    "name": "Sayfa Etiketleri Ekle",
     "subtitle": "Roma rakamları, önekler ve özel başlangıç değerleriyle PDF sayfa etiketleri uygulayın.",
     "uploadHint": "PDF dosyası",
     "howLabelsWorkTitle": "Etiketler nasıl çalışır",
@@ -503,7 +518,8 @@
       "noFile": "Dosya Yok",
       "noFileExplanation": "Lütfen önce bir PDF dosyası yükleyin.",
       "conversionSuccess": "PDF başarıyla TIFF'e dönüştürüldü!",
-      "conversionError": "PDF TIFF'e dönüştürülemedi. Dosya bozulmuş olabilir."
+      "conversionError": "PDF TIFF'e dönüştürülemedi. Dosya bozulmuş olabilir.",
+      "conversionOutOfMemory": "Dönüştürme sırasında tarayıcının belleği tükendi. Daha düşük bir DPI deneyin veya sayfaları tek tek dönüştürmek için çok sayfalı TIFF seçeneğinin işaretini kaldırın."
     }
   },
   "pdfToCbz": {
@@ -619,7 +635,7 @@
     "retainPageLabelsHint": "Kapalı (varsayılan): birleştirilmiş PDF doğal 1–N sayfa numaralandırmasını kullanır. Açık: her dosyanın orijinal sayfa etiketleri korunur (yinelenen etiketler oluşabilir)."
   },
   "duplexCollate": {
-    "name": "Çift taraflı taramayı harmanla",
+    "name": "Çift Taraflı Harmanla",
     "subtitle": "İki blok hâlinde taranmış bir PDF'i (önce tüm ön yüzler, sonra tüm arka yüzler) doğru ön/arka sırasına göre yeniden düzenleyin.",
     "totalPagesLabel": "Toplam sayfa:",
     "splitAfterPageLabel": "Şu sayfadan sonra böl",
@@ -692,8 +708,8 @@
     "subtitle": "Sayfaları 90 derecelik artışlarla döndürün."
   },
   "rotateCustom": {
-    "name": "Rotate by Custom Degrees",
-    "subtitle": "Rotate pages by any custom angle."
+    "name": "Özel Açıyla Döndür",
+    "subtitle": "Sayfaları istediğiniz herhangi bir açıyla döndürün."
   },
   "nUpPdf": {
     "name": "N'li PDF",
@@ -760,7 +776,7 @@
     "loadError": "PDF yüklenemedi. Bozuk olabilir veya parola korumalı olabilir."
   },
   "posterizePdf": {
-    "name": "PDF'yi Posta Boyutuna Böl",
+    "name": "PDF'yi Posterleştir",
     "subtitle": "Büyük bir sayfayı birden fazla küçük sayfaya bölün."
   },
   "fixPageSize": {
@@ -784,7 +800,7 @@
     "subtitle": "Bozulmuş veya hasarlı PDF dosyalarından veri kurtarın."
   },
   "encryptPdf": {
-    "name": "PDF'yi Şifrele",
+    "name": "PDF'yi Parolayla Koru",
     "subtitle": "PDF'nizi şifre ekleyerek koruyun."
   },
   "sanitizePdf": {
@@ -792,7 +808,7 @@
     "subtitle": "Üst verileri, açıklamaları, betikleri ve daha fazlasını kaldırın."
   },
   "decryptPdf": {
-    "name": "PDF'nin Şifresini Çöz",
+    "name": "PDF Kilidini Aç",
     "subtitle": "Şifre korumasını kaldırarak PDF'nin kilidini açın."
   },
   "flattenPdf": {
@@ -808,211 +824,210 @@
     "subtitle": "Bir PDF üzerindeki kullanıcı izinlerini ayarlayın veya değiştirin."
   },
   "odtToPdf": {
-    "name": "ODT to PDF",
-    "subtitle": "Convert OpenDocument Text files to PDF format. Supports multiple files.",
-    "acceptedFormats": "ODT files",
-    "convertButton": "Convert to PDF"
+    "name": "ODT'den PDF'ye",
+    "subtitle": "OpenDocument Metin dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "ODT dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "csvToPdf": {
-    "name": "CSV to PDF",
-    "subtitle": "Convert CSV spreadsheet files to PDF format. Supports multiple files.",
-    "acceptedFormats": "CSV files",
-    "convertButton": "Convert to PDF"
+    "name": "CSV'den PDF'ye",
+    "subtitle": "CSV elektronik tablo dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "CSV dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "rtfToPdf": {
-    "name": "RTF to PDF",
-    "subtitle": "Convert Rich Text Format documents to PDF. Supports multiple files.",
-    "acceptedFormats": "RTF files",
-    "convertButton": "Convert to PDF"
+    "name": "RTF'den PDF'ye",
+    "subtitle": "Zengin Metin Biçimi (RTF) belgelerini PDF'ye dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "RTF dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "wordToPdf": {
-    "name": "Word to PDF",
-    "subtitle": "Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files.",
-    "acceptedFormats": "DOCX, DOC, ODT, RTF files",
-    "convertButton": "Convert to PDF"
+    "name": "Word'den PDF'ye",
+    "subtitle": "Word belgelerini (DOCX, DOC, ODT, RTF) PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "DOCX, DOC, ODT, RTF dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "excelToPdf": {
-    "name": "Excel to PDF",
-    "subtitle": "Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files.",
-    "acceptedFormats": "XLSX, XLS, ODS, CSV files",
-    "convertButton": "Convert to PDF"
+    "name": "Excel'den PDF'ye",
+    "subtitle": "Excel elektronik tablolarını (XLSX, XLS, ODS, CSV) PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "XLSX, XLS, ODS, CSV dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "powerpointToPdf": {
-    "name": "PowerPoint to PDF",
-    "subtitle": "Convert PowerPoint presentations (PPTX, PPT, ODP) to PDF format. Supports multiple files.",
-    "acceptedFormats": "PPTX, PPT, ODP files",
-    "convertButton": "Convert to PDF"
+    "name": "PowerPoint'ten PDF'ye",
+    "subtitle": "PowerPoint sunumlarını (PPTX, PPT, ODP) PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "PPTX, PPT, ODP dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "markdownToPdf": {
-    "name": "Markdown to PDF",
-    "subtitle": "Write or paste Markdown and export it as a beautifully formatted PDF.",
+    "name": "Markdown'dan PDF'ye",
+    "subtitle": "Markdown yazın veya yapıştırın ve güzel biçimlendirilmiş bir PDF olarak dışa aktarın.",
     "paneMarkdown": "Markdown",
-    "panePreview": "Preview",
+    "panePreview": "Önizleme",
     "btnUpload": "Seç",
-    "btnSyncScroll": "Sync Scroll",
-    "btnSettings": "Settings",
-    "btnExportPdf": "Export PDF",
-    "settingsTitle": "Markdown Settings",
-    "settingsPreset": "Preset",
-    "presetDefault": "Default (GFM-like)",
-    "presetCommonmark": "CommonMark (strict)",
-    "presetZero": "Minimal (no features)",
-    "settingsOptions": "Markdown Options",
-    "optAllowHtml": "Allow HTML tags",
-    "optBreaks": "Convert newlines to <br>",
-    "optLinkify": "Auto-convert URLs to links",
-    "optTypographer": "Typographer (smart quotes, etc.)"
+    "btnSyncScroll": "Kaydırmayı Eşitle",
+    "btnSettings": "Ayarlar",
+    "btnExportPdf": "PDF Olarak Dışa Aktar",
+    "settingsTitle": "Markdown Ayarları",
+    "settingsPreset": "Ön Ayar",
+    "presetDefault": "Varsayılan (GFM benzeri)",
+    "presetCommonmark": "CommonMark (katı)",
+    "presetZero": "Minimal (özellik yok)",
+    "settingsOptions": "Markdown Seçenekleri",
+    "optAllowHtml": "HTML etiketlerine izin ver",
+    "optBreaks": "Satır sonlarını <br> etiketine dönüştür",
+    "optLinkify": "URL'leri otomatik olarak bağlantıya dönüştür",
+    "optTypographer": "Tipografi (akıllı tırnaklar vb.)"
   },
   "pdfBooklet": {
-    "name": "PDF Booklet",
-    "subtitle": "Rearrange pages for double-sided booklet printing. Fold and staple to create a booklet.",
-    "howItWorks": "How it works:",
-    "step1": "Upload a PDF file.",
-    "step2": "Pages will be rearranged in booklet order.",
-    "step3": "Print double-sided, flip on short edge, fold and staple.",
-    "paperSize": "Paper Size",
-    "orientation": "Orientation",
-    "portrait": "Portrait",
-    "landscape": "Landscape",
-    "pagesPerSheet": "Pages per Sheet",
-    "createBooklet": "Create Booklet",
-    "processing": "Processing...",
-    "pageCount": "Page count will be padded to multiple of 4 if needed."
+    "name": "PDF Kitapçık",
+    "subtitle": "Sayfaları çift taraflı kitapçık baskısı için yeniden düzenleyin. Kitapçık oluşturmak için katlayıp zımbalayın.",
+    "howItWorks": "Nasıl çalışır:",
+    "step1": "Bir PDF dosyası yükleyin.",
+    "step2": "Sayfalar kitapçık sırasına göre yeniden düzenlenir.",
+    "step3": "Çift taraflı yazdırın, kısa kenardan çevirin, katlayın ve zımbalayın.",
+    "paperSize": "Kağıt Boyutu",
+    "orientation": "Yönlendirme",
+    "portrait": "Dikey",
+    "landscape": "Yatay",
+    "pagesPerSheet": "Yaprak Başına Sayfa",
+    "createBooklet": "Kitapçık Oluştur",
+    "processing": "İşleniyor...",
+    "pageCount": "Gerekirse sayfa sayısı 4'ün katına tamamlanır."
   },
   "xpsToPdf": {
-    "name": "XPS to PDF",
-    "subtitle": "Convert XPS/OXPS documents to PDF format. Supports multiple files.",
-    "acceptedFormats": "XPS, OXPS files",
-    "convertButton": "Convert to PDF"
+    "name": "XPS'ten PDF'ye",
+    "subtitle": "XPS/OXPS belgelerini PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "XPS, OXPS dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "mobiToPdf": {
-    "name": "MOBI to PDF",
-    "subtitle": "Convert MOBI e-books to PDF format. Supports multiple files.",
-    "acceptedFormats": "MOBI files",
-    "convertButton": "Convert to PDF"
+    "name": "MOBI'den PDF'ye",
+    "subtitle": "MOBI e-kitaplarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "MOBI dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "epubToPdf": {
-    "name": "EPUB to PDF",
-    "subtitle": "Convert EPUB e-books to PDF format. Supports multiple files.",
-    "acceptedFormats": "EPUB files",
-    "convertButton": "Convert to PDF"
+    "name": "EPUB'dan PDF'ye",
+    "subtitle": "EPUB e-kitaplarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "EPUB dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "fb2ToPdf": {
-    "name": "FB2 to PDF",
-    "subtitle": "Convert FictionBook (FB2) e-books to PDF format. Supports multiple files.",
-    "acceptedFormats": "FB2 files",
-    "convertButton": "Convert to PDF"
+    "name": "FB2'den PDF'ye",
+    "subtitle": "FictionBook (FB2) e-kitaplarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "FB2 dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "cbzToPdf": {
-    "name": "CBZ to PDF",
-    "subtitle": "Convert comic book archives (CBZ/CBR) to PDF format. Supports multiple files.",
-    "acceptedFormats": "CBZ, CBR files",
-    "convertButton": "Convert to PDF"
+    "name": "CBZ'den PDF'ye",
+    "subtitle": "Çizgi roman arşivlerini (CBZ/CBR) PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "CBZ, CBR dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "wpdToPdf": {
-    "name": "WPD to PDF",
-    "subtitle": "Convert WordPerfect documents (WPD) to PDF format. Supports multiple files.",
-    "acceptedFormats": "WPD files",
-    "convertButton": "Convert to PDF"
+    "name": "WPD'den PDF'ye",
+    "subtitle": "WordPerfect belgelerini (WPD) PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "WPD dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "wpsToPdf": {
-    "name": "WPS to PDF",
-    "subtitle": "Convert WPS Office documents to PDF format. Supports multiple files.",
-    "acceptedFormats": "WPS files",
-    "convertButton": "Convert to PDF"
+    "name": "WPS'ten PDF'ye",
+    "subtitle": "WPS Office belgelerini PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "WPS dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "xmlToPdf": {
-    "name": "XML to PDF",
-    "subtitle": "Convert XML documents to PDF format. Supports multiple files.",
-    "acceptedFormats": "XML files",
-    "convertButton": "Convert to PDF"
+    "name": "XML'den PDF'ye",
+    "subtitle": "XML belgelerini PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "XML dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "pagesToPdf": {
-    "name": "Pages to PDF",
-    "subtitle": "Convert Apple Pages documents to PDF format. Supports multiple files.",
-    "acceptedFormats": "Pages files",
-    "convertButton": "Convert to PDF"
+    "name": "Pages'ten PDF'ye",
+    "subtitle": "Apple Pages belgelerini PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "Pages dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "odgToPdf": {
-    "name": "ODG to PDF",
-    "subtitle": "Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files.",
-    "acceptedFormats": "ODG files",
-    "convertButton": "Convert to PDF"
+    "name": "ODG'den PDF'ye",
+    "subtitle": "OpenDocument Çizim (ODG) dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "ODG dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "odsToPdf": {
-    "name": "ODS to PDF",
-    "subtitle": "Convert OpenDocument Spreadsheet (ODS) files to PDF format. Supports multiple files.",
-    "acceptedFormats": "ODS files",
-    "convertButton": "Convert to PDF"
+    "name": "ODS'ten PDF'ye",
+    "subtitle": "OpenDocument Elektronik Tablo (ODS) dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "ODS dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "odpToPdf": {
-    "name": "ODP to PDF",
-    "subtitle": "Convert OpenDocument Presentation (ODP) files to PDF format. Supports multiple files.",
-    "acceptedFormats": "ODP files",
-    "convertButton": "Convert to PDF"
+    "name": "ODP'den PDF'ye",
+    "subtitle": "OpenDocument Sunum (ODP) dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "ODP dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "pubToPdf": {
-    "name": "PUB to PDF",
-    "subtitle": "Convert Microsoft Publisher (PUB) files to PDF format. Supports multiple files.",
-    "acceptedFormats": "PUB files",
-    "convertButton": "Convert to PDF"
+    "name": "PUB'dan PDF'ye",
+    "subtitle": "Microsoft Publisher (PUB) dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "PUB dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "vsdToPdf": {
-    "name": "VSD to PDF",
-    "subtitle": "Convert Microsoft Visio (VSD, VSDX) files to PDF format. Supports multiple files.",
-    "acceptedFormats": "VSD, VSDX files",
-    "convertButton": "Convert to PDF"
+    "name": "VSD'den PDF'ye",
+    "subtitle": "Microsoft Visio (VSD, VSDX) dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "VSD, VSDX dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "psdToPdf": {
-    "name": "PSD to PDF",
-    "subtitle": "Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files.",
-    "acceptedFormats": "PSD files",
-    "convertButton": "Convert to PDF"
+    "name": "PSD'den PDF'ye",
+    "subtitle": "Adobe Photoshop (PSD) dosyalarını PDF formatına dönüştürün. Birden fazla dosyayı destekler.",
+    "acceptedFormats": "PSD dosyaları",
+    "convertButton": "PDF'ye Dönüştür"
   },
   "pdfToSvg": {
-    "name": "PDF to SVG",
-    "subtitle": "Convert each page of a PDF file into a scalable vector graphic (SVG) for perfect quality at any size."
+    "name": "PDF'den SVG'ye",
+    "subtitle": "Her boyutta kusursuz kalite için PDF dosyasının her sayfasını ölçeklenebilir vektör grafiğe (SVG) dönüştürün."
   },
   "extractTables": {
-    "name": "Extract PDF Tables",
-    "subtitle": "Extract tables from PDF files and export as CSV, JSON, or Markdown."
+    "name": "PDF Tablolarını Çıkar",
+    "subtitle": "PDF dosyalarındaki tabloları çıkarın ve CSV, JSON veya Markdown olarak dışa aktarın."
   },
   "pdfToCsv": {
-    "name": "PDF to CSV",
-    "subtitle": "Extract tables from PDF and convert to CSV format."
+    "name": "PDF'den CSV'ye",
+    "subtitle": "PDF'deki tabloları çıkarın ve CSV formatına dönüştürün."
   },
   "pdfToExcel": {
-    "name": "PDF to Excel",
-    "subtitle": "Extract tables from PDF and convert to Excel (XLSX) format."
+    "name": "PDF'den Excel'e",
+    "subtitle": "PDF'deki tabloları çıkarın ve Excel (XLSX) formatına dönüştürün."
   },
   "pdfToText": {
-    "name": "PDF to Text",
-    "subtitle": "Extract text from PDF files and save as plain text (.txt). Supports multiple files.",
+    "name": "PDF'den Metne",
+    "subtitle": "PDF dosyalarından metin çıkarın ve düz metin (.txt) olarak kaydedin. Birden fazla dosyayı destekler.",
     "noteLabel": "Not:",
     "noteText": "Bu araç YALNIZCA dijital olarak oluşturulmuş PDF'lerle çalışır. Taranmış belgeler veya görüntü tabanlı PDF'ler için bunun yerine OCR PDF aracımızı kullanın.",
-    "convertButton": "Extract Text",
-    "note": "This tool works ONLY with digitally created PDFs. For scanned documents or image-based PDFs, use our OCR PDF tool instead."
+    "convertButton": "Metni Çıkar"
   },
   "digitalSignPdf": {
-    "name": "Digital Signature PDF",
-    "pageTitle": "Digital Signature PDF - Add Cryptographic Signature | BentoPDF",
-    "subtitle": "Add a cryptographic digital signature to your PDF using X.509 certificates. Supports PKCS#12 (.pfx, .p12) and PEM formats. Your private key never leaves your browser.",
-    "certificateSection": "Certificate",
-    "uploadCert": "Upload certificate (.pfx, .p12, .pem)",
-    "certPassword": "Certificate Password",
+    "name": "PDF Dijital İmza",
+    "pageTitle": "PDF Dijital İmza - Kriptografik İmza Ekleyin | BentoPDF",
+    "subtitle": "X.509 sertifikalarıyla PDF'nize kriptografik bir dijital imza ekleyin. PKCS#12 (.pfx, .p12) ve PEM formatlarını destekler. Özel anahtarınız tarayıcınızdan asla çıkmaz.",
+    "certificateSection": "Sertifika",
+    "uploadCert": "Sertifika yükle (.pfx, .p12, .pem)",
+    "certPassword": "Sertifika Parolası",
     "privateKeyPassword": "Özel Anahtar Parolası",
-    "certPasswordPlaceholder": "Enter certificate password",
-    "certInfo": "Certificate Information",
-    "certSubject": "Subject",
-    "certIssuer": "Issuer",
-    "certValidity": "Valid",
-    "signatureDetails": "Signature Details (Optional)",
-    "reason": "Reason",
-    "reasonPlaceholder": "e.g., I approve this document",
-    "location": "Location",
-    "locationPlaceholder": "e.g., New York, USA",
-    "contactInfo": "Contact Info",
-    "contactPlaceholder": "e.g., email@example.com",
+    "certPasswordPlaceholder": "Sertifika parolasını girin",
+    "certInfo": "Sertifika Bilgileri",
+    "certSubject": "Konu",
+    "certIssuer": "Veren",
+    "certValidity": "Geçerlilik",
+    "signatureDetails": "İmza Ayrıntıları (İsteğe Bağlı)",
+    "reason": "Neden",
+    "reasonPlaceholder": "ör. Bu belgeyi onaylıyorum",
+    "location": "Konum",
+    "locationPlaceholder": "ör. İstanbul, Türkiye",
+    "contactInfo": "İletişim Bilgileri",
+    "contactPlaceholder": "ör. eposta@example.com",
     "visibleSignature": "Görünür İmza",
     "visibleSignatureDescription": "Etkinleştirildiğinde, PDF'de görünür bir imza kutusu görünür. Bir görüntü/logo yükleyebilir veya metin ekleyebilirsiniz. Hiçbiri sağlanmazsa, sertifikadaki imzalayanın adı otomatik olarak gösterilir.",
     "signatureImage": "İmza Görüntüsü/Logosu (İsteğe Bağlı)",
@@ -1074,15 +1089,15 @@
     "faqPrivateKeyAnswer": "Evet! Tüm işlemler tamamen tarayıcınızda gerçekleşir. Sertifikanız, özel anahtarınız ve PDF dosyalarınız asla cihazınızdan ayrılmaz veya herhangi bir sunucuya yüklenmez.",
     "faqValidReadersQuestion": "İmza PDF okuyucularda geçerli olacak mı?",
     "faqValidReadersAnswer": "Evet, araç tüm büyük PDF okuyucuları tarafından tanınan standart PKCS#7 ayrılmış imzalar oluşturur. Tam doğrulama için güvenilir bir Sertifika Otoritesi'nden bir sertifika kullanın.",
-    "applySignature": "Apply Digital Signature",
-    "successMessage": "PDF signed successfully! The signature can be verified in any PDF reader.",
+    "applySignature": "Dijital İmzayı Uygula",
+    "successMessage": "PDF başarıyla imzalandı! İmza herhangi bir PDF okuyucuda doğrulanabilir.",
     "internetRequiredTitle": "İnternet bağlantısı gerekli",
     "internetRequiredDescription": "İmzalama, imzayı doğrulamak için sertifika düzenleyicinizin sunucusundan sertifika zinciri bilgilerini almayı gerektirebilir."
   },
   "validateSignaturePdf": {
-    "name": "Validate PDF Signature",
-    "pageTitle": "Validate PDF Signature - Verify Digital Signatures | BentoPDF",
-    "subtitle": "Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity. All processing happens in your browser."
+    "name": "PDF İmzasını Doğrula",
+    "pageTitle": "PDF İmzasını Doğrula - Dijital İmzaları Doğrulayın | BentoPDF",
+    "subtitle": "PDF dosyalarınızdaki dijital imzaları doğrulayın. Sertifika geçerliliğini kontrol edin, imzalayan ayrıntılarını görüntüleyin ve belge bütünlüğünü teyit edin. Tüm işlemler tarayıcınızda gerçekleşir."
   },
   "timestampPdf": {
     "name": "PDF Zaman Damgası",
@@ -1094,13 +1109,13 @@
     "successMessage": "PDF başarıyla zaman damgalandı! Zaman damgası herhangi bir PDF okuyucuda doğrulanabilir."
   },
   "emailToPdf": {
-    "name": "E-posta'dan PDF'ye",
+    "name": "E-postadan PDF'ye",
     "subtitle": "E-posta dosyalarını (EML, MSG) PDF formatına dönüştürün. Outlook dışa aktarmalarını ve standart e-posta formatlarını destekler.",
     "acceptedFormats": "EML, MSG Dosyaları",
     "convertButton": "PDF'ye Dönüştür"
   },
   "fontToOutline": {
-    "name": "Yazı Tipi Çerçeveye Dönüştür",
+    "name": "Yazı Tipini Ana Hatlara Dönüştür",
     "subtitle": "Tüm yazı tiplerini vektör çerçevelere dönüştürün, tüm cihazlarda tutarlı görüntü için."
   },
   "deskewPdf": {
@@ -1189,7 +1204,7 @@
       "workerError": "Worker hatası: {{message}}",
       "alternateMergeWorkerError": "Alternatif birleştirme worker hatası: {{message}}",
       "noPdfFilesUploaded": "PDF Input düğümüne PDF dosyası yüklenmedi",
-      "failedToLoadFile": "\"{{file}}\" yüklenemedi — dosya bozuk olabilir",
+      "failedToLoadFile": "\"{{file}}\" yüklenemedi, dosya bozuk olabilir",
       "noImagesUploaded": "Image Input düğümüne resim yüklenmedi",
       "noWordDocsUploaded": "Word Input düğümüne belge yüklenmedi",
       "noExcelUploaded": "Excel Input düğümüne hesap tablosu yüklenmedi",

@@ -7,6 +7,8 @@ import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import { escapeHtml } from '../utils/helpers.js';
 import '../utils/setup-pdf-worker.js';
 
+import { trText, trHtml, onPageReady } from '../i18n/i18n.js';
+
 // State
 const pageState: {
   pdfDoc: PDFDocument | null;
@@ -23,7 +25,7 @@ const pageState: {
 function showLoader(msg = 'Processing...') {
   document.getElementById('loader-modal')?.classList.remove('hidden');
   const txt = document.getElementById('loader-text');
-  if (txt) txt.textContent = msg;
+  if (txt) txt.textContent = trText(msg);
 }
 
 function hideLoader() {
@@ -39,8 +41,8 @@ function showAlert(
   const modal = document.getElementById('alert-modal');
   const t = document.getElementById('alert-title');
   const m = document.getElementById('alert-message');
-  if (t) t.textContent = title;
-  if (m) m.textContent = msg;
+  if (t) t.textContent = trText(title);
+  if (m) m.textContent = trText(msg);
   modal?.classList.remove('hidden');
   const okBtn = document.getElementById('alert-ok');
   if (okBtn) {
@@ -77,9 +79,9 @@ function updateFileDisplay() {
             <div class="flex items-center justify-between">
                 <div class="flex-1 min-w-0">
                     <p class="truncate font-medium text-white">${escapeHtml(pageState.file.name)}</p>
-                    <p class="text-gray-400 text-sm">${fileSize} • ${pageCount} page${pageCount !== 1 ? 's' : ''}</p>
+                    <p class="text-gray-400 text-sm">${pageCount === 1 ? trHtml('{{fileSize}} • 1 page', { fileSize }) : trHtml('{{fileSize}} • {{pageCount}} pages', { fileSize, pageCount })}</p>
                 </div>
-                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="Remove file">
+                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="${trHtml('Remove file')}">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -231,7 +233,10 @@ function updatePreviewPanel() {
 
   if (!previewInfo || !previewContainer) return;
 
-  previewInfo.textContent = `Found ${pageState.detectedBlankPages.length} blank page(s). Click on a page to deselect it.`;
+  previewInfo.textContent = trText(
+    'Found {{length}} blank page(s). Click on a page to deselect it.',
+    { length: pageState.detectedBlankPages.length }
+  );
   previewContainer.innerHTML = '';
 
   pageState.detectedBlankPages.forEach((pageIndex) => {
@@ -244,7 +249,7 @@ function updatePreviewPanel() {
 
     div.innerHTML = `
             <div class="relative">
-                <img src="${thumbnail}" alt="Page ${pageIndex + 1}" class="rounded-md shadow-md max-w-full h-auto">
+                <img src="${thumbnail}" alt="${trHtml('Page {{pageNumber}}', { pageNumber: pageIndex + 1 })}" class="rounded-md shadow-md max-w-full h-auto">
                 <div class="absolute top-1 left-1 bg-indigo-600 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none">
                     ${pageIndex + 1}
                 </div>
@@ -295,7 +300,11 @@ async function processRemoveBlankPages() {
     return;
   }
 
-  showLoader(`Removing ${selectedPages.length} blank page(s)...`);
+  showLoader(
+    trText('Removing {{length}} blank page(s)...', {
+      length: selectedPages.length,
+    })
+  );
   try {
     const newPdf = await PDFDocument.create();
     const pages = pageState.pdfDoc.getPages();
@@ -314,7 +323,9 @@ async function processRemoveBlankPages() {
     );
     showAlert(
       'Success',
-      `Removed ${selectedPages.length} blank page(s) successfully!`,
+      trText('Removed {{length}} blank page(s) successfully!', {
+        length: selectedPages.length,
+      }),
       'success',
       resetState
     );
@@ -326,7 +337,7 @@ async function processRemoveBlankPages() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const detectBtn = document.getElementById('detect-btn');

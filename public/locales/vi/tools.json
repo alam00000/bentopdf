@@ -27,7 +27,22 @@
     "name": "Gộp PDF",
     "subtitle": "Kết hợp nhiều PDF thành một tệp. Giữ nguyên Bookmark.",
     "retainPageLabels": "Giữ nhãn trang gốc từ mỗi tệp",
-    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp)."
+    "retainPageLabelsHint": "Tắt (mặc định): PDF đã hợp nhất sử dụng đánh số trang tự nhiên 1–N. Bật: nhãn trang gốc của từng tệp được giữ lại (có thể tạo ra nhãn trùng lặp).",
+    "removeDuplicateFonts": "Xóa phông chữ trùng lặp",
+    "alert": {
+      "thumbnailError": "Không thể hiển thị hình thu nhỏ của trang",
+      "noSelection": "Chưa chọn tệp hoặc trang nào để gộp.",
+      "mergeSuccess": "Đã gộp PDF thành công!",
+      "mergeFailed": "Không thể gộp PDF.",
+      "mergeError": "Không thể gộp PDF. Vui lòng kiểm tra để đảm bảo tất cả tệp đều hợp lệ và không được bảo vệ bằng mật khẩu.",
+      "workerError": "Đã xảy ra lỗi không mong muốn trong quá trình gộp.",
+      "loadError": "Không thể tải một hoặc nhiều tệp PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Đang tạo bản xem trước trang...",
+      "merging": "Đang gộp PDF...",
+      "loadingDocuments": "Đang tải tài liệu PDF..."
+    }
   },
   "splitPdf": {
     "name": "Chia PDF",
@@ -91,7 +106,7 @@
     "tipRedoZ": "Làm lại (⇧⌘Z)",
     "tipFileDetails": "Chi tiết tệp",
     "tipEditExistingContent": "Chỉnh sửa nội dung hiện có",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Phạm vi tác động của công cụ Chỉnh sửa — thu hẹp phạm vi trên trang dày đặc",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Phạm vi tác động của công cụ Chỉnh sửa: thu hẹp phạm vi trên trang dày đặc",
     "tipClickThePageToAddATextBox": "Nhấp vào trang để thêm hộp văn bản",
     "tipSpellCheckLanguage": "Ngôn ngữ kiểm tra chính tả",
     "tipFindAndReplace": "Tìm và thay thế",
@@ -503,7 +518,8 @@
       "noFile": "Không có tệp",
       "noFileExplanation": "Vui lòng tải lên tệp PDF trước.",
       "conversionSuccess": "Đã chuyển đổi PDF thành TIFF thành công!",
-      "conversionError": "Không thể chuyển đổi PDF sang TIFF. Tệp có thể bị hỏng."
+      "conversionError": "Không thể chuyển đổi PDF sang TIFF. Tệp có thể bị hỏng.",
+      "conversionOutOfMemory": "Trình duyệt đã hết bộ nhớ khi chuyển đổi. Hãy thử giảm DPI hoặc bỏ chọn tùy chọn TIFF nhiều trang để chuyển đổi từng trang một."
     }
   },
   "pdfToCbz": {
@@ -760,7 +776,7 @@
     "loadError": "Không thể tải PDF. Có thể tệp bị hỏng hoặc được bảo vệ bằng mật khẩu."
   },
   "posterizePdf": {
-    "name": "Posterize PDF",
+    "name": "Chia PDF thành poster",
     "subtitle": "Chia một trang lớn thành nhiều trang nhỏ hơn."
   },
   "fixPageSize": {
@@ -986,12 +1002,11 @@
     "subtitle": "Trích xuất bảng từ PDF và chuyển đổi sang định dạng Excel (XLSX)."
   },
   "pdfToText": {
-    "name": "PDF sang Văn bản",
+    "name": "PDF sang văn bản",
     "subtitle": "Trích xuất văn bản từ tệp PDF và lưu dưới dạng tệp văn bản (.txt). Hỗ trợ nhiều tệp.",
     "noteLabel": "Lưu ý:",
     "noteText": "Công cụ này CHỈ hoạt động với PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi thay thế.",
-    "convertButton": "Trích xuất văn bản",
-    "note": "Công cụ này CHỈ hoạt động với các tệp PDF được tạo kỹ thuật số. Đối với tài liệu quét hoặc PDF dựa trên hình ảnh, hãy sử dụng công cụ OCR PDF của chúng tôi."
+    "convertButton": "Trích xuất văn bản"
   },
   "digitalSignPdf": {
     "name": "Chữ ký số PDF",
@@ -1132,7 +1147,7 @@
     "subtitle": "Chuyển đổi PDF sang PDF/A để lưu trữ lâu dài."
   },
   "rasterizePdf": {
-    "name": "Rasterize PDF",
+    "name": "Raster hóa PDF",
     "subtitle": "Chuyển đổi PDF thành PDF dựa trên hình ảnh. Làm phẳng các lớp và xóa văn bản có thể chọn."
   },
   "pdfWorkflow": {
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "Chắc chắn! Toàn bộ quá trình xử lý diễn ra trong trình duyệt của bạn. Tệp của bạn không bao giờ rời khỏi thiết bị, đảm bảo quyền riêng tư hoàn toàn."
   },
   "unlockPdf": {
-    "name": "Giải mã PDF",
+    "name": "Mở khóa PDF",
     "subtitle": "Mở khóa PDF bằng cách xóa bảo vệ mật khẩu."
   },
   "protectPdf": {
-    "name": "Mã hóa PDF",
+    "name": "Bảo vệ PDF",
     "subtitle": "Khóa PDF của bạn bằng cách thêm mật khẩu."
   }
 }

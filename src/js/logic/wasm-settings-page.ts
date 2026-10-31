@@ -3,13 +3,9 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { WasmProvider, type WasmPackage } from '../utils/wasm-provider.js';
 import { clearPyMuPDFCache } from '../utils/pymupdf-loader.js';
 import { clearGhostscriptCache } from '../utils/ghostscript-dynamic-loader.js';
-import { initI18n, t } from '../i18n/index.js';
+import { initI18n, t, onPageReady } from '../i18n/index.js';
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 async function initializePage() {
   createIcons({ icons });

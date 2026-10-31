@@ -26,8 +26,23 @@
   "mergePdf": {
     "name": "Mesclar PDF",
     "subtitle": "Combine vários PDFs em um único arquivo. Preserva os favoritos (bookmarks).",
-    "retainPageLabels": "Manter os rótulos de página originais de cada ficheiro",
-    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada ficheiro são preservados (pode produzir rótulos duplicados)."
+    "retainPageLabels": "Manter os rótulos de página originais de cada arquivo",
+    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada arquivo são preservados (pode produzir rótulos duplicados).",
+    "removeDuplicateFonts": "Remover fontes duplicadas",
+    "alert": {
+      "thumbnailError": "Falha ao renderizar as miniaturas das páginas",
+      "noSelection": "Nenhum arquivo ou página selecionado para mesclar.",
+      "mergeSuccess": "PDFs mesclados com sucesso!",
+      "mergeFailed": "Falha ao mesclar os PDFs.",
+      "mergeError": "Falha ao mesclar os PDFs. Verifique se todos os arquivos são válidos e não estão protegidos por senha.",
+      "workerError": "Ocorreu um erro inesperado no processo de mesclagem.",
+      "loadError": "Falha ao carregar um ou mais arquivos PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Renderizando pré-visualizações das páginas...",
+      "merging": "Mesclando PDFs...",
+      "loadingDocuments": "Carregando documentos PDF..."
+    }
   },
   "splitPdf": {
     "name": "Dividir PDF",
@@ -91,7 +106,7 @@
     "tipRedoZ": "Refazer (⇧⌘Z)",
     "tipFileDetails": "Detalhes do arquivo",
     "tipEditExistingContent": "Editar conteúdo existente",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "O que a ferramenta Editar afeta — restrinja o alcance em páginas cheias",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "O que a ferramenta Editar afeta: restrinja o alcance em páginas cheias",
     "tipClickThePageToAddATextBox": "Clique na página para adicionar uma caixa de texto",
     "tipSpellCheckLanguage": "Idioma do corretor ortográfico",
     "tipFindAndReplace": "Localizar e substituir",
@@ -172,20 +187,20 @@
     "subtitle": "Corte as margens de cada página do seu PDF."
   },
   "extractPages": {
-    "name": "Extrair Páginas",
+    "name": "Extrair páginas",
     "subtitle": "Salve uma seleção de páginas como novos arquivos."
   },
   "duplicateOrganize": {
-    "name": "Duplicar e Organizar",
+    "name": "Duplicar e organizar",
     "subtitle": "Duplique, reordene e exclua páginas.",
     "saveChanges": "Salvar alterações"
   },
   "deletePages": {
-    "name": "Excluir Páginas",
+    "name": "Excluir páginas",
     "subtitle": "Remova páginas específicas do seu documento."
   },
   "editBookmarks": {
-    "name": "Editar Favoritos",
+    "name": "Editar marcadores",
     "subtitle": "Adicione, edite, importe, exclua e extraia favoritos de PDF.",
     "autoExtractExisting": "Extrair automaticamente marcadores existentes",
     "importSectionTitle": "Ou importar marcadores",
@@ -212,7 +227,7 @@
     "workerErrorOccurred": "Ocorreu erro de worker. Verifique o console para detalhes."
   },
   "pageNumbers": {
-    "name": "Números de Página",
+    "name": "Números de página",
     "subtitle": "Insira números de página no seu documento."
   },
   "addPageLabels": {
@@ -279,20 +294,20 @@
     "subtitle": "Adicionar números Bates sequenciais em um ou mais arquivos PDF."
   },
   "addWatermark": {
-    "name": "Adicionar Marca d'Água",
+    "name": "Adicionar marca d'água",
     "subtitle": "Carimbe texto ou uma imagem sobre as páginas do seu PDF.",
     "applyToAllPages": "Aplicar a todas as páginas"
   },
   "headerFooter": {
-    "name": "Cabeçalho e Rodapé",
+    "name": "Cabeçalho e rodapé",
     "subtitle": "Adicione texto no topo e no final das páginas."
   },
   "invertColors": {
-    "name": "Inverter Cores",
+    "name": "Inverter cores",
     "subtitle": "Crie uma versão em \"modo escuro\" do seu PDF."
   },
   "scannerEffect": {
-    "name": "Efeito Scanner",
+    "name": "Efeito scanner",
     "subtitle": "Faça seu PDF parecer um documento digitalizado.",
     "scanSettings": "Configurações de Digitalização",
     "colorspace": "Espaço de Cor",
@@ -309,7 +324,7 @@
     "processButton": "Aplicar Efeito Scanner"
   },
   "adjustColors": {
-    "name": "Ajustar Cores",
+    "name": "Ajustar cores",
     "subtitle": "Ajuste brilho, contraste, saturação e mais no seu PDF.",
     "colorSettings": "Configurações de Cor",
     "brightness": "Brilho",
@@ -323,15 +338,15 @@
     "processButton": "Aplicar Ajustes de Cor"
   },
   "backgroundColor": {
-    "name": "Cor de Fundo",
+    "name": "Cor de fundo",
     "subtitle": "Altere a cor de fundo do seu PDF."
   },
   "changeTextColor": {
-    "name": "Alterar Cor do Texto",
+    "name": "Alterar cor do texto",
     "subtitle": "Altere a cor do texto no seu PDF."
   },
   "addStamps": {
-    "name": "Adicionar Carimbos",
+    "name": "Adicionar carimbos",
     "subtitle": "Adicione carimbos de imagem ao seu PDF usando a barra de ferramentas de anotação.",
     "usernameLabel": "Nome do Usuário no Carimbo",
     "usernamePlaceholder": "Digite seu nome (para os carimbos)",
@@ -339,29 +354,29 @@
     "saveButton": "Salvar PDF carimbado"
   },
   "removeAnnotations": {
-    "name": "Remover Anotações",
+    "name": "Remover anotações",
     "subtitle": "Remova comentários, destaques e links."
   },
   "pdfFormFiller": {
-    "name": "Preenchimento de Formulário",
+    "name": "Preenchimento de formulário PDF",
     "subtitle": "Preencha formulários diretamente no navegador. Também suporta formulários XFA.",
     "uploadHint": "Envie um PDF com campos de formulário. Preencha-os diretamente no visualizador abaixo, depois clique no botão para salvar e baixar o formulário preenchido. Também suporta formulários XFA.",
     "xfaNoteTitle": "Nota sobre formulários XFA:",
     "xfaNoteDescription": "XFA (XML Forms Architecture) é um formato legado suportado apenas por certos visualizadores de PDF como BentoPDF e Firefox. Se você abrir um PDF XFA em outro software e ver páginas em branco ou nenhum campo de formulário, significa que esse visualizador não suporta XFA. Para visualizar e preencher corretamente formulários XFA, use Firefox ou o preenchedor de formulários do BentoPDF."
   },
   "createPdfForm": {
-    "name": "Criar Formulário PDF",
+    "name": "Criar formulário PDF",
     "subtitle": "Crie formulários PDF preenchíveis com campos de texto de arrastar e soltar.",
     "orSeparator": "OU",
     "createBlankPdf": "Criar PDF em branco"
   },
   "removeBlankPages": {
-    "name": "Remover Páginas em Branco",
+    "name": "Remover páginas em branco",
     "subtitle": "Detecte e exclua automaticamente páginas em branco.",
     "sensitivityHint": "Maior = mais rigoroso, apenas páginas totalmente em branco. Menor = permite páginas com algum conteúdo."
   },
   "imageToPdf": {
-    "name": "Imagem para PDF",
+    "name": "Imagens para PDF",
     "subtitle": "Converta JPG, PNG, WebP, BMP, TIFF, SVG, HEIC para PDF."
   },
   "pngToPdf": {
@@ -503,7 +518,8 @@
       "noFile": "Sem arquivo",
       "noFileExplanation": "Por favor envie um arquivo PDF primeiro.",
       "conversionSuccess": "PDF convertido para TIFF com sucesso!",
-      "conversionError": "Falha ao converter PDF para TIFF. O arquivo pode estar corrompido."
+      "conversionError": "Falha ao converter PDF para TIFF. O arquivo pode estar corrompido.",
+      "conversionOutOfMemory": "O navegador ficou sem memória durante a conversão. Tente um DPI menor ou desmarque a opção de TIFF de várias páginas para converter uma página por vez."
     }
   },
   "pdfToCbz": {
@@ -537,7 +553,7 @@
     }
   },
   "pdfToGreyscale": {
-    "name": "PDF para Tons de Cinza",
+    "name": "PDF para tons de cinza",
     "subtitle": "Converta todas as cores para preto e branco."
   },
   "pdfToJson": {
@@ -559,7 +575,7 @@
     }
   },
   "ocrPdf": {
-    "name": "OCR para PDF",
+    "name": "OCR em PDF",
     "subtitle": "Torne um PDF pesquisável e copiável (reconhecimento de texto).",
     "languagesInDocument": "Idiomas no documento",
     "searchLanguagesPlaceholder": "Buscar idiomas...",
@@ -613,10 +629,10 @@
     "multiLanguageSupportDescription": "Selecione vários idiomas para documentos com conteúdo em idiomas mistos."
   },
   "alternateMerge": {
-    "name": "Alternar e Misturar Páginas",
+    "name": "Alternar e misturar páginas",
     "subtitle": "Mescle PDFs alternando as páginas de cada arquivo. Preserva os favoritos.",
-    "retainPageLabels": "Manter os rótulos de página originais de cada ficheiro",
-    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada ficheiro são preservados (pode produzir rótulos duplicados)."
+    "retainPageLabels": "Manter os rótulos de página originais de cada arquivo",
+    "retainPageLabelsHint": "Desligado (padrão): o PDF mesclado usa numeração natural 1–N. Ligado: os rótulos de página originais de cada arquivo são preservados (pode produzir rótulos duplicados)."
   },
   "duplexCollate": {
     "name": "Intercalar digitalização frente e verso",
@@ -664,27 +680,27 @@
     "faqBackOrderAnswer": "Depende de como a pilha foi inserida na segunda passagem. Virar a pilha inteira produz versos em ordem invertida, que é a opção padrão. Se o seu scanner os devolveu na mesma ordem das frentes, escolha manter o bloco como está."
   },
   "addAttachments": {
-    "name": "Adicionar Anexos",
+    "name": "Adicionar anexos",
     "subtitle": "Incorpore um ou mais arquivos dentro do seu PDF."
   },
   "extractAttachments": {
-    "name": "Extrair Anexos",
+    "name": "Extrair anexos",
     "subtitle": "Extraia todos os arquivos incorporados de PDF(s) como um ZIP."
   },
   "editAttachments": {
-    "name": "Editar Anexos",
+    "name": "Editar anexos",
     "subtitle": "Visualize ou remova anexos do seu PDF."
   },
   "dividePages": {
-    "name": "Dividir Páginas",
+    "name": "Dividir páginas",
     "subtitle": "Divida as páginas horizontalmente ou verticalmente."
   },
   "addBlankPage": {
-    "name": "Adicionar Página em Branco",
+    "name": "Adicionar página em branco",
     "subtitle": "Insira uma página vazia em qualquer lugar do seu PDF."
   },
   "reversePages": {
-    "name": "Inverter Páginas",
+    "name": "Inverter ordem das páginas",
     "subtitle": "Inverta a ordem de todas as páginas do seu documento."
   },
   "rotatePdf": {
@@ -692,7 +708,7 @@
     "subtitle": "Gire as páginas em incrementos de 90 graus."
   },
   "rotateCustom": {
-    "name": "Rotacionar em Graus Customizáveis",
+    "name": "Girar em graus personalizados",
     "subtitle": "Rotaciona páginas em qualquer ângulo customizado."
   },
   "nUpPdf": {
@@ -700,15 +716,15 @@
     "subtitle": "Organize várias páginas em uma única folha de impressão."
   },
   "combineToSinglePage": {
-    "name": "Combinar em Página Única",
+    "name": "Combinar em página única",
     "subtitle": "Costure todas as páginas em um único fluxo contínuo."
   },
   "viewMetadata": {
-    "name": "Ver Metadados",
+    "name": "Ver metadados",
     "subtitle": "Inspecione as propriedades ocultas do seu PDF."
   },
   "editMetadata": {
-    "name": "Editar Metadados",
+    "name": "Editar metadados",
     "subtitle": "Altere o autor, título e outras propriedades."
   },
   "pdfsToZip": {
@@ -764,7 +780,7 @@
     "subtitle": "Divida uma página grande em várias páginas menores."
   },
   "fixPageSize": {
-    "name": "Ajustar Tamanho da Página",
+    "name": "Ajustar tamanho da página",
     "subtitle": "Padronize todas as páginas para um tamanho uniforme."
   },
   "linearizePdf": {
@@ -772,11 +788,11 @@
     "subtitle": "Otimize o PDF para visualização rápida na web."
   },
   "pageDimensions": {
-    "name": "Dimensões da Página",
+    "name": "Dimensões da página",
     "subtitle": "Analise o tamanho, orientação e unidades das páginas."
   },
   "removeRestrictions": {
-    "name": "Remover Restrições",
+    "name": "Remover restrições",
     "subtitle": "Remova proteção por senha e restrições de segurança de arquivos assinados digitalmente."
   },
   "repairPdf": {
@@ -796,15 +812,15 @@
     "subtitle": "Desbloqueie o PDF removendo a proteção por senha."
   },
   "flattenPdf": {
-    "name": "Achatar PDF (Flatten)",
+    "name": "Achatar PDF",
     "subtitle": "Torne os campos de formulário e anotações não editáveis."
   },
   "removeMetadata": {
-    "name": "Remover Metadados",
+    "name": "Remover metadados",
     "subtitle": "Limpe dados ocultos do seu PDF."
   },
   "changePermissions": {
-    "name": "Alterar Permissões",
+    "name": "Alterar permissões",
     "subtitle": "Defina ou altere as permissões de usuário em um PDF."
   },
   "odtToPdf": {
@@ -864,7 +880,7 @@
     "optTypographer": "Tipógrafo (aspas inteligentes, etc.)"
   },
   "pdfBooklet": {
-    "name": "PDF Booklet",
+    "name": "Livreto PDF",
     "subtitle": "Reordena páginas para impressão de livreto frente e verso. Dobre e grampeie para criar um livreto.",
     "howItWorks": "Como funciona:",
     "step1": "Faça o upload de um arquivo PDF.",
@@ -974,7 +990,7 @@
     "subtitle": "Converte cada página de um arquivo PDF em um scalable vector graphic (SVG) para qualidade perfeita em qualquer tamanho."
   },
   "extractTables": {
-    "name": "Extrair Tabelas PDF",
+    "name": "Extrair tabelas de PDF",
     "subtitle": "Extrai tabelas de arquivos PDF e exporta como CSV, JSON, ou Markdown."
   },
   "pdfToCsv": {
@@ -986,15 +1002,14 @@
     "subtitle": "Extrai tabelas do PDF e converte em Excel (XLSX)."
   },
   "pdfToText": {
-    "name": "PDF para Texto",
+    "name": "PDF para texto",
     "subtitle": "Extrai texto de arquivos PDF e salva como texto simples (.txt). Suporta múltiplos arquivos.",
     "noteLabel": "Nota:",
-    "noteText": "Esta ferramenta funciona APENAS com PDFs criados digitalmente. Para documentos digitalizados ou PDFs baseados em imagens, use nossa ferramenta OCR PDF.",
-    "convertButton": "Extrair Texto",
-    "note": "Esta ferrament funciona SOMENTE com PDFs criados digitalmente. Para documentos escaneados ou PDFs baseados em imagens, use nossa ferramenta OCR para PDF no lugar."
+    "noteText": "Esta ferramenta funciona APENAS com PDFs criados digitalmente. Para documentos digitalizados ou PDFs baseados em imagens, use nossa ferramenta OCR em PDF.",
+    "convertButton": "Extrair Texto"
   },
   "digitalSignPdf": {
-    "name": "Assinatura Digital PDF",
+    "name": "Assinatura digital de PDF",
     "pageTitle": "Assinatura Digital PDF - Adicionar Assinatura Criptográfica | BentoPDF",
     "subtitle": "Adicione uma assinatura digital criptográfica ao seu PDF usando certificados X.509. Suporta formatos PKCS#12 (.pfx, .p12) e PEM. Sua chave privada nunca sai do seu navegador.",
     "certificateSection": "Certificado",
@@ -1012,7 +1027,7 @@
     "location": "Localização",
     "locationPlaceholder": "ex: Lisboa, Portugal",
     "contactInfo": "Contato",
-    "contactPlaceholder": "ex: email@exemplo.com",
+    "contactPlaceholder": "ex: email@example.com",
     "visibleSignature": "Assinatura visível",
     "visibleSignatureDescription": "Quando habilitado, uma caixa de assinatura visível aparece no PDF. Você pode carregar uma imagem/logo ou adicionar texto. Se nenhum for fornecido, o nome do assinante do certificado será exibido automaticamente.",
     "signatureImage": "Imagem/Logo de assinatura (opcional)",
@@ -1080,12 +1095,12 @@
     "internetRequiredDescription": "A assinatura pode precisar obter informações da cadeia de certificados do servidor do emissor para validar a assinatura."
   },
   "validateSignaturePdf": {
-    "name": "Validar Assinatura PDF",
+    "name": "Validar assinatura de PDF",
     "pageTitle": "Validar Assinatura PDF - Verificar Assinaturas Digitais | BentoPDF",
     "subtitle": "Verifique assinaturas digitais em seus arquivos PDF. Verifique a validade do certificado e a integridade do documento."
   },
   "timestampPdf": {
-    "name": "Carimbo de tempo PDF",
+    "name": "Carimbo de tempo em PDF",
     "pageTitle": "Carimbo de tempo PDF grátis online - RFC 3161 | BentoPDF",
     "subtitle": "Adicione um carimbo de tempo RFC 3161 ao seu PDF usando um servidor TSA confiável. Prova que o seu documento existia num momento específico. Sem necessidade de certificado.",
     "tsaSectionTitle": "Servidor de carimbo de tempo (TSA)",
@@ -1094,13 +1109,13 @@
     "successMessage": "PDF carimbado com sucesso! O carimbo de hora pode ser verificado em qualquer leitor de PDF."
   },
   "emailToPdf": {
-    "name": "Email para PDF",
+    "name": "E-mail para PDF",
     "subtitle": "Converta arquivos de email (EML, MSG) para PDF. Suporta exportações do Outlook e formatos de email padrão.",
     "acceptedFormats": "Arquivos EML, MSG",
     "convertButton": "Converter para PDF"
   },
   "fontToOutline": {
-    "name": "Fonte para Contorno",
+    "name": "Fonte para contorno",
     "subtitle": "Converta todas as fontes em contornos vetoriais para renderização consistente em todos os dispositivos."
   },
   "deskewPdf": {
@@ -1112,7 +1127,7 @@
     "subtitle": "Converter arquivos PDF em documentos Word editáveis."
   },
   "extractImages": {
-    "name": "Extrair Imagens",
+    "name": "Extrair imagens",
     "subtitle": "Extrair todas as imagens incorporadas dos seus arquivos PDF."
   },
   "pdfToMarkdown": {
@@ -1124,7 +1139,7 @@
     "subtitle": "Extrair conteúdo PDF como JSON LlamaIndex para pipelines RAG/LLM."
   },
   "pdfOcg": {
-    "name": "Camadas PDF (OCG)",
+    "name": "Camadas de PDF (OCG)",
     "subtitle": "Visualizar, alternar, adicionar e excluir camadas OCG no seu PDF."
   },
   "pdfToPdfa": {
@@ -1189,7 +1204,7 @@
       "workerError": "Erro do worker: {{message}}",
       "alternateMergeWorkerError": "Erro do worker de mesclagem alternada: {{message}}",
       "noPdfFilesUploaded": "Nenhum arquivo PDF enviado no nó de entrada PDF",
-      "failedToLoadFile": "Falha ao carregar \"{{file}}\" — o arquivo pode estar corrompido",
+      "failedToLoadFile": "Falha ao carregar \"{{file}}\": o arquivo pode estar corrompido",
       "noImagesUploaded": "Nenhuma imagem enviada no nó de entrada de imagem",
       "noWordDocsUploaded": "Nenhum documento enviado no nó de entrada Word",
       "noExcelUploaded": "Nenhuma planilha enviada no nó de entrada Excel",
@@ -1298,15 +1313,15 @@
     "faqDifferenceAnswer": "A sobreposição coloca páginas acima do seu PDF base (como uma marca d'água). O fundo coloca páginas atrás do seu PDF base (como um cabeçalho ou fundo).",
     "faqSinglePageQuestion": "Posso usar um PDF de uma única página como sobreposição para todas as páginas?",
     "faqSinglePageAnswer": "Sim! Ative a opção \"Repetir\" e as páginas de sobreposição se repetirão em todas as páginas base. Uma marca d'água de uma página será aplicada a cada página.",
-    "faqPrivacyQuestion": "Os meus ficheiros são privados e seguros?",
-    "faqPrivacyAnswer": "Com certeza! Todo o processamento acontece no seu navegador. Os seus ficheiros nunca saem do seu dispositivo, garantindo total privacidade."
+    "faqPrivacyQuestion": "Meus arquivos são privados e seguros?",
+    "faqPrivacyAnswer": "Com certeza! Todo o processamento acontece no seu navegador. Seus arquivos nunca saem do seu dispositivo, garantindo total privacidade."
   },
   "unlockPdf": {
-    "name": "Descriptografar PDF",
+    "name": "Desbloquear PDF",
     "subtitle": "Desbloqueie o PDF removendo a proteção por senha."
   },
   "protectPdf": {
-    "name": "Criptografar PDF",
+    "name": "Proteger PDF",
     "subtitle": "Bloqueie seu PDF adicionando uma senha."
   }
 }

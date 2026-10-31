@@ -53,7 +53,7 @@ if [ "$DISABLE_IPV6" = "true" ]; then
 fi
 
 if [ "${ROBOTS_NOINDEX:-false}" = "true" ] && [ -x /usr/local/bin/bentopdf-noindex.sh ]; then
-    NOINDEX_HTML_ROOT=/usr/share/nginx/html /usr/local/bin/bentopdf-noindex.sh || true
+    /usr/local/bin/bentopdf-noindex.sh
 fi
 
 exec su-exec "$PUID:$PGID" "$@"

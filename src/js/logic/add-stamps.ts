@@ -7,6 +7,9 @@ import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { createIcons, icons } from 'lucide';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
+import { trText } from '../i18n/i18n.js';
+import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
+
 let selectedFile: File | null = null;
 let viewerIframe: HTMLIFrameElement | null = null;
 let currentBlobUrl: string | null = null;
@@ -55,7 +58,7 @@ function resetState() {
     viewerContainer.style.aspectRatio = '';
   }
 
-  const isFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
+  const isFullWidth = getStoredItem('fullWidthMode') !== 'false';
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-6xl');
     toolUploader.classList.add('max-w-2xl');
@@ -76,7 +79,7 @@ function updateFileList() {
   fileListDiv.innerHTML = '';
 
   // Expand container width for viewer if NOT in full width mode (default to true if not set)
-  const isFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
+  const isFullWidth = getStoredItem('fullWidthMode') !== 'false';
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-2xl');
     toolUploader.classList.add('max-w-6xl');
@@ -105,7 +108,7 @@ function updateFileList() {
   const deleteBtn = document.createElement('button');
   deleteBtn.className =
     'text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2';
-  deleteBtn.title = 'Remove file';
+  deleteBtn.title = trText('Remove file');
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   deleteBtn.onclick = (e) => {
     e.stopPropagation();
@@ -165,14 +168,14 @@ async function loadPdfInViewer(file: File) {
   currentBlobUrl = URL.createObjectURL(blob);
 
   try {
-    const existingPrefsRaw = localStorage.getItem('pdfjs.preferences');
+    const existingPrefsRaw = getStoredItem('pdfjs.preferences');
     const existingPrefs = existingPrefsRaw ? JSON.parse(existingPrefsRaw) : {};
     delete (existingPrefs as Record<string, unknown>).annotationEditorMode;
     const newPrefs = {
       ...existingPrefs,
       enablePermissions: false,
     };
-    localStorage.setItem('pdfjs.preferences', JSON.stringify(newPrefs));
+    setStoredItem('pdfjs.preferences', JSON.stringify(newPrefs));
   } catch (e) {
     console.warn('Failed to update pdfjs.preferences in localStorage', e);
   }
@@ -301,7 +304,9 @@ if (saveStampedBtn) {
   saveStampedBtn.addEventListener('click', () => {
     if (!viewerIframe) {
       alert(
-        'Viewer not ready. Please upload a PDF and wait for it to finish loading.'
+        trText(
+          'Viewer not ready. Please upload a PDF and wait for it to finish loading.'
+        )
       );
       return;
     }
@@ -338,12 +343,16 @@ if (saveStampedBtn) {
       }
 
       alert(
-        'Could not access the stamped-PDF exporter. Please use the Export → PDF button in the viewer toolbar as a fallback.'
+        trText(
+          'Could not access the stamped-PDF exporter. Please use the Export → PDF button in the viewer toolbar as a fallback.'
+        )
       );
     } catch (e) {
       console.error('Failed to trigger stamped PDF export:', e);
       alert(
-        'Could not export the stamped PDF. Please use the Export → PDF button in the viewer toolbar as a fallback.'
+        trText(
+          'Could not export the stamped PDF. Please use the Export → PDF button in the viewer toolbar as a fallback.'
+        )
       );
     }
   });

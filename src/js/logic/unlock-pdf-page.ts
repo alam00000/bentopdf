@@ -9,6 +9,8 @@ import { icons, createIcons } from 'lucide';
 import JSZip from 'jszip';
 import { DecryptPdfState } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: DecryptPdfState = {
   files: [],
 };
@@ -118,22 +120,24 @@ async function decryptPdf() {
 
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Initializing decryption...';
+    if (loaderText)
+      loaderText.textContent = trText('Initializing decryption...');
 
     if (pageState.files.length === 1) {
       // Single file: decrypt and download directly
       const file = pageState.files[0];
-      if (loaderText) loaderText.textContent = 'Reading encrypted PDF...';
+      if (loaderText)
+        loaderText.textContent = trText('Reading encrypted PDF...');
       const fileBuffer = await readFileAsArrayBuffer(file);
       const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
-      if (loaderText) loaderText.textContent = 'Decrypting PDF...';
+      if (loaderText) loaderText.textContent = trText('Decrypting PDF...');
       const { bytes: decryptedBytes } = await decryptPdfBytes(
         uint8Array,
         password
       );
 
-      if (loaderText) loaderText.textContent = 'Preparing download...';
+      if (loaderText) loaderText.textContent = trText('Preparing download...');
       const blob = new Blob([decryptedBytes.slice().buffer], {
         type: 'application/pdf',
       });
@@ -158,7 +162,10 @@ async function decryptPdf() {
         const file = pageState.files[i];
 
         if (loaderText)
-          loaderText.textContent = `Decrypting ${file.name} (${i + 1}/${pageState.files.length})...`;
+          loaderText.textContent = trText(
+            'Decrypting {{name}} ({{n}}/{{length}})...',
+            { name: file.name, n: i + 1, length: pageState.files.length }
+          );
 
         try {
           const fileBuffer = await readFileAsArrayBuffer(file);
@@ -177,18 +184,25 @@ async function decryptPdf() {
       }
 
       if (successCount === 0) {
-        throw new Error(
-          'No PDF files could be decrypted. The password may be incorrect.'
+        const error = new Error(
+          trText(
+            'No PDF files could be decrypted. The password may be incorrect.'
+          )
         );
+        error.name = 'PasswordError';
+        throw error;
       }
 
-      if (loaderText) loaderText.textContent = 'Generating ZIP file...';
+      if (loaderText) loaderText.textContent = trText('Generating ZIP file...');
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, 'decrypted-pdfs.zip');
 
-      let alertMessage = `${successCount} PDF(s) decrypted successfully.`;
+      let alertMessage = trText(
+        '{{successCount}} PDF(s) decrypted successfully.',
+        { successCount }
+      );
       if (errorCount > 0) {
-        alertMessage += ` ${errorCount} file(s) failed.`;
+        alertMessage += ` ${trText('Files that failed: {{errorCount}}.', { errorCount })}`;
       }
       showAlert('Processing Complete', alertMessage, 'success', () => {
         resetState();
@@ -203,7 +217,10 @@ async function decryptPdf() {
         'Incorrect Password',
         'The password you entered is incorrect. Please try again.'
       );
-    } else if (errorMessage.includes('password')) {
+    } else if (
+      error instanceof Error &&
+      (error.name === 'PasswordError' || /password/i.test(errorMessage))
+    ) {
       showAlert(
         'Password Error',
         'Unable to decrypt the PDF with the provided password.'
@@ -211,7 +228,13 @@ async function decryptPdf() {
     } else {
       showAlert(
         'Decryption Failed',
-        `An error occurred: ${errorMessage || 'The password you entered is wrong or the file is corrupted.'}`
+        trText('An error occurred: {{error}}', {
+          error:
+            errorMessage ||
+            trText(
+              'The password you entered is wrong or the file is corrupted.'
+            ),
+        })
       );
     }
   } finally {
@@ -219,7 +242,7 @@ async function decryptPdf() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

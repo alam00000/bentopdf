@@ -28,7 +28,21 @@
     "subtitle": "Combina diversos PDF en un sol fitxer. Conserva els marcadors.",
     "retainPageLabels": "Conserva les etiquetes de pàgina originals de cada fitxer",
     "retainPageLabelsHint": "Desactivat (predeterminat): el PDF fusionat utilitza la numeració natural de pàgines, d'1 a N. Activat: es conserven les etiquetes originals de cada fitxer (pot generar etiquetes duplicades).",
-    "removeDuplicateFonts": "Elimina els tipus de lletra duplicats"
+    "removeDuplicateFonts": "Elimina els tipus de lletra duplicats",
+    "alert": {
+      "thumbnailError": "No s'han pogut generar les miniatures de les pàgines",
+      "noSelection": "No hi ha cap fitxer ni pàgina seleccionats per fusionar.",
+      "mergeSuccess": "Els PDF s'han fusionat correctament!",
+      "mergeFailed": "No s'han pogut fusionar els PDF.",
+      "mergeError": "No s'han pogut fusionar els PDF. Comprova que tots els fitxers siguin vàlids i que no estiguin protegits amb contrasenya.",
+      "workerError": "S'ha produït un error inesperat durant la fusió.",
+      "loadError": "No s'han pogut carregar un o més fitxers PDF"
+    },
+    "loader": {
+      "renderingPreviews": "S'estan generant les previsualitzacions de les pàgines...",
+      "merging": "S'estan fusionant els PDF...",
+      "loadingDocuments": "S'estan carregant els documents PDF..."
+    }
   },
   "splitPdf": {
     "name": "Divideix PDF",
@@ -36,29 +50,7 @@
   },
   "compressPdf": {
     "name": "Comprimeix PDF",
-    "subtitle": "Redueix la mida del fitxer PDF.",
-    "algorithmLabel": "Algorisme de compressió",
-    "condense": "Condense (recomanat)",
-    "photon": "Photon (per a PDF amb moltes fotografies)",
-    "condenseInfo": "Condense utilitza compressió avançada: elimina dades innecessàries, optimitza les imatges i redueix els tipus de lletra als caràcters utilitzats. És l'opció ideal per a la majoria de PDF.",
-    "photonInfo": "Photon converteix les pàgines en imatges. Utilitza'l per a PDF amb moltes fotografies o documents escanejats.",
-    "photonWarning": "Advertiment: el text deixarà de ser seleccionable i els enllaços no funcionaran.",
-    "levelLabel": "Nivell de compressió",
-    "light": "Lleugera (conserva la qualitat)",
-    "balanced": "Equilibrada (recomanada)",
-    "aggressive": "Agressiva (fitxers més petits)",
-    "extreme": "Extrema (compressió màxima)",
-    "grayscale": "Converteix a escala de grisos",
-    "grayscaleHint": "Redueix la mida del fitxer eliminant la informació de color",
-    "customSettings": "Configuració personalitzada",
-    "customSettingsHint": "Ajusta els paràmetres de compressió:",
-    "outputQuality": "Qualitat de sortida",
-    "resizeImagesTo": "Redimensiona les imatges a",
-    "onlyProcessAbove": "Processa només les que superin",
-    "removeMetadata": "Elimina les metadades",
-    "subsetFonts": "Redueix els tipus de lletra (elimina els glifs no utilitzats)",
-    "removeThumbnails": "Elimina les miniatures incrustades",
-    "compressButton": "Comprimeix PDF"
+    "subtitle": "Redueix la mida del fitxer PDF."
   },
   "pdfEditor": {
     "name": "Editor de PDF",

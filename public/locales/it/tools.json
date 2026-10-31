@@ -27,7 +27,22 @@
     "name": "Unisci PDF",
     "subtitle": "Unisci più PDF in un unico file. Conserva i segnalibri.",
     "retainPageLabels": "Mantieni le etichette di pagina originali di ogni file",
-    "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate)."
+    "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate).",
+    "removeDuplicateFonts": "Rimuovi i font duplicati",
+    "alert": {
+      "thumbnailError": "Impossibile generare le miniature delle pagine",
+      "noSelection": "Nessun file o pagina selezionata da unire.",
+      "mergeSuccess": "PDF uniti con successo!",
+      "mergeFailed": "Impossibile unire i PDF.",
+      "mergeError": "Impossibile unire i PDF. Verifica che tutti i file siano validi e non protetti da password.",
+      "workerError": "Si è verificato un errore imprevisto durante l'unione.",
+      "loadError": "Impossibile caricare uno o più file PDF"
+    },
+    "loader": {
+      "renderingPreviews": "Generazione anteprime delle pagine...",
+      "merging": "Unione dei PDF...",
+      "loadingDocuments": "Caricamento documenti PDF..."
+    }
   },
   "splitPdf": {
     "name": "Dividi PDF",
@@ -172,20 +187,20 @@
     "subtitle": "Rimuovi i margini di ogni pagina del tuo PDF."
   },
   "extractPages": {
-    "name": "Estrai Pagine",
+    "name": "Estrai pagine",
     "subtitle": "Salva una selezione di pagine come nuovi file."
   },
   "duplicateOrganize": {
-    "name": "Duplica e Organizza",
+    "name": "Duplica e organizza",
     "subtitle": "Duplica, riordina ed elimina pagine.",
     "saveChanges": "Salva modifiche"
   },
   "deletePages": {
-    "name": "Elimina Pagine",
+    "name": "Elimina pagine",
     "subtitle": "Rimuovi pagine specifiche dal tuo documento."
   },
   "editBookmarks": {
-    "name": "Modifica Segnalibri",
+    "name": "Modifica segnalibri",
     "subtitle": "Aggiungi, modifica, importa, elimina ed estrai segnalibri PDF.",
     "autoExtractExisting": "Estrai automaticamente segnalibri esistenti",
     "importSectionTitle": "Oppure importa segnalibri",
@@ -212,7 +227,7 @@
     "workerErrorOccurred": "Si è verificato un errore worker. Controlla la console per i dettagli."
   },
   "pageNumbers": {
-    "name": "Numeri di Pagina",
+    "name": "Numeri di pagina",
     "subtitle": "Inserisci i numeri di pagina nel tuo documento."
   },
   "addPageLabels": {
@@ -279,16 +294,16 @@
     "subtitle": "Aggiungi numeri Bates sequenziali su uno o più file PDF."
   },
   "addWatermark": {
-    "name": "Aggiungi Filigrana",
+    "name": "Aggiungi filigrana",
     "subtitle": "Applica testo o un'immagine sulle pagine del tuo PDF.",
     "applyToAllPages": "Applica a tutte le pagine"
   },
   "headerFooter": {
-    "name": "Intestazione e Piè di Pagina",
+    "name": "Intestazione e piè di pagina",
     "subtitle": "Aggiungi testo nella parte superiore e inferiore delle pagine."
   },
   "invertColors": {
-    "name": "Inverti Colori",
+    "name": "Inverti colori",
     "subtitle": "Crea una versione \"modalità scura\" del tuo PDF."
   },
   "scannerEffect": {
@@ -323,15 +338,15 @@
     "processButton": "Applica regolazioni colore"
   },
   "backgroundColor": {
-    "name": "Colore di Sfondo",
+    "name": "Colore di sfondo",
     "subtitle": "Cambia il colore di sfondo del tuo PDF."
   },
   "changeTextColor": {
-    "name": "Cambia Colore Testo",
+    "name": "Cambia colore testo",
     "subtitle": "Cambia il colore del testo nel tuo PDF."
   },
   "addStamps": {
-    "name": "Aggiungi Timbri",
+    "name": "Aggiungi timbri",
     "subtitle": "Aggiungi timbri immagine al tuo PDF usando la barra degli strumenti di annotazione.",
     "usernameLabel": "Nome sul timbro",
     "usernamePlaceholder": "Inserisci il tuo nome (per i timbri)",
@@ -339,24 +354,24 @@
     "saveButton": "Salva PDF timbrato"
   },
   "removeAnnotations": {
-    "name": "Rimuovi Annotazioni",
+    "name": "Rimuovi annotazioni",
     "subtitle": "Rimuovi commenti, evidenziazioni e link."
   },
   "pdfFormFiller": {
-    "name": "Compilatore Moduli PDF",
+    "name": "Compilatore moduli PDF",
     "subtitle": "Compila i moduli direttamente nel browser. Supporta anche i moduli XFA.",
     "uploadHint": "Carica un PDF con campi modulo. Compilali direttamente nel visualizzatore qui sotto, quindi clicca sul pulsante per salvare e scaricare il modulo compilato. Supporta anche moduli XFA.",
     "xfaNoteTitle": "Nota sui moduli XFA:",
     "xfaNoteDescription": "XFA (XML Forms Architecture) è un formato legacy supportato solo da alcuni visualizzatori PDF come BentoPDF e Firefox. Se apri un PDF XFA in altri software e vedi pagine vuote o nessun campo modulo, significa che quel visualizzatore non supporta XFA. Per visualizzare e compilare correttamente i moduli XFA, usa Firefox o il Form Filler di BentoPDF."
   },
   "createPdfForm": {
-    "name": "Crea Modulo PDF",
+    "name": "Crea modulo PDF",
     "subtitle": "Crea moduli PDF compilabili con campi di testo drag-and-drop.",
     "orSeparator": "O",
     "createBlankPdf": "Crea PDF vuoto"
   },
   "removeBlankPages": {
-    "name": "Rimuovi Pagine Vuote",
+    "name": "Rimuovi pagine vuote",
     "subtitle": "Rileva e elimina automaticamente le pagine vuote.",
     "sensitivityHint": "Più alto = più rigoroso, solo pagine completamente vuote. Più basso = consente pagine con qualche contenuto."
   },
@@ -503,7 +518,8 @@
       "noFile": "Nessun file",
       "noFileExplanation": "Carica prima un file PDF.",
       "conversionSuccess": "PDF convertito in TIFF con successo!",
-      "conversionError": "Impossibile convertire il PDF in TIFF. Il file potrebbe essere danneggiato."
+      "conversionError": "Impossibile convertire il PDF in TIFF. Il file potrebbe essere danneggiato.",
+      "conversionOutOfMemory": "Il browser ha esaurito la memoria durante la conversione. Prova con un DPI più basso oppure deseleziona l'opzione TIFF multipagina per convertire le pagine una alla volta."
     }
   },
   "pdfToCbz": {
@@ -537,7 +553,7 @@
     }
   },
   "pdfToGreyscale": {
-    "name": "PDF in Scala di Grigi",
+    "name": "PDF in scala di grigi",
     "subtitle": "Converti tutti i colori in scala di grigi."
   },
   "pdfToJson": {
@@ -613,7 +629,7 @@
     "multiLanguageSupportDescription": "Seleziona più lingue per documenti contenenti contenuto in lingue miste."
   },
   "alternateMerge": {
-    "name": "Alterna e Riordina Pagine",
+    "name": "Alterna e mescola pagine",
     "subtitle": "Unisci i PDF alternando le pagine di ogni file. Conserva i segnalibri.",
     "retainPageLabels": "Mantieni le etichette di pagina originali di ogni file",
     "retainPageLabelsHint": "Disattivato (predefinito): il PDF unito usa la numerazione naturale 1–N. Attivato: le etichette di pagina originali di ogni file vengono mantenute (può produrre etichette duplicate)."
@@ -664,27 +680,27 @@
     "faqBackOrderAnswer": "Dipende da come è stata inserita la pila nel secondo passaggio. Girando l'intera pila i retri risultano in ordine inverso, che è l'impostazione predefinita. Se il tuo scanner li ha restituiti nello stesso ordine dei fronti, scegli di mantenere il blocco così com'è."
   },
   "addAttachments": {
-    "name": "Aggiungi Allegati",
+    "name": "Aggiungi allegati",
     "subtitle": "Incorpora uno o più file nel tuo PDF."
   },
   "extractAttachments": {
-    "name": "Estrai Allegati",
+    "name": "Estrai allegati",
     "subtitle": "Estrai tutti i file incorporati dai PDF come archivio ZIP."
   },
   "editAttachments": {
-    "name": "Modifica Allegati",
+    "name": "Modifica allegati",
     "subtitle": "Visualizza o rimuovi gli allegati nel tuo PDF."
   },
   "dividePages": {
-    "name": "Dividi Pagine",
+    "name": "Dividi pagine",
     "subtitle": "Dividi le pagine orizzontalmente o verticalmente."
   },
   "addBlankPage": {
-    "name": "Aggiungi Pagina Vuota",
+    "name": "Aggiungi pagina vuota",
     "subtitle": "Inserisci una pagina vuota in qualsiasi punto del tuo PDF."
   },
   "reversePages": {
-    "name": "Inverti Pagine",
+    "name": "Inverti pagine",
     "subtitle": "Inverti l'ordine di tutte le pagine del documento."
   },
   "rotatePdf": {
@@ -692,7 +708,7 @@
     "subtitle": "Ruota le pagine per multipli di 90 gradi."
   },
   "rotateCustom": {
-    "name": "Ruota di Gradi Personalizzati",
+    "name": "Ruota di gradi personalizzati",
     "subtitle": "Ruota le pagine di un angolo personalizzato."
   },
   "nUpPdf": {
@@ -700,15 +716,15 @@
     "subtitle": "Disponi più pagine su un unico foglio."
   },
   "combineToSinglePage": {
-    "name": "Combina in Una Pagina",
+    "name": "Combina in una pagina",
     "subtitle": "Unisci tutte le pagine in un'unica pagina continua."
   },
   "viewMetadata": {
-    "name": "Visualizza Metadati",
+    "name": "Visualizza metadati",
     "subtitle": "Ispeziona le proprietà nascoste del tuo PDF."
   },
   "editMetadata": {
-    "name": "Modifica Metadati",
+    "name": "Modifica metadati",
     "subtitle": "Modifica autore, titolo e altre proprietà."
   },
   "pdfsToZip": {
@@ -764,7 +780,7 @@
     "subtitle": "Dividi una pagina grande in più pagine più piccole."
   },
   "fixPageSize": {
-    "name": "Correggi Dimensione Pagina",
+    "name": "Correggi dimensione pagina",
     "subtitle": "Uniforma tutte le pagine a una dimensione standard."
   },
   "linearizePdf": {
@@ -772,11 +788,11 @@
     "subtitle": "Ottimizza il PDF per una visualizzazione web più veloce."
   },
   "pageDimensions": {
-    "name": "Dimensioni Pagina",
+    "name": "Dimensioni pagina",
     "subtitle": "Analizza dimensione, orientamento e unità delle pagine."
   },
   "removeRestrictions": {
-    "name": "Rimuovi Restrizioni",
+    "name": "Rimuovi restrizioni",
     "subtitle": "Rimuovi la protezione tramite password e le restrizioni di sicurezza associate ai PDF firmati digitalmente."
   },
   "repairPdf": {
@@ -990,8 +1006,7 @@
     "subtitle": "Estrai il testo dai file PDF e salvalo come testo semplice (.txt). Supporta più file.",
     "noteLabel": "Nota:",
     "noteText": "Questo strumento funziona SOLO con PDF creati digitalmente. Per documenti scansionati o PDF basati su immagini, usa invece il nostro strumento OCR PDF.",
-    "convertButton": "Estrai testo",
-    "note": "Questo strumento funziona SOLO con PDF creati digitalmente. Per documenti scansionati o basati su immagini, usa invece il nostro strumento OCR PDF."
+    "convertButton": "Estrai testo"
   },
   "digitalSignPdf": {
     "name": "Firma digitale PDF",
@@ -1100,7 +1115,7 @@
     "convertButton": "Converti in PDF"
   },
   "fontToOutline": {
-    "name": "Font in Contorni",
+    "name": "Font in contorni",
     "subtitle": "Converti tutti i font in contorni vettoriali per una visualizzazione coerente su tutti i dispositivi."
   },
   "deskewPdf": {
@@ -1189,7 +1204,7 @@
       "workerError": "Errore del worker: {{message}}",
       "alternateMergeWorkerError": "Errore del worker di unione alternata: {{message}}",
       "noPdfFilesUploaded": "Nessun file PDF caricato nel nodo di input PDF",
-      "failedToLoadFile": "Impossibile caricare \"{{file}}\" — il file potrebbe essere danneggiato",
+      "failedToLoadFile": "Impossibile caricare \"{{file}}\": il file potrebbe essere danneggiato",
       "noImagesUploaded": "Nessuna immagine caricata nel nodo di input Immagine",
       "noWordDocsUploaded": "Nessun documento caricato nel nodo di input Word",
       "noExcelUploaded": "Nessun foglio di calcolo caricato nel nodo di input Excel",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "Assolutamente! Tutta l'elaborazione avviene nel tuo browser. I tuoi file non lasciano mai il tuo dispositivo, garantendo la massima privacy."
   },
   "unlockPdf": {
-    "name": "Decrittografa PDF",
+    "name": "Sblocca PDF",
     "subtitle": "Sblocca il PDF rimuovendo la protezione tramite password."
   },
   "protectPdf": {
-    "name": "Cripta PDF",
+    "name": "Proteggi PDF",
     "subtitle": "Proteggi il tuo PDF aggiungendo una password."
   }
 }

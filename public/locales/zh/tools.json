@@ -27,7 +27,22 @@
     "name": "合并 PDF",
     "subtitle": "将多个 PDF 合并为一个文件。保留书签。",
     "retainPageLabels": "保留每个文件的原始页面标签",
-    "retainPageLabelsHint": "关闭（默认）：合并后的 PDF 使用自然页码 1–N。开启：保留每个文件的原始页面标签（可能产生重复标签）。"
+    "retainPageLabelsHint": "关闭（默认）：合并后的 PDF 使用自然页码 1–N。开启：保留每个文件的原始页面标签（可能产生重复标签）。",
+    "removeDuplicateFonts": "移除重复字体",
+    "alert": {
+      "thumbnailError": "无法渲染页面缩略图",
+      "noSelection": "未选择要合并的文件或页面。",
+      "mergeSuccess": "PDF 合并成功！",
+      "mergeFailed": "PDF 合并失败。",
+      "mergeError": "PDF 合并失败。请检查所有文件是否有效且未受密码保护。",
+      "workerError": "合并进程中发生意外错误。",
+      "loadError": "无法加载一个或多个 PDF 文件"
+    },
+    "loader": {
+      "renderingPreviews": "正在渲染页面预览...",
+      "merging": "正在合并 PDF...",
+      "loadingDocuments": "正在加载 PDF 文档..."
+    }
   },
   "splitPdf": {
     "name": "分割 PDF",
@@ -91,7 +106,7 @@
     "tipRedoZ": "重做 (⇧⌘Z)",
     "tipFileDetails": "文件详情",
     "tipEditExistingContent": "编辑现有内容",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "编辑工具的作用范围——在内容密集的页面上缩小范围",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "编辑工具的作用范围：在内容密集的页面上缩小范围",
     "tipClickThePageToAddATextBox": "点击页面以添加文本框",
     "tipSpellCheckLanguage": "拼写检查语言",
     "tipFindAndReplace": "查找和替换",
@@ -275,8 +290,8 @@
     }
   },
   "batesNumbering": {
-    "name": "Bates编号",
-    "subtitle": "在一个或多个PDF文件中添加连续的Bates编号。"
+    "name": "Bates 编号",
+    "subtitle": "在一个或多个PDF文件中添加连续的Bates 编号。"
   },
   "addWatermark": {
     "name": "添加水印",
@@ -503,7 +518,8 @@
       "noFile": "无文件",
       "noFileExplanation": "请先上传 PDF 文件。",
       "conversionSuccess": "PDF 已成功转换为 TIFF！",
-      "conversionError": "无法将 PDF 转换为 TIFF。文件可能已损坏。"
+      "conversionError": "无法将 PDF 转换为 TIFF。文件可能已损坏。",
+      "conversionOutOfMemory": "转换时浏览器内存不足。请尝试降低 DPI，或取消勾选多页 TIFF 选项以逐页转换。"
     }
   },
   "pdfToCbz": {
@@ -537,7 +553,7 @@
     }
   },
   "pdfToGreyscale": {
-    "name": "PDF 转 灰度",
+    "name": "PDF 转灰度",
     "subtitle": "将所有颜色转换为黑白。"
   },
   "pdfToJson": {
@@ -793,7 +809,7 @@
   },
   "decryptPdf": {
     "name": "解密 PDF",
-    "subtitle": "通过移除密码保护解锁 PDF。"
+    "subtitle": "移除 PDF 的密码，使其可以自由打开。需要提供当前密码。"
   },
   "flattenPdf": {
     "name": "扁平化 PDF",
@@ -986,12 +1002,11 @@
     "subtitle": "从 PDF 中提取表格并转换为 Excel (XLSX) 格式。"
   },
   "pdfToText": {
-    "name": "PDF 转 文本",
+    "name": "PDF 转文本",
     "subtitle": "从 PDF 文件中提取文本并保存为纯文本文件 (.txt)。支持多个文件。",
     "noteLabel": "注意：",
     "noteText": "此工具仅适用于数字创建的 PDF。对于扫描文档或基于图像的 PDF，请改用我们的 OCR PDF 工具。",
-    "convertButton": "提取文本",
-    "note": "此工具仅适用于数字创建的 PDF。对于扫描文档或基于图像的 PDF，请使用我们的 OCR PDF 工具。"
+    "convertButton": "提取文本"
   },
   "digitalSignPdf": {
     "name": "PDF 数字签名",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "当然！所有处理都在您的浏览器中进行。您的文件永远不会离开您的设备，确保完全隐私。"
   },
   "unlockPdf": {
-    "name": "解密 PDF",
-    "subtitle": "通过移除密码保护解锁 PDF。"
+    "name": "解锁 PDF",
+    "subtitle": "移除 PDF 的密码，使其可以自由打开。需要提供当前密码。"
   },
   "protectPdf": {
-    "name": "加密 PDF",
+    "name": "保护 PDF",
     "subtitle": "通过添加密码锁定您的 PDF。"
   }
 }

@@ -5,11 +5,12 @@
     "contact": "İletişim",
     "licensing": "Lisanslama",
     "allTools": "Tüm Araçlar",
-    "docs": "Docs",
+    "docs": "Belgeler",
     "openMainMenu": "Ana menüyü aç",
     "language": "Dil",
     "searchLanguage": "Dil ara…",
-    "noLanguagesFound": "Dil bulunamadı"
+    "noLanguagesFound": "Dil bulunamadı",
+    "breadcrumb": "Gezinti yolu"
   },
   "donation": {
     "message": "BentoPDF'i seviyor musunuz? Ücretsiz ve açık kaynaklı kalmasına yardımcı olun!",
@@ -17,7 +18,7 @@
   },
   "hero": {
     "title": " ",
-    "pdfToolkit": "PDF Toolkit",
+    "pdfToolkit": "PDF Araç Seti",
     "builtForPrivacy": "gizlilik için tasarlandı",
     "noSignups": "Kayıt Gerekmez",
     "unlimitedUse": "Sınırsız Kullanım",
@@ -236,6 +237,10 @@
     "aboutUs": "Hakkımızda",
     "faqLink": "SSS",
     "contactUs": "İletişim",
+    "tools": "Araçlar",
+    "pdfConverter": "PDF dönüştürücü",
+    "pdfSecurity": "PDF güvenliği",
+    "mergeSplit": "PDF birleştirme ve bölme",
     "legal": "Yasal",
     "termsAndConditions": "Kullanım Koşulları",
     "privacyPolicy": "Gizlilik Politikası",

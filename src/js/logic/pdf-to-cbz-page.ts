@@ -10,7 +10,7 @@ import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFPageProxy } from 'pdfjs-dist';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   generateComicInfoXml,
   generateMetadataOpf,
@@ -112,7 +112,10 @@ const updateUI = () => {
 
       const metaSpan = document.createElement('div');
       metaSpan.className = 'text-xs text-gray-400';
-      metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+      metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+        size: formatBytes(file.size),
+        loadingPageCount: t('common.loadingPageCount'),
+      });
 
       infoContainer.append(nameSpan, metaSpan);
 
@@ -131,7 +134,11 @@ const updateUI = () => {
       readFileAsArrayBuffer(file)
         .then((buffer) => getPDFDocument(buffer).promise)
         .then((pdf) => {
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdf.numPages} ${pdf.numPages !== 1 ? t('common.pages') : t('common.page')}`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} {{value}}', {
+            size: formatBytes(file.size),
+            numPages: pdf.numPages,
+            value: pdf.numPages !== 1 ? t('common.pages') : t('common.page'),
+          });
         })
         .catch(() => {
           metaSpan.textContent = formatBytes(file.size);
@@ -180,7 +187,7 @@ async function renderPage(
   const viewport = page.getViewport({ scale: options.scale });
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  if (!context) throw new Error('Failed to acquire 2D canvas context');
+  if (!context) throw new Error(trText('Failed to acquire 2D canvas context'));
   canvas.height = viewport.height;
   canvas.width = viewport.width;
 
@@ -233,7 +240,7 @@ async function convert() {
     const { pdf } = result;
 
     if (pdf.numPages === 0) {
-      throw new Error('PDF has no pages');
+      throw new Error(trText('PDF has no pages'));
     }
 
     const zip = new JSZip();
@@ -292,7 +299,7 @@ async function convert() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -320,13 +327,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (qualitySlider && qualityValue) {
     qualitySlider.addEventListener('input', () => {
-      qualityValue.textContent = `${qualitySlider.value}%`;
+      qualityValue.textContent = trText('{{value}}%', {
+        value: qualitySlider.value,
+      });
     });
   }
 
   if (scaleSlider && scaleValue) {
     scaleSlider.addEventListener('input', () => {
-      scaleValue.textContent = `${parseFloat(scaleSlider.value).toFixed(1)}x`;
+      scaleValue.textContent = trText('{{value}}x', {
+        value: parseFloat(scaleSlider.value).toFixed(1),
+      });
     });
   }
 
@@ -398,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setInputValidity(
         yearInput,
         !isNaN(year) && year >= 1900 && year <= 2100,
-        'Year must be between 1900 and 2100'
+        trText('Year must be between 1900 and 2100')
       );
     });
   }
@@ -414,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setInputValidity(
         ratingInput,
         !isNaN(rating) && rating >= 0 && rating <= 5,
-        'Rating must be between 0 and 5'
+        trText('Rating must be between 0 and 5')
       );
     });
   }
@@ -429,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setInputValidity(
         numberInput,
         !isNaN(parseFloat(val)) && parseFloat(val) >= 0,
-        'Must be a positive number'
+        trText('Must be a positive number')
       );
     });
   }
@@ -445,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setInputValidity(
         volumeInput,
         !isNaN(vol) && vol >= 1,
-        'Must be a positive integer'
+        trText('Must be a positive integer')
       );
     });
   }

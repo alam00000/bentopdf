@@ -194,6 +194,7 @@
   flex: 1;
   padding: 1.5rem;
   overflow-y: auto;
+  contain: paint;
   background: rgb(31, 41, 55);
   color: rgb(229, 231, 235);
 }
@@ -743,7 +744,7 @@
   }
 
   .md-editor-preview .mermaid-diagram svg {
-    max-width: 100% !important;
+    max-height: 85vh;
   }
 }
 

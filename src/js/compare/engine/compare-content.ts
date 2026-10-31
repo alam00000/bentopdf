@@ -7,6 +7,8 @@ import type {
   CompareTextChange,
 } from '../types.ts';
 
+import { trText } from '../../i18n/i18n.js';
+
 const HEADER_FOOTER_ZONE = 0.12;
 
 export function classifyChangeCategory(
@@ -130,7 +132,15 @@ export function diffImages(
           id: `image-modified-${idx++}`,
           type: 'modified',
           category: 'image',
-          description: `Image resized from ${bImg.width}×${bImg.height} to ${match.width}×${match.height}`,
+          description: trText(
+            'Image resized from {{width}}×{{height}} to {{width2}}×{{height2}}',
+            {
+              width: bImg.width,
+              height: bImg.height,
+              width2: match.width,
+              height2: match.height,
+            }
+          ),
           beforeText: `${bImg.width}×${bImg.height}`,
           afterText: `${match.width}×${match.height}`,
           beforeRects: [bImg.rect],
@@ -142,7 +152,10 @@ export function diffImages(
         id: `image-removed-${idx++}`,
         type: 'removed',
         category: 'image',
-        description: `Removed image (${bImg.width}×${bImg.height})`,
+        description: trText('Removed image ({{width}}×{{height}})', {
+          width: bImg.width,
+          height: bImg.height,
+        }),
         beforeText: '',
         afterText: '',
         beforeRects: [bImg.rect],
@@ -157,7 +170,10 @@ export function diffImages(
         id: `image-added-${idx++}`,
         type: 'added',
         category: 'image',
-        description: `Added image (${aImg.width}×${aImg.height})`,
+        description: trText('Added image ({{width}}×{{height}})', {
+          width: aImg.width,
+          height: aImg.height,
+        }),
         beforeText: '',
         afterText: '',
         beforeRects: [],
@@ -207,7 +223,7 @@ export function detectBackgroundChanges(
         id: `background-changed-${baseId}`,
         type: 'modified',
         category: 'background',
-        description: 'Page background or layout changed',
+        description: trText('Page background or layout changed'),
         beforeText: '',
         afterText: '',
         beforeRects: [

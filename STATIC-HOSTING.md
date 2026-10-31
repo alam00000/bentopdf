@@ -94,32 +94,38 @@ You have two clean overrides depending on what you want.
 ### Run your own SEO instance (claim canonical for yourself)
 
 If you operate a public deployment and want it to be the indexed copy for
-your audience, set `SITE_URL` at build time to your origin. The build will
-emit canonicals, hreflang, and structured data pointing at your domain.
+your audience, set `SITE_URL` at build time to your origin and also set
+`ALLOW_INDEXING=true`. The build will emit canonicals, hreflang and
+sitemap URLs pointing at your domain. Without `ALLOW_INDEXING=true`, a
+build with a custom `SITE_URL` marks every page `noindex`.
 
 - Docker:
   ```sh
-  docker build --build-arg SITE_URL=https://pdf.example.com -t bentopdf-self .
+  docker build --build-arg SITE_URL=https://pdf.example.com --build-arg ALLOW_INDEXING=true -t bentopdf-self .
   ```
 - Netlify, Vercel, GitHub Pages, or any other static host: set `SITE_URL`
-  in your project's environment variables and re-deploy. The build script
-  reads it during `npm run build`.
+  and `ALLOW_INDEXING=true` in your project's environment variables and
+  re-deploy. The build script reads them during `npm run build`. For the
+  GitHub Pages workflow, add both as repository variables.
 
 ### Stay invisible to search engines (no SEO competition either way)
 
 Set the runtime environment variable `ROBOTS_NOINDEX=true`. The container
-injects `<meta name="robots" content="noindex, follow">` into every served
-HTML file at startup. The canonical link still points at the official site
-by default, so when crawlers do follow internal links they still see
-bentopdf.com as the authoritative source.
+then sends an `X-Robots-Tag: noindex, follow` header with every response.
+The canonical link still points at the official site by default, so when
+crawlers do follow internal links they still see bentopdf.com as the
+authoritative source. `ROBOTS_NOINDEX` only works in the Docker image; if
+you serve the files yourself, build with your own `SITE_URL` instead (see
+above).
 
 ```sh
 docker run -d -p 8080:8080 -e ROBOTS_NOINDEX=true ghcr.io/alam00000/bentopdf:latest
 ```
 
-You can combine the two: build with your own `SITE_URL` and run with
-`ROBOTS_NOINDEX=true` for a private deployment that's neither competing
-with bentopdf.com nor advertising itself.
+A build with your own `SITE_URL` and without `ALLOW_INDEXING=true` is
+already `noindex`, so it neither competes with bentopdf.com nor advertises
+itself. `ROBOTS_NOINDEX=true` does the same at runtime for the prebuilt
+images.
 
 ### Note on Simple Mode
 

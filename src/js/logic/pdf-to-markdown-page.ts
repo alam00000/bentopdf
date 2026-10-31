@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   downloadFile,
   readFileAsArrayBuffer,
@@ -12,7 +12,7 @@ import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -54,7 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const metaSpan = document.createElement('div');
         metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+        metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+          size: formatBytes(file.size),
+          loadingPageCount: t('common.loadingPageCount'),
+        });
 
         infoContainer.append(nameSpan, metaSpan);
 
@@ -73,9 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+            size: formatBytes(file.size),
+            numPages: pdfDoc.numPages,
+          });
         } catch {
-          metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
+          metaSpan.textContent = trText(
+            '{{size}} • Could not load page count',
+            { size: formatBytes(file.size) }
+          );
         }
       }
 
@@ -115,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (state.files.length === 1) {
         const file = state.files[0];
-        showLoader(`Converting ${file.name}...`);
+        showLoader(trText('Converting {{name}}...', { name: file.name }));
 
         const markdown = await pymupdf.pdfToMarkdown(file, { includeImages });
         const outName = file.name.replace(/\.pdf$/i, '') + '.md';
@@ -126,7 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${file.name} to Markdown.`,
+          trText('Successfully converted {{name}} to Markdown.', {
+            name: file.name,
+          }),
           'success',
           () => resetState()
         );
@@ -138,7 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            `Converting ${i + 1}/${state.files.length}: ${file.name}...`
+            trText('Converting {{n}}/{{length}}: {{name}}...', {
+              n: i + 1,
+              length: state.files.length,
+              name: file.name,
+            })
           );
 
           const markdown = await pymupdf.pdfToMarkdown(file, { includeImages });
@@ -155,7 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} PDF(s) to Markdown.`,
+          trText('Successfully converted {{length}} PDF(s) to Markdown.', {
+            length: state.files.length,
+          }),
           'success',
           () => resetState()
         );
@@ -164,7 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during conversion. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

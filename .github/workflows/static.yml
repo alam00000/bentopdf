@@ -28,6 +28,7 @@ env:
   SIMPLE_MODE: ${{ vars.SIMPLE_MODE }}
   BASE_URL: ${{ vars.BASE_URL }}/
   SITE_URL: ${{ vars.SITE_URL }}
+  ALLOW_INDEXING: ${{ vars.ALLOW_INDEXING }}
   HUSKY: 0
 
 jobs:

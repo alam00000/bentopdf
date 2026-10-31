@@ -20,6 +20,8 @@ import { flattenFormsInDoc } from './flatten-annotations.js';
 import { parseContentOperations } from './pdf-content-tokens.js';
 import type { ContentOperation, PDFDocumentInternal } from '@/types';
 
+import { trText } from '../i18n/i18n.js';
+
 function getCatalogDict(pdfDoc: PDFDocument): PDFDict {
   return pdfDoc.catalog;
 }
@@ -485,7 +487,7 @@ function removeHiddenContent(
         ? properties.get(PDFName.of(property.value))
         : undefined;
     if (value === undefined) {
-      throw new Error('Unresolved optional content reference');
+      throw new Error(trText('Unresolved optional content reference'));
     }
     return !isVisible(value);
   };

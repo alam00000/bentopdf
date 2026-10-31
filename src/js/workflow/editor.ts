@@ -10,6 +10,7 @@ import { DataflowEngine } from 'rete-engine';
 import type { DataflowEngineScheme } from 'rete-engine';
 import { LitElement, html } from 'lit';
 import type { BaseWorkflowNode } from './nodes/base-node';
+import { trText } from '../i18n/i18n';
 import phosphorCSS from '@phosphor-icons/web/regular?inline';
 
 // Shared stylesheet for Phosphor icons (font-face already loaded globally, strip it)
@@ -36,14 +37,14 @@ const categoryColors: Record<string, string> = {
 
 function getStatusInfo(status: string, connected: boolean) {
   if (status === 'running')
-    return { color: '#eab308', label: 'Running...', animate: true };
+    return { color: '#eab308', label: trText('Running...'), animate: true };
   if (status === 'completed')
-    return { color: '#22c55e', label: 'Complete', animate: false };
+    return { color: '#22c55e', label: trText('Complete'), animate: false };
   if (status === 'error')
-    return { color: '#ef4444', label: 'Failed', animate: false };
+    return { color: '#ef4444', label: trText('Failed'), animate: false };
   return {
     color: connected ? '#22c55e' : '#6b7280',
-    label: connected ? 'Connected' : 'Not connected',
+    label: connected ? trText('Connected') : trText('Not connected'),
     animate: false,
   };
 }
@@ -133,7 +134,7 @@ class WorkflowNodeElement extends LitElement {
             <span
               data-wf="label"
               style="font-size: 10px; color: #6b7280; font-weight: 500; flex: 1;"
-              >Not connected</span
+              >${trText('Not connected')}</span
             >
             <span
               data-wf-delete="${node.id}"

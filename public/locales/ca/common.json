@@ -9,7 +9,8 @@
     "openMainMenu": "Obre el menú principal",
     "language": "Idioma",
     "searchLanguage": "Cerca un idioma…",
-    "noLanguagesFound": "No s'ha trobat cap idioma"
+    "noLanguagesFound": "No s'ha trobat cap idioma",
+    "breadcrumb": "Ruta de navegació"
   },
   "donation": {
     "message": "T'agrada BentoPDF? Ajuda'ns a mantenir-lo gratuït i de codi obert!",
@@ -236,6 +237,10 @@
     "aboutUs": "Sobre nosaltres",
     "faqLink": "Preguntes freqüents",
     "contactUs": "Contacta amb nosaltres",
+    "tools": "Eines",
+    "pdfConverter": "Convertidor de PDF",
+    "pdfSecurity": "Seguretat de PDF",
+    "mergeSplit": "Combina i divideix PDF",
     "legal": "Informació legal",
     "termsAndConditions": "Termes i condicions",
     "privacyPolicy": "Política de privadesa",

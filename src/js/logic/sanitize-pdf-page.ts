@@ -5,6 +5,8 @@ import { SanitizePdfState } from '@/types';
 import { sanitizePdf } from '../utils/sanitize.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: SanitizePdfState = {
   file: null,
   pdfDoc: null,
@@ -89,7 +91,7 @@ async function runSanitize() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = 'Sanitizing PDF...';
+  if (loaderText) loaderText.textContent = trText('Sanitizing PDF...');
 
   try {
     const options = {
@@ -140,7 +142,7 @@ async function runSanitize() {
       return;
     }
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Sanitizing PDF...';
+    if (loaderText) loaderText.textContent = trText('Sanitizing PDF...');
     loaded.pdf.destroy();
     pageState.file = loaded.file;
     const result = await sanitizePdf(new Uint8Array(loaded.bytes), options);
@@ -152,7 +154,10 @@ async function runSanitize() {
     if (result.skipped.length > 0) {
       showAlert(
         'Sanitized With Warnings',
-        `The PDF was downloaded, but these steps could not be completed: ${result.skipped.join(', ')}. The content they cover may still be in the file.`,
+        trText(
+          'The PDF was downloaded, but these steps could not be completed: {{join}}. The content they cover may still be in the file.',
+          { join: result.skipped.join(', ') }
+        ),
         'warning',
         () => {
           resetState();
@@ -171,13 +176,16 @@ async function runSanitize() {
   } catch (e: unknown) {
     console.error('Sanitization Error:', e);
     const msg = e instanceof Error ? e.message : String(e);
-    showAlert('Error', `An error occurred during sanitization: ${msg}`);
+    showAlert(
+      'Error',
+      trText('An error occurred during sanitization: {{msg}}', { msg })
+    );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

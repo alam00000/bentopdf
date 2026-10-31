@@ -3,6 +3,9 @@ import { createIcons, icons } from 'lucide';
 import { getPDFDocument } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+import { getStoredItem } from '../utils/safe-storage.js';
+
 let viewerIframe: HTMLIFrameElement | null = null;
 let viewerReady = false;
 let currentFile: File | null = null;
@@ -12,7 +15,7 @@ function showLoader(message: string = 'Processing...') {
   const loader = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loader) loader.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = message;
+  if (loaderText) loaderText.textContent = trText(message);
 }
 
 function hideLoader() {
@@ -31,8 +34,8 @@ function showAlert(
   const alertMessage = document.getElementById('alert-message');
   const okBtn = document.getElementById('alert-ok');
 
-  if (alertTitle) alertTitle.textContent = title;
-  if (alertMessage) alertMessage.textContent = message;
+  if (alertTitle) alertTitle.textContent = trText(title);
+  if (alertMessage) alertMessage.textContent = trText(message);
   if (modal) modal.classList.remove('hidden');
 
   if (okBtn) {
@@ -80,7 +83,7 @@ function updateFileDisplay() {
   removeBtn.id = 'remove-file';
   removeBtn.className =
     'text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2';
-  removeBtn.title = 'Remove file';
+  removeBtn.title = trText('Remove file');
 
   const removeIcon = document.createElement('i');
   removeIcon.setAttribute('data-lucide', 'trash-2');
@@ -117,7 +120,7 @@ function resetState() {
   }
 
   const toolUploader = document.getElementById('tool-uploader');
-  const isFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
+  const isFullWidth = getStoredItem('fullWidthMode') !== 'false';
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-6xl');
     toolUploader.classList.add('max-w-2xl');
@@ -181,7 +184,7 @@ async function setupFormViewer() {
 
   const toolUploader = document.getElementById('tool-uploader');
   // Default to true if not set
-  const isFullWidth = localStorage.getItem('fullWidthMode') !== 'false';
+  const isFullWidth = getStoredItem('fullWidthMode') !== 'false';
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-2xl');
     toolUploader.classList.add('max-w-6xl');
@@ -281,7 +284,7 @@ async function processAndDownloadForm() {
 }
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

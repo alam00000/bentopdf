@@ -8,6 +8,8 @@ import {
   removeUnreferencedObjects,
 } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 interface PageState {
   file: File | null;
 }
@@ -142,7 +144,7 @@ async function removeMetadata() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = 'Removing all metadata...';
+  if (loaderText) loaderText.textContent = trText('Removing all metadata...');
 
   try {
     if (loaderModal) loaderModal.classList.add('hidden');
@@ -152,7 +154,7 @@ async function removeMetadata() {
       return;
     }
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Removing all metadata...';
+    if (loaderText) loaderText.textContent = trText('Removing all metadata...');
     result.pdf.destroy();
     const pdfDoc = await loadPdfDocument(result.bytes);
 
@@ -174,7 +176,7 @@ async function removeMetadata() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

@@ -10,6 +10,8 @@ import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: DividePagesState = {
   file: null,
   pdfDoc: null,
@@ -63,7 +65,9 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(pageState.file.size)} • Loading...`;
+    metaSpan.textContent = trText('{{size}} • Loading...', {
+      size: formatBytes(pageState.file.size),
+    });
 
     infoContainer.append(nameSpan, metaSpan);
 
@@ -92,7 +96,10 @@ async function updateUI() {
       pageState.totalPages = pageState.pdfDoc.getPageCount();
       hideLoader();
 
-      metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageState.totalPages} pages`;
+      metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+        size: formatBytes(pageState.file.size),
+        totalPages: pageState.totalPages,
+      });
 
       if (toolOptions) toolOptions.classList.remove('hidden');
     } catch (error) {
@@ -151,7 +158,12 @@ async function dividePages() {
       const originalPage = pages[i];
       const { width, height } = originalPage.getSize();
 
-      showLoader(`Processing page ${pageNum} of ${pages.length}...`);
+      showLoader(
+        trText('Processing page {{pageNum}} of {{length}}...', {
+          pageNum,
+          length: pages.length,
+        })
+      );
 
       if (pagesToDivide.has(pageNum)) {
         const [page1] = await newPdfDoc.copyPages(pageState.pdfDoc, [i]);
@@ -211,7 +223,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

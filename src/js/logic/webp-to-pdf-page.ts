@@ -5,19 +5,22 @@ import {
   readFileAsArrayBuffer,
   formatBytes,
 } from '../utils/helpers.js';
+import {
+  createDragHandle,
+  enableFileListReorder,
+  moveItem,
+} from '../utils/sortable-file-list.js';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import {
   getSelectedQuality,
   compressImageBytes,
 } from '../utils/image-compress.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 let files: File[] = [];
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -137,9 +140,11 @@ function updateUI() {
 
       const sizeSpan = document.createElement('span');
       sizeSpan.className = 'flex-shrink-0 text-gray-400 text-xs';
-      sizeSpan.textContent = `(${formatBytes(file.size)})`;
+      sizeSpan.textContent = trText('({{size}})', {
+        size: formatBytes(file.size),
+      });
 
-      infoContainer.append(nameSpan, sizeSpan);
+      infoContainer.append(createDragHandle(), nameSpan, sizeSpan);
 
       const removeBtn = document.createElement('button');
       removeBtn.className =
@@ -152,6 +157,10 @@ function updateUI() {
 
       fileDiv.append(infoContainer, removeBtn);
       fileDisplayArea.appendChild(fileDiv);
+    });
+    enableFileListReorder(fileDisplayArea, (oldIndex, newIndex) => {
+      files = moveItem(files, oldIndex, newIndex);
+      updateUI();
     });
     createIcons({ icons });
   } else {
@@ -180,7 +189,9 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
       canvas.toBlob(
         async (jpegBlob) => {
           if (!jpegBlob) {
-            return reject(new Error('Canvas toBlob conversion failed.'));
+            return reject(
+              new Error(trText('Canvas toBlob conversion failed.'))
+            );
           }
           const arrayBuffer = await jpegBlob.arrayBuffer();
           resolve(new Uint8Array(arrayBuffer));
@@ -195,7 +206,9 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
       URL.revokeObjectURL(imageUrl);
       reject(
         new Error(
-          'The provided file could not be loaded as an image. It may be corrupted.'
+          trText(
+            'The provided file could not be loaded as an image. It may be corrupted.'
+          )
         )
       );
     };

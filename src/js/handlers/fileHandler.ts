@@ -31,6 +31,8 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 import '../utils/setup-pdf-worker.js';
 
+import { trText, trHtml } from '../i18n/i18n.js';
+
 export {
   getRotationState,
   updateRotationState,
@@ -278,7 +280,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
           }
         };
 
-        const infoSection = createSection('Info Dictionary');
+        const infoSection = createSection(trText('Info Dictionary'));
         if (info && Object.keys(info).length > 0) {
           for (const key in info) {
             const value = (info as Record<string, unknown>)[key];
@@ -310,11 +312,11 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             infoSection.ul.appendChild(createListItem(key, displayValue));
           }
         } else {
-          infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No Info Dictionary data found -</span></li>`;
+          infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No Info Dictionary data found -')}</span></li>`;
         }
         resultsDiv.appendChild(infoSection.wrapper);
 
-        const fieldsSection = createSection('Interactive Form Fields');
+        const fieldsSection = createSection(trText('Interactive Form Fields'));
         if (fieldObjects && Object.keys(fieldObjects).length > 0) {
           for (const fieldName in fieldObjects) {
             const field = fieldObjects[fieldName][0] as Record<string, unknown>;
@@ -324,7 +326,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             );
           }
         } else {
-          fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No interactive form fields found -</span></li>`;
+          fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No interactive form fields found -')}</span></li>`;
         }
         resultsDiv.appendChild(fieldsSection.wrapper);
 
@@ -412,7 +414,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
           }
         };
 
-        const xmpSection = createSection('XMP Metadata');
+        const xmpSection = createSection(trText('XMP Metadata'));
         if (rawXmpString) {
           try {
             const parser = new DOMParser();
@@ -431,11 +433,11 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             }
 
             if (xmpSection.ul.children.length === 0) {
-              xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No parseable XMP properties found -</span></li>`;
+              xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No parseable XMP properties found -')}</span></li>`;
             }
           } catch (xmlError) {
             console.error('Failed to parse XMP XML:', xmlError);
-            xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">- Error parsing XMP XML. Displaying raw. -</span></li>`;
+            xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">${trHtml('- Error parsing XMP XML. Displaying raw. -')}</span></li>`;
             const pre = document.createElement('pre');
             pre.className =
               'text-xs text-gray-300 whitespace-pre-wrap break-all';
@@ -443,7 +445,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             xmpSection.ul.appendChild(pre);
           }
         } else {
-          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">- No XMP metadata found -</span></li>`;
+          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No XMP metadata found -')}</span></li>`;
         }
         resultsDiv.appendChild(xmpSection.wrapper);
 
@@ -495,13 +497,13 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
 
         const keyInput = document.createElement('input');
         keyInput.type = 'text';
-        keyInput.placeholder = 'Key (e.g., Department)';
+        keyInput.placeholder = trText('Key (e.g., Department)');
         keyInput.className =
           'custom-meta-key w-full sm:w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
         const valueInput = document.createElement('input');
         valueInput.type = 'text';
-        valueInput.placeholder = 'Value (e.g., Marketing)';
+        valueInput.placeholder = trText('Value (e.g., Marketing)');
         valueInput.className =
           'custom-meta-value w-full sm:flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
@@ -539,7 +541,9 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       const qualityValue = document.getElementById('jpg-quality-value');
       if (qualitySlider && qualityValue) {
         const updateValue = () => {
-          qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+          qualityValue.textContent = trText('{{value}}%', {
+            value: Math.round(parseFloat(qualitySlider.value) * 100),
+          });
         };
         qualitySlider.addEventListener('input', updateValue);
         updateValue();
@@ -553,7 +557,9 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       const qualityValue = document.getElementById('png-quality-value');
       if (qualitySlider && qualityValue) {
         const updateValue = () => {
-          qualityValue.textContent = `${qualitySlider.value}x`;
+          qualityValue.textContent = trText('{{value}}x', {
+            value: qualitySlider.value,
+          });
         };
         qualitySlider.addEventListener('input', updateValue);
         updateValue();
@@ -567,7 +573,9 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       const qualityValue = document.getElementById('webp-quality-value');
       if (qualitySlider && qualityValue) {
         const updateValue = () => {
-          qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+          qualityValue.textContent = trText('{{value}}%', {
+            value: Math.round(parseFloat(qualitySlider.value) * 100),
+          });
         };
         qualitySlider.addEventListener('input', updateValue);
         updateValue();
@@ -768,7 +776,9 @@ async function handleMultiFileUpload(toolId: string) {
       const value = document.getElementById('image-pdf-quality-value');
       if (slider && value) {
         const update = () =>
-          (value.textContent = `${Math.round(parseFloat(slider.value) * 100)}%`);
+          (value.textContent = trText('{{value}}%', {
+            value: Math.round(parseFloat(slider.value) * 100),
+          }));
         slider.addEventListener('input', update);
         update();
       }
@@ -782,7 +792,9 @@ async function handleMultiFileUpload(toolId: string) {
     const qualityValue = document.getElementById('jpg-quality-value');
     if (qualitySlider && qualityValue) {
       const updateValue = () => {
-        qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+        qualityValue.textContent = trText('{{value}}%', {
+          value: Math.round(parseFloat(qualitySlider.value) * 100),
+        });
       };
       qualitySlider.addEventListener('input', updateValue);
       updateValue();
@@ -796,7 +808,9 @@ async function handleMultiFileUpload(toolId: string) {
     const qualityValue = document.getElementById('png-quality-value');
     if (qualitySlider && qualityValue) {
       const updateValue = () => {
-        qualityValue.textContent = `${qualitySlider.value}x`;
+        qualityValue.textContent = trText('{{value}}x', {
+          value: qualitySlider.value,
+        });
       };
       qualitySlider.addEventListener('input', updateValue);
       updateValue();
@@ -810,7 +824,9 @@ async function handleMultiFileUpload(toolId: string) {
     const qualityValue = document.getElementById('webp-quality-value');
     if (qualitySlider && qualityValue) {
       const updateValue = () => {
-        qualityValue.textContent = `${Math.round(parseFloat(qualitySlider.value) * 100)}%`;
+        qualityValue.textContent = trText('{{value}}%', {
+          value: Math.round(parseFloat(qualitySlider.value) * 100),
+        });
       };
       qualitySlider.addEventListener('input', updateValue);
       updateValue();

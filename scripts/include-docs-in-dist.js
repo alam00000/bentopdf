@@ -111,7 +111,14 @@ function listDocsHtml(dir, prefix) {
       );
     } else if (entry.name.endsWith('.html') && entry.name !== '404.html') {
       const slug = entry.name.replace(/\.html$/, '');
-      urls.push(slug === 'index' ? prefix : `${prefix}/${slug}`);
+      const html = fs.readFileSync(path.join(dir, entry.name), 'utf-8');
+      const canonical = html.match(
+        /<link[^>]+rel="canonical"[^>]+href="([^"]+)"/
+      );
+      urls.push({
+        url: slug === 'index' ? prefix : `${prefix}/${slug}`,
+        canonical: canonical ? canonical[1] : null,
+      });
     }
   }
   return urls;
@@ -132,7 +139,9 @@ function addDocsToSitemap() {
   let xml = fs.readFileSync(sitemapPath, 'utf-8');
   if (xml.includes(`<loc>${siteUrl}/docs</loc>`)) return;
 
-  const urls = listDocsHtml(targetDocsPath, '/docs');
+  const urls = listDocsHtml(targetDocsPath, '/docs')
+    .filter(({ url, canonical }) => canonical === `${siteUrl}${url}`)
+    .map(({ url }) => url);
   const entries = urls
     .map(
       (url) =>

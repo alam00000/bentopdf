@@ -8,10 +8,12 @@ import {
 } from '../utils/libreoffice-loader.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const ACCEPTED_EXTENSIONS = ['.wps'];
 const FILETYPE_NAME = 'WPS';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   state.files = [];
 
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
@@ -90,7 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.files.length === 0) {
       showAlert(
         'No Files',
-        `Please select at least one ${FILETYPE_NAME} file.`
+        trText('Please select at least one {{FILETYPE_NAME}} file.', {
+          FILETYPE_NAME,
+        })
       );
       return;
     }
@@ -105,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (state.files.length === 1) {
         const file = state.files[0];
-        showLoader(`Converting ${file.name}...`);
+        showLoader(trText('Converting {{name}}...', { name: file.name }));
         const pdfBlob = await converter.convertToPdf(file);
 
         const baseName = file.name.replace(/\.[^/.]+$/, '');
@@ -114,7 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${file.name} to PDF.`,
+          trText('Successfully converted {{name}} to PDF.', {
+            name: file.name,
+          }),
           'success',
           () => resetState()
         );
@@ -127,7 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            `Converting ${i + 1}/${state.files.length}: ${file.name}...`
+            trText('Converting {{n}}/{{length}}: {{name}}...', {
+              n: i + 1,
+              length: state.files.length,
+              name: file.name,
+            })
           );
           const pdfBlob = await converter.convertToPdf(file);
 
@@ -145,7 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
         hideLoader();
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} files to PDF.`,
+          trText('Successfully converted {{length}} files to PDF.', {
+            length: state.files.length,
+          }),
           'success',
           () => resetState()
         );
@@ -155,7 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, e);
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during conversion. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

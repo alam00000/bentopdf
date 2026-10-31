@@ -8,6 +8,8 @@ import {
 import { icons, createIcons } from 'lucide';
 import { ChangePermissionsState, QpdfInstanceExtended } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: ChangePermissionsState = {
   file: null,
 };
@@ -129,16 +131,17 @@ async function changePermissions() {
 
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = 'Initializing...';
+    if (loaderText) loaderText.textContent = trText('Initializing...');
 
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = 'Reading PDF...';
+    if (loaderText) loaderText.textContent = trText('Reading PDF...');
     const fileBuffer = await readFileAsArrayBuffer(pageState.file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
     qpdf.FS.writeFile(inputPath, uint8Array);
 
-    if (loaderText) loaderText.textContent = 'Processing PDF permissions...';
+    if (loaderText)
+      loaderText.textContent = trText('Processing PDF permissions...');
 
     const args = [inputPath];
 
@@ -220,11 +223,11 @@ async function changePermissions() {
       });
     }
 
-    if (loaderText) loaderText.textContent = 'Preparing download...';
+    if (loaderText) loaderText.textContent = trText('Preparing download...');
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Processing resulted in an empty file.');
+      throw new Error(trText('Processing resulted in an empty file.'));
     }
 
     const blob = new Blob([new Uint8Array(outputFile)], {
@@ -234,10 +237,11 @@ async function changePermissions() {
 
     if (loaderModal) loaderModal.classList.add('hidden');
 
-    let successMessage = 'PDF permissions changed successfully!';
+    let successMessage = trText('PDF permissions changed successfully!');
     if (!shouldEncrypt) {
-      successMessage =
-        'PDF decrypted successfully! All encryption and restrictions removed.';
+      successMessage = trText(
+        'PDF decrypted successfully! All encryption and restrictions removed.'
+      );
     }
 
     showAlert('Success', successMessage, 'success', () => {
@@ -261,7 +265,11 @@ async function changePermissions() {
     } else {
       showAlert(
         'Processing Failed',
-        `An error occurred: ${errorMessage || 'The PDF might be corrupted or password protected.'}`
+        trText('An error occurred: {{error}}', {
+          error:
+            errorMessage ||
+            trText('The PDF might be corrupted or password protected.'),
+        })
       );
     }
   } finally {
@@ -284,7 +292,7 @@ async function changePermissions() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

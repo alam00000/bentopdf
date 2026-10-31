@@ -9,7 +9,8 @@
     "openMainMenu": "Open main menu",
     "language": "Language",
     "searchLanguage": "Search language…",
-    "noLanguagesFound": "No languages found"
+    "noLanguagesFound": "No languages found",
+    "breadcrumb": "Breadcrumb"
   },
   "donation": {
     "message": "Love BentoPDF? Help us keep it free and open source!",
@@ -236,6 +237,10 @@
     "aboutUs": "About Us",
     "faqLink": "FAQ",
     "contactUs": "Contact Us",
+    "tools": "Tools",
+    "pdfConverter": "PDF Converter",
+    "pdfSecurity": "PDF Security",
+    "mergeSplit": "Merge and Split PDF",
     "legal": "Legal",
     "termsAndConditions": "Terms and Conditions",
     "privacyPolicy": "Privacy Policy",

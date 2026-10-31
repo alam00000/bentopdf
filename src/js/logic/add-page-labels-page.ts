@@ -6,7 +6,7 @@ import type {
   CpdfInstance,
 } from '@/types';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
-import { t } from '../i18n/index.js';
+import { t, onPageReady } from '../i18n/index.js';
 import {
   downloadFile,
   formatBytes,
@@ -47,11 +47,7 @@ const pageState: AddPageLabelsState = {
   rules: [createLabelRule()],
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function createLabelRule(overrides: Partial<LabelRule> = {}): LabelRule {
   labelRuleCounter += 1;

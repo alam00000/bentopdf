@@ -9,7 +9,8 @@
     "openMainMenu": "فتح القائمة الرئيسية",
     "language": "اللغة",
     "searchLanguage": "البحث عن لغة…",
-    "noLanguagesFound": "لم يتم العثور على لغات"
+    "noLanguagesFound": "لم يتم العثور على لغات",
+    "breadcrumb": "مسار التنقل"
   },
   "donation": {
     "message": "أعجبك BentoPDF؟ ساعدنا في إبقائه مجانيًا ومفتوح المصدر!",
@@ -236,6 +237,10 @@
     "aboutUs": "من نحن",
     "faqLink": "الأسئلة الشائعة",
     "contactUs": "اتصل بنا",
+    "tools": "الأدوات",
+    "pdfConverter": "محول PDF",
+    "pdfSecurity": "أمان PDF",
+    "mergeSplit": "دمج وتقسيم PDF",
     "legal": "قانوني",
     "termsAndConditions": "الشروط والأحكام",
     "privacyPolicy": "سياسة الخصوصية",

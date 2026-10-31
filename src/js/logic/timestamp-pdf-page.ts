@@ -1,6 +1,6 @@
 import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   readFileAsArrayBuffer,
   formatBytes,
@@ -148,7 +148,9 @@ async function updatePdfDisplay(): Promise<void> {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = `${formatBytes(state.pdfFile.size)} • Loading pages...`;
+  metaSpan.textContent = trText('{{size}} • Loading pages...', {
+    size: formatBytes(state.pdfFile.size),
+  });
 
   infoContainer.append(nameSpan, metaSpan);
 
@@ -172,11 +174,16 @@ async function updatePdfDisplay(): Promise<void> {
       const pdfDoc = await getPDFDocument({
         data: state.pdfBytes.slice(),
       }).promise;
-      metaSpan.textContent = `${formatBytes(state.pdfFile.size)} • ${pdfDoc.numPages} pages`;
+      metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+        size: formatBytes(state.pdfFile.size),
+        numPages: pdfDoc.numPages,
+      });
     }
   } catch (error) {
     console.error('Error loading PDF:', error);
-    metaSpan.textContent = `${formatBytes(state.pdfFile.size)}`;
+    metaSpan.textContent = trText('{{size}}', {
+      size: formatBytes(state.pdfFile.size),
+    });
   }
 }
 
@@ -236,14 +243,18 @@ async function processTimestamp(): Promise<void> {
     resetState();
   } catch (error) {
     console.error('Timestamp error:', error);
-    const message = error instanceof Error ? error.message : 'Unknown error';
+    const message =
+      error instanceof Error ? error.message : trText('Unknown error');
     showAlert(
       'Timestamp Failed',
-      `Failed to timestamp PDF: ${message}\n\nPlease try a different TSA server or check your internet connection.`
+      trText(
+        'Failed to timestamp PDF: {{message}}\n\nPlease try a different TSA server or check your internet connection.',
+        { message }
+      )
     );
   } finally {
     hideLoader();
   }
 }
 
-document.addEventListener('DOMContentLoaded', initializePage);
+onPageReady(initializePage);

@@ -1204,7 +1204,7 @@
       "workerError": "Worker 錯誤：{{message}}",
       "alternateMergeWorkerError": "交錯混合頁面 Worker 錯誤：{{message}}",
       "noPdfFilesUploaded": "PDF 輸入節點中未上傳 PDF 檔案",
-      "failedToLoadFile": "無法載入「{{file}}」— 檔案可能已損毀",
+      "failedToLoadFile": "無法載入「{{file}}」，檔案可能已損毀",
       "noImagesUploaded": "影像輸入節點中未上傳影像",
       "noWordDocsUploaded": "Word 輸入節點中未上傳文件",
       "noExcelUploaded": "Excel 輸入節點中未上傳試算表",
@@ -1317,11 +1317,11 @@
     "faqPrivacyAnswer": "當然！所有處理都在您的瀏覽器中進行。您的檔案永遠不會離開您的裝置，確保完全隱私。"
   },
   "unlockPdf": {
-    "name": "解密 PDF",
+    "name": "解除鎖定 PDF",
     "subtitle": "移除 PDF 密碼保護，讓檔案可直接開啟。需要提供目前的密碼。"
   },
   "protectPdf": {
-    "name": "加密 PDF",
+    "name": "保護 PDF",
     "subtitle": "使用高強度 AES 加密為 PDF 加上密碼保護。"
   }
 }

@@ -20,29 +20,44 @@
   },
   "convertToPdf": "Naar PDF converteren",
   "pdfMultiTool": {
-    "name": "PDF Multi-tool",
+    "name": "PDF-multitool",
     "subtitle": "Samenvoegen, Splitsen, Organiseren, Verwijderen, Roteren, Blanco pagina's toevoegen, Extraheren and Dupliceren in één enkele werkomgeving."
   },
   "mergePdf": {
-    "name": "PDF Samenvoegen",
+    "name": "PDF samenvoegen",
     "subtitle": "Meerdere PDF's combineren tot één bestand. Bladwijzers behouden.",
     "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
-    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
+    "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren).",
+    "removeDuplicateFonts": "Dubbele lettertypen verwijderen",
+    "alert": {
+      "thumbnailError": "Paginaminiaturen konden niet worden weergegeven",
+      "noSelection": "Geen bestanden of pagina's geselecteerd om samen te voegen.",
+      "mergeSuccess": "PDF's succesvol samengevoegd!",
+      "mergeFailed": "Samenvoegen van PDF's mislukt.",
+      "mergeError": "Samenvoegen van PDF's mislukt. Controleer of alle bestanden geldig zijn en niet met een wachtwoord zijn beveiligd.",
+      "workerError": "Er is een onverwachte fout opgetreden in de samenvoeg-worker.",
+      "loadError": "Een of meer PDF-bestanden konden niet worden geladen"
+    },
+    "loader": {
+      "renderingPreviews": "Paginavoorbeelden weergeven...",
+      "merging": "PDF's samenvoegen...",
+      "loadingDocuments": "PDF-documenten laden..."
+    }
   },
   "splitPdf": {
-    "name": "PDF Splitsen",
+    "name": "PDF splitsen",
     "subtitle": "Een reeks pagina's opslaan in een nieuwe PDF."
   },
   "compressPdf": {
-    "name": "PDF Comprimeren",
+    "name": "PDF comprimeren",
     "subtitle": "De bestandsgrootte van een PDF verkleinen."
   },
   "pdfEditor": {
-    "name": "PDF Bewerken",
+    "name": "PDF bewerken",
     "subtitle": "PDF's annoteren, markeren, redigeren, commentaar toevoegen, vormen/afbeelding toevoegen, doorzoeken and weergeven."
   },
   "editPdfText": {
-    "name": "PDF-tekst Bewerken",
+    "name": "PDF-tekst bewerken",
     "subtitle": "Klik op een alinea en bewerk deze direct, met live tekstomloop, lettertypen en opmaak.",
     "saved": "PDF is opgeslagen! ({{size}} KB)",
     "failedToLoad": "Kan de PDF-teksteditor niet laden.",
@@ -91,7 +106,7 @@
     "tipRedoZ": "Opnieuw (⇧⌘Z)",
     "tipFileDetails": "Bestandsgegevens",
     "tipEditExistingContent": "Bestaande inhoud bewerken",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Wat het hulpmiddel Bewerken raakt — beperk het bereik op drukke pagina's",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Wat het hulpmiddel Bewerken raakt: beperk het bereik op drukke pagina's",
     "tipClickThePageToAddATextBox": "Klik op de pagina om een tekstvak toe te voegen",
     "tipSpellCheckLanguage": "Taal van de spellingcontrole",
     "tipFindAndReplace": "Zoeken en vervangen",
@@ -164,28 +179,28 @@
     "subtitle": "Een of meer JPG-afbeeldingen opslaan als PDF."
   },
   "signPdf": {
-    "name": "PDF Ondertekenen",
+    "name": "PDF ondertekenen",
     "subtitle": "Een handtekening tekenen, typen, of invoegen."
   },
   "cropPdf": {
-    "name": "PDF Bijsnijden",
+    "name": "PDF bijsnijden",
     "subtitle": "De marges aanpassen van alle pagina's in een PDF."
   },
   "extractPages": {
-    "name": "Pagina's Extraheren",
+    "name": "Pagina's extraheren",
     "subtitle": "Een selectie van pagina's opslaan als nieuw bestand."
   },
   "duplicateOrganize": {
-    "name": "Dupliceren & Organiseren",
+    "name": "Dupliceren en organiseren",
     "subtitle": "Pagina's dupliceren, ordenen en verwijderen.",
     "saveChanges": "Wijzigingen opslaan"
   },
   "deletePages": {
-    "name": "Pagina's Verwijderen",
+    "name": "Pagina's verwijderen",
     "subtitle": "Specifieke pagina's uit een dodocument verwijderen."
   },
   "editBookmarks": {
-    "name": "Bladwijzers Bewerken",
+    "name": "Bladwijzers bewerken",
     "subtitle": "PDF-bladwijzers toevoegen, bewerken, importeren, verwijderen and extraheren.",
     "autoExtractExisting": "Bestaande bladwijzers automatisch extraheren",
     "importSectionTitle": "Of bladwijzers importeren",
@@ -284,11 +299,11 @@
     "applyToAllPages": "Op alle pagina's toepassen"
   },
   "headerFooter": {
-    "name": "Koptekst & Voettekst",
+    "name": "Koptekst en voettekst",
     "subtitle": "Tekst boven- of onderaan de pagina's toevoegen."
   },
   "invertColors": {
-    "name": "Kleuren Omkeren",
+    "name": "Kleuren omkeren",
     "subtitle": "Een \"donkere modus\"-versie van een PDF maken."
   },
   "scannerEffect": {
@@ -309,7 +324,7 @@
     "processButton": "Scannereffect toepassen"
   },
   "adjustColors": {
-    "name": "Kleuren Aanpassen",
+    "name": "Kleuren aanpassen",
     "subtitle": "Helderheid, contrast, verzadiging en meer aanpassen in een PDF.",
     "colorSettings": "Kleurinstellingen",
     "brightness": "Helderheid",
@@ -331,7 +346,7 @@
     "subtitle": "De tekstkleur van een PDF wijzigen."
   },
   "addStamps": {
-    "name": "Stempels Toevoegen",
+    "name": "Stempels toevoegen",
     "subtitle": "Afbeeldingsstempels toevoegen aan een PDF met de werkbalk Annotatie.",
     "usernameLabel": "Gebruikersnaam stempelen",
     "usernamePlaceholder": "Voer je naam in (voor stempels)",
@@ -339,24 +354,24 @@
     "saveButton": "Gestempelde PDF opslaan"
   },
   "removeAnnotations": {
-    "name": "Annotaties Verwijderen",
+    "name": "Annotaties verwijderen",
     "subtitle": "Commentaar, markeringen en links verwijderen."
   },
   "pdfFormFiller": {
-    "name": "PDF-formulier Invullen",
+    "name": "PDF-formulier invullen",
     "subtitle": "Formulieren invullen vanuit de browser, incl. ondersteuning voor XFA-formulieren.",
     "uploadHint": "Upload een PDF met formuliervelden. Vul ze direct in in de viewer hieronder en klik op de knop om het ingevulde formulier op te slaan en te downloaden. Ondersteunt ook XFA-formulieren.",
     "xfaNoteTitle": "Opmerking over XFA-formulieren:",
     "xfaNoteDescription": "XFA (XML Forms Architecture) is een verouderd formaat dat alleen door bepaalde PDF-viewers zoals BentoPDF en Firefox wordt ondersteund. Als je een XFA-PDF in andere software opent en lege pagina's of geen formuliervelden ziet, betekent dat dat die viewer XFA niet ondersteunt. Om XFA-formulieren correct te bekijken en in te vullen, gebruik je Firefox of de Form Filler van BentoPDF."
   },
   "createPdfForm": {
-    "name": "PDF-formulier Aanmaken",
+    "name": "PDF-formulier aanmaken",
     "subtitle": "Invulbare PDF-formulieren aanmaken met drag-and-drop tekstvelden.",
     "orSeparator": "OF",
     "createBlankPdf": "Lege PDF maken"
   },
   "removeBlankPages": {
-    "name": "Blanco pagina's Verwijderen",
+    "name": "Blanco pagina's verwijderen",
     "subtitle": "Blanco pagina's automatisch detecteren en verwijderen.",
     "sensitivityHint": "Hoger = strenger, alleen volledig lege pagina's. Lager = staat pagina's met enige inhoud toe."
   },
@@ -503,7 +518,8 @@
       "noFile": "Geen bestand",
       "noFileExplanation": "Laad eerst een PDF-bestand.",
       "conversionSuccess": "PDF met succes omgezet naar TIFF's!",
-      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn."
+      "conversionError": "Conversie van PDF naar TIFF is mislukt. Het bestand kan beschadigd zijn.",
+      "conversionOutOfMemory": "De browser had onvoldoende geheugen tijdens het converteren. Probeer een lagere DPI, of schakel de optie voor meerpagina-TIFF uit om pagina's een voor een te converteren."
     }
   },
   "pdfToCbz": {
@@ -537,7 +553,7 @@
     }
   },
   "pdfToGreyscale": {
-    "name": "PDF naar Grijswaarden",
+    "name": "PDF naar grijswaarden",
     "subtitle": "Converteer alle kleuren naar zwart-wit."
   },
   "pdfToJson": {
@@ -559,7 +575,7 @@
     }
   },
   "ocrPdf": {
-    "name": "OCR PDF",
+    "name": "PDF OCR",
     "subtitle": "Maak een PDF doorzoekbaar en kopieerbaar.",
     "languagesInDocument": "Talen in document",
     "searchLanguagesPlaceholder": "Talen zoeken...",
@@ -613,7 +629,7 @@
     "multiLanguageSupportDescription": "Selecteer meerdere talen voor documenten met inhoud in gemengde talen."
   },
   "alternateMerge": {
-    "name": "Pagina's Afwisselen & Mixen",
+    "name": "Pagina's afwisselen en mixen",
     "subtitle": "PDF's samenvoegen met afwisselende pagina's vanuit elke PDF. Bladwijzers behouden.",
     "retainPageLabels": "Originele pagina-labels van elk bestand behouden",
     "retainPageLabelsHint": "Uit (standaard): de samengevoegde PDF gebruikt natuurlijke paginanummering 1–N. Aan: de originele pagina-labels van elk bestand blijven behouden (kan dubbele labels opleveren)."
@@ -664,31 +680,31 @@
     "faqBackOrderAnswer": "Dat hangt af van hoe de stapel bij de tweede ronde is ingevoerd. De hele stapel omdraaien levert achterkanten in omgekeerde volgorde op; dat is de standaardinstelling. Gaf je scanner ze in dezelfde volgorde als de voorkanten terug, kies dan om het blok ongewijzigd te laten."
   },
   "addAttachments": {
-    "name": "Bijlagen Toevoegen",
+    "name": "Bijlagen toevoegen",
     "subtitle": "Een of meer bestanden toevoegen aan een PDF."
   },
   "extractAttachments": {
-    "name": "Bijlagen Extraheren",
+    "name": "Bijlagen extraheren",
     "subtitle": "Extraheer alle ingevoegde bestanden als ZIP uit PDF('s)."
   },
   "editAttachments": {
-    "name": "Bijlagen Bewerken",
+    "name": "Bijlagen bewerken",
     "subtitle": "Bijlagen in een PDF weergeven of verwijderen."
   },
   "dividePages": {
-    "name": "Paginas Opdelen",
+    "name": "Pagina's opdelen",
     "subtitle": "Pagina's horizontaal of verticaal opdelen."
   },
   "addBlankPage": {
-    "name": "Blanco pagina Toevoegen",
+    "name": "Blanco pagina toevoegen",
     "subtitle": "Een blanco pagina ergens in een PDF invoegen."
   },
   "reversePages": {
-    "name": "Paginavolgorde Omkeren",
+    "name": "Paginavolgorde omkeren",
     "subtitle": "De volgorde omkeren van alle pagina's in een document."
   },
   "rotatePdf": {
-    "name": "PDF Roteren",
+    "name": "PDF roteren",
     "subtitle": "Pagina's roteren in stappen van 90 graden."
   },
   "rotateCustom": {
@@ -696,27 +712,27 @@
     "subtitle": "Pagina's roteren met elke gewenste hoek."
   },
   "nUpPdf": {
-    "name": "N+ PDF",
+    "name": "N-up PDF",
     "subtitle": "Meerdere pagina's op één vel arrangeren."
   },
   "combineToSinglePage": {
-    "name": "Combineren tot Enkele pagina",
+    "name": "Combineren tot één pagina",
     "subtitle": "Alle pagina's aan elkaar plakken tot een doorlopende rol."
   },
   "viewMetadata": {
-    "name": "Metadata Weergeven",
+    "name": "Metadata weergeven",
     "subtitle": "De verborgen eigenschappen van een PDF weergeven."
   },
   "editMetadata": {
-    "name": "Metadata Bewerken",
+    "name": "Metadata bewerken",
     "subtitle": "Auteur, titel en andere eigenschappen aanpassen."
   },
   "pdfsToZip": {
-    "name": "PDF naar ZIP",
+    "name": "PDF's naar ZIP",
     "subtitle": "Meerdere PDF's archiveren in een ZIP-bestand."
   },
   "comparePdfs": {
-    "name": "PDF's Vergelijken",
+    "name": "PDF's vergelijken",
     "subtitle": "Twee PDF's zij-aan-zij vergelijken.",
     "firstPdf": "Eerste PDF",
     "secondPdf": "Twede PDF",
@@ -760,51 +776,51 @@
     "loadError": "Kan PDF niet laden. Mogelijk is het beschadigd of beveiligd."
   },
   "posterizePdf": {
-    "name": "PDF-Poster",
+    "name": "PDF-poster",
     "subtitle": "Een grote pagina opdelen in meerdere kleinere pagina's."
   },
   "fixPageSize": {
-    "name": "Paginagrootte Fiksen",
+    "name": "Paginagrootte corrigeren",
     "subtitle": "Alle pagina's aanpassen tot een uniform formaat."
   },
   "linearizePdf": {
-    "name": "PDF Lineariseren",
+    "name": "PDF lineariseren",
     "subtitle": "Een PDF optimaliseren voor snelle webweergave."
   },
   "pageDimensions": {
-    "name": "Pagina Afmetingen",
+    "name": "Paginaafmetingen",
     "subtitle": "Paginagrootte, oriëntatie en eenheden analyseren."
   },
   "removeRestrictions": {
-    "name": "Beperkingen Verwijderen",
+    "name": "Beperkingen verwijderen",
     "subtitle": "Beveiligingswachtwoord en -beperkingen verwijderen van digitaal ondertekende PDF-bestanden."
   },
   "repairPdf": {
-    "name": "PDF Repareren",
+    "name": "PDF repareren",
     "subtitle": "Gegevens herstellen van beschadigde PDF-bestanden."
   },
   "encryptPdf": {
-    "name": "PDF Versleutelen",
+    "name": "PDF versleutelen",
     "subtitle": "Een PDF vergrendelen door toevoeging van een toegangswachtwoord."
   },
   "sanitizePdf": {
-    "name": "PDF Opschonen",
+    "name": "PDF opschonen",
     "subtitle": "Metadata, annotaties, scripts en meer verwijderen."
   },
   "decryptPdf": {
-    "name": "PDF Ontgrendelen",
+    "name": "PDF ontsleutelen",
     "subtitle": "Een PDF ontgrendelen door het verwijderen van de wachtwoordbeveiliging."
   },
   "flattenPdf": {
-    "name": "PDF Platmaken",
+    "name": "PDF platmaken",
     "subtitle": "Formuliervelden en annotaties onbewerkbaar maken."
   },
   "removeMetadata": {
-    "name": "Metadata Verwijderen",
+    "name": "Metadata verwijderen",
     "subtitle": "Verborgen gegevens verwijderen uit een PDF."
   },
   "changePermissions": {
-    "name": "Rechten Aanpassen",
+    "name": "Rechten aanpassen",
     "subtitle": "Gebruikersrechten van een PDF instellen of aanpasssen."
   },
   "odtToPdf": {
@@ -864,7 +880,7 @@
     "optTypographer": "Typograaf (slimme aanhalingstekens, etc.)"
   },
   "pdfBooklet": {
-    "name": "PDF Boekje",
+    "name": "PDF-boekje",
     "subtitle": "De pagina's opnieuw ordenen voor het afdrukken van een dubbelzijdig boekje. Vouw en niet ze om een boekje te maken.",
     "howItWorks": "Het werkt zo:",
     "step1": "Laad een PDF-bestand.",
@@ -974,7 +990,7 @@
     "subtitle": "Converteer elke pagina van een PDF-bestand naar een schaalbare vectorafbeelding (SVG) voor perfecte kwaliteit op elke grootte."
   },
   "extractTables": {
-    "name": "PDF-tabellen Extraheren",
+    "name": "PDF-tabellen extraheren",
     "subtitle": "Tabellen uit PDF-bestanden halen en exporteren als CSV, JSON of Markdown."
   },
   "pdfToCsv": {
@@ -986,12 +1002,11 @@
     "subtitle": "Tabellen uit een PDF halen en converten naar Excel (XLSX) formaat."
   },
   "pdfToText": {
-    "name": "PDF naar Text",
+    "name": "PDF naar tekst",
     "subtitle": "Tekst uit een PDF-bestanden halen en opslaan als gewone tekst (.txt). Ondersteunt meerdere bestanden.",
     "noteLabel": "Opmerking:",
     "noteText": "Deze tool werkt ALLEEN met digitaal aangemaakte PDF's. Voor gescande documenten of PDF's op basis van afbeeldingen gebruik je in plaats daarvan onze OCR PDF-tool.",
-    "convertButton": "Tekst extraheren",
-    "note": "Dit hulpmiddel werkt ALLEEN met digitaal gemaakte PDF's. Gebruik voor gescande documenten of op afbeeldingen gebaseerde PDF's in plaats hiervan de OCR PDF-tool."
+    "convertButton": "Tekst extraheren"
   },
   "digitalSignPdf": {
     "name": "Digitale handtekening",
@@ -1080,12 +1095,12 @@
     "internetRequiredDescription": "Bij het ondertekenen kan certificaatkeeninformatie van de server van je certificaatuitgever worden opgehaald om de handtekening te valideren."
   },
   "validateSignaturePdf": {
-    "name": "PDF-handtekening Valideren",
+    "name": "PDF-handtekening valideren",
     "pageTitle": "PDF-handtekening valideren - Digitale handtekeningen verifiëren | BentoPDF",
     "subtitle": "Digitale handtekeningen in een PDF-bestanden verifiëren. Controleer de geldigheid van het certificaat, bekijk de gegevens van de ondertekenaar en bevestig de integriteit van het document. Alle verwerking gebeurt binnen jouw browser."
   },
   "timestampPdf": {
-    "name": "PDF Tijdstempelen",
+    "name": "PDF tijdstempelen",
     "pageTitle": "PDF tijdstempel gratis online - RFC 3161 documenttijdstempel | BentoPDF",
     "subtitle": "Voeg een RFC 3161 tijdstempel toe aan je PDF via een vertrouwde TSA-server. Dit bewijst dat jouw document op een specifiek moment bestond. Geen certificaat vereist.",
     "tsaSectionTitle": "Tijdstempelserver (TSA)",
@@ -1100,11 +1115,11 @@
     "convertButton": "Omzetten naar PDF"
   },
   "fontToOutline": {
-    "name": "Lettertype naar Contour",
+    "name": "Lettertype naar contouren",
     "subtitle": "Converteer alle lettertypen naar vector-contouren voor consistente weergave over alle apparaten."
   },
   "deskewPdf": {
-    "name": "PDF Rechttrekken",
+    "name": "PDF rechttrekken",
     "subtitle": "Scheef gescande pagina's automatisch rechttrekken met OpenCV."
   },
   "pdfToWord": {
@@ -1132,11 +1147,11 @@
     "subtitle": "Converteer PDF naar PDF/A voor langetermijnarchivering."
   },
   "rasterizePdf": {
-    "name": "PDF Rasteren",
+    "name": "PDF rasteren",
     "subtitle": "Converteer PDF naar beeldgebaseerde PDF. Lagen afvlakken en selecteerbare tekst verwijderen."
   },
   "pdfWorkflow": {
-    "name": "PDF Werkproces Samenstellen",
+    "name": "PDF-workflowbouwer",
     "subtitle": "Bouw specifieke PDF-verwerkingsprocessen met een visuele knooppunten-bewerking.",
     "nodes": "Knooppunten",
     "searchNodes": "Knooppunten zoeken...",
@@ -1189,7 +1204,7 @@
       "workerError": "Worker-fout: {{message}}",
       "alternateMergeWorkerError": "Fout in afwisselende samenvoeg-worker: {{message}}",
       "noPdfFilesUploaded": "Geen PDF-bestanden geüpload in PDF-invoer",
-      "failedToLoadFile": "Kan \"{{file}}\" niet laden — bestand is mogelijk beschadigd",
+      "failedToLoadFile": "Kan \"{{file}}\" niet laden, bestand is mogelijk beschadigd",
       "noImagesUploaded": "Geen afbeeldingen geüpload in Afbeelding-invoer",
       "noWordDocsUploaded": "Geen documenten geüpload in Word-invoer",
       "noExcelUploaded": "Geen spreadsheets geüpload in Excel-invoer",
@@ -1279,7 +1294,7 @@
     "subtitle": "Pagina's van een PDF boven of achter een andere PDF plaatsen.",
     "basePdfLabel": "Basis-PDF",
     "uploadBasePdf": "Basis-PDF laden",
-    "overlayPdfLabel": "Overlay / Underlay PDF",
+    "overlayPdfLabel": "Overlay-/underlay-PDF",
     "uploadOverlayPdf": "Overlay/underlay PDF laden",
     "modeLabel": "Modus",
     "overlayOption": "Overlay (boven de pagina's)",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "Absoluut! Alle verwerking vindt plaats in jouw browser. Jouw bestanden verlaten nooit jouw apparaat, wat volledige privacy garandeert."
   },
   "unlockPdf": {
-    "name": "PDF Ontgrendelen",
+    "name": "PDF ontgrendelen",
     "subtitle": "Een PDF ontgrendelen door het verwijderen van de wachtwoordbeveiliging."
   },
   "protectPdf": {
-    "name": "PDF Versleutelen",
+    "name": "PDF beveiligen",
     "subtitle": "Een PDF vergrendelen door toevoeging van een toegangswachtwoord."
   }
 }

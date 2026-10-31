@@ -10,6 +10,8 @@ import {
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/add-attachments.worker.js'
 );
@@ -72,7 +74,9 @@ worker.onmessage = function (e) {
 
     showAlert(
       'Success',
-      `${pageState.attachments.length} file(s) attached successfully.`,
+      trText('{{length}} file(s) attached successfully.', {
+        length: pageState.attachments.length,
+      }),
       'success',
       function () {
         resetState();
@@ -112,7 +116,9 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(pageState.file.size)} • Loading...`;
+    metaSpan.textContent = trText('{{size}} • Loading...', {
+      size: formatBytes(pageState.file.size),
+    });
 
     infoContainer.append(nameSpan, metaSpan);
 
@@ -140,7 +146,10 @@ async function updateUI() {
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = `${formatBytes(pageState.file.size)} • ${pageCount} pages`;
+      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+        size: formatBytes(pageState.file.size),
+        pageCount,
+      });
 
       const totalPagesSpan = document.getElementById('attachment-total-pages');
       if (totalPagesSpan) totalPagesSpan.textContent = pageCount.toString();
@@ -249,7 +258,11 @@ async function addAttachments() {
     for (let i = 0; i < pageState.attachments.length; i++) {
       const file = pageState.attachments[i];
       showLoader(
-        `Reading ${file.name} (${i + 1}/${pageState.attachments.length})...`
+        trText('Reading {{name}} ({{n}}/{{length}})...', {
+          name: file.name,
+          n: i + 1,
+          length: pageState.attachments.length,
+        })
       );
 
       const fileBuffer = await file.arrayBuffer();
@@ -276,7 +289,9 @@ async function addAttachments() {
     hideLoader();
     showAlert(
       'Error',
-      `Failed to attach files: ${error instanceof Error ? error.message : 'Unknown error'}`
+      trText('Failed to attach files: {{error}}', {
+        error: error instanceof Error ? error.message : trText('Unknown error'),
+      })
     );
   }
 }
@@ -301,7 +316,7 @@ function handleAttachmentSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const attachmentInput = document.getElementById(

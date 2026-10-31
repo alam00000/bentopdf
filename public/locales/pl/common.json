@@ -9,7 +9,8 @@
     "openMainMenu": "Otwórz menu główne",
     "language": "Język",
     "searchLanguage": "Szukaj języka…",
-    "noLanguagesFound": "Nie znaleziono języków"
+    "noLanguagesFound": "Nie znaleziono języków",
+    "breadcrumb": "Ścieżka nawigacji"
   },
   "donation": {
     "message": "Uwielbiasz BentoPDF? Pomóż nam utrzymać go jako darmowe i otwarte oprogramowanie!",
@@ -212,7 +213,7 @@
     },
     "browserBased": {
       "question": "W jaki sposób przetwarzanie w oparciu o przeglądarkę zapewnia mi bezpieczeństwo?",
-      "answer": "Działając całkowicie wewnątrz Twojej przeglądarki, BentoPDF gwarantuje, że Twoje pliki nigdy nie opuszczą Twojego urządzenia. Eliminuje to ryzyko ataków hakerskich na serwery, naruszeń bezpieczeństwa danych czy nieautoryzowanego dostępu. Twoje pliki pozostają Twoje — zawsze."
+      "answer": "Działając całkowicie wewnątrz Twojej przeglądarki, BentoPDF gwarantuje, że Twoje pliki nigdy nie opuszczą Twojego urządzenia. Eliminuje to ryzyko ataków hakerskich na serwery, naruszeń bezpieczeństwa danych czy nieautoryzowanego dostępu. Twoje pliki pozostają Twoje. Zawsze."
     },
     "analytics": {
       "question": "Czy używacie plików cookie lub analityki do mojego śledzenia?",
@@ -236,10 +237,16 @@
     "aboutUs": "O nas",
     "faqLink": "FAQ",
     "contactUs": "Kontakt",
+    "tools": "Narzędzia",
+    "pdfConverter": "Konwerter PDF",
+    "pdfSecurity": "Bezpieczeństwo PDF",
+    "mergeSplit": "Scalanie i dzielenie PDF",
     "legal": "Kwestie prawne",
     "termsAndConditions": "Zasady i warunki",
     "privacyPolicy": "Polityka prywatności",
-    "followUs": "Śledź nas"
+    "followUs": "Śledź nas",
+    "privacyShort": "Prywatność",
+    "termsShort": "Warunki"
   },
   "merge": {
     "title": "Połącz pliki PDF",
@@ -286,8 +293,9 @@
       "noCompromises": "Bez kompromisów."
     },
     "mission": {
-      "title": "Nasza misja",
-      "description": "Zapewnienie najbardziej wszechstronnego zestawu narzędzi PDF, który szanuje Twoją prywatność i nigdy nie prosi o płatność. Wierzymy, że podstawowe narzędzia do dokumentów powinny być dostępne dla każdego, wszędzie i bez barier."
+      "title": "Nasza",
+      "description": "Zapewnienie najbardziej wszechstronnego zestawu narzędzi PDF, który szanuje Twoją prywatność i nigdy nie prosi o płatność. Wierzymy, że podstawowe narzędzia do dokumentów powinny być dostępne dla każdego, wszędzie i bez barier.",
+      "titleDim": "misja"
     },
     "philosophy": {
       "label": "Nasza główna filozofia",

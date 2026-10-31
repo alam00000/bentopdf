@@ -15,19 +15,34 @@
     "add": "Zu Favoriten hinzufügen",
     "remove": "Aus Favoriten entfernen",
     "hintLabel": "Tipp",
-    "hint": "Halte ein Werkzeug gedrückt, um es zu deinen Favoriten hinzuzufügen.",
+    "hint": "Halten Sie ein Werkzeug gedrückt, um es zu Ihren Favoriten hinzuzufügen.",
     "hideHint": "Tipp ausblenden"
   },
   "convertToPdf": "In PDF konvertieren",
   "pdfMultiTool": {
-    "name": "PDF Multi-Werkzeug",
+    "name": "PDF-Multitool",
     "subtitle": "Zusammenführen, Teilen, Organisieren, Löschen, Drehen, Leere Seiten hinzufügen, Extrahieren und Duplizieren in einer einheitlichen Oberfläche."
   },
   "mergePdf": {
     "name": "PDF zusammenführen",
     "subtitle": "Mehrere PDFs zu einer Datei kombinieren. Lesezeichen werden beibehalten.",
     "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
-    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
+    "retainPageLabelsHint": "Aus (Standard): Die zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen).",
+    "removeDuplicateFonts": "Doppelte Schriftarten entfernen",
+    "alert": {
+      "thumbnailError": "Seitenminiaturen konnten nicht dargestellt werden",
+      "noSelection": "Keine Dateien oder Seiten zum Zusammenführen ausgewählt.",
+      "mergeSuccess": "PDFs erfolgreich zusammengeführt!",
+      "mergeFailed": "PDFs konnten nicht zusammengeführt werden.",
+      "mergeError": "PDFs konnten nicht zusammengeführt werden. Bitte prüfen Sie, ob alle Dateien gültig und nicht passwortgeschützt sind.",
+      "workerError": "Beim Zusammenführen ist ein unerwarteter Fehler aufgetreten.",
+      "loadError": "Eine oder mehrere PDF-Dateien konnten nicht geladen werden"
+    },
+    "loader": {
+      "renderingPreviews": "Seitenvorschauen werden erstellt...",
+      "merging": "PDFs werden zusammengeführt...",
+      "loadingDocuments": "PDF-Dokumente werden geladen..."
+    }
   },
   "splitPdf": {
     "name": "PDF teilen",
@@ -47,7 +62,7 @@
     "saved": "PDF erfolgreich gespeichert! ({{size}} KB)",
     "failedToLoad": "Der PDF-Texteditor konnte nicht geladen werden.",
     "loadingFonts": "Schriftarten werden geladen...",
-    "fontsUnavailable": "Eine für einige Zeichen benötigte Schriftart konnte nicht heruntergeladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut, sonst werden diese Zeichen im gespeicherten PDF möglicherweise nicht korrekt angezeigt.",
+    "fontsUnavailable": "Eine für einige Zeichen benötigte Schriftart konnte nicht heruntergeladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut, sonst werden diese Zeichen in der gespeicherten PDF möglicherweise nicht korrekt angezeigt.",
     "howToUpload": "PDF hochladen",
     "howToClick": "Absatz anklicken",
     "howToRestyle": "Alles umgestalten",
@@ -293,7 +308,7 @@
   },
   "scannerEffect": {
     "name": "Scanner-Effekt",
-    "subtitle": "Lassen Sie Ihr PDF wie ein gescanntes Dokument aussehen.",
+    "subtitle": "Lassen Sie Ihre PDF wie ein gescanntes Dokument aussehen.",
     "scanSettings": "Scan-Einstellungen",
     "colorspace": "Farbraum",
     "gray": "Grau",
@@ -310,7 +325,7 @@
   },
   "adjustColors": {
     "name": "Farben anpassen",
-    "subtitle": "Helligkeit, Kontrast, Sättigung und mehr in Ihrem PDF feinabstimmen.",
+    "subtitle": "Helligkeit, Kontrast, Sättigung und mehr in Ihrer PDF feinabstimmen.",
     "colorSettings": "Farbeinstellungen",
     "brightness": "Helligkeit",
     "contrast": "Kontrast",
@@ -427,9 +442,9 @@
     "imageQualityExplanation": "Höhere Qualität = größere Dateigröße",
     "alert": {
       "invalidFile": "Ungültige Datei",
-      "invalidFileExplanation": "Bitte wähle eine PDF Datei aus.",
+      "invalidFileExplanation": "Bitte wählen Sie eine PDF Datei aus.",
       "noFile": "Keine Datei",
-      "noFileExplanation": "Bitte lade zuerst eine PDF-Datei hoch.",
+      "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
       "conversionSuccess": "PDF erfolgreich in JPGs konvertiert!",
       "conversionError": "Konvertierung in JPG fehlgeschlagen. Die Datei könnte beschädigt sein."
     },
@@ -444,9 +459,9 @@
     "imageScaleExplanation": "Höhere Skalierung = bessere Qualität, aber größere Dateigröße",
     "alert": {
       "invalidFile": "Ungültige Datei",
-      "invalidFileExplanation": "Bitte wähle eine PDF Datei aus.",
+      "invalidFileExplanation": "Bitte wählen Sie eine PDF Datei aus.",
       "noFile": "Keine Datei",
-      "noFileExplanation": "Bitte lade zuerst eine PDF-Datei hoch.",
+      "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
       "conversionSuccess": "PDF erfolgreich in PNGs konvertiert!",
       "conversionError": "Konvertierung in PNG fehlgeschlagen. Die Datei könnte beschädigt sein."
     },
@@ -461,9 +476,9 @@
     "imageQualityExplanation": "Höhere Qualität = größere Dateigröße",
     "alert": {
       "invalidFile": "Ungültige Datei",
-      "invalidFileExplanation": "Bitte wähle eine PDF Datei aus.",
+      "invalidFileExplanation": "Bitte wählen Sie eine PDF Datei aus.",
       "noFile": "Keine Datei",
-      "noFileExplanation": "Bitte lade zuerst eine PDF-Datei hoch.",
+      "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
       "conversionSuccess": "PDF erfolgreich in WebPs konvertiert!",
       "conversionError": "Konvertierung in WebP fehlgeschlagen. Die Datei könnte beschädigt sein."
     },
@@ -476,9 +491,9 @@
     "subtitle": "Jede PDF-Seite in ein BMP-Bild konvertieren.",
     "alert": {
       "invalidFile": "Ungültige Datei",
-      "invalidFileExplanation": "Bitte wähle eine PDF Datei aus.",
+      "invalidFileExplanation": "Bitte wählen Sie eine PDF Datei aus.",
       "noFile": "Keine Datei",
-      "noFileExplanation": "Bitte lade zuerst eine PDF-Datei hoch.",
+      "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
       "conversionSuccess": "PDF erfolgreich in BMPs konvertiert!",
       "conversionError": "Konvertierung in BMP fehlgeschlagen. Die Datei könnte beschädigt sein."
     },
@@ -503,12 +518,13 @@
       "noFile": "Keine Datei",
       "noFileExplanation": "Bitte laden Sie zuerst eine PDF-Datei hoch.",
       "conversionSuccess": "PDF erfolgreich in TIFF konvertiert!",
-      "conversionError": "PDF konnte nicht in TIFF konvertiert werden. Die Datei könnte beschädigt sein."
+      "conversionError": "PDF konnte nicht in TIFF konvertiert werden. Die Datei könnte beschädigt sein.",
+      "conversionOutOfMemory": "Dem Browser ist während der Konvertierung der Speicher ausgegangen. Versuchen Sie eine niedrigere DPI oder deaktivieren Sie die Option für mehrseitiges TIFF, um die Seiten einzeln zu konvertieren."
     }
   },
   "pdfToCbz": {
     "name": "PDF zu CBZ",
-    "subtitle": "Konvertieren Sie ein PDF in eine CBZ-Datei (Comic-Bucharchiv) für Comic-Reader.",
+    "subtitle": "Konvertieren Sie eine PDF in eine CBZ-Datei (Comic-Bucharchiv) für Comic-Reader.",
     "imageFormat": "Bildformat",
     "quality": "Bildqualität",
     "qualityExplanation": "Höhere Qualität = größere Dateigröße",
@@ -614,13 +630,13 @@
   },
   "alternateMerge": {
     "name": "Seiten abwechselnd mischen",
-    "subtitle": "PDFs durch abwechselnde Seiten aus jedem PDF zusammenführen. Lesezeichen werden beibehalten.",
+    "subtitle": "PDFs durch abwechselnde Seiten aus jeder PDF zusammenführen. Lesezeichen werden beibehalten.",
     "retainPageLabels": "Originale Seitenbeschriftungen jeder Datei beibehalten",
-    "retainPageLabelsHint": "Aus (Standard): Das zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
+    "retainPageLabelsHint": "Aus (Standard): Die zusammengeführte PDF verwendet die natürliche Seitennummerierung 1–N. An: Die ursprünglichen Seitenbeschriftungen jeder Datei bleiben erhalten (kann zu doppelten Beschriftungen führen)."
   },
   "duplexCollate": {
-    "name": "Seitenfolge für Duplex-Scans neu anordnen",
-    "subtitle": "Ein PDF, das in zwei Blöcken gescannt wurde (erst alle Vorderseiten, dann alle Rückseiten), in die richtige Vorder-/Rückseiten-Reihenfolge bringen.",
+    "name": "Duplex-Zusammenführung",
+    "subtitle": "Eine PDF, die in zwei Blöcken gescannt wurde (erst alle Vorderseiten, dann alle Rückseiten), in die richtige Vorder-/Rückseiten-Reihenfolge bringen.",
     "totalPagesLabel": "Seiten gesamt:",
     "splitAfterPageLabel": "Teilen nach Seite",
     "splitAfterPagePlaceholder": "z. B. 50",
@@ -641,7 +657,7 @@
     "previewSummary": "Vorderseiten-Block: {{frontCount}} Seite(n), Rückseiten-Block: {{backCount}} Seite(n). Ausgabe: {{outputCount}} Seite(n) in Vorder-/Rückseiten-Reihenfolge.",
     "previewMismatchWarning": "Die Blocklängen von Vorder- und Rückseiten unterscheiden sich ({{frontCount}} Vorderseiten gegenüber {{backCount}} Rückseiten). Die {{extraCount}} überzähligen Seite(n) der längeren Seite werden ohne Gegenstück am Ende angehängt.",
     "missingFileTitle": "Fehlende Datei",
-    "missingFileMessage": "Bitte laden Sie vor der Verarbeitung ein PDF mit mindestens 2 Seiten hoch.",
+    "missingFileMessage": "Bitte laden Sie vor der Verarbeitung eine PDF mit mindestens 2 Seiten hoch.",
     "invalidSplitTitle": "Ungültiger Teilungspunkt",
     "invalidSplitMessage": "Der Teilungspunkt muss zwischen Seite 1 und Seite {{maxSplit}} liegen.",
     "unevenConfirmTitle": "Ungleiche Blöcke",
@@ -653,7 +669,7 @@
     "successGroupedMessage": "Zusammenführung abgeschlossen. {{fileCount}} gruppierte Datei(en) erstellt.",
     "processErrorMessage": "PDF konnte nicht zusammengeführt werden.",
     "howItWorksStep1Title": "Scan hochladen",
-    "howItWorksStep1": "Laden Sie das einzelne PDF hoch, das erst alle Vorderseiten und danach alle Rückseiten enthält.",
+    "howItWorksStep1": "Laden Sie die einzelne PDF hoch, das erst alle Vorderseiten und danach alle Rückseiten enthält.",
     "howItWorksStep2Title": "Teilungspunkt festlegen",
     "howItWorksStep2": "Geben Sie an, wo der Vorderseiten-Block endet, und wählen Sie, ob der Rückseiten-Block umgekehrt werden muss.",
     "howItWorksStep3Title": "Zusammenführen und herunterladen",
@@ -1059,7 +1075,7 @@
     "howToStep2Title": "Zertifikat hochladen",
     "howToStep2Text": "Stellen Sie Ihre .pfx- oder .p12-Zertifikatsdatei und das Passwort bereit",
     "howToStep3Title": "Signieren & herunterladen",
-    "howToStep3Text": "Wenden Sie die digitale Signatur an und laden Sie Ihr signiertes PDF herunter",
+    "howToStep3Text": "Wenden Sie die digitale Signatur an und laden Sie Ihre signierte PDF herunter",
     "relatedEncryptDesc": "PDF mit Passwort schützen",
     "relatedDecryptDesc": "PDF-Passwort entfernen",
     "relatedFlattenDesc": "Anmerkungen dauerhaft machen",
@@ -1086,7 +1102,7 @@
   "timestampPdf": {
     "name": "PDF mit Zeitstempel versehen",
     "pageTitle": "PDF-Zeitstempel online kostenlos - RFC 3161 Dokumentenzeitstempel | BentoPDF",
-    "subtitle": "Fügen Sie Ihrem PDF einen RFC 3161-Zeitstempel über einen vertrauenswürdigen Zeitstempelserver (TSA) hinzu. Beweist, dass Ihr Dokument zu einem bestimmten Zeitpunkt existierte. Kein Zertifikat erforderlich.",
+    "subtitle": "Fügen Sie Ihrer PDF einen RFC 3161-Zeitstempel über einen vertrauenswürdigen Zeitstempelserver (TSA) hinzu. Beweist, dass Ihr Dokument zu einem bestimmten Zeitpunkt existierte. Kein Zertifikat erforderlich.",
     "tsaSectionTitle": "Zeitstempelserver (TSA)",
     "selectTsa": "TSA-Server auswählen",
     "applyTimestamp": "Zeitstempel anwenden",
@@ -1124,7 +1140,7 @@
   },
   "pdfOcg": {
     "name": "PDF-Ebenen (OCG)",
-    "subtitle": "OCG-Ebenen in Ihrem PDF anzeigen, umschalten, hinzufügen und löschen."
+    "subtitle": "OCG-Ebenen in Ihrer PDF anzeigen, umschalten, hinzufügen und löschen."
   },
   "pdfToPdfa": {
     "name": "PDF zu PDF/A",
@@ -1188,7 +1204,7 @@
       "workerError": "Worker-Fehler: {{message}}",
       "alternateMergeWorkerError": "Fehler im alternierenden Zusammenführungs-Worker: {{message}}",
       "noPdfFilesUploaded": "Keine PDF-Dateien im PDF-Eingabeknoten hochgeladen",
-      "failedToLoadFile": "\"{{file}}\" konnte nicht geladen werden — Datei möglicherweise beschädigt",
+      "failedToLoadFile": "\"{{file}}\" konnte nicht geladen werden: Datei möglicherweise beschädigt",
       "noImagesUploaded": "Keine Bilder im Bild-Eingabeknoten hochgeladen",
       "noWordDocsUploaded": "Keine Dokumente im Word-Eingabeknoten hochgeladen",
       "noExcelUploaded": "Keine Tabellen im Excel-Eingabeknoten hochgeladen",
@@ -1217,7 +1233,7 @@
       "extractImagesNoneFound": "Keine Bilder in den verbundenen PDFs gefunden",
       "invertColorsFailedReadImage": "Bilddaten konnten nicht gelesen werden",
       "overlayRequiresPdf": "Der Overlay-Knoten benötigt eine Overlay-PDF-Eingabe.",
-      "pdfToCsvNoTables": "Keine Tabellen im PDF gefunden",
+      "pdfToCsvNoTables": "Keine Tabellen in der PDF gefunden",
       "pdfToXlsxNoTables": "Keine Tabellen in {{file}} gefunden",
       "posterizeFailedTileCanvas": "Kachel-Canvas-Kontext konnte nicht abgerufen werden",
       "redactNoText": "Schwärzen: Kein Text zum Schwärzen angegeben",
@@ -1275,7 +1291,7 @@
   },
   "pdfOverlay": {
     "name": "PDF-Überlagerung",
-    "subtitle": "Seiten eines PDFs über oder unter die Seiten eines anderen PDFs legen.",
+    "subtitle": "Seiten einer PDF über oder unter die Seiten einer anderen PDF legen.",
     "basePdfLabel": "Basis-PDF",
     "uploadBasePdf": "Basis-PDF hochladen",
     "overlayPdfLabel": "Überlagerungs- / Unterlagerungs-PDF",
@@ -1288,24 +1304,24 @@
     "repeatLabel": "Überlagerungs-/Unterlagerungsseiten wiederholen, wenn Basis länger ist",
     "processButton": "Überlagerung / Unterlagerung anwenden",
     "howItWorksUploadTitle": "Zwei PDFs hochladen",
-    "howItWorksUploadDescription": "Laden Sie Ihr Basis-PDF und das PDF hoch, das Sie überlagern oder unterlagern möchten.",
+    "howItWorksUploadDescription": "Laden Sie Ihr Basis-PDF und die PDF hoch, das Sie überlagern oder unterlagern möchten.",
     "howItWorksModeTitle": "Modus wählen",
     "howItWorksModeDescription": "Wählen Sie Überlagerung (darüber) oder Unterlagerung (dahinter). Optional Seitenbereich und Wiederholung festlegen.",
     "howItWorksDownloadTitle": "Herunterladen",
-    "howItWorksDownloadDescription": "Laden Sie Ihr PDF mit angewandter Überlagerung oder Unterlagerung herunter.",
+    "howItWorksDownloadDescription": "Laden Sie Ihre PDF mit angewandter Überlagerung oder Unterlagerung herunter.",
     "faqDifferenceQuestion": "Was ist der Unterschied zwischen Überlagerung und Unterlagerung?",
     "faqDifferenceAnswer": "Überlagerung platziert Seiten über Ihr Basis-PDF (wie ein Wasserzeichen). Unterlagerung platziert Seiten hinter Ihr Basis-PDF (wie ein Briefkopf oder Hintergrund).",
-    "faqSinglePageQuestion": "Kann ich ein einseitiges PDF als Überlagerung für alle Seiten verwenden?",
+    "faqSinglePageQuestion": "Kann ich eine einseitige PDF als Überlagerung für alle Seiten verwenden?",
     "faqSinglePageAnswer": "Ja! Aktivieren Sie die Option \"Wiederholen\" und Ihre Überlagerungsseiten werden auf allen Basisseiten wiederholt. Ein einseitiges Wasserzeichen wird auf jeder Seite angewendet.",
     "faqPrivacyQuestion": "Sind meine Dateien privat und sicher?",
     "faqPrivacyAnswer": "Absolut! Die gesamte Verarbeitung findet in Ihrem Browser statt. Ihre Dateien verlassen niemals Ihr Gerät, was vollständige Privatsphäre gewährleistet."
   },
   "unlockPdf": {
-    "name": "PDF entschlüsseln",
+    "name": "PDF entsperren",
     "subtitle": "PDF durch Entfernen des Passwortschutzes entsperren."
   },
   "protectPdf": {
-    "name": "PDF verschlüsseln",
+    "name": "PDF schützen",
     "subtitle": "Ihre PDF durch Hinzufügen eines Passworts sperren."
   }
 }

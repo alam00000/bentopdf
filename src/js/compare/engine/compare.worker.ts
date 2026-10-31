@@ -13,6 +13,7 @@ interface DiffMessage {
   id: number;
   beforeItems: CompareTextItem[];
   afterItems: CompareTextItem[];
+  strings: Record<string, string>;
 }
 
 interface PairMessage {
@@ -48,7 +49,12 @@ function isValidMessage(data: unknown): data is WorkerMessage {
   const m = data as Record<string, unknown>;
   if (typeof m.id !== 'number') return false;
   if (m.type === 'diff') {
-    return Array.isArray(m.beforeItems) && Array.isArray(m.afterItems);
+    return (
+      Array.isArray(m.beforeItems) &&
+      Array.isArray(m.afterItems) &&
+      typeof m.strings === 'object' &&
+      m.strings !== null
+    );
   }
   if (m.type === 'pair') {
     return Array.isArray(m.leftPages) && Array.isArray(m.rightPages);
@@ -68,7 +74,8 @@ self.onmessage = function (e: MessageEvent<unknown>) {
     if (msg.type === 'diff') {
       const { changes, summary } = diffTextRuns(
         msg.beforeItems,
-        msg.afterItems
+        msg.afterItems,
+        msg.strings
       );
       const result: DiffResult = {
         type: 'diff',

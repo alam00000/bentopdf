@@ -9,6 +9,8 @@ import {
 } from '../utils/wasm-provider.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const worker = new Worker(
   import.meta.env.BASE_URL + 'workers/edit-attachments.worker.js'
 );
@@ -96,7 +98,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
   if (attachments.length === 0) {
     const noAttachments = document.createElement('p');
     noAttachments.className = 'text-gray-400 text-center py-4';
-    noAttachments.textContent = 'No attachments found in this PDF.';
+    noAttachments.textContent = trText('No attachments found in this PDF.');
     attachmentsList.appendChild(noAttachments);
     return;
   }
@@ -108,7 +110,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
   const removeAllBtn = document.createElement('button');
   removeAllBtn.className =
     'bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm';
-  removeAllBtn.textContent = 'Remove All Attachments';
+  removeAllBtn.textContent = trText('Remove All Attachments');
   removeAllBtn.onclick = function () {
     if (pageState.allAttachments.length === 0) return;
 
@@ -131,7 +133,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
           }
         }
       });
-      removeAllBtn.textContent = 'Remove All Attachments';
+      removeAllBtn.textContent = trText('Remove All Attachments');
     } else {
       pageState.allAttachments.forEach(function (attachment) {
         pageState.attachmentsToRemove.add(attachment.index);
@@ -147,7 +149,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
           }
         }
       });
-      removeAllBtn.textContent = 'Deselect All';
+      removeAllBtn.textContent = trText('Deselect All');
     }
   };
 
@@ -171,9 +173,11 @@ function displayAttachments(attachments: AttachmentInfo[]) {
     const levelSpan = document.createElement('span');
     levelSpan.className = 'text-gray-400 text-sm block';
     if (attachment.page === 0) {
-      levelSpan.textContent = 'Document-level attachment';
+      levelSpan.textContent = trText('Document-level attachment');
     } else {
-      levelSpan.textContent = `Page ${attachment.page} attachment`;
+      levelSpan.textContent = trText('Page {{page}} attachment', {
+        page: attachment.page,
+      });
     }
 
     infoDiv.append(nameSpan, levelSpan);
@@ -184,7 +188,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
     const removeBtn = document.createElement('button');
     removeBtn.className = `${pageState.attachmentsToRemove.has(attachment.index) ? 'bg-gray-600' : 'bg-red-600'} hover:bg-red-700 text-white px-3 py-1 rounded text-sm`;
     removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-    removeBtn.title = 'Remove attachment';
+    removeBtn.title = trText('Remove attachment');
     removeBtn.onclick = function () {
       if (pageState.attachmentsToRemove.has(attachment.index)) {
         pageState.attachmentsToRemove.delete(attachment.index);
@@ -202,8 +206,8 @@ function displayAttachments(attachments: AttachmentInfo[]) {
         return pageState.attachmentsToRemove.has(att.index);
       });
       removeAllBtn.textContent = allSelected
-        ? 'Deselect All'
-        : 'Remove All Attachments';
+        ? trText('Deselect All')
+        : trText('Remove All Attachments');
     };
 
     actionsDiv.append(removeBtn);
@@ -346,7 +350,7 @@ async function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

@@ -6,6 +6,8 @@ import { downloadFile } from '../utils/helpers';
 import { isWasmAvailable } from '../config/wasm-cdn-config.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 
+import { trText, trHtml, onPageReady } from '../i18n/i18n.js';
+
 interface DeskewResult {
   totalPages: number;
   correctedPages: number;
@@ -27,7 +29,7 @@ function showLoader(message: string): void {
   const loader = document.getElementById('loader-modal');
   const text = document.getElementById('loader-text');
   if (loader && text) {
-    text.textContent = message;
+    text.textContent = trText(message);
     loader.classList.remove('hidden');
   }
 }
@@ -44,8 +46,8 @@ function showAlert(title: string, message: string): void {
   const titleEl = document.getElementById('alert-title');
   const msgEl = document.getElementById('alert-message');
   if (modal && titleEl && msgEl) {
-    titleEl.textContent = title;
-    msgEl.textContent = message;
+    titleEl.textContent = trText(title);
+    msgEl.textContent = trText(message);
     modal.classList.remove('hidden');
   }
 }
@@ -90,7 +92,9 @@ function updateFileDisplay(): void {
 
     const sizeSpan = document.createElement('span');
     sizeSpan.className = 'text-gray-500 text-sm';
-    sizeSpan.textContent = `(${(file.size / 1024).toFixed(1)} KB)`;
+    sizeSpan.textContent = trText('({{value}} KB)', {
+      value: (file.size / 1024).toFixed(1),
+    });
 
     info.append(fileIcon, nameSpan, sizeSpan);
 
@@ -141,9 +145,9 @@ function displayResults(result: DeskewResult): void {
       return `
         <div class="flex items-center gap-2 text-sm py-1">
           <i data-lucide="${icon}" class="w-4 h-4 ${color}"></i>
-          <span class="text-gray-300">Page ${idx + 1}:</span>
+          <span class="text-gray-300">${trHtml('Page {{n}}:', { n: idx + 1 })}</span>
           <span class="${color}">${angle.toFixed(2)}°</span>
-          ${wasCorrected ? '<span class="text-green-400 text-xs">(corrected)</span>' : ''}
+          ${wasCorrected ? `<span class="text-green-400 text-xs">${trHtml('(corrected)')}</span>` : ''}
         </div>
       `;
     })
@@ -181,7 +185,7 @@ async function processDeskew(): Promise<void> {
     await pdf.load();
 
     for (const file of selectedFiles) {
-      showLoader(`Deskewing ${file.name}...`);
+      showLoader(trText('Deskewing {{name}}...', { name: file.name }));
 
       const { pdf: resultPdf, result } = await pdf.deskewPdf(file, {
         threshold,
@@ -196,14 +200,22 @@ async function processDeskew(): Promise<void> {
     hideLoader();
     showAlert(
       'Success',
-      `Deskewed ${selectedFiles.length} file(s). ${selectedFiles.length > 1 ? 'Downloads started for all files.' : ''}`
+      trText('Deskewed {{length}} file(s). {{value}}', {
+        length: selectedFiles.length,
+        value:
+          selectedFiles.length > 1
+            ? trText('Downloads started for all files.')
+            : '',
+      })
     );
   } catch (error) {
     hideLoader();
     console.error('Deskew error:', error);
     showAlert(
       'Error',
-      `Failed to deskew PDF: ${error instanceof Error ? error.message : 'Unknown error'}`
+      trText('Failed to deskew PDF: {{error}}', {
+        error: error instanceof Error ? error.message : trText('Unknown error'),
+      })
     );
   }
 }
@@ -280,4 +292,4 @@ function initPage(): void {
   createIcons({ icons });
 }
 
-document.addEventListener('DOMContentLoaded', initPage);
+onPageReady(initPage);

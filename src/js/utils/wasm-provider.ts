@@ -1,3 +1,4 @@
+import { trHtml, trText } from '../i18n/i18n.js';
 export type WasmPackage = 'pymupdf' | 'ghostscript' | 'cpdf';
 
 interface WasmProviderConfig {
@@ -58,8 +59,11 @@ const BUILTIN_TRUSTED_HOSTS = collectBuiltinTrustedHosts();
 
 function isOutdatedCdnPin(packageName: WasmPackage, url: string): boolean {
   const current = CDN_DEFAULTS[packageName];
-  const packagePrefix = current.slice(0, current.lastIndexOf('@') + 1);
-  return url !== current && url.startsWith(packagePrefix);
+  const packageUrl = current.slice(0, current.lastIndexOf('@'));
+  return (
+    url !== current &&
+    (url.startsWith(`${packageUrl}@`) || url.startsWith(`${packageUrl}/`))
+  );
 }
 
 function withTrailingSlash(url: string): string {
@@ -152,7 +156,7 @@ class WasmProviderManager {
     const normalizedUrl = withTrailingSlash(url);
     const host = hostnameOf(normalizedUrl);
     if (!host) {
-      throw new Error('Invalid URL');
+      throw new Error(trText('Invalid URL'));
     }
     const envDefault = this.getEnvDefault(packageName);
     if (envDefault && normalizedUrl === withTrailingSlash(envDefault)) {
@@ -196,7 +200,7 @@ class WasmProviderManager {
   ): Promise<{ valid: boolean; error?: string }> {
     const testUrl = url || this.config[packageName];
     if (!testUrl) {
-      return { valid: false, error: 'No URL configured' };
+      return { valid: false, error: trText('No URL configured') };
     }
 
     try {
@@ -204,14 +208,15 @@ class WasmProviderManager {
       if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
         return {
           valid: false,
-          error: 'URL must start with http:// or https://',
+          error: trText('URL must start with http:// or https://'),
         };
       }
     } catch {
       return {
         valid: false,
-        error:
-          'Invalid URL format. Please enter a valid URL (e.g., https://example.com/wasm/)',
+        error: trText(
+          'Invalid URL format. Please enter a valid URL (e.g., https://example.com/wasm/)'
+        ),
       };
     }
 
@@ -241,7 +246,10 @@ class WasmProviderManager {
       if (!response.ok) {
         return {
           valid: false,
-          error: `Could not find ${testFile} at the specified URL (HTTP ${response.status}). Make sure the file exists.`,
+          error: trText(
+            'Could not find {{testFile}} at the specified URL (HTTP {{status}}). Make sure the file exists.',
+            { testFile, status: response.status }
+          ),
         };
       }
 
@@ -253,7 +261,9 @@ class WasmProviderManager {
         } catch {
           return {
             valid: false,
-            error: `File exists but could not be read. Check CORS configuration.`,
+            error: trText(
+              'File exists but could not be read. Check CORS configuration.'
+            ),
           };
         }
       }
@@ -267,7 +277,10 @@ class WasmProviderManager {
       ) {
         return {
           valid: false,
-          error: `The URL returned unexpected content type: ${contentType}. Expected a JavaScript file.`,
+          error: trText(
+            'The URL returned unexpected content type: {{contentType}}. Expected a JavaScript file.',
+            { contentType }
+          ),
         };
       }
 
@@ -277,7 +290,8 @@ class WasmProviderManager {
 
       return { valid: true };
     } catch (e: unknown) {
-      const errorMessage = e instanceof Error ? e.message : 'Unknown error';
+      const errorMessage =
+        e instanceof Error ? e.message : trText('Unknown error');
 
       if (
         errorMessage.includes('Failed to fetch') ||
@@ -285,14 +299,15 @@ class WasmProviderManager {
       ) {
         return {
           valid: false,
-          error:
-            'Network error: Could not connect to the URL. Check that the URL is correct and the server allows CORS requests.',
+          error: trText(
+            'Network error: Could not connect to the URL. Check that the URL is correct and the server allows CORS requests.'
+          ),
         };
       }
 
       return {
         valid: false,
-        error: `Network error: ${errorMessage}`,
+        error: trText('Network error: {{error}}', { error: errorMessage }),
       };
     }
   }
@@ -322,9 +337,9 @@ class WasmProviderManager {
 
   getPackageDisplayName(packageName: WasmPackage): string {
     const names: Record<WasmPackage, string> = {
-      pymupdf: 'PyMuPDF (Document Processing)',
-      ghostscript: 'Ghostscript (PDF/A Conversion)',
-      cpdf: 'CoherentPDF (Bookmarks & Metadata)',
+      pymupdf: trText('PyMuPDF (Document Processing)'),
+      ghostscript: trText('Ghostscript (PDF/A Conversion)'),
+      cpdf: trText('CoherentPDF (Bookmarks & Metadata)'),
     };
     return names[packageName];
   }
@@ -332,29 +347,29 @@ class WasmProviderManager {
   getPackageFeatures(packageName: WasmPackage): string[] {
     const features: Record<WasmPackage, string[]> = {
       pymupdf: [
-        'PDF to Text',
-        'PDF to Markdown',
-        'PDF to SVG',
-        'PDF to Images (High Quality)',
-        'PDF to DOCX',
-        'PDF to Excel/CSV',
-        'Extract Images',
-        'Extract Tables',
-        'EPUB/MOBI/FB2/XPS/CBZ to PDF',
-        'Deskew PDF',
-        'PDF Layers',
+        trText('PDF to Text'),
+        trText('PDF to Markdown'),
+        trText('PDF to SVG'),
+        trText('PDF to Images (High Quality)'),
+        trText('PDF to DOCX'),
+        trText('PDF to Excel/CSV'),
+        trText('Extract Images'),
+        trText('Extract Tables'),
+        trText('EPUB/MOBI/FB2/XPS/CBZ to PDF'),
+        trText('Deskew PDF'),
+        trText('PDF Layers'),
       ],
-      ghostscript: ['PDF/A Conversion', 'Font to Outline'],
+      ghostscript: [trText('PDF/A Conversion'), trText('Font to Outline')],
       cpdf: [
-        'Merge PDF',
-        'Alternate Merge',
-        'Split by Bookmarks',
-        'Table of Contents',
-        'PDF to JSON',
-        'JSON to PDF',
-        'Add/Edit/Extract Attachments',
-        'Edit Bookmarks',
-        'PDF Metadata',
+        trText('Merge PDF'),
+        trText('Alternate Merge'),
+        trText('Split by Bookmarks'),
+        trText('Table of Contents'),
+        trText('PDF to JSON'),
+        trText('JSON to PDF'),
+        trText('Add/Edit/Extract Attachments'),
+        trText('Edit Bookmarks'),
+        trText('PDF Metadata'),
       ],
     };
     return features[packageName];
@@ -389,17 +404,17 @@ export function showWasmRequiredDialog(
           </svg>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-white">Advanced Feature Required</h3>
-          <p class="text-sm text-gray-400">External processing module needed</p>
+          <h3 class="text-lg font-semibold text-white">${trHtml('Advanced Feature Required')}</h3>
+          <p class="text-sm text-gray-400">${trHtml('External processing module needed')}</p>
         </div>
       </div>
 
       <p class="text-gray-300 mb-4">
-        This feature requires <strong class="text-white">${displayName}</strong> to be configured.
+        ${trHtml('This feature requires {{name}} to be configured.', { name: '\u0000' }).replace('\u0000', `<strong class="text-white">${displayName}</strong>`)}
       </p>
 
       <div class="bg-gray-700/50 rounded-lg p-4 mb-4">
-        <p class="text-sm text-gray-400 mb-2">Features enabled by this module:</p>
+        <p class="text-sm text-gray-400 mb-2">${trHtml('Features enabled by this module:')}</p>
         <ul class="text-sm text-gray-300 space-y-1">
           ${features
             .slice(0, 4)
@@ -408,21 +423,21 @@ export function showWasmRequiredDialog(
                 `<li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${f}</li>`
             )
             .join('')}
-          ${features.length > 4 ? `<li class="text-gray-500">+ ${features.length - 4} more...</li>` : ''}
+          ${features.length > 4 ? `<li class="text-gray-500">${trHtml('+ {{n}} more...', { n: features.length - 4 })}</li>` : ''}
         </ul>
       </div>
 
       <p class="text-xs text-gray-500 mb-4">
-        This module is licensed under AGPL-3.0. By configuring it, you agree to its license terms.
+        ${trHtml('This module is licensed under AGPL-3.0. By configuring it, you agree to its license terms.')}
       </p>
     </div>
 
     <div class="border-t border-gray-700 p-4 flex gap-3">
       <button id="wasm-modal-cancel" class="flex-1 px-4 py-2.5 rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors font-medium">
-        Cancel
+        ${trHtml('Cancel')}
       </button>
       <button id="wasm-modal-configure" class="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-500 hover:to-blue-400 transition-all font-medium">
-        Configure
+        ${trHtml('Configure')}
       </button>
     </div>
   `;

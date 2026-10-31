@@ -1,6 +1,7 @@
 <p align="center"><img src="public/images/favicon-no-bg.svg" width="80"></p>
 <h1 align="center">BentoPDF</h1>
-<p align="center"><sub>Supported by</sub></p>
+<h3 align="center">💖 Thank You to Our Sponsors</h3>
+<p align="center"><sub>Organizational Supporters</sub></p>
 <p align="center">
   <a href="https://vercel.com/open-source-program">
     <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" height="30" />
@@ -9,12 +10,21 @@
   <a href="https://www.digitalocean.com/?refcode=d93c189ef6d0&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
     <img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%203.svg" alt="DigitalOcean Referral Badge" height="44">
   </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://www.nvidia.com/en-us/startups/">
+    <img alt="NVIDIA Inception Program" src="public/images/nvidia-inception.svg" height="44" />
+  </a>
+</p>
+<p align="center"><sub>Individual Supporters</sub></p>
+<p align="center"><!-- sponsors --><a href="https://github.com/gaedeke"><img src="https:&#x2F;&#x2F;github.com&#x2F;gaedeke.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/stiflerbox"><img src="https:&#x2F;&#x2F;github.com&#x2F;stiflerbox.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/shollyethan"><img src="https:&#x2F;&#x2F;github.com&#x2F;shollyethan.png" width="60px" alt="User avatar: Ethan Sholly" /></a><a href="https://github.com/KnudH"><img src="https:&#x2F;&#x2F;github.com&#x2F;KnudH.png" width="60px" alt="User avatar: Knud Hollander" /></a><a href="https://github.com/mohannadhussain"><img src="https:&#x2F;&#x2F;github.com&#x2F;mohannadhussain.png" width="60px" alt="User avatar: Mohannad Hussain" /></a><a href="https://github.com/chaoscastle"><img src="https:&#x2F;&#x2F;github.com&#x2F;chaoscastle.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/RobertGonzales1"><img src="https:&#x2F;&#x2F;github.com&#x2F;RobertGonzales1.png" width="60px" alt="User avatar: Robert Gonzales" /></a><a href="https://github.com/michivonah"><img src="https:&#x2F;&#x2F;github.com&#x2F;michivonah.png" width="60px" alt="User avatar: Michi" /></a><a href="https://github.com/bmikaili"><img src="https:&#x2F;&#x2F;github.com&#x2F;bmikaili.png" width="60px" alt="User avatar: Berzan" /></a><a href="https://github.com/Thanyanit-J"><img src="https:&#x2F;&#x2F;github.com&#x2F;Thanyanit-J.png" width="60px" alt="User avatar: Thanyanit Jongjitragan" /></a><a href="https://github.com/AceofSpades5757"><img src="https:&#x2F;&#x2F;github.com&#x2F;AceofSpades5757.png" width="60px" alt="User avatar: Kyle L. Davis" /></a><a href="https://github.com/Jacco011"><img src="https:&#x2F;&#x2F;github.com&#x2F;Jacco011.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/Pallandos"><img src="https:&#x2F;&#x2F;github.com&#x2F;Pallandos.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/haritvsmurali"><img src="https:&#x2F;&#x2F;github.com&#x2F;haritvsmurali.png" width="60px" alt="User avatar: Hari Haran" /></a><a href="https://github.com/mrtoadie"><img src="https:&#x2F;&#x2F;github.com&#x2F;mrtoadie.png" width="60px" alt="User avatar: Toadie" /></a><a href="https://github.com/sam12dr21"><img src="https:&#x2F;&#x2F;github.com&#x2F;sam12dr21.png" width="60px" alt="User avatar: " /></a><!-- sponsors --></p>
+<p align="center">
+  <a href="https://github.com/sponsors/alam00000"><img alt="Become a Sponsor" src="https://img.shields.io/badge/Become%20a%20Sponsor-%E2%9D%A4-ff69b4?style=for-the-badge" /></a>
+  <a href="https://ko-fi.com/alio01"><img alt="Buy me a Coffee" src="https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?style=for-the-badge&logo=kofi" /></a>
 </p>
 
 **BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that is self-hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
 
-[![Docker Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Falam00000%2Fbentopdf%2Fbadges%2Fdocker-downloads.json&cacheSeconds=3600)](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf-simple) [![Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?logo=kofi&style=flat-square)](https://ko-fi.com/alio01) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
-[![Sponsor me on GitHub](https://img.shields.io/badge/Sponsor-%E2%9D%A4-ff69b4)](https://github.com/sponsors/alam00000)
+[![Docker Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Falam00000%2Fbentopdf%2Fbadges%2Fdocker-downloads.json&cacheSeconds=3600)](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf-simple) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
 
 ![BentoPDF Tools](public/images/bentopdf-tools.png)
 
@@ -26,7 +36,6 @@
 - [Documentation](#-documentation)
 - [Licensing](#-licensing)
 - [Stargazers over time](#-stargazers-over-time)
-- [Thank You to Our Sponsors](#-thank-you-to-our-sponsors)
 - [Why BentoPDF?](#-why-bentopdf)
 - [Features / Tools Supported](#️-features--tools-supported)
   - [Organize & Manage PDFs](#organize--manage-pdfs)
@@ -100,6 +109,8 @@ BentoPDF is **dual-licensed** to fit your needs:
 
 > **One-time purchase** · **Unlimited devices & users** · **Lifetime updates** · **No AGPL obligations**
 
+> **Building on BentoPDF? Hyper Compress is included.** The commercial license covers [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress) as a bundled component when you use it through BentoPDF's own tools. Using the engine on its own or in other software needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing) from $99/year, and [Kura](https://www.bentopdf.com/kura#pricing) is licensed separately from $99/year. See [Bundled Components](https://www.bentopdf.com/licensing#bundled-components).
+
 📖 For more details, see our [Licensing Page](https://www.bentopdf.com/licensing)
 
 ### AGPL Components (Pre-configured via CDN)
@@ -120,17 +131,6 @@ BentoPDF does **not** bundle AGPL-licensed processing libraries in its source co
 ## ⭐ Stargazers over time
 
 [![Star History Chart](https://star-history.dera.page/svg?repos=alam00000/bentopdf&type=Date)](https://github.com/alam00000/bentopdf/stargazers)
-
----
-
-## 💖 Thank You to Our Sponsors
-
-We're incredibly grateful to all our sponsors and supporters who help keep BentoPDF free and open source!
-
-[![Sponsor me on GitHub](https://img.shields.io/badge/Become%20a%20Sponsor-%E2%9D%A4-ff69b4?style=for-the-badge)](https://github.com/sponsors/alam00000)
-[![Buy me a Coffee](https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?style=for-the-badge&logo=kofi)](https://ko-fi.com/alio01)
-
-<!-- sponsors --><a href="https://github.com/gaedeke"><img src="https:&#x2F;&#x2F;github.com&#x2F;gaedeke.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/stiflerbox"><img src="https:&#x2F;&#x2F;github.com&#x2F;stiflerbox.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/shollyethan"><img src="https:&#x2F;&#x2F;github.com&#x2F;shollyethan.png" width="60px" alt="User avatar: Ethan Sholly" /></a><a href="https://github.com/KnudH"><img src="https:&#x2F;&#x2F;github.com&#x2F;KnudH.png" width="60px" alt="User avatar: Knud Hollander" /></a><a href="https://github.com/mohannadhussain"><img src="https:&#x2F;&#x2F;github.com&#x2F;mohannadhussain.png" width="60px" alt="User avatar: Mohannad Hussain" /></a><a href="https://github.com/chaoscastle"><img src="https:&#x2F;&#x2F;github.com&#x2F;chaoscastle.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/RobertGonzales1"><img src="https:&#x2F;&#x2F;github.com&#x2F;RobertGonzales1.png" width="60px" alt="User avatar: Robert Gonzales" /></a><a href="https://github.com/michivonah"><img src="https:&#x2F;&#x2F;github.com&#x2F;michivonah.png" width="60px" alt="User avatar: Michi" /></a><a href="https://github.com/bmikaili"><img src="https:&#x2F;&#x2F;github.com&#x2F;bmikaili.png" width="60px" alt="User avatar: Berzan" /></a><a href="https://github.com/Thanyanit-J"><img src="https:&#x2F;&#x2F;github.com&#x2F;Thanyanit-J.png" width="60px" alt="User avatar: Thanyanit Jongjitragan" /></a><a href="https://github.com/AceofSpades5757"><img src="https:&#x2F;&#x2F;github.com&#x2F;AceofSpades5757.png" width="60px" alt="User avatar: Kyle L. Davis" /></a><a href="https://github.com/Jacco011"><img src="https:&#x2F;&#x2F;github.com&#x2F;Jacco011.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/Pallandos"><img src="https:&#x2F;&#x2F;github.com&#x2F;Pallandos.png" width="60px" alt="User avatar: " /></a><a href="https://github.com/haritvsmurali"><img src="https:&#x2F;&#x2F;github.com&#x2F;haritvsmurali.png" width="60px" alt="User avatar: Hari Haran" /></a><a href="https://github.com/mrtoadie"><img src="https:&#x2F;&#x2F;github.com&#x2F;mrtoadie.png" width="60px" alt="User avatar: Toadie" /></a><a href="https://github.com/sam12dr21"><img src="https:&#x2F;&#x2F;github.com&#x2F;sam12dr21.png" width="60px" alt="User avatar: " /></a><!-- sponsors -->
 
 ---
 
@@ -430,32 +430,34 @@ npm run preview
 
 **Compression Modes:**
 
-BentoPDF supports different compression modes for optimized builds:
+By default the build saves no compressed copies, and your server or host compresses files as it sends them. If your server can send precompressed files (nginx `gzip_static` or `brotli_static`, Apache, Caddy `precompressed`), set `COMPRESSION_MODE` to save `.gz` and/or `.br` copies next to each text and WASM file. The originals are always kept.
+
+The prebuilt Docker images have no copies, and their nginx compresses with gzip on the fly. Build your own image with `COMPRESSION_MODE=g` to have it serve `.gz` copies instead. The image's nginx can't serve brotli, so for brotli put a proxy or CDN that compresses with brotli, such as Traefik or Cloudflare, in front of it.
 
 ```bash
-# Gzip only (smallest Docker image size)
-npm run build:gzip
-docker build --build-arg COMPRESSION_MODE=g -t bentopdf:gzip .
-
-# Brotli only (best compression ratio)
-npm run build:brotli
-docker build --build-arg COMPRESSION_MODE=b -t bentopdf:brotli .
-
-# No compression (fastest build time)
+# No copies (default)
 npm run build:original
 docker build --build-arg COMPRESSION_MODE=o -t bentopdf:original .
 
-# All formats (default, maximum browser compatibility)
+# Gzip copies
+npm run build:gzip
+docker build --build-arg COMPRESSION_MODE=g -t bentopdf:gzip .
+
+# Brotli copies
+npm run build:brotli
+docker build --build-arg COMPRESSION_MODE=b -t bentopdf:brotli .
+
+# Both
 npm run build:all
 docker build --build-arg COMPRESSION_MODE=all -t bentopdf:all .
 ```
 
-| Mode  | Files Kept  | Use Case                          |
-| ----- | ----------- | --------------------------------- |
-| `g`   | `.gz` only  | Standard nginx or minimal size    |
-| `b`   | `.br` only  | Modern CDN with Brotli support    |
-| `o`   | originals   | Development or custom compression |
-| `all` | all formats | Maximum compatibility (default)   |
+| Mode  | Copies made     | Use case                              |
+| ----- | --------------- | ------------------------------------- |
+| `o`   | none            | Default, server compresses on the fly |
+| `g`   | `.gz`           | nginx with `gzip_static`              |
+| `b`   | `.br`           | Servers with `brotli_static`          |
+| `all` | `.gz` and `.br` | Servers that serve both               |
 
 **CDN Optimization:**
 

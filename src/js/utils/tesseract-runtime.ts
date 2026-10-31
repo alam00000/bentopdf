@@ -4,6 +4,8 @@ import {
   TESSERACT_AVAILABLE_LANGUAGES_ENV_KEY,
 } from './tesseract-language-availability.js';
 
+import { trText } from '../i18n/i18n.js';
+
 const TESSERACT_ENV_KEYS = [
   'VITE_TESSERACT_WORKER_URL',
   'VITE_TESSERACT_CORE_URL',
@@ -101,7 +103,10 @@ export function buildTesseractWorkerOptions(
   if (!hasCompleteTesseractOverrides(config)) {
     const missing = getIncompleteTesseractOverrideKeys(config).join(', ');
     throw new Error(
-      `Self-hosted OCR assets are partially configured. Set ${missing} together with the other Tesseract asset URLs.`
+      trText(
+        'Self-hosted OCR assets are partially configured. Set {{missing}} together with the other Tesseract asset URLs.',
+        { missing }
+      )
     );
   }
 

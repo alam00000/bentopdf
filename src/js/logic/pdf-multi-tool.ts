@@ -1,77 +1,29 @@
 import { createIcons, icons } from 'lucide';
-import { degrees, PDFDocument as PDFLibDocument, PDFPage } from 'pdf-lib';
-import * as pdfjsLib from 'pdfjs-dist';
-import JSZip from 'jszip';
-import Sortable from 'sortablejs';
-import { downloadFile, getPDFDocument } from '../utils/helpers';
-import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
-import {
-  renderPagesProgressively,
-  cleanupLazyRendering,
-  renderPageToCanvas,
-} from '../utils/render-utils';
+import type { EmbedPdfContainer } from 'bentopdf-viewer';
+import { downloadFile } from '../utils/helpers';
+import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { initializeGlobalShortcuts } from '../utils/shortcuts-init.js';
 import { repairPdfFile } from './repair-pdf.js';
 import { partitionIncomingFiles } from '../utils/multi-tool-file-input.js';
 import { convertImagesToPdfFile } from '../utils/images-to-pdf-lib.js';
+import { viewerTheme } from '../config/viewer-theme.js';
+import { t, trText, onPageReady } from '../i18n/i18n';
+import type { DocManagerPlugin } from '@/types';
 
-import { t } from '../i18n/i18n';
-import { loadPdfDocument } from '../utils/load-pdf-document.js';
-import '../utils/setup-pdf-worker.js';
+const embedPdfWasmUrl = new URL(
+  'bentopdf-pdfium/editcore.wasm',
+  import.meta.url
+).href;
 
-interface PageData {
-  id: string; // Unique ID for DOM reconciliation
-  pdfIndex: number;
-  pageIndex: number;
-  rotation: number;
-  visualRotation: number;
-  canvas: HTMLCanvasElement | null;
-  pdfDoc: PDFLibDocument;
-  originalPageIndex: number;
-  fileName: string; // Added for lazy loading identification
-}
+type ViewerRegistry = Awaited<EmbedPdfContainer['registry']>;
 
-function generateId(): string {
-  return Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
-}
-
-let allPages: PageData[] = [];
-let selectedPages: Set<number> = new Set();
-let currentPdfDocs: PDFLibDocument[] = [];
-let splitMarkers: Set<number> = new Set();
-let isRendering = false;
-let renderCancelled = false;
-let sortableInstance: Sortable | null = null;
-
-const pageCanvasCache = new Map<string, HTMLCanvasElement>();
-
-type Snapshot = {
-  allPages: PageData[];
-  selectedPages: number[];
-  splitMarkers: number[];
-};
-const undoStack: Snapshot[] = [];
-const redoStack: Snapshot[] = [];
-
-function snapshot() {
-  const snap: Snapshot = {
-    allPages: allPages.map((p) => ({ ...p, canvas: p.canvas })),
-    selectedPages: Array.from(selectedPages),
-    splitMarkers: Array.from(splitMarkers),
-  };
-  undoStack.push(snap);
-  redoStack.length = 0;
-}
-
-function restore(snap: Snapshot) {
-  allPages = snap.allPages.map((p) => ({
-    ...p,
-    canvas: p.canvas,
-  }));
-  selectedPages = new Set(snap.selectedPages);
-  splitMarkers = new Set(snap.splitMarkers);
-  updatePageDisplay();
-}
+let viewer: EmbedPdfContainer | null = null;
+let registryPromise: Promise<ViewerRegistry> | null = null;
+let docManager: DocManagerPlugin | null = null;
+let currentDocId: string | null = null;
+let isBusy = false;
+let dragOverlay: HTMLElement | null = null;
+let probeSeq = 0;
 
 function showModal(
   title: string,
@@ -85,8 +37,8 @@ function showModal(
 
   if (!modal || !modalTitle || !modalMessage || !modalIcon) return;
 
-  modalTitle.textContent = title;
-  modalMessage.textContent = message;
+  modalTitle.textContent = trText(title);
+  modalMessage.textContent = trText(message);
 
   const iconMap = {
     info: 'info',
@@ -109,241 +61,82 @@ function showModal(
 }
 
 function hideModal() {
-  const modal = document.getElementById('modal');
-  if (modal) modal.classList.add('hidden');
+  document.getElementById('modal')?.classList.add('hidden');
 }
 
-function showLoading(current: number, total: number) {
-  // renderPagesProgressively handles loading UI via onProgress callback
-  // but we can keep this for compatibility if needed
+function showLoading(text: string) {
   const loader = document.getElementById('loading-overlay');
   const progress = document.getElementById('loading-progress');
-  const text = document.getElementById('loading-text');
-
-  if (!loader || !progress || !text) return;
-
+  const label = document.getElementById('loading-text');
+  if (!loader || !progress || !label) return;
   loader.classList.remove('hidden');
-  const percentage = Math.round((current / total) * 100);
-  progress.style.width = `${percentage}%`;
-  text.textContent = t('multiTool.renderingPages');
-}
-
-async function withButtonLoading(
-  buttonId: string,
-  action: () => Promise<void>
-) {
-  const button = document.getElementById(buttonId) as HTMLButtonElement;
-  if (!button) return;
-
-  const originalChildren = Array.from(button.childNodes).map((n) =>
-    n.cloneNode(true)
-  );
-  const originalPointerEvents = button.style.pointerEvents;
-
-  try {
-    button.disabled = true;
-    button.style.pointerEvents = 'none';
-    const spinner = document.createElement('i');
-    spinner.dataset.lucide = 'loader';
-    spinner.className = 'w-5 h-5 animate-spin text-white';
-    button.replaceChildren(spinner);
-    createIcons({ icons });
-
-    await action();
-  } finally {
-    button.disabled = false;
-    button.style.pointerEvents = originalPointerEvents;
-    button.replaceChildren(...originalChildren);
-  }
+  progress.style.width = '100%';
+  label.textContent = text;
 }
 
 function hideLoading() {
-  const loader = document.getElementById('loading-overlay');
-  if (loader) loader.classList.add('hidden');
+  document.getElementById('loading-overlay')?.classList.add('hidden');
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('PDF Multi Tool: DOMContentLoaded');
-    initializeTool();
-  });
-} else {
-  console.log(
-    'PDF Multi Tool: DOMContentLoaded already fired, initializing immediately'
-  );
-  initializeTool();
+function setViewerVisible(visible: boolean) {
+  document
+    .getElementById('main-scroll-container')
+    ?.classList.toggle('hidden', visible);
+  document
+    .getElementById('organize-viewer')
+    ?.classList.toggle('hidden', !visible);
+  for (const id of ['export-pdf-btn', 'reset-btn']) {
+    const button = document.getElementById(id);
+    if (button) button.style.display = visible ? '' : 'none';
+  }
 }
+
+onPageReady(initializeTool);
 
 function initializeTool() {
-  console.log('PDF Multi Tool: Initializing...');
   createIcons({ icons });
-
   initializeGlobalShortcuts();
+
+  const fileInput = document.getElementById(
+    'pdf-file-input'
+  ) as HTMLInputElement | null;
+  const openPicker = () => {
+    if (isBusy) return;
+    fileInput?.click();
+  };
 
   document.getElementById('close-tool-btn')?.addEventListener('click', () => {
     window.location.href = import.meta.env.BASE_URL;
   });
-
-  document.getElementById('upload-pdfs-btn')?.addEventListener('click', () => {
-    console.log('Upload button clicked, isRendering:', isRendering);
-    if (isRendering) {
-      showModal(
-        t('multiTool.pleaseWait'),
-        t('multiTool.pagesRendering'),
-        'info'
-      );
-      return;
-    }
-    document.getElementById('pdf-file-input')?.click();
-  });
-
-  document
-    .getElementById('pdf-file-input')
-    ?.addEventListener('change', handlePdfUpload);
-  document.getElementById('upload-area')?.addEventListener('click', () => {
-    document.getElementById('pdf-file-input')?.click();
-  });
+  document.getElementById('upload-area')?.addEventListener('click', openPicker);
   document
     .getElementById('pdf-file-input-select-btn')
     ?.addEventListener('click', (e) => {
       e.stopPropagation();
-      document.getElementById('pdf-file-input')?.click();
+      openPicker();
     });
-  document
-    .getElementById('insert-pdf-input')
-    ?.addEventListener('change', handleInsertPdf);
-
-  document
-    .getElementById('bulk-rotate-left-btn')
-    ?.addEventListener('click', () => {
-      if (isRendering) return;
-      snapshot();
-      bulkRotate(-90);
-    });
-  document.getElementById('bulk-rotate-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    snapshot();
-    bulkRotate(90);
-  });
-  document.getElementById('bulk-delete-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    snapshot();
-    bulkDelete();
+  fileInput?.addEventListener('change', async () => {
+    const files = Array.from(fileInput.files || []);
+    fileInput.value = '';
+    if (files.length > 0) await handleIncomingFiles(files);
   });
   document
-    .getElementById('bulk-duplicate-btn')
-    ?.addEventListener('click', () => {
-      if (isRendering) return;
-      snapshot();
-      bulkDuplicate();
-    });
-  document.getElementById('bulk-split-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    snapshot();
-    bulkSplit();
-  });
+    .getElementById('export-pdf-btn')
+    ?.addEventListener('click', () => void exportPdf());
   document
-    .getElementById('bulk-download-btn')
-    ?.addEventListener('click', () => {
-      if (isRendering) return;
-      if (isRendering) return;
-      if (selectedPages.size === 0) {
-        showModal(
-          t('multiTool.noPagesSelected'),
-          t('multiTool.selectOnePage'),
-          'info'
-        );
-        return;
-      }
-      withButtonLoading('bulk-download-btn', async () => {
-        await downloadPagesAsPdf(
-          Array.from(selectedPages).sort((a, b) => a - b),
-          'selected-pages.pdf'
-        );
-      });
-    });
-
-  document.getElementById('select-all-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    snapshot();
-    selectAll();
-  });
-
-  document.getElementById('deselect-all-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    snapshot();
-    deselectAll();
-  });
-
-  document.getElementById('export-pdf-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    if (isRendering) return;
-    if (allPages.length === 0) {
-      showModal(t('multiTool.noPages'), t('multiTool.noPagesToExport'), 'info');
-      return;
-    }
-    withButtonLoading('export-pdf-btn', async () => {
-      await downloadAll();
-    });
-  });
-  document
-    .getElementById('add-blank-page-btn')
-    ?.addEventListener('click', () => {
-      if (isRendering) return;
-      snapshot();
-      addBlankPage();
-    });
-  document.getElementById('undo-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    const last = undoStack.pop();
-    if (last) {
-      const current: Snapshot = {
-        allPages: allPages.map((p) => ({ ...p })),
-        selectedPages: Array.from(selectedPages),
-        splitMarkers: Array.from(splitMarkers),
-      };
-      redoStack.push(current);
-      restore(last);
-    }
-  });
-  document.getElementById('redo-btn')?.addEventListener('click', () => {
-    if (isRendering) return;
-    const next = redoStack.pop();
-    if (next) {
-      const current: Snapshot = {
-        allPages: allPages.map((p) => ({ ...p })),
-        selectedPages: Array.from(selectedPages),
-        splitMarkers: Array.from(splitMarkers),
-      };
-      undoStack.push(current);
-      restore(next);
-    }
-  });
-  document.getElementById('reset-btn')?.addEventListener('click', () => {
-    if (isRendering) {
-      renderCancelled = true;
-      setTimeout(() => resetAll(), 100);
-    } else {
-      resetAll();
-    }
-  });
-
+    .getElementById('reset-btn')
+    ?.addEventListener('click', () => resetAll());
   document
     .getElementById('modal-close-btn')
     ?.addEventListener('click', hideModal);
   document.getElementById('modal')?.addEventListener('click', (e) => {
-    if (e.target === document.getElementById('modal')) {
-      hideModal();
-    }
+    if (e.target === document.getElementById('modal')) hideModal();
   });
 
-  setupGlobalDragAndDrop();
-
   document.getElementById('upload-area')?.classList.remove('hidden');
+  setViewerVisible(false);
+  setupGlobalDragAndDrop();
 }
-
-let dragOverlay: HTMLDivElement | null = null;
-let isProcessingDrop = false;
 
 function showDragOverlay() {
   if (dragOverlay) return;
@@ -359,10 +152,8 @@ function showDragOverlay() {
 }
 
 function hideDragOverlay() {
-  if (dragOverlay) {
-    dragOverlay.remove();
-    dragOverlay = null;
-  }
+  dragOverlay?.remove();
+  dragOverlay = null;
 }
 
 function setupGlobalDragAndDrop() {
@@ -374,7 +165,6 @@ function setupGlobalDragAndDrop() {
     e.preventDefault();
     showDragOverlay();
   });
-
   document.addEventListener('dragleave', (e) => {
     if (
       e.clientX <= 0 ||
@@ -385,17 +175,12 @@ function setupGlobalDragAndDrop() {
       hideDragOverlay();
     }
   });
-
-  document.addEventListener('drop', () => {
-    hideDragOverlay();
-  });
-
+  document.addEventListener('drop', () => hideDragOverlay());
   target.addEventListener('drop', (e) => {
     e.preventDefault();
     hideDragOverlay();
     const files = Array.from(e.dataTransfer?.files || []);
-    if (files.length === 0) return;
-    void handleIncomingFiles(files);
+    if (files.length > 0) void handleIncomingFiles(files);
   });
 }
 
@@ -405,1167 +190,172 @@ async function processIncomingFiles(rawFiles: File[]): Promise<File[]> {
 
   if (imageFiles.length > 0) {
     try {
-      showLoading(0, 100);
-      const loadingText = document.getElementById('loading-text');
-      if (loadingText)
-        loadingText.textContent = t('multiTool.convertingImages');
-      const imagesPdfFile = await convertImagesToPdfFile(imageFiles);
-      result.push(imagesPdfFile);
+      showLoading(t('multiTool.convertingImages'));
+      result.push(await convertImagesToPdfFile(imageFiles));
     } catch (e) {
       console.error('Failed to convert images to PDF:', e);
-      hideLoading();
       showModal(
         t('multiTool.error'),
         t('multiTool.failedToConvertImages'),
         'error'
       );
+    } finally {
+      hideLoading();
     }
   }
 
-  if (skipped.length > 0) {
-    console.warn('Skipped unsupported files:', skipped);
-  }
-
+  if (skipped.length > 0) console.warn('Skipped unsupported files:', skipped);
   return result;
 }
 
+function ensureViewer(): Promise<ViewerRegistry> {
+  if (registryPromise) return registryPromise;
+  const target = document.getElementById('organize-viewer');
+  if (!target) return Promise.reject(new Error('viewer container missing'));
+  registryPromise = (async () => {
+    const { default: EmbedPDF } = await import('bentopdf-viewer');
+    viewer = EmbedPDF.init({
+      type: 'container',
+      target,
+      worker: true,
+      wasmUrl: embedPdfWasmUrl,
+      theme: viewerTheme,
+      tabBar: 'never',
+      organize: { standalone: true },
+      documentManager: { maxDocuments: 1 },
+    });
+    const registry = await viewer.registry;
+    docManager = registry
+      .getPlugin('document-manager')
+      .provides() as unknown as DocManagerPlugin;
+    docManager.onDocumentOpened((data) => {
+      if (data?.id) currentDocId = data.id;
+    });
+    docManager.onDocumentClosed((data) => {
+      const id = typeof data === 'string' ? data : data?.id;
+      if (id && id === currentDocId) currentDocId = null;
+    });
+    return registry;
+  })();
+  return registryPromise;
+}
+
+async function canOpen(
+  registry: ViewerRegistry,
+  content: ArrayBuffer
+): Promise<boolean> {
+  const engine = registry.getEngine();
+  try {
+    const doc = await engine
+      .openDocumentBuffer({ id: `multi-tool-probe-${++probeSeq}`, content })
+      .toPromise();
+    await engine
+      .closeDocument(doc)
+      .toPromise()
+      .catch(() => {});
+    return doc.pageCount > 0;
+  } catch {
+    return false;
+  }
+}
+
+async function readablePdf(
+  registry: ViewerRegistry,
+  file: File
+): Promise<ArrayBuffer | null> {
+  const original = await file.arrayBuffer();
+  if (await canOpen(registry, original)) return original;
+  try {
+    const repaired = await repairPdfFile(file);
+    if (repaired) {
+      const bytes = new Uint8Array(repaired).buffer;
+      if (await canOpen(registry, bytes)) return bytes;
+    }
+  } catch (err) {
+    console.warn(`Failed to repair ${file.name}:`, err);
+  }
+  return null;
+}
+
 async function handleIncomingFiles(rawFiles: File[]) {
-  if (isRendering || isProcessingDrop) {
+  if (isBusy) {
     showModal(t('multiTool.pleaseWait'), t('multiTool.pagesRendering'), 'info');
     return;
   }
-
-  isProcessingDrop = true;
+  isBusy = true;
   try {
     const processed = await processIncomingFiles(rawFiles);
-    if (processed.length > 0) {
-      await loadPdfs(processed);
-    } else {
-      hideLoading();
-    }
-  } finally {
-    isProcessingDrop = false;
-  }
-}
+    if (processed.length === 0) return;
+    const decrypted = await batchDecryptIfNeeded(processed);
+    if (decrypted.length === 0) return;
 
-function resetAll() {
-  renderCancelled = true;
-  isRendering = false;
-  isProcessingDrop = false;
-  hideDragOverlay();
-  snapshot();
-  allPages = [];
-  selectedPages.clear();
-  splitMarkers.clear();
-  currentPdfDocs = [];
-  pageCanvasCache.clear();
-  cleanupLazyRendering();
-
-  if (sortableInstance) {
-    sortableInstance.destroy();
-    sortableInstance = null;
-  }
-
-  // Force clear DOM to prevent ghost pages
-  const pagesContainer = document.getElementById('pages-container');
-  if (pagesContainer) pagesContainer.innerHTML = '';
-
-  updatePageDisplay();
-  document.getElementById('upload-area')?.classList.remove('hidden');
-}
-
-async function handlePdfUpload(e: Event) {
-  const input = e.target as HTMLInputElement;
-  const files = Array.from(input.files || []);
-  if (files.length > 0) {
-    await handleIncomingFiles(files);
-  }
-  input.value = '';
-}
-
-async function loadPdfs(files: File[]) {
-  if (isRendering) {
-    showModal(t('multiTool.pleaseWait'), t('multiTool.pagesRendering'), 'info');
-    return;
-  }
-
-  const uploadArea = document.getElementById('upload-area');
-  if (uploadArea) uploadArea.classList.add('hidden');
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  isRendering = true;
-  console.log('PDF Multi Tool: Starting render, isRendering set to true');
-  renderCancelled = false;
-
-  // Cleanup previous observers
-  cleanupLazyRendering();
-
-  showLoading(0, 100);
-
-  try {
-    for (const file of files) {
-      if (renderCancelled) break;
-
-      try {
-        let arrayBuffer: ArrayBuffer;
-
-        try {
-          console.log(`Repairing ${file.name}...`);
-          const loadingText = document.getElementById('loading-text');
-          if (loadingText)
-            loadingText.textContent = `Repairing ${file.name}...`;
-
-          const repairedData = await repairPdfFile(file);
-          if (repairedData) {
-            arrayBuffer = repairedData.buffer as ArrayBuffer;
-            console.log(`Successfully repaired ${file.name} before loading.`);
-          } else {
-            console.warn(
-              `Repair returned null for ${file.name}, using original file.`
-            );
-            arrayBuffer = await file.arrayBuffer();
-          }
-        } catch (repairError) {
-          console.warn(
-            `Failed to repair ${file.name}, attempting to load original:`,
-            repairError
-          );
-          arrayBuffer = await file.arrayBuffer();
-        }
-
-        hideLoading();
-        const pwResult = await loadPdfWithPasswordPrompt(file);
-        if (!pwResult) continue;
-        pwResult.pdf.destroy();
-        arrayBuffer = pwResult.bytes as ArrayBuffer;
-
-        const pdfDoc = await loadPdfDocument(arrayBuffer);
-        currentPdfDocs.push(pdfDoc);
-        const pdfIndex = currentPdfDocs.length - 1;
-
-        const pdfBytes = await pdfDoc.save();
-        const pdfjsDoc = await getPDFDocument({
-          data: new Uint8Array(pdfBytes),
-        }).promise;
-        const numPages = pdfjsDoc.numPages;
-
-        // Pre-fill allPages with placeholders to maintain order/state
-        const startIndex = allPages.length;
-        for (let i = 0; i < numPages; i++) {
-          allPages.push({
-            id: generateId(),
-            pdfIndex,
-            pageIndex: i,
-            rotation: 0,
-            visualRotation: 0,
-            canvas: null, // Will be filled when rendered
-            pdfDoc,
-            originalPageIndex: i,
-            fileName: file.name,
-          });
-        }
-
-        await renderPagesProgressively(
-          pdfjsDoc,
-          pagesContainer,
-          (canvas, pageNumber) => {
-            const globalIndex = startIndex + pageNumber - 1;
-
-            if (allPages[globalIndex]) {
-              allPages[globalIndex].canvas = canvas;
-            }
-
-            return createPageElement(canvas, globalIndex);
-          },
-          {
-            batchSize: 8,
-            useLazyLoading: true,
-            lazyLoadMargin: '400px',
-            onProgress: (current, total) => {
-              showLoading(current, total);
-            },
-            onBatchComplete: () => {
-              createIcons({ icons });
-            },
-            shouldCancel: () => renderCancelled, // Pass cancellation check
-          }
-        );
-      } catch (e) {
-        console.error(`Failed to load PDF ${file.name}:`, e);
+    showLoading(t('multiTool.renderingPages'));
+    const registry = await ensureViewer();
+    const buffers: ArrayBuffer[] = [];
+    for (const file of decrypted) {
+      const bytes = await readablePdf(registry, file);
+      if (bytes) buffers.push(bytes);
+      else
         showModal(
           t('multiTool.error'),
           `${t('multiTool.failedToLoad')} ${file.name}.`,
           'error'
         );
-      }
     }
+    if (buffers.length === 0) return;
 
-    if (!renderCancelled) {
-      setupSortable();
-      createIcons({ icons });
-    }
+    const merged =
+      buffers.length === 1
+        ? buffers[0]
+        : (
+            await registry
+              .getEngine()
+              .merge(
+                buffers.map((content, i) => ({
+                  id: `multi-tool-${++probeSeq}-${i}`,
+                  content,
+                }))
+              )
+              .toPromise()
+          ).content;
+
+    setViewerVisible(true);
+    docManager?.openDocumentBuffer({
+      buffer: merged,
+      name: decrypted[0].name,
+      autoActivate: true,
+    });
+  } catch (err) {
+    console.error('PDF Multi Tool failed to load files:', err);
+    showModal(t('multiTool.error'), t('multiTool.failedToLoad'), 'error');
   } finally {
     hideLoading();
-    isRendering = false;
-    console.log(
-      'PDF Multi Tool: Render finished/cancelled, isRendering set to false'
-    );
-    if (renderCancelled) {
-      renderCancelled = false;
-    }
-    if (allPages.length === 0) {
-      resetAll();
-    }
+    isBusy = false;
   }
 }
 
-// Modified to return the element instead of appending it
-function createPageElement(
-  canvas: HTMLCanvasElement | null,
-  index: number
-): HTMLElement {
-  const pageData = allPages[index];
-  if (!pageData) {
-    console.error(`Page data not found for index ${index}`);
-    return document.createElement('div');
-  }
-
-  const card = document.createElement('div');
-  card.className =
-    'bg-gray-800 rounded-lg border-2 border-gray-700 p-2 relative group cursor-move';
-  card.dataset.pageIndex = index.toString();
-  card.dataset.pageId = pageData.id; // Set ID for reconciliation
-
-  // Add attributes for lazy loading identification
-  card.dataset.pageNumber = (pageData.pageIndex + 1).toString();
-  if (pageData.fileName) {
-    card.dataset.fileName = pageData.fileName;
-  }
-  if (!pageData.canvas) {
-    card.dataset.lazyLoad = 'true';
-  }
-
-  if (selectedPages.has(index)) {
-    card.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-500');
-  }
-
-  const preview = document.createElement('div');
-  preview.className =
-    'bg-white rounded mb-2 overflow-hidden w-full flex items-center justify-center relative h-36 sm:h-64';
-
-  if (canvas) {
-    const previewCanvas = canvas;
-    previewCanvas.className = 'max-w-full max-h-full object-contain';
-
-    previewCanvas.style.transform = `rotate(${pageData.visualRotation}deg)`;
-    previewCanvas.style.transition = 'transform 0.2s ease';
-    preview.appendChild(previewCanvas);
-  } else {
-    // Show loading placeholder if canvas is null
-    const loading = document.createElement('div');
-    loading.className =
-      'flex flex-col items-center justify-center text-gray-400';
-    const loadingIcon = document.createElement('i');
-    loadingIcon.dataset.lucide = 'loader';
-    loadingIcon.className = 'w-8 h-8 animate-spin mb-2';
-    const loadingLabel = document.createElement('span');
-    loadingLabel.className = 'text-xs';
-    loadingLabel.textContent = t('common.loading');
-    loading.append(loadingIcon, loadingLabel);
-    preview.appendChild(loading);
-    preview.classList.add('bg-gray-700'); // Darker background for loading
-  }
-
-  // Page info
-  const info = document.createElement('div');
-  info.className = 'text-xs text-gray-400 text-center mb-2';
-  info.textContent = `${t('common.page')} ${index + 1}`;
-
-  // Actions toolbar
-  const actions = document.createElement('div');
-  actions.className =
-    'flex items-center justify-center gap-1 sm:opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-2 left-0 right-0';
-
-  const actionsInner = document.createElement('div');
-  actionsInner.className =
-    'flex items-center gap-1 bg-gray-900/90 rounded px-2 py-1';
-  actions.appendChild(actionsInner);
-
-  // Select checkbox
-  const selectBtn = document.createElement('button');
-  selectBtn.className =
-    'absolute top-2 right-2 p-1 rounded bg-gray-900/70 hover:bg-gray-800 z-10';
-  const selectIcon = document.createElement('i');
-  if (selectedPages.has(index)) {
-    selectIcon.dataset.lucide = 'check-square';
-    selectIcon.className = 'w-4 h-4 text-indigo-400';
-  } else {
-    selectIcon.dataset.lucide = 'square';
-    selectIcon.className = 'w-4 h-4 text-gray-200';
-  }
-  selectBtn.appendChild(selectIcon);
-  selectBtn.onclick = (e) => {
-    e.stopPropagation();
-    toggleSelectOptimized(index);
-  };
-
-  // Rotate button
-  const rotateBtn = document.createElement('button');
-  rotateBtn.className = 'p-1 rounded hover:bg-gray-700';
-  rotateBtn.innerHTML =
-    '<i data-lucide="rotate-cw" class="w-4 h-4 text-gray-300"></i>';
-  rotateBtn.onclick = (e) => {
-    e.stopPropagation();
-    rotatePage(index, 90);
-  };
-  const rotateLeftBtn = document.createElement('button');
-  rotateLeftBtn.className = 'p-1 rounded hover:bg-gray-700';
-  rotateLeftBtn.innerHTML =
-    '<i data-lucide="rotate-ccw" class="w-4 h-4 text-gray-300"></i>';
-  rotateLeftBtn.onclick = (e) => {
-    e.stopPropagation();
-    rotatePage(index, -90);
-  };
-
-  // Duplicate button
-  const duplicateBtn = document.createElement('button');
-  duplicateBtn.className = 'p-1 rounded hover:bg-gray-700';
-  duplicateBtn.innerHTML =
-    '<i data-lucide="copy" class="w-4 h-4 text-gray-300"></i>';
-  duplicateBtn.title = t('multiTool.actions.duplicatePage');
-  duplicateBtn.onclick = (e) => {
-    e.stopPropagation();
-    snapshot();
-    duplicatePage(index);
-  };
-
-  // Delete button
-  const deleteBtn = document.createElement('button');
-  deleteBtn.className = 'p-1 rounded hover:bg-gray-700';
-  deleteBtn.innerHTML =
-    '<i data-lucide="trash-2" class="w-4 h-4 text-red-400"></i>';
-  deleteBtn.title = t('multiTool.actions.deletePage');
-  deleteBtn.onclick = (e) => {
-    e.stopPropagation();
-    snapshot();
-    deletePage(index);
-  };
-
-  // Insert PDF button
-  const insertBtn = document.createElement('button');
-  insertBtn.className = 'p-1 rounded hover:bg-gray-700';
-  insertBtn.innerHTML =
-    '<i data-lucide="file-plus" class="w-4 h-4 text-gray-300"></i>';
-  insertBtn.title = t('multiTool.actions.insertPdf');
-  insertBtn.onclick = (e) => {
-    e.stopPropagation();
-    snapshot();
-    insertPdfAfter(index);
-  };
-
-  // Split button
-  const splitBtn = document.createElement('button');
-  splitBtn.className = 'p-1 rounded hover:bg-gray-700';
-  splitBtn.innerHTML =
-    '<i data-lucide="scissors" class="w-4 h-4 text-gray-300"></i>';
-  splitBtn.title = t('multiTool.actions.toggleSplit');
-  splitBtn.onclick = (e) => {
-    e.stopPropagation();
-    snapshot();
-    toggleSplitMarker(index);
-    renderSplitMarkers();
-  };
-
-  actionsInner.append(
-    rotateLeftBtn,
-    rotateBtn,
-    duplicateBtn,
-    insertBtn,
-    splitBtn,
-    deleteBtn
-  );
-  card.append(preview, info, actions, selectBtn);
-
-  // Check for split marker
-  if (splitMarkers.has(index)) {
-    const marker = document.createElement('div');
-    marker.className =
-      'split-marker absolute -right-3 top-0 bottom-0 w-6 flex items-center justify-center z-20 pointer-events-none';
-    marker.innerHTML =
-      '<div class="h-full w-0.5 border-l-2 border-dashed border-blue-400"></div>';
-    card.appendChild(marker);
-  }
-
-  return card;
-}
-
-function setupSortable() {
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  // Destroy existing instance before creating new one
-  if (sortableInstance) {
-    sortableInstance.destroy();
-  }
-
-  sortableInstance = Sortable.create(pagesContainer, {
-    animation: 150,
-    forceFallback: true,
-    touchStartThreshold: 3,
-    fallbackTolerance: 3,
-    delay: 200,
-    delayOnTouchOnly: true,
-    scroll: document.getElementById('main-scroll-container'),
-    scrollSensitivity: 100, // Increase sensitivity for smoother scrolling
-    bubbleScroll: false, // Prevent bubbling scroll to parent
-    onEnd: (evt) => {
-      const oldIndex = evt.oldIndex!;
-      const newIndex = evt.newIndex!;
-      if (oldIndex !== newIndex) {
-        const [moved] = allPages.splice(oldIndex, 1);
-        allPages.splice(newIndex, 0, moved);
-        updatePageNumbers();
-      }
-    },
-  });
-}
-
-function toggleSelectOptimized(index: number) {
-  if (selectedPages.has(index)) {
-    selectedPages.delete(index);
-  } else {
-    selectedPages.add(index);
-  }
-
-  // Only update the specific card instead of re-rendering everything
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  const card = pagesContainer.children[index] as HTMLElement;
-  if (!card) return;
-
-  const selectBtn = card.querySelector(
-    'button[class*="absolute top-2 right-2"]'
-  );
-  if (!selectBtn) return;
-
-  if (selectedPages.has(index)) {
-    card.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-500');
-    selectBtn.innerHTML =
-      '<i data-lucide="check-square" class="w-4 h-4 text-indigo-400"></i>';
-  } else {
-    card.classList.remove('border-indigo-500', 'ring-2', 'ring-indigo-500');
-    selectBtn.innerHTML =
-      '<i data-lucide="square" class="w-4 h-4 text-gray-200"></i>';
-  }
-
-  createIcons({ icons });
-}
-
-function selectAll() {
-  selectedPages.clear();
-  allPages.forEach((_, index) => selectedPages.add(index));
-  updatePageDisplay();
-}
-
-function deselectAll() {
-  selectedPages.clear();
-  updatePageDisplay();
-}
-
-function rotatePage(index: number, delta: number) {
-  snapshot();
-
-  const pageData = allPages[index];
-  pageData.visualRotation = (pageData.visualRotation + delta + 360) % 360;
-  pageData.rotation = (pageData.rotation + delta + 360) % 360;
-
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  const card = pagesContainer.children[index] as HTMLElement;
-  if (!card) return;
-
-  const canvas = card.querySelector('canvas');
-  const preview = card.querySelector('.bg-white');
-
-  if (canvas && preview) {
-    canvas.style.transform = `rotate(${pageData.visualRotation}deg)`;
-    canvas.style.transition = 'transform 0.2s ease';
-  }
-}
-
-function duplicatePage(index: number) {
-  const originalPageData = allPages[index];
-  const originalCanvas = originalPageData.canvas;
-
-  const newCanvas = document.createElement('canvas');
-  newCanvas.width = originalCanvas.width;
-  newCanvas.height = originalCanvas.height;
-
-  const newContext = newCanvas.getContext('2d');
-  if (newContext) {
-    newContext.drawImage(originalCanvas, 0, 0);
-  }
-
-  const newPageData: PageData = {
-    ...originalPageData,
-    id: generateId(), // New ID for the duplicate
-    canvas: newCanvas,
-  };
-
-  const newIndex = index + 1;
-  allPages.splice(newIndex, 0, newPageData);
-  updatePageDisplay();
-}
-
-function deletePage(index: number) {
-  allPages.splice(index, 1);
-  selectedPages.delete(index);
-  const newSelected = new Set<number>();
-  selectedPages.forEach((i) => {
-    if (i > index) newSelected.add(i - 1);
-    else if (i < index) newSelected.add(i);
-  });
-  selectedPages = newSelected;
-
-  if (allPages.length === 0) {
-    resetAll();
+async function exportPdf() {
+  if (!currentDocId || !registryPromise) {
+    showModal(t('multiTool.noPages'), t('multiTool.noPagesToExport'), 'info');
     return;
   }
-
-  updatePageDisplay();
-}
-
-async function insertPdfAfter(index: number) {
-  document.getElementById('insert-pdf-input')?.click();
-  (window as unknown as Record<string, unknown>).__insertAfterIndex = index;
-}
-
-async function handleInsertPdf(e: Event) {
-  const input = e.target as HTMLInputElement;
-  const file = input.files?.[0];
-  if (!file) return;
-
-  const insertAfterIndex = (window as unknown as Record<string, unknown>)
-    .__insertAfterIndex as number | undefined;
-  if (insertAfterIndex === undefined) return;
-
   try {
-    const pwResult = await loadPdfWithPasswordPrompt(file);
-    if (!pwResult) return;
-    pwResult.pdf.destroy();
-
-    const pdfDoc = await loadPdfDocument(pwResult.bytes);
-    currentPdfDocs.push(pdfDoc);
-    const pdfIndex = currentPdfDocs.length - 1;
-
-    const pdfBytes = await pdfDoc.save();
-    const pdfjsDoc = await getPDFDocument({ data: new Uint8Array(pdfBytes) })
-      .promise;
-    const numPages = pdfjsDoc.numPages;
-
-    const newPages: PageData[] = [];
-    for (let i = 0; i < numPages; i++) {
-      newPages.push({
-        id: generateId(),
-        pdfIndex,
-        pageIndex: i,
-        rotation: 0,
-        visualRotation: 0,
-        canvas: null, // Placeholder
-        pdfDoc,
-        originalPageIndex: i,
-        fileName: file.name,
-      });
-    }
-
-    // Insert new pages into allPages
-    allPages.splice(insertAfterIndex + 1, 0, ...newPages);
-
-    // Update display to show placeholders immediately
-    updatePageDisplay();
-
-    // Render pages progressively
-    for (let i = 0; i < numPages; i++) {
-      const globalIndex = insertAfterIndex + 1 + i;
-
-      // Render page
-      const canvas = await renderPageToCanvas(pdfjsDoc, i + 1);
-
-      // Update data
-      if (allPages[globalIndex]) {
-        allPages[globalIndex].canvas = canvas;
-
-        // Update UI if card exists
-        const pagesContainer = document.getElementById('pages-container');
-        const card = pagesContainer?.querySelector(
-          `div[data-page-index="${globalIndex}"]`
-        );
-        if (card) {
-          const preview =
-            card.querySelector('.bg-gray-700') ||
-            card.querySelector('.bg-white');
-          if (preview) {
-            // Re-create the preview content
-            preview.innerHTML = '';
-            preview.className =
-              'bg-white rounded mb-2 overflow-hidden w-full flex items-center justify-center relative h-36 sm:h-64';
-
-            const previewCanvas = canvas;
-            previewCanvas.className = 'max-w-full max-h-full object-contain';
-            previewCanvas.style.transform = `rotate(${allPages[globalIndex].visualRotation}deg)`;
-            previewCanvas.style.transition = 'transform 0.2s ease';
-            preview.appendChild(previewCanvas);
-          }
-        }
-      }
-    }
-  } catch (e) {
-    console.error('Failed to insert PDF:', e);
-    showModal(
-      'Error',
-      'Failed to insert PDF. The file may be corrupted.',
-      'error'
+    const registry = await registryPromise;
+    const exportPlugin = registry.getPlugin('export').provides();
+    const buffer = await exportPlugin.saveAsCopy().toPromise();
+    downloadFile(
+      new Blob([new Uint8Array(buffer)], { type: 'application/pdf' }),
+      'all-pages.pdf'
     );
-  }
-
-  input.value = '';
-}
-
-function toggleSplitMarker(index: number) {
-  if (splitMarkers.has(index)) splitMarkers.delete(index);
-  else splitMarkers.add(index);
-}
-
-function renderSplitMarkers() {
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  pagesContainer.querySelectorAll('.split-marker').forEach((m) => m.remove());
-
-  Array.from(pagesContainer.children).forEach((cardEl, i) => {
-    if (splitMarkers.has(i)) {
-      const marker = document.createElement('div');
-      marker.className =
-        'split-marker absolute -right-3 top-0 bottom-0 w-6 flex items-center justify-center z-20 pointer-events-none';
-      marker.innerHTML =
-        '<div class="h-full w-0.5 border-l-2 border-dashed border-blue-400"></div>';
-      (cardEl as HTMLElement).appendChild(marker);
-    }
-  });
-}
-
-function addBlankPage() {
-  const canvas = document.createElement('canvas');
-  canvas.width = 595;
-  canvas.height = 842;
-  const ctx = canvas.getContext('2d');
-  if (ctx) {
-    ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, 595, 842);
-  }
-
-  const blankPageData: PageData = {
-    id: generateId(),
-    pdfIndex: -1,
-    pageIndex: -1,
-    rotation: 0,
-    visualRotation: 0,
-    canvas,
-    pdfDoc: null!,
-    originalPageIndex: -1,
-    fileName: '', // Blank page has no file
-  };
-
-  allPages.push(blankPageData);
-  updatePageDisplay();
-}
-
-function bulkRotate(delta: number) {
-  if (selectedPages.size === 0) {
-    showModal('No Selection', 'Please select pages to rotate.', 'info');
-    return;
-  }
-
-  selectedPages.forEach((index) => {
-    const pageData = allPages[index];
-    if (pageData) {
-      // Update state
-      pageData.visualRotation = (pageData.visualRotation + delta + 360) % 360;
-      pageData.rotation = (pageData.rotation + delta + 360) % 360;
-
-      // Update DOM immediately if it exists
-      const pagesContainer = document.getElementById('pages-container');
-      const card = pagesContainer?.querySelector(
-        `div[data-page-index="${index}"]`
-      );
-      if (card) {
-        const canvas = card.querySelector('canvas');
-        if (canvas) {
-          canvas.style.transform = `rotate(${pageData.visualRotation}deg)`;
-        }
-        // If no canvas (placeholder), the state update is enough.
-        // When it eventually renders, createPageElement will use the new rotation.
-      }
-    }
-  });
-
-  // TODO@ALAM - Do NOT call updatePageDisplay() as it destroys lazy loading observers
-}
-
-function bulkDelete() {
-  if (selectedPages.size === 0) {
-    showModal('No Selection', 'Please select pages to delete.', 'info');
-    return;
-  }
-  const indices = Array.from(selectedPages).sort((a, b) => b - a);
-  indices.forEach((index) => allPages.splice(index, 1));
-  selectedPages.clear();
-
-  if (allPages.length === 0) {
-    resetAll();
-    return;
-  }
-
-  updatePageDisplay();
-}
-
-function bulkDuplicate() {
-  if (selectedPages.size === 0) {
-    showModal('No Selection', 'Please select pages to duplicate.', 'info');
-    return;
-  }
-  const indices = Array.from(selectedPages).sort((a, b) => b - a);
-  indices.forEach((index) => {
-    duplicatePage(index);
-  });
-  selectedPages.clear();
-  updatePageDisplay();
-}
-
-function bulkSplit() {
-  if (selectedPages.size === 0) {
-    showModal(
-      'No Selection',
-      'Please select pages to mark for splitting.',
-      'info'
-    );
-    return;
-  }
-  const indices = Array.from(selectedPages);
-  indices.forEach((index) => {
-    if (!splitMarkers.has(index)) {
-      splitMarkers.add(index);
-    }
-  });
-  renderSplitMarkers();
-  selectedPages.clear();
-  updatePageDisplay();
-}
-
-async function downloadAll() {
-  if (allPages.length === 0) {
-    showModal('No Pages', 'Please upload PDFs first.', 'info');
-    return;
-  }
-
-  // Check if there are split markers
-  if (splitMarkers.size > 0) {
-    // Split into multiple PDFs and download as ZIP
-    await downloadSplitPdfs();
-  } else {
-    // Download as single PDF
-    const indices = Array.from({ length: allPages.length }, (_, i) => i);
-    await downloadPagesAsPdf(indices, 'all-pages.pdf');
+  } catch (err) {
+    console.error('Export failed:', err);
+    showModal(t('multiTool.error'), t('multiTool.noPagesToExport'), 'error');
   }
 }
 
-async function downloadSplitPdfs() {
-  try {
-    const zip = new JSZip();
-
-    // Create segments based on split markers
-    const segments: number[][] = [];
-    let currentSegment: number[] = [];
-
-    for (let i = 0; i < allPages.length; i++) {
-      currentSegment.push(i);
-
-      // If this page has a split marker after it, start a new segment
-      if (splitMarkers.has(i)) {
-        segments.push(currentSegment);
-        currentSegment = [];
-      }
-    }
-
-    // Add the last segment if it has pages
-    if (currentSegment.length > 0) {
-      segments.push(currentSegment);
-    }
-
-    for (let segIndex = 0; segIndex < segments.length; segIndex++) {
-      const segment = segments[segIndex];
-      const newPdf = await PDFLibDocument.create();
-
-      const segSpecs: (
-        | {
-            type: 'pdf';
-            pdfDoc: PDFLibDocument;
-            originalPageIndex: number;
-            rotation: number;
-          }
-        | { type: 'blank' }
-      )[] = [];
-      for (const index of segment) {
-        const pageData = allPages[index];
-        if (!pageData) continue;
-        if (pageData.pdfDoc && pageData.originalPageIndex >= 0) {
-          segSpecs.push({
-            type: 'pdf',
-            pdfDoc: pageData.pdfDoc,
-            originalPageIndex: pageData.originalPageIndex,
-            rotation: pageData.rotation,
-          });
-        } else {
-          segSpecs.push({ type: 'blank' });
-        }
-      }
-
-      const docPageIndices = new Map<PDFLibDocument, number[]>();
-      for (const spec of segSpecs) {
-        if (spec.type === 'pdf') {
-          if (!docPageIndices.has(spec.pdfDoc)) {
-            docPageIndices.set(spec.pdfDoc, []);
-          }
-          docPageIndices.get(spec.pdfDoc)!.push(spec.originalPageIndex);
-        }
-      }
-
-      const copiedPagesMap = new Map<PDFLibDocument, PDFPage[]>();
-      for (const [doc, pageIdxs] of Array.from(docPageIndices)) {
-        const copied = await newPdf.copyPages(doc, pageIdxs);
-        copiedPagesMap.set(doc, copied);
-      }
-
-      const docConsumeIndex = new Map<PDFLibDocument, number>();
-      docPageIndices.forEach((_, doc) => docConsumeIndex.set(doc, 0));
-
-      for (const spec of segSpecs) {
-        if (spec.type === 'pdf') {
-          const idx = docConsumeIndex.get(spec.pdfDoc)!;
-          const copiedPage = copiedPagesMap.get(spec.pdfDoc)![idx];
-          docConsumeIndex.set(spec.pdfDoc, idx + 1);
-
-          const page = newPdf.addPage(copiedPage);
-          if (spec.rotation !== 0) {
-            const currentRotation = page.getRotation().angle;
-            page.setRotation(degrees(currentRotation + spec.rotation));
-          }
-        } else {
-          newPdf.addPage([595, 842]);
-        }
-      }
-
-      const pdfBytes = await newPdf.save();
-      zip.file(`document - ${segIndex + 1}.pdf`, pdfBytes);
-    }
-
-    // Generate and download ZIP
-    const zipBlob = await zip.generateAsync({ type: 'blob' });
-    downloadFile(zipBlob, 'split-documents.zip');
-
-    showModal(
-      'Success',
-      `Downloaded ${segments.length} PDF files in a ZIP archive.`,
-      'success'
-    );
-  } catch (e) {
-    console.error('Failed to create split PDFs:', e);
-    showModal('Error', 'Failed to create split PDFs.', 'error');
-  } finally {
-    hideLoading(); // Ensure loader is hidden if we used it (though showModal replaces it)
-  }
-}
-
-async function downloadPagesAsPdf(indices: number[], filename: string) {
-  try {
-    const newPdf = await PDFLibDocument.create();
-
-    const pageSpecs: (
-      | {
-          type: 'pdf';
-          pdfDoc: PDFLibDocument;
-          originalPageIndex: number;
-          rotation: number;
-        }
-      | { type: 'blank' }
-    )[] = [];
-    for (const index of indices) {
-      const pageData = allPages[index];
-      if (!pageData) continue;
-      if (pageData.pdfDoc && pageData.originalPageIndex >= 0) {
-        pageSpecs.push({
-          type: 'pdf',
-          pdfDoc: pageData.pdfDoc,
-          originalPageIndex: pageData.originalPageIndex,
-          rotation: pageData.rotation,
-        });
-      } else {
-        pageSpecs.push({ type: 'blank' });
-      }
-    }
-
-    const docPageIndices = new Map<PDFLibDocument, number[]>();
-    for (const spec of pageSpecs) {
-      if (spec.type === 'pdf') {
-        if (!docPageIndices.has(spec.pdfDoc)) {
-          docPageIndices.set(spec.pdfDoc, []);
-        }
-        docPageIndices.get(spec.pdfDoc)!.push(spec.originalPageIndex);
-      }
-    }
-
-    const copiedPagesMap = new Map<PDFLibDocument, PDFPage[]>();
-    for (const [doc, pageIdxs] of Array.from(docPageIndices)) {
-      const copied = await newPdf.copyPages(doc, pageIdxs);
-      copiedPagesMap.set(doc, copied);
-    }
-
-    const docConsumeIndex = new Map<PDFLibDocument, number>();
-    docPageIndices.forEach((_, doc) => docConsumeIndex.set(doc, 0));
-
-    for (const spec of pageSpecs) {
-      if (spec.type === 'pdf') {
-        const idx = docConsumeIndex.get(spec.pdfDoc)!;
-        const copiedPage = copiedPagesMap.get(spec.pdfDoc)![idx];
-        docConsumeIndex.set(spec.pdfDoc, idx + 1);
-
-        const page = newPdf.addPage(copiedPage);
-        if (spec.rotation !== 0) {
-          const currentRotation = page.getRotation().angle;
-          page.setRotation(degrees(currentRotation + spec.rotation));
-        }
-      } else {
-        newPdf.addPage([595, 842]);
-      }
-    }
-
-    const pdfBytes = await newPdf.save();
-    const blob = new Blob([new Uint8Array(pdfBytes)], {
-      type: 'application/pdf',
-    });
-
-    downloadFile(blob, filename);
-    showModal('Success', 'PDF downloaded successfully.', 'success');
-  } catch (e) {
-    console.error('Failed to create PDF:', e);
-    showModal('Error', 'Failed to create PDF.', 'error');
-  }
-}
-
-function updatePageDisplay() {
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  // 1. Create a map of existing elements by ID
-  const existingElements = new Map<string, HTMLElement>();
-  Array.from(pagesContainer.children).forEach((child) => {
-    const el = child as HTMLElement;
-    if (el.dataset.pageId) {
-      existingElements.set(el.dataset.pageId, el);
-    }
-  });
-
-  // 2. Iterate through allPages and reconcile DOM
-  allPages.forEach((pageData, index) => {
-    let card = existingElements.get(pageData.id);
-
-    if (card) {
-      // Element exists, update it
-      existingElements.delete(pageData.id); // Remove from map so we know it's still in use
-
-      // Check if position changed
-      if (pagesContainer.children[index] !== card) {
-        if (index < pagesContainer.children.length) {
-          pagesContainer.insertBefore(card, pagesContainer.children[index]);
-        } else {
-          pagesContainer.appendChild(card);
-        }
-      }
-
-      // Update index-dependent attributes
-      card.dataset.pageIndex = index.toString();
-      const info = card.querySelector(
-        '.text-xs.text-gray-400.text-center.mb-2'
-      );
-      if (info) info.textContent = `Page ${index + 1} `;
-
-      // Update selection state
-      const selectBtn = card.querySelector(
-        'button[class*="absolute top-2 right-2"]'
-      );
-      if (selectBtn) {
-        if (selectedPages.has(index)) {
-          card.classList.add('border-indigo-500', 'ring-2', 'ring-indigo-500');
-          selectBtn.innerHTML =
-            '<i data-lucide="check-square" class="w-4 h-4 text-indigo-400"></i>';
-        } else {
-          card.classList.remove(
-            'border-indigo-500',
-            'ring-2',
-            'ring-indigo-500'
-          );
-          selectBtn.innerHTML =
-            '<i data-lucide="square" class="w-4 h-4 text-gray-200"></i>';
-        }
-        // Update click handler to use new index
-        (selectBtn as HTMLElement).onclick = (e) => {
-          e.stopPropagation();
-          toggleSelectOptimized(index);
-        };
-      }
-
-      // Update visual rotation
-      const canvas = card.querySelector('canvas');
-      if (canvas) {
-        canvas.style.transform = `rotate(${pageData.visualRotation}deg)`;
-      }
-
-      // Update action buttons
-      const actionsInner = card.querySelector(
-        '.flex.items-center.gap-1.bg-gray-900\\/90'
-      );
-      if (actionsInner) {
-        const buttons = actionsInner.querySelectorAll('button');
-        if (buttons[0])
-          (buttons[0] as HTMLElement).onclick = (e) => {
-            e.stopPropagation();
-            rotatePage(index, -90);
-          };
-        if (buttons[1])
-          (buttons[1] as HTMLElement).onclick = (e) => {
-            e.stopPropagation();
-            rotatePage(index, 90);
-          };
-        if (buttons[2])
-          (buttons[2] as HTMLElement).onclick = (e) => {
-            e.stopPropagation();
-            snapshot();
-            duplicatePage(index);
-          };
-        if (buttons[3])
-          (buttons[3] as HTMLElement).onclick = (e) => {
-            e.stopPropagation();
-            snapshot();
-            insertPdfAfter(index);
-          };
-        if (buttons[4])
-          (buttons[4] as HTMLElement).onclick = (e) => {
-            e.stopPropagation();
-            snapshot();
-            toggleSplitMarker(index);
-            renderSplitMarkers();
-          };
-        if (buttons[5])
-          (buttons[5] as HTMLElement).onclick = (e) => {
-            e.stopPropagation();
-            snapshot();
-            deletePage(index);
-          };
-      }
-    } else {
-      // Element doesn't exist, create it
-      card = createPageElement(pageData.canvas, index);
-      card.dataset.pageId = pageData.id; // IMPORTANT: Set the ID
-
-      if (index < pagesContainer.children.length) {
-        pagesContainer.insertBefore(card, pagesContainer.children[index]);
-      } else {
-        pagesContainer.appendChild(card);
-      }
-    }
-  });
-
-  // 3. Remove remaining elements (deleted pages)
-  existingElements.forEach((el) => el.remove());
-
-  setupSortable();
-  renderSplitMarkers();
-  createIcons({ icons });
-}
-
-function updatePageNumbers() {
-  const pagesContainer = document.getElementById('pages-container');
-  if (!pagesContainer) return;
-
-  const cards = Array.from(pagesContainer.children) as HTMLElement[];
-  cards.forEach((card, index) => {
-    // Update data attribute
-    card.dataset.pageIndex = index.toString();
-
-    // Update visible page number text
-    const info = card.querySelector('.text-xs.text-gray-400.text-center.mb-2');
-    if (info) {
-      info.textContent = `Page ${index + 1} `;
-    }
-
-    // Re-attach event listeners for buttons
-    // We need to find the buttons and update their onclick handlers
-    // This is necessary because the original handlers captured the old index
-
-    const selectBtn = card.querySelector(
-      'button[class*="absolute top-2 right-2"]'
-    ) as HTMLButtonElement;
-    if (selectBtn) {
-      selectBtn.onclick = (e) => {
-        e.stopPropagation();
-        toggleSelectOptimized(index);
-      };
-    }
-
-    const actionsInner = card.querySelector(
-      '.flex.items-center.gap-1.bg-gray-900\\/90'
-    );
-    if (actionsInner) {
-      const buttons = actionsInner.querySelectorAll('button');
-      // Order: Rotate Left, Rotate Right, Duplicate, Insert, Split, Delete
-      if (buttons[0])
-        buttons[0].onclick = (e) => {
-          e.stopPropagation();
-          rotatePage(index, -90);
-        };
-      if (buttons[1])
-        buttons[1].onclick = (e) => {
-          e.stopPropagation();
-          rotatePage(index, 90);
-        };
-      if (buttons[2])
-        buttons[2].onclick = (e) => {
-          e.stopPropagation();
-          snapshot();
-          duplicatePage(index);
-        };
-      if (buttons[3])
-        buttons[3].onclick = (e) => {
-          e.stopPropagation();
-          snapshot();
-          insertPdfAfter(index);
-        };
-      if (buttons[4])
-        buttons[4].onclick = (e) => {
-          e.stopPropagation();
-          snapshot();
-          toggleSplitMarker(index);
-          renderSplitMarkers();
-        };
-      if (buttons[5])
-        buttons[5].onclick = (e) => {
-          e.stopPropagation();
-          snapshot();
-          deletePage(index);
-        };
-    }
-  });
+function resetAll() {
+  if (currentDocId) docManager?.closeDocument(currentDocId);
+  currentDocId = null;
+  setViewerVisible(false);
+  document.getElementById('upload-area')?.classList.remove('hidden');
 }

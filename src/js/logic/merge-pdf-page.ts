@@ -12,7 +12,7 @@ import {
   showWasmRequiredDialog,
   WasmProvider,
 } from '../utils/wasm-provider.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -166,11 +166,14 @@ async function renderPageMergeThumbnails() {
         'text-xs text-gray-400 truncate w-full text-center';
       const fullTitle = displayName
         ? `${displayName} (page ${pageNumber})`
-        : `Page ${pageNumber}`;
+        : trText('Page {{pageNumber}}', { pageNumber });
       fileNamePara.title = fullTitle;
       fileNamePara.textContent = displayName
-        ? `${displayName.substring(0, 10)}... (p${pageNumber})`
-        : `Page ${pageNumber}`;
+        ? trText('{{name}}... (p{{pageNumber}})', {
+            name: displayName.substring(0, 10),
+            pageNumber,
+          })
+        : trText('Page {{pageNumber}}', { pageNumber });
 
       wrapper.append(imgContainer, fileNamePara);
       return wrapper;
@@ -291,7 +294,7 @@ export async function merge() {
 
     if (mergeState.activeMode === 'file') {
       const fileList = document.getElementById('file-list');
-      if (!fileList) throw new Error('File list not found');
+      if (!fileList) throw new Error(trText('File list not found'));
 
       const sortedFileKeys = Array.from(fileList.children)
         .map((li) => (li as HTMLElement).dataset.fileName)
@@ -321,7 +324,7 @@ export async function merge() {
     } else {
       // Page Mode
       const pageContainer = document.getElementById('page-merge-preview');
-      if (!pageContainer) throw new Error('Page container not found');
+      if (!pageContainer) throw new Error(trText('Page container not found'));
       const pageElements = Array.from(pageContainer.children);
 
       const rawPages: { fileName: string; pageIndex: number }[] = [];
@@ -523,14 +526,16 @@ export async function refreshMergeUI() {
     const label = document.createElement('label');
     label.htmlFor = `range-${safeFileName}`;
     label.className = 'text-xs text-gray-400';
-    label.textContent = `Pages (e.g., 1-3, 5) - Total: ${pageCount}`;
+    label.textContent = trText('Pages (e.g., 1-3, 5) - Total: {{pageCount}}', {
+      pageCount,
+    });
 
     const input = document.createElement('input');
     input.type = 'text';
     input.id = `range-${safeFileName}`;
     input.className =
       'w-full bg-gray-800 border border-gray-600 text-white rounded-md p-2 text-sm mt-1 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors';
-    input.placeholder = 'Leave blank for all pages';
+    input.placeholder = trText('Leave blank for all pages');
 
     inputWrapper.append(label, input);
 
@@ -538,7 +543,7 @@ export async function refreshMergeUI() {
     deleteBtn.className =
       'text-red-400 hover:text-red-300 p-2 flex-shrink-0 self-end';
     deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-    deleteBtn.title = 'Remove file';
+    deleteBtn.title = trText('Remove file');
     deleteBtn.onclick = (e) => {
       e.stopPropagation();
       state.files = state.files.filter((_, i) => i !== index);
@@ -603,7 +608,7 @@ export async function refreshMergeUI() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

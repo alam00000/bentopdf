@@ -106,7 +106,7 @@
     "tipRedoZ": "Rétablir (⇧⌘Z)",
     "tipFileDetails": "Détails du fichier",
     "tipEditExistingContent": "Modifier le contenu existant",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Ce que l'outil Modifier affecte — restreindre la portée sur les pages chargées",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "Ce que l'outil Modifier affecte : restreindre la portée sur les pages chargées",
     "tipClickThePageToAddATextBox": "Cliquez sur la page pour ajouter une zone de texte",
     "tipSpellCheckLanguage": "Langue du correcteur orthographique",
     "tipFindAndReplace": "Rechercher et remplacer",
@@ -518,11 +518,12 @@
       "noFile": "Aucun fichier",
       "noFileExplanation": "Veuillez d'abord téléverser un fichier PDF.",
       "conversionSuccess": "PDF converti en TIFF avec succès !",
-      "conversionError": "Échec de la conversion du PDF en TIFF. Le fichier est peut-être corrompu."
+      "conversionError": "Échec de la conversion du PDF en TIFF. Le fichier est peut-être corrompu.",
+      "conversionOutOfMemory": "Le navigateur a manqué de mémoire pendant la conversion. Essayez une résolution (PPP) plus faible, ou décochez l'option TIFF multipage pour convertir les pages une par une."
     }
   },
   "pdfToCbz": {
-    "name": "PDF en CBZ",
+    "name": "PDF vers CBZ",
     "subtitle": "Convertir un PDF en fichier CBZ (archive de bande dessinée) pour les lecteurs de comics.",
     "imageFormat": "Format d'image",
     "quality": "Qualité d'image",
@@ -807,7 +808,7 @@
     "subtitle": "Supprimer les métadonnées, annotations, scripts et autres éléments sensibles."
   },
   "decryptPdf": {
-    "name": "Déverrouiller un PDF",
+    "name": "Déchiffrer un PDF",
     "subtitle": "Supprimer la protection par mot de passe."
   },
   "flattenPdf": {
@@ -1005,8 +1006,7 @@
     "subtitle": "Extraire le texte des fichiers PDF et l’enregistrer en texte brut (.txt). Prend en charge plusieurs fichiers.",
     "noteLabel": "Note :",
     "noteText": "Cet outil ne fonctionne QUE avec des PDF créés numériquement. Pour les documents numérisés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF.",
-    "convertButton": "Extraire le texte",
-    "note": "Cet outil fonctionne UNIQUEMENT avec des PDF créés numériquement. Pour les documents scannés ou les PDF basés sur des images, utilisez plutôt notre outil OCR PDF."
+    "convertButton": "Extraire le texte"
   },
   "digitalSignPdf": {
     "name": "Signature numérique PDF",
@@ -1204,7 +1204,7 @@
       "workerError": "Erreur du worker : {{message}}",
       "alternateMergeWorkerError": "Erreur du worker de fusion alternée : {{message}}",
       "noPdfFilesUploaded": "Aucun fichier PDF téléversé dans le nœud d’entrée PDF",
-      "failedToLoadFile": "Impossible de charger « {{file}} » — le fichier est peut-être corrompu",
+      "failedToLoadFile": "Impossible de charger « {{file}} » : le fichier est peut-être corrompu",
       "noImagesUploaded": "Aucune image téléversée dans le nœud d’entrée Image",
       "noWordDocsUploaded": "Aucun document téléversé dans le nœud d’entrée Word",
       "noExcelUploaded": "Aucun tableur téléversé dans le nœud d’entrée Excel",
@@ -1321,7 +1321,7 @@
     "subtitle": "Supprimer la protection par mot de passe."
   },
   "protectPdf": {
-    "name": "Chiffrer un PDF",
+    "name": "Protéger un PDF",
     "subtitle": "Protéger le PDF en ajoutant un mot de passe."
   }
 }

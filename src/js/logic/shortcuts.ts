@@ -1,6 +1,9 @@
 import { categories } from '../config/tools.js';
 import type { ToolEntry } from '@/types';
 
+import { trText } from '../i18n/i18n.js';
+import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
+
 export class ShortcutsManager {
   private static STORAGE_KEY = 'bentopdf_shortcuts';
   private static shortcuts: Map<string, string> = new Map();
@@ -29,7 +32,7 @@ export class ShortcutsManager {
   }
 
   private static loadFromStorage() {
-    const stored = localStorage.getItem(this.STORAGE_KEY);
+    const stored = getStoredItem(this.STORAGE_KEY);
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
@@ -57,7 +60,7 @@ export class ShortcutsManager {
 
   static save() {
     const obj = Object.fromEntries(this.shortcuts);
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(obj));
+    setStoredItem(this.STORAGE_KEY, JSON.stringify(obj));
   }
 
   static reset() {
@@ -121,7 +124,7 @@ export class ShortcutsManager {
       const parsed = JSON.parse(jsonString);
       for (const key in parsed) {
         if (typeof parsed[key] !== 'string') {
-          throw new Error('Invalid shortcut format');
+          throw new Error(trText('Invalid shortcut format'));
         }
       }
       this.shortcuts = new Map(Object.entries(parsed));

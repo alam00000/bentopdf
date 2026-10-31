@@ -1,6 +1,8 @@
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
 import { preprocessImageFile } from './image-input-utils.js';
 
+import { trText } from '../i18n/i18n.js';
+
 export interface EmbeddableImage {
   bytes: Uint8Array;
   format: 'jpg' | 'png';
@@ -36,18 +38,23 @@ export async function normalizeImageToEmbeddable(
       const i = new Image();
       i.onload = () => resolve(i);
       i.onerror = () =>
-        reject(new Error(`Failed to decode image: ${processed.name}`));
+        reject(
+          new Error(
+            trText('Failed to decode image: {{name}}', { name: processed.name })
+          )
+        );
       i.src = url;
     });
     const canvas = document.createElement('canvas');
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
     const ctx = canvas.getContext('2d');
-    if (!ctx) throw new Error('Canvas context unavailable');
+    if (!ctx) throw new Error(trText('Canvas context unavailable'));
     ctx.drawImage(img, 0, 0);
     const blob = await new Promise<Blob>((resolve, reject) => {
       canvas.toBlob(
-        (b) => (b ? resolve(b) : reject(new Error('Canvas toBlob failed'))),
+        (b) =>
+          b ? resolve(b) : reject(new Error(trText('Canvas toBlob failed'))),
         'image/png'
       );
     });

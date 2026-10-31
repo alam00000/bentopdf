@@ -9,7 +9,8 @@
     "openMainMenu": "Abrir menú principal",
     "language": "Idioma",
     "searchLanguage": "Buscar idioma…",
-    "noLanguagesFound": "No se encontraron idiomas"
+    "noLanguagesFound": "No se encontraron idiomas",
+    "breadcrumb": "Ruta de navegación"
   },
   "donation": {
     "message": "¿Te encanta BentoPDF? ¡Ayúdanos a mantenerlo gratis y de código abierto!",
@@ -230,12 +231,16 @@
     "buyMeCoffee": "Cómprame un Café"
   },
   "footer": {
-    "copyright": "© 2025 BentoPDF. Todos los derechos reservados.",
+    "copyright": "© 2026 BentoPDF. Todos los derechos reservados.",
     "version": "Versión",
     "company": "Empresa",
     "aboutUs": "Acerca de Nosotros",
     "faqLink": "Preguntas Frecuentes",
     "contactUs": "Contáctanos",
+    "tools": "Herramientas",
+    "pdfConverter": "Convertidor de PDF",
+    "pdfSecurity": "Seguridad de PDF",
+    "mergeSplit": "Unir y dividir PDF",
     "legal": "Legal",
     "termsAndConditions": "Términos y Condiciones",
     "privacyPolicy": "Política de Privacidad",

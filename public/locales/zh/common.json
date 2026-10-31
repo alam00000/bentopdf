@@ -9,7 +9,8 @@
     "openMainMenu": "打开主菜单",
     "language": "语言",
     "searchLanguage": "搜索语言…",
-    "noLanguagesFound": "未找到语言"
+    "noLanguagesFound": "未找到语言",
+    "breadcrumb": "面包屑导航"
   },
   "donation": {
     "message": "喜欢 BentoPDF？帮助我们保持免费和开源！",
@@ -236,6 +237,10 @@
     "aboutUs": "关于我们",
     "faqLink": "常见问题",
     "contactUs": "联系我们",
+    "tools": "工具",
+    "pdfConverter": "PDF 转换器",
+    "pdfSecurity": "PDF 安全",
+    "mergeSplit": "合并和拆分 PDF",
     "legal": "法律",
     "termsAndConditions": "服务条款",
     "privacyPolicy": "隐私政策",

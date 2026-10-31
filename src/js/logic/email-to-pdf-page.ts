@@ -5,10 +5,12 @@ import { createIcons, icons } from 'lucide';
 import { parseEmailFile, renderEmailToHtml } from './email-to-pdf.js';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const EXTENSIONS = ['.eml', '.msg'];
 const TOOL_NAME = 'Email';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -87,7 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (state.files.length === 0) {
         showAlert(
           'No Files',
-          `Please select at least one ${TOOL_NAME} file (.eml or .msg).`
+          trText(
+            'Please select at least one {{TOOL_NAME}} file (.eml or .msg).',
+            { TOOL_NAME }
+          )
         );
         return;
       }
@@ -112,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (state.files.length === 1) {
         const originalFile = state.files[0];
-        showLoader(`Parsing ${originalFile.name}...`);
+        showLoader(trText('Parsing {{name}}...', { name: originalFile.name }));
 
         const email = await parseEmailFile(originalFile);
 
@@ -144,7 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${originalFile.name} to PDF.`,
+          trText('Successfully converted {{name}} to PDF.', {
+            name: originalFile.name,
+          }),
           'success',
           () => resetState()
         );
@@ -156,7 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            `Converting ${i + 1}/${state.files.length}: ${file.name}...`
+            trText('Converting {{n}}/{{length}}: {{name}}...', {
+              n: i + 1,
+              length: state.files.length,
+              name: file.name,
+            })
           );
 
           try {
@@ -197,7 +208,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         showAlert(
           'Conversion Complete',
-          `Successfully converted ${state.files.length} ${TOOL_NAME} file(s) to PDF.`,
+          trText(
+            'Successfully converted {{length}} {{TOOL_NAME}} file(s) to PDF.',
+            { length: state.files.length, TOOL_NAME }
+          ),
           'success',
           () => resetState()
         );
@@ -207,7 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during conversion. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during conversion. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

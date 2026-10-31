@@ -9,7 +9,8 @@
     "openMainMenu": "باز کردن منوی اصلی",
     "language": "زبان",
     "searchLanguage": "جستجوی زبان…",
-    "noLanguagesFound": "زبانی یافت نشد"
+    "noLanguagesFound": "زبانی یافت نشد",
+    "breadcrumb": "مسیر صفحه"
   },
   "donation": {
     "message": "BentoPDF را دوست دارید؟ کمک کنید رایگان و متن‌باز بماند!",
@@ -236,6 +237,10 @@
     "aboutUs": "دربارهٔ ما",
     "faqLink": "سؤالات متداول",
     "contactUs": "تماس با ما",
+    "tools": "ابزارها",
+    "pdfConverter": "مبدل PDF",
+    "pdfSecurity": "امنیت PDF",
+    "mergeSplit": "ادغام و تقسیم PDF",
     "legal": "حقوقی",
     "termsAndConditions": "شرایط و ضوابط",
     "privacyPolicy": "سیاست حفظ حریم خصوصی",

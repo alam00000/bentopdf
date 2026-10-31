@@ -4,6 +4,8 @@ import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import * as XLSX from 'xlsx';
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 let file: File | null = null;
 
 const updateUI = () => {
@@ -86,7 +88,12 @@ async function convert() {
     const allTables: TableData[] = [];
 
     for (let i = 0; i < pageCount; i++) {
-      showLoader(`Scanning page ${i + 1} of ${pageCount}...`);
+      showLoader(
+        trText('Scanning page {{n}} of {{pageCount}}...', {
+          n: i + 1,
+          pageCount,
+        })
+      );
       const page = doc.getPage(i);
       const tables = page.findTables();
 
@@ -112,10 +119,10 @@ async function convert() {
       XLSX.utils.book_append_sheet(workbook, worksheet, 'Table');
     } else {
       allTables.forEach((table, idx) => {
-        const sheetName = `Table ${idx + 1} (Page ${table.page})`.substring(
-          0,
-          31
-        );
+        const sheetName = trText('Table {{n}} (Page {{page}})', {
+          n: idx + 1,
+          page: table.page,
+        }).substring(0, 31);
         const worksheet = XLSX.utils.aoa_to_sheet(table.rows);
         XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
       });
@@ -128,20 +135,25 @@ async function convert() {
     downloadFile(blob, `${baseName}.xlsx`);
     showAlert(
       'Success',
-      `Extracted ${allTables.length} table(s) to Excel!`,
+      trText('Extracted {{length}} table(s) to Excel!', {
+        length: allTables.length,
+      }),
       'success',
       resetState
     );
   } catch (e) {
     console.error(e);
-    const message = e instanceof Error ? e.message : 'Unknown error';
-    showAlert('Error', `Failed to convert PDF to Excel. ${message}`);
+    const message = e instanceof Error ? e.message : trText('Unknown error');
+    showAlert(
+      'Error',
+      trText('Failed to convert PDF to Excel. {{message}}', { message })
+    );
   } finally {
     hideLoader();
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

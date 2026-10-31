@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import { createIcons, icons } from 'lucide';
 import * as pdfjsLib from 'pdfjs-dist';
 import {
@@ -32,7 +32,7 @@ import {
   extractPagesWithQpdf,
 } from '../utils/split-pdf-helpers.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   let visualSelectorRendered = false;
   let isSplitting = false;
 
@@ -81,7 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const metaSpan = document.createElement('div');
         metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`; // Placeholder
+        metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+          size: formatBytes(file.size),
+          loadingPageCount: t('common.loadingPageCount'),
+        }); // Placeholder
 
         infoContainer.append(nameSpan, metaSpan);
 
@@ -112,7 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
           result.pdf.destroy();
           state.files[0] = result.file;
           state.pdfDoc = await loadPdfDocument(result.bytes);
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pageCount} pages`;
+          metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+            size: formatBytes(file.size),
+            pageCount,
+          });
         } catch (error) {
           console.error('Error loading PDF:', error);
           showAlert('Error', 'Failed to load PDF file.');
@@ -153,14 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const result = await loadPdfWithPasswordPrompt(file);
           if (!result) {
             showLoader('Rendering page previews...');
-            throw new Error('No PDF document loaded');
+            throw new Error(trText('No PDF document loaded'));
           }
           result.pdf.destroy();
           state.files[0] = result.file;
           state.pdfDoc = await loadPdfDocument(result.bytes);
           showLoader('Rendering page previews...');
         } else {
-          throw new Error('No PDF document loaded');
+          throw new Error(trText('No PDF document loaded'));
         }
       }
 
@@ -221,7 +227,12 @@ document.addEventListener('DOMContentLoaded', () => {
         useLazyLoading: true,
         lazyLoadMargin: '400px',
         onProgress: (current, total) => {
-          showLoader(`Rendering page previews: ${current}/${total}`);
+          showLoader(
+            trText('Rendering page previews: {{current}}/{{total}}', {
+              current,
+              total,
+            })
+          );
         },
         onBatchComplete: () => {
           createIcons({ icons });
@@ -307,7 +318,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputPath = '/split-input.pdf';
 
     try {
-      if (!state.pdfDoc) throw new Error('No PDF document loaded.');
+      if (!state.pdfDoc) throw new Error(trText('No PDF document loaded.'));
       const srcDoc = state.pdfDoc;
 
       const totalPages = srcDoc.getPageCount();
@@ -339,7 +350,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const pageRangeInput = (
             document.getElementById('page-range') as HTMLInputElement
           ).value;
-          if (!pageRangeInput) throw new Error('Choose a valid page range.');
+          if (!pageRangeInput)
+            throw new Error(trText('Choose a valid page range.'));
 
           const { groups: rangeGroups, indices: rangeIndices } =
             parseRangeGroups(pageRangeInput, totalPages);
@@ -354,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'input[name="even-odd-choice"]:checked'
           ) as HTMLInputElement;
           if (!choiceElement)
-            throw new Error('Please select even or odd pages.');
+            throw new Error(trText('Please select even or odd pages.'));
           const choice = choiceElement.value === 'even' ? 'even' : 'odd';
           indicesToExtract = evenOddIndices(choice, totalPages);
           break;
@@ -404,7 +416,9 @@ document.addEventListener('DOMContentLoaded', () => {
           cpdf.deletePdf(pdf);
 
           if (splitPages.length === 0) {
-            throw new Error('No bookmarks found at the selected level.');
+            throw new Error(
+              trText('No bookmarks found at the selected level.')
+            );
           }
 
           const zip = new JSZip();
@@ -429,7 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
             (document.getElementById('split-n-value') as HTMLInputElement)
               ?.value || '5'
           );
-          if (nValue < 1) throw new Error('N must be at least 1.');
+          if (nValue < 1) throw new Error(trText('N must be at least 1.'));
 
           const zip2 = new JSZip();
           const chunks = nTimesGroups(nValue, totalPages);
@@ -455,7 +469,7 @@ document.addEventListener('DOMContentLoaded', () => {
         splitMode !== 'bookmarks' &&
         splitMode !== 'n-times'
       ) {
-        throw new Error('No pages were selected for splitting.');
+        throw new Error(trText('No pages were selected for splitting.'));
       }
 
       if (outputGroups && outputGroups.length > 0) {
@@ -584,12 +598,12 @@ document.addEventListener('DOMContentLoaded', () => {
         rangePanel?.classList.remove('hidden');
         outputModeWrapper?.classList.remove('hidden');
         if (outputSeparateLabel)
-          outputSeparateLabel.textContent = 'One PDF per range';
+          outputSeparateLabel.textContent = trText('One PDF per range');
       } else if (mode === 'visual') {
         visualPanel?.classList.remove('hidden');
         outputModeWrapper?.classList.remove('hidden');
         if (outputSeparateLabel)
-          outputSeparateLabel.textContent = 'One PDF per page';
+          outputSeparateLabel.textContent = trText('One PDF per page');
         renderVisualSelector();
       } else if (mode === 'even-odd') {
         evenOddPanel?.classList.remove('hidden');
@@ -612,7 +626,10 @@ document.addEventListener('DOMContentLoaded', () => {
             nTimesWarning.classList.remove('hidden');
             const warningText = document.getElementById('n-times-warning-text');
             if (warningText) {
-              warningText.textContent = `The PDF has ${totalPages} pages, which is not evenly divisible by ${nValue}. The last PDF will contain ${remainder} page(s).`;
+              warningText.textContent = trText(
+                'The PDF has {{totalPages}} pages, which is not evenly divisible by {{nValue}}. The last PDF will contain {{remainder}} page(s).',
+                { totalPages, nValue, remainder }
+              );
             }
           } else if (nTimesWarning) {
             nTimesWarning.classList.add('hidden');

@@ -8,6 +8,8 @@ import Sortable from 'sortablejs';
 import { FileEntry, Position, StylePreset } from '@/types';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const FONT_MAP: Record<string, keyof typeof StandardFonts> = {
   Helvetica: 'Helvetica',
   TimesRoman: 'TimesRoman',
@@ -54,11 +56,7 @@ const STYLE_PRESETS: Record<string, StylePreset> = {
 
 const files: FileEntry[] = [];
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 function initializePage() {
   createIcons({ icons });
@@ -237,7 +235,10 @@ function renderFileList() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = `${formatBytes(entry.file.size)} \u2022 ${entry.pageCount} pages`;
+    metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      size: formatBytes(entry.file.size),
+      pageCount: entry.pageCount,
+    });
 
     infoContainer.append(nameSpan, metaSpan);
     leftSection.append(dragHandle, infoContainer);
@@ -260,7 +261,16 @@ function renderFileList() {
 
   const summary = document.createElement('div');
   summary.className = 'text-xs text-gray-400 mt-1';
-  summary.textContent = `${files.length} file${files.length !== 1 ? 's' : ''} \u2022 ${totalPages} total pages`;
+  summary.textContent =
+    files.length !== 1
+      ? trText('{{length}} files • {{totalPages}} total pages', {
+          length: files.length,
+          totalPages,
+        })
+      : trText('{{length}} file • {{totalPages}} total pages', {
+          length: files.length,
+          totalPages,
+        });
   fileListEl.appendChild(summary);
 }
 
@@ -539,7 +549,10 @@ async function applyBatesNumbers() {
 
     showAlert(
       'Success',
-      `Bates numbers applied successfully! (${batesStart} through ${batesCounter - 1})`,
+      trText(
+        'Bates numbers applied successfully! ({{batesStart}} through {{n}})',
+        { batesStart, n: batesCounter - 1 }
+      ),
       'success',
       () => {
         resetState();

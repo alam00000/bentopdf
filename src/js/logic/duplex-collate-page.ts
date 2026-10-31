@@ -3,7 +3,7 @@ import { showAlert, showLoader, hideLoader } from '../ui.js';
 import { formatBytes, downloadFile } from '../utils/helpers.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
-import { t } from '../i18n/index.js';
+import { t, onPageReady } from '../i18n/index.js';
 import { PDFDocument } from 'pdf-lib';
 import JSZip from 'jszip';
 
@@ -28,11 +28,7 @@ const translate = (
   return translation && translation !== key ? translation : fallback;
 };
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializePage);
-} else {
-  initializePage();
-}
+onPageReady(initializePage);
 
 /**
  * Wires duplex-collate page event handlers and initial UI behavior.

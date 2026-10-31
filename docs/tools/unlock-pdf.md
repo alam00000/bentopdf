@@ -1,9 +1,9 @@
 ---
-title: Decrypt PDF
+title: Unlock PDF
 description: Remove password protection from encrypted PDFs. Supports batch decryption with a single password for multiple files.
 ---
 
-# Decrypt PDF
+# Unlock PDF
 
 If you have the password to an encrypted PDF, this tool removes the encryption entirely, producing an unlocked copy that anyone can open without credentials. It supports batch decryption when multiple PDFs share the same password.
 

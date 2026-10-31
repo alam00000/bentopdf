@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   downloadFile,
   readFileAsArrayBuffer,
@@ -19,7 +19,7 @@ interface ExtractedImage {
 
 let extractedImages: ExtractedImage[] = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -66,7 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const metaSpan = document.createElement('div');
         metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+        metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+          size: formatBytes(file.size),
+          loadingPageCount: t('common.loadingPageCount'),
+        });
 
         infoContainer.append(nameSpan, metaSpan);
 
@@ -85,9 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+            size: formatBytes(file.size),
+            numPages: pdfDoc.numPages,
+          });
         } catch {
-          metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
+          metaSpan.textContent = trText(
+            '{{size}} • Could not load page count',
+            { size: formatBytes(file.size) }
+          );
         }
       }
 
@@ -167,7 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       for (let i = 0; i < state.files.length; i++) {
         const file = state.files[i];
-        showLoader(`Extracting images from ${file.name}...`);
+        showLoader(
+          trText('Extracting images from {{name}}...', { name: file.name })
+        );
 
         const doc = await pymupdf.open(file);
         const pageCount = doc.pageCount;
@@ -206,7 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
         displayImages();
         showAlert(
           'Extraction Complete',
-          `Found ${extractedImages.length} image(s) in ${state.files.length} PDF(s).`,
+          trText('Found {{length}} image(s) in {{length2}} PDF(s).', {
+            length: extractedImages.length,
+            length2: state.files.length,
+          }),
           'success'
         );
       }
@@ -214,7 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during extraction. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during extraction. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

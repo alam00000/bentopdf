@@ -1,47 +1,60 @@
 ---
 title: PDF Multi Tool
-description: An all-in-one page manager for merging, splitting, rotating, duplicating, deleting, and reordering PDF pages.
+description: An all-in-one page organizer for merging, splitting, rotating, duplicating, deleting, reordering, and resizing PDF pages.
 ---
 
 # PDF Multi Tool
 
-A unified workspace for every page-level PDF operation. Upload one or more PDFs and work with all their pages in a single visual grid. Rotate, reorder, duplicate, delete, insert new PDFs, add blank pages, and split the result -- all without leaving the tool.
+A unified workspace for every page-level PDF operation. Upload one or more PDFs and work with all their pages in a single visual grid. Rotate, reorder, duplicate, delete, insert PDFs, images, and blank pages, renumber, resize, and split the result, all without leaving the tool.
 
 ## How It Works
 
-1. Click **Upload PDFs** or drag files onto the upload area. Multiple files are supported.
-2. All pages from every uploaded file appear in a scrollable grid with thumbnails.
-3. Use the toolbar or per-page action buttons to manipulate pages.
-4. Select pages using the checkbox on each card, then apply bulk operations.
-5. Mark split points with the scissors icon to divide the output into separate files.
-6. Click **Export PDF** to download the final result. If split markers are present, the output is a ZIP of multiple PDFs.
+1. Click **Select Files** or drag files onto the upload area. Multiple files are supported, and they are merged in upload order.
+2. All pages appear in a scrollable grid with thumbnails.
+3. Click a page to select it. Use Shift-click for a range and Cmd/Ctrl-click to add or remove single pages.
+4. Use the organizer toolbar or right-click a page for page actions.
+5. Click **Export PDF** to download the final result.
 
 ## Features
 
-- **Merge**: Upload multiple PDFs and they combine into one workspace automatically
-- **Reorder**: Drag and drop page cards to rearrange the sequence
-- **Rotate**: Per-page or bulk rotation in 90-degree increments (left or right)
-- **Duplicate**: Clone any page with one click
-- **Delete**: Remove individual pages or bulk-delete selected ones
-- **Insert PDF**: Add a new PDF after any specific page
-- **Add Blank Page**: Append a blank A4 page at the end
-- **Split**: Place split markers between pages, then export as a ZIP of separate PDFs
-- **Select All / Deselect All**: Quick selection for bulk operations
-- **Undo / Redo**: Full undo/redo history for every operation
-- **Download selected**: Export only the selected pages as a standalone PDF
+- **Merge**: Upload multiple PDFs and images and they combine into one document automatically
+- **Reorder**: Drag and drop pages to rearrange the sequence, or reverse the whole document
+- **Rotate**: Rotate selected pages left or right in 90-degree steps
+- **Duplicate**: Copy selected pages and place the copies right after them
+- **Delete**: Remove the selected pages
+- **Insert**: Add pages from another PDF or image, a blank page, pages from the clipboard, or alternate the pages of a second PDF with the current ones
+- **Replace**: Swap a page for the first page of another PDF
+- **Cut, copy, and paste**: Move or copy pages within the document
+- **Extract**: Download the selected pages as a PDF or as images
+- **Page Numbers**: Set page labels such as i, ii, iii or A-1, A-2 for a range of pages
+- **Page Size**: Fit pages to a standard paper size or a custom size
+- **Split**: Divide the document by page ranges, odd and even pages, every page, bookmarks, every N pages, or file size
+- **Undo / Redo**: Every page operation can be undone and redone
 - Auto-repairs corrupted PDFs before loading
+
+## Keyboard Shortcuts
+
+| Action              | Shortcut                      |
+| ------------------- | ----------------------------- |
+| Rotate right / left | R / Shift+R                   |
+| Select all          | Cmd/Ctrl+A                    |
+| Cut, copy, paste    | Cmd/Ctrl+X, C, V              |
+| Duplicate           | Cmd/Ctrl+D                    |
+| Delete              | Delete or Backspace           |
+| Undo / Redo         | Cmd/Ctrl+Z / Cmd/Ctrl+Shift+Z |
+| Move selection      | Arrow keys, Home, End         |
 
 ## Use Cases
 
 - Building a custom document from pages across multiple source PDFs
 - Cleaning up a scanned document by deleting blank pages, rotating sideways scans, and reordering sections
-- Splitting a large PDF at chapter boundaries using visual split markers
+- Splitting a large PDF at chapter boundaries using its bookmarks
 - Quick page-level editing without needing a full PDF editor
 
 ## Tips
 
-- The undo/redo system tracks every operation. Use it freely -- you cannot accidentally destroy your work.
-- Split markers appear as dashed blue lines between pages. Place them visually where you want the document divided, then export to get a ZIP.
+- The undo/redo history tracks every page operation. Use it freely, you cannot accidentally destroy your work.
+- Use **Insert > From File** or drop more PDFs or images onto the page grid at any time to add them to the document.
 - For simple merge or split tasks, the dedicated [Merge PDF](./merge-pdf) or [Split PDF](./split-pdf) tools may be faster. The Multi Tool shines when you need multiple operations in one session.
 
 ## Related Tools

@@ -4,6 +4,8 @@ import { createIcons, icons } from 'lucide';
 import JSZip from 'jszip';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 interface PdfToZipState {
   files: File[];
 }
@@ -89,7 +91,13 @@ async function createZipArchive() {
 
     for (let i = 0; i < pageState.files.length; i++) {
       const file = pageState.files[i];
-      showLoader(`Adding ${file.name} (${i + 1}/${pageState.files.length})...`);
+      showLoader(
+        trText('Adding {{name}} ({{n}}/{{length}})...', {
+          name: file.name,
+          n: i + 1,
+          length: pageState.files.length,
+        })
+      );
       const arrayBuffer = await file.arrayBuffer();
       const zipEntryName = deduplicateFileName(file.name, usedNames);
       zip.file(zipEntryName, arrayBuffer);
@@ -130,7 +138,7 @@ function handleFileSelect(files: FileList | null) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+onPageReady(function () {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');

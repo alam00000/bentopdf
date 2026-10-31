@@ -5,9 +5,12 @@ import type { PDFData, SocketData, MultiPDFData } from '../types';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 import MarkdownIt from 'markdown-it';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
+import { useMarkdownPlugins } from '../../utils/markdown-plugins.js';
 import { wfError } from '../errors';
 
-const md = new MarkdownIt({ html: true, linkify: true, typographer: true });
+const md = useMarkdownPlugins(
+  new MarkdownIt({ html: true, linkify: true, typographer: true })
+);
 
 export class MarkdownToPdfNode extends BaseWorkflowNode {
   readonly category = 'Input' as const;

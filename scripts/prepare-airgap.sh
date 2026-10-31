@@ -181,7 +181,7 @@ OPTIONS:
   --dockerfile <path>     Dockerfile to use           (default: Dockerfile)
   --simple-mode           Enable Simple Mode
   --base-url <path>       Subdirectory base URL       (e.g. /pdf/)
-  --compression <mode>    Compression: g, b, o, all   (default: all)
+  --compression <mode>    Compression: g, b, o, all   (default: o)
   --language <code>       Default UI language          (e.g. fr, de, es)
   --brand-name <name>     Custom brand name
   --brand-logo <path>     Logo path relative to public/

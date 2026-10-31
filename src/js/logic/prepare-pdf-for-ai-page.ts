@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { t } from '../i18n/i18n';
+import { t, trText, onPageReady } from '../i18n/i18n';
 import {
   downloadFile,
   readFileAsArrayBuffer,
@@ -13,7 +13,7 @@ import type { PyMuPDFInstance } from '@/types';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { deduplicateFileName } from '../utils/deduplicate-filename.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const fileInput = document.getElementById('file-input') as HTMLInputElement;
   const dropZone = document.getElementById('drop-zone');
   const processBtn = document.getElementById('process-btn');
@@ -52,7 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const metaSpan = document.createElement('div');
         metaSpan.className = 'text-xs text-gray-400';
-        metaSpan.textContent = `${formatBytes(file.size)} • ${t('common.loadingPageCount')}`;
+        metaSpan.textContent = trText('{{size}} • {{loadingPageCount}}', {
+          size: formatBytes(file.size),
+          loadingPageCount: t('common.loadingPageCount'),
+        });
 
         infoContainer.append(nameSpan, metaSpan);
 
@@ -71,10 +74,16 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = `${formatBytes(file.size)} • ${pdfDoc.numPages} pages`;
+          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+            size: formatBytes(file.size),
+            numPages: pdfDoc.numPages,
+          });
         } catch (error) {
           console.error('Error loading PDF:', error);
-          metaSpan.textContent = `${formatBytes(file.size)} • Could not load page count`;
+          metaSpan.textContent = trText(
+            '{{size}} • Could not load page count',
+            { size: formatBytes(file.size) }
+          );
         }
       }
 
@@ -116,7 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (total === 1) {
         const file = state.files[0];
-        showLoader(`Extracting ${file.name} for AI...`);
+        showLoader(
+          trText('Extracting {{name}} for AI...', { name: file.name })
+        );
 
         const llamaDocs = await (pymupdf as PyMuPDFInstance).pdfToLlamaIndex(
           file
@@ -144,7 +155,11 @@ document.addEventListener('DOMContentLoaded', () => {
           try {
             const file = state.files[fi];
             showLoader(
-              `Extracting ${file.name} for AI (${completed + 1}/${total})...`
+              trText('Extracting {{name}} for AI ({{n}}/{{total}})...', {
+                name: file.name,
+                n: completed + 1,
+                total,
+              })
             );
 
             const llamaDocs = await (
@@ -172,14 +187,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (failed === 0) {
           showAlert(
             'Extraction Complete',
-            `Successfully extracted ${completed} PDF(s) for AI/LLM use.`,
+            trText(
+              'Successfully extracted {{completed}} PDF(s) for AI/LLM use.',
+              { completed }
+            ),
             'success',
             () => resetState()
           );
         } else {
           showAlert(
             'Extraction Partial',
-            `Extracted ${completed} PDF(s), failed ${failed}.`,
+            trText('Extracted {{completed}} PDF(s), failed {{failed}}.', {
+              completed,
+              failed,
+            }),
             'warning',
             () => resetState()
           );
@@ -189,7 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
       hideLoader();
       showAlert(
         'Error',
-        `An error occurred during extraction. Error: ${e instanceof Error ? e.message : String(e)}`
+        trText('An error occurred during extraction. Error: {{error}}', {
+          error: e instanceof Error ? e.message : String(e),
+        })
       );
     }
   };

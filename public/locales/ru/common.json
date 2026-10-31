@@ -9,7 +9,8 @@
     "openMainMenu": "Открыть главное меню",
     "language": "Язык",
     "searchLanguage": "Поиск языка…",
-    "noLanguagesFound": "Языки не найдены"
+    "noLanguagesFound": "Языки не найдены",
+    "breadcrumb": "Навигационная цепочка"
   },
   "donation": {
     "message": "Нравится BentoPDF? Помогите ему оставаться бесплатным и с открытым исходным кодом!",
@@ -236,6 +237,10 @@
     "aboutUs": "Про нас",
     "faqLink": "Частые вопросы",
     "contactUs": "Связаться с нами",
+    "tools": "Инструменты",
+    "pdfConverter": "Конвертер PDF",
+    "pdfSecurity": "Безопасность PDF",
+    "mergeSplit": "Объединение и разделение PDF",
     "legal": "Правовая информация",
     "termsAndConditions": "Условия предоставления услуг",
     "privacyPolicy": "Политика приватности",

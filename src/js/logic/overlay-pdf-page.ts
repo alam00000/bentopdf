@@ -8,6 +8,8 @@ import {
 import { icons, createIcons } from 'lucide';
 import type { OverlayPdfState, QpdfInstanceExtended } from '@/types';
 
+import { trText, onPageReady } from '../i18n/i18n.js';
+
 const pageState: OverlayPdfState = {
   baseFile: null,
   overlayFile: null,
@@ -119,7 +121,7 @@ async function processOverlay() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = 'Initializing PDF engine...';
+  if (loaderText) loaderText.textContent = trText('Initializing PDF engine...');
 
   const inputPath = '/input_base.pdf';
   const overlayPath = '/input_overlay.pdf';
@@ -129,7 +131,7 @@ async function processOverlay() {
   try {
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = 'Reading files...';
+    if (loaderText) loaderText.textContent = trText('Reading files...');
 
     const baseBuffer = await readFileAsArrayBuffer(pageState.baseFile);
     const overlayBuffer = await readFileAsArrayBuffer(pageState.overlayFile);
@@ -155,7 +157,9 @@ async function processOverlay() {
     const shouldRepeat = repeatCheckbox?.checked;
 
     if (loaderText)
-      loaderText.textContent = `Applying ${mode.replace('--', '')}...`;
+      loaderText.textContent = trText('Applying {{replace}}...', {
+        replace: mode.replace('--', ''),
+      });
 
     const args = [inputPath, mode, overlayPath];
 
@@ -173,7 +177,7 @@ async function processOverlay() {
 
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
     if (!outputFile || outputFile.length === 0) {
-      throw new Error('Processing produced an empty file.');
+      throw new Error(trText('Processing produced an empty file.'));
     }
 
     const modeLabel = mode.replace('--', '');
@@ -184,7 +188,7 @@ async function processOverlay() {
 
     showAlert(
       'Success',
-      `PDF ${modeLabel} applied successfully.`,
+      trText('PDF {{modeLabel}} applied successfully.', { modeLabel }),
       'success',
       () => {
         resetState();
@@ -194,7 +198,9 @@ async function processOverlay() {
     console.error('Overlay/underlay error:', error);
     showAlert(
       'Processing Failed',
-      `An error occurred: ${error instanceof Error ? error.message : 'Unknown error'}.`
+      trText('An error occurred: {{error}}.', {
+        error: error instanceof Error ? error.message : trText('Unknown error'),
+      })
     );
   } finally {
     try {
@@ -247,7 +253,7 @@ function setupDropZone(
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+onPageReady(() => {
   const baseDropZone = document.getElementById('base-drop-zone');
   const baseInput = document.getElementById(
     'base-file-input'

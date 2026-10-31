@@ -70,8 +70,22 @@ The commercial license covers BentoPDF's own code. If you configure and use AGPL
 | Self-hosting rights           | ✅             |
 | Lifetime updates              | ✅             |
 | Remove branding (Simple Mode) | ✅             |
+| Hyper Compress (bundled)      | ✅             |
 | Commercial support            | ✅ (via email) |
 | Priority feature requests     | ✅             |
+
+## Bundled Components
+
+**Building on BentoPDF? Hyper Compress is included.** The BentoPDF commercial license includes [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress) as a bundled component, so you don't need a separate Hyper Compress license to use it inside BentoPDF.
+
+You may use a bundled component only through BentoPDF's own tools, as part of the BentoPDF application you deploy, including your branded or modified version of BentoPDF. You may not:
+
+- call it from your own code through an API, SDK, command line, or headless or server process;
+- separate, repackage or sublicense it, or use it in other software;
+- offer a product or service whose main purpose is what the bundled component does, such as a compression-only app or website;
+- modify the bundled component itself.
+
+Any other use requires a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing), from $99/year. [Kura](https://github.com/alam00000/bentopdf-kura) is not a bundled component and is always licensed separately, with [commercial licenses](https://www.bentopdf.com/kura#pricing) from $99/year.
 
 ## FAQ
 
@@ -82,6 +96,10 @@ No. BentoPDF does not use license keys. The commercial license grants you legal 
 ### Can I use BentoPDF in my SaaS product?
 
 Yes, with a commercial license. Without it, you must comply with AGPL-3.0, which requires you to make your full source code available to users.
+
+### Does the commercial license cover Hyper Compress or Kura?
+
+Hyper Compress, yes, when you use it through BentoPDF. It is included as a [bundled component](#bundled-components). Using the engine on its own, or inside other software, needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing), from $99/year. Kura is not included and is licensed separately, from [$99/year](https://www.bentopdf.com/kura#pricing).
 
 ### What about the AGPL components?
 

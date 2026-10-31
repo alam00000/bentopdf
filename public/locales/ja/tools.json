@@ -27,7 +27,22 @@
     "name": "PDFの結合",
     "subtitle": "複数のPDFを1つのファイルに結合します。しおりを保存します。",
     "retainPageLabels": "各ファイルの元のページラベルを保持する",
-    "retainPageLabelsHint": "オフ（デフォルト）: マージされたPDFは1–Nの自然なページ番号を使用します。オン: 各ファイルの元のページラベルが保持されます（ラベルが重複する可能性があります）。"
+    "retainPageLabelsHint": "オフ（デフォルト）: マージされたPDFは1–Nの自然なページ番号を使用します。オン: 各ファイルの元のページラベルが保持されます（ラベルが重複する可能性があります）。",
+    "removeDuplicateFonts": "重複したフォントを削除",
+    "alert": {
+      "thumbnailError": "ページのサムネイルを表示できませんでした",
+      "noSelection": "結合するファイルまたはページが選択されていません。",
+      "mergeSuccess": "PDFを結合しました。",
+      "mergeFailed": "PDFの結合に失敗しました。",
+      "mergeError": "PDFの結合に失敗しました。すべてのファイルが有効で、パスワードで保護されていないことを確認してください。",
+      "workerError": "結合処理中に予期しないエラーが発生しました。",
+      "loadError": "1つ以上のPDFファイルを読み込めませんでした"
+    },
+    "loader": {
+      "renderingPreviews": "ページのプレビューを生成中...",
+      "merging": "PDFを結合中...",
+      "loadingDocuments": "PDFドキュメントを読み込み中..."
+    }
   },
   "splitPdf": {
     "name": "PDFの分割",
@@ -91,7 +106,7 @@
     "tipRedoZ": "やり直す (⇧⌘Z)",
     "tipFileDetails": "ファイル情報",
     "tipEditExistingContent": "既存のコンテンツを編集",
-    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "編集ツールの対象範囲 — 要素の多いページでは範囲を絞り込みます",
+    "tipWhatTheEditToolTouchesNarrowTheScopeOnBus": "編集ツールの対象範囲（要素の多いページでは範囲を絞り込みます）",
     "tipClickThePageToAddATextBox": "ページをクリックしてテキストボックスを追加",
     "tipSpellCheckLanguage": "スペルチェックの言語",
     "tipFindAndReplace": "検索と置換",
@@ -385,7 +400,7 @@
     "subtitle": "1つ以上のHEIC画像からPDFを作成します。"
   },
   "tiffToPdf": {
-    "name": "TIFFからPDFへ",
+    "name": "TIFFからPDF",
     "subtitle": "1つ以上の TIFF 画像からPDFを作成します。"
   },
   "textToPdf": {
@@ -503,11 +518,12 @@
       "noFile": "ファイルがありません",
       "noFileExplanation": "まずはPDFファイルをアップロードしてください。",
       "conversionSuccess": "PDFからTIFFへの変換に成功しました。",
-      "conversionError": "PDFからTIFFへの変換に失敗しました。ファイルが破損している可能性があります。"
+      "conversionError": "PDFからTIFFへの変換に失敗しました。ファイルが破損している可能性があります。",
+      "conversionOutOfMemory": "変換中にブラウザのメモリが不足しました。DPIを下げるか、マルチページTIFFのオプションをオフにしてページを1つずつ変換してください。"
     }
   },
   "pdfToCbz": {
-    "name": "PDFからCBZへ",
+    "name": "PDFからCBZ",
     "subtitle": "PDFをコミックリーダー用のCBZ (Comic Book Archive)ファイルに変換します。",
     "imageFormat": "画像フォーマット",
     "quality": "画質",
@@ -613,7 +629,7 @@
     "multiLanguageSupportDescription": "複数言語が混在する文書のために複数の言語を選択します。"
   },
   "alternateMerge": {
-    "name": "代替ページと混合ページ",
+    "name": "ページの交互結合と混合",
     "subtitle": "各PDFのページを交互に配置してPDFを結合します。ブックマークを保存します。",
     "retainPageLabels": "各ファイルの元のページラベルを保持する",
     "retainPageLabelsHint": "オフ（デフォルト）: マージされたPDFは1–Nの自然なページ番号を使用します。オン: 各ファイルの元のページラベルが保持されます（ラベルが重複する可能性があります）。"
@@ -886,7 +902,7 @@
     "convertButton": "PDFに変換"
   },
   "mobiToPdf": {
-    "name": "MOBIからPDFへの変換",
+    "name": "MOBIからPDF",
     "subtitle": "MOBI電子書籍をPDF形式に変換します。複数のファイルをサポートします。",
     "acceptedFormats": "MOBIファイル",
     "convertButton": "PDFに変換"
@@ -928,7 +944,7 @@
     "convertButton": "PDFに変換"
   },
   "pagesToPdf": {
-    "name": "PagesをPDFに変換",
+    "name": "PagesからPDF",
     "subtitle": "Apple PagesドキュメントをPDF形式に変換します。複数のファイルをサポートします。",
     "acceptedFormats": "Pagesファイル",
     "convertButton": "PDFに変換"
@@ -958,7 +974,7 @@
     "convertButton": "PDFに変換"
   },
   "vsdToPdf": {
-    "name": "VSDからPDFへのファイル変換",
+    "name": "VSDからPDF",
     "subtitle": "Microsoft Visio(VSD, VSDX)ファイルをPDF形式に変換します。複数のファイルをサポートします。",
     "acceptedFormats": "VSD, VSDXファイル",
     "convertButton": "PDFに変換"
@@ -990,8 +1006,7 @@
     "subtitle": "PDFファイルからテキストを抽出し、プレーンテキスト (.txt) として保存します。複数のファイルをサポートします。",
     "noteLabel": "注:",
     "noteText": "このツールはデジタルで作成されたPDFのみで動作します。スキャン文書や画像ベースのPDFには、代わりにOCR PDFツールを使用してください。",
-    "convertButton": "テキストの抽出",
-    "note": "このツールはデジタルで作成されたPDFでのみ機能します。スキャンされたドキュメントまたは画像ベースのPDFの場合は、代わりにOCR PDFツールを使用してください。"
+    "convertButton": "テキストの抽出"
   },
   "digitalSignPdf": {
     "name": "PDFへの電子署名",
@@ -1085,7 +1100,7 @@
     "subtitle": "PDFファイルのデジタル署名を検証します。証明書の有効性を確認、署名者の詳細を表示し、文書の整合性を確認します。すべての処理はブラウザ内で行われます。"
   },
   "timestampPdf": {
-    "name": "タイムスタンプPDF",
+    "name": "PDFのタイムスタンプ",
     "pageTitle": "タイムスタンプPDFオンライン無料 - RFC 3161ドキュメント タイムスタンプ | BentoPDF",
     "subtitle": "信頼できる Time Stamp Authority(TSA) サーバーを使用して、RFC 3161ドキュメントのタイムスタンプをPDFに追加します。文書が特定の時点で存在していたことを証明します。証明書は必要ありません。",
     "tsaSectionTitle": "タイムスタンプサーバー(TSA)",
@@ -1189,7 +1204,7 @@
       "workerError": "ワーカーエラー: {{message}}",
       "alternateMergeWorkerError": "交互マージワーカーエラー: {{message}}",
       "noPdfFilesUploaded": "PDF入力ノードにPDFファイルがアップロードされていません",
-      "failedToLoadFile": "\"{{file}}\"を読み込めませんでした — ファイルが破損している可能性があります",
+      "failedToLoadFile": "\"{{file}}\"を読み込めませんでした。ファイルが破損している可能性があります",
       "noImagesUploaded": "画像入力ノードに画像がアップロードされていません",
       "noWordDocsUploaded": "Word入力ノードにドキュメントがアップロードされていません",
       "noExcelUploaded": "Excel入力ノードにスプレッドシートがアップロードされていません",
@@ -1302,11 +1317,11 @@
     "faqPrivacyAnswer": "絶対に！すべての処理はブラウザ内で行われます。ファイルがデバイスの外に出ることはなく、完全なプライバシーが確保されます。"
   },
   "unlockPdf": {
-    "name": "PDFの復号化",
+    "name": "PDFのロック解除",
     "subtitle": "パスワード保護を解除してPDFのロックを解除します。"
   },
   "protectPdf": {
-    "name": "PDFの暗号化",
+    "name": "PDFの保護",
     "subtitle": "パスワードを追加してPDFをロックします。"
   }
 }

@@ -18,7 +18,7 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/src/pages/change-text-color",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/change-text-color",
       "destination": "/:locale/text-color",
       "permanent": true
     },
@@ -38,7 +38,7 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/src/pages/pdf-to-docx",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/pdf-to-docx",
       "destination": "/:locale/pdf-to-word",
       "permanent": true
     },
@@ -58,7 +58,7 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/src/pages/decrypt-pdf",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/decrypt-pdf",
       "destination": "/:locale/unlock-pdf",
       "permanent": true
     },
@@ -78,7 +78,7 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/src/pages/encrypt-pdf",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/encrypt-pdf",
       "destination": "/:locale/protect-pdf",
       "permanent": true
     },
@@ -101,7 +101,7 @@
     { "source": "/ua/:path*", "destination": "/uk/:path*", "permanent": true },
     { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/src/pages/:page",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/:page",
       "destination": "/:locale/:page",
       "permanent": true
     },
@@ -111,22 +111,22 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/change-text-color",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/change-text-color",
       "destination": "/:locale/text-color",
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/pdf-to-docx",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/pdf-to-docx",
       "destination": "/:locale/pdf-to-word",
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/decrypt-pdf",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/decrypt-pdf",
       "destination": "/:locale/unlock-pdf",
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/encrypt-pdf",
+      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/encrypt-pdf",
       "destination": "/:locale/protect-pdf",
       "permanent": true
     },
@@ -151,6 +151,12 @@
       "permanent": true
     },
     { "source": "/tools/:page", "destination": "/:page", "permanent": true },
+    { "source": "/tools", "destination": "/", "permanent": true },
+    {
+      "source": "/:locale(ar|be|ca|da|de|es|fa|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/tools",
+      "destination": "/:locale",
+      "permanent": true
+    },
     {
       "source": "/getting-started",
       "destination": "/docs/getting-started",
@@ -212,7 +218,11 @@
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
     },
     {
-      "source": "/(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/(.*)",
+      "source": "/api/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    },
+    {
+      "source": "/(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
     },
     {

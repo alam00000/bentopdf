@@ -15,6 +15,8 @@ import type { CropPercentages } from '@/types';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import '../utils/setup-pdf-worker.js';
 
+import { trText } from '../i18n/i18n.js';
+
 const cropperState: {
   pdfDoc: PDFDocumentProxy | null;
   currentPageNum: number;
@@ -54,7 +56,7 @@ function saveCurrentCrop() {
  */
 
 async function displayPageAsImage(num: number) {
-  showLoader(`Rendering Page ${num}...`);
+  showLoader(trText('Rendering Page {{num}}...', { num }));
 
   try {
     const page = await cropperState.pdfDoc.getPage(num);
@@ -130,8 +132,13 @@ async function changePage(offset: number) {
 }
 
 function updatePageInfo() {
-  document.getElementById('page-info').textContent =
-    `Page ${cropperState.currentPageNum} of ${cropperState.pdfDoc.numPages}`;
+  document.getElementById('page-info').textContent = trText(
+    'Page {{currentPageNum}} of {{numPages}}',
+    {
+      currentPageNum: cropperState.currentPageNum,
+      numPages: cropperState.pdfDoc.numPages,
+    }
+  );
 }
 
 function enableControls() {
@@ -216,7 +223,12 @@ async function performFlatteningCrop(
 
   for (let i = 0; i < totalPages; i++) {
     const pageNum = i + 1;
-    showLoader(`Processing page ${pageNum} of ${totalPages}...`);
+    showLoader(
+      trText('Processing page {{pageNum}} of {{totalPages}}...', {
+        pageNum,
+        totalPages,
+      })
+    );
 
     if (cropData[pageNum]) {
       const page = await cropperState.pdfDoc.getPage(pageNum);

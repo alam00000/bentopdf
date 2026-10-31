@@ -9,7 +9,8 @@
     "openMainMenu": "Mở menu chính",
     "language": "Ngôn ngữ",
     "searchLanguage": "Tìm ngôn ngữ…",
-    "noLanguagesFound": "Không tìm thấy ngôn ngữ"
+    "noLanguagesFound": "Không tìm thấy ngôn ngữ",
+    "breadcrumb": "Đường dẫn điều hướng"
   },
   "donation": {
     "message": "Bạn yêu thích BentoPDF? Hãy giúp chúng tôi giữ nó miễn phí và mã nguồn mở!",
@@ -236,6 +237,10 @@
     "aboutUs": "Về chúng tôi",
     "faqLink": "FAQ",
     "contactUs": "Liên hệ",
+    "tools": "Công cụ",
+    "pdfConverter": "Chuyển đổi PDF",
+    "pdfSecurity": "Bảo mật PDF",
+    "mergeSplit": "Gộp và tách PDF",
     "legal": "Pháp lý",
     "termsAndConditions": "Điều khoản và Điều kiện",
     "privacyPolicy": "Chính sách Bảo mật",
