@@ -1,0 +1,122 @@
+{
+  "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+  "version": "v1.1.0",
+  "entity": {
+    "type": "organisation",
+    "role": "owner",
+    "name": "BentoPDF",
+    "email": "contact@bentopdf.com",
+    "description": "BentoPDF is building an independent, open source document technology ecosystem. Our goal is to replace the external dependencies behind PDF processing and document understanding with engines we develop and maintain ourselves: Kura for PDF processing, standards and preflight, Hyper Compress for compression, and BentoParse, a lightweight document understanding engine that runs fully offline on ordinary CPUs (not yet public). BentoPDF, our browser based PDF toolkit, is the application through which these engines reach users.\n\nOur software runs locally, including in the browser through WebAssembly, so documents never have to leave the user's device. BentoPDF, Kura and Hyper Compress are licensed under AGPL-3.0, and the work is sustained by commercial licenses sold to companies that embed them in closed-source products, alongside community sponsorships.",
+    "webpageUrl": {
+      "url": "https://www.bentopdf.com",
+      "wellKnown": "https://www.bentopdf.com/.well-known/funding-manifest-urls"
+    }
+  },
+  "projects": [
+    {
+      "guid": "bentopdf",
+      "name": "BentoPDF",
+      "description": "BentoPDF is a privacy first PDF toolkit with 100+ tools that run entirely in the browser: merge, split, compress, edit, sign, OCR, convert and more, with no uploads, no accounts and no task limits. Files are processed on the user's device through WebAssembly, and BentoPDF is the application through which our own engines reach users. Hyper Compress already powers its compression tool.\n\nIt can be self hosted with a single Docker command, including in air gapped environments, which makes it a fit for people and organisations that cannot send documents to third party servers. BentoPDF has over 15 million Docker downloads, more than 16,000 GitHub stars and 1,400 forks, and its interface is available in 24 languages.",
+      "webpageUrl": {
+        "url": "https://www.bentopdf.com",
+        "wellKnown": "https://www.bentopdf.com/.well-known/funding-manifest-urls"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/alam00000/bentopdf"
+      },
+      "licenses": ["spdx:AGPL-3.0-only"],
+      "tags": [
+        "pdf",
+        "privacy",
+        "productivity",
+        "document-processing",
+        "webassembly",
+        "self-hosted",
+        "security"
+      ]
+    },
+    {
+      "guid": "kura",
+      "name": "Kura",
+      "description": "Kura is an independent engine for PDF processing, conversion, repair, archival, standards validation and print preflight. One engine covers all eleven PDF/A levels, PDF/UA-1 and UA-2, PDF/X-1a through X-6, PDF/E-1 and PDF/VT, plus Factur-X, ZUGFeRD, XRechnung and Order-X e-invoices. It repairs what is wrong, embeds what is missing, and runs 396 bundled preflight profiles covering print checks such as hairlines, rich black, image resolution, overprint, transparency and fonts.\n\nWhere existing tools split this work across renderers, converters and separate validators, Kura brings it into one engine that ships as a CLI, a C library, an npm package, a Docker image and a WebAssembly build that runs entirely in the browser.",
+      "webpageUrl": {
+        "url": "https://www.bentopdf.com/kura",
+        "wellKnown": "https://www.bentopdf.com/.well-known/funding-manifest-urls"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/alam00000/bentopdf-kura",
+        "wellKnown": "https://github.com/alam00000/bentopdf-kura/blob/main/.well-known/funding-manifest-urls"
+      },
+      "licenses": ["spdx:AGPL-3.0-only"],
+      "tags": [
+        "pdf",
+        "pdf-a",
+        "accessibility",
+        "archival",
+        "preflight",
+        "e-invoicing",
+        "publishing",
+        "webassembly"
+      ]
+    },
+    {
+      "guid": "hyper-compress",
+      "name": "Hyper Compress",
+      "description": "Hyper Compress is a PDF compression engine built around verified transformations and document fidelity. It offers a true lossless mode and visual preserving presets, verifies every change that can affect how a page looks and rolls it back when the check fails, and never returns a file larger than the original.\n\nBenchmarked against Ghostscript, MuPDF and qpdf on 2,104 real world PDFs (27,352 engine runs), it achieved median size reductions of 22.4% in lossless mode and 52.3% at the 300 DPI preset, with the lowest corruption rate of any engine measured. It ships as a CLI, Node SDK, C library, self hosted service and a WebAssembly build that runs in the browser.",
+      "webpageUrl": {
+        "url": "https://www.bentopdf.com/hyper-compress",
+        "wellKnown": "https://www.bentopdf.com/.well-known/funding-manifest-urls"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/alam00000/bentopdf-hyper-compress",
+        "wellKnown": "https://github.com/alam00000/bentopdf-hyper-compress/blob/main/.well-known/funding-manifest-urls"
+      },
+      "licenses": ["spdx:AGPL-3.0-only"],
+      "tags": [
+        "pdf",
+        "compression",
+        "document-processing",
+        "webassembly",
+        "storage",
+        "privacy"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "bank-transfer",
+        "type": "bank",
+        "address": "",
+        "description": "International bank transfer. Account details are shared privately on request."
+      },
+      {
+        "guid": "github-sponsors",
+        "type": "payment-provider",
+        "address": "https://github.com/sponsors/alam00000"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "core-development",
+        "status": "active",
+        "name": "Core development and maintenance",
+        "description": "Funds sustained engineering time on Kura, Hyper Compress and BentoParse, and on BentoPDF as the application that brings them to users: new engine capabilities, standards coverage, security and bug fixes, benchmarks, WebAssembly builds, and reviewing issues and pull requests.",
+        "amount": 50000,
+        "currency": "USD",
+        "frequency": "yearly",
+        "channels": ["bank-transfer"]
+      },
+      {
+        "guid": "community-sponsorship",
+        "status": "active",
+        "name": "Community sponsorship",
+        "description": "Any amount, one-time or recurring, through GitHub Sponsors.",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": ["github-sponsors"]
+      }
+    ]
+  }
+}
