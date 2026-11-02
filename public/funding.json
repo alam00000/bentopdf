@@ -22,7 +22,8 @@
         "wellKnown": "https://www.bentopdf.com/.well-known/funding-manifest-urls"
       },
       "repositoryUrl": {
-        "url": "https://github.com/alam00000/bentopdf"
+        "url": "https://github.com/alam00000/bentopdf",
+        "wellKnown": "https://github.com/alam00000/bentopdf/raw/main/.well-known/funding-manifest-urls"
       },
       "licenses": ["spdx:AGPL-3.0-only"],
       "tags": [
@@ -45,7 +46,7 @@
       },
       "repositoryUrl": {
         "url": "https://github.com/alam00000/bentopdf-kura",
-        "wellKnown": "https://github.com/alam00000/bentopdf-kura/blob/main/.well-known/funding-manifest-urls"
+        "wellKnown": "https://github.com/alam00000/bentopdf-kura/raw/main/.well-known/funding-manifest-urls"
       },
       "licenses": ["spdx:AGPL-3.0-only"],
       "tags": [
@@ -69,7 +70,7 @@
       },
       "repositoryUrl": {
         "url": "https://github.com/alam00000/bentopdf-hyper-compress",
-        "wellKnown": "https://github.com/alam00000/bentopdf-hyper-compress/blob/main/.well-known/funding-manifest-urls"
+        "wellKnown": "https://github.com/alam00000/bentopdf-hyper-compress/raw/main/.well-known/funding-manifest-urls"
       },
       "licenses": ["spdx:AGPL-3.0-only"],
       "tags": [
