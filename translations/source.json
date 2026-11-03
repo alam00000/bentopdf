@@ -17105,6 +17105,16 @@
     ],
     "pageCount": 1
   },
+  "65b2261a26c5": {
+    "text": "<1>Building on BentoPDF?</1> Hyper Compress is included with the <2>BentoPDF commercial license</2> when you use it through BentoPDF's own tools in an eligible product, for companies under US$1 million in revenue and funding. These tiers are for using the engine directly, inside your own software, or above that size.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "hyper-compress"
+    ],
+    "pageCount": 1
+  },
   "65e0f54619a3": {
     "text": "FB2 to PDF Online Free - FB2 to PDF Tool | BentoPDF",
     "tags": [
@@ -29599,16 +29609,6 @@
     ],
     "pageCount": 1
   },
-  "ac4a333c4b22": {
-    "text": "<1>Building on BentoPDF?</1> Hyper Compress is included with the <2>BentoPDF commercial license</2> when you use it through BentoPDF's own tools. These tiers are for using the engine directly or inside your own software.",
-    "tags": [
-      "p"
-    ],
-    "pages": [
-      "hyper-compress"
-    ],
-    "pageCount": 1
-  },
   "ac6a57619b51": {
     "text": "Usually not. It deletes the font programs the PDF relies on, and if the reader can't substitute a matching font the text can render incorrectly or not at all. Leave it unchecked unless you have a specific reason and have tested the result.",
     "tags": [
@@ -39437,16 +39437,6 @@
     ],
     "pageCount": 1
   },
-  "e71886eedb21": {
-    "text": "Yes, when you use it through BentoPDF. The <1>BentoPDF commercial license</1> includes Hyper Compress as a bundled component, so you can use it through BentoPDF's own tools, as part of the BentoPDF application you deploy. Using the engine directly, through an API, SDK, command line or server process, or inside other software, needs a Hyper Compress license. A Hyper Compress license does not cover BentoPDF.",
-    "tags": [
-      "p"
-    ],
-    "pages": [
-      "hyper-compress"
-    ],
-    "pageCount": 1
-  },
   "e7567c6ede17": {
     "text": "Watermark Image",
     "tags": [
@@ -43370,6 +43360,16 @@
     ],
     "pages": [
       "add-stamps"
+    ],
+    "pageCount": 1
+  },
+  "fe29dd5f87d7": {
+    "text": "Yes, through BentoPDF's own tools in an eligible product. The <1>BentoPDF commercial license</1> includes Hyper Compress as a bundled component for companies under US$1 million in revenue and funding, in general PDF toolkits, running on the end user's device. Using the engine directly, through an API, SDK, command line or server process, inside other software, in a compression product, or above that size needs a Hyper Compress license. A Hyper Compress license does not cover BentoPDF.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "hyper-compress"
     ],
     "pageCount": 1
   },
