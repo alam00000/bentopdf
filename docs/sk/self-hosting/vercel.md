@@ -4,13 +4,13 @@
 
 ## Nasadenie jedným kliknutím
 
-[![Nasadiť cez Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Nasadiť cez Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Ručné nasadenie
 
 ### Krok 1: Vytvorte fork repozitára
 
-Vytvorte fork [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) do svojho účtu GitHub.
+Vytvorte fork [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) do svojho účtu GitHub.
 
 ### Krok 2: Importujte do Vercel
 
@@ -32,7 +32,7 @@ V prípade potreby pridajte:
 | Premenná                | Popis                                                           |
 | ----------------------- | --------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Nastavte na `true` pre minimálne rozhranie                      |
-| `VITE_BRAND_NAME`       | Vlastný názov značky (nahrádza „BentoPDF“)                      |
+| `VITE_BRAND_NAME`       | Vlastný názov značky (nahrádza „Pixel PDF“)                      |
 | `VITE_BRAND_LOGO`       | Cesta k logu relatívne k `public/` (napr. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Vlastný text päty / autorských práv                             |
 | `VITE_DEFAULT_LANGUAGE` | Predvolený jazyk rozhrania (napr. `fr`, `de`, `es`)             |
@@ -51,7 +51,7 @@ Kliknite na „Deploy“ a počkajte na dokončenie zostavenia.
 ## Obmedzenia
 
 ::: warning Veľké súbory
-Serverless funkcie Vercel majú limit 50 MB. Keďže BentoPDF je statický web, nemalo by vás to ovplyvniť, ale WASM moduly sú veľké (spolu ~100 MB). Uistite sa, že sa poskytujú z priečinka `/public`.
+Serverless funkcie Vercel majú limit 50 MB. Keďže Pixel PDF je statický web, nemalo by vás to ovplyvniť, ale WASM moduly sú veľké (spolu ~100 MB). Uistite sa, že sa poskytujú z priečinka `/public`.
 :::
 
 ## Riešenie problémov

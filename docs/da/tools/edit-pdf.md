@@ -5,7 +5,7 @@ description: Annotér, fremhæv, redigér ud (redaktion), tilføj figurer og bil
 
 # PDF-editor
 
-BentoPDF's PDF-editor lader dig annotere, fremhæve, redigere ud, kommentere, tilføje figurer og billeder og søge i dine PDF'er. Den indlæser en fuldt udstyret editor direkte i din browser uden serveruploads.
+Pixel PDF's PDF-editor lader dig annotere, fremhæve, redigere ud, kommentere, tilføje figurer og billeder og søge i dine PDF'er. Den indlæser en fuldt udstyret editor direkte i din browser uden serveruploads.
 
 ## Sådan fungerer det
 

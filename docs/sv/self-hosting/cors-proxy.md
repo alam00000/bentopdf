@@ -2,7 +2,7 @@
 
 Verktyget för digitala signaturer använder en CORS-proxy för att hämta utfärdarcertifikat från externa certifikatutfärdare (CA). Det behövs eftersom många CA-servrar inte inkluderar CORS-rubriker i sina svar, vilket hindrar direkt hämtning från webbläsaren.
 
-Dessutom serverar många CA-servrar certifikat över vanlig HTTP. När din BentoPDF-instans hostas över HTTPS blockerar webbläsare dessa HTTP-förfrågningar (policy för blandat innehåll). CORS-proxyn löser båda problemen genom att dirigera förfrågningar via en HTTPS-ändpunkt med rätt rubriker.
+Dessutom serverar många CA-servrar certifikat över vanlig HTTP. När din Pixel PDF-instans hostas över HTTPS blockerar webbläsare dessa HTTP-förfrågningar (policy för blandat innehåll). CORS-proxyn löser båda problemen genom att dirigera förfrågningar via en HTTPS-ändpunkt med rätt rubriker.
 
 ## Så fungerar det
 
@@ -15,7 +15,7 @@ När du signerar en PDF med ett certifikat:
 
 ## Självhosta CORS-proxyn
 
-Om du självhostar BentoPDF måste du driftsätta din egen CORS-proxy för att digitala signaturer ska fungera med certifikat som kräver hämtning av kedjan.
+Om du självhostar Pixel PDF måste du driftsätta din egen CORS-proxy för att digitala signaturer ska fungera med certifikat som kräver hämtning av kedjan.
 
 ### Alternativ 1: Cloudflare Workers (rekommenderas)
 
@@ -31,11 +31,11 @@ Om du självhostar BentoPDF måste du driftsätta din egen CORS-proxy för att d
    wrangler login
    ```
 
-3. **Klona BentoPDF och uppdatera tillåtna ursprung**:
+3. **Klona Pixel PDF och uppdatera tillåtna ursprung**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    Öppna `cors-proxy-worker.js` och ändra arrayen `ALLOWED_ORIGINS` till din domän:
@@ -48,7 +48,7 @@ Om du självhostar BentoPDF måste du driftsätta din egen CORS-proxy för att d
    ```
 
    ::: warning Viktigt
-   Utan den här ändringen avvisar proxyn alla förfrågningar från din webbplats med felet **403 Forbidden**. Standardinställningen tillåter bara förfrågningar från `bentopdf.com`.
+   Utan den här ändringen avvisar proxyn alla förfrågningar från din webbplats med felet **403 Forbidden**. Standardinställningen tillåter bara förfrågningar från `pixelpdf.com`.
    :::
 
 4. **Driftsätt proxyn**:
@@ -57,9 +57,9 @@ Om du självhostar BentoPDF måste du driftsätta din egen CORS-proxy för att d
    wrangler deploy
    ```
 
-   Anteckna din worker-URL (t.ex. `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Anteckna din worker-URL (t.ex. `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Bygg om BentoPDF med proxy-URL:en**:
+5. **Bygg om Pixel PDF med proxy-URL:en**:
 
    Om du använder Docker:
 
@@ -67,7 +67,7 @@ Om du självhostar BentoPDF måste du driftsätta din egen CORS-proxy för att d
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Om du bygger från källkod:

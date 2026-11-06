@@ -2,7 +2,7 @@
 
 تستخدم أداة التوقيع الرقمي وكيل CORS لجلب شهادات الجهات المُصدِرة من جهات إصدار الشهادات (CA) الخارجية. هذا ضروري لأن كثيرًا من خوادم CA لا تتضمن ترويسات CORS في استجاباتها، مما يمنع الجلب المباشر من المتصفح.
 
-إضافة إلى ذلك، تقدّم كثير من خوادم CA الشهادات عبر HTTP عادي. وعندما تكون نسخة BentoPDF لديك مستضافة عبر HTTPS، تحظر المتصفحات هذه الطلبات (سياسة المحتوى المختلط). يحل وكيل CORS المشكلتين بتوجيه الطلبات عبر نقطة HTTPS بترويسات صحيحة.
+إضافة إلى ذلك، تقدّم كثير من خوادم CA الشهادات عبر HTTP عادي. وعندما تكون نسخة Pixel PDF لديك مستضافة عبر HTTPS، تحظر المتصفحات هذه الطلبات (سياسة المحتوى المختلط). يحل وكيل CORS المشكلتين بتوجيه الطلبات عبر نقطة HTTPS بترويسات صحيحة.
 
 ## كيف يعمل
 
@@ -15,7 +15,7 @@
 
 ## استضافة وكيل CORS ذاتيًا
 
-إذا كنت تستضيف BentoPDF ذاتيًا، فستحتاج إلى نشر وكيل CORS خاص بك لكي تعمل التوقيعات الرقمية مع الشهادات التي تتطلب جلب السلسلة.
+إذا كنت تستضيف Pixel PDF ذاتيًا، فستحتاج إلى نشر وكيل CORS خاص بك لكي تعمل التوقيعات الرقمية مع الشهادات التي تتطلب جلب السلسلة.
 
 ### الخيار 1: Cloudflare Workers (موصى به)
 
@@ -31,11 +31,11 @@
    wrangler login
    ```
 
-3. **انسخ BentoPDF وحدّث المصادر المسموح بها**:
+3. **انسخ Pixel PDF وحدّث المصادر المسموح بها**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    افتح `cors-proxy-worker.js` وغيّر المصفوفة `ALLOWED_ORIGINS` إلى نطاقك:
@@ -48,7 +48,7 @@
    ```
 
    ::: warning مهم
-   بدون هذا التغيير، سيرفض الوكيل كل الطلبات القادمة من موقعك بخطأ **403 Forbidden**. الإعداد الافتراضي يسمح فقط بالطلبات القادمة من `bentopdf.com`.
+   بدون هذا التغيير، سيرفض الوكيل كل الطلبات القادمة من موقعك بخطأ **403 Forbidden**. الإعداد الافتراضي يسمح فقط بالطلبات القادمة من `pixelpdf.com`.
    :::
 
 4. **انشر الوكيل**:
@@ -57,9 +57,9 @@
    wrangler deploy
    ```
 
-   دوّن رابط الـ Worker الخاص بك (مثل `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   دوّن رابط الـ Worker الخاص بك (مثل `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **أعد بناء BentoPDF مع رابط الوكيل**:
+5. **أعد بناء Pixel PDF مع رابط الوكيل**:
 
    إذا كنت تستخدم Docker:
 
@@ -67,7 +67,7 @@
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    إذا كنت تبني من المصدر:

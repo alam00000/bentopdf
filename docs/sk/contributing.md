@@ -1,6 +1,6 @@
 # Prispievanie
 
-Ďakujeme, že máte záujem prispievať do BentoPDF! Táto príručka vám pomôže začať.
+Ďakujeme, že máte záujem prispievať do Pixel PDF! Táto príručka vám pomôže začať.
 
 ## Začíname
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Štruktúra projektu
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Pridajte záznamy do všetkých jazykových súborov v `public/locales/`:
 
 ## Preklady
 
-Pozrite si [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md), kde nájdete postup pridania nových jazykov.
+Pozrite si [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md), kde nájdete postup pridania nových jazykov.
 
 ## Licenčná zmluva prispievateľa
 
 Skôr než bude váš PR zlúčený, budete musieť podpísať našu CLA:
 
-- [Individuálna CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Firemná CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individuálna CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Firemná CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Pomoc
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Komunita na Discorde](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licencia
 
-BentoPDF má duálnu licenciu:
+Pixel PDF má duálnu licenciu:
 
 - **AGPL-3.0** pre open-source projekty, v ktorých verejne zdieľate celý zdrojový kód
 - **Komerčná licencia** pre proprietárne aplikácie so zatvoreným zdrojovým kódom - [Získajte doživotnú licenciu za $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

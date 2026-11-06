@@ -36,7 +36,7 @@ Tidak ada opsi konfigurasi tambahan. Unggah formulir, isi, lalu unduh.
 
 ## Tips
 
-- Formulir XFA adalah format lama yang hanya didukung oleh beberapa penampil PDF. Jika Anda membuka PDF XFA di Chrome atau sebagian besar alat lain dan melihat halaman kosong, artinya penampil tersebut tidak mendukung XFA. Pengisi Formulir BentoPDF dan Firefox sama-sama menangani XFA dengan baik.
+- Formulir XFA adalah format lama yang hanya didukung oleh beberapa penampil PDF. Jika Anda membuka PDF XFA di Chrome atau sebagian besar alat lain dan melihat halaman kosong, artinya penampil tersebut tidak mendukung XFA. Pengisi Formulir Pixel PDF dan Firefox sama-sama menangani XFA dengan baik.
 - Untuk PDF tanpa kolom formulir, gunakan alat [Buat Formulir PDF](./form-creator) untuk menambahkan kolom terlebih dahulu, lalu isi di sini.
 - Penampil secara otomatis menyesuaikan ukurannya dengan dimensi halaman PDF.
 

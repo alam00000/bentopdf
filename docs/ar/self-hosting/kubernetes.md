@@ -10,24 +10,24 @@
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> تتضمن صور nginx الرسمية لـ BentoPDF هذه الترويسات. في Kubernetes، **تُعد وحدات تحكم Ingress/Gateway أيضًا وكلاء عكسيين**، لذا تأكد من الحفاظ على هذه الترويسات (أو أضفها على الحافة).
+> تتضمن صور nginx الرسمية لـ Pixel PDF هذه الترويسات. في Kubernetes، **تُعد وحدات تحكم Ingress/Gateway أيضًا وكلاء عكسيين**، لذا تأكد من الحفاظ على هذه الترويسات (أو أضفها على الحافة).
 
 ## المتطلبات المسبقة
 
 - عنقود Kubernetes
 - Helm v3
-- صورة nginx لـ BentoPDF (مثل `ghcr.io/alam00000/bentopdf:<tag>`) تعمل على **المنفذ 8080**
+- صورة nginx لـ Pixel PDF (مثل `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`) تعمل على **المنفذ 8080**
 
 ## النشر باستخدام Helm
 
 ### التثبيت من هذا المستودع (مخطط محلي)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ helm upgrade --install bentopdf /path/to/bentopdf/chart \
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### إعادة توجيه المنفذ (اختبار سريع)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (اختياري)
@@ -78,15 +78,15 @@ ingress:
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### ما الذي "يجب" أن يحدث
 
-يضبط إعداد nginx في BentoPDF ترويسات الاستجابة المطلوبة. تقوم معظم وحدات تحكم Ingress/Gateway بـ**تمرير ترويسات استجابة المصدر كما هي دون تغيير**.
+يضبط إعداد nginx في Pixel PDF ترويسات الاستجابة المطلوبة. تقوم معظم وحدات تحكم Ingress/Gateway بـ**تمرير ترويسات استجابة المصدر كما هي دون تغيير**.
 
 ### ما الذي قد يعطّل ذلك
 
@@ -132,9 +132,9 @@ ingress:
 
 ## أخطاء نوع MIME لملفات `.mjs` (عارض توقيع PDF / ملء النماذج فارغ)
 
-إذا عرضت وحدة تحكم المتصفح `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` عند طلب `.mjs`، فإن وحدة تحكم Ingress/Gateway الموجودة أمام nginx الخاص بـ BentoPDF تستبدل ترويسة `Content-Type` الأصلية بـ `application/octet-stream`.
+إذا عرضت وحدة تحكم المتصفح `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` عند طلب `.mjs`، فإن وحدة تحكم Ingress/Gateway الموجودة أمام nginx الخاص بـ Pixel PDF تستبدل ترويسة `Content-Type` الأصلية بـ `application/octet-stream`.
 
-يقدّم nginx في صورة BentoPDF ملفات `.mjs` أصلًا بنوع `application/javascript`. الحل هو منع وحدة التحكم من حذفها أو استبدالها. بالنسبة إلى nginx-ingress:
+يقدّم nginx في صورة Pixel PDF ملفات `.mjs` أصلًا بنوع `application/javascript`. الحل هو منع وحدة التحكم من حذفها أو استبدالها. بالنسبة إلى nginx-ingress:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ httpRoute:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ data:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 معرّفات الأدوات هي عنوان URL للصفحة بدون `.html`: افتح أي أداة وانظر إلى العنوان (مثل `edit-pdf` و`merge-pdf` و`compress-pdf`). تُخفى الأدوات المعطلة من الصفحة الرئيسية والبحث والاختصارات ومنشئ سير العمل والوصول المباشر عبر URL. راجع [دليل Docker](/ar/self-hosting/docker#تعطيل-أدوات-محددة) للاطلاع على القائمة الكاملة للخيارات.

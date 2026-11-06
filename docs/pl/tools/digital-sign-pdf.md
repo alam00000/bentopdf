@@ -7,7 +7,7 @@ description: Dodawaj kryptograficzne podpisy cyfrowe do plików PDF za pomocą c
 
 Podpis cyfrowy to kryptograficzny dowód, że konkretna osoba podpisała dokument i że dokument nie został zmieniony od tego czasu. W przeciwieństwie do narysowanego podpisu (który jest tylko obrazem) podpis cyfrowy używa certyfikatów X.509 i standardów PKCS#7, aby zapewnić weryfikowalną autentyczność i integralność.
 
-BentoPDF nakłada podpisy cyfrowe w całości w Twojej przeglądarce. Twój klucz prywatny nigdy nie opuszcza urządzenia.
+Pixel PDF nakłada podpisy cyfrowe w całości w Twojej przeglądarce. Twój klucz prywatny nigdy nie opuszcza urządzenia.
 
 ## Jak to działa
 

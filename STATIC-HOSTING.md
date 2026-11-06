@@ -1,72 +1,72 @@
-# Hosting BentoPDF as a static website
+# Hosting Pixel PDF as a static website
 
-As an alternative to running BentoPDF locally or in a Docker container, you can easily host it as a set of static web pages. Here are a few examples:
+As an alternative to running Pixel PDF locally or in a Docker container, you can easily host it as a set of static web pages. Here are a few examples:
 
 ## Netlify
 
 ### Netlify - static deployment
 
-One of the simplest ways to host BentoPDF is to create a project at [Netlify](https://www.netlify.com/) and create a static deployment. You can accomplish this by first downloading the pre-built distribution file from our [GitHub releases](https://github.com/alam00000/bentopdf/releases). Each release includes a `dist-{version}.zip` file that contains all necessary files for self-hosting.
+One of the simplest ways to host Pixel PDF is to create a project at [Netlify](https://www.netlify.com/) and create a static deployment. You can accomplish this by first downloading the pre-built distribution file from our [GitHub releases](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/releases). Each release includes a `dist-{version}.zip` file that contains all necessary files for self-hosting.
 
-1. Go to [BentoPDF Releases](https://github.com/alam00000/bentopdf/releases)
+1. Go to [Pixel PDF Releases](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/releases)
 2. Download the latest `dist-{version}.zip` file
 3. Next, if you have not already done so, create a Netlify account and log in.
 4. From your Netlify projects page, add a new project and select "Deploy manually".
-5. Drag and drop to upload the BentoPDF zip file you downloaded in step 2.
-6. Your BentoPDF deployment should now be working! Optionally, you can go into Project Configuration and change the project name.
+5. Drag and drop to upload the Pixel PDF zip file you downloaded in step 2.
+6. Your Pixel PDF deployment should now be working! Optionally, you can go into Project Configuration and change the project name.
 
-When a new BentoPDF release becomes available, you will need to repeat steps 1-3, then go into "Deploys" and upload the new release.
+When a new Pixel PDF release becomes available, you will need to repeat steps 1-3, then go into "Deploys" and upload the new release.
 
 ### Netlify - dynamic deployment
 
-Alternatively, you can configure a Netlify project to automatically deploy whenever your BentoPDF is updated.
+Alternatively, you can configure a Netlify project to automatically deploy whenever your Pixel PDF is updated.
 
-1. If you have not done so already, create a fork of BentoPDF into your own GitHub account.
+1. If you have not done so already, create a fork of Pixel PDF into your own GitHub account.
 2. If you have not already done so, create a Netlify account and log in.
 3. From your Netlify projects page, add a new project and select 'Import an existing project'.
-4. Select the GitHub button, authorize Netlify, then choose where to install the integration. You can choose 'All repositories' or 'Only select repositories' and choose your BentoPDF fork.
+4. Select the GitHub button, authorize Netlify, then choose where to install the integration. You can choose 'All repositories' or 'Only select repositories' and choose your Pixel PDF fork.
 5. Select your repo and give it a project name. (add environment variables?) Then click the blue 'Deploy' button.
-6. The Netlify build & deploy process will kick off. Once it finishes, you can click on the provided URL `https://[projectname]/netlify.app` to view your deployment of BentoPDF.
+6. The Netlify build & deploy process will kick off. Once it finishes, you can click on the provided URL `https://[projectname]/netlify.app` to view your deployment of Pixel PDF.
 
-Whenever the BentoPDF source code is updated, you can sync the changes into your repo. This will kick off a new build and deploy within Netlify.
+Whenever the Pixel PDF source code is updated, you can sync the changes into your repo. This will kick off a new build and deploy within Netlify.
 
-If you want to use BentoPDF's simple mode, go into Deploy Settings, then Environment Variables, and Add a variable. Add `SIMPLE_MODE` and set it to `true`. You will need to manually kick a new build to get this to take effect.
+If you want to use Pixel PDF's simple mode, go into Deploy Settings, then Environment Variables, and Add a variable. Add `SIMPLE_MODE` and set it to `true`. You will need to manually kick a new build to get this to take effect.
 
 ## Vercel
 
 Vercel provides similar services to Netlify dynamic hosting.
 
-1. If you have not done so already, create a fork of BentoPDF into your own GitHub account.
+1. If you have not done so already, create a fork of Pixel PDF into your own GitHub account.
 2. If you have not already done so, create a Vercel account and log in.
 3. From your Vercel Overview page, select 'Add new project'
-4. Under 'Import Git Repository' and then choose 'Add GitHub Account'. Follow the prompts to authorize Vercel integration. You can choose 'All repositories' or 'Only select repositories' and choose your BentoPDF fork.
+4. Under 'Import Git Repository' and then choose 'Add GitHub Account'. Follow the prompts to authorize Vercel integration. You can choose 'All repositories' or 'Only select repositories' and choose your Pixel PDF fork.
 5. Select 'Import' to import the repo into Vercel.
 6. Under 'Framework Preset', select 'Vite' and save the settings.
-7. The Vercel build & deploy process will kick off. Once it finishes, you can click on the provided link to view your deployment of BentoPDF.
+7. The Vercel build & deploy process will kick off. Once it finishes, you can click on the provided link to view your deployment of Pixel PDF.
 
-Whenever the BentoPDF source code is updated, you can sync the changes into your repo. This will kick off a new build and deploy within Vercel.
+Whenever the Pixel PDF source code is updated, you can sync the changes into your repo. This will kick off a new build and deploy within Vercel.
 
-If you want to use BentoPDF's simple mode, go into Project Settings, then Environment Variables, and Create a new variable. Add `SIMPLE_MODE` and set it to `true`. You will need to redeploy to get this to take effect.
+If you want to use Pixel PDF's simple mode, go into Project Settings, then Environment Variables, and Create a new variable. Add `SIMPLE_MODE` and set it to `true`. You will need to redeploy to get this to take effect.
 
 ## GitHub Pages
 
-You can also host your own instance of BentoPDF using GitHub Pages. An advantage of this over the other options is you are able to do everything in GitHub without any third-party service.
+You can also host your own instance of Pixel PDF using GitHub Pages. An advantage of this over the other options is you are able to do everything in GitHub without any third-party service.
 
-1. If you have not done so already, create a fork of BentoPDF into your own GitHub account.
+1. If you have not done so already, create a fork of Pixel PDF into your own GitHub account.
 2. From your fork, go to `Settings->Pages`, and change the 'Source' to 'GitHub Actions'
-3. Go to `Settings->Secrets and Variables > Actions`, then select 'Variables', and add the repository variable `BASE_URL`. Set the value to `/bentopdf`. _If you've renamed the repo to something other than bentopdf, put that here_.
+3. Go to `Settings->Secrets and Variables > Actions`, then select 'Variables', and add the repository variable `BASE_URL`. Set the value to `/pixelpdf`. _If you've renamed the repo to something other than pixelpdf, put that here_.
 4. Go to `Actions` in the top menu, and select 'I understand' to enable Actions
-5. Within Actions, on the left, select 'Deploy static content to Pages', and then on the right select 'Run workflow', and in the dropdown, 'Run Workflow'. The action will now run to build BentoPDF and deploy it to GitHub Pages.
+5. Within Actions, on the left, select 'Deploy static content to Pages', and then on the right select 'Run workflow', and in the dropdown, 'Run Workflow'. The action will now run to build Pixel PDF and deploy it to GitHub Pages.
 
-When the build completes, you can find the website at `https://[your-github-username]/bentopdf`
+When the build completes, you can find the website at `https://[your-github-username]/pixelpdf`
 
-If/when you merge changes from the source BentoPDF repository, the build and deploy action will automatically be kicked off and the new version will be automatically deployed to GitHub Pages.
+If/when you merge changes from the source Pixel PDF repository, the build and deploy action will automatically be kicked off and the new version will be automatically deployed to GitHub Pages.
 
-> **Note:** GitHub Pages cannot set custom response headers, so a GitHub Pages deployment is served without BentoPDF's Content-Security-Policy and other security headers. If you need them, use one of the other hosts below or put a proxy or CDN that can add headers in front of your Pages site.
+> **Note:** GitHub Pages cannot set custom response headers, so a GitHub Pages deployment is served without Pixel PDF's Content-Security-Policy and other security headers. If you need them, use one of the other hosts below or put a proxy or CDN that can add headers in front of your Pages site.
 
 ## Security headers
 
-BentoPDF ships a Content-Security-Policy and other security headers for each static host:
+Pixel PDF ships a Content-Security-Policy and other security headers for each static host:
 
 - **Netlify and Cloudflare Pages** read `_headers` from the deployed folder. `npm run build` writes `dist/_headers` with `scripts/generate-security-headers.mjs`, so any `VITE_WASM_*`, `VITE_TESSERACT_*`, `VITE_CORS_PROXY_URL` or `VITE_OCR_FONT_BASE_URL` values you set at build time are allowed by the policy. If you add your own `public/_headers`, the build ships yours instead. The release `dist-{version}.zip` already contains it.
 - **Vercel** uses the `headers` block in `vercel.json`. It holds the default policy, so if you point the `VITE_*` URLs at your own servers, update the Content-Security-Policy there to match the `dist/_headers` your build produces.
@@ -75,12 +75,12 @@ BentoPDF ships a Content-Security-Policy and other security headers for each sta
 
 ## SEO and search engine indexing
 
-By default, every self-hosted BentoPDF build emits canonical URLs and an
-hreflang/`x-default` set that point back to `https://www.bentopdf.com`. This
+By default, every self-hosted Pixel PDF build emits canonical URLs and an
+hreflang/`x-default` set that point back to `https://www.pixelpdf.com`. This
 is intentional for two reasons:
 
 1. **It consolidates SEO signals to the official site** so your instance
-   doesn't compete with bentopdf.com on brand searches like "bentopdf".
+   doesn't compete with pixelpdf.com on brand searches like "pixelpdf".
 2. **It keeps your instance off public search results.** If you self-host
    on a small VPS, a home server, or anywhere with limited bandwidth, you
    probably don't want strangers from Google landing on it. With the
@@ -101,7 +101,7 @@ build with a custom `SITE_URL` marks every page `noindex`.
 
 - Docker:
   ```sh
-  docker build --build-arg SITE_URL=https://pdf.example.com --build-arg ALLOW_INDEXING=true -t bentopdf-self .
+  docker build --build-arg SITE_URL=https://pdf.example.com --build-arg ALLOW_INDEXING=true -t pixelpdf-self .
   ```
 - Netlify, Vercel, GitHub Pages, or any other static host: set `SITE_URL`
   and `ALLOW_INDEXING=true` in your project's environment variables and
@@ -113,17 +113,17 @@ build with a custom `SITE_URL` marks every page `noindex`.
 Set the runtime environment variable `ROBOTS_NOINDEX=true`. The container
 then sends an `X-Robots-Tag: noindex, follow` header with every response.
 The canonical link still points at the official site by default, so when
-crawlers do follow internal links they still see bentopdf.com as the
+crawlers do follow internal links they still see pixelpdf.com as the
 authoritative source. `ROBOTS_NOINDEX` only works in the Docker image; if
 you serve the files yourself, build with your own `SITE_URL` instead (see
 above).
 
 ```sh
-docker run -d -p 8080:8080 -e ROBOTS_NOINDEX=true ghcr.io/alam00000/bentopdf:latest
+docker run -d -p 8080:8080 -e ROBOTS_NOINDEX=true ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
 A build with your own `SITE_URL` and without `ALLOW_INDEXING=true` is
-already `noindex`, so it neither competes with bentopdf.com nor advertises
+already `noindex`, so it neither competes with pixelpdf.com nor advertises
 itself. `ROBOTS_NOINDEX=true` does the same at runtime for the prebuilt
 images.
 

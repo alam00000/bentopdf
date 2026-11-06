@@ -1,6 +1,6 @@
 # Mitwirken
 
-Danke für Ihr Interesse, zu BentoPDF beizutragen! Diese Anleitung hilft Ihnen beim Einstieg.
+Danke für Ihr Interesse, zu Pixel PDF beizutragen! Diese Anleitung hilft Ihnen beim Einstieg.
 
 ## Erste Schritte
 
@@ -14,8 +14,8 @@ Danke für Ihr Interesse, zu BentoPDF beizutragen! Diese Anleitung hilft Ihnen b
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Projektstruktur
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Fügen Sie Einträge in allen Sprachdateien unter `public/locales/` hinzu:
 
 ## Übersetzung
 
-In [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) erfahren Sie, wie Sie neue Sprachen hinzufügen.
+In [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) erfahren Sie, wie Sie neue Sprachen hinzufügen.
 
 ## Contributor License Agreement
 
 Bevor Ihr PR gemergt werden kann, müssen Sie unsere CLA unterzeichnen:
 
-- [Individual CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Corporate CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individual CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Corporate CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Hilfe erhalten
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discord-Community](https://discord.gg/Bgq3Ay3f2w)
 
 ## Lizenz
 
-BentoPDF ist dual lizenziert:
+Pixel PDF ist dual lizenziert:
 
 - **AGPL-3.0** für Open-Source-Projekte, bei denen Sie Ihren gesamten Quellcode öffentlich teilen
 - **Kommerzielle Lizenz** für proprietäre Anwendungen mit geschlossenem Quellcode: [Lifetime-Lizenz für 79 $ erwerben](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

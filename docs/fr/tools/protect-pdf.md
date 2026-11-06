@@ -5,7 +5,7 @@ description: Protégez vos fichiers PDF par mot de passe avec un chiffrement AES
 
 # Protéger un PDF
 
-Verrouillez votre PDF par un mot de passe pour que seules les personnes autorisées puissent l'ouvrir. BentoPDF utilise le chiffrement AES 256 bits, le même standard que celui des banques et des administrations, appliqué entièrement dans votre navigateur via QPDF.
+Verrouillez votre PDF par un mot de passe pour que seules les personnes autorisées puissent l'ouvrir. Pixel PDF utilise le chiffrement AES 256 bits, le même standard que celui des banques et des administrations, appliqué entièrement dans votre navigateur via QPDF.
 
 ## Fonctionnement
 
@@ -23,7 +23,7 @@ Le mot de passe utilisateur est celui que les destinataires saisissent pour ouvr
 
 ### Mot de passe propriétaire (facultatif)
 
-Le mot de passe propriétaire contrôle ce qu'un utilisateur autorisé peut faire après l'ouverture du fichier. Lorsque vous définissez un mot de passe propriétaire distinct, BentoPDF applique automatiquement le jeu de restrictions le plus strict :
+Le mot de passe propriétaire contrôle ce qu'un utilisateur autorisé peut faire après l'ouverture du fichier. Lorsque vous définissez un mot de passe propriétaire distinct, Pixel PDF applique automatiquement le jeu de restrictions le plus strict :
 
 - Modification désactivée
 - Extraction et copie désactivées

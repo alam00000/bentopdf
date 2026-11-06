@@ -1,6 +1,6 @@
 # Driftsätt med Apache
 
-Hosta BentoPDF med Apache HTTP Server.
+Hosta Pixel PDF med Apache HTTP Server.
 
 ## Förutsättningar
 
@@ -11,8 +11,8 @@ Hosta BentoPDF med Apache HTTP Server.
 ## Steg 1: Bygg projektet
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Steg 2: Kopiera filer
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Steg 3: Apache-konfiguration
 
-Skapa `/etc/apache2/sites-available/bentopdf.conf`:
+Skapa `/etc/apache2/sites-available/pixelpdf.conf`:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ Skapa `/etc/apache2/sites-available/bentopdf.conf`:
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ Skapa `/etc/apache2/sites-available/bentopdf.conf`:
 
 ## Steg 4: .htaccess för routing
 
-Skapa `/var/www/bentopdf/.htaccess`:
+Skapa `/var/www/pixelpdf/.htaccess`:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Steg 6: Aktivera webbplatsen
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Kontrollera att `mod_headers` är aktiverat: `sudo a2enmod headers`
 ### Åtkomst nekad
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

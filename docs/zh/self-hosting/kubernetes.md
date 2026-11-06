@@ -10,24 +10,24 @@
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> 官方 BentoPDF nginx 镜像已包含这些标头。在 Kubernetes 中，**Ingress/Gateway 控制器同样是反向代理**，因此请确保这些标头被保留（或在边缘层添加）。
+> 官方 Pixel PDF nginx 镜像已包含这些标头。在 Kubernetes 中，**Ingress/Gateway 控制器同样是反向代理**，因此请确保这些标头被保留（或在边缘层添加）。
 
 ## 前置条件
 
 - Kubernetes 集群
 - Helm v3
-- 一个 BentoPDF nginx 镜像（例如 `ghcr.io/alam00000/bentopdf:<tag>`），监听 **8080 端口**
+- 一个 Pixel PDF nginx 镜像（例如 `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`），监听 **8080 端口**
 
 ## 使用 Helm 部署
 
 ### 从本仓库安装（本地 chart）
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ helm upgrade --install bentopdf /path/to/bentopdf/chart \
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward（快速测试）
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress（可选）
@@ -78,15 +78,15 @@ ingress:
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### 正常情况下会发生什么
 
-BentoPDF 的 nginx 配置会设置所需的响应标头。大多数 Ingress/Gateway 控制器会**原样透传上游响应标头**。
+Pixel PDF 的 nginx 配置会设置所需的响应标头。大多数 Ingress/Gateway 控制器会**原样透传上游响应标头**。
 
 ### 什么情况会导致失效
 
@@ -132,9 +132,9 @@ ingress:
 
 ## `.mjs` MIME 类型错误（签署 PDF / Form Filler iframe 空白）
 
-如果浏览器控制台在 `.mjs` 请求上显示 `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"`，说明 BentoPDF nginx 前面的 Ingress/Gateway 控制器把上游的 `Content-Type` 标头替换成了 `application/octet-stream`。
+如果浏览器控制台在 `.mjs` 请求上显示 `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"`，说明 Pixel PDF nginx 前面的 Ingress/Gateway 控制器把上游的 `Content-Type` 标头替换成了 `application/octet-stream`。
 
-BentoPDF 镜像中的 nginx 本身已将 `.mjs` 作为 `application/javascript` 提供。解决方法是阻止控制器移除或替换它。对于 nginx-ingress：
+Pixel PDF 镜像中的 nginx 本身已将 `.mjs` 作为 `application/javascript` 提供。解决方法是阻止控制器移除或替换它。对于 nginx-ingress：
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ httpRoute:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ data:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 工具 ID 即页面 URL 去掉 `.html` 的部分，打开任意工具并查看 URL 即可（例如 `edit-pdf`、`merge-pdf`、`compress-pdf`）。被禁用的工具会从首页、搜索、快捷键、工作流构建器以及直接 URL 访问中隐藏。完整选项请参阅 [Docker 指南](/zh/self-hosting/docker#禁用特定工具)。

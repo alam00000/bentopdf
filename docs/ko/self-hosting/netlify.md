@@ -4,7 +4,7 @@
 
 ## 원클릭 배포
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## 수동 배포
 
@@ -13,7 +13,7 @@
 1. [Netlify](https://app.netlify.com)에 로그인합니다
 2. "Add new site" → "Import an existing project"를 클릭합니다
 3. GitHub 계정을 연결합니다
-4. BentoPDF 포크를 선택합니다
+4. Pixel PDF 포크를 선택합니다
 
 ### 2단계: 빌드 설정 구성
 
@@ -90,7 +90,7 @@ Site settings → Environment variables에서 설정합니다.
 | 변수                    | 설명                                                |
 | ----------------------- | --------------------------------------------------- |
 | `SIMPLE_MODE`           | 최소 빌드를 사용하려면 `true`로 설정                |
-| `VITE_BRAND_NAME`       | 사용자 지정 브랜드 이름 ("BentoPDF" 대체)           |
+| `VITE_BRAND_NAME`       | 사용자 지정 브랜드 이름 ("Pixel PDF" 대체)           |
 | `VITE_BRAND_LOGO`       | `public/` 기준 로고 경로 (예: `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | 사용자 지정 바닥글/저작권 텍스트                    |
 | `VITE_DEFAULT_LANGUAGE` | 기본 UI 언어 (예: `fr`, `de`, `es`)                 |

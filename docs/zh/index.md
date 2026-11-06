@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: '免费开源的 PDF 工具'
   tagline: 完全在浏览器中处理 PDF。无需上传，无需服务器，彻底保护隐私。
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## 离线 OCR
 
-如果您在离线隔离或无网络的环境中自托管 BentoPDF，OCR 所需的不仅仅是 Tesseract worker 和 traineddata 文件。要输出可搜索的 PDF，还需要在内部提供 OCR 文本层字体。
+如果您在离线隔离或无网络的环境中自托管 Pixel PDF，OCR 所需的不仅仅是 Tesseract worker 和 traineddata 文件。要输出可搜索的 PDF，还需要在内部提供 OCR 文本层字体。
 完整设置请参阅[自托管](/zh/self-hosting/)，其中包括 `VITE_OCR_FONT_BASE_URL`、随附的 `ocr-fonts/` 目录以及更新后的离线隔离工作流程。

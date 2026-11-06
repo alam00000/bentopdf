@@ -1,6 +1,6 @@
 # 使用 Apache 部署
 
-使用 Apache HTTP Server 架設 BentoPDF。
+使用 Apache HTTP Server 架設 Pixel PDF。
 
 ## 事前準備
 
@@ -11,8 +11,8 @@
 ## 步驟 1：建置專案
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## 步驟 2：複製檔案
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## 步驟 3：Apache 設定
 
-建立 `/etc/apache2/sites-available/bentopdf.conf`：
+建立 `/etc/apache2/sites-available/pixelpdf.conf`：
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 ## 步驟 4：用於路由的 .htaccess
 
-建立 `/var/www/bentopdf/.htaccess`：
+建立 `/var/www/pixelpdf/.htaccess`：
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## 步驟 6：啟用網站
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Header always set Cross-Origin-Opener-Policy "same-origin"
 ### 權限遭拒
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

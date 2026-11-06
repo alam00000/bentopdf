@@ -38,7 +38,7 @@ Adicione sua assinatura a qualquer documento PDF. A ferramenta incorpora um visu
 ## Dicas
 
 - Ative o achatamento se for enviar o PDF assinado para alguém que não deve poder remover ou reposicionar sua assinatura.
-- Para assinaturas digitais com validade jurídica e verificação baseada em certificado, o BentoPDF também oferece uma ferramenta separada de Assinatura Digital.
+- Para assinaturas digitais com validade jurídica e verificação baseada em certificado, o Pixel PDF também oferece uma ferramenta separada de Assinatura Digital.
 - Envie uma imagem de assinatura em PNG com fundo transparente para obter o resultado mais limpo.
 
 ## Ferramentas relacionadas

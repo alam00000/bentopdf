@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUSKY: 0
-      SITE_URL: https://www.bentopdf.com
+      SITE_URL: https://www.pixelpdf.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4

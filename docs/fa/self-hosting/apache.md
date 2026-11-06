@@ -1,6 +1,6 @@
 # استقرار با Apache
 
-BentoPDF را با Apache HTTP Server میزبانی کنید.
+Pixel PDF را با Apache HTTP Server میزبانی کنید.
 
 ## پیش‌نیازها
 
@@ -11,8 +11,8 @@ BentoPDF را با Apache HTTP Server میزبانی کنید.
 ## گام ۱: ساخت پروژه
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## گام ۲: کپی فایل‌ها
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## گام ۳: پیکربندی Apache
 
-فایل `/etc/apache2/sites-available/bentopdf.conf` را بسازید:
+فایل `/etc/apache2/sites-available/pixelpdf.conf` را بسازید:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 ## گام ۴: فایل .htaccess برای مسیریابی
 
-فایل `/var/www/bentopdf/.htaccess` را بسازید:
+فایل `/var/www/pixelpdf/.htaccess` را بسازید:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## گام ۶: فعال‌سازی سایت
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Header always set Cross-Origin-Opener-Policy "same-origin"
 ### دسترسی رد شد (Permission Denied)
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

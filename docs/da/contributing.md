@@ -1,6 +1,6 @@
 # Contributing
 
-Tak for din interesse i at bidrage til BentoPDF! Denne vejledning hjælper dig i gang.
+Tak for din interesse i at bidrage til Pixel PDF! Denne vejledning hjælper dig i gang.
 
 ## Kom i gang
 
@@ -14,8 +14,8 @@ Tak for din interesse i at bidrage til BentoPDF! Denne vejledning hjælper dig i
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Projektstruktur
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Tilføj poster til alle sprogfiler i `public/locales/`:
 
 ## Oversættelse
 
-Se [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) for at tilføje nye sprog.
+Se [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) for at tilføje nye sprog.
 
 ## Contributor License Agreement
 
 Før din PR kan flettes, skal du underskrive vores CLA:
 
-- [Individuel CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Virksomheds-CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individuel CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Virksomheds-CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Få hjælp
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discord-fællesskab](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licens
 
-BentoPDF er dobbeltlicenseret:
+Pixel PDF er dobbeltlicenseret:
 
 - **AGPL-3.0** til open source-projekter, hvor du deler hele din kildekode offentligt
 - **Kommerciel licens** til proprietære applikationer med lukket kildekode: [Få en livstidslicens for $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

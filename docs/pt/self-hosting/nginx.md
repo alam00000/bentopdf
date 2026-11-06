@@ -1,6 +1,6 @@
 # Implantar com Nginx
 
-Hospede o BentoPDF no seu próprio servidor usando o Nginx.
+Hospede o Pixel PDF no seu próprio servidor usando o Nginx.
 
 ## Pré-requisitos
 
@@ -11,8 +11,8 @@ Hospede o BentoPDF no seu próprio servidor usando o Nginx.
 ## Passo 1: Compile o Projeto
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Passo 2: Copie os Arquivos
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Passo 3: Configuração do Nginx
 
-Crie o arquivo `/etc/nginx/sites-available/bentopdf`:
+Crie o arquivo `/etc/nginx/sites-available/pixelpdf`:
 
 ```nginx
 server {
@@ -50,7 +50,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
-    root /var/www/bentopdf;
+    root /var/www/pixelpdf;
     index index.html;
 
     # Gzip compression
@@ -114,7 +114,7 @@ server {
 ## Passo 4: Ative o Site
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/bentopdf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/pixelpdf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -132,7 +132,7 @@ Para hospedar em `/pdf/`:
 
 ```nginx
 location /pdf/ {
-    alias /var/www/bentopdf/;
+    alias /var/www/pixelpdf/;
     try_files $uri $uri/ /pdf/index.html;
 }
 ```

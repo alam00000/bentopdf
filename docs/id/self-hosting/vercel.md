@@ -4,13 +4,13 @@
 
 ## Deploy Sekali Klik
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Deploy Manual
 
 ### Langkah 1: Fork Repositori
 
-Fork [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) ke akun GitHub Anda.
+Fork [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) ke akun GitHub Anda.
 
 ### Langkah 2: Impor ke Vercel
 
@@ -32,7 +32,7 @@ Tambahkan jika diperlukan:
 | Variabel                | Deskripsi                                                        |
 | ----------------------- | ---------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Atur ke `true` untuk UI minimal                                  |
-| `VITE_BRAND_NAME`       | Nama merek kustom (menggantikan "BentoPDF")                      |
+| `VITE_BRAND_NAME`       | Nama merek kustom (menggantikan "Pixel PDF")                      |
 | `VITE_BRAND_LOGO`       | Path logo relatif terhadap `public/` (mis. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Teks footer/hak cipta kustom                                     |
 | `VITE_DEFAULT_LANGUAGE` | Bahasa UI default (mis. `fr`, `de`, `es`)                        |
@@ -51,7 +51,7 @@ Klik "Deploy" dan tunggu build selesai.
 ## Batasan
 
 ::: warning File Besar
-Fungsi serverless Vercel memiliki batas 50MB. Karena BentoPDF adalah situs statis, ini seharusnya tidak memengaruhi Anda, tetapi modul WASM berukuran besar (total ~100MB). Pastikan modul tersebut dilayani dari folder `/public`.
+Fungsi serverless Vercel memiliki batas 50MB. Karena Pixel PDF adalah situs statis, ini seharusnya tidak memengaruhi Anda, tetapi modul WASM berukuran besar (total ~100MB). Pastikan modul tersebut dilayani dari folder `/public`.
 :::
 
 ## Pemecahan Masalah

@@ -5,7 +5,7 @@ description: Anotujte, zvýrazňujte, začierňujte, pridávajte tvary a obrázk
 
 # Editor PDF
 
-Editor PDF v BentoPDF vám umožní anotovať, zvýrazňovať, začierňovať, komentovať, pridávať tvary a obrázky a vyhľadávať vo vašich PDF. Plnohodnotný editor sa načíta priamo vo vašom prehliadači bez nahrávania na server.
+Editor PDF v Pixel PDF vám umožní anotovať, zvýrazňovať, začierňovať, komentovať, pridávať tvary a obrázky a vyhľadávať vo vašich PDF. Plnohodnotný editor sa načíta priamo vo vašom prehliadači bez nahrávania na server.
 
 ## Ako to funguje
 

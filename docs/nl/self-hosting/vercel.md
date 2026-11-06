@@ -4,13 +4,13 @@
 
 ## Implementeren met één klik
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Handmatig implementeren
 
 ### Stap 1: Fork de repository
 
-Fork [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) naar je GitHub-account.
+Fork [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) naar je GitHub-account.
 
 ### Stap 2: Importeren in Vercel
 
@@ -32,7 +32,7 @@ Voeg deze toe indien nodig:
 | Variabele               | Beschrijving                                                             |
 | ----------------------- | ------------------------------------------------------------------------ |
 | `SIMPLE_MODE`           | Stel in op `true` voor een minimale interface                            |
-| `VITE_BRAND_NAME`       | Eigen merknaam (vervangt "BentoPDF")                                     |
+| `VITE_BRAND_NAME`       | Eigen merknaam (vervangt "Pixel PDF")                                     |
 | `VITE_BRAND_LOGO`       | Logopad relatief ten opzichte van `public/` (bijv. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Eigen footer-/copyrighttekst                                             |
 | `VITE_DEFAULT_LANGUAGE` | Standaardtaal van de interface (bijv. `fr`, `de`, `es`)                  |
@@ -51,7 +51,7 @@ Klik op "Deploy" en wacht tot de build klaar is.
 ## Beperkingen
 
 ::: warning Grote bestanden
-De serverless functions van Vercel hebben een limiet van 50 MB. Omdat BentoPDF een statische site is, zou dit je niet moeten raken, maar WASM-modules zijn groot (~100 MB in totaal). Zorg dat ze worden aangeboden vanuit de map `/public`.
+De serverless functions van Vercel hebben een limiet van 50 MB. Omdat Pixel PDF een statische site is, zou dit je niet moeten raken, maar WASM-modules zijn groot (~100 MB in totaal). Zorg dat ze worden aangeboden vanuit de map `/public`.
 :::
 
 ## Probleemoplossing

@@ -7,7 +7,7 @@ description: Fügen Sie PDFs kryptografische digitale Signaturen mit X.509-Zerti
 
 Eine digitale Signatur ist ein kryptografischer Nachweis, dass eine bestimmte Person ein Dokument signiert hat und dass das Dokument seitdem nicht verändert wurde. Anders als eine gezeichnete Signatur (die nur ein Bild ist) nutzt eine digitale Signatur X.509-Zertifikate und PKCS#7-Standards, um überprüfbare Echtheit und Integrität zu gewährleisten.
 
-BentoPDF wendet digitale Signaturen vollständig in Ihrem Browser an. Ihr privater Schlüssel verlässt nie Ihr Gerät.
+Pixel PDF wendet digitale Signaturen vollständig in Ihrem Browser an. Ihr privater Schlüssel verlässt nie Ihr Gerät.
 
 ## So funktioniert es
 

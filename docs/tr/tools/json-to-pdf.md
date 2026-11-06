@@ -1,21 +1,21 @@
 ---
 title: JSON'dan PDF'ye
-description: PDF dosyalarını BentoPDF'in JSON biçiminden yeniden oluşturun. JSON dışa aktarımlarını özgün PDF belgelerine geri dönüştürün.
+description: PDF dosyalarını Pixel PDF'in JSON biçiminden yeniden oluşturun. JSON dışa aktarımlarını özgün PDF belgelerine geri dönüştürün.
 ---
 
 # JSON'dan PDF'ye
 
-Daha önce BentoPDF'in **PDF'den JSON'a** aracıyla oluşturulmuş JSON dosyalarından PDF belgelerini yeniden oluşturun. Bu, gidiş-dönüş bir dönüştürme aracıdır: bir PDF'nin yapılandırılmış JSON temsilini alır ve özgün belgeyi yeniden oluşturur.
+Daha önce Pixel PDF'in **PDF'den JSON'a** aracıyla oluşturulmuş JSON dosyalarından PDF belgelerini yeniden oluşturun. Bu, gidiş-dönüş bir dönüştürme aracıdır: bir PDF'nin yapılandırılmış JSON temsilini alır ve özgün belgeyi yeniden oluşturur.
 
 ::: warning
-Bu araç yalnızca BentoPDF'in PDF'den JSON'a dönüştürücüsünün ürettiği JSON dosyalarını kabul eder. API'lerden, veritabanlarından veya diğer araçlardan gelen standart JSON dosyaları desteklenmez.
+Bu araç yalnızca Pixel PDF'in PDF'den JSON'a dönüştürücüsünün ürettiği JSON dosyalarını kabul eder. API'lerden, veritabanlarından veya diğer araçlardan gelen standart JSON dosyaları desteklenmez.
 :::
 
 ## Desteklenen Biçimler
 
 | Girdi   | Açıklama                                                          |
 | :------ | :---------------------------------------------------------------- |
-| `.json` | BentoPDF'in PDF'den JSON'a aracıyla dışa aktarılan JSON dosyaları |
+| `.json` | Pixel PDF'in PDF'den JSON'a aracıyla dışa aktarılan JSON dosyaları |
 
 ## Nasıl Çalışır
 

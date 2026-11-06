@@ -62,7 +62,7 @@ describe('getLanguageFromUrl', () => {
   it('should use English for unprefixed URLs whatever the browser or storage says', () => {
     window.location.pathname = '/about';
     localStorage.setItem('i18nextLng', 'it');
-    localStorage.setItem('bentopdf-language', 'de');
+    localStorage.setItem('pixelpdf-language', 'de');
     Object.defineProperty(window.navigator, 'languages', {
       value: ['fr-CA', 'de-DE'],
       configurable: true,

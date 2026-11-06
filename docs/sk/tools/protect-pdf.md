@@ -5,7 +5,7 @@ description: Chráňte súbory PDF heslom pomocou 256-bitového šifrovania AES.
 
 # Chrániť PDF heslom
 
-Zamknite svoje PDF heslom, aby ho mohli otvoriť len oprávnení ľudia. BentoPDF používa 256-bitové šifrovanie AES (rovnaký štandard, aký používajú banky a štátne inštitúcie), ktoré sa celé aplikuje vo vašom prehliadači pomocou QPDF.
+Zamknite svoje PDF heslom, aby ho mohli otvoriť len oprávnení ľudia. Pixel PDF používa 256-bitové šifrovanie AES (rovnaký štandard, aký používajú banky a štátne inštitúcie), ktoré sa celé aplikuje vo vašom prehliadači pomocou QPDF.
 
 ## Ako to funguje
 
@@ -23,7 +23,7 @@ Heslo používateľa zadávajú príjemcovia na otvorenie PDF. Bez neho je dokum
 
 ### Heslo vlastníka (voliteľné)
 
-Heslo vlastníka určuje, čo môže oprávnený používateľ robiť po otvorení súboru. Keď nastavíte odlišné heslo vlastníka, BentoPDF automaticky použije najprísnejšiu sadu obmedzení:
+Heslo vlastníka určuje, čo môže oprávnený používateľ robiť po otvorení súboru. Keď nastavíte odlišné heslo vlastníka, Pixel PDF automaticky použije najprísnejšiu sadu obmedzení:
 
 - Úpravy zakázané
 - Extrakcia/kopírovanie zakázané

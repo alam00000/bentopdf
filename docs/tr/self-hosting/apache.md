@@ -1,6 +1,6 @@
 # Apache ile Dağıtım
 
-BentoPDF'i Apache HTTP Server ile barındırın.
+Pixel PDF'i Apache HTTP Server ile barındırın.
 
 ## Gereksinimler
 
@@ -11,8 +11,8 @@ BentoPDF'i Apache HTTP Server ile barındırın.
 ## Adım 1: Projeyi Derleyin
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Adım 2: Dosyaları Kopyalayın
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Adım 3: Apache Yapılandırması
 
-`/etc/apache2/sites-available/bentopdf.conf` dosyasını oluşturun:
+`/etc/apache2/sites-available/pixelpdf.conf` dosyasını oluşturun:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 ## Adım 4: Yönlendirme için .htaccess
 
-`/var/www/bentopdf/.htaccess` dosyasını oluşturun:
+`/var/www/pixelpdf/.htaccess` dosyasını oluşturun:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Adım 6: Siteyi Etkinleştirin
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Ayrıca güvenli bir bağlam da gerekir. `http://localhost` yerel testler için 
 ### İzin Reddedildi
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: '무료 오픈소스 PDF 도구'
   tagline: 브라우저에서 PDF를 전부 처리하세요. 업로드 없음. 서버 없음. 완벽한 개인정보 보호.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## 오프라인 OCR
 
-폐쇄망이나 오프라인 환경에서 BentoPDF를 직접 호스팅하는 경우, OCR에는 Tesseract 워커와 traineddata 파일 외에도 필요한 것이 있습니다. 검색 가능한 PDF를 만들려면 OCR 텍스트 레이어 글꼴도 내부에서 제공해야 합니다.
+폐쇄망이나 오프라인 환경에서 Pixel PDF를 직접 호스팅하는 경우, OCR에는 Tesseract 워커와 traineddata 파일 외에도 필요한 것이 있습니다. 검색 가능한 PDF를 만들려면 OCR 텍스트 레이어 글꼴도 내부에서 제공해야 합니다.
 `VITE_OCR_FONT_BASE_URL`, 번들된 `ocr-fonts/` 디렉터리, 업데이트된 폐쇄망 워크플로를 포함한 전체 설정은 [셀프 호스팅](/ko/self-hosting/)을 참고하세요.

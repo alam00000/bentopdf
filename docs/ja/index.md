@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: '無料のオープンソースPDFツール'
   tagline: PDFの処理はすべてブラウザ内で。アップロードなし。サーバーなし。完全なプライバシー。
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## オフラインOCR
 
-エアギャップ環境やオフライン環境にBentoPDFをセルフホストする場合、OCRにはTesseractのワーカーとtraineddataファイルだけでなく、検索可能なPDFの出力に必要なOCRテキストレイヤー用フォントも社内で配信する必要があります。
+エアギャップ環境やオフライン環境にPixel PDFをセルフホストする場合、OCRにはTesseractのワーカーとtraineddataファイルだけでなく、検索可能なPDFの出力に必要なOCRテキストレイヤー用フォントも社内で配信する必要があります。
 `VITE_OCR_FONT_BASE_URL`、同梱の `ocr-fonts/` ディレクトリ、更新されたエアギャップ向けワークフローを含む完全な手順は[セルフホスティング](/ja/self-hosting/)を参照してください。

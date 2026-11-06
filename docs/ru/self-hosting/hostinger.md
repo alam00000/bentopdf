@@ -1,6 +1,6 @@
 # Развёртывание на Hostinger
 
-[Hostinger](https://hostinger.com) популярный провайдер виртуального хостинга. Это руководство описывает развёртывание BentoPDF на виртуальном хостинге Hostinger.
+[Hostinger](https://hostinger.com) популярный провайдер виртуального хостинга. Это руководство описывает развёртывание Pixel PDF на виртуальном хостинге Hostinger.
 
 ## Требования
 
@@ -10,8 +10,8 @@
 ## Шаг 1: соберите проект
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Header always set Cross-Origin-Embedder-Policy "require-corp"
 
 ### Ошибки 404 при обновлении страницы
 
-Убедитесь, что правило для расширения `.html` и языковые маршруты настроены правильно. BentoPDF использует статические HTML-файлы, а не маршрутизацию SPA:
+Убедитесь, что правило для расширения `.html` и языковые маршруты настроены правильно. Pixel PDF использует статические HTML-файлы, а не маршрутизацию SPA:
 
 ```apache
 # Language routes serve actual files from language directories

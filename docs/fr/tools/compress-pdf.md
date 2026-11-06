@@ -5,9 +5,9 @@ description: Réduisez la taille d'un PDF jusqu'à 90 % avec le moteur Hyper Com
 
 # Compresser un PDF
 
-Réduisez le poids de vos fichiers PDF sans les abîmer. Compresser un PDF s'appuie sur [Hyper Compress](https://www.bentopdf.com/hyper-compress), le moteur de compression propre à BentoPDF. Il recompresse les images, crée des sous-ensembles de polices et les fusionne, et supprime le superflu comme les miniatures intégrées et les données privées d'applications. Le PDF reste pleinement fonctionnel : le texte reste sélectionnable, les liens et les champs de formulaire continuent de fonctionner.
+Réduisez le poids de vos fichiers PDF sans les abîmer. Compresser un PDF s'appuie sur [Hyper Compress](https://www.pixelpdf.com/hyper-compress), le moteur de compression propre à Pixel PDF. Il recompresse les images, crée des sous-ensembles de polices et les fusionne, et supprime le superflu comme les miniatures intégrées et les données privées d'applications. Le PDF reste pleinement fonctionnel : le texte reste sélectionnable, les liens et les champs de formulaire continuent de fonctionner.
 
-Hyper Compress est compilé en WebAssembly et livré avec BentoPDF, la compression fonctionne donc hors ligne et dans les déploiements isolés du réseau, sans configuration supplémentaire.
+Hyper Compress est compilé en WebAssembly et livré avec Pixel PDF, la compression fonctionne donc hors ligne et dans les déploiements isolés du réseau, sans configuration supplémentaire.
 
 ## Fonctionnement
 
@@ -36,7 +36,7 @@ Le niveau Élevé retire aussi l'incorporation des 14 polices PDF standard, ains
 
 ## Taille de fichier cible
 
-Saisissez une taille en Ko ou en Mo et Hyper Compress recherche la meilleure qualité d'image qui tienne encore dans cette taille, en partant du niveau choisi. Si le document ne peut pas devenir aussi petit, vous obtenez la plus petite version possible et un message vous l'indique. Les pages dédiées, comme [Compresser un PDF à 1 Mo](https://www.bentopdf.com/compress-pdf-to-1mb), s'ouvrent avec la cible déjà renseignée.
+Saisissez une taille en Ko ou en Mo et Hyper Compress recherche la meilleure qualité d'image qui tienne encore dans cette taille, en partant du niveau choisi. Si le document ne peut pas devenir aussi petit, vous obtenez la plus petite version possible et un message vous l'indique. Les pages dédiées, comme [Compresser un PDF à 1 Mo](https://www.pixelpdf.com/compress-pdf-to-1mb), s'ouvrent avec la cible déjà renseignée.
 
 ## Paramètres personnalisés
 

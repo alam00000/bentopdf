@@ -1,16 +1,16 @@
 # Začíname
 
-Vitajte v BentoPDF! Táto príručka vám pomôže rýchlo začať.
+Vitajte v Pixel PDF! Táto príručka vám pomôže rýchlo začať.
 
-## Čo je BentoPDF?
+## Čo je Pixel PDF?
 
-BentoPDF je bezplatná open-source sada PDF nástrojov zameraná na súkromie, ktorá beží **celá vo vašom prehliadači**. Vaše súbory nikdy neopustia vaše zariadenie, všetko spracovanie prebieha lokálne pomocou technológie WebAssembly (WASM).
+Pixel PDF je bezplatná open-source sada PDF nástrojov zameraná na súkromie, ktorá beží **celá vo vašom prehliadači**. Vaše súbory nikdy neopustia vaše zariadenie, všetko spracovanie prebieha lokálne pomocou technológie WebAssembly (WASM).
 
 ## Rýchly štart
 
 ### Možnosť 1: Použite hostovanú verziu
 
-Navštívte [bentopdf.com](https://www.bentopdf.com) a používajte BentoPDF okamžite, bez inštalácie.
+Navštívte [pixelpdf.com](https://www.pixelpdf.com) a používajte Pixel PDF okamžite, bez inštalácie.
 
 ### Možnosť 2: Vlastný hosting pomocou Dockera
 
@@ -25,15 +25,15 @@ Navštívte [bentopdf.com](https://www.bentopdf.com) a používajte BentoPDF oka
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF sa dodáva v dvoch zostaveniach: **Self-Hosted build** (`bentopdf-simple`, použitý vyššie) pre interné nasadenia v tímoch a organizáciách a **Commercial build** (`bentopdf:latest`), ktorý používa samotný bentopdf.com a držitelia komerčnej licencie s verejne dostupnými nasadeniami. Obe obsahujú rovnaké PDF nástroje, Commercial build navyše pridáva hero sekciu bentopdf.com, FAQ, referencie a pätičku. Ak si nie ste istí, použite Self-Hosted build.
+> Pixel PDF sa dodáva v dvoch zostaveniach: **Self-Hosted build** (`pixelpdf-simple`, použitý vyššie) pre interné nasadenia v tímoch a organizáciách a **Commercial build** (`pixelpdf:latest`), ktorý používa samotný pixelpdf.com a držitelia komerčnej licencie s verejne dostupnými nasadeniami. Obe obsahujú rovnaké PDF nástroje, Commercial build navyše pridáva hero sekciu pixelpdf.com, FAQ, referencie a pätičku. Ak si nie ste istí, použite Self-Hosted build.
 
 Potom otvorte `http://localhost:3000` vo svojom prehliadači.
 
@@ -44,8 +44,8 @@ Potom otvorte `http://localhost:3000` vo svojom prehliadači.
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## Podpora prehliadačov
 
-BentoPDF funguje najlepšie v moderných prehliadačoch:
+Pixel PDF funguje najlepšie v moderných prehliadačoch:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF funguje najlepšie v moderných prehliadačoch:
 ## Ďalšie kroky
 
 - [Preskúmajte všetky nástroje](/sk/tools/)
-- [Vlastný hosting BentoPDF](/sk/self-hosting/)
+- [Vlastný hosting Pixel PDF](/sk/self-hosting/)
 - [Prispejte do projektu](/sk/contributing)

@@ -4,7 +4,7 @@
 
 ## Nasadenie jedným kliknutím
 
-[![Nasadiť na Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Nasadiť na Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Ručné nasadenie
 
@@ -13,7 +13,7 @@
 1. Prihláste sa do [Netlify](https://app.netlify.com)
 2. Kliknite na „Add new site“ → „Import an existing project“
 3. Pripojte svoj účet GitHub
-4. Vyberte svoj fork BentoPDF
+4. Vyberte svoj fork Pixel PDF
 
 ### Krok 2: Nakonfigurujte nastavenia zostavenia
 
@@ -90,7 +90,7 @@ Nastavte ich v Site settings → Environment variables:
 | Premenná                | Popis                                                           |
 | ----------------------- | --------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Nastavte na `true` pre minimálne zostavenie                     |
-| `VITE_BRAND_NAME`       | Vlastný názov značky (nahrádza „BentoPDF“)                      |
+| `VITE_BRAND_NAME`       | Vlastný názov značky (nahrádza „Pixel PDF“)                      |
 | `VITE_BRAND_LOGO`       | Cesta k logu relatívne k `public/` (napr. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Vlastný text päty / autorských práv                             |
 | `VITE_DEFAULT_LANGUAGE` | Predvolený jazyk rozhrania (napr. `fr`, `de`, `es`)             |

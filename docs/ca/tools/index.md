@@ -1,6 +1,6 @@
 # Referència d'eines
 
-BentoPDF ofereix **més de 130 eines** per treballar amb PDF. Totes les eines s'executen íntegrament al navegador: els teus fitxers no surten mai del dispositiu.
+Pixel PDF ofereix **més de 130 eines** per treballar amb PDF. Totes les eines s'executen íntegrament al navegador: els teus fitxers no surten mai del dispositiu.
 
 ---
 

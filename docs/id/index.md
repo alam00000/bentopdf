@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Alat PDF Gratis dan Sumber Terbuka'
   tagline: Proses PDF sepenuhnya di browser Anda. Tanpa unggahan. Tanpa server. Privasi penuh.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## OCR Offline
 
-Jika Anda menghosting BentoPDF sendiri di lingkungan air-gapped atau offline, OCR membutuhkan lebih dari sekadar worker Tesseract dan file traineddata. Hasil PDF yang dapat dicari juga mengharuskan font lapisan teks OCR disajikan secara internal.
+Jika Anda menghosting Pixel PDF sendiri di lingkungan air-gapped atau offline, OCR membutuhkan lebih dari sekadar worker Tesseract dan file traineddata. Hasil PDF yang dapat dicari juga mengharuskan font lapisan teks OCR disajikan secara internal.
 Lihat [Hosting Mandiri](/id/self-hosting/) untuk penyiapan lengkap, termasuk `VITE_OCR_FONT_BASE_URL`, direktori `ocr-fonts/` bawaan, dan alur kerja air-gap terbaru.

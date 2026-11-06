@@ -5,7 +5,7 @@ description: Annota, evidenzia, oscura, aggiungi forme e immagini, cerca e visua
 
 # Editor PDF
 
-L'Editor PDF di BentoPDF ti permette di annotare, evidenziare, oscurare, commentare, aggiungere forme e immagini e cercare nei tuoi PDF. Carica un editor completo direttamente nel browser, senza alcun caricamento su server.
+L'Editor PDF di Pixel PDF ti permette di annotare, evidenziare, oscurare, commentare, aggiungere forme e immagini e cercare nei tuoi PDF. Carica un editor completo direttamente nel browser, senza alcun caricamento su server.
 
 ## Come funziona
 

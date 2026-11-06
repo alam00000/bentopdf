@@ -1,6 +1,6 @@
 # Referensi Alat
 
-BentoPDF menawarkan **130+ alat** untuk bekerja dengan PDF. Semua alat berjalan sepenuhnya di browser Anda: file Anda tidak pernah meninggalkan perangkat Anda.
+Pixel PDF menawarkan **130+ alat** untuk bekerja dengan PDF. Semua alat berjalan sepenuhnya di browser Anda: file Anda tidak pernah meninggalkan perangkat Anda.
 
 ---
 

@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Công cụ PDF miễn phí, mã nguồn mở'
   tagline: Xử lý PDF hoàn toàn trong trình duyệt của bạn. Không tải lên. Không máy chủ. Riêng tư tuyệt đối.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## OCR ngoại tuyến
 
-Nếu bạn tự lưu trữ BentoPDF trong môi trường air-gapped hoặc ngoại tuyến, OCR cần nhiều hơn tệp worker Tesseract và các tệp traineddata. Đầu ra PDF có thể tìm kiếm còn cần các phông chữ lớp văn bản OCR được phục vụ nội bộ.
+Nếu bạn tự lưu trữ Pixel PDF trong môi trường air-gapped hoặc ngoại tuyến, OCR cần nhiều hơn tệp worker Tesseract và các tệp traineddata. Đầu ra PDF có thể tìm kiếm còn cần các phông chữ lớp văn bản OCR được phục vụ nội bộ.
 Xem [Tự lưu trữ](/vi/self-hosting/) để biết cách thiết lập đầy đủ, gồm `VITE_OCR_FONT_BASE_URL`, thư mục `ocr-fonts/` đi kèm và quy trình air-gap đã cập nhật.

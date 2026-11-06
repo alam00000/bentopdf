@@ -38,7 +38,7 @@ Añade tu firma a cualquier documento PDF. La herramienta incorpora un visor de 
 ## Consejos
 
 - Activa el aplanado si vas a enviar el PDF firmado a alguien que no deba poder quitar ni reposicionar tu firma.
-- Para firmas digitales con validez legal y verificación basada en certificados, BentoPDF también ofrece una herramienta independiente de Firma digital.
+- Para firmas digitales con validez legal y verificación basada en certificados, Pixel PDF también ofrece una herramienta independiente de Firma digital.
 - Sube una imagen de firma en PNG con fondo transparente para obtener el resultado más limpio.
 
 ## Herramientas relacionadas

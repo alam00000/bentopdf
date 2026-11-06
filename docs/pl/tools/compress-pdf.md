@@ -5,9 +5,9 @@ description: Zmniejsz rozmiar pliku PDF nawet o 90% dzięki silnikowi Hyper Comp
 
 # Kompresuj PDF
 
-Zmniejsz pliki PDF bez ich niszczenia. Kompresuj PDF działa na [Hyper Compress](https://www.bentopdf.com/hyper-compress), własnym silniku kompresji BentoPDF. Ponownie kompresuje obrazy, tworzy podzbiory i scala czcionki oraz usuwa zbędny balast, taki jak osadzone miniatury i prywatne dane aplikacji. PDF pozostaje w pełni funkcjonalny: tekst można nadal zaznaczać, a linki i pola formularzy działają.
+Zmniejsz pliki PDF bez ich niszczenia. Kompresuj PDF działa na [Hyper Compress](https://www.pixelpdf.com/hyper-compress), własnym silniku kompresji Pixel PDF. Ponownie kompresuje obrazy, tworzy podzbiory i scala czcionki oraz usuwa zbędny balast, taki jak osadzone miniatury i prywatne dane aplikacji. PDF pozostaje w pełni funkcjonalny: tekst można nadal zaznaczać, a linki i pola formularzy działają.
 
-Hyper Compress jest skompilowany do WebAssembly i dostarczany z BentoPDF, więc kompresja działa offline i we wdrożeniach odciętych od sieci, bez dodatkowej konfiguracji.
+Hyper Compress jest skompilowany do WebAssembly i dostarczany z Pixel PDF, więc kompresja działa offline i we wdrożeniach odciętych od sieci, bez dodatkowej konfiguracji.
 
 ## Jak to działa
 
@@ -36,7 +36,7 @@ Poziom Wysoki usuwa też osadzenie 14 standardowych czcionek PDF oraz ich odpowi
 
 ## Docelowy rozmiar pliku
 
-Wpisz rozmiar w KB lub MB, a Hyper Compress poszuka najlepszej jakości obrazu, która jeszcze się mieści, zaczynając od wybranego poziomu. Jeśli dokument nie może być aż tak mały, otrzymasz najmniejszą możliwą wersję oraz komunikat o tym. Dedykowane strony, takie jak [Kompresuj PDF do 1MB](https://www.bentopdf.com/compress-pdf-to-1mb), otwierają się z już wypełnionym celem.
+Wpisz rozmiar w KB lub MB, a Hyper Compress poszuka najlepszej jakości obrazu, która jeszcze się mieści, zaczynając od wybranego poziomu. Jeśli dokument nie może być aż tak mały, otrzymasz najmniejszą możliwą wersję oraz komunikat o tym. Dedykowane strony, takie jak [Kompresuj PDF do 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb), otwierają się z już wypełnionym celem.
 
 ## Ustawienia niestandardowe
 

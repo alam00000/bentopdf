@@ -4,13 +4,13 @@
 
 ## استقرار با یک کلیک
 
-[![استقرار با Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![استقرار با Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## استقرار دستی
 
 ### گام ۱: فورک کردن مخزن
 
-مخزن [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) را در حساب GitHub خود فورک کنید.
+مخزن [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) را در حساب GitHub خود فورک کنید.
 
 ### گام ۲: وارد کردن به Vercel
 
@@ -32,7 +32,7 @@
 | متغیر                   | توضیح                                                    |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | برای رابط کاربری حداقلی روی `true` تنظیم کنید            |
-| `VITE_BRAND_NAME`       | نام برند سفارشی (جایگزین «BentoPDF»)                     |
+| `VITE_BRAND_NAME`       | نام برند سفارشی (جایگزین «Pixel PDF»)                     |
 | `VITE_BRAND_LOGO`       | مسیر لوگو نسبت به `public/` (مثلاً `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | متن سفارشی پاورقی/حق نشر                                 |
 | `VITE_DEFAULT_LANGUAGE` | زبان پیش‌فرض رابط کاربری (مثلاً `fr`، `de`، `es`)        |
@@ -51,7 +51,7 @@
 ## محدودیت‌ها
 
 ::: warning فایل‌های بزرگ
-توابع serverless در Vercel محدودیت ۵۰ مگابایت دارند. از آنجا که BentoPDF یک سایت ایستاست، این موضوع نباید بر شما اثر بگذارد، اما ماژول‌های WASM بزرگ هستند (در مجموع حدود ۱۰۰ مگابایت). مطمئن شوید که از پوشهٔ `/public` ارائه می‌شوند.
+توابع serverless در Vercel محدودیت ۵۰ مگابایت دارند. از آنجا که Pixel PDF یک سایت ایستاست، این موضوع نباید بر شما اثر بگذارد، اما ماژول‌های WASM بزرگ هستند (در مجموع حدود ۱۰۰ مگابایت). مطمئن شوید که از پوشهٔ `/public` ارائه می‌شوند.
 :::
 
 ## عیب‌یابی

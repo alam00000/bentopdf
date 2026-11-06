@@ -4,13 +4,13 @@
 
 ## Desplegament amb un clic
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Desplegament manual
 
 ### Pas 1: fes un fork del repositori
 
-Fes un fork de [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) al teu compte de GitHub.
+Fes un fork de [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) al teu compte de GitHub.
 
 ### Pas 2: importa'l a Vercel
 
@@ -32,7 +32,7 @@ Afegeix-les si cal:
 | Variable                | Descripció                                                          |
 | ----------------------- | ------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Posa-ho a `true` per a una interfície mínima                        |
-| `VITE_BRAND_NAME`       | Nom de marca personalitzat (substitueix "BentoPDF")                 |
+| `VITE_BRAND_NAME`       | Nom de marca personalitzat (substitueix "Pixel PDF")                 |
 | `VITE_BRAND_LOGO`       | Ruta del logotip relativa a `public/` (p. ex. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Text personalitzat del peu de pàgina o dels drets d'autor           |
 | `VITE_DEFAULT_LANGUAGE` | Idioma per defecte de la interfície (p. ex. `fr`, `de`, `es`)       |
@@ -51,7 +51,7 @@ Fes clic a "Deploy" i espera que s'acabi la compilació.
 ## Limitacions
 
 ::: warning Fitxers grans
-Les funcions serverless de Vercel tenen un límit de 50 MB. Com que BentoPDF és un lloc estàtic, això no hauria d'afectar-te, però els mòduls WASM són grans (~100 MB en total). Assegura't que es serveixin des de la carpeta `/public`.
+Les funcions serverless de Vercel tenen un límit de 50 MB. Com que Pixel PDF és un lloc estàtic, això no hauria d'afectar-te, però els mòduls WASM són grans (~100 MB en total). Assegura't que es serveixin des de la carpeta `/public`.
 :::
 
 ## Resolució de problemes

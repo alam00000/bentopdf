@@ -9,10 +9,10 @@ const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const LOCALES_DIR = path.resolve(__dirname, '../public/locales');
-// The blog is BentoPDF's own content, so generate-blog.mjs and the hand-written
+// The blog is Pixel PDF's own content, so generate-blog.mjs and the hand-written
 // blog pages keep their canonicals on the official site, also in self-hosted
 // builds with a custom SITE_URL or BASE_URL.
-const OFFICIAL_SITE_URL = 'https://www.bentopdf.com';
+const OFFICIAL_SITE_URL = 'https://www.pixelpdf.com';
 const SITE_URL = (process.env.SITE_URL || OFFICIAL_SITE_URL).replace(
   /\/+$/,
   ''

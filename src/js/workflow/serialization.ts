@@ -156,14 +156,28 @@ async function deserializeWorkflow(
   }
 }
 
-const TEMPLATES_KEY = 'bento-pdf-workflow-templates';
+const TEMPLATES_KEY = 'pixel-pdf-workflow-templates';
+// Kept so templates saved before the Pixel PDF rebrand are not lost.
+const LEGACY_TEMPLATES_KEY = 'bento-pdf-workflow-templates';
 
 interface StoredTemplates {
   [name: string]: SerializedWorkflow;
 }
 
 function getStoredTemplates(): StoredTemplates {
-  const json = localStorage.getItem(TEMPLATES_KEY);
+  let json = localStorage.getItem(TEMPLATES_KEY);
+  if (!json) {
+    const legacy = localStorage.getItem(LEGACY_TEMPLATES_KEY);
+    if (legacy) {
+      json = legacy;
+      try {
+        localStorage.setItem(TEMPLATES_KEY, legacy);
+        localStorage.removeItem(LEGACY_TEMPLATES_KEY);
+      } catch (e) {
+        console.warn('Failed to migrate stored workflow templates:', e);
+      }
+    }
+  }
   if (!json) return {};
   try {
     const templates = JSON.parse(json) as StoredTemplates;

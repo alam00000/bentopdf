@@ -5,7 +5,7 @@ description: Lösenordsskydda PDF-filer med 256-bitars AES-kryptering. Ange anv�
 
 # Skydda PDF
 
-Lås din PDF med ett lösenord så att bara behöriga kan öppna den. BentoPDF använder 256-bitars AES-kryptering (samma standard som banker och myndigheter använder), helt i din webbläsare via QPDF.
+Lås din PDF med ett lösenord så att bara behöriga kan öppna den. Pixel PDF använder 256-bitars AES-kryptering (samma standard som banker och myndigheter använder), helt i din webbläsare via QPDF.
 
 ## Så fungerar det
 
@@ -23,7 +23,7 @@ Användarlösenordet är det mottagarna skriver in för att öppna PDF-filen. Ut
 
 ### Ägarlösenord (valfritt)
 
-Ägarlösenordet styr vad en behörig användare kan göra efter att ha öppnat filen. När du anger ett separat ägarlösenord tillämpar BentoPDF automatiskt den strängaste uppsättningen begränsningar:
+Ägarlösenordet styr vad en behörig användare kan göra efter att ha öppnat filen. När du anger ett separat ägarlösenord tillämpar Pixel PDF automatiskt den strängaste uppsättningen begränsningar:
 
 - Ändring inaktiverad
 - Extrahering/kopiering inaktiverad

@@ -10,24 +10,24 @@ Kubernetes est peut-être excessif pour un site statique, mais il peut très bie
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> Les images nginx officielles de BentoPDF incluent ces en-têtes. Dans Kubernetes, **les contrôleurs Ingress/Gateway sont aussi des reverse proxies** : assurez-vous donc que ces en-têtes sont conservés (ou ajoutez-les en périphérie).
+> Les images nginx officielles de Pixel PDF incluent ces en-têtes. Dans Kubernetes, **les contrôleurs Ingress/Gateway sont aussi des reverse proxies** : assurez-vous donc que ces en-têtes sont conservés (ou ajoutez-les en périphérie).
 
 ## Prérequis
 
 - Un cluster Kubernetes
 - Helm v3
-- Une image nginx BentoPDF (par ex. `ghcr.io/alam00000/bentopdf:<tag>`) qui sert sur le **port 8080**
+- Une image nginx Pixel PDF (par ex. `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`) qui sert sur le **port 8080**
 
 ## Déployer avec Helm
 
 ### Installer depuis ce dépôt (chart local)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ Si le chart est publié sur GHCR en tant qu'artefact OCI :
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward (test rapide)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (facultatif)
@@ -78,15 +78,15 @@ Exemple (opérateur Gateway API de Cloudflare) :
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### Ce qui « devrait » se passer
 
-La configuration nginx de BentoPDF définit les en-têtes de réponse requis. La plupart des contrôleurs Ingress/Gateway **transmettent les en-têtes de réponse en amont sans les modifier**.
+La configuration nginx de Pixel PDF définit les en-têtes de réponse requis. La plupart des contrôleurs Ingress/Gateway **transmettent les en-têtes de réponse en amont sans les modifier**.
 
 ### Ce qui peut tout casser
 
@@ -132,9 +132,9 @@ ingress:
 
 ## Erreurs de type MIME `.mjs` (iframe vide dans Signer un PDF / remplissage de formulaire)
 
-Si la console du navigateur affiche `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` sur une requête `.mjs`, un contrôleur Ingress/Gateway placé devant le nginx de BentoPDF remplace l'en-tête `Content-Type` en amont par `application/octet-stream`.
+Si la console du navigateur affiche `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` sur une requête `.mjs`, un contrôleur Ingress/Gateway placé devant le nginx de Pixel PDF remplace l'en-tête `Content-Type` en amont par `application/octet-stream`.
 
-Le nginx de l'image BentoPDF sert déjà `.mjs` en `application/javascript`. La solution consiste à empêcher le contrôleur de le supprimer ou de le remplacer. Pour nginx-ingress :
+Le nginx de l'image Pixel PDF sert déjà `.mjs` en `application/javascript`. La solution consiste à empêcher le contrôleur de le supprimer ou de le remplacer. Pour nginx-ingress :
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ Utilisez un ConfigMap pour désactiver des outils à l'exécution sans reconstru
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ Montez-le dans le répertoire servi :
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 Les identifiants d'outils correspondent à l'URL de la page sans `.html` : ouvrez un outil et regardez l'URL (par ex. `edit-pdf`, `merge-pdf`, `compress-pdf`). Les outils désactivés sont masqués de la page d'accueil, de la recherche, des raccourcis, du constructeur de workflow et de l'accès direct par URL. Consultez le [guide Docker](/fr/self-hosting/docker#desactiver-des-outils-specifiques) pour la liste complète des options.

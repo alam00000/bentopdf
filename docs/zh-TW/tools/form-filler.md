@@ -36,7 +36,7 @@ description: 透過內嵌檢視器，直接在瀏覽器中填寫 PDF 表單，�
 
 ## 小技巧
 
-- XFA 表單是舊版格式，只有部分 PDF 檢視器支援。如果您在 Chrome 或大多數其他工具中開啟 XFA PDF 時看到空白頁面，代表這些檢視器不支援 XFA。BentoPDF 的表單填寫器與 Firefox 都能正確處理 XFA。
+- XFA 表單是舊版格式，只有部分 PDF 檢視器支援。如果您在 Chrome 或大多數其他工具中開啟 XFA PDF 時看到空白頁面，代表這些檢視器不支援 XFA。Pixel PDF 的表單填寫器與 Firefox 都能正確處理 XFA。
 - 對於沒有表單欄位的 PDF，請先使用 [建立 PDF 表單](./form-creator) 工具新增欄位，再到這裡填寫。
 - 檢視器會自動調整大小以符合 PDF 的頁面尺寸。
 

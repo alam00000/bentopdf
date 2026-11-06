@@ -1,6 +1,6 @@
 # Удзел у распрацоўцы
 
-Дзякуй за цікавасць да ўдзелу ў распрацоўцы BentoPDF! Гэта кіраўніцтва дапаможа вам пачаць.
+Дзякуй за цікавасць да ўдзелу ў распрацоўцы Pixel PDF! Гэта кіраўніцтва дапаможа вам пачаць.
 
 ## Пачатак працы
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Структура праекта
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## Пераклад
 
-Глядзіце [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md), каб даведацца, як дадаць новыя мовы.
+Глядзіце [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md), каб даведацца, як дадаць новыя мовы.
 
 ## Ліцэнзійнае пагадненне ўдзельніка
 
 Перш чым ваш PR можна будзе аб'яднаць, вам трэба падпісаць наша CLA:
 
-- [Індывідуальнае CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Карпаратыўнае CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Індывідуальнае CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Карпаратыўнае CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Атрыманне дапамогі
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Супольнасць у Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Ліцэнзія
 
-BentoPDF мае падвойную ліцэнзію:
+Pixel PDF мае падвойную ліцэнзію:
 
 - **AGPL-3.0** для праектаў з адкрытым зыходным кодам, якія публічна дзеляцца ўсім сваім зыходным кодам
 - **Камерцыйная ліцэнзія** для прапрыетарных праграм і праграм з закрытым кодам: [Атрымаць пажыццёвую ліцэнзію за $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

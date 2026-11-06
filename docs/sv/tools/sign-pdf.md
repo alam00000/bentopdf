@@ -38,7 +38,7 @@ Lägg till din signatur i vilket PDF-dokument som helst. Verktyget bäddar in en
 ## Tips
 
 - Aktivera tillplattning om du skickar den signerade PDF-filen till någon som inte ska kunna ta bort eller flytta din signatur.
-- För juridiskt bindande digitala signaturer med certifikatbaserad verifiering erbjuder BentoPDF också ett separat verktyg för digital signatur.
+- För juridiskt bindande digitala signaturer med certifikatbaserad verifiering erbjuder Pixel PDF också ett separat verktyg för digital signatur.
 - Ladda upp en PNG-signaturbild med transparent bakgrund för det renaste resultatet.
 
 ## Relaterade verktyg

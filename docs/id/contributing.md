@@ -1,6 +1,6 @@
 # Berkontribusi
 
-Terima kasih atas minat Anda untuk berkontribusi pada BentoPDF! Panduan ini akan membantu Anda memulai.
+Terima kasih atas minat Anda untuk berkontribusi pada Pixel PDF! Panduan ini akan membantu Anda memulai.
 
 ## Memulai
 
@@ -14,8 +14,8 @@ Terima kasih atas minat Anda untuk berkontribusi pada BentoPDF! Panduan ini akan
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Struktur Proyek
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Tambahkan entri ke semua file locale di `public/locales/`:
 
 ## Terjemahan
 
-Lihat [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) untuk menambahkan bahasa baru.
+Lihat [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) untuk menambahkan bahasa baru.
 
 ## Perjanjian Lisensi Kontributor
 
 Sebelum PR Anda dapat digabungkan, Anda perlu menandatangani CLA kami:
 
-- [Individual CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Corporate CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individual CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Corporate CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Mendapatkan Bantuan
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Komunitas Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Lisensi
 
-BentoPDF berlisensi ganda:
+Pixel PDF berlisensi ganda:
 
 - **AGPL-3.0** untuk proyek sumber terbuka yang membagikan seluruh kode sumbernya secara publik
 - **Lisensi Komersial** untuk aplikasi proprietari/sumber tertutup - [Dapatkan Lisensi Seumur Hidup seharga $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

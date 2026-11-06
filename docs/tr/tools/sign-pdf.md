@@ -38,7 +38,7 @@ Herhangi bir PDF belgesine imzanızı ekleyin. Araç, imzanızı serbest elle ç
 ## İpuçları
 
 - İmzalı PDF'i, imzanızı kaldırmaması veya yerini değiştirmemesi gereken birine gönderiyorsanız düzleştirmeyi etkinleştirin.
-- Sertifika tabanlı doğrulamaya sahip hukuken bağlayıcı dijital imzalar için BentoPDF ayrıca ayrı bir Dijital İmza aracı sunar.
+- Sertifika tabanlı doğrulamaya sahip hukuken bağlayıcı dijital imzalar için Pixel PDF ayrıca ayrı bir Dijital İmza aracı sunar.
 - En temiz sonuç için arka planı saydam bir PNG imza görseli yükleyin.
 
 ## İlgili Araçlar

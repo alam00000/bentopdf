@@ -1,6 +1,6 @@
 # Разгортванне з Apache
 
-Размясціце BentoPDF з дапамогай Apache HTTP Server.
+Размясціце Pixel PDF з дапамогай Apache HTTP Server.
 
 ## Патрабаванні
 
@@ -11,8 +11,8 @@
 ## Крок 1: Збярыце праект
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Крок 2: Скапіруйце файлы
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Крок 3: Канфігурацыя Apache
 
-Стварыце `/etc/apache2/sites-available/bentopdf.conf`:
+Стварыце `/etc/apache2/sites-available/pixelpdf.conf`:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 ## Крок 4: .htaccess для маршрутызацыі
 
-Стварыце `/var/www/bentopdf/.htaccess`:
+Стварыце `/var/www/pixelpdf/.htaccess`:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Крок 6: Уключыце сайт
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Header always set Cross-Origin-Opener-Policy "same-origin"
 ### Адмоўлена ў доступе
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

@@ -1,6 +1,6 @@
 # Driftsätt på Hostinger
 
-[Hostinger](https://hostinger.com) är en populär leverantör av delad hosting. Den här guiden beskriver hur du driftsätter BentoPDF på Hostingers delade hosting.
+[Hostinger](https://hostinger.com) är en populär leverantör av delad hosting. Den här guiden beskriver hur du driftsätter Pixel PDF på Hostingers delade hosting.
 
 ## Förutsättningar
 
@@ -10,8 +10,8 @@
 ## Steg 1: Bygg projektet
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Om rubrikerna inte tillämpas, kontakta Hostingers support för att aktivera `mo
 
 ### 404-fel vid omladdning av sidan
 
-Kontrollera att regeln för filändelsen `.html` och språkrouterna är rätt konfigurerade. BentoPDF använder statiska HTML-filer, inte SPA-routing:
+Kontrollera att regeln för filändelsen `.html` och språkrouterna är rätt konfigurerade. Pixel PDF använder statiska HTML-filer, inte SPA-routing:
 
 ```apache
 # Language routes serve actual files from language directories

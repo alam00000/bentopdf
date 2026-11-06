@@ -52,7 +52,7 @@ const DEFAULT_TESSERACT_WORKER_URL = `https://cdn.jsdelivr.net/npm/tesseract.js@
 const DEFAULT_TESSERACT_CORE_URL = `https://cdn.jsdelivr.net/npm/tesseract.js-core@v${tesseractPackage.dependencies['tesseract.js-core'].substring(1)}/`;
 
 const DEFAULT_CORS_PROXY_ORIGIN =
-  'https://bentopdf-cors-proxy.bentopdf.workers.dev';
+  'https://pixelpdf-cors-proxy.pixelpdf.workers.dev';
 const DEFAULT_OCR_FONT_CDN_ORIGIN = 'https://rawcdn.githack.com';
 
 const COMMON_HEADERS = [

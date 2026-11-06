@@ -1,6 +1,6 @@
 # WASM Proxy Setup Guide
 
-BentoPDF uses a Cloudflare Worker to proxy WASM library requests, bypassing CORS restrictions when loading AGPL-licensed components (PyMuPDF, Ghostscript, CoherentPDF) from external sources.
+Pixel PDF uses a Cloudflare Worker to proxy WASM library requests, bypassing CORS restrictions when loading AGPL-licensed components (PyMuPDF, Ghostscript, CoherentPDF) from external sources.
 
 ## Quick Start
 
@@ -23,7 +23,7 @@ npx wrangler secret put GS_SOURCE -c wasm-wrangler.toml
 npx wrangler secret put CPDF_SOURCE -c wasm-wrangler.toml
 
 # Option B: Set via Cloudflare Dashboard
-# Go to Workers & Pages > bentopdf-wasm-proxy > Settings > Variables
+# Go to Workers & Pages > pixelpdf-wasm-proxy > Settings > Variables
 ```
 
 **Recommended Source URLs:**
@@ -32,39 +32,39 @@ npx wrangler secret put CPDF_SOURCE -c wasm-wrangler.toml
 - GS_SOURCE: `https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm/assets/`
 - CPDF_SOURCE: `https://cdn.jsdelivr.net/npm/coherentpdf/dist/`
 
-> **Note:** You can use your own hosted WASM files instead of the recommended URLs. Just ensure your files match the expected directory structure and file names that BentoPDF expects for each module.
+> **Note:** You can use your own hosted WASM files instead of the recommended URLs. Just ensure your files match the expected directory structure and file names that Pixel PDF expects for each module.
 
-### 3. Configure BentoPDF
+### 3. Configure Pixel PDF
 
 **Option A: Environment variables (recommended — zero-config for users)**
 
 Set these in `.env.production` or pass as Docker build args:
 
 ```bash
-VITE_WASM_PYMUPDF_URL=https://bentopdf-wasm-proxy.<your-subdomain>.workers.dev/pymupdf/
-VITE_WASM_GS_URL=https://bentopdf-wasm-proxy.<your-subdomain>.workers.dev/gs/
-VITE_WASM_CPDF_URL=https://bentopdf-wasm-proxy.<your-subdomain>.workers.dev/cpdf/
+VITE_WASM_PYMUPDF_URL=https://pixelpdf-wasm-proxy.<your-subdomain>.workers.dev/pymupdf/
+VITE_WASM_GS_URL=https://pixelpdf-wasm-proxy.<your-subdomain>.workers.dev/gs/
+VITE_WASM_CPDF_URL=https://pixelpdf-wasm-proxy.<your-subdomain>.workers.dev/cpdf/
 ```
 
 **Option B: Manual per-user configuration**
 
-In BentoPDF's Advanced Settings (wasm-settings.html), enter:
+In Pixel PDF's Advanced Settings (wasm-settings.html), enter:
 
 | Module      | URL                                                                 |
 | ----------- | ------------------------------------------------------------------- |
-| PyMuPDF     | `https://bentopdf-wasm-proxy.<your-subdomain>.workers.dev/pymupdf/` |
-| Ghostscript | `https://bentopdf-wasm-proxy.<your-subdomain>.workers.dev/gs/`      |
-| CoherentPDF | `https://bentopdf-wasm-proxy.<your-subdomain>.workers.dev/cpdf/`    |
+| PyMuPDF     | `https://pixelpdf-wasm-proxy.<your-subdomain>.workers.dev/pymupdf/` |
+| Ghostscript | `https://pixelpdf-wasm-proxy.<your-subdomain>.workers.dev/gs/`      |
+| CoherentPDF | `https://pixelpdf-wasm-proxy.<your-subdomain>.workers.dev/cpdf/`    |
 
 ## Custom Domain (Optional)
 
-To use a custom domain like `wasm.bentopdf.com`:
+To use a custom domain like `wasm.pixelpdf.com`:
 
 1. Add route in `wasm-wrangler.toml`:
 
 ```toml
 routes = [
-  { pattern = "wasm.bentopdf.com/*", zone_name = "bentopdf.com" }
+  { pattern = "wasm.pixelpdf.com/*", zone_name = "pixelpdf.com" }
 ]
 ```
 

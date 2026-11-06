@@ -235,7 +235,7 @@ function buildCorsProxyAllowedHosts(): Set<string> {
     'cdn.jsdelivr.net',
     'fonts.googleapis.com',
     'fonts.gstatic.com',
-    'bentopdf-cors-proxy.bentopdf.workers.dev',
+    'pixelpdf-cors-proxy.pixelpdf.workers.dev',
     'timestamp.digicert.com',
     'timestamp.sectigo.com',
     'ts.ssl.com',
@@ -684,10 +684,10 @@ export default defineConfig(({ command }) => {
     baseUrl === '/' &&
     (command === 'serve' || process.env.INCLUDE_DOCS === 'true')
       ? '/docs/'
-      : 'https://www.bentopdf.com/docs';
+      : 'https://www.pixelpdf.com/docs';
   const showAds =
     command === 'serve' ||
-    ['bentopdf.com', 'www.bentopdf.com'].includes(
+    ['pixelpdf.com', 'www.pixelpdf.com'].includes(
       process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ''
     );
 
@@ -766,6 +766,10 @@ export default defineConfig(({ command }) => {
     },
     server: {
       host: process.env.VITE_DEV_HOST || 'localhost',
+      // Allow the sandbox / tunnelled preview hosts (e.g. *.e2b.app) during dev.
+      allowedHosts: process.env.VITE_DEV_ALLOWED_HOSTS
+        ? process.env.VITE_DEV_ALLOWED_HOSTS.split(',')
+        : true,
       proxy: {
         '/docs': {
           target: 'http://localhost:5174',

@@ -36,7 +36,7 @@ Il n'y a aucune option de configuration supplémentaire. Envoyez le formulaire, 
 
 ## Astuces
 
-- Les formulaires XFA sont un format hérité, pris en charge seulement par certains lecteurs PDF. Si vous ouvrez un PDF XFA dans Chrome ou la plupart des autres outils et voyez des pages blanches, c'est que ces lecteurs ne prennent pas en charge XFA. Le remplissage de formulaires de BentoPDF et Firefox gèrent tous deux correctement XFA.
+- Les formulaires XFA sont un format hérité, pris en charge seulement par certains lecteurs PDF. Si vous ouvrez un PDF XFA dans Chrome ou la plupart des autres outils et voyez des pages blanches, c'est que ces lecteurs ne prennent pas en charge XFA. Le remplissage de formulaires de Pixel PDF et Firefox gèrent tous deux correctement XFA.
 - Pour les PDF sans champs de formulaire, utilisez d'abord l'outil [Créer un formulaire PDF](./form-creator) pour ajouter des champs, puis remplissez-les ici.
 - Le lecteur ajuste automatiquement sa taille aux dimensions des pages du PDF.
 

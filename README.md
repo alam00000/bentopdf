@@ -1,5 +1,5 @@
 <p align="center"><img src="public/images/favicon-no-bg.svg" width="80"></p>
-<h1 align="center">BentoPDF</h1>
+<h1 align="center">Pixel PDF</h1>
 <h3 align="center">💖 Thank You to Our Sponsors</h3>
 <p align="center"><sub>Organizational Supporters</sub></p>
 <p align="center">
@@ -29,11 +29,11 @@
   <a href="https://ko-fi.com/alio01"><img alt="Buy me a Coffee" src="https://img.shields.io/badge/Buy%20me%20a%20Coffee-yellow?style=for-the-badge&logo=kofi" /></a>
 </p>
 
-**BentoPDF** is a powerful, privacy-first, client-side PDF toolkit that is self-hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
+**Pixel PDF** is a powerful, privacy-first, client-side PDF toolkit that is self-hostable and allows you to manipulate, edit, merge, and process PDF files directly in your browser. No server-side processing is required, ensuring your files remain secure and private.
 
-[![Docker Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Falam00000%2Fbentopdf%2Fbadges%2Fdocker-downloads.json&cacheSeconds=3600)](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf-simple) ![GitHub Stars](https://img.shields.io/github/stars/alam00000/bentopdf?style=social)
+[![Docker Downloads](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmohammedalhinaki-cloud%2FPixel-PDF%2Fbadges%2Fdocker-downloads.json&cacheSeconds=3600)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/pkgs/container/pixelpdf-simple) ![GitHub Stars](https://img.shields.io/github/stars/mohammedalhinaki-cloud/Pixel-PDF?style=social)
 
-![BentoPDF Tools](public/images/bentopdf-tools.png)
+![Pixel PDF Tools](public/images/pixelpdf-tools.png)
 
 ---
 
@@ -43,7 +43,7 @@
 - [Documentation](#-documentation)
 - [Licensing](#-licensing)
 - [Stargazers over time](#-stargazers-over-time)
-- [Why BentoPDF?](#-why-bentopdf)
+- [Why Pixel PDF?](#-why-pixelpdf)
 - [Features / Tools Supported](#️-features--tools-supported)
   - [Organize & Manage PDFs](#organize--manage-pdfs)
   - [Edit & Modify PDFs](#edit--modify-pdfs)
@@ -87,9 +87,9 @@ Have questions, feature requests, or want to chat with the community? Join our D
 
 ## 📚 Documentation
 
-[![Documentation](https://img.shields.io/badge/Docs-VitePress-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://www.bentopdf.com/docs)
+[![Documentation](https://img.shields.io/badge/Docs-VitePress-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://www.pixelpdf.com/docs)
 
-Visit our [Documentation](https://www.bentopdf.com/docs) for:
+Visit our [Documentation](https://www.pixelpdf.com/docs) for:
 
 - **Getting Started** guide
 - **Tools Reference** (50+ tools)
@@ -101,7 +101,7 @@ Visit our [Documentation](https://www.bentopdf.com/docs) for:
 
 ## 📜 Licensing
 
-BentoPDF is **dual-licensed** to fit your needs:
+Pixel PDF is **dual-licensed** to fit your needs:
 
 | License        | Best For                                     | Price              |
 | -------------- | -------------------------------------------- | ------------------ |
@@ -114,13 +114,13 @@ BentoPDF is **dual-licensed** to fit your needs:
   </a>
 </p>
 
-> **One-time purchase** · **One product, unlimited devices & users** · **Lifetime updates** · **No AGPL ob> **Building on BentoPDF? Hyper Compress is included.\*\* The commercial license covers [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress) as a bundled component in eligible products: companies under US$1 million in revenue and funding, general PDF toolkits, and only through BentoPDF's own tools on the end user's device. Using the engine on its own, on a server, through an API or in other software needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing) from $99/year, and [Kura](https://www.bentopdf.com/kura#pricing) is licensed separately from $99/year. See the [full license terms](COMMERCIAL-LICENSE.md).-components).
+> **One-time purchase** · **One product, unlimited devices & users** · **Lifetime updates** · **No AGPL ob> **Building on Pixel PDF? Hyper Compress is included.\*\* The commercial license covers [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress) as a bundled component in eligible products: companies under US$1 million in revenue and funding, general PDF toolkits, and only through Pixel PDF's own tools on the end user's device. Using the engine on its own, on a server, through an API or in other software needs a separate [Hyper Compress license](https://www.pixelpdf.com/hyper-compress#pricing) from $99/year, and [Kura](https://www.pixelpdf.com/kura#pricing) is licensed separately from $99/year. See the [full license terms](COMMERCIAL-LICENSE.md).-components).
 
-📖 For more details, see our [Licensing Page](https://www.bentopdf.com/licensing)
+📖 For more details, see our [Licensing Page](https://www.pixelpdf.com/licensing)
 
 ### AGPL Components (Pre-configured via CDN)
 
-BentoPDF does **not** bundle AGPL-licensed processing libraries in its source code, but **pre-configures CDN URLs** so all features work out of the box with zero setup:
+Pixel PDF does **not** bundle AGPL-licensed processing libraries in its source code, but **pre-configures CDN URLs** so all features work out of the box with zero setup:
 
 | Component              | License  | Features Enabled                                                                                    |
 | ---------------------- | -------- | --------------------------------------------------------------------------------------------------- |
@@ -135,22 +135,22 @@ BentoPDF does **not** bundle AGPL-licensed processing libraries in its source co
 
 ## ⭐ Stargazers over time
 
-[![Star History Chart](https://star-history.dera.page/svg?repos=alam00000/bentopdf&type=Date)](https://github.com/alam00000/bentopdf/stargazers)
+[![Star History Chart](https://star-history.dera.page/svg?repos=mohammedalhinaki-cloud/Pixel-PDF&type=Date)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/stargazers)
 
 ---
 
-## ✨ Why BentoPDF?
+## ✨ Why Pixel PDF?
 
 - **Privacy First**: All processing happens in your browser. Your files are never uploaded to a server, guaranteeing 100% privacy.
 - **No Limits**: Manipulate as many files as you want, as often as you want. There are no restrictions or upload limits.
-- **High Performance**: Built with modern web technologies, BentoPDF is fast and efficient, handling even large PDF files with ease.
-- **Completely Free**: BentoPDF is a free and open-source tool for everyone.
+- **High Performance**: Built with modern web technologies, Pixel PDF is fast and efficient, handling even large PDF files with ease.
+- **Completely Free**: Pixel PDF is a free and open-source tool for everyone.
 
 ---
 
 ## 🛠️ Features / Tools Supported
 
-BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
+Pixel PDF offers a comprehensive suite of tools to handle all your PDF needs.
 
 ### Organize & Manage PDFs
 
@@ -297,7 +297,7 @@ BentoPDF offers a comprehensive suite of tools to handle all your PDF needs.
 
 ## 🌍 Translations
 
-BentoPDF is available in multiple languages:
+Pixel PDF is available in multiple languages:
 
 | Language            | Status                                                                                                                    |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -315,13 +315,13 @@ BentoPDF is available in multiple languages:
 | Russian             | [![Russian](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/ru/common.json)                |
 | Persian (Farsi)     | [![Persian](https://img.shields.io/badge/Complete-green?style=flat-square)](public/locales/fa/common.json)                |
 
-Want to help translate BentoPDF into your language? Check out our [Translation Guide](TRANSLATION.md)!
+Want to help translate Pixel PDF into your language? Check out our [Translation Guide](TRANSLATION.md)!
 
 ---
 
 ## 🚀 Getting Started
 
-You can run BentoPDF locally for development or personal use.
+You can run Pixel PDF locally for development or personal use.
 
 ### Prerequisites
 
@@ -331,19 +331,19 @@ You can run BentoPDF locally for development or personal use.
 
 ### 🚀 Quick Start
 
-Run BentoPDF instantly from GitHub Container Registry (Recommended):
+Run Pixel PDF instantly from GitHub Container Registry (Recommended):
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Open your browser at: http://localhost:3000
 
 > [!TIP]
-> BentoPDF ships in two builds:
+> Pixel PDF ships in two builds:
 >
-> - **Self-Hosted build** — `ghcr.io/alam00000/bentopdf-simple:latest`. Every PDF tool the public site has, **without** the BentoPDF marketing (no hero, FAQ, testimonials, footer). Use this for internal/team/organization deployments. It is **not** a feature-reduced lite version.
-> - **Commercial build** — `ghcr.io/alam00000/bentopdf:latest`. The full marketing site, used by bentopdf.com itself and by commercial license holders running public-facing deployments. Includes hero, FAQ, testimonials, and footer.
+> - **Self-Hosted build** — `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. Every PDF tool the public site has, **without** the Pixel PDF marketing (no hero, FAQ, testimonials, footer). Use this for internal/team/organization deployments. It is **not** a feature-reduced lite version.
+> - **Commercial build** — `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. The full marketing site, used by pixelpdf.com itself and by commercial license holders running public-facing deployments. Includes hero, FAQ, testimonials, and footer.
 >
 > If in doubt: pull the Self-Hosted build.
 
@@ -353,19 +353,19 @@ Open your browser at: http://localhost:3000
 **Docker Hub:**
 
 ```bash
-docker run -p 3000:8080 bentopdfteam/bentopdf-simple:latest
+docker run -p 3000:8080 pixelpdfteam/pixelpdf-simple:latest
 ```
 
 **Podman (GHCR):**
 
 ```bash
-podman run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+podman run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 **Podman (Docker Hub):**
 
 ```bash
-podman run -p 3000:8080 docker.io/bentopdfteam/bentopdf-simple:latest
+podman run -p 3000:8080 docker.io/pixelpdfteam/pixelpdf-simple:latest
 ```
 
 > [!NOTE]
@@ -375,20 +375,20 @@ podman run -p 3000:8080 docker.io/bentopdfteam/bentopdf-simple:latest
 
 ### Static Hosting using Netlify, Vercel, and GitHub Pages
 
-It is very straightforward to host your own instance of BentoPDF using a static web page hosting service. Plus, services such as Netlify, Vercel, and GitHub Pages all offer a free tier for getting started. See [Static Hosting](https://github.com/alam00000/bentopdf/blob/main/STATIC-HOSTING.md) for details.
+It is very straightforward to host your own instance of Pixel PDF using a static web page hosting service. Plus, services such as Netlify, Vercel, and GitHub Pages all offer a free tier for getting started. See [Static Hosting](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/STATIC-HOSTING.md) for details.
 
 ### 🏠 Self-Hosting Locally
 
-Since BentoPDF is fully client-side, all processing happens in the user's browser and no server-side processing is required. This means you can host BentoPDF as simple static files on any web server or hosting platform.
+Since Pixel PDF is fully client-side, all processing happens in the user's browser and no server-side processing is required. This means you can host Pixel PDF as simple static files on any web server or hosting platform.
 
 > [!IMPORTANT]
 > Office file conversion uses LibreOffice WASM, which requires `SharedArrayBuffer`. That means the app must be both cross-origin isolated and served from a secure context. `http://localhost` works for local testing, but `http://192.168.x.x` or other LAN IPs usually require HTTPS even if the server already sends the correct COOP/COEP headers.
 
 **Download from Releases (Recommended):**
 
-The easiest way to self-host is to download the pre-built distribution file from our [GitHub releases](https://github.com/alam00000/bentopdf/releases). Each release includes a `dist-{version}.zip` file that contains all necessary files for self-hosting.
+The easiest way to self-host is to download the pre-built distribution file from our [GitHub releases](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/releases). Each release includes a `dist-{version}.zip` file that contains all necessary files for self-hosting.
 
-1. Go to [BentoPDF Releases](https://github.com/alam00000/bentopdf/releases)
+1. Go to [Pixel PDF Releases](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/releases)
 2. Download the latest `dist-{version}.zip` file
 3. Extract the zip file
 4. Serve the extracted folder with your preferred web server
@@ -414,8 +414,8 @@ If you prefer to build from source:
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -442,19 +442,19 @@ The prebuilt Docker images have no copies, and their nginx compresses with gzip 
 ```bash
 # No copies (default)
 npm run build:original
-docker build --build-arg COMPRESSION_MODE=o -t bentopdf:original .
+docker build --build-arg COMPRESSION_MODE=o -t pixelpdf:original .
 
 # Gzip copies
 npm run build:gzip
-docker build --build-arg COMPRESSION_MODE=g -t bentopdf:gzip .
+docker build --build-arg COMPRESSION_MODE=g -t pixelpdf:gzip .
 
 # Brotli copies
 npm run build:brotli
-docker build --build-arg COMPRESSION_MODE=b -t bentopdf:brotli .
+docker build --build-arg COMPRESSION_MODE=b -t pixelpdf:brotli .
 
 # Both
 npm run build:all
-docker build --build-arg COMPRESSION_MODE=all -t bentopdf:all .
+docker build --build-arg COMPRESSION_MODE=all -t pixelpdf:all .
 ```
 
 | Mode  | Copies made     | Use case                              |
@@ -466,7 +466,7 @@ docker build --build-arg COMPRESSION_MODE=all -t bentopdf:all .
 
 **CDN Optimization:**
 
-BentoPDF can use jsDelivr CDN to serve large WASM files (LibreOffice, Ghostscript, PyMuPDF) for improved performance and reduced bandwidth costs:
+Pixel PDF can use jsDelivr CDN to serve large WASM files (LibreOffice, Ghostscript, PyMuPDF) for improved performance and reduced bandwidth costs:
 
 ```bash
 # Production build with CDN (Recommended)
@@ -511,7 +511,7 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://your-server.com/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://your-server.com/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 To disable a module (require manual user config via Advanced Settings), set its variable to an empty string.
@@ -532,8 +532,8 @@ For networks with no internet access (government, healthcare, financial, etc.), 
 The included `prepare-airgap.sh` script automates the entire process — downloading WASM packages, building the Docker image, exporting everything into a self-contained bundle with a setup script.
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Show supported OCR language codes (for --ocr-languages)
 bash scripts/prepare-airgap.sh --list-ocr-languages
@@ -552,7 +552,7 @@ This produces a bundle directory containing:
 
 ```
 bentopdf-airgap-bundle/
-  bentopdf.tar              # Docker image
+  pixelpdf.tar              # Docker image
   *.tgz                     # WASM packages (PyMuPDF, Ghostscript, CoherentPDF, Tesseract)
   tesseract-langdata/       # OCR traineddata files
   ocr-fonts/                # OCR text-layer font files
@@ -575,7 +575,7 @@ The setup script loads the Docker image, extracts WASM files, and optionally sta
 | Flag                           | Description                                      | Default                           |
 | ------------------------------ | ------------------------------------------------ | --------------------------------- |
 | `--wasm-base-url <url>`        | Where WASMs will be hosted internally            | _(required, prompted if missing)_ |
-| `--image-name <name>`          | Docker image tag                                 | `bentopdf`                        |
+| `--image-name <name>`          | Docker image tag                                 | `pixelpdf`                        |
 | `--output-dir <path>`          | Output bundle directory                          | `./bentopdf-airgap-bundle`        |
 | `--simple-mode`                | Enable Simple Mode                               | off                               |
 | `--base-url <path>`            | Subdirectory base URL (e.g. `/pdf/`)             | `/`                               |
@@ -595,7 +595,7 @@ The setup script loads the Docker image, extracts WASM files, and optionally sta
 The interactive prompt also accepts `list` to print the full supported Tesseract code list and `search <term>` to find matches such as `search german` or `search chi`.
 
 > [!IMPORTANT]
-> WASM files must be served from the **same origin** as the BentoPDF app. Web Workers use `importScripts()` which cannot load scripts cross-origin. For example, if BentoPDF runs at `https://internal.example.com`, the WASM base URL should also be `https://internal.example.com/wasm`.
+> WASM files must be served from the **same origin** as the Pixel PDF app. Web Workers use `importScripts()` which cannot load scripts cross-origin. For example, if Pixel PDF runs at `https://internal.example.com`, the WASM base URL should also be `https://internal.example.com/wasm`.
 
 #### Manual Steps
 
@@ -619,8 +619,8 @@ curl -fsSL https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSa
 **Step 2: Build the Docker image with internal URLs**
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 docker build \
   --build-arg VITE_WASM_PYMUPDF_URL=https://internal-server.example.com/wasm/pymupdf/ \
@@ -630,20 +630,20 @@ docker build \
   --build-arg VITE_TESSERACT_CORE_URL=https://internal-server.example.com/wasm/ocr/core \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 **Step 3: Export the Docker image**
 
 ```bash
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 ```
 
 **Step 4: Transfer into the air-gapped network**
 
 Copy these files via USB drive, internal artifact repository, or approved transfer method:
 
-- `bentopdf.tar` — the Docker image
+- `pixelpdf.tar` — the Docker image
 - `bentopdf-pymupdf-wasm-0.11.14.tgz` — PyMuPDF WASM package
 - `bentopdf-gs-wasm-*.tgz` — Ghostscript WASM package
 - `coherentpdf-*.tgz` — CoherentPDF WASM package
@@ -656,7 +656,7 @@ Copy these files via USB drive, internal artifact repository, or approved transf
 
 ```bash
 # Load the Docker image
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract the WASM packages
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
@@ -671,8 +671,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C ./wasm/ocr/core --strip-components=1
 cp ./tesseract-langdata/*.traineddata.gz ./wasm/ocr/lang-data/
 cp ./ocr-fonts/* ./wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 Make sure the files are accessible at the URLs you configured in Step 2, including `.../ocr/worker.min.js`, `.../ocr/core`, `.../ocr/lang-data`, and `.../ocr/fonts`.
@@ -694,41 +694,41 @@ Make sure the files are accessible at the URLs you configured in Step 2, includi
 
 **Subdirectory Hosting:**
 
-BentoPDF can also be hosted from a subdirectory (e.g., `example.com/tools/bentopdf/`):
+Pixel PDF can also be hosted from a subdirectory (e.g., `example.com/tools/pixelpdf/`):
 
 ```bash
 
 # Example:
-# 1. Build the app with the specific BASE_URL. BASE_URL must have a trailing and leading slash. The BASE_URL can be any URL of your choice. Here we are using /tools/bentopdf/ as an example.
+# 1. Build the app with the specific BASE_URL. BASE_URL must have a trailing and leading slash. The BASE_URL can be any URL of your choice. Here we are using /tools/pixelpdf/ as an example.
 
-BASE_URL=/tools/bentopdf/ npm run build
+BASE_URL=/tools/pixelpdf/ npm run build
 
 # 2. Create the nested directory structure inside serve-test (or any folder of your choice for local testing. In case of production, create the nested directory structure inside the root directory)
-mkdir -p serve-test/tools/bentopdf
+mkdir -p serve-test/tools/pixelpdf
 
 # 3. Copy all files from the 'dist' folder into that nested directory
-cp -r dist/* serve-test/tools/bentopdf/
+cp -r dist/* serve-test/tools/pixelpdf/
 
 # 4. Serve the 'serve-test' folder
 npx serve serve-test
 ```
 
-The website can be accessible at: `http://localhost:3000/tools/bentopdf/`
+The website can be accessible at: `http://localhost:3000/tools/pixelpdf/`
 
 The `npm run package` command creates a `dist-{version}.zip` file that you can use for self-hosting.
 
 **Docker Subdirectory Deployment:**
 
-BentoPDF's Docker image also supports the `BASE_URL` build argument for subdirectory deployments:
+Pixel PDF's Docker image also supports the `BASE_URL` build argument for subdirectory deployments:
 
 ```bash
 # Build for subdirectory deployment
-docker build --build-arg BASE_URL=/bentopdf/ -t bentopdf .
+docker build --build-arg BASE_URL=/pixelpdf/ -t pixelpdf .
 
 # Run the container
-docker run -p 3000:8080 bentopdf
+docker run -p 3000:8080 pixelpdf
 
-# The app will be accessible at http://localhost:3000/bentopdf/
+# The app will be accessible at http://localhost:3000/pixelpdf/
 ```
 
 **Default Language:**
@@ -736,7 +736,7 @@ docker run -p 3000:8080 bentopdf
 Set the default UI language at build time. Users can still switch languages — this only changes the initial default. Supported: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`.
 
 ```bash
-docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .
+docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t pixelpdf .
 ```
 
 **Combined with Simple Mode:**
@@ -746,14 +746,14 @@ docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .
 docker build \
   --build-arg BASE_URL=/tools/pdf/ \
   --build-arg SIMPLE_MODE=true \
-  -t bentopdf-simple .
+  -t pixelpdf-simple .
 
-docker run -p 3000:8080 bentopdf-simple
+docker run -p 3000:8080 pixelpdf-simple
 ```
 
 > [!IMPORTANT]
 >
-> - Always include trailing slashes in `BASE_URL` (e.g., `/bentopdf/` not `/bentopdf`)
+> - Always include trailing slashes in `BASE_URL` (e.g., `/pixelpdf/` not `/pixelpdf`)
 > - The default value is `/` for root deployment
 
 ### 🚀 Run with Docker Compose / Podman Compose (Recommended)
@@ -764,11 +764,11 @@ For a more robust setup with auto-restart capabilities:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest # Self-Hosted build (recommended)
-    # image: bentopdfteam/bentopdf-simple:latest     # Self-Hosted build (Docker Hub)
-    # image: ghcr.io/alam00000/bentopdf:latest       # Commercial build (bentopdf.com / commercial license holders)
-    container_name: bentopdf
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest # Self-Hosted build (recommended)
+    # image: pixelpdfteam/pixelpdf-simple:latest     # Self-Hosted build (Docker Hub)
+    # image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest       # Commercial build (pixelpdf.com / commercial license holders)
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -788,18 +788,18 @@ The application will be available at `http://localhost:3000`.
 
 ### 🐧 Podman Quadlet (Systemd Integration)
 
-For Linux production deployments, you can run BentoPDF as a systemd service using [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html).
+For Linux production deployments, you can run Pixel PDF as a systemd service using [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html).
 
-Create `~/.config/containers/systemd/bentopdf.container`:
+Create `~/.config/containers/systemd/pixelpdf.container`:
 
 ```ini
 [Unit]
-Description=BentoPDF - Privacy-first PDF toolkit
+Description=Pixel PDF - Privacy-first PDF toolkit
 After=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -814,14 +814,14 @@ Then enable and start:
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now bentopdf
+systemctl --user enable --now pixelpdf
 ```
 
-For detailed Quadlet configuration, see [Self-Hosting Docker Guide](https://www.bentopdf.com/docs/self-hosting/docker).
+For detailed Quadlet configuration, see [Self-Hosting Docker Guide](https://www.pixelpdf.com/docs/self-hosting/docker).
 
 ### 🏢 Self-Hosted build (Simple Mode)
 
-The Self-Hosted build (the `bentopdf-simple` image, also called Simple Mode) is **functionally identical** to the Commercial build. Every PDF tool is present and behaves the same. It just hides the marketing that only makes sense on bentopdf.com itself or on a commercial public-facing deployment. **It is not a feature-reduced or "lite" version.**
+The Self-Hosted build (the `pixelpdf-simple` image, also called Simple Mode) is **functionally identical** to the Commercial build. Every PDF tool is present and behaves the same. It just hides the marketing that only makes sense on pixelpdf.com itself or on a commercial public-facing deployment. **It is not a feature-reduced or "lite" version.**
 
 **What the Self-Hosted build hides** (cosmetic only, no PDF features are removed):
 
@@ -833,25 +833,25 @@ The Self-Hosted build (the `bentopdf-simple` image, also called Simple Mode) is 
 - All PDF tools (merge, split, edit, sign, OCR, Office conversion, every other tool)
 - Custom branding support, all build-time and runtime config
 
-The Commercial build (`ghcr.io/alam00000/bentopdf:latest`) is what powers bentopdf.com itself and is used by commercial license holders running public-facing deployments. It adds the hero, FAQ, testimonials, and footer that wouldn't make sense on an internal tool.
+The Commercial build (`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`) is what powers pixelpdf.com itself and is used by commercial license holders running public-facing deployments. It adds the hero, FAQ, testimonials, and footer that wouldn't make sense on an internal tool.
 
-If you're self-hosting BentoPDF for your team, organization, or as an internal tool, pull `ghcr.io/alam00000/bentopdf-simple:latest`. For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
+If you're self-hosting Pixel PDF for your team, organization, or as an internal tool, pull `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. For more details, see [SIMPLE_MODE.md](SIMPLE_MODE.md).
 
 ### 🏬 Commercial Build
 
-The Commercial build (the `bentopdf` image. Note: no `-simple` suffix) is what powers bentopdf.com itself. It includes the full marketing site (hero, features, FAQ, testimonials, footer) on top of every PDF tool. Use this build when you're running BentoPDF as a **public-facing PDF service under your own brand**. For example:
+The Commercial build (the `pixelpdf` image. Note: no `-simple` suffix) is what powers pixelpdf.com itself. It includes the full marketing site (hero, features, FAQ, testimonials, footer) on top of every PDF tool. Use this build when you're running Pixel PDF as a **public-facing PDF service under your own brand**. For example:
 
-- You're deploying BentoPDF as a hosted SaaS for end-users (with your own domain and branding)
+- You're deploying Pixel PDF as a hosted SaaS for end-users (with your own domain and branding)
 - You want the landing-page experience (marketing sections + tools), not just the tool surface
-- You're a commercial license holder embedding BentoPDF into a commercial product or workflow
+- You're a commercial license holder embedding Pixel PDF into a commercial product or workflow
 
-**Run it as-is** (carries BentoPDF branding by default. Useful to evaluate what the build looks like):
+**Run it as-is** (carries Pixel PDF branding by default. Useful to evaluate what the build looks like):
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
-**Build with your own brand** (the typical commercial path — replace the BentoPDF logo, name, and footer):
+**Build with your own brand** (the typical commercial path — replace the Pixel PDF logo, name, and footer):
 
 ```bash
 docker build \
@@ -868,22 +868,22 @@ Or set the same variables when building from source — see [Custom Branding](#-
 **Combine with other build-time flags** (`BASE_URL`, `VITE_DEFAULT_LANGUAGE`, `DISABLE_TOOLS`, `VITE_USE_CDN`, WASM URL overrides for air-gapped use, etc.) — every option that works on the Self-Hosted build also works here.
 
 > [!IMPORTANT]
-> **Licensing**: Running the Commercial build is allowed under both license options BentoPDF ships under:
+> **Licensing**: Running the Commercial build is allowed under both license options Pixel PDF ships under:
 >
 > - **AGPL-3.0** (free): allowed if your deployment publishes its full source code under AGPL — this includes any branding modifications, custom configuration, and any code you build on top of it.
 > - **Commercial license** ($79 lifetime): required for closed-source / proprietary deployments — e.g., a private SaaS where you don't open-source your branding fork or surrounding business logic.
 >
-> See the [Licensing page](https://www.bentopdf.com/licensing) for the full comparison.
+> See the [Licensing page](https://www.pixelpdf.com/licensing) for the full comparison.
 
 ### 🎨 Custom Branding
 
-Replace the default BentoPDF logo, name, and footer text with your own. Branding is configured via environment variables at **build time** and works across all deployment methods (Docker, static hosting, air-gapped VMs).
+Replace the default Pixel PDF logo, name, and footer text with your own. Branding is configured via environment variables at **build time** and works across all deployment methods (Docker, static hosting, air-gapped VMs).
 
 | Variable           | Description                             | Default                                 |
 | ------------------ | --------------------------------------- | --------------------------------------- |
-| `VITE_BRAND_NAME`  | Brand name shown in header and footer   | `BentoPDF`                              |
+| `VITE_BRAND_NAME`  | Brand name shown in header and footer   | `Pixel PDF`                              |
 | `VITE_BRAND_LOGO`  | Path to logo file relative to `public/` | `images/favicon-no-bg.svg`              |
-| `VITE_FOOTER_TEXT` | Custom footer/copyright text            | `© 2026 BentoPDF. All rights reserved.` |
+| `VITE_FOOTER_TEXT` | Custom footer/copyright text            | `© 2026 Pixel PDF. All rights reserved.` |
 
 **Docker:**
 
@@ -920,7 +920,7 @@ Tool IDs are the page URL without `.html` — open any tool and look at the URL 
 **Build-time** (baked into the bundle):
 
 ```bash
-docker build --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" -t bentopdf .
+docker build --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" -t pixelpdf .
 ```
 
 **Runtime** (no rebuild — mount a `config.json`):
@@ -934,10 +934,10 @@ docker build --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" -t bentop
 ```bash
 docker run -d -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
-Both methods can be combined — the lists are merged. For the full list of tool IDs, see the [self-hosting docs](https://www.bentopdf.com/docs/self-hosting/docker#disabling-specific-tools).
+Both methods can be combined — the lists are merged. For the full list of tool IDs, see the [self-hosting docs](https://www.pixelpdf.com/docs/self-hosting/docker#disabling-specific-tools).
 
 You can also disable specific features inside the PDF Editor (e.g., redaction, forms) without disabling the entire editor. Add `editorDisabledCategories` to your `config.json`:
 
@@ -947,18 +947,18 @@ You can also disable specific features inside the PDF Editor (e.g., redaction, f
 }
 ```
 
-For the full list of editor categories, see the [self-hosting docs](https://www.bentopdf.com/docs/self-hosting/docker#disabling-editor-features).
+For the full list of editor categories, see the [self-hosting docs](https://www.pixelpdf.com/docs/self-hosting/docker#disabling-editor-features).
 
 ### 🔕 Disabling the GitHub Star Counter
 
 The navbar shows a live GitHub star count, fetched from `api.github.com` on page load. The only external request that isn't serving a PDF feature. Self-hosters who want zero non-essential network calls can disable it at build time. This removes the fetch code from the bundle entirely and drops `api.github.com` from the Content-Security-Policy.
 
-Simple Mode builds (`bentopdf-simple`) always skip the star counter — this flag is only needed on the Commercial build or custom full builds.
+Simple Mode builds (`pixelpdf-simple`) always skip the star counter — this flag is only needed on the Commercial build or custom full builds.
 
 **Docker:**
 
 ```bash
-docker build --build-arg DISABLE_GITHUB_STARS=true -t bentopdf .
+docker build --build-arg DISABLE_GITHUB_STARS=true -t pixelpdf .
 ```
 
 **Building from source:**
@@ -969,7 +969,7 @@ DISABLE_GITHUB_STARS=true npm run build
 
 ### 🔒 Security Features
 
-BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:
+Pixel PDF runs as a non-root user using nginx-unprivileged for enhanced security:
 
 - **Non-Root Execution**: Container runs with minimal privileges using nginx-unprivileged
 - **Port 8080**: Uses high port number to avoid requiring root privileges (configurable via `PORT` env var)
@@ -978,16 +978,16 @@ BentoPDF runs as a non-root user using nginx-unprivileged for enhanced security:
 #### Basic Usage
 
 ```bash
-docker build -t bentopdf .
-docker run -p 8080:8080 bentopdf
+docker build -t pixelpdf .
+docker run -p 8080:8080 pixelpdf
 ```
 
 #### Custom Port
 
-By default, BentoPDF listens on port `8080` inside the container. To change this, set the `PORT` environment variable:
+By default, Pixel PDF listens on port `8080` inside the container. To change this, set the `PORT` environment variable:
 
 ```bash
-docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 | Variable | Description                    | Default |
@@ -1000,10 +1000,10 @@ For environments that require running as a specific non-root user (e.g., NAS dev
 
 ```bash
 # Build the non-root image
-docker build -f Dockerfile.nonroot -t bentopdf-nonroot .
+docker build -f Dockerfile.nonroot -t pixelpdf-nonroot .
 
 # Run with custom UID/GID
-docker run -d -p 3000:8080 -e PUID=1000 -e PGID=1000 bentopdf-nonroot
+docker run -d -p 3000:8080 -e PUID=1000 -e PGID=1000 pixelpdf-nonroot
 ```
 
 | Variable | Description        | Default |
@@ -1050,7 +1050,7 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
    ```
 
    > [!IMPORTANT]
-   > Without this step, the proxy will reject all requests from your site with a 403 error. The default only allows `bentopdf.com`.
+   > Without this step, the proxy will reject all requests from your site with a 403 error. The default only allows `pixelpdf.com`.
 
 4. **Deploy the worker:**
 
@@ -1058,7 +1058,7 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
    npx wrangler deploy
    ```
 
-5. **Note your worker URL** (e.g., `https://bentopdf-cors-proxy.your-subdomain.workers.dev`)
+5. **Note your worker URL** (e.g., `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`)
 
 6. **Set the environment variable when building:**
    ```bash
@@ -1069,7 +1069,7 @@ The **Digital Signature** tool uses a signing library that may need to fetch cer
    export VITE_CORS_PROXY_URL="https://your-worker-url.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
     --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-    -t your-bentopdf .
+    -t your-pixelpdf .
    ```
 
 #### Production Security Features
@@ -1112,7 +1112,7 @@ npx wrangler deploy
 > [!WARNING]
 > Client-side secrets can be extracted from bundled JavaScript. For production deployments with sensitive requirements, use your own backend server to proxy requests instead of embedding secrets in frontend code.
 
-BentoPDF uses client-side HMAC as a deterrent against casual abuse, but accepts this tradeoff due to its fully client-side architecture. To enable:
+Pixel PDF uses client-side HMAC as a deterrent against casual abuse, but accepts this tradeoff due to its fully client-side architecture. To enable:
 
 ```bash
 # Generate a secret
@@ -1130,24 +1130,24 @@ export VITE_CORS_PROXY_SECRET="your-secret"
 DOCKER_BUILDKIT=1 docker build \
   --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
   --secret id=VITE_CORS_PROXY_SECRET,env=VITE_CORS_PROXY_SECRET \
-  -t your-bentopdf .
+  -t your-pixelpdf .
 ```
 
 ### 📦 Version Management
 
-BentoPDF publishes two image variants. Both ship the same PDF tools. The difference is purely whether the bentopdf.com marketing is included.
+Pixel PDF publishes two image variants. Both ship the same PDF tools. The difference is purely whether the pixelpdf.com marketing is included.
 
 **Self-Hosted build** — recommended for internal/team/organization deployments:
 
-- **Latest**: `ghcr.io/alam00000/bentopdf-simple:latest`
-- **Specific Version**: `ghcr.io/alam00000/bentopdf-simple:1.0.0`
-- **Docker Hub**: `bentopdfteam/bentopdf-simple:latest`
+- **Latest**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`
+- **Specific Version**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:1.0.0`
+- **Docker Hub**: `pixelpdfteam/pixelpdf-simple:latest`
 
-**Commercial build** — used by bentopdf.com itself and by commercial license holders running public-facing deployments:
+**Commercial build** — used by pixelpdf.com itself and by commercial license holders running public-facing deployments:
 
-- **Latest**: `ghcr.io/alam00000/bentopdf:latest`
-- **Specific Version**: `ghcr.io/alam00000/bentopdf:1.0.0`
-- **Docker Hub**: `bentopdfteam/bentopdf:latest`
+- **Latest**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`
+- **Specific Version**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:1.0.0`
+- **Docker Hub**: `pixelpdfteam/pixelpdf:latest`
 
 #### Quick Release
 
@@ -1171,8 +1171,8 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf
    ```
 
 2. **Install Dependencies**:
@@ -1196,8 +1196,8 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf
    ```
 
 2. **Run with Docker Compose**:
@@ -1221,7 +1221,7 @@ For detailed release instructions, see [RELEASE.md](RELEASE.md).
 
 ## 🛠️ Tech Stack & Background
 
-BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript**. As the project grew, it was migrated to a modern stack for better maintainability and scalability:
+Pixel PDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript**. As the project grew, it was migrated to a modern stack for better maintainability and scalability:
 
 - **Vite**: A fast build tool for modern web development.
 - **TypeScript**: For type safety and an improved developer experience.
@@ -1236,8 +1236,8 @@ BentoPDF was originally built using **HTML**, **CSS**, and **vanilla JavaScript*
 
 | Product            | Description                                                                                                                           | Links                                                                                                  |
 | :----------------- | :------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------- |
-| **Kura**           | PDF standards and preflight engine. Converts to every PDF/A level, PDF/UA, PDF/X, PDF/E and PDF/VT, and can perform preflight checks. | [Website](https://kura.bentopdf.com) · [GitHub](https://github.com/alam00000/bentopdf-kura)            |
-| **Hyper Compress** | The best open source PDF compression engine.                                                                                          | [Website](https://hyper.bentopdf.com) · [GitHub](https://github.com/alam00000/bentopdf-hyper-compress) |
+| **Kura**           | PDF standards and preflight engine. Converts to every PDF/A level, PDF/UA, PDF/X, PDF/E and PDF/VT, and can perform preflight checks. | [Website](https://kura.pixelpdf.com) · [GitHub](https://github.com/alam00000/bentopdf-kura)            |
+| **Hyper Compress** | The best open source PDF compression engine.                                                                                          | [Website](https://hyper.pixelpdf.com) · [GitHub](https://github.com/alam00000/bentopdf-hyper-compress) |
 
 ---
 
@@ -1260,7 +1260,7 @@ We welcome contributions from the community! Here's how you can get started:
 3.  Make your changes and commit them with a clear message.
 4.  **Open a Pull Request** and describe the changes you've made.
 
-Have an idea for a new tool or an improvement? [Open an issue](https://github.com/alam00000/bentopdf/issues) to discuss it first.
+Have an idea for a new tool or an improvement? [Open an issue](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues) to discuss it first.
 
 ### 📖 Contributing to Documentation
 
@@ -1293,7 +1293,7 @@ Documentation files are in the `docs/` folder:
 
 ## Special Thanks
 
-BentoPDF wouldn't be possible without the amazing open-source tools and libraries that power it. We'd like to extend our heartfelt thanks to the creators and maintainers of:
+Pixel PDF wouldn't be possible without the amazing open-source tools and libraries that power it. We'd like to extend our heartfelt thanks to the creators and maintainers of:
 
 **Bundled Libraries:**
 
@@ -1318,6 +1318,6 @@ BentoPDF wouldn't be possible without the amazing open-source tools and librarie
 - **[Ghostscript (GhostPDL)](https://github.com/ArtifexSoftware/ghostpdl)** – For PDF/A conversion and font outlining. _(AGPL-3.0)_
 
 > [!NOTE]
-> AGPL-licensed libraries are not bundled in BentoPDF's source code. They are loaded at runtime from CDN (pre-configured) and can be overridden via environment variables or Advanced Settings.
+> AGPL-licensed libraries are not bundled in Pixel PDF's source code. They are loaded at runtime from CDN (pre-configured) and can be overridden via environment variables or Advanced Settings.
 
 Your work inspires and empowers developers everywhere. Thank you for making open-source amazing!

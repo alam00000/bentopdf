@@ -1,6 +1,6 @@
 # Участь у розробці
 
-Дякуємо за інтерес до участі в розробці BentoPDF! Цей посібник допоможе вам почати.
+Дякуємо за інтерес до участі в розробці Pixel PDF! Цей посібник допоможе вам почати.
 
 ## Початок роботи
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Структура проєкту
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## Переклад
 
-Щоб додати нові мови, перегляньте [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md).
+Щоб додати нові мови, перегляньте [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md).
 
 ## Ліцензійна угода контриб'ютора
 
 Перш ніж ваш PR буде злито, потрібно підписати нашу CLA:
 
-- [Індивідуальна CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Корпоративна CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Індивідуальна CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Корпоративна CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Де отримати допомогу
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Спільнота в Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Ліцензія
 
-BentoPDF має подвійне ліцензування:
+Pixel PDF має подвійне ліцензування:
 
 - **AGPL-3.0** для проєктів з відкритим кодом, де ви публічно ділитеся всім вихідним кодом
 - **Комерційна ліцензія** для пропрієтарних застосунків із закритим кодом - [Отримати безстрокову ліцензію за $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

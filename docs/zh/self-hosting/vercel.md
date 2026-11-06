@@ -4,13 +4,13 @@
 
 ## 一键部署
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## 手动部署
 
 ### 步骤 1：Fork 仓库
 
-将 [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) Fork 到您的 GitHub 账户。
+将 [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) Fork 到您的 GitHub 账户。
 
 ### 步骤 2：导入到 Vercel
 
@@ -32,7 +32,7 @@
 | 变量                    | 说明                                                     |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | 设为 `true` 以使用精简界面                               |
-| `VITE_BRAND_NAME`       | 自定义品牌名称（替换 "BentoPDF"）                        |
+| `VITE_BRAND_NAME`       | 自定义品牌名称（替换 "Pixel PDF"）                        |
 | `VITE_BRAND_LOGO`       | 相对于 `public/` 的标志路径（例如 `images/my-logo.svg`） |
 | `VITE_FOOTER_TEXT`      | 自定义页脚/版权文字                                      |
 | `VITE_DEFAULT_LANGUAGE` | 默认界面语言（例如 `fr`、`de`、`es`）                    |
@@ -51,7 +51,7 @@
 ## 限制
 
 ::: warning 大文件
-Vercel 的 serverless 函数有 50MB 的限制。由于 BentoPDF 是静态站点，这通常不会影响您，但 WASM 模块很大（总计约 100MB）。请确保它们从 `/public` 文件夹提供。
+Vercel 的 serverless 函数有 50MB 的限制。由于 Pixel PDF 是静态站点，这通常不会影响您，但 WASM 模块很大（总计约 100MB）。请确保它们从 `/public` 文件夹提供。
 :::
 
 ## 故障排除

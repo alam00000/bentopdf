@@ -4,7 +4,7 @@
 
 ## Triển khai một lần nhấp
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Triển khai thủ công
 
@@ -13,7 +13,7 @@
 1. Đăng nhập vào [Netlify](https://app.netlify.com)
 2. Nhấp "Add new site" → "Import an existing project"
 3. Kết nối tài khoản GitHub của bạn
-4. Chọn bản fork BentoPDF của bạn
+4. Chọn bản fork Pixel PDF của bạn
 
 ### Bước 2: Cấu hình thiết lập dựng
 
@@ -90,7 +90,7 @@ Các header `Content-Encoding: gzip` trên tệp `.wasm.gz` và `.data.gz` báo 
 | Variable                | Mô tả                                                         |
 | ----------------------- | ------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Đặt là `true` để dựng bản tối giản                            |
-| `VITE_BRAND_NAME`       | Tên thương hiệu tùy chỉnh (thay cho "BentoPDF")               |
+| `VITE_BRAND_NAME`       | Tên thương hiệu tùy chỉnh (thay cho "Pixel PDF")               |
 | `VITE_BRAND_LOGO`       | Đường dẫn logo tính từ `public/` (ví dụ `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Văn bản chân trang / bản quyền tùy chỉnh                      |
 | `VITE_DEFAULT_LANGUAGE` | Ngôn ngữ giao diện mặc định (ví dụ `fr`, `de`, `es`)          |

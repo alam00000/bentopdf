@@ -1,6 +1,6 @@
 # Implementeren met Docker / Podman
 
-De eenvoudigste manier om BentoPDF zelf te hosten in een productieomgeving.
+De eenvoudigste manier om Pixel PDF zelf te hosten in een productieomgeving.
 
 > [!IMPORTANT]
 > **Vereiste headers voor conversie van Office-bestanden**
@@ -20,26 +20,26 @@ De eenvoudigste manier om BentoPDF zelf te hosten in een productieomgeving.
 ## Snelstart
 
 > [!TIP]
-> BentoPDF wordt in twee builds geleverd:
+> Pixel PDF wordt in twee builds geleverd:
 >
-> - **Zelfgehoste build**: `ghcr.io/alam00000/bentopdf-simple:latest`. Alle PDF-tools, **zonder** de marketingelementen (geen hero, FAQ, testimonials, footer). Gebruik deze voor interne implementaties van teams of organisaties. Het is **geen** "lite"-versie met minder functies.
-> - **Commerciële build**: `ghcr.io/alam00000/bentopdf:latest`. De volledige marketingsite, gebruikt door bentopdf.com zelf en door houders van een commerciële licentie met openbare implementaties.
+> - **Zelfgehoste build**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. Alle PDF-tools, **zonder** de marketingelementen (geen hero, FAQ, testimonials, footer). Gebruik deze voor interne implementaties van teams of organisaties. Het is **geen** "lite"-versie met minder functies.
+> - **Commerciële build**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. De volledige marketingsite, gebruikt door pixelpdf.com zelf en door houders van een commerciële licentie met openbare implementaties.
 >
 > Twijfel je, haal dan de zelfgehoste build op.
 
 ```bash
 # Docker
 docker run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
   --restart unless-stopped \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
 podman run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 ## Docker Compose / Podman Compose
@@ -48,9 +48,9 @@ Maak `docker-compose.yml` aan:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
-    container_name: bentopdf
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -97,15 +97,15 @@ CMD ["nginx", "-g", "daemon off;"]
 Bouwen en uitvoeren:
 
 ```bash
-docker build -t bentopdf:custom .
-docker run -d -p 3000:8080 bentopdf:custom
+docker build -t pixelpdf:custom .
+docker run -d -p 3000:8080 pixelpdf:custom
 ```
 
 ## Omgevingsvariabelen
 
 | Variable                             | Description                                                                                                                                                                 | Default                                                        |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `SIMPLE_MODE`                        | Bouw de zelfgehoste variant (verbergt de marketingelementen van bentopdf.com: hero, FAQ, testimonials, footer). Alle PDF-tools blijven beschikbaar.                         | `false`                                                        |
+| `SIMPLE_MODE`                        | Bouw de zelfgehoste variant (verbergt de marketingelementen van pixelpdf.com: hero, FAQ, testimonials, footer). Alle PDF-tools blijven beschikbaar.                         | `false`                                                        |
 | `BASE_URL`                           | Implementeren in een submap                                                                                                                                                 | `/`                                                            |
 | `VITE_WASM_PYMUPDF_URL`              | URL van de PyMuPDF WASM-module                                                                                                                                              | `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/` |
 | `VITE_WASM_GS_URL`                   | URL van de Ghostscript WASM-module                                                                                                                                          | `https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/` |
@@ -116,20 +116,20 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_TESSERACT_AVAILABLE_LANGUAGES` | OCR-talen in de interface, gescheiden door komma's                                                                                                                          | _(leeg; toon de volledige catalogus)_                          |
 | `VITE_OCR_FONT_BASE_URL`             | Map met OCR-tekstlaaglettertypen                                                                                                                                            | _(leeg; gebruik externe Noto-lettertype-URL's)_                |
 | `VITE_DEFAULT_LANGUAGE`              | Standaardtaal van de interface                                                                                                                                              | `en`                                                           |
-| `VITE_BRAND_NAME`                    | Aangepaste merknaam                                                                                                                                                         | `BentoPDF`                                                     |
+| `VITE_BRAND_NAME`                    | Aangepaste merknaam                                                                                                                                                         | `Pixel PDF`                                                     |
 | `VITE_BRAND_LOGO`                    | Logopad relatief aan `public/`                                                                                                                                              | `images/favicon-no-bg.svg`                                     |
-| `VITE_FOOTER_TEXT`                   | Aangepaste footer-/copyrighttekst                                                                                                                                           | `© 2026 BentoPDF. All rights reserved.`                        |
+| `VITE_FOOTER_TEXT`                   | Aangepaste footer-/copyrighttekst                                                                                                                                           | `© 2026 Pixel PDF. All rights reserved.`                        |
 | `DISABLE_TOOLS`                      | Tool-ID's om te verbergen, gescheiden door komma's                                                                                                                          | _(leeg; alle tools ingeschakeld)_                              |
 | `DISABLE_GITHUB_STARS`               | Sla het ophalen van het aantal GitHub-sterren bij het laden van de pagina over en haal `api.github.com` uit de CSP. Builds in Simple Mode slaan het altijd over.            | `false`                                                        |
-| `SITE_URL`                           | Openbare URL die in canonical-, hreflang- en sitemaplinks wordt geschreven. Laat de standaardwaarde staan, tenzij zoekmachines je implementatie als eigen site moeten zien. | `https://www.bentopdf.com`                                     |
-| `ALLOW_INDEXING`                     | Bij een aangepaste `SITE_URL` krijgt elke pagina `noindex`, zodat je kopie niet concurreert met bentopdf.com in zoekresultaten. Zet op `true` om indexering toe te staan.   | `false`                                                        |
+| `SITE_URL`                           | Openbare URL die in canonical-, hreflang- en sitemaplinks wordt geschreven. Laat de standaardwaarde staan, tenzij zoekmachines je implementatie als eigen site moeten zien. | `https://www.pixelpdf.com`                                     |
+| `ALLOW_INDEXING`                     | Bij een aangepaste `SITE_URL` krijgt elke pagina `noindex`, zodat je kopie niet concurreert met pixelpdf.com in zoekresultaten. Zet op `true` om indexering toe te staan.   | `false`                                                        |
 | `COMPRESSION_MODE`                   | Voorgecomprimeerde kopieën: `o` geen, `g` `.gz` (geserveerd door de nginx van de image), `b` `.br`, `all` beide. De nginx van de image kan `.br` niet serveren.             | `o`                                                            |
 
 WASM-module-URL's zijn vooraf geconfigureerd met CDN-standaardwaarden, dus alle geavanceerde functies werken direct. Overschrijf ze voor air-gapped of zelfgehoste implementaties.
 
 ### Zoekmachines
 
-Standaard verwijst elke pagina zoekmachines naar bentopdf.com als origineel, zodat je implementatie niet als duplicaat verschijnt. Voor een privé- of interne instantie hoef je niets te wijzigen.
+Standaard verwijst elke pagina zoekmachines naar pixelpdf.com als origineel, zodat je implementatie niet als duplicaat verschijnt. Voor een privé- of interne instantie hoef je niets te wijzigen.
 
 - **Houd je instantie helemaal uit zoekresultaten:** start de container met `-e ROBOTS_NOINDEX=true`. Hiervoor is alleen een herstart nodig, geen nieuwe build.
 - **Maak van je instantie een eigen site in zoekresultaten:** bouw met `--build-arg SITE_URL=https://your-domain.example --build-arg ALLOW_INDEXING=true`. Zonder `ALLOW_INDEXING=true` markeert een aangepaste `SITE_URL` elke pagina als `noindex`.
@@ -143,7 +143,7 @@ Daardoor geldt:
 - Overschrijf je `VITE_CORS_PROXY_URL` of `VITE_WASM_*_URL` tijdens de build, dan staat de CSP die origins automatisch toe, zonder extra configuratie.
 - Voor URL's op `cdn.jsdelivr.net` staat `script-src` alleen de exacte map van het versiegebonden pakket toe, bijvoorbeeld `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/`, niet de hele CDN. jsDelivr serveert elk openbaar npm-pakket of GitHub-repository, dus het toestaan van de hele host zou elk daarvan op je instantie laten draaien. URL's op andere hosts worden op origin toegestaan.
 - Configureer je aangepaste WASM-URL's tijdens _runtime_ via de pagina Geavanceerde instellingen in de app, dan staan die origins **niet** in de CSP en blokkeert de browser het ophalen ervan. Dit geldt ook voor een andere versie van hetzelfde pakket op `cdn.jsdelivr.net`, omdat alleen de tijdens de build ingestelde versie is toegestaan. Runtimeconfiguratie is bedoeld om mee te experimenteren; stel voor permanente aangepaste URL's het bijbehorende `VITE_*`-buildargument in.
-- Air-gapped implementaties die alle drie de `VITE_WASM_*_URL`-waarden overschrijven, verwijderen ook die `cdn.jsdelivr.net`-pakketmappen uit de CSP (elke standaardwaarde wordt vervangen, niet aangevuld). De Tesseract OCR-standaardwaarden op `cdn.jsdelivr.net` blijven in het beleid staan totdat je ook de drie `VITE_TESSERACT_*`-waarden instelt. Zo vervangt het instellen van `VITE_CORS_PROXY_URL` ook de openbare standaardwaarde `bentopdf-cors-proxy.bentopdf.workers.dev`.
+- Air-gapped implementaties die alle drie de `VITE_WASM_*_URL`-waarden overschrijven, verwijderen ook die `cdn.jsdelivr.net`-pakketmappen uit de CSP (elke standaardwaarde wordt vervangen, niet aangevuld). De Tesseract OCR-standaardwaarden op `cdn.jsdelivr.net` blijven in het beleid staan totdat je ook de drie `VITE_TESSERACT_*`-waarden instelt. Zo vervangt het instellen van `VITE_CORS_PROXY_URL` ook de openbare standaardwaarde `pixelpdf-cors-proxy.pixelpdf.workers.dev`.
 
 De CSP bevat `'unsafe-eval'` in `script-src`, omdat de LibreOffice WASM-runtime (gebruikt door de conversietools voor Word/Excel/PowerPoint) en de afbeeldingsbibliotheek wasm-vips (gebruikt door PDF naar TIFF) interne dispatch-code compileren via `new Function()`. Zonder dit werken die tools niet meer. Bouw je in `SIMPLE_MODE` (zonder LibreOffice) en heb je PDF naar TIFF niet nodig, dan kun je het gegenereerde `security-headers.conf` handmatig bewerken om `'unsafe-eval'` te verwijderen voor een strenger beleid.
 
@@ -155,13 +155,13 @@ Voorbeeld:
 
 ```bash
 # Build with French as the default language
-docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .
-docker run -d -p 3000:8080 bentopdf
+docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t pixelpdf .
+docker run -d -p 3000:8080 pixelpdf
 ```
 
 ### Eigen huisstijl
 
-Vervang het standaardlogo, de naam en de footertekst van BentoPDF door je eigen. Plaats je logobestand in de map `public/` (of gebruik een bestaande afbeelding) en geef de huisstijlvariabelen tijdens de build mee:
+Vervang het standaardlogo, de naam en de footertekst van Pixel PDF door je eigen. Plaats je logobestand in de map `public/` (of gebruik een bestaande afbeelding) en geef de huisstijlvariabelen tijdens de build mee:
 
 ```bash
 docker build \
@@ -177,11 +177,11 @@ Huisstijl werkt in zowel de volledige modus als Simple Mode en kan worden gecomb
 
 Verberg tools in de interface voor compliance- of beveiligingseisen. Uitgeschakelde tools verdwijnen van de startpagina, uit zoekresultaten, sneltoetsen en de workflowbouwer. Rechtstreekse toegang via de URL toont een pagina "tool niet beschikbaar".
 
-Tool-ID's zijn de pagina-URL zonder `.html`. Staat een tool bijvoorbeeld op `bentopdf.com/edit-pdf.html`, dan is de ID `edit-pdf`.
+Tool-ID's zijn de pagina-URL zonder `.html`. Staat een tool bijvoorbeeld op `pixelpdf.com/edit-pdf.html`, dan is de ID `edit-pdf`.
 
 #### Tool-ID's vinden
 
-Het makkelijkst: open een tool in BentoPDF en kijk naar de URL. Het laatste deel van het pad (zonder `.html`) is de tool-ID.
+Het makkelijkst: open een tool in Pixel PDF en kijk naar de URL. Het laatste deel van het pad (zonder `.html`) is de tool-ID.
 
 <details>
 <summary>Volledige lijst met tool-ID's</summary>
@@ -205,7 +205,7 @@ Het makkelijkst: open een tool in BentoPDF en kijk naar de URL. Het laatste deel
 ```bash
 docker build \
   --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 Hiermee wordt de lijst met uitgeschakelde tools in de JavaScript-bundel ingebakken. Wijzigen vereist een nieuwe build.
@@ -224,15 +224,15 @@ Koppel een bestand `config.json` in de aangeboden map, zonder nieuwe build:
 docker run -d \
   -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Of met Docker Compose:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     volumes:
@@ -287,10 +287,10 @@ Categorieën zijn hiërarchisch: het uitschakelen van een bovenliggende categori
 De navigatiebalk toont een live aantal GitHub-sterren, bij het laden van de pagina opgehaald van `api.github.com`. Het is het enige externe verzoek dat geen PDF-functie dient. Schakel het uit tijdens de build om de ophaalcode uit de bundel te verwijderen en `api.github.com` uit de Content-Security-Policy te halen:
 
 ```bash
-docker build --build-arg DISABLE_GITHUB_STARS=true -t bentopdf .
+docker build --build-arg DISABLE_GITHUB_STARS=true -t pixelpdf .
 ```
 
-Builds in Simple Mode (`bentopdf-simple`) slaan de sterrenteller altijd over: deze vlag is alleen nodig voor de commerciële build of aangepaste volledige builds.
+Builds in Simple Mode (`pixelpdf-simple`) slaan de sterrenteller altijd over: deze vlag is alleen nodig voor de commerciële build of aangepaste volledige builds.
 
 ### Aangepaste WASM-URL's (air-gapped / zelfgehost)
 
@@ -325,15 +325,15 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # 4. Export the image
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 
-# 5. Transfer bentopdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
+# 5. Transfer pixelpdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
 
 # 6. Inside the air-gapped network — load and run
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages to your internal web server
 mkdir -p /var/www/wasm/pymupdf /var/www/wasm/gs /var/www/wasm/cpdf /var/www/wasm/ocr/core /var/www/wasm/ocr/lang-data /var/www/wasm/ocr/fonts
@@ -348,8 +348,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C /var/www/wasm/ocr/core --strip-components
 cp ./tesseract-langdata/*.traineddata.gz /var/www/wasm/ocr/lang-data/
 cp ./ocr-fonts/* /var/www/wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 Gebruik de codes die `bash scripts/prepare-airgap.sh --list-ocr-languages` toont, of zoek op naam met `bash scripts/prepare-airgap.sh --search-ocr-language <term>`, voor `--ocr-languages`. Bouw je met een beperkte OCR-subset, geef dan dezelfde codes door aan `VITE_TESSERACT_AVAILABLE_LANGUAGES`, zodat de app alleen meegeleverde talen toont. Host voor volledig offline OCR-uitvoer ook de meegeleverde map `ocr-fonts/` en laat `VITE_OCR_FONT_BASE_URL` ernaar verwijzen.
@@ -358,10 +358,10 @@ Stel een variabele in op een lege string om die module uit te schakelen (gebruik
 
 ## Aangepaste poort
 
-Standaard luistert BentoPDF op poort `8080` in de container. Om dit te wijzigen, stel je tijdens runtime de omgevingsvariabele `PORT` in:
+Standaard luistert Pixel PDF op poort `8080` in de container. Om dit te wijzigen, stel je tijdens runtime de omgevingsvariabele `PORT` in:
 
 ```bash
-docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 | Variable | Description                        | Default |
@@ -372,22 +372,22 @@ Dit werkt met zowel de standaard als de nonroot Dockerfile.
 
 ## Aangepaste gebruikers-ID (PUID/PGID)
 
-Voor omgevingen die als een specifieke niet-rootgebruiker moeten draaien (NAS-apparaten, Kubernetes met security contexts, organisatiebeleid) biedt BentoPDF een aparte Dockerfile met PUID/PGID-ondersteuning in LSIO-stijl.
+Voor omgevingen die als een specifieke niet-rootgebruiker moeten draaien (NAS-apparaten, Kubernetes met security contexts, organisatiebeleid) biedt Pixel PDF een aparte Dockerfile met PUID/PGID-ondersteuning in LSIO-stijl.
 
 ### Bouwen en uitvoeren
 
 ```bash
 # Build the non-root image
-docker build -f Dockerfile.nonroot -t bentopdf-nonroot .
+docker build -f Dockerfile.nonroot -t pixelpdf-nonroot .
 
 # Run with custom UID/GID
 docker run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
   -e PUID=1000 \
   -e PGID=1000 \
   --restart unless-stopped \
-  bentopdf-nonroot
+  pixelpdf-nonroot
 ```
 
 ### Omgevingsvariabelen
@@ -403,11 +403,11 @@ docker run -d \
 
 ```yaml
 services:
-  bentopdf:
+  pixelpdf:
     build:
       context: .
       dockerfile: Dockerfile.nonroot
-    container_name: bentopdf
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     environment:
@@ -446,18 +446,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.bentopdf.rule=Host(`pdf.example.com`)'
-      - 'traefik.http.routers.bentopdf.entrypoints=websecure'
-      - 'traefik.http.routers.bentopdf.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.bentopdf.loadbalancer.server.port=8080'
+      - 'traefik.http.routers.pixelpdf.rule=Host(`pdf.example.com`)'
+      - 'traefik.http.routers.pixelpdf.entrypoints=websecure'
+      - 'traefik.http.routers.pixelpdf.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.pixelpdf.loadbalancer.server.port=8080'
       # Required headers for SharedArrayBuffer (LibreOffice WASM)
-      - 'traefik.http.routers.bentopdf.middlewares=bentopdf-headers'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
+      - 'traefik.http.routers.pixelpdf.middlewares=pixelpdf-headers'
+      - 'traefik.http.middlewares.pixelpdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
+      - 'traefik.http.middlewares.pixelpdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
     restart: unless-stopped
 ```
 
@@ -474,8 +474,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     restart: unless-stopped
 
 volumes:
@@ -486,7 +486,7 @@ Caddyfile:
 
 ```
 pdf.example.com {
-    reverse_proxy bentopdf:8080
+    reverse_proxy pixelpdf:8080
     header Cross-Origin-Opener-Policy "same-origin"
     header Cross-Origin-Embedder-Policy "require-corp"
 }
@@ -496,8 +496,8 @@ pdf.example.com {
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     deploy:
       resources:
         limits:
@@ -514,17 +514,17 @@ services:
 
 ### Basisinstallatie van Quadlet
 
-Maak een containerunitbestand aan op `~/.config/containers/systemd/bentopdf.container` (gebruiker) of `/etc/containers/systemd/bentopdf.container` (systeem):
+Maak een containerunitbestand aan op `~/.config/containers/systemd/pixelpdf.container` (gebruiker) of `/etc/containers/systemd/pixelpdf.container` (systeem):
 
 ```ini
 [Unit]
-Description=BentoPDF - Privacy-first PDF toolkit
+Description=Pixel PDF - Privacy-first PDF toolkit
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -543,16 +543,16 @@ WantedBy=default.target
 systemctl --user daemon-reload
 
 # Start the service
-systemctl --user start bentopdf
+systemctl --user start pixelpdf
 
 # Enable on boot
-systemctl --user enable bentopdf
+systemctl --user enable pixelpdf
 
 # Check status
-systemctl --user status bentopdf
+systemctl --user status pixelpdf
 
 # View logs
-journalctl --user -u bentopdf -f
+journalctl --user -u pixelpdf -f
 ```
 
 > [!TIP]
@@ -562,13 +562,13 @@ journalctl --user -u bentopdf -f
 
 ```ini
 [Unit]
-Description=BentoPDF with health monitoring
+Description=Pixel PDF with health monitoring
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 HealthCmd=wget --spider -q http://localhost:8080 || exit 1
@@ -601,7 +601,7 @@ podman auto-update --dry-run
 
 ### Netwerkconfiguratie van Quadlet
 
-Maak voor een aangepaste netwerkconfiguratie een netwerkbestand `bentopdf.network` aan:
+Maak voor een aangepaste netwerkconfiguratie een netwerkbestand `pixelpdf.network` aan:
 
 ```ini
 [Network]
@@ -613,10 +613,10 @@ Verwijs er daarna naar in je containerbestand:
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
-Network=bentopdf.network
+Network=pixelpdf.network
 ```
 
 ## Bijwerken

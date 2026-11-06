@@ -1,6 +1,6 @@
 # Distribuzione con Apache
 
-Ospita BentoPDF usando Apache HTTP Server.
+Ospita Pixel PDF usando Apache HTTP Server.
 
 ## Prerequisiti
 
@@ -11,8 +11,8 @@ Ospita BentoPDF usando Apache HTTP Server.
 ## Passaggio 1: compila il progetto
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Passaggio 2: copia i file
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Passaggio 3: configurazione di Apache
 
-Crea `/etc/apache2/sites-available/bentopdf.conf`:
+Crea `/etc/apache2/sites-available/pixelpdf.conf`:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ Crea `/etc/apache2/sites-available/bentopdf.conf`:
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ Crea `/etc/apache2/sites-available/bentopdf.conf`:
 
 ## Passaggio 4: .htaccess per il routing
 
-Crea `/var/www/bentopdf/.htaccess`:
+Crea `/var/www/pixelpdf/.htaccess`:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Passaggio 6: abilita il sito
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Assicurati che `mod_headers` sia abilitato: `sudo a2enmod headers`
 ### Permesso negato
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

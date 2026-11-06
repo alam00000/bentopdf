@@ -1,6 +1,6 @@
 # Tham khảo công cụ
 
-BentoPDF cung cấp **hơn 130 công cụ** để làm việc với PDF. Mọi công cụ đều chạy hoàn toàn trong trình duyệt của bạn, tệp của bạn không bao giờ rời khỏi thiết bị.
+Pixel PDF cung cấp **hơn 130 công cụ** để làm việc với PDF. Mọi công cụ đều chạy hoàn toàn trong trình duyệt của bạn, tệp của bạn không bao giờ rời khỏi thiết bị.
 
 ---
 

@@ -1,6 +1,6 @@
 # Apacheでデプロイする
 
-Apache HTTP Serverを使ってBentoPDFをホストします。
+Apache HTTP Serverを使ってPixel PDFをホストします。
 
 ## 前提条件
 
@@ -11,8 +11,8 @@ Apache HTTP Serverを使ってBentoPDFをホストします。
 ## ステップ1：プロジェクトをビルドする
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## ステップ2：ファイルをコピーする
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## ステップ3：Apacheの設定
 
-`/etc/apache2/sites-available/bentopdf.conf` を作成します。
+`/etc/apache2/sites-available/pixelpdf.conf` を作成します。
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ sudo chown -R www-data:www-data /var/www/bentopdf
 
 ## ステップ4：ルーティング用の.htaccess
 
-`/var/www/bentopdf/.htaccess` を作成します。
+`/var/www/pixelpdf/.htaccess` を作成します。
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## ステップ6：サイトを有効にする
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Header always set Cross-Origin-Opener-Policy "same-origin"
 ### パーミッションエラー
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

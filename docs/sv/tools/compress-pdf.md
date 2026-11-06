@@ -5,9 +5,9 @@ description: Minska PDF-filens storlek med upp till 90 % med motorn Hyper Compre
 
 # Komprimera PDF
 
-Krymp dina PDF-filer utan att förstöra dem. Komprimera PDF drivs av [Hyper Compress](https://www.bentopdf.com/hyper-compress), BentoPDF:s egen komprimeringsmotor. Den komprimerar om bilder, skapar delmängder av och slår ihop typsnitt och tar bort onödig vikt som inbäddade miniatyrer och privata programdata. PDF-filen förblir fullt fungerande: texten kan fortfarande markeras, och länkar och formulärfält fortsätter att fungera.
+Krymp dina PDF-filer utan att förstöra dem. Komprimera PDF drivs av [Hyper Compress](https://www.pixelpdf.com/hyper-compress), Pixel PDF:s egen komprimeringsmotor. Den komprimerar om bilder, skapar delmängder av och slår ihop typsnitt och tar bort onödig vikt som inbäddade miniatyrer och privata programdata. PDF-filen förblir fullt fungerande: texten kan fortfarande markeras, och länkar och formulärfält fortsätter att fungera.
 
-Hyper Compress är kompilerad till WebAssembly och levereras med BentoPDF, så komprimeringen fungerar offline och i isolerade miljöer utan extra konfiguration.
+Hyper Compress är kompilerad till WebAssembly och levereras med Pixel PDF, så komprimeringen fungerar offline och i isolerade miljöer utan extra konfiguration.
 
 ## Så fungerar det
 
@@ -36,7 +36,7 @@ Hög tar också bort inbäddningen av de 14 standardtypsnitten i PDF, samt likna
 
 ## Målfilstorlek
 
-Ange en storlek i KB eller MB så söker Hyper Compress efter den bästa bildkvalitet som ändå ryms, med utgångspunkt i den nivå du valde. Om dokumentet inte kan bli så litet får du den minsta version det kan skapa och ett meddelande om det. De särskilda sidorna, som [Komprimera PDF till 1 MB](https://www.bentopdf.com/compress-pdf-to-1mb), öppnas med målet redan ifyllt.
+Ange en storlek i KB eller MB så söker Hyper Compress efter den bästa bildkvalitet som ändå ryms, med utgångspunkt i den nivå du valde. Om dokumentet inte kan bli så litet får du den minsta version det kan skapa och ett meddelande om det. De särskilda sidorna, som [Komprimera PDF till 1 MB](https://www.pixelpdf.com/compress-pdf-to-1mb), öppnas med målet redan ifyllt.
 
 ## Anpassade inställningar
 

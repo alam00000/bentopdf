@@ -24,7 +24,7 @@ description: JPG、PNG、BMP、GIF、TIFF、SVG、HEIC、WebP、PSDなど10種�
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-BentoPDFの画像コンバーターの中で、最も幅広い形式に対応しています。特定の形式だけが必要な場合は、専用のツールを使うこともできます。
+Pixel PDFの画像コンバーターの中で、最も幅広い形式に対応しています。特定の形式だけが必要な場合は、専用のツールを使うこともできます。
 
 ## 使い方
 

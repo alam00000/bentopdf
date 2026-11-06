@@ -1,6 +1,6 @@
 # Nginx でデプロイする
 
-Nginx を使って、BentoPDF を自分のサーバーでホストします。
+Nginx を使って、Pixel PDF を自分のサーバーでホストします。
 
 ## 前提条件
 
@@ -11,8 +11,8 @@ Nginx を使って、BentoPDF を自分のサーバーでホストします。
 ## ステップ 1: プロジェクトをビルドする
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## ステップ 2: ファイルをコピーする
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## ステップ 3: Nginx の設定
 
-`/etc/nginx/sites-available/bentopdf` を作成します。
+`/etc/nginx/sites-available/pixelpdf` を作成します。
 
 ```nginx
 server {
@@ -50,7 +50,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
-    root /var/www/bentopdf;
+    root /var/www/pixelpdf;
     index index.html;
 
     # Gzip compression
@@ -114,7 +114,7 @@ server {
 ## ステップ 4: サイトを有効にする
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/bentopdf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/pixelpdf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -132,7 +132,7 @@ sudo certbot --nginx -d your-domain.com
 
 ```nginx
 location /pdf/ {
-    alias /var/www/bentopdf/;
+    alias /var/www/pixelpdf/;
     try_files $uri $uri/ /pdf/index.html;
 }
 ```

@@ -4,7 +4,7 @@
 
 ## ワンクリックデプロイ
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## 手動デプロイ
 
@@ -13,7 +13,7 @@
 1. [Netlify](https://app.netlify.com) にログインします
 2. 「Add new site」→「Import an existing project」をクリックします
 3. GitHub アカウントを接続します
-4. BentoPDF のフォークを選択します
+4. Pixel PDF のフォークを選択します
 
 ### ステップ 2: ビルド設定を行う
 
@@ -90,7 +90,7 @@ Site settings → Environment variables で設定します。
 | 変数                    | 説明                                                     |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | 最小構成のビルドにするには `true` を設定します           |
-| `VITE_BRAND_NAME`       | カスタムブランド名（"BentoPDF" を置き換えます）          |
+| `VITE_BRAND_NAME`       | カスタムブランド名（"Pixel PDF" を置き換えます）          |
 | `VITE_BRAND_LOGO`       | `public/` からの相対ロゴパス（例: `images/my-logo.svg`） |
 | `VITE_FOOTER_TEXT`      | カスタムのフッター/著作権テキスト                        |
 | `VITE_DEFAULT_LANGUAGE` | デフォルトの UI 言語（例: `fr`、`de`、`es`）             |

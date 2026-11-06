@@ -510,7 +510,7 @@ async function handleFiles(files: FileList) {
               const shouldDownload = await confirmChoice(
                 trText('Encrypted file'),
                 trText(
-                  "Your redactions are applied to the pages, but this file is encrypted, so BentoPDF can't also remove copies of the redacted text from its properties, bookmarks, and attachments. For a full cleanup, redact an unencrypted copy and add a password afterwards with Protect PDF. Download anyway?"
+                  "Your redactions are applied to the pages, but this file is encrypted, so Pixel PDF can't also remove copies of the redacted text from its properties, bookmarks, and attachments. For a full cleanup, redact an unencrypted copy and add a password afterwards with Protect PDF. Download anyway?"
                 ),
                 trText('Download anyway')
               );

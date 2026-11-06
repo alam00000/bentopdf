@@ -5,9 +5,9 @@ description: Kurangi ukuran file PDF hingga 90% dengan mesin Hyper Compress. Men
 
 # Kompres PDF
 
-Perkecil file PDF Anda tanpa merusaknya. Kompres PDF ditenagai oleh [Hyper Compress](https://www.bentopdf.com/hyper-compress), mesin kompresi milik BentoPDF sendiri. Mesin ini mengompresi ulang gambar, membuat subset dan menggabungkan font, serta membuang beban tak terpakai seperti thumbnail tersemat dan data aplikasi privat. PDF tetap berfungsi penuh: teks tetap dapat dipilih, tautan dan kolom formulir tetap bekerja.
+Perkecil file PDF Anda tanpa merusaknya. Kompres PDF ditenagai oleh [Hyper Compress](https://www.pixelpdf.com/hyper-compress), mesin kompresi milik Pixel PDF sendiri. Mesin ini mengompresi ulang gambar, membuat subset dan menggabungkan font, serta membuang beban tak terpakai seperti thumbnail tersemat dan data aplikasi privat. PDF tetap berfungsi penuh: teks tetap dapat dipilih, tautan dan kolom formulir tetap bekerja.
 
-Hyper Compress dikompilasi ke WebAssembly dan disertakan bersama BentoPDF, sehingga kompresi berjalan offline dan di lingkungan air-gapped tanpa pengaturan tambahan.
+Hyper Compress dikompilasi ke WebAssembly dan disertakan bersama Pixel PDF, sehingga kompresi berjalan offline dan di lingkungan air-gapped tanpa pengaturan tambahan.
 
 ## Cara Kerja
 
@@ -36,7 +36,7 @@ Tinggi juga melepas penyematan 14 font PDF standar, ditambah font yang mirip sep
 
 ## Ukuran File Target
 
-Masukkan ukuran dalam KB atau MB dan Hyper Compress mencari kualitas gambar terbaik yang masih muat, dimulai dari tingkat yang Anda pilih. Jika dokumen tidak dapat sekecil itu, Anda mendapatkan versi terkecil yang dapat dibuat beserta pesan yang menyatakannya. Halaman khusus seperti [Kompres PDF ke 1MB](https://www.bentopdf.com/compress-pdf-to-1mb) terbuka dengan target yang sudah terisi.
+Masukkan ukuran dalam KB atau MB dan Hyper Compress mencari kualitas gambar terbaik yang masih muat, dimulai dari tingkat yang Anda pilih. Jika dokumen tidak dapat sekecil itu, Anda mendapatkan versi terkecil yang dapat dibuat beserta pesan yang menyatakannya. Halaman khusus seperti [Kompres PDF ke 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb) terbuka dengan target yang sudah terisi.
 
 ## Pengaturan Kustom
 

@@ -148,7 +148,7 @@ Dockerを使う場合：
 export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
 DOCKER_BUILDKIT=1 docker build \
   --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-  -t your-bentopdf .
+  -t your-pixelpdf .
 ```
 
-> **注：** HMAC署名の設定については[README](https://github.com/alam00000/bentopdf#digital-signature-cors-proxy-required)を参照してください。
+> **注：** HMAC署名の設定については[README](https://github.com/mohammedalhinaki-cloud/Pixel-PDF#digital-signature-cors-proxy-required)を参照してください。

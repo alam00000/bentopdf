@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Gratis PDF-værktøjer med åben kildekode'
   tagline: Behandl PDF'er helt i din browser. Ingen uploads. Ingen servere. Fuldt privatliv.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## OCR offline
 
-Hvis du selvhoster BentoPDF i et air-gapped eller offline miljø, kræver OCR mere end Tesseract-workeren og traineddata-filerne. Søgbar PDF-output kræver også, at OCR-tekstlagets skrifttyper serveres internt.
+Hvis du selvhoster Pixel PDF i et air-gapped eller offline miljø, kræver OCR mere end Tesseract-workeren og traineddata-filerne. Søgbar PDF-output kræver også, at OCR-tekstlagets skrifttyper serveres internt.
 Se [Selvhosting](/da/self-hosting/) for den fulde opsætning, herunder `VITE_OCR_FONT_BASE_URL`, den medfølgende mappe `ocr-fonts/` og den opdaterede air-gap-arbejdsgang.

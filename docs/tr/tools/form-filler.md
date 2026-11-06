@@ -36,7 +36,7 @@ Ek yapılandırma seçeneği yoktur. Formu yükleyin, doldurun ve indirin.
 
 ## İpuçları
 
-- XFA formları yalnızca bazı PDF görüntüleyiciler tarafından desteklenen eski bir biçimdir. Bir XFA PDF'yi Chrome'da veya çoğu diğer araçta açıp boş sayfalar görüyorsanız, bu görüntüleyicilerin XFA desteği olmadığı anlamına gelir. BentoPDF'in Form Doldurucusu ve Firefox, XFA'yı düzgün işler.
+- XFA formları yalnızca bazı PDF görüntüleyiciler tarafından desteklenen eski bir biçimdir. Bir XFA PDF'yi Chrome'da veya çoğu diğer araçta açıp boş sayfalar görüyorsanız, bu görüntüleyicilerin XFA desteği olmadığı anlamına gelir. Pixel PDF'in Form Doldurucusu ve Firefox, XFA'yı düzgün işler.
 - Mevcut form alanı olmayan PDF'ler için önce alan eklemek üzere [PDF Formu Oluştur](./form-creator) aracını kullanın, ardından burada doldurun.
 - Görüntüleyici boyutunu PDF'nin sayfa ölçülerine uyacak şekilde otomatik ayarlar.
 

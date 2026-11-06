@@ -1,21 +1,21 @@
 ---
 title: JSON para PDF
-description: Reconstrua arquivos PDF a partir do formato JSON do BentoPDF. Converta exportações JSON de volta aos documentos PDF originais.
+description: Reconstrua arquivos PDF a partir do formato JSON do Pixel PDF. Converta exportações JSON de volta aos documentos PDF originais.
 ---
 
 # JSON para PDF
 
-Reconstrua documentos PDF a partir de arquivos JSON criados anteriormente pela ferramenta **PDF para JSON** do BentoPDF. É uma ferramenta de conversão de ida e volta: ela pega a representação estruturada em JSON de um PDF e reconstrói o documento original.
+Reconstrua documentos PDF a partir de arquivos JSON criados anteriormente pela ferramenta **PDF para JSON** do Pixel PDF. É uma ferramenta de conversão de ida e volta: ela pega a representação estruturada em JSON de um PDF e reconstrói o documento original.
 
 ::: warning
-Esta ferramenta aceita apenas arquivos JSON produzidos pelo conversor PDF para JSON do BentoPDF. Arquivos JSON comuns de APIs, bancos de dados ou outras ferramentas não são suportados.
+Esta ferramenta aceita apenas arquivos JSON produzidos pelo conversor PDF para JSON do Pixel PDF. Arquivos JSON comuns de APIs, bancos de dados ou outras ferramentas não são suportados.
 :::
 
 ## Formatos suportados
 
 | Entrada | Descrição                                                          |
 | :------ | :----------------------------------------------------------------- |
-| `.json` | Arquivos JSON exportados pela ferramenta PDF para JSON do BentoPDF |
+| `.json` | Arquivos JSON exportados pela ferramenta PDF para JSON do Pixel PDF |
 
 ## Como funciona
 

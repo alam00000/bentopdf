@@ -5,7 +5,7 @@ description: Anote, destaque, oculte informações, adicione formas e imagens, p
 
 # Editor de PDF
 
-O Editor de PDF do BentoPDF permite anotar, destacar, redigir (ocultar informações), comentar, adicionar formas e imagens e pesquisar em seus PDFs. Ele carrega um editor completo diretamente no navegador, sem uploads para servidores.
+O Editor de PDF do Pixel PDF permite anotar, destacar, redigir (ocultar informações), comentar, adicionar formas e imagens e pesquisar em seus PDFs. Ele carrega um editor completo diretamente no navegador, sem uploads para servidores.
 
 ## Como funciona
 

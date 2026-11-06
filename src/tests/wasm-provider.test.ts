@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-const STORAGE_KEY = 'bentopdf:wasm-providers';
+const STORAGE_KEY = 'pixelpdf:wasm-providers';
 const CURRENT_PYMUPDF =
   'https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/';
 

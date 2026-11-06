@@ -1,6 +1,6 @@
 # Déployer avec Apache
 
-Hébergez BentoPDF avec Apache HTTP Server.
+Hébergez Pixel PDF avec Apache HTTP Server.
 
 ## Prérequis
 
@@ -11,8 +11,8 @@ Hébergez BentoPDF avec Apache HTTP Server.
 ## Étape 1 : compiler le projet
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Étape 2 : copier les fichiers
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Étape 3 : configuration d'Apache
 
-Créez `/etc/apache2/sites-available/bentopdf.conf` :
+Créez `/etc/apache2/sites-available/pixelpdf.conf` :
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ Créez `/etc/apache2/sites-available/bentopdf.conf` :
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ Créez `/etc/apache2/sites-available/bentopdf.conf` :
 
 ## Étape 4 : .htaccess pour le routage
 
-Créez `/var/www/bentopdf/.htaccess` :
+Créez `/var/www/pixelpdf/.htaccess` :
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Étape 6 : activer le site
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Vérifiez que `mod_headers` est activé : `sudo a2enmod headers`
 ### Permission refusée
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

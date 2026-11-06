@@ -86,7 +86,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
   return 'en';
 };
 
-export const LANGUAGE_CHOICE_KEY = 'bentopdf-language';
+export const LANGUAGE_CHOICE_KEY = 'pixelpdf-language';
 
 let initPromise: Promise<typeof i18next> | null = null;
 

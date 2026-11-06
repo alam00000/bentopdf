@@ -4,13 +4,13 @@
 
 ## Tek Tıkla Dağıtım
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Elle Dağıtım
 
 ### Adım 1: Depoyu Fork'layın
 
-[bentopdf/bentopdf](https://github.com/alam00000/bentopdf) deposunu GitHub hesabınıza fork'layın.
+[pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) deposunu GitHub hesabınıza fork'layın.
 
 ### Adım 2: Vercel'e Aktarın
 
@@ -32,7 +32,7 @@ Gerekirse bunları ekleyin:
 | Değişken                | Açıklama                                                      |
 | ----------------------- | ------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Asgari arayüz için `true` yapın                               |
-| `VITE_BRAND_NAME`       | Özel marka adı ("BentoPDF" yerine geçer)                      |
+| `VITE_BRAND_NAME`       | Özel marka adı ("Pixel PDF" yerine geçer)                      |
 | `VITE_BRAND_LOGO`       | `public/` dizinine göre logo yolu (örn. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Özel alt bilgi/telif hakkı metni                              |
 | `VITE_DEFAULT_LANGUAGE` | Varsayılan arayüz dili (örn. `fr`, `de`, `es`)                |
@@ -51,7 +51,7 @@ Gerekirse bunları ekleyin:
 ## Sınırlamalar
 
 ::: warning Büyük Dosyalar
-Vercel'in sunucusuz işlevlerinin 50MB sınırı vardır. BentoPDF statik bir site olduğu için bu sizi etkilememelidir, ancak WASM modülleri büyüktür (toplam ~100MB). Bunların `/public` klasöründen sunulduğundan emin olun.
+Vercel'in sunucusuz işlevlerinin 50MB sınırı vardır. Pixel PDF statik bir site olduğu için bu sizi etkilememelidir, ancak WASM modülleri büyüktür (toplam ~100MB). Bunların `/public` klasöründen sunulduğundan emin olun.
 :::
 
 ## Sorun Giderme

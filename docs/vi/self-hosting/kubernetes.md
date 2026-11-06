@@ -10,24 +10,24 @@ Kubernetes có thể là quá mức cần thiết cho một trang web tĩnh, nh�
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> Các image nginx chính thức của BentoPDF đã bao gồm các header này. Trong Kubernetes, **bộ điều khiển Ingress/Gateway cũng là reverse proxy**, vì vậy hãy đảm bảo các header này được giữ nguyên (hoặc thêm chúng ở lớp biên).
+> Các image nginx chính thức của Pixel PDF đã bao gồm các header này. Trong Kubernetes, **bộ điều khiển Ingress/Gateway cũng là reverse proxy**, vì vậy hãy đảm bảo các header này được giữ nguyên (hoặc thêm chúng ở lớp biên).
 
 ## Điều kiện tiên quyết
 
 - Cụm Kubernetes
 - Helm v3
-- Một image nginx của BentoPDF (ví dụ `ghcr.io/alam00000/bentopdf:<tag>`) phục vụ trên **cổng 8080**
+- Một image nginx của Pixel PDF (ví dụ `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`) phục vụ trên **cổng 8080**
 
 ## Triển khai với Helm
 
 ### Cài đặt từ repo này (chart cục bộ)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ Nếu chart được xuất bản lên GHCR dưới dạng artifact OCI:
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward (thử nhanh)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (tùy chọn)
@@ -78,15 +78,15 @@ Ví dụ (operator Cloudflare Gateway API):
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### Điều "đáng lẽ" xảy ra
 
-Cấu hình nginx của BentoPDF đặt các header phản hồi cần thiết. Hầu hết bộ điều khiển Ingress/Gateway **chuyển tiếp nguyên vẹn các header phản hồi từ upstream**.
+Cấu hình nginx của Pixel PDF đặt các header phản hồi cần thiết. Hầu hết bộ điều khiển Ingress/Gateway **chuyển tiếp nguyên vẹn các header phản hồi từ upstream**.
 
 ### Điều có thể làm hỏng
 
@@ -132,9 +132,9 @@ ingress:
 
 ## Lỗi kiểu MIME của `.mjs` (Ký PDF / iframe Form Filler bị trống)
 
-Nếu bảng điều khiển trình duyệt hiển thị `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` ở một yêu cầu `.mjs`, nghĩa là một bộ điều khiển Ingress/Gateway đặt phía trước nginx của BentoPDF đang thay header `Content-Type` từ upstream bằng `application/octet-stream`.
+Nếu bảng điều khiển trình duyệt hiển thị `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` ở một yêu cầu `.mjs`, nghĩa là một bộ điều khiển Ingress/Gateway đặt phía trước nginx của Pixel PDF đang thay header `Content-Type` từ upstream bằng `application/octet-stream`.
 
-Nginx trong image BentoPDF vốn đã phục vụ `.mjs` với kiểu `application/javascript`. Cách khắc phục là ngăn bộ điều khiển loại bỏ/thay thế nó. Với nginx-ingress:
+Nginx trong image Pixel PDF vốn đã phục vụ `.mjs` với kiểu `application/javascript`. Cách khắc phục là ngăn bộ điều khiển loại bỏ/thay thế nó. Với nginx-ingress:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ Dùng ConfigMap để tắt công cụ lúc chạy mà không cần dựng lại
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ Gắn nó vào thư mục được phục vụ:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 ID công cụ là URL của trang bỏ đi `.html`. Hãy mở bất kỳ công cụ nào và xem URL (ví dụ: `edit-pdf`, `merge-pdf`, `compress-pdf`). Công cụ bị tắt sẽ bị ẩn khỏi trang chủ, tìm kiếm, phím tắt, trình tạo quy trình và truy cập trực tiếp bằng URL. Xem [hướng dẫn Docker](/vi/self-hosting/docker#tat-mot-so-cong-cu) để biết đầy đủ các tùy chọn.

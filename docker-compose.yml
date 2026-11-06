@@ -1,13 +1,13 @@
 services:
-  bentopdf:
+  pixelpdf:
     # GitHub Container Registry (Recommended)
-    # Self-Hosted build - ghcr.io/alam00000/bentopdf-simple:latest
-    # Commercial build  - ghcr.io/alam00000/bentopdf:latest
+    # Self-Hosted build - ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+    # Commercial build  - ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
     # Docker Hub (Alternative)
-    # Self-Hosted build - bentopdfteam/bentopdf-simple:latest
-    # Commercial build  - bentopdfteam/bentopdf:latest
-    image: ghcr.io/alam00000/bentopdf-simple:latest
-    container_name: bentopdf
+    # Self-Hosted build - pixelpdfteam/pixelpdf-simple:latest
+    # Commercial build  - pixelpdfteam/pixelpdf:latest
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+    container_name: pixelpdf
     restart: unless-stopped
     ports:
       - '8080:8080'

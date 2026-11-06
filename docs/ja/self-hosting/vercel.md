@@ -4,13 +4,13 @@
 
 ## ワンクリックデプロイ
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## 手動デプロイ
 
 ### ステップ 1: リポジトリをフォークする
 
-[bentopdf/bentopdf](https://github.com/alam00000/bentopdf) を自分の GitHub アカウントにフォークします。
+[pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) を自分の GitHub アカウントにフォークします。
 
 ### ステップ 2: Vercel にインポートする
 
@@ -32,7 +32,7 @@
 | 変数                    | 説明                                                     |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | 最小限の UI にするには `true` を設定します               |
-| `VITE_BRAND_NAME`       | カスタムブランド名（"BentoPDF" を置き換えます）          |
+| `VITE_BRAND_NAME`       | カスタムブランド名（"Pixel PDF" を置き換えます）          |
 | `VITE_BRAND_LOGO`       | `public/` からの相対ロゴパス（例: `images/my-logo.svg`） |
 | `VITE_FOOTER_TEXT`      | カスタムのフッター/著作権テキスト                        |
 | `VITE_DEFAULT_LANGUAGE` | デフォルトの UI 言語（例: `fr`、`de`、`es`）             |
@@ -51,7 +51,7 @@
 ## 制限事項
 
 ::: warning 大きなファイル
-Vercel のサーバーレス関数には 50MB の制限があります。BentoPDF は静的サイトなので影響はないはずですが、WASM モジュールは大きく（合計で約 100MB）、`/public` フォルダーから配信されるようにしてください。
+Vercel のサーバーレス関数には 50MB の制限があります。Pixel PDF は静的サイトなので影響はないはずですが、WASM モジュールは大きく（合計で約 100MB）、`/public` フォルダーから配信されるようにしてください。
 :::
 
 ## トラブルシューティング

@@ -4,7 +4,7 @@
 
 ## 一键部署
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## 手动部署
 
@@ -13,7 +13,7 @@
 1. 登录 [Netlify](https://app.netlify.com)
 2. 点击 "Add new site" → "Import an existing project"
 3. 连接您的 GitHub 账户
-4. 选择您的 BentoPDF 分支
+4. 选择您的 Pixel PDF 分支
 
 ### 步骤 2：配置构建设置
 
@@ -90,7 +90,7 @@ Word/ODT/Excel/PowerPoint 转 PDF 需要 `Cross-Origin-Embedder-Policy` 和 `Cro
 | 变量                    | 说明                                                     |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | 设为 `true` 以使用精简构建                               |
-| `VITE_BRAND_NAME`       | 自定义品牌名称（替换 "BentoPDF"）                        |
+| `VITE_BRAND_NAME`       | 自定义品牌名称（替换 "Pixel PDF"）                        |
 | `VITE_BRAND_LOGO`       | 相对于 `public/` 的标志路径（例如 `images/my-logo.svg`） |
 | `VITE_FOOTER_TEXT`      | 自定义页脚/版权文字                                      |
 | `VITE_DEFAULT_LANGUAGE` | 默认界面语言（例如 `fr`、`de`、`es`）                    |

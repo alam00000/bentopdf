@@ -1,6 +1,6 @@
 # Distribuzione su Hostinger
 
-[Hostinger](https://hostinger.com) è un diffuso provider di hosting condiviso. Questa guida spiega come distribuire BentoPDF sull'hosting condiviso di Hostinger.
+[Hostinger](https://hostinger.com) è un diffuso provider di hosting condiviso. Questa guida spiega come distribuire Pixel PDF sull'hosting condiviso di Hostinger.
 
 ## Prerequisiti
 
@@ -10,8 +10,8 @@
 ## Passaggio 1: compila il progetto
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Se gli header non vengono applicati, contatta il supporto di Hostinger per abili
 
 ### Errori 404 all'aggiornamento della pagina
 
-Verifica che la regola per l'estensione `.html` e le route delle lingue siano configurate correttamente. BentoPDF usa file HTML statici, non il routing SPA:
+Verifica che la regola per l'estensione `.html` e le route delle lingue siano configurate correttamente. Pixel PDF usa file HTML statici, non il routing SPA:
 
 ```apache
 # Language routes serve actual files from language directories

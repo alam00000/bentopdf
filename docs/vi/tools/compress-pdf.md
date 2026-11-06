@@ -5,9 +5,9 @@ description: Giảm dung lượng tệp PDF tới 90% với engine Hyper Compres
 
 # Nén PDF
 
-Thu nhỏ tệp PDF mà không làm hỏng chúng. Nén PDF được cung cấp bởi [Hyper Compress](https://www.bentopdf.com/hyper-compress), engine nén riêng của BentoPDF. Nó nén lại hình ảnh, tạo tập con và gộp phông chữ, đồng thời loại bỏ phần dư thừa như ảnh thu nhỏ nhúng sẵn và dữ liệu riêng của ứng dụng. PDF vẫn hoạt động đầy đủ: văn bản vẫn chọn được, liên kết và trường biểu mẫu vẫn dùng được.
+Thu nhỏ tệp PDF mà không làm hỏng chúng. Nén PDF được cung cấp bởi [Hyper Compress](https://www.pixelpdf.com/hyper-compress), engine nén riêng của Pixel PDF. Nó nén lại hình ảnh, tạo tập con và gộp phông chữ, đồng thời loại bỏ phần dư thừa như ảnh thu nhỏ nhúng sẵn và dữ liệu riêng của ứng dụng. PDF vẫn hoạt động đầy đủ: văn bản vẫn chọn được, liên kết và trường biểu mẫu vẫn dùng được.
 
-Hyper Compress được biên dịch sang WebAssembly và đi kèm BentoPDF, nên việc nén hoạt động offline và trong các môi trường triển khai cách ly mạng mà không cần thiết lập thêm.
+Hyper Compress được biên dịch sang WebAssembly và đi kèm Pixel PDF, nên việc nén hoạt động offline và trong các môi trường triển khai cách ly mạng mà không cần thiết lập thêm.
 
 ## Cách hoạt động
 
@@ -36,7 +36,7 @@ Mức Cao còn gỡ nhúng 14 phông chữ PDF tiêu chuẩn, cùng các phông 
 
 ## Kích thước tệp mục tiêu
 
-Nhập kích thước theo KB hoặc MB và Hyper Compress sẽ tìm chất lượng hình ảnh tốt nhất vẫn vừa kích thước đó, bắt đầu từ mức bạn đã chọn. Nếu tài liệu không thể nhỏ đến vậy, bạn nhận được phiên bản nhỏ nhất có thể cùng một thông báo cho biết điều đó. Các trang chuyên biệt như [Nén PDF xuống 1MB](https://www.bentopdf.com/compress-pdf-to-1mb) mở ra với mục tiêu đã được điền sẵn.
+Nhập kích thước theo KB hoặc MB và Hyper Compress sẽ tìm chất lượng hình ảnh tốt nhất vẫn vừa kích thước đó, bắt đầu từ mức bạn đã chọn. Nếu tài liệu không thể nhỏ đến vậy, bạn nhận được phiên bản nhỏ nhất có thể cùng một thông báo cho biết điều đó. Các trang chuyên biệt như [Nén PDF xuống 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb) mở ra với mục tiêu đã được điền sẵn.
 
 ## Cài đặt tùy chỉnh
 

@@ -4,13 +4,13 @@
 
 ## Distribuera med ett klick
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Manuell distribution
 
 ### Steg 1: Forka repositoryt
 
-Forka [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) till ditt GitHub-konto.
+Forka [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) till ditt GitHub-konto.
 
 ### Steg 2: Importera till Vercel
 
@@ -32,7 +32,7 @@ Lägg till dessa vid behov:
 | Variabel                | Beskrivning                                                   |
 | ----------------------- | ------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Sätt till `true` för minimalt gränssnitt                      |
-| `VITE_BRAND_NAME`       | Eget varumärkesnamn (ersätter "BentoPDF")                     |
+| `VITE_BRAND_NAME`       | Eget varumärkesnamn (ersätter "Pixel PDF")                     |
 | `VITE_BRAND_LOGO`       | Logotypsökväg relativt `public/` (t.ex. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Egen sidfots-/upphovsrättstext                                |
 | `VITE_DEFAULT_LANGUAGE` | Standardspråk för gränssnittet (t.ex. `fr`, `de`, `es`)       |
@@ -51,7 +51,7 @@ Klicka på "Deploy" och vänta tills bygget är klart.
 ## Begränsningar
 
 ::: warning Stora filer
-Vercels serverlösa funktioner har en gräns på 50 MB. Eftersom BentoPDF är en statisk webbplats ska detta inte påverka dig, men WASM-modulerna är stora (cirka 100 MB totalt). Se till att de levereras från mappen `/public`.
+Vercels serverlösa funktioner har en gräns på 50 MB. Eftersom Pixel PDF är en statisk webbplats ska detta inte påverka dig, men WASM-modulerna är stora (cirka 100 MB totalt). Se till att de levereras från mappen `/public`.
 :::
 
 ## Felsökning

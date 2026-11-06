@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Pixel PDF — brand theme
+   Palette taken from the Pixel PDF logo:
+     ink #2B3446 · blue #0E8BF5 · indigo #3A2BB0 · canvas #F5F7FB
+   Loaded from src/css/styles.css so every page (tools + landing) inherits it.
+   These rules are intentionally unlayered: unlayered declarations win over
+   Tailwind's `@layer utilities`, so the dark-era utility classes are remapped
+   to the light brand palette without touching 150+ HTML files.
+   ========================================================================== */
+
+:root {
+  --px-ink: #2b3446;
+  --px-ink-soft: #5f6d87;
+  --px-bg: #f5f7fb;
+  --px-surface: #ffffff;
+  --px-surface-2: #e9eef9;
+  --px-line: #dfe5f0;
+  --px-blue: #0e8bf5;
+  --px-indigo: #3a2bb0;
+  --px-gradient: linear-gradient(120deg, #0e8bf5 0%, #2567e8 48%, #3a2bb0 100%);
+}
+
+html,
+body {
+  background-color: var(--px-bg);
+  color: var(--px-ink);
+}
+
+/* `text-white` was the dark theme's heading colour. On the light canvas it
+   becomes ink — except on coloured buttons/cards, where white is still right. */
+.text-white:not([class*='bg-indigo']):not([class*='bg-blue']):not([class*='bg-purple']):not([class*='bg-red']):not([class*='bg-green']):not([class*='bg-sky']):not([class*='bg-emerald']):not([class*='bg-gray-5']):not([class*='bg-gray-6']):not([class*='bg-gray-7']):not([class*='bg-gray-8']):not([class*='bg-gray-9']):not([class*='bg-black']):not([class*='bg-gradient']):not([class*='lp-btn']) {
+  color: var(--px-ink);
+}
+
+/* A few shades need a nudge after the grey scale is inverted. */
+.text-gray-600,
+.text-gray-700 {
+  color: var(--px-ink-soft);
+}
+.bg-gradient-to-b.text-gray-700 {
+  color: #f0f4ff;
+}
+.bg-gray-50,
+.bg-gray-100 {
+  background-color: #eef2fa;
+}
+.border-gray-300 {
+  border-color: var(--px-line);
+}
+.bg-white {
+  background-color: var(--px-surface);
+}
+.border-white\/10 {
+  border-color: rgba(43, 52, 70, 0.12);
+}
+
+/* Modal backdrops: `bg-opacity-75` is a v3 utility that Tailwind v4 drops. */
+.bg-black.bg-opacity-75 {
+  background-color: rgba(17, 26, 46, 0.72);
+}
+
+/* Primary actions use the logo's blue -> indigo gradient. */
+.bg-indigo-600,
+.bg-indigo-700,
+.btn-gradient,
+.lp-btn--primary,
+.lp-pill-btn--accent,
+.lp-cell--accent {
+  background-image: var(--px-gradient);
+}
+.btn-gradient {
+  color: #ffffff;
+}
+
+/* Wordmark: "Pixel" in ink, "PDF" in the logo gradient. */
+.px-brand {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--px-ink);
+}
+.px-brand-accent {
+  margin-left: 0.18em;
+  background: var(--px-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--px-blue);
+}
+.px-wordmark {
+  display: block;
+  width: auto;
+  height: 34px;
+  object-fit: contain;
+}

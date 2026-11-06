@@ -13,7 +13,7 @@
     "breadcrumb": "Gezinti yolu"
   },
   "donation": {
-    "message": "BentoPDF'i seviyor musunuz? Ücretsiz ve açık kaynaklı kalmasına yardımcı olun!",
+    "message": "Pixel PDF'i seviyor musunuz? Ücretsiz ve açık kaynaklı kalmasına yardımcı olun!",
     "button": "Bağış Yap"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "Neden",
-    "bentoPdf": "BentoPDF'yi seçmelisiniz?",
+    "pixelPdf": "Pixel PDF'yi seçmelisiniz?",
     "noSignup": {
       "title": "Kayıt Gerekmez",
       "description": "Hemen başlayın, hesap veya e-posta gerekmez."
@@ -188,8 +188,8 @@
     "questions": "Sorular",
     "sectionTitle": "Sıkça Sorulan Sorular",
     "isFree": {
-      "question": "BentoPDF gerçekten ücretsiz mi?",
-      "answer": "Evet, kesinlikle. BentoPDF'deki tüm araçlar %100 ücretsizdir, dosya sınırı yoktur, kayıt gerekmez ve filigran eklenmez. Herkesin ödeme duvarı olmadan basit, güçlü PDF araçlarına erişimi hak ettiğine inanıyoruz."
+      "question": "Pixel PDF gerçekten ücretsiz mi?",
+      "answer": "Evet, kesinlikle. Pixel PDF'deki tüm araçlar %100 ücretsizdir, dosya sınırı yoktur, kayıt gerekmez ve filigran eklenmez. Herkesin ödeme duvarı olmadan basit, güçlü PDF araçlarına erişimi hak ettiğine inanıyoruz."
     },
     "areFilesSecure": {
       "question": "Dosyalarım güvende mi? Nerede işleniyorlar?",
@@ -197,27 +197,27 @@
     },
     "platforms": {
       "question": "Mac, Windows ve Mobil'de çalışıyor mu?",
-      "answer": "Evet! BentoPDF tamamen tarayıcınızda çalıştığı için, Windows, macOS, Linux, iOS ve Android dahil modern bir web tarayıcısı olan herhangi bir işletim sisteminde çalışır."
+      "answer": "Evet! Pixel PDF tamamen tarayıcınızda çalıştığı için, Windows, macOS, Linux, iOS ve Android dahil modern bir web tarayıcısı olan herhangi bir işletim sisteminde çalışır."
     },
     "gdprCompliant": {
-      "question": "BentoPDF GDPR uyumlu mu?",
-      "answer": "Evet. BentoPDF tamamen GDPR uyumludur. Tüm dosya işlemleri tarayıcınızda yerel olarak gerçekleştiği ve dosyalarınızı herhangi bir sunucuya asla iletmediğimiz için verilerinize erişimimiz yoktur. Bu, belgeleriniz üzerindeki kontrolün her zaman sizde olduğundan emin olur."
+      "question": "Pixel PDF GDPR uyumlu mu?",
+      "answer": "Evet. Pixel PDF tamamen GDPR uyumludur. Tüm dosya işlemleri tarayıcınızda yerel olarak gerçekleştiği ve dosyalarınızı herhangi bir sunucuya asla iletmediğimiz için verilerinize erişimimiz yoktur. Bu, belgeleriniz üzerindeki kontrolün her zaman sizde olduğundan emin olur."
     },
     "dataStorage": {
       "question": "Dosyalarımı saklıyor veya takip ediyor musunuz?",
-      "answer": "Hayır. Dosyalarınızı asla saklamıyor, takip etmiyor veya kaydetmiyoruz. BentoPDF'de yaptığınız her şey tarayıcı belleğinizde gerçekleşir ve sayfayı kapattığınızda silinir. Yükleme, geçmiş kaydı veya sunucu yoktur."
+      "answer": "Hayır. Dosyalarınızı asla saklamıyor, takip etmiyor veya kaydetmiyoruz. Pixel PDF'de yaptığınız her şey tarayıcı belleğinizde gerçekleşir ve sayfayı kapattığınızda silinir. Yükleme, geçmiş kaydı veya sunucu yoktur."
     },
     "different": {
-      "question": "BentoPDF'yi diğer PDF araçlarından farklı kılan nedir?",
-      "answer": "Çoğu PDF aracı, işlem için dosyalarınızı bir sunucuya yükler. BentoPDF asla böyle yapmaz. Dosyalarınızı doğrudan tarayıcınızda işlemek için güvenli, modern web teknolojileri kullanırız. Bu, daha hızlı performans, daha güçlü gizlilik ve tam bir gönül rahatlığı anlamına gelir."
+      "question": "Pixel PDF'yi diğer PDF araçlarından farklı kılan nedir?",
+      "answer": "Çoğu PDF aracı, işlem için dosyalarınızı bir sunucuya yükler. Pixel PDF asla böyle yapmaz. Dosyalarınızı doğrudan tarayıcınızda işlemek için güvenli, modern web teknolojileri kullanırız. Bu, daha hızlı performans, daha güçlü gizlilik ve tam bir gönül rahatlığı anlamına gelir."
     },
     "browserBased": {
       "question": "Tarayıcı tabanlı işlem beni nasıl korur?",
-      "answer": "Tamamen tarayıcınızın içinde çalışarak, BentoPDF dosyalarınızın cihazınızı asla terk etmemesini sağlar. Bu, sunucu saldırıları, veri ihlalleri veya yetkisiz erişim risklerini ortadan kaldırır. Dosyalarınız her zaman sizin kalır."
+      "answer": "Tamamen tarayıcınızın içinde çalışarak, Pixel PDF dosyalarınızın cihazınızı asla terk etmemesini sağlar. Bu, sunucu saldırıları, veri ihlalleri veya yetkisiz erişim risklerini ortadan kaldırır. Dosyalarınız her zaman sizin kalır."
     },
     "analytics": {
       "question": "Beni takip etmek için çerez veya analiz kullanıyor musunuz?",
-      "answer": "Hayır. BentoPDF sizi hiçbir şekilde takip etmez. Çerez, analiz aracı veya izleme betiği kullanmıyoruz; canlı web sitesi bentopdf.com'da bile. Kim olduğunuzu veya araçlarla ne yaptığınızı asla bilmeyiz."
+      "answer": "Hayır. Pixel PDF sizi hiçbir şekilde takip etmez. Çerez, analiz aracı veya izleme betiği kullanmıyoruz; canlı web sitesi pixelpdf.com'da bile. Kim olduğunuzu veya araçlarla ne yaptığınızı asla bilmeyiz."
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "Çalışmamı Beğendiniz mi?",
-    "description": "BentoPDF, herkes için ücretsiz, özel ve güçlü bir PDF araç seti sağlamak amacıyla oluşturulmuş bir tutku projesidir. Faydalı bulduysanız, geliştirilmesini desteklemeyi düşünebilirsiniz. Her kahve yardımcı olur!",
+    "description": "Pixel PDF, herkes için ücretsiz, özel ve güçlü bir PDF araç seti sağlamak amacıyla oluşturulmuş bir tutku projesidir. Faydalı bulduysanız, geliştirilmesini desteklemeyi düşünebilirsiniz. Her kahve yardımcı olur!",
     "buyMeCoffee": "Bana Kahve Ismarla"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Tüm hakları saklıdır.",
+    "copyright": "© 2026 Pixel PDF. Tüm hakları saklıdır.",
     "version": "Sürüm",
     "company": "Şirket",
     "aboutUs": "Hakkımızda",
@@ -300,9 +300,9 @@
     "philosophy": {
       "label": "Temel Felsefemiz",
       "title": "Öncelik Her Zaman Gizlilik.",
-      "description": "Verinin bir meta olarak kabul edildiği bir çağda, farklı bir yaklaşım benimsiyoruz. BentoPDF araçları için tüm işlemler tarayıcınızda yerel olarak gerçekleşir. Bu, dosyalarınızın sunucularımıza asla dokunmadığı, belgelerinizi asla görmediğimiz ve ne yaptığınızı takip etmediğimiz anlamına gelir. Belgeleriniz tamamen ve kesinlikle özel kalır. Bu sadece bir özellik değil, temelimizdir."
+      "description": "Verinin bir meta olarak kabul edildiği bir çağda, farklı bir yaklaşım benimsiyoruz. Pixel PDF araçları için tüm işlemler tarayıcınızda yerel olarak gerçekleşir. Bu, dosyalarınızın sunucularımıza asla dokunmadığı, belgelerinizi asla görmediğimiz ve ne yaptığınızı takip etmediğimiz anlamına gelir. Belgeleriniz tamamen ve kesinlikle özel kalır. Bu sadece bir özellik değil, temelimizdir."
     },
-    "whyBentopdf": {
+    "whyPixelpdf": {
       "title": "Neden",
       "speed": {
         "title": "Hız İçin Tasarlandı",
@@ -323,7 +323,7 @@
     },
     "cta": {
       "title": "Başlamaya hazır mısınız?",
-      "description": "Günlük belge ihtiyaçları için BentoPDF'ye güvenen binlerce kullanıcıya katılın. Gizlilik ve performansın yaratabileceği farkı deneyimleyin.",
+      "description": "Günlük belge ihtiyaçları için Pixel PDF'ye güvenen binlerce kullanıcıya katılın. Gizlilik ve performansın yaratabileceği farkı deneyimleyin.",
       "button": "Tüm Araçları Keşfet"
     }
   },

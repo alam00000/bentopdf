@@ -1,6 +1,6 @@
 # Værktøjsoversigt
 
-BentoPDF tilbyder **130+ værktøjer** til arbejde med PDF'er. Alle værktøjer kører udelukkende i din browser, og dine filer forlader aldrig din enhed.
+Pixel PDF tilbyder **130+ værktøjer** til arbejde med PDF'er. Alle værktøjer kører udelukkende i din browser, og dine filer forlader aldrig din enhed.
 
 ---
 

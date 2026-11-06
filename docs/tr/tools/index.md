@@ -1,6 +1,6 @@
 # Araçlar Referansı
 
-BentoPDF, PDF'lerle çalışmak için **130'dan fazla araç** sunar. Tüm araçlar tamamen tarayıcınızda çalışır: dosyalarınız cihazınızdan asla çıkmaz.
+Pixel PDF, PDF'lerle çalışmak için **130'dan fazla araç** sunar. Tüm araçlar tamamen tarayıcınızda çalışır: dosyalarınız cihazınızdan asla çıkmaz.
 
 ---
 

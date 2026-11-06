@@ -5,7 +5,7 @@ description: Protegeix fitxers PDF amb contrasenya mitjançant xifratge AES de 2
 
 # Protegeix PDF
 
-Bloqueja el PDF amb una contrasenya perquè només les persones autoritzades puguin obrir-lo. BentoPDF utilitza xifratge AES de 256 bits (el mateix estàndard que fan servir bancs i agències governamentals), aplicat íntegrament al navegador mitjançant QPDF.
+Bloqueja el PDF amb una contrasenya perquè només les persones autoritzades puguin obrir-lo. Pixel PDF utilitza xifratge AES de 256 bits (el mateix estàndard que fan servir bancs i agències governamentals), aplicat íntegrament al navegador mitjançant QPDF.
 
 ## Com funciona
 
@@ -23,7 +23,7 @@ La contrasenya d'usuari és la que els destinataris escriuen per obrir el PDF. S
 
 ### Contrasenya de propietari (opcional)
 
-La contrasenya de propietari controla què pot fer un usuari autoritzat després d'obrir el fitxer. Quan estableixes una contrasenya de propietari diferent, BentoPDF aplica automàticament el conjunt de restriccions més estricte:
+La contrasenya de propietari controla què pot fer un usuari autoritzat després d'obrir el fitxer. Quan estableixes una contrasenya de propietari diferent, Pixel PDF aplica automàticament el conjunt de restriccions més estricte:
 
 - Modificació desactivada
 - Extracció o còpia desactivada

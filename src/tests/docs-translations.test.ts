@@ -25,7 +25,7 @@ describe('localizeLinks', () => {
     const text = [
       '![Logo](/images/logo.png)',
       '[PDF](/files/sample.pdf)',
-      '[Site](https://www.bentopdf.com/licensing)',
+      '[Site](https://www.pixelpdf.com/licensing)',
       '[Mail](mailto:a@b.co)',
       '[Top](#top)',
       '[Next](./merge-pdf)',

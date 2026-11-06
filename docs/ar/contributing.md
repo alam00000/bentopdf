@@ -1,6 +1,6 @@
 # المساهمة
 
-شكرًا لاهتمامك بالمساهمة في BentoPDF! سيساعدك هذا الدليل على البدء.
+شكرًا لاهتمامك بالمساهمة في Pixel PDF! سيساعدك هذا الدليل على البدء.
 
 ## البدء
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## بنية المشروع
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## الترجمة
 
-راجع [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) لإضافة لغات جديدة.
+راجع [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) لإضافة لغات جديدة.
 
 ## اتفاقية ترخيص المساهم
 
 قبل دمج طلب السحب، ستحتاج إلى توقيع اتفاقية CLA الخاصة بنا:
 
-- [اتفاقية المساهم الفرد (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [اتفاقية المساهم المؤسسي (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [اتفاقية المساهم الفرد (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [اتفاقية المساهم المؤسسي (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## الحصول على المساعدة
 
-- [مشكلات GitHub](https://github.com/alam00000/bentopdf/issues)
+- [مشكلات GitHub](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [مجتمع Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## الترخيص
 
-BentoPDF مرخّص بترخيص مزدوج:
+Pixel PDF مرخّص بترخيص مزدوج:
 
 - **AGPL-3.0** للمشاريع مفتوحة المصدر التي تشارك كامل شيفرتها المصدرية علنًا
 - **ترخيص تجاري** للتطبيقات الخاصة/مغلقة المصدر - [احصل على ترخيص مدى الحياة مقابل 79$](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

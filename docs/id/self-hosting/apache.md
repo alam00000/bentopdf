@@ -1,6 +1,6 @@
 # Deploy dengan Apache
 
-Hosting BentoPDF menggunakan Apache HTTP Server.
+Hosting Pixel PDF menggunakan Apache HTTP Server.
 
 ## Prasyarat
 
@@ -11,8 +11,8 @@ Hosting BentoPDF menggunakan Apache HTTP Server.
 ## Langkah 1: Build Proyek
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Langkah 2: Salin File
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Langkah 3: Konfigurasi Apache
 
-Buat `/etc/apache2/sites-available/bentopdf.conf`:
+Buat `/etc/apache2/sites-available/pixelpdf.conf`:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ Buat `/etc/apache2/sites-available/bentopdf.conf`:
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ Buat `/etc/apache2/sites-available/bentopdf.conf`:
 
 ## Langkah 4: .htaccess untuk Routing
 
-Buat `/var/www/bentopdf/.htaccess`:
+Buat `/var/www/pixelpdf/.htaccess`:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Langkah 6: Aktifkan Situs
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Pastikan `mod_headers` sudah diaktifkan: `sudo a2enmod headers`
 ### Izin Ditolak
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

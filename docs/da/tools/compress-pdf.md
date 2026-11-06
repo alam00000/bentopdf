@@ -5,9 +5,9 @@ description: Reducer PDF-filstørrelsen med op til 90 % med Hyper Compress-motor
 
 # Komprimer PDF
 
-Gør dine PDF-filer mindre uden at ødelægge dem. Komprimer PDF drives af [Hyper Compress](https://www.bentopdf.com/hyper-compress), BentoPDF's egen komprimeringsmotor. Den genkomprimerer billeder, laver delmængder af skrifttyper og fletter dem og fjerner overflødig vægt som indlejrede miniaturebilleder og private programdata. PDF'en forbliver fuldt funktionel: tekst kan stadig markeres, og links og formularfelter virker fortsat.
+Gør dine PDF-filer mindre uden at ødelægge dem. Komprimer PDF drives af [Hyper Compress](https://www.pixelpdf.com/hyper-compress), Pixel PDF's egen komprimeringsmotor. Den genkomprimerer billeder, laver delmængder af skrifttyper og fletter dem og fjerner overflødig vægt som indlejrede miniaturebilleder og private programdata. PDF'en forbliver fuldt funktionel: tekst kan stadig markeres, og links og formularfelter virker fortsat.
 
-Hyper Compress er kompileret til WebAssembly og følger med BentoPDF, så komprimering virker offline og i isolerede (air-gapped) installationer uden ekstra opsætning.
+Hyper Compress er kompileret til WebAssembly og følger med Pixel PDF, så komprimering virker offline og i isolerede (air-gapped) installationer uden ekstra opsætning.
 
 ## Sådan fungerer det
 
@@ -36,7 +36,7 @@ Høj fjerner også indlejringen af de 14 standardskrifttyper i PDF samt lignende
 
 ## Målfilstørrelse
 
-Angiv en størrelse i KB eller MB, og Hyper Compress søger efter den bedste billedkvalitet, der stadig passer, med udgangspunkt i det valgte niveau. Hvis dokumentet ikke kan blive så lille, får du den mindste version, det kan lave, og en besked om det. De dedikerede sider som [Komprimer PDF til 1 MB](https://www.bentopdf.com/compress-pdf-to-1mb) åbner med målet allerede udfyldt.
+Angiv en størrelse i KB eller MB, og Hyper Compress søger efter den bedste billedkvalitet, der stadig passer, med udgangspunkt i det valgte niveau. Hvis dokumentet ikke kan blive så lille, får du den mindste version, det kan lave, og en besked om det. De dedikerede sider som [Komprimer PDF til 1 MB](https://www.pixelpdf.com/compress-pdf-to-1mb) åbner med målet allerede udfyldt.
 
 ## Brugerdefinerede indstillinger
 

@@ -5,7 +5,7 @@ description: Beri anotasi, sorot, redaksi, tambah bentuk dan gambar, cari, dan l
 
 # Editor PDF
 
-Editor PDF BentoPDF memungkinkan Anda memberi anotasi, menyorot, meredaksi, berkomentar, menambah bentuk dan gambar, serta mencari di dalam PDF Anda. Editor lengkap dimuat langsung di browser Anda tanpa unggahan ke server.
+Editor PDF Pixel PDF memungkinkan Anda memberi anotasi, menyorot, meredaksi, berkomentar, menambah bentuk dan gambar, serta mencari di dalam PDF Anda. Editor lengkap dimuat langsung di browser Anda tanpa unggahan ke server.
 
 ## Cara Kerja
 

@@ -7,7 +7,7 @@ description: Voeg cryptografische digitale handtekeningen toe aan PDF's met X.50
 
 Een digitale handtekening is cryptografisch bewijs dat een bepaald persoon een document heeft ondertekend en dat het document sindsdien niet is gewijzigd. Anders dan een getekende handtekening (die slechts een afbeelding is) gebruikt een digitale handtekening X.509-certificaten en PKCS#7-standaarden voor controleerbare authenticiteit en integriteit.
 
-BentoPDF past digitale handtekeningen volledig in je browser toe. Je privésleutel verlaat je apparaat nooit.
+Pixel PDF past digitale handtekeningen volledig in je browser toe. Je privésleutel verlaat je apparaat nooit.
 
 ## Zo werkt het
 

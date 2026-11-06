@@ -4,7 +4,7 @@
 
 ## Deploy med ét klik
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Manuel deployment
 
@@ -13,7 +13,7 @@
 1. Log ind på [Netlify](https://app.netlify.com)
 2. Klik på "Add new site" → "Import an existing project"
 3. Forbind din GitHub-konto
-4. Vælg din BentoPDF-fork
+4. Vælg din Pixel PDF-fork
 
 ### Trin 2: Konfigurér build-indstillinger
 
@@ -90,7 +90,7 @@ Angiv disse under Site settings → Environment variables:
 | Variabel                | Beskrivelse                                                  |
 | ----------------------- | ------------------------------------------------------------ |
 | `SIMPLE_MODE`           | Sæt til `true` for et minimalt build                         |
-| `VITE_BRAND_NAME`       | Brugerdefineret brandnavn (erstatter "BentoPDF")             |
+| `VITE_BRAND_NAME`       | Brugerdefineret brandnavn (erstatter "Pixel PDF")             |
 | `VITE_BRAND_LOGO`       | Logosti relativt til `public/` (f.eks. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Brugerdefineret sidefods-/ophavsretstekst                    |
 | `VITE_DEFAULT_LANGUAGE` | Standardsprog i brugerfladen (f.eks. `fr`, `de`, `es`)       |

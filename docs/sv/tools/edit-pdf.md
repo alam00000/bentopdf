@@ -5,7 +5,7 @@ description: Kommentera, markera, maskera, lägg till former och bilder, sök oc
 
 # PDF-redigerare
 
-BentoPDF:s PDF-redigerare låter dig kommentera, markera, maskera, kommentera i text, lägga till former och bilder och söka i dina PDF-filer. Den läser in en fullfjädrad redigerare direkt i webbläsaren utan serveruppladdningar.
+Pixel PDF:s PDF-redigerare låter dig kommentera, markera, maskera, kommentera i text, lägga till former och bilder och söka i dina PDF-filer. Den läser in en fullfjädrad redigerare direkt i webbläsaren utan serveruppladdningar.
 
 ## Så fungerar det
 

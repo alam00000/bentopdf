@@ -119,7 +119,7 @@ describe('timestampPdf', () => {
   it('should pre-proxy the TSA URL when CORS proxy is configured', async () => {
     vi.stubEnv(
       'VITE_CORS_PROXY_URL',
-      'https://bentopdf-cors-proxy.bentopdf.workers.dev'
+      'https://pixelpdf-cors-proxy.pixelpdf.workers.dev'
     );
     vi.resetModules();
     const { timestampPdf: freshTimestamp } =
@@ -132,7 +132,7 @@ describe('timestampPdf', () => {
       signdate: { url: string };
     };
     expect(callArg.signdate.url).toMatch(
-      /^https:\/\/bentopdf-cors-proxy\.bentopdf\.workers\.dev\?url=/
+      /^https:\/\/pixelpdf-cors-proxy\.pixelpdf\.workers\.dev\?url=/
     );
     expect(callArg.signdate.url).toContain(
       encodeURIComponent('http://timestamp.digicert.com')
@@ -164,8 +164,8 @@ describe('timestampPdf', () => {
       configurable: true,
       value: {
         protocol: 'https:',
-        origin: 'https://www.bentopdf.com',
-        hostname: 'www.bentopdf.com',
+        origin: 'https://www.pixelpdf.com',
+        hostname: 'www.pixelpdf.com',
       },
     });
     vi.resetModules();
@@ -179,7 +179,7 @@ describe('timestampPdf', () => {
       signdate: { url: string };
     };
     expect(callArg.signdate.url).toMatch(
-      /^https:\/\/bentopdf-cors-proxy\.bentopdf\.workers\.dev\?url=/
+      /^https:\/\/pixelpdf-cors-proxy\.pixelpdf\.workers\.dev\?url=/
     );
     expect(callArg.signdate.url).toContain(
       encodeURIComponent('http://timestamp.digicert.com')

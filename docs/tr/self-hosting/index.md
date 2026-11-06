@@ -1,30 +1,30 @@
 # Kendi Sunucunuzda Barındırma Kılavuzu
 
-BentoPDF kendi altyapınızda barındırılabilir. Bu kılavuz çeşitli dağıtım seçeneklerini kapsar.
+Pixel PDF kendi altyapınızda barındırılabilir. Bu kılavuz çeşitli dağıtım seçeneklerini kapsar.
 
 ## Docker / Podman ile Hızlı Başlangıç
 
-BentoPDF'i kendi sunucunuzda barındırmanın en hızlı yolu:
+Pixel PDF'i kendi sunucunuzda barındırmanın en hızlı yolu:
 
 > [!TIP]
-> BentoPDF iki derleme halinde sunulur:
+> Pixel PDF iki derleme halinde sunulur:
 >
-> - **Kendi Sunucunuzda Barındırma derlemesi**: `ghcr.io/alam00000/bentopdf-simple:latest`. Tanıtım arayüzü olmadan (kahraman bölümü, SSS, kullanıcı yorumları, alt bilgi yok) tüm PDF araçlarını içerir. Kurum içi/ekip/organizasyon dağıtımları için bunu kullanın. Özellikleri kısıtlanmış bir "lite" sürüm **değildir**.
-> - **Ticari derleme**: `ghcr.io/alam00000/bentopdf:latest`. Tanıtım sitesinin tamamını içerir; bentopdf.com'un kendisi ve herkese açık dağıtım yapan ticari lisans sahipleri tarafından kullanılır.
+> - **Kendi Sunucunuzda Barındırma derlemesi**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. Tanıtım arayüzü olmadan (kahraman bölümü, SSS, kullanıcı yorumları, alt bilgi yok) tüm PDF araçlarını içerir. Kurum içi/ekip/organizasyon dağıtımları için bunu kullanın. Özellikleri kısıtlanmış bir "lite" sürüm **değildir**.
+> - **Ticari derleme**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. Tanıtım sitesinin tamamını içerir; pixelpdf.com'un kendisi ve herkese açık dağıtım yapan ticari lisans sahipleri tarafından kullanılır.
 >
 > Emin değilseniz: Kendi Sunucunuzda Barındırma derlemesini çekin.
 
 > [!IMPORTANT]
 > Office dosyası dönüştürme `SharedArrayBuffer` gerektirir; bu da uygulamanın hem çapraz kaynak yalıtımlı olması hem de güvenli bir bağlamdan sunulması anlamına gelir. Resmi imaj gerekli COOP/COEP başlıklarını zaten gönderir, ancak tarayıcılar `http://192.168.x.x` gibi düz HTTP yerel ağ kaynaklarında `SharedArrayBuffer`'ı yine de devre dışı bırakır.
 >
-> `http://localhost` adresini yalnızca aynı cihazdaki testler için kullanın. Kullanıcılar BentoPDF'e bir yerel ağ IP'si veya ana bilgisayar adı üzerinden erişiyorsa, bağlantıyı HTTPS ile sonlandırın.
+> `http://localhost` adresini yalnızca aynı cihazdaki testler için kullanın. Kullanıcılar Pixel PDF'e bir yerel ağ IP'si veya ana bilgisayar adı üzerinden erişiyorsa, bağlantıyı HTTPS ile sonlandırın.
 
 ```bash
 # Docker
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
-podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+podman run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Veya Docker Compose / Podman Compose ile:
@@ -32,8 +32,8 @@ Veya Docker Compose / Podman Compose ile:
 ```yaml
 # docker-compose.yml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -49,12 +49,12 @@ podman-compose up -d
 
 ## Podman Quadlet (Linux Systemd)
 
-BentoPDF'i bir systemd hizmeti olarak çalıştırın. `~/.config/containers/systemd/bentopdf.container` dosyasını oluşturun:
+Pixel PDF'i bir systemd hizmeti olarak çalıştırın. `~/.config/containers/systemd/pixelpdf.container` dosyasını oluşturun:
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -67,7 +67,7 @@ WantedBy=default.target
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now bentopdf
+systemctl --user enable --now pixelpdf
 ```
 
 Tam Quadlet belgeleri için [Docker dağıtım kılavuzuna](/tr/self-hosting/docker) bakın.
@@ -76,8 +76,8 @@ Tam Quadlet belgeleri için [Docker dağıtım kılavuzuna](/tr/self-hosting/doc
 
 ```bash
 # Clone and build
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 
@@ -88,7 +88,7 @@ npm run build
 
 ### Kendi Sunucunuzda Barındırma derlemesi (Basit Mod)
 
-Kendi Sunucunuzda Barındırma derlemesi (`bentopdf-simple` imajı, Basit Mod olarak da adlandırılır) Ticari derlemeyle **işlevsel olarak aynıdır**: her PDF aracı mevcuttur ve aynı şekilde davranır. Yalnızca bentopdf.com'da veya herkese açık bir ticari dağıtımda anlamlı olan tanıtım arayüzünü gizler. **Özellikleri kısıtlanmış veya "lite" bir sürüm değildir.**
+Kendi Sunucunuzda Barındırma derlemesi (`pixelpdf-simple` imajı, Basit Mod olarak da adlandırılır) Ticari derlemeyle **işlevsel olarak aynıdır**: her PDF aracı mevcuttur ve aynı şekilde davranır. Yalnızca pixelpdf.com'da veya herkese açık bir ticari dağıtımda anlamlı olan tanıtım arayüzünü gizler. **Özellikleri kısıtlanmış veya "lite" bir sürüm değildir.**
 
 **Kendi Sunucunuzda Barındırma derlemesinin gizledikleri** (yalnızca görünüm; hiçbir PDF özelliği kaldırılmaz):
 
@@ -100,32 +100,32 @@ Kendi Sunucunuzda Barındırma derlemesi (`bentopdf-simple` imajı, Basit Mod ol
 - Her PDF aracı (birleştirme, bölme, düzenleme, imzalama, OCR, Office dönüştürme vb.)
 - Özel marka desteği, tüm derleme zamanı ve çalışma zamanı yapılandırması
 
-Ticari derleme (`ghcr.io/alam00000/bentopdf:latest`) bentopdf.com'un kendisini çalıştıran ve herkese açık dağıtım yapan ticari lisans sahipleri tarafından kullanılan derlemedir; bir kurum içi araçta anlamlı olmayacak kahraman bölümü, SSS, kullanıcı yorumları ve alt bilgiyi ekler.
+Ticari derleme (`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`) pixelpdf.com'un kendisini çalıştıran ve herkese açık dağıtım yapan ticari lisans sahipleri tarafından kullanılan derlemedir; bir kurum içi araçta anlamlı olmayacak kahraman bölümü, SSS, kullanıcı yorumları ve alt bilgiyi ekler.
 
-BentoPDF'i ekibiniz, kuruluşunuz veya kurum içi bir araç olarak kendi sunucunuzda barındırıyorsanız, Kendi Sunucunuzda Barındırma derlemesini çekin:
+Pixel PDF'i ekibiniz, kuruluşunuz veya kurum içi bir araç olarak kendi sunucunuzda barındırıyorsanız, Kendi Sunucunuzda Barındırma derlemesini çekin:
 
 ```bash
 # Use the pre-built image (recommended)
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or build it yourself
 SIMPLE_MODE=true npm run build
 ```
 
-Tüm ayrıntılar için [SIMPLE_MODE.md](https://github.com/alam00000/bentopdf/blob/main/SIMPLE_MODE.md) dosyasına bakın.
+Tüm ayrıntılar için [SIMPLE_MODE.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/SIMPLE_MODE.md) dosyasına bakın.
 
 ### Ticari derleme (kendi markanızla herkese açık dağıtımlar)
 
-Ticari derleme (`bentopdf` imajı, `-simple` soneki olmadan) bentopdf.com'un kendisini çalıştıran derlemedir. Her PDF aracının üzerine tanıtım sitesinin tamamını (kahraman bölümü, özellikler, SSS, kullanıcı yorumları, alt bilgi) ekler. **BentoPDF'i kendi markanız altında herkese açık bir PDF hizmeti olarak dağıtmak** istediğinizde bu derlemeyi kullanın, örneğin:
+Ticari derleme (`pixelpdf` imajı, `-simple` soneki olmadan) pixelpdf.com'un kendisini çalıştıran derlemedir. Her PDF aracının üzerine tanıtım sitesinin tamamını (kahraman bölümü, özellikler, SSS, kullanıcı yorumları, alt bilgi) ekler. **Pixel PDF'i kendi markanız altında herkese açık bir PDF hizmeti olarak dağıtmak** istediğinizde bu derlemeyi kullanın, örneğin:
 
-- BentoPDF'i kendi alan adınızda son kullanıcılar için barındırılan bir SaaS olarak çalıştırıyorsunuz
+- Pixel PDF'i kendi alan adınızda son kullanıcılar için barındırılan bir SaaS olarak çalıştırıyorsunuz
 - Yalnızca çıplak araç arayüzünü değil, açılış sayfası deneyimini (tanıtım bölümleri + araçlar) istiyorsunuz
-- BentoPDF'i ticari bir ürüne gömen bir ticari lisans sahibisiniz
+- Pixel PDF'i ticari bir ürüne gömen bir ticari lisans sahibisiniz
 
-**Olduğu gibi çalıştırın** (BentoPDF markası, derlemeyi önizlemek için yararlıdır):
+**Olduğu gibi çalıştırın** (Pixel PDF markası, derlemeyi önizlemek için yararlıdır):
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
 **Kendi markanızla derleyin** (tipik ticari iş akışı):
@@ -143,12 +143,12 @@ docker run -p 3000:8080 acmepdf
 Diğer tüm derleme zamanı seçenekleri (`BASE_URL`, `VITE_DEFAULT_LANGUAGE`, `DISABLE_TOOLS`, WASM URL geçersiz kılmaları vb.) Kendi Sunucunuzda Barındırma derlemesinde olduğu gibi çalışır.
 
 ::: warning Lisanslama
-Ticari derlemeyi çalıştırmaya BentoPDF'in iki lisans seçeneğinden biri altında izin verilir:
+Ticari derlemeyi çalıştırmaya Pixel PDF'in iki lisans seçeneğinden biri altında izin verilir:
 
 - **AGPL-3.0** (ücretsiz): dağıtımınız, marka değişiklikleri ve çevresindeki iş mantığı dahil tüm kaynak kodunu AGPL altında yayımlıyorsa izin verilir.
 - **Ticari lisans** ($79 ömür boyu): marka fork'unuzu veya iş kodunuzu açık kaynak yapmadığınız kapalı kaynaklı / tescilli dağıtımlar için gereklidir.
 
-Tam karşılaştırma için [Lisanslama sayfasına](https://www.bentopdf.com/licensing) bakın. AGPL lisanslı WASM modülleri (PyMuPDF, Ghostscript, CoherentPDF) çalışma zamanında bir CDN'den yüklenir, bu nedenle imajınıza girmezler ve lisanslama durumunuzu değiştirmezler.
+Tam karşılaştırma için [Lisanslama sayfasına](https://www.pixelpdf.com/licensing) bakın. AGPL lisanslı WASM modülleri (PyMuPDF, Ghostscript, CoherentPDF) çalışma zamanında bir CDN'den yüklenir, bu nedenle imajınıza girmezler ve lisanslama durumunuzu değiştirmezler.
 :::
 
 ### Temel URL
@@ -161,13 +161,13 @@ BASE_URL=/pdf-tools/ npm run build
 
 ### Özel Marka
 
-Varsayılan BentoPDF logosunu, adını ve alt bilgi metnini derleme zamanında kendinizinkilerle değiştirin:
+Varsayılan Pixel PDF logosunu, adını ve alt bilgi metnini derleme zamanında kendinizinkilerle değiştirin:
 
 | Değişken           | Açıklama                                | Varsayılan                              |
 | ------------------ | --------------------------------------- | --------------------------------------- |
-| `VITE_BRAND_NAME`  | Üst ve alt bilgide gösterilen marka adı | `BentoPDF`                              |
+| `VITE_BRAND_NAME`  | Üst ve alt bilgide gösterilen marka adı | `Pixel PDF`                              |
 | `VITE_BRAND_LOGO`  | `public/` dizinine göre logo yolu       | `images/favicon-no-bg.svg`              |
-| `VITE_FOOTER_TEXT` | Özel alt bilgi/telif hakkı metni        | `© 2026 BentoPDF. All rights reserved.` |
+| `VITE_FOOTER_TEXT` | Özel alt bilgi/telif hakkı metni        | `© 2026 Pixel PDF. All rights reserved.` |
 
 ```bash
 # Place your logo in public/, then build
@@ -212,7 +212,7 @@ DISABLE_TOOLS="edit-pdf,sign-pdf" npm run build
 ```bash
 docker run -d -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Her iki yöntem birlikte kullanılabilir: listeler birleştirilir.
@@ -265,7 +265,7 @@ Platformunuzu seçin:
 - [Kubernetes →](/tr/self-hosting/kubernetes#sharedarraybuffer-baslıklarının-hala-calıstıgından-emin-olma-ingress-gateway)
 - **Docker**: birlikte gelen nginx yapılandırması tarafından otomatik olarak halledilir, işlem gerekmez.
 
-**Doğrulama**: herhangi bir BentoPDF sayfasında DevTools Konsolu'nu açın ve şunu çalıştırın:
+**Doğrulama**: herhangi bir Pixel PDF sayfasında DevTools Konsolu'nu açın ve şunu çalıştırın:
 
 ```js
 console.log(window.crossOriginIsolated); // should be true
@@ -294,7 +294,7 @@ Sayfa HTTPS veya `http://localhost` ise VE her yanıtta hem COEP hem COOP başl�
 
 ## WASM Yapılandırması (AGPL Bileşenleri)
 
-BentoPDF, AGPL lisanslı işleme kütüphanelerini kaynak koduna **dahil etmez**, ancak tüm özelliklerin kutudan çıktığı gibi çalışması için **CDN URL'lerini önceden yapılandırır**; elle kurulum gerekmez.
+Pixel PDF, AGPL lisanslı işleme kütüphanelerini kaynak koduna **dahil etmez**, ancak tüm özelliklerin kutudan çıktığı gibi çalışması için **CDN URL'lerini önceden yapılandırır**; elle kurulum gerekmez.
 
 ::: tip Varsayılan Olarak Sıfır Yapılandırma
 v2.0.0 itibarıyla WASM modülleri, ortam değişkenleriyle jsDelivr CDN'den yüklenecek şekilde önceden yapılandırılmıştır. Tüm gelişmiş özellikler herhangi bir kullanıcı yapılandırması olmadan hemen çalışır.
@@ -336,7 +336,7 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://your-server.com/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://your-server.com/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # Or via .env.production before building from source
 VITE_WASM_PYMUPDF_URL=https://your-server.com/pymupdf/ npm run build
@@ -357,8 +357,8 @@ Kullanıcılar ayrıca bu varsayılanları arayüzdeki **Gelişmiş Ayarlar** ü
 Birlikte gelen `prepare-airgap.sh` betiği tüm süreci otomatikleştirir: WASM paketlerini indirir, Docker imajını derler ve bir kurulum betiğiyle birlikte kendi kendine yeten bir paket üretir.
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Show supported OCR language codes (for --ocr-languages)
 bash scripts/prepare-airgap.sh --list-ocr-languages
@@ -377,7 +377,7 @@ Bu, bir paket dizini üretir:
 
 ```
 bentopdf-airgap-bundle/
-  bentopdf.tar              # Docker image
+  pixelpdf.tar              # Docker image
   *.tgz                     # WASM packages (PyMuPDF, Ghostscript, CoherentPDF, Tesseract)
   tesseract-langdata/       # OCR traineddata files
   ocr-fonts/                # OCR text-layer font files
@@ -399,7 +399,7 @@ Kurulum betiği Docker imajını yükler, WASM dosyalarını çıkarır ve iste�
 | Bayrak                         | Açıklama                                                          | Varsayılan                   |
 | ------------------------------ | ----------------------------------------------------------------- | ---------------------------- |
 | `--wasm-base-url <url>`        | WASM'lerin dahili olarak barındırılacağı yer                      | _(zorunlu, eksikse sorulur)_ |
-| `--image-name <name>`          | Docker imaj etiketi                                               | `bentopdf`                   |
+| `--image-name <name>`          | Docker imaj etiketi                                               | `pixelpdf`                   |
 | `--output-dir <path>`          | Çıktı paketi dizini                                               | `./bentopdf-airgap-bundle`   |
 | `--simple-mode`                | Basit Modu etkinleştirir                                          | kapalı                       |
 | `--base-url <path>`            | Alt dizin temel URL'si (örn. `/pdf/`)                             | `/`                          |
@@ -417,7 +417,7 @@ Kurulum betiği Docker imajını yükler, WASM dosyalarını çıkarır ve iste�
 Etkileşimli istem ayrıca tam desteklenen Tesseract kod listesini yazdırmak için `list` ve `search german` veya `search chi` gibi eşleşmeleri bulmak için `search <term>` kabul eder.
 
 ::: warning Aynı Kaynak Gereksinimi
-WASM dosyaları BentoPDF uygulamasıyla **aynı kaynaktan** sunulmalıdır. Web Worker'lar, komut dosyalarını çapraz kaynaktan yükleyemeyen `importScripts()` kullanır. Örneğin BentoPDF `https://internal.example.com` adresinde çalışıyorsa, WASM temel URL'si de `https://internal.example.com/wasm` olmalıdır.
+WASM dosyaları Pixel PDF uygulamasıyla **aynı kaynaktan** sunulmalıdır. Web Worker'lar, komut dosyalarını çapraz kaynaktan yükleyemeyen `importScripts()` kullanır. Örneğin Pixel PDF `https://internal.example.com` adresinde çalışıyorsa, WASM temel URL'si de `https://internal.example.com/wasm` olmalıdır.
 :::
 
 #### Elle Adımlar
@@ -442,8 +442,8 @@ curl -fsSL https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSa
 **Adım 2: Docker imajını dahili URL'lerle derleyin**
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 docker build \
   --build-arg VITE_WASM_PYMUPDF_URL=https://internal-server.example.com/wasm/pymupdf/ \
@@ -453,20 +453,20 @@ docker build \
   --build-arg VITE_TESSERACT_CORE_URL=https://internal-server.example.com/wasm/ocr/core \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 **Adım 3: Docker imajını dışa aktarın**
 
 ```bash
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 ```
 
 **Adım 4: Hava boşluklu ağa aktarın**
 
 USB, kurum içi yapıt deposu veya onaylı aktarım yöntemiyle kopyalayın:
 
-- `bentopdf.tar`: Docker imajı
+- `pixelpdf.tar`: Docker imajı
 - Adım 1'deki beş `.tgz` WASM/OCR paketi
 - Adım 1'deki `tesseract-langdata/` dizini
 - Adım 1'deki `ocr-fonts/` dizini
@@ -475,7 +475,7 @@ USB, kurum içi yapıt deposu veya onaylı aktarım yöntemiyle kopyalayın:
 
 ```bash
 # Load the Docker image
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
@@ -490,8 +490,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C ./wasm/ocr/core --strip-components=1
 cp ./tesseract-langdata/*.traineddata.gz ./wasm/ocr/lang-data/
 cp ./ocr-fonts/* ./wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 Dosyaların Adım 2'de yapılandırdığınız URL'lerde, yani `.../ocr/worker.min.js`, `.../ocr/core`, `.../ocr/lang-data` ve `.../ocr/fonts` dahil erişilebilir olduğundan emin olun.
@@ -515,13 +515,13 @@ VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts
 
 ### Kendi WASM Proxy'nizi Barındırma
 
-AGPL WASM dosyalarını uygun CORS başlıklarıyla sunmanız gerekiyorsa basit bir proxy dağıtabilirsiniz. Örnek bir uygulama için [Cloudflare WASM Proxy kılavuzuna](https://github.com/alam00000/bentopdf/blob/main/cloudflare/WASM-PROXY.md) bakın.
+AGPL WASM dosyalarını uygun CORS başlıklarıyla sunmanız gerekiyorsa basit bir proxy dağıtabilirsiniz. Örnek bir uygulama için [Cloudflare WASM Proxy kılavuzuna](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/cloudflare/WASM-PROXY.md) bakın.
 
 ::: tip Neden Ayrı?
 Bu ayrım şunları sağlar:
 
 - Ticari kullanıcılar için net yasal uyumluluk
-- BentoPDF çekirdeğinin ikili lisansı (AGPL-3.0 / Ticari) altında kalması
+- Pixel PDF çekirdeğinin ikili lisansı (AGPL-3.0 / Ticari) altında kalması
 - WASM dosyalarının kaynağa dahil edilmeden çalışma zamanında yüklenmesi
   :::
 
@@ -534,5 +534,5 @@ Bu ayrım şunları sağlar:
 | CPU        | Herhangi bir modern işlemci               |
 
 ::: tip
-BentoPDF statik bir sitedir: veritabanı veya arka uç sunucusu gerekmez!
+Pixel PDF statik bir sitedir: veritabanı veya arka uç sunucusu gerekmez!
 :::

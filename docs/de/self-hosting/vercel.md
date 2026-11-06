@@ -4,13 +4,13 @@
 
 ## Bereitstellung mit einem Klick
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Manuelle Bereitstellung
 
 ### Schritt 1: Repository forken
 
-Forken Sie [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) in Ihr GitHub-Konto.
+Forken Sie [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) in Ihr GitHub-Konto.
 
 ### Schritt 2: In Vercel importieren
 
@@ -32,7 +32,7 @@ Fügen Sie diese bei Bedarf hinzu:
 | Variable                | Beschreibung                                               |
 | ----------------------- | ---------------------------------------------------------- |
 | `SIMPLE_MODE`           | Auf `true` setzen für eine minimale Oberfläche             |
-| `VITE_BRAND_NAME`       | Eigener Markenname (ersetzt "BentoPDF")                    |
+| `VITE_BRAND_NAME`       | Eigener Markenname (ersetzt "Pixel PDF")                    |
 | `VITE_BRAND_LOGO`       | Logopfad relativ zu `public/` (z. B. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Eigener Footer-/Copyright-Text                             |
 | `VITE_DEFAULT_LANGUAGE` | Standardsprache der Oberfläche (z. B. `fr`, `de`, `es`)    |
@@ -51,7 +51,7 @@ Klicken Sie auf "Deploy" und warten Sie, bis der Build abgeschlossen ist.
 ## Einschränkungen
 
 ::: warning Große Dateien
-Die Serverless Functions von Vercel haben ein Limit von 50 MB. Da BentoPDF eine statische Website ist, sollte Sie das nicht betreffen, aber die WASM-Module sind groß (insgesamt ca. 100 MB). Stellen Sie sicher, dass sie aus dem Ordner `/public` ausgeliefert werden.
+Die Serverless Functions von Vercel haben ein Limit von 50 MB. Da Pixel PDF eine statische Website ist, sollte Sie das nicht betreffen, aber die WASM-Module sind groß (insgesamt ca. 100 MB). Stellen Sie sicher, dass sie aus dem Ordner `/public` ausgeliefert werden.
 :::
 
 ## Fehlerbehebung

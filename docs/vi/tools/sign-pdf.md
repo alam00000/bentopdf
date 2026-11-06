@@ -38,7 +38,7 @@ Thêm chữ ký của bạn vào bất kỳ tài liệu PDF nào. Công cụ nh�
 ## Mẹo
 
 - Hãy bật làm phẳng nếu bạn gửi PDF đã ký cho người không nên có khả năng xóa hoặc dời chữ ký của bạn.
-- Với chữ ký số có giá trị pháp lý và xác minh dựa trên chứng chỉ, BentoPDF còn cung cấp công cụ Chữ ký số riêng.
+- Với chữ ký số có giá trị pháp lý và xác minh dựa trên chứng chỉ, Pixel PDF còn cung cấp công cụ Chữ ký số riêng.
 - Hãy tải lên hình ảnh chữ ký PNG có nền trong suốt để có kết quả sạch nhất.
 
 ## Công cụ liên quan

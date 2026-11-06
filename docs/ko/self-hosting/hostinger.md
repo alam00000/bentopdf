@@ -1,6 +1,6 @@
 # Hostinger에 배포하기
 
-[Hostinger](https://hostinger.com)는 인기 있는 공유 호스팅 제공업체입니다. 이 가이드는 Hostinger 공유 호스팅에 BentoPDF를 배포하는 방법을 다룹니다.
+[Hostinger](https://hostinger.com)는 인기 있는 공유 호스팅 제공업체입니다. 이 가이드는 Hostinger 공유 호스팅에 Pixel PDF를 배포하는 방법을 다룹니다.
 
 ## 사전 요구 사항
 
@@ -10,8 +10,8 @@
 ## 1단계: 프로젝트 빌드
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Header always set Cross-Origin-Embedder-Policy "require-corp"
 
 ### 페이지 새로고침 시 404 오류
 
-`.html` 확장자 규칙과 언어 라우트가 올바르게 설정되어 있는지 확인하세요. BentoPDF는 SPA 라우팅이 아니라 정적 HTML 파일을 사용합니다:
+`.html` 확장자 규칙과 언어 라우트가 올바르게 설정되어 있는지 확인하세요. Pixel PDF는 SPA 라우팅이 아니라 정적 HTML 파일을 사용합니다:
 
 ```apache
 # Language routes serve actual files from language directories

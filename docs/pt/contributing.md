@@ -1,6 +1,6 @@
 # Contribuindo
 
-Obrigado pelo seu interesse em contribuir com o BentoPDF! Este guia vai ajudar você a começar.
+Obrigado pelo seu interesse em contribuir com o Pixel PDF! Este guia vai ajudar você a começar.
 
 ## Primeiros Passos
 
@@ -14,8 +14,8 @@ Obrigado pelo seu interesse em contribuir com o BentoPDF! Este guia vai ajudar v
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Estrutura do Projeto
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Adicione entradas a todos os arquivos de idioma em `public/locales/`:
 
 ## Tradução
 
-Veja [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) para adicionar novos idiomas.
+Veja [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) para adicionar novos idiomas.
 
 ## Contrato de Licença de Contribuidor
 
 Antes que seu PR possa ser mesclado, você precisará assinar nosso CLA:
 
-- [CLA Individual (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [CLA Corporativo (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [CLA Individual (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [CLA Corporativo (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Obtendo Ajuda
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Comunidade no Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licença
 
-O BentoPDF tem licenciamento duplo:
+O Pixel PDF tem licenciamento duplo:
 
 - **AGPL-3.0** para projetos de código aberto em que você compartilha todo o seu código-fonte publicamente
 - **Licença Comercial** para aplicações proprietárias/de código fechado - [Obtenha a Licença Vitalícia por $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

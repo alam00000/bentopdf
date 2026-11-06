@@ -48,7 +48,7 @@ jobs:
             
             ### Why do we need a CLA?
             
-            BentoPDF uses a dual licensing model (AGPL-3.0 for open source + commercial license). The CLA allows us to:
+            Pixel PDF uses a dual licensing model (AGPL-3.0 for open source + commercial license). The CLA allows us to:
             - Include your contributions in both open source and commercial versions
             - Protect you and us legally
             - Keep the project sustainable
@@ -61,7 +61,7 @@ jobs:
             I have read the CLA Document and I hereby sign the CLA
             ```
             
-            **For corporate contributions**, please have your organization sign our [Corporate CLA (CCLA)](https://github.com/${{ github.repository }}/blob/main/CCLA.md) by contacting us at contact@bentopdf.com.
+            **For corporate contributions**, please have your organization sign our [Corporate CLA (CCLA)](https://github.com/${{ github.repository }}/blob/main/CCLA.md) by contacting us at contact@pixelpdf.com.
             
             ---
             

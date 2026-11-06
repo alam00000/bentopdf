@@ -1,21 +1,21 @@
 ---
 title: JSONからPDF
-description: BentoPDFのJSON形式からPDFファイルを再構築します。JSONで書き出したデータを、元のPDF文書に戻します。
+description: Pixel PDFのJSON形式からPDFファイルを再構築します。JSONで書き出したデータを、元のPDF文書に戻します。
 ---
 
 # JSONからPDF
 
-BentoPDFの**PDFからJSON**ツールで作成したJSONファイルから、PDF文書を再構築します。これは往復変換のためのツールで、PDFの構造化されたJSON表現を受け取り、元の文書を組み立て直します。
+Pixel PDFの**PDFからJSON**ツールで作成したJSONファイルから、PDF文書を再構築します。これは往復変換のためのツールで、PDFの構造化されたJSON表現を受け取り、元の文書を組み立て直します。
 
 ::: warning
-このツールが受け付けるのは、BentoPDFのPDFからJSONコンバーターで作成したJSONファイルのみです。APIやデータベース、他のツールが出力する一般的なJSONファイルには対応していません。
+このツールが受け付けるのは、Pixel PDFのPDFからJSONコンバーターで作成したJSONファイルのみです。APIやデータベース、他のツールが出力する一般的なJSONファイルには対応していません。
 :::
 
 ## 対応フォーマット
 
 | 入力    | 説明                                                  |
 | :------ | :---------------------------------------------------- |
-| `.json` | BentoPDFのPDFからJSONツールで書き出されたJSONファイル |
+| `.json` | Pixel PDFのPDFからJSONツールで書き出されたJSONファイル |
 
 ## 使い方
 

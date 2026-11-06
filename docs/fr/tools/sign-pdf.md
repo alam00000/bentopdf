@@ -38,7 +38,7 @@ Ajoutez votre signature à n'importe quel document PDF. L'outil intègre une vis
 ## Conseils
 
 - Activez l'aplatissement si vous envoyez le PDF signé à quelqu'un qui ne doit pas pouvoir retirer ou repositionner votre signature.
-- Pour des signatures numériques juridiquement contraignantes avec vérification par certificat, BentoPDF propose aussi un outil distinct de signature numérique.
+- Pour des signatures numériques juridiquement contraignantes avec vérification par certificat, Pixel PDF propose aussi un outil distinct de signature numérique.
 - Importez une image de signature PNG à fond transparent pour obtenir le résultat le plus propre.
 
 ## Outils associés

@@ -36,7 +36,7 @@ Não há opções de configuração adicionais. Envie o formulário, preencha e 
 
 ## Dicas
 
-- Formulários XFA são um formato legado suportado apenas por alguns visualizadores de PDF. Se você abrir um PDF XFA no Chrome ou na maioria das outras ferramentas e vir páginas em branco, é porque esses visualizadores não têm suporte a XFA. O Preenchedor de Formulários do BentoPDF e o Firefox tratam XFA corretamente.
+- Formulários XFA são um formato legado suportado apenas por alguns visualizadores de PDF. Se você abrir um PDF XFA no Chrome ou na maioria das outras ferramentas e vir páginas em branco, é porque esses visualizadores não têm suporte a XFA. O Preenchedor de Formulários do Pixel PDF e o Firefox tratam XFA corretamente.
 - Para PDFs sem campos de formulário, use a ferramenta [Criar Formulário PDF](./form-creator) para adicionar campos primeiro e depois preenchê-los aqui.
 - O visualizador ajusta automaticamente seu tamanho às dimensões das páginas do PDF.
 

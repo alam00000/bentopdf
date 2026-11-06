@@ -1,16 +1,16 @@
 # はじめに
 
-BentoPDFへようこそ。このガイドですぐに使い始められます。
+Pixel PDFへようこそ。このガイドですぐに使い始められます。
 
-## BentoPDFとは？
+## Pixel PDFとは？
 
-BentoPDFは、無料でオープンソースの、プライバシーを第一に考えたPDFツールキットで、**すべてブラウザ内で**動作します。ファイルがデバイスの外に出ることはなく、処理はすべてWebAssembly（WASM）技術を使ってローカルで行われます。
+Pixel PDFは、無料でオープンソースの、プライバシーを第一に考えたPDFツールキットで、**すべてブラウザ内で**動作します。ファイルがデバイスの外に出ることはなく、処理はすべてWebAssembly（WASM）技術を使ってローカルで行われます。
 
 ## クイックスタート
 
 ### オプション1：ホスト版を使う
 
-[bentopdf.com](https://www.bentopdf.com) にアクセスすればすぐに使えます。インストールは不要です。
+[pixelpdf.com](https://www.pixelpdf.com) にアクセスすればすぐに使えます。インストールは不要です。
 
 ### オプション2：Dockerでセルフホストする
 
@@ -25,15 +25,15 @@ BentoPDFは、無料でオープンソースの、プライバシーを第一に
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDFには2つのビルドがあります。社内・チーム・組織向けのデプロイ用の**セルフホスト版ビルド**（`bentopdf-simple`、上で使用）と、bentopdf.com自体や、公開向けにデプロイする商用ライセンス保持者が使う**商用版ビルド**（`bentopdf:latest`）です。どちらも同じPDFツールを備えており、商用版ビルドにはbentopdf.comのヒーロー、FAQ、お客様の声、フッターが加わります。迷ったらセルフホスト版ビルドを使ってください。
+> Pixel PDFには2つのビルドがあります。社内・チーム・組織向けのデプロイ用の**セルフホスト版ビルド**（`pixelpdf-simple`、上で使用）と、pixelpdf.com自体や、公開向けにデプロイする商用ライセンス保持者が使う**商用版ビルド**（`pixelpdf:latest`）です。どちらも同じPDFツールを備えており、商用版ビルドにはpixelpdf.comのヒーロー、FAQ、お客様の声、フッターが加わります。迷ったらセルフホスト版ビルドを使ってください。
 
 その後、ブラウザで `http://localhost:3000` を開きます。
 
@@ -44,8 +44,8 @@ docker compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## 対応ブラウザ
 
-BentoPDFは最新のブラウザで最適に動作します。
+Pixel PDFは最新のブラウザで最適に動作します。
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDFは最新のブラウザで最適に動作します。
 ## 次のステップ
 
 - [すべてのツールを見る](/ja/tools/)
-- [BentoPDFをセルフホストする](/ja/self-hosting/)
+- [Pixel PDFをセルフホストする](/ja/self-hosting/)
 - [プロジェクトにコントリビュートする](/ja/contributing)

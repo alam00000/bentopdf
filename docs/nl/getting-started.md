@@ -1,16 +1,16 @@
 # Aan de slag
 
-Welkom bij BentoPDF! Deze gids helpt je snel op weg.
+Welkom bij Pixel PDF! Deze gids helpt je snel op weg.
 
-## Wat is BentoPDF?
+## Wat is Pixel PDF?
 
-BentoPDF is een gratis, open-source, privacygerichte PDF-toolkit die **volledig in je browser** draait. Je bestanden verlaten je apparaat nooit: alle verwerking gebeurt lokaal met WebAssembly (WASM).
+Pixel PDF is een gratis, open-source, privacygerichte PDF-toolkit die **volledig in je browser** draait. Je bestanden verlaten je apparaat nooit: alle verwerking gebeurt lokaal met WebAssembly (WASM).
 
 ## Snelstart
 
 ### Optie 1: Gebruik de gehoste versie
 
-Ga naar [bentopdf.com](https://www.bentopdf.com) om BentoPDF direct te gebruiken, zonder installatie.
+Ga naar [pixelpdf.com](https://www.pixelpdf.com) om Pixel PDF direct te gebruiken, zonder installatie.
 
 ### Optie 2: Zelf hosten met Docker
 
@@ -25,15 +25,15 @@ Ga naar [bentopdf.com](https://www.bentopdf.com) om BentoPDF direct te gebruiken
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF wordt in twee builds geleverd: de **zelfgehoste build** (`bentopdf-simple`, hierboven gebruikt) voor interne implementaties van teams of organisaties, en de **commerciële build** (`bentopdf:latest`) die bentopdf.com zelf gebruikt en die bedoeld is voor houders van een commerciële licentie met openbare implementaties. Beide bevatten dezelfde PDF-tools. De commerciële build voegt de hero, FAQ, testimonials en footer van bentopdf.com toe. Twijfel je, gebruik dan de zelfgehoste build.
+> Pixel PDF wordt in twee builds geleverd: de **zelfgehoste build** (`pixelpdf-simple`, hierboven gebruikt) voor interne implementaties van teams of organisaties, en de **commerciële build** (`pixelpdf:latest`) die pixelpdf.com zelf gebruikt en die bedoeld is voor houders van een commerciële licentie met openbare implementaties. Beide bevatten dezelfde PDF-tools. De commerciële build voegt de hero, FAQ, testimonials en footer van pixelpdf.com toe. Twijfel je, gebruik dan de zelfgehoste build.
 
 Open daarna `http://localhost:3000` in je browser.
 
@@ -44,8 +44,8 @@ Open daarna `http://localhost:3000` in je browser.
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## Browserondersteuning
 
-BentoPDF werkt het best op moderne browsers:
+Pixel PDF werkt het best op moderne browsers:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF werkt het best op moderne browsers:
 ## Volgende stappen
 
 - [Alle tools verkennen](/nl/tools/)
-- [BentoPDF zelf hosten](/nl/self-hosting/)
+- [Pixel PDF zelf hosten](/nl/self-hosting/)
 - [Bijdragen aan het project](/nl/contributing)

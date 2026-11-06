@@ -24,7 +24,7 @@ De universele converter van afbeeldingen naar PDF. Upload afbeeldingen in vrijwe
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Dit is de breedste formaatondersteuning van alle afbeeldingsconverters in BentoPDF. Heb je maar één specifiek formaat nodig, gebruik dan liever de bijbehorende aparte tool.
+Dit is de breedste formaatondersteuning van alle afbeeldingsconverters in Pixel PDF. Heb je maar één specifiek formaat nodig, gebruik dan liever de bijbehorende aparte tool.
 
 ## Zo werkt het
 

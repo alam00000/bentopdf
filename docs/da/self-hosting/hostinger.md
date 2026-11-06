@@ -1,6 +1,6 @@
 # Installer på Hostinger
 
-[Hostinger](https://hostinger.com) er en populær udbyder af shared hosting. Denne vejledning beskriver, hvordan du installerer BentoPDF på Hostingers shared hosting.
+[Hostinger](https://hostinger.com) er en populær udbyder af shared hosting. Denne vejledning beskriver, hvordan du installerer Pixel PDF på Hostingers shared hosting.
 
 ## Forudsætninger
 
@@ -10,8 +10,8 @@
 ## Trin 1: Byg projektet
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Hvis headerne ikke bliver anvendt, så kontakt Hostingers support for at aktiver
 
 ### 404-fejl ved genindlæsning af siden
 
-Sørg for, at reglen for filtypen `.html` og sprogrutene er konfigureret korrekt. BentoPDF bruger statiske HTML-filer, ikke SPA-routing:
+Sørg for, at reglen for filtypen `.html` og sprogrutene er konfigureret korrekt. Pixel PDF bruger statiske HTML-filer, ikke SPA-routing:
 
 ```apache
 # Language routes serve actual files from language directories

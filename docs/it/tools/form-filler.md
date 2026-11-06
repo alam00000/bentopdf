@@ -36,7 +36,7 @@ Non ci sono opzioni di configurazione aggiuntive. Carica il modulo, compilalo e 
 
 ## Suggerimenti
 
-- I moduli XFA sono un formato legacy supportato solo da alcuni visualizzatori PDF. Se apri un PDF XFA in Chrome o nella maggior parte degli altri strumenti e vedi pagine vuote, significa che quei visualizzatori non supportano XFA. Il Compilatore Moduli di BentoPDF e Firefox gestiscono correttamente XFA.
+- I moduli XFA sono un formato legacy supportato solo da alcuni visualizzatori PDF. Se apri un PDF XFA in Chrome o nella maggior parte degli altri strumenti e vedi pagine vuote, significa che quei visualizzatori non supportano XFA. Il Compilatore Moduli di Pixel PDF e Firefox gestiscono correttamente XFA.
 - Per i PDF senza campi di modulo esistenti, usa lo strumento [Crea Modulo PDF](./form-creator) per aggiungere prima i campi, poi compilali qui.
 - Il visualizzatore adatta automaticamente le proprie dimensioni a quelle della pagina del PDF.
 

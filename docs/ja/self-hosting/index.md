@@ -1,30 +1,30 @@
 # セルフホスティングガイド
 
-BentoPDF は、自分のインフラでセルフホストできます。このガイドでは、さまざまなデプロイ方法を紹介します。
+Pixel PDF は、自分のインフラでセルフホストできます。このガイドでは、さまざまなデプロイ方法を紹介します。
 
 ## Docker / Podman でクイックスタート
 
-BentoPDF をセルフホストする最も手早い方法です。
+Pixel PDF をセルフホストする最も手早い方法です。
 
 > [!TIP]
-> BentoPDF には 2 種類のビルドがあります。
+> Pixel PDF には 2 種類のビルドがあります。
 >
-> - **セルフホスト版ビルド**: `ghcr.io/alam00000/bentopdf-simple:latest`。マーケティング用の要素（ヒーロー、FAQ、お客様の声、フッター）**なし**で、すべての PDF ツールを利用できます。社内、チーム、組織向けのデプロイにはこちらを使ってください。機能を削減した「ライト」版では**ありません**。
-> - **商用版ビルド**: `ghcr.io/alam00000/bentopdf:latest`。マーケティングサイト全体を含み、bentopdf.com 自体や、一般公開向けのデプロイを行う商用ライセンス保有者が使用します。
+> - **セルフホスト版ビルド**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`。マーケティング用の要素（ヒーロー、FAQ、お客様の声、フッター）**なし**で、すべての PDF ツールを利用できます。社内、チーム、組織向けのデプロイにはこちらを使ってください。機能を削減した「ライト」版では**ありません**。
+> - **商用版ビルド**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`。マーケティングサイト全体を含み、pixelpdf.com 自体や、一般公開向けのデプロイを行う商用ライセンス保有者が使用します。
 >
 > 迷った場合は、セルフホスト版ビルドを取得してください。
 
 > [!IMPORTANT]
 > Office ファイルの変換には `SharedArrayBuffer` が必要です。そのため、アプリはクロスオリジン分離され、かつセキュアコンテキストから配信される必要があります。公式イメージは必要な COOP/COEP ヘッダーをすでに送信していますが、`http://192.168.x.x` のようなプレーン HTTP のローカルネットワークオリジンでは、ブラウザーが `SharedArrayBuffer` を無効にします。
 >
-> `http://localhost` は、同じデバイス上でのテストにのみ使用してください。ユーザーが LAN の IP やホスト名で BentoPDF にアクセスする場合は、HTTPS で終端してください。
+> `http://localhost` は、同じデバイス上でのテストにのみ使用してください。ユーザーが LAN の IP やホスト名で Pixel PDF にアクセスする場合は、HTTPS で終端してください。
 
 ```bash
 # Docker
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
-podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+podman run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 または、Docker Compose / Podman Compose を使います。
@@ -32,8 +32,8 @@ podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
 ```yaml
 # docker-compose.yml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -49,12 +49,12 @@ podman-compose up -d
 
 ## Podman Quadlet（Linux Systemd）
 
-BentoPDF を systemd サービスとして実行します。`~/.config/containers/systemd/bentopdf.container` を作成します。
+Pixel PDF を systemd サービスとして実行します。`~/.config/containers/systemd/pixelpdf.container` を作成します。
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -67,7 +67,7 @@ WantedBy=default.target
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now bentopdf
+systemctl --user enable --now pixelpdf
 ```
 
 Quadlet の詳しいドキュメントは、[Docker デプロイガイド](/ja/self-hosting/docker)を参照してください。
@@ -76,8 +76,8 @@ Quadlet の詳しいドキュメントは、[Docker デプロイガイド](/ja/s
 
 ```bash
 # Clone and build
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 
@@ -88,7 +88,7 @@ npm run build
 
 ### セルフホスト版ビルド（シンプルモード）
 
-セルフホスト版ビルド（`bentopdf-simple` イメージ。シンプルモードとも呼ばれます）は、商用版ビルドと**機能的に同一**です。すべての PDF ツールが含まれ、同じように動作します。bentopdf.com 自体や、商用の一般公開向けデプロイでのみ意味を持つマーケティング用の要素を非表示にしているだけです。**機能を削減した「ライト」版ではありません。**
+セルフホスト版ビルド（`pixelpdf-simple` イメージ。シンプルモードとも呼ばれます）は、商用版ビルドと**機能的に同一**です。すべての PDF ツールが含まれ、同じように動作します。pixelpdf.com 自体や、商用の一般公開向けデプロイでのみ意味を持つマーケティング用の要素を非表示にしているだけです。**機能を削減した「ライト」版ではありません。**
 
 **セルフホスト版ビルドで非表示になるもの**（見た目のみで、PDF 機能は削除されません）：
 
@@ -100,32 +100,32 @@ npm run build
 - すべての PDF ツール（結合、分割、編集、署名、OCR、Office 変換など）
 - カスタムブランディングのサポート、すべてのビルド時および実行時の設定
 
-商用版ビルド（`ghcr.io/alam00000/bentopdf:latest`）は bentopdf.com 自体を動かしているもので、一般公開向けのデプロイを行う商用ライセンス保有者が使用します。社内ツールでは意味をなさない、ヒーロー、FAQ、お客様の声、フッターが追加されています。
+商用版ビルド（`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`）は pixelpdf.com 自体を動かしているもので、一般公開向けのデプロイを行う商用ライセンス保有者が使用します。社内ツールでは意味をなさない、ヒーロー、FAQ、お客様の声、フッターが追加されています。
 
-チーム、組織、または社内ツールとして BentoPDF をセルフホストする場合は、セルフホスト版ビルドを取得してください。
+チーム、組織、または社内ツールとして Pixel PDF をセルフホストする場合は、セルフホスト版ビルドを取得してください。
 
 ```bash
 # Use the pre-built image (recommended)
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or build it yourself
 SIMPLE_MODE=true npm run build
 ```
 
-詳細は [SIMPLE_MODE.md](https://github.com/alam00000/bentopdf/blob/main/SIMPLE_MODE.md) を参照してください。
+詳細は [SIMPLE_MODE.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/SIMPLE_MODE.md) を参照してください。
 
 ### 商用版ビルド（独自ブランドでの一般公開向けデプロイ）
 
-商用版ビルド（`bentopdf` イメージ。`-simple` サフィックスなし）は、bentopdf.com 自体を動かしているものです。すべての PDF ツールに加えて、マーケティングサイト全体（ヒーロー、機能、FAQ、お客様の声、フッター）が含まれます。**BentoPDF を独自ブランドの一般公開向け PDF サービスとしてデプロイ**したい場合に、このビルドを使用します。たとえば次のようなケースです。
+商用版ビルド（`pixelpdf` イメージ。`-simple` サフィックスなし）は、pixelpdf.com 自体を動かしているものです。すべての PDF ツールに加えて、マーケティングサイト全体（ヒーロー、機能、FAQ、お客様の声、フッター）が含まれます。**Pixel PDF を独自ブランドの一般公開向け PDF サービスとしてデプロイ**したい場合に、このビルドを使用します。たとえば次のようなケースです。
 
-- 自分のドメインで、エンドユーザー向けのホスト型 SaaS として BentoPDF を運用する
+- 自分のドメインで、エンドユーザー向けのホスト型 SaaS として Pixel PDF を運用する
 - ツールだけでなく、ランディングページの体験（マーケティングセクション + ツール）が欲しい
-- 商用ライセンス保有者として、商用製品に BentoPDF を組み込む
+- 商用ライセンス保有者として、商用製品に Pixel PDF を組み込む
 
-**そのまま実行する**（BentoPDF のブランディングのまま。ビルドのプレビューに便利です）：
+**そのまま実行する**（Pixel PDF のブランディングのまま。ビルドのプレビューに便利です）：
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
 **独自のブランドでビルドする**（典型的な商用ワークフロー）：
@@ -143,12 +143,12 @@ docker run -p 3000:8080 acmepdf
 その他のビルド時オプション（`BASE_URL`、`VITE_DEFAULT_LANGUAGE`、`DISABLE_TOOLS`、WASM URL の上書きなど）も、セルフホスト版ビルドと同じように使えます。
 
 ::: warning ライセンス
-商用版ビルドの実行は、BentoPDF の 2 つのライセンスオプションのどちらでも許可されています。
+商用版ビルドの実行は、Pixel PDF の 2 つのライセンスオプションのどちらでも許可されています。
 
 - **AGPL-3.0**（無料）: ブランディングの変更や周辺のビジネスロジックを含め、デプロイのソースコード全体を AGPL の下で公開する場合に許可されます。
 - **商用ライセンス**（$79 の買い切り）: ブランディングのフォークやビジネスコードをオープンソース化しない、クローズドソース/プロプライエタリなデプロイに必要です。
 
-詳しい比較は[ライセンスのページ](https://www.bentopdf.com/licensing)を参照してください。AGPL ライセンスの WASM モジュール（PyMuPDF、Ghostscript、CoherentPDF）は実行時に CDN から読み込まれるため、イメージには含まれず、ライセンス上の立場も変わりません。
+詳しい比較は[ライセンスのページ](https://www.pixelpdf.com/licensing)を参照してください。AGPL ライセンスの WASM モジュール（PyMuPDF、Ghostscript、CoherentPDF）は実行時に CDN から読み込まれるため、イメージには含まれず、ライセンス上の立場も変わりません。
 :::
 
 ### ベース URL
@@ -161,13 +161,13 @@ BASE_URL=/pdf-tools/ npm run build
 
 ### カスタムブランディング
 
-デフォルトの BentoPDF のロゴ、名前、フッターテキストを、ビルド時に独自のものへ置き換えます。
+デフォルトの Pixel PDF のロゴ、名前、フッターテキストを、ビルド時に独自のものへ置き換えます。
 
 | 変数               | 説明                                     | デフォルト                              |
 | ------------------ | ---------------------------------------- | --------------------------------------- |
-| `VITE_BRAND_NAME`  | ヘッダーとフッターに表示されるブランド名 | `BentoPDF`                              |
+| `VITE_BRAND_NAME`  | ヘッダーとフッターに表示されるブランド名 | `Pixel PDF`                              |
 | `VITE_BRAND_LOGO`  | `public/` からの相対ロゴパス             | `images/favicon-no-bg.svg`              |
-| `VITE_FOOTER_TEXT` | カスタムのフッター/著作権テキスト        | `© 2026 BentoPDF. All rights reserved.` |
+| `VITE_FOOTER_TEXT` | カスタムのフッター/著作権テキスト        | `© 2026 Pixel PDF. All rights reserved.` |
 
 ```bash
 # Place your logo in public/, then build
@@ -212,7 +212,7 @@ DISABLE_TOOLS="edit-pdf,sign-pdf" npm run build
 ```bash
 docker run -d -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 両方の方法を組み合わせることもできます。リストはマージされます。
@@ -265,7 +265,7 @@ PDF エディタ内の特定の機能（例: 墨消し）だけを、ツール�
 - [Kubernetes →](/ja/self-hosting/kubernetes#sharedarraybuffer-ヘッダーが引き続き機能することを確認する-ingress-gateway)
 - **Docker**: 同梱の nginx 設定によって自動的に処理されるため、操作は不要です。
 
-**確認**: 任意の BentoPDF ページで DevTools のコンソールを開き、次を実行します。
+**確認**: 任意の Pixel PDF ページで DevTools のコンソールを開き、次を実行します。
 
 ```js
 console.log(window.crossOriginIsolated); // should be true
@@ -294,7 +294,7 @@ console.log(typeof SharedArrayBuffer); // should be "function"
 
 ## WASM の設定（AGPL コンポーネント）
 
-BentoPDF は、AGPL ライセンスの処理ライブラリをソースコードに**同梱していません**が、すべての機能がそのまま動作するよう、CDN の URL を**あらかじめ設定**しています。手動での設定は不要です。
+Pixel PDF は、AGPL ライセンスの処理ライブラリをソースコードに**同梱していません**が、すべての機能がそのまま動作するよう、CDN の URL を**あらかじめ設定**しています。手動での設定は不要です。
 
 ::: tip デフォルトでゼロコンフィグ
 v2.0.0 以降、WASM モジュールは環境変数によって jsDelivr CDN から読み込まれるようあらかじめ設定されています。すべての高度な機能は、ユーザーが何も設定しなくてもすぐに使えます。
@@ -336,7 +336,7 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://your-server.com/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://your-server.com/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # Or via .env.production before building from source
 VITE_WASM_PYMUPDF_URL=https://your-server.com/pymupdf/ npm run build
@@ -357,8 +357,8 @@ OCR の場合は、すべての `VITE_TESSERACT_*` 変数を空のままにし�
 付属の `prepare-airgap.sh` スクリプトが、WASM パッケージのダウンロード、Docker イメージのビルド、セットアップスクリプト付きの自己完結型バンドルの作成まで、プロセス全体を自動化します。
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Show supported OCR language codes (for --ocr-languages)
 bash scripts/prepare-airgap.sh --list-ocr-languages
@@ -377,7 +377,7 @@ bash scripts/prepare-airgap.sh --wasm-base-url https://internal.example.com/wasm
 
 ```
 bentopdf-airgap-bundle/
-  bentopdf.tar              # Docker image
+  pixelpdf.tar              # Docker image
   *.tgz                     # WASM packages (PyMuPDF, Ghostscript, CoherentPDF, Tesseract)
   tesseract-langdata/       # OCR traineddata files
   ocr-fonts/                # OCR text-layer font files
@@ -399,7 +399,7 @@ bash setup.sh
 | フラグ                         | 説明                                                                | デフォルト                                     |
 | ------------------------------ | ------------------------------------------------------------------- | ---------------------------------------------- |
 | `--wasm-base-url <url>`        | WASM を社内でホストする場所                                         | _（必須。指定がない場合は入力を求められます）_ |
-| `--image-name <name>`          | Docker イメージのタグ                                               | `bentopdf`                                     |
+| `--image-name <name>`          | Docker イメージのタグ                                               | `pixelpdf`                                     |
 | `--output-dir <path>`          | 出力するバンドルのディレクトリ                                      | `./bentopdf-airgap-bundle`                     |
 | `--simple-mode`                | シンプルモードを有効にする                                          | オフ                                           |
 | `--base-url <path>`            | サブディレクトリのベース URL（例: `/pdf/`）                         | `/`                                            |
@@ -417,7 +417,7 @@ bash setup.sh
 対話式のプロンプトでは `list` と入力すると、サポートされているすべての Tesseract コードの一覧を表示でき、`search <term>` で一致するコードを検索できます（例: `search german`、`search chi`）。
 
 ::: warning 同一オリジンの要件
-WASM ファイルは、BentoPDF アプリと**同じオリジン**から配信する必要があります。Web ワーカーは `importScripts()` を使用しますが、これはスクリプトをクロスオリジンで読み込めません。たとえば、BentoPDF が `https://internal.example.com` で動作している場合、WASM のベース URL も `https://internal.example.com/wasm` にする必要があります。
+WASM ファイルは、Pixel PDF アプリと**同じオリジン**から配信する必要があります。Web ワーカーは `importScripts()` を使用しますが、これはスクリプトをクロスオリジンで読み込めません。たとえば、Pixel PDF が `https://internal.example.com` で動作している場合、WASM のベース URL も `https://internal.example.com/wasm` にする必要があります。
 :::
 
 #### 手動の手順
@@ -442,8 +442,8 @@ curl -fsSL https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSa
 **ステップ 2: 社内 URL を指定して Docker イメージをビルドする**
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 docker build \
   --build-arg VITE_WASM_PYMUPDF_URL=https://internal-server.example.com/wasm/pymupdf/ \
@@ -453,20 +453,20 @@ docker build \
   --build-arg VITE_TESSERACT_CORE_URL=https://internal-server.example.com/wasm/ocr/core \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 **ステップ 3: Docker イメージをエクスポートする**
 
 ```bash
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 ```
 
 **ステップ 4: エアギャップネットワークへ転送する**
 
 USB、社内のアーティファクトリポジトリ、または承認された転送方法でコピーします。
 
-- `bentopdf.tar`: Docker イメージ
+- `pixelpdf.tar`: Docker イメージ
 - ステップ 1 の 5 つの `.tgz` WASM/OCR パッケージ
 - ステップ 1 の `tesseract-langdata/` ディレクトリ
 - ステップ 1 の `ocr-fonts/` ディレクトリ
@@ -475,7 +475,7 @@ USB、社内のアーティファクトリポジトリ、または承認され�
 
 ```bash
 # Load the Docker image
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
@@ -490,8 +490,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C ./wasm/ocr/core --strip-components=1
 cp ./tesseract-langdata/*.traineddata.gz ./wasm/ocr/lang-data/
 cp ./ocr-fonts/* ./wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 ステップ 2 で設定した URL でファイルにアクセスできることを確認してください。`.../ocr/worker.min.js`、`.../ocr/core`、`.../ocr/lang-data`、`.../ocr/fonts` も含まれます。
@@ -515,13 +515,13 @@ VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts
 
 ### 独自の WASM プロキシをホストする
 
-AGPL の WASM ファイルを適切な CORS ヘッダー付きで配信する必要がある場合は、シンプルなプロキシをデプロイできます。実装例は [Cloudflare WASM Proxy ガイド](https://github.com/alam00000/bentopdf/blob/main/cloudflare/WASM-PROXY.md)を参照してください。
+AGPL の WASM ファイルを適切な CORS ヘッダー付きで配信する必要がある場合は、シンプルなプロキシをデプロイできます。実装例は [Cloudflare WASM Proxy ガイド](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/cloudflare/WASM-PROXY.md)を参照してください。
 
 ::: tip なぜ分離しているのか
 この分離により、次のことが保証されます。
 
 - 商用ユーザーにとって明確な法令遵守
-- BentoPDF のコアがデュアルライセンス（AGPL-3.0 / 商用）のまま維持されること
+- Pixel PDF のコアがデュアルライセンス（AGPL-3.0 / 商用）のまま維持されること
 - WASM ファイルはソースにバンドルされるのではなく、実行時に読み込まれること
   :::
 
@@ -534,5 +534,5 @@ AGPL の WASM ファイルを適切な CORS ヘッダー付きで配信する必
 | CPU        | 最近のプロセッサー                     |
 
 ::: tip
-BentoPDF は静的サイトです。データベースやバックエンドサーバーは不要です！
+Pixel PDF は静的サイトです。データベースやバックエンドサーバーは不要です！
 :::

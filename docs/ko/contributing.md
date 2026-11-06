@@ -1,6 +1,6 @@
 # 기여하기
 
-BentoPDF에 기여해 주셔서 감사합니다! 이 가이드를 따라 쉽게 시작해 보세요.
+Pixel PDF에 기여해 주셔서 감사합니다! 이 가이드를 따라 쉽게 시작해 보세요.
 
 ## 시작하기
 
@@ -14,8 +14,8 @@ BentoPDF에 기여해 주셔서 감사합니다! 이 가이드를 따라 쉽게 
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## 프로젝트 구조
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## 번역
 
-새 언어를 추가하는 방법은 [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md)를 참고하세요.
+새 언어를 추가하는 방법은 [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md)를 참고하세요.
 
 ## 기여자 라이선스 계약
 
 PR이 병합되기 전에 CLA에 서명해야 합니다:
 
-- [개인 CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [법인 CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [개인 CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [법인 CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## 도움 받기
 
-- [GitHub 이슈](https://github.com/alam00000/bentopdf/issues)
+- [GitHub 이슈](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discord 커뮤니티](https://discord.gg/Bgq3Ay3f2w)
 
 ## 라이선스
 
-BentoPDF는 듀얼 라이선스로 제공됩니다:
+Pixel PDF는 듀얼 라이선스로 제공됩니다:
 
 - **AGPL-3.0**: 전체 소스 코드를 공개적으로 공유하는 오픈소스 프로젝트용
 - **상용 라이선스**: 독점/비공개 소스 애플리케이션용 - [평생 라이선스 $79에 구매하기](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

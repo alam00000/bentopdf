@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   update:
-    if: github.repository == 'alam00000/bentopdf'
+    if: github.repository == 'mohammedalhinaki-cloud/Pixel-PDF'
     runs-on: ubuntu-latest
     steps:
       - name: Sum GHCR download counts
@@ -22,9 +22,9 @@ jobs:
         run: |
           set -euo pipefail
           total=0
-          for pkg in bentopdf bentopdf-simple; do
+          for pkg in pixelpdf pixelpdf-simple; do
             raw=$(curl -sf --retry 3 --retry-delay 5 --max-time 30 \
-              "https://ghcr-badge.elias.eu.org/api/alam00000/bentopdf/$pkg" \
+              "https://ghcr-badge.elias.eu.org/api/mohammedalhinaki-cloud/Pixel-PDF/$pkg" \
               | jq -e -r '.downloadCountRaw')
             case "$raw" in ''|*[!0-9]*) echo "::error::invalid count for $pkg: $raw"; exit 1 ;; esac
             echo "$pkg: $raw"

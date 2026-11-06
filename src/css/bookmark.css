@@ -1,5 +1,5 @@
 body {
-  color: #383838;
+  color: #e2e8f4;
 }
 
 .sortable-ghost {
@@ -56,7 +56,7 @@ body {
   top: 0;
   bottom: 0;
   width: 2px;
-  background: #e5e7eb;
+  background: #2b3446;
 }
 
 .child-container > li {
@@ -70,12 +70,12 @@ body {
   top: 1.25rem;
   width: 0.75rem;
   height: 2px;
-  background: #e5e7eb;
+  background: #2b3446;
 }
 
 .style-preview {
   padding: 0.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #2b3446;
   border-radius: 0.25rem;
   min-height: 2.5rem;
   display: flex;

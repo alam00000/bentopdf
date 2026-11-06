@@ -345,5 +345,5 @@ export async function exportComparePdf(
   const blob = new Blob([pdfBytes.buffer as ArrayBuffer], {
     type: 'application/pdf',
   });
-  downloadFile(blob, 'bentopdf-compare-export.pdf');
+  downloadFile(blob, 'pixelpdf-compare-export.pdf');
 }

@@ -5,7 +5,7 @@ description: Schützen Sie PDF-Dateien mit 256-Bit-AES-Verschlüsselung per Pass
 
 # PDF schützen
 
-Sperre Ihre PDF mit einem Passwort, damit nur berechtigte Personen sie öffnen können. BentoPDF verwendet 256-Bit-AES-Verschlüsselung, denselben Standard wie Banken und Behörden, und wendet sie vollständig in Ihrem Browser über QPDF an.
+Sperre Ihre PDF mit einem Passwort, damit nur berechtigte Personen sie öffnen können. Pixel PDF verwendet 256-Bit-AES-Verschlüsselung, denselben Standard wie Banken und Behörden, und wendet sie vollständig in Ihrem Browser über QPDF an.
 
 ## So funktioniert es
 
@@ -23,7 +23,7 @@ Das Benutzerpasswort geben Empfänger ein, um die PDF zu öffnen. Ohne es ist da
 
 ### Besitzerpasswort (optional)
 
-Das Besitzerpasswort steuert, was ein berechtigter Benutzer nach dem Öffnen der Datei tun darf. Wenn Sie ein eigenes Besitzerpasswort festlegen, wendet BentoPDF automatisch die strengsten Beschränkungen an:
+Das Besitzerpasswort steuert, was ein berechtigter Benutzer nach dem Öffnen der Datei tun darf. Wenn Sie ein eigenes Besitzerpasswort festlegen, wendet Pixel PDF automatisch die strengsten Beschränkungen an:
 
 - Ändern deaktiviert
 - Extrahieren/Kopieren deaktiviert

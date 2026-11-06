@@ -1,21 +1,21 @@
 ---
 title: JSON a PDF
-description: Reconstrueix fitxers PDF a partir del format JSON de BentoPDF. Converteix les exportacions JSON de nou en els documents PDF originals.
+description: Reconstrueix fitxers PDF a partir del format JSON de Pixel PDF. Converteix les exportacions JSON de nou en els documents PDF originals.
 ---
 
 # JSON a PDF
 
-Reconstrueix documents PDF a partir de fitxers JSON creats prèviament amb l'eina **PDF a JSON** de BentoPDF. És una eina de conversió d'anada i tornada: agafa la representació estructurada en JSON d'un PDF i en reconstrueix el document original.
+Reconstrueix documents PDF a partir de fitxers JSON creats prèviament amb l'eina **PDF a JSON** de Pixel PDF. És una eina de conversió d'anada i tornada: agafa la representació estructurada en JSON d'un PDF i en reconstrueix el document original.
 
 ::: warning
-Aquesta eina només accepta fitxers JSON generats pel convertidor PDF a JSON de BentoPDF. Els fitxers JSON estàndard d'API, bases de dades o altres eines no són compatibles.
+Aquesta eina només accepta fitxers JSON generats pel convertidor PDF a JSON de Pixel PDF. Els fitxers JSON estàndard d'API, bases de dades o altres eines no són compatibles.
 :::
 
 ## Formats compatibles
 
 | Entrada | Descripció                                               |
 | :------ | :------------------------------------------------------- |
-| `.json` | Fitxers JSON exportats per l'eina PDF a JSON de BentoPDF |
+| `.json` | Fitxers JSON exportats per l'eina PDF a JSON de Pixel PDF |
 
 ## Com funciona
 

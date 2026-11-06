@@ -10,24 +10,24 @@ Kubernetes môže byť pre statický web zbytočne veľa, no môže sa výborne 
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> Oficiálne nginx obrazy BentoPDF tieto hlavičky obsahujú. V Kubernetes sú **kontroléry Ingress/Gateway tiež reverzné proxy**, preto sa uistite, že sa tieto hlavičky zachovajú (alebo ich pridajte na okraji siete).
+> Oficiálne nginx obrazy Pixel PDF tieto hlavičky obsahujú. V Kubernetes sú **kontroléry Ingress/Gateway tiež reverzné proxy**, preto sa uistite, že sa tieto hlavičky zachovajú (alebo ich pridajte na okraji siete).
 
 ## Predpoklady
 
 - Klaster Kubernetes
 - Helm v3
-- Nginx obraz BentoPDF (napr. `ghcr.io/alam00000/bentopdf:<tag>`), ktorý počúva na **porte 8080**
+- Nginx obraz Pixel PDF (napr. `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`), ktorý počúva na **porte 8080**
 
 ## Nasadenie pomocou Helm
 
 ### Inštalácia z tohto repozitára (lokálny chart)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ Ak je chart publikovaný v GHCR ako OCI artefakt:
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward (rýchly test)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (voliteľné)
@@ -78,15 +78,15 @@ Príklad (operátor Cloudflare Gateway API):
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### Čo by sa „malo“ diať
 
-Konfigurácia nginx v BentoPDF nastavuje potrebné hlavičky odpovede. Väčšina kontrolérov Ingress/Gateway **odovzdáva hlavičky odpovede z upstreamu bez zmeny**.
+Konfigurácia nginx v Pixel PDF nastavuje potrebné hlavičky odpovede. Väčšina kontrolérov Ingress/Gateway **odovzdáva hlavičky odpovede z upstreamu bez zmeny**.
 
 ### Čo to môže pokaziť
 
@@ -132,9 +132,9 @@ ingress:
 
 ## Chyby MIME typu `.mjs` (prázdny iframe v Podpísať PDF / Vyplňovač formulárov)
 
-Ak konzola prehliadača pri požiadavke `.mjs` zobrazí `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"`, kontrolér Ingress/Gateway pred nginx BentoPDF nahrádza hlavičku `Content-Type` z upstreamu hodnotou `application/octet-stream`.
+Ak konzola prehliadača pri požiadavke `.mjs` zobrazí `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"`, kontrolér Ingress/Gateway pred nginx Pixel PDF nahrádza hlavičku `Content-Type` z upstreamu hodnotou `application/octet-stream`.
 
-Nginx v obraze BentoPDF už poskytuje `.mjs` ako `application/javascript`. Riešením je zabrániť kontroléru, aby ju odstraňoval alebo nahrádzal. Pre nginx-ingress:
+Nginx v obraze Pixel PDF už poskytuje `.mjs` ako `application/javascript`. Riešením je zabrániť kontroléru, aby ju odstraňoval alebo nahrádzal. Pre nginx-ingress:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ Na vypnutie nástrojov za behu bez nového zostavenia obrazu použite ConfigMap:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ Pripojte ho do poskytovaného adresára:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 ID nástroja je URL stránky bez `.html`: otvorte ľubovoľný nástroj a pozrite sa na URL (napr. `edit-pdf`, `merge-pdf`, `compress-pdf`). Vypnuté nástroje sa skryjú z domovskej stránky, vyhľadávania, skratiek, nástroja na tvorbu workflow aj z priameho prístupu cez URL. Úplný zoznam možností nájdete v [príručke Docker](/sk/self-hosting/docker#vypnutie-konkretnych-nastrojov).

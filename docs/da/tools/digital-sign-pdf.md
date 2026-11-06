@@ -7,7 +7,7 @@ description: Tilføj kryptografiske digitale signaturer til PDF'er med X.509-cer
 
 En digital signatur er kryptografisk bevis for, at en bestemt person har underskrevet et dokument, og at dokumentet ikke er ændret siden. I modsætning til en tegnet underskrift (som blot er et billede) bruger en digital signatur X.509-certifikater og PKCS#7-standarder til at give verificerbar ægthed og integritet.
 
-BentoPDF anvender digitale signaturer helt i din browser. Din private nøgle forlader aldrig din enhed.
+Pixel PDF anvender digitale signaturer helt i din browser. Din private nøgle forlader aldrig din enhed.
 
 ## Sådan fungerer det
 

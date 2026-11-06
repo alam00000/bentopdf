@@ -7,7 +7,7 @@ description: Afegeix signatures digitals criptogràfiques als PDF amb certificat
 
 Una signatura digital és una prova criptogràfica que una persona concreta ha signat un document i que el document no s'ha alterat des de llavors. A diferència d'una signatura dibuixada (que és només una imatge), una signatura digital fa servir certificats X.509 i els estàndards PKCS#7 per oferir autenticitat i integritat verificables.
 
-BentoPDF aplica les signatures digitals íntegrament al teu navegador. La teva clau privada no surt mai del dispositiu.
+Pixel PDF aplica les signatures digitals íntegrament al teu navegador. La teva clau privada no surt mai del dispositiu.
 
 ## Com funciona
 

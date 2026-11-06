@@ -5,7 +5,7 @@ description: Anota, ressalta, censura, afegeix formes i imatges, cerca i visuali
 
 # Editor de PDF
 
-L'Editor de PDF de BentoPDF et permet anotar, ressaltar, censurar, comentar, afegir formes i imatges i fer cerques als teus PDF. Carrega un editor complet directament al navegador, sense càrregues a cap servidor.
+L'Editor de PDF de Pixel PDF et permet anotar, ressaltar, censurar, comentar, afegir formes i imatges i fer cerques als teus PDF. Carrega un editor complet directament al navegador, sense càrregues a cap servidor.
 
 ## Com funciona
 

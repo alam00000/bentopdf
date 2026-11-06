@@ -5,7 +5,7 @@ description: Kommentieren Sie, markieren Sie, schwärzen Sie, fügen Sie Formen 
 
 # PDF-Editor
 
-Mit dem PDF-Editor von BentoPDF können Sie Ihre PDFs kommentieren, markieren, schwärzen, mit Anmerkungen versehen, Formen und Bilder hinzufügen und durchsuchen. Er lädt einen voll ausgestatteten Editor direkt in Ihrem Browser, ganz ohne Server-Uploads.
+Mit dem PDF-Editor von Pixel PDF können Sie Ihre PDFs kommentieren, markieren, schwärzen, mit Anmerkungen versehen, Formen und Bilder hinzufügen und durchsuchen. Er lädt einen voll ausgestatteten Editor direkt in Ihrem Browser, ganz ohne Server-Uploads.
 
 ## So funktioniert es
 

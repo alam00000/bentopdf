@@ -5,9 +5,9 @@ description: 使用 Hyper Compress 引擎将 PDF 文件体积减小多达 90%。
 
 # 压缩 PDF
 
-在不破坏文件的前提下缩小 PDF。压缩 PDF 由 [Hyper Compress](https://www.bentopdf.com/hyper-compress) 驱动，这是 BentoPDF 自研的压缩引擎。它会重新压缩图片，对字体进行子集化和合并，并清除嵌入缩略图和私有应用数据等冗余内容。PDF 仍然功能完整：文本依然可选，链接和表单字段继续可用。
+在不破坏文件的前提下缩小 PDF。压缩 PDF 由 [Hyper Compress](https://www.pixelpdf.com/hyper-compress) 驱动，这是 Pixel PDF 自研的压缩引擎。它会重新压缩图片，对字体进行子集化和合并，并清除嵌入缩略图和私有应用数据等冗余内容。PDF 仍然功能完整：文本依然可选，链接和表单字段继续可用。
 
-Hyper Compress 已编译为 WebAssembly 并随 BentoPDF 一同发布，因此压缩可离线运行，在隔离网络的部署中也无需额外设置。
+Hyper Compress 已编译为 WebAssembly 并随 Pixel PDF 一同发布，因此压缩可离线运行，在隔离网络的部署中也无需额外设置。
 
 ## 使用方法
 
@@ -36,7 +36,7 @@ Hyper Compress 已编译为 WebAssembly 并随 BentoPDF 一同发布，因此压
 
 ## 目标文件大小
 
-以 KB 或 MB 输入大小，Hyper Compress 会从您选择的级别开始，搜索仍能满足该大小的最佳图片质量。如果文档无法缩小到该大小，您会得到它能生成的最小版本，并看到相应提示。诸如 [压缩 PDF 至 1MB](https://www.bentopdf.com/compress-pdf-to-1mb) 之类的专用页面打开时，目标大小已预先填好。
+以 KB 或 MB 输入大小，Hyper Compress 会从您选择的级别开始，搜索仍能满足该大小的最佳图片质量。如果文档无法缩小到该大小，您会得到它能生成的最小版本，并看到相应提示。诸如 [压缩 PDF 至 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb) 之类的专用页面打开时，目标大小已预先填好。
 
 ## 自定义设置
 

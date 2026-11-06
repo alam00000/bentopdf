@@ -1,6 +1,6 @@
 # Hostingerにデプロイする
 
-[Hostinger](https://hostinger.com)は人気のある共有ホスティングプロバイダーです。このガイドでは、Hostingerの共有ホスティングにBentoPDFをデプロイする方法を説明します。
+[Hostinger](https://hostinger.com)は人気のある共有ホスティングプロバイダーです。このガイドでは、Hostingerの共有ホスティングにPixel PDFをデプロイする方法を説明します。
 
 ## 前提条件
 
@@ -10,8 +10,8 @@
 ## ステップ1：プロジェクトをビルドする
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Header always set Cross-Origin-Embedder-Policy "require-corp"
 
 ### ページを更新すると404エラーになる
 
-`.html` 拡張子のルールと言語ルートが正しく設定されていることを確認してください。BentoPDFはSPAのルーティングではなく、静的なHTMLファイルを使います。
+`.html` 拡張子のルールと言語ルートが正しく設定されていることを確認してください。Pixel PDFはSPAのルーティングではなく、静的なHTMLファイルを使います。
 
 ```apache
 # Language routes serve actual files from language directories

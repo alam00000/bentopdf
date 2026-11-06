@@ -125,7 +125,7 @@ function listDocsHtml(dir, prefix) {
 }
 
 function addDocsToSitemap() {
-  const siteUrl = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+  const siteUrl = (process.env.SITE_URL || 'https://www.pixelpdf.com').replace(
     /\/+$/,
     ''
   );

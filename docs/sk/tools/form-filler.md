@@ -36,7 +36,7 @@ Nie sú k dispozícii žiadne ďalšie nastavenia. Nahrajte formulár, vyplňte 
 
 ## Tipy
 
-- Formuláre XFA sú starší formát, ktorý podporujú iba niektoré prehliadače PDF. Ak otvoríte PDF s XFA v Chrome alebo vo väčšine iných nástrojov a vidíte prázdne strany, tieto prehliadače XFA nepodporujú. Vypĺňanie formulárov v BentoPDF aj Firefox si s XFA poradia správne.
+- Formuláre XFA sú starší formát, ktorý podporujú iba niektoré prehliadače PDF. Ak otvoríte PDF s XFA v Chrome alebo vo väčšine iných nástrojov a vidíte prázdne strany, tieto prehliadače XFA nepodporujú. Vypĺňanie formulárov v Pixel PDF aj Firefox si s XFA poradia správne.
 - Pre PDF bez polí formulára najprv pridajte polia nástrojom [Vytvoriť PDF formulár](./form-creator) a potom ich vyplňte tu.
 - Prehliadač automaticky prispôsobí svoju veľkosť rozmerom strán PDF.
 

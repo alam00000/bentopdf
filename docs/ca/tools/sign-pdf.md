@@ -38,7 +38,7 @@ Afegeix la teva signatura a qualsevol document PDF. L'eina incorpora un visor PD
 ## Consells
 
 - Activa l'aplanament si envies el PDF signat a algú que no hauria de poder eliminar ni moure la teva signatura.
-- Per a signatures digitals legalment vinculants amb verificació basada en certificats, BentoPDF també ofereix una eina independent de signatura digital.
+- Per a signatures digitals legalment vinculants amb verificació basada en certificats, Pixel PDF també ofereix una eina independent de signatura digital.
 - Puja una imatge de signatura PNG amb fons transparent per obtenir el resultat més net.
 
 ## Eines relacionades

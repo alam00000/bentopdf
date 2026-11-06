@@ -57,11 +57,11 @@
 
 .md-editor-btn-primary {
   color: white;
-  background: rgb(79, 70, 229);
+  background: #2f3fc4;
 }
 
 .md-editor-btn-primary:hover {
-  background: rgb(99, 102, 241);
+  background: #1167e6;
 }
 
 .md-editor-btn:disabled {
@@ -105,7 +105,7 @@
 }
 
 .theme-toggle-slider.active {
-  background: rgb(79, 70, 229);
+  background: #2f3fc4;
 }
 
 .theme-toggle-slider.active::before {
@@ -277,7 +277,7 @@
   margin: 1em 0;
   padding: 0 1em;
   color: rgb(156, 163, 175);
-  border-left: 4px solid rgb(79, 70, 229);
+  border-left: 4px solid #2f3fc4;
 }
 
 .md-editor-preview ul,
@@ -376,7 +376,7 @@
 
 .md-editor.light-mode .md-editor-preview blockquote {
   color: rgb(75, 85, 99);
-  border-left-color: rgb(99, 102, 241);
+  border-left-color: #1167e6;
 }
 
 .md-editor.light-mode .md-editor-preview th,
@@ -572,7 +572,7 @@
 
 .md-editor-settings-group select:focus {
   outline: none;
-  border-color: rgb(79, 70, 229);
+  border-color: #2f3fc4;
 }
 
 /* Print Styles */

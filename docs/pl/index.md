@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Darmowe narzędzia PDF o otwartym kodzie'
   tagline: Przetwarzaj pliki PDF w całości w przeglądarce. Bez wysyłania na serwer. Bez serwerów. Pełna prywatność.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## OCR offline
 
-Jeśli hostujesz BentoPDF samodzielnie w środowisku odciętym od sieci lub offline, OCR potrzebuje czegoś więcej niż worker Tesseract i pliki traineddata. Aby uzyskać przeszukiwalny plik PDF, czcionki warstwy tekstowej OCR muszą być serwowane wewnętrznie.
+Jeśli hostujesz Pixel PDF samodzielnie w środowisku odciętym od sieci lub offline, OCR potrzebuje czegoś więcej niż worker Tesseract i pliki traineddata. Aby uzyskać przeszukiwalny plik PDF, czcionki warstwy tekstowej OCR muszą być serwowane wewnętrznie.
 Pełna konfiguracja, w tym `VITE_OCR_FONT_BASE_URL`, dołączony katalog `ocr-fonts/` i zaktualizowany proces dla środowisk air-gapped, jest w [Samodzielny hosting](/pl/self-hosting/).

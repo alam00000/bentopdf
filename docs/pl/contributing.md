@@ -1,6 +1,6 @@
 # Współtworzenie
 
-Dziękujemy za zainteresowanie współtworzeniem BentoPDF! Ten przewodnik pomoże Ci zacząć.
+Dziękujemy za zainteresowanie współtworzeniem Pixel PDF! Ten przewodnik pomoże Ci zacząć.
 
 ## Pierwsze kroki
 
@@ -14,8 +14,8 @@ Dziękujemy za zainteresowanie współtworzeniem BentoPDF! Ten przewodnik pomoż
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Struktura projektu
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Dodaj wpisy do wszystkich plików językowych w `public/locales/`:
 
 ## Tłumaczenia
 
-Zobacz [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md), aby dowiedzieć się, jak dodawać nowe języki.
+Zobacz [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md), aby dowiedzieć się, jak dodawać nowe języki.
 
 ## Umowa licencyjna współtwórcy
 
 Zanim Twój PR zostanie scalony, musisz podpisać naszą umowę CLA:
 
-- [Indywidualna CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Korporacyjna CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Indywidualna CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Korporacyjna CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Pomoc
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Społeczność na Discordzie](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licencja
 
-BentoPDF jest dostępny na dwóch licencjach:
+Pixel PDF jest dostępny na dwóch licencjach:
 
 - **AGPL-3.0** dla projektów open source, w których publicznie udostępniasz cały kod źródłowy
 - **Licencja komercyjna** dla aplikacji własnościowych i zamkniętych: [Kup licencję dożywotnią za 79 USD](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

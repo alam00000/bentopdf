@@ -1,6 +1,6 @@
 # Mit Apache bereitstellen
 
-Hosten Sie BentoPDF mit dem Apache HTTP Server.
+Hosten Sie Pixel PDF mit dem Apache HTTP Server.
 
 ## Voraussetzungen
 
@@ -11,8 +11,8 @@ Hosten Sie BentoPDF mit dem Apache HTTP Server.
 ## Schritt 1: Projekt bauen
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Schritt 2: Dateien kopieren
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Schritt 3: Apache-Konfiguration
 
-Erstellen Sie `/etc/apache2/sites-available/bentopdf.conf`:
+Erstellen Sie `/etc/apache2/sites-available/pixelpdf.conf`:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ Erstellen Sie `/etc/apache2/sites-available/bentopdf.conf`:
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ Erstellen Sie `/etc/apache2/sites-available/bentopdf.conf`:
 
 ## Schritt 4: .htaccess für das Routing
 
-Erstellen Sie `/var/www/bentopdf/.htaccess`:
+Erstellen Sie `/var/www/pixelpdf/.htaccess`:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Schritt 6: Die Site aktivieren
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Stellen Sie sicher, dass `mod_headers` aktiviert ist: `sudo a2enmod headers`
 ### Zugriff verweigert
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

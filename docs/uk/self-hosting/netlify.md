@@ -4,7 +4,7 @@
 
 ## Розгортання в один клік
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Ручне розгортання
 
@@ -13,7 +13,7 @@
 1. Увійдіть у [Netlify](https://app.netlify.com)
 2. Натисніть "Add new site" → "Import an existing project"
 3. Підключіть свій акаунт GitHub
-4. Виберіть свій форк BentoPDF
+4. Виберіть свій форк Pixel PDF
 
 ### Крок 2: Налаштуйте параметри збірки
 
@@ -90,7 +90,7 @@
 | Змінна                  | Опис                                                                  |
 | ----------------------- | --------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Встановіть `true` для мінімальної збірки                              |
-| `VITE_BRAND_NAME`       | Власна назва бренду (замінює "BentoPDF")                              |
+| `VITE_BRAND_NAME`       | Власна назва бренду (замінює "Pixel PDF")                              |
 | `VITE_BRAND_LOGO`       | Шлях до логотипа відносно `public/` (наприклад, `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Власний текст футера/авторських прав                                  |
 | `VITE_DEFAULT_LANGUAGE` | Мова інтерфейсу за замовчуванням (наприклад, `fr`, `de`, `es`)        |

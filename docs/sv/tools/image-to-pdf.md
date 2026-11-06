@@ -24,7 +24,7 @@ Den universella konverteraren från bild till PDF. Ladda upp bilder i praktiskt 
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Det här är det bredaste formatstödet av alla bildkonverterare i BentoPDF. Om du bara behöver ett specifikt format kan du använda ett av de dedikerade verktygen i stället.
+Det här är det bredaste formatstödet av alla bildkonverterare i Pixel PDF. Om du bara behöver ett specifikt format kan du använda ett av de dedikerade verktygen i stället.
 
 ## Så fungerar det
 

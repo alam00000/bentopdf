@@ -14,7 +14,7 @@
 
   var choice;
   try {
-    choice = window.localStorage.getItem('bentopdf-language');
+    choice = window.localStorage.getItem('pixelpdf-language');
   } catch {
     choice = null;
   }

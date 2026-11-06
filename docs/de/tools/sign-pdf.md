@@ -38,7 +38,7 @@ Fügen Sie Ihre Unterschrift zu einem beliebigen PDF-Dokument hinzu. Das Werkzeu
 ## Tipps
 
 - Aktivieren Sie das Reduzieren, wenn Sie die unterschriebene PDF an jemanden senden, der Ihre Unterschrift nicht entfernen oder verschieben können soll.
-- Für rechtsverbindliche digitale Signaturen mit zertifikatsbasierter Überprüfung bietet BentoPDF außerdem ein separates Werkzeug für digitale Signaturen.
+- Für rechtsverbindliche digitale Signaturen mit zertifikatsbasierter Überprüfung bietet Pixel PDF außerdem ein separates Werkzeug für digitale Signaturen.
 - Laden Sie ein PNG-Unterschriftsbild mit transparentem Hintergrund hoch, um das sauberste Ergebnis zu erhalten.
 
 ## Verwandte Werkzeuge

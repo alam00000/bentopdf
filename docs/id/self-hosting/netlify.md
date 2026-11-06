@@ -4,7 +4,7 @@
 
 ## Deploy Sekali Klik
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Deploy Manual
 
@@ -13,7 +13,7 @@
 1. Masuk ke [Netlify](https://app.netlify.com)
 2. Klik "Add new site" → "Import an existing project"
 3. Hubungkan akun GitHub Anda
-4. Pilih fork BentoPDF Anda
+4. Pilih fork Pixel PDF Anda
 
 ### Langkah 2: Atur Pengaturan Build
 
@@ -90,7 +90,7 @@ Atur variabel ini di Site settings → Environment variables:
 | Variabel                | Deskripsi                                                        |
 | ----------------------- | ---------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Atur ke `true` untuk build minimal                               |
-| `VITE_BRAND_NAME`       | Nama merek kustom (menggantikan "BentoPDF")                      |
+| `VITE_BRAND_NAME`       | Nama merek kustom (menggantikan "Pixel PDF")                      |
 | `VITE_BRAND_LOGO`       | Path logo relatif terhadap `public/` (mis. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Teks footer/hak cipta kustom                                     |
 | `VITE_DEFAULT_LANGUAGE` | Bahasa UI default (mis. `fr`, `de`, `es`)                        |

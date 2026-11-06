@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Outils PDF gratuits et open source'
   tagline: Traitez vos PDF entièrement dans votre navigateur. Aucun envoi. Aucun serveur. Confidentialité totale.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## OCR hors ligne
 
-Si vous auto-hébergez BentoPDF dans un environnement isolé du réseau ou hors ligne, l'OCR nécessite plus que le worker Tesseract et les fichiers traineddata. La production de PDF avec texte recherchable exige aussi que les polices de la couche de texte OCR soient servies en interne.
+Si vous auto-hébergez Pixel PDF dans un environnement isolé du réseau ou hors ligne, l'OCR nécessite plus que le worker Tesseract et les fichiers traineddata. La production de PDF avec texte recherchable exige aussi que les polices de la couche de texte OCR soient servies en interne.
 Consultez [Auto-hébergement](/fr/self-hosting/) pour la configuration complète, y compris `VITE_OCR_FONT_BASE_URL`, le dossier `ocr-fonts/` fourni et le workflow isolé mis à jour.

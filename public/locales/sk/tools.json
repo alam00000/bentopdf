@@ -362,7 +362,7 @@
     "subtitle": "Vyplňte formuláre priamo v prehliadači. Podporuje aj formuláre XFA.",
     "uploadHint": "Nahrajte PDF s formulárovými poľami. Vyplňte ich priamo v prehliadači nižšie, potom kliknite na tlačidlo pre uloženie a stiahnutie vyplneného formulára. Podporuje aj formuláre XFA.",
     "xfaNoteTitle": "Poznámka k formulárom XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) je starší formát, ktorý podporujú len niektoré prehliadače PDF, napríklad BentoPDF a Firefox. Ak otvoríte XFA PDF v inom softvéri a uvidíte prázdne strany alebo žiadne formulárové polia, znamená to, že tento prehliadač nepodporuje XFA. Pre správne zobrazenie a vyplnenie XFA formulárov použite Firefox alebo Vypĺňanie formulárov v BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) je starší formát, ktorý podporujú len niektoré prehliadače PDF, napríklad Pixel PDF a Firefox. Ak otvoríte XFA PDF v inom softvéri a uvidíte prázdne strany alebo žiadne formulárové polia, znamená to, že tento prehliadač nepodporuje XFA. Pre správne zobrazenie a vyplnenie XFA formulárov použite Firefox alebo Vypĺňanie formulárov v Pixel PDF."
   },
   "createPdfForm": {
     "name": "Vytvoriť PDF formulár",
@@ -1010,7 +1010,7 @@
   },
   "digitalSignPdf": {
     "name": "Digitálny podpis PDF",
-    "pageTitle": "Digitálny podpis PDF - Pridať kryptografický podpis | BentoPDF",
+    "pageTitle": "Digitálny podpis PDF - Pridať kryptografický podpis | Pixel PDF",
     "subtitle": "Pridať kryptografický digitálny podpis do vášho PDF pomocou certifikátov X.509. Podporuje formáty PKCS#12 (.pfx, .p12) a PEM. Váš súkromný kľúč nikdy neopustí váš prehliadač.",
     "certificateSection": "Certifikát",
     "uploadCert": "Nahrať certifikát (.pfx, .p12, .pem)",
@@ -1096,12 +1096,12 @@
   },
   "validateSignaturePdf": {
     "name": "Overiť podpis PDF",
-    "pageTitle": "Overiť PDF podpis - Verifikácia digitálnych podpisov | BentoPDF",
+    "pageTitle": "Overiť PDF podpis - Verifikácia digitálnych podpisov | Pixel PDF",
     "subtitle": "Overte digitálne podpisy vo vašich PDF súboroch. Skontrolujte platnosť certifikátu, zobrazte údaje o podpisujúcom a potvrďte integritu dokumentu. Všetko spracovanie prebieha vo vašom prehliadači."
   },
   "timestampPdf": {
     "name": "Časová pečiatka PDF",
-    "pageTitle": "Časová pečiatka PDF Online zadarmo - RFC 3161 Dokument | BentoPDF",
+    "pageTitle": "Časová pečiatka PDF Online zadarmo - RFC 3161 Dokument | Pixel PDF",
     "subtitle": "Pridajte k vášmu PDF časovú pečiatku podľa RFC 3161 pomocou dôveryhodného servera časových pečiatok (TSA). Preukazuje, že váš dokument existoval v určitom okamihu. Nevyžaduje sa žiadny certifikát.",
     "tsaSectionTitle": "Server časových pečiatok (TSA)",
     "selectTsa": "Vyberte TSA server",
@@ -1287,7 +1287,7 @@
     "resetWithDefaults": "Vlastné prepísania boli vymazané. Predkonfigurované hodnoty sú aktívne.",
     "resetNoDefaults": "Všetky konfigurácie a moduly v medzipamäti boli vymazané.",
     "licenseTitle": "Upozornenie o licencii:",
-    "licenseDescription": "Externé moduly (PyMuPDF, Ghostscript, CoherentPDF) sú licencované pod licenciou AGPL-3.0 alebo podobnými \"copyleft\" licenciami. Konfiguráciou a používaním týchto modulov súhlasíte s ich príslušnými licenčnými podmienkami. BentoPDF je kompatibilné so žiadnou implementáciou Ghostscript WASM a PyMuPDF WASM, ktorá nasleduje očakávané rozhranie."
+    "licenseDescription": "Externé moduly (PyMuPDF, Ghostscript, CoherentPDF) sú licencované pod licenciou AGPL-3.0 alebo podobnými \"copyleft\" licenciami. Konfiguráciou a používaním týchto modulov súhlasíte s ich príslušnými licenčnými podmienkami. Pixel PDF je kompatibilné so žiadnou implementáciou Ghostscript WASM a PyMuPDF WASM, ktorá nasleduje očakávané rozhranie."
   },
   "pdfOverlay": {
     "name": "Prekrytie PDF",

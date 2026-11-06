@@ -1,6 +1,6 @@
 # Prehľad nástrojov
 
-BentoPDF ponúka **viac ako 130 nástrojov** na prácu s PDF. Všetky nástroje bežia výhradne vo vašom prehliadači: vaše súbory nikdy neopustia vaše zariadenie.
+Pixel PDF ponúka **viac ako 130 nástrojov** na prácu s PDF. Všetky nástroje bežia výhradne vo vašom prehliadači: vaše súbory nikdy neopustia vaše zariadenie.
 
 ---
 

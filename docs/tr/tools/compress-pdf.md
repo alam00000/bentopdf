@@ -5,9 +5,9 @@ description: Hyper Compress motoruyla PDF dosya boyutunu %90'a kadar küçültü
 
 # PDF Sıkıştır
 
-PDF dosyalarınızı bozmadan küçültün. PDF Sıkıştır, BentoPDF'in kendi sıkıştırma motoru olan [Hyper Compress](https://www.bentopdf.com/hyper-compress) ile çalışır. Görselleri yeniden sıkıştırır, yazı tiplerini alt kümeleyip birleştirir ve gömülü küçük resimler ile özel uygulama verileri gibi gereksiz yükü temizler. PDF tamamen işlevsel kalır: metin seçilebilir olmaya devam eder, bağlantılar ve form alanları çalışmayı sürdürür.
+PDF dosyalarınızı bozmadan küçültün. PDF Sıkıştır, Pixel PDF'in kendi sıkıştırma motoru olan [Hyper Compress](https://www.pixelpdf.com/hyper-compress) ile çalışır. Görselleri yeniden sıkıştırır, yazı tiplerini alt kümeleyip birleştirir ve gömülü küçük resimler ile özel uygulama verileri gibi gereksiz yükü temizler. PDF tamamen işlevsel kalır: metin seçilebilir olmaya devam eder, bağlantılar ve form alanları çalışmayı sürdürür.
 
-Hyper Compress WebAssembly'ye derlenir ve BentoPDF ile birlikte gelir; bu nedenle sıkıştırma ek kurulum gerektirmeden çevrimdışı ve hava boşluklu ortamlarda da çalışır.
+Hyper Compress WebAssembly'ye derlenir ve Pixel PDF ile birlikte gelir; bu nedenle sıkıştırma ek kurulum gerektirmeden çevrimdışı ve hava boşluklu ortamlarda da çalışır.
 
 ## Nasıl Çalışır
 
@@ -36,7 +36,7 @@ Yüksek düzey ayrıca 14 standart PDF yazı tipinin gömülmesini kaldırır; g
 
 ## Hedef Dosya Boyutu
 
-KB veya MB cinsinden bir boyut girin; Hyper Compress, seçtiğiniz düzeyden başlayarak yine de sığan en iyi görsel kalitesini arar. Belge o kadar küçülemiyorsa, üretebileceği en küçük sürümü ve bunu belirten bir mesajı alırsınız. [PDF'yi 1MB'a Sıkıştır](https://www.bentopdf.com/compress-pdf-to-1mb) gibi özel sayfalar, hedef zaten doldurulmuş olarak açılır.
+KB veya MB cinsinden bir boyut girin; Hyper Compress, seçtiğiniz düzeyden başlayarak yine de sığan en iyi görsel kalitesini arar. Belge o kadar küçülemiyorsa, üretebileceği en küçük sürümü ve bunu belirten bir mesajı alırsınız. [PDF'yi 1MB'a Sıkıştır](https://www.pixelpdf.com/compress-pdf-to-1mb) gibi özel sayfalar, hedef zaten doldurulmuş olarak açılır.
 
 ## Özel Ayarlar
 

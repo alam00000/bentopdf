@@ -1,6 +1,6 @@
 # Nasadenie s Docker / Podman
 
-Najjednoduchší spôsob, ako BentoPDF hosťovať sami v produkčnom prostredí.
+Najjednoduchší spôsob, ako Pixel PDF hosťovať sami v produkčnom prostredí.
 
 > [!IMPORTANT]
 > **Potrebné hlavičky pre prevod súborov Office**
@@ -20,26 +20,26 @@ Najjednoduchší spôsob, ako BentoPDF hosťovať sami v produkčnom prostredí.
 ## Rýchly štart
 
 > [!TIP]
-> BentoPDF sa dodáva v dvoch zostaveniach:
+> Pixel PDF sa dodáva v dvoch zostaveniach:
 >
-> - **Zostavenie Self-Hosted**: `ghcr.io/alam00000/bentopdf-simple:latest`. Všetky PDF nástroje **bez** marketingových prvkov (bez úvodnej sekcie, FAQ, referencií a päty). Použite ho na interné, tímové a firemné nasadenia. **Nie je** to ochudobnená „lite“ verzia.
-> - **Komerčné zostavenie**: `ghcr.io/alam00000/bentopdf:latest`. Úplná marketingová stránka, ktorú používa samotné bentopdf.com a držitelia komerčnej licencie s verejnými nasadeniami.
+> - **Zostavenie Self-Hosted**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. Všetky PDF nástroje **bez** marketingových prvkov (bez úvodnej sekcie, FAQ, referencií a päty). Použite ho na interné, tímové a firemné nasadenia. **Nie je** to ochudobnená „lite“ verzia.
+> - **Komerčné zostavenie**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. Úplná marketingová stránka, ktorú používa samotné pixelpdf.com a držitelia komerčnej licencie s verejnými nasadeniami.
 >
 > Ak si nie ste istí, stiahnite zostavenie Self-Hosted.
 
 ```bash
 # Docker
 docker run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
   --restart unless-stopped \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
 podman run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 ## Docker Compose / Podman Compose
@@ -48,9 +48,9 @@ Vytvorte `docker-compose.yml`:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
-    container_name: bentopdf
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -97,15 +97,15 @@ CMD ["nginx", "-g", "daemon off;"]
 Zostavte a spustite:
 
 ```bash
-docker build -t bentopdf:custom .
-docker run -d -p 3000:8080 bentopdf:custom
+docker build -t pixelpdf:custom .
+docker run -d -p 3000:8080 pixelpdf:custom
 ```
 
 ## Premenné prostredia
 
 | Premenná                             | Popis                                                                                                                                                                                  | Predvolené                                                     |
 | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `SIMPLE_MODE`                        | Zostaví variant Self-Hosted (skryje marketingové prvky bentopdf.com: úvodnú sekciu, FAQ, referencie, pätu). Všetky PDF nástroje zostanú.                                               | `false`                                                        |
+| `SIMPLE_MODE`                        | Zostaví variant Self-Hosted (skryje marketingové prvky pixelpdf.com: úvodnú sekciu, FAQ, referencie, pätu). Všetky PDF nástroje zostanú.                                               | `false`                                                        |
 | `BASE_URL`                           | Nasadenie do podadresára                                                                                                                                                               | `/`                                                            |
 | `VITE_WASM_PYMUPDF_URL`              | URL modulu PyMuPDF WASM                                                                                                                                                                | `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/` |
 | `VITE_WASM_GS_URL`                   | URL modulu Ghostscript WASM                                                                                                                                                            | `https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/` |
@@ -116,20 +116,20 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_TESSERACT_AVAILABLE_LANGUAGES` | Jazyky OCR zobrazené v rozhraní, oddelené čiarkou                                                                                                                                      | _(prázdne; zobrazí sa celý katalóg)_                           |
 | `VITE_OCR_FONT_BASE_URL`             | Priečinok písiem textovej vrstvy OCR                                                                                                                                                   | _(prázdne; použijú sa vzdialené URL písiem Noto)_              |
 | `VITE_DEFAULT_LANGUAGE`              | Predvolený jazyk rozhrania                                                                                                                                                             | `en`                                                           |
-| `VITE_BRAND_NAME`                    | Vlastný názov značky                                                                                                                                                                   | `BentoPDF`                                                     |
+| `VITE_BRAND_NAME`                    | Vlastný názov značky                                                                                                                                                                   | `Pixel PDF`                                                     |
 | `VITE_BRAND_LOGO`                    | Cesta k logu relatívne k `public/`                                                                                                                                                     | `images/favicon-no-bg.svg`                                     |
-| `VITE_FOOTER_TEXT`                   | Vlastný text päty/copyrightu                                                                                                                                                           | `© 2026 BentoPDF. All rights reserved.`                        |
+| `VITE_FOOTER_TEXT`                   | Vlastný text päty/copyrightu                                                                                                                                                           | `© 2026 Pixel PDF. All rights reserved.`                        |
 | `DISABLE_TOOLS`                      | ID nástrojov na skrytie, oddelené čiarkou                                                                                                                                              | _(prázdne; všetky nástroje zapnuté)_                           |
 | `DISABLE_GITHUB_STARS`               | Vynechá získanie počtu hviezdičiek GitHub pri načítaní stránky a odstráni `api.github.com` z CSP. Zostavenia Simple Mode ho vynechávajú vždy.                                          | `false`                                                        |
-| `SITE_URL`                           | Verejná URL zapísaná do odkazov canonical, hreflang a sitemap. Nechajte predvolenú hodnotu, pokiaľ nechcete, aby vyhľadávače považovali vaše nasadenie za samostatnú stránku.          | `https://www.bentopdf.com`                                     |
-| `ALLOW_INDEXING`                     | S vlastnou `SITE_URL` je každá stránka označená `noindex`, aby vaša kópia nekonkurovala bentopdf.com vo výsledkoch vyhľadávania. Nastavte na `true`, ak ju majú vyhľadávače indexovať. | `false`                                                        |
+| `SITE_URL`                           | Verejná URL zapísaná do odkazov canonical, hreflang a sitemap. Nechajte predvolenú hodnotu, pokiaľ nechcete, aby vyhľadávače považovali vaše nasadenie za samostatnú stránku.          | `https://www.pixelpdf.com`                                     |
+| `ALLOW_INDEXING`                     | S vlastnou `SITE_URL` je každá stránka označená `noindex`, aby vaša kópia nekonkurovala pixelpdf.com vo výsledkoch vyhľadávania. Nastavte na `true`, ak ju majú vyhľadávače indexovať. | `false`                                                        |
 | `COMPRESSION_MODE`                   | Predkomprimované kópie uložené vedľa každého súboru: `o` žiadne, `g` `.gz` (servíruje ich nginx v obraze), `b` `.br`, `all` obe. Nginx v obraze nevie servírovať `.br`.                | `o`                                                            |
 
 URL WASM modulov sú vopred nastavené na predvolené CDN, takže všetky pokročilé funkcie fungujú hneď. Pri izolovaných (air-gapped) alebo vlastných nasadeniach ich prepíšte.
 
 ### Vyhľadávače
 
-Predvolene každá stránka označuje pre vyhľadávače bentopdf.com ako originál, takže sa vaše nasadenie nezobrazí ako duplikát. Pri súkromnej alebo internej inštancii nemusíte nič meniť.
+Predvolene každá stránka označuje pre vyhľadávače pixelpdf.com ako originál, takže sa vaše nasadenie nezobrazí ako duplikát. Pri súkromnej alebo internej inštancii nemusíte nič meniť.
 
 - **Úplne vylúčiť inštanciu z výsledkov vyhľadávania:** spustite kontajner s `-e ROBOTS_NOINDEX=true`. Stačí reštart, nie nové zostavenie.
 - **Zobrazovať inštanciu vo výsledkoch vyhľadávania ako samostatnú stránku:** zostavte s `--build-arg SITE_URL=https://your-domain.example --build-arg ALLOW_INDEXING=true`. Bez `ALLOW_INDEXING=true` vlastná `SITE_URL` označí každú stránku ako `noindex`.
@@ -143,7 +143,7 @@ Výsledok:
 - Ak pri zostavení prepíšete `VITE_CORS_PROXY_URL` alebo `VITE_WASM_*_URL`, CSP tieto pôvody automaticky povolí, bez ďalšej konfigurácie.
 - Pri URL na `cdn.jsdelivr.net` povoľuje `script-src` len presný priečinok balíka s verziou, napríklad `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/`, nie celé CDN. jsDelivr poskytuje akýkoľvek verejný npm balík alebo GitHub repozitár, takže povolenie celého hostiteľa by umožnilo spustiť na vašej inštancii ktorýkoľvek z nich. URL na iných hostiteľoch sa povoľujú podľa pôvodu.
 - Ak nastavíte vlastné WASM URL _za behu_ na stránke Rozšírené nastavenia v aplikácii, tieto pôvody **nie sú** v CSP a prehliadač požiadavky na ne zablokuje. Platí to aj pre inú verziu toho istého balíka na `cdn.jsdelivr.net`, pretože povolená je len verzia nastavená pri zostavení. Konfigurácia za behu je určená na experimenty; pre trvalé vlastné URL nastavte zodpovedajúci build arg `VITE_*`.
-- Izolované nasadenia, ktoré prepíšu všetky tri hodnoty `VITE_WASM_*_URL`, majú tieto priečinky balíkov na `cdn.jsdelivr.net` z CSP odstránené (každá predvolená hodnota sa nahradí, nepridá). Predvolené hodnoty Tesseract OCR na `cdn.jsdelivr.net` zostávajú v politike, kým nenastavíte aj tri hodnoty `VITE_TESSERACT_*`. Podobne nastavenie `VITE_CORS_PROXY_URL` nahradí verejnú predvolenú `bentopdf-cors-proxy.bentopdf.workers.dev`.
+- Izolované nasadenia, ktoré prepíšu všetky tri hodnoty `VITE_WASM_*_URL`, majú tieto priečinky balíkov na `cdn.jsdelivr.net` z CSP odstránené (každá predvolená hodnota sa nahradí, nepridá). Predvolené hodnoty Tesseract OCR na `cdn.jsdelivr.net` zostávajú v politike, kým nenastavíte aj tri hodnoty `VITE_TESSERACT_*`. Podobne nastavenie `VITE_CORS_PROXY_URL` nahradí verejnú predvolenú `pixelpdf-cors-proxy.pixelpdf.workers.dev`.
 
 CSP obsahuje `'unsafe-eval'` v `script-src`, pretože runtime LibreOffice WASM (používaný nástrojmi na prevod Word/Excel/PowerPoint) a knižnica obrázkov wasm-vips (používaná pri PDF do TIFF) kompilujú interný kód cez `new Function()`. Jeho odstránenie by tieto nástroje pokazilo. Ak zostavujete v `SIMPLE_MODE` (bez LibreOffice) a nepotrebujete PDF do TIFF, môžete ručne upraviť vygenerovaný `security-headers.conf` a `'unsafe-eval'` odstrániť pre prísnejšiu politiku.
 
@@ -155,13 +155,13 @@ Príklad:
 
 ```bash
 # Build with French as the default language
-docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .
-docker run -d -p 3000:8080 bentopdf
+docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t pixelpdf .
+docker run -d -p 3000:8080 pixelpdf
 ```
 
 ### Vlastná značka
 
-Nahraďte predvolené logo, názov a text päty BentoPDF vlastnými. Vložte súbor loga do priečinka `public/` (alebo použite existujúci obrázok) a pri zostavení odovzdajte premenné značky:
+Nahraďte predvolené logo, názov a text päty Pixel PDF vlastnými. Vložte súbor loga do priečinka `public/` (alebo použite existujúci obrázok) a pri zostavení odovzdajte premenné značky:
 
 ```bash
 docker build \
@@ -177,11 +177,11 @@ Značka funguje v plnom režime aj v Simple Mode a dá sa kombinovať so všetk�
 
 Skryte nástroje z rozhrania kvôli požiadavkám na súlad alebo bezpečnosť. Vypnuté nástroje sa odstránia z domovskej stránky, výsledkov vyhľadávania, klávesových skratiek a tvorcu pracovných postupov. Priamy prístup cez URL zobrazí stránku „nástroj nie je dostupný“.
 
-ID nástroja je URL stránky bez `.html`. Napríklad ak je nástroj na `bentopdf.com/edit-pdf.html`, ID je `edit-pdf`.
+ID nástroja je URL stránky bez `.html`. Napríklad ak je nástroj na `pixelpdf.com/edit-pdf.html`, ID je `edit-pdf`.
 
 #### Zistenie ID nástrojov
 
-Najjednoduchšie: otvorte ľubovoľný nástroj v BentoPDF a pozrite sa na URL. Posledná časť cesty (bez `.html`) je ID nástroja.
+Najjednoduchšie: otvorte ľubovoľný nástroj v Pixel PDF a pozrite sa na URL. Posledná časť cesty (bez `.html`) je ID nástroja.
 
 <details>
 <summary>Úplný zoznam ID nástrojov</summary>
@@ -205,7 +205,7 @@ Najjednoduchšie: otvorte ľubovoľný nástroj v BentoPDF a pozrite sa na URL. 
 ```bash
 docker build \
   --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 Zoznam vypnutých nástrojov sa zapečie do JavaScript balíka. Zmena vyžaduje nové zostavenie.
@@ -224,15 +224,15 @@ Pripojte súbor `config.json` do poskytovaného priečinka, nové zostavenie net
 docker run -d \
   -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Alebo s Docker Compose:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     volumes:
@@ -287,10 +287,10 @@ Kategórie sú hierarchické: vypnutie nadradenej (napr. `annotation`) vypne vš
 Navigačná lišta zobrazuje aktuálny počet hviezdičiek na GitHub, ktorý sa pri načítaní stránky získava z `api.github.com`. Je to jediná externá požiadavka, ktorá neslúži žiadnej PDF funkcii. Vypnite ju pri zostavení, čím sa kód požiadavky odstráni z balíka a `api.github.com` z Content-Security-Policy:
 
 ```bash
-docker build --build-arg DISABLE_GITHUB_STARS=true -t bentopdf .
+docker build --build-arg DISABLE_GITHUB_STARS=true -t pixelpdf .
 ```
 
-Zostavenia Simple Mode (`bentopdf-simple`) počítadlo hviezdičiek vždy vynechávajú, tento prepínač je potrebný len pri komerčnom zostavení alebo vlastných plných zostaveniach.
+Zostavenia Simple Mode (`pixelpdf-simple`) počítadlo hviezdičiek vždy vynechávajú, tento prepínač je potrebný len pri komerčnom zostavení alebo vlastných plných zostaveniach.
 
 ### Vlastné WASM URL (izolované / vlastné hosťovanie)
 
@@ -325,15 +325,15 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # 4. Export the image
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 
-# 5. Transfer bentopdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
+# 5. Transfer pixelpdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
 
 # 6. Inside the air-gapped network — load and run
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages to your internal web server
 mkdir -p /var/www/wasm/pymupdf /var/www/wasm/gs /var/www/wasm/cpdf /var/www/wasm/ocr/core /var/www/wasm/ocr/lang-data /var/www/wasm/ocr/fonts
@@ -348,8 +348,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C /var/www/wasm/ocr/core --strip-components
 cp ./tesseract-langdata/*.traineddata.gz /var/www/wasm/ocr/lang-data/
 cp ./ocr-fonts/* /var/www/wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 Pre `--ocr-languages` použite kódy, ktoré vypíše `bash scripts/prepare-airgap.sh --list-ocr-languages`, alebo vyhľadávajte podľa názvu cez `bash scripts/prepare-airgap.sh --search-ocr-language <term>`. Keď zostavujete s obmedzenou podmnožinou OCR, odovzdajte rovnaké kódy do `VITE_TESSERACT_AVAILABLE_LANGUAGES`, aby aplikácia zobrazovala len pribalené jazyky. Pre úplne offline výstup OCR hosťujte aj pribalený priečinok `ocr-fonts/` a nasmerujte naň `VITE_OCR_FONT_BASE_URL`.
@@ -358,10 +358,10 @@ Nastavením premennej na prázdny reťazec daný modul vypnete (používatelia h
 
 ## Vlastný port
 
-Predvolene BentoPDF v kontajneri počúva na porte `8080`. Ak to chcete zmeniť, nastavte za behu premennú prostredia `PORT`:
+Predvolene Pixel PDF v kontajneri počúva na porte `8080`. Ak to chcete zmeniť, nastavte za behu premennú prostredia `PORT`:
 
 ```bash
-docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 | Premenná | Popis                                     | Predvolené |
@@ -372,22 +372,22 @@ Funguje to so štandardným aj s nonroot Dockerfile.
 
 ## Vlastné ID používateľa (PUID/PGID)
 
-Pre prostredia, ktoré vyžadujú beh pod konkrétnym používateľom bez root práv (zariadenia NAS, Kubernetes s bezpečnostnými kontextmi, firemné politiky), BentoPDF poskytuje samostatný Dockerfile s podporou PUID/PGID v štýle LSIO.
+Pre prostredia, ktoré vyžadujú beh pod konkrétnym používateľom bez root práv (zariadenia NAS, Kubernetes s bezpečnostnými kontextmi, firemné politiky), Pixel PDF poskytuje samostatný Dockerfile s podporou PUID/PGID v štýle LSIO.
 
 ### Zostavenie a spustenie
 
 ```bash
 # Build the non-root image
-docker build -f Dockerfile.nonroot -t bentopdf-nonroot .
+docker build -f Dockerfile.nonroot -t pixelpdf-nonroot .
 
 # Run with custom UID/GID
 docker run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
   -e PUID=1000 \
   -e PGID=1000 \
   --restart unless-stopped \
-  bentopdf-nonroot
+  pixelpdf-nonroot
 ```
 
 ### Premenné prostredia
@@ -403,11 +403,11 @@ docker run -d \
 
 ```yaml
 services:
-  bentopdf:
+  pixelpdf:
     build:
       context: .
       dockerfile: Dockerfile.nonroot
-    container_name: bentopdf
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     environment:
@@ -446,18 +446,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.bentopdf.rule=Host(`pdf.example.com`)'
-      - 'traefik.http.routers.bentopdf.entrypoints=websecure'
-      - 'traefik.http.routers.bentopdf.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.bentopdf.loadbalancer.server.port=8080'
+      - 'traefik.http.routers.pixelpdf.rule=Host(`pdf.example.com`)'
+      - 'traefik.http.routers.pixelpdf.entrypoints=websecure'
+      - 'traefik.http.routers.pixelpdf.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.pixelpdf.loadbalancer.server.port=8080'
       # Required headers for SharedArrayBuffer (LibreOffice WASM)
-      - 'traefik.http.routers.bentopdf.middlewares=bentopdf-headers'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
+      - 'traefik.http.routers.pixelpdf.middlewares=pixelpdf-headers'
+      - 'traefik.http.middlewares.pixelpdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
+      - 'traefik.http.middlewares.pixelpdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
     restart: unless-stopped
 ```
 
@@ -474,8 +474,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     restart: unless-stopped
 
 volumes:
@@ -486,7 +486,7 @@ Caddyfile:
 
 ```
 pdf.example.com {
-    reverse_proxy bentopdf:8080
+    reverse_proxy pixelpdf:8080
     header Cross-Origin-Opener-Policy "same-origin"
     header Cross-Origin-Embedder-Policy "require-corp"
 }
@@ -496,8 +496,8 @@ pdf.example.com {
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     deploy:
       resources:
         limits:
@@ -514,17 +514,17 @@ services:
 
 ### Základné nastavenie Quadlet
 
-Vytvorte súbor jednotky kontajnera v `~/.config/containers/systemd/bentopdf.container` (používateľ) alebo `/etc/containers/systemd/bentopdf.container` (systém):
+Vytvorte súbor jednotky kontajnera v `~/.config/containers/systemd/pixelpdf.container` (používateľ) alebo `/etc/containers/systemd/pixelpdf.container` (systém):
 
 ```ini
 [Unit]
-Description=BentoPDF - Privacy-first PDF toolkit
+Description=Pixel PDF - Privacy-first PDF toolkit
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -543,16 +543,16 @@ WantedBy=default.target
 systemctl --user daemon-reload
 
 # Start the service
-systemctl --user start bentopdf
+systemctl --user start pixelpdf
 
 # Enable on boot
-systemctl --user enable bentopdf
+systemctl --user enable pixelpdf
 
 # Check status
-systemctl --user status bentopdf
+systemctl --user status pixelpdf
 
 # View logs
-journalctl --user -u bentopdf -f
+journalctl --user -u pixelpdf -f
 ```
 
 > [!TIP]
@@ -562,13 +562,13 @@ journalctl --user -u bentopdf -f
 
 ```ini
 [Unit]
-Description=BentoPDF with health monitoring
+Description=Pixel PDF with health monitoring
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 HealthCmd=wget --spider -q http://localhost:8080 || exit 1
@@ -601,7 +601,7 @@ podman auto-update --dry-run
 
 ### Sieťová konfigurácia Quadlet
 
-Pre vlastnú sieťovú konfiguráciu vytvorte sieťový súbor `bentopdf.network`:
+Pre vlastnú sieťovú konfiguráciu vytvorte sieťový súbor `pixelpdf.network`:
 
 ```ini
 [Network]
@@ -613,10 +613,10 @@ Potom sa naň odkážte v súbore kontajnera:
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
-Network=bentopdf.network
+Network=pixelpdf.network
 ```
 
 ## Aktualizácia

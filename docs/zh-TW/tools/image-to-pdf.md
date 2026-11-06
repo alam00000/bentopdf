@@ -24,7 +24,7 @@ description: 將 JPG、PNG、BMP、GIF、TIFF、SVG、HEIC、WebP、PSD 及其�
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-這是 BentoPDF 所有圖片轉換器中支援格式最廣的一個。如果您只需要特定格式，請改用對應的專用工具。
+這是 Pixel PDF 所有圖片轉換器中支援格式最廣的一個。如果您只需要特定格式，請改用對應的專用工具。
 
 ## 運作方式
 

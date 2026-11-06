@@ -5,7 +5,7 @@ description: Lindungi file PDF dengan kata sandi menggunakan enkripsi AES 256-bi
 
 # Lindungi PDF
 
-Kunci PDF Anda dengan kata sandi agar hanya orang yang berwenang yang dapat membukanya. BentoPDF menggunakan enkripsi AES 256-bit, standar yang sama dengan yang dipakai bank dan lembaga pemerintah, dan diterapkan sepenuhnya di browser Anda melalui QPDF.
+Kunci PDF Anda dengan kata sandi agar hanya orang yang berwenang yang dapat membukanya. Pixel PDF menggunakan enkripsi AES 256-bit, standar yang sama dengan yang dipakai bank dan lembaga pemerintah, dan diterapkan sepenuhnya di browser Anda melalui QPDF.
 
 ## Cara Kerja
 
@@ -23,7 +23,7 @@ Kata sandi pengguna adalah yang diketik penerima untuk membuka PDF. Tanpanya, do
 
 ### Kata Sandi Pemilik (Opsional)
 
-Kata sandi pemilik mengatur apa yang dapat dilakukan pengguna berwenang setelah membuka file. Saat Anda mengatur kata sandi pemilik yang berbeda, BentoPDF otomatis menerapkan set pembatasan paling ketat:
+Kata sandi pemilik mengatur apa yang dapat dilakukan pengguna berwenang setelah membuka file. Saat Anda mengatur kata sandi pemilik yang berbeda, Pixel PDF otomatis menerapkan set pembatasan paling ketat:
 
 - Modifikasi dinonaktifkan
 - Ekstraksi/penyalinan dinonaktifkan
