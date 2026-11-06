@@ -362,7 +362,7 @@
     "subtitle": "Emplena formularis directament al navegador. També admet formularis XFA.",
     "uploadHint": "Puja un PDF amb camps de formulari. Emplena'ls directament al visor següent i fes clic al botó per desar i descarregar el formulari emplenat. També s'admeten formularis XFA.",
     "xfaNoteTitle": "Nota sobre els formularis XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) és un format antic que només admeten alguns visors PDF, com BentoPDF i Firefox. Si obres un PDF XFA en un altre programa i veus pàgines en blanc o no hi apareixen camps, vol dir que aquest visor no admet XFA. Per visualitzar i emplenar correctament els formularis XFA, utilitza Firefox o l'eina d'emplenament de formularis de BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) és un format antic que només admeten alguns visors PDF, com Pixel PDF i Firefox. Si obres un PDF XFA en un altre programa i veus pàgines en blanc o no hi apareixen camps, vol dir que aquest visor no admet XFA. Per visualitzar i emplenar correctament els formularis XFA, utilitza Firefox o l'eina d'emplenament de formularis de Pixel PDF."
   },
   "createPdfForm": {
     "name": "Crea un formulari PDF",
@@ -1010,7 +1010,7 @@
   },
   "digitalSignPdf": {
     "name": "Signatura digital de PDF",
-    "pageTitle": "Signatura digital de PDF - Afegeix una signatura criptogràfica | BentoPDF",
+    "pageTitle": "Signatura digital de PDF - Afegeix una signatura criptogràfica | Pixel PDF",
     "subtitle": "Afegeix una signatura digital criptogràfica al PDF amb certificats X.509. Admet els formats PKCS#12 (.pfx, .p12) i PEM. La clau privada no surt mai del navegador.",
     "certificateSection": "Certificat",
     "uploadCert": "Puja un certificat (.pfx, .p12, .pem)",
@@ -1096,12 +1096,12 @@
   },
   "validateSignaturePdf": {
     "name": "Valida la signatura d'un PDF",
-    "pageTitle": "Valida la signatura d'un PDF - Verifica signatures digitals | BentoPDF",
+    "pageTitle": "Valida la signatura d'un PDF - Verifica signatures digitals | Pixel PDF",
     "subtitle": "Verifica les signatures digitals dels fitxers PDF. Comprova la validesa del certificat, consulta els detalls del signant i confirma la integritat del document. Tot el processament es fa al navegador."
   },
   "timestampPdf": {
     "name": "Segell de temps de PDF",
-    "pageTitle": "Segell de temps de PDF gratuït en línia - Segell de temps de document RFC 3161 | BentoPDF",
+    "pageTitle": "Segell de temps de PDF gratuït en línia - Segell de temps de document RFC 3161 | Pixel PDF",
     "subtitle": "Afegeix un segell de temps de document RFC 3161 al PDF mitjançant un servidor de segellament de temps de confiança (TSA). Demostra que el document existia en un moment determinat. No cal cap certificat.",
     "tsaSectionTitle": "Servidor de segellament de temps (TSA)",
     "selectTsa": "Selecciona un servidor TSA",
@@ -1287,7 +1287,7 @@
     "resetWithDefaults": "S'han eliminat les modificacions personalitzades. Els valors preconfigurats tornen a estar actius.",
     "resetNoDefaults": "S'han eliminat totes les configuracions i els mòduls emmagatzemats a la memòria cau.",
     "licenseTitle": "Avís de llicència:",
-    "licenseDescription": "Els mòduls externs (PyMuPDF, Ghostscript, CoherentPDF) es distribueixen amb llicències AGPL-3.0 o altres llicències copyleft similars. Si configures i utilitzes aquests mòduls, acceptes les condicions de les llicències corresponents. BentoPDF és compatible amb qualsevol implementació Ghostscript WASM o PyMuPDF WASM que segueixi la interfície prevista."
+    "licenseDescription": "Els mòduls externs (PyMuPDF, Ghostscript, CoherentPDF) es distribueixen amb llicències AGPL-3.0 o altres llicències copyleft similars. Si configures i utilitzes aquests mòduls, acceptes les condicions de les llicències corresponents. Pixel PDF és compatible amb qualsevol implementació Ghostscript WASM o PyMuPDF WASM que segueixi la interfície prevista."
   },
   "pdfOverlay": {
     "name": "Superposa PDF",

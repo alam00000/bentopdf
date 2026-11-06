@@ -9,7 +9,11 @@ const __dirname = path.dirname(__filename);
 
 const POSTS_DIR = path.resolve(__dirname, '../blog/posts');
 const BLOG_DIR = path.resolve(__dirname, '../blog');
-const SITE_URL = 'https://www.bentopdf.com';
+// Placeholder domain: override with SITE_URL when deploying to your own host.
+const SITE_URL = (process.env.SITE_URL || 'https://www.pixelpdf.com').replace(
+  /\/$/,
+  ''
+);
 const AUTHOR = {
   name: 'Alam',
   url: `${SITE_URL}/blog/author-alam`,
@@ -203,7 +207,7 @@ function renderPost({ slug, meta, body }) {
     <meta property="og:title" content="${escapeHtml(meta.ogTitle || meta.h1)}" />
     <meta property="og:description" content="${escapeHtml(meta.description)}" />
     <meta property="og:image" content="${SITE_URL}/images/og-tools.png" />
-    <meta property="og:site_name" content="BentoPDF" />
+    <meta property="og:site_name" content="Pixel PDF" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
@@ -238,7 +242,7 @@ function renderPost({ slug, meta, body }) {
         />
         <div>
           <a href="/blog/author-alam" class="text-gray-200 font-semibold hover:text-indigo-300">${AUTHOR.name}</a>,
-          builds BentoPDF ·
+          builds Pixel PDF ·
           <time datetime="${meta.date}">${formatDate(meta.date)}</time>
         </div>
       </div>
@@ -273,7 +277,7 @@ ${renderFaqs(meta.faqs)}
         },
         publisher: {
           '@type': 'Organization',
-          name: 'BentoPDF',
+          name: 'Pixel PDF',
           url: SITE_URL,
         },
       })}
@@ -326,22 +330,22 @@ function renderIndex(posts) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The BentoPDF Blog | Privacy-First PDF Guides</title>
+    <title>The Pixel PDF Blog | Privacy-First PDF Guides</title>
     <meta
       name="description"
-      content="Guides and honest comparisons from the maintainer of BentoPDF: how PDF tools handle your files, and how to get things done without uploading them."
+      content="Guides and honest comparisons from the maintainer of Pixel PDF: how PDF tools handle your files, and how to get things done without uploading them."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="${SITE_URL}/blog" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${SITE_URL}/blog" />
-    <meta property="og:title" content="The BentoPDF Blog" />
+    <meta property="og:title" content="The Pixel PDF Blog" />
     <meta
       property="og:description"
-      content="Guides and honest comparisons from the maintainer of BentoPDF."
+      content="Guides and honest comparisons from the maintainer of Pixel PDF."
     />
     <meta property="og:image" content="${SITE_URL}/images/og-tools.png" />
-    <meta property="og:site_name" content="BentoPDF" />
+    <meta property="og:site_name" content="Pixel PDF" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
@@ -353,10 +357,10 @@ function renderIndex(posts) {
     {{> navbar }}
 
     <section class="max-w-3xl mx-auto px-4 py-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">The BentoPDF Blog</h1>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">The Pixel PDF Blog</h1>
       <p class="text-gray-300 leading-relaxed mb-2">
         I'm <a href="/blog/author-alam" class="${LINK_CLASS}">Alam</a>. I build
-        BentoPDF and write about PDFs, how they work, and the weird things I
+        Pixel PDF and write about PDFs, how they work, and the weird things I
         run into along the way.
       </p>
     </section>
@@ -375,13 +379,13 @@ ${cards}
       ${serializeJsonLd({
         '@context': 'https://schema.org',
         '@type': 'Blog',
-        name: 'The BentoPDF Blog',
+        name: 'The Pixel PDF Blog',
         url: `${SITE_URL}/blog`,
         description:
-          'Guides and honest comparisons from the maintainer of BentoPDF.',
+          'Guides and honest comparisons from the maintainer of Pixel PDF.',
         publisher: {
           '@type': 'Organization',
-          name: 'BentoPDF',
+          name: 'Pixel PDF',
           url: SITE_URL,
         },
       })}

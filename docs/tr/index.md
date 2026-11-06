@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Ücretsiz, Açık Kaynaklı PDF Araçları'
   tagline: PDF'leri tamamen tarayıcınızda işleyin. Yükleme yok. Sunucu yok. Tam gizlilik.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## Çevrimdışı OCR
 
-BentoPDF'i internetten yalıtılmış veya çevrimdışı bir ortamda kendi sunucunuzda barındırıyorsanız, OCR için Tesseract worker ve traineddata dosyalarından fazlası gerekir. Aranabilir PDF çıktısı için OCR metin katmanı yazı tiplerinin de kendi ağınızdan sunulması gerekir.
+Pixel PDF'i internetten yalıtılmış veya çevrimdışı bir ortamda kendi sunucunuzda barındırıyorsanız, OCR için Tesseract worker ve traineddata dosyalarından fazlası gerekir. Aranabilir PDF çıktısı için OCR metin katmanı yazı tiplerinin de kendi ağınızdan sunulması gerekir.
 `VITE_OCR_FONT_BASE_URL`, paketle gelen `ocr-fonts/` dizini ve güncellenmiş air-gap iş akışı dahil tam kurulum için [Kendi Sunucunda Barındırma](/tr/self-hosting/) sayfasına bakın.

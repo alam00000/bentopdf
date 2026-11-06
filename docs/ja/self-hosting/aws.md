@@ -1,6 +1,6 @@
 # AWS S3 + CloudFrontにデプロイする
 
-最大限の制御とスケーラビリティを求めて、AWS上にBentoPDFをホストします。
+最大限の制御とスケーラビリティを求めて、AWS上にPixel PDFをホストします。
 
 ## アーキテクチャ
 
@@ -12,10 +12,10 @@ User → CloudFront (CDN) → S3 (Static Files)
 
 ```bash
 # Create bucket
-aws s3 mb s3://your-bentopdf-bucket --region us-east-1
+aws s3 mb s3://your-pixelpdf-bucket --region us-east-1
 
 # Enable static website hosting
-aws s3 website s3://your-bentopdf-bucket \
+aws s3 website s3://your-pixelpdf-bucket \
   --index-document index.html \
   --error-document index.html
 ```
@@ -28,12 +28,12 @@ aws s3 website s3://your-bentopdf-bucket \
 npm run build
 
 # Sync to S3
-aws s3 sync dist/ s3://your-bentopdf-bucket \
+aws s3 sync dist/ s3://your-pixelpdf-bucket \
   --delete \
   --cache-control "max-age=31536000"
 
 # Set correct MIME types for WASM
-aws s3 cp s3://your-bentopdf-bucket/ s3://your-bentopdf-bucket/ \
+aws s3 cp s3://your-pixelpdf-bucket/ s3://your-pixelpdf-bucket/ \
   --recursive \
   --exclude "*" \
   --include "*.wasm" \
@@ -44,7 +44,7 @@ aws s3 cp s3://your-bentopdf-bucket/ s3://your-bentopdf-bucket/ \
 # S3 defaults .mjs to application/octet-stream, which browsers refuse to
 # execute as ES modules. The bundled PDF viewer (Sign PDF, Form Filler)
 # ships ES modules with .mjs extensions and will fail without this step.
-aws s3 cp s3://your-bentopdf-bucket/ s3://your-bentopdf-bucket/ \
+aws s3 cp s3://your-pixelpdf-bucket/ s3://your-pixelpdf-bucket/ \
   --recursive \
   --exclude "*" \
   --include "*.mjs" \
@@ -56,7 +56,7 @@ aws s3 cp s3://your-bentopdf-bucket/ s3://your-bentopdf-bucket/ \
 
 ```bash
 aws cloudfront create-distribution \
-  --origin-domain-name your-bentopdf-bucket.s3.amazonaws.com \
+  --origin-domain-name your-pixelpdf-bucket.s3.amazonaws.com \
   --default-root-object index.html
 ```
 
@@ -88,7 +88,7 @@ CLIを使う場合：
 ```bash
 aws cloudfront create-response-headers-policy \
   --response-headers-policy-config '{
-    "Name": "BentoPDF-COEP-COOP",
+    "Name": "Pixel PDF-COEP-COOP",
     "CustomHeadersConfig": {
       "Quantity": 3,
       "Items": [
@@ -106,15 +106,15 @@ LibreOffice WASMファイルは事前圧縮されています（`.wasm.gz`、`.d
 
 ```bash
 # Set correct headers for soffice.wasm.gz
-aws s3 cp s3://your-bentopdf-bucket/libreoffice-wasm/soffice.wasm.gz \
-  s3://your-bentopdf-bucket/libreoffice-wasm/soffice.wasm.gz \
+aws s3 cp s3://your-pixelpdf-bucket/libreoffice-wasm/soffice.wasm.gz \
+  s3://your-pixelpdf-bucket/libreoffice-wasm/soffice.wasm.gz \
   --content-type "application/wasm" \
   --content-encoding "gzip" \
   --metadata-directive REPLACE
 
 # Set correct headers for soffice.data.gz
-aws s3 cp s3://your-bentopdf-bucket/libreoffice-wasm/soffice.data.gz \
-  s3://your-bentopdf-bucket/libreoffice-wasm/soffice.data.gz \
+aws s3 cp s3://your-pixelpdf-bucket/libreoffice-wasm/soffice.data.gz \
+  s3://your-pixelpdf-bucket/libreoffice-wasm/soffice.data.gz \
   --content-type "application/octet-stream" \
   --content-encoding "gzip" \
   --metadata-directive REPLACE
@@ -139,7 +139,7 @@ CloudFrontがバケットにアクセスできるようにします。
         "Service": "cloudfront.amazonaws.com"
       },
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::your-bentopdf-bucket/*",
+      "Resource": "arn:aws:s3:::your-pixelpdf-bucket/*",
       "Condition": {
         "StringEquals": {
           "AWS:SourceArn": "arn:aws:cloudfront::ACCOUNT_ID:distribution/DISTRIBUTION_ID"
@@ -176,13 +176,13 @@ SPAのルーティングのため、404で `index.html` を返すように設定
 
 ```hcl
 # main.tf
-resource "aws_s3_bucket" "bentopdf" {
-  bucket = "your-bentopdf-bucket"
+resource "aws_s3_bucket" "pixelpdf" {
+  bucket = "your-pixelpdf-bucket"
 }
 
-resource "aws_cloudfront_distribution" "bentopdf" {
+resource "aws_cloudfront_distribution" "pixelpdf" {
   origin {
-    domain_name = aws_s3_bucket.bentopdf.bucket_regional_domain_name
+    domain_name = aws_s3_bucket.pixelpdf.bucket_regional_domain_name
     origin_id   = "S3Origin"
   }
 

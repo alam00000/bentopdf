@@ -24,7 +24,7 @@ Konverter gambar ke PDF universal. Unggah gambar dalam hampir semua format dan g
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Ini adalah dukungan format terluas di antara semua konverter gambar BentoPDF. Jika Anda hanya membutuhkan satu format tertentu, gunakan alat khusus sebagai gantinya.
+Ini adalah dukungan format terluas di antara semua konverter gambar Pixel PDF. Jika Anda hanya membutuhkan satu format tertentu, gunakan alat khusus sebagai gantinya.
 
 ## Cara Kerja
 

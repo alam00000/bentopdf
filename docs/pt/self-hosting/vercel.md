@@ -4,13 +4,13 @@ O [Vercel](https://vercel.com) oferece a experiência de implantação mais simp
 
 ## Implantação com Um Clique
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Implantação Manual
 
 ### Passo 1: Faça um Fork do Repositório
 
-Faça um fork de [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) para sua conta do GitHub.
+Faça um fork de [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) para sua conta do GitHub.
 
 ### Passo 2: Importe no Vercel
 
@@ -32,7 +32,7 @@ Adicione estas se necessário:
 | Variável                | Descrição                                                            |
 | ----------------------- | -------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Defina como `true` para uma interface mínima                         |
-| `VITE_BRAND_NAME`       | Nome de marca personalizado (substitui "BentoPDF")                   |
+| `VITE_BRAND_NAME`       | Nome de marca personalizado (substitui "Pixel PDF")                   |
 | `VITE_BRAND_LOGO`       | Caminho do logotipo relativo a `public/` (ex.: `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Texto personalizado de rodapé/direitos autorais                      |
 | `VITE_DEFAULT_LANGUAGE` | Idioma padrão da interface (ex.: `fr`, `de`, `es`)                   |
@@ -51,7 +51,7 @@ Clique em "Deploy" e aguarde a conclusão da compilação.
 ## Limitações
 
 ::: warning Arquivos Grandes
-As funções serverless do Vercel têm um limite de 50MB. Como o BentoPDF é um site estático, isso não deve afetar você, mas os módulos WASM são grandes (~100MB no total). Garanta que eles sejam servidos a partir da pasta `/public`.
+As funções serverless do Vercel têm um limite de 50MB. Como o Pixel PDF é um site estático, isso não deve afetar você, mas os módulos WASM são grandes (~100MB no total). Garanta que eles sejam servidos a partir da pasta `/public`.
 :::
 
 ## Solução de Problemas

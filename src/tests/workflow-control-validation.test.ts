@@ -17,7 +17,7 @@ vi.mock('heic2any', () => ({ default: vi.fn() }));
 type Editor = Parameters<typeof loadWorkflow>[0];
 type Area = Parameters<typeof loadWorkflow>[1];
 
-const TEMPLATES_KEY = 'bento-pdf-workflow-templates';
+const TEMPLATES_KEY = 'pixel-pdf-workflow-templates';
 
 function createFakeEditor(initial: BaseWorkflowNode[] = []) {
   const nodes = new Map<string, BaseWorkflowNode>(

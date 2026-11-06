@@ -5,7 +5,7 @@ description: Bảo vệ tệp PDF bằng mật khẩu với mã hóa AES 256-bit
 
 # Bảo vệ PDF
 
-Khóa PDF của bạn bằng mật khẩu để chỉ những người được ủy quyền mới mở được. BentoPDF dùng mã hóa AES 256-bit, cùng tiêu chuẩn mà ngân hàng và cơ quan chính phủ sử dụng, và được áp dụng hoàn toàn trong trình duyệt của bạn thông qua QPDF.
+Khóa PDF của bạn bằng mật khẩu để chỉ những người được ủy quyền mới mở được. Pixel PDF dùng mã hóa AES 256-bit, cùng tiêu chuẩn mà ngân hàng và cơ quan chính phủ sử dụng, và được áp dụng hoàn toàn trong trình duyệt của bạn thông qua QPDF.
 
 ## Cách hoạt động
 
@@ -23,7 +23,7 @@ Mật khẩu người dùng là thứ người nhận nhập để mở PDF. Kh�
 
 ### Mật khẩu chủ sở hữu (tùy chọn)
 
-Mật khẩu chủ sở hữu kiểm soát những gì người dùng được ủy quyền có thể làm sau khi mở tệp. Khi bạn đặt một mật khẩu chủ sở hữu khác biệt, BentoPDF tự động áp dụng bộ hạn chế nghiêm ngặt nhất:
+Mật khẩu chủ sở hữu kiểm soát những gì người dùng được ủy quyền có thể làm sau khi mở tệp. Khi bạn đặt một mật khẩu chủ sở hữu khác biệt, Pixel PDF tự động áp dụng bộ hạn chế nghiêm ngặt nhất:
 
 - Tắt chỉnh sửa
 - Tắt trích xuất/sao chép

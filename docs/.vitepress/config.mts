@@ -7,7 +7,7 @@ import { nav, sidebar } from './navigation.mjs'
 import { DESCRIPTION, FOOTER_MESSAGE } from './i18n/theme-labels.mjs'
 import { completeDocsLanguages } from '../../scripts/docs-languages.mjs'
 
-const SITE_URL = 'https://www.bentopdf.com'
+const SITE_URL = 'https://www.pixelpdf.com'
 
 const docsDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const labelsDir = path.join(docsDir, '.vitepress', 'i18n')
@@ -96,7 +96,7 @@ function localeThemeConfig(lang: string): DefaultTheme.Config {
         ),
         footer: {
             message: translate(FOOTER_MESSAGE),
-            copyright: 'Copyright © 2026 BentoPDF'
+            copyright: 'Copyright © 2026 Pixel PDF'
         },
         outline: { label: translate('On this page') },
         docFooter: {
@@ -147,7 +147,7 @@ const locales = Object.fromEntries(
                 lang,
                 dir: RTL_LANGUAGES.has(lang) ? 'rtl' : 'ltr',
                 link: `/${lang}/`,
-                title: 'BentoPDF Docs',
+                title: 'Pixel PDF Docs',
                 description: labels[DESCRIPTION] || DESCRIPTION,
                 themeConfig: localeThemeConfig(lang)
             }
@@ -162,7 +162,7 @@ function pageUrl(lang: string, pagePath: string) {
 }
 
 export default defineConfig({
-    title: "BentoPDF Docs",
+    title: "Pixel PDF Docs",
     description: DESCRIPTION,
     base: '/docs/',
     cleanUrls: true,
@@ -207,13 +207,13 @@ export default defineConfig({
         sidebar,
 
         socialLinks: [
-            { icon: 'github', link: 'https://github.com/alam00000/bentopdf' },
+            { icon: 'github', link: 'https://github.com/mohammedalhinaki-cloud/Pixel-PDF' },
             { icon: 'discord', link: 'https://discord.gg/Bgq3Ay3f2w' }
         ],
 
         footer: {
             message: FOOTER_MESSAGE,
-            copyright: 'Copyright © 2026 BentoPDF'
+            copyright: 'Copyright © 2026 Pixel PDF'
         },
 
         search: {

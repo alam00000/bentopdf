@@ -10,24 +10,24 @@
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> 공식 BentoPDF nginx 이미지에는 이 헤더가 포함되어 있습니다. Kubernetes에서는 **Ingress/Gateway 컨트롤러도 리버스 프록시**이므로 이 헤더가 유지되는지 확인하거나 엣지에서 추가하세요.
+> 공식 Pixel PDF nginx 이미지에는 이 헤더가 포함되어 있습니다. Kubernetes에서는 **Ingress/Gateway 컨트롤러도 리버스 프록시**이므로 이 헤더가 유지되는지 확인하거나 엣지에서 추가하세요.
 
 ## 사전 준비
 
 - Kubernetes 클러스터
 - Helm v3
-- **8080 포트**로 서비스하는 BentoPDF nginx 이미지 (예: `ghcr.io/alam00000/bentopdf:<tag>`)
+- **8080 포트**로 서비스하는 Pixel PDF nginx 이미지 (예: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`)
 
 ## Helm으로 배포
 
 ### 이 저장소에서 설치 (로컬 차트)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ helm upgrade --install bentopdf /path/to/bentopdf/chart \
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### 포트 포워딩 (빠른 테스트)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (선택 사항)
@@ -78,15 +78,15 @@ ingress:
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### 정상적으로 일어나야 하는 일
 
-BentoPDF의 nginx 설정이 필요한 응답 헤더를 설정합니다. 대부분의 Ingress/Gateway 컨트롤러는 **업스트림 응답 헤더를 그대로 전달**합니다.
+Pixel PDF의 nginx 설정이 필요한 응답 헤더를 설정합니다. 대부분의 Ingress/Gateway 컨트롤러는 **업스트림 응답 헤더를 그대로 전달**합니다.
 
 ### 문제가 생길 수 있는 경우
 
@@ -132,9 +132,9 @@ ingress:
 
 ## `.mjs` MIME 타입 오류 (PDF 서명 / 양식 작성기 iframe이 비어 있음)
 
-브라우저 콘솔에 `.mjs` 요청에 대해 `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"`이 표시되면, BentoPDF nginx 앞단의 Ingress/Gateway 컨트롤러가 업스트림 `Content-Type` 헤더를 `application/octet-stream`으로 바꾸고 있는 것입니다.
+브라우저 콘솔에 `.mjs` 요청에 대해 `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"`이 표시되면, Pixel PDF nginx 앞단의 Ingress/Gateway 컨트롤러가 업스트림 `Content-Type` 헤더를 `application/octet-stream`으로 바꾸고 있는 것입니다.
 
-BentoPDF 이미지의 nginx는 이미 `.mjs`를 `application/javascript`로 제공합니다. 해결 방법은 컨트롤러가 이를 제거하거나 바꾸지 못하게 하는 것입니다. nginx-ingress의 경우:
+Pixel PDF 이미지의 nginx는 이미 `.mjs`를 `application/javascript`로 제공합니다. 해결 방법은 컨트롤러가 이를 제거하거나 바꾸지 못하게 하는 것입니다. nginx-ingress의 경우:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ httpRoute:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ data:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 도구 ID는 `.html`을 뺀 페이지 URL입니다. 아무 도구나 열어 URL을 확인하세요(예: `edit-pdf`, `merge-pdf`, `compress-pdf`). 비활성화된 도구는 홈페이지, 검색, 단축키, 워크플로 빌더, 직접 URL 접근에서 숨겨집니다. 전체 옵션 목록은 [Docker 가이드](/ko/self-hosting/docker#특정-도구-비활성화)를 참고하세요.

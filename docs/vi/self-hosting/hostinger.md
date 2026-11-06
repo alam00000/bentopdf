@@ -1,6 +1,6 @@
 # Triển khai lên Hostinger
 
-[Hostinger](https://hostinger.com) là nhà cung cấp shared hosting phổ biến. Hướng dẫn này nói về cách triển khai BentoPDF lên shared hosting của Hostinger.
+[Hostinger](https://hostinger.com) là nhà cung cấp shared hosting phổ biến. Hướng dẫn này nói về cách triển khai Pixel PDF lên shared hosting của Hostinger.
 
 ## Yêu cầu
 
@@ -10,8 +10,8 @@
 ## Bước 1: Build dự án
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Nếu các header không được áp dụng, hãy liên hệ bộ phận hỗ t
 
 ### Lỗi 404 khi tải lại trang
 
-Đảm bảo quy tắc đuôi `.html` và các tuyến ngôn ngữ được cấu hình đúng. BentoPDF dùng các tệp HTML tĩnh, không dùng định tuyến SPA:
+Đảm bảo quy tắc đuôi `.html` và các tuyến ngôn ngữ được cấu hình đúng. Pixel PDF dùng các tệp HTML tĩnh, không dùng định tuyến SPA:
 
 ```apache
 # Language routes serve actual files from language directories

@@ -2,7 +2,7 @@
 
 Dijital imza aracı, harici Sertifika Otoritelerinden (CA) düzenleyici sertifikaları almak için bir CORS proxy kullanır. Bu gereklidir, çünkü birçok CA sunucusu yanıtlarında CORS başlıkları içermez ve bu da tarayıcıdan doğrudan almayı engeller.
 
-Ayrıca birçok CA sunucusu sertifikaları düz HTTP üzerinden sunar. BentoPDF örneğiniz HTTPS üzerinden barındırıldığında tarayıcılar bu HTTP isteklerini engeller (karma içerik politikası). CORS proxy, istekleri uygun başlıklara sahip bir HTTPS uç noktası üzerinden yönlendirerek her iki sorunu da çözer.
+Ayrıca birçok CA sunucusu sertifikaları düz HTTP üzerinden sunar. Pixel PDF örneğiniz HTTPS üzerinden barındırıldığında tarayıcılar bu HTTP isteklerini engeller (karma içerik politikası). CORS proxy, istekleri uygun başlıklara sahip bir HTTPS uç noktası üzerinden yönlendirerek her iki sorunu da çözer.
 
 ## Nasıl Çalışır
 
@@ -15,7 +15,7 @@ Bir PDF'i sertifikayla imzalarken:
 
 ## CORS Proxy'yi Kendi Sunucunuzda Barındırma
 
-BentoPDF'i kendi sunucunuzda barındırıyorsanız, zincir alımı gerektiren sertifikalarla dijital imzaların çalışması için kendi CORS proxy'nizi dağıtmanız gerekir.
+Pixel PDF'i kendi sunucunuzda barındırıyorsanız, zincir alımı gerektiren sertifikalarla dijital imzaların çalışması için kendi CORS proxy'nizi dağıtmanız gerekir.
 
 ### Seçenek 1: Cloudflare Workers (Önerilir)
 
@@ -31,11 +31,11 @@ BentoPDF'i kendi sunucunuzda barındırıyorsanız, zincir alımı gerektiren se
    wrangler login
    ```
 
-3. **BentoPDF'i klonlayın ve izin verilen kaynakları güncelleyin**:
+3. **Pixel PDF'i klonlayın ve izin verilen kaynakları güncelleyin**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    `cors-proxy-worker.js` dosyasını açın ve `ALLOWED_ORIGINS` dizisini kendi alan adınıza göre değiştirin:
@@ -48,7 +48,7 @@ BentoPDF'i kendi sunucunuzda barındırıyorsanız, zincir alımı gerektiren se
    ```
 
    ::: warning Önemli
-   Bu değişiklik olmadan proxy, sitenizden gelen tüm istekleri **403 Forbidden** hatasıyla reddeder. Varsayılan yalnızca `bentopdf.com` kaynağından gelen isteklere izin verir.
+   Bu değişiklik olmadan proxy, sitenizden gelen tüm istekleri **403 Forbidden** hatasıyla reddeder. Varsayılan yalnızca `pixelpdf.com` kaynağından gelen isteklere izin verir.
    :::
 
 4. **Proxy'yi dağıtın**:
@@ -57,9 +57,9 @@ BentoPDF'i kendi sunucunuzda barındırıyorsanız, zincir alımı gerektiren se
    wrangler deploy
    ```
 
-   Worker URL'nizi not edin (örn. `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Worker URL'nizi not edin (örn. `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **BentoPDF'i proxy URL ile yeniden derleyin**:
+5. **Pixel PDF'i proxy URL ile yeniden derleyin**:
 
    Docker kullanıyorsanız:
 
@@ -67,7 +67,7 @@ BentoPDF'i kendi sunucunuzda barındırıyorsanız, zincir alımı gerektiren se
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Kaynaktan derliyorsanız:

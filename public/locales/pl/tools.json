@@ -244,7 +244,7 @@
     "subtitle": "Wypełniaj formularze bezpośrednio w przeglądarce. Obsługuje również formularze XFA.",
     "uploadHint": "Prześlij plik PDF z polami formularza. Wypełnij je bezpośrednio w przeglądarce poniżej, a następnie kliknij przycisk, aby zapisać i pobrać wypełniony formularz. Obsługuje również formularze XFA.",
     "xfaNoteTitle": "Uwaga dotycząca formularzy XFA:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture) to starszy format obsługiwany tylko przez niektóre przeglądarki PDF, takie jak BentoPDF i Firefox. Jeśli otworzysz plik PDF z XFA w innym oprogramowaniu i zobaczysz puste strony lub brak pól formularza, oznacza to, że dana przeglądarka nie obsługuje XFA. Aby poprawnie wyświetlać i wypełniać formularze XFA, użyj Firefoksa lub narzędzia Form Filler w BentoPDF."
+    "xfaNoteDescription": "XFA (XML Forms Architecture) to starszy format obsługiwany tylko przez niektóre przeglądarki PDF, takie jak Pixel PDF i Firefox. Jeśli otworzysz plik PDF z XFA w innym oprogramowaniu i zobaczysz puste strony lub brak pól formularza, oznacza to, że dana przeglądarka nie obsługuje XFA. Aby poprawnie wyświetlać i wypełniać formularze XFA, użyj Firefoksa lub narzędzia Form Filler w Pixel PDF."
   },
   "createPdfForm": {
     "name": "Utwórz formularz PDF",
@@ -847,7 +847,7 @@
   },
   "digitalSignPdf": {
     "name": "Podpis cyfrowy PDF",
-    "pageTitle": "Podpis cyfrowy PDF - Dodaj podpis kryptograficzny | BentoPDF",
+    "pageTitle": "Podpis cyfrowy PDF - Dodaj podpis kryptograficzny | Pixel PDF",
     "subtitle": "Dodaj kryptograficzny podpis cyfrowy do pliku PDF, używając certyfikatów X.509. Obsługuje formaty PKCS#12 (.pfx, .p12) i PEM. Twój klucz prywatny nigdy nie opuszcza przeglądarki.",
     "certificateSection": "Certyfikat",
     "uploadCert": "Prześlij certyfikat (.pfx, .p12, .pem)",
@@ -933,12 +933,12 @@
   },
   "validateSignaturePdf": {
     "name": "Zweryfikuj podpis PDF",
-    "pageTitle": "Zweryfikuj podpis PDF - Sprawdź podpisy cyfrowe | BentoPDF",
+    "pageTitle": "Zweryfikuj podpis PDF - Sprawdź podpisy cyfrowe | Pixel PDF",
     "subtitle": "Zweryfikuj podpisy cyfrowe w plikach PDF. Sprawdź ważność certyfikatu, zobacz dane osoby podpisującej i potwierdź integralność dokumentu. Całe przetwarzanie odbywa się w Twojej przeglądarce."
   },
   "timestampPdf": {
     "name": "Znakowanie czasem PDF",
-    "pageTitle": "Znakowanie czasem PDF Online Za Darmo - Znacznik Czasu Dokumentu RFC 3161 | BentoPDF",
+    "pageTitle": "Znakowanie czasem PDF Online Za Darmo - Znacznik Czasu Dokumentu RFC 3161 | Pixel PDF",
     "subtitle": "Dodaj znacznik czasu RFC 3161 do pliku PDF, korzystając z serwera zaufanego urzędu znakowania czasem (TSA). Udowadnia, że Twój dokument istniał w określonym momencie w czasie. Certyfikat nie jest wymagany.",
     "tsaSectionTitle": "Serwer znacznika czasu (TSA)",
     "selectTsa": "Wybierz serwer TSA",
@@ -1124,7 +1124,7 @@
     "resetWithDefaults": "Niestandardowe ustawienia zostały wyczyszczone. Aktywne są wstępnie skonfigurowane ustawienia domyślne.",
     "resetNoDefaults": "Wszystkie konfiguracje i moduły z pamięci podręcznej zostały wyczyszczone.",
     "licenseTitle": "Informacja licencyjna:",
-    "licenseDescription": "Zewnętrzne moduły (PyMuPDF, Ghostscript, CoherentPDF) są licencjonowane na podstawie AGPL-3.0 lub podobnych licencji copyleft. Konfigurując i używając tych modułów, zgadzasz się na ich odpowiednie warunki licencyjne. BentoPDF jest kompatybilne z dowolną implementacją Ghostscript WASM i PyMuPDF WASM, która podąża za oczekiwanym interfejsem."
+    "licenseDescription": "Zewnętrzne moduły (PyMuPDF, Ghostscript, CoherentPDF) są licencjonowane na podstawie AGPL-3.0 lub podobnych licencji copyleft. Konfigurując i używając tych modułów, zgadzasz się na ich odpowiednie warunki licencyjne. Pixel PDF jest kompatybilne z dowolną implementacją Ghostscript WASM i PyMuPDF WASM, która podąża za oczekiwanym interfejsem."
   },
   "pdfOverlay": {
     "name": "Nakładka PDF",

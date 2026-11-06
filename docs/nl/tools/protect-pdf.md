@@ -5,7 +5,7 @@ description: Beveilig PDF-bestanden met een wachtwoord en 256-bit AES-versleutel
 
 # PDF beveiligen
 
-Vergrendel je PDF met een wachtwoord, zodat alleen bevoegde personen het bestand kunnen openen. BentoPDF gebruikt 256-bit AES-versleuteling (dezelfde standaard als banken en overheidsinstanties), volledig in je browser toegepast via QPDF.
+Vergrendel je PDF met een wachtwoord, zodat alleen bevoegde personen het bestand kunnen openen. Pixel PDF gebruikt 256-bit AES-versleuteling (dezelfde standaard als banken en overheidsinstanties), volledig in je browser toegepast via QPDF.
 
 ## Hoe het werkt
 
@@ -23,7 +23,7 @@ Het gebruikerswachtwoord typen ontvangers om de PDF te openen. Zonder dit wachtw
 
 ### Eigenaarswachtwoord (optioneel)
 
-Het eigenaarswachtwoord bepaalt wat een bevoegde gebruiker kan doen nadat het bestand is geopend. Als je een afwijkend eigenaarswachtwoord instelt, past BentoPDF automatisch de strengste set beperkingen toe:
+Het eigenaarswachtwoord bepaalt wat een bevoegde gebruiker kan doen nadat het bestand is geopend. Als je een afwijkend eigenaarswachtwoord instelt, past Pixel PDF automatisch de strengste set beperkingen toe:
 
 - Wijzigen uitgeschakeld
 - Extraheren/kopiëren uitgeschakeld

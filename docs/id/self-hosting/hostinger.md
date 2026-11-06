@@ -1,6 +1,6 @@
 # Deploy ke Hostinger
 
-[Hostinger](https://hostinger.com) adalah penyedia shared hosting yang populer. Panduan ini membahas cara men-deploy BentoPDF ke shared hosting Hostinger.
+[Hostinger](https://hostinger.com) adalah penyedia shared hosting yang populer. Panduan ini membahas cara men-deploy Pixel PDF ke shared hosting Hostinger.
 
 ## Prasyarat
 
@@ -10,8 +10,8 @@
 ## Langkah 1: Build Proyek
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Jika header tidak diterapkan, hubungi dukungan Hostinger untuk mengaktifkan `mod
 
 ### Error 404 Saat Halaman Dimuat Ulang
 
-Pastikan aturan ekstensi `.html` dan rute bahasa dikonfigurasi dengan benar. BentoPDF menggunakan file HTML statis, bukan routing SPA:
+Pastikan aturan ekstensi `.html` dan rute bahasa dikonfigurasi dengan benar. Pixel PDF menggunakan file HTML statis, bukan routing SPA:
 
 ```apache
 # Language routes serve actual files from language directories

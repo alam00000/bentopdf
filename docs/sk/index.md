@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Bezplatné open-source PDF nástroje'
   tagline: Spracujte PDF úplne vo svojom prehliadači. Bez nahrávania. Bez serverov. Úplné súkromie.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## Offline OCR
 
-Ak hostujete BentoPDF vo vlastnom izolovanom (air-gapped) alebo offline prostredí, OCR potrebuje viac než worker Tesseract a súbory traineddata. Výstup vo forme PDF s možnosťou vyhľadávania vyžaduje aj to, aby boli písma textovej vrstvy OCR poskytované interne.
+Ak hostujete Pixel PDF vo vlastnom izolovanom (air-gapped) alebo offline prostredí, OCR potrebuje viac než worker Tesseract a súbory traineddata. Výstup vo forme PDF s možnosťou vyhľadávania vyžaduje aj to, aby boli písma textovej vrstvy OCR poskytované interne.
 Úplný postup, vrátane `VITE_OCR_FONT_BASE_URL`, priloženého adresára `ocr-fonts/` a aktualizovaného postupu pre air-gap, nájdete v časti [Vlastný hosting](/sk/self-hosting/).

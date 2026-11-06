@@ -5,9 +5,9 @@ description: Redueix la mida d'un PDF fins a un 90 % amb el motor Hyper Compress
 
 # Comprimeix PDF
 
-Redueix els teus fitxers PDF sense fer-los malbé. Comprimeix PDF funciona amb [Hyper Compress](https://www.bentopdf.com/hyper-compress), el motor de compressió propi de BentoPDF. Torna a comprimir les imatges, crea subconjunts de tipus de lletra i els fusiona, i elimina el pes mort, com ara les miniatures incrustades i les dades privades d'aplicacions. El PDF continua sent plenament funcional: el text es pot seleccionar i els enllaços i els camps de formulari continuen funcionant.
+Redueix els teus fitxers PDF sense fer-los malbé. Comprimeix PDF funciona amb [Hyper Compress](https://www.pixelpdf.com/hyper-compress), el motor de compressió propi de Pixel PDF. Torna a comprimir les imatges, crea subconjunts de tipus de lletra i els fusiona, i elimina el pes mort, com ara les miniatures incrustades i les dades privades d'aplicacions. El PDF continua sent plenament funcional: el text es pot seleccionar i els enllaços i els camps de formulari continuen funcionant.
 
-Hyper Compress està compilat a WebAssembly i s'inclou amb BentoPDF, de manera que la compressió funciona sense connexió i en desplegaments aïllats de la xarxa, sense cap configuració addicional.
+Hyper Compress està compilat a WebAssembly i s'inclou amb Pixel PDF, de manera que la compressió funciona sense connexió i en desplegaments aïllats de la xarxa, sense cap configuració addicional.
 
 ## Com funciona
 
@@ -36,7 +36,7 @@ Alt també desincrusta les 14 fonts PDF estàndard, a més de tipus de lletra se
 
 ## Mida de fitxer objectiu
 
-Introdueix una mida en KB o MB i Hyper Compress cerca la millor qualitat d'imatge que hi càpiga, partint del nivell que has triat. Si el document no pot arribar a ser tan petit, obtens la versió més petita possible i un missatge que ho indica. Les pàgines dedicades, com [Comprimeix PDF a 1 MB](https://www.bentopdf.com/compress-pdf-to-1mb), s'obren amb l'objectiu ja emplenat.
+Introdueix una mida en KB o MB i Hyper Compress cerca la millor qualitat d'imatge que hi càpiga, partint del nivell que has triat. Si el document no pot arribar a ser tan petit, obtens la versió més petita possible i un missatge que ho indica. Les pàgines dedicades, com [Comprimeix PDF a 1 MB](https://www.pixelpdf.com/compress-pdf-to-1mb), s'obren amb l'objectiu ja emplenat.
 
 ## Configuració personalitzada
 

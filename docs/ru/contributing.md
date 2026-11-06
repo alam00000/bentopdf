@@ -1,6 +1,6 @@
 # Участие в разработке
 
-Спасибо за интерес к участию в разработке BentoPDF! Это руководство поможет вам начать.
+Спасибо за интерес к участию в разработке Pixel PDF! Это руководство поможет вам начать.
 
 ## Начало работы
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Структура проекта
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## Перевод
 
-О добавлении новых языков читайте в [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md).
+О добавлении новых языков читайте в [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md).
 
 ## Лицензионное соглашение контрибьютора
 
 Прежде чем ваш PR будет принят, нужно подписать наше CLA:
 
-- [Индивидуальное CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Корпоративное CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Индивидуальное CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Корпоративное CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Помощь
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Сообщество в Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Лицензия
 
-BentoPDF распространяется по двойной лицензии:
+Pixel PDF распространяется по двойной лицензии:
 
 - **AGPL-3.0** для проектов с открытым исходным кодом, где вы публикуете весь свой исходный код
 - **Коммерческая лицензия** для проприетарных приложений с закрытым кодом: [Получить бессрочную лицензию за $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

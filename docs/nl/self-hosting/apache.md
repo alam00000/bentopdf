@@ -1,6 +1,6 @@
 # Implementeren met Apache
 
-Host BentoPDF met Apache HTTP Server.
+Host Pixel PDF met Apache HTTP Server.
 
 ## Vereisten
 
@@ -11,8 +11,8 @@ Host BentoPDF met Apache HTTP Server.
 ## Stap 1: Bouw het project
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## Stap 2: Kopieer de bestanden
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## Stap 3: Apache-configuratie
 
-Maak `/etc/apache2/sites-available/bentopdf.conf` aan:
+Maak `/etc/apache2/sites-available/pixelpdf.conf` aan:
 
 ```apache
 <VirtualHost *:80>
@@ -43,13 +43,13 @@ Maak `/etc/apache2/sites-available/bentopdf.conf` aan:
 
 <VirtualHost *:443>
     ServerName your-domain.com
-    DocumentRoot /var/www/bentopdf
+    DocumentRoot /var/www/pixelpdf
 
     SSLEngine on
     SSLCertificateFile /etc/letsencrypt/live/your-domain.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/your-domain.com/privkey.pem
 
-    <Directory /var/www/bentopdf>
+    <Directory /var/www/pixelpdf>
         Options -Indexes +FollowSymLinks
         AllowOverride All
         Require all granted
@@ -99,7 +99,7 @@ Maak `/etc/apache2/sites-available/bentopdf.conf` aan:
 
 ## Stap 4: .htaccess voor routing
 
-Maak `/var/www/bentopdf/.htaccess` aan:
+Maak `/var/www/pixelpdf/.htaccess` aan:
 
 ```apache
 RewriteEngine On
@@ -152,7 +152,7 @@ sudo a2enmod deflate
 ## Stap 6: Schakel de site in
 
 ```bash
-sudo a2ensite bentopdf.conf
+sudo a2ensite pixelpdf.conf
 sudo apache2ctl configtest
 sudo systemctl reload apache2
 ```
@@ -270,6 +270,6 @@ Zorg dat `mod_headers` is ingeschakeld: `sudo a2enmod headers`
 ### Toegang geweigerd
 
 ```bash
-sudo chown -R www-data:www-data /var/www/bentopdf
-sudo chmod -R 755 /var/www/bentopdf
+sudo chown -R www-data:www-data /var/www/pixelpdf
+sudo chmod -R 755 /var/www/pixelpdf
 ```

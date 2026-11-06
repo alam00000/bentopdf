@@ -36,7 +36,7 @@ Es gibt keine zusätzlichen Konfigurationsoptionen. Laden Sie das Formular hoch,
 
 ## Tipps
 
-- XFA-Formulare sind ein älteres Format, das nur von manchen PDF-Viewern unterstützt wird. Wenn Sie eine XFA-PDF in Chrome oder den meisten anderen Programmen öffnen und leere Seiten sehen, fehlt diesen Viewern die XFA-Unterstützung. Das Ausfüllen von Formularen in BentoPDF und Firefox verarbeiten XFA korrekt.
+- XFA-Formulare sind ein älteres Format, das nur von manchen PDF-Viewern unterstützt wird. Wenn Sie eine XFA-PDF in Chrome oder den meisten anderen Programmen öffnen und leere Seiten sehen, fehlt diesen Viewern die XFA-Unterstützung. Das Ausfüllen von Formularen in Pixel PDF und Firefox verarbeiten XFA korrekt.
 - Für PDFs ohne vorhandene Formularfelder nutzen Sie zuerst das Werkzeug [PDF-Formular erstellen](./form-creator), um Felder hinzuzufügen, und füllen sie dann hier aus.
 - Der Viewer passt seine Größe automatisch an die Seitenmaße der PDF an.
 

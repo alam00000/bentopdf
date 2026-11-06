@@ -7,7 +7,7 @@ description: Ajoutez des signatures numériques cryptographiques aux PDF avec de
 
 Une signature numérique est la preuve cryptographique qu'une personne précise a signé un document et que ce dernier n'a pas été altéré depuis. Contrairement à une signature dessinée (qui n'est qu'une image), une signature numérique utilise des certificats X.509 et les standards PKCS#7 pour garantir une authenticité et une intégrité vérifiables.
 
-BentoPDF applique les signatures numériques entièrement dans votre navigateur. Votre clé privée ne quitte jamais votre appareil.
+Pixel PDF applique les signatures numériques entièrement dans votre navigateur. Votre clé privée ne quitte jamais votre appareil.
 
 ## Fonctionnement
 

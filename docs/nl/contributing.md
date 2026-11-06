@@ -1,6 +1,6 @@
 # Bijdragen
 
-Bedankt voor je interesse in een bijdrage aan BentoPDF! Deze gids helpt je op weg.
+Bedankt voor je interesse in een bijdrage aan Pixel PDF! Deze gids helpt je op weg.
 
 ## Aan de slag
 
@@ -14,8 +14,8 @@ Bedankt voor je interesse in een bijdrage aan BentoPDF! Deze gids helpt je op we
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Projectstructuur
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Voeg items toe aan alle localebestanden in `public/locales/`:
 
 ## Vertalen
 
-Zie [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) voor het toevoegen van nieuwe talen.
+Zie [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) voor het toevoegen van nieuwe talen.
 
 ## Contributor License Agreement
 
 Voordat je PR kan worden samengevoegd, moet je onze CLA ondertekenen:
 
-- [Individual CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Corporate CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individual CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Corporate CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Hulp krijgen
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discord-community](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licentie
 
-BentoPDF heeft een dubbele licentie:
+Pixel PDF heeft een dubbele licentie:
 
 - **AGPL-3.0** voor open-sourceprojecten waarbij je je volledige broncode openbaar deelt
 - **Commerciële licentie** voor propriëtaire/closed-source toepassingen - [Levenslange licentie voor $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

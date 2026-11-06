@@ -1,30 +1,30 @@
 # Panduan Self-Hosting
 
-BentoPDF dapat di-host sendiri pada infrastruktur Anda. Panduan ini mencakup berbagai opsi deployment.
+Pixel PDF dapat di-host sendiri pada infrastruktur Anda. Panduan ini mencakup berbagai opsi deployment.
 
 ## Mulai Cepat dengan Docker / Podman
 
-Cara tercepat untuk self-host BentoPDF:
+Cara tercepat untuk self-host Pixel PDF:
 
 > [!TIP]
-> BentoPDF tersedia dalam dua build:
+> Pixel PDF tersedia dalam dua build:
 >
-> - **Build Self-Hosted**: `ghcr.io/alam00000/bentopdf-simple:latest`. Semua alat PDF, **tanpa** elemen pemasaran (tanpa hero, FAQ, testimoni, footer). Gunakan ini untuk deployment internal/tim/organisasi. Ini **bukan** versi "lite" dengan fitur yang dikurangi.
-> - **Build Commercial**: `ghcr.io/alam00000/bentopdf:latest`. Situs pemasaran lengkap, dipakai oleh bentopdf.com sendiri dan oleh pemegang lisensi komersial yang menjalankan deployment publik.
+> - **Build Self-Hosted**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. Semua alat PDF, **tanpa** elemen pemasaran (tanpa hero, FAQ, testimoni, footer). Gunakan ini untuk deployment internal/tim/organisasi. Ini **bukan** versi "lite" dengan fitur yang dikurangi.
+> - **Build Commercial**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. Situs pemasaran lengkap, dipakai oleh pixelpdf.com sendiri dan oleh pemegang lisensi komersial yang menjalankan deployment publik.
 >
 > Jika ragu: gunakan build Self-Hosted.
 
 > [!IMPORTANT]
 > Konversi file Office memerlukan `SharedArrayBuffer`, yang berarti aplikasi harus terisolasi lintas origin sekaligus dilayani dari konteks aman (secure context). Image resmi sudah mengirim header COOP/COEP yang diperlukan, tetapi browser tetap menonaktifkan `SharedArrayBuffer` pada origin jaringan lokal HTTP biasa seperti `http://192.168.x.x`.
 >
-> Gunakan `http://localhost` hanya untuk pengujian di perangkat yang sama. Jika pengguna mengakses BentoPDF melalui IP LAN atau hostname, akhiri koneksi dengan HTTPS.
+> Gunakan `http://localhost` hanya untuk pengujian di perangkat yang sama. Jika pengguna mengakses Pixel PDF melalui IP LAN atau hostname, akhiri koneksi dengan HTTPS.
 
 ```bash
 # Docker
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
-podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+podman run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Atau dengan Docker Compose / Podman Compose:
@@ -32,8 +32,8 @@ Atau dengan Docker Compose / Podman Compose:
 ```yaml
 # docker-compose.yml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -49,12 +49,12 @@ podman-compose up -d
 
 ## Podman Quadlet (Linux Systemd)
 
-Jalankan BentoPDF sebagai layanan systemd. Buat `~/.config/containers/systemd/bentopdf.container`:
+Jalankan Pixel PDF sebagai layanan systemd. Buat `~/.config/containers/systemd/pixelpdf.container`:
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -67,7 +67,7 @@ WantedBy=default.target
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now bentopdf
+systemctl --user enable --now pixelpdf
 ```
 
 Lihat [panduan deployment Docker](/id/self-hosting/docker) untuk dokumentasi Quadlet lengkap.
@@ -76,8 +76,8 @@ Lihat [panduan deployment Docker](/id/self-hosting/docker) untuk dokumentasi Qua
 
 ```bash
 # Clone and build
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 
@@ -88,7 +88,7 @@ npm run build
 
 ### Build Self-Hosted (Simple Mode)
 
-Build Self-Hosted (image `bentopdf-simple`, juga disebut Simple Mode) **secara fungsional identik** dengan build Commercial: semua alat PDF tersedia dan berperilaku sama. Build ini hanya menyembunyikan elemen pemasaran yang hanya masuk akal di bentopdf.com sendiri atau pada deployment komersial yang terbuka untuk publik. **Ini bukan versi dengan fitur yang dikurangi atau "lite".**
+Build Self-Hosted (image `pixelpdf-simple`, juga disebut Simple Mode) **secara fungsional identik** dengan build Commercial: semua alat PDF tersedia dan berperilaku sama. Build ini hanya menyembunyikan elemen pemasaran yang hanya masuk akal di pixelpdf.com sendiri atau pada deployment komersial yang terbuka untuk publik. **Ini bukan versi dengan fitur yang dikurangi atau "lite".**
 
 **Yang disembunyikan build Self-Hosted** (hanya kosmetik, tidak ada fitur PDF yang dihapus):
 
@@ -100,32 +100,32 @@ Build Self-Hosted (image `bentopdf-simple`, juga disebut Simple Mode) **secara f
 - Semua alat PDF (gabung, pisah, edit, tanda tangan, OCR, konversi Office, dll.)
 - Dukungan branding kustom, semua konfigurasi build-time dan runtime
 
-Build Commercial (`ghcr.io/alam00000/bentopdf:latest`) adalah yang menjalankan bentopdf.com sendiri dan dipakai oleh pemegang lisensi komersial yang menjalankan deployment publik. Build ini menambahkan hero, FAQ, testimoni, dan footer yang tidak masuk akal pada alat internal.
+Build Commercial (`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`) adalah yang menjalankan pixelpdf.com sendiri dan dipakai oleh pemegang lisensi komersial yang menjalankan deployment publik. Build ini menambahkan hero, FAQ, testimoni, dan footer yang tidak masuk akal pada alat internal.
 
-Jika Anda self-host BentoPDF untuk tim, organisasi, atau sebagai alat internal, gunakan build Self-Hosted:
+Jika Anda self-host Pixel PDF untuk tim, organisasi, atau sebagai alat internal, gunakan build Self-Hosted:
 
 ```bash
 # Use the pre-built image (recommended)
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or build it yourself
 SIMPLE_MODE=true npm run build
 ```
 
-Lihat [SIMPLE_MODE.md](https://github.com/alam00000/bentopdf/blob/main/SIMPLE_MODE.md) untuk detail lengkap.
+Lihat [SIMPLE_MODE.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/SIMPLE_MODE.md) untuk detail lengkap.
 
 ### Build Commercial (deployment publik dengan merek Anda sendiri)
 
-Build Commercial (image `bentopdf`, tanpa akhiran `-simple`) adalah yang menjalankan bentopdf.com sendiri. Build ini menyertakan situs pemasaran lengkap (hero, fitur, FAQ, testimoni, footer) di atas semua alat PDF. Gunakan build ini saat Anda ingin **men-deploy BentoPDF sebagai layanan PDF publik dengan merek Anda sendiri**, misalnya:
+Build Commercial (image `pixelpdf`, tanpa akhiran `-simple`) adalah yang menjalankan pixelpdf.com sendiri. Build ini menyertakan situs pemasaran lengkap (hero, fitur, FAQ, testimoni, footer) di atas semua alat PDF. Gunakan build ini saat Anda ingin **men-deploy Pixel PDF sebagai layanan PDF publik dengan merek Anda sendiri**, misalnya:
 
-- Anda menjalankan BentoPDF sebagai SaaS terkelola untuk pengguna akhir di domain Anda sendiri
+- Anda menjalankan Pixel PDF sebagai SaaS terkelola untuk pengguna akhir di domain Anda sendiri
 - Anda menginginkan pengalaman halaman landing (bagian pemasaran + alat), bukan hanya tampilan alat saja
-- Anda pemegang lisensi komersial yang menyematkan BentoPDF ke dalam produk komersial
+- Anda pemegang lisensi komersial yang menyematkan Pixel PDF ke dalam produk komersial
 
-**Jalankan apa adanya** (branding BentoPDF, berguna untuk melihat pratinjau build):
+**Jalankan apa adanya** (branding Pixel PDF, berguna untuk melihat pratinjau build):
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
 **Build dengan merek Anda sendiri** (alur kerja komersial yang umum):
@@ -143,12 +143,12 @@ docker run -p 3000:8080 acmepdf
 Setiap opsi build-time lainnya (`BASE_URL`, `VITE_DEFAULT_LANGUAGE`, `DISABLE_TOOLS`, override URL WASM, dll.) bekerja dengan cara yang sama seperti pada build Self-Hosted.
 
 ::: warning Lisensi
-Menjalankan build Commercial diizinkan di bawah salah satu dari dua opsi lisensi BentoPDF:
+Menjalankan build Commercial diizinkan di bawah salah satu dari dua opsi lisensi Pixel PDF:
 
 - **AGPL-3.0** (gratis): diizinkan jika deployment Anda mempublikasikan seluruh source code di bawah AGPL, termasuk modifikasi branding dan logika bisnis di sekitarnya.
 - **Lisensi komersial** ($79 seumur hidup): diperlukan untuk deployment sumber tertutup/berpemilik (closed-source/proprietary) di mana Anda tidak membuka source code fork branding atau kode bisnis Anda.
 
-Lihat [halaman Lisensi](https://www.bentopdf.com/licensing) untuk perbandingan lengkap. Modul WASM berlisensi AGPL (PyMuPDF, Ghostscript, CoherentPDF) dimuat dari CDN saat runtime, sehingga tidak masuk ke image Anda dan tidak mengubah posisi lisensi Anda.
+Lihat [halaman Lisensi](https://www.pixelpdf.com/licensing) untuk perbandingan lengkap. Modul WASM berlisensi AGPL (PyMuPDF, Ghostscript, CoherentPDF) dimuat dari CDN saat runtime, sehingga tidak masuk ke image Anda dan tidak mengubah posisi lisensi Anda.
 :::
 
 ### Base URL
@@ -161,13 +161,13 @@ BASE_URL=/pdf-tools/ npm run build
 
 ### Branding Kustom
 
-Ganti logo, nama, dan teks footer BentoPDF default dengan milik Anda saat build:
+Ganti logo, nama, dan teks footer Pixel PDF default dengan milik Anda saat build:
 
 | Variabel           | Deskripsi                            | Default                                 |
 | ------------------ | ------------------------------------ | --------------------------------------- |
-| `VITE_BRAND_NAME`  | Nama merek di header dan footer      | `BentoPDF`                              |
+| `VITE_BRAND_NAME`  | Nama merek di header dan footer      | `Pixel PDF`                              |
 | `VITE_BRAND_LOGO`  | Path logo relatif terhadap `public/` | `images/favicon-no-bg.svg`              |
-| `VITE_FOOTER_TEXT` | Teks footer/hak cipta kustom         | `© 2026 BentoPDF. All rights reserved.` |
+| `VITE_FOOTER_TEXT` | Teks footer/hak cipta kustom         | `© 2026 Pixel PDF. All rights reserved.` |
 
 ```bash
 # Place your logo in public/, then build
@@ -212,7 +212,7 @@ DISABLE_TOOLS="edit-pdf,sign-pdf" npm run build
 ```bash
 docker run -d -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Kedua metode dapat dikombinasikan, daftarnya digabungkan.
@@ -265,7 +265,7 @@ Ketidakcocokan `00 61 73 6d / 1f 8b 08 08` adalah sub-gejala tersendiri: file `.
 - [Kubernetes →](/id/self-hosting/kubernetes#memastikan-header-sharedarraybuffer-tetap-berfungsi-ingress-gateway)
 - **Docker**: ditangani otomatis oleh konfigurasi nginx bawaan, tidak perlu tindakan.
 
-**Verifikasi**: buka Konsol DevTools di halaman BentoPDF mana pun dan jalankan:
+**Verifikasi**: buka Konsol DevTools di halaman Pixel PDF mana pun dan jalankan:
 
 ```js
 console.log(window.crossOriginIsolated); // should be true
@@ -294,7 +294,7 @@ Jika halaman menggunakan HTTPS atau `http://localhost` DAN kedua header COEP/COO
 
 ## Konfigurasi WASM (Komponen AGPL)
 
-BentoPDF **tidak menyertakan** pustaka pemrosesan berlisensi AGPL dalam source code-nya, tetapi **sudah mengonfigurasi URL CDN** sehingga semua fitur langsung berfungsi tanpa pengaturan manual.
+Pixel PDF **tidak menyertakan** pustaka pemrosesan berlisensi AGPL dalam source code-nya, tetapi **sudah mengonfigurasi URL CDN** sehingga semua fitur langsung berfungsi tanpa pengaturan manual.
 
 ::: tip Tanpa Konfigurasi secara Default
 Sejak v2.0.0, modul WASM sudah dikonfigurasi untuk dimuat dari CDN jsDelivr melalui variabel lingkungan. Semua fitur lanjutan langsung berfungsi tanpa konfigurasi pengguna.
@@ -336,7 +336,7 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://your-server.com/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://your-server.com/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # Or via .env.production before building from source
 VITE_WASM_PYMUPDF_URL=https://your-server.com/pymupdf/ npm run build
@@ -357,8 +357,8 @@ Untuk jaringan tanpa akses internet (pemerintah, kesehatan, keuangan, dll.). URL
 Skrip `prepare-airgap.sh` yang disertakan mengotomatiskan seluruh proses: mengunduh paket WASM, membangun image Docker, dan menghasilkan bundel mandiri beserta skrip setup.
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Show supported OCR language codes (for --ocr-languages)
 bash scripts/prepare-airgap.sh --list-ocr-languages
@@ -377,7 +377,7 @@ Ini menghasilkan direktori bundel:
 
 ```
 bentopdf-airgap-bundle/
-  bentopdf.tar              # Docker image
+  pixelpdf.tar              # Docker image
   *.tgz                     # WASM packages (PyMuPDF, Ghostscript, CoherentPDF, Tesseract)
   tesseract-langdata/       # OCR traineddata files
   ocr-fonts/                # OCR text-layer font files
@@ -399,7 +399,7 @@ Skrip setup memuat image Docker, mengekstrak file WASM, dan secara opsional memu
 | Flag                           | Deskripsi                                          | Default                           |
 | ------------------------------ | -------------------------------------------------- | --------------------------------- |
 | `--wasm-base-url <url>`        | Tempat WASM akan di-host secara internal           | _(wajib, ditanyakan jika kosong)_ |
-| `--image-name <name>`          | Tag image Docker                                   | `bentopdf`                        |
+| `--image-name <name>`          | Tag image Docker                                   | `pixelpdf`                        |
 | `--output-dir <path>`          | Direktori bundel keluaran                          | `./bentopdf-airgap-bundle`        |
 | `--simple-mode`                | Aktifkan Simple Mode                               | mati                              |
 | `--base-url <path>`            | Base URL subdirektori (mis. `/pdf/`)               | `/`                               |
@@ -417,7 +417,7 @@ Skrip setup memuat image Docker, mengekstrak file WASM, dan secara opsional memu
 Prompt interaktif juga menerima `list` untuk mencetak daftar lengkap kode Tesseract yang didukung dan `search <term>` untuk mencari kecocokan seperti `search german` atau `search chi`.
 
 ::: warning Persyaratan Same-Origin
-File WASM harus dilayani dari **origin yang sama** dengan aplikasi BentoPDF. Web Worker menggunakan `importScripts()` yang tidak dapat memuat skrip lintas origin. Misalnya, jika BentoPDF berjalan di `https://internal.example.com`, base URL WASM juga harus `https://internal.example.com/wasm`.
+File WASM harus dilayani dari **origin yang sama** dengan aplikasi Pixel PDF. Web Worker menggunakan `importScripts()` yang tidak dapat memuat skrip lintas origin. Misalnya, jika Pixel PDF berjalan di `https://internal.example.com`, base URL WASM juga harus `https://internal.example.com/wasm`.
 :::
 
 #### Langkah Manual
@@ -442,8 +442,8 @@ curl -fsSL https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSa
 **Langkah 2: Build image Docker dengan URL internal**
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 docker build \
   --build-arg VITE_WASM_PYMUPDF_URL=https://internal-server.example.com/wasm/pymupdf/ \
@@ -453,20 +453,20 @@ docker build \
   --build-arg VITE_TESSERACT_CORE_URL=https://internal-server.example.com/wasm/ocr/core \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 **Langkah 3: Ekspor image Docker**
 
 ```bash
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 ```
 
 **Langkah 4: Pindahkan ke jaringan air-gapped**
 
 Salin melalui USB, repositori artefak internal, atau metode transfer yang disetujui:
 
-- `bentopdf.tar`: image Docker
+- `pixelpdf.tar`: image Docker
 - Kelima paket WASM/OCR `.tgz` dari Langkah 1
 - Direktori `tesseract-langdata/` dari Langkah 1
 - Direktori `ocr-fonts/` dari Langkah 1
@@ -475,7 +475,7 @@ Salin melalui USB, repositori artefak internal, atau metode transfer yang disetu
 
 ```bash
 # Load the Docker image
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
@@ -490,8 +490,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C ./wasm/ocr/core --strip-components=1
 cp ./tesseract-langdata/*.traineddata.gz ./wasm/ocr/lang-data/
 cp ./ocr-fonts/* ./wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 Pastikan file dapat diakses pada URL yang Anda konfigurasikan di Langkah 2, termasuk `.../ocr/worker.min.js`, `.../ocr/core`, `.../ocr/lang-data`, dan `.../ocr/fonts`.
@@ -515,13 +515,13 @@ VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts
 
 ### Menjalankan Proxy WASM Sendiri
 
-Jika Anda perlu melayani file WASM AGPL dengan header CORS yang tepat, Anda dapat men-deploy proxy sederhana. Lihat [panduan Cloudflare WASM Proxy](https://github.com/alam00000/bentopdf/blob/main/cloudflare/WASM-PROXY.md) untuk contoh implementasi.
+Jika Anda perlu melayani file WASM AGPL dengan header CORS yang tepat, Anda dapat men-deploy proxy sederhana. Lihat [panduan Cloudflare WASM Proxy](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/cloudflare/WASM-PROXY.md) untuk contoh implementasi.
 
 ::: tip Mengapa Dipisah?
 Pemisahan ini memastikan:
 
 - Kepatuhan hukum yang jelas bagi pengguna komersial
-- Inti BentoPDF tetap berada di bawah lisensi ganda (AGPL-3.0 / Commercial)
+- Inti Pixel PDF tetap berada di bawah lisensi ganda (AGPL-3.0 / Commercial)
 - File WASM dimuat saat runtime, tidak disertakan dalam source
   :::
 
@@ -534,5 +534,5 @@ Pemisahan ini memastikan:
 | CPU         | Prosesor modern apa pun         |
 
 ::: tip
-BentoPDF adalah situs statis, tidak diperlukan database atau server backend!
+Pixel PDF adalah situs statis, tidak diperlukan database atau server backend!
 :::

@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import DOMPurify, { type Config } from 'dompurify';
 
 // Broken when applied after mermaid.render() — strips foreignObject labels.
-const BENTOPDF_SVG_ONLY_SANITIZE_OPTIONS: Config = {
+const PIXELPDF_SVG_ONLY_SANITIZE_OPTIONS: Config = {
   USE_PROFILES: { svg: true, svgFilters: true },
 };
 
@@ -28,7 +28,7 @@ describe('Markdown to PDF — Mermaid SVG sanitization', () => {
 
     const clean = DOMPurify.sanitize(
       htmlLabelsSvg,
-      BENTOPDF_SVG_ONLY_SANITIZE_OPTIONS
+      PIXELPDF_SVG_ONLY_SANITIZE_OPTIONS
     );
 
     expect(clean).not.toContain('Start');
@@ -64,7 +64,7 @@ describe('Markdown to PDF — Mermaid SVG sanitization', () => {
 
     const clean = DOMPurify.sanitize(
       svgTextLabels,
-      BENTOPDF_SVG_ONLY_SANITIZE_OPTIONS
+      PIXELPDF_SVG_ONLY_SANITIZE_OPTIONS
     );
 
     expect(clean).toContain('Start');

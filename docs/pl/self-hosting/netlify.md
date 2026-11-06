@@ -4,7 +4,7 @@
 
 ## Wdrożenie jednym kliknięciem
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Wdrożenie ręczne
 
@@ -13,7 +13,7 @@
 1. Zaloguj się do [Netlify](https://app.netlify.com)
 2. Kliknij "Add new site" → "Import an existing project"
 3. Połącz swoje konto GitHub
-4. Wybierz swój fork BentoPDF
+4. Wybierz swój fork Pixel PDF
 
 ### Krok 2: Skonfiguruj ustawienia budowania
 
@@ -90,7 +90,7 @@ Ustaw je w Site settings → Environment variables:
 | Zmienna                 | Opis                                                          |
 | ----------------------- | ------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Ustaw na `true` dla minimalnego builda                        |
-| `VITE_BRAND_NAME`       | Własna nazwa marki (zastępuje "BentoPDF")                     |
+| `VITE_BRAND_NAME`       | Własna nazwa marki (zastępuje "Pixel PDF")                     |
 | `VITE_BRAND_LOGO`       | Ścieżka do logo względem `public/` (np. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Własny tekst stopki/praw autorskich                           |
 | `VITE_DEFAULT_LANGUAGE` | Domyślny język interfejsu (np. `fr`, `de`, `es`)              |

@@ -1,6 +1,6 @@
 # コントリビュート
 
-BentoPDFへのコントリビュートにご関心をお寄せいただきありがとうございます。このガイドで始め方を説明します。
+Pixel PDFへのコントリビュートにご関心をお寄せいただきありがとうございます。このガイドで始め方を説明します。
 
 ## はじめに
 
@@ -14,8 +14,8 @@ BentoPDFへのコントリビュートにご関心をお寄せいただきあり
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## プロジェクト構成
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## 翻訳
 
-新しい言語の追加については [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) を参照してください。
+新しい言語の追加については [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) を参照してください。
 
 ## コントリビューターライセンス契約
 
 PRをマージする前に、CLAへの署名が必要です。
 
-- [個人向けCLA（ICLA）](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [法人向けCLA（CCLA）](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [個人向けCLA（ICLA）](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [法人向けCLA（CCLA）](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## ヘルプ
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discordコミュニティ](https://discord.gg/Bgq3Ay3f2w)
 
 ## ライセンス
 
-BentoPDFはデュアルライセンスです。
+Pixel PDFはデュアルライセンスです。
 
 - **AGPL-3.0**：ソースコード全体を公開するオープンソースプロジェクト向け
 - **商用ライセンス**：プロプライエタリ／クローズドソースのアプリケーション向け - [$79で永久ライセンスを購入](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

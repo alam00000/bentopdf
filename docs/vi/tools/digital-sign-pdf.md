@@ -7,7 +7,7 @@ description: Thêm chữ ký số mật mã vào PDF bằng chứng chỉ X.509.
 
 Chữ ký số là bằng chứng mật mã cho thấy một người cụ thể đã ký tài liệu và tài liệu không bị thay đổi kể từ đó. Khác với chữ ký vẽ tay (chỉ là một hình ảnh), chữ ký số dùng chứng chỉ X.509 và chuẩn PKCS#7 để cung cấp tính xác thực và toàn vẹn có thể kiểm chứng.
 
-BentoPDF áp dụng chữ ký số hoàn toàn trong trình duyệt của bạn. Khóa riêng của bạn không bao giờ rời khỏi thiết bị.
+Pixel PDF áp dụng chữ ký số hoàn toàn trong trình duyệt của bạn. Khóa riêng của bạn không bao giờ rời khỏi thiết bị.
 
 ## Cách hoạt động
 

@@ -10,24 +10,24 @@ Kubernetes mungkin berlebihan untuk situs statis, tetapi bisa sangat cocok jika 
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> Image nginx resmi BentoPDF sudah menyertakan header ini. Di Kubernetes, **controller Ingress/Gateway juga merupakan reverse proxy**, jadi pastikan header ini tetap dipertahankan (atau tambahkan di edge).
+> Image nginx resmi Pixel PDF sudah menyertakan header ini. Di Kubernetes, **controller Ingress/Gateway juga merupakan reverse proxy**, jadi pastikan header ini tetap dipertahankan (atau tambahkan di edge).
 
 ## Prasyarat
 
 - Klaster Kubernetes
 - Helm v3
-- Image nginx BentoPDF (misalnya `ghcr.io/alam00000/bentopdf:<tag>`) yang melayani di **port 8080**
+- Image nginx Pixel PDF (misalnya `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`) yang melayani di **port 8080**
 
 ## Deploy dengan Helm
 
 ### Instal dari repo ini (chart lokal)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ Jika chart dipublikasikan ke GHCR sebagai artefak OCI:
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward (uji cepat)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (opsional)
@@ -78,15 +78,15 @@ Contoh (operator Cloudflare Gateway API):
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### Apa yang "seharusnya" terjadi
 
-Konfigurasi nginx BentoPDF menetapkan header respons yang diperlukan. Sebagian besar controller Ingress/Gateway **meneruskan header respons upstream tanpa perubahan**.
+Konfigurasi nginx Pixel PDF menetapkan header respons yang diperlukan. Sebagian besar controller Ingress/Gateway **meneruskan header respons upstream tanpa perubahan**.
 
 ### Apa yang bisa merusaknya
 
@@ -132,9 +132,9 @@ ingress:
 
 ## Error MIME-type `.mjs` (iframe Tanda Tangani PDF / Form Filler kosong)
 
-Jika konsol browser menampilkan `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` pada permintaan `.mjs`, berarti controller Ingress/Gateway di depan nginx BentoPDF mengganti header `Content-Type` upstream dengan `application/octet-stream`.
+Jika konsol browser menampilkan `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` pada permintaan `.mjs`, berarti controller Ingress/Gateway di depan nginx Pixel PDF mengganti header `Content-Type` upstream dengan `application/octet-stream`.
 
-Nginx pada image BentoPDF sudah melayani `.mjs` sebagai `application/javascript`. Solusinya adalah menghentikan controller dari menghapus/menggantinya. Untuk nginx-ingress:
+Nginx pada image Pixel PDF sudah melayani `.mjs` sebagai `application/javascript`. Solusinya adalah menghentikan controller dari menghapus/menggantinya. Untuk nginx-ingress:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ Gunakan ConfigMap untuk menonaktifkan alat saat runtime tanpa membangun ulang im
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ Mount ke direktori yang dilayani:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 ID alat adalah URL halaman tanpa `.html`: buka alat apa pun dan lihat URL-nya (misalnya `edit-pdf`, `merge-pdf`, `compress-pdf`). Alat yang dinonaktifkan disembunyikan dari beranda, pencarian, pintasan, pembuat alur kerja, dan akses URL langsung. Lihat [panduan Docker](/id/self-hosting/docker#menonaktifkan-alat-tertentu) untuk daftar lengkap opsi.

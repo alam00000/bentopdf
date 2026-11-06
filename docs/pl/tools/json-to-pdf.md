@@ -1,21 +1,21 @@
 ---
 title: JSON na PDF
-description: Odtwarzaj pliki PDF z formatu JSON używanego przez BentoPDF. Konwertuj eksporty JSON z powrotem na oryginalne dokumenty PDF.
+description: Odtwarzaj pliki PDF z formatu JSON używanego przez Pixel PDF. Konwertuj eksporty JSON z powrotem na oryginalne dokumenty PDF.
 ---
 
 # JSON na PDF
 
-Odtwarzaj dokumenty PDF z plików JSON utworzonych wcześniej narzędziem **PDF na JSON** w BentoPDF. To narzędzie do konwersji w obie strony: bierze ustrukturyzowaną reprezentację JSON dokumentu PDF i odbudowuje oryginalny dokument.
+Odtwarzaj dokumenty PDF z plików JSON utworzonych wcześniej narzędziem **PDF na JSON** w Pixel PDF. To narzędzie do konwersji w obie strony: bierze ustrukturyzowaną reprezentację JSON dokumentu PDF i odbudowuje oryginalny dokument.
 
 ::: warning
-To narzędzie przyjmuje tylko pliki JSON utworzone przez konwerter PDF na JSON w BentoPDF. Standardowe pliki JSON z API, baz danych lub innych narzędzi nie są obsługiwane.
+To narzędzie przyjmuje tylko pliki JSON utworzone przez konwerter PDF na JSON w Pixel PDF. Standardowe pliki JSON z API, baz danych lub innych narzędzi nie są obsługiwane.
 :::
 
 ## Obsługiwane formaty
 
 | Wejście | Opis                                                        |
 | :------ | :---------------------------------------------------------- |
-| `.json` | Pliki JSON wyeksportowane narzędziem PDF na JSON z BentoPDF |
+| `.json` | Pliki JSON wyeksportowane narzędziem PDF na JSON z Pixel PDF |
 
 ## Jak to działa
 

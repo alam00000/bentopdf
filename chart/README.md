@@ -1,14 +1,14 @@
-# BentoPDF Helm Chart
+# Pixel PDF Helm Chart
 
-Deploys **BentoPDF** as a **single NGINX container** serving the static frontend.
+Deploys **Pixel PDF** as a **single NGINX container** serving the static frontend.
 
 ## Quickstart
 
 ### Option 1: Port-forward (testing)
 
 ```bash
-helm install bentopdf ./chart
-kubectl port-forward deploy/bentopdf 8080:8080
+helm install pixelpdf ./chart
+kubectl port-forward deploy/pixelpdf 8080:8080
 # open http://127.0.0.1:8080
 ```
 
@@ -19,7 +19,7 @@ ingress:
   enabled: true
   className: nginx
   hosts:
-    - host: bentopdf.example.com
+    - host: pixelpdf.example.com
       paths:
         - path: /
           pathType: Prefix
@@ -60,13 +60,13 @@ httpRoute:
 
 ### Image
 
-- **`image.repository`**: container image repo (default: `ghcr.io/alam00000/bentopdf-simple`)
+- **`image.repository`**: container image repo (default: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple`)
 - **`image.tag`**: image tag (default: `Chart.appVersion`)
 - **`image.pullPolicy`**: default `IfNotPresent`
 
 ### Ports
 
-- **`containerPort`**: container listen port (**8080** for the BentoPDF nginx image)
+- **`containerPort`**: container listen port (**8080** for the Pixel PDF nginx image)
 - **`service.port`**: Service port exposed in-cluster (default **80**)
 
 ### Environment Variables
@@ -87,8 +87,8 @@ echo "$GHCR_TOKEN" | helm registry login ghcr.io -u "$GHCR_USERNAME" --password-
 cd chart
 helm package .
 
-# produces bentopdf-<version>.tgz
-helm push bentopdf-*.tgz oci://ghcr.io/$GHCR_USERNAME/charts
+# produces pixelpdf-<version>.tgz
+helm push pixelpdf-*.tgz oci://ghcr.io/$GHCR_USERNAME/charts
 ```
 
 This could be automated as part of a GitHub workflow.
@@ -96,5 +96,5 @@ This could be automated as part of a GitHub workflow.
 ### Deploy
 
 ```bash
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf --version 1.0.0
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf --version 1.0.0
 ```

@@ -1,6 +1,6 @@
 # Contribuir
 
-¡Gracias por tu interés en contribuir a BentoPDF! Esta guía te ayudará a empezar.
+¡Gracias por tu interés en contribuir a Pixel PDF! Esta guía te ayudará a empezar.
 
 ## Primeros pasos
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Estructura del proyecto
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Añade entradas a todos los archivos de idioma en `public/locales/`:
 
 ## Traducción
 
-Consulta [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) para añadir nuevos idiomas.
+Consulta [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) para añadir nuevos idiomas.
 
 ## Acuerdo de licencia de colaborador
 
 Antes de que se pueda fusionar tu PR, tendrás que firmar nuestro CLA:
 
-- [CLA individual (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [CLA corporativo (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [CLA individual (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [CLA corporativo (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Obtener ayuda
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Comunidad de Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licencia
 
-BentoPDF tiene doble licencia:
+Pixel PDF tiene doble licencia:
 
 - **AGPL-3.0** para proyectos de código abierto en los que compartes públicamente todo tu código fuente
 - **Licencia comercial** para aplicaciones propietarias o de código cerrado: [Obtén la licencia de por vida por $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

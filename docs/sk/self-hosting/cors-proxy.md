@@ -2,7 +2,7 @@
 
 Nástroj na digitálny podpis používa CORS proxy na získavanie certifikátov vydavateľov od externých certifikačných autorít (CA). Je to potrebné, pretože mnohé servery CA vo svojich odpovediach neuvádzajú hlavičky CORS, čo bráni priamemu získaniu v prehliadači.
 
-Mnohé servery CA navyše poskytujú certifikáty cez obyčajné HTTP. Keď je vaša inštancia BentoPDF hosťovaná cez HTTPS, prehliadače tieto HTTP požiadavky blokujú (politika zmiešaného obsahu). CORS proxy rieši oba problémy tým, že požiadavky smeruje cez HTTPS endpoint so správnymi hlavičkami.
+Mnohé servery CA navyše poskytujú certifikáty cez obyčajné HTTP. Keď je vaša inštancia Pixel PDF hosťovaná cez HTTPS, prehliadače tieto HTTP požiadavky blokujú (politika zmiešaného obsahu). CORS proxy rieši oba problémy tým, že požiadavky smeruje cez HTTPS endpoint so správnymi hlavičkami.
 
 ## Ako to funguje
 
@@ -15,7 +15,7 @@ Pri podpisovaní PDF certifikátom:
 
 ## Vlastné hosťovanie CORS proxy
 
-Ak BentoPDF hosťujete sami, musíte nasadiť vlastnú CORS proxy, aby digitálne podpisy fungovali s certifikátmi, ktoré vyžadujú získanie reťazca.
+Ak Pixel PDF hosťujete sami, musíte nasadiť vlastnú CORS proxy, aby digitálne podpisy fungovali s certifikátmi, ktoré vyžadujú získanie reťazca.
 
 ### Možnosť 1: Cloudflare Workers (odporúčané)
 
@@ -31,11 +31,11 @@ Ak BentoPDF hosťujete sami, musíte nasadiť vlastnú CORS proxy, aby digitáln
    wrangler login
    ```
 
-3. **Naklonujte BentoPDF a upravte povolené pôvody**:
+3. **Naklonujte Pixel PDF a upravte povolené pôvody**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    Otvorte `cors-proxy-worker.js` a zmeňte pole `ALLOWED_ORIGINS` na svoju doménu:
@@ -48,7 +48,7 @@ Ak BentoPDF hosťujete sami, musíte nasadiť vlastnú CORS proxy, aby digitáln
    ```
 
    ::: warning Dôležité
-   Bez tejto zmeny proxy odmietne všetky požiadavky z vašej stránky s chybou **403 Forbidden**. Predvolene povoľuje len požiadavky z `bentopdf.com`.
+   Bez tejto zmeny proxy odmietne všetky požiadavky z vašej stránky s chybou **403 Forbidden**. Predvolene povoľuje len požiadavky z `pixelpdf.com`.
    :::
 
 4. **Nasaďte proxy**:
@@ -57,9 +57,9 @@ Ak BentoPDF hosťujete sami, musíte nasadiť vlastnú CORS proxy, aby digitáln
    wrangler deploy
    ```
 
-   Poznačte si URL svojho workera (napr. `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Poznačte si URL svojho workera (napr. `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Znovu zostavte BentoPDF s URL proxy**:
+5. **Znovu zostavte Pixel PDF s URL proxy**:
 
    Ak používate Docker:
 
@@ -67,7 +67,7 @@ Ak BentoPDF hosťujete sami, musíte nasadiť vlastnú CORS proxy, aby digitáln
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Ak zostavujete zo zdrojového kódu:

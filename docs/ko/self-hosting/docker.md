@@ -1,6 +1,6 @@
 # Docker / Podman으로 배포하기
 
-프로덕션 환경에서 BentoPDF를 직접 호스팅하는 가장 쉬운 방법입니다.
+프로덕션 환경에서 Pixel PDF를 직접 호스팅하는 가장 쉬운 방법입니다.
 
 > [!IMPORTANT]
 > **Office 파일 변환에 필요한 헤더**
@@ -20,26 +20,26 @@
 ## 빠른 시작
 
 > [!TIP]
-> BentoPDF는 두 가지 빌드로 제공됩니다:
+> Pixel PDF는 두 가지 빌드로 제공됩니다:
 >
-> - **셀프 호스팅 빌드**: `ghcr.io/alam00000/bentopdf-simple:latest`. 마케팅 요소(히어로, FAQ, 후기, 푸터)를 **제외한** 모든 PDF 도구를 제공합니다. 내부/팀/조직 배포에 사용하세요. 기능이 줄어든 "라이트" 버전이 **아닙니다**.
-> - **상용 빌드**: `ghcr.io/alam00000/bentopdf:latest`. 전체 마케팅 사이트이며, bentopdf.com 자체와 공개 서비스를 운영하는 상용 라이선스 보유자가 사용합니다.
+> - **셀프 호스팅 빌드**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. 마케팅 요소(히어로, FAQ, 후기, 푸터)를 **제외한** 모든 PDF 도구를 제공합니다. 내부/팀/조직 배포에 사용하세요. 기능이 줄어든 "라이트" 버전이 **아닙니다**.
+> - **상용 빌드**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. 전체 마케팅 사이트이며, pixelpdf.com 자체와 공개 서비스를 운영하는 상용 라이선스 보유자가 사용합니다.
 >
 > 잘 모르겠다면 셀프 호스팅 빌드를 받으세요.
 
 ```bash
 # Docker
 docker run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
   --restart unless-stopped \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
 podman run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 ## Docker Compose / Podman Compose
@@ -48,9 +48,9 @@ podman run -d \
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
-    container_name: bentopdf
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -97,15 +97,15 @@ CMD ["nginx", "-g", "daemon off;"]
 빌드 및 실행:
 
 ```bash
-docker build -t bentopdf:custom .
-docker run -d -p 3000:8080 bentopdf:custom
+docker build -t pixelpdf:custom .
+docker run -d -p 3000:8080 pixelpdf:custom
 ```
 
 ## 환경 변수
 
 | 변수                                 | 설명                                                                                                                                                                                    | 기본값                                                         |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `SIMPLE_MODE`                        | 셀프 호스팅 변형을 빌드합니다 (bentopdf.com 마케팅 요소인 히어로, FAQ, 후기, 푸터를 숨깁니다). 모든 PDF 도구는 유지됩니다.                                                              | `false`                                                        |
+| `SIMPLE_MODE`                        | 셀프 호스팅 변형을 빌드합니다 (pixelpdf.com 마케팅 요소인 히어로, FAQ, 후기, 푸터를 숨깁니다). 모든 PDF 도구는 유지됩니다.                                                              | `false`                                                        |
 | `BASE_URL`                           | 하위 디렉터리에 배포                                                                                                                                                                    | `/`                                                            |
 | `VITE_WASM_PYMUPDF_URL`              | PyMuPDF WASM 모듈 URL                                                                                                                                                                   | `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/` |
 | `VITE_WASM_GS_URL`                   | Ghostscript WASM 모듈 URL                                                                                                                                                               | `https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/` |
@@ -116,20 +116,20 @@ docker run -d -p 3000:8080 bentopdf:custom
 | `VITE_TESSERACT_AVAILABLE_LANGUAGES` | UI에 표시할 OCR 언어 (쉼표로 구분)                                                                                                                                                      | _(비어 있음, 전체 목록 표시)_                                  |
 | `VITE_OCR_FONT_BASE_URL`             | OCR 텍스트 레이어 글꼴 디렉터리                                                                                                                                                         | _(비어 있음, 원격 Noto 글꼴 URL 사용)_                         |
 | `VITE_DEFAULT_LANGUAGE`              | 기본 UI 언어                                                                                                                                                                            | `en`                                                           |
-| `VITE_BRAND_NAME`                    | 사용자 지정 브랜드 이름                                                                                                                                                                 | `BentoPDF`                                                     |
+| `VITE_BRAND_NAME`                    | 사용자 지정 브랜드 이름                                                                                                                                                                 | `Pixel PDF`                                                     |
 | `VITE_BRAND_LOGO`                    | `public/` 기준 로고 경로                                                                                                                                                                | `images/favicon-no-bg.svg`                                     |
-| `VITE_FOOTER_TEXT`                   | 사용자 지정 푸터/저작권 텍스트                                                                                                                                                          | `© 2026 BentoPDF. All rights reserved.`                        |
+| `VITE_FOOTER_TEXT`                   | 사용자 지정 푸터/저작권 텍스트                                                                                                                                                          | `© 2026 Pixel PDF. All rights reserved.`                        |
 | `DISABLE_TOOLS`                      | 숨길 도구 ID (쉼표로 구분)                                                                                                                                                              | _(비어 있음, 모든 도구 활성화)_                                |
 | `DISABLE_GITHUB_STARS`               | 페이지 로드 시 GitHub 스타 수 가져오기를 건너뛰고 CSP에서 `api.github.com`을 제거합니다. Simple Mode 빌드는 항상 건너뜁니다.                                                            | `false`                                                        |
-| `SITE_URL`                           | canonical, hreflang, 사이트맵 링크에 기록되는 공개 URL입니다. 검색 엔진이 사용자의 배포를 독립된 사이트로 취급하길 원하지 않는다면 기본값으로 두세요.                                   | `https://www.bentopdf.com`                                     |
-| `ALLOW_INDEXING`                     | 사용자 지정 `SITE_URL`을 사용하면 모든 페이지가 `noindex`로 표시되어 사용자의 사본이 검색 결과에서 bentopdf.com과 경쟁하지 않습니다. 검색 엔진이 색인하도록 하려면 `true`로 설정하세요. | `false`                                                        |
+| `SITE_URL`                           | canonical, hreflang, 사이트맵 링크에 기록되는 공개 URL입니다. 검색 엔진이 사용자의 배포를 독립된 사이트로 취급하길 원하지 않는다면 기본값으로 두세요.                                   | `https://www.pixelpdf.com`                                     |
+| `ALLOW_INDEXING`                     | 사용자 지정 `SITE_URL`을 사용하면 모든 페이지가 `noindex`로 표시되어 사용자의 사본이 검색 결과에서 pixelpdf.com과 경쟁하지 않습니다. 검색 엔진이 색인하도록 하려면 `true`로 설정하세요. | `false`                                                        |
 | `COMPRESSION_MODE`                   | 각 파일 옆에 저장할 사전 압축 사본: `o` 없음, `g` `.gz` (이미지의 nginx가 제공), `b` `.br`, `all` 둘 다. 이미지의 nginx는 `.br`을 제공할 수 없습니다.                                   | `o`                                                            |
 
 WASM 모듈 URL에는 CDN 기본값이 미리 설정되어 있어 모든 고급 기능이 별도 설정 없이 작동합니다. 폐쇄망이나 직접 호스팅하는 배포에서는 이 값을 덮어쓰세요.
 
 ### 검색 엔진
 
-기본적으로 모든 페이지는 검색 엔진이 bentopdf.com을 원본으로 인식하도록 하므로 사용자의 배포가 중복으로 표시되지 않습니다. 비공개 또는 내부 인스턴스라면 아무것도 바꿀 필요가 없습니다.
+기본적으로 모든 페이지는 검색 엔진이 pixelpdf.com을 원본으로 인식하도록 하므로 사용자의 배포가 중복으로 표시되지 않습니다. 비공개 또는 내부 인스턴스라면 아무것도 바꿀 필요가 없습니다.
 
 - **인스턴스를 검색 결과에서 완전히 제외하기:** `-e ROBOTS_NOINDEX=true`로 컨테이너를 실행하세요. 재시작만 하면 되며 다시 빌드할 필요는 없습니다.
 - **인스턴스를 검색 결과에서 독립된 사이트로 만들기:** `--build-arg SITE_URL=https://your-domain.example --build-arg ALLOW_INDEXING=true`로 빌드하세요. `ALLOW_INDEXING=true`가 없으면 사용자 지정 `SITE_URL`은 모든 페이지를 `noindex`로 표시합니다.
@@ -143,7 +143,7 @@ nginx 이미지에는 적용(enforcing) 모드의 `Content-Security-Policy` 헤�
 - 빌드 시 `VITE_CORS_PROXY_URL` 또는 `VITE_WASM_*_URL`을 덮어쓰면 CSP가 해당 origin을 자동으로 허용합니다. 별도 설정이 필요 없습니다.
 - `cdn.jsdelivr.net`의 URL에 대해 `script-src`는 전체 CDN이 아니라 버전이 명시된 정확한 패키지 폴더만 허용합니다. 예: `https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/`. jsDelivr는 모든 공개 npm 패키지와 GitHub 저장소를 제공하므로 호스트 전체를 허용하면 그 어떤 것도 사용자의 인스턴스에서 실행될 수 있기 때문입니다. 다른 호스트의 URL은 origin 단위로 허용됩니다.
 - 앱 내 고급 설정 페이지에서 _런타임에_ 사용자 지정 WASM URL을 설정하면 해당 origin은 CSP에 **포함되지 않으며** 브라우저가 해당 가져오기를 차단합니다. `cdn.jsdelivr.net`의 같은 패키지라도 다른 버전이면 마찬가지인데, 빌드 시 설정한 버전만 허용되기 때문입니다. 런타임 설정은 실험용입니다. 영구적인 사용자 지정 URL은 해당 `VITE_*` 빌드 인수를 설정하세요.
-- 세 가지 `VITE_WASM_*_URL` 값을 모두 덮어쓰는 폐쇄망 배포는 해당 `cdn.jsdelivr.net` 패키지 폴더도 CSP에서 제거됩니다 (각 기본값은 추가되는 것이 아니라 대체됩니다). `cdn.jsdelivr.net`의 Tesseract OCR 기본값은 `VITE_TESSERACT_*` 세 값도 설정하기 전까지 정책에 남습니다. 마찬가지로 `VITE_CORS_PROXY_URL`을 설정하면 공개 `bentopdf-cors-proxy.bentopdf.workers.dev` 기본값이 대체됩니다.
+- 세 가지 `VITE_WASM_*_URL` 값을 모두 덮어쓰는 폐쇄망 배포는 해당 `cdn.jsdelivr.net` 패키지 폴더도 CSP에서 제거됩니다 (각 기본값은 추가되는 것이 아니라 대체됩니다). `cdn.jsdelivr.net`의 Tesseract OCR 기본값은 `VITE_TESSERACT_*` 세 값도 설정하기 전까지 정책에 남습니다. 마찬가지로 `VITE_CORS_PROXY_URL`을 설정하면 공개 `pixelpdf-cors-proxy.pixelpdf.workers.dev` 기본값이 대체됩니다.
 
 CSP의 `script-src`에는 `'unsafe-eval'`이 포함되어 있습니다. LibreOffice WASM 런타임(Word/Excel/PowerPoint 변환 도구에서 사용)과 wasm-vips 이미지 라이브러리(PDF를 TIFF로 도구에서 사용)가 `new Function()`으로 내부 디스패치 코드를 컴파일하기 때문입니다. 이를 제거하면 해당 도구가 작동하지 않습니다. `SIMPLE_MODE`(LibreOffice 없음)로 빌드하고 PDF를 TIFF로 도구가 필요 없다면, 생성된 `security-headers.conf`에서 `'unsafe-eval'`을 직접 제거하여 더 엄격한 정책을 적용할 수 있습니다.
 
@@ -155,13 +155,13 @@ OCR의 경우 `VITE_TESSERACT_*` 변수를 비워 두면 기본 온라인 에셋
 
 ```bash
 # Build with French as the default language
-docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .
-docker run -d -p 3000:8080 bentopdf
+docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t pixelpdf .
+docker run -d -p 3000:8080 pixelpdf
 ```
 
 ### 사용자 지정 브랜딩
 
-기본 BentoPDF 로고, 이름, 푸터 텍스트를 직접 만든 것으로 바꾸세요. 로고 파일을 `public/` 폴더에 두거나(또는 기존 이미지를 사용하고) 빌드 시 브랜딩 변수를 전달하세요:
+기본 Pixel PDF 로고, 이름, 푸터 텍스트를 직접 만든 것으로 바꾸세요. 로고 파일을 `public/` 폴더에 두거나(또는 기존 이미지를 사용하고) 빌드 시 브랜딩 변수를 전달하세요:
 
 ```bash
 docker build \
@@ -177,11 +177,11 @@ docker build \
 
 규정 준수나 보안 요구 사항에 따라 UI에서 도구를 숨길 수 있습니다. 비활성화된 도구는 홈페이지, 검색 결과, 키보드 단축키, 워크플로 빌더에서 제거됩니다. URL로 직접 접근하면 "도구를 사용할 수 없음" 페이지가 표시됩니다.
 
-도구 ID는 `.html`을 뺀 페이지 URL입니다. 예를 들어 도구가 `bentopdf.com/edit-pdf.html`에 있다면 ID는 `edit-pdf`입니다.
+도구 ID는 `.html`을 뺀 페이지 URL입니다. 예를 들어 도구가 `pixelpdf.com/edit-pdf.html`에 있다면 ID는 `edit-pdf`입니다.
 
 #### 도구 ID 찾기
 
-가장 쉬운 방법: BentoPDF에서 아무 도구나 열고 URL을 보세요. 경로의 마지막 부분(`.html` 제외)이 도구 ID입니다.
+가장 쉬운 방법: Pixel PDF에서 아무 도구나 열고 URL을 보세요. 경로의 마지막 부분(`.html` 제외)이 도구 ID입니다.
 
 <details>
 <summary>전체 도구 ID 목록</summary>
@@ -205,7 +205,7 @@ docker build \
 ```bash
 docker build \
   --build-arg DISABLE_TOOLS="edit-pdf,sign-pdf,encrypt-pdf" \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 비활성화 목록이 JavaScript 번들에 포함됩니다. 변경하려면 다시 빌드해야 합니다.
@@ -224,15 +224,15 @@ docker build \
 docker run -d \
   -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 또는 Docker Compose로:
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     volumes:
@@ -287,10 +287,10 @@ services:
 내비게이션 바에는 페이지 로드 시 `api.github.com`에서 가져오는 실시간 GitHub 스타 수가 표시됩니다. PDF 기능과 무관한 유일한 외부 요청입니다. 빌드 시 비활성화하면 번들에서 가져오기 코드가 제거되고 Content-Security-Policy에서 `api.github.com`이 제거됩니다:
 
 ```bash
-docker build --build-arg DISABLE_GITHUB_STARS=true -t bentopdf .
+docker build --build-arg DISABLE_GITHUB_STARS=true -t pixelpdf .
 ```
 
-Simple Mode 빌드(`bentopdf-simple`)는 항상 스타 카운터를 건너뜁니다. 이 플래그는 상용 빌드나 사용자 지정 전체 빌드에서만 필요합니다.
+Simple Mode 빌드(`pixelpdf-simple`)는 항상 스타 카운터를 건너뜁니다. 이 플래그는 상용 빌드나 사용자 지정 전체 빌드에서만 필요합니다.
 
 ### 사용자 지정 WASM URL (폐쇄망 / 직접 호스팅)
 
@@ -325,15 +325,15 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # 4. Export the image
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 
-# 5. Transfer bentopdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
+# 5. Transfer pixelpdf.tar + the .tgz packages + tesseract-langdata/ + ocr-fonts/ into the air-gapped network
 
 # 6. Inside the air-gapped network — load and run
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages to your internal web server
 mkdir -p /var/www/wasm/pymupdf /var/www/wasm/gs /var/www/wasm/cpdf /var/www/wasm/ocr/core /var/www/wasm/ocr/lang-data /var/www/wasm/ocr/fonts
@@ -348,8 +348,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C /var/www/wasm/ocr/core --strip-components
 cp ./tesseract-langdata/*.traineddata.gz /var/www/wasm/ocr/lang-data/
 cp ./ocr-fonts/* /var/www/wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 `--ocr-languages`에는 `bash scripts/prepare-airgap.sh --list-ocr-languages`가 출력하는 코드를 사용하거나, `bash scripts/prepare-airgap.sh --search-ocr-language <term>`으로 이름을 검색하세요. 제한된 OCR 언어 하위 집합으로 빌드할 때는 같은 코드를 `VITE_TESSERACT_AVAILABLE_LANGUAGES`에 전달하여 앱이 번들된 언어만 표시하도록 하세요. 완전한 오프라인 OCR 출력을 위해서는 번들된 `ocr-fonts/` 디렉터리도 호스팅하고 `VITE_OCR_FONT_BASE_URL`이 이를 가리키게 하세요.
@@ -358,10 +358,10 @@ docker run -d -p 3000:8080 --restart unless-stopped bentopdf
 
 ## 사용자 지정 포트
 
-기본적으로 BentoPDF는 컨테이너 내부에서 `8080` 포트로 수신합니다. 변경하려면 런타임에 `PORT` 환경 변수를 설정하세요:
+기본적으로 Pixel PDF는 컨테이너 내부에서 `8080` 포트로 수신합니다. 변경하려면 런타임에 `PORT` 환경 변수를 설정하세요:
 
 ```bash
-docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:9090 -e PORT=9090 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 | 변수   | 설명                        | 기본값 |
@@ -372,22 +372,22 @@ docker run -p 3000:9090 -e PORT=9090 ghcr.io/alam00000/bentopdf-simple:latest
 
 ## 사용자 지정 사용자 ID (PUID/PGID)
 
-특정 비루트 사용자로 실행해야 하는 환경(NAS 기기, 보안 컨텍스트가 있는 Kubernetes, 조직 정책 등)을 위해 BentoPDF는 LSIO 방식의 PUID/PGID를 지원하는 별도의 Dockerfile을 제공합니다.
+특정 비루트 사용자로 실행해야 하는 환경(NAS 기기, 보안 컨텍스트가 있는 Kubernetes, 조직 정책 등)을 위해 Pixel PDF는 LSIO 방식의 PUID/PGID를 지원하는 별도의 Dockerfile을 제공합니다.
 
 ### 빌드 및 실행
 
 ```bash
 # Build the non-root image
-docker build -f Dockerfile.nonroot -t bentopdf-nonroot .
+docker build -f Dockerfile.nonroot -t pixelpdf-nonroot .
 
 # Run with custom UID/GID
 docker run -d \
-  --name bentopdf \
+  --name pixelpdf \
   -p 3000:8080 \
   -e PUID=1000 \
   -e PGID=1000 \
   --restart unless-stopped \
-  bentopdf-nonroot
+  pixelpdf-nonroot
 ```
 
 ### 환경 변수
@@ -403,11 +403,11 @@ docker run -d \
 
 ```yaml
 services:
-  bentopdf:
+  pixelpdf:
     build:
       context: .
       dockerfile: Dockerfile.nonroot
-    container_name: bentopdf
+    container_name: pixelpdf
     ports:
       - '3000:8080'
     environment:
@@ -446,18 +446,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./letsencrypt:/letsencrypt
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.bentopdf.rule=Host(`pdf.example.com`)'
-      - 'traefik.http.routers.bentopdf.entrypoints=websecure'
-      - 'traefik.http.routers.bentopdf.tls.certresolver=letsencrypt'
-      - 'traefik.http.services.bentopdf.loadbalancer.server.port=8080'
+      - 'traefik.http.routers.pixelpdf.rule=Host(`pdf.example.com`)'
+      - 'traefik.http.routers.pixelpdf.entrypoints=websecure'
+      - 'traefik.http.routers.pixelpdf.tls.certresolver=letsencrypt'
+      - 'traefik.http.services.pixelpdf.loadbalancer.server.port=8080'
       # Required headers for SharedArrayBuffer (LibreOffice WASM)
-      - 'traefik.http.routers.bentopdf.middlewares=bentopdf-headers'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
-      - 'traefik.http.middlewares.bentopdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
+      - 'traefik.http.routers.pixelpdf.middlewares=pixelpdf-headers'
+      - 'traefik.http.middlewares.pixelpdf-headers.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
+      - 'traefik.http.middlewares.pixelpdf-headers.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
     restart: unless-stopped
 ```
 
@@ -474,8 +474,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
 
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     restart: unless-stopped
 
 volumes:
@@ -486,7 +486,7 @@ Caddyfile:
 
 ```
 pdf.example.com {
-    reverse_proxy bentopdf:8080
+    reverse_proxy pixelpdf:8080
     header Cross-Origin-Opener-Policy "same-origin"
     header Cross-Origin-Embedder-Policy "require-corp"
 }
@@ -496,8 +496,8 @@ pdf.example.com {
 
 ```yaml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     deploy:
       resources:
         limits:
@@ -514,17 +514,17 @@ services:
 
 ### 기본 Quadlet 설정
 
-`~/.config/containers/systemd/bentopdf.container`(사용자) 또는 `/etc/containers/systemd/bentopdf.container`(시스템)에 컨테이너 유닛 파일을 만드세요:
+`~/.config/containers/systemd/pixelpdf.container`(사용자) 또는 `/etc/containers/systemd/pixelpdf.container`(시스템)에 컨테이너 유닛 파일을 만드세요:
 
 ```ini
 [Unit]
-Description=BentoPDF - Privacy-first PDF toolkit
+Description=Pixel PDF - Privacy-first PDF toolkit
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -543,16 +543,16 @@ WantedBy=default.target
 systemctl --user daemon-reload
 
 # Start the service
-systemctl --user start bentopdf
+systemctl --user start pixelpdf
 
 # Enable on boot
-systemctl --user enable bentopdf
+systemctl --user enable pixelpdf
 
 # Check status
-systemctl --user status bentopdf
+systemctl --user status pixelpdf
 
 # View logs
-journalctl --user -u bentopdf -f
+journalctl --user -u pixelpdf -f
 ```
 
 > [!TIP]
@@ -562,13 +562,13 @@ journalctl --user -u bentopdf -f
 
 ```ini
 [Unit]
-Description=BentoPDF with health monitoring
+Description=Pixel PDF with health monitoring
 After=network-online.target
 Wants=network-online.target
 
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 HealthCmd=wget --spider -q http://localhost:8080 || exit 1
@@ -601,7 +601,7 @@ podman auto-update --dry-run
 
 ### Quadlet 네트워크 설정
 
-사용자 지정 네트워크 설정을 위해 네트워크 파일 `bentopdf.network`를 만드세요:
+사용자 지정 네트워크 설정을 위해 네트워크 파일 `pixelpdf.network`를 만드세요:
 
 ```ini
 [Network]
@@ -613,10 +613,10 @@ Gateway=10.89.0.1
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
-Network=bentopdf.network
+Network=pixelpdf.network
 ```
 
 ## 업데이트

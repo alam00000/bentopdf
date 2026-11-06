@@ -24,7 +24,7 @@ Evrensel görselden PDF'ye dönüştürücü. Neredeyse her biçimde görsel yü
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Bu, BentoPDF'in tüm görsel dönüştürücüleri arasındaki en geniş biçim desteğidir. Yalnızca belirli bir biçime ihtiyacınız varsa bunun yerine özel araçlardan birini kullanın.
+Bu, Pixel PDF'in tüm görsel dönüştürücüleri arasındaki en geniş biçim desteğidir. Yalnızca belirli bir biçime ihtiyacınız varsa bunun yerine özel araçlardan birini kullanın.
 
 ## Nasıl Çalışır
 

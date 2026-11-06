@@ -1,25 +1,25 @@
 ---
 {
-  "title": "iLovePDF Alternative With No Uploads: BentoPDF vs iLovePDF",
-  "h1": "BentoPDF vs iLovePDF: a free iLovePDF alternative that doesn't upload your files",
-  "ogTitle": "iLovePDF Alternative With No Uploads: BentoPDF vs iLovePDF",
+  "title": "iLovePDF Alternative With No Uploads: Pixel PDF vs iLovePDF",
+  "h1": "Pixel PDF vs iLovePDF: a free iLovePDF alternative that doesn't upload your files",
+  "ogTitle": "iLovePDF Alternative With No Uploads: Pixel PDF vs iLovePDF",
   "breadcrumb": "iLovePDF alternative",
-  "description": "BentoPDF vs iLovePDF compared. BentoPDF is free, has no file limits and runs in your browser, so your PDFs are never uploaded. See where each one wins.",
-  "card": "BentoPDF vs iLovePDF side by side: uploads, free plan limits, offline use, and the tools you get for free.",
+  "description": "Pixel PDF vs iLovePDF compared. Pixel PDF is free, has no file limits and runs in your browser, so your PDFs are never uploaded. See where each one wins.",
+  "card": "Pixel PDF vs iLovePDF side by side: uploads, free plan limits, offline use, and the tools you get for free.",
   "date": "2026-10-28",
   "cta": {
     "heading": "Try it on your own PDF",
     "text": "Free, no signup. Your file stays on your device.",
     "href": "/",
-    "label": "Open BentoPDF"
+    "label": "Open Pixel PDF"
   }
 }
 ---
-If you're looking for an iLovePDF alternative, the biggest difference with BentoPDF is where your file goes.
+If you're looking for an iLovePDF alternative, the biggest difference with Pixel PDF is where your file goes.
 
-iLovePDF uploads your PDF and processes it on its servers. BentoPDF processes it in your browser, on your own device. It's free, there's no account, and there's no cap on file size or the number of files.
+iLovePDF uploads your PDF and processes it on its servers. Pixel PDF processes it in your browser, on your own device. It's free, there's no account, and there's no cap on file size or the number of files.
 
-I build BentoPDF, so keep that in mind. Whenever I say what iLovePDF does, I've linked to iLovePDF's own pages so you can check.
+I build Pixel PDF, so keep that in mind. Whenever I say what iLovePDF does, I've linked to iLovePDF's own pages so you can check.
 
 ## Why people look for an iLovePDF alternative
 
@@ -30,11 +30,11 @@ iLovePDF is a good tool. People usually switch for one of these reasons:
 - **Some tools are Premium only.** PDF to PDF/A, Workflows and the apps are all paid.
 - **It doesn't work offline.** The work happens on a server, so the website needs a connection.
 
-## BentoPDF vs iLovePDF: side by side
+## Pixel PDF vs iLovePDF: side by side
 
-Here's how BentoPDF compares with iLovePDF's free plan:
+Here's how Pixel PDF compares with iLovePDF's free plan:
 
-| Feature | iLovePDF (free plan) | BentoPDF |
+| Feature | iLovePDF (free plan) | Pixel PDF |
 | --- | --- | --- |
 | Where your file is processed | Uploaded to iLovePDF's servers | In your browser, never uploaded |
 | Price | Free with limits, Premium is paid | Free, every tool |
@@ -52,7 +52,7 @@ Here's how BentoPDF compares with iLovePDF's free plan:
 
 iLovePDF's limits come from its [pricing page](https://www.ilovepdf.com/pricing), and the file deletion details from its [security page](https://www.ilovepdf.com/help/security).
 
-The only real limit in BentoPDF is your device's memory. A 500-page scan needs a lot more of it than a two-page letter.
+The only real limit in Pixel PDF is your device's memory. A 500-page scan needs a lot more of it than a two-page letter.
 
 ## Your files never leave your device
 
@@ -60,19 +60,19 @@ iLovePDF's security page says processed files are "automatically and permanently
 
 Two hours is reasonable. But "we delete your file later" is a weaker promise than "we never get your file."
 
-BentoPDF's tools run in your browser using WebAssembly, so your PDF doesn't go anywhere. You can check this yourself:
+Pixel PDF's tools run in your browser using WebAssembly, so your PDF doesn't go anywhere. You can check this yourself:
 
 1. Open your browser's developer tools and go to the Network tab.
-2. Process a file in BentoPDF.
+2. Process a file in Pixel PDF.
 3. Watch the requests. Your PDF isn't in them.
 
 Or load a tool, turn off Wi-Fi, and use it anyway.
 
-## BentoPDF tools for the iLovePDF tools you use
+## Pixel PDF tools for the iLovePDF tools you use
 
-Switching is easy. These are the BentoPDF versions of iLovePDF's most used tools:
+Switching is easy. These are the Pixel PDF versions of iLovePDF's most used tools:
 
-| iLovePDF tool | BentoPDF tool |
+| iLovePDF tool | Pixel PDF tool |
 | --- | --- |
 | Merge PDF | [Merge PDF](/merge-pdf) |
 | Split PDF | [Split PDF](/split-pdf) |
@@ -100,7 +100,7 @@ Switching is easy. These are the BentoPDF versions of iLovePDF's most used tools
 
 ## Free tools you won't find on iLovePDF
 
-BentoPDF has over 100 tools. These ones aren't in the tool list on iLovePDF's pricing page:
+Pixel PDF has over 100 tools. These ones aren't in the tool list on iLovePDF's pricing page:
 
 - **More file types to PDF:** [EPUB](/epub-to-pdf), [MOBI](/mobi-to-pdf), [Apple Pages](/pages-to-pdf), [Visio](/vsd-to-pdf), [XPS](/xps-to-pdf) and [Markdown](/markdown-to-pdf).
 - **Certificate signatures:** [Digital Signature](/digital-sign-pdf) signs with your own X.509 certificate, and [Validate Signature](/validate-signature-pdf) checks whether a signed PDF was changed.
@@ -109,9 +109,9 @@ BentoPDF has over 100 tools. These ones aren't in the tool list on iLovePDF's pr
 - **Your own forms:** [Create PDF Form](/form-creator) adds real fillable fields to any PDF.
 - **Automation:** the [Workflow Builder](/pdf-workflow) chains tools together, so you can run the same steps on every file.
 
-## BentoPDF for teams and companies
+## Pixel PDF for teams and companies
 
-Because BentoPDF runs in the browser, you can [host your own copy](/docs/self-hosting) for your whole team. Run it inside your company network with Docker, and nobody has to send files to an outside website.
+Because Pixel PDF runs in the browser, you can [host your own copy](/docs/self-hosting) for your whole team. Run it inside your company network with Docker, and nobody has to send files to an outside website.
 
 If you want to put your own branding on it, or build it into a closed-source product, there's a [commercial license](/licensing). That's also what pays for the project.
 
@@ -119,17 +119,17 @@ If you want to put your own branding on it, or build it into a closed-source pro
 
 I'd rather tell you now than have you find out later:
 
-- **You need an app.** iLovePDF has desktop and mobile apps with Premium. BentoPDF only runs in the browser.
-- **You need PDF to PowerPoint, AI summaries or translation.** BentoPDF doesn't have those.
+- **You need an app.** iLovePDF has desktop and mobile apps with Premium. Pixel PDF only runs in the browser.
+- **You need PDF to PowerPoint, AI summaries or translation.** Pixel PDF doesn't have those.
 - **You need team accounts.** iLovePDF's Business plan has team management, single sign-on and an account manager.
 
 ## Is there a free alternative to iLovePDF?
 
-Yes. BentoPDF is free, with no account, no watermark and no cap on file size or the number of files. That includes the tools that are Premium on iLovePDF, like PDF to PDF/A and Workflows.
+Yes. Pixel PDF is free, with no account, no watermark and no cap on file size or the number of files. That includes the tools that are Premium on iLovePDF, like PDF to PDF/A and Workflows.
 
 ## Is iLovePDF safe to use?
 
-iLovePDF is a legitimate service. Its security page says it uses HTTPS and encryption, holds ISO/IEC 27001 certification, and deletes processed files within two hours. The thing to know is that your file is uploaded to its servers. If you'd rather a file never leaves your device, use a tool that works in your browser, like BentoPDF.
+iLovePDF is a legitimate service. Its security page says it uses HTTPS and encryption, holds ISO/IEC 27001 certification, and deletes processed files within two hours. The thing to know is that your file is uploaded to its servers. If you'd rather a file never leaves your device, use a tool that works in your browser, like Pixel PDF.
 
 ## Does iLovePDF keep your files?
 
@@ -137,16 +137,16 @@ According to its security page, processed files are deleted automatically within
 
 ## Is there an iLovePDF alternative that works offline?
 
-Yes. Once a BentoPDF tool has loaded, it works without an internet connection, because the processing happens in your browser.
+Yes. Once a Pixel PDF tool has loaded, it works without an internet connection, because the processing happens in your browser.
 
 ## Is there an open source alternative to iLovePDF?
 
-Yes. BentoPDF is [open source](https://github.com/alam00000/bentopdf) under the AGPL, and you can run your own copy.
+Yes. Pixel PDF is [open source](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) under the AGPL, and you can run your own copy.
 
 ## Which one should you use?
 
 If you need the apps, PDF to PowerPoint or the AI tools, use iLovePDF.
 
-For everything else, try BentoPDF. Your files stay on your device, and you won't hit a limit halfway through a job.
+For everything else, try Pixel PDF. Your files stay on your device, and you won't hit a limit halfway through a job.
 
-If I've got something wrong about iLovePDF, [open an issue](https://github.com/alam00000/bentopdf/issues). I'll fix it and add a note to the post.
+If I've got something wrong about iLovePDF, [open an issue](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues). I'll fix it and add a note to the post.

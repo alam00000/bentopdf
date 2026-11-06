@@ -5,7 +5,7 @@ description: Annoteer, markeer, redigeer, voeg vormen en afbeeldingen toe, zoek 
 
 # PDF bewerken
 
-Met de PDF-editor van BentoPDF kun je je PDF's annoteren, markeren, redigeren, van opmerkingen voorzien, vormen en afbeeldingen toevoegen en doorzoeken. Er laadt een volledige editor direct in je browser, zonder uploads naar een server.
+Met de PDF-editor van Pixel PDF kun je je PDF's annoteren, markeren, redigeren, van opmerkingen voorzien, vormen en afbeeldingen toevoegen en doorzoeken. Er laadt een volledige editor direct in je browser, zonder uploads naar een server.
 
 ## Zo werkt het
 

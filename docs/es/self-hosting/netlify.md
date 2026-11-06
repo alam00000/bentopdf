@@ -4,7 +4,7 @@
 
 ## Despliegue con un clic
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Despliegue manual
 
@@ -13,7 +13,7 @@
 1. Inicia sesión en [Netlify](https://app.netlify.com)
 2. Haz clic en "Add new site" → "Import an existing project"
 3. Conecta tu cuenta de GitHub
-4. Selecciona tu fork de BentoPDF
+4. Selecciona tu fork de Pixel PDF
 
 ### Paso 2: Configurar los ajustes de compilación
 
@@ -90,7 +90,7 @@ Configúralas en Site settings → Environment variables:
 | Variable                | Descripción                                                          |
 | ----------------------- | -------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Ponla en `true` para una compilación mínima                          |
-| `VITE_BRAND_NAME`       | Nombre de marca personalizado (reemplaza "BentoPDF")                 |
+| `VITE_BRAND_NAME`       | Nombre de marca personalizado (reemplaza "Pixel PDF")                 |
 | `VITE_BRAND_LOGO`       | Ruta del logotipo relativa a `public/` (p. ej. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Texto personalizado del pie de página y de derechos de autor         |
 | `VITE_DEFAULT_LANGUAGE` | Idioma predeterminado de la interfaz (p. ej. `fr`, `de`, `es`)       |

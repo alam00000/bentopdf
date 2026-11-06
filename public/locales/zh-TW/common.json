@@ -13,7 +13,7 @@
     "breadcrumb": "導覽路徑"
   },
   "donation": {
-    "message": "喜歡 BentoPDF 嗎？請協助我們繼續免費提供 BentoPDF，並維持原始碼開放！",
+    "message": "喜歡 Pixel PDF 嗎？請協助我們繼續免費提供 Pixel PDF，並維持原始碼開放！",
     "button": "贊助"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "為何您該選擇",
-    "bentoPdf": "BentoPDF？",
+    "pixelPdf": "Pixel PDF？",
     "noSignup": {
       "title": "免註冊",
       "description": "立即可用，無需帳號或電子郵件。"
@@ -188,8 +188,8 @@
     "questions": "問題",
     "sectionTitle": "常見問題",
     "isFree": {
-      "question": "BentoPDF 真的是免費的嗎？",
-      "answer": "是的，完全免費。BentoPDF 上的所有工具皆可完全免費使用，沒有檔案限制、無需註冊，也不會加上浮水印。我們相信每個人都應該能使用簡單而強大的 PDF 工具，不受付費牆限制。"
+      "question": "Pixel PDF 真的是免費的嗎？",
+      "answer": "是的，完全免費。Pixel PDF 上的所有工具皆可完全免費使用，沒有檔案限制、無需註冊，也不會加上浮水印。我們相信每個人都應該能使用簡單而強大的 PDF 工具，不受付費牆限制。"
     },
     "areFilesSecure": {
       "question": "我的檔案安全嗎？它們是在哪裡進行處理的？",
@@ -197,27 +197,27 @@
     },
     "platforms": {
       "question": "我能在 Mac、Windows 和行動裝置上使用嗎？",
-      "answer": "當然可以！BentoPDF 完全在瀏覽器中執行，因此可用於任何具備現代網頁瀏覽器的作業系統，包括 Windows、macOS、Linux、iOS 與 Android。"
+      "answer": "當然可以！Pixel PDF 完全在瀏覽器中執行，因此可用於任何具備現代網頁瀏覽器的作業系統，包括 Windows、macOS、Linux、iOS 與 Android。"
     },
     "gdprCompliant": {
-      "question": "BentoPDF 符合 GDPR 規範嗎？",
-      "answer": "是的，BentoPDF 完全符合 GDPR 規範。所有檔案都直接在本機瀏覽器中處理，我們絕不蒐集檔案或將檔案傳送至任何伺服器，因此無法存取您的資料。文件始終由您掌控。"
+      "question": "Pixel PDF 符合 GDPR 規範嗎？",
+      "answer": "是的，Pixel PDF 完全符合 GDPR 規範。所有檔案都直接在本機瀏覽器中處理，我們絕不蒐集檔案或將檔案傳送至任何伺服器，因此無法存取您的資料。文件始終由您掌控。"
     },
     "dataStorage": {
       "question": "你們會儲存或追蹤我的檔案嗎？",
-      "answer": "不會。我們絕不儲存、追蹤或記錄您的檔案。您在 BentoPDF 進行的所有操作皆在瀏覽器記憶體中完成，關閉網頁後便會立即消失。沒有上傳、沒有歷史紀錄，也完全不經手任何伺服器。"
+      "answer": "不會。我們絕不儲存、追蹤或記錄您的檔案。您在 Pixel PDF 進行的所有操作皆在瀏覽器記憶體中完成，關閉網頁後便會立即消失。沒有上傳、沒有歷史紀錄，也完全不經手任何伺服器。"
     },
     "different": {
-      "question": "BentoPDF 與其他 PDF 工具有何不同？",
-      "answer": "大多數 PDF 工具都會將檔案上傳到伺服器進行處理，而 BentoPDF 絕不會這麼做。我們採用安全且先進的網頁技術，直接在瀏覽器中處理檔案，因此處理速度更快、隱私保護更完善，也更令人安心。"
+      "question": "Pixel PDF 與其他 PDF 工具有何不同？",
+      "answer": "大多數 PDF 工具都會將檔案上傳到伺服器進行處理，而 Pixel PDF 絕不會這麼做。我們採用安全且先進的網頁技術，直接在瀏覽器中處理檔案，因此處理速度更快、隱私保護更完善，也更令人安心。"
     },
     "browserBased": {
       "question": "瀏覽器端（本機）處理如何確保我的安全？",
-      "answer": "BentoPDF 完全在瀏覽器中執行，確保檔案絕不離開裝置。這能消除伺服器遭駭、資料外洩或未經授權存取的風險。檔案始終屬於您。"
+      "answer": "Pixel PDF 完全在瀏覽器中執行，確保檔案絕不離開裝置。這能消除伺服器遭駭、資料外洩或未經授權存取的風險。檔案始終屬於您。"
     },
     "analytics": {
-      "question": "BentoPDF 會使用 Cookie 或網站分析工具追蹤我嗎？",
-      "answer": "不會。BentoPDF 完全不會追蹤您。我們不使用 Cookie、分析工具或任何追蹤指令碼，即使在正式網站 bentopdf.com 上也是如此。我們永遠不知道您是誰，也不知道您用這些工具做了什麼。"
+      "question": "Pixel PDF 會使用 Cookie 或網站分析工具追蹤我嗎？",
+      "answer": "不會。Pixel PDF 完全不會追蹤您。我們不使用 Cookie、分析工具或任何追蹤指令碼，即使在正式網站 pixelpdf.com 上也是如此。我們永遠不知道您是誰，也不知道您用這些工具做了什麼。"
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "喜歡我的作品嗎？",
-    "description": "BentoPDF 是一個出於熱情開發的專案，為每個人提供一個免費、注重隱私且強大的 PDF 工具箱。如果有幫上您的忙，請考慮贊助開發工作。每杯咖啡都能幫上忙！",
+    "description": "Pixel PDF 是一個出於熱情開發的專案，為每個人提供一個免費、注重隱私且強大的 PDF 工具箱。如果有幫上您的忙，請考慮贊助開發工作。每杯咖啡都能幫上忙！",
     "buyMeCoffee": "買杯咖啡給我"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF，版權所有。",
+    "copyright": "© 2026 Pixel PDF，版權所有。",
     "version": "版本",
     "company": "公司",
     "aboutUs": "關於我們",
@@ -300,9 +300,9 @@
     "philosophy": {
       "label": "我們的核心理念",
       "title": "隱私至上，始終如一。",
-      "description": "所有 BentoPDF 工具都在本機瀏覽器中執行。檔案絕不上傳，其他人無法查看文件內容，也不會有任何機制追蹤操作。"
+      "description": "所有 Pixel PDF 工具都在本機瀏覽器中執行。檔案絕不上傳，其他人無法查看文件內容，也不會有任何機制追蹤操作。"
     },
-    "whyBentopdf": {
+    "whyPixelpdf": {
       "title": "為何選擇",
       "speed": {
         "title": "極速處理",
@@ -318,12 +318,12 @@
       },
       "openSource": {
         "title": "開放原始碼",
-        "description": "程式碼以 AGPL-3.0 授權條款公開於 GitHub，可檢查檔案的實際處理方式。BentoPDF 以 PDF.js、pdf-lib、qpdf 和 LibreOffice 等開放原始碼專案為基礎。"
+        "description": "程式碼以 AGPL-3.0 授權條款公開於 GitHub，可檢查檔案的實際處理方式。Pixel PDF 以 PDF.js、pdf-lib、qpdf 和 LibreOffice 等開放原始碼專案為基礎。"
       }
     },
     "cta": {
       "title": "準備好開始了嗎？",
-      "description": "加入成千上萬信任 BentoPDF 的使用者行列，用它來處理日常文件需求。親自體驗隱私與效能所帶來的全新感受。",
+      "description": "加入成千上萬信任 Pixel PDF 的使用者行列，用它來處理日常文件需求。親自體驗隱私與效能所帶來的全新感受。",
       "button": "探索所有工具"
     }
   },

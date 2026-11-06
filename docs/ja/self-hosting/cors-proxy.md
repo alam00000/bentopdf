@@ -2,7 +2,7 @@
 
 デジタル署名ツールは、外部の認証局（CA）から発行者証明書を取得するためにCORSプロキシを使います。多くのCAサーバーはレスポンスにCORSヘッダーを含めないため、ブラウザから直接取得することができません。
 
-さらに、多くのCAサーバーはプレーンなHTTPで証明書を提供しています。BentoPDFのインスタンスをHTTPSでホストしている場合、ブラウザはこれらのHTTPリクエストをブロックします（混合コンテンツポリシー）。CORSプロキシは、適切なヘッダーを付けたHTTPSエンドポイント経由でリクエストを中継することで、この2つの問題を解決します。
+さらに、多くのCAサーバーはプレーンなHTTPで証明書を提供しています。Pixel PDFのインスタンスをHTTPSでホストしている場合、ブラウザはこれらのHTTPリクエストをブロックします（混合コンテンツポリシー）。CORSプロキシは、適切なヘッダーを付けたHTTPSエンドポイント経由でリクエストを中継することで、この2つの問題を解決します。
 
 ## 仕組み
 
@@ -15,7 +15,7 @@
 
 ## CORSプロキシのセルフホスト
 
-BentoPDFをセルフホストしている場合、チェーンの取得が必要な証明書でデジタル署名を使うには、独自のCORSプロキシをデプロイする必要があります。
+Pixel PDFをセルフホストしている場合、チェーンの取得が必要な証明書でデジタル署名を使うには、独自のCORSプロキシをデプロイする必要があります。
 
 ### オプション1：Cloudflare Workers（推奨）
 
@@ -31,11 +31,11 @@ BentoPDFをセルフホストしている場合、チェーンの取得が必要
    wrangler login
    ```
 
-3. **BentoPDFをクローンし、許可するオリジンを更新する**：
+3. **Pixel PDFをクローンし、許可するオリジンを更新する**：
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    `cors-proxy-worker.js` を開き、`ALLOWED_ORIGINS` 配列を自分のドメインに変更します。
@@ -48,7 +48,7 @@ BentoPDFをセルフホストしている場合、チェーンの取得が必要
    ```
 
    ::: warning 重要
-   この変更をしないと、プロキシはサイトからのすべてのリクエストを **403 Forbidden** エラーで拒否します。デフォルトでは `bentopdf.com` からのリクエストのみ許可されています。
+   この変更をしないと、プロキシはサイトからのすべてのリクエストを **403 Forbidden** エラーで拒否します。デフォルトでは `pixelpdf.com` からのリクエストのみ許可されています。
    :::
 
 4. **プロキシをデプロイする**：
@@ -57,9 +57,9 @@ BentoPDFをセルフホストしている場合、チェーンの取得が必要
    wrangler deploy
    ```
 
-   WorkerのURL（例：`https://bentopdf-cors-proxy.your-subdomain.workers.dev`）を控えておきます。
+   WorkerのURL（例：`https://pixelpdf-cors-proxy.your-subdomain.workers.dev`）を控えておきます。
 
-5. **プロキシURLを指定してBentoPDFを再ビルドする**：
+5. **プロキシURLを指定してPixel PDFを再ビルドする**：
 
    Dockerを使う場合：
 
@@ -67,7 +67,7 @@ BentoPDFをセルフホストしている場合、チェーンの取得が必要
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    ソースからビルドする場合：

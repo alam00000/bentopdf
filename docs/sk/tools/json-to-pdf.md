@@ -1,21 +1,21 @@
 ---
 title: JSON do PDF
-description: Zrekonštruujte súbory PDF z formátu JSON od BentoPDF. Preveďte exporty JSON späť na pôvodné dokumenty PDF.
+description: Zrekonštruujte súbory PDF z formátu JSON od Pixel PDF. Preveďte exporty JSON späť na pôvodné dokumenty PDF.
 ---
 
 # JSON do PDF
 
-Zrekonštruujte dokumenty PDF zo súborov JSON, ktoré predtým vytvoril nástroj BentoPDF **PDF do JSON**. Ide o nástroj na spätnú konverziu: vezme štruktúrovanú reprezentáciu PDF v JSON a znovu zostaví pôvodný dokument.
+Zrekonštruujte dokumenty PDF zo súborov JSON, ktoré predtým vytvoril nástroj Pixel PDF **PDF do JSON**. Ide o nástroj na spätnú konverziu: vezme štruktúrovanú reprezentáciu PDF v JSON a znovu zostaví pôvodný dokument.
 
 ::: warning
-Tento nástroj prijíma iba súbory JSON vytvorené konvertorom PDF do JSON od BentoPDF. Bežné súbory JSON z API, databáz alebo iných nástrojov nie sú podporované.
+Tento nástroj prijíma iba súbory JSON vytvorené konvertorom PDF do JSON od Pixel PDF. Bežné súbory JSON z API, databáz alebo iných nástrojov nie sú podporované.
 :::
 
 ## Podporované formáty
 
 | Vstup   | Popis                                                     |
 | :------ | :-------------------------------------------------------- |
-| `.json` | Súbory JSON exportované nástrojom PDF do JSON od BentoPDF |
+| `.json` | Súbory JSON exportované nástrojom PDF do JSON od Pixel PDF |
 
 ## Ako to funguje
 

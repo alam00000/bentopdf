@@ -5,9 +5,9 @@ description: Reduza o tamanho do PDF em até 90% com o mecanismo Hyper Compress.
 
 # Comprimir PDF
 
-Reduza o tamanho dos seus PDFs sem estragá-los. O Comprimir PDF usa o [Hyper Compress](https://www.bentopdf.com/hyper-compress), o mecanismo de compressão próprio do BentoPDF. Ele recomprime imagens, cria subconjuntos e mescla fontes, e remove peso morto, como miniaturas incorporadas e dados privados de aplicativos. O PDF continua totalmente funcional: o texto permanece selecionável, e links e campos de formulário continuam funcionando.
+Reduza o tamanho dos seus PDFs sem estragá-los. O Comprimir PDF usa o [Hyper Compress](https://www.pixelpdf.com/hyper-compress), o mecanismo de compressão próprio do Pixel PDF. Ele recomprime imagens, cria subconjuntos e mescla fontes, e remove peso morto, como miniaturas incorporadas e dados privados de aplicativos. O PDF continua totalmente funcional: o texto permanece selecionável, e links e campos de formulário continuam funcionando.
 
-O Hyper Compress é compilado para WebAssembly e acompanha o BentoPDF, então a compressão funciona offline e em implantações isoladas da internet, sem configuração extra.
+O Hyper Compress é compilado para WebAssembly e acompanha o Pixel PDF, então a compressão funciona offline e em implantações isoladas da internet, sem configuração extra.
 
 ## Como funciona
 
@@ -36,7 +36,7 @@ O nível Alto também remove a incorporação das 14 fontes padrão do PDF, alé
 
 ## Tamanho de arquivo alvo
 
-Informe um tamanho em KB ou MB e o Hyper Compress busca a melhor qualidade de imagem que ainda caiba, partindo do nível escolhido. Se o documento não puder ficar tão pequeno, você recebe a menor versão possível e uma mensagem avisando. As páginas dedicadas, como [Comprimir PDF para 1MB](https://www.bentopdf.com/compress-pdf-to-1mb), abrem com o alvo já preenchido.
+Informe um tamanho em KB ou MB e o Hyper Compress busca a melhor qualidade de imagem que ainda caiba, partindo do nível escolhido. Se o documento não puder ficar tão pequeno, você recebe a menor versão possível e uma mensagem avisando. As páginas dedicadas, como [Comprimir PDF para 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb), abrem com o alvo já preenchido.
 
 ## Configurações personalizadas
 

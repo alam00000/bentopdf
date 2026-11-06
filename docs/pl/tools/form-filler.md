@@ -36,7 +36,7 @@ Nie ma dodatkowych opcji konfiguracji. Prześlij formularz, wypełnij go i pobie
 
 ## Wskazówki
 
-- XFA to starszy format obsługiwany tylko przez niektóre przeglądarki PDF. Jeśli otworzysz PDF z XFA w Chrome lub w większości innych narzędzi i zobaczysz puste strony, oznacza to, że te przeglądarki nie obsługują XFA. Wypełnianie formularzy w BentoPDF i Firefox obsługują XFA poprawnie.
+- XFA to starszy format obsługiwany tylko przez niektóre przeglądarki PDF. Jeśli otworzysz PDF z XFA w Chrome lub w większości innych narzędzi i zobaczysz puste strony, oznacza to, że te przeglądarki nie obsługują XFA. Wypełnianie formularzy w Pixel PDF i Firefox obsługują XFA poprawnie.
 - W przypadku PDF-ów bez istniejących pól formularza najpierw dodaj pola narzędziem [Utwórz formularz PDF](./form-creator), a potem wypełnij je tutaj.
 - Przeglądarka automatycznie dopasowuje swój rozmiar do wymiarów strony PDF.
 

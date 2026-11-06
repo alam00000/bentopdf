@@ -1,6 +1,6 @@
 # 部署到 Hostinger
 
-[Hostinger](https://hostinger.com) 是一家流行的共享主机提供商。本指南介绍如何将 BentoPDF 部署到 Hostinger 的共享主机。
+[Hostinger](https://hostinger.com) 是一家流行的共享主机提供商。本指南介绍如何将 Pixel PDF 部署到 Hostinger 的共享主机。
 
 ## 前置条件
 
@@ -10,8 +10,8 @@
 ## 第 1 步：构建项目
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Header always set Cross-Origin-Embedder-Policy "require-corp"
 
 ### 刷新页面出现 404 错误
 
-请确保 `.html` 扩展名规则和语言路由配置正确。BentoPDF 使用静态 HTML 文件，而不是 SPA 路由：
+请确保 `.html` 扩展名规则和语言路由配置正确。Pixel PDF 使用静态 HTML 文件，而不是 SPA 路由：
 
 ```apache
 # Language routes serve actual files from language directories

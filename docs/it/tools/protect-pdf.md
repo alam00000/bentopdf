@@ -5,7 +5,7 @@ description: Proteggi i file PDF con una password usando la crittografia AES a 2
 
 # Proteggi PDF
 
-Blocca il tuo PDF con una password, così solo le persone autorizzate potranno aprirlo. BentoPDF usa la crittografia AES a 256 bit, lo stesso standard usato da banche e agenzie governative, applicata interamente nel tuo browser tramite QPDF.
+Blocca il tuo PDF con una password, così solo le persone autorizzate potranno aprirlo. Pixel PDF usa la crittografia AES a 256 bit, lo stesso standard usato da banche e agenzie governative, applicata interamente nel tuo browser tramite QPDF.
 
 ## Come funziona
 
@@ -23,7 +23,7 @@ La password utente è quella che i destinatari digitano per aprire il PDF. Senza
 
 ### Password proprietario (facoltativa)
 
-La password proprietario controlla cosa può fare un utente autorizzato dopo aver aperto il file. Quando imposti una password proprietario distinta, BentoPDF applica automaticamente il set di restrizioni più severo:
+La password proprietario controlla cosa può fare un utente autorizzato dopo aver aperto il file. Quando imposti una password proprietario distinta, Pixel PDF applica automaticamente il set di restrizioni più severo:
 
 - Modifica disabilitata
 - Estrazione/copia disabilitata

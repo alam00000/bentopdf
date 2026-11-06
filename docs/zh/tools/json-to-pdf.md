@@ -1,21 +1,21 @@
 ---
 title: JSON 转 PDF
-description: 从 BentoPDF 的 JSON 格式重建 PDF 文件。将 JSON 导出文件转换回原始 PDF 文档。
+description: 从 Pixel PDF 的 JSON 格式重建 PDF 文件。将 JSON 导出文件转换回原始 PDF 文档。
 ---
 
 # JSON 转 PDF
 
-从之前由 BentoPDF 的 **PDF 转 JSON** 工具创建的 JSON 文件中重建 PDF 文档。这是一个往返转换工具：它读取 PDF 的结构化 JSON 表示，并重建原始文档。
+从之前由 Pixel PDF 的 **PDF 转 JSON** 工具创建的 JSON 文件中重建 PDF 文档。这是一个往返转换工具：它读取 PDF 的结构化 JSON 表示，并重建原始文档。
 
 ::: warning
-此工具只接受由 BentoPDF 的 PDF 转 JSON 转换器生成的 JSON 文件。来自 API、数据库或其他工具的标准 JSON 文件不受支持。
+此工具只接受由 Pixel PDF 的 PDF 转 JSON 转换器生成的 JSON 文件。来自 API、数据库或其他工具的标准 JSON 文件不受支持。
 :::
 
 ## 支持的格式
 
 | 输入    | 说明                                            |
 | :------ | :---------------------------------------------- |
-| `.json` | 由 BentoPDF 的 PDF 转 JSON 工具导出的 JSON 文件 |
+| `.json` | 由 Pixel PDF 的 PDF 转 JSON 工具导出的 JSON 文件 |
 
 ## 使用方法
 

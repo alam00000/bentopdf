@@ -7,7 +7,7 @@ description: Agrega firmas digitales criptográficas a PDFs con certificados X.5
 
 Una firma digital es una prueba criptográfica de que una persona específica firmó un documento y de que este no se ha alterado desde entonces. A diferencia de una firma dibujada (que es solo una imagen), una firma digital usa certificados X.509 y estándares PKCS#7 para ofrecer autenticidad e integridad verificables.
 
-BentoPDF aplica las firmas digitales por completo en tu navegador. Tu clave privada nunca sale de tu dispositivo.
+Pixel PDF aplica las firmas digitales por completo en tu navegador. Tu clave privada nunca sale de tu dispositivo.
 
 ## Cómo Funciona
 

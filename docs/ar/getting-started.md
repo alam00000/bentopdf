@@ -1,16 +1,16 @@
 # البدء
 
-مرحبًا بك في BentoPDF! سيساعدك هذا الدليل على الانطلاق بسرعة.
+مرحبًا بك في Pixel PDF! سيساعدك هذا الدليل على الانطلاق بسرعة.
 
-## ما هو BentoPDF؟
+## ما هو Pixel PDF؟
 
-BentoPDF مجموعة أدوات PDF مجانية ومفتوحة المصدر تضع الخصوصية أولًا، وتعمل **بالكامل داخل متصفحك**. ملفاتك لا تغادر جهازك أبدًا، فكل المعالجة تتم محليًا باستخدام تقنية WebAssembly (WASM).
+Pixel PDF مجموعة أدوات PDF مجانية ومفتوحة المصدر تضع الخصوصية أولًا، وتعمل **بالكامل داخل متصفحك**. ملفاتك لا تغادر جهازك أبدًا، فكل المعالجة تتم محليًا باستخدام تقنية WebAssembly (WASM).
 
 ## بداية سريعة
 
 ### الخيار 1: استخدام النسخة المستضافة
 
-زر [bentopdf.com](https://www.bentopdf.com) لاستخدام BentoPDF فورًا، بدون أي تثبيت.
+زر [pixelpdf.com](https://www.pixelpdf.com) لاستخدام Pixel PDF فورًا، بدون أي تثبيت.
 
 ### الخيار 2: الاستضافة الذاتية باستخدام Docker
 
@@ -25,15 +25,15 @@ BentoPDF مجموعة أدوات PDF مجانية ومفتوحة المصدر ت
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> يتوفر BentoPDF بنسختين: **نسخة الاستضافة الذاتية** (`bentopdf-simple`، المستخدمة أعلاه) لعمليات النشر الداخلية وللفرق والمؤسسات، و**النسخة التجارية** (`bentopdf:latest`) التي يستخدمها bentopdf.com نفسه وأصحاب التراخيص التجارية الذين ينشرون خدمات موجهة للعامة. كلتا النسختين تتضمنان أدوات PDF نفسها، وتضيف النسخة التجارية الواجهة الرئيسية لـ bentopdf.com والأسئلة الشائعة وآراء المستخدمين والتذييل. إذا كنت غير متأكد، فاستخدم نسخة الاستضافة الذاتية.
+> يتوفر Pixel PDF بنسختين: **نسخة الاستضافة الذاتية** (`pixelpdf-simple`، المستخدمة أعلاه) لعمليات النشر الداخلية وللفرق والمؤسسات، و**النسخة التجارية** (`pixelpdf:latest`) التي يستخدمها pixelpdf.com نفسه وأصحاب التراخيص التجارية الذين ينشرون خدمات موجهة للعامة. كلتا النسختين تتضمنان أدوات PDF نفسها، وتضيف النسخة التجارية الواجهة الرئيسية لـ pixelpdf.com والأسئلة الشائعة وآراء المستخدمين والتذييل. إذا كنت غير متأكد، فاستخدم نسخة الاستضافة الذاتية.
 
 ثم افتح `http://localhost:3000` في متصفحك.
 
@@ -44,8 +44,8 @@ docker compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## دعم المتصفحات
 
-يعمل BentoPDF بأفضل شكل على المتصفحات الحديثة:
+يعمل Pixel PDF بأفضل شكل على المتصفحات الحديثة:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ npm run dev
 ## الخطوات التالية
 
 - [استكشف جميع الأدوات](/ar/tools/)
-- [استضف BentoPDF بنفسك](/ar/self-hosting/)
+- [استضف Pixel PDF بنفسك](/ar/self-hosting/)
 - [ساهم في المشروع](/ar/contributing)

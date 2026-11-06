@@ -1,21 +1,21 @@
 ---
 title: JSON ke PDF
-description: Rekonstruksi file PDF dari format JSON BentoPDF. Konversi ekspor JSON kembali ke dokumen PDF aslinya.
+description: Rekonstruksi file PDF dari format JSON Pixel PDF. Konversi ekspor JSON kembali ke dokumen PDF aslinya.
 ---
 
 # JSON ke PDF
 
-Rekonstruksi dokumen PDF dari file JSON yang sebelumnya dibuat oleh alat **PDF ke JSON** BentoPDF. Ini adalah alat konversi bolak-balik: alat ini mengambil representasi JSON terstruktur dari sebuah PDF dan membangun kembali dokumen aslinya.
+Rekonstruksi dokumen PDF dari file JSON yang sebelumnya dibuat oleh alat **PDF ke JSON** Pixel PDF. Ini adalah alat konversi bolak-balik: alat ini mengambil representasi JSON terstruktur dari sebuah PDF dan membangun kembali dokumen aslinya.
 
 ::: warning
-Alat ini hanya menerima file JSON yang dihasilkan oleh konverter PDF ke JSON BentoPDF. File JSON standar dari API, basis data, atau alat lain tidak didukung.
+Alat ini hanya menerima file JSON yang dihasilkan oleh konverter PDF ke JSON Pixel PDF. File JSON standar dari API, basis data, atau alat lain tidak didukung.
 :::
 
 ## Format yang Didukung
 
 | Input   | Deskripsi                                              |
 | :------ | :----------------------------------------------------- |
-| `.json` | File JSON yang diekspor oleh alat PDF ke JSON BentoPDF |
+| `.json` | File JSON yang diekspor oleh alat PDF ke JSON Pixel PDF |
 
 ## Cara Kerja
 

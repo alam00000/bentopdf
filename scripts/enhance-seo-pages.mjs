@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const BASE_PATH = (process.env.BASE_URL || '/').replace(/\/$/, '');
-const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+const SITE_URL = (process.env.SITE_URL || 'https://www.pixelpdf.com').replace(
   /\/+$/,
   ''
 );
@@ -110,8 +110,8 @@ function injectWebsiteSchema(document) {
   script.textContent = serializeJsonLd({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'BentoPDF',
-    alternateName: ['Bento PDF', 'BentoPDF.com'],
+    name: 'Pixel PDF',
+    alternateName: ['Pixel PDF', 'Pixel PDF.com'],
     url: `${SITE_URL}/`,
   });
   document.body.appendChild(script);

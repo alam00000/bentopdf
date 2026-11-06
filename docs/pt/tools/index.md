@@ -1,6 +1,6 @@
 # Referência de Ferramentas
 
-O BentoPDF oferece **mais de 130 ferramentas** para trabalhar com PDFs. Todas as ferramentas rodam inteiramente no seu navegador: seus arquivos nunca saem do seu dispositivo.
+O Pixel PDF oferece **mais de 130 ferramentas** para trabalhar com PDFs. Todas as ferramentas rodam inteiramente no seu navegador: seus arquivos nunca saem do seu dispositivo.
 
 ---
 

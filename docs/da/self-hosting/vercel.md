@@ -4,13 +4,13 @@
 
 ## Deploy med ét klik
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Manuel deployment
 
 ### Trin 1: Fork repositoriet
 
-Fork [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) til din GitHub-konto.
+Fork [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) til din GitHub-konto.
 
 ### Trin 2: Importér til Vercel
 
@@ -32,7 +32,7 @@ Tilføj disse, hvis det er nødvendigt:
 | Variabel                | Beskrivelse                                                  |
 | ----------------------- | ------------------------------------------------------------ |
 | `SIMPLE_MODE`           | Sæt til `true` for minimal brugerflade                       |
-| `VITE_BRAND_NAME`       | Brugerdefineret brandnavn (erstatter "BentoPDF")             |
+| `VITE_BRAND_NAME`       | Brugerdefineret brandnavn (erstatter "Pixel PDF")             |
 | `VITE_BRAND_LOGO`       | Logosti relativt til `public/` (f.eks. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Brugerdefineret sidefods-/ophavsretstekst                    |
 | `VITE_DEFAULT_LANGUAGE` | Standardsprog i brugerfladen (f.eks. `fr`, `de`, `es`)       |
@@ -51,7 +51,7 @@ Klik på "Deploy", og vent på, at buildet er færdigt.
 ## Begrænsninger
 
 ::: warning Store filer
-Vercels serverless-funktioner har en grænse på 50 MB. Da BentoPDF er et statisk site, bør det ikke påvirke dig, men WASM-modulerne er store (ca. 100 MB i alt). Sørg for, at de leveres fra mappen `/public`.
+Vercels serverless-funktioner har en grænse på 50 MB. Da Pixel PDF er et statisk site, bør det ikke påvirke dig, men WASM-modulerne er store (ca. 100 MB i alt). Sørg for, at de leveres fra mappen `/public`.
 :::
 
 ## Fejlfinding

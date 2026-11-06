@@ -5,7 +5,7 @@ description: Dodawaj adnotacje, zakreślaj, redaguj (zaczerniaj), dodawaj kszta�
 
 # Edytor PDF
 
-Edytor PDF w BentoPDF pozwala dodawać adnotacje, zakreślać, redagować (zaczerniać), komentować, dodawać kształty i obrazy oraz przeszukiwać pliki PDF. Ładuje w pełni funkcjonalny edytor bezpośrednio w przeglądarce, bez wysyłania plików na serwer.
+Edytor PDF w Pixel PDF pozwala dodawać adnotacje, zakreślać, redagować (zaczerniać), komentować, dodawać kształty i obrazy oraz przeszukiwać pliki PDF. Ładuje w pełni funkcjonalny edytor bezpośrednio w przeglądarce, bez wysyłania plików na serwer.
 
 ## Jak to działa
 

@@ -5,7 +5,7 @@ description: PDF'lere doğrudan tarayıcınızda açıklama ekleyin, vurgulayın
 
 # PDF Düzenleyici
 
-BentoPDF'in PDF Düzenleyicisi, PDF'lerinize açıklama eklemenizi, vurgulamanızı, karartmanızı, yorum yapmanızı, şekil ve görsel eklemenizi ve içlerinde arama yapmanızı sağlar. Sunucuya yükleme gerektirmeden doğrudan tarayıcınızda tam özellikli bir düzenleyici yükler.
+Pixel PDF'in PDF Düzenleyicisi, PDF'lerinize açıklama eklemenizi, vurgulamanızı, karartmanızı, yorum yapmanızı, şekil ve görsel eklemenizi ve içlerinde arama yapmanızı sağlar. Sunucuya yükleme gerektirmeden doğrudan tarayıcınızda tam özellikli bir düzenleyici yükler.
 
 ## Nasıl Çalışır
 

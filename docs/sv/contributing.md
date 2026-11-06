@@ -1,6 +1,6 @@
 # Bidra
 
-Tack för ditt intresse av att bidra till BentoPDF! Den här guiden hjälper dig att komma igång.
+Tack för ditt intresse av att bidra till Pixel PDF! Den här guiden hjälper dig att komma igång.
 
 ## Komma igång
 
@@ -14,8 +14,8 @@ Tack för ditt intresse av att bidra till BentoPDF! Den här guiden hjälper dig
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Projektstruktur
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Lägg till poster i alla språkfiler i `public/locales/`:
 
 ## Översättning
 
-Se [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) för hur du lägger till nya språk.
+Se [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) för hur du lägger till nya språk.
 
 ## Licensavtal för bidragsgivare
 
 Innan din PR kan slås ihop måste du signera vårt CLA:
 
-- [Individual CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [Corporate CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [Individual CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [Corporate CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Få hjälp
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discord-community](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licens
 
-BentoPDF har dubbel licensiering:
+Pixel PDF har dubbel licensiering:
 
 - **AGPL-3.0** för öppen källkod-projekt där du delar hela din källkod offentligt
 - **Kommersiell licens** för proprietära program med sluten källkod - [Skaffa livstidslicens för $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

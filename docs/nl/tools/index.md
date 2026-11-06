@@ -1,6 +1,6 @@
 # Overzicht van tools
 
-BentoPDF biedt **meer dan 130 tools** om met PDF's te werken. Alle tools draaien volledig in je browser, je bestanden verlaten je apparaat nooit.
+Pixel PDF biedt **meer dan 130 tools** om met PDF's te werken. Alle tools draaien volledig in je browser, je bestanden verlaten je apparaat nooit.
 
 ---
 

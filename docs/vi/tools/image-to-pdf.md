@@ -24,7 +24,7 @@ Bộ chuyển đổi ảnh sang PDF đa năng. Tải lên ảnh ở hầu hết 
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Đây là phạm vi hỗ trợ định dạng rộng nhất trong số các bộ chuyển đổi ảnh của BentoPDF. Nếu bạn chỉ cần một định dạng cụ thể, hãy dùng công cụ chuyên biệt tương ứng.
+Đây là phạm vi hỗ trợ định dạng rộng nhất trong số các bộ chuyển đổi ảnh của Pixel PDF. Nếu bạn chỉ cần một định dạng cụ thể, hãy dùng công cụ chuyên biệt tương ứng.
 
 ## Cách hoạt động
 

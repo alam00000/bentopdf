@@ -5,9 +5,9 @@ description: Hyper Compressエンジンで、PDFのファイルサイズを最�
 
 # PDFの圧縮
 
-PDFファイルを壊さずに小さくします。PDFの圧縮は、BentoPDF独自の圧縮エンジンである [Hyper Compress](https://www.bentopdf.com/hyper-compress) を使用しています。画像の再圧縮、フォントのサブセット化と統合、埋め込みサムネイルやアプリケーション固有の非公開データなど不要なデータの削除を行います。PDFの機能は完全に保たれ、テキストは選択でき、リンクやフォームフィールドも動作します。
+PDFファイルを壊さずに小さくします。PDFの圧縮は、Pixel PDF独自の圧縮エンジンである [Hyper Compress](https://www.pixelpdf.com/hyper-compress) を使用しています。画像の再圧縮、フォントのサブセット化と統合、埋め込みサムネイルやアプリケーション固有の非公開データなど不要なデータの削除を行います。PDFの機能は完全に保たれ、テキストは選択でき、リンクやフォームフィールドも動作します。
 
-Hyper CompressはWebAssemblyにコンパイルされてBentoPDFに同梱されているため、追加のセットアップなしで、オフラインやエアギャップ環境でも圧縮できます。
+Hyper CompressはWebAssemblyにコンパイルされてPixel PDFに同梱されているため、追加のセットアップなしで、オフラインやエアギャップ環境でも圧縮できます。
 
 ## 使い方
 
@@ -36,7 +36,7 @@ Hyper CompressはWebAssemblyにコンパイルされてBentoPDFに同梱され�
 
 ## 目標ファイルサイズ
 
-KBまたはMBでサイズを入力すると、Hyper Compressは、選んだレベルから始めて、そのサイズに収まる最良の画像品質を探します。文書がそこまで小さくならない場合は、作成できる最小のバージョンが出力され、その旨のメッセージが表示されます。[PDFを1MBに圧縮](https://www.bentopdf.com/compress-pdf-to-1mb) のような専用ページは、目標があらかじめ入力された状態で開きます。
+KBまたはMBでサイズを入力すると、Hyper Compressは、選んだレベルから始めて、そのサイズに収まる最良の画像品質を探します。文書がそこまで小さくならない場合は、作成できる最小のバージョンが出力され、その旨のメッセージが表示されます。[PDFを1MBに圧縮](https://www.pixelpdf.com/compress-pdf-to-1mb) のような専用ページは、目標があらかじめ入力された状態で開きます。
 
 ## 詳細設定
 

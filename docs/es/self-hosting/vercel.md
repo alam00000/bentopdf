@@ -4,13 +4,13 @@
 
 ## Despliegue con un clic
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Despliegue manual
 
 ### Paso 1: Hacer un fork del repositorio
 
-Haz un fork de [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) en tu cuenta de GitHub.
+Haz un fork de [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) en tu cuenta de GitHub.
 
 ### Paso 2: Importar en Vercel
 
@@ -32,7 +32,7 @@ Añádelas si las necesitas:
 | Variable                | Descripción                                                          |
 | ----------------------- | -------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Ponla en `true` para una interfaz mínima                             |
-| `VITE_BRAND_NAME`       | Nombre de marca personalizado (reemplaza "BentoPDF")                 |
+| `VITE_BRAND_NAME`       | Nombre de marca personalizado (reemplaza "Pixel PDF")                 |
 | `VITE_BRAND_LOGO`       | Ruta del logotipo relativa a `public/` (p. ej. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Texto personalizado del pie de página y de derechos de autor         |
 | `VITE_DEFAULT_LANGUAGE` | Idioma predeterminado de la interfaz (p. ej. `fr`, `de`, `es`)       |
@@ -51,7 +51,7 @@ Haz clic en "Deploy" y espera a que termine la compilación.
 ## Limitaciones
 
 ::: warning Archivos grandes
-Las funciones serverless de Vercel tienen un límite de 50 MB. Como BentoPDF es un sitio estático, esto no debería afectarte, pero los módulos WASM son grandes (~100 MB en total). Asegúrate de que se sirvan desde la carpeta `/public`.
+Las funciones serverless de Vercel tienen un límite de 50 MB. Como Pixel PDF es un sitio estático, esto no debería afectarte, pero los módulos WASM son grandes (~100 MB en total). Asegúrate de que se sirvan desde la carpeta `/public`.
 :::
 
 ## Solución de problemas

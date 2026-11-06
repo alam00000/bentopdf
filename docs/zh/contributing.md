@@ -1,6 +1,6 @@
 # 参与贡献
 
-感谢您有兴趣为 BentoPDF 做出贡献！本指南将帮助您快速上手。
+感谢您有兴趣为 Pixel PDF 做出贡献！本指南将帮助您快速上手。
 
 ## 开始上手
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## 项目结构
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## 翻译
 
-添加新语言请参阅 [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md)。
+添加新语言请参阅 [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md)。
 
 ## 贡献者许可协议
 
 在您的 PR 被合并之前，需要先签署我们的 CLA：
 
-- [个人 CLA (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [企业 CLA (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [个人 CLA (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [企业 CLA (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## 获取帮助
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Discord 社区](https://discord.gg/Bgq3Ay3f2w)
 
 ## 许可证
 
-BentoPDF 采用双重许可：
+Pixel PDF 采用双重许可：
 
 - **AGPL-3.0**：适用于公开分享完整源代码的开源项目
 - **商业许可**：适用于专有/闭源应用 - [购买终身许可，仅需 $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

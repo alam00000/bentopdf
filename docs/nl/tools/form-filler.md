@@ -36,7 +36,7 @@ Er zijn geen extra configuratieopties. Upload het formulier, vul het in en downl
 
 ## Tips
 
-- XFA-formulieren zijn een verouderd formaat dat maar door sommige PDF-viewers wordt ondersteund. Als je een XFA-PDF in Chrome of de meeste andere tools opent en lege pagina's ziet, ontbreekt daar XFA-ondersteuning. De Formulier invullen-tool van BentoPDF en Firefox verwerken XFA wel goed.
+- XFA-formulieren zijn een verouderd formaat dat maar door sommige PDF-viewers wordt ondersteund. Als je een XFA-PDF in Chrome of de meeste andere tools opent en lege pagina's ziet, ontbreekt daar XFA-ondersteuning. De Formulier invullen-tool van Pixel PDF en Firefox verwerken XFA wel goed.
 - Gebruik voor PDF's zonder formuliervelden eerst de tool [PDF-formulier maken](./form-creator) om velden toe te voegen en vul ze daarna hier in.
 - De viewer past zijn formaat automatisch aan de paginaafmetingen van de PDF aan.
 

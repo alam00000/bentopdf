@@ -4,13 +4,13 @@
 
 ## النشر بنقرة واحدة
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## النشر اليدوي
 
 ### الخطوة 1: عمل Fork للمستودع
 
-اعمل Fork لـ [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) إلى حسابك على GitHub.
+اعمل Fork لـ [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) إلى حسابك على GitHub.
 
 ### الخطوة 2: الاستيراد إلى Vercel
 
@@ -32,7 +32,7 @@
 | المتغير                 | الوصف                                                      |
 | ----------------------- | ---------------------------------------------------------- |
 | `SIMPLE_MODE`           | اضبطه على `true` لواجهة مبسطة                              |
-| `VITE_BRAND_NAME`       | اسم العلامة التجارية المخصص (يحل محل "BentoPDF")           |
+| `VITE_BRAND_NAME`       | اسم العلامة التجارية المخصص (يحل محل "Pixel PDF")           |
 | `VITE_BRAND_LOGO`       | مسار الشعار نسبةً إلى `public/` (مثل `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | نص التذييل/حقوق النشر المخصص                               |
 | `VITE_DEFAULT_LANGUAGE` | لغة الواجهة الافتراضية (مثل `fr` و`de` و`es`)              |
@@ -51,7 +51,7 @@
 ## القيود
 
 ::: warning الملفات الكبيرة
-للدوال عديمة الخادم (serverless) في Vercel حد قدره 50MB. بما أن BentoPDF موقع ثابت، فلا ينبغي أن يؤثر ذلك عليك، لكن وحدات WASM كبيرة (~100MB إجمالًا). تأكد من تقديمها من مجلد `/public`.
+للدوال عديمة الخادم (serverless) في Vercel حد قدره 50MB. بما أن Pixel PDF موقع ثابت، فلا ينبغي أن يؤثر ذلك عليك، لكن وحدات WASM كبيرة (~100MB إجمالًا). تأكد من تقديمها من مجلد `/public`.
 :::
 
 ## استكشاف الأخطاء وإصلاحها

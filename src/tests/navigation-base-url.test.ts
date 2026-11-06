@@ -77,7 +77,7 @@ describe('Navigation BASE_URL Consistency', () => {
       ];
 
       const brandAnchor = anchors.find(([, , innerContent]) =>
-        /{{#if\s+brandName}}|BentoPDF/i.test(innerContent)
+        /{{#if\s+brandName}}|Pixel PDF/i.test(innerContent)
       );
 
       expect(

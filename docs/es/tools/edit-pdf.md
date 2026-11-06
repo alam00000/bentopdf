@@ -5,7 +5,7 @@ description: Anota, resalta, tacha, agrega formas e imágenes, busca y visualiza
 
 # Editor PDF
 
-El Editor PDF de BentoPDF te permite anotar, resaltar, tachar contenido (redactar), comentar, agregar formas e imágenes y buscar dentro de tus PDFs. Carga un editor completo directamente en tu navegador, sin subir nada a ningún servidor.
+El Editor PDF de Pixel PDF te permite anotar, resaltar, tachar contenido (redactar), comentar, agregar formas e imágenes y buscar dentro de tus PDFs. Carga un editor completo directamente en tu navegador, sin subir nada a ningún servidor.
 
 ## Cómo Funciona
 

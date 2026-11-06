@@ -4,13 +4,13 @@
 
 ## Triển khai một lần nhấp
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Triển khai thủ công
 
 ### Bước 1: Fork repository
 
-Fork [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) về tài khoản GitHub của bạn.
+Fork [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) về tài khoản GitHub của bạn.
 
 ### Bước 2: Nhập vào Vercel
 
@@ -32,7 +32,7 @@ Thêm các biến này nếu cần:
 | Variable                | Mô tả                                                         |
 | ----------------------- | ------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Đặt là `true` để có giao diện tối giản                        |
-| `VITE_BRAND_NAME`       | Tên thương hiệu tùy chỉnh (thay cho "BentoPDF")               |
+| `VITE_BRAND_NAME`       | Tên thương hiệu tùy chỉnh (thay cho "Pixel PDF")               |
 | `VITE_BRAND_LOGO`       | Đường dẫn logo tính từ `public/` (ví dụ `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Văn bản chân trang / bản quyền tùy chỉnh                      |
 | `VITE_DEFAULT_LANGUAGE` | Ngôn ngữ giao diện mặc định (ví dụ `fr`, `de`, `es`)          |
@@ -51,7 +51,7 @@ Nhấp "Deploy" và đợi quá trình dựng hoàn tất.
 ## Hạn chế
 
 ::: warning Tệp lớn
-Các serverless function của Vercel có giới hạn 50MB. Vì BentoPDF là trang web tĩnh nên điều này không ảnh hưởng đến bạn, nhưng các mô-đun WASM khá lớn (tổng cộng ~100MB). Hãy đảm bảo chúng được phục vụ từ thư mục `/public`.
+Các serverless function của Vercel có giới hạn 50MB. Vì Pixel PDF là trang web tĩnh nên điều này không ảnh hưởng đến bạn, nhưng các mô-đun WASM khá lớn (tổng cộng ~100MB). Hãy đảm bảo chúng được phục vụ từ thư mục `/public`.
 :::
 
 ## Khắc phục sự cố

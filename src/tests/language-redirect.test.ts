@@ -47,7 +47,7 @@ function visit({
   const window = {
     location: {
       pathname,
-      origin: 'https://www.bentopdf.com',
+      origin: 'https://www.pixelpdf.com',
       search: '?q=1',
       hash,
       replace: (url: string) => {
@@ -123,7 +123,7 @@ describe('language-redirect.js', () => {
       visit({
         path: '/',
         browser: ['de-DE'],
-        referrer: 'https://www.bentopdf.com/merge-pdf',
+        referrer: 'https://www.pixelpdf.com/merge-pdf',
       })
     ).toBeNull();
     expect(

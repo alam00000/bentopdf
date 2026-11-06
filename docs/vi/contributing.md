@@ -1,6 +1,6 @@
 # Đóng góp
 
-Cảm ơn bạn đã quan tâm đến việc đóng góp cho BentoPDF! Hướng dẫn này sẽ giúp bạn bắt đầu.
+Cảm ơn bạn đã quan tâm đến việc đóng góp cho Pixel PDF! Hướng dẫn này sẽ giúp bạn bắt đầu.
 
 ## Bắt đầu
 
@@ -14,8 +14,8 @@ Cảm ơn bạn đã quan tâm đến việc đóng góp cho BentoPDF! Hướng 
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Cấu trúc dự án
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Thêm các mục vào tất cả tệp locale trong `public/locales/`:
 
 ## Dịch thuật
 
-Xem [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) để biết cách thêm ngôn ngữ mới.
+Xem [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) để biết cách thêm ngôn ngữ mới.
 
 ## Thỏa thuận cấp phép cho người đóng góp
 
 Trước khi PR của bạn được merge, bạn cần ký CLA của chúng tôi:
 
-- [CLA cá nhân (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [CLA doanh nghiệp (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [CLA cá nhân (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [CLA doanh nghiệp (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Nhận trợ giúp
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Cộng đồng Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Giấy phép
 
-BentoPDF được cấp phép kép:
+Pixel PDF được cấp phép kép:
 
 - **AGPL-3.0** cho các dự án mã nguồn mở công khai toàn bộ mã nguồn của mình
 - **Giấy phép thương mại** cho các ứng dụng độc quyền/mã nguồn đóng - [Nhận giấy phép trọn đời với giá $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

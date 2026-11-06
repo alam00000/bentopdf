@@ -1,4 +1,4 @@
-export const OFFICIAL_SITE_URL = 'https://www.bentopdf.com';
+export const OFFICIAL_SITE_URL = 'https://www.pixelpdf.com';
 
 export function resolveSiteUrl() {
   return (process.env.SITE_URL || OFFICIAL_SITE_URL).replace(/\/+$/, '');
@@ -7,7 +7,7 @@ export function resolveSiteUrl() {
 export function isOfficialSiteUrl(url = resolveSiteUrl()) {
   try {
     const { hostname } = new URL(url);
-    return hostname === 'www.bentopdf.com' || hostname === 'bentopdf.com';
+    return hostname === 'www.pixelpdf.com' || hostname === 'pixelpdf.com';
   } catch {
     return false;
   }

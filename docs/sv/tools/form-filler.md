@@ -36,7 +36,7 @@ Det finns inga ytterligare konfigurationsalternativ. Ladda upp formuläret, fyll
 
 ## Tips
 
-- XFA-formulär är ett äldre format som bara stöds av vissa PDF-visare. Om du öppnar en XFA-PDF i Chrome eller de flesta andra verktyg och ser tomma sidor beror det på att dessa visare saknar XFA-stöd. BentoPDF:s Formulärifyllare och Firefox hanterar båda XFA korrekt.
+- XFA-formulär är ett äldre format som bara stöds av vissa PDF-visare. Om du öppnar en XFA-PDF i Chrome eller de flesta andra verktyg och ser tomma sidor beror det på att dessa visare saknar XFA-stöd. Pixel PDF:s Formulärifyllare och Firefox hanterar båda XFA korrekt.
 - För PDF-filer utan befintliga formulärfält, använd verktyget [Skapa PDF-formulär](./form-creator) för att lägga till fält först och fyll sedan i dem här.
 - Visaren anpassar automatiskt sin storlek efter PDF-filens sidmått.
 

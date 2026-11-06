@@ -1,16 +1,16 @@
 # Primers passos
 
-Et donem la benvinguda a BentoPDF! Aquesta guia t'ajudarà a posar-te en marxa ràpidament.
+Et donem la benvinguda a Pixel PDF! Aquesta guia t'ajudarà a posar-te en marxa ràpidament.
 
-## Què és BentoPDF?
+## Què és Pixel PDF?
 
-BentoPDF és un conjunt d'eines PDF gratuït, de codi obert i pensat per protegir la privadesa, que funciona **íntegrament al navegador**. Els fitxers no surten mai del dispositiu: tot el processament es fa en local amb tecnologia WebAssembly (WASM).
+Pixel PDF és un conjunt d'eines PDF gratuït, de codi obert i pensat per protegir la privadesa, que funciona **íntegrament al navegador**. Els fitxers no surten mai del dispositiu: tot el processament es fa en local amb tecnologia WebAssembly (WASM).
 
 ## Inici ràpid
 
 ### Opció 1: utilitza la versió allotjada
 
-Visita [bentopdf.com](https://www.bentopdf.com) per utilitzar BentoPDF a l'instant, sense instal·lació.
+Visita [pixelpdf.com](https://www.pixelpdf.com) per utilitzar Pixel PDF a l'instant, sense instal·lació.
 
 ### Opció 2: allotja'l tu mateix amb Docker
 
@@ -25,15 +25,15 @@ Visita [bentopdf.com](https://www.bentopdf.com) per utilitzar BentoPDF a l'insta
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF s'ofereix en dues versions: la **versió autoallotjada** (`bentopdf-simple`, la utilitzada més amunt) per a desplegaments interns, d'equip o d'organització, i la **versió comercial** (`bentopdf:latest`) que utilitza el mateix bentopdf.com i els titulars de llicència comercial amb desplegaments públics. Totes dues inclouen les mateixes eines PDF: la versió comercial afegeix la portada, les preguntes freqüents, els testimonis i el peu de pàgina de bentopdf.com. Si tens dubtes, utilitza la versió autoallotjada.
+> Pixel PDF s'ofereix en dues versions: la **versió autoallotjada** (`pixelpdf-simple`, la utilitzada més amunt) per a desplegaments interns, d'equip o d'organització, i la **versió comercial** (`pixelpdf:latest`) que utilitza el mateix pixelpdf.com i els titulars de llicència comercial amb desplegaments públics. Totes dues inclouen les mateixes eines PDF: la versió comercial afegeix la portada, les preguntes freqüents, els testimonis i el peu de pàgina de pixelpdf.com. Si tens dubtes, utilitza la versió autoallotjada.
 
 Després obre `http://localhost:3000` al navegador.
 
@@ -44,8 +44,8 @@ Després obre `http://localhost:3000` al navegador.
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## Compatibilitat amb navegadors
 
-BentoPDF funciona millor en navegadors moderns:
+Pixel PDF funciona millor en navegadors moderns:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF funciona millor en navegadors moderns:
 ## Següents passos
 
 - [Explora totes les eines](/ca/tools/)
-- [Allotja BentoPDF tu mateix](/ca/self-hosting/)
+- [Allotja Pixel PDF tu mateix](/ca/self-hosting/)
 - [Contribueix al projecte](/ca/contributing)

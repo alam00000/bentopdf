@@ -5,7 +5,7 @@ description: Zabezpiecz pliki PDF hasłem za pomocą 256-bitowego szyfrowania AE
 
 # Zabezpiecz PDF
 
-Zablokuj PDF hasłem, aby otworzyć go mogły tylko upoważnione osoby. BentoPDF używa 256-bitowego szyfrowania AES, tego samego standardu, którego używają banki i agencje rządowe, stosowanego w całości w przeglądarce przez QPDF.
+Zablokuj PDF hasłem, aby otworzyć go mogły tylko upoważnione osoby. Pixel PDF używa 256-bitowego szyfrowania AES, tego samego standardu, którego używają banki i agencje rządowe, stosowanego w całości w przeglądarce przez QPDF.
 
 ## Jak to działa
 
@@ -23,7 +23,7 @@ Hasło użytkownika to to, co odbiorcy wpisują, aby otworzyć PDF. Bez niego do
 
 ### Hasło właściciela (opcjonalne)
 
-Hasło właściciela kontroluje, co upoważniony użytkownik może zrobić po otwarciu pliku. Gdy ustawisz odrębne hasło właściciela, BentoPDF automatycznie stosuje najsurowszy zestaw ograniczeń:
+Hasło właściciela kontroluje, co upoważniony użytkownik może zrobić po otwarciu pliku. Gdy ustawisz odrębne hasło właściciela, Pixel PDF automatycznie stosuje najsurowszy zestaw ograniczeń:
 
 - Modyfikacja wyłączona
 - Wyodrębnianie/kopiowanie wyłączone

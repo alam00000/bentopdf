@@ -5,7 +5,7 @@ description: Beskyt PDF-filer med adgangskode og 256-bit AES-kryptering. Angiv b
 
 # Beskyt PDF
 
-Lås din PDF bag en adgangskode, så kun autoriserede personer kan åbne den. BentoPDF bruger 256-bit AES-kryptering, den samme standard som banker og offentlige myndigheder bruger, og den udføres helt i din browser via QPDF.
+Lås din PDF bag en adgangskode, så kun autoriserede personer kan åbne den. Pixel PDF bruger 256-bit AES-kryptering, den samme standard som banker og offentlige myndigheder bruger, og den udføres helt i din browser via QPDF.
 
 ## Sådan fungerer det
 
@@ -23,7 +23,7 @@ Brugeradgangskoden er det, modtagerne skriver for at åbne PDF'en. Uden den er d
 
 ### Ejeradgangskode (valgfri)
 
-Ejeradgangskoden styrer, hvad en autoriseret bruger kan gøre, efter filen er åbnet. Når du angiver en særskilt ejeradgangskode, anvender BentoPDF automatisk det strengeste sæt begrænsninger:
+Ejeradgangskoden styrer, hvad en autoriseret bruger kan gøre, efter filen er åbnet. Når du angiver en særskilt ejeradgangskode, anvender Pixel PDF automatisk det strengeste sæt begrænsninger:
 
 - Ændring deaktiveret
 - Udtrækning/kopiering deaktiveret

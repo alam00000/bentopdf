@@ -131,11 +131,11 @@ function main() {
   execSync(`git push origin ${tagName}`, { stdio: 'inherit' });
 
   console.log(`🎉 Release v${newVersion} complete!`);
-  console.log(`📦 Docker image: bentopdfteam/bentopdf:${newVersion}`);
+  console.log(`📦 Docker image: pixelpdfteam/pixelpdf:${newVersion}`);
   console.log(`📦 Distribution: dist-${newVersion}.zip`);
   console.log(`📦 Distribution (simple): dist-simple-${newVersion}.zip`);
   console.log(
-    `🏷️  GitHub release: https://github.com/alam00000/bentopdf/releases/tag/${tagName}`
+    `🏷️  GitHub release: https://github.com/mohammedalhinaki-cloud/Pixel-PDF/releases/tag/${tagName}`
   );
 }
 

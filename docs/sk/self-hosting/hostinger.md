@@ -1,6 +1,6 @@
 # Nasadenie na Hostinger
 
-[Hostinger](https://hostinger.com) je obľúbený poskytovateľ zdieľaného hostingu. Tento návod popisuje nasadenie BentoPDF na zdieľaný hosting Hostinger.
+[Hostinger](https://hostinger.com) je obľúbený poskytovateľ zdieľaného hostingu. Tento návod popisuje nasadenie Pixel PDF na zdieľaný hosting Hostinger.
 
 ## Predpoklady
 
@@ -10,8 +10,8 @@
 ## Krok 1: Zostavenie projektu
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Ak sa hlavičky neuplatňujú, požiadajte podporu Hostinger o zapnutie `mod_hea
 
 ### Chyby 404 pri obnovení stránky
 
-Uistite sa, že pravidlo pre príponu `.html` a jazykové trasy sú správne nastavené. BentoPDF používa statické HTML súbory, nie smerovanie SPA:
+Uistite sa, že pravidlo pre príponu `.html` a jazykové trasy sú správne nastavené. Pixel PDF používa statické HTML súbory, nie smerovanie SPA:
 
 ```apache
 # Language routes serve actual files from language directories

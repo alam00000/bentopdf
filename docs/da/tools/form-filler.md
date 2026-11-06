@@ -36,7 +36,7 @@ Der er ingen yderligere konfigurationsindstillinger. Upload formularen, udfyld d
 
 ## Tips
 
-- XFA-formularer er et ældre format, som kun understøttes af nogle PDF-læsere. Hvis du åbner en XFA-PDF i Chrome eller de fleste andre værktøjer og ser tomme sider, mangler disse læsere XFA-understøttelse. BentoPDF's formularudfylder og Firefox håndterer begge XFA korrekt.
+- XFA-formularer er et ældre format, som kun understøttes af nogle PDF-læsere. Hvis du åbner en XFA-PDF i Chrome eller de fleste andre værktøjer og ser tomme sider, mangler disse læsere XFA-understøttelse. Pixel PDF's formularudfylder og Firefox håndterer begge XFA korrekt.
 - Til PDF'er uden eksisterende formularfelter kan du bruge værktøjet [Opret PDF-formular](./form-creator) til først at tilføje felter og derefter udfylde dem her.
 - Vieweren tilpasser automatisk sin størrelse til PDF'ens sidemål.
 

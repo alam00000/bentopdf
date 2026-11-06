@@ -38,7 +38,7 @@ Aggiungi la tua firma a qualsiasi documento PDF. Lo strumento incorpora un visua
 ## Suggerimenti
 
 - Attiva l'appiattimento se invii il PDF firmato a qualcuno che non deve poter rimuovere o spostare la tua firma.
-- Per le firme digitali legalmente vincolanti con verifica basata su certificato, BentoPDF offre anche uno strumento separato, Firma digitale PDF.
+- Per le firme digitali legalmente vincolanti con verifica basata su certificato, Pixel PDF offre anche uno strumento separato, Firma digitale PDF.
 - Carica un'immagine PNG della firma con sfondo trasparente per il risultato più pulito.
 
 ## Strumenti correlati

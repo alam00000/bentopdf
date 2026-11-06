@@ -38,7 +38,7 @@ Dodaj swój podpis do dowolnego dokumentu PDF. Narzędzie osadza pełną przegl�
 ## Wskazówki
 
 - Włącz spłaszczanie, jeśli wysyłasz podpisany PDF komuś, kto nie powinien móc usunąć ani przesunąć Twojego podpisu.
-- Do prawnie wiążących podpisów cyfrowych z weryfikacją opartą na certyfikatach BentoPDF oferuje również osobne narzędzie Podpis cyfrowy PDF.
+- Do prawnie wiążących podpisów cyfrowych z weryfikacją opartą na certyfikatach Pixel PDF oferuje również osobne narzędzie Podpis cyfrowy PDF.
 - Wgraj obraz podpisu w PNG z przezroczystym tłem, aby uzyskać najczystszy wynik.
 
 ## Powiązane narzędzia

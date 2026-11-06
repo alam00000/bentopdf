@@ -4,7 +4,7 @@
 
 ## النشر بنقرة واحدة
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## النشر اليدوي
 
@@ -13,7 +13,7 @@
 1. سجّل الدخول إلى [Netlify](https://app.netlify.com)
 2. انقر على "Add new site" ← "Import an existing project"
 3. اربط حسابك على GitHub
-4. اختر نسخة BentoPDF المتفرعة (fork) الخاصة بك
+4. اختر نسخة Pixel PDF المتفرعة (fork) الخاصة بك
 
 ### الخطوة 2: ضبط إعدادات البناء
 
@@ -90,7 +90,7 @@
 | المتغير                 | الوصف                                                      |
 | ----------------------- | ---------------------------------------------------------- |
 | `SIMPLE_MODE`           | اضبطه على `true` لبناء مبسط                                |
-| `VITE_BRAND_NAME`       | اسم العلامة التجارية المخصص (يحل محل "BentoPDF")           |
+| `VITE_BRAND_NAME`       | اسم العلامة التجارية المخصص (يحل محل "Pixel PDF")           |
 | `VITE_BRAND_LOGO`       | مسار الشعار نسبةً إلى `public/` (مثل `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | نص التذييل/حقوق النشر المخصص                               |
 | `VITE_DEFAULT_LANGUAGE` | لغة الواجهة الافتراضية (مثل `fr` و`de` و`es`)              |

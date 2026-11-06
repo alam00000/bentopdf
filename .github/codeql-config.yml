@@ -1,4 +1,4 @@
-name: BentoPDF CodeQL config
+name: Pixel PDF CodeQL config
 
 paths-ignore:
   - dist

@@ -1,16 +1,16 @@
 # 快速入门
 
-欢迎使用 BentoPDF！本指南将帮助您快速上手。
+欢迎使用 Pixel PDF！本指南将帮助您快速上手。
 
-## 什么是 BentoPDF？
+## 什么是 Pixel PDF？
 
-BentoPDF 是一款免费、开源、隐私优先的 PDF 工具箱，**完全在浏览器中运行**。您的文件不会离开您的设备，所有处理都通过 WebAssembly (WASM) 技术在本地完成。
+Pixel PDF 是一款免费、开源、隐私优先的 PDF 工具箱，**完全在浏览器中运行**。您的文件不会离开您的设备，所有处理都通过 WebAssembly (WASM) 技术在本地完成。
 
 ## 快速开始
 
 ### 方式 1：使用托管版本
 
-访问 [bentopdf.com](https://www.bentopdf.com) 即可立即使用 BentoPDF，无需安装。
+访问 [pixelpdf.com](https://www.pixelpdf.com) 即可立即使用 Pixel PDF，无需安装。
 
 ### 方式 2：使用 Docker 自托管
 
@@ -25,15 +25,15 @@ BentoPDF 是一款免费、开源、隐私优先的 PDF 工具箱，**完全在�
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF 提供两种构建版本：**自托管版本**（`bentopdf-simple`，上文使用的版本）适用于内部/团队/组织部署；**商业版本**（`bentopdf:latest`）由 bentopdf.com 自身使用，也供持有商业许可、运行面向公众部署的用户使用。两者的 PDF 工具完全相同，商业版本额外包含 bentopdf.com 的首页横幅、FAQ、用户评价和页脚。如果拿不准，请使用自托管版本。
+> Pixel PDF 提供两种构建版本：**自托管版本**（`pixelpdf-simple`，上文使用的版本）适用于内部/团队/组织部署；**商业版本**（`pixelpdf:latest`）由 pixelpdf.com 自身使用，也供持有商业许可、运行面向公众部署的用户使用。两者的 PDF 工具完全相同，商业版本额外包含 pixelpdf.com 的首页横幅、FAQ、用户评价和页脚。如果拿不准，请使用自托管版本。
 
 然后在浏览器中打开 `http://localhost:3000`。
 
@@ -44,8 +44,8 @@ docker compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## 浏览器支持
 
-BentoPDF 在现代浏览器上表现最佳：
+Pixel PDF 在现代浏览器上表现最佳：
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF 在现代浏览器上表现最佳：
 ## 下一步
 
 - [浏览所有工具](/zh/tools/)
-- [自托管 BentoPDF](/zh/self-hosting/)
+- [自托管 Pixel PDF](/zh/self-hosting/)
 - [参与项目贡献](/zh/contributing)

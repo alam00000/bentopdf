@@ -2,7 +2,7 @@
 
 Værktøjet til digital signatur bruger en CORS-proxy til at hente udstedercertifikater fra eksterne certifikatudstedere (CA'er). Det er nødvendigt, fordi mange CA-servere ikke inkluderer CORS-headere i deres svar, hvilket forhindrer direkte hentning fra browseren.
 
-Derudover udleverer mange CA-servere certifikater over almindelig HTTP. Når din BentoPDF-instans hostes over HTTPS, blokerer browsere disse HTTP-forespørgsler (mixed content-politik). CORS-proxyen løser begge problemer ved at route forespørgsler gennem et HTTPS-endpoint med de rette headere.
+Derudover udleverer mange CA-servere certifikater over almindelig HTTP. Når din Pixel PDF-instans hostes over HTTPS, blokerer browsere disse HTTP-forespørgsler (mixed content-politik). CORS-proxyen løser begge problemer ved at route forespørgsler gennem et HTTPS-endpoint med de rette headere.
 
 ## Sådan fungerer det
 
@@ -15,7 +15,7 @@ Når du signerer en PDF med et certifikat:
 
 ## Selvhosting af CORS-proxyen
 
-Hvis du selvhoster BentoPDF, skal du installere din egen CORS-proxy, for at digitale signaturer virker med certifikater, der kræver hentning af kæden.
+Hvis du selvhoster Pixel PDF, skal du installere din egen CORS-proxy, for at digitale signaturer virker med certifikater, der kræver hentning af kæden.
 
 ### Mulighed 1: Cloudflare Workers (anbefales)
 
@@ -31,11 +31,11 @@ Hvis du selvhoster BentoPDF, skal du installere din egen CORS-proxy, for at digi
    wrangler login
    ```
 
-3. **Klon BentoPDF og opdater tilladte origins**:
+3. **Klon Pixel PDF og opdater tilladte origins**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    Åbn `cors-proxy-worker.js` og ret arrayet `ALLOWED_ORIGINS` til dit domæne:
@@ -48,7 +48,7 @@ Hvis du selvhoster BentoPDF, skal du installere din egen CORS-proxy, for at digi
    ```
 
    ::: warning Vigtigt
-   Uden denne ændring afviser proxyen alle forespørgsler fra dit site med fejlen **403 Forbidden**. Standarden tillader kun forespørgsler fra `bentopdf.com`.
+   Uden denne ændring afviser proxyen alle forespørgsler fra dit site med fejlen **403 Forbidden**. Standarden tillader kun forespørgsler fra `pixelpdf.com`.
    :::
 
 4. **Installer proxyen**:
@@ -57,9 +57,9 @@ Hvis du selvhoster BentoPDF, skal du installere din egen CORS-proxy, for at digi
    wrangler deploy
    ```
 
-   Notér din worker-URL (f.eks. `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Notér din worker-URL (f.eks. `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Genbyg BentoPDF med proxy-URL'en**:
+5. **Genbyg Pixel PDF med proxy-URL'en**:
 
    Hvis du bruger Docker:
 
@@ -67,7 +67,7 @@ Hvis du selvhoster BentoPDF, skal du installere din egen CORS-proxy, for at digi
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Hvis du bygger fra kildekode:

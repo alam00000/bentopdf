@@ -1,30 +1,30 @@
 # Hướng dẫn tự lưu trữ
 
-BentoPDF có thể được tự lưu trữ trên hạ tầng của riêng bạn. Hướng dẫn này trình bày nhiều tùy chọn triển khai.
+Pixel PDF có thể được tự lưu trữ trên hạ tầng của riêng bạn. Hướng dẫn này trình bày nhiều tùy chọn triển khai.
 
 ## Bắt đầu nhanh với Docker / Podman
 
-Cách nhanh nhất để tự lưu trữ BentoPDF:
+Cách nhanh nhất để tự lưu trữ Pixel PDF:
 
 > [!TIP]
-> BentoPDF có hai bản dựng:
+> Pixel PDF có hai bản dựng:
 >
-> - **Bản dựng Self-Hosted**: `ghcr.io/alam00000/bentopdf-simple:latest`. Có mọi công cụ PDF, **không** có phần giao diện tiếp thị (không có hero, FAQ, lời chứng thực, chân trang). Dùng bản này cho các triển khai nội bộ, theo nhóm hoặc tổ chức. Đây **không phải** là phiên bản "lite" bị giảm tính năng.
-> - **Bản dựng Commercial**: `ghcr.io/alam00000/bentopdf:latest`. Toàn bộ trang tiếp thị, được chính bentopdf.com và các chủ sở hữu giấy phép thương mại chạy triển khai công khai sử dụng.
+> - **Bản dựng Self-Hosted**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`. Có mọi công cụ PDF, **không** có phần giao diện tiếp thị (không có hero, FAQ, lời chứng thực, chân trang). Dùng bản này cho các triển khai nội bộ, theo nhóm hoặc tổ chức. Đây **không phải** là phiên bản "lite" bị giảm tính năng.
+> - **Bản dựng Commercial**: `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`. Toàn bộ trang tiếp thị, được chính pixelpdf.com và các chủ sở hữu giấy phép thương mại chạy triển khai công khai sử dụng.
 >
 > Nếu còn phân vân: hãy dùng bản dựng Self-Hosted.
 
 > [!IMPORTANT]
 > Chuyển đổi tệp Office cần `SharedArrayBuffer`, nghĩa là ứng dụng phải được cô lập cross-origin và phục vụ từ một ngữ cảnh bảo mật. Image chính thức đã gửi sẵn các header COOP/COEP cần thiết, nhưng trình duyệt vẫn tắt `SharedArrayBuffer` trên các origin HTTP mạng nội bộ như `http://192.168.x.x`.
 >
-> Chỉ dùng `http://localhost` để thử nghiệm trên cùng một thiết bị. Nếu người dùng truy cập BentoPDF qua IP hoặc tên máy trong mạng LAN, hãy dùng HTTPS.
+> Chỉ dùng `http://localhost` để thử nghiệm trên cùng một thiết bị. Nếu người dùng truy cập Pixel PDF qua IP hoặc tên máy trong mạng LAN, hãy dùng HTTPS.
 
 ```bash
 # Docker
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
-podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+podman run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Hoặc với Docker Compose / Podman Compose:
@@ -32,8 +32,8 @@ Hoặc với Docker Compose / Podman Compose:
 ```yaml
 # docker-compose.yml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -49,12 +49,12 @@ podman-compose up -d
 
 ## Podman Quadlet (Linux Systemd)
 
-Chạy BentoPDF như một dịch vụ systemd. Tạo `~/.config/containers/systemd/bentopdf.container`:
+Chạy Pixel PDF như một dịch vụ systemd. Tạo `~/.config/containers/systemd/pixelpdf.container`:
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -67,7 +67,7 @@ WantedBy=default.target
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now bentopdf
+systemctl --user enable --now pixelpdf
 ```
 
 Xem [hướng dẫn triển khai Docker](/vi/self-hosting/docker) để biết đầy đủ tài liệu về Quadlet.
@@ -76,8 +76,8 @@ Xem [hướng dẫn triển khai Docker](/vi/self-hosting/docker) để biết �
 
 ```bash
 # Clone and build
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 
@@ -88,7 +88,7 @@ npm run build
 
 ### Bản dựng Self-Hosted (Simple Mode)
 
-Bản dựng Self-Hosted (image `bentopdf-simple`, còn gọi là Simple Mode) **giống hệt về chức năng** với bản dựng Commercial: mọi công cụ PDF đều có và hoạt động như nhau. Nó chỉ ẩn phần giao diện tiếp thị vốn chỉ phù hợp với chính bentopdf.com hoặc một triển khai công khai thương mại. **Đây không phải là phiên bản bị giảm tính năng hay "lite".**
+Bản dựng Self-Hosted (image `pixelpdf-simple`, còn gọi là Simple Mode) **giống hệt về chức năng** với bản dựng Commercial: mọi công cụ PDF đều có và hoạt động như nhau. Nó chỉ ẩn phần giao diện tiếp thị vốn chỉ phù hợp với chính pixelpdf.com hoặc một triển khai công khai thương mại. **Đây không phải là phiên bản bị giảm tính năng hay "lite".**
 
 **Những gì bản dựng Self-Hosted ẩn đi** (chỉ là phần hiển thị, không có tính năng PDF nào bị gỡ bỏ):
 
@@ -100,32 +100,32 @@ Bản dựng Self-Hosted (image `bentopdf-simple`, còn gọi là Simple Mode) *
 - Mọi công cụ PDF (gộp, tách, chỉnh sửa, ký, OCR, chuyển đổi Office, v.v.)
 - Hỗ trợ thương hiệu tùy chỉnh, toàn bộ cấu hình lúc dựng và lúc chạy
 
-Bản dựng Commercial (`ghcr.io/alam00000/bentopdf:latest`) là bản vận hành chính bentopdf.com và được các chủ sở hữu giấy phép thương mại chạy triển khai công khai sử dụng. Nó bổ sung hero, FAQ, lời chứng thực và chân trang, những thứ không phù hợp với một công cụ nội bộ.
+Bản dựng Commercial (`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`) là bản vận hành chính pixelpdf.com và được các chủ sở hữu giấy phép thương mại chạy triển khai công khai sử dụng. Nó bổ sung hero, FAQ, lời chứng thực và chân trang, những thứ không phù hợp với một công cụ nội bộ.
 
-Nếu bạn tự lưu trữ BentoPDF cho nhóm, tổ chức hoặc làm công cụ nội bộ, hãy dùng bản dựng Self-Hosted:
+Nếu bạn tự lưu trữ Pixel PDF cho nhóm, tổ chức hoặc làm công cụ nội bộ, hãy dùng bản dựng Self-Hosted:
 
 ```bash
 # Use the pre-built image (recommended)
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or build it yourself
 SIMPLE_MODE=true npm run build
 ```
 
-Xem [SIMPLE_MODE.md](https://github.com/alam00000/bentopdf/blob/main/SIMPLE_MODE.md) để biết chi tiết.
+Xem [SIMPLE_MODE.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/SIMPLE_MODE.md) để biết chi tiết.
 
 ### Bản dựng Commercial (triển khai công khai với thương hiệu riêng)
 
-Bản dựng Commercial (image `bentopdf`, không có hậu tố `-simple`) là bản vận hành chính bentopdf.com. Nó gồm toàn bộ trang tiếp thị (hero, tính năng, FAQ, lời chứng thực, chân trang) cùng mọi công cụ PDF. Hãy dùng bản dựng này khi bạn muốn **triển khai BentoPDF thành dịch vụ PDF công khai dưới thương hiệu của riêng bạn**, ví dụ:
+Bản dựng Commercial (image `pixelpdf`, không có hậu tố `-simple`) là bản vận hành chính pixelpdf.com. Nó gồm toàn bộ trang tiếp thị (hero, tính năng, FAQ, lời chứng thực, chân trang) cùng mọi công cụ PDF. Hãy dùng bản dựng này khi bạn muốn **triển khai Pixel PDF thành dịch vụ PDF công khai dưới thương hiệu của riêng bạn**, ví dụ:
 
-- Bạn chạy BentoPDF như một SaaS cho người dùng cuối trên tên miền của riêng bạn
+- Bạn chạy Pixel PDF như một SaaS cho người dùng cuối trên tên miền của riêng bạn
 - Bạn muốn có trải nghiệm trang chủ (phần tiếp thị cùng công cụ), không chỉ giao diện công cụ trơn
-- Bạn là chủ sở hữu giấy phép thương mại và nhúng BentoPDF vào một sản phẩm thương mại
+- Bạn là chủ sở hữu giấy phép thương mại và nhúng Pixel PDF vào một sản phẩm thương mại
 
-**Chạy nguyên bản** (thương hiệu BentoPDF, hữu ích để xem trước bản dựng):
+**Chạy nguyên bản** (thương hiệu Pixel PDF, hữu ích để xem trước bản dựng):
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
 **Dựng với thương hiệu riêng** (quy trình thương mại điển hình):
@@ -143,12 +143,12 @@ docker run -p 3000:8080 acmepdf
 Mọi tùy chọn lúc dựng khác (`BASE_URL`, `VITE_DEFAULT_LANGUAGE`, `DISABLE_TOOLS`, ghi đè URL WASM, v.v.) hoạt động giống như trên bản dựng Self-Hosted.
 
 ::: warning Giấy phép
-Chạy bản dựng Commercial được phép theo một trong hai tùy chọn giấy phép của BentoPDF:
+Chạy bản dựng Commercial được phép theo một trong hai tùy chọn giấy phép của Pixel PDF:
 
 - **AGPL-3.0** (miễn phí): được phép nếu triển khai của bạn công bố toàn bộ mã nguồn theo AGPL, bao gồm mọi chỉnh sửa thương hiệu và logic nghiệp vụ liên quan.
 - **Giấy phép thương mại** ($79 trọn đời): bắt buộc cho các triển khai mã nguồn đóng / độc quyền, nơi bạn không mở mã nguồn của bản fork thương hiệu hay mã nghiệp vụ.
 
-Xem [trang Giấy phép](https://www.bentopdf.com/licensing) để so sánh đầy đủ. Các mô-đun WASM theo giấy phép AGPL (PyMuPDF, Ghostscript, CoherentPDF) được tải từ CDN lúc chạy, nên chúng không nằm trong image của bạn và không thay đổi tình trạng giấy phép của bạn.
+Xem [trang Giấy phép](https://www.pixelpdf.com/licensing) để so sánh đầy đủ. Các mô-đun WASM theo giấy phép AGPL (PyMuPDF, Ghostscript, CoherentPDF) được tải từ CDN lúc chạy, nên chúng không nằm trong image của bạn và không thay đổi tình trạng giấy phép của bạn.
 :::
 
 ### Base URL
@@ -161,13 +161,13 @@ BASE_URL=/pdf-tools/ npm run build
 
 ### Thương hiệu tùy chỉnh
 
-Thay logo, tên và văn bản chân trang mặc định của BentoPDF bằng của bạn ngay lúc dựng:
+Thay logo, tên và văn bản chân trang mặc định của Pixel PDF bằng của bạn ngay lúc dựng:
 
 | Variable           | Mô tả                                        | Mặc định                                |
 | ------------------ | -------------------------------------------- | --------------------------------------- |
-| `VITE_BRAND_NAME`  | Tên thương hiệu hiển thị ở đầu và chân trang | `BentoPDF`                              |
+| `VITE_BRAND_NAME`  | Tên thương hiệu hiển thị ở đầu và chân trang | `Pixel PDF`                              |
 | `VITE_BRAND_LOGO`  | Đường dẫn logo, tính từ `public/`            | `images/favicon-no-bg.svg`              |
-| `VITE_FOOTER_TEXT` | Văn bản chân trang / bản quyền tùy chỉnh     | `© 2026 BentoPDF. All rights reserved.` |
+| `VITE_FOOTER_TEXT` | Văn bản chân trang / bản quyền tùy chỉnh     | `© 2026 Pixel PDF. All rights reserved.` |
 
 ```bash
 # Place your logo in public/, then build
@@ -212,7 +212,7 @@ DISABLE_TOOLS="edit-pdf,sign-pdf" npm run build
 ```bash
 docker run -d -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 Có thể kết hợp cả hai cách, các danh sách sẽ được gộp lại.
@@ -265,7 +265,7 @@ Việc lệch `00 61 73 6d / 1f 8b 08 08` là một triệu chứng phụ riêng
 - [Kubernetes →](/vi/self-hosting/kubernetes#đam-bao-cac-header-sharedarraybuffer-van-hoat-đong-ingress-gateway)
 - **Docker**: được xử lý tự động bởi cấu hình nginx đi kèm, không cần làm gì thêm.
 
-**Kiểm tra**: mở Console của DevTools trên bất kỳ trang BentoPDF nào và chạy:
+**Kiểm tra**: mở Console của DevTools trên bất kỳ trang Pixel PDF nào và chạy:
 
 ```js
 console.log(window.crossOriginIsolated); // should be true
@@ -294,7 +294,7 @@ Nếu trang dùng HTTPS hoặc `http://localhost` VÀ cả hai header COEP/COOP 
 
 ## Cấu hình WASM (thành phần AGPL)
 
-BentoPDF **không đóng gói** các thư viện xử lý theo giấy phép AGPL trong mã nguồn của mình, nhưng **cấu hình sẵn các URL CDN** để mọi tính năng hoạt động ngay, không cần thiết lập thủ công.
+Pixel PDF **không đóng gói** các thư viện xử lý theo giấy phép AGPL trong mã nguồn của mình, nhưng **cấu hình sẵn các URL CDN** để mọi tính năng hoạt động ngay, không cần thiết lập thủ công.
 
 ::: tip Không cần cấu hình theo mặc định
 Từ v2.0.0, các mô-đun WASM được cấu hình sẵn để tải từ CDN jsDelivr thông qua biến môi trường. Mọi tính năng nâng cao hoạt động ngay mà người dùng không cần cấu hình gì.
@@ -336,7 +336,7 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://your-server.com/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://your-server.com/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # Or via .env.production before building from source
 VITE_WASM_PYMUPDF_URL=https://your-server.com/pymupdf/ npm run build
@@ -357,8 +357,8 @@ Dành cho các mạng không có internet (chính phủ, y tế, tài chính, v.
 Script `prepare-airgap.sh` đi kèm tự động hóa toàn bộ quy trình: tải các gói WASM, dựng image Docker và tạo một bundle độc lập cùng script thiết lập.
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Show supported OCR language codes (for --ocr-languages)
 bash scripts/prepare-airgap.sh --list-ocr-languages
@@ -377,7 +377,7 @@ Lệnh này tạo ra một thư mục bundle:
 
 ```
 bentopdf-airgap-bundle/
-  bentopdf.tar              # Docker image
+  pixelpdf.tar              # Docker image
   *.tgz                     # WASM packages (PyMuPDF, Ghostscript, CoherentPDF, Tesseract)
   tesseract-langdata/       # OCR traineddata files
   ocr-fonts/                # OCR text-layer font files
@@ -399,7 +399,7 @@ Script thiết lập sẽ nạp image Docker, giải nén các tệp WASM và t�
 | Flag                           | Mô tả                                                  | Mặc định                       |
 | ------------------------------ | ------------------------------------------------------ | ------------------------------ |
 | `--wasm-base-url <url>`        | Nơi các WASM sẽ được lưu trữ nội bộ                    | _(bắt buộc, sẽ hỏi nếu thiếu)_ |
-| `--image-name <name>`          | Tag image Docker                                       | `bentopdf`                     |
+| `--image-name <name>`          | Tag image Docker                                       | `pixelpdf`                     |
 | `--output-dir <path>`          | Thư mục bundle đầu ra                                  | `./bentopdf-airgap-bundle`     |
 | `--simple-mode`                | Bật Simple Mode                                        | tắt                            |
 | `--base-url <path>`            | URL gốc của thư mục con (ví dụ `/pdf/`)                | `/`                            |
@@ -417,7 +417,7 @@ Script thiết lập sẽ nạp image Docker, giải nén các tệp WASM và t�
 Lời nhắc tương tác cũng chấp nhận `list` để in toàn bộ danh sách mã Tesseract được hỗ trợ và `search <term>` để tìm kết quả khớp như `search german` hoặc `search chi`.
 
 ::: warning Yêu cầu cùng origin
-Các tệp WASM phải được phục vụ từ **cùng origin** với ứng dụng BentoPDF. Web Worker dùng `importScripts()` và không thể tải script cross-origin. Ví dụ, nếu BentoPDF chạy tại `https://internal.example.com`, URL gốc của WASM cũng nên là `https://internal.example.com/wasm`.
+Các tệp WASM phải được phục vụ từ **cùng origin** với ứng dụng Pixel PDF. Web Worker dùng `importScripts()` và không thể tải script cross-origin. Ví dụ, nếu Pixel PDF chạy tại `https://internal.example.com`, URL gốc của WASM cũng nên là `https://internal.example.com/wasm`.
 :::
 
 #### Các bước thủ công
@@ -442,8 +442,8 @@ curl -fsSL https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSa
 **Bước 2: Dựng image Docker với các URL nội bộ**
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 docker build \
   --build-arg VITE_WASM_PYMUPDF_URL=https://internal-server.example.com/wasm/pymupdf/ \
@@ -453,20 +453,20 @@ docker build \
   --build-arg VITE_TESSERACT_CORE_URL=https://internal-server.example.com/wasm/ocr/core \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 **Bước 3: Xuất image Docker**
 
 ```bash
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 ```
 
 **Bước 4: Chuyển vào mạng cách ly**
 
 Sao chép qua USB, kho artifact nội bộ hoặc phương thức chuyển được phê duyệt:
 
-- `bentopdf.tar`: image Docker
+- `pixelpdf.tar`: image Docker
 - Năm gói WASM/OCR `.tgz` từ Bước 1
 - Thư mục `tesseract-langdata/` từ Bước 1
 - Thư mục `ocr-fonts/` từ Bước 1
@@ -475,7 +475,7 @@ Sao chép qua USB, kho artifact nội bộ hoặc phương thức chuyển đư�
 
 ```bash
 # Load the Docker image
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
@@ -490,8 +490,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C ./wasm/ocr/core --strip-components=1
 cp ./tesseract-langdata/*.traineddata.gz ./wasm/ocr/lang-data/
 cp ./ocr-fonts/* ./wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 Hãy đảm bảo các tệp truy cập được tại các URL bạn đã cấu hình ở Bước 2, gồm `.../ocr/worker.min.js`, `.../ocr/core`, `.../ocr/lang-data` và `.../ocr/fonts`.
@@ -515,13 +515,13 @@ VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts
 
 ### Tự lưu trữ WASM Proxy
 
-Nếu bạn cần phục vụ các tệp WASM AGPL với header CORS phù hợp, bạn có thể triển khai một proxy đơn giản. Xem [hướng dẫn Cloudflare WASM Proxy](https://github.com/alam00000/bentopdf/blob/main/cloudflare/WASM-PROXY.md) để có ví dụ triển khai.
+Nếu bạn cần phục vụ các tệp WASM AGPL với header CORS phù hợp, bạn có thể triển khai một proxy đơn giản. Xem [hướng dẫn Cloudflare WASM Proxy](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/cloudflare/WASM-PROXY.md) để có ví dụ triển khai.
 
 ::: tip Tại sao tách riêng?
 Việc tách riêng này đảm bảo:
 
 - Tuân thủ pháp lý rõ ràng cho người dùng thương mại
-- Phần lõi của BentoPDF vẫn nằm dưới giấy phép kép (AGPL-3.0 / Commercial)
+- Phần lõi của Pixel PDF vẫn nằm dưới giấy phép kép (AGPL-3.0 / Commercial)
 - Các tệp WASM được tải lúc chạy, không đóng gói trong mã nguồn
   :::
 
@@ -534,5 +534,5 @@ Việc tách riêng này đảm bảo:
 | CPU     | Bất kỳ bộ xử lý hiện đại nào              |
 
 ::: tip
-BentoPDF là một trang web tĩnh, không cần cơ sở dữ liệu hay máy chủ backend!
+Pixel PDF là một trang web tĩnh, không cần cơ sở dữ liệu hay máy chủ backend!
 :::

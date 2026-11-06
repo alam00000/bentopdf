@@ -2,7 +2,7 @@
 
 디지털 서명 도구는 CORS 프록시를 사용해 외부 인증 기관(CA)에서 발급자 인증서를 가져옵니다. 많은 CA 서버가 응답에 CORS 헤더를 포함하지 않아 브라우저에서 직접 가져올 수 없기 때문입니다.
 
-또한 많은 CA 서버가 일반 HTTP로 인증서를 제공합니다. BentoPDF 인스턴스가 HTTPS로 호스팅되면 브라우저가 이러한 HTTP 요청을 차단합니다(혼합 콘텐츠 정책). CORS 프록시는 적절한 헤더를 붙인 HTTPS 엔드포인트를 거쳐 요청을 전달하여 두 문제를 모두 해결합니다.
+또한 많은 CA 서버가 일반 HTTP로 인증서를 제공합니다. Pixel PDF 인스턴스가 HTTPS로 호스팅되면 브라우저가 이러한 HTTP 요청을 차단합니다(혼합 콘텐츠 정책). CORS 프록시는 적절한 헤더를 붙인 HTTPS 엔드포인트를 거쳐 요청을 전달하여 두 문제를 모두 해결합니다.
 
 ## 작동 방식
 
@@ -15,7 +15,7 @@
 
 ## CORS 프록시 직접 호스팅하기
 
-BentoPDF를 직접 호스팅한다면, 체인 가져오기가 필요한 인증서로 디지털 서명이 작동하도록 자체 CORS 프록시를 배포해야 합니다.
+Pixel PDF를 직접 호스팅한다면, 체인 가져오기가 필요한 인증서로 디지털 서명이 작동하도록 자체 CORS 프록시를 배포해야 합니다.
 
 ### 옵션 1: Cloudflare Workers (권장)
 
@@ -31,11 +31,11 @@ BentoPDF를 직접 호스팅한다면, 체인 가져오기가 필요한 인증�
    wrangler login
    ```
 
-3. **BentoPDF를 클론하고 허용 origin 업데이트**:
+3. **Pixel PDF를 클론하고 허용 origin 업데이트**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    `cors-proxy-worker.js`를 열고 `ALLOWED_ORIGINS` 배열을 사용자의 도메인으로 변경하세요:
@@ -48,7 +48,7 @@ BentoPDF를 직접 호스팅한다면, 체인 가져오기가 필요한 인증�
    ```
 
    ::: warning 중요
-   이 변경이 없으면 프록시가 사이트의 모든 요청을 **403 Forbidden** 오류로 거부합니다. 기본값은 `bentopdf.com`의 요청만 허용합니다.
+   이 변경이 없으면 프록시가 사이트의 모든 요청을 **403 Forbidden** 오류로 거부합니다. 기본값은 `pixelpdf.com`의 요청만 허용합니다.
    :::
 
 4. **프록시 배포**:
@@ -57,9 +57,9 @@ BentoPDF를 직접 호스팅한다면, 체인 가져오기가 필요한 인증�
    wrangler deploy
    ```
 
-   worker URL을 메모해 두세요 (예: `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   worker URL을 메모해 두세요 (예: `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **프록시 URL로 BentoPDF 다시 빌드**:
+5. **프록시 URL로 Pixel PDF 다시 빌드**:
 
    Docker를 사용하는 경우:
 
@@ -67,7 +67,7 @@ BentoPDF를 직접 호스팅한다면, 체인 가져오기가 필요한 인증�
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    소스에서 빌드하는 경우:

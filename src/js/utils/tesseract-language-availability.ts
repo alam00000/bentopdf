@@ -91,7 +91,7 @@ function buildUnsupportedLanguageMessage(
   const availableText = formatTesseractLanguageList(availableLanguages);
 
   return [
-    trText('This BentoPDF build only bundles OCR data for {{availableText}}.', {
+    trText('This Pixel PDF build only bundles OCR data for {{availableText}}.', {
       availableText,
     }),
     trText(

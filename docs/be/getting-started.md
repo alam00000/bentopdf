@@ -1,16 +1,16 @@
 # Пачатак працы
 
-Вітаем у BentoPDF! Гэта кіраўніцтва дапаможа вам хутка пачаць працу.
+Вітаем у Pixel PDF! Гэта кіраўніцтва дапаможа вам хутка пачаць працу.
 
-## Што такое BentoPDF?
+## Што такое Pixel PDF?
 
-BentoPDF гэта бясплатны набор інструментаў PDF з адкрытым зыходным кодам, арыентаваны на прыватнасць, які працуе **цалкам у вашым браўзеры**. Вашы файлы ніколі не пакідаюць вашу прыладу: уся апрацоўка адбываецца лакальна з дапамогай тэхналогіі WebAssembly (WASM).
+Pixel PDF гэта бясплатны набор інструментаў PDF з адкрытым зыходным кодам, арыентаваны на прыватнасць, які працуе **цалкам у вашым браўзеры**. Вашы файлы ніколі не пакідаюць вашу прыладу: уся апрацоўка адбываецца лакальна з дапамогай тэхналогіі WebAssembly (WASM).
 
 ## Хуткі старт
 
 ### Варыянт 1: Выкарыстоўвайце размешчаную версію
 
-Наведайце [bentopdf.com](https://www.bentopdf.com), каб адразу карыстацца BentoPDF, без усталявання.
+Наведайце [pixelpdf.com](https://www.pixelpdf.com), каб адразу карыстацца Pixel PDF, без усталявання.
 
 ### Варыянт 2: Уласнае размяшчэнне з Docker
 
@@ -25,15 +25,15 @@ BentoPDF гэта бясплатны набор інструментаў PDF з 
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF пастаўляецца ў дзвюх зборках: **Self-Hosted build** (`bentopdf-simple`, выкарыстоўваецца вышэй) для ўнутраных, камандных і арганізацыйных разгортванняў, і **Commercial build** (`bentopdf:latest`), якую выкарыстоўвае сам bentopdf.com і ўладальнікі камерцыйнай ліцэнзіі для публічных разгортванняў. Абедзве маюць аднолькавыя інструменты PDF; Commercial build дадае галоўны блок, FAQ, водгукі і футэр bentopdf.com. Калі сумняваецеся, выкарыстоўвайце Self-Hosted build.
+> Pixel PDF пастаўляецца ў дзвюх зборках: **Self-Hosted build** (`pixelpdf-simple`, выкарыстоўваецца вышэй) для ўнутраных, камандных і арганізацыйных разгортванняў, і **Commercial build** (`pixelpdf:latest`), якую выкарыстоўвае сам pixelpdf.com і ўладальнікі камерцыйнай ліцэнзіі для публічных разгортванняў. Абедзве маюць аднолькавыя інструменты PDF; Commercial build дадае галоўны блок, FAQ, водгукі і футэр pixelpdf.com. Калі сумняваецеся, выкарыстоўвайце Self-Hosted build.
 
 Затым адкрыйце `http://localhost:3000` у браўзеры.
 
@@ -44,8 +44,8 @@ docker compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## Падтрымка браўзераў
 
-BentoPDF лепш за ўсё працуе ў сучасных браўзерах:
+Pixel PDF лепш за ўсё працуе ў сучасных браўзерах:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF лепш за ўсё працуе ў сучасных браўзера�
 ## Наступныя крокі
 
 - [Агляд усіх інструментаў](/be/tools/)
-- [Размясціць BentoPDF у сябе](/be/self-hosting/)
+- [Размясціць Pixel PDF у сябе](/be/self-hosting/)
 - [Зрабіць унёсак у праект](/be/contributing)

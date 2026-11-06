@@ -1,6 +1,6 @@
 # 使用 Nginx 部署
 
-使用 Nginx 在您自己的服务器上托管 BentoPDF。
+使用 Nginx 在您自己的服务器上托管 Pixel PDF。
 
 ## 前置条件
 
@@ -11,8 +11,8 @@
 ## 步骤 1：构建项目
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## 步骤 2：复制文件
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## 步骤 3：Nginx 配置
 
-创建 `/etc/nginx/sites-available/bentopdf`：
+创建 `/etc/nginx/sites-available/pixelpdf`：
 
 ```nginx
 server {
@@ -50,7 +50,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
-    root /var/www/bentopdf;
+    root /var/www/pixelpdf;
     index index.html;
 
     # Gzip compression
@@ -114,7 +114,7 @@ server {
 ## 步骤 4：启用站点
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/bentopdf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/pixelpdf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -132,7 +132,7 @@ sudo certbot --nginx -d your-domain.com
 
 ```nginx
 location /pdf/ {
-    alias /var/www/bentopdf/;
+    alias /var/www/pixelpdf/;
     try_files $uri $uri/ /pdf/index.html;
 }
 ```

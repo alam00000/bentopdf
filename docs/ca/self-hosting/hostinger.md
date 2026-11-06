@@ -1,6 +1,6 @@
 # Desplega a Hostinger
 
-[Hostinger](https://hostinger.com) és un proveïdor d'allotjament compartit molt popular. Aquesta guia explica com desplegar BentoPDF a l'allotjament compartit de Hostinger.
+[Hostinger](https://hostinger.com) és un proveïdor d'allotjament compartit molt popular. Aquesta guia explica com desplegar Pixel PDF a l'allotjament compartit de Hostinger.
 
 ## Requisits previs
 
@@ -10,8 +10,8 @@
 ## Pas 1: compila el projecte
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Si les capçaleres no s'apliquen, contacta amb el suport de Hostinger perquè ac
 
 ### Errors 404 en actualitzar la pàgina
 
-Assegura't que la regla de l'extensió `.html` i les rutes d'idioma estan ben configurades. BentoPDF utilitza fitxers HTML estàtics, no encaminament SPA:
+Assegura't que la regla de l'extensió `.html` i les rutes d'idioma estan ben configurades. Pixel PDF utilitza fitxers HTML estàtics, no encaminament SPA:
 
 ```apache
 # Language routes serve actual files from language directories

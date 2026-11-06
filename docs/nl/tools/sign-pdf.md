@@ -38,7 +38,7 @@ Voeg je handtekening toe aan elk PDF-document. De tool bevat een volledige PDF-v
 ## Tips
 
 - Schakel platmaken in als je de ondertekende PDF stuurt naar iemand die je handtekening niet mag kunnen verwijderen of verplaatsen.
-- Voor juridisch bindende digitale handtekeningen met verificatie op basis van certificaten biedt BentoPDF ook een aparte tool Digitale handtekening.
+- Voor juridisch bindende digitale handtekeningen met verificatie op basis van certificaten biedt Pixel PDF ook een aparte tool Digitale handtekening.
 - Upload een PNG-afbeelding van je handtekening met een transparante achtergrond voor het schoonste resultaat.
 
 ## Gerelateerde tools

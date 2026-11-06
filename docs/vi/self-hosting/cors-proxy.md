@@ -2,7 +2,7 @@
 
 Công cụ chữ ký số dùng một CORS proxy để lấy các chứng chỉ của bên cấp phát từ các Tổ chức cấp chứng chỉ (CA) bên ngoài. Điều này cần thiết vì nhiều máy chủ CA không đưa header CORS vào phản hồi, khiến trình duyệt không thể lấy trực tiếp.
 
-Ngoài ra, nhiều máy chủ CA phục vụ chứng chỉ qua HTTP thường. Khi BentoPDF của bạn chạy trên HTTPS, trình duyệt sẽ chặn các yêu cầu HTTP này (chính sách nội dung hỗn hợp). CORS proxy giải quyết cả hai vấn đề bằng cách chuyển yêu cầu qua một endpoint HTTPS với các header phù hợp.
+Ngoài ra, nhiều máy chủ CA phục vụ chứng chỉ qua HTTP thường. Khi Pixel PDF của bạn chạy trên HTTPS, trình duyệt sẽ chặn các yêu cầu HTTP này (chính sách nội dung hỗn hợp). CORS proxy giải quyết cả hai vấn đề bằng cách chuyển yêu cầu qua một endpoint HTTPS với các header phù hợp.
 
 ## Cách hoạt động
 
@@ -15,7 +15,7 @@ Khi ký PDF bằng chứng chỉ:
 
 ## Tự lưu trữ CORS Proxy
 
-Nếu bạn tự lưu trữ BentoPDF, bạn cần triển khai CORS proxy của riêng mình để chữ ký số hoạt động với các chứng chỉ cần lấy chuỗi chứng chỉ.
+Nếu bạn tự lưu trữ Pixel PDF, bạn cần triển khai CORS proxy của riêng mình để chữ ký số hoạt động với các chứng chỉ cần lấy chuỗi chứng chỉ.
 
 ### Cách 1: Cloudflare Workers (khuyến nghị)
 
@@ -31,11 +31,11 @@ Nếu bạn tự lưu trữ BentoPDF, bạn cần triển khai CORS proxy của 
    wrangler login
    ```
 
-3. **Clone BentoPDF và cập nhật các origin được phép**:
+3. **Clone Pixel PDF và cập nhật các origin được phép**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    Mở `cors-proxy-worker.js` và đổi mảng `ALLOWED_ORIGINS` thành tên miền của bạn:
@@ -48,7 +48,7 @@ Nếu bạn tự lưu trữ BentoPDF, bạn cần triển khai CORS proxy của 
    ```
 
    ::: warning Quan trọng
-   Nếu không thay đổi này, proxy sẽ từ chối mọi yêu cầu từ trang của bạn với lỗi **403 Forbidden**. Mặc định chỉ cho phép yêu cầu từ `bentopdf.com`.
+   Nếu không thay đổi này, proxy sẽ từ chối mọi yêu cầu từ trang của bạn với lỗi **403 Forbidden**. Mặc định chỉ cho phép yêu cầu từ `pixelpdf.com`.
    :::
 
 4. **Triển khai proxy**:
@@ -57,9 +57,9 @@ Nếu bạn tự lưu trữ BentoPDF, bạn cần triển khai CORS proxy của 
    wrangler deploy
    ```
 
-   Ghi lại URL worker của bạn (ví dụ `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Ghi lại URL worker của bạn (ví dụ `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Build lại BentoPDF với URL proxy**:
+5. **Build lại Pixel PDF với URL proxy**:
 
    Nếu dùng Docker:
 
@@ -67,7 +67,7 @@ Nếu bạn tự lưu trữ BentoPDF, bạn cần triển khai CORS proxy của 
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Nếu build từ mã nguồn:

@@ -4,13 +4,13 @@
 
 ## Разгортванне адным клікам
 
-[![Разгарнуць з Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Разгарнуць з Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Ручное разгортванне
 
 ### Крок 1: Зрабіце форк рэпазіторыя
 
-Зрабіце форк [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) у свой уліковы запіс GitHub.
+Зрабіце форк [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) у свой уліковы запіс GitHub.
 
 ### Крок 2: Імпарт у Vercel
 
@@ -32,7 +32,7 @@
 | Зменная                 | Апісанне                                                             |
 | ----------------------- | -------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Задайце `true` для мінімальнага інтэрфейсу                           |
-| `VITE_BRAND_NAME`       | Уласная назва брэнда (замяняе "BentoPDF")                            |
+| `VITE_BRAND_NAME`       | Уласная назва брэнда (замяняе "Pixel PDF")                            |
 | `VITE_BRAND_LOGO`       | Шлях да лагатыпа адносна `public/` (напрыклад, `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Уласны тэкст ніжняга калантытула/аўтарскага права                    |
 | `VITE_DEFAULT_LANGUAGE` | Мова інтэрфейсу па змаўчанні (напрыклад, `fr`, `de`, `es`)           |
@@ -51,7 +51,7 @@
 ## Абмежаванні
 
 ::: warning Вялікія файлы
-Бессерверныя функцыі Vercel маюць абмежаванне 50MB. Паколькі BentoPDF з'яўляецца статычным сайтам, гэта не павінна вас закрануць, але модулі WASM вялікія (каля 100MB агулам). Пераканайцеся, што яны раздаюцца з папкі `/public`.
+Бессерверныя функцыі Vercel маюць абмежаванне 50MB. Паколькі Pixel PDF з'яўляецца статычным сайтам, гэта не павінна вас закрануць, але модулі WASM вялікія (каля 100MB агулам). Пераканайцеся, што яны раздаюцца з папкі `/public`.
 :::
 
 ## Выпраўленне непаладак

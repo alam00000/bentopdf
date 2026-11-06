@@ -5,9 +5,9 @@ description: Hyper Compress 엔진으로 PDF 파일 크기를 최대 90%까지 �
 
 # PDF 압축
 
-PDF 파일을 망가뜨리지 않고 줄입니다. PDF 압축은 BentoPDF의 자체 압축 엔진인 [Hyper Compress](https://www.bentopdf.com/hyper-compress)로 구동됩니다. 이미지를 다시 압축하고, 글꼴을 서브셋으로 만들어 병합하며, 내장 썸네일과 비공개 애플리케이션 데이터 같은 불필요한 용량을 제거합니다. PDF는 완전히 기능을 유지합니다. 텍스트는 계속 선택할 수 있고 링크와 양식 필드도 계속 작동합니다.
+PDF 파일을 망가뜨리지 않고 줄입니다. PDF 압축은 Pixel PDF의 자체 압축 엔진인 [Hyper Compress](https://www.pixelpdf.com/hyper-compress)로 구동됩니다. 이미지를 다시 압축하고, 글꼴을 서브셋으로 만들어 병합하며, 내장 썸네일과 비공개 애플리케이션 데이터 같은 불필요한 용량을 제거합니다. PDF는 완전히 기능을 유지합니다. 텍스트는 계속 선택할 수 있고 링크와 양식 필드도 계속 작동합니다.
 
-Hyper Compress는 WebAssembly로 컴파일되어 BentoPDF에 포함되어 있으므로 별도 설정 없이 오프라인과 외부와 단절된 환경에서도 압축이 작동합니다.
+Hyper Compress는 WebAssembly로 컴파일되어 Pixel PDF에 포함되어 있으므로 별도 설정 없이 오프라인과 외부와 단절된 환경에서도 압축이 작동합니다.
 
 ## 사용 방법
 
@@ -36,7 +36,7 @@ Hyper Compress는 WebAssembly로 컴파일되어 BentoPDF에 포함되어 있으
 
 ## 목표 파일 크기
 
-KB 또는 MB 단위로 크기를 입력하면 Hyper Compress가 선택한 수준에서 시작하여 그 크기에 맞는 최선의 이미지 품질을 찾습니다. 문서가 그만큼 작아질 수 없으면 만들 수 있는 가장 작은 버전과 함께 그 사실을 알리는 메시지가 표시됩니다. [PDF를 1MB로 압축](https://www.bentopdf.com/compress-pdf-to-1mb) 같은 전용 페이지는 목표가 이미 입력된 상태로 열립니다.
+KB 또는 MB 단위로 크기를 입력하면 Hyper Compress가 선택한 수준에서 시작하여 그 크기에 맞는 최선의 이미지 품질을 찾습니다. 문서가 그만큼 작아질 수 없으면 만들 수 있는 가장 작은 버전과 함께 그 사실을 알리는 메시지가 표시됩니다. [PDF를 1MB로 압축](https://www.pixelpdf.com/compress-pdf-to-1mb) 같은 전용 페이지는 목표가 이미 입력된 상태로 열립니다.
 
 ## 사용자 지정 설정
 

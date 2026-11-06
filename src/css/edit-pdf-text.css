@@ -1,12 +1,12 @@
 #text-editor-app {
-  --ecbg: #111827;
-  --ecpanel: #2a2a2a;
-  --ecpanel2: #383838;
-  --ecline: #444444;
+  --ecbg: #f5f7fb;
+  --ecpanel: #ffffff;
+  --ecpanel2: #e2e8f4;
+  --ecline: #cfd8ea;
   --ectext: #f3f4f6;
-  --ecmuted: #9ca3af;
-  --ecaccent: #6366f1;
-  --ecstage: #383838;
+  --ecmuted: #5f6d87;
+  --ecaccent: #0e7bf0;
+  --ecstage: #e2e8f4;
   position: fixed;
   inset: 0;
   z-index: 40;
@@ -50,7 +50,7 @@
   user-select: none;
 }
 #text-editor-app .btn:hover {
-  background: #444444;
+  background: #cfd8ea;
 }
 #text-editor-app .btn:disabled {
   opacity: 0.4;
@@ -281,7 +281,7 @@
 }
 #text-editor-app .editor.pristine [contenteditable] ::selection,
 #text-editor-app .editor.pristine [contenteditable]::selection {
-  background: rgba(99, 102, 241, 0.28);
+  background: rgba(14, 123, 240, 0.28);
 }
 
 #text-editor-app .edit-move {
@@ -292,7 +292,7 @@
   background: transparent;
 }
 #text-editor-app .edit-move:hover {
-  background: rgba(99, 102, 241, 0.18);
+  background: rgba(14, 123, 240, 0.18);
 }
 
 #text-editor-app .edit-chrome,
@@ -308,14 +308,14 @@
 #text-editor-app .multi-box {
   position: absolute;
   border: 1.5px solid var(--ecaccent);
-  background: rgba(99, 102, 241, 0.06);
+  background: rgba(14, 123, 240, 0.06);
   pointer-events: auto;
   cursor: move;
 }
 #text-editor-app .marquee {
   position: absolute;
   border: 1px dashed var(--ecaccent);
-  background: rgba(99, 102, 241, 0.08);
+  background: rgba(14, 123, 240, 0.08);
   pointer-events: none;
 }
 
@@ -450,7 +450,7 @@
 
 #text-editor-app .textsel {
   position: absolute;
-  background: rgba(99, 102, 241, 0.28);
+  background: rgba(14, 123, 240, 0.28);
   pointer-events: none;
 }
 
@@ -707,7 +707,7 @@
     #f59e0b,
     #84cc16,
     #06b6d4,
-    #6366f1,
+    #0e7bf0,
     #d946ef,
     #f43f5e
   );
@@ -1043,7 +1043,7 @@
   cursor: pointer;
 }
 #text-editor-app .toolright button[data-tool]:hover {
-  background: #444444;
+  background: #cfd8ea;
 }
 #text-editor-app .toolright button[data-tool].on {
   background: var(--ecaccent);
@@ -1285,7 +1285,7 @@
   line-height: 1;
 }
 #text-editor-app .stepbtn:hover {
-  background: #444444;
+  background: #cfd8ea;
   color: var(--ectext);
 }
 #text-editor-app .stepper:has(.num:disabled) .stepbtn {
@@ -1526,8 +1526,8 @@
     border-bottom: none;
     border-top: 1px solid var(--ecline);
     border-radius: 16px 16px 0 0;
-    background: #2a2a2a;
-    background: var(--ecpanel, #2a2a2a);
+    background: #ffffff;
+    background: var(--ecpanel, #ffffff);
     box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.45);
     z-index: 27;
     padding: 8px 14px calc(14px + env(safe-area-inset-bottom));
@@ -1790,7 +1790,7 @@
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.4),
     0 18px 44px -12px rgba(0, 0, 0, 0.6);
-  outline: 1px solid rgba(255, 255, 255, 0.07);
+  outline: 1px solid rgba(43, 52, 70, 0.056);
 }
 
 @media (max-width: 768px) {

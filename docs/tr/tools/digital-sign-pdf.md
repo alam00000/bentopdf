@@ -7,7 +7,7 @@ description: X.509 sertifikalarıyla PDF'lere kriptografik dijital imzalar ekley
 
 Dijital imza, belgeyi belirli bir kişinin imzaladığının ve belgenin o zamandan beri değiştirilmediğinin kriptografik kanıtıdır. Yalnızca bir görsel olan çizilmiş imzanın aksine dijital imza, doğrulanabilir özgünlük ve bütünlük sağlamak için X.509 sertifikalarını ve PKCS#7 standartlarını kullanır.
 
-BentoPDF dijital imzaları tamamen tarayıcınızda uygular. Özel anahtarınız cihazınızdan asla çıkmaz.
+Pixel PDF dijital imzaları tamamen tarayıcınızda uygular. Özel anahtarınız cihazınızdan asla çıkmaz.
 
 ## Nasıl Çalışır
 

@@ -1,16 +1,16 @@
 # Primeiros Passos
 
-Bem-vindo ao BentoPDF! Este guia vai ajudar você a começar rapidamente.
+Bem-vindo ao Pixel PDF! Este guia vai ajudar você a começar rapidamente.
 
-## O que é o BentoPDF?
+## O que é o Pixel PDF?
 
-O BentoPDF é um kit de ferramentas PDF gratuito, de código aberto e focado em privacidade, que funciona **inteiramente no seu navegador**. Seus arquivos nunca saem do seu dispositivo: todo o processamento acontece localmente com a tecnologia WebAssembly (WASM).
+O Pixel PDF é um kit de ferramentas PDF gratuito, de código aberto e focado em privacidade, que funciona **inteiramente no seu navegador**. Seus arquivos nunca saem do seu dispositivo: todo o processamento acontece localmente com a tecnologia WebAssembly (WASM).
 
 ## Início Rápido
 
 ### Opção 1: Use a Versão Hospedada
 
-Acesse [bentopdf.com](https://www.bentopdf.com) para usar o BentoPDF na hora, sem instalação.
+Acesse [pixelpdf.com](https://www.pixelpdf.com) para usar o Pixel PDF na hora, sem instalação.
 
 ### Opção 2: Hospede por Conta Própria com Docker
 
@@ -25,15 +25,15 @@ Acesse [bentopdf.com](https://www.bentopdf.com) para usar o BentoPDF na hora, se
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> O BentoPDF vem em duas versões: a **versão Self-Hosted** (`bentopdf-simple`, usada acima) para implantações internas, de equipes e organizações, e a **versão Comercial** (`bentopdf:latest`), usada pelo próprio bentopdf.com e por titulares de licença comercial que mantêm implantações públicas. Ambas incluem as mesmas ferramentas de PDF: a versão Comercial adiciona o hero, o FAQ, os depoimentos e o rodapé do bentopdf.com. Em caso de dúvida, use a versão Self-Hosted.
+> O Pixel PDF vem em duas versões: a **versão Self-Hosted** (`pixelpdf-simple`, usada acima) para implantações internas, de equipes e organizações, e a **versão Comercial** (`pixelpdf:latest`), usada pelo próprio pixelpdf.com e por titulares de licença comercial que mantêm implantações públicas. Ambas incluem as mesmas ferramentas de PDF: a versão Comercial adiciona o hero, o FAQ, os depoimentos e o rodapé do pixelpdf.com. Em caso de dúvida, use a versão Self-Hosted.
 
 Depois, abra `http://localhost:3000` no seu navegador.
 
@@ -44,8 +44,8 @@ Depois, abra `http://localhost:3000` no seu navegador.
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## Suporte a Navegadores
 
-O BentoPDF funciona melhor em navegadores modernos:
+O Pixel PDF funciona melhor em navegadores modernos:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ O BentoPDF funciona melhor em navegadores modernos:
 ## Próximos Passos
 
 - [Explore todas as ferramentas](/pt/tools/)
-- [Hospede o BentoPDF por conta própria](/pt/self-hosting/)
+- [Hospede o Pixel PDF por conta própria](/pt/self-hosting/)
 - [Contribua com o projeto](/pt/contributing)

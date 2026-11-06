@@ -1,7 +1,7 @@
 apiVersion: v2
-name: bentopdf
-description: BentoPDF static frontend served by NGINX
-icon: https://raw.githubusercontent.com/spwoodcock/bentopdf/refs/heads/main/public/favicon.ico
+name: pixelpdf
+description: Pixel PDF static frontend served by NGINX
+icon: https://raw.githubusercontent.com/spwoodcock/pixelpdf/refs/heads/main/public/favicon.ico
 type: application
 
 # This is the chart version. This version number should be incremented each time you make changes

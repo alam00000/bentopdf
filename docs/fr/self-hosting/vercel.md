@@ -4,13 +4,13 @@
 
 ## Déploiement en un clic
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Déploiement manuel
 
 ### Étape 1 : forker le dépôt
 
-Forkez [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) vers votre compte GitHub.
+Forkez [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) vers votre compte GitHub.
 
 ### Étape 2 : importer dans Vercel
 
@@ -32,7 +32,7 @@ Ajoutez-les si nécessaire :
 | Variable                | Description                                                       |
 | ----------------------- | ----------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Mettre à `true` pour une interface minimale                       |
-| `VITE_BRAND_NAME`       | Nom de marque personnalisé (remplace « BentoPDF »)                |
+| `VITE_BRAND_NAME`       | Nom de marque personnalisé (remplace « Pixel PDF »)                |
 | `VITE_BRAND_LOGO`       | Chemin du logo relatif à `public/` (par ex. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Texte personnalisé du pied de page/copyright                      |
 | `VITE_DEFAULT_LANGUAGE` | Langue par défaut de l'interface (par ex. `fr`, `de`, `es`)       |
@@ -51,7 +51,7 @@ Cliquez sur « Deploy » et attendez la fin du build.
 ## Limitations
 
 ::: warning Fichiers volumineux
-Les fonctions serverless de Vercel ont une limite de 50 Mo. BentoPDF étant un site statique, cela ne devrait pas vous concerner, mais les modules WASM sont volumineux (~100 Mo au total). Assurez-vous qu'ils sont servis depuis le dossier `/public`.
+Les fonctions serverless de Vercel ont une limite de 50 Mo. Pixel PDF étant un site statique, cela ne devrait pas vous concerner, mais les modules WASM sont volumineux (~100 Mo au total). Assurez-vous qu'ils sont servis depuis le dossier `/public`.
 :::
 
 ## Dépannage

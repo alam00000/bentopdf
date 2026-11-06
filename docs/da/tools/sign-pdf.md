@@ -38,7 +38,7 @@ Tilføj din signatur til ethvert PDF-dokument. Værktøjet indlejrer en fuld PDF
 ## Tips
 
 - Aktivér udfladning, hvis du sender den underskrevne PDF til en, der ikke bør kunne fjerne eller flytte din signatur.
-- Til juridisk bindende digitale signaturer med certifikatbaseret verificering tilbyder BentoPDF også et separat værktøj, Digital signatur PDF.
+- Til juridisk bindende digitale signaturer med certifikatbaseret verificering tilbyder Pixel PDF også et separat værktøj, Digital signatur PDF.
 - Upload et PNG-signaturbillede med gennemsigtig baggrund for det reneste resultat.
 
 ## Relaterede værktøjer

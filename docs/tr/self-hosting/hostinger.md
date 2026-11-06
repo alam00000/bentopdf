@@ -1,6 +1,6 @@
 # Hostinger'a Dağıtım
 
-[Hostinger](https://hostinger.com) popüler bir paylaşımlı barındırma sağlayıcısıdır. Bu rehber, BentoPDF'in Hostinger paylaşımlı barındırmasına dağıtımını anlatır.
+[Hostinger](https://hostinger.com) popüler bir paylaşımlı barındırma sağlayıcısıdır. Bu rehber, Pixel PDF'in Hostinger paylaşımlı barındırmasına dağıtımını anlatır.
 
 ## Gereksinimler
 
@@ -10,8 +10,8 @@
 ## Adım 1: Projeyi Derleyin
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -142,8 +142,8 @@ AddType image/webp .webp
 # 5. REDIRECTS & ROUTING
 # ============================================
 # Canonical WWW (update domain as needed)
-RewriteCond %{HTTP_HOST} ^bentopdf\.com [NC]
-RewriteRule ^(.*)$ https://www.bentopdf.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^pixelpdf\.com [NC]
+RewriteRule ^(.*)$ https://www.pixelpdf.com/$1 [L,R=301]
 
 # Force HTTPS
 RewriteCond %{HTTPS} off
@@ -249,7 +249,7 @@ Başlıklar uygulanmıyorsa, `mod_headers` modülünü etkinleştirmek için Hos
 
 ### Sayfa Yenilemede 404 Hataları
 
-`.html` uzantı kuralının ve dil yönlendirmelerinin doğru yapılandırıldığından emin olun. BentoPDF, SPA yönlendirmesi değil statik HTML dosyaları kullanır:
+`.html` uzantı kuralının ve dil yönlendirmelerinin doğru yapılandırıldığından emin olun. Pixel PDF, SPA yönlendirmesi değil statik HTML dosyaları kullanır:
 
 ```apache
 # Language routes serve actual files from language directories

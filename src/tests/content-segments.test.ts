@@ -141,7 +141,7 @@ describe('content segments', () => {
 
   it('skips brand-only text and numbers', () => {
     const doc = parse(
-      '<p>BentoPDF</p><p>PyMuPDF</p><p>2026</p><p>Kura Hyper Compress</p>'
+      '<p>Pixel PDF</p><p>PyMuPDF</p><p>2026</p><p>Kura Hyper Compress</p>'
     );
     expect(collect(doc)).toEqual([]);
   });
@@ -262,7 +262,7 @@ describe('content segments', () => {
 
   it('skips elements marked data-no-i18n', () => {
     const doc = parse(
-      '<nav data-no-i18n aria-label="Breadcrumb"><a href="/">BentoPDF</a> Merge PDF</nav><p>Hello</p>'
+      '<nav data-no-i18n aria-label="Breadcrumb"><a href="/">Pixel PDF</a> Merge PDF</nav><p>Hello</p>'
     );
     expect(collect(doc).map((entry) => entry.markup)).toEqual(['Hello']);
   });

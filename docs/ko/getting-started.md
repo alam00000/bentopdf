@@ -1,16 +1,16 @@
 # 시작하기
 
-BentoPDF에 오신 것을 환영합니다! 이 가이드로 빠르게 시작해 보세요.
+Pixel PDF에 오신 것을 환영합니다! 이 가이드로 빠르게 시작해 보세요.
 
-## BentoPDF란?
+## Pixel PDF란?
 
-BentoPDF는 **브라우저에서 전부 실행되는** 무료 오픈소스 개인정보 보호 중심 PDF 도구 모음입니다. 파일이 기기 밖으로 나가지 않으며, 모든 처리는 WebAssembly(WASM) 기술로 로컬에서 이루어집니다.
+Pixel PDF는 **브라우저에서 전부 실행되는** 무료 오픈소스 개인정보 보호 중심 PDF 도구 모음입니다. 파일이 기기 밖으로 나가지 않으며, 모든 처리는 WebAssembly(WASM) 기술로 로컬에서 이루어집니다.
 
 ## 빠른 시작
 
 ### 옵션 1: 호스팅 버전 사용하기
 
-[bentopdf.com](https://www.bentopdf.com)에 접속하면 설치 없이 바로 BentoPDF를 사용할 수 있습니다.
+[pixelpdf.com](https://www.pixelpdf.com)에 접속하면 설치 없이 바로 Pixel PDF를 사용할 수 있습니다.
 
 ### 옵션 2: Docker로 직접 호스팅하기
 
@@ -25,15 +25,15 @@ BentoPDF는 **브라우저에서 전부 실행되는** 무료 오픈소스 개�
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF는 두 가지 빌드로 제공됩니다. 위에서 사용한 **셀프 호스팅 빌드**(`bentopdf-simple`)는 내부/팀/조직 배포용이고, **상용 빌드**(`bentopdf:latest`)는 bentopdf.com 자체와 공개 서비스를 운영하는 상용 라이선스 보유자가 사용합니다. 두 빌드 모두 같은 PDF 도구를 제공하며, 상용 빌드에는 bentopdf.com의 히어로, FAQ, 후기, 푸터가 추가됩니다. 잘 모르겠다면 셀프 호스팅 빌드를 사용하세요.
+> Pixel PDF는 두 가지 빌드로 제공됩니다. 위에서 사용한 **셀프 호스팅 빌드**(`pixelpdf-simple`)는 내부/팀/조직 배포용이고, **상용 빌드**(`pixelpdf:latest`)는 pixelpdf.com 자체와 공개 서비스를 운영하는 상용 라이선스 보유자가 사용합니다. 두 빌드 모두 같은 PDF 도구를 제공하며, 상용 빌드에는 pixelpdf.com의 히어로, FAQ, 후기, 푸터가 추가됩니다. 잘 모르겠다면 셀프 호스팅 빌드를 사용하세요.
 
 그런 다음 브라우저에서 `http://localhost:3000`을 여세요.
 
@@ -44,8 +44,8 @@ docker compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## 브라우저 지원
 
-BentoPDF는 최신 브라우저에서 가장 잘 작동합니다:
+Pixel PDF는 최신 브라우저에서 가장 잘 작동합니다:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF는 최신 브라우저에서 가장 잘 작동합니다:
 ## 다음 단계
 
 - [모든 도구 살펴보기](/ko/tools/)
-- [BentoPDF 직접 호스팅하기](/ko/self-hosting/)
+- [Pixel PDF 직접 호스팅하기](/ko/self-hosting/)
 - [프로젝트에 기여하기](/ko/contributing)

@@ -46,7 +46,7 @@ codeql-results.csv
 libreoffice-wasm-package
 
 # helm chart
-/bentopdf-*.tgz
+/pixelpdf-*.tgz
 
 # test 
 dist-test

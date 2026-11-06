@@ -1,21 +1,21 @@
 ---
 title: JSON을 PDF로
-description: BentoPDF의 JSON 형식에서 PDF 파일을 복원합니다. JSON으로 내보낸 파일을 원래 PDF 문서로 되돌립니다.
+description: Pixel PDF의 JSON 형식에서 PDF 파일을 복원합니다. JSON으로 내보낸 파일을 원래 PDF 문서로 되돌립니다.
 ---
 
 # JSON을 PDF로
 
-BentoPDF의 **PDF를 JSON으로** 도구로 이전에 만든 JSON 파일에서 PDF 문서를 복원합니다. PDF의 구조화된 JSON 표현을 받아 원래 문서를 다시 만드는 왕복 변환 도구입니다.
+Pixel PDF의 **PDF를 JSON으로** 도구로 이전에 만든 JSON 파일에서 PDF 문서를 복원합니다. PDF의 구조화된 JSON 표현을 받아 원래 문서를 다시 만드는 왕복 변환 도구입니다.
 
 ::: warning
-이 도구는 BentoPDF의 PDF를 JSON으로 변환기가 만든 JSON 파일만 허용합니다. API, 데이터베이스, 다른 도구에서 가져온 일반 JSON 파일은 지원되지 않습니다.
+이 도구는 Pixel PDF의 PDF를 JSON으로 변환기가 만든 JSON 파일만 허용합니다. API, 데이터베이스, 다른 도구에서 가져온 일반 JSON 파일은 지원되지 않습니다.
 :::
 
 ## 지원 형식
 
 | 입력    | 설명                                              |
 | :------ | :------------------------------------------------ |
-| `.json` | BentoPDF의 PDF를 JSON으로 도구로 내보낸 JSON 파일 |
+| `.json` | Pixel PDF의 PDF를 JSON으로 도구로 내보낸 JSON 파일 |
 
 ## 사용 방법
 

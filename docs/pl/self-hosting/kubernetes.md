@@ -10,24 +10,24 @@ Kubernetes może być przesadą dla statycznej strony, ale świetnie sprawdzi si
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> Oficjalne obrazy nginx BentoPDF zawierają te nagłówki. W Kubernetes **kontrolery Ingress/Gateway także są reverse proxy**, więc upewnij się, że nagłówki są zachowywane (lub dodaj je na brzegu).
+> Oficjalne obrazy nginx Pixel PDF zawierają te nagłówki. W Kubernetes **kontrolery Ingress/Gateway także są reverse proxy**, więc upewnij się, że nagłówki są zachowywane (lub dodaj je na brzegu).
 
 ## Wymagania wstępne
 
 - Klaster Kubernetes
 - Helm v3
-- Obraz nginx BentoPDF (np. `ghcr.io/alam00000/bentopdf:<tag>`) serwujący na **porcie 8080**
+- Obraz nginx Pixel PDF (np. `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`) serwujący na **porcie 8080**
 
 ## Wdrożenie z Helm
 
 ### Instalacja z tego repozytorium (lokalny chart)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ Jeśli chart jest opublikowany w GHCR jako artefakt OCI:
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward (szybki test)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (opcjonalnie)
@@ -78,15 +78,15 @@ Przykład (operator Cloudflare Gateway API):
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### Co "powinno" się dziać
 
-Konfiguracja nginx BentoPDF ustawia wymagane nagłówki odpowiedzi. Większość kontrolerów Ingress/Gateway **przekazuje nagłówki odpowiedzi z upstreamu bez zmian**.
+Konfiguracja nginx Pixel PDF ustawia wymagane nagłówki odpowiedzi. Większość kontrolerów Ingress/Gateway **przekazuje nagłówki odpowiedzi z upstreamu bez zmian**.
 
 ### Co może to zepsuć
 
@@ -132,9 +132,9 @@ ingress:
 
 ## Błędy typu MIME dla `.mjs` (pusty iframe Podpisz PDF / Wypełnianie formularzy PDF)
 
-Jeśli konsola przeglądarki pokazuje `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` przy żądaniu `.mjs`, kontroler Ingress/Gateway przed nginx BentoPDF zastępuje nagłówek `Content-Type` z upstreamu wartością `application/octet-stream`.
+Jeśli konsola przeglądarki pokazuje `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` przy żądaniu `.mjs`, kontroler Ingress/Gateway przed nginx Pixel PDF zastępuje nagłówek `Content-Type` z upstreamu wartością `application/octet-stream`.
 
-Nginx w obrazie BentoPDF już serwuje `.mjs` jako `application/javascript`. Rozwiązaniem jest powstrzymanie kontrolera przed usuwaniem lub zastępowaniem tego nagłówka. Dla nginx-ingress:
+Nginx w obrazie Pixel PDF już serwuje `.mjs` jako `application/javascript`. Rozwiązaniem jest powstrzymanie kontrolera przed usuwaniem lub zastępowaniem tego nagłówka. Dla nginx-ingress:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ Użyj ConfigMap, aby wyłączyć narzędzia w czasie działania, bez przebudowyw
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ Zamontuj go w serwowanym katalogu:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 Identyfikatory narzędzi to adres strony bez `.html`. Otwórz dowolne narzędzie i spójrz na adres URL (np. `edit-pdf`, `merge-pdf`, `compress-pdf`). Wyłączone narzędzia są ukryte na stronie głównej, w wyszukiwarce, skrótach, kreatorze przepływów i przy bezpośrednim dostępie przez URL. Pełną listę opcji znajdziesz w [przewodniku Docker](/pl/self-hosting/docker#wyłaczanie-wybranych-narzedzi).

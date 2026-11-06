@@ -7,7 +7,7 @@ description: Tambahkan tanda tangan digital kriptografis ke PDF menggunakan sert
 
 Tanda tangan digital adalah bukti kriptografis bahwa orang tertentu telah menandatangani dokumen dan dokumen tersebut tidak diubah sejak saat itu. Berbeda dengan tanda tangan gambar (yang hanya berupa gambar), tanda tangan digital menggunakan sertifikat X.509 dan standar PKCS#7 untuk memberikan keaslian dan integritas yang dapat diverifikasi.
 
-BentoPDF menerapkan tanda tangan digital sepenuhnya di browser Anda. Kunci privat Anda tidak pernah meninggalkan perangkat Anda.
+Pixel PDF menerapkan tanda tangan digital sepenuhnya di browser Anda. Kunci privat Anda tidak pernah meninggalkan perangkat Anda.
 
 ## Cara Kerja
 

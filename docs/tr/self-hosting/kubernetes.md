@@ -10,24 +10,24 @@ Kubernetes statik bir site için gereğinden fazla olabilir, ancak zaten Helm + 
 > - `Cross-Origin-Opener-Policy: same-origin`
 > - `Cross-Origin-Embedder-Policy: require-corp`
 >
-> Resmi BentoPDF nginx imajları bu başlıkları içerir. Kubernetes'te **Ingress/Gateway denetleyicileri de birer ters proxy'dir**, bu nedenle bu başlıkların korunduğundan emin olun (veya uç katmanda ekleyin).
+> Resmi Pixel PDF nginx imajları bu başlıkları içerir. Kubernetes'te **Ingress/Gateway denetleyicileri de birer ters proxy'dir**, bu nedenle bu başlıkların korunduğundan emin olun (veya uç katmanda ekleyin).
 
 ## Ön Koşullar
 
 - Kubernetes kümesi
 - Helm v3
-- **8080 numaralı bağlantı noktasında** hizmet veren bir BentoPDF nginx imajı (örn. `ghcr.io/alam00000/bentopdf:<tag>`)
+- **8080 numaralı bağlantı noktasında** hizmet veren bir Pixel PDF nginx imajı (örn. `ghcr.io/mohammedalhinaki-cloud/pixel-pdf:<tag>`)
 
 ## Helm ile Dağıtım
 
 ### Bu depodan kurulum (yerel chart)
 
 ```bash
-kubectl create namespace bentopdf
+kubectl create namespace pixelpdf
 
-helm upgrade --install bentopdf /path/to/bentopdf/chart \
-  --namespace bentopdf \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+helm upgrade --install pixelpdf /path/to/pixelpdf/chart \
+  --namespace pixelpdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -38,11 +38,11 @@ Chart GHCR'de OCI yapıtı olarak yayımlanmışsa:
 ```bash
 export GHCR_USERNAME="<github-org-or-user>"
 
-helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
-  --namespace bentopdf \
+helm upgrade --install pixelpdf oci://ghcr.io/$GHCR_USERNAME/charts/pixelpdf \
+  --namespace pixelpdf \
   --create-namespace \
   --version 0.1.0 \
-  --set image.repository=ghcr.io/alam00000/bentopdf \
+  --set image.repository=ghcr.io/mohammedalhinaki-cloud/pixel-pdf \
   --set image.tag=latest
 ```
 
@@ -51,7 +51,7 @@ helm upgrade --install bentopdf oci://ghcr.io/$GHCR_USERNAME/charts/bentopdf \
 ### Port-forward (hızlı test)
 
 ```bash
-kubectl -n bentopdf port-forward deploy/bentopdf 8080:8080
+kubectl -n pixelpdf port-forward deploy/pixelpdf 8080:8080
 ```
 
 ### Ingress (isteğe bağlı)
@@ -78,15 +78,15 @@ Bu chart, Gateway API `Gateway` + `HTTPRoute` yapılarını destekler.
 ```yaml
 gateway:
   enabled: true
-  name: bento-tunnel
-  namespace: bentopdf
+  name: pixel-tunnel
+  namespace: pixelpdf
   gatewayClassName: cloudflare
 
 httpRoute:
   enabled: true
   parentRefs:
-    - name: bento-tunnel
-      namespace: bentopdf
+    - name: pixel-tunnel
+      namespace: pixelpdf
       sectionName: http
   hostnames:
     - pdfs.example.com
@@ -96,7 +96,7 @@ httpRoute:
 
 ### Ne olması "gerekir"
 
-BentoPDF'in nginx yapılandırması gerekli yanıt başlıklarını ayarlar. Çoğu Ingress/Gateway denetleyicisi **üst akış yanıt başlıklarını değiştirmeden iletir**.
+Pixel PDF'in nginx yapılandırması gerekli yanıt başlıklarını ayarlar. Çoğu Ingress/Gateway denetleyicisi **üst akış yanıt başlıklarını değiştirmeden iletir**.
 
 ### Neyi bozabilir
 
@@ -132,9 +132,9 @@ ingress:
 
 ## `.mjs` MIME türü hataları (PDF İmzala / Form Doldurucu iframe'i boş)
 
-Tarayıcı konsolunda bir `.mjs` isteğinde `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` görüyorsanız, BentoPDF nginx'inin önündeki bir Ingress/Gateway denetleyicisi üst akıştaki `Content-Type` başlığını `application/octet-stream` ile değiştiriyor demektir.
+Tarayıcı konsolunda bir `.mjs` isteğinde `Failed to load module script: ... non-JavaScript MIME type "application/octet-stream"` görüyorsanız, Pixel PDF nginx'inin önündeki bir Ingress/Gateway denetleyicisi üst akıştaki `Content-Type` başlığını `application/octet-stream` ile değiştiriyor demektir.
 
-BentoPDF imajındaki nginx `.mjs` dosyalarını zaten `application/javascript` olarak sunar. Çözüm, denetleyicinin bunu kaldırmasını/değiştirmesini engellemektir. nginx-ingress için:
+Pixel PDF imajındaki nginx `.mjs` dosyalarını zaten `application/javascript` olarak sunar. Çözüm, denetleyicinin bunu kaldırmasını/değiştirmesini engellemektir. nginx-ingress için:
 
 ```yaml
 ingress:
@@ -156,7 +156,7 @@ httpRoute:
   enabled: true
   hostnames: [pdf.example.com]
   parentRefs:
-    - name: bento-tunnel
+    - name: pixel-tunnel
       namespace: misc
       sectionName: http
   rules:
@@ -182,8 +182,8 @@ Belirli filtrelerin desteği Gateway denetleyicinize bağlıdır; bir filtre yok
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bentopdf-config
-  namespace: bentopdf
+  name: pixelpdf-config
+  namespace: pixelpdf
 data:
   config.json: |
     {
@@ -196,7 +196,7 @@ Bunu sunulan dizine bağlayın:
 ```yaml
 spec:
   containers:
-    - name: bentopdf
+    - name: pixelpdf
       volumeMounts:
         - name: config
           mountPath: /usr/share/nginx/html/config.json
@@ -205,7 +205,7 @@ spec:
   volumes:
     - name: config
       configMap:
-        name: bentopdf-config
+        name: pixelpdf-config
 ```
 
 Araç kimlikleri, `.html` olmadan sayfa URL'sidir: herhangi bir aracı açıp URL'ye bakın (örn. `edit-pdf`, `merge-pdf`, `compress-pdf`). Devre dışı bırakılan araçlar ana sayfadan, aramadan, kısayollardan, iş akışı oluşturucudan ve doğrudan URL erişiminden gizlenir. Seçeneklerin tam listesi için [Docker kılavuzuna](/tr/self-hosting/docker#belirli-aracları-devre-dısı-bırakma) bakın.

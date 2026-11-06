@@ -1,16 +1,16 @@
 # شروع به کار
 
-به BentoPDF خوش آمدید! این راهنما به شما کمک می‌کند سریع شروع کنید.
+به Pixel PDF خوش آمدید! این راهنما به شما کمک می‌کند سریع شروع کنید.
 
-## BentoPDF چیست؟
+## Pixel PDF چیست؟
 
-BentoPDF مجموعه‌ابزار PDF رایگان، متن‌باز و حریم‌خصوصی‌محور است که **کاملاً در مرورگر شما** اجرا می‌شود. فایل‌های شما هرگز از دستگاهتان خارج نمی‌شوند؛ همهٔ پردازش‌ها به‌صورت محلی با فناوری WebAssembly (WASM) انجام می‌شود.
+Pixel PDF مجموعه‌ابزار PDF رایگان، متن‌باز و حریم‌خصوصی‌محور است که **کاملاً در مرورگر شما** اجرا می‌شود. فایل‌های شما هرگز از دستگاهتان خارج نمی‌شوند؛ همهٔ پردازش‌ها به‌صورت محلی با فناوری WebAssembly (WASM) انجام می‌شود.
 
 ## شروع سریع
 
 ### گزینهٔ ۱: استفاده از نسخهٔ میزبانی‌شده
 
-به [bentopdf.com](https://www.bentopdf.com) بروید تا بی‌درنگ از BentoPDF استفاده کنید؛ نیازی به نصب نیست.
+به [pixelpdf.com](https://www.pixelpdf.com) بروید تا بی‌درنگ از Pixel PDF استفاده کنید؛ نیازی به نصب نیست.
 
 ### گزینهٔ ۲: میزبانی شخصی با Docker
 
@@ -25,15 +25,15 @@ BentoPDF مجموعه‌ابزار PDF رایگان، متن‌باز و حری�
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF در دو نسخهٔ ساخت عرضه می‌شود: **نسخهٔ میزبانی شخصی** (`bentopdf-simple`، که در بالا استفاده شد) برای استقرارهای داخلی، تیمی و سازمانی، و **نسخهٔ تجاری** (`bentopdf:latest`) که خود bentopdf.com و دارندگان مجوز تجاری برای استقرارهای عمومی از آن استفاده می‌کنند. هر دو ابزارهای PDF یکسانی دارند؛ نسخهٔ تجاری بخش hero، پرسش‌های متداول، نظرات کاربران و پاصفحهٔ bentopdf.com را اضافه می‌کند. اگر مطمئن نیستید، از نسخهٔ میزبانی شخصی استفاده کنید.
+> Pixel PDF در دو نسخهٔ ساخت عرضه می‌شود: **نسخهٔ میزبانی شخصی** (`pixelpdf-simple`، که در بالا استفاده شد) برای استقرارهای داخلی، تیمی و سازمانی، و **نسخهٔ تجاری** (`pixelpdf:latest`) که خود pixelpdf.com و دارندگان مجوز تجاری برای استقرارهای عمومی از آن استفاده می‌کنند. هر دو ابزارهای PDF یکسانی دارند؛ نسخهٔ تجاری بخش hero، پرسش‌های متداول، نظرات کاربران و پاصفحهٔ pixelpdf.com را اضافه می‌کند. اگر مطمئن نیستید، از نسخهٔ میزبانی شخصی استفاده کنید.
 
 سپس `http://localhost:3000` را در مرورگر خود باز کنید.
 
@@ -44,8 +44,8 @@ docker compose up -d
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## پشتیبانی مرورگرها
 
-BentoPDF در مرورگرهای مدرن بهترین عملکرد را دارد:
+Pixel PDF در مرورگرهای مدرن بهترین عملکرد را دارد:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF در مرورگرهای مدرن بهترین عملکرد را دار�
 ## گام‌های بعدی
 
 - [مشاهدهٔ همهٔ ابزارها](/fa/tools/)
-- [میزبانی شخصی BentoPDF](/fa/self-hosting/)
+- [میزبانی شخصی Pixel PDF](/fa/self-hosting/)
 - [مشارکت در پروژه](/fa/contributing)

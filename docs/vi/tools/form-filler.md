@@ -36,7 +36,7 @@ Không có tùy chọn cấu hình bổ sung. Tải form lên, điền và tải
 
 ## Mẹo
 
-- XFA là định dạng cũ chỉ một số trình xem PDF hỗ trợ. Nếu bạn mở PDF XFA trong Chrome hoặc hầu hết công cụ khác và thấy trang trống, nghĩa là các trình xem đó không hỗ trợ XFA. Điền form PDF của BentoPDF và Firefox đều xử lý XFA đúng cách.
+- XFA là định dạng cũ chỉ một số trình xem PDF hỗ trợ. Nếu bạn mở PDF XFA trong Chrome hoặc hầu hết công cụ khác và thấy trang trống, nghĩa là các trình xem đó không hỗ trợ XFA. Điền form PDF của Pixel PDF và Firefox đều xử lý XFA đúng cách.
 - Với PDF chưa có trường form, hãy dùng công cụ [Tạo form PDF](./form-creator) để thêm trường trước, rồi điền tại đây.
 - Trình xem tự động điều chỉnh kích thước để khớp với kích thước trang của PDF.
 

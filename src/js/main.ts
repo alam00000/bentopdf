@@ -48,7 +48,7 @@ declare const __BRAND_NAME__: string;
 const adsSection = document.getElementById('ads-section');
 if (
   adsSection &&
-  (['bentopdf.com', 'www.bentopdf.com'].includes(window.location.hostname) ||
+  (['pixelpdf.com', 'www.pixelpdf.com'].includes(window.location.hostname) ||
     import.meta.env.DEV)
 ) {
   adsSection.hidden = false;
@@ -90,7 +90,7 @@ const init = async () => {
       }
 
       const githubLink = document.querySelector(
-        'a[href*="github.com/alam00000/bentopdf"]'
+        'a[href*="github.com/mohammedalhinaki-cloud/Pixel-PDF"]'
       );
       if (githubLink) {
         (githubLink as HTMLElement).style.display = 'none';
@@ -138,7 +138,7 @@ const init = async () => {
         (divider as HTMLElement).style.display = 'none';
       });
 
-      const brandName = __BRAND_NAME__ || 'BentoPDF';
+      const brandName = __BRAND_NAME__ || 'Pixel PDF';
       document.title = trText('{{brandName}} - {{title}}', {
         brandName,
         title: t('simpleMode.title'),
@@ -978,7 +978,7 @@ const init = async () => {
     !__SIMPLE_MODE__ &&
     !__DISABLE_GITHUB_STARS__
   ) {
-    fetch('https://api.github.com/repos/alam00000/bentopdf')
+    fetch('https://api.github.com/repos/mohammedalhinaki-cloud/Pixel-PDF')
       .then((response) => response.json())
       .then((data) => {
         if (data.stargazers_count !== undefined) {

@@ -2,7 +2,7 @@
 
 La herramienta de firma digital usa un proxy CORS para obtener los certificados de los emisores desde Autoridades de Certificación (CA) externas. Es necesario porque muchos servidores de CA no incluyen cabeceras CORS en sus respuestas, lo que impide la descarga directa desde el navegador.
 
-Además, muchos servidores de CA sirven los certificados por HTTP simple. Cuando tu instancia de BentoPDF se aloja por HTTPS, los navegadores bloquean estas solicitudes HTTP (política de contenido mixto). El proxy CORS resuelve ambos problemas al enrutar las solicitudes a través de un endpoint HTTPS con las cabeceras adecuadas.
+Además, muchos servidores de CA sirven los certificados por HTTP simple. Cuando tu instancia de Pixel PDF se aloja por HTTPS, los navegadores bloquean estas solicitudes HTTP (política de contenido mixto). El proxy CORS resuelve ambos problemas al enrutar las solicitudes a través de un endpoint HTTPS con las cabeceras adecuadas.
 
 ## Cómo funciona
 
@@ -15,7 +15,7 @@ Al firmar un PDF con un certificado:
 
 ## Autoalojar el proxy CORS
 
-Si autoalojas BentoPDF, tendrás que desplegar tu propio proxy CORS para que las firmas digitales funcionen con certificados que requieren obtener la cadena.
+Si autoalojas Pixel PDF, tendrás que desplegar tu propio proxy CORS para que las firmas digitales funcionen con certificados que requieren obtener la cadena.
 
 ### Opción 1: Cloudflare Workers (recomendada)
 
@@ -31,11 +31,11 @@ Si autoalojas BentoPDF, tendrás que desplegar tu propio proxy CORS para que las
    wrangler login
    ```
 
-3. **Clona BentoPDF y actualiza los orígenes permitidos**:
+3. **Clona Pixel PDF y actualiza los orígenes permitidos**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    Abre `cors-proxy-worker.js` y cambia el array `ALLOWED_ORIGINS` por tu dominio:
@@ -48,7 +48,7 @@ Si autoalojas BentoPDF, tendrás que desplegar tu propio proxy CORS para que las
    ```
 
    ::: warning Importante
-   Sin este cambio, el proxy rechazará todas las solicitudes de tu sitio con un error **403 Forbidden**. Por defecto solo permite solicitudes de `bentopdf.com`.
+   Sin este cambio, el proxy rechazará todas las solicitudes de tu sitio con un error **403 Forbidden**. Por defecto solo permite solicitudes de `pixelpdf.com`.
    :::
 
 4. **Despliega el proxy**:
@@ -57,9 +57,9 @@ Si autoalojas BentoPDF, tendrás que desplegar tu propio proxy CORS para que las
    wrangler deploy
    ```
 
-   Anota la URL de tu worker (p. ej., `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Anota la URL de tu worker (p. ej., `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Vuelve a compilar BentoPDF con la URL del proxy**:
+5. **Vuelve a compilar Pixel PDF con la URL del proxy**:
 
    Si usas Docker:
 
@@ -67,7 +67,7 @@ Si autoalojas BentoPDF, tendrás que desplegar tu propio proxy CORS para que las
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Si compilas desde el código fuente:

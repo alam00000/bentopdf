@@ -5,7 +5,7 @@ description: PDF dosyalarını 256 bit AES şifrelemesiyle parola ile koruyun. Y
 
 # PDF'yi Şifrele
 
-PDF'inizi bir parolanın arkasına kilitleyin, böylece yalnızca yetkili kişiler açabilir. BentoPDF, bankalar ve devlet kurumlarının kullandığı standartla aynı olan 256 bit AES şifrelemesini kullanır ve bunu tamamen tarayıcınızda QPDF aracılığıyla uygular.
+PDF'inizi bir parolanın arkasına kilitleyin, böylece yalnızca yetkili kişiler açabilir. Pixel PDF, bankalar ve devlet kurumlarının kullandığı standartla aynı olan 256 bit AES şifrelemesini kullanır ve bunu tamamen tarayıcınızda QPDF aracılığıyla uygular.
 
 ## Nasıl Çalışır
 
@@ -23,7 +23,7 @@ Kullanıcı parolası, alıcıların PDF'i açmak için yazdığı paroladır. B
 
 ### Sahip Parolası (İsteğe Bağlı)
 
-Sahip parolası, yetkili bir kullanıcının dosyayı açtıktan sonra neler yapabileceğini denetler. Farklı bir sahip parolası belirlediğinizde BentoPDF en sıkı kısıtlama kümesini otomatik olarak uygular:
+Sahip parolası, yetkili bir kullanıcının dosyayı açtıktan sonra neler yapabileceğini denetler. Farklı bir sahip parolası belirlediğinizde Pixel PDF en sıkı kısıtlama kümesini otomatik olarak uygular:
 
 - Değiştirme devre dışı
 - Çıkarma/kopyalama devre dışı

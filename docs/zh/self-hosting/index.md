@@ -1,30 +1,30 @@
 # 自托管指南
 
-BentoPDF 可以部署在您自己的基础设施上。本指南介绍多种部署方式。
+Pixel PDF 可以部署在您自己的基础设施上。本指南介绍多种部署方式。
 
 ## 使用 Docker / Podman 快速开始
 
-自托管 BentoPDF 最快的方式：
+自托管 Pixel PDF 最快的方式：
 
 > [!TIP]
-> BentoPDF 提供两种构建版本：
+> Pixel PDF 提供两种构建版本：
 >
-> - **自托管版本**：`ghcr.io/alam00000/bentopdf-simple:latest`。包含所有 PDF 工具，但**不含**营销页面元素（没有首页横幅、FAQ、用户评价和页脚）。适用于内部、团队或组织部署。它**不是**功能精简的“轻量”版本。
-> - **商业版本**：`ghcr.io/alam00000/bentopdf:latest`。完整的营销网站，bentopdf.com 本身以及运行面向公众部署的商业许可持有者使用该版本。
+> - **自托管版本**：`ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest`。包含所有 PDF 工具，但**不含**营销页面元素（没有首页横幅、FAQ、用户评价和页脚）。适用于内部、团队或组织部署。它**不是**功能精简的“轻量”版本。
+> - **商业版本**：`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`。完整的营销网站，pixelpdf.com 本身以及运行面向公众部署的商业许可持有者使用该版本。
 >
 > 如果拿不准，请拉取自托管版本。
 
 > [!IMPORTANT]
 > Office 文件转换需要 `SharedArrayBuffer`，这意味着应用必须同时满足跨源隔离，并通过安全上下文提供服务。官方镜像已经发送所需的 COOP/COEP 标头，但浏览器仍会在 `http://192.168.x.x` 这类普通 HTTP 局域网来源上禁用 `SharedArrayBuffer`。
 >
-> `http://localhost` 仅用于同一设备上的测试。如果用户通过局域网 IP 或主机名访问 BentoPDF，请使用 HTTPS 终止连接。
+> `http://localhost` 仅用于同一设备上的测试。如果用户通过局域网 IP 或主机名访问 Pixel PDF，请使用 HTTPS 终止连接。
 
 ```bash
 # Docker
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Podman
-podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+podman run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 或者使用 Docker Compose / Podman Compose：
@@ -32,8 +32,8 @@ podman run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
 ```yaml
 # docker-compose.yml
 services:
-  bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:latest
+  pixelpdf:
+    image: ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
     ports:
       - '3000:8080'
     restart: unless-stopped
@@ -49,12 +49,12 @@ podman-compose up -d
 
 ## Podman Quadlet（Linux Systemd）
 
-将 BentoPDF 作为 systemd 服务运行。创建 `~/.config/containers/systemd/bentopdf.container`：
+将 Pixel PDF 作为 systemd 服务运行。创建 `~/.config/containers/systemd/pixelpdf.container`：
 
 ```ini
 [Container]
-Image=ghcr.io/alam00000/bentopdf-simple:latest
-ContainerName=bentopdf
+Image=ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
+ContainerName=pixelpdf
 PublishPort=3000:8080
 AutoUpdate=registry
 
@@ -67,7 +67,7 @@ WantedBy=default.target
 
 ```bash
 systemctl --user daemon-reload
-systemctl --user enable --now bentopdf
+systemctl --user enable --now pixelpdf
 ```
 
 完整的 Quadlet 文档请参阅 [Docker 部署指南](/zh/self-hosting/docker)。
@@ -76,8 +76,8 @@ systemctl --user enable --now bentopdf
 
 ```bash
 # Clone and build
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 
@@ -88,7 +88,7 @@ npm run build
 
 ### 自托管版本（Simple Mode）
 
-自托管版本（`bentopdf-simple` 镜像，也称为 Simple Mode）与商业版本**功能完全相同**，所有 PDF 工具都在，行为也一致。它只是隐藏了仅适用于 bentopdf.com 本身或商业面向公众部署的营销页面元素。**它不是功能精简的“轻量”版本。**
+自托管版本（`pixelpdf-simple` 镜像，也称为 Simple Mode）与商业版本**功能完全相同**，所有 PDF 工具都在，行为也一致。它只是隐藏了仅适用于 pixelpdf.com 本身或商业面向公众部署的营销页面元素。**它不是功能精简的“轻量”版本。**
 
 **自托管版本隐藏的内容**（仅外观层面，不会移除任何 PDF 功能）：
 
@@ -100,32 +100,32 @@ npm run build
 - 所有 PDF 工具（合并、拆分、编辑、签名、OCR、Office 转换等）
 - 自定义品牌支持，以及所有构建时和运行时配置
 
-商业版本（`ghcr.io/alam00000/bentopdf:latest`）是 bentopdf.com 本身所用的版本，也供运行面向公众部署的商业许可持有者使用。它额外包含首页横幅、FAQ、用户评价和页脚，这些内容在内部工具中没有意义。
+商业版本（`ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest`）是 pixelpdf.com 本身所用的版本，也供运行面向公众部署的商业许可持有者使用。它额外包含首页横幅、FAQ、用户评价和页脚，这些内容在内部工具中没有意义。
 
-如果您为团队、组织自托管 BentoPDF，或将其用作内部工具，请拉取自托管版本：
+如果您为团队、组织自托管 Pixel PDF，或将其用作内部工具，请拉取自托管版本：
 
 ```bash
 # Use the pre-built image (recommended)
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or build it yourself
 SIMPLE_MODE=true npm run build
 ```
 
-详情请参阅 [SIMPLE_MODE.md](https://github.com/alam00000/bentopdf/blob/main/SIMPLE_MODE.md)。
+详情请参阅 [SIMPLE_MODE.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/SIMPLE_MODE.md)。
 
 ### 商业版本（使用自有品牌的面向公众部署）
 
-商业版本（`bentopdf` 镜像，没有 `-simple` 后缀）是 bentopdf.com 本身所用的版本。除所有 PDF 工具外，它还包含完整的营销网站（首页横幅、功能介绍、FAQ、用户评价、页脚）。当您想以自有品牌**将 BentoPDF 部署为面向公众的 PDF 服务**时，请使用此版本，例如：
+商业版本（`pixelpdf` 镜像，没有 `-simple` 后缀）是 pixelpdf.com 本身所用的版本。除所有 PDF 工具外，它还包含完整的营销网站（首页横幅、功能介绍、FAQ、用户评价、页脚）。当您想以自有品牌**将 Pixel PDF 部署为面向公众的 PDF 服务**时，请使用此版本，例如：
 
 - 您在自己的域名上为最终用户提供托管的 SaaS 服务
 - 您想要完整的落地页体验（营销板块加工具），而不只是单纯的工具界面
-- 您是商业许可持有者，将 BentoPDF 嵌入商业产品
+- 您是商业许可持有者，将 Pixel PDF 嵌入商业产品
 
-**直接运行**（BentoPDF 品牌，适合预览该版本）：
+**直接运行**（Pixel PDF 品牌，适合预览该版本）：
 
 ```bash
-docker run -p 3000:8080 ghcr.io/alam00000/bentopdf:latest
+docker run -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf:latest
 ```
 
 **使用自有品牌构建**（典型的商业工作流）：
@@ -143,12 +143,12 @@ docker run -p 3000:8080 acmepdf
 其他所有构建时选项（`BASE_URL`、`VITE_DEFAULT_LANGUAGE`、`DISABLE_TOOLS`、WASM URL 覆盖等）的用法与自托管版本相同。
 
 ::: warning 许可
-BentoPDF 的两种许可方式都允许运行商业版本：
+Pixel PDF 的两种许可方式都允许运行商业版本：
 
 - **AGPL-3.0**（免费）：如果您的部署以 AGPL 公开完整源代码（包括任何品牌修改和周边业务逻辑），则允许使用。
 - **商业许可**（$79 终身）：闭源或专有部署需要此许可，即您不公开品牌分支或业务代码的情况。
 
-完整对比请参阅[许可页面](https://www.bentopdf.com/licensing)。采用 AGPL 许可的 WASM 模块（PyMuPDF、Ghostscript、CoherentPDF）在运行时从 CDN 加载，因此不会进入您的镜像，也不会改变您的许可状况。
+完整对比请参阅[许可页面](https://www.pixelpdf.com/licensing)。采用 AGPL 许可的 WASM 模块（PyMuPDF、Ghostscript、CoherentPDF）在运行时从 CDN 加载，因此不会进入您的镜像，也不会改变您的许可状况。
 :::
 
 ### Base URL
@@ -161,13 +161,13 @@ BASE_URL=/pdf-tools/ npm run build
 
 ### 自定义品牌
 
-在构建时将默认的 BentoPDF 标志、名称和页脚文字替换为您自己的：
+在构建时将默认的 Pixel PDF 标志、名称和页脚文字替换为您自己的：
 
 | 变量               | 说明                        | 默认值                                  |
 | ------------------ | --------------------------- | --------------------------------------- |
-| `VITE_BRAND_NAME`  | 显示在页眉和页脚的品牌名称  | `BentoPDF`                              |
+| `VITE_BRAND_NAME`  | 显示在页眉和页脚的品牌名称  | `Pixel PDF`                              |
 | `VITE_BRAND_LOGO`  | 相对于 `public/` 的标志路径 | `images/favicon-no-bg.svg`              |
-| `VITE_FOOTER_TEXT` | 自定义页脚/版权文字         | `© 2026 BentoPDF. All rights reserved.` |
+| `VITE_FOOTER_TEXT` | 自定义页脚/版权文字         | `© 2026 Pixel PDF. All rights reserved.` |
 
 ```bash
 # Place your logo in public/, then build
@@ -212,7 +212,7 @@ DISABLE_TOOLS="edit-pdf,sign-pdf" npm run build
 ```bash
 docker run -d -p 3000:8080 \
   -v ./config.json:/usr/share/nginx/html/config.json:ro \
-  ghcr.io/alam00000/bentopdf-simple:latest
+  ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 ```
 
 两种方法可以同时使用，列表会合并。
@@ -265,7 +265,7 @@ docker run -d -p 3000:8080 \
 - [Kubernetes →](/zh/self-hosting/kubernetes#确保-sharedarraybuffer-标头仍然有效-ingress-gateway)
 - **Docker**：由内置的 nginx 配置自动处理，无需任何操作。
 
-**验证**：在任意 BentoPDF 页面打开开发者工具控制台并运行：
+**验证**：在任意 Pixel PDF 页面打开开发者工具控制台并运行：
 
 ```js
 console.log(window.crossOriginIsolated); // should be true
@@ -294,7 +294,7 @@ console.log(typeof SharedArrayBuffer); // should be "function"
 
 ## WASM 配置（AGPL 组件）
 
-BentoPDF 的源代码**不捆绑**采用 AGPL 许可的处理库，但**预先配置了 CDN URL**，因此所有功能开箱即用，无需手动设置。
+Pixel PDF 的源代码**不捆绑**采用 AGPL 许可的处理库，但**预先配置了 CDN URL**，因此所有功能开箱即用，无需手动设置。
 
 ::: tip 默认零配置
 自 v2.0.0 起，WASM 模块已通过环境变量预先配置为从 jsDelivr CDN 加载。所有高级功能无需任何用户配置即可立即使用。
@@ -336,7 +336,7 @@ docker build \
   --build-arg VITE_TESSERACT_LANG_URL=https://your-server.com/ocr/lang-data \
   --build-arg VITE_TESSERACT_AVAILABLE_LANGUAGES=eng,deu \
   --build-arg VITE_OCR_FONT_BASE_URL=https://your-server.com/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 
 # Or via .env.production before building from source
 VITE_WASM_PYMUPDF_URL=https://your-server.com/pymupdf/ npm run build
@@ -357,8 +357,8 @@ VITE_WASM_PYMUPDF_URL=https://your-server.com/pymupdf/ npm run build
 内置的 `prepare-airgap.sh` 脚本可自动完成整个流程：下载 WASM 包、构建 Docker 镜像，并生成附带安装脚本的独立压缩包。
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Show supported OCR language codes (for --ocr-languages)
 bash scripts/prepare-airgap.sh --list-ocr-languages
@@ -377,7 +377,7 @@ bash scripts/prepare-airgap.sh --wasm-base-url https://internal.example.com/wasm
 
 ```
 bentopdf-airgap-bundle/
-  bentopdf.tar              # Docker image
+  pixelpdf.tar              # Docker image
   *.tgz                     # WASM packages (PyMuPDF, Ghostscript, CoherentPDF, Tesseract)
   tesseract-langdata/       # OCR traineddata files
   ocr-fonts/                # OCR text-layer font files
@@ -399,7 +399,7 @@ bash setup.sh
 | 标志                           | 说明                                   | 默认值                     |
 | ------------------------------ | -------------------------------------- | -------------------------- |
 | `--wasm-base-url <url>`        | WASM 文件在内部托管的位置              | _（必填，缺失时会提示）_   |
-| `--image-name <name>`          | Docker 镜像标签                        | `bentopdf`                 |
+| `--image-name <name>`          | Docker 镜像标签                        | `pixelpdf`                 |
 | `--output-dir <path>`          | 输出压缩包目录                         | `./bentopdf-airgap-bundle` |
 | `--simple-mode`                | 启用 Simple Mode                       | 关闭                       |
 | `--base-url <path>`            | 子目录基础 URL（例如 `/pdf/`）         | `/`                        |
@@ -417,7 +417,7 @@ bash setup.sh
 交互式提示也接受 `list` 以打印完整的 Tesseract 支持代码列表，以及 `search <term>` 以查找匹配项，例如 `search german` 或 `search chi`。
 
 ::: warning 同源要求
-WASM 文件必须与 BentoPDF 应用从**同一来源**提供。Web Worker 使用 `importScripts()`，无法跨源加载脚本。例如，如果 BentoPDF 运行在 `https://internal.example.com`，则 WASM 基础 URL 也应为 `https://internal.example.com/wasm`。
+WASM 文件必须与 Pixel PDF 应用从**同一来源**提供。Web Worker 使用 `importScripts()`，无法跨源加载脚本。例如，如果 Pixel PDF 运行在 `https://internal.example.com`，则 WASM 基础 URL 也应为 `https://internal.example.com/wasm`。
 :::
 
 #### 手动步骤
@@ -442,8 +442,8 @@ curl -fsSL https://raw.githack.com/googlefonts/noto-fonts/main/hinted/ttf/NotoSa
 **步骤 2：使用内部 URL 构建 Docker 镜像**
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 docker build \
   --build-arg VITE_WASM_PYMUPDF_URL=https://internal-server.example.com/wasm/pymupdf/ \
@@ -453,20 +453,20 @@ docker build \
   --build-arg VITE_TESSERACT_CORE_URL=https://internal-server.example.com/wasm/ocr/core \
   --build-arg VITE_TESSERACT_LANG_URL=https://internal-server.example.com/wasm/ocr/lang-data \
   --build-arg VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts \
-  -t bentopdf .
+  -t pixelpdf .
 ```
 
 **步骤 3：导出 Docker 镜像**
 
 ```bash
-docker save bentopdf -o bentopdf.tar
+docker save pixelpdf -o pixelpdf.tar
 ```
 
 **步骤 4：传输到隔离网络中**
 
 通过 USB、内部制品库或其他获批的传输方式复制：
 
-- `bentopdf.tar`：Docker 镜像
+- `pixelpdf.tar`：Docker 镜像
 - 步骤 1 中的五个 `.tgz` WASM/OCR 包
 - 步骤 1 中的 `tesseract-langdata/` 目录
 - 步骤 1 中的 `ocr-fonts/` 目录
@@ -475,7 +475,7 @@ docker save bentopdf -o bentopdf.tar
 
 ```bash
 # Load the Docker image
-docker load -i bentopdf.tar
+docker load -i pixelpdf.tar
 
 # Extract WASM packages
 mkdir -p ./wasm/pymupdf ./wasm/gs ./wasm/cpdf ./wasm/ocr/core ./wasm/ocr/lang-data ./wasm/ocr/fonts
@@ -490,8 +490,8 @@ tar xzf tesseract.js-core-7.0.0.tgz -C ./wasm/ocr/core --strip-components=1
 cp ./tesseract-langdata/*.traineddata.gz ./wasm/ocr/lang-data/
 cp ./ocr-fonts/* ./wasm/ocr/fonts/
 
-# Run BentoPDF
-docker run -d -p 3000:8080 --restart unless-stopped bentopdf
+# Run Pixel PDF
+docker run -d -p 3000:8080 --restart unless-stopped pixelpdf
 ```
 
 请确保文件可通过您在步骤 2 中配置的 URL 访问，包括 `.../ocr/worker.min.js`、`.../ocr/core`、`.../ocr/lang-data` 和 `.../ocr/fonts`。
@@ -515,13 +515,13 @@ VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts
 
 ### 托管您自己的 WASM 代理
 
-如果您需要通过正确的 CORS 标头提供 AGPL WASM 文件，可以部署一个简单的代理。示例实现请参阅 [Cloudflare WASM 代理指南](https://github.com/alam00000/bentopdf/blob/main/cloudflare/WASM-PROXY.md)。
+如果您需要通过正确的 CORS 标头提供 AGPL WASM 文件，可以部署一个简单的代理。示例实现请参阅 [Cloudflare WASM 代理指南](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/cloudflare/WASM-PROXY.md)。
 
 ::: tip 为什么要分离？
 这种分离可以确保：
 
 - 为商业用户提供清晰的法律合规性
-- BentoPDF 核心保持其双重许可（AGPL-3.0 / 商业）
+- Pixel PDF 核心保持其双重许可（AGPL-3.0 / 商业）
 - WASM 文件在运行时加载，而不是捆绑在源代码中
   :::
 
@@ -534,5 +534,5 @@ VITE_OCR_FONT_BASE_URL=https://internal-server.example.com/wasm/ocr/fonts
 | CPU  | 任意现代处理器                    |
 
 ::: tip
-BentoPDF 是静态站点，不需要数据库或后端服务器！
+Pixel PDF 是静态站点，不需要数据库或后端服务器！
 :::

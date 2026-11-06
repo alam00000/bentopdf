@@ -10,7 +10,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    if: github.repository == 'alam00000/bentopdf'
+    if: github.repository == 'mohammedalhinaki-cloud/Pixel-PDF'
     permissions:
       contents: write
       pull-requests: write

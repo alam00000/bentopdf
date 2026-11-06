@@ -1,6 +1,6 @@
 # Przegląd narzędzi
 
-BentoPDF oferuje **ponad 130 narzędzi** do pracy z PDF-ami. Wszystkie narzędzia działają w całości w przeglądarce: Twoje pliki nigdy nie opuszczają urządzenia.
+Pixel PDF oferuje **ponad 130 narzędzi** do pracy z PDF-ami. Wszystkie narzędzia działają w całości w przeglądarce: Twoje pliki nigdy nie opuszczają urządzenia.
 
 ---
 

@@ -2,7 +2,7 @@
 
 Alat tanda tangan digital menggunakan CORS proxy untuk mengambil sertifikat penerbit dari Certificate Authority (CA) eksternal. Ini diperlukan karena banyak server CA tidak menyertakan header CORS dalam responsnya, sehingga pengambilan langsung dari browser tidak dapat dilakukan.
 
-Selain itu, banyak server CA menyajikan sertifikat melalui HTTP biasa. Saat instans BentoPDF Anda dihosting melalui HTTPS, browser memblokir permintaan HTTP ini (kebijakan mixed content). CORS proxy mengatasi kedua masalah tersebut dengan mengarahkan permintaan melalui endpoint HTTPS dengan header yang tepat.
+Selain itu, banyak server CA menyajikan sertifikat melalui HTTP biasa. Saat instans Pixel PDF Anda dihosting melalui HTTPS, browser memblokir permintaan HTTP ini (kebijakan mixed content). CORS proxy mengatasi kedua masalah tersebut dengan mengarahkan permintaan melalui endpoint HTTPS dengan header yang tepat.
 
 ## Cara Kerjanya
 
@@ -15,7 +15,7 @@ Saat menandatangani PDF dengan sertifikat:
 
 ## Hosting Mandiri CORS Proxy
 
-Jika Anda menghosting BentoPDF sendiri, Anda perlu men-deploy CORS proxy sendiri agar tanda tangan digital dapat bekerja dengan sertifikat yang memerlukan pengambilan rantai.
+Jika Anda menghosting Pixel PDF sendiri, Anda perlu men-deploy CORS proxy sendiri agar tanda tangan digital dapat bekerja dengan sertifikat yang memerlukan pengambilan rantai.
 
 ### Opsi 1: Cloudflare Workers (Disarankan)
 
@@ -31,11 +31,11 @@ Jika Anda menghosting BentoPDF sendiri, Anda perlu men-deploy CORS proxy sendiri
    wrangler login
    ```
 
-3. **Clone BentoPDF dan perbarui origin yang diizinkan**:
+3. **Clone Pixel PDF dan perbarui origin yang diizinkan**:
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    Buka `cors-proxy-worker.js` dan ubah array `ALLOWED_ORIGINS` ke domain Anda:
@@ -48,7 +48,7 @@ Jika Anda menghosting BentoPDF sendiri, Anda perlu men-deploy CORS proxy sendiri
    ```
 
    ::: warning Penting
-   Tanpa perubahan ini, proxy akan menolak semua permintaan dari situs Anda dengan error **403 Forbidden**. Secara default hanya permintaan dari `bentopdf.com` yang diizinkan.
+   Tanpa perubahan ini, proxy akan menolak semua permintaan dari situs Anda dengan error **403 Forbidden**. Secara default hanya permintaan dari `pixelpdf.com` yang diizinkan.
    :::
 
 4. **Deploy proxy**:
@@ -57,9 +57,9 @@ Jika Anda menghosting BentoPDF sendiri, Anda perlu men-deploy CORS proxy sendiri
    wrangler deploy
    ```
 
-   Catat URL worker Anda (mis., `https://bentopdf-cors-proxy.your-subdomain.workers.dev`).
+   Catat URL worker Anda (mis., `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`).
 
-5. **Build ulang BentoPDF dengan URL proxy**:
+5. **Build ulang Pixel PDF dengan URL proxy**:
 
    Jika menggunakan Docker:
 
@@ -67,7 +67,7 @@ Jika Anda menghosting BentoPDF sendiri, Anda perlu men-deploy CORS proxy sendiri
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    Jika build dari sumber:

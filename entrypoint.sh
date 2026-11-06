@@ -16,10 +16,10 @@ if [ "$PUID" -eq 0 ] || [ "$PGID" -eq 0 ]; then
     exit 1
 fi
 
-echo "Starting BentoPDF with PUID=$PUID PGID=$PGID"
+echo "Starting Pixel PDF with PUID=$PUID PGID=$PGID"
 
-addgroup -g "$PGID" bentopdf 2>/dev/null || true
-adduser -u "$PUID" -G bentopdf -D -H -s /sbin/nologin bentopdf 2>/dev/null || true
+addgroup -g "$PGID" pixelpdf 2>/dev/null || true
+adduser -u "$PUID" -G pixelpdf -D -H -s /sbin/nologin pixelpdf 2>/dev/null || true
 
 rm -f /var/log/nginx/error.log /var/log/nginx/access.log
 touch /var/log/nginx/error.log /var/log/nginx/access.log
@@ -52,8 +52,8 @@ if [ "$DISABLE_IPV6" = "true" ]; then
     sed -i '/^[[:space:]]*listen[[:space:]]*\[::\]:[0-9]*/s/^/#/' /etc/nginx/nginx.conf
 fi
 
-if [ "${ROBOTS_NOINDEX:-false}" = "true" ] && [ -x /usr/local/bin/bentopdf-noindex.sh ]; then
-    /usr/local/bin/bentopdf-noindex.sh
+if [ "${ROBOTS_NOINDEX:-false}" = "true" ] && [ -x /usr/local/bin/pixelpdf-noindex.sh ]; then
+    /usr/local/bin/pixelpdf-noindex.sh
 fi
 
 exec su-exec "$PUID:$PGID" "$@"

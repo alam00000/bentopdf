@@ -5,9 +5,9 @@ description: Verkleineren Sie PDF-Dateien um bis zu 90 % mit der Hyper-Compress-
 
 # PDF komprimieren
 
-Verkleineren Sie Ihre PDF-Dateien, ohne sie zu beschädigen. PDF komprimieren wird von [Hyper Compress](https://www.bentopdf.com/hyper-compress) angetrieben, der eigenen Komprimierungs-Engine von BentoPDF. Sie komprimiert Bilder neu, erstellt Teilmengen von Schriften und führt sie zusammen und entfernt unnötigen Ballast wie eingebettete Vorschaubilder und private Anwendungsdaten. Die PDF bleibt voll funktionsfähig: Text bleibt auswählbar, Links und Formularfelder funktionieren weiter.
+Verkleineren Sie Ihre PDF-Dateien, ohne sie zu beschädigen. PDF komprimieren wird von [Hyper Compress](https://www.pixelpdf.com/hyper-compress) angetrieben, der eigenen Komprimierungs-Engine von Pixel PDF. Sie komprimiert Bilder neu, erstellt Teilmengen von Schriften und führt sie zusammen und entfernt unnötigen Ballast wie eingebettete Vorschaubilder und private Anwendungsdaten. Die PDF bleibt voll funktionsfähig: Text bleibt auswählbar, Links und Formularfelder funktionieren weiter.
 
-Hyper Compress ist zu WebAssembly kompiliert und wird mit BentoPDF ausgeliefert, sodass die Komprimierung offline und in Air-Gap-Umgebungen ohne zusätzliche Einrichtung funktioniert.
+Hyper Compress ist zu WebAssembly kompiliert und wird mit Pixel PDF ausgeliefert, sodass die Komprimierung offline und in Air-Gap-Umgebungen ohne zusätzliche Einrichtung funktioniert.
 
 ## So funktioniert es
 
@@ -36,7 +36,7 @@ Bei Hoch werden außerdem die 14 Standard-PDF-Schriften sowie ähnliche Schrifte
 
 ## Zieldateigröße
 
-Geben Sie eine Größe in KB oder MB ein, und Hyper Compress sucht die beste Bildqualität, die noch hineinpasst, ausgehend von der gewählten Stufe. Wenn das Dokument nicht so klein werden kann, erhalten Sie die kleinste mögliche Version und eine entsprechende Meldung. Die eigenen Seiten wie [PDF auf 1 MB komprimieren](https://www.bentopdf.com/compress-pdf-to-1mb) öffnen sich mit bereits eingetragenem Ziel.
+Geben Sie eine Größe in KB oder MB ein, und Hyper Compress sucht die beste Bildqualität, die noch hineinpasst, ausgehend von der gewählten Stufe. Wenn das Dokument nicht so klein werden kann, erhalten Sie die kleinste mögliche Version und eine entsprechende Meldung. Die eigenen Seiten wie [PDF auf 1 MB komprimieren](https://www.pixelpdf.com/compress-pdf-to-1mb) öffnen sich mit bereits eingetragenem Ziel.
 
 ## Benutzerdefinierte Einstellungen
 

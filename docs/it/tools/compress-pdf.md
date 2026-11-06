@@ -5,9 +5,9 @@ description: Riduci le dimensioni dei PDF fino al 90% con il motore Hyper Compre
 
 # Comprimi PDF
 
-Riduci i tuoi file PDF senza rovinarli. Comprimi PDF è basato su [Hyper Compress](https://www.bentopdf.com/hyper-compress), il motore di compressione di BentoPDF. Ricomprime le immagini, crea sottoinsiemi e unisce i font ed elimina il peso inutile, come le miniature incorporate e i dati privati delle applicazioni. Il PDF resta pienamente funzionante: il testo rimane selezionabile, i link e i campi modulo continuano a funzionare.
+Riduci i tuoi file PDF senza rovinarli. Comprimi PDF è basato su [Hyper Compress](https://www.pixelpdf.com/hyper-compress), il motore di compressione di Pixel PDF. Ricomprime le immagini, crea sottoinsiemi e unisce i font ed elimina il peso inutile, come le miniature incorporate e i dati privati delle applicazioni. Il PDF resta pienamente funzionante: il testo rimane selezionabile, i link e i campi modulo continuano a funzionare.
 
-Hyper Compress è compilato in WebAssembly e viene distribuito con BentoPDF, quindi la compressione funziona offline e nelle installazioni isolate dalla rete (air-gapped), senza alcuna configurazione aggiuntiva.
+Hyper Compress è compilato in WebAssembly e viene distribuito con Pixel PDF, quindi la compressione funziona offline e nelle installazioni isolate dalla rete (air-gapped), senza alcuna configurazione aggiuntiva.
 
 ## Come funziona
 
@@ -36,7 +36,7 @@ Alto rimuove anche l'incorporamento dei 14 font PDF standard, oltre a quelli sim
 
 ## Dimensione di destinazione
 
-Inserisci una dimensione in KB o MB e Hyper Compress cerca la migliore qualità d'immagine che rientri comunque nel limite, partendo dal livello che hai scelto. Se il documento non può diventare così piccolo, ottieni la versione più piccola possibile e un messaggio che lo segnala. Le pagine dedicate, come [Comprimi PDF a 1MB](https://www.bentopdf.com/compress-pdf-to-1mb), si aprono con la dimensione di destinazione già compilata.
+Inserisci una dimensione in KB o MB e Hyper Compress cerca la migliore qualità d'immagine che rientri comunque nel limite, partendo dal livello che hai scelto. Se il documento non può diventare così piccolo, ottieni la versione più piccola possibile e un messaggio che lo segnala. Le pagine dedicate, come [Comprimi PDF a 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb), si aprono con la dimensione di destinazione già compilata.
 
 ## Impostazioni personalizzate
 

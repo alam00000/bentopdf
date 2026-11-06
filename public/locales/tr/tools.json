@@ -362,7 +362,7 @@
     "subtitle": "Formları doğrudan tarayıcıda doldurun. XFA formlarını da destekler.",
     "uploadHint": "Form alanları olan bir PDF yükleyin. Aşağıdaki görüntüleyicide doğrudan doldurun, ardından doldurulmuş formu kaydetmek ve indirmek için düğmeye tıklayın. XFA formlarını da destekler.",
     "xfaNoteTitle": "XFA Formları Hakkında Not:",
-    "xfaNoteDescription": "XFA (XML Forms Architecture), yalnızca BentoPDF ve Firefox gibi belirli PDF görüntüleyicileri tarafından desteklenen eski bir biçimdir. XFA bir PDF'yi başka yazılımda açtığınızda boş sayfalar veya form alanı görmüyorsanız, görüntüleyicinin XFA'yı desteklemediği anlamına gelir. XFA formlarını doğru görüntülemek ve doldurmak için Firefox veya BentoPDF'in Form Doldurucu'yu kullanın."
+    "xfaNoteDescription": "XFA (XML Forms Architecture), yalnızca Pixel PDF ve Firefox gibi belirli PDF görüntüleyicileri tarafından desteklenen eski bir biçimdir. XFA bir PDF'yi başka yazılımda açtığınızda boş sayfalar veya form alanı görmüyorsanız, görüntüleyicinin XFA'yı desteklemediği anlamına gelir. XFA formlarını doğru görüntülemek ve doldurmak için Firefox veya Pixel PDF'in Form Doldurucu'yu kullanın."
   },
   "createPdfForm": {
     "name": "PDF Formu Oluştur",
@@ -1010,7 +1010,7 @@
   },
   "digitalSignPdf": {
     "name": "PDF Dijital İmza",
-    "pageTitle": "PDF Dijital İmza - Kriptografik İmza Ekleyin | BentoPDF",
+    "pageTitle": "PDF Dijital İmza - Kriptografik İmza Ekleyin | Pixel PDF",
     "subtitle": "X.509 sertifikalarıyla PDF'nize kriptografik bir dijital imza ekleyin. PKCS#12 (.pfx, .p12) ve PEM formatlarını destekler. Özel anahtarınız tarayıcınızdan asla çıkmaz.",
     "certificateSection": "Sertifika",
     "uploadCert": "Sertifika yükle (.pfx, .p12, .pem)",
@@ -1096,12 +1096,12 @@
   },
   "validateSignaturePdf": {
     "name": "PDF İmzasını Doğrula",
-    "pageTitle": "PDF İmzasını Doğrula - Dijital İmzaları Doğrulayın | BentoPDF",
+    "pageTitle": "PDF İmzasını Doğrula - Dijital İmzaları Doğrulayın | Pixel PDF",
     "subtitle": "PDF dosyalarınızdaki dijital imzaları doğrulayın. Sertifika geçerliliğini kontrol edin, imzalayan ayrıntılarını görüntüleyin ve belge bütünlüğünü teyit edin. Tüm işlemler tarayıcınızda gerçekleşir."
   },
   "timestampPdf": {
     "name": "PDF Zaman Damgası",
-    "pageTitle": "PDF Zaman Damgası Ücretsiz - RFC 3161 Belge Zaman Damgası | BentoPDF",
+    "pageTitle": "PDF Zaman Damgası Ücretsiz - RFC 3161 Belge Zaman Damgası | Pixel PDF",
     "subtitle": "Güvenilir bir TSA sunucusu aracılığıyla PDF'nize RFC 3161 zaman damgası ekleyin. Belgenizin belirli bir zamanda var olduğunu kanıtlar. Sertifika gerekmez.",
     "tsaSectionTitle": "Zaman Damgası Sunucusu (TSA)",
     "selectTsa": "Bir TSA sunucusu seçin",
@@ -1287,7 +1287,7 @@
     "resetWithDefaults": "Özel geçersiz kılmalar temizlendi. Önceden yapılandırılmış varsayılanlar etkin.",
     "resetNoDefaults": "Tüm yapılandırmalar ve önbelleğe alınmış modüller temizlendi.",
     "licenseTitle": "Lisans Bildirimi:",
-    "licenseDescription": "Harici modüller (PyMuPDF, Ghostscript, CoherentPDF), AGPL-3.0 veya benzer copyleft lisansları altında lisanslanmıştır. Bu modülleri yapılandırarak ve kullanarak, ilgili lisans şartlarını kabul etmiş olursunuz. BentoPDF, beklenen arayüzü izleyen herhangi bir Ghostscript WASM ve PyMuPDF WASM uygulamasıyla uyumludur."
+    "licenseDescription": "Harici modüller (PyMuPDF, Ghostscript, CoherentPDF), AGPL-3.0 veya benzer copyleft lisansları altında lisanslanmıştır. Bu modülleri yapılandırarak ve kullanarak, ilgili lisans şartlarını kabul etmiş olursunuz. Pixel PDF, beklenen arayüzü izleyen herhangi bir Ghostscript WASM ve PyMuPDF WASM uygulamasıyla uyumludur."
   },
   "pdfOverlay": {
     "name": "PDF Katmanlama",

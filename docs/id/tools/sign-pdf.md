@@ -38,7 +38,7 @@ Tambahkan tanda tangan Anda ke dokumen PDF apa pun. Alat ini menyematkan penampi
 ## Tips
 
 - Aktifkan perataan jika Anda mengirim PDF yang sudah ditandatangani kepada orang yang tidak boleh dapat menghapus atau memindahkan tanda tangan Anda.
-- Untuk tanda tangan digital yang mengikat secara hukum dengan verifikasi berbasis sertifikat, BentoPDF juga menyediakan alat Tanda Tangan Digital terpisah.
+- Untuk tanda tangan digital yang mengikat secara hukum dengan verifikasi berbasis sertifikat, Pixel PDF juga menyediakan alat Tanda Tangan Digital terpisah.
 - Unggah gambar tanda tangan PNG dengan latar belakang transparan untuk hasil yang paling bersih.
 
 ## Alat Terkait

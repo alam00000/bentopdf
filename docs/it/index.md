@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: 'BentoPDF'
+  name: 'Pixel PDF'
   text: 'Strumenti PDF gratuiti e open source'
   tagline: Elabora i PDF interamente nel tuo browser. Nessun caricamento. Nessun server. Privacy totale.
   actions:
@@ -38,5 +38,5 @@ features:
 
 ## OCR offline
 
-Se ospiti BentoPDF in un ambiente air-gapped o offline, l'OCR richiede più del worker Tesseract e dei file traineddata. Per ottenere PDF ricercabili, anche i font del livello di testo OCR devono essere serviti internamente.
+Se ospiti Pixel PDF in un ambiente air-gapped o offline, l'OCR richiede più del worker Tesseract e dei file traineddata. Per ottenere PDF ricercabili, anche i font del livello di testo OCR devono essere serviti internamente.
 Consulta [Self-hosting](/it/self-hosting/) per la configurazione completa, inclusi `VITE_OCR_FONT_BASE_URL`, la cartella inclusa `ocr-fonts/` e il flusso di lavoro air-gap aggiornato.

@@ -24,7 +24,7 @@ Univerzálny konvertor obrázkov do PDF. Nahrajte obrázky takmer v akomkoľvek 
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Ide o najširšiu podporu formátov spomedzi všetkých konvertorov obrázkov v BentoPDF. Ak potrebujete iba konkrétny formát, použite radšej niektorý zo špecializovaných nástrojov.
+Ide o najširšiu podporu formátov spomedzi všetkých konvertorov obrázkov v Pixel PDF. Ak potrebujete iba konkrétny formát, použite radšej niektorý zo špecializovaných nástrojov.
 
 ## Ako to funguje
 

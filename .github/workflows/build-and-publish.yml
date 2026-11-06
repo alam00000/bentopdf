@@ -12,7 +12,7 @@ jobs:
   # New job to build dist and create release
   build-and-release:
     runs-on: ubuntu-latest
-    if: github.repository == 'alam00000/bentopdf' && startsWith(github.ref, 'refs/tags/')
+    if: github.repository == 'mohammedalhinaki-cloud/Pixel-PDF' && startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
     env:
@@ -59,7 +59,7 @@ jobs:
   # Build each platform natively in parallel, then merge manifests
   build-amd64:
     runs-on: ubuntu-latest
-    if: github.repository == 'alam00000/bentopdf'
+    if: github.repository == 'mohammedalhinaki-cloud/Pixel-PDF'
     permissions:
       contents: read
       packages: write
@@ -109,7 +109,7 @@ jobs:
           build-args: |
             SIMPLE_MODE=${{ matrix.mode.simple_mode }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64
           platforms: linux/amd64
           no-cache: true
 
@@ -121,7 +121,7 @@ jobs:
           build-args: |
             SIMPLE_MODE=${{ matrix.mode.simple_mode }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-amd64
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-amd64
           platforms: linux/amd64
           cache-from: type=gha,scope=amd64-${{ matrix.mode.name }}
           cache-to: type=gha,mode=max,scope=amd64-${{ matrix.mode.name }}
@@ -177,7 +177,7 @@ jobs:
           build-args: |
             SIMPLE_MODE=${{ matrix.mode.simple_mode }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
           platforms: linux/arm64
           no-cache: true
 
@@ -189,7 +189,7 @@ jobs:
           build-args: |
             SIMPLE_MODE=${{ matrix.mode.simple_mode }}
           tags: |
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-arm64
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-arm64
           platforms: linux/arm64
           cache-from: type=gha,scope=arm64-${{ matrix.mode.name }}
           cache-to: type=gha,mode=max,scope=arm64-${{ matrix.mode.name }}
@@ -233,28 +233,28 @@ jobs:
       - name: Create and push GHCR manifest (release)
         if: steps.version.outputs.is_release == 'true'
         run: |
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:latest \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:latest \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
 
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }} \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }} \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
 
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version_without_v }} \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version_without_v }} \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
 
       - name: Create and push GHCR manifest (edge)
         if: steps.version.outputs.is_release == 'false'
         run: |
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-arm64
+          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-arm64
 
-          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:sha-${{ steps.version.outputs.short_sha }} \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-arm64
+          docker buildx imagetools create -t ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:sha-${{ steps.version.outputs.short_sha }} \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-arm64
 
   # Copy images from GHCR to DockerHub
   push-to-dockerhub:
@@ -303,25 +303,25 @@ jobs:
       - name: Copy images to DockerHub (release)
         if: steps.version.outputs.is_release == 'true'
         run: |
-          docker buildx imagetools create -t bentopdfteam/bentopdf${{ matrix.mode.suffix }}:latest \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+          docker buildx imagetools create -t pixelpdfteam/pixelpdf${{ matrix.mode.suffix }}:latest \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
 
-          docker buildx imagetools create -t bentopdfteam/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }} \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+          docker buildx imagetools create -t pixelpdfteam/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }} \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
 
-          docker buildx imagetools create -t bentopdfteam/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version_without_v }} \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
+          docker buildx imagetools create -t pixelpdfteam/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version_without_v }} \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:${{ steps.version.outputs.version }}-arm64
 
       - name: Copy images to DockerHub (edge)
         if: steps.version.outputs.is_release == 'false'
         run: |
-          docker buildx imagetools create -t bentopdfteam/bentopdf${{ matrix.mode.suffix }}:edge \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-arm64
+          docker buildx imagetools create -t pixelpdfteam/pixelpdf${{ matrix.mode.suffix }}:edge \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-arm64
 
-          docker buildx imagetools create -t bentopdfteam/bentopdf${{ matrix.mode.suffix }}:sha-${{ steps.version.outputs.short_sha }} \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-amd64 \
-            ghcr.io/${{ github.repository_owner }}/bentopdf${{ matrix.mode.suffix }}:edge-arm64
+          docker buildx imagetools create -t pixelpdfteam/pixelpdf${{ matrix.mode.suffix }}:sha-${{ steps.version.outputs.short_sha }} \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-amd64 \
+            ghcr.io/${{ github.repository_owner }}/pixelpdf${{ matrix.mode.suffix }}:edge-arm64

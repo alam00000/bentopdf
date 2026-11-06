@@ -13,7 +13,7 @@
     "breadcrumb": "Brødkrummesti"
   },
   "donation": {
-    "message": "Elsker du BentoPDF? Hjælp os med at holde det gratis og open source!",
+    "message": "Elsker du Pixel PDF? Hjælp os med at holde det gratis og open source!",
     "button": "Donér"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "Hvorfor vælge",
-    "bentoPdf": "BentoPDF?",
+    "pixelPdf": "Pixel PDF?",
     "noSignup": {
       "title": "Ingen tilmelding",
       "description": "Start med det samme, ingen konti eller e-mails."
@@ -188,8 +188,8 @@
     "questions": "Spørgsmål",
     "sectionTitle": "Ofte stillede spørgsmål",
     "isFree": {
-      "question": "Er BentoPDF virkelig gratis?",
-      "answer": "Ja, helt sikkert. Alle værktøjer på BentoPDF er 100% gratis at bruge, uden filgrænser, uden tilmelding og uden vandmærker. Vi mener, at alle fortjener adgang til enkle, kraftfulde PDF-værktøjer uden betalingsmur."
+      "question": "Er Pixel PDF virkelig gratis?",
+      "answer": "Ja, helt sikkert. Alle værktøjer på Pixel PDF er 100% gratis at bruge, uden filgrænser, uden tilmelding og uden vandmærker. Vi mener, at alle fortjener adgang til enkle, kraftfulde PDF-værktøjer uden betalingsmur."
     },
     "areFilesSecure": {
       "question": "Er mine filer sikre? Hvor bliver de behandlet?",
@@ -197,27 +197,27 @@
     },
     "platforms": {
       "question": "Virker det på Mac, Windows og mobil?",
-      "answer": "Ja! Da BentoPDF kører helt i din browser, virker det på ethvert styresystem med en moderne webbrowser, herunder Windows, macOS, Linux, iOS og Android."
+      "answer": "Ja! Da Pixel PDF kører helt i din browser, virker det på ethvert styresystem med en moderne webbrowser, herunder Windows, macOS, Linux, iOS og Android."
     },
     "gdprCompliant": {
-      "question": "Er BentoPDF GDPR-kompatibel?",
-      "answer": "Ja. BentoPDF overholder GDPR fuldt ud. Da al filbehandling sker lokalt i din browser, og vi aldrig indsamler eller sender dine filer til en server, har vi ingen adgang til dine data. Du har altid kontrollen over dine dokumenter."
+      "question": "Er Pixel PDF GDPR-kompatibel?",
+      "answer": "Ja. Pixel PDF overholder GDPR fuldt ud. Da al filbehandling sker lokalt i din browser, og vi aldrig indsamler eller sender dine filer til en server, har vi ingen adgang til dine data. Du har altid kontrollen over dine dokumenter."
     },
     "dataStorage": {
       "question": "Gemmer eller sporer I mine filer?",
-      "answer": "Nej. Vi gemmer, sporer eller logger aldrig dine filer. Alt, hvad du gør på BentoPDF, foregår i din browsers hukommelse og forsvinder, når du lukker siden. Der er ingen uploads, ingen historiklogge og ingen servere involveret."
+      "answer": "Nej. Vi gemmer, sporer eller logger aldrig dine filer. Alt, hvad du gør på Pixel PDF, foregår i din browsers hukommelse og forsvinder, når du lukker siden. Der er ingen uploads, ingen historiklogge og ingen servere involveret."
     },
     "different": {
-      "question": "Hvad gør BentoPDF anderledes end andre PDF-værktøjer?",
-      "answer": "De fleste PDF-værktøjer uploader dine filer til en server til behandling. Det gør BentoPDF aldrig. Vi bruger sikker, moderne webteknologi til at behandle dine filer direkte i din browser. Det giver hurtigere ydeevne, stærkere privatliv og fuld ro i sindet."
+      "question": "Hvad gør Pixel PDF anderledes end andre PDF-værktøjer?",
+      "answer": "De fleste PDF-værktøjer uploader dine filer til en server til behandling. Det gør Pixel PDF aldrig. Vi bruger sikker, moderne webteknologi til at behandle dine filer direkte i din browser. Det giver hurtigere ydeevne, stærkere privatliv og fuld ro i sindet."
     },
     "browserBased": {
       "question": "Hvordan gør browserbaseret behandling mig sikker?",
-      "answer": "Fordi BentoPDF kører helt i din browser, forlader dine filer aldrig din enhed. Det fjerner risikoen for serverhack, datalæk og uautoriseret adgang. Dine filer forbliver dine, altid."
+      "answer": "Fordi Pixel PDF kører helt i din browser, forlader dine filer aldrig din enhed. Det fjerner risikoen for serverhack, datalæk og uautoriseret adgang. Dine filer forbliver dine, altid."
     },
     "analytics": {
       "question": "Bruger I cookies eller analyseværktøjer?",
-      "answer": "Nej. BentoPDF sporer dig slet ikke. Vi bruger hverken cookies, analyseværktøjer eller sporingsscripts – heller ikke på den live hjemmeside bentopdf.com. Vi ved aldrig, hvem du er, eller hvad du bruger værktøjerne til."
+      "answer": "Nej. Pixel PDF sporer dig slet ikke. Vi bruger hverken cookies, analyseværktøjer eller sporingsscripts – heller ikke på den live hjemmeside pixelpdf.com. Vi ved aldrig, hvem du er, eller hvad du bruger værktøjerne til."
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "Kan du lide mit arbejde?",
-    "description": "BentoPDF er et passionsprojekt, bygget for at give alle et gratis, privat og kraftfuldt PDF-værktøjssæt. Hvis du finder det nyttigt, så overvej at støtte udviklingen. Hver kop kaffe hjælper!",
+    "description": "Pixel PDF er et passionsprojekt, bygget for at give alle et gratis, privat og kraftfuldt PDF-værktøjssæt. Hvis du finder det nyttigt, så overvej at støtte udviklingen. Hver kop kaffe hjælper!",
     "buyMeCoffee": "Køb en kaffe til mig"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Alle rettigheder forbeholdes.",
+    "copyright": "© 2026 Pixel PDF. Alle rettigheder forbeholdes.",
     "version": "Version",
     "company": "Virksomhed",
     "aboutUs": "Om os",
@@ -300,9 +300,9 @@
     "philosophy": {
       "label": "Vores kernefilosofi",
       "title": "Privatliv først. Altid.",
-      "description": "Alle BentoPDF-værktøjer kører lokalt i din browser. Dine filer uploades aldrig, ingen andre ser dine dokumenter, og intet sporer, hvad du gør."
+      "description": "Alle Pixel PDF-værktøjer kører lokalt i din browser. Dine filer uploades aldrig, ingen andre ser dine dokumenter, og intet sporer, hvad du gør."
     },
-    "whyBentopdf": {
+    "whyPixelpdf": {
       "title": "Hvorfor",
       "speed": {
         "title": "Bygget til hastighed",
@@ -323,7 +323,7 @@
     },
     "cta": {
       "title": "Klar til at komme i gang?",
-      "description": "Slut dig til tusindvis af brugere, der stoler på BentoPDF til deres daglige dokumentbehov. Oplev, hvilken forskel privatliv og ydeevne kan gøre.",
+      "description": "Slut dig til tusindvis af brugere, der stoler på Pixel PDF til deres daglige dokumentbehov. Oplev, hvilken forskel privatliv og ydeevne kan gøre.",
       "button": "Udforsk alle værktøjer"
     }
   },

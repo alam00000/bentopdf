@@ -5,7 +5,7 @@ import { trText } from '../i18n/i18n.js';
 import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
 
 export class ShortcutsManager {
-  private static STORAGE_KEY = 'bentopdf_shortcuts';
+  private static STORAGE_KEY = 'pixelpdf_shortcuts';
   private static shortcuts: Map<string, string> = new Map();
   private static defaultShortcuts: Map<string, string> = new Map();
 
@@ -113,7 +113,7 @@ export class ShortcutsManager {
       encodeURIComponent(JSON.stringify(exportObj, null, 2));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute('href', dataStr);
-    downloadAnchorNode.setAttribute('download', 'bentopdf_shortcuts.json');
+    downloadAnchorNode.setAttribute('download', 'pixelpdf_shortcuts.json');
     document.body.appendChild(downloadAnchorNode);
     downloadAnchorNode.click();
     downloadAnchorNode.remove();

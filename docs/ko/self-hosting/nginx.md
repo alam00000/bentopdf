@@ -1,6 +1,6 @@
 # Nginx로 배포하기
 
-Nginx를 사용해 자체 서버에서 BentoPDF를 호스팅합니다.
+Nginx를 사용해 자체 서버에서 Pixel PDF를 호스팅합니다.
 
 ## 사전 요구 사항
 
@@ -11,8 +11,8 @@ Nginx를 사용해 자체 서버에서 BentoPDF를 호스팅합니다.
 ## 1단계: 프로젝트 빌드
 
 ```bash
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 npm install
 npm run build
 ```
@@ -26,14 +26,14 @@ VITE_BRAND_NAME="AcmePDF" VITE_BRAND_LOGO="images/acme-logo.svg" npm run build
 ## 2단계: 파일 복사
 
 ```bash
-sudo mkdir -p /var/www/bentopdf
-sudo cp -r dist/* /var/www/bentopdf/
-sudo chown -R www-data:www-data /var/www/bentopdf
+sudo mkdir -p /var/www/pixelpdf
+sudo cp -r dist/* /var/www/pixelpdf/
+sudo chown -R www-data:www-data /var/www/pixelpdf
 ```
 
 ## 3단계: Nginx 설정
 
-`/etc/nginx/sites-available/bentopdf`를 만듭니다.
+`/etc/nginx/sites-available/pixelpdf`를 만듭니다.
 
 ```nginx
 server {
@@ -50,7 +50,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
-    root /var/www/bentopdf;
+    root /var/www/pixelpdf;
     index index.html;
 
     # Gzip compression
@@ -114,7 +114,7 @@ server {
 ## 4단계: 사이트 활성화
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/bentopdf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/pixelpdf /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
@@ -132,7 +132,7 @@ sudo certbot --nginx -d your-domain.com
 
 ```nginx
 location /pdf/ {
-    alias /var/www/bentopdf/;
+    alias /var/www/pixelpdf/;
     try_files $uri $uri/ /pdf/index.html;
 }
 ```

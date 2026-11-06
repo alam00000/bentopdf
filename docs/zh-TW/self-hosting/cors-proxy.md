@@ -2,7 +2,7 @@
 
 數位簽章工具使用 CORS 代理，從外部憑證授權單位（CA）擷取簽發者憑證。這是必要的，因為許多 CA 伺服器的回應不包含 CORS 標頭，導致瀏覽器無法直接擷取。
 
-此外，許多 CA 伺服器以一般 HTTP 提供憑證。當您的 BentoPDF 執行個體以 HTTPS 架設時，瀏覽器會封鎖這些 HTTP 請求（混合內容政策）。CORS 代理透過具備正確標頭的 HTTPS 端點轉送請求，同時解決這兩個問題。
+此外，許多 CA 伺服器以一般 HTTP 提供憑證。當您的 Pixel PDF 執行個體以 HTTPS 架設時，瀏覽器會封鎖這些 HTTP 請求（混合內容政策）。CORS 代理透過具備正確標頭的 HTTPS 端點轉送請求，同時解決這兩個問題。
 
 ## 運作方式
 
@@ -15,7 +15,7 @@
 
 ## 自行架設 CORS 代理
 
-如果您自行架設 BentoPDF，就需要部署自己的 CORS 代理，數位簽章才能搭配需要擷取憑證鏈的憑證使用。
+如果您自行架設 Pixel PDF，就需要部署自己的 CORS 代理，數位簽章才能搭配需要擷取憑證鏈的憑證使用。
 
 ### 選項 1：Cloudflare Workers（建議）
 
@@ -31,11 +31,11 @@
    wrangler login
    ```
 
-3. **複製 BentoPDF 並更新允許的來源**：
+3. **複製 Pixel PDF 並更新允許的來源**：
 
    ```bash
-   git clone https://github.com/alam00000/bentopdf.git
-   cd bentopdf/cloudflare
+   git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+   cd pixelpdf/cloudflare
    ```
 
    開啟 `cors-proxy-worker.js`，將 `ALLOWED_ORIGINS` 陣列改為您的網域：
@@ -48,7 +48,7 @@
    ```
 
    ::: warning 重要
-   若未進行此修改，代理會以 **403 Forbidden** 錯誤拒絕來自您網站的所有請求。預設只允許來自 `bentopdf.com` 的請求。
+   若未進行此修改，代理會以 **403 Forbidden** 錯誤拒絕來自您網站的所有請求。預設只允許來自 `pixelpdf.com` 的請求。
    :::
 
 4. **部署代理**：
@@ -57,9 +57,9 @@
    wrangler deploy
    ```
 
-   記下您的 worker URL（例如 `https://bentopdf-cors-proxy.your-subdomain.workers.dev`）。
+   記下您的 worker URL（例如 `https://pixelpdf-cors-proxy.your-subdomain.workers.dev`）。
 
-5. **以代理 URL 重新建置 BentoPDF**：
+5. **以代理 URL 重新建置 Pixel PDF**：
 
    若使用 Docker：
 
@@ -67,7 +67,7 @@
    export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
    DOCKER_BUILDKIT=1 docker build \
      --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-     -t your-bentopdf .
+     -t your-pixelpdf .
    ```
 
    若從原始碼建置：

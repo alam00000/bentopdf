@@ -4,7 +4,7 @@
 
 ## Tek Tıkla Dağıtım
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Elle Dağıtım
 
@@ -13,7 +13,7 @@
 1. [Netlify](https://app.netlify.com)'a giriş yapın
 2. "Add new site" → "Import an existing project" seçeneğine tıklayın
 3. GitHub hesabınızı bağlayın
-4. BentoPDF fork'unuzu seçin
+4. Pixel PDF fork'unuzu seçin
 
 ### Adım 2: Derleme Ayarlarını Yapılandırın
 
@@ -90,7 +90,7 @@ Bunları Site settings → Environment variables bölümünde ayarlayın:
 | Değişken                | Açıklama                                                      |
 | ----------------------- | ------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Asgari derleme için `true` yapın                              |
-| `VITE_BRAND_NAME`       | Özel marka adı ("BentoPDF" yerine geçer)                      |
+| `VITE_BRAND_NAME`       | Özel marka adı ("Pixel PDF" yerine geçer)                      |
 | `VITE_BRAND_LOGO`       | `public/` dizinine göre logo yolu (örn. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Özel alt bilgi/telif hakkı metni                              |
 | `VITE_DEFAULT_LANGUAGE` | Varsayılan arayüz dili (örn. `fr`, `de`, `es`)                |

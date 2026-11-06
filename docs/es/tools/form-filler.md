@@ -36,7 +36,7 @@ No hay opciones de configuración adicionales. Sube el formulario, rellénalo y 
 
 ## Consejos
 
-- Los formularios XFA son un formato heredado que solo admiten algunos visores de PDF. Si abres un PDF XFA en Chrome o en la mayoría de otras herramientas y ves páginas en blanco, es porque esos visores no admiten XFA. El Form Filler de BentoPDF y Firefox sí gestionan XFA correctamente.
+- Los formularios XFA son un formato heredado que solo admiten algunos visores de PDF. Si abres un PDF XFA en Chrome o en la mayoría de otras herramientas y ves páginas en blanco, es porque esos visores no admiten XFA. El Form Filler de Pixel PDF y Firefox sí gestionan XFA correctamente.
 - Para PDF sin campos de formulario, usa primero la herramienta [Crear formulario PDF](./form-creator) para añadir campos y luego rellénalos aquí.
 - El visor ajusta su tamaño automáticamente a las dimensiones de página del PDF.
 

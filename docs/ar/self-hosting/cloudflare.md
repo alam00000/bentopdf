@@ -148,7 +148,7 @@ VITE_CORS_PROXY_URL=https://your-worker.workers.dev npm run build
 export VITE_CORS_PROXY_URL="https://your-worker.workers.dev"
 DOCKER_BUILDKIT=1 docker build \
   --secret id=VITE_CORS_PROXY_URL,env=VITE_CORS_PROXY_URL \
-  -t your-bentopdf .
+  -t your-pixelpdf .
 ```
 
-> **ملاحظة:** راجع [README](https://github.com/alam00000/bentopdf#digital-signature-cors-proxy-required) لإعداد توقيع HMAC.
+> **ملاحظة:** راجع [README](https://github.com/mohammedalhinaki-cloud/Pixel-PDF#digital-signature-cors-proxy-required) لإعداد توقيع HMAC.

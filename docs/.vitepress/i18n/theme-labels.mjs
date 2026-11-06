@@ -1,5 +1,5 @@
 export const DESCRIPTION =
-  'Documentation for BentoPDF - The free, open-source, privacy-first PDF toolkit';
+  'Documentation for Pixel PDF - The free, open-source, privacy-first PDF toolkit';
 
 export const FOOTER_MESSAGE =
   'Dual-licensed under AGPL-3.0 and Commercial License.';

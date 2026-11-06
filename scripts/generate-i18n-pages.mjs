@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 const DIST_DIR = path.resolve(__dirname, '../dist');
 const LOCALES_DIR = path.resolve(__dirname, '../public/locales');
 const CONTENT_DIR = path.resolve(__dirname, '../translations');
-const SITE_URL = (process.env.SITE_URL || 'https://www.bentopdf.com').replace(
+const SITE_URL = (process.env.SITE_URL || 'https://www.pixelpdf.com').replace(
   /\/+$/,
   ''
 );
@@ -25,7 +25,7 @@ const languages = fs.readdirSync(LOCALES_DIR).filter((file) => {
   return fs.statSync(path.join(LOCALES_DIR, file)).isDirectory();
 });
 
-const OFFICIAL_DOCS_URL = 'https://www.bentopdf.com/docs';
+const OFFICIAL_DOCS_URL = 'https://www.pixelpdf.com/docs';
 
 const docsLanguages = completeDocsLanguages(
   path.resolve(__dirname, '../docs'),
@@ -84,7 +84,7 @@ function buildUrl(langPrefix, pagePath) {
   return parts.filter(Boolean).join('/').replace(/\/+$/, '') || SITE_URL;
 }
 
-const ORGANIZATION_LD_MARKER = 'data-bentopdf-organization';
+const ORGANIZATION_LD_MARKER = 'data-pixelpdf-organization';
 
 function injectOrganizationLd(document) {
   if (document.querySelector(`script[${ORGANIZATION_LD_MARKER}]`)) return;
@@ -102,14 +102,14 @@ function injectOrganizationLd(document) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'BentoPDF',
+    name: 'Pixel PDF',
     url: SITE_URL,
     logo: `${SITE_URL}/images/favicon.svg`,
     sameAs: [
-      'https://github.com/alam00000/bentopdf',
-      'https://x.com/BentoPDF',
-      'https://www.linkedin.com/company/bentopdf/',
-      'https://www.instagram.com/thebentopdf/',
+      'https://github.com/mohammedalhinaki-cloud/Pixel-PDF',
+      'https://x.com/Pixel PDF',
+      'https://www.linkedin.com/company/pixelpdf/',
+      'https://www.instagram.com/thepixelpdf/',
     ],
   };
   const script = document.createElement('script');
@@ -119,8 +119,8 @@ function injectOrganizationLd(document) {
   document.body.appendChild(script);
 }
 
-const BREADCRUMB_MARKER = 'data-bentopdf-breadcrumb';
-const BRAND_NAME = process.env.VITE_BRAND_NAME || 'BentoPDF';
+const BREADCRUMB_MARKER = 'data-pixelpdf-breadcrumb';
+const BRAND_NAME = process.env.VITE_BRAND_NAME || 'Pixel PDF';
 
 function buildLocalHomeHref(lang) {
   const langSegment = lang === 'en' ? '/' : `/${lang}`;
@@ -282,7 +282,7 @@ function processFileForLanguage(
     title =
       tools[translationKey].pageTitle ||
       (tools[translationKey].name
-        ? `${tools[translationKey].name} - BentoPDF`
+        ? `${tools[translationKey].name} - Pixel PDF`
         : null);
     description = tools[translationKey].subtitle;
   }

@@ -1,6 +1,6 @@
 # Contribuire
 
-Grazie per l'interesse a contribuire a BentoPDF! Questa guida ti aiuterà a iniziare.
+Grazie per l'interesse a contribuire a Pixel PDF! Questa guida ti aiuterà a iniziare.
 
 ## Per iniziare
 
@@ -14,8 +14,8 @@ Grazie per l'interesse a contribuire a BentoPDF! Questa guida ti aiuterà a iniz
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Struttura del progetto
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Aggiungi le voci a tutti i file delle lingue in `public/locales/`:
 
 ## Traduzione
 
-Consulta [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) per aggiungere nuove lingue.
+Consulta [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) per aggiungere nuove lingue.
 
 ## Contributor License Agreement
 
 Prima che la tua PR possa essere unita, dovrai firmare la nostra CLA:
 
-- [CLA individuale (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [CLA aziendale (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [CLA individuale (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [CLA aziendale (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Ottenere aiuto
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Community Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licenza
 
-BentoPDF ha una doppia licenza:
+Pixel PDF ha una doppia licenza:
 
 - **AGPL-3.0** per i progetti open source in cui condividi pubblicamente tutto il codice sorgente
 - **Licenza commerciale** per le applicazioni proprietarie o closed source: [Ottieni la licenza a vita per $79](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

@@ -7,7 +7,7 @@ description: Pridajte do PDF kryptografické digitálne podpisy pomocou certifik
 
 Digitálny podpis je kryptografický dôkaz, že dokument podpísala konkrétna osoba a že dokument odvtedy nebol zmenený. Na rozdiel od nakresleného podpisu (ktorý je len obrázok) digitálny podpis využíva certifikáty X.509 a štandardy PKCS#7 na overiteľnú pravosť a integritu.
 
-BentoPDF aplikuje digitálne podpisy úplne vo vašom prehliadači. Váš súkromný kľúč nikdy neopustí vaše zariadenie.
+Pixel PDF aplikuje digitálne podpisy úplne vo vašom prehliadači. Váš súkromný kľúč nikdy neopustí vaše zariadenie.
 
 ## Ako to funguje
 

@@ -1,11 +1,12 @@
 {
-    "name": "BentoPDF",
-    "short_name": "BentoPDF",
-    "description": "Free online PDF tools - Privacy-first PDF toolkit that works 100% in your browser",
+    "id": "/",
+    "name": "Pixel PDF",
+    "short_name": "Pixel PDF",
+    "description": "Pixel PDF - free online PDF tools. A privacy-first PDF toolkit that works 100% in your browser.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#222222",
-    "theme_color": "#4f46e5",
+    "background_color": "#f5f7fb",
+    "theme_color": "#0e8bf5",
     "orientation": "portrait-primary",
     "icons": [
         {

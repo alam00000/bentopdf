@@ -1,11 +1,11 @@
 /*
- * coherentpdf.global.d.ts — TypeScript type definitions for BentoPDF / CoherentPDF integration
+ * coherentpdf.global.d.ts — TypeScript type definitions for Pixel PDF / CoherentPDF integration
  *
- * These type definitions were written by Alam for use in the BentoPDF project.
+ * These type definitions were written by Alam for use in the Pixel PDF project.
  * They describe APIs provided by the CoherentPDF library (cpdf.js) but are original
  * work created for type safety and integration.
  *
- * Copyright © 2026 BentoPDF
+ * Copyright © 2026 Pixel PDF
  * Licensed under the GNU Affero General Public License v3.0 or later (AGPLv3+).
  */
 declare global {

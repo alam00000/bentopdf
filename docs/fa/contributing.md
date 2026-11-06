@@ -1,6 +1,6 @@
 # مشارکت
 
-از علاقهٔ شما به مشارکت در BentoPDF سپاسگزاریم! این راهنما به شما کمک می‌کند شروع کنید.
+از علاقهٔ شما به مشارکت در Pixel PDF سپاسگزاریم! این راهنما به شما کمک می‌کند شروع کنید.
 
 ## شروع کار
 
@@ -14,8 +14,8 @@
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## ساختار پروژه
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ## ترجمه
 
-برای افزودن زبان‌های جدید، [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) را ببینید.
+برای افزودن زبان‌های جدید، [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) را ببینید.
 
 ## توافق‌نامهٔ مجوز مشارکت‌کننده
 
 پیش از ادغام PR شما، باید CLA ما را امضا کنید:
 
-- [CLA فردی (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [CLA شرکتی (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [CLA فردی (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [CLA شرکتی (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## دریافت کمک
 
-- [Issues در GitHub](https://github.com/alam00000/bentopdf/issues)
+- [Issues در GitHub](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [انجمن Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## مجوز
 
-BentoPDF دارای مجوز دوگانه است:
+Pixel PDF دارای مجوز دوگانه است:
 
 - **AGPL-3.0** برای پروژه‌های متن‌باز که کد منبع کامل خود را به‌صورت عمومی منتشر می‌کنند
 - **مجوز تجاری** برای برنامه‌های اختصاصی یا بسته‌منبع: [دریافت مجوز مادام‌العمر با ۷۹ دلار](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

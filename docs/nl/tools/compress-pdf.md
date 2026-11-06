@@ -5,9 +5,9 @@ description: Verklein de bestandsgrootte van een PDF tot wel 90% met de Hyper Co
 
 # PDF comprimeren
 
-Maak je PDF-bestanden kleiner zonder ze te beschadigen. PDF comprimeren draait op [Hyper Compress](https://www.bentopdf.com/hyper-compress), de eigen compressie-engine van BentoPDF. Die comprimeert afbeeldingen opnieuw, maakt subsets van lettertypen en voegt ze samen, en verwijdert overbodige onderdelen zoals ingesloten miniaturen en privé-toepassingsgegevens. De PDF blijft volledig functioneel: tekst blijft selecteerbaar en koppelingen en formuliervelden blijven werken.
+Maak je PDF-bestanden kleiner zonder ze te beschadigen. PDF comprimeren draait op [Hyper Compress](https://www.pixelpdf.com/hyper-compress), de eigen compressie-engine van Pixel PDF. Die comprimeert afbeeldingen opnieuw, maakt subsets van lettertypen en voegt ze samen, en verwijdert overbodige onderdelen zoals ingesloten miniaturen en privé-toepassingsgegevens. De PDF blijft volledig functioneel: tekst blijft selecteerbaar en koppelingen en formuliervelden blijven werken.
 
-Hyper Compress is gecompileerd naar WebAssembly en wordt met BentoPDF meegeleverd, dus compressie werkt offline en in air-gapped omgevingen zonder extra installatie.
+Hyper Compress is gecompileerd naar WebAssembly en wordt met Pixel PDF meegeleverd, dus compressie werkt offline en in air-gapped omgevingen zonder extra installatie.
 
 ## Zo werkt het
 
@@ -36,7 +36,7 @@ Hoog haalt ook de 14 standaard-PDF-lettertypen uit het bestand, plus lookalikes 
 
 ## Doelbestandsgrootte
 
-Voer een grootte in KB of MB in en Hyper Compress zoekt de beste afbeeldingskwaliteit die nog binnen die grootte past, uitgaand van het gekozen niveau. Als het document niet zo klein kan worden, krijg je de kleinste versie die mogelijk is, met een melding daarover. De speciale pagina's, zoals [PDF comprimeren tot 1 MB](https://www.bentopdf.com/compress-pdf-to-1mb), openen met het doel al ingevuld.
+Voer een grootte in KB of MB in en Hyper Compress zoekt de beste afbeeldingskwaliteit die nog binnen die grootte past, uitgaand van het gekozen niveau. Als het document niet zo klein kan worden, krijg je de kleinste versie die mogelijk is, met een melding daarover. De speciale pagina's, zoals [PDF comprimeren tot 1 MB](https://www.pixelpdf.com/compress-pdf-to-1mb), openen met het doel al ingevuld.
 
 ## Aangepaste instellingen
 

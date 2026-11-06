@@ -5,7 +5,7 @@ description: Chú thích, đánh dấu, che thông tin, thêm hình khối và h
 
 # Trình chỉnh sửa PDF
 
-Trình chỉnh sửa PDF của BentoPDF cho phép bạn chú thích, đánh dấu, che thông tin, bình luận, thêm hình khối và hình ảnh, và tìm kiếm trong PDF. Nó tải một trình chỉnh sửa đầy đủ tính năng ngay trong trình duyệt mà không cần tải lên máy chủ.
+Trình chỉnh sửa PDF của Pixel PDF cho phép bạn chú thích, đánh dấu, che thông tin, bình luận, thêm hình khối và hình ảnh, và tìm kiếm trong PDF. Nó tải một trình chỉnh sửa đầy đủ tính năng ngay trong trình duyệt mà không cần tải lên máy chủ.
 
 ## Cách hoạt động
 

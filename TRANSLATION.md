@@ -1,6 +1,6 @@
-# 🌍 Translation Guide for BentoPDF
+# 🌍 Translation Guide for Pixel PDF
 
-This guide will help you add new languages or improve existing translations for BentoPDF.
+This guide will help you add new languages or improve existing translations for Pixel PDF.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This guide will help you add new languages or improve existing translations for 
 
 ## Overview
 
-BentoPDF uses **i18next** for internationalization (i18n). Currently supported languages:
+Pixel PDF uses **i18next** for internationalization (i18n). Currently supported languages:
 
 - **English** (`en`) - Default
 - **Belarusian** (`be`)
@@ -51,7 +51,7 @@ The app automatically detects the language from the URL path:
 
 ### Architecture
 
-BentoPDF uses a **static pre-rendering** approach for SEO-optimized i18n:
+Pixel PDF uses a **static pre-rendering** approach for SEO-optimized i18n:
 
 1. **Build time**: `scripts/generate-i18n-pages.mjs` generates localized HTML files in `dist/{lang}/`
 2. **Dev/Preview**: `languageRouterPlugin` in `vite.config.ts` handles URL rewriting
@@ -381,7 +381,7 @@ Test in different browsers:
 
 ### 1. Keep the Tone Consistent
 
-BentoPDF is **friendly, clear, and professional**. Match this tone in your translations.
+Pixel PDF is **friendly, clear, and professional**. Match this tone in your translations.
 
 ✅ **Good:**
 
@@ -401,7 +401,7 @@ Some strings contain HTML or special characters:
 
 ```json
 {
-  "faq.analytics.answer": "No. BentoPDF does not track you at all. We do not use cookies, analytics, or any tracking scripts, not even on the live website at bentopdf.com. We never know who you are or what you do with the tools."
+  "faq.analytics.answer": "No. Pixel PDF does not track you at all. We do not use cookies, analytics, or any tracking scripts, not even on the live website at pixelpdf.com. We never know who you are or what you do with the tools."
 }
 ```
 
@@ -409,7 +409,7 @@ When translating, **keep the HTML tags intact**:
 
 ```json
 {
-  "faq.analytics.answer": "Nein. BentoPDF verfolgt Sie in keiner Weise. Wir verwenden keine Cookies, keine Analysetools und keine Tracking-Skripte – auch nicht auf der Live-Website bentopdf.com. Wir wissen nie, wer Sie sind oder was Sie mit den Tools tun."
+  "faq.analytics.answer": "Nein. Pixel PDF verfolgt Sie in keiner Weise. Wir verwenden keine Cookies, keine Analysetools und keine Tracking-Skripte – auch nicht auf der Live-Website pixelpdf.com. Wir wissen nie, wer Sie sind oder was Sie mit den Tools tun."
 }
 ```
 
@@ -430,7 +430,7 @@ Example:
 
 Keep these as-is:
 
-- BentoPDF
+- Pixel PDF
 - PDF
 - GitHub
 - Discord
@@ -569,7 +569,7 @@ When adding a new language, make sure these files are updated:
 If you have questions or need help:
 
 1. Check existing translations in `public/locales/de/common.json` for reference
-2. Open an issue on [GitHub](https://github.com/alam00000/bentopdf/issues)
+2. Open an issue on [GitHub](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 3. Join our [Discord server](https://discord.gg/Bgq3Ay3f2w)
 
 ---
@@ -588,7 +588,7 @@ Once you've completed a translation:
    - Screenshots showing the translation in action
    - Confirmation that you've tested all pages
 
-Thank you for contributing to BentoPDF! 🎉
+Thank you for contributing to Pixel PDF! 🎉
 
 ---
 

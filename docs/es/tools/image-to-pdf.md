@@ -24,7 +24,7 @@ El conversor universal de imágenes a PDF. Sube imágenes en prácticamente cual
 | Portable Anymap | `.pnm`, `.pgm`, `.pbm`, `.ppm`, `.pam` |
 | JPEG XR         | `.jxr`                                 |
 
-Es la compatibilidad de formatos más amplia de todos los conversores de imágenes de BentoPDF. Si solo necesitas un formato concreto, usa en su lugar una de las herramientas dedicadas.
+Es la compatibilidad de formatos más amplia de todos los conversores de imágenes de Pixel PDF. Si solo necesitas un formato concreto, usa en su lugar una de las herramientas dedicadas.
 
 ## Cómo funciona
 

@@ -1,6 +1,6 @@
 ---
 {
-  "title": "How to Edit a PDF Without Uploading It Anywhere | BentoPDF Blog",
+  "title": "How to Edit a PDF Without Uploading It Anywhere | Pixel PDF Blog",
   "h1": "How to edit a PDF without uploading it anywhere",
   "ogTitle": "How to Edit a PDF Without Uploading It Anywhere",
   "breadcrumb": "Edit a PDF without uploading",
@@ -17,7 +17,7 @@
 ---
 You can edit a PDF in your browser without uploading the file to a server.
 
-Open [BentoPDF's PDF editor](/edit-pdf), pick your file, make your changes, and download the result. The PDF stays on your device. There's no account and no watermark.
+Open [Pixel PDF's PDF editor](/edit-pdf), pick your file, make your changes, and download the result. The PDF stays on your device. There's no account and no watermark.
 
 But “edit a PDF” can mean a few different things. You might want to change existing text, fill out a form, add a signature, redact something, or just highlight a paragraph. The right tool depends on what you're trying to do.
 
@@ -43,7 +43,7 @@ If you want to change words that are already in the PDF, use [Edit PDF Text](/ed
 4. Type your changes.
 5. Download the edited PDF.
 
-BentoPDF loads the PDF in your browser and does the editing on your device.
+Pixel PDF loads the PDF in your browser and does the editing on your device.
 
 This is one of the harder things to do with PDFs because PDF text doesn't work quite like text in a Word document. The PDF is mostly concerned with putting things at particular positions on a page, so changing a sentence can mean figuring out how the surrounding text should move.
 
@@ -63,13 +63,13 @@ Again, the editing happens in your browser rather than on a remote server.
 
 There are two common kinds of PDF forms.
 
-If the PDF has actual form fields, open it in [PDF Form Filler](/form-filler) and type into the fields. It handles standard AcroForm fields, and also XFA forms, which are the legacy XML-based format. XFA is worth calling out because Chrome and most other viewers show those files as blank pages, which is why some government forms tell you to open them in Adobe Reader. Firefox and BentoPDF's form filler render them properly.
+If the PDF has actual form fields, open it in [PDF Form Filler](/form-filler) and type into the fields. It handles standard AcroForm fields, and also XFA forms, which are the legacy XML-based format. XFA is worth calling out because Chrome and most other viewers show those files as blank pages, which is why some government forms tell you to open them in Adobe Reader. Firefox and Pixel PDF's form filler render them properly.
 
 If it's a scanned or flattened form, there aren't any fields to click. In that case, you can put text boxes over the blank spaces in the [PDF editor](/edit-pdf) and type into them. If you'd rather have real fields, [Create PDF Form](/form-creator) can add them to the document first.
 
 This is especially useful for government and HR forms, which often contain personal information I'd rather not upload somewhere just to fill in a few boxes.
 
-If the PDF is a scan and you actually need to edit the scanned text itself, you'll need OCR first. [BentoPDF's OCR tool](/ocr-pdf) can recognize the text in the document while keeping the processing on your device.
+If the PDF is a scan and you actually need to edit the scanned text itself, you'll need OCR first. [Pixel PDF's OCR tool](/ocr-pdf) can recognize the text in the document while keeping the processing on your device.
 
 ## How to redact a PDF properly
 
@@ -101,7 +101,7 @@ The PDF processing code runs in your browser using WebAssembly. Once the applica
 
 This is also something you can inspect yourself in your browser's developer tools. The website is how you get the software; it doesn't have to be where your PDF gets processed.
 
-If you want to run the whole thing yourself, BentoPDF is [open source and self-hostable](https://github.com/alam00000/bentopdf). You can run your own instance instead of relying on ours.
+If you want to run the whole thing yourself, Pixel PDF is [open source and self-hostable](https://github.com/mohammedalhinaki-cloud/Pixel-PDF). You can run your own instance instead of relying on ours.
 
 ## What about scanned PDFs?
 
@@ -125,7 +125,7 @@ For very large PDFs, a desktop application may be a better choice.
 
 Yes.
 
-Changing a digitally signed PDF will invalidate its existing signature. This isn't specific to BentoPDF; it's a consequence of changing a document that has already been signed.
+Changing a digitally signed PDF will invalidate its existing signature. This isn't specific to Pixel PDF; it's a consequence of changing a document that has already been signed.
 
 So the usual order is:
 

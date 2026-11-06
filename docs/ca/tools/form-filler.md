@@ -36,7 +36,7 @@ No hi ha opcions de configuració addicionals. Puja el formulari, emplena'l i ba
 
 ## Consells
 
-- Els formularis XFA són un format heretat que només admeten alguns visors de PDF. Si obres un PDF XFA a Chrome o a la majoria d'altres eines i veus pàgines en blanc, vol dir que aquests visors no admeten XFA. L'emplenador de formularis de BentoPDF i Firefox gestionen correctament l'XFA.
+- Els formularis XFA són un format heretat que només admeten alguns visors de PDF. Si obres un PDF XFA a Chrome o a la majoria d'altres eines i veus pàgines en blanc, vol dir que aquests visors no admeten XFA. L'emplenador de formularis de Pixel PDF i Firefox gestionen correctament l'XFA.
 - Per als PDF sense camps de formulari, fes servir l'eina [Crea un formulari PDF](./form-creator) per afegir-hi camps primer i després emplena'ls aquí.
 - El visor ajusta automàticament la mida perquè coincideixi amb les dimensions de la pàgina del PDF.
 

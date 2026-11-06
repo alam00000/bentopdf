@@ -5,9 +5,9 @@ description: Reduce PDF file size by up to 90% with the Hyper Compress engine. S
 
 # Compress PDF
 
-Shrink your PDF files without destroying them. Compress PDF is powered by [Hyper Compress](https://www.bentopdf.com/hyper-compress), BentoPDF's own compression engine. It recompresses images, subsets and merges fonts, and strips dead weight such as embedded thumbnails and private application data. The PDF stays fully functional: text remains selectable, links and form fields keep working.
+Shrink your PDF files without destroying them. Compress PDF is powered by [Hyper Compress](https://www.pixelpdf.com/hyper-compress), Pixel PDF's own compression engine. It recompresses images, subsets and merges fonts, and strips dead weight such as embedded thumbnails and private application data. The PDF stays fully functional: text remains selectable, links and form fields keep working.
 
-Hyper Compress is compiled to WebAssembly and ships with BentoPDF, so compression works offline and in air-gapped deployments with no extra setup.
+Hyper Compress is compiled to WebAssembly and ships with Pixel PDF, so compression works offline and in air-gapped deployments with no extra setup.
 
 ## How It Works
 
@@ -36,7 +36,7 @@ High also unembeds the 14 standard PDF fonts, plus look-alikes such as Arial whe
 
 ## Target File Size
 
-Enter a size in KB or MB and Hyper Compress searches for the best image quality that still fits, starting from the level you picked. If the document cannot get that small, you get the smallest version it can make and a message saying so. The dedicated pages such as [Compress PDF to 1MB](https://www.bentopdf.com/compress-pdf-to-1mb) open with the target already filled in.
+Enter a size in KB or MB and Hyper Compress searches for the best image quality that still fits, starting from the level you picked. If the document cannot get that small, you get the smallest version it can make and a message saying so. The dedicated pages such as [Compress PDF to 1MB](https://www.pixelpdf.com/compress-pdf-to-1mb) open with the target already filled in.
 
 ## Custom Settings
 

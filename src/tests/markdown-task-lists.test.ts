@@ -10,7 +10,7 @@ describe('Markdown to PDF - Task Lists with Links (Fixes #715)', () => {
   });
 
   it('renders task list items containing links without unclosed anchor tags or swallows', () => {
-    const markdown = `- [ ] [Links](https://bentopdf.com)
+    const markdown = `- [ ] [Links](https://pixelpdf.com)
 
 Paragraph below link`;
 
@@ -29,7 +29,7 @@ Paragraph below link`;
     // Check that the link is properly closed and contains the correct URL
     const anchor = preview?.querySelector('a');
     expect(anchor).not.toBeNull();
-    expect(anchor?.getAttribute('href')).toBe('https://bentopdf.com');
+    expect(anchor?.getAttribute('href')).toBe('https://pixelpdf.com');
     expect(anchor?.textContent?.trim()).toBe('Links');
 
     // Check that the paragraph below is rendered as a separate sibling paragraph and NOT inside the anchor
@@ -40,7 +40,7 @@ Paragraph below link`;
   });
 
   it('correctly handles checked task lists with links and formatting', () => {
-    const markdown = `- [x] [Completed Link](https://bentopdf.com) with **bold text**
+    const markdown = `- [x] [Completed Link](https://pixelpdf.com) with **bold text**
 - [ ] Regular task without link`;
 
     new MarkdownEditor(container, {
@@ -55,7 +55,7 @@ Paragraph below link`;
     expect(checkedBox?.checked).toBe(true);
 
     const anchor = preview?.querySelector('a');
-    expect(anchor?.getAttribute('href')).toBe('https://bentopdf.com');
+    expect(anchor?.getAttribute('href')).toBe('https://pixelpdf.com');
     expect(anchor?.textContent?.trim()).toBe('Completed Link');
 
     const strong = preview?.querySelector('strong');

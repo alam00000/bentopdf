@@ -4,13 +4,13 @@
 
 ## 一鍵部署
 
-[![使用 Vercel 部署](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![使用 Vercel 部署](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## 手動部署
 
 ### 步驟 1：Fork 儲存庫
 
-將 [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) Fork 到您的 GitHub 帳號。
+將 [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) Fork 到您的 GitHub 帳號。
 
 ### 步驟 2：匯入至 Vercel
 
@@ -32,7 +32,7 @@
 | 變數                    | 說明                                                     |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | 設為 `true` 以使用精簡介面                               |
-| `VITE_BRAND_NAME`       | 自訂品牌名稱（取代「BentoPDF」）                         |
+| `VITE_BRAND_NAME`       | 自訂品牌名稱（取代「Pixel PDF」）                         |
 | `VITE_BRAND_LOGO`       | 相對於 `public/` 的標誌路徑（例如 `images/my-logo.svg`） |
 | `VITE_FOOTER_TEXT`      | 自訂頁尾或版權文字                                       |
 | `VITE_DEFAULT_LANGUAGE` | 預設介面語言（例如 `fr`、`de`、`es`）                    |
@@ -51,7 +51,7 @@
 ## 限制
 
 ::: warning 大型檔案
-Vercel 的無伺服器函式有 50MB 的限制。由於 BentoPDF 是靜態網站，這應該不會影響您，但 WASM 模組很大（總計約 100MB）。請確保它們從 `/public` 資料夾提供。
+Vercel 的無伺服器函式有 50MB 的限制。由於 Pixel PDF 是靜態網站，這應該不會影響您，但 WASM 模組很大（總計約 100MB）。請確保它們從 `/public` 資料夾提供。
 :::
 
 ## 疑難排解

@@ -7,7 +7,7 @@ description: Adicione assinaturas digitais criptográficas a PDFs usando certifi
 
 Uma assinatura digital é uma prova criptográfica de que uma pessoa específica assinou um documento e de que ele não foi alterado desde então. Ao contrário de uma assinatura desenhada (que é apenas uma imagem), a assinatura digital usa certificados X.509 e padrões PKCS#7 para oferecer autenticidade e integridade verificáveis.
 
-O BentoPDF aplica assinaturas digitais inteiramente no seu navegador. Sua chave privada nunca sai do seu dispositivo.
+O Pixel PDF aplica assinaturas digitais inteiramente no seu navegador. Sua chave privada nunca sai do seu dispositivo.
 
 ## Como funciona
 

@@ -13,7 +13,7 @@
     "breadcrumb": "Navigačná cesta"
   },
   "donation": {
-    "message": "Páči sa vám BentoPDF? Pomôžte nám udržať ho bezplatný a open source!",
+    "message": "Páči sa vám Pixel PDF? Pomôžte nám udržať ho bezplatný a open source!",
     "button": "Prispieť"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "Prečo si vybrať",
-    "bentoPdf": "BentoPDF?",
+    "pixelPdf": "Pixel PDF?",
     "noSignup": {
       "title": "Žiadna registrácia",
       "description": "Začnite okamžite, nepotrebujete žiadne účty ani e-maily."
@@ -188,8 +188,8 @@
     "questions": "otázky",
     "sectionTitle": "Často kladené otázky",
     "isFree": {
-      "question": "Je BentoPDF naozaj zadarmo?",
-      "answer": "Áno, absolútne. Všetky nástroje na BentoPDF sú na 100% bezplatné, bez obmedzení súborov, bez registrácie a bez vodotlače. Veríme, že každý si zaslúži prístup k jednoduchým a výkonným nástrojom PDF bez poplatkov."
+      "question": "Je Pixel PDF naozaj zadarmo?",
+      "answer": "Áno, absolútne. Všetky nástroje na Pixel PDF sú na 100% bezplatné, bez obmedzení súborov, bez registrácie a bez vodotlače. Veríme, že každý si zaslúži prístup k jednoduchým a výkonným nástrojom PDF bez poplatkov."
     },
     "areFilesSecure": {
       "question": "Sú moje súbory v bezpečí? Kde sa spracúvajú?",
@@ -197,27 +197,27 @@
     },
     "platforms": {
       "question": "Funguje to na Macu, vo Windows a na mobilných zariadeniach?",
-      "answer": "Áno! Keďže BentoPDF beží výlučne vo vašom prehliadači, funguje na akomkoľvek operačnom systéme s moderným webovým prehliadačom vrátane Windows, macOS, Linux, iOS a Android."
+      "answer": "Áno! Keďže Pixel PDF beží výlučne vo vašom prehliadači, funguje na akomkoľvek operačnom systéme s moderným webovým prehliadačom vrátane Windows, macOS, Linux, iOS a Android."
     },
     "gdprCompliant": {
-      "question": "Je BentoPDF v súlade s GDPR?",
-      "answer": "Áno. BentoPDF je plne v súlade s GDPR. Keďže všetko spracovanie súborov prebieha lokálne vo vašom prehliadači a my vaše súbory nikdy nezhromažďujeme ani neprenášame na žiadny server, nemáme prístup k vašim údajom. To zaisťuje, že máte svoje dokumenty vždy pod kontrolou."
+      "question": "Je Pixel PDF v súlade s GDPR?",
+      "answer": "Áno. Pixel PDF je plne v súlade s GDPR. Keďže všetko spracovanie súborov prebieha lokálne vo vašom prehliadači a my vaše súbory nikdy nezhromažďujeme ani neprenášame na žiadny server, nemáme prístup k vašim údajom. To zaisťuje, že máte svoje dokumenty vždy pod kontrolou."
     },
     "dataStorage": {
       "question": "Ukladáte alebo sledujete nejaké moje súbory?",
-      "answer": "Nie. Vaše súbory nikdy neukladáme, nesledujeme ani nezaznamenávame. Všetko, čo v BentoPDF urobíte, sa odohráva v pamäti vášho prehliadača a po zatvorení stránky zmizne. Nedochádza k žiadnemu nahrávaniu, logovaniu ani sa nevyužívajú žiadne servery."
+      "answer": "Nie. Vaše súbory nikdy neukladáme, nesledujeme ani nezaznamenávame. Všetko, čo v Pixel PDF urobíte, sa odohráva v pamäti vášho prehliadača a po zatvorení stránky zmizne. Nedochádza k žiadnemu nahrávaniu, logovaniu ani sa nevyužívajú žiadne servery."
     },
     "different": {
-      "question": "V čom je BentoPDF odlišné od iných PDF nástrojov?",
-      "answer": "Väčšina PDF nástrojov nahráva vaše súbory na spracovanie na server. BentoPDF to nerobí. Na spracovanie vašich súborov priamo vo vašom prehliadači používame bezpečné moderné webové technológie. Znamená to vyšší výkon, silnejšiu ochranu súkromia a úplný pokoj v duši."
+      "question": "V čom je Pixel PDF odlišné od iných PDF nástrojov?",
+      "answer": "Väčšina PDF nástrojov nahráva vaše súbory na spracovanie na server. Pixel PDF to nerobí. Na spracovanie vašich súborov priamo vo vašom prehliadači používame bezpečné moderné webové technológie. Znamená to vyšší výkon, silnejšiu ochranu súkromia a úplný pokoj v duši."
     },
     "browserBased": {
       "question": "Ako ma spracovanie založené na prehliadači chráni?",
-      "answer": "Tým, že BentoPDF beží výlučne vnútri vášho prehliadača, zabezpečuje, že vaše súbory nikdy neopustia vaše zariadenie. Tým sa eliminujú riziká napadnutia serverov, úniku dát alebo neoprávneného prístupu. Vaše súbory zostávajú vždy vaše."
+      "answer": "Tým, že Pixel PDF beží výlučne vnútri vášho prehliadača, zabezpečuje, že vaše súbory nikdy neopustia vaše zariadenie. Tým sa eliminujú riziká napadnutia serverov, úniku dát alebo neoprávneného prístupu. Vaše súbory zostávajú vždy vaše."
     },
     "analytics": {
       "question": "Používate súbory cookie alebo analytiku na moje sledovanie?",
-      "answer": "Nie. BentoPDF vás vôbec nesleduje. Nepoužívame cookies, analytiku ani sledovacie skripty – ani na živej webovej stránke bentopdf.com. Nikdy nevieme, kto ste ani čo s nástrojmi robíte."
+      "answer": "Nie. Pixel PDF vás vôbec nesleduje. Nepoužívame cookies, analytiku ani sledovacie skripty – ani na živej webovej stránke pixelpdf.com. Nikdy nevieme, kto ste ani čo s nástrojmi robíte."
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "Páči sa vám moja práca?",
-    "description": "BentoPDF je srdcový projekt, vytvorený s cieľom poskytnúť bezplatnú, súkromnú a výkonnú sadu PDF nástrojov pre každého. Ak sa vám zdá užitočný, zvážte podporu jeho vývoja. Každá káva pomôže!",
+    "description": "Pixel PDF je srdcový projekt, vytvorený s cieľom poskytnúť bezplatnú, súkromnú a výkonnú sadu PDF nástrojov pre každého. Ak sa vám zdá užitočný, zvážte podporu jeho vývoja. Každá káva pomôže!",
     "buyMeCoffee": "Kúpte mi kávu"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Všetky práva vyhradené.",
+    "copyright": "© 2026 Pixel PDF. Všetky práva vyhradené.",
     "version": "Verzia",
     "company": "Spoločnosť",
     "aboutUs": "O nás",
@@ -300,9 +300,9 @@
     "philosophy": {
       "label": "Naša hlavná filozofia",
       "title": "Súkromie na prvom mieste. Vždy.",
-      "description": "V dobe, kedy sú dáta komoditou, k tomu pristupujeme inak. Všetko spracovanie nástrojov BentoPDF prebieha lokálne vo vašom prehliadači. To znamená, že vaše súbory sa nikdy nedotknú našich serverov, nikdy nevidíme vaše dokumenty a nesledujeme, čo robíte. Vaše dokumenty zostávajú úplne a jednoznačne súkromné. Nie je to len funkcia, je to náš základ."
+      "description": "V dobe, kedy sú dáta komoditou, k tomu pristupujeme inak. Všetko spracovanie nástrojov Pixel PDF prebieha lokálne vo vašom prehliadači. To znamená, že vaše súbory sa nikdy nedotknú našich serverov, nikdy nevidíme vaše dokumenty a nesledujeme, čo robíte. Vaše dokumenty zostávajú úplne a jednoznačne súkromné. Nie je to len funkcia, je to náš základ."
     },
-    "whyBentopdf": {
+    "whyPixelpdf": {
       "title": "Prečo",
       "speed": {
         "title": "Zostavené pre rýchlosť",
@@ -323,7 +323,7 @@
     },
     "cta": {
       "title": "Ste pripravení začať?",
-      "description": "Pridajte sa k tisícom používateľov, ktorí dôverujú BentoPDF vo svojich každodenných potrebách s dokumentmi. Vyskúšajte, aký rozdiel môže urobiť súkromie a výkon.",
+      "description": "Pridajte sa k tisícom používateľov, ktorí dôverujú Pixel PDF vo svojich každodenných potrebách s dokumentmi. Vyskúšajte, aký rozdiel môže urobiť súkromie a výkon.",
       "button": "Preskúmať všetky nástroje"
     }
   },

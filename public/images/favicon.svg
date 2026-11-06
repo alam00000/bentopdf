@@ -1,9 +1,28 @@
-<svg width="166" height="166" viewBox="0 0 166 166" fill="none" xmlns="http://www.w3.org/2000/svg">
-<!-- Circular Background -->
-<circle cx="83" cy="83" r="83" fill="#111827"/>
-<g transform="translate(48, 12) scale(0.85)">
-<path d="M56.7848 80.9116L0 25.6211L24.8434 1.43151C26.8037 -0.47717 29.9814 -0.47717 31.9414 1.43151L85.177 53.2662L56.7848 80.9116Z" fill="#A5B4FC"/>
-<path d="M-1.30805e-05 80.7335L21.2939 101.467L42.5878 80.7335L21.2939 60L-1.30805e-05 80.7335Z" fill="#E0E7FF"/>
-<path d="M56.7848 83L81.6279 107.19C83.5881 109.098 83.5881 112.192 81.6279 114.101L28.3925 165.936L0 138.29L56.7848 83Z" fill="#6366F1"/>
-</g>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pixel PDF">
+  <defs>
+    <linearGradient id="pixelGradient" x1="4" y1="2" x2="58" y2="62" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E8BF5"/>
+      <stop offset="0.52" stop-color="#2567E8"/>
+      <stop offset="1" stop-color="#3A2BB0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#F5F7FB"/>
+  <g transform="translate(8, 8)" fill="url(#pixelGradient)">
+    <!-- pixel trail -->
+    <rect x="0" y="0" width="8" height="8"/>
+    <rect x="0" y="8" width="8" height="8"/>
+    <rect x="8" y="8" width="8" height="8"/>
+    <rect x="8" y="16" width="8" height="8"/>
+    <rect x="16" y="16" width="8" height="8"/>
+    <rect x="16" y="24" width="8" height="8"/>
+    <rect x="24" y="24" width="8" height="8"/>
+    <rect x="32" y="24" width="6" height="6"/>
+    <!-- folded top edge -->
+    <rect x="16" y="0" width="24" height="8"/>
+    <path d="M40 0L48 8H40V0Z" fill="#F5F7FB"/>
+    <!-- right edge, left edge and bottom of the page -->
+    <rect x="40" y="8" width="8" height="40"/>
+    <rect x="8" y="32" width="8" height="8"/>
+    <rect x="8" y="40" width="40" height="8"/>
+  </g>
 </svg>

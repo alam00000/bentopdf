@@ -1,21 +1,21 @@
 ---
 title: JSON sang PDF
-description: Dựng lại tệp PDF từ định dạng JSON của BentoPDF. Chuyển các bản xuất JSON trở lại tài liệu PDF gốc.
+description: Dựng lại tệp PDF từ định dạng JSON của Pixel PDF. Chuyển các bản xuất JSON trở lại tài liệu PDF gốc.
 ---
 
 # JSON sang PDF
 
-Dựng lại tài liệu PDF từ các tệp JSON đã được tạo trước đó bởi công cụ **PDF sang JSON** của BentoPDF. Đây là công cụ chuyển đổi hai chiều: nó lấy biểu diễn JSON có cấu trúc của PDF và xây dựng lại tài liệu gốc.
+Dựng lại tài liệu PDF từ các tệp JSON đã được tạo trước đó bởi công cụ **PDF sang JSON** của Pixel PDF. Đây là công cụ chuyển đổi hai chiều: nó lấy biểu diễn JSON có cấu trúc của PDF và xây dựng lại tài liệu gốc.
 
 ::: warning
-Công cụ này chỉ chấp nhận tệp JSON do bộ chuyển đổi PDF sang JSON của BentoPDF tạo ra. Tệp JSON thông thường từ API, cơ sở dữ liệu hoặc công cụ khác không được hỗ trợ.
+Công cụ này chỉ chấp nhận tệp JSON do bộ chuyển đổi PDF sang JSON của Pixel PDF tạo ra. Tệp JSON thông thường từ API, cơ sở dữ liệu hoặc công cụ khác không được hỗ trợ.
 :::
 
 ## Định dạng được hỗ trợ
 
 | Đầu vào | Mô tả                                                     |
 | :------ | :-------------------------------------------------------- |
-| `.json` | Tệp JSON được xuất bởi công cụ PDF sang JSON của BentoPDF |
+| `.json` | Tệp JSON được xuất bởi công cụ PDF sang JSON của Pixel PDF |
 
 ## Cách hoạt động
 

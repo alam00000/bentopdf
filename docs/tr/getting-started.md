@@ -1,16 +1,16 @@
 # Başlarken
 
-BentoPDF'e hoş geldiniz! Bu rehber hızlıca çalışır hale gelmenize yardımcı olacak.
+Pixel PDF'e hoş geldiniz! Bu rehber hızlıca çalışır hale gelmenize yardımcı olacak.
 
-## BentoPDF Nedir?
+## Pixel PDF Nedir?
 
-BentoPDF, **tamamen tarayıcınızda** çalışan ücretsiz, açık kaynaklı, gizlilik odaklı bir PDF araç setidir. Dosyalarınız cihazınızdan asla çıkmaz. Tüm işlemler WebAssembly (WASM) teknolojisiyle yerel olarak yapılır.
+Pixel PDF, **tamamen tarayıcınızda** çalışan ücretsiz, açık kaynaklı, gizlilik odaklı bir PDF araç setidir. Dosyalarınız cihazınızdan asla çıkmaz. Tüm işlemler WebAssembly (WASM) teknolojisiyle yerel olarak yapılır.
 
 ## Hızlı Başlangıç
 
 ### Seçenek 1: Barındırılan Sürümü Kullanın
 
-BentoPDF'i anında kullanmak için [bentopdf.com](https://www.bentopdf.com) adresini ziyaret edin, kurulum gerekmez.
+Pixel PDF'i anında kullanmak için [pixelpdf.com](https://www.pixelpdf.com) adresini ziyaret edin, kurulum gerekmez.
 
 ### Seçenek 2: Docker ile Kendi Sunucunuzda Barındırın
 
@@ -25,15 +25,15 @@ BentoPDF'i anında kullanmak için [bentopdf.com](https://www.bentopdf.com) adre
 
 ```bash
 # Pull and run the Docker image (self-hosted build)
-docker run -d -p 3000:8080 ghcr.io/alam00000/bentopdf-simple:latest
+docker run -d -p 3000:8080 ghcr.io/mohammedalhinaki-cloud/pixel-pdf-simple:latest
 
 # Or use Docker Compose
-curl -O https://raw.githubusercontent.com/alam00000/bentopdf/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/mohammedalhinaki-cloud/Pixel-PDF/main/docker-compose.yml
 docker compose up -d
 ```
 
 > [!TIP]
-> BentoPDF iki sürüm olarak sunulur: dahili/ekip/kurum dağıtımları için **Kendi Sunucunda Barındırma sürümü** (`bentopdf-simple`, yukarıda kullanılan) ve bentopdf.com'un kendisi ile herkese açık dağıtım yapan ticari lisans sahipleri tarafından kullanılan **Ticari sürüm** (`bentopdf:latest`). İkisi de aynı PDF araçlarını sunar. Ticari sürüm bentopdf.com ana sayfa bölümünü, SSS'yi, kullanıcı yorumlarını ve alt bilgiyi ekler. Emin değilseniz Kendi Sunucunda Barındırma sürümünü kullanın.
+> Pixel PDF iki sürüm olarak sunulur: dahili/ekip/kurum dağıtımları için **Kendi Sunucunda Barındırma sürümü** (`pixelpdf-simple`, yukarıda kullanılan) ve pixelpdf.com'un kendisi ile herkese açık dağıtım yapan ticari lisans sahipleri tarafından kullanılan **Ticari sürüm** (`pixelpdf:latest`). İkisi de aynı PDF araçlarını sunar. Ticari sürüm pixelpdf.com ana sayfa bölümünü, SSS'yi, kullanıcı yorumlarını ve alt bilgiyi ekler. Emin değilseniz Kendi Sunucunda Barındırma sürümünü kullanın.
 
 Ardından tarayıcınızda `http://localhost:3000` adresini açın.
 
@@ -44,8 +44,8 @@ Ardından tarayıcınızda `http://localhost:3000` adresini açın.
 
 ```bash
 # Clone the repository
-git clone https://github.com/alam00000/bentopdf.git
-cd bentopdf
+git clone https://github.com/mohammedalhinaki-cloud/Pixel-PDF.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -67,7 +67,7 @@ npm run dev
 
 ## Tarayıcı Desteği
 
-BentoPDF modern tarayıcılarda en iyi şekilde çalışır:
+Pixel PDF modern tarayıcılarda en iyi şekilde çalışır:
 
 - ✅ Chrome/Edge 90+
 - ✅ Firefox 90+
@@ -76,5 +76,5 @@ BentoPDF modern tarayıcılarda en iyi şekilde çalışır:
 ## Sonraki Adımlar
 
 - [Tüm araçları keşfedin](/tr/tools/)
-- [BentoPDF'i kendi sunucunuzda barındırın](/tr/self-hosting/)
+- [Pixel PDF'i kendi sunucunuzda barındırın](/tr/self-hosting/)
 - [Projeye katkıda bulunun](/tr/contributing)

@@ -1,6 +1,6 @@
 # Référence des outils
 
-BentoPDF propose **plus de 130 outils** pour travailler avec les PDF. Tous les outils s'exécutent entièrement dans votre navigateur : vos fichiers ne quittent jamais votre appareil.
+Pixel PDF propose **plus de 130 outils** pour travailler avec les PDF. Tous les outils s'exécutent entièrement dans votre navigateur : vos fichiers ne quittent jamais votre appareil.
 
 ---
 

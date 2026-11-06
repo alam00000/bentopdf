@@ -5,9 +5,9 @@ description: Zmenšite veľkosť PDF až o 90 % s enginom Hyper Compress. Podpor
 
 # Komprimovať PDF
 
-Zmenšite svoje PDF bez toho, aby ste ich poškodili. Komprimovať PDF poháňa [Hyper Compress](https://www.bentopdf.com/hyper-compress), vlastný kompresný engine BentoPDF. Znovu komprimuje obrázky, vytvára podmnožiny písiem a zlučuje ich a odstraňuje zbytočnú záťaž, napríklad vložené náhľady a súkromné údaje aplikácií. PDF zostáva plne funkčné: text sa dá stále vyberať, odkazy a polia formulárov fungujú.
+Zmenšite svoje PDF bez toho, aby ste ich poškodili. Komprimovať PDF poháňa [Hyper Compress](https://www.pixelpdf.com/hyper-compress), vlastný kompresný engine Pixel PDF. Znovu komprimuje obrázky, vytvára podmnožiny písiem a zlučuje ich a odstraňuje zbytočnú záťaž, napríklad vložené náhľady a súkromné údaje aplikácií. PDF zostáva plne funkčné: text sa dá stále vyberať, odkazy a polia formulárov fungujú.
 
-Hyper Compress je skompilovaný do WebAssembly a dodáva sa s BentoPDF, takže kompresia funguje offline aj v izolovaných (air-gapped) nasadeniach bez ďalšieho nastavovania.
+Hyper Compress je skompilovaný do WebAssembly a dodáva sa s Pixel PDF, takže kompresia funguje offline aj v izolovaných (air-gapped) nasadeniach bez ďalšieho nastavovania.
 
 ## Ako to funguje
 
@@ -36,7 +36,7 @@ Vysoká úroveň tiež zruší vloženie 14 štandardných písiem PDF a podobn�
 
 ## Cieľová veľkosť súboru
 
-Zadajte veľkosť v KB alebo MB a Hyper Compress vyhľadá najlepšiu kvalitu obrázkov, ktorá sa ešte zmestí, počnúc vybranou úrovňou. Ak sa dokument nedá zmenšiť až tak, dostanete najmenšiu verziu, akú dokáže vytvoriť, a správu o tom. Špeciálne stránky, napríklad [Komprimovať PDF na 1 MB](https://www.bentopdf.com/compress-pdf-to-1mb), sa otvoria s už vyplneným cieľom.
+Zadajte veľkosť v KB alebo MB a Hyper Compress vyhľadá najlepšiu kvalitu obrázkov, ktorá sa ešte zmestí, počnúc vybranou úrovňou. Ak sa dokument nedá zmenšiť až tak, dostanete najmenšiu verziu, akú dokáže vytvoriť, a správu o tom. Špeciálne stránky, napríklad [Komprimovať PDF na 1 MB](https://www.pixelpdf.com/compress-pdf-to-1mb), sa otvoria s už vyplneným cieľom.
 
 ## Vlastné nastavenia
 

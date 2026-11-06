@@ -13,7 +13,7 @@
     "breadcrumb": "Fil d'Ariane"
   },
   "donation": {
-    "message": "Vous aimez BentoPDF ? Aidez-nous à le garder open source !",
+    "message": "Vous aimez Pixel PDF ? Aidez-nous à le garder open source !",
     "button": "Soutenir"
   },
   "hero": {
@@ -30,7 +30,7 @@
   },
   "features": {
     "title": "Pourquoi choisir",
-    "bentoPdf": "BentoPDF ?",
+    "pixelPdf": "Pixel PDF ?",
     "noSignup": {
       "title": "Sans inscription",
       "description": "Utilisation immédiate, sans compte ni email."
@@ -188,8 +188,8 @@
     "questions": "fréquentes",
     "sectionTitle": "Questions fréquemment posées",
     "isFree": {
-      "question": "BentoPDF est-il vraiment gratuit ?",
-      "answer": "Oui, totalement. Tous les outils BentoPDF sont 100 % gratuits, sans limite de fichiers, sans inscription et sans filigrane. Nous pensons que chacun doit avoir accès à des outils PDF simples et puissants, sans barrière payante."
+      "question": "Pixel PDF est-il vraiment gratuit ?",
+      "answer": "Oui, totalement. Tous les outils Pixel PDF sont 100 % gratuits, sans limite de fichiers, sans inscription et sans filigrane. Nous pensons que chacun doit avoir accès à des outils PDF simples et puissants, sans barrière payante."
     },
     "areFilesSecure": {
       "question": "Mes fichiers sont-ils en sécurité ? Où sont-ils traités ?",
@@ -197,10 +197,10 @@
     },
     "platforms": {
       "question": "Est-ce compatible avec Mac, Windows et mobile ?",
-      "answer": "Oui ! BentoPDF fonctionne entièrement dans le navigateur et est compatible avec Windows, macOS, Linux, iOS et Android."
+      "answer": "Oui ! Pixel PDF fonctionne entièrement dans le navigateur et est compatible avec Windows, macOS, Linux, iOS et Android."
     },
     "gdprCompliant": {
-      "question": "BentoPDF est-il conforme au RGPD ?",
+      "question": "Pixel PDF est-il conforme au RGPD ?",
       "answer": "Oui. Comme tous les traitements sont locaux et qu’aucune donnée n’est collectée ou transmise, vous restez entièrement maître de vos documents."
     },
     "dataStorage": {
@@ -208,8 +208,8 @@
       "answer": "Non. Aucun stockage, aucun suivi, aucun historique. Tout disparaît dès que vous fermez la page."
     },
     "different": {
-      "question": "Qu’est-ce qui différencie BentoPDF des autres outils PDF ?",
-      "answer": "La plupart des outils envoient vos fichiers sur un serveur. BentoPDF traite tout localement dans votre navigateur, pour plus de rapidité, de confidentialité et de tranquillité d’esprit."
+      "question": "Qu’est-ce qui différencie Pixel PDF des autres outils PDF ?",
+      "answer": "La plupart des outils envoient vos fichiers sur un serveur. Pixel PDF traite tout localement dans votre navigateur, pour plus de rapidité, de confidentialité et de tranquillité d’esprit."
     },
     "browserBased": {
       "question": "Pourquoi le traitement dans le navigateur est-il plus sûr ?",
@@ -217,7 +217,7 @@
     },
     "analytics": {
       "question": "Utilisez-vous des cookies ou des outils de suivi ?",
-      "answer": "Nous respectons votre vie privée. BentoPDF utilise uniquement des statistiques anonymes pour connaître le nombre de visites, sans jamais identifier les utilisateurs."
+      "answer": "Nous respectons votre vie privée. Pixel PDF utilise uniquement des statistiques anonymes pour connaître le nombre de visites, sans jamais identifier les utilisateurs."
     }
   },
   "testimonials": {
@@ -227,11 +227,11 @@
   },
   "support": {
     "title": "Vous aimez ce projet ?",
-    "description": "BentoPDF est un projet passion, créé pour offrir une palette d’outils PDF gratuite, privée et puissante. Si cela vous aide, vous pouvez soutenir son développement. Chaque café compte !",
+    "description": "Pixel PDF est un projet passion, créé pour offrir une palette d’outils PDF gratuite, privée et puissante. Si cela vous aide, vous pouvez soutenir son développement. Chaque café compte !",
     "buyMeCoffee": "M’offrir un café"
   },
   "footer": {
-    "copyright": "© 2026 BentoPDF. Tous droits réservés.",
+    "copyright": "© 2026 Pixel PDF. Tous droits réservés.",
     "version": "Version",
     "company": "Entreprise",
     "aboutUs": "À propos",
@@ -300,9 +300,9 @@
     "philosophy": {
       "label": "Notre philosophie",
       "title": "La confidentialité avant tout. Toujours.",
-      "description": "À une époque où les données sont devenues une monnaie, nous faisons un choix différent. Tous les traitements des outils BentoPDF sont effectués localement dans votre navigateur. Vos fichiers ne passent jamais par nos serveurs, nous ne voyons jamais vos documents et nous ne suivons pas votre activité. Ce n’est pas une option, c’est notre fondation."
+      "description": "À une époque où les données sont devenues une monnaie, nous faisons un choix différent. Tous les traitements des outils Pixel PDF sont effectués localement dans votre navigateur. Vos fichiers ne passent jamais par nos serveurs, nous ne voyons jamais vos documents et nous ne suivons pas votre activité. Ce n’est pas une option, c’est notre fondation."
     },
-    "whyBentopdf": {
+    "whyPixelpdf": {
       "title": "Pourquoi",
       "speed": {
         "title": "Pensé pour la vitesse",
@@ -323,7 +323,7 @@
     },
     "cta": {
       "title": "Prêt à commencer ?",
-      "description": "Rejoignez des milliers d’utilisateurs qui font confiance à BentoPDF au quotidien. Découvrez la différence qu’apportent la confidentialité et la performance.",
+      "description": "Rejoignez des milliers d’utilisateurs qui font confiance à Pixel PDF au quotidien. Découvrez la différence qu’apportent la confidentialité et la performance.",
       "button": "Explorer tous les outils"
     }
   },

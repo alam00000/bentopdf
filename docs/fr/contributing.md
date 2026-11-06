@@ -1,6 +1,6 @@
 # Contribuer
 
-Merci de votre intérêt pour la contribution à BentoPDF ! Ce guide vous aidera à démarrer.
+Merci de votre intérêt pour la contribution à Pixel PDF ! Ce guide vous aidera à démarrer.
 
 ## Premiers pas
 
@@ -14,8 +14,8 @@ Merci de votre intérêt pour la contribution à BentoPDF ! Ce guide vous aidera
 
 ```bash
 # Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/bentopdf.git
-cd bentopdf
+git clone https://github.com/YOUR_USERNAME/pixelpdf.git
+cd pixelpdf
 
 # Install dependencies
 npm install
@@ -27,7 +27,7 @@ npm run dev
 ## Structure du projet
 
 ```
-bentopdf/
+pixelpdf/
 ├── src/
 │   ├── js/
 │   │   ├── config/       # Tool definitions
@@ -112,23 +112,23 @@ Ajoutez des entrées dans tous les fichiers de langue de `public/locales/` :
 
 ## Traduction
 
-Consultez [TRANSLATION.md](https://github.com/alam00000/bentopdf/blob/main/TRANSLATION.md) pour ajouter de nouvelles langues.
+Consultez [TRANSLATION.md](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/TRANSLATION.md) pour ajouter de nouvelles langues.
 
 ## Contrat de licence de contributeur
 
 Avant que votre PR puisse être fusionnée, vous devrez signer notre CLA :
 
-- [CLA individuel (ICLA)](https://github.com/alam00000/bentopdf/blob/main/ICLA.md)
-- [CLA d'entreprise (CCLA)](https://github.com/alam00000/bentopdf/blob/main/CCLA.md)
+- [CLA individuel (ICLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/ICLA.md)
+- [CLA d'entreprise (CCLA)](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/blob/main/CCLA.md)
 
 ## Obtenir de l'aide
 
-- [GitHub Issues](https://github.com/alam00000/bentopdf/issues)
+- [GitHub Issues](https://github.com/mohammedalhinaki-cloud/Pixel-PDF/issues)
 - [Communauté Discord](https://discord.gg/Bgq3Ay3f2w)
 
 ## Licence
 
-BentoPDF est sous double licence :
+Pixel PDF est sous double licence :
 
 - **AGPL-3.0** pour les projets open source où vous partagez publiquement l'intégralité de votre code source
 - **Licence commerciale** pour les applications propriétaires ou à code source fermé - [Obtenir la licence à vie pour 79 $](https://buy.polar.sh/polar_cl_ThDfffbl733x7oAodcIryCzhlO57ZtcWPq6HJ1qMChd)

@@ -4,7 +4,7 @@
 
 ## استقرار با یک کلیک
 
-[![استقرار روی Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/alam00000/bentopdf)
+[![استقرار روی Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## استقرار دستی
 
@@ -13,7 +13,7 @@
 1. وارد [Netlify](https://app.netlify.com) شوید
 2. روی «Add new site» ← «Import an existing project» کلیک کنید
 3. حساب GitHub خود را متصل کنید
-4. فورک BentoPDF خود را انتخاب کنید
+4. فورک Pixel PDF خود را انتخاب کنید
 
 ### گام ۲: پیکربندی تنظیمات ساخت
 
@@ -90,7 +90,7 @@
 | متغیر                   | توضیح                                                    |
 | ----------------------- | -------------------------------------------------------- |
 | `SIMPLE_MODE`           | برای ساخت حداقلی روی `true` تنظیم کنید                   |
-| `VITE_BRAND_NAME`       | نام برند سفارشی (جایگزین «BentoPDF»)                     |
+| `VITE_BRAND_NAME`       | نام برند سفارشی (جایگزین «Pixel PDF»)                     |
 | `VITE_BRAND_LOGO`       | مسیر لوگو نسبت به `public/` (مثلاً `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | متن سفارشی پاورقی/حق نشر                                 |
 | `VITE_DEFAULT_LANGUAGE` | زبان پیش‌فرض رابط کاربری (مثلاً `fr`، `de`، `es`)        |

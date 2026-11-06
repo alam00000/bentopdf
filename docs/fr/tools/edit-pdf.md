@@ -5,7 +5,7 @@ description: Annotez, surlignez, caviardez, ajoutez des formes et des images, re
 
 # Éditeur PDF
 
-L'éditeur PDF de BentoPDF vous permet d'annoter, surligner, caviarder, commenter, ajouter des formes et des images, et de faire des recherches dans vos PDF. Il charge un éditeur complet directement dans votre navigateur, sans aucun envoi vers un serveur.
+L'éditeur PDF de Pixel PDF vous permet d'annoter, surligner, caviarder, commenter, ajouter des formes et des images, et de faire des recherches dans vos PDF. Il charge un éditeur complet directement dans votre navigateur, sans aucun envoi vers un serveur.
 
 ## Fonctionnement
 

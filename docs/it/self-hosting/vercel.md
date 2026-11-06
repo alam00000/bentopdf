@@ -4,13 +4,13 @@
 
 ## Deploy con un clic
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/alam00000/bentopdf)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/mohammedalhinaki-cloud/Pixel-PDF)
 
 ## Deploy manuale
 
 ### Passaggio 1: fai il fork del repository
 
-Fai il fork di [bentopdf/bentopdf](https://github.com/alam00000/bentopdf) sul tuo account GitHub.
+Fai il fork di [pixelpdf/pixelpdf](https://github.com/mohammedalhinaki-cloud/Pixel-PDF) sul tuo account GitHub.
 
 ### Passaggio 2: importa su Vercel
 
@@ -32,7 +32,7 @@ Aggiungile se necessario:
 | Variabile               | Descrizione                                                          |
 | ----------------------- | -------------------------------------------------------------------- |
 | `SIMPLE_MODE`           | Imposta su `true` per un'interfaccia minimale                        |
-| `VITE_BRAND_NAME`       | Nome del brand personalizzato (sostituisce "BentoPDF")               |
+| `VITE_BRAND_NAME`       | Nome del brand personalizzato (sostituisce "Pixel PDF")               |
 | `VITE_BRAND_LOGO`       | Percorso del logo relativo a `public/` (ad es. `images/my-logo.svg`) |
 | `VITE_FOOTER_TEXT`      | Testo personalizzato del footer/copyright                            |
 | `VITE_DEFAULT_LANGUAGE` | Lingua predefinita dell'interfaccia (ad es. `fr`, `de`, `es`)        |
@@ -51,7 +51,7 @@ Fai clic su "Deploy" e attendi il completamento della build.
 ## Limitazioni
 
 ::: warning File di grandi dimensioni
-Le funzioni serverless di Vercel hanno un limite di 50MB. Poiché BentoPDF è un sito statico, questo non dovrebbe riguardarti, ma i moduli WASM sono grandi (~100MB in totale). Assicurati che vengano serviti dalla cartella `/public`.
+Le funzioni serverless di Vercel hanno un limite di 50MB. Poiché Pixel PDF è un sito statico, questo non dovrebbe riguardarti, ma i moduli WASM sono grandi (~100MB in totale). Assicurati che vengano serviti dalla cartella `/public`.
 :::
 
 ## Risoluzione dei problemi

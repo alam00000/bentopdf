@@ -38,7 +38,7 @@ Pridajte svoj podpis do akéhokoľvek dokumentu PDF. Nástroj obsahuje plnohodno
 ## Tipy
 
 - Zlúčenie zapnite, ak posielate podpísané PDF niekomu, kto by nemal mať možnosť váš podpis odstrániť alebo premiestniť.
-- Pre právne záväzné digitálne podpisy s overením na základe certifikátu ponúka BentoPDF aj samostatný nástroj Digitálny podpis.
+- Pre právne záväzné digitálne podpisy s overením na základe certifikátu ponúka Pixel PDF aj samostatný nástroj Digitálny podpis.
 - Pre najčistejší výsledok nahrajte obrázok podpisu vo formáte PNG s priehľadným pozadím.
 
 ## Súvisiace nástroje
