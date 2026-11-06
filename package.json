@@ -115,7 +115,7 @@
     "hyper-compress-wasm": "file:vendor/hyper-compress-wasm/hyper-compress-wasm-1.0.3.tgz",
     "i18next": "^25.8.13",
     "i18next-browser-languagedetector": "^8.2.1",
-    "i18next-http-backend": "^4.0.2",
+    "i18next-http-backend": "^4.0.4",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.2",
     "jszip": "^3.10.1",
