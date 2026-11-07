@@ -26,10 +26,49 @@ let converterInstance: LibreOfficeConverter | null = null;
 const GZIP_MAGIC_FIRST = 0x1f;
 const GZIP_MAGIC_SECOND = 0x8b;
 
-async function fetchAsDecompressedUrl(
-  url: string,
-  mimeType: string
-): Promise<string> {
+async function fetchAssetBlob(url: string): Promise<Blob> {
+  // Large LibreOffice binaries are split at build time for hosts such as
+  // Cloudflare Workers, which cap each static asset at 25 MiB. In development
+  // and on older deployments the parts manifest is absent, so fetch normally.
+  const manifestResponse = await fetch(`${url}.parts.json`);
+  let partCount = 0;
+  if (manifestResponse.ok) {
+    try {
+      const manifest = (await manifestResponse.json()) as {
+        parts?: unknown;
+      };
+      if (
+        Number.isInteger(manifest.parts) &&
+        (manifest.parts as number) > 0 &&
+        (manifest.parts as number) <= 100
+      ) {
+        partCount = manifest.parts as number;
+      }
+    } catch {
+      // A non-JSON SPA fallback means this host has no split-asset manifest.
+    }
+  }
+
+  if (partCount > 0) {
+    const partResponses = await Promise.all(
+      Array.from({ length: partCount }, (_, index) => {
+        const partName = `${url}.part-${String(index).padStart(3, '0')}`;
+        return fetch(partName).then((response) => {
+          if (!response.ok) {
+            throw new Error(
+              trText('Failed to fetch {{url}}: HTTP {{status}}', {
+                url: partName,
+                status: response.status,
+              })
+            );
+          }
+          return response.blob();
+        });
+      })
+    );
+    return new Blob(partResponses, { type: 'application/gzip' });
+  }
+
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
@@ -39,8 +78,14 @@ async function fetchAsDecompressedUrl(
       })
     );
   }
+  return response.blob();
+}
 
-  let blob = await response.blob();
+async function fetchAsDecompressedUrl(
+  url: string,
+  mimeType: string
+): Promise<string> {
+  let blob = await fetchAssetBlob(url);
   const head = new Uint8Array(await blob.slice(0, 2).arrayBuffer());
   if (head[0] === GZIP_MAGIC_FIRST && head[1] === GZIP_MAGIC_SECOND) {
     const decompressed = blob

@@ -92,12 +92,9 @@ Create `_redirects` for SPA routing:
 
 ### Large File Uploads
 
-Cloudflare Pages supports files up to 25 MB. WASM modules should be fine, but if you hit limits, consider:
+Cloudflare Pages and Workers have a 25 MiB per-file asset limit. Pixel PDF's LibreOffice WASM binaries are larger than this, so the production build automatically splits them into smaller assets and writes a parts manifest. The browser loader fetches and reassembles the pieces before initializing LibreOffice.
 
-```bash
-# Split large files during build
-npm run build
-```
+Use the standard build command (`npm run build`) and deploy the complete `dist` directory. Do not remove the generated `*.parts.json` manifests or `*.part-*` files; doing so disables LibreOffice-based conversions. Development continues to use the original files in `public/libreoffice-wasm/`.
 
 ### Worker Size Limits
 
