@@ -82,41 +82,41 @@ onPageReady(() => {
   const convert = async () => {
     if (state.files.length === 0) {
       showAlert(
-        'No Files',
-        trText('Please select at least one {{FILETYPE_NAME}} file.', {
+        "لا توجد ملفات",
+        trText("يرجى اختيار ملف {{FILETYPE_NAME}} واحد على الأقل.", {
           FILETYPE_NAME,
         })
       );
       return;
     }
     try {
-      showLoader('Loading engine...');
+      showLoader("جارٍ تحميل المحرك...");
       const mupdf = await ensurePyMuPDF();
 
       if (state.files.length === 1) {
         const file = state.files[0];
-        showLoader(trText('Converting {{name}}...', { name: file.name }));
+        showLoader(trText("جارٍ تحويل {{name}}...", { name: file.name }));
         const pdfBlob = await mupdf.imageToPdf(file, { imageType: 'psd' });
         const baseName = file.name.replace(/\.[^/.]+$/, '');
         downloadFile(pdfBlob, `${baseName}.pdf`);
         hideLoader();
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: file.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple files...');
+        showLoader("جارٍ تحويل عدة ملفات...");
         const pdfBlob = await mupdf.imagesToPdf(state.files);
         downloadFile(pdfBlob, 'psd_to_pdf.pdf');
         hideLoader();
         showAlert(
-          'Conversion Complete',
+          "اكتمل التحويل",
           trText(
-            'Successfully converted {{length}} PSD files to a single PDF.',
+            "تم تحويل {{length}} من ملفات PSD إلى ملف PDF واحد بنجاح.",
             { length: state.files.length }
           ),
           'success',
@@ -126,11 +126,11 @@ onPageReady(() => {
     } catch (err) {
       hideLoader();
       const message =
-        err instanceof Error ? err.message : trText('Unknown error');
+        err instanceof Error ? err.message : trText("خطأ غير معروف");
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, err);
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{message}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{message}}", {
           message,
         })
       );

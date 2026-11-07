@@ -104,7 +104,7 @@ export function buildTesseractWorkerOptions(
     const missing = getIncompleteTesseractOverrideKeys(config).join(', ');
     throw new Error(
       trText(
-        'Self-hosted OCR assets are partially configured. Set {{missing}} together with the other Tesseract asset URLs.',
+        "موارد OCR المستضافة ذاتيًا مهيأة جزئيًا. اضبط {{missing}} مع روابط موارد Tesseract الأخرى.",
         { missing }
       )
     );

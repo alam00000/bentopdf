@@ -35,7 +35,7 @@ for (const lang of languages) {
 const isPageTranslated = createTranslationChecker(toolsByLang, toCamelCase);
 
 function alternateLangsFor(pageName) {
-  return languages.filter((l) => isPageTranslated(pageName, l));
+  return [];
 }
 
 const PRIORITY_MAP = {
@@ -79,12 +79,12 @@ function getPriority(pageName) {
 function buildUrl(lang, pageName) {
   const pagePath = pageName === 'index' ? '' : pageName;
   const root = `${SITE_URL}${canonicalBasePath()}`;
-  const prefix = lang === 'en' ? root : `${root}/${lang}`;
+  const prefix = root;
   return pagePath ? `${prefix}/${pagePath}` : prefix;
 }
 
 function generateSitemap() {
-  console.log('🗺️  Generating multilingual sitemap...');
+  console.log('🗺️  إنشاء خريطة الموقع العربية...');
   console.log(`   SITE_URL: ${SITE_URL}`);
   console.log(`   Languages: ${languages.join(', ')}`);
 
@@ -161,10 +161,7 @@ function generateSitemap() {
 `;
     }
 
-    const defaultUrl = buildUrl('en', pageName);
-    sitemap += `    <xhtml:link rel="alternate" hreflang="x-default" href="${defaultUrl}"/>
-  </url>
-`;
+    sitemap += '  </url>\n';
   }
 
   const blogDir = path.join(DIST_DIR, 'blog');

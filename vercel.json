@@ -8,6 +8,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:legacy(en|ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa|ua)/:path*",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
       "source": "/ua/change-text-color",
       "destination": "/uk/text-color",
       "permanent": true
@@ -15,11 +20,6 @@
     {
       "source": "/ua/src/pages/change-text-color",
       "destination": "/uk/text-color",
-      "permanent": true
-    },
-    {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/change-text-color",
-      "destination": "/:locale/text-color",
       "permanent": true
     },
     {
@@ -38,11 +38,6 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/pdf-to-docx",
-      "destination": "/:locale/pdf-to-word",
-      "permanent": true
-    },
-    {
       "source": "/(en|tools|src/pages|en/src/pages)/pdf-to-docx",
       "destination": "/pdf-to-word",
       "permanent": true
@@ -55,11 +50,6 @@
     {
       "source": "/ua/src/pages/decrypt-pdf",
       "destination": "/uk/unlock-pdf",
-      "permanent": true
-    },
-    {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/decrypt-pdf",
-      "destination": "/:locale/unlock-pdf",
       "permanent": true
     },
     {
@@ -78,16 +68,15 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/encrypt-pdf",
-      "destination": "/:locale/protect-pdf",
-      "permanent": true
-    },
-    {
       "source": "/(en|tools|src/pages|en/src/pages)/encrypt-pdf",
       "destination": "/protect-pdf",
       "permanent": true
     },
-    { "source": "/ua", "destination": "/uk", "permanent": true },
+    {
+      "source": "/ua",
+      "destination": "/uk",
+      "permanent": true
+    },
     {
       "source": "/ua/src/pages/:page",
       "destination": "/uk/:page",
@@ -98,36 +87,19 @@
       "destination": "/:page",
       "permanent": true
     },
-    { "source": "/ua/:path*", "destination": "/uk/:path*", "permanent": true },
-    { "source": "/en/:path*", "destination": "/:path*", "permanent": true },
     {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/src/pages/:page",
-      "destination": "/:locale/:page",
+      "source": "/ua/:path*",
+      "destination": "/uk/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/:path*",
       "permanent": true
     },
     {
       "source": "/src/pages/:page",
       "destination": "/:page",
-      "permanent": true
-    },
-    {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/change-text-color",
-      "destination": "/:locale/text-color",
-      "permanent": true
-    },
-    {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/pdf-to-docx",
-      "destination": "/:locale/pdf-to-word",
-      "permanent": true
-    },
-    {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/decrypt-pdf",
-      "destination": "/:locale/unlock-pdf",
-      "permanent": true
-    },
-    {
-      "source": "/:locale(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/encrypt-pdf",
-      "destination": "/:locale/protect-pdf",
       "permanent": true
     },
     {
@@ -150,11 +122,14 @@
       "destination": "/protect-pdf",
       "permanent": true
     },
-    { "source": "/tools/:page", "destination": "/:page", "permanent": true },
-    { "source": "/tools", "destination": "/", "permanent": true },
     {
-      "source": "/:locale(ar|be|ca|da|de|es|fa|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/tools",
-      "destination": "/:locale",
+      "source": "/tools/:page",
+      "destination": "/:page",
+      "permanent": true
+    },
+    {
+      "source": "/tools",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -196,9 +171,18 @@
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval' blob: https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/ https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/ https://cdn.jsdelivr.net/npm/coherentpdf@2.5.5/dist/ https://cdn.jsdelivr.net/npm/tesseract.js@v7.0.0/dist/ https://cdn.jsdelivr.net/npm/tesseract.js-core@v7.0.0/; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com https://rawcdn.githack.com; connect-src 'self' blob: https://api.github.com https://fonts.gstatic.com https://cdn.jsdelivr.net https://pixelpdf-cors-proxy.pixelpdf.workers.dev https://rawcdn.githack.com; object-src 'none'; base-uri 'self'; frame-src 'self' blob:; frame-ancestors 'self'; form-action 'self'"
         },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
@@ -207,40 +191,76 @@
           "key": "Permissions-Policy",
           "value": "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
         },
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
-        { "key": "Cross-Origin-Embedder-Policy", "value": "credentialless" },
-        { "key": "Cross-Origin-Resource-Policy", "value": "cross-origin" },
-        { "key": "Cache-Control", "value": "public, max-age=300" }
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "credentialless"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "cross-origin"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
       ]
     },
     {
       "source": "/(.*)\\.html",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     },
     {
       "source": "/api/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
     },
     {
       "source": "/(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=300" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
     },
     {
       "source": "/(.*)\\.(js|mjs|css|woff|woff2|ttf|eot|otf)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(png|jpg|jpeg|gif|ico|svg|webp|avif|mp4|webm|pdf)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(wasm|wasm\\.gz|data|data\\.gz)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     },
     {
@@ -255,13 +275,19 @@
     {
       "source": "/pdfjs-viewer/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     },
     {
       "source": "/pdfjs-annotation-viewer/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     },
     {
@@ -321,19 +347,43 @@
     {
       "source": "/libreoffice-wasm/soffice.wasm.gz",
       "headers": [
-        { "key": "Content-Type", "value": "application/wasm" },
-        { "key": "Content-Encoding", "value": "gzip" },
-        { "key": "Vary", "value": "Accept-Encoding" },
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Content-Type",
+          "value": "application/wasm"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept-Encoding"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     },
     {
       "source": "/libreoffice-wasm/soffice.data.gz",
       "headers": [
-        { "key": "Content-Type", "value": "application/octet-stream" },
-        { "key": "Content-Encoding", "value": "gzip" },
-        { "key": "Vary", "value": "Accept-Encoding" },
-        { "key": "Cache-Control", "value": "public, max-age=31536000" }
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Encoding",
+          "value": "gzip"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept-Encoding"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
       ]
     }
   ]

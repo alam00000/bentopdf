@@ -90,17 +90,17 @@ function renderSummary() {
   let summaryHTML = `
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
       <div class="bg-gray-900 border border-gray-700 rounded-lg p-4">
-        <p class="text-sm text-gray-400 mb-1">${trHtml('Total Pages')}</p>
+        <p class="text-sm text-gray-400 mb-1">${trHtml("إجمالي الصفحات")}</p>
         <p class="text-2xl font-bold text-white">${stats.totalPages}</p>
       </div>
       <div class="bg-gray-900 border border-gray-700 rounded-lg p-4">
-        <p class="text-sm text-gray-400 mb-1">${trHtml('Unique Page Sizes')}</p>
+        <p class="text-sm text-gray-400 mb-1">${trHtml("أحجام الصفحات الفريدة")}</p>
         <p class="text-2xl font-bold text-white">${stats.uniqueSizesCount}</p>
       </div>
       <div class="bg-gray-900 border border-gray-700 rounded-lg p-4">
-        <p class="text-sm text-gray-400 mb-1">${trHtml('Document Type')}</p>
+        <p class="text-sm text-gray-400 mb-1">${trHtml("نوع المستند")}</p>
         <p class="text-2xl font-bold ${stats.hasMixedSizes ? 'text-yellow-400' : 'text-green-400'}">
-          ${stats.hasMixedSizes ? trText('Mixed Sizes') : trText('Uniform')}
+          ${stats.hasMixedSizes ? trText("أحجام مختلفة") : trText("موحّد")}
         </p>
       </div>
     </div>
@@ -112,13 +112,13 @@ function renderSummary() {
         <div class="flex items-start gap-3">
           <i data-lucide="alert-triangle" class="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0"></i>
           <div>
-            <h4 class="text-yellow-200 font-semibold mb-2">${trHtml('Mixed Page Sizes Detected')}</h4>
-            <p class="text-sm text-gray-300 mb-3">${trHtml('This document contains pages with different dimensions:')}</p>
+            <h4 class="text-yellow-200 font-semibold mb-2">${trHtml("تم اكتشاف أحجام صفحات مختلفة")}</h4>
+            <p class="text-sm text-gray-300 mb-3">${trHtml("يحتوي هذا المستند على صفحات بأبعاد مختلفة:")}</p>
             <ul class="space-y-1 text-sm text-gray-300">
               ${stats.uniqueSizes
                 .map(
                   (size: UniqueSizeEntry) => `
-                <li>${size.count > 1 ? trHtml('• {{label}}: {{count}} pages', { label: size.label, count: size.count }) : trHtml('• {{label}}: 1 page', { label: size.label })}</li>
+                <li>${size.count > 1 ? trHtml("• {{label}}: عدد الصفحات: {{count}}", { label: size.label, count: size.count }) : trHtml("• {{label}}: صفحة واحدة", { label: size.label })}</li>
               `
                 )
                 .join('')}
@@ -204,14 +204,14 @@ function exportToCSV() {
   const unit = unitsSelect?.value || 'pt';
 
   const headers = [
-    trText('Page #'),
-    trText('Width ({{unit}})', { unit }),
-    trText('Height ({{unit}})', { unit }),
-    trText('Standard Size'),
-    trText('Orientation'),
-    trText('Aspect Ratio'),
-    trText('Area ({{unit}}²)', { unit }),
-    trText('Rotation'),
+    trText("رقم الصفحة #"),
+    trText("العرض ({{unit}})", { unit }),
+    trText("الارتفاع ({{unit}})", { unit }),
+    trText("الحجم القياسي"),
+    trText("الاتجاه"),
+    trText("نسبة العرض إلى الارتفاع"),
+    trText("المساحة ({{unit}}²)", { unit }),
+    trText("التدوير"),
   ];
   const csvCell = (value: string | number) => {
     const text = String(value);
@@ -264,10 +264,10 @@ function analyzeAndDisplayDimensions() {
       pageNum: index + 1,
       width,
       height,
-      orientation: width > height ? trText('Landscape') : trText('Portrait'),
+      orientation: width > height ? trText("أفقي") : trText("عمودي"),
       standardSize: (() => {
         const name = getStandardPageName(width, height);
-        return name === 'Custom' ? trText('Custom') : name;
+        return name === 'Custom' ? trText("مخصص") : name;
       })(),
       rotation: rotation,
     });
@@ -366,7 +366,7 @@ async function handleFileSelect(files: FileList | null) {
         analyzeAndDisplayDimensions();
       } catch (e) {
         console.error('Error loading PDF:', e);
-        showAlert('Error', 'Failed to load PDF file.');
+        showAlert("خطأ", "تعذر تحميل ملف PDF.");
       }
     }
   }

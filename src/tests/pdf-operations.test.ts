@@ -192,7 +192,7 @@ describe('pdf-operations', () => {
     it('should throw when deleting all pages', async () => {
       const pdf = await createTestPdf(2);
       await expect(deletePdfPages(pdf, new Set([1, 2]))).rejects.toThrow(
-        'Cannot delete all pages'
+        'لا يمكن حذف جميع الصفحات'
       );
     });
 

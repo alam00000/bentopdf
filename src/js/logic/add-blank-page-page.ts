@@ -63,7 +63,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -87,21 +87,21 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       result.pdf.destroy();
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
 
       if (pagePositionHint) {
         pagePositionHint.textContent = trText(
-          'Enter 0 to insert at the beginning, or {{pageCount}} to insert at the end.',
+          "أدخل 0 للإدراج في البداية، أو {{pageCount}} للإدراج في النهاية.",
           { pageCount }
         );
       }
@@ -113,7 +113,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -123,7 +123,7 @@ async function updateUI() {
 
 async function addBlankPages() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -140,8 +140,8 @@ async function addBlankPages() {
 
   if (isNaN(position) || position < 0 || position > totalPages) {
     showAlert(
-      'Invalid Input',
-      trText('Please enter a number between 0 and {{totalPages}}.', {
+      "إدخال غير صالح",
+      trText("يرجى إدخال رقم بين 0 و{{totalPages}}.", {
         totalPages,
       })
     );
@@ -150,16 +150,16 @@ async function addBlankPages() {
 
   if (isNaN(insertCount) || insertCount < 1) {
     showAlert(
-      'Invalid Input',
-      'Please enter a valid number of pages (1 or more).'
+      "إدخال غير صالح",
+      "يرجى إدخال عدد صفحات صالح (1 أو أكثر)."
     );
     return;
   }
 
   showLoader(
     insertCount > 1
-      ? trText('Adding {{insertCount}} blank pages...', { insertCount })
-      : trText('Adding {{insertCount}} blank page...', { insertCount })
+      ? trText("جارٍ إضافة {{insertCount}} صفحات فارغة...", { insertCount })
+      : trText("جارٍ إضافة {{insertCount}} صفحة فارغة...", { insertCount })
   );
 
   try {
@@ -198,12 +198,12 @@ async function addBlankPages() {
     );
 
     showAlert(
-      'Success',
+      "تم بنجاح",
       insertCount > 1
-        ? trText('Added {{insertCount}} blank pages successfully!', {
+        ? trText("تمت إضافة {{insertCount}} صفحات فارغة بنجاح!", {
             insertCount,
           })
-        : trText('Added {{insertCount}} blank page successfully!', {
+        : trText("تمت إضافة {{insertCount}} صفحة فارغة بنجاح!", {
             insertCount,
           }),
       'success',
@@ -214,10 +214,10 @@ async function addBlankPages() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
+      "خطأ",
       insertCount > 1
-        ? trText('Could not add blank pages.')
-        : trText('Could not add blank page.')
+        ? trText("تعذرت إضافة الصفحات الفارغة.")
+        : trText("تعذرت إضافة الصفحة الفارغة.")
     );
   } finally {
     hideLoader();

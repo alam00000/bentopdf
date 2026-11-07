@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Form Creator Online Free - Form Creator Tool | Pixel PDF"
+      content="إنشاء النماذج عبر الإنترنت مجانًا - أداة إنشاء النماذج | Pixel PDF"
     />
     <meta
       name="description"
-      content="Form Creator online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="إنشاء النماذج عبر الإنترنت. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="form creator, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/form-creator" />
     <meta
       property="og:title"
-      content="Form Creator Online Free - Form Creator Tool | Pixel PDF"
+      content="إنشاء النماذج عبر الإنترنت مجانًا - أداة إنشاء النماذج | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Form Creator online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="إنشاء النماذج عبر الإنترنت. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/form-creator" />
-    <meta name="twitter:title" content="Form Creator Free" />
+    <meta name="twitter:title" content="إنشاء النماذج مجانًا" />
     <meta
       name="twitter:description"
-      content="Form Creator online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="إنشاء النماذج عبر الإنترنت. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -61,7 +61,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Form Creator" />
 
-    <title>Create PDF Form - Pixel PDF</title>
+    <title>إنشاء نموذج PDF - Pixel PDF</title>
     <link href="/src/css/styles.css" rel="stylesheet" />
 
     <!-- Web App Manifest -->
@@ -111,7 +111,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -119,10 +119,10 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:createPdfForm.name"
         >
-          Create PDF Form
+          إنشاء نموذج PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:createPdfForm.subtitle">
-          Create fillable PDF forms with drag-and-drop text fields.
+          إنشاء نماذج PDF قابلة للتعبئة مع حقول نص بالسحب والإفلات.
         </p>
 
         <div
@@ -133,18 +133,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-300">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.singlePdfFile"
             >
-              Single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -166,7 +166,7 @@
             <span
               class="px-4 bg-gray-800 text-gray-400 font-medium"
               data-i18n="tools:createPdfForm.orSeparator"
-              >OR</span
+              >أو</span
             >
           </div>
         </div>
@@ -180,32 +180,32 @@
             <span
               class="font-semibold"
               data-i18n="tools:createPdfForm.createBlankPdf"
-              >Create Blank PDF</span
+              >إنشاء PDF فارغ</span
             >
           </button>
 
           <div id="pageSizeSelector" class="mt-4 hidden">
             <label class="block text-sm font-semibold text-gray-300 mb-2"
-              >Page Size:</label
+              >حجم الصفحة:</label
             >
             <select
               id="pageSizeSelect"
               class="w-full bg-gray-600 border border-gray-500 text-white rounded px-3 py-2 text-sm focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="letter">Letter (8.5" × 11")</option>
+              <option value="letter">خطاب (٨٫٥ × ١١ بوصة)</option>
               <option value="a4">A4 (210mm × 297mm)</option>
               <option value="a5">A5 (148mm × 210mm)</option>
-              <option value="legal">Legal (8.5" × 14")</option>
-              <option value="tabloid">Tabloid (11" × 17")</option>
+              <option value="legal">قانوني (٨٫٥ × ١٤ بوصة)</option>
+              <option value="tabloid">صحيفة (١١ × ١٧ بوصة)</option>
               <option value="a3">A3 (297mm × 420mm)</option>
-              <option value="custom">Custom</option>
+              <option value="custom">مخصص</option>
             </select>
 
             <div id="customDimensionsInput" class="mt-3 hidden space-y-2">
               <div class="flex gap-2">
                 <div class="flex-1">
                   <label class="block text-xs text-gray-400 mb-1"
-                    >Width (pts)</label
+                    >العرض (نقطة)</label
                   >
                   <input
                     type="number"
@@ -218,7 +218,7 @@
                 </div>
                 <div class="flex-1">
                   <label class="block text-xs text-gray-400 mb-1"
-                    >Height (pts)</label
+                    >الارتفاع (نقطة)</label
                   >
                   <input
                     type="number"
@@ -230,14 +230,14 @@
                   />
                 </div>
               </div>
-              <p class="text-xs text-gray-500 italic">1 inch = 72 points</p>
+              <p class="text-xs text-gray-500 italic">1 بوصة = 72 نقطة</p>
             </div>
 
             <button
               id="confirmBlankBtn"
               class="w-full mt-3 bg-indigo-600 hover:bg-indigo-500 text-white p-2 rounded transition-colors"
             >
-              Start Creating
+              ابدأ الإنشاء
             </button>
           </div>
         </div>
@@ -254,7 +254,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -262,10 +262,10 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:createPdfForm.name"
         >
-          Create PDF Form
+          إنشاء نموذج PDF
         </h2>
         <p class="text-gray-400 mb-6" data-i18n="tools:createPdfForm.subtitle">
-          Create fillable PDF forms with drag-and-drop text fields.
+          إنشاء نماذج PDF قابلة للتعبئة مع حقول نص بالسحب والإفلات.
         </p>
 
         <!-- Main Form Creator Area -->
@@ -279,13 +279,10 @@
               <h2
                 class="font-semibold text-gray-200 mb-3 flex items-center gap-2"
               >
-                <i data-lucide="settings" class="w-4 h-4"></i>
-                Properties
+                <i data-lucide="settings" class="w-4 h-4"></i> الخصائص
               </h2>
               <div id="propertiesPanel" class="space-y-3">
-                <p class="text-gray-500 text-sm">
-                  Select a field to edit properties
-                </p>
+                <p class="text-gray-500 text-sm">اختر حقلًا لتعديل خصائصه</p>
               </div>
             </div>
 
@@ -295,10 +292,10 @@
                 <span id="fieldCount" class="text-indigo-400 font-bold text-lg"
                   >0</span
                 >
-                field(s)
+                حقل/حقول
               </p>
               <p class="text-xs text-gray-500 mt-1">
-                Press Delete to remove selected field
+                اضغط Delete لحذف الحقل المحدد
               </p>
             </div>
           </aside>
@@ -315,35 +312,34 @@
                 <button
                   id="prevPageBtn"
                   class="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled
+                  disabled=""
                 >
                   <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 </button>
                 <span id="pageIndicator" class="text-sm text-gray-300 px-2"
-                  >Page 1 of 1</span
+                  >الصفحة 1 من 1</span
                 >
                 <button
                   id="nextPageBtn"
                   class="bg-gray-600 hover:bg-gray-500 text-white p-2 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled
+                  disabled=""
                 >
                   <i data-lucide="chevron-right" class="w-4 h-4"></i>
                 </button>
                 <div
                   class="flex items-center gap-2 md:ml-2 md:border-l border-gray-600 md:pl-2"
                 >
-                  <span class="text-sm text-gray-400">Go to:</span>
+                  <span class="text-sm text-gray-400">الانتقال إلى:</span>
                   <input
                     type="number"
                     id="gotoPageInput"
                     min="1"
                     class="w-16 bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-                  <button
+                  /><button
                     id="gotoPageBtn"
                     class="bg-indigo-600 hover:bg-indigo-500 text-white px-2 py-1 rounded text-sm transition-colors"
                   >
-                    Go
+                    انتقال
                   </button>
                 </div>
                 <div
@@ -352,11 +348,11 @@
                   <input
                     type="checkbox"
                     id="enableGridCheckbox"
-                    checked
+                    checked=""
                     class="mr-1"
                   />
                   <label for="enableGridCheckbox" class="text-sm text-gray-400"
-                    >Grid:</label
+                    >الشبكة:</label
                   >
                   <input
                     type="number"
@@ -380,7 +376,7 @@
                   <button
                     id="toggleGridBtn"
                     class="bg-gray-600 hover:bg-gray-500 text-white p-1 rounded transition-colors"
-                    title="Toggle Grid"
+                    title="تبديل الشبكة"
                   >
                     <i data-lucide="grid-3x3" class="w-4 h-4"></i>
                   </button>
@@ -392,14 +388,14 @@
                   class="bg-gray-600 hover:bg-gray-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors"
                 >
                   <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-                  <span class="text-sm">Reset</span>
+                  <span class="text-sm">إعادة تعيين</span>
                 </button>
                 <button
                   id="addPageBtn"
                   class="bg-indigo-600 hover:bg-indigo-500 text-white p-2 px-3 rounded flex items-center gap-2 transition-colors"
                 >
                   <i data-lucide="file-plus" class="w-4 h-4"></i>
-                  <span class="text-sm">Add Page</span>
+                  <span class="text-sm">إضافة صفحة</span>
                 </button>
               </div>
             </div>
@@ -414,107 +410,107 @@
                 <div
                   class="text-gray-400 text-sm font-semibold mr-2 flex items-center gap-1"
                 >
-                  <i data-lucide="wrench" class="w-4 h-4"></i> Fields:
+                  <i data-lucide="wrench" class="w-4 h-4"></i> الحقول:
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="text"
-                  title="Text Field"
+                  title="حقل نصي"
                 >
                   <i data-lucide="type" class="w-4 h-4"></i>
-                  <span class="text-xs">Text</span>
+                  <span class="text-xs">نص</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="checkbox"
-                  title="Checkbox"
+                  title="مربع اختيار"
                 >
                   <i data-lucide="check-square" class="w-4 h-4"></i>
-                  <span class="text-xs">Checkbox</span>
+                  <span class="text-xs">مربع اختيار</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="radio"
-                  title="Radio Button"
+                  title="زر اختيار"
                 >
                   <i data-lucide="circle-dot" class="w-4 h-4"></i>
-                  <span class="text-xs">Radio</span>
+                  <span class="text-xs">اختيار</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="dropdown"
-                  title="Dropdown"
+                  title="قائمة منسدلة"
                 >
                   <i data-lucide="chevron-down-square" class="w-4 h-4"></i>
-                  <span class="text-xs">Dropdown</span>
+                  <span class="text-xs">قائمة منسدلة</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="optionlist"
-                  title="Option List"
+                  title="قائمة خيارات"
                 >
                   <i data-lucide="list" class="w-4 h-4"></i>
-                  <span class="text-xs">List</span>
+                  <span class="text-xs">قائمة</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="button"
-                  title="Button"
+                  title="زر"
                 >
                   <i data-lucide="square-mouse-pointer" class="w-4 h-4"></i>
-                  <span class="text-xs">Button</span>
+                  <span class="text-xs">زر</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="signature"
-                  title="Signature"
+                  title="التوقيع"
                 >
                   <i data-lucide="pen-tool" class="w-4 h-4"></i>
-                  <span class="text-xs">Signature</span>
+                  <span class="text-xs">توقيع</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="date"
-                  title="Date Field"
+                  title="حقل تاريخ"
                 >
                   <i data-lucide="calendar" class="w-4 h-4"></i>
-                  <span class="text-xs">Date</span>
+                  <span class="text-xs">تاريخ</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="image"
-                  title="Image Field"
+                  title="حقل صورة"
                 >
                   <i data-lucide="image" class="w-4 h-4"></i>
-                  <span class="text-xs">Image</span>
+                  <span class="text-xs">صورة</span>
                 </div>
 
                 <div
                   class="tool-item bg-gray-600 hover:bg-indigo-600 text-white p-2 rounded cursor-move transition-colors flex items-center gap-2"
                   draggable="true"
                   data-type="barcode"
-                  title="Barcode Field"
+                  title="حقل باركود"
                 >
                   <i data-lucide="qr-code" class="w-4 h-4"></i>
-                  <span class="text-xs">Barcode</span>
+                  <span class="text-xs">باركود</span>
                 </div>
               </div>
             </div>
@@ -537,7 +533,7 @@
               id="downloadBtn"
               class="btn-gradient w-full flex items-center justify-center gap-2 py-3"
             >
-              <span>Download PDF Form</span>
+              <span>تنزيل نموذج PDF</span>
             </button>
           </main>
         </div>
@@ -550,7 +546,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -560,9 +556,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -573,9 +569,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -586,9 +582,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -601,43 +597,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -648,110 +650,103 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add fillable fields to a PDF I already have?
+            هل يمكنني إضافة حقول قابلة للتعبئة إلى ملف PDF لدي بالفعل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the PDF and its pages appear in the editor; pick a field type
-            from the toolbar and click on the page to place it, then drag or
-            resize it as needed. If the PDF already has form fields, they're
-            detected and loaded so you can move, edit, or delete them alongside
-            the new ones.
+            ارفع ملف PDF فتظهر صفحاته في المحرر؛ اختر نوع الحقل من شريط الأدوات
+            وانقر على الصفحة لوضعه، ثم اسحبه أو غيّر حجمه حسب الحاجة. وإذا كان
+            ملف PDF يحتوي أصلًا على حقول نماذج، فسيتم اكتشافها وتحميلها لتتمكن
+            من نقلها أو تعديلها أو حذفها مع الحقول الجديدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I make a form from scratch without an existing PDF?
+            هل يمكنني إنشاء نموذج من الصفر دون ملف PDF موجود؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Click Create Blank PDF and choose Letter, A4, A5, Legal, Tabloid,
-            A3, or custom dimensions in points. Use Add Page for multi-page
-            forms.
+            انقر على إنشاء PDF فارغ واختر Letter أو A4 أو A5 أو Legal أو Tabloid
+            أو A3 أو أبعادًا مخصصة بالنقاط. استخدم إضافة صفحة للنماذج متعددة
+            الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which field types are available?
+            ما أنواع الحقول المتاحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Text (single line, multi-line, or divided into comb boxes),
-            checkbox, radio button groups, dropdown, list box, push button,
-            signature, date, image, and barcode. Each field has a properties
-            panel for name, default value, font size, text color, alignment,
-            tooltip, and required or read-only flags. Signature fields are
-            standard AcroForm signature fields, which only appear in viewers
-            that support signing.
+            نص (سطر واحد أو متعدد الأسطر أو مقسّم إلى مربعات متجاورة)، ومربع
+            اختيار، ومجموعات أزرار اختيار، وقائمة منسدلة، وقائمة اختيار، وزر
+            ضغط، وتوقيع، وتاريخ، وصورة، وباركود. لكل حقل لوحة خصائص للاسم
+            والقيمة الافتراضية وحجم الخط ولون النص والمحاذاة والتلميح وعلامات
+            الإلزام أو القراءة فقط. وحقول التوقيع هي حقول توقيع AcroForm
+            القياسية، ولا تظهر إلا في العارضات التي تدعم التوقيع.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do radio buttons get grouped so only one can be selected?
+            كيف تُجمَّع أزرار الاختيار بحيث يمكن تحديد واحد فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Every radio field has a group name, RadioGroup1 by default. Fields
-            that share the same group name become one mutually exclusive set, so
-            give each question its own group name and set a distinct export
-            value on each option.
+            لكل حقل اختيار اسم مجموعة، وهو RadioGroup1 افتراضيًا. تصبح الحقول
+            التي تشترك في اسم المجموعة نفسه مجموعة حصرية متبادلة، لذا امنح كل
+            سؤال اسم مجموعة خاصًا به وعيّن قيمة تصدير مميزة لكل خيار.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can a button show or hide another field, or reset the form?
+            هل يمكن لزر أن يُظهر حقلًا آخر أو يُخفيه أو يعيد تعيين النموذج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Button actions include Reset Form, Print Form, Open URL, Run
-            JavaScript, and Show/Hide Field, which targets another field and can
-            show, hide, or toggle it. They're stored as standard PDF actions, so
-            they run in Acrobat and other viewers that support form scripting.
+            تشمل إجراءات الأزرار إعادة تعيين النموذج وطباعة النموذج وفتح رابط
+            وتشغيل JavaScript وإظهار/إخفاء حقل، وهو يستهدف حقلًا آخر ويمكنه
+            إظهاره أو إخفاؤه أو تبديل حالته. وتُخزَّن كإجراءات PDF قياسية، لذا
+            تعمل في Acrobat وغيره من العارضات التي تدعم سكربتات النماذج.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the date field work?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            كيف يعمل حقل التاريخ؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It's a text field with a date format attached, mm/dd/yyyy by default
-            or a custom pattern such as dd/mm/yyyy. Viewers that support
-            AcroForm JavaScript validate the typed value and format it; simpler
-            viewers treat it as ordinary text.
+            هو حقل نصي مرتبط بتنسيق تاريخ، mm/dd/yyyy افتراضيًا أو نمط مخصص مثل
+            dd/mm/yyyy. تتحقق العارضات التي تدعم JavaScript في AcroForm من
+            القيمة المكتوبة وتنسّقها؛ أما العارضات الأبسط فتتعامل معها كنص عادي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are barcodes and images real form fields?
+            هل الباركود والصور حقول نماذج حقيقية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A barcode (QR Code, Code 128, Code 39, EAN-13, UPC-A, DataMatrix, or
-            PDF417) is generated from the value you enter and drawn onto the
-            page as a fixed image, so the person filling the form can't change
-            it. The image field is a button that lets the user pick a picture
-            from their computer, which works in Acrobat and other viewers that
-            support image import.
+            يُنشأ الباركود (QR Code أو Code 128 أو Code 39 أو EAN-13 أو UPC-A أو
+            DataMatrix أو PDF417) من القيمة التي تدخلها ويُرسم على الصفحة كصورة
+            ثابتة، فلا يستطيع من يملأ النموذج تغييره. أما حقل الصورة فهو زر يتيح
+            للمستخدم اختيار صورة من حاسوبه، ويعمل في Acrobat وغيره من العارضات
+            التي تدعم استيراد الصور.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the form or the uploaded PDF stored on a server?
+            هل يُخزَّن النموذج أو ملف PDF المرفوع على خادم؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The editor runs in your browser, the fields are written into the
-            PDF with pdf-lib on your device, and Download PDF Form saves the
-            result locally under the original filename. You can test the result
-            in
+            لا. يعمل المحرر في متصفحك، وتُكتب الحقول في ملف PDF بواسطة pdf-lib
+            على جهازك، ويحفظ تنزيل نموذج PDF النتيجة محليًا باسم الملف الأصلي.
+            يمكنك اختبار النتيجة في
             <a href="/form-filler" class="text-indigo-300 hover:text-indigo-400"
-              >PDF Form Filler</a
+              >تعبئة نماذج PDF</a
             >.
           </p>
         </details>
@@ -768,16 +763,14 @@
       >
         <div class="p-6">
           <h3 id="errorModalTitle" class="text-xl font-bold text-white mb-3">
-            Error
+            خطأ
           </h3>
-          <p id="errorModalMessage" class="text-gray-300 mb-6">
-            An error occurred.
-          </p>
+          <p id="errorModalMessage" class="text-gray-300 mb-6">حدث خطأ.</p>
           <button
             id="errorModalClose"
             class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded transition-colors"
           >
-            Close
+            إغلاق
           </button>
         </div>
       </div>
@@ -810,26 +803,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to form creator online",
+        "name": "كيفية إنشاء النماذج عبر الإنترنت",
         "description": "Learn how to form creator using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

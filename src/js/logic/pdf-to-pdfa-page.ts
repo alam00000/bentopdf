@@ -79,14 +79,14 @@ onPageReady(() => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+          metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
             size: formatBytes(file.size),
             numPages: pdfDoc.numPages,
           });
         } catch (error) {
           console.error('Error loading PDF:', error);
           metaSpan.textContent = trText(
-            '{{size}} • Could not load page count',
+            "{{size}} • تعذر تحميل عدد الصفحات",
             { size: formatBytes(file.size) }
           );
         }
@@ -118,7 +118,7 @@ onPageReady(() => {
 
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
         return;
       }
 
@@ -140,7 +140,7 @@ onPageReady(() => {
             return;
           }
 
-          showLoader('Pre-flattening PDF...');
+          showLoader("جارٍ التسطيح المسبق لـ PDF...");
           const pymupdf = await loadPyMuPDF();
 
           // Rasterize PDF to images and back to PDF (300 DPI for quality)
@@ -157,7 +157,7 @@ onPageReady(() => {
           });
         }
 
-        showLoader('Initializing Ghostscript...');
+        showLoader("جارٍ تهيئة Ghostscript...");
 
         const convertedBlob = await convertFileToPdfA(
           fileToConvert,
@@ -172,8 +172,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to {{level}}.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى {{level}} بنجاح.", {
             name: originalFile.name,
             level,
           }),
@@ -181,7 +181,7 @@ onPageReady(() => {
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple PDFs to PDF/A...');
+        showLoader("جارٍ تحويل عدة ملفات PDF إلى PDF/A...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -189,7 +189,7 @@ onPageReady(() => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -216,8 +216,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} PDF(s) to {{level}}.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من ملفات PDF إلى {{level}} بنجاح.", {
             length: state.files.length,
             level,
           }),
@@ -228,8 +228,8 @@ onPageReady(() => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

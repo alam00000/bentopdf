@@ -86,21 +86,21 @@ onPageReady(() => {
     try {
       if (state.files.length === 0) {
         showAlert(
-          'No Files',
-          trText('Please select at least one {{TOOL_NAME}} file.', {
+          "لا توجد ملفات",
+          trText("يرجى اختيار ملف {{TOOL_NAME}} واحد على الأقل.", {
             TOOL_NAME,
           })
         );
         return;
       }
 
-      showLoader('Loading engine...');
+      showLoader("جارٍ تحميل المحرك...");
       const pymupdf = await loadPyMuPDF();
 
       if (state.files.length === 1) {
         const originalFile = state.files[0];
         showLoader(
-          trText('Converting {{name}}...', { name: originalFile.name })
+          trText("جارٍ تحويل {{name}}...", { name: originalFile.name })
         );
 
         const pdfBlob = await pymupdf.convertToPdf(originalFile, {
@@ -112,22 +112,22 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: originalFile.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting files...');
+        showLoader("جارٍ تحويل الملفات...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -148,9 +148,9 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          "اكتمل التحويل",
           trText(
-            'Successfully converted {{length}} {{TOOL_NAME}} file(s) to PDF.',
+            "تم تحويل {{length}} من ملفات {{TOOL_NAME}} إلى PDF بنجاح.",
             { length: state.files.length, TOOL_NAME }
           ),
           'success',
@@ -161,8 +161,8 @@ onPageReady(() => {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

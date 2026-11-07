@@ -38,17 +38,17 @@ type OptionChangeHandler = (
 const getLockMessages = () =>
   ({
     locked: {
-      text: trText('Password protected'),
+      text: trText("محمي بكلمة مرور"),
       color: 'text-gray-400',
       field: 'border-gray-600 focus:ring-indigo-500',
     },
     wrong: {
-      text: trText('Wrong password'),
+      text: trText("كلمة مرور خاطئة"),
       color: 'text-red-400',
       field: 'border-red-500 focus:ring-red-500',
     },
     unlocked: {
-      text: trText('Unlocked'),
+      text: trText("تم فتح القفل"),
       color: 'text-green-400',
       field: 'border-green-500 focus:ring-green-500',
     },
@@ -58,7 +58,7 @@ const PASSWORD_INPUT_CLASS =
   'w-full bg-gray-800 border text-gray-200 placeholder:text-gray-500 rounded-lg pl-9 pr-10 py-2 text-sm focus:outline-none focus:ring-2 focus:border-transparent';
 
 const getDpiChoices = () => [
-  { value: 0, label: trText('None') },
+  { value: 0, label: trText("بدون") },
   { value: 72, label: '72 DPI' },
   { value: 96, label: '96 DPI' },
   { value: 144, label: '144 DPI' },
@@ -69,218 +69,218 @@ const getDpiChoices = () => [
 
 const getOptionSections = (): HyperOptionSection[] => [
   {
-    title: trText('Images'),
+    title: trText("الصور"),
     open: true,
     fields: [
       {
         key: 'imageQuality',
         type: 'number',
-        label: trText('Image quality'),
+        label: trText("جودة الصورة"),
         min: 20,
         max: 100,
         help: trText(
-          'JPEG quality for re-encoded images, 20 to 100. Lower means smaller files and more visible artifacts.'
+          "جودة JPEG للصور المعاد ترميزها، من 20 إلى 100. القيم الأقل تعني ملفات أصغر وتشوهات أوضح."
         ),
       },
       {
         key: 'maxDpi',
         type: 'dpi',
-        label: trText('Maximum resolution'),
+        label: trText("أقصى دقة"),
         help: trText(
-          'Images above this are resampled down. None leaves resolution alone.'
+          "يتم خفض دقة الصور التي تتجاوز هذه القيمة. الخيار \"بدون\" يترك الدقة كما هي."
         ),
       },
       {
         key: 'forceDownsample',
         type: 'bool',
-        label: trText('Always resample to that resolution'),
+        label: trText("أعد أخذ العينات دائمًا إلى هذه الدقة"),
         help: trText(
-          'Resamples even when an image is only slightly above the limit.'
+          "يعيد أخذ العينات حتى لو تجاوزت الصورة الحد بقدر طفيف."
         ),
       },
       {
         key: 'grayscale',
         type: 'bool',
-        label: trText('Convert to grayscale'),
-        help: trText('Reduces file size by removing color information.'),
+        label: trText("تحويل إلى تدرج الرمادي"),
+        help: trText("يقلل حجم الملف بإزالة معلومات الألوان."),
       },
       {
         key: 'reduceColor',
         type: 'bool',
-        label: trText('Reduce color complexity'),
-        help: trText('Only where it does not change how the image looks.'),
+        label: trText("تقليل تعقيد الألوان"),
+        help: trText("فقط حيث لا يغيّر ذلك مظهر الصورة."),
       },
       {
         key: 'clipImages',
         type: 'bool',
-        label: trText('Clip invisible parts of images'),
+        label: trText("اقتطاع الأجزاء غير المرئية من الصور"),
       },
       {
         key: 'removeAlternates',
         type: 'bool',
-        label: trText('Remove alternate images'),
+        label: trText("إزالة الصور البديلة"),
       },
       {
         key: 'flattenIcc',
         type: 'bool',
-        label: trText('Simplify large color profiles'),
+        label: trText("تبسيط ملفات تعريف الألوان الكبيرة"),
       },
       {
         key: 'preferJpx',
         type: 'bool',
-        label: trText('Prefer JPEG 2000 for photos'),
+        label: trText("تفضيل JPEG 2000 للصور الفوتوغرافية"),
         help: trText(
-          'Tries JPEG 2000 against JPEG for each image and keeps the smaller one.'
+          "يجرّب JPEG 2000 مقابل JPEG لكل صورة ويُبقي الأصغر."
         ),
       },
       {
         key: 'lossless',
         type: 'bool',
-        label: trText('Lossless (no image re-encoding)'),
+        label: trText("بلا فقدان (بدون إعادة ترميز الصور)"),
         help: trText(
-          'Turns off quality, resolution and every other lossy image step.'
+          "يوقف الجودة والدقة وكل خطوات الصور الأخرى ذات الفقد."
         ),
       },
     ],
   },
   {
-    title: trText('Fonts'),
+    title: trText("الخطوط"),
     fields: [
       {
         key: 'subsetFonts',
         type: 'bool',
-        label: trText('Subset embedded fonts'),
-        help: trText('Keeps only the characters the document uses.'),
+        label: trText("تقليص الخطوط المضمّنة إلى المستخدم منها فقط"),
+        help: trText("يُبقي فقط الأحرف التي يستخدمها المستند."),
       },
       {
         key: 'mergeFonts',
         type: 'bool',
-        label: trText('Merge duplicate fonts'),
+        label: trText("دمج الخطوط المكررة"),
       },
       {
         key: 'removeStandardFonts',
         type: 'bool',
-        label: trText('Unembed standard fonts'),
+        label: trText("إلغاء تضمين الخطوط القياسية"),
         help: trText(
-          'PDF readers supply the 14 standard PDF fonts themselves.'
+          "قارئات PDF توفّر خطوط PDF القياسية الـ 14 بنفسها."
         ),
       },
       {
         key: 'unembedAliasedFonts',
         type: 'bool',
-        label: trText('Unembed standard-font look-alikes'),
+        label: trText("إلغاء تضمين الخطوط المشابهة للخطوط القياسية"),
         help: trText(
-          'Arial, Times New Roman and Courier New map to the built-in equivalents. Only applied when safe.'
+          "يتم ربط Arial وTimes New Roman وCourier New بما يعادلها من الخطوط المضمّنة. يُطبَّق ذلك فقط عندما يكون آمنًا."
         ),
       },
     ],
   },
   {
-    title: trText('Content'),
+    title: trText("المحتوى"),
     fields: [
       {
         key: 'removeAnnots',
         type: 'bool',
-        label: trText('Flatten annotations'),
+        label: trText("تسطيح التعليقات التوضيحية"),
         help: trText(
-          'Comments and markup become part of the page. Form fields and links keep working.'
+          "تصبح التعليقات والعلامات جزءًا من الصفحة. تبقى حقول النماذج والروابط تعمل."
         ),
       },
       {
         key: 'flattenForms',
         type: 'bool',
-        label: trText('Flatten form fields'),
-        help: trText('Form fields stop being fillable.'),
+        label: trText("تسطيح حقول النماذج"),
+        help: trText("لا تعود حقول النماذج قابلة للتعبئة."),
       },
       {
         key: 'flattenLinks',
         type: 'bool',
-        label: trText('Flatten links'),
-        help: trText('Links stop being clickable.'),
+        label: trText("تسطيح الروابط"),
+        help: trText("لا تعود الروابط قابلة للنقر."),
       },
     ],
   },
   {
-    title: trText('Cleanup'),
+    title: trText("التنظيف"),
     fields: [
       {
         key: 'removeThumbnails',
         type: 'bool',
-        label: trText('Remove page thumbnails'),
+        label: trText("إزالة الصور المصغرة للصفحات"),
       },
       {
         key: 'removeAppData',
         type: 'bool',
-        label: trText('Remove application data'),
-        help: trText('Private data that editing apps store inside the PDF.'),
+        label: trText("إزالة بيانات التطبيقات"),
+        help: trText("بيانات خاصة تخزنها تطبيقات التحرير داخل PDF."),
       },
       {
         key: 'removeThreads',
         type: 'bool',
-        label: trText('Remove article threads'),
+        label: trText("إزالة سلاسل المقالات"),
       },
       {
         key: 'removeSpiderInfo',
         type: 'bool',
-        label: trText('Remove web capture information'),
+        label: trText("إزالة معلومات التقاط الويب"),
       },
       {
         key: 'removeStructTree',
         type: 'bool',
-        label: trText('Remove document structure tree'),
-        help: trText('Drops tagging, which screen readers rely on.'),
+        label: trText("إزالة شجرة بنية المستند"),
+        help: trText("يزيل الوسوم التي تعتمد عليها قارئات الشاشة."),
       },
       {
         key: 'removeOutputIntents',
         type: 'bool',
-        label: trText('Remove output intents'),
+        label: trText("إزالة نوايا الإخراج"),
       },
     ],
   },
   {
-    title: trText('Rasterize'),
+    title: trText("تحويل إلى صور نقطية"),
     fields: [
       {
         key: 'rasterizePages',
         type: 'bool',
-        label: trText('Rasterize pages to images'),
+        label: trText("تحويل الصفحات إلى صور نقطية"),
         help: trText(
-          'For image-only PDFs such as scans. Skipped when the document has selectable text, unless Override content protection is on.'
+          "لملفات PDF المكوّنة من صور فقط مثل المسح الضوئي. يتم تخطيه عندما يحتوي المستند على نص قابل للتحديد، ما لم يكن خيار تجاوز حماية المحتوى مفعّلًا."
         ),
       },
       {
         key: 'rasterizeDpi',
         type: 'number',
-        label: trText('Rasterize resolution (DPI)'),
+        label: trText("دقة التحويل إلى صور نقطية (DPI)"),
         min: 36,
         max: 600,
       },
       {
         key: 'rasterizeQuality',
         type: 'number',
-        label: trText('Rasterize quality'),
+        label: trText("جودة التحويل إلى صور نقطية"),
         min: 1,
         max: 100,
       },
     ],
   },
   {
-    title: trText('Output'),
+    title: trText("الإخراج"),
     fields: [
       {
         key: 'preserveConformance',
         type: 'bool',
-        label: trText('Preserve PDF/A'),
+        label: trText("الحفاظ على PDF/A"),
         help: trText(
-          'Keeps a PDF/A file conformant. Brotli and rasterizing are skipped while this is on.'
+          "يُبقي ملف PDF/A متوافقًا. يتم تخطي Brotli والتحويل إلى صور نقطية عند تفعيله."
         ),
       },
       {
         key: 'brotli',
         type: 'bool',
-        label: trText('Brotli compression (PDF 2.0)'),
+        label: trText("ضغط Brotli (PDF 2.0)"),
         help: trText(
-          'Smaller files, but only readers with Brotli support can open them, such as Firefox, MuPDF 1.26+ and Ghostscript 10.06+.'
+          "ملفات أصغر، لكن لا يفتحها إلا القارئات التي تدعم Brotli، مثل Firefox وMuPDF 1.26+ وGhostscript 10.06+."
         ),
       },
     ],
@@ -427,7 +427,7 @@ function describeCompressResult(
     const percent = ((saved / result.originalSize) * 100).toFixed(1);
     parts.push(
       trText(
-        'File size reduced from {{originalSize}} to {{compressedSize}} (Saved {{percent}}%).',
+        "انخفض حجم الملف من {{originalSize}} إلى {{compressedSize}} (تم توفير {{percent}}%).",
         {
           originalSize: formatBytes(result.originalSize),
           compressedSize: formatBytes(result.compressedSize),
@@ -438,7 +438,7 @@ function describeCompressResult(
   } else {
     parts.push(
       trText(
-        'Could not reduce file size further. Original: {{originalSize}}, New: {{compressedSize}}.',
+        "تعذر تقليل حجم الملف أكثر. الأصلي: {{originalSize}}، الجديد: {{compressedSize}}.",
         {
           originalSize: formatBytes(result.originalSize),
           compressedSize: formatBytes(result.compressedSize),
@@ -451,14 +451,14 @@ function describeCompressResult(
   if (targetBytes !== undefined) {
     if (result.metTarget) {
       parts.push(
-        trText('It fits the {{targetBytes}} target.', {
+        trText("يناسب الحجم المستهدف {{targetBytes}}.", {
           targetBytes: formatBytes(targetBytes),
         })
       );
     } else if (preservingPdfa) {
       parts.push(
         trText(
-          'It is still above the {{targetBytes}} target because Preserve PDF/A limits how far it can be compressed.',
+          "لا يزال أكبر من الحجم المستهدف {{targetBytes}} لأن خيار الحفاظ على PDF/A يحدّ من مدى إمكانية ضغطه.",
           { targetBytes: formatBytes(targetBytes) }
         )
       );
@@ -472,7 +472,7 @@ function describeCompressResult(
   if (result.signaturesRemoved) {
     parts.push(
       trText(
-        'Its digital signatures were removed so it could be compressed. Sign it again if needed.'
+        "تمت إزالة توقيعاته الرقمية لكي يمكن ضغطه. وقّعه مرة أخرى عند الحاجة."
       )
     );
   }
@@ -480,29 +480,29 @@ function describeCompressResult(
   if (result.pdfaOutcome === 'claim-withdrawn') {
     parts.push(
       trText(
-        'It no longer claims PDF/A conformance. Turn on Preserve PDF/A under Custom Settings to keep it.'
+        "لم يعد يدّعي التوافق مع PDF/A. فعّل خيار الحفاظ على PDF/A ضمن الإعدادات المخصصة للإبقاء عليه."
       )
     );
   } else if (preservingPdfa && (options.brotli || options.rasterizePages)) {
-    parts.push(trText('Brotli and rasterizing were skipped to keep it PDF/A.'));
+    parts.push(trText("تم تخطي ضغط Brotli والتحويل إلى صور نقطية للحفاظ على توافق PDF/A."));
   }
 
   if (saved <= 0) {
     return {
-      title: trText('Compression Finished'),
+      title: trText("انتهى الضغط"),
       message: parts.join(' '),
       type: 'warning',
     };
   }
   if (result.metTarget === false) {
     return {
-      title: trText('Target Not Reached'),
+      title: trText("لم يتم بلوغ الهدف"),
       message: parts.join(' '),
       type: 'warning',
     };
   }
   return {
-    title: trText('Compression Complete'),
+    title: trText("اكتمل الضغط"),
     message: parts.join(' '),
     type: 'success',
   };
@@ -534,7 +534,7 @@ function createPasswordField(
 
   const input = document.createElement('input');
   input.type = 'password';
-  input.placeholder = trText('Enter password');
+  input.placeholder = trText("أدخل كلمة المرور");
   input.autocomplete = 'off';
   input.value = value;
   input.setAttribute('aria-label', label);
@@ -547,14 +547,14 @@ function createPasswordField(
   toggle.type = 'button';
   toggle.className =
     'absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-200';
-  toggle.setAttribute('aria-label', trText('Show password'));
+  toggle.setAttribute('aria-label', trText("إظهار كلمة المرور"));
   toggle.append(showIcon, hideIcon);
   toggle.addEventListener('click', () => {
     const reveal = input.type === 'password';
     input.type = reveal ? 'text' : 'password';
     toggle.setAttribute(
       'aria-label',
-      reveal ? trText('Hide password') : trText('Show password')
+      reveal ? trText("إخفاء كلمة المرور") : trText("إظهار كلمة المرور")
     );
     showIcon.classList.toggle('hidden', reveal);
     hideIcon.classList.toggle('hidden', !reveal);
@@ -710,13 +710,13 @@ onPageReady(() => {
     ).length;
     if (sharedMissed && unlocked < files.length) {
       sharedView.status.textContent = trText(
-        'That password did not open any of the remaining files.'
+        "كلمة المرور هذه لم تفتح أيًّا من الملفات المتبقية."
       );
       sharedView.status.className = 'text-xs mt-1 text-red-400';
       return;
     }
     sharedView.status.textContent = trText(
-      'Unlocked {{unlocked}} of {{length}} files.',
+      "تم فتح قفل {{unlocked}} من {{length}} من الملفات.",
       { unlocked, length: files.length }
     );
     sharedView.status.className = `text-xs mt-1 ${unlocked === files.length ? 'text-green-400' : 'text-gray-400'}`;
@@ -797,9 +797,9 @@ onPageReady(() => {
           sharedDiv.className = 'bg-gray-700 p-3 rounded-lg text-sm';
           const sharedLabel = document.createElement('div');
           sharedLabel.className = 'font-medium text-gray-200 text-sm';
-          sharedLabel.textContent = trText('Password for all locked files');
+          sharedLabel.textContent = trText("كلمة مرور لجميع الملفات المقفلة");
           sharedView = createPasswordField(
-            trText('Password for all locked files'),
+            trText("كلمة مرور لجميع الملفات المقفلة"),
             sharedPassword,
             applySharedPassword
           );
@@ -835,7 +835,7 @@ onPageReady(() => {
 
           if (locked) {
             const view = createPasswordField(
-              trText('Password for {{name}}', { name: file.name }),
+              trText("كلمة مرور {{name}}", { name: file.name }),
               lock.password,
               (value) => {
                 lock.password = value;
@@ -860,7 +860,7 @@ onPageReady(() => {
             'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
           removeBtn.setAttribute(
             'aria-label',
-            trText('Remove {{name}}', { name: file.name })
+            trText("إزالة {{name}}", { name: file.name })
           );
           removeBtn.append(createIcon('trash', ''));
           removeBtn.onclick = () => {
@@ -907,8 +907,8 @@ onPageReady(() => {
     const password = isProtected(lock) ? lock.password : '';
     showLoader(
       targetBytes === undefined
-        ? 'Compressing...'
-        : trText('Compressing to {{size}}...', {
+        ? "جارٍ الضغط..."
+        : trText("جارٍ الضغط إلى {{size}}...", {
             size: formatBytes(targetBytes),
           })
     );
@@ -921,9 +921,9 @@ onPageReady(() => {
 
     if (result.signed) {
       showAlert(
-        'Signed PDF Not Changed',
+        "لم يتغير PDF الموقّع",
         trText(
-          '{{name}} is digitally signed, so it was left as it is. Compressing it would break the signature. To compress it anyway, turn on Override content protection under Custom Settings; its signatures will be removed.',
+          "{{name}} موقّع رقميًا، لذلك تُرك كما هو. ضغطه سيُبطل التوقيع. لضغطه رغم ذلك، فعّل تجاوز حماية المحتوى ضمن الإعدادات المخصصة، وسيتم حذف توقيعاته.",
           { name: file.name }
         ),
         'warning',
@@ -945,7 +945,7 @@ onPageReady(() => {
       title,
       password
         ? trText(
-            '{{message}} It was password protected, so the compressed copy has no password. Use Protect PDF to add one again.',
+            "{{message}} كان الملف محميًا بكلمة مرور، لذلك لا تحتوي النسخة المضغوطة على كلمة مرور. استخدم حماية PDF لإضافتها مرة أخرى.",
             { message }
           )
         : message,
@@ -959,7 +959,7 @@ onPageReady(() => {
     runOptions: HyperCompressOptions,
     targetBytes: number | undefined
   ) => {
-    showLoader('Compressing multiple PDFs...');
+    showLoader("جارٍ ضغط عدة ملفات PDF...");
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();
     let totalOriginalSize = 0;
@@ -976,7 +976,7 @@ onPageReady(() => {
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       showLoader(
-        trText('Compressing {{n}}/{{length}}: {{name}}...', {
+        trText("جارٍ ضغط {{n}}/{{length}}: {{name}}...", {
           n: i + 1,
           length: files.length,
           name: file.name,
@@ -1010,15 +1010,15 @@ onPageReady(() => {
     if (compressedCount === 0) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('None of the files could be compressed: {{join}}.', {
+        "خطأ",
+        trText("تعذر ضغط أي من الملفات: {{join}}.", {
           join: failures.join(', '),
         })
       );
       return;
     }
 
-    showLoader('Creating ZIP...');
+    showLoader("جارٍ إنشاء ZIP...");
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     downloadFile(zipBlob, 'compressed-pdfs.zip');
     hideLoader();
@@ -1027,7 +1027,7 @@ onPageReady(() => {
     const parts = [
       totalSavings > 0
         ? trText(
-            'Compressed {{compressedCount}} PDF(s). Total size reduced from {{totalOriginalSize}} to {{totalCompressedSize}} (Saved {{value}}%).',
+            "تم ضغط {{compressedCount}} من ملفات PDF. انخفض الحجم الإجمالي من {{totalOriginalSize}} إلى {{totalCompressedSize}} (تم توفير {{value}}%).",
             {
               compressedCount,
               totalOriginalSize: formatBytes(totalOriginalSize),
@@ -1036,7 +1036,7 @@ onPageReady(() => {
             }
           )
         : trText(
-            'Compressed {{compressedCount}} PDF(s). Total size: {{totalCompressedSize}}.',
+            "تم ضغط {{compressedCount}} من ملفات PDF. الحجم الإجمالي: {{totalCompressedSize}}.",
             {
               compressedCount,
               totalCompressedSize: formatBytes(totalCompressedSize),
@@ -1069,12 +1069,12 @@ onPageReady(() => {
       );
     }
     if (failures.length > 0) {
-      parts.push(trText('Skipped: {{join}}.', { join: failures.join(', ') }));
+      parts.push(trText("تم التخطي: {{join}}.", { join: failures.join(', ') }));
     }
 
     const hasProblems = failures.length > 0 || missedTargetCount > 0;
     showAlert(
-      hasProblems ? 'Compression Finished' : 'Compression Complete',
+      hasProblems ? "انتهى الضغط" : "اكتمل الضغط",
       parts.join(' '),
       hasProblems ? 'warning' : totalSavings > 0 ? 'success' : 'info',
       () => resetState()
@@ -1083,7 +1083,7 @@ onPageReady(() => {
 
   const compress = async () => {
     if (state.files.length === 0) {
-      showAlert('No Files', 'Please select at least one PDF file.');
+      showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
       return;
     }
 
@@ -1093,14 +1093,14 @@ onPageReady(() => {
     });
     if (needPassword.length > 0) {
       showAlert(
-        'Password Needed',
+        "كلمة المرور مطلوبة",
         needPassword.length === 1
           ? trText(
-              '{{name}} is password protected. Enter its password on the file card, then compress again.',
+              "{{name}} محمي بكلمة مرور. أدخل كلمة مروره على بطاقة الملف، ثم اضغط مرة أخرى.",
               { name: needPassword[0].name }
             )
           : trText(
-              'These files are password protected: {{names}}. Enter their passwords on the file cards, or remove them, then compress again.',
+              "هذه الملفات محمية بكلمة مرور: {{names}}. أدخل كلمات مرورها على بطاقات الملفات أو أزلها، ثم اضغط مرة أخرى.",
               { names: needPassword.map((file) => file.name).join(', ') }
             ),
         'warning',
@@ -1133,9 +1133,9 @@ onPageReady(() => {
         }
         updateUI();
         showAlert(
-          'Password Needed',
+          "كلمة المرور مطلوبة",
           trText(
-            '{{name}} is password protected. Enter its password on the file card, then compress again.',
+            "{{name}} محمي بكلمة مرور. أدخل كلمة مروره على بطاقة الملف، ثم اضغط مرة أخرى.",
             { name: file.name }
           ),
           'warning',
@@ -1145,8 +1145,8 @@ onPageReady(() => {
       }
       console.error('[CompressPDF] Error:', e);
       showAlert(
-        'Error',
-        trText('An error occurred during compression. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء الضغط. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );
@@ -1166,13 +1166,13 @@ onPageReady(() => {
       }
       if (rejected.length > 0) {
         showAlert(
-          'Not a PDF',
+          "ليس ملف PDF",
           rejected.length === 1
-            ? trText('{{name}} is not a valid PDF, so it was not added.', {
+            ? trText("{{name}} ليس PDF صالحًا، لذلك لم تتم إضافته.", {
                 name: rejected[0],
               })
             : trText(
-                'These files are not valid PDFs, so they were not added: {{names}}.',
+                "هذه الملفات ليست ملفات PDF صالحة، لذلك لم تتم إضافتها: {{names}}.",
                 { names: rejected.join(', ') }
               ),
           'warning'

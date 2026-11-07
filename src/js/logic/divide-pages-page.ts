@@ -65,7 +65,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -90,13 +90,13 @@ async function updateUI() {
       }
       result.pdf.destroy();
       pageState.file = result.file;
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
 
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       pageState.totalPages = pageState.pdfDoc.getPageCount();
       hideLoader();
 
-      metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{totalPages}} صفحة", {
         size: formatBytes(pageState.file.size),
         totalPages: pageState.totalPages,
       });
@@ -105,7 +105,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -115,7 +115,7 @@ async function updateUI() {
 
 async function dividePages() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -140,14 +140,14 @@ async function dividePages() {
 
     if (pagesToDivide.size === 0) {
       showAlert(
-        'Invalid Range',
-        'Please enter a valid page range (e.g., 1-5, 8, 11-13).'
+        "نطاق غير صالح",
+        "يرجى إدخال نطاق صفحات صالح (مثل 1-5, 8, 11-13)."
       );
       return;
     }
   }
 
-  showLoader('Splitting PDF pages...');
+  showLoader("جارٍ تقسيم صفحات PDF...");
 
   try {
     const newPdfDoc = await PDFLibDocument.create();
@@ -159,7 +159,7 @@ async function dividePages() {
       const { width, height } = originalPage.getSize();
 
       showLoader(
-        trText('Processing page {{pageNum}} of {{length}}...', {
+        trText("جارٍ معالجة الصفحة {{pageNum}} من {{length}}...", {
           pageNum,
           length: pages.length,
         })
@@ -195,8 +195,8 @@ async function dividePages() {
     );
 
     showAlert(
-      'Success',
-      'Pages have been divided successfully!',
+      "تم بنجاح",
+      "تم تقسيم الصفحات بنجاح!",
       'success',
       function () {
         resetState();
@@ -204,7 +204,7 @@ async function dividePages() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while dividing the PDF.');
+    showAlert("خطأ", "حدث خطأ أثناء تقسيم ملف PDF.");
   } finally {
     hideLoader();
   }

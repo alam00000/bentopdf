@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="PDF to PNG Converter Free Online | Pixel PDF" />
+    <meta name="title" content="محوّل PDF إلى PNG مجانًا أونلاين | Pixel PDF" />
     <meta
       name="description"
-      content="Convert each PDF page into a PNG image. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل كل صفحة من PDF إلى صورة PNG. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="pdf to png, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -25,11 +25,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pdf-to-png" />
     <meta
       property="og:title"
-      content="PDF to PNG Converter Free Online | Pixel PDF"
+      content="محوّل PDF إلى PNG مجانًا أونلاين | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert each PDF page into a PNG image. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل كل صفحة من PDF إلى صورة PNG. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -44,11 +44,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/pdf-to-png" />
     <meta
       name="twitter:title"
-      content="PDF to PNG Converter Free Online | Pixel PDF"
+      content="محوّل PDF إلى PNG مجانًا أونلاين | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Convert each PDF page into a PNG image. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل كل صفحة من PDF إلى صورة PNG. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF to PNG" />
+    <meta name="apple-mobile-web-app-title" content="PDF إلى PNG" />
 
-    <title>PDF to PNG Converter Free Online | Pixel PDF</title>
+    <title>محوّل PDF إلى PNG مجانًا أونلاين | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfToPng.name"
         >
-          PDF to PNG
+          PDF إلى PNG
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfToPng.subtitle">
-          Convert each PDF page into a PNG image.
+          تحويل كل صفحة PDF إلى صورة PNG.
         </p>
 
         <div
@@ -129,15 +129,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -156,7 +156,7 @@
               for="png-scale"
               class="block mb-2 text-sm font-medium text-gray-300"
               data-i18n="tools:pdfToPng.imageScale"
-              >Image Scale</label
+              >مقياس الصورة</label
             >
             <div class="flex items-center gap-4">
               <input
@@ -178,7 +178,7 @@
               class="mt-1 text-xs text-gray-400"
               data-i18n="tools:pdfToPng.imageScaleExplanation"
             >
-              Higher scale = better quality but larger file size
+              مقياس أكبر = جودة أفضل لكن ملف أكبر
             </p>
           </div>
 
@@ -187,7 +187,7 @@
             class="btn-gradient w-full"
             data-i18n="common.convert"
           >
-            Convert
+            تحويل
           </button>
         </div>
       </div>
@@ -202,7 +202,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -218,16 +218,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -238,7 +237,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -248,9 +247,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -261,9 +260,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -274,9 +273,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -289,43 +288,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -336,103 +341,97 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What resolution do the PNGs have?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            ما دقة صور PNG؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Scale 1.0x renders at 72 pixels per inch of page, so a Letter page
-            becomes 612 by 792 pixels. The default 2.0x doubles that to 1224 by
-            1584, and 3.0x gives 1836 by 2376, which is 216 pixels per inch.
+            يعرض المقياس 1.0x بدقة 72 بكسل لكل بوصة من الصفحة، فتصبح صفحة Letter
+            بحجم 612 × 792 بكسل. ويضاعف الافتراضي 2.0x ذلك إلى 1224 × 1584،
+            ويعطي 3.0x حجم 1836 × 2376 وهو 216 بكسل لكل بوصة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I export at 300 DPI for print?
+            هل يمكنني التصدير بدقة 300 DPI للطباعة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not directly. The slider tops out at 3.0x, about 216 DPI on a
-            standard page, and there's no field for entering a custom DPI in
-            this tool.
+            ليس مباشرة. يصل الشريط إلى 3.0x كحد أقصى، أي نحو 216 DPI على صفحة
+            قياسية، ولا يوجد حقل لإدخال DPI مخصص في هذه الأداة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the background transparent?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل الخلفية شفافة؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Pages are drawn onto a white background, so areas with no
-            content come out white rather than transparent, even though PNG
-            supports transparency.
+            لا. تُرسم الصفحات على خلفية بيضاء، لذلك تظهر المناطق التي لا محتوى
+            فيها بيضاء وليست شفافة، رغم أن PNG يدعم الشفافية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert only certain pages to PNG?
+            هل يمكنني تحويل صفحات معينة فقط إلى PNG؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Every page is converted; there's no page-range field. Pull out the
-            pages you need with
+            تُحوَّل كل صفحة، ولا يوجد حقل لنطاق الصفحات. اسحب الصفحات التي
+            تحتاجها أولًا بـ
             <a
               href="/extract-pages"
               class="text-indigo-300 hover:text-indigo-400"
-              >Extract Pages</a
-            >
-            first, then convert that smaller file.
+              >استخراج الصفحات</a
+            >، ثم حوّل ذلك الملف الأصغر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are the files named?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            كيف تُسمّى الملفات؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A one-page PDF downloads as filename.png. Multi-page documents
-            download as filename_pngs.zip containing page_1.png, page_2.png, and
-            so on in document order.
+            يُنزَّل ملف PDF من صفحة واحدة باسم filename.png. وتُنزَّل المستندات
+            متعددة الصفحات باسم filename_pngs.zip الذي يحتوي على page_1.png
+            وpage_2.png وهكذا بترتيب المستند.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why are the PNG files so large?
+            لماذا ملفات PNG كبيرة جدًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            PNG is lossless, so a full page at 2.0x is often several megabytes,
-            especially for scans and photos. If some compression is acceptable,
+            PNG بدون فقدان، لذلك تبلغ الصفحة الكاملة بمقياس 2.0x عدة ميغابايت
+            غالبًا، خاصة للمسح الضوئي والصور الفوتوغرافية. إذا كان بعض الضغط
+            مقبولًا، فإن
             <a href="/pdf-to-jpg" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to JPG</a
+              >PDF إلى JPG</a
             >
-            or PDF to WebP produce far smaller images from the same pages.
+            أو PDF إلى WebP تنتجان صورًا أصغر بكثير من الصفحات نفسها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do annotations and filled form fields appear in the images?
+            هل تظهر التعليقات التوضيحية وحقول النماذج المعبأة في الصور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Visible markup such as highlights, stamps, and filled form fields is
-            rendered as it appears on the page. The text inside pop-up comments
-            isn't drawn, only the note icon.
+            يُعرض التمييز المرئي مثل التظليل والأختام وحقول النماذج المعبأة كما
+            يظهر على الصفحة. أما النص داخل التعليقات المنبثقة فلا يُرسم، بل
+            أيقونة الملاحظة فقط.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF rendered on a server?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يُعرض PDF على خادم؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering uses PDF.js inside your browser and the ZIP is built
-            locally, so the document never leaves your computer. If the PDF
-            needs a password, you're asked for it first.
+            لا. يستخدم العرض PDF.js داخل متصفحك ويُبنى ملف ZIP محليًا، لذلك لا
+            يغادر المستند حاسوبك أبدًا. إذا كان PDF يحتاج إلى كلمة مرور، فتُطلب
+            منك أولًا.
           </p>
         </details>
       </div>
@@ -465,26 +464,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to pdf to png online",
+        "name": "كيفية تحويل PDF إلى PNG أونلاين",
         "description": "Learn how to pdf to png using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

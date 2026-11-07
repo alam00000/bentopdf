@@ -175,11 +175,11 @@ const resetState = () => {
 
 async function processAllPages(): Promise<void> {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Applying color adjustments...');
+  showLoader("جارٍ تطبيق تعديلات الألوان...");
 
   try {
     const settings = getSettings();
@@ -189,7 +189,7 @@ async function processAllPages(): Promise<void> {
 
     for (let i = 1; i <= doc.numPages; i++) {
       showLoader(
-        trText('Processing page {{i}} of {{numPages}}...', {
+        trText("جارٍ معالجة الصفحة {{i}} من {{numPages}}...", {
           i,
           numPages: doc.numPages,
         })
@@ -245,8 +245,8 @@ async function processAllPages(): Promise<void> {
       files[0]?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Color adjustments applied successfully!',
+      "تم بنجاح",
+      "تم تطبيق تعديلات الألوان بنجاح!",
       'success',
       () => {
         resetState();
@@ -255,8 +255,8 @@ async function processAllPages(): Promise<void> {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to apply color adjustments. The file might be corrupted.'
+      "خطأ",
+      "تعذر تطبيق تعديلات الألوان. قد يكون الملف تالفًا."
     );
   } finally {
     hideLoader();
@@ -362,21 +362,21 @@ onPageReady(() => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert("ملف غير صالح", "يرجى رفع ملف PDF.");
       return;
     }
 
     try {
       const result = await loadPdfWithPasswordPrompt(validFiles[0]);
       if (!result) return;
-      showLoader('Loading preview...');
+      showLoader("جارٍ تحميل المعاينة...");
       files = [result.file];
       updateUI();
       pdfjsDoc = result.pdf;
       await renderPreview();
     } catch (e) {
       console.error(e);
-      showAlert('Error', 'Failed to load PDF for preview.');
+      showAlert("خطأ", "تعذر تحميل PDF للمعاينة.");
     } finally {
       hideLoader();
     }

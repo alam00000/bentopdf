@@ -100,7 +100,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function changePermissions() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -116,8 +116,8 @@ async function changePermissions() {
 
   if (newUserPassword && !newOwnerPassword) {
     showAlert(
-      'Owner Password Required',
-      'An owner password is required when setting permissions'
+      "كلمة مرور المالك مطلوبة",
+      "كلمة مرور المالك مطلوبة عند تعيين الأذونات"
     );
     return;
   }
@@ -131,17 +131,17 @@ async function changePermissions() {
 
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = trText('Initializing...');
+    if (loaderText) loaderText.textContent = trText("جارٍ التهيئة...");
 
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = trText('Reading PDF...');
+    if (loaderText) loaderText.textContent = trText("جارٍ قراءة PDF...");
     const fileBuffer = await readFileAsArrayBuffer(pageState.file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
     qpdf.FS.writeFile(inputPath, uint8Array);
 
     if (loaderText)
-      loaderText.textContent = trText('Processing PDF permissions...');
+      loaderText.textContent = trText("جارٍ معالجة أذونات PDF...");
 
     const args = [inputPath];
 
@@ -218,16 +218,16 @@ async function changePermissions() {
         throw new Error('PASSWORD_REQUIRED', { cause: qpdfError });
       }
 
-      throw new Error('Processing failed: ' + errorMsg || 'Unknown error', {
+      throw new Error('Processing failed: ' + errorMsg || "خطأ غير معروف", {
         cause: qpdfError,
       });
     }
 
-    if (loaderText) loaderText.textContent = trText('Preparing download...');
+    if (loaderText) loaderText.textContent = trText("جارٍ تجهيز التنزيل...");
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error(trText('Processing resulted in an empty file.'));
+      throw new Error(trText("أدت المعالجة إلى ملف فارغ."));
     }
 
     const blob = new Blob([new Uint8Array(outputFile)], {
@@ -237,14 +237,14 @@ async function changePermissions() {
 
     if (loaderModal) loaderModal.classList.add('hidden');
 
-    let successMessage = trText('PDF permissions changed successfully!');
+    let successMessage = trText("تم تغيير أذونات PDF بنجاح!");
     if (!shouldEncrypt) {
       successMessage = trText(
-        'PDF decrypted successfully! All encryption and restrictions removed.'
+        "تم فك تشفير PDF بنجاح! أُزيل كل التشفير والقيود."
       );
     }
 
-    showAlert('Success', successMessage, 'success', () => {
+    showAlert("تم بنجاح", successMessage, 'success', () => {
       resetState();
     });
   } catch (error: unknown) {
@@ -254,21 +254,21 @@ async function changePermissions() {
     const errorMessage = error instanceof Error ? error.message : '';
     if (errorMessage === 'INVALID_PASSWORD') {
       showAlert(
-        'Incorrect Password',
-        'The current password you entered is incorrect. Please try again.'
+        "كلمة مرور غير صحيحة",
+        "كلمة المرور الحالية التي أدخلتها غير صحيحة. يرجى المحاولة مرة أخرى."
       );
     } else if (errorMessage === 'PASSWORD_REQUIRED') {
       showAlert(
-        'Password Required',
-        'This PDF is password-protected. Please enter the current password to proceed.'
+        "كلمة المرور مطلوبة",
+        "ملف PDF هذا محمي بكلمة مرور. يرجى إدخال كلمة المرور الحالية للمتابعة."
       );
     } else {
       showAlert(
-        'Processing Failed',
-        trText('An error occurred: {{error}}', {
+        "فشلت المعالجة",
+        trText("حدث خطأ: {{error}}", {
           error:
             errorMessage ||
-            trText('The PDF might be corrupted or password protected.'),
+            trText("قد يكون PDF تالفًا أو محميًا بكلمة مرور."),
         })
       );
     }

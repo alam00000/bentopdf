@@ -68,8 +68,8 @@ worker.onmessage = function (e) {
     );
 
     showAlert(
-      'Success',
-      'Attachments updated successfully!',
+      "تم بنجاح",
+      "تم تحديث المرفقات بنجاح!",
       'success',
       function () {
         resetState();
@@ -77,14 +77,14 @@ worker.onmessage = function (e) {
     );
   } else if (data.status === 'error') {
     hideLoader();
-    showAlert('Error', data.message || 'Unknown error occurred.');
+    showAlert("خطأ", data.message || "حدث خطأ غير معروف.");
   }
 };
 
 worker.onerror = function (error) {
   hideLoader();
   console.error('Worker error:', error);
-  showAlert('Error', 'Worker error occurred. Check console for details.');
+  showAlert("خطأ", "حدث خطأ في العامل. راجع وحدة التحكم للتفاصيل.");
 };
 
 function displayAttachments(attachments: AttachmentInfo[]) {
@@ -98,7 +98,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
   if (attachments.length === 0) {
     const noAttachments = document.createElement('p');
     noAttachments.className = 'text-gray-400 text-center py-4';
-    noAttachments.textContent = trText('No attachments found in this PDF.');
+    noAttachments.textContent = trText("لم يتم العثور على مرفقات في ملف PDF هذا.");
     attachmentsList.appendChild(noAttachments);
     return;
   }
@@ -110,7 +110,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
   const removeAllBtn = document.createElement('button');
   removeAllBtn.className =
     'bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm';
-  removeAllBtn.textContent = trText('Remove All Attachments');
+  removeAllBtn.textContent = trText("إزالة جميع المرفقات");
   removeAllBtn.onclick = function () {
     if (pageState.allAttachments.length === 0) return;
 
@@ -133,7 +133,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
           }
         }
       });
-      removeAllBtn.textContent = trText('Remove All Attachments');
+      removeAllBtn.textContent = trText("إزالة جميع المرفقات");
     } else {
       pageState.allAttachments.forEach(function (attachment) {
         pageState.attachmentsToRemove.add(attachment.index);
@@ -149,7 +149,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
           }
         }
       });
-      removeAllBtn.textContent = trText('Deselect All');
+      removeAllBtn.textContent = trText("إلغاء تحديد الكل");
     }
   };
 
@@ -173,9 +173,9 @@ function displayAttachments(attachments: AttachmentInfo[]) {
     const levelSpan = document.createElement('span');
     levelSpan.className = 'text-gray-400 text-sm block';
     if (attachment.page === 0) {
-      levelSpan.textContent = trText('Document-level attachment');
+      levelSpan.textContent = trText("مرفق على مستوى المستند");
     } else {
-      levelSpan.textContent = trText('Page {{page}} attachment', {
+      levelSpan.textContent = trText("مرفق الصفحة {{page}}", {
         page: attachment.page,
       });
     }
@@ -188,7 +188,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
     const removeBtn = document.createElement('button');
     removeBtn.className = `${pageState.attachmentsToRemove.has(attachment.index) ? 'bg-gray-600' : 'bg-red-600'} hover:bg-red-700 text-white px-3 py-1 rounded text-sm`;
     removeBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
-    removeBtn.title = trText('Remove attachment');
+    removeBtn.title = trText("إزالة المرفق");
     removeBtn.onclick = function () {
       if (pageState.attachmentsToRemove.has(attachment.index)) {
         pageState.attachmentsToRemove.delete(attachment.index);
@@ -206,8 +206,8 @@ function displayAttachments(attachments: AttachmentInfo[]) {
         return pageState.attachmentsToRemove.has(att.index);
       });
       removeAllBtn.textContent = allSelected
-        ? trText('Deselect All')
-        : trText('Remove All Attachments');
+        ? trText("إلغاء تحديد الكل")
+        : trText("إزالة جميع المرفقات");
     };
 
     actionsDiv.append(removeBtn);
@@ -223,7 +223,7 @@ function displayAttachments(attachments: AttachmentInfo[]) {
 async function loadAttachments() {
   if (!pageState.file) return;
 
-  showLoader('Loading attachments...');
+  showLoader("جارٍ تحميل المرفقات...");
 
   // Check if CPDF is configured
   if (!isCpdfAvailable()) {
@@ -246,22 +246,22 @@ async function loadAttachments() {
   } catch (error) {
     console.error('Error loading attachments:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load attachments from PDF.');
+    showAlert("خطأ", "تعذر تحميل المرفقات من PDF.");
   }
 }
 
 async function saveChanges() {
   if (!pageState.file) {
-    showAlert('Error', 'No PDF file loaded.');
+    showAlert("خطأ", "لم يتم تحميل ملف PDF.");
     return;
   }
 
   if (pageState.attachmentsToRemove.size === 0) {
-    showAlert('No Changes', 'No attachments selected for removal.');
+    showAlert("لا توجد تغييرات", "لم يتم تحديد مرفقات للإزالة.");
     return;
   }
 
-  showLoader('Processing attachments...');
+  showLoader("جارٍ معالجة المرفقات...");
 
   // Check if CPDF is configured (double check)
   if (!isCpdfAvailable()) {
@@ -285,7 +285,7 @@ async function saveChanges() {
   } catch (error) {
     console.error('Error editing attachments:', error);
     hideLoader();
-    showAlert('Error', 'Failed to edit attachments.');
+    showAlert("خطأ", "تعذر تعديل المرفقات.");
   }
 }
 

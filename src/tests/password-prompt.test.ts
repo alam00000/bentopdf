@@ -95,7 +95,7 @@ function createPasswordValidationTask(isValid: boolean): MockLoadingTask {
     if (task.onPassword) {
       task.onPassword(() => {}, 2);
     }
-    rejectFn({ name: 'PasswordException', message: 'Incorrect password' });
+    rejectFn({ name: 'PasswordException', message: 'كلمة مرور غير صحيحة' });
   }, 0);
 
   return task;
@@ -876,7 +876,7 @@ describe('promptAndDecryptFile', () => {
     input.value = '';
     submitBtn.click();
 
-    expect(errorEl.textContent).toBe('Please enter a password');
+    expect(errorEl.textContent).toBe('يرجى إدخال كلمة مرور');
     expect(errorEl.classList.contains('hidden')).toBe(false);
 
     const cancelBtn = document.getElementById(
@@ -929,7 +929,9 @@ describe('promptAndDecryptFile', () => {
     const errorEl = document.getElementById(
       'password-modal-error'
     ) as HTMLParagraphElement;
-    expect(errorEl.textContent).toBe('Incorrect password. Please try again.');
+    expect(errorEl.textContent).toBe(
+      'كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.'
+    );
 
     input.value = 'correct';
     submitBtn.click();
@@ -976,7 +978,7 @@ describe('promptAndDecryptFile', () => {
       'password-modal-error'
     ) as HTMLParagraphElement;
     expect(errorEl.textContent).toBe(
-      'Failed to decrypt. Try the Decrypt tool instead.'
+      'تعذر فك التشفير. جرّب أداة فك التشفير بدلًا من ذلك.'
     );
 
     const cancelBtn = document.getElementById(

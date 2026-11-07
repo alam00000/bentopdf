@@ -74,13 +74,13 @@ onPageReady(() => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+          metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
             size: formatBytes(file.size),
             numPages: pdfDoc.numPages,
           });
         } catch {
           metaSpan.textContent = trText(
-            '{{size}} • Could not load page count',
+            "{{size}} • تعذر تحميل عدد الصفحات",
             { size: formatBytes(file.size) }
           );
         }
@@ -107,20 +107,20 @@ onPageReady(() => {
   const convert = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
         return;
       }
 
-      showLoader('Loading PDF converter...');
+      showLoader("جارٍ تحميل محوّل PDF...");
       const pymupdf = await loadPyMuPDF();
 
       hideLoader();
       state.files = await batchDecryptIfNeeded(state.files);
-      showLoader('Converting...');
+      showLoader("جارٍ التحويل...");
 
       if (state.files.length === 1) {
         const file = state.files[0];
-        showLoader(trText('Converting {{name}}...', { name: file.name }));
+        showLoader(trText("جارٍ تحويل {{name}}...", { name: file.name }));
 
         const docxBlob = await pymupdf.pdfToDocx(
           await normalizeCmykForDocx(file)
@@ -131,8 +131,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to DOCX.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى DOCX بنجاح.", {
             name: file.name,
           }),
           'success',
@@ -146,7 +146,7 @@ onPageReady(() => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -165,15 +165,15 @@ onPageReady(() => {
           zip.file(zipEntryName, arrayBuffer);
         }
 
-        showLoader('Creating ZIP archive...');
+        showLoader("جارٍ إنشاء أرشيف ZIP...");
         const zipBlob = await zip.generateAsync({ type: 'blob' });
 
         downloadFile(zipBlob, 'converted-documents.zip');
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} PDF(s) to DOCX.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من ملفات PDF إلى DOCX بنجاح.", {
             length: state.files.length,
           }),
           'success',
@@ -183,8 +183,8 @@ onPageReady(() => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

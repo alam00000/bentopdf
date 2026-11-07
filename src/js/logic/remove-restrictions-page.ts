@@ -90,7 +90,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function removeRestrictions() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -107,17 +107,17 @@ async function removeRestrictions() {
 
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = trText('Initializing...');
+    if (loaderText) loaderText.textContent = trText("جارٍ التهيئة...");
 
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = trText('Reading PDF...');
+    if (loaderText) loaderText.textContent = trText("جارٍ قراءة PDF...");
     const fileBuffer = await readFileAsArrayBuffer(pageState.file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
     qpdf.FS.writeFile(inputPath, uint8Array);
 
-    if (loaderText) loaderText.textContent = trText('Removing restrictions...');
+    if (loaderText) loaderText.textContent = trText("جارٍ إزالة القيود...");
 
     const args = [inputPath];
 
@@ -135,23 +135,23 @@ async function removeRestrictions() {
       if (qpdfMsg.includes('password') || qpdfMsg.includes('encrypt')) {
         throw new Error(
           trText(
-            'Failed to remove restrictions. The PDF may require the correct owner password.'
+            "تعذرت إزالة القيود. قد يتطلب PDF كلمة مرور المالك الصحيحة."
           ),
           { cause: qpdfError }
         );
       }
 
       throw new Error(
-        'Failed to remove restrictions: ' + (qpdfMsg || 'Unknown error'),
+        'Failed to remove restrictions: ' + (qpdfMsg || "خطأ غير معروف"),
         { cause: qpdfError }
       );
     }
 
-    if (loaderText) loaderText.textContent = trText('Preparing download...');
+    if (loaderText) loaderText.textContent = trText("جارٍ تجهيز التنزيل...");
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error(trText('Operation resulted in an empty file.'));
+      throw new Error(trText("أدت العملية إلى ملف فارغ."));
     }
 
     const blob = new Blob([new Uint8Array(outputFile)], {
@@ -162,8 +162,8 @@ async function removeRestrictions() {
     if (loaderModal) loaderModal.classList.add('hidden');
 
     showAlert(
-      'Success',
-      'PDF restrictions removed successfully! The file is now fully editable and printable.',
+      "تم بنجاح",
+      "تمت إزالة قيود PDF بنجاح! أصبح الملف قابلًا للتعديل والطباعة بالكامل.",
       'success',
       () => {
         resetState();
@@ -173,12 +173,12 @@ async function removeRestrictions() {
     console.error('Error during restriction removal:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
-      'Operation Failed',
-      trText('An error occurred: {{error}}', {
+      "فشلت العملية",
+      trText("حدث خطأ: {{error}}", {
         error:
           error instanceof Error
             ? error.message
-            : trText('The PDF might be corrupted or password-protected.'),
+            : trText("قد يكون PDF تالفًا أو محميًا بكلمة مرور."),
       })
     );
   } finally {

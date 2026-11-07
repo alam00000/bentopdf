@@ -91,15 +91,15 @@ function buildUnsupportedLanguageMessage(
   const availableText = formatTesseractLanguageList(availableLanguages);
 
   return [
-    trText('This Pixel PDF build only bundles OCR data for {{availableText}}.', {
+    trText("يتضمن هذا الإصدار من Pixel PDF بيانات OCR للغات {{availableText}} فقط.", {
       availableText,
     }),
     trText(
-      'The requested OCR language is not available: {{unavailableText}}.',
+      "لغة OCR المطلوبة غير متاحة: {{unavailableText}}.",
       { unavailableText }
     ),
     trText(
-      'Choose one of the bundled languages or rebuild the air-gapped bundle with the missing language added to --ocr-languages.'
+      "اختر إحدى اللغات المضمّنة أو أعد بناء الحزمة المعزولة عن الإنترنت مع إضافة اللغة الناقصة إلى --ocr-languages."
     ),
   ].join(' ');
 }

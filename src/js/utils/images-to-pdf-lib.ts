@@ -40,7 +40,7 @@ export async function normalizeImageToEmbeddable(
       i.onerror = () =>
         reject(
           new Error(
-            trText('Failed to decode image: {{name}}', { name: processed.name })
+            trText("تعذر فك ترميز الصورة: {{name}}", { name: processed.name })
           )
         );
       i.src = url;
@@ -49,12 +49,12 @@ export async function normalizeImageToEmbeddable(
     canvas.width = img.naturalWidth;
     canvas.height = img.naturalHeight;
     const ctx = canvas.getContext('2d');
-    if (!ctx) throw new Error(trText('Canvas context unavailable'));
+    if (!ctx) throw new Error(trText("سياق Canvas غير متاح"));
     ctx.drawImage(img, 0, 0);
     const blob = await new Promise<Blob>((resolve, reject) => {
       canvas.toBlob(
         (b) =>
-          b ? resolve(b) : reject(new Error(trText('Canvas toBlob failed'))),
+          b ? resolve(b) : reject(new Error(trText("فشل Canvas toBlob"))),
         'image/png'
       );
     });

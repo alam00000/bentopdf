@@ -166,7 +166,7 @@ describe('image-input-utils', () => {
         type: '',
       });
       await expect(preprocessImageFile(file)).rejects.toThrow(
-        /Failed to process HEIC file: broken\.heic/
+        /تعذرت معالجة ملف HEIC: broken\.heic/
       );
     });
   });

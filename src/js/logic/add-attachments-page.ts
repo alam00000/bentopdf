@@ -73,8 +73,8 @@ worker.onmessage = function (e) {
     );
 
     showAlert(
-      'Success',
-      trText('{{length}} file(s) attached successfully.', {
+      "تم بنجاح",
+      trText("تم إرفاق {{length}} من الملفات بنجاح.", {
         length: pageState.attachments.length,
       }),
       'success',
@@ -84,14 +84,14 @@ worker.onmessage = function (e) {
     );
   } else if (data.status === 'error') {
     hideLoader();
-    showAlert('Error', data.message || 'Unknown error occurred.');
+    showAlert("خطأ", data.message || "حدث خطأ غير معروف.");
   }
 };
 
 worker.onerror = function (error) {
   hideLoader();
   console.error('Worker error:', error);
-  showAlert('Error', 'Worker error occurred. Check console for details.');
+  showAlert("خطأ", "حدث خطأ في العامل. راجع وحدة التحكم للتفاصيل.");
 };
 
 async function updateUI() {
@@ -116,7 +116,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -141,12 +141,12 @@ async function updateUI() {
       }
       result.pdf.destroy();
       pageState.file = result.file;
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
 
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
@@ -160,7 +160,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -208,12 +208,12 @@ function updateAttachmentList() {
 
 async function addAttachments() {
   if (!pageState.file || !pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
   if (pageState.attachments.length === 0) {
-    showAlert('No Files', 'Please select at least one file to attach.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف واحد على الأقل لإرفاقه.");
     return;
   }
 
@@ -240,14 +240,14 @@ async function addAttachments() {
 
     if (!pageRange) {
       showAlert(
-        'Error',
-        'Please specify a page range for page-level attachments.'
+        "خطأ",
+        "يرجى تحديد نطاق صفحات للمرفقات على مستوى الصفحة."
       );
       return;
     }
   }
 
-  showLoader('Embedding files into PDF...');
+  showLoader("جارٍ تضمين الملفات في PDF...");
 
   try {
     const pdfBuffer = await pageState.file.arrayBuffer();
@@ -258,7 +258,7 @@ async function addAttachments() {
     for (let i = 0; i < pageState.attachments.length; i++) {
       const file = pageState.attachments[i];
       showLoader(
-        trText('Reading {{name}} ({{n}}/{{length}})...', {
+        trText("جارٍ قراءة {{name}} ({{n}}/{{length}})...", {
           name: file.name,
           n: i + 1,
           length: pageState.attachments.length,
@@ -270,7 +270,7 @@ async function addAttachments() {
       attachmentNames.push(file.name);
     }
 
-    showLoader('Attaching files to PDF...');
+    showLoader("جارٍ إرفاق الملفات بملف PDF...");
 
     const message = {
       command: 'add-attachments',
@@ -288,9 +288,9 @@ async function addAttachments() {
     console.error('Error attaching files:', error);
     hideLoader();
     showAlert(
-      'Error',
-      trText('Failed to attach files: {{error}}', {
-        error: error instanceof Error ? error.message : trText('Unknown error'),
+      "خطأ",
+      trText("تعذر إرفاق الملفات: {{error}}", {
+        error: error instanceof Error ? error.message : trText("خطأ غير معروف"),
       })
     );
   }

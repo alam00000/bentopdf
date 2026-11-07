@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="PSD to PDF Online Free - PSD to PDF Tool | Pixel PDF"
+      content="PSD إلى PDF عبر الإنترنت مجانًا - أداة PSD إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات Adobe Photoshop (PSD) إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="psd to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/psd-to-pdf" />
     <meta
       property="og:title"
-      content="PSD to PDF Online Free - PSD to PDF Tool | Pixel PDF"
+      content="PSD إلى PDF عبر الإنترنت مجانًا - أداة PSD إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات Adobe Photoshop (PSD) إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/psd-to-pdf" />
-    <meta name="twitter:title" content="PSD to PDF Free" />
+    <meta name="twitter:title" content="PSD إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات Adobe Photoshop (PSD) إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PSD to PDF" />
+    <meta name="apple-mobile-web-app-title" content="PSD إلى PDF" />
 
-    <title>PSD to PDF - Convert Photoshop Files to PDF - Pixel PDF</title>
+    <title>PSD إلى PDF - تحويل ملفات Photoshop إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,20 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:psdToPdf.name"
         >
-          PSD to PDF
+          PSD إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:psdToPdf.subtitle">
-          Convert Adobe Photoshop (PSD) files to PDF format. Supports multiple
-          files.
+          تحويل ملفات Adobe Photoshop (PSD) إلى تنسيق PDF. يدعم عدة ملفات.
         </p>
 
         <div
@@ -130,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="tools:psdToPdf.acceptedFormats"
             >
-              PSD files
+              ملفات PSD
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -149,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".psd"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -159,21 +158,21 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearFiles">Clear Files</span>
+            <span data-i18n="upload.clearFiles">مسح الملفات</span>
           </button>
         </div>
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <button id="process-btn" class="btn-gradient w-full mt-6 hidden">
-          <span data-i18n="tools:psdToPdf.convertButton">Convert to PDF</span>
+          <span data-i18n="tools:psdToPdf.convertButton">تحويل إلى PDF</span>
         </button>
       </div>
     </div>
@@ -187,7 +186,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -204,14 +203,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -222,7 +221,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -232,9 +231,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -245,9 +244,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -258,9 +257,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -273,43 +272,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -320,96 +325,95 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need Photoshop installed?
+            هل أحتاج إلى تثبيت Photoshop؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PSD is read by PyMuPDF running in your browser, which uses
-            the flattened composite image stored inside the file, so the
-            conversion works on any computer with a modern browser.
+            لا. يقرأ PyMuPDF ملف PSD داخل متصفحك ويستخدم الصورة المركّبة
+            المسطّحة المخزنة في الملف، لذا يعمل التحويل على أي حاسوب فيه متصفح
+            حديث.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the layers kept in the PDF?
+            هل تُحفظ الطبقات في PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDF contains one flattened image of the composite, so
-            individual layers, adjustment layers, masks, and layer effects can't
-            be toggled or edited afterward. It's a picture of the document as it
-            looked when the PSD was saved.
+            لا. يحتوي PDF على صورة واحدة مسطّحة للتركيب النهائي، لذا لا يمكن
+            تشغيل الطبقات الفردية أو طبقات التعديل أو الأقنعة أو تأثيرات الطبقات
+            أو تعديلها لاحقًا. إنه صورة للمستند كما بدا عند حفظ ملف PSD.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does my PSD convert to a blank or wrong-looking page?
+            لماذا يتحول ملف PSD إلى صفحة فارغة أو تبدو خاطئة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The converter relies on the composite image Photoshop writes when
-            Maximize Compatibility is on. If that option was off when the file
-            was saved, the composite may be missing or stale; resave the PSD
-            with Maximize Compatibility enabled and convert again.
+            يعتمد المحوّل على الصورة المركّبة التي يكتبها Photoshop عند تفعيل
+            خيار Maximize Compatibility. إذا كان الخيار متوقفًا عند حفظ الملف،
+            فقد تكون الصورة المركّبة مفقودة أو قديمة، فأعد حفظ ملف PSD مع تفعيل
+            Maximize Compatibility ثم حوّله مرة أخرى.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What resolution will the PDF have?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            ما دقة ملف PDF الناتج؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The composite is embedded at its full pixel dimensions with no
-            downsampling, so a 300 DPI print file stays at print quality. That
-            also means large artwork produces a large PDF; run it through
+            تُضمَّن الصورة المركّبة بأبعادها الكاملة بالبكسل دون تقليل الدقة،
+            فيبقى ملف الطباعة بدقة 300 DPI بجودة الطباعة. هذا يعني أيضًا أن
+            الأعمال الكبيرة تنتج ملف PDF كبيرًا، فمرّره عبر
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            if you need a smaller proof.
+            إذا أردت نسخة تجريبية أصغر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens when I convert several PSDs together?
+            ماذا يحدث عند تحويل عدة ملفات PSD معًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            They're combined into one PDF named psd_to_pdf.pdf, with each PSD
-            becoming a page in the order listed. To get separate PDFs, convert
-            the files one at a time.
+            تُدمج في ملف PDF واحد باسم psd_to_pdf.pdf، ويصبح كل ملف PSD صفحة
+            بالترتيب المعروض. للحصول على ملفات PDF منفصلة، حوّل الملفات واحدًا
+            تلو الآخر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert other Photoshop or image formats here?
+            هل يمكنني تحويل صيغ Photoshop أو صور أخرى هنا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only files with a .psd extension are accepted. For PNG, JPG, TIFF,
-            or WebP exports use
+            تُقبل فقط الملفات ذات الامتداد .psd. لملفات PNG وJPG وTIFF وWebP
+            استخدم
             <a
               href="/image-to-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Images to PDF</a
-            >, which also lets you set page size and margins.
+              >الصور إلى PDF</a
+            >
+            التي تتيح أيضًا ضبط حجم الصفحة والهوامش.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my design files uploaded?
+            هل تُرفع ملفات التصميم الخاصة بي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PSD is decoded and the PDF written by PyMuPDF compiled to
-            WebAssembly in your browser, so unreleased designs and client work
-            never leave your machine.
+            لا. يفك PyMuPDF المترجَم إلى WebAssembly ترميز ملف PSD ويكتب ملف PDF
+            داخل متصفحك، لذا لا تغادر التصاميم غير المنشورة وأعمال العملاء
+            جهازك.
           </p>
         </details>
       </div>
@@ -442,26 +446,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to psd to pdf online",
+        "name": "كيفية تحويل PSD إلى PDF عبر الإنترنت",
         "description": "Learn how to psd to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

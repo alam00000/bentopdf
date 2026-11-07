@@ -30,7 +30,7 @@ export async function isCpdfLoaded(): Promise<void> {
   if (!cpdfUrl) {
     throw new Error(
       trText(
-        'CoherentPDF is not configured. Please configure it in WASM Settings.'
+        "CoherentPDF غير مهيأ. يرجى تهيئته في إعدادات WASM."
       )
     );
   }

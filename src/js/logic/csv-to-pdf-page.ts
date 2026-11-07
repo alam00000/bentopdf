@@ -87,7 +87,7 @@ onPageReady(() => {
       console.log('[CSV2PDF] Number of files:', state.files.length);
 
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one CSV file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف CSV واحد على الأقل.");
         hideLoader();
         return;
       }
@@ -124,8 +124,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: originalFile.name,
           }),
           'success',
@@ -133,7 +133,7 @@ onPageReady(() => {
         );
       } else {
         console.log('[CSV2PDF] Converting multiple files:', state.files.length);
-        showLoader('Preparing conversion...');
+        showLoader("جارٍ تجهيز التحويل...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
@@ -149,7 +149,7 @@ onPageReady(() => {
               const overallPercent =
                 (i / state.files.length) * 100 + percent / state.files.length;
               showLoader(
-                trText('Converting {{n}}/{{length}}: {{name}}...', {
+                trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
                   n: i + 1,
                   length: state.files.length,
                   name: file.name,
@@ -170,7 +170,7 @@ onPageReady(() => {
         }
 
         console.log('[CSV2PDF] Generating ZIP file...');
-        showLoader('Creating ZIP archive...');
+        showLoader("جارٍ إنشاء أرشيف ZIP...");
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         console.log('[CSV2PDF] ZIP size:', zipBlob.size);
 
@@ -179,8 +179,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} CSV file(s) to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من ملفات CSV إلى PDF بنجاح.", {
             length: state.files.length,
           }),
           'success',
@@ -195,8 +195,8 @@ onPageReady(() => {
       );
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

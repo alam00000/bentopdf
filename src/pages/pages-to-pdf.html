@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Pages to PDF Online Free - Pages to PDF Tool | Pixel PDF"
+      content="Pages إلى PDF أونلاين مجانًا - أداة Pages إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert Apple Pages documents to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Apple Pages إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="pages to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pages-to-pdf" />
     <meta
       property="og:title"
-      content="Pages to PDF Online Free - Pages to PDF Tool | Pixel PDF"
+      content="Pages إلى PDF أونلاين مجانًا - أداة Pages إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert Apple Pages documents to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Apple Pages إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/pages-to-pdf" />
-    <meta name="twitter:title" content="Pages to PDF Free" />
+    <meta name="twitter:title" content="Pages إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert Apple Pages documents to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Apple Pages إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Pages to PDF" />
+    <meta name="apple-mobile-web-app-title" content="Pages إلى PDF" />
 
-    <title>Pages to PDF - Convert Apple Pages to PDF - Pixel PDF</title>
+    <title>Pages إلى PDF - حوّل مستندات Apple Pages إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pagesToPdf.name"
         >
-          Pages to PDF
+          Pages إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pagesToPdf.subtitle">
-          Convert Apple Pages documents to PDF format. Supports multiple files.
+          تحويل مستندات Apple Pages إلى تنسيق PDF. يدعم عدة ملفات.
         </p>
 
         <div
@@ -129,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="tools:pagesToPdf.acceptedFormats"
             >
-              Pages files
+              ملفات Pages
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -148,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".pages"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -158,14 +158,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearFiles">Clear Files</span>
+            <span data-i18n="upload.clearFiles">مسح الملفات</span>
           </button>
         </div>
 
@@ -174,7 +174,7 @@
         <div id="convert-options" class="hidden mt-6">
           <button id="process-btn" class="btn-gradient w-full">
             <span data-i18n="tools:pagesToPdf.convertButton"
-              >Convert to PDF</span
+              >تحويل إلى PDF</span
             >
           </button>
         </div>
@@ -182,8 +182,8 @@
         <div class="flex items-center gap-2 text-gray-500 text-xs mt-6">
           <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
           <p data-i18n="tools.firstLoadNotice">
-            First load takes a moment as we download our conversion engine.
-            After that, all loads will be instant.
+            يستغرق التحميل الأول لحظة أثناء تنزيل محرك التحويل. بعد ذلك، ستكون
+            جميع التحميلات فورية.
           </p>
         </div>
       </div>
@@ -198,7 +198,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -215,14 +215,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -233,7 +233,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -243,9 +243,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -256,9 +256,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -269,9 +269,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -284,43 +284,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -331,99 +337,93 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need a Mac or the Pages app to convert a .pages file?
+            هل أحتاج إلى Mac أو تطبيق Pages لتحويل ملف .pages؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The conversion runs on a LibreOffice engine inside your browser,
-            so it works on Windows, Linux, Chromebooks, and Macs without Pages
-            installed.
+            لا. يعمل التحويل على محرك LibreOffice داخل متصفحك، لذلك يعمل على
+            Windows وLinux وأجهزة Chromebook وأجهزة Mac دون تثبيت Pages.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the first Pages document slow to convert?
+            لماذا يكون أول مستند Pages بطيئًا في التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The engine has to be downloaded on first use, around 75 MB
-            compressed, and then started. Later conversions in the same session
-            reuse it and start right away.
+            يجب تنزيل المحرك عند أول استخدام، بحجم نحو 75 MB مضغوطًا، ثم تشغيله.
+            تعيد التحويلات اللاحقة في نفس الجلسة استخدامه وتبدأ فورًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several Pages documents at once?
+            هل يمكنني تحويل عدة مستندات Pages دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Add multiple .pages files and click Convert to PDF; you get
-            pages-to-pdf.zip with one PDF per document. Files that share a name
-            get a numbered suffix such as Report (1).pdf so nothing is
-            overwritten.
+            نعم. أضف عدة ملفات .pages وانقر على تحويل إلى PDF، فتحصل على
+            pages-to-pdf.zip مع ملف PDF لكل مستند. تحصل الملفات التي تشترك في
+            الاسم على لاحقة رقمية مثل Report (1).pdf حتى لا يُستبدل شيء.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the PDF look exactly like it does in Pages?
+            هل سيبدو PDF تمامًا كما يبدو في Pages؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Usually close, but not guaranteed. A LibreOffice import filter reads
-            the file rather than Pages itself, so complex layouts, some fonts,
-            and newer Pages features may render differently. Check the output
-            before sending it on.
+            قريب عادةً، لكن غير مضمون. يقرأ الملف مرشّح استيراد من LibreOffice
+            وليس Pages نفسه، لذلك قد تظهر التخطيطات المعقدة وبعض الخطوط وميزات
+            Pages الأحدث بشكل مختلف. افحص الناتج قبل إرساله.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What will the PDF be named?
+            ماذا سيكون اسم ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The same base name as the Pages document with a .pdf extension, so
-            Resume.pages becomes Resume.pdf.
+            نفس الاسم الأساسي لمستند Pages مع الامتداد .pdf، فيصبح Resume.pages
+            هو Resume.pdf.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What should I do if the conversion fails?
+            ماذا أفعل إذا فشل التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            An error message shows the reason the engine reported. Make sure the
-            file is a real .pages document and not corrupted; if it still fails,
-            open it in Pages and export it again, or export to PDF from Pages
-            directly.
+            تعرض رسالة الخطأ السبب الذي أبلغ عنه المحرك. تأكد من أن الملف مستند
+            .pages حقيقي وليس تالفًا، وإن استمر الفشل فافتحه في Pages وصدّره مرة
+            أخرى أو صدّره إلى PDF من Pages مباشرة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a Pages file to Word instead of PDF?
+            هل يمكنني تحويل ملف Pages إلى Word بدلًا من PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            This tool only produces PDF. If you need a .docx, convert the Pages
-            file here first and then run the result through
+            تنتج هذه الأداة ملفات PDF فقط. إذا كنت تحتاج إلى ملف .docx، فحوّل
+            ملف Pages هنا أولًا ثم مرّر الناتج عبر
             <a href="/pdf-to-word" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to Word</a
+              >PDF إلى Word</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my Pages document uploaded to a server?
+            هل يُرفع مستند Pages الخاص بي إلى خادم؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The LibreOffice engine reads and renders the document in your
-            browser; the only network transfer is downloading the engine itself.
-            Your file never leaves your device.
+            لا. يقرأ محرك LibreOffice المستند ويعرضه في متصفحك، والنقل الوحيد
+            عبر الشبكة هو تنزيل المحرك نفسه. لا يغادر ملفك جهازك.
           </p>
         </details>
       </div>
@@ -456,26 +456,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to pages to pdf online",
+        "name": "كيفية تحويل Pages إلى PDF أونلاين",
         "description": "Learn how to pages to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

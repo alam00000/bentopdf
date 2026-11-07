@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="PDF to ZIP Online Free - PDF to ZIP Tool | Pixel PDF"
+      content="PDF إلى ZIP أونلاين مجانًا - أداة PDF إلى ZIP | Pixel PDF"
     />
     <meta
       name="description"
-      content="Pdf To Zip online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى ZIP أونلاين. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="pdf to zip, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pdf-to-zip" />
     <meta
       property="og:title"
-      content="PDF to ZIP Online Free - PDF to ZIP Tool | Pixel PDF"
+      content="PDF إلى ZIP أونلاين مجانًا - أداة PDF إلى ZIP | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Pdf To Zip online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى ZIP أونلاين. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/pdf-to-zip" />
-    <meta name="twitter:title" content="PDF to ZIP Free" />
+    <meta name="twitter:title" content="PDF إلى ZIP مجانًا" />
     <meta
       name="twitter:description"
-      content="Pdf To Zip online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى ZIP أونلاين. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF to ZIP" />
+    <meta name="apple-mobile-web-app-title" content="PDF إلى ZIP" />
 
-    <title>PDFs to ZIP - Pixel PDF</title>
+    <title>PDF إلى ZIP - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfsToZip.name"
         >
-          PDFs to ZIP
+          PDF إلى ZIP
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfsToZip.subtitle">
-          Package multiple PDF files into a ZIP archive.
+          تجميع عدة ملفات PDF في أرشيف ZIP.
         </p>
 
         <div
@@ -129,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.multiplePdfs"
             >
-              Multiple PDF files
+              عدة ملفات PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -148,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -157,21 +157,18 @@
         <div id="tool-options" class="hidden mt-6">
           <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-4">
             <p class="text-sm text-gray-300">
-              <strong class="text-white">How it works:</strong>
+              <strong class="text-white">كيف تعمل:</strong>
             </p>
             <ul
               class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
             >
-              <li>
-                All selected PDF files will be packaged into a single ZIP
-                archive.
-              </li>
-              <li>File names will be preserved in the archive.</li>
+              <li>ستُجمَّع كل ملفات PDF المحددة في أرشيف ZIP واحد.</li>
+              <li>ستُحفظ أسماء الملفات في الأرشيف.</li>
             </ul>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Create ZIP Archive
+            إنشاء أرشيف ZIP
           </button>
         </div>
       </div>
@@ -190,9 +187,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -209,16 +205,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -229,7 +224,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -239,9 +234,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -252,9 +247,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -265,9 +260,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -280,43 +275,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -327,99 +328,92 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does PDFs to ZIP actually do to my files?
+            ماذا تفعل أداة PDFs إلى ZIP بملفاتي فعلًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Nothing beyond packaging. The PDFs are copied into a single
-            pdfs_archive.zip with their original names, unchanged, in the order
-            you added them, so what comes out of the ZIP is byte for byte what
-            went in.
+            لا شيء سوى التعبئة. تُنسخ ملفات PDF في ملف pdfs_archive.zip واحد
+            بأسمائها الأصلية دون تغيير وبالترتيب الذي أضفتها به، لذلك ما يخرج من
+            ZIP مطابق بايتًا ببايت لما دخل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does zipping make the PDFs smaller?
+            هل يجعل الضغط في ZIP ملفات PDF أصغر؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The archive is written without compression, since PDF content is
-            already compressed internally and would barely shrink anyway, so
-            expect the ZIP to be about the combined size of the files. To reduce
-            the size, run them through
+            لا. يُكتب الأرشيف دون ضغط، لأن محتوى PDF مضغوط أصلًا داخليًا ولن
+            ينكمش كثيرًا، لذلك توقّع أن يكون حجم ZIP قريبًا من الحجم المجمّع
+            للملفات. لتقليل الحجم، مرّرها عبر
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            first and zip the results.
+            أولًا ثم ضعها في ZIP.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between zipping PDFs and merging them?
+            ما الفرق بين ضغط ملفات PDF في ZIP ودمجها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A ZIP keeps each PDF as a separate file inside one container that
-            the recipient unpacks. Merging joins the pages into one PDF
-            document, which is what you want when the files should be read as a
-            single document; use
+            يحتفظ ZIP بكل PDF كملف منفصل داخل حاوية واحدة يفك المستلم ضغطها. أما
+            الدمج فيضم الصفحات في مستند PDF واحد، وهو ما تريده عندما تُقرأ
+            الملفات كمستند واحد، واستخدم لذلك
             <a href="/merge-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Merge PDF</a
-            >
-            for that.
+              >دمج PDF</a
+            >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What if two of my files have the same name?
+            ماذا لو كان لملفين من ملفاتي الاسم نفسه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Duplicate names are handled automatically: the second file becomes
-            name (1).pdf, the third name (2).pdf, and so on, so nothing gets
-            overwritten inside the archive. Rename the files before uploading if
-            you'd rather have meaningful names.
+            تُعالج الأسماء المكررة تلقائيًا: يصبح الملف الثاني name (1).pdf
+            والثالث name (2).pdf وهكذا، فلا يُستبدل شيء داخل الأرشيف. أعد تسمية
+            الملفات قبل الرفع إذا كنت تفضل أسماء ذات معنى.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add non-PDF files to the archive?
+            هل يمكنني إضافة ملفات غير PDF إلى الأرشيف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Only files with a .pdf extension or a PDF file type are
-            accepted; anything else you drop in is ignored. For a mixed bundle,
-            use your operating system's built-in zip feature instead.
+            لا. تُقبل فقط الملفات ذات الامتداد .pdf أو نوع ملف PDF، ويُتجاهل أي
+            شيء آخر تسقطه. لحزمة مختلطة، استخدم ميزة الضغط المدمجة في نظام
+            التشغيل بدلًا من ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the recipient need special software to open the archive?
+            هل سيحتاج المستلم إلى برنامج خاص لفتح الأرشيف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The output is a standard ZIP file that Windows, macOS, iOS, and
-            Android open without extra software; double-click or tap it to
-            unpack the PDFs.
+            لا. الناتج ملف ZIP قياسي تفتحه Windows وmacOS وiOS وAndroid دون
+            برامج إضافية، انقر عليه نقرًا مزدوجًا أو المسه لفك ملفات PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my PDFs uploaded to build the ZIP?
+            هل تُرفع ملفات PDF الخاصة بي لإنشاء ZIP؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The archive is assembled in your browser, so the files are read
-            from your disk and the ZIP is written back to it without any network
-            transfer. Bundling invoices, contracts, or medical records this way
-            keeps them on your device.
+            لا. يُجمَّع الأرشيف في متصفحك، فتُقرأ الملفات من قرصك ويُكتب ZIP
+            عليه دون أي نقل عبر الشبكة. تجميع الفواتير أو العقود أو السجلات
+            الطبية بهذه الطريقة يُبقيها على جهازك.
           </p>
         </details>
       </div>
@@ -452,26 +446,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to pdf to zip online",
+        "name": "كيفية تحويل PDF إلى ZIP أونلاين",
         "description": "Learn how to pdf to zip using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

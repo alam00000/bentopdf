@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="PDF to BMP Online Free - PDF to BMP Tool | Pixel PDF"
+      content="PDF إلى BMP أونلاين مجانًا - أداة PDF إلى BMP | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert each PDF page into a BMP image. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل كل صفحة من PDF إلى صورة BMP. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="pdf to bmp, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pdf-to-bmp" />
     <meta
       property="og:title"
-      content="PDF to BMP Online Free - PDF to BMP Tool | Pixel PDF"
+      content="PDF إلى BMP أونلاين مجانًا - أداة PDF إلى BMP | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert each PDF page into a BMP image. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل كل صفحة من PDF إلى صورة BMP. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/pdf-to-bmp" />
-    <meta name="twitter:title" content="PDF to BMP Free" />
+    <meta name="twitter:title" content="PDF إلى BMP مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert each PDF page into a BMP image. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل كل صفحة من PDF إلى صورة BMP. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF to BMP" />
+    <meta name="apple-mobile-web-app-title" content="PDF إلى BMP" />
 
-    <title>PDF to BMP - Pixel PDF</title>
+    <title>PDF إلى BMP - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfToBmp.name"
         >
-          PDF to BMP
+          PDF إلى BMP
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfToBmp.subtitle">
-          Convert each PDF page into a BMP image.
+          تحويل كل صفحة PDF إلى صورة BMP.
         </p>
 
         <div
@@ -129,15 +129,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -156,7 +156,7 @@
             class="btn-gradient w-full"
             data-i18n="common.convert"
           >
-            Convert
+            تحويل
           </button>
         </div>
       </div>
@@ -171,7 +171,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -187,16 +187,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -207,7 +206,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -217,9 +216,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -230,9 +229,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -243,9 +242,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -258,43 +257,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -305,103 +310,100 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What resolution are the BMP images?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            ما دقة صور BMP؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Pages render at a fixed 2x scale, so a Letter page (8.5 x 11 inches)
-            becomes a 1224 x 1584 pixel image, about 144 pixels per inch.
-            There's no DPI setting on this tool; for an adjustable scale use
+            تُعرض الصفحات بمقياس ثابت 2x، فتصبح صفحة Letter (8.5 × 11 بوصة) صورة
+            بحجم 1224 × 1584 بكسل، أي نحو 144 بكسل في البوصة. لا يوجد إعداد DPI
+            في هذه الأداة، ولمقياس قابل للتعديل استخدم
             <a href="/pdf-to-png" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to PNG</a
+              >PDF إلى PNG</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How is a multi-page PDF delivered?
+            كيف يُسلَّم ملف PDF متعدد الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A one-page PDF downloads as a single .bmp named after the file. A
-            multi-page PDF downloads as a ZIP named filename_bmps.zip containing
-            page_1.bmp, page_2.bmp, and so on, one image per page.
+            يُنزَّل ملف PDF من صفحة واحدة كملف .bmp واحد يحمل اسم الملف.
+            ويُنزَّل ملف PDF متعدد الصفحات كملف ZIP باسم filename_bmps.zip يحتوي
+            على page_1.bmp وpage_2.bmp وهكذا، بصورة لكل صفحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why are the BMP files so large?
+            لماذا ملفات BMP كبيرة جدًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            BMP stores raw pixel data without compression, so a page takes the
-            same space whether it's blank or full of detail, and files are far
-            larger than a PNG or JPG of the same page. If your target software
-            accepts PNG, that format is lossless too at a fraction of the size.
+            يخزّن BMP بيانات البكسلات الخام دون ضغط، لذلك تشغل الصفحة المساحة
+            نفسها سواء كانت فارغة أو مليئة بالتفاصيل، وتكون الملفات أكبر بكثير
+            من PNG أو JPG للصفحة نفسها. إذا كان برنامجك المستهدف يقبل PNG فهذه
+            الصيغة بدون فقدان أيضًا وبجزء صغير من الحجم.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several PDFs to BMP in one batch?
+            هل يمكنني تحويل عدة ملفات PDF إلى BMP دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No, one PDF per run; if you drop several files only the first is
-            used. Convert them one after another, or pick the pages you need
-            first with Extract Pages so each run stays small.
+            لا، ملف PDF واحد في كل مرة، وإذا أسقطت عدة ملفات فسيُستخدم الأول
+            فقط. حوّلها واحدًا تلو الآخر، أو اختر الصفحات التي تحتاجها أولًا
+            باستخدام استخراج الصفحات ليبقى كل تشغيل صغيرًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the conversion keep transparency or vector quality?
+            هل يحافظ التحويل على الشفافية أو جودة المتجهات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Every page becomes a flat raster image on a white background,
-            and text becomes pixels, so the BMP can't be searched or enlarged
-            without softening. Keep the original PDF for editing.
+            لا. تتحول كل صفحة إلى صورة نقطية مسطحة على خلفية بيضاء ويصبح النص
+            بكسلات، لذلك لا يمكن البحث في BMP ولا تكبيره دون فقدان الحدة. احتفظ
+            بملف PDF الأصلي للتحرير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a password-protected PDF to BMP?
+            هل يمكنني تحويل PDF محمي بكلمة مرور إلى BMP؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, if you know the password: the tool prompts for it when the file
-            loads and then renders the pages normally. A file with an unknown
-            password can't be opened.
+            نعم، إذا كنت تعرف كلمة المرور: تطلبها الأداة عند تحميل الملف ثم تعرض
+            الصفحات بشكل طبيعي. لا يمكن فتح ملف بكلمة مرور مجهولة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded to convert it to BMP?
+            هل يُرفع ملف PDF الخاص بي لتحويله إلى BMP؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering happens on a canvas in your browser and the images are
-            packed into the ZIP locally, so the document never leaves your
-            computer. Large PDFs just take longer because your own machine does
-            the rendering.
+            لا. يتم العرض على لوحة (canvas) في متصفحك وتُحزَّم الصور في ملف ZIP
+            محليًا، لذلك لا يغادر المستند حاسوبك أبدًا. تستغرق ملفات PDF الكبيرة
+            وقتًا أطول فقط لأن جهازك هو الذي يتولى العرض.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which tool should I use instead if BMP isn't required?
+            أي أداة أستخدم بدلًا من ذلك إذا لم تكن BMP مطلوبة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            For lossless output with small files, PDF to PNG; for photos and the
-            smallest files,
+            لمخرجات بدون فقدان وبحجم صغير، استخدم PDF إلى PNG، وللصور
+            الفوتوغرافية وأصغر الملفات استخدم
             <a href="/pdf-to-jpg" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to JPG</a
-            >; for multi-page fax or scanning systems, PDF to TIFF. BMP mainly
-            makes sense when a legacy application or device insists on it.
+              >PDF إلى JPG</a
+            >، ولأنظمة الفاكس أو المسح متعددة الصفحات استخدم PDF إلى TIFF. لا
+            يكون لـ BMP معنى غالبًا إلا عندما يصر تطبيق أو جهاز قديم عليه.
           </p>
         </details>
       </div>
@@ -434,26 +436,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to pdf to bmp online",
+        "name": "كيفية تحويل PDF إلى BMP أونلاين",
         "description": "Learn how to pdf to bmp using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

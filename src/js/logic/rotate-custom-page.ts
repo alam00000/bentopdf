@@ -206,7 +206,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -229,7 +229,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
 
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
 
@@ -238,7 +238,7 @@ async function updateUI() {
       const pageCount = pageState.pdfDoc.getPageCount();
       pageState.rotations = new Array(pageCount).fill(0);
 
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
@@ -250,7 +250,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -260,11 +260,11 @@ async function updateUI() {
 
 async function applyRotations() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Applying rotations...');
+  showLoader("جارٍ تطبيق التدويرات...");
 
   try {
     const pageCount = pageState.pdfDoc.getPageCount();
@@ -319,8 +319,8 @@ async function applyRotations() {
     );
 
     showAlert(
-      'Success',
-      'Rotations applied successfully!',
+      "تم بنجاح",
+      "تم تطبيق التدويرات بنجاح!",
       'success',
       function () {
         resetState();
@@ -328,7 +328,7 @@ async function applyRotations() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not apply rotations.');
+    showAlert("خطأ", "تعذر تطبيق التدويرات.");
   } finally {
     hideLoader();
   }

@@ -145,9 +145,9 @@ function displayResults(result: DeskewResult): void {
       return `
         <div class="flex items-center gap-2 text-sm py-1">
           <i data-lucide="${icon}" class="w-4 h-4 ${color}"></i>
-          <span class="text-gray-300">${trHtml('Page {{n}}:', { n: idx + 1 })}</span>
+          <span class="text-gray-300">${trHtml("الصفحة {{n}}:", { n: idx + 1 })}</span>
           <span class="${color}">${angle.toFixed(2)}°</span>
-          ${wasCorrected ? `<span class="text-green-400 text-xs">${trHtml('(corrected)')}</span>` : ''}
+          ${wasCorrected ? `<span class="text-green-400 text-xs">${trHtml("(تم التصحيح)")}</span>` : ''}
         </div>
       `;
     })
@@ -158,7 +158,7 @@ function displayResults(result: DeskewResult): void {
 
 async function processDeskew(): Promise<void> {
   if (selectedFiles.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
     return;
   }
 
@@ -178,14 +178,14 @@ async function processDeskew(): Promise<void> {
 
   selectedFiles = await batchDecryptIfNeeded(selectedFiles);
 
-  showLoader('Initializing PyMuPDF...');
+  showLoader("جارٍ تهيئة PyMuPDF...");
 
   try {
     const pdf = await initPyMuPDF();
     await pdf.load();
 
     for (const file of selectedFiles) {
-      showLoader(trText('Deskewing {{name}}...', { name: file.name }));
+      showLoader(trText("جارٍ تقويم ميل {{name}}...", { name: file.name }));
 
       const { pdf: resultPdf, result } = await pdf.deskewPdf(file, {
         threshold,
@@ -199,12 +199,12 @@ async function processDeskew(): Promise<void> {
 
     hideLoader();
     showAlert(
-      'Success',
-      trText('Deskewed {{length}} file(s). {{value}}', {
+      "تم بنجاح",
+      trText("تم تقويم ميل {{length}} من الملفات. {{value}}", {
         length: selectedFiles.length,
         value:
           selectedFiles.length > 1
-            ? trText('Downloads started for all files.')
+            ? trText("بدأ تنزيل جميع الملفات.")
             : '',
       })
     );
@@ -212,9 +212,9 @@ async function processDeskew(): Promise<void> {
     hideLoader();
     console.error('Deskew error:', error);
     showAlert(
-      'Error',
-      trText('Failed to deskew PDF: {{error}}', {
-        error: error instanceof Error ? error.message : trText('Unknown error'),
+      "خطأ",
+      trText("تعذر تقويم ميل PDF: {{error}}", {
+        error: error instanceof Error ? error.message : trText("خطأ غير معروف"),
       })
     );
   }

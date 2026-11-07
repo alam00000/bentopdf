@@ -91,8 +91,8 @@ onPageReady(() => {
   const convert = async () => {
     if (state.files.length === 0) {
       showAlert(
-        'No Files',
-        trText('Please select at least one {{FILETYPE_NAME}} file.', {
+        "لا توجد ملفات",
+        trText("يرجى اختيار ملف {{FILETYPE_NAME}} واحد على الأقل.", {
           FILETYPE_NAME,
         })
       );
@@ -102,14 +102,14 @@ onPageReady(() => {
     try {
       const converter = getLibreOfficeConverter();
 
-      showLoader('Loading engine...');
+      showLoader("جارٍ تحميل المحرك...");
       await converter.initialize((progress: LoadProgress) => {
         showLoader(progress.message, progress.percent);
       });
 
       if (state.files.length === 1) {
         const file = state.files[0];
-        showLoader(trText('Converting {{name}}...', { name: file.name }));
+        showLoader(trText("جارٍ تحويل {{name}}...", { name: file.name }));
         const pdfBlob = await converter.convertToPdf(file);
 
         const baseName = file.name.replace(/\.[^/.]+$/, '');
@@ -117,15 +117,15 @@ onPageReady(() => {
 
         hideLoader();
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: file.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple files...');
+        showLoader("جارٍ تحويل عدة ملفات...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -133,7 +133,7 @@ onPageReady(() => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -154,8 +154,8 @@ onPageReady(() => {
 
         hideLoader();
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} files to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من الملفات إلى PDF بنجاح.", {
             length: state.files.length,
           }),
           'success',
@@ -166,8 +166,8 @@ onPageReady(() => {
       hideLoader();
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, e);
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

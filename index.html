@@ -1,18 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>Pixel PDF - Free Online PDF Tools | Privacy-First PDF Toolkit</title>
-    <meta
-      name="title"
-      content="Pixel PDF - Free Online PDF Tools | Privacy-First PDF Toolkit"
-    />
+    <title>بيكسل PDF ، أدوات احترافية، خصوصية مطلقة</title>
+    <meta name="title" content="بيكسل PDF ، أدوات احترافية، خصوصية مطلقة" />
     <meta
       name="description"
-      content="Free online PDF tools that run entirely in your browser. Merge, split, compress, convert, and edit PDFs. No uploads, no signup, no file limits."
+      content="أدوات PDF مجانية عبر الإنترنت تعمل بالكامل في متصفحك. ادمج وقسّم واضغط وحوّل وعدّل ملفات PDF. بلا رفع ملفات، بلا تسجيل، بلا حدود للملفات."
     />
     <meta
       name="keywords"
@@ -32,11 +29,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/" />
     <meta
       property="og:title"
-      content="Pixel PDF - Free Online PDF Tools | Privacy-First PDF Toolkit"
+      content="بيكسل PDF ، أدوات احترافية، خصوصية مطلقة"
     />
     <meta
       property="og:description"
-      content="Free online PDF toolkit with 100+ tools. Merge, split, compress, convert PDFs - 100% browser-based, no signup, unlimited files, privacy-first."
+      content="مجموعة أدوات PDF مجانية عبر الإنترنت تضم أكثر من 100 أداة. ادمج وقسّم واضغط وحوّل ملفات PDF - يعمل 100% في المتصفح، بلا تسجيل، وملفات غير محدودة، والخصوصية أولًا."
     />
     <meta
       property="og:image"
@@ -45,15 +42,15 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Pixel PDF" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="ar_SA" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/" />
-    <meta name="twitter:title" content="Pixel PDF - Free Online PDF Tools" />
+    <meta name="twitter:title" content="بيكسل PDF ، أدوات PDF مجانية" />
     <meta
       name="twitter:description"
-      content="Free PDF tools that run in your browser. Merge, split, compress, convert - all free, no signup, privacy-first."
+      content="أدوات PDF مجانية تعمل في متصفحك. ادمج وقسّم واضغط وحوّل - كلها مجانية، بلا تسجيل، والخصوصية أولًا."
     />
     <meta
       name="twitter:image"
@@ -102,73 +99,84 @@
   <body class="lp antialiased">
     {{> navbar }}
 
-    <section id="hero-section">
-      <div class="lp-frame">
-        <div class="lp-hero">
-          <div class="lp-hero-bg" aria-hidden="true">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i
-            ><i></i><i></i><i></i>
+    <section id="hero-section" class="ar-hero" aria-labelledby="hero-title">
+      <div class="ar-hero-inner">
+        <div class="ar-hero-copy">
+          <span class="ar-eyebrow"
+            ><span></span> ملفاتك في أمان. أفكارك بلا حدود.</span
+          >
+          <h1 id="hero-title">
+            كل ما تحتاجه لملفاتك،<br /><em>ببساطة وإتقان.</em>
+          </h1>
+          <p>
+            حوّل، ادمج، وعدّل ملفات PDF في مساحة عمل واحدة.<br />أدوات احترافية
+            تعمل داخل متصفحك، وخصوصية لا تقبل المساومة.
+          </p>
+          <div class="ar-hero-actions">
+            <a class="ar-primary" href="#tools-header"
+              >استكشف الأدوات <i data-lucide="arrow-left"></i
+            ></a>
+            <a class="ar-secondary" href="/about"
+              >تعرّف على بيكسل <i data-lucide="arrow-up-left"></i
+            ></a>
           </div>
-          <div class="lp-hero-content">
-            <img
-              src="/images/pixelpdf-logo.png"
-              alt="Pixel PDF"
-              class="lp-hero-logo"
-            />
-            <h1 class="lp-h1">
-              <span class="line">
-                <span class="lp-h1-lead" data-i18n="hero.title">The</span>
-                <span class="lp-h1-unit"
-                  ><span data-i18n="hero.pdfToolkit">PDF Toolkit</span
-                  ><span class="lp-chip" aria-hidden="true"
-                    ><i data-lucide="briefcase"></i></span
-                ></span>
-              </span>
-              <span class="line dim">
-                <span data-i18n="hero.builtForPrivacy">built for privacy</span
-                ><span class="dot">.</span>
-              </span>
-            </h1>
-            <p class="lp-sub" data-i18n="compliance.processingLocal">
-              All the processing happens locally on your device.
-            </p>
-            <div class="lp-checks">
-              <span class="lp-check"
-                ><i data-lucide="check-circle"></i
-                ><span data-i18n="hero.noSignups">No Signups</span></span
-              >
-              <span class="lp-check"
-                ><i data-lucide="check-circle"></i
-                ><span data-i18n="hero.unlimitedUse">Unlimited Use</span></span
-              >
-              <span class="lp-check"
-                ><i data-lucide="check-circle"></i
-                ><span data-i18n="hero.worksOffline">Works Offline</span></span
-              >
-            </div>
-            <div class="lp-actions">
-              <span class="lp-brackets">
-                <a href="#tools-header" class="lp-btn lp-btn--primary">
-                  <span data-i18n="hero.startUsing">Start Using Now</span>
-                  <i data-lucide="arrow-right"></i>
-                </a>
-              </span>
-            </div>
+          <div class="ar-assurances">
+            <span><i data-lucide="check"></i> دون تسجيل</span
+            ><span><i data-lucide="check"></i> معالجة على جهازك</span
+            ><span><i data-lucide="check"></i> استخدام مجاني</span>
           </div>
         </div>
+        <div class="ar-workspace" aria-label="أدوات مختارة لبدء العمل">
+          <div class="ar-workspace-top">
+            <span><i data-lucide="layers"></i> مساحة إنجازك</span
+            ><span class="ar-status">محلية وآمنة</span>
+          </div>
+          <div class="ar-document">
+            <span class="ar-file-icon"><i data-lucide="file-text"></i></span>
+            <div>
+              <strong>من الفكرة إلى مستند متكامل</strong
+              ><small>خطوات أقل. نتائج أفضل.</small>
+            </div>
+            <i data-lucide="circle-check"></i>
+          </div>
+          <div class="ar-quick-tools">
+            <a href="/merge-pdf"
+              ><i data-lucide="combine"></i><strong>دمج الملفات</strong
+              ><small>اجمعها في مستند واحد</small></a
+            >
+            <a href="/compress-pdf"
+              ><i data-lucide="minimize-2"></i><strong>ضغط الملفات</strong
+              ><small>حجم أصغر، جودة عالية</small></a
+            >
+            <a href="/edit-pdf"
+              ><i data-lucide="pen-tool"></i><strong>تعديل المستندات</strong
+              ><small>أضف لمستك بكل سهولة</small></a
+            >
+          </div>
+          <div class="ar-workspace-bottom">
+            <i data-lucide="shield-check"></i> ملفاتك لا تغادر جهازك أبدًا
+            <span>PDF</span>
+          </div>
+        </div>
+      </div>
+      <div class="ar-value-strip">
+        <span><i data-lucide="sparkles"></i> أكثر من ١٠٠ أداة بين يديك</span
+        ><span><i data-lucide="shield-check"></i> خصوصيتك أولويتنا</span
+        ><span><i data-lucide="zap"></i> بلا تحميل برامج</span
+        ><span><i data-lucide="monitor-smartphone"></i> على جميع أجهزتك</span>
       </div>
     </section>
 
     <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
       <div id="tools-header" class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
-          <span data-i18n="tools.title">Get Started with</span>
-          <span class="marker-slanted ml-2" data-i18n="tools.toolsLabel">
-            Tools</span
+          <span data-i18n="tools.title">ابدأ مع</span>
+          <span class="marker-slanted ml-2" data-i18n="tools.toolsLabel"
+            >الأدوات</span
           >
         </h2>
         <p class="text-gray-400" data-i18n="tools.subtitle">
-          Click a tool to open the file uploader
+          انقر على أداة لفتح رافع الملفات
         </p>
       </div>
 
@@ -182,7 +190,7 @@
               type="text"
               id="search-bar"
               class="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Search for a tool (e.g., 'split', 'organize'...)"
+              placeholder="ابحث عن أداة (مثلاً، 'تقسيم'، 'ترتيب'...)"
               data-i18n-placeholder="tools.searchPlaceholder"
             />
             <span
@@ -195,7 +203,7 @@
               <button
                 id="open-shortcuts-btn"
                 class="p-1 hover:bg-gray-600 rounded-md text-gray-400 hover:text-white transition-colors"
-                title="Keyboard Shortcuts"
+                title="اختصارات لوحة المفاتيح"
               >
                 <i data-lucide="settings" class="w-4 h-4"></i>
               </button>
@@ -220,9 +228,9 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
         <div id="tool-content"></div>
       </div>
@@ -240,7 +248,7 @@
             class="text-white text-lg font-medium"
             data-i18n="loader.processing"
           >
-            Processing...
+            جارٍ المعالجة...
           </p>
         </div>
       </div>
@@ -253,16 +261,16 @@
           class="bg-gray-800 max-w-sm w-full p-6 rounded-lg border border-gray-700 shadow-xl text-center"
         >
           <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-            Alert
+            تنبيه
           </h3>
           <p id="alert-message" class="text-gray-300 mb-6 whitespace-pre-line">
-            This is an alert message.
+            هذه رسالة تنبيه.
           </p>
           <button
             id="alert-ok"
             class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
           >
-            OK
+            حسنًا
           </button>
         </div>
       </div>
@@ -275,19 +283,19 @@
           class="bg-white text-black rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col"
         >
           <div class="p-4 border-b flex justify-between items-center">
-            <h3 class="text-xl font-bold">Document Preview</h3>
+            <h3 class="text-xl font-bold">معاينة المستند</h3>
             <div class="flex gap-4">
               <button
                 id="preview-download-btn"
                 class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
               >
-                Download as PDF
+                تنزيل كملف PDF
               </button>
               <button
                 id="preview-close-btn"
                 class="btn bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700"
               >
-                Close
+                إغلاق
               </button>
             </div>
           </div>
@@ -320,7 +328,7 @@
                   id="password-modal-title"
                   class="text-xl font-bold text-white mb-1"
                 >
-                  Password Required
+                  كلمة المرور مطلوبة
                 </h3>
                 <p
                   id="password-modal-filename"
@@ -334,7 +342,7 @@
                   type="password"
                   id="password-modal-input"
                   class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                  placeholder="Enter password"
+                  placeholder="أدخل كلمة المرور"
                   autocomplete="off"
                 />
                 <button
@@ -356,13 +364,13 @@
               id="password-modal-cancel"
               class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
             >
-              Skip
+              تخطي
             </button>
             <button
               id="password-modal-submit"
               class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
             >
-              Unlock
+              فتح القفل
             </button>
           </div>
         </div>
@@ -374,7 +382,7 @@
       <button
         id="scroll-to-top-btn"
         class="fixed bottom-12 right-8 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 invisible z-40"
-        aria-label="Scroll to top"
+        aria-label="التمرير إلى الأعلى"
       >
         <i data-lucide="arrow-up" class="w-6 h-6"></i>
       </button>
@@ -394,7 +402,7 @@
         "@type": "WebApplication",
         "name": "Pixel PDF",
         "url": "https://www.pixelpdf.com",
-        "description": "Free, privacy-first online PDF toolkit with 100+ tools. Merge, split, compress, convert PDFs - 100% browser-based, no signup required, unlimited files.",
+        "description": "مجموعة أدوات PDF مجانية عبر الإنترنت تضع الخصوصية أولًا وتضم أكثر من 100 أداة. ادمج وقسّم واضغط وحوّل ملفات PDF - يعمل 100% في المتصفح، بلا حاجة إلى تسجيل، وملفات غير محدودة.",
         "applicationCategory": "ProductivityApplication",
         "operatingSystem": "Any - Web Browser",
         "offers": {
@@ -403,18 +411,18 @@
           "priceCurrency": "USD"
         },
         "featureList": [
-          "Merge PDF",
-          "Split PDF",
-          "Compress PDF",
-          "Convert PDF to Word",
-          "Convert PDF to JPG",
-          "Edit PDF",
-          "Rotate PDF",
-          "Organize PDF",
-          "PDF to Excel",
-          "Sign PDF",
-          "Encrypt PDF",
-          "Decrypt PDF"
+          "دمج PDF",
+          "تقسيم PDF",
+          "ضغط PDF",
+          "تحويل PDF إلى Word",
+          "تحويل PDF إلى JPG",
+          "تحرير PDF",
+          "تدوير PDF",
+          "تنظيم PDF",
+          "PDF إلى Excel",
+          "توقيع PDF",
+          "تشفير PDF",
+          "فك تشفير PDF"
         ],
         "browserRequirements": "Requires JavaScript. Requires HTML5."
       }
@@ -442,6 +450,5 @@
         }
       }
     </script>
-
   </body>
 </html>

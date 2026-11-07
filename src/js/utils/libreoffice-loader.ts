@@ -56,7 +56,7 @@ async function fetchAssetBlob(url: string): Promise<Blob> {
         return fetch(partName).then((response) => {
           if (!response.ok) {
             throw new Error(
-              trText('Failed to fetch {{url}}: HTTP {{status}}', {
+              trText("تعذر جلب {{url}}: HTTP {{status}}", {
                 url: partName,
                 status: response.status,
               })
@@ -72,7 +72,7 @@ async function fetchAssetBlob(url: string): Promise<Blob> {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(
-      trText('Failed to fetch {{url}}: HTTP {{status}}', {
+      trText("تعذر جلب {{url}}: HTTP {{status}}", {
         url,
         status: response.status,
       })
@@ -124,7 +124,7 @@ export class LibreOfficeConverter {
       progressCallback?.({
         phase: 'loading',
         percent: 0,
-        message: trText('Loading conversion engine...'),
+        message: trText("جارٍ تحميل محرك التحويل..."),
       });
 
       const [sofficeWasmUrl, sofficeDataUrl] = await Promise.all([
@@ -152,7 +152,7 @@ export class LibreOfficeConverter {
         }) => {
           if (progressCallback && !this.initialized) {
             const simplifiedMessage = trText(
-              'Loading conversion engine ({{percent}}%)...',
+              "جارٍ تحميل محرك التحويل ({{percent}}%)...",
               { percent: Math.round(info.percent) }
             );
             progressCallback({
@@ -177,7 +177,7 @@ export class LibreOfficeConverter {
       progressCallback?.({
         phase: 'ready',
         percent: 100,
-        message: trText('Conversion engine ready!'),
+        message: trText("محرك التحويل جاهز!"),
       });
 
       // Null out the callback to prevent any late-firing progress updates
@@ -193,7 +193,7 @@ export class LibreOfficeConverter {
 
   async convertToPdf(file: File): Promise<Blob> {
     if (!this.converter) {
-      throw new Error(trText('Converter not initialized'));
+      throw new Error(trText("المحوّل غير مهيأ"));
     }
 
     console.log(`[LibreOffice] Converting ${file.name} to PDF...`);

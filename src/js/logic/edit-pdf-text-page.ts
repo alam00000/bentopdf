@@ -65,9 +65,9 @@ function menuItem(
 }
 
 const getScopes = (): [string, string, string][] => [
-  ['text', trText('Edit Text'), 'ph-text-t'],
-  ['image', trText('Edit Images'), 'ph-image'],
-  ['shape', trText('Edit Shapes'), 'ph-shapes'],
+  ['text', trText("تعديل النص"), 'ph-text-t'],
+  ['image', trText("تعديل الصور"), 'ph-image'],
+  ['shape', trText("تعديل الأشكال"), 'ph-shapes'],
 ];
 
 function setupEditMenu() {
@@ -90,13 +90,13 @@ function setupEditMenu() {
     scopeSel.value = value;
     scopeSel.dispatchEvent(new Event('change'));
     const names: Record<string, string> = {
-      text: trText('Text'),
-      image: trText('Images'),
-      shape: trText('Shapes'),
+      text: trText("النص"),
+      image: trText("الصور"),
+      shape: trText("الأشكال"),
     };
     label.textContent = picked.has('all')
-      ? trText('Edit All')
-      : trText('Edit {{scopes}}', {
+      ? trText("تعديل الكل")
+      : trText("تعديل {{scopes}}", {
           scopes: getScopes()
             .filter(([k]) => picked.has(k))
             .map(([k]) => names[k])
@@ -128,7 +128,7 @@ function setupEditMenu() {
       menu.replaceChildren();
       menu.appendChild(
         menuItem(
-          trText('Edit All'),
+          trText("تعديل الكل"),
           picked.has('all'),
           () => {
             picked = new Set(['all']);
@@ -239,7 +239,7 @@ function setupZoomMenu() {
     inp.type = 'number';
     inp.min = '20';
     inp.max = '600';
-    inp.placeholder = trText('Custom Zoom');
+    inp.placeholder = trText("تكبير مخصص");
     const pctSpan = document.createElement('span');
     pctSpan.textContent = '%';
     form.append(inp, pctSpan);
@@ -306,7 +306,7 @@ function relocateAddText() {
   icon.className = 'ph ph-text-t';
   addTextBtn.appendChild(icon);
   addTextBtn.classList.add('btn', 'icon');
-  addTextBtn.title = trText('Add a text box');
+  addTextBtn.title = trText("إضافة مربع نص");
   findBtn.parentElement.insertBefore(addTextBtn, findBtn);
   const sync = () =>
     addTextBtn.classList.toggle('on', !editBtn.classList.contains('on'));
@@ -342,10 +342,10 @@ function setupDocPanel() {
     const head = document.createElement('div');
     head.className = 'docmodal-head';
     const title = document.createElement('span');
-    title.textContent = trText('Document Properties');
+    title.textContent = trText("خصائص المستند");
     const x = document.createElement('button');
     x.className = 'btn icon';
-    x.title = trText('Close');
+    x.title = trText("إغلاق");
     const xi = document.createElement('i');
     xi.className = 'ph ph-x';
     x.appendChild(xi);
@@ -356,44 +356,44 @@ function setupDocPanel() {
     const inch = (pt: number) => (pt / 72).toFixed(2);
     const groups: [string, [string, string][]][] = [
       [
-        trText('Description'),
+        trText("الوصف"),
         [
-          [trText('File'), desc.meta.name],
-          [trText('Title'), f.Title || '—'],
-          [trText('Author'), f.Author || '—'],
-          [trText('Subject'), f.Subject || '—'],
-          [trText('Keywords'), f.Keywords || '—'],
+          [trText("ملف"), desc.meta.name],
+          [trText("العنوان"), f.Title || '—'],
+          [trText("المؤلف"), f.Author || '—'],
+          [trText("الموضوع"), f.Subject || '—'],
+          [trText("الكلمات المفتاحية"), f.Keywords || '—'],
           [
-            trText('Created'),
+            trText("تاريخ الإنشاء"),
             f.CreationDate ? formatPdfDate(f.CreationDate) : '—',
           ],
-          [trText('Modified'), f.ModDate ? formatPdfDate(f.ModDate) : '—'],
-          [trText('Application'), f.Creator || '—'],
+          [trText("معدل"), f.ModDate ? formatPdfDate(f.ModDate) : '—'],
+          [trText("التطبيق"), f.Creator || '—'],
         ],
       ],
       [
-        trText('Advanced'),
+        trText("متقدم"),
         [
-          [trText('PDF Producer'), f.Producer || '—'],
-          [trText('File Size'), `${(desc.meta.size / 1024).toFixed(0)} KB`],
+          [trText("منتج PDF"), f.Producer || '—'],
+          [trText("حجم الملف"), `${(desc.meta.size / 1024).toFixed(0)} KB`],
           [
-            trText('Page Size'),
+            trText("حجم الصفحة"),
             desc.pageSize
               ? `${inch(desc.pageSize.w)} × ${inch(desc.pageSize.h)} in`
               : '—',
           ],
           [
-            trText('Number of Pages'),
+            trText("عدد الصفحات"),
             desc.info?.pages ? String(desc.info.pages) : '—',
           ],
           ...(desc.info?.signatures
-            ? ([[trText('Signatures'), String(desc.info.signatures)]] as [
+            ? ([[trText("التوقيعات"), String(desc.info.signatures)]] as [
                 string,
                 string,
               ][])
             : []),
           ...(desc.pdfa
-            ? ([[trText('Conformance'), 'PDF/A']] as [string, string][])
+            ? ([[trText("المطابقة"), 'PDF/A']] as [string, string][])
             : []),
         ],
       ],
@@ -594,12 +594,12 @@ function setupFallbackFonts(
 async function launchEditor(file: File) {
   if (launching) return;
   launching = true;
-  showLoader('Loading PDF Text Editor...');
+  showLoader("جارٍ تحميل محرر نصوص PDF...");
   try {
     hideLoader();
     const decrypted = await batchDecryptIfNeeded([file]);
     if (decrypted.length === 0) return;
-    showLoader('Loading PDF Text Editor...');
+    showLoader("جارٍ تحميل محرر نصوص PDF...");
     document.getElementById('uploader')?.classList.add('hidden');
     document.getElementById('tool-landing')?.classList.add('hidden');
     document.getElementById('text-editor-app')?.removeAttribute('hidden');
@@ -647,7 +647,7 @@ function handleFiles(files: FileList) {
     (f) => f.type === 'application/pdf' || /\.pdf$/i.test(f.name)
   );
   if (!pdf) {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
   void launchEditor(pdf);

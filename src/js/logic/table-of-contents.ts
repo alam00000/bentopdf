@@ -90,7 +90,7 @@ function renderFileDisplay(file: File) {
 
 async function handleFileSelect(file: File) {
   if (file.type !== 'application/pdf') {
-    showStatus(trText('Please select a PDF file.'), 'error');
+    showStatus(trText("يرجى اختيار ملف PDF."), 'error');
     return;
   }
 

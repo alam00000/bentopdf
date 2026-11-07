@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="HEIC to PDF Online Free - HEIC to PDF Tool | Pixel PDF"
+      content="HEIC إلى PDF عبر الإنترنت مجانًا - أداة HEIC إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Create a PDF from one or more HEIC images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة HEIC واحدة أو أكثر. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="heic to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/heic-to-pdf" />
     <meta
       property="og:title"
-      content="HEIC to PDF Online Free - HEIC to PDF Tool | Pixel PDF"
+      content="HEIC إلى PDF عبر الإنترنت مجانًا - أداة HEIC إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Create a PDF from one or more HEIC images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة HEIC واحدة أو أكثر. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/heic-to-pdf" />
-    <meta name="twitter:title" content="HEIC to PDF Free" />
+    <meta name="twitter:title" content="HEIC إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Create a PDF from one or more HEIC images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة HEIC واحدة أو أكثر. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="HEIC to PDF" />
+    <meta name="apple-mobile-web-app-title" content="HEIC إلى PDF" />
 
-    <title>HEIC to PDF - Pixel PDF</title>
+    <title>HEIC إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:heicToPdf.name"
         >
-          HEIC to PDF
+          HEIC إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:heicToPdf.subtitle">
-          Create a PDF from one or more HEIC images.
+          إنشاء PDF من صورة HEIC واحدة أو أكثر.
         </p>
 
         <div
@@ -129,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.heicImages"
             >
-              HEIC/HEIF images
+              صور HEIC/HEIF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -148,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".heic,.heif"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -158,21 +158,21 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <button id="process-btn" class="hidden btn-gradient w-full mt-6">
-          Convert to PDF
+          التحويل إلى PDF
         </button>
       </div>
     </div>
@@ -186,7 +186,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -202,16 +202,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -222,7 +221,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -232,9 +231,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -245,9 +244,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -258,9 +257,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -273,43 +272,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -320,108 +325,103 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work with HEIF files as well as HEIC?
+            هل تعمل مع ملفات HEIF كما تعمل مع HEIC؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Both .heic and .heif extensions are accepted, including HEIF
-            screenshots and photos from iPhones and iPads. Files with any other
-            extension are skipped when you add them.
+            نعم. يُقبل الامتدادان .heic و.heif، بما في ذلك لقطات الشاشة والصور
+            بصيغة HEIF من iPhone وiPad. وتُتخطى الملفات ذات أي امتداد آخر عند
+            إضافتها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF so much larger than my HEIC photos?
+            لماذا ملف PDF أكبر بكثير من صور HEIC الخاصة بي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            HEIC is heavily compressed, and the converter decodes each photo to
-            a lossless PNG before placing it in the PDF at full resolution, so a
-            12 megapixel photo can take tens of megabytes. Run the result
-            through
+            صيغة HEIC شديدة الضغط، ويفك المحوّل ترميز كل صورة إلى PNG دون فقدان
+            قبل وضعها في PDF بدقتها الكاملة، لذا قد تبلغ صورة بدقة 12 ميغابكسل
+            عشرات الميغابايتات. مرّر النتيجة على
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            if you need a smaller file.
+            إذا احتجت إلى ملف أصغر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are the photos arranged, and what size are the pages?
+            كيف تُرتَّب الصور وما حجم الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each photo becomes its own page in the order listed. The page is
-            sized to the photo's pixel dimensions at one point per pixel, so a
-            4032 by 3024 photo produces a page about 56 by 42 inches, which
-            viewers and printers scale to fit.
+            تصبح كل صورة صفحة مستقلة بالترتيب المدرج. يُحدَّد حجم الصفحة بأبعاد
+            الصورة بالبكسل بواقع نقطة لكل بكسل، لذا تنتج صورة 4032 × 3024 صفحة
+            بحجم نحو 56 × 42 بوصة، تُحجّمها العارضات والطابعات لتلائمها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the GPS location or other EXIF data kept in the PDF?
+            هل يُحتفظ بموقع GPS أو بيانات EXIF الأخرى في ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The decoded image is stored as plain pixels, so location, camera
-            model, and capture date from the phone aren't carried into the PDF.
+            لا. تُخزَّن الصورة المفكوكة كبكسلات عادية، لذا لا تنتقل بيانات
+            الموقع وطراز الكاميرا وتاريخ الالتقاط من الهاتف إلى ملف PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What about burst shots or HEIC files that contain several images?
+            ماذا عن اللقطات المتتابعة أو ملفات HEIC التي تحتوي على عدة صور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only the first image in the container is converted; additional
-            frames stored in the same file are ignored. For a Live Photo, the
-            still image is used and the video part, which lives in a separate
-            .mov file, isn't involved.
+            تُحوَّل الصورة الأولى في الحاوية فقط؛ وتُتجاهل الإطارات الإضافية
+            المخزّنة في الملف نفسه. وبالنسبة إلى Live Photo تُستخدم الصورة
+            الثابتة، أما جزء الفيديو الموجود في ملف .mov منفصل فلا يدخل في
+            العملية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first HEIC file take longer to convert?
+            لماذا يستغرق أول ملف HEIC وقتًا أطول للتحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The HEIC decoder is libheif compiled to WebAssembly and loads in the
-            browser when first needed. Later conversions in the same session
-            skip that step, though large photos still take a few seconds each to
-            decode.
+            مفكّك ترميز HEIC هو libheif المترجم إلى WebAssembly ويُحمَّل في
+            المتصفح عند الحاجة الأولى. وتتخطى التحويلات اللاحقة في الجلسة نفسها
+            هذه الخطوة، رغم أن فك ترميز الصور الكبيرة يستغرق بضع ثوانٍ لكل منها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I combine HEIC photos with JPG or PNG images in one PDF?
+            هل يمكنني دمج صور HEIC مع صور JPG أو PNG في ملف PDF واحد؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not here; this tool accepts only HEIC and HEIF.
+            ليس هنا؛ تقبل هذه الأداة HEIC وHEIF فقط. أما
             <a
               href="/image-to-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Images to PDF</a
+              >الصور إلى PDF</a
             >
-            accepts HEIC alongside JPG, PNG, WebP, and other formats in a single
-            batch.
+            فتقبل HEIC إلى جانب JPG وPNG وWebP وصيغ أخرى في دفعة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my photos uploaded to convert them?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل تُرفع صوري للتحويل؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Decoding and PDF creation happen in your browser, so private
-            photos never leave your phone or computer.
+            لا. يتم فك الترميز وإنشاء PDF في متصفحك، لذا لا تغادر الصور الخاصة
+            هاتفك أو حاسوبك أبدًا.
           </p>
         </details>
       </div>
@@ -454,26 +454,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to heic to pdf online",
+        "name": "كيفية تحويل HEIC إلى PDF عبر الإنترنت",
         "description": "Learn how to heic to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

@@ -88,7 +88,7 @@ if (isDevelopment) {
                 if (
                   confirm(
                     trText(
-                      'A new version of Pixel PDF is available. Reload to update?'
+                      "يتوفر إصدار جديد من Pixel PDF. هل تريد إعادة التحميل للتحديث؟"
                     )
                   )
                 ) {

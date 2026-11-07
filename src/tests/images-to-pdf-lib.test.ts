@@ -147,7 +147,7 @@ describe('normalizeImageToEmbeddable', () => {
 
       const file = makeFile('broken.gif', 'image/gif');
       await expect(normalizeImageToEmbeddable(file)).rejects.toThrow(
-        /Failed to decode image/
+        /تعذر فك ترميز الصورة/
       );
       expect(revokeSpy).toHaveBeenCalledWith('blob:test');
     });
@@ -167,7 +167,7 @@ describe('normalizeImageToEmbeddable', () => {
 
       const file = makeFile('scan.bmp', 'image/bmp');
       await expect(normalizeImageToEmbeddable(file)).rejects.toThrow(
-        /Canvas context unavailable/
+        /سياق Canvas غير متاح/
       );
       expect(revokeSpy).toHaveBeenCalled();
     });
@@ -187,7 +187,7 @@ describe('normalizeImageToEmbeddable', () => {
 
       const file = makeFile('scan.bmp', 'image/bmp');
       await expect(normalizeImageToEmbeddable(file)).rejects.toThrow(
-        /Canvas toBlob failed/
+        /فشل Canvas toBlob/
       );
       expect(revokeSpy).toHaveBeenCalled();
     });

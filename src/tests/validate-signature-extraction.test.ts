@@ -224,9 +224,7 @@ describe('validatePdfSignatures extraction and coverage', () => {
     expect(results[0].isValid).toBe(false);
     expect(results[0].cryptoVerified).toBe(false);
     expect(results[0].coverageStatus).toBe('unknown');
-    expect(results[0].errorMessage).toMatch(
-      /not the \/Contents of this signature/
-    );
+    expect(results[0].errorMessage).toMatch(/ليست \/Contents لهذا التوقيع/);
   });
 
   it('rejects a ByteRange that does not start at byte 0', async () => {
@@ -243,9 +241,7 @@ describe('validatePdfSignatures extraction and coverage', () => {
     expect(results).toHaveLength(1);
     expect(results[0].isValid).toBe(false);
     expect(results[0].cryptoVerified).toBe(false);
-    expect(results[0].errorMessage).toMatch(
-      /does not start at the beginning of the file/
-    );
+    expect(results[0].errorMessage).toMatch(/لا يبدأ ByteRange من بداية الملف/);
   });
 
   it('rejects a gap that carries unsigned bytes after the hex signature', async () => {
@@ -261,7 +257,7 @@ describe('validatePdfSignatures extraction and coverage', () => {
     expect(results[0].isValid).toBe(false);
     expect(results[0].cryptoVerified).toBe(false);
     expect(results[0].errorMessage).toMatch(
-      /not exactly a hex-encoded signature/
+      /ليست توقيعًا مشفّرًا بالنظام السداسي العشري بالضبط/
     );
   });
 });

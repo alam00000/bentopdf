@@ -85,7 +85,7 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one TIFF file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف TIFF واحد على الأقل.");
     return;
   }
   const qualitySelect = document.getElementById(
@@ -100,7 +100,7 @@ async function convert() {
   const useJpeg = quality !== 'high';
   const jpegQuality = jpegQualityMap[quality] || 0.75;
 
-  showLoader('Converting TIFF to PDF...');
+  showLoader("جارٍ تحويل TIFF إلى PDF...");
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of files) {
@@ -158,14 +158,14 @@ async function convert() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_tiff.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert TIFF to PDF. One of the files may be invalid.'
+      "خطأ",
+      "تعذر تحويل TIFF إلى PDF. قد يكون أحد الملفات غير صالح."
     );
   } finally {
     hideLoader();
@@ -197,8 +197,8 @@ onPageReady(() => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only TIFF files are allowed.'
+        "ملفات غير صالحة",
+        "تم تخطي بعض الملفات. يُسمح بملفات TIFF فقط."
       );
     }
 

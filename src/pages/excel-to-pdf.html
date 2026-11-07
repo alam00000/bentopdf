@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Excel to PDF Converter Free - XLSX to PDF Online | Pixel PDF"
+      content="محوّل Excel إلى PDF مجانًا - XLSX إلى PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل جداول Excel (XLSX وXLS وODS وCSV) إلى PDF. يدعم عدة ملفات. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/excel-to-pdf" />
     <meta
       property="og:title"
-      content="Excel to PDF Converter Free - XLSX to PDF Online | Pixel PDF"
+      content="محوّل Excel إلى PDF مجانًا - XLSX إلى PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل جداول Excel (XLSX وXLS وODS وCSV) إلى PDF. يدعم عدة ملفات. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -50,11 +50,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/excel-to-pdf" />
     <meta
       name="twitter:title"
-      content="Excel to PDF Converter Free - XLSX to PDF Online | Pixel PDF"
+      content="محوّل Excel إلى PDF مجانًا - XLSX إلى PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل جداول Excel (XLSX وXLS وODS وCSV) إلى PDF. يدعم عدة ملفات. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Excel to PDF" />
+    <meta name="apple-mobile-web-app-title" content="Excel إلى PDF" />
 
-    <title>Excel to PDF Converter Free - XLSX to PDF Online | Pixel PDF</title>
+    <title>محوّل Excel إلى PDF مجانًا - XLSX إلى PDF عبر الإنترنت | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,20 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:excelToPdf.name"
         >
-          Excel to PDF
+          Excel إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:excelToPdf.subtitle">
-          Convert Excel spreadsheets (XLSX, XLS, ODS, CSV) to PDF format.
-          Supports multiple files.
+          تحويل جداول Excel (XLSX، XLS، ODS، CSV) إلى تنسيق PDF. يدعم عدة ملفات.
         </p>
 
         <div
@@ -136,18 +135,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="tools:excelToPdf.acceptedFormats"
             >
-              XLSX, XLS, ODS, CSV files
+              ملفات XLSX، XLS، ODS، CSV
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -155,7 +154,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".xls,.xlsx,.ods,.csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.oasis.opendocument.spreadsheet,text/csv"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -165,14 +164,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -184,7 +183,7 @@
             class="btn-gradient w-full"
             data-i18n="tools:excelToPdf.convertButton"
           >
-            Convert to PDF
+            تحويل إلى PDF
           </button>
         </div>
       </div>
@@ -199,7 +198,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -216,14 +215,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -234,7 +233,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -244,9 +243,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -257,9 +256,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -270,9 +269,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -285,43 +284,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="pdf-to-excel.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PDF to Excel</h3>
-          <p class="text-gray-400 text-sm">Free online PDF to Excel tool</p>
+          <h3 class="text-white font-semibold mb-1">PDF إلى Excel</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتحويل PDF إلى Excel
+          </p>
         </a>
         <a
           href="word-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Word to PDF</h3>
-          <p class="text-gray-400 text-sm">Free online Word to PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">Word إلى PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتحويل Word إلى PDF
+          </p>
         </a>
         <a
           href="csv-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">CSV to PDF</h3>
-          <p class="text-gray-400 text-sm">Free online CSV to PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">CSV إلى PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتحويل CSV إلى PDF
+          </p>
         </a>
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
       </div>
     </section>
@@ -332,104 +337,99 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which spreadsheet formats can I convert to PDF?
+            ما صيغ جداول البيانات التي يمكنني تحويلها إلى PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The tool accepts .xlsx and .xls Excel workbooks, OpenDocument .ods
-            files from LibreOffice Calc, and .csv files. You can mix formats in
-            the same batch and convert them all at once.
+            تقبل الأداة مصنفات Excel بصيغتي .xlsx و.xls وملفات OpenDocument
+            بصيغة .ods من LibreOffice Calc وملفات .csv. يمكنك خلط الصيغ في
+            الدفعة نفسها وتحويلها كلها دفعة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it convert all sheets in the workbook or just the first one?
+            هل يحوّل جميع الأوراق في المصنف أم الأولى فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            All sheets are included in the PDF. The LibreOffice engine follows
-            each sheet's own page setup, print area, and scaling, so Print
-            Preview in Excel is a good guide to what you'll get.
+            تُضمَّن كل الأوراق في ملف PDF. يتبع محرك LibreOffice إعدادات الصفحة
+            ومنطقة الطباعة والتحجيم الخاصة بكل ورقة، لذا تُعد المعاينة قبل
+            الطباعة في Excel دليلًا جيدًا لما ستحصل عليه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will formulas and charts survive the conversion?
+            هل ستبقى الصيغ والمخططات بعد التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Charts are rendered into the PDF, and formulas appear as their
-            computed values rather than the formula text. Cell formatting such
-            as fills, borders, fonts, and number formats is preserved.
+            تُعرض المخططات في ملف PDF، وتظهر الصيغ بقيمها المحسوبة وليس بنص
+            الصيغة. ويُحافظ على تنسيق الخلايا مثل التعبئة والحدود والخطوط
+            وتنسيقات الأرقام.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I stop a wide spreadsheet from being cut across several
-            pages?
+            كيف أمنع اقتطاع جدول بيانات عريض على عدة صفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            There are no layout options in the tool itself, so set the
-            orientation, print area, and fit-to-width scaling in Excel or
-            LibreOffice Calc before uploading. The converter reads those
-            settings from the file and lays out the PDF accordingly.
+            لا توجد خيارات تخطيط في الأداة نفسها، لذا اضبط الاتجاه ومنطقة
+            الطباعة وتحجيم الملاءمة للعرض في Excel أو LibreOffice Calc قبل
+            الرفع. يقرأ المحوّل هذه الإعدادات من الملف وينسّق ملف PDF وفقًا لها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first conversion take a while to start?
+            لماذا يستغرق بدء التحويل الأول بعض الوقت؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The browser-based LibreOffice engine is downloaded the first time
-            you convert, which can take a moment on a slow connection. After
-            that it stays cached for the session, so further conversions start
-            right away.
+            يُنزَّل محرك LibreOffice العامل في المتصفح عند أول تحويل، وقد يستغرق
+            ذلك لحظة مع اتصال بطيء. وبعد ذلك يبقى مخزّنًا مؤقتًا طوال الجلسة،
+            فتبدأ التحويلات اللاحقة فورًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do I get when I convert several spreadsheets at once?
+            ماذا أحصل عليه عند تحويل عدة جداول بيانات دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            One file downloads directly as a PDF with the same name as the
-            spreadsheet. Two or more files are bundled into excel-converted.zip
-            with one PDF per spreadsheet.
+            يُنزَّل الملف الواحد مباشرةً كملف PDF بالاسم نفسه لجدول البيانات.
+            وتُجمَّع الملفات الاثنان أو أكثر في excel-converted.zip بواقع ملف
+            PDF لكل جدول بيانات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Should I use Excel to PDF or CSV to PDF for a .csv file?
+            هل أستخدم Excel إلى PDF أم CSV إلى PDF لملف .csv؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Excel to PDF runs a CSV through the full LibreOffice layout engine,
-            which is heavier but handles long rows and print settings the way a
-            spreadsheet would.
+            يمرّر تحويل Excel إلى PDF ملف CSV عبر محرك تخطيط LibreOffice الكامل،
+            وهو أثقل لكنه يتعامل مع الصفوف الطويلة وإعدادات الطباعة كما يفعل
+            جدول البيانات. أما
             <a href="/csv-to-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >CSV to PDF</a
+              >CSV إلى PDF</a
             >
-            is a lighter, faster option for plain tabular data without
-            formatting.
+            فهو خيار أخف وأسرع للبيانات الجدولية البسيطة بلا تنسيق.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my spreadsheet uploaded to a server for conversion?
+            هل يُرفع جدول البيانات الخاص بي إلى خادم للتحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The LibreOffice engine runs inside your browser through
-            WebAssembly, so the workbook is opened, rendered, and saved as a PDF
-            on your own device. Financial data and personal records never leave
-            your computer.
+            لا. يعمل محرك LibreOffice داخل متصفحك عبر WebAssembly، فيُفتح المصنف
+            ويُعرض ويُحفظ كملف PDF على جهازك. البيانات المالية والسجلات الشخصية
+            لا تغادر حاسوبك أبدًا.
           </p>
         </details>
       </div>
@@ -462,26 +462,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to convert Excel to PDF online",
+        "name": "كيفية تحويل Excel إلى PDF عبر الإنترنت",
         "description": "Learn how to convert Excel to PDF using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

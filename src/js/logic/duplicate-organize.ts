@@ -79,8 +79,8 @@ function attachEventListeners(element: HTMLElement) {
       initializePageGridSortable();
     } else {
       showAlert(
-        'Cannot Delete',
-        'You cannot delete the last page of the document.'
+        "لا يمكن الحذف",
+        "لا يمكنك حذف آخر صفحة في المستند."
       );
     }
   });
@@ -93,7 +93,7 @@ export async function renderDuplicateOrganizeThumbnails() {
   // Cleanup any previous lazy loading observers
   cleanupLazyRendering();
 
-  showLoader('Rendering page previews...');
+  showLoader("جارٍ عرض معاينات الصفحات...");
   const pdfData = await state.pdfDoc.save();
   hideLoader();
   const loadResult = await loadPdfWithPasswordPrompt(
@@ -102,7 +102,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     0
   );
   if (!loadResult) return;
-  showLoader('Rendering page previews...');
+  showLoader("جارٍ عرض معاينات الصفحات...");
   const pdfjsDoc = loadResult.pdf;
 
   grid.textContent = '';
@@ -135,7 +135,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     const duplicateBtn = document.createElement('button');
     duplicateBtn.className =
       'duplicate-btn bg-green-600 hover:bg-green-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    duplicateBtn.title = trText('Duplicate Page');
+    duplicateBtn.title = trText("تكرار الصفحة");
     const duplicateIcon = document.createElement('i');
     duplicateIcon.setAttribute('data-lucide', 'copy-plus');
     duplicateIcon.className = 'w-5 h-5';
@@ -144,7 +144,7 @@ export async function renderDuplicateOrganizeThumbnails() {
     const deleteBtn = document.createElement('button');
     deleteBtn.className =
       'delete-btn bg-red-600 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    deleteBtn.title = trText('Delete Page');
+    deleteBtn.title = trText("حذف الصفحة");
     const deleteIcon = document.createElement('i');
     deleteIcon.setAttribute('data-lucide', 'x-circle');
     deleteIcon.className = 'w-5 h-5';
@@ -166,7 +166,7 @@ export async function renderDuplicateOrganizeThumbnails() {
       lazyLoadMargin: '400px',
       onProgress: (current, total) => {
         showLoader(
-          trText('Rendering page previews: {{current}}/{{total}}', {
+          trText("جارٍ عرض معاينات الصفحات: {{current}}/{{total}}", {
             current,
             total,
           })
@@ -180,14 +180,14 @@ export async function renderDuplicateOrganizeThumbnails() {
     initializePageGridSortable();
   } catch (error) {
     console.error('Error rendering thumbnails:', error);
-    showAlert('Error', 'Failed to render page previews');
+    showAlert("خطأ", "تعذر عرض معاينات الصفحات");
   } finally {
     hideLoader();
   }
 }
 
 export async function processAndSave() {
-  showLoader('Building new PDF...');
+  showLoader("جارٍ إنشاء ملف PDF جديد...");
   try {
     const grid = document.getElementById('page-grid');
     const finalPageElements = grid.querySelectorAll('.page-thumbnail');
@@ -202,7 +202,7 @@ export async function processAndSave() {
     console.log('Original PDF Page Count:', state.pdfDoc?.getPageCount());
 
     if (finalIndices.length === 0) {
-      showAlert('Error', 'No valid pages to save.');
+      showAlert("خطأ", "لا توجد صفحات صالحة للحفظ.");
       return;
     }
 
@@ -213,8 +213,8 @@ export async function processAndSave() {
     if (invalidIndices.length > 0) {
       console.error('Found invalid indices:', invalidIndices);
       showAlert(
-        'Error',
-        'Some pages could not be processed. Please try again.'
+        "خطأ",
+        "تعذرت معالجة بعض الصفحات. يرجى المحاولة مرة أخرى."
       );
       return;
     }
@@ -230,8 +230,8 @@ export async function processAndSave() {
   } catch (e) {
     console.error('Save error:', e);
     showAlert(
-      'Error',
-      'Failed to save the new PDF. Check console for details.'
+      "خطأ",
+      "تعذر حفظ PDF الجديد. راجع وحدة التحكم للتفاصيل."
     );
   } finally {
     hideLoader();

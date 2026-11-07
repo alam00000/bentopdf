@@ -141,7 +141,7 @@ export async function executeWorkflow(
       nodeId: node.id,
       nodeName: node.label,
       status: 'running',
-      message: trText('Processing {{name}}...', { name: node.label }),
+      message: trText("جارٍ معالجة {{name}}...", { name: node.label }),
     });
     await tick();
 

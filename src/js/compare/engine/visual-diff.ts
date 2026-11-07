@@ -25,7 +25,7 @@ function drawNormalized(
 ) {
   const context = targetCanvas.getContext('2d');
   if (!context) {
-    throw new Error(trText('Could not create comparison canvas context.'));
+    throw new Error(trText("تعذر إنشاء سياق Canvas للمقارنة."));
   }
 
   context.fillStyle = '#ffffff';
@@ -58,7 +58,7 @@ export function renderVisualDiff(
   const outputContext = outputCanvas.getContext('2d');
 
   if (!context1 || !context2 || !outputContext) {
-    throw new Error(trText('Could not create visual diff context.'));
+    throw new Error(trText("تعذر إنشاء سياق الفروقات المرئية."));
   }
 
   const image1 = context1.getImageData(0, 0, width, height);
@@ -89,7 +89,7 @@ export function renderVisualDiff(
   const overlayContext = overlayCanvas.getContext('2d');
 
   if (!overlayContext) {
-    throw new Error(trText('Could not create visual diff overlay context.'));
+    throw new Error(trText("تعذر إنشاء سياق طبقة الفروقات المرئية."));
   }
 
   overlayContext.putImageData(diffImage, 0, 0);

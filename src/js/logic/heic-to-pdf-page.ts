@@ -76,10 +76,10 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one HEIC file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف HEIC واحد على الأقل.");
     return;
   }
-  showLoader('Converting HEIC to PDF...');
+  showLoader("جارٍ تحويل HEIC إلى PDF...");
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of files) {
@@ -106,14 +106,14 @@ async function convert() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_heic.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert HEIC to PDF. One of the files may be invalid.'
+      "خطأ",
+      "تعذر تحويل HEIC إلى PDF. قد يكون أحد الملفات غير صالح."
     );
   } finally {
     hideLoader();
@@ -144,8 +144,8 @@ onPageReady(() => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only HEIC/HEIF files are allowed.'
+        "ملفات غير صالحة",
+        "تم تخطي بعض الملفات. يُسمح بملفات HEIC/HEIF فقط."
       );
     }
 

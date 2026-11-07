@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Watermark PDF Free - Add Text or Image Watermarks | Pixel PDF"
+      content="إضافة علامة مائية إلى PDF مجانًا - نص أو صورة | Pixel PDF"
     />
     <meta
       name="description"
-      content="Stamp text or an image over your PDF pages. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضع نصًا أو صورة فوق صفحات PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="add watermark, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/add-watermark" />
     <meta
       property="og:title"
-      content="Watermark PDF Free - Add Text or Image Watermarks | Pixel PDF"
+      content="إضافة علامة مائية إلى PDF مجانًا - نص أو صورة | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Stamp text or an image over your PDF pages. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضع نصًا أو صورة فوق صفحات PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -47,11 +47,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/add-watermark" />
     <meta
       name="twitter:title"
-      content="Watermark PDF Free - Add Text or Image Watermarks | Pixel PDF"
+      content="إضافة علامة مائية إلى PDF مجانًا - نص أو صورة | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Stamp text or an image over your PDF pages. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضع نصًا أو صورة فوق صفحات PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -62,9 +62,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Add Watermark" />
+    <meta name="apple-mobile-web-app-title" content="إضافة علامة مائية" />
 
-    <title>Watermark PDF Free - Add Text or Image Watermarks | Pixel PDF</title>
+    <title>إضافة علامة مائية إلى PDF مجانًا - نص أو صورة | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -109,19 +109,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:addWatermark.name"
         >
-          Add Watermark
+          إضافة علامة مائية
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:addWatermark.subtitle">
-          Stamp text or an image over your PDF pages.
+          ختم نص أو صورة على صفحات PDF الخاصة بك.
         </p>
 
         <div
@@ -132,15 +132,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.pdfFile">
-              PDF file
+              ملف PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -165,7 +165,7 @@
             class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 font-semibold text-sm"
           >
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
-            <span>Change File</span>
+            <span>تغيير الملف</span>
           </button>
           <div
             id="editor-file-info"
@@ -180,12 +180,12 @@
             >
               <div class="flex items-center justify-between mb-2 sm:mb-3">
                 <span class="text-xs sm:text-sm font-medium text-gray-300"
-                  >Preview</span
+                  >معاينة</span
                 >
                 <div class="flex items-center gap-2">
                   <button
                     id="prev-page-btn"
-                    disabled
+                    disabled=""
                     class="p-1 rounded hover:bg-gray-700 text-gray-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
                     <i data-lucide="chevron-left" class="w-4 h-4"></i>
@@ -202,7 +202,7 @@
                   </div>
                   <button
                     id="next-page-btn"
-                    disabled
+                    disabled=""
                     class="p-1 rounded hover:bg-gray-700 text-gray-400 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                   >
                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
@@ -211,7 +211,7 @@
                 <span
                   id="drag-hint"
                   class="text-xs text-gray-500 hidden sm:inline"
-                  >Drag watermark to position</span
+                  >اسحب العلامة المائية إلى موضعها</span
                 >
               </div>
               <div
@@ -241,7 +241,7 @@
                       class="relative border border-dashed border-indigo-400/60 cursor-grab active:cursor-grabbing"
                     >
                       <div id="watermark-overlay" class="whitespace-nowrap">
-                        CONFIDENTIAL
+                        سري
                       </div>
                       <img id="image-watermark-overlay" class="hidden" alt="" />
                       <div
@@ -276,36 +276,36 @@
                   id="type-text-btn"
                   class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors"
                 >
-                  Text
+                  نص
                 </button>
                 <button
                   id="type-image-btn"
                   class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors"
                 >
-                  Image
+                  صورة
                 </button>
               </div>
 
               <div>
                 <label class="block mb-1.5 text-sm font-medium text-gray-300"
-                  >Layout</label
+                  >التخطيط</label
                 >
                 <div class="flex gap-2">
                   <button
                     id="layout-single-btn"
                     class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-indigo-600 text-white transition-colors"
                   >
-                    Single
+                    مفرد
                   </button>
                   <button
                     id="layout-tile-btn"
                     class="flex-1 py-2 px-3 text-sm font-medium rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors"
                   >
-                    Tiled
+                    مكرر
                   </button>
                 </div>
                 <p class="text-xs text-gray-500 mt-1.5">
-                  Tiled repeats the watermark across the whole page.
+                  يكرر التبليط العلامة المائية على الصفحة كلها.
                 </p>
               </div>
 
@@ -315,14 +315,14 @@
                 <input
                   type="checkbox"
                   id="apply-all-pages"
-                  checked
+                  checked=""
                   class="w-4 h-4 accent-indigo-500 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
                 <label
                   for="apply-all-pages"
                   class="text-sm text-gray-300 cursor-pointer"
                   data-i18n="tools:addWatermark.applyToAllPages"
-                  >Apply to all pages</label
+                  >تطبيق على جميع الصفحات</label
                 >
               </div>
 
@@ -330,17 +330,17 @@
                 <label
                   for="page-range-input"
                   class="block text-sm font-medium text-gray-300"
-                  >Page Range</label
+                  >نطاق الصفحات</label
                 >
                 <input
                   type="text"
                   id="page-range-input"
                   value="all"
-                  placeholder="all  or  1-3, 5, 7-9"
+                  placeholder="all أو 1-3, 5, 7-9"
                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 text-sm placeholder-gray-500"
                 />
                 <p class="text-xs text-gray-500">
-                  Use "all" or specify pages, e.g. 1-3, 5, 7-9
+                  استخدم "all" أو حدد الصفحات، مثل 1-3, 5, 7-9
                 </p>
               </div>
 
@@ -350,7 +350,7 @@
                     <label
                       for="watermark-text"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
-                      >Text</label
+                      >نص</label
                     >
                     <input
                       type="text"
@@ -364,7 +364,7 @@
                       <label
                         for="font-size"
                         class="block mb-1.5 text-sm font-medium text-gray-300"
-                        >Font Size</label
+                        >حجم الخط</label
                       >
                       <input
                         type="number"
@@ -379,7 +379,7 @@
                       <label
                         for="text-color"
                         class="block mb-1.5 text-sm font-medium text-gray-300"
-                        >Color</label
+                        >اللون</label
                       >
                       <input
                         type="color"
@@ -393,9 +393,8 @@
                     <label
                       for="opacity-text"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
+                      >الشفافية: <span id="opacity-value-text">0.3</span></label
                     >
-                      Opacity: <span id="opacity-value-text">0.3</span>
-                    </label>
                     <input
                       type="range"
                       id="opacity-text"
@@ -410,9 +409,8 @@
                     <label
                       for="angle-text"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
+                      >الزاوية: <span id="angle-value-text">-45</span>°</label
                     >
-                      Angle: <span id="angle-value-text">-45</span>&deg;
-                    </label>
                     <input
                       type="range"
                       id="angle-text"
@@ -432,7 +430,7 @@
                     <label
                       for="image-watermark-input"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
-                      >Watermark Image</label
+                      >صورة العلامة المائية</label
                     >
                     <input
                       type="file"
@@ -445,9 +443,8 @@
                     <label
                       for="image-scale"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
+                      >المقياس: <span id="image-scale-value">100</span>%</label
                     >
-                      Scale: <span id="image-scale-value">100</span>%
-                    </label>
                     <input
                       type="range"
                       id="image-scale"
@@ -462,9 +459,9 @@
                     <label
                       for="opacity-image"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
+                      >الشفافية:
+                      <span id="opacity-value-image">0.3</span></label
                     >
-                      Opacity: <span id="opacity-value-image">0.3</span>
-                    </label>
                     <input
                       type="range"
                       id="opacity-image"
@@ -479,9 +476,8 @@
                     <label
                       for="angle-image"
                       class="block mb-1.5 text-sm font-medium text-gray-300"
+                      >الزاوية: <span id="angle-value-image">0</span>°</label
                     >
-                      Angle: <span id="angle-value-image">0</span>&deg;
-                    </label>
                     <input
                       type="range"
                       id="angle-image"
@@ -500,9 +496,9 @@
                   <label
                     for="tile-gap-x"
                     class="block mb-1.5 text-sm font-medium text-gray-300"
+                    >الفجوة الأفقية:
+                    <span id="tile-gap-x-value">25</span>%</label
                   >
-                    Horizontal gap: <span id="tile-gap-x-value">25</span>%
-                  </label>
                   <input
                     type="range"
                     id="tile-gap-x"
@@ -517,9 +513,9 @@
                   <label
                     for="tile-gap-y"
                     class="block mb-1.5 text-sm font-medium text-gray-300"
+                    >الفجوة العمودية:
+                    <span id="tile-gap-y-value">75</span>%</label
                   >
-                    Vertical gap: <span id="tile-gap-y-value">75</span>%
-                  </label>
                   <input
                     type="range"
                     id="tile-gap-y"
@@ -534,62 +530,62 @@
 
               <div id="position-section">
                 <label class="block mb-1.5 text-sm font-medium text-gray-300"
-                  >Position</label
+                  >الموضع</label
                 >
                 <div class="grid grid-cols-3 gap-1.5">
                   <button
                     data-pos="0.15,0.15"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Top Left
+                    أعلى اليسار
                   </button>
                   <button
                     data-pos="0.5,0.15"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Top
+                    أعلى
                   </button>
                   <button
                     data-pos="0.85,0.15"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Top Right
+                    أعلى اليمين
                   </button>
                   <button
                     data-pos="0.15,0.5"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Left
+                    يسار
                   </button>
                   <button
                     data-pos="0.5,0.5"
                     class="pos-preset-btn py-1.5 text-xs bg-indigo-600 hover:bg-indigo-500 text-white rounded-md transition-colors"
                   >
-                    Center
+                    الوسط
                   </button>
                   <button
                     data-pos="0.85,0.5"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Right
+                    يمين
                   </button>
                   <button
                     data-pos="0.15,0.85"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Bottom Left
+                    أسفل اليسار
                   </button>
                   <button
                     data-pos="0.5,0.85"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Bottom
+                    أسفل
                   </button>
                   <button
                     data-pos="0.85,0.85"
                     class="pos-preset-btn py-1.5 text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-md transition-colors"
                   >
-                    Bottom Right
+                    أسفل اليمين
                   </button>
                 </div>
               </div>
@@ -604,17 +600,17 @@
                   <label
                     for="flatten-watermark"
                     class="text-sm font-medium text-gray-300 cursor-pointer"
-                    >Flatten watermark</label
+                    >تسطيح العلامة المائية</label
                   >
                   <p class="text-xs text-gray-500 mt-0.5">
-                    Bakes the watermark into page pixels, making it
-                    tamper-resistant. Text will no longer be selectable.
+                    يدمج العلامة المائية في بكسلات الصفحة، فتصبح مقاومة للتلاعب.
+                    لن يكون النص قابلاً للتحديد بعد ذلك.
                   </p>
                 </div>
               </div>
 
               <button id="process-btn" class="btn-gradient w-full">
-                Add Watermark
+                إضافة علامة مائية
               </button>
             </div>
           </div>
@@ -634,9 +630,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -652,16 +647,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -672,7 +666,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -682,9 +676,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -695,9 +689,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -708,9 +702,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -723,43 +717,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -770,106 +770,103 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I watermark only certain pages of a PDF?
+            هل يمكنني وضع علامة مائية على صفحات معينة فقط من PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Type a range such as 1-3, 5, 7-9 in the Page Range field, or
-            leave it set to "all". If you want different text or a different
-            position on individual pages, uncheck "Apply to all pages" and use
-            the page arrows above the preview to set each page separately.
+            نعم. اكتب نطاقًا مثل 1-3, 5, 7-9 في حقل نطاق الصفحات، أو اتركه على
+            "all". إذا أردت نصًا مختلفًا أو موضعًا مختلفًا في صفحات بعينها،
+            فألغِ تحديد "تطبيق على كل الصفحات" واستخدم أسهم الصفحات فوق المعاينة
+            لضبط كل صفحة على حدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I add a diagonal CONFIDENTIAL or DRAFT watermark across the
-            page?
+            كيف أضيف علامة مائية مائلة بعبارة CONFIDENTIAL أو DRAFT على الصفحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Stay in Text mode, type the word, and raise the font size (10 to 200
-            points, default 72) until it spans the page. The angle slider
-            already defaults to -45 degrees for the classic diagonal look, so
-            usually you only need to enlarge the text and drag it to the center
-            of the preview.
+            ابقَ في وضع النص، واكتب الكلمة، وكبّر حجم الخط (من 10 إلى 200 نقطة،
+            والافتراضي 72) حتى يملأ عرض الصفحة. يكون شريط الزاوية مضبوطًا
+            افتراضيًا على -45 درجة للمظهر المائل المعتاد، لذا تحتاج عادةً فقط
+            إلى تكبير النص وسحبه إلى منتصف المعاينة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I use a logo image as the watermark?
+            هل يمكنني استخدام صورة شعار كعلامة مائية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Switch to Image mode and upload a PNG or JPG; other image formats
-            aren't accepted. A PNG with a transparent background blends best
-            with the page. You can scale it from 10% to 200%, set its opacity
-            and angle, and drag it into position on the preview.
+            انتقل إلى وضع الصورة وارفع ملف PNG أو JPG، فصيغ الصور الأخرى غير
+            مقبولة. تمتزج صورة PNG ذات الخلفية الشفافة مع الصفحة على أفضل وجه.
+            يمكنك تغيير حجمها من 10% إلى 200%، وضبط شفافيتها وزاويتها، وسحبها
+            إلى موضعها في المعاينة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the Tiled layout do?
+            ماذا يفعل التخطيط المتكرر؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Tiled repeats the watermark across the whole page in a diagonal grid
-            that follows the rotation angle, so the mark runs edge to edge. The
-            horizontal and vertical gap sliders control the spacing between
-            tiles as a percentage of the watermark size. Lower the opacity when
-            tiling so the document underneath stays readable.
+            يكرر التبليط العلامة المائية على الصفحة كلها في شبكة مائلة تتبع
+            زاوية الدوران، فتمتد العلامة من حافة إلى حافة. يتحكم شريطا الفجوة
+            الأفقية والعمودية في المسافة بين المربعات كنسبة مئوية من حجم العلامة
+            المائية. اخفض الشفافية عند التبليط ليبقى المستند الموجود تحتها
+            مقروءًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can someone remove the watermark afterward?
+            هل يمكن لأحد إزالة العلامة المائية لاحقًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The watermark is drawn into the page content rather than added as a
-            separate annotation, so it can't be deleted with one click in a PDF
-            viewer. It isn't tamper-proof though. For a harder-to-strip result,
-            use Tiled mode, or check "Flatten watermark" to bake every page into
-            pixels, which also makes the document's text unselectable.
+            تُرسم العلامة المائية داخل محتوى الصفحة بدلاً من إضافتها كتعليق
+            توضيحي منفصل، لذا لا يمكن حذفها بنقرة واحدة في عارض PDF. لكنها ليست
+            مقاومة للتلاعب تمامًا. للحصول على نتيجة يصعب نزعها، استخدم وضع
+            التبليط، أو حدد "تسطيح العلامة المائية" لدمج كل صفحة في بكسلات، وهذا
+            يجعل نص المستند غير قابل للتحديد أيضًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does adding a watermark change the original text or image quality?
+            هل تغيّر إضافة علامة مائية جودة النص أو الصور الأصلية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The pages keep their original text, images, and dimensions, and
-            the watermark is placed on top, so text stays selectable and
-            searchable. The exception is the "Flatten watermark" option, which
-            re-renders every page as an image at 2.5x scale and removes
-            selectable text.
+            لا. تحتفظ الصفحات بنصوصها وصورها وأبعادها الأصلية، وتوضع العلامة
+            المائية فوقها، لذا يبقى النص قابلاً للتحديد والبحث. الاستثناء هو
+            خيار "تسطيح العلامة المائية"، الذي يعيد عرض كل صفحة كصورة بمقياس
+            2.5x ويزيل إمكانية تحديد النص.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What opacity should I use for a watermark?
+            ما درجة الشفافية التي يجب أن أستخدمها للعلامة المائية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The slider runs from 0.05 to 1 and defaults to 0.3. Values between
-            0.2 and 0.4 keep the mark visible without hiding the content beneath
-            it; go higher only for small marks placed in a margin or corner.
+            يتراوح الشريط من 0.05 إلى 1 وقيمته الافتراضية 0.3. القيم بين 0.2
+            و0.4 تُبقي العلامة ظاهرة دون إخفاء المحتوى تحتها، ولا ترفعها أكثر
+            إلا للعلامات الصغيرة الموضوعة في هامش أو زاوية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded when I add a watermark?
+            هل يُرفع ملف PDF الخاص بي عند إضافة علامة مائية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The live preview, the drag-and-drop editor, and the final
-            rendering all run inside your browser with pdf-lib, so neither the
-            PDF nor a logo image you add leaves your device.
+            لا. المعاينة الحية ومحرر السحب والإفلات والعرض النهائي كلها تعمل
+            داخل متصفحك باستخدام pdf-lib، لذا لا يغادر جهازك ملف PDF ولا صورة
+            الشعار التي تضيفها.
           </p>
         </details>
       </div>
@@ -902,26 +899,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to add watermark online",
+        "name": "كيفية إضافة علامة مائية عبر الإنترنت",
         "description": "Learn how to add watermark using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

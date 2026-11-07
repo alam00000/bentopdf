@@ -56,7 +56,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -79,14 +79,14 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
@@ -95,7 +95,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -105,7 +105,7 @@ async function updateUI() {
 
 async function combineToSinglePage() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -133,7 +133,7 @@ async function combineToSinglePage() {
   const backgroundColor = hexToRgb(backgroundColorHex);
   const separatorColor = hexToRgb(separatorColorHex);
 
-  showLoader('Combining pages...');
+  showLoader("جارٍ دمج الصفحات...");
 
   try {
     const sourceDoc = pageState.pdfDoc;
@@ -182,7 +182,7 @@ async function combineToSinglePage() {
 
     for (let i = 0; i < sourcePages.length; i++) {
       showLoader(
-        trText('Processing page {{n}} of {{length}}...', {
+        trText("جارٍ معالجة الصفحة {{n}} من {{length}}...", {
           n: i + 1,
           length: sourcePages.length,
         })
@@ -257,8 +257,8 @@ async function combineToSinglePage() {
     );
 
     showAlert(
-      'Success',
-      'Pages combined successfully!',
+      "تم بنجاح",
+      "تم دمج الصفحات بنجاح!",
       'success',
       function () {
         resetState();
@@ -266,7 +266,7 @@ async function combineToSinglePage() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while combining pages.');
+    showAlert("خطأ", "حدث خطأ أثناء دمج الصفحات.");
   } finally {
     hideLoader();
   }

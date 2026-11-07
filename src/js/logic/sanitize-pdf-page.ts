@@ -84,14 +84,14 @@ async function handleFileSelect(files: FileList | null) {
 
 async function runSanitize() {
   if (!pageState.file) {
-    showAlert('Error', 'No PDF document loaded.');
+    showAlert("خطأ", "لم يتم تحميل مستند PDF.");
     return;
   }
 
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = trText('Sanitizing PDF...');
+  if (loaderText) loaderText.textContent = trText("جارٍ تنقية PDF...");
 
   try {
     const options = {
@@ -128,8 +128,8 @@ async function runSanitize() {
     const hasAnyOption = Object.values(options).some(Boolean);
     if (!hasAnyOption) {
       showAlert(
-        'No Changes',
-        'No items were selected for removal or none were found in the PDF.'
+        "لا توجد تغييرات",
+        "لم يتم تحديد أي عناصر للإزالة أو لم يتم العثور عليها في PDF."
       );
       if (loaderModal) loaderModal.classList.add('hidden');
       return;
@@ -142,7 +142,7 @@ async function runSanitize() {
       return;
     }
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = trText('Sanitizing PDF...');
+    if (loaderText) loaderText.textContent = trText("جارٍ تنقية PDF...");
     loaded.pdf.destroy();
     pageState.file = loaded.file;
     const result = await sanitizePdf(new Uint8Array(loaded.bytes), options);
@@ -153,9 +153,9 @@ async function runSanitize() {
     );
     if (result.skipped.length > 0) {
       showAlert(
-        'Sanitized With Warnings',
+        "تمت التنقية مع تحذيرات",
         trText(
-          'The PDF was downloaded, but these steps could not be completed: {{join}}. The content they cover may still be in the file.',
+          "تم تنزيل PDF، لكن تعذر إكمال هذه الخطوات: {{join}}. قد يكون المحتوى الذي تشمله لا يزال في الملف.",
           { join: result.skipped.join(', ') }
         ),
         'warning',
@@ -165,8 +165,8 @@ async function runSanitize() {
       );
     } else {
       showAlert(
-        'Success',
-        'PDF has been sanitized and downloaded.',
+        "تم بنجاح",
+        "تمت تنقية PDF وتنزيله.",
         'success',
         () => {
           resetState();
@@ -177,8 +177,8 @@ async function runSanitize() {
     console.error('Sanitization Error:', e);
     const msg = e instanceof Error ? e.message : String(e);
     showAlert(
-      'Error',
-      trText('An error occurred during sanitization: {{msg}}', { msg })
+      "خطأ",
+      trText("حدث خطأ أثناء التنقية: {{msg}}", { msg })
     );
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');

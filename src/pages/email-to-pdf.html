@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Email to PDF Converter Free Online - EML MSG to PDF | Pixel PDF"
+      content="تحويل البريد الإلكتروني إلى PDF مجانًا عبر الإنترنت - EML وMSG إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert email files (EML, MSG) to PDF format. Supports Outlook exports and standard email formats. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات البريد الإلكتروني (EML وMSG) إلى PDF. يدعم ملفات Outlook المصدَّرة وصيغ البريد القياسية. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/email-to-pdf" />
     <meta
       property="og:title"
-      content="Email to PDF Converter Free Online - EML MSG to PDF | Pixel PDF"
+      content="تحويل البريد الإلكتروني إلى PDF مجانًا عبر الإنترنت - EML وMSG إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert email files (EML, MSG) to PDF format. Supports Outlook exports and standard email formats. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات البريد الإلكتروني (EML وMSG) إلى PDF. يدعم ملفات Outlook المصدَّرة وصيغ البريد القياسية. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -48,10 +48,13 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/email-to-pdf" />
-    <meta name="twitter:title" content="Email to PDF Free" />
+    <meta
+      name="twitter:title"
+      content="تحويل البريد الإلكتروني إلى PDF مجانًا"
+    />
     <meta
       name="twitter:description"
-      content="Convert email files (EML, MSG) to PDF format. Supports Outlook exports and standard email formats. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات البريد الإلكتروني (EML وMSG) إلى PDF. يدعم ملفات Outlook المصدَّرة وصيغ البريد القياسية. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -62,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Email to PDF" />
+    <meta name="apple-mobile-web-app-title" content="بريد إلكتروني إلى PDF" />
 
-    <title>Email to PDF - Convert EML/MSG to PDF - Pixel PDF</title>
+    <title>البريد الإلكتروني إلى PDF - تحويل EML/MSG إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -109,20 +112,20 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:emailToPdf.name"
         >
-          Email to PDF
+          بريد إلكتروني إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:emailToPdf.subtitle">
-          Convert email files (EML, MSG) to PDF format. Supports Outlook exports
-          and standard email formats.
+          تحويل ملفات البريد الإلكتروني (EML، MSG) إلى تنسيق PDF. يدعم تصديرات
+          Outlook وتنسيقات البريد القياسية.
         </p>
 
         <div
@@ -133,18 +136,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="tools:emailToPdf.acceptedFormats"
             >
-              EML, MSG files
+              ملفات EML، MSG
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -152,7 +155,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".eml,.msg,message/rfc822,application/vnd.ms-outlook"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -162,14 +165,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -181,21 +184,21 @@
             <h3
               class="text-sm font-semibold text-gray-300 uppercase tracking-wide"
             >
-              Conversion Options
+              خيارات التحويل
             </h3>
 
             <!-- Page Size -->
             <div class="flex items-center justify-between">
               <label for="page-size" class="text-gray-300 text-sm"
-                >Page Size</label
+                >حجم الصفحة</label
               >
               <select
                 id="page-size"
                 class="bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-gray-200 text-sm focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="a4" selected>A4</option>
+                <option value="a4" selected="">A4</option>
                 <option value="letter">Letter</option>
-                <option value="legal">Legal</option>
+                <option value="legal">قانوني</option>
               </select>
             </div>
 
@@ -204,11 +207,11 @@
               <input
                 type="checkbox"
                 id="include-cc-bcc"
-                checked
+                checked=""
                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
               />
               <label for="include-cc-bcc" class="ml-3 text-gray-300 text-sm"
-                >Include CC and BCC recipients in header</label
+                >تضمين المستلمين في نسخة CC وBCC في الترويسة</label
               >
             </div>
 
@@ -217,13 +220,13 @@
               <input
                 type="checkbox"
                 id="include-attachments"
-                checked
+                checked=""
                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
               />
               <label
                 for="include-attachments"
                 class="ml-3 text-gray-300 text-sm"
-                >Include email attachments list</label
+                >تضمين قائمة مرفقات البريد</label
               >
             </div>
           </div>
@@ -233,7 +236,7 @@
             class="btn-gradient w-full"
             data-i18n="tools:emailToPdf.convertButton"
           >
-            Convert to PDF
+            تحويل إلى PDF
           </button>
         </div>
       </div>
@@ -248,7 +251,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -265,14 +268,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -283,7 +286,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -294,10 +297,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Upload Email File
+              رفع ملف البريد الإلكتروني
             </h3>
             <p class="text-gray-400">
-              Click or drag and drop your .eml or .msg file to begin
+              انقر أو اسحب وأفلت ملف .eml أو .msg للبدء
             </p>
           </div>
         </div>
@@ -308,10 +311,8 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
-            <p class="text-gray-400">
-              Click the convert button to generate your PDF
-            </p>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
+            <p class="text-gray-400">انقر على زر التحويل لإنشاء ملف PDF</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
@@ -321,8 +322,8 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
-            <p class="text-gray-400">Save your converted PDF file instantly</p>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
+            <p class="text-gray-400">احفظ ملف PDF المحوَّل فورًا</p>
           </div>
         </div>
       </div>
@@ -334,43 +335,45 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="word-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Word to PDF</h3>
-          <p class="text-gray-400 text-sm">Convert Word documents to PDF</p>
+          <h3 class="text-white font-semibold mb-1">Word إلى PDF</h3>
+          <p class="text-gray-400 text-sm">حوّل مستندات Word إلى PDF</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="txt-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Text to PDF</h3>
-          <p class="text-gray-400 text-sm">Convert text files to PDF</p>
+          <h3 class="text-white font-semibold mb-1">نص إلى PDF</h3>
+          <p class="text-gray-400 text-sm">حوّل الملفات النصية إلى PDF</p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -381,102 +384,98 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I get an .eml or .msg file out of my email client?
+            كيف أحصل على ملف .eml أو .msg من برنامج البريد لدي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            In Gmail, open the message, use the three-dot menu, and choose
-            Download message to save an .eml file. Outlook for Windows saves a
-            .msg when you drag a message to a folder or use Save As; Apple Mail
-            and Thunderbird save .eml through their Save As commands. Drop the
-            saved file into the tool.
+            في Gmail افتح الرسالة، ومن قائمة النقاط الثلاث اختر تنزيل الرسالة
+            لحفظ ملف .eml. يحفظ Outlook لنظام Windows ملف .msg عند سحب الرسالة
+            إلى مجلد أو استخدام حفظ باسم؛ ويحفظ Apple Mail وThunderbird ملف .eml
+            عبر أمر حفظ باسم. ثم أفلت الملف المحفوظ في الأداة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do inline images and formatting survive the conversion?
+            هل تبقى الصور المضمّنة والتنسيق بعد التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            HTML emails keep their layout, fonts, and colors, and images
-            embedded in the message itself (the cid: kind used for signatures
-            and pasted screenshots) are included. Images that the email loads
-            from a web server aren't downloaded, so those spots come out empty.
+            تحتفظ رسائل HTML بتخطيطها وخطوطها وألوانها، وتُضمَّن الصور المدمجة
+            في الرسالة نفسها (من نوع cid: المستخدم في التوقيعات ولقطات الشاشة
+            الملصقة). أما الصور التي يحمّلها البريد من خادم ويب فلا تُنزَّل، لذا
+            تظهر تلك الأماكن فارغة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I hide the CC and BCC lines?
+            هل يمكنني إخفاء سطري CC وBCC؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Turn off Include CC and BCC before converting and the header block
-            shows only From, To, Date, and Subject. The same panel has a toggle
-            for the attachments list at the bottom of the PDF.
+            أوقف تضمين CC وBCC قبل التحويل لتعرض الترويسة المرسل والمستلم
+            والتاريخ والموضوع فقط. وتحتوي اللوحة نفسها على مفتاح لقائمة المرفقات
+            في أسفل ملف PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which page sizes are available?
+            ما أحجام الصفحات المتاحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A4, US Letter, and Legal, with a 50-point margin on every side. Long
-            emails flow onto as many pages as needed. The page size applies to
-            the whole batch, so pick it before you click Convert.
+            A4 وUS Letter وLegal، بهامش 50 نقطة من كل جانب. تمتد رسائل البريد
+            الطويلة على عدد الصفحات اللازم. ينطبق حجم الصفحة على الدفعة كاملة،
+            لذا اختره قبل النقر على تحويل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a whole thread or mailbox (.mbox, .pst) at once?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يمكنني تحويل سلسلة رسائل أو صندوق بريد كامل (.mbox و.pst) دفعة
+            واحدة؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The tool reads individual message files only, one email per PDF. It
-            doesn't open .mbox or .pst mailboxes, so export the messages you
-            need as separate .eml or .msg files first; you can then drop them
-            all in together and get a ZIP of PDFs.
+            تقرأ الأداة ملفات الرسائل المنفردة فقط، بريد واحد لكل PDF. ولا تفتح
+            صناديق البريد بصيغة .mbox أو .pst، لذا صدّر الرسائل التي تحتاجها
+            أولًا كملفات .eml أو .msg منفصلة؛ ثم يمكنك إفلاتها جميعًا معًا
+            والحصول على ZIP من ملفات PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are links in the email clickable in the PDF?
+            هل الروابط في البريد قابلة للنقر في ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Web and mailto links are re-created as clickable links wherever the
-            link text can be matched on the page. Very short link text (three
-            characters or fewer) isn't matched, so those particular links appear
-            as plain text.
+            تُعاد روابط الويب وmailto كروابط قابلة للنقر حيثما أمكن مطابقة نص
+            الرابط في الصفحة. لا تتم مطابقة نصوص الروابط القصيرة جدًا (ثلاثة
+            أحرف أو أقل)، لذا تظهر هذه الروابط تحديدًا كنص عادي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the converted email's PDF named?
+            ما اسم ملف PDF الناتج عن البريد المحوَّل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A single email becomes a PDF with the same base name as the .eml or
-            .msg file. Several emails are packaged into emails-converted.zip
-            with one PDF per message.
+            يتحول البريد الواحد إلى ملف PDF يحمل الاسم الأساسي نفسه لملف .eml أو
+            .msg. وتُحزم عدة رسائل في emails-converted.zip بواقع ملف PDF لكل
+            رسالة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does converting an email trigger tracking pixels or contact the
-            sender's server?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يؤدي تحويل بريد إلكتروني إلى تفعيل بكسلات التتبع أو الاتصال بخادم
+            المرسل؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The message is parsed and rendered entirely in your browser, and
-            no remote images, scripts, or stylesheets referenced by the email
-            are fetched. Open-tracking pixels never fire, and the email's
-            contents never leave your device.
+            لا. تُحلَّل الرسالة وتُعرض بالكامل في متصفحك، ولا تُجلب أي صور أو
+            سكربتات أو أوراق أنماط خارجية مشار إليها في البريد. لا تعمل بكسلات
+            تتبّع الفتح أبدًا، ولا يغادر محتوى البريد جهازك.
           </p>
         </details>
       </div>
@@ -509,26 +508,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to convert email to PDF online",
+        "name": "كيفية تحويل البريد الإلكتروني إلى PDF عبر الإنترنت",
         "description": "Learn how to convert email files to PDF using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload Email File",
-            "text": "Click or drag and drop your .eml or .msg file"
+            "name": "رفع ملف البريد الإلكتروني",
+            "text": "انقر أو اسحب وأفلت ملف .eml أو .msg"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the convert button"
+            "name": "معالجة",
+            "text": "انقر على زر التحويل"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your converted PDF file"
+            "name": "تنزيل",
+            "text": "نزّل ملف PDF المحوَّل"
           }
         ]
       }

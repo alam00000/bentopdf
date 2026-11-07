@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Remove Metadata Online Free - Remove Metadata Tool | Pixel PDF"
+      content="إزالة البيانات الوصفية عبر الإنترنت مجانًا - أداة إزالة البيانات الوصفية | Pixel PDF"
     />
     <meta
       name="description"
-      content="Strip hidden data from your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أزل البيانات المخفية من ملف PDF. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="remove metadata, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Remove Metadata Online Free - Remove Metadata Tool | Pixel PDF"
+      content="إزالة البيانات الوصفية عبر الإنترنت مجانًا - أداة إزالة البيانات الوصفية | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Strip hidden data from your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أزل البيانات المخفية من ملف PDF. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/remove-metadata"
     />
-    <meta name="twitter:title" content="Remove Metadata Free" />
+    <meta name="twitter:title" content="إزالة البيانات الوصفية مجانًا" />
     <meta
       name="twitter:description"
-      content="Strip hidden data from your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أزل البيانات المخفية من ملف PDF. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Remove Metadata" />
+    <meta name="apple-mobile-web-app-title" content="إزالة البيانات الوصفية" />
 
-    <title>Remove Metadata - Strip Hidden Data from PDF - Pixel PDF</title>
+    <title>إزالة البيانات الوصفية - إزالة البيانات المخفية من PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:removeMetadata.name"
         >
-          Remove Metadata
+          إزالة البيانات الوصفية
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:removeMetadata.subtitle">
-          Strip hidden data from your PDF.
+          حذف البيانات المخفية من PDF الخاص بك.
         </p>
 
         <div
@@ -135,12 +135,12 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -156,19 +156,19 @@
         <div id="tool-options" class="hidden mt-6">
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700 mb-4">
             <h3 class="text-sm font-semibold text-white mb-2">
-              What will be removed:
+              ما الذي سيُزال:
             </h3>
             <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-              <li>Title, Author, Subject, Keywords</li>
-              <li>Creator and Producer information</li>
-              <li>Creation and Modification dates</li>
-              <li>XMP Metadata streams</li>
-              <li>Document IDs</li>
-              <li>PieceInfo (private application data)</li>
+              <li>العنوان والمؤلف والموضوع والكلمات المفتاحية</li>
+              <li>معلومات المنشئ (Creator) والمنتج (Producer)</li>
+              <li>تاريخا الإنشاء والتعديل</li>
+              <li>تدفقات بيانات XMP الوصفية</li>
+              <li>معرّفات المستند</li>
+              <li>PieceInfo (بيانات خاصة بالتطبيق)</li>
             </ul>
           </div>
           <button id="process-btn" class="btn-gradient w-full">
-            Remove All Metadata
+            إزالة جميع البيانات الوصفية
           </button>
         </div>
       </div>
@@ -187,9 +187,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -206,16 +205,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -226,7 +224,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -236,9 +234,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -249,9 +247,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -262,9 +260,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -277,43 +275,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -324,126 +328,121 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What metadata exactly gets removed?
+            ما البيانات الوصفية التي تُزال بالضبط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The document info fields (Title, Author, Subject, Keywords, Creator,
-            Producer, and the creation and modification dates), the XMP metadata
-            stream, the document ID pair in the trailer, and
-            application-specific PieceInfo left behind by tools like Illustrator
-            or InDesign. There are no options; it always clears all of these.
+            حقول معلومات المستند (العنوان والمؤلف والموضوع والكلمات المفتاحية
+            والمنشئ والمنتج وتاريخا الإنشاء والتعديل)، وتدفق بيانات XMP الوصفية،
+            وزوج معرّف المستند في الذيل، وبيانات PieceInfo الخاصة بالتطبيقات
+            التي تتركها أدوات مثل Illustrator أو InDesign. لا توجد خيارات، فهي
+            تمسح كل ذلك دائمًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What stays in the file?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            ما الذي يبقى في الملف؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            All visible content, plus form fields, annotations, bookmarks,
-            links, and any file attachments. Names stored inside those elements,
-            such as the author on a sticky-note comment, are not touched. To
-            strip comments, scripts, and attachments as well, use
+            كل المحتوى المرئي، إضافةً إلى حقول النماذج والتعليقات التوضيحية
+            والإشارات المرجعية والروابط وأي مرفقات. لا تُمس الأسماء المخزنة داخل
+            هذه العناصر، مثل اسم كاتب الملاحظة اللاصقة. لإزالة التعليقات
+            والبرامج النصية والمرفقات أيضًا، استخدم
             <a
               href="/sanitize-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Sanitize PDF</a
+              >تعقيم PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it remove metadata from images inside the PDF?
+            هل تزيل البيانات الوصفية من الصور داخل ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Image data is left as it is, so any EXIF or XMP information a
-            photo carried when it was placed into the PDF stays with that image.
-            If that matters,
+            لا. تُترك بيانات الصور كما هي، فتبقى أي معلومات EXIF أو XMP حملتها
+            الصورة عند وضعها في PDF مع تلك الصورة. إذا كان ذلك مهمًا، فإن
             <a
               href="/rasterize-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Rasterize PDF</a
+              >تحويل PDF إلى صور نقطية</a
             >
-            re-renders every page as a fresh image, at the cost of selectable
-            text.
+            يعيد عرض كل صفحة كصورة جديدة، على حساب النص القابل للتحديد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How can I confirm the metadata is gone?
+            كيف أتأكد من اختفاء البيانات الوصفية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Open the cleaned file in
+            افتح الملف المنظّف في
             <a
               href="/view-metadata"
               class="text-indigo-300 hover:text-indigo-400"
-              >View Metadata</a
+              >عرض البيانات الوصفية</a
             >
-            and check that the fields are blank. Running the same check on the
-            original first shows you exactly what is about to be removed.
+            وتأكد أن الحقول فارغة. إجراء الفحص نفسه على الأصل أولًا يُظهر لك
+            بالضبط ما سيُزال.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can this be undone?
+            هل يمكن التراجع عن هذا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The cleaned file keeps no record of the removed values. Keep
-            your original copy if you may need the author, dates, or other
-            details later.
+            لا. لا يحتفظ الملف المنظّف بأي سجل للقيم المحذوفة. احتفظ بنسختك
+            الأصلية إذا كنت قد تحتاج إلى المؤلف أو التواريخ أو تفاصيل أخرى
+            لاحقًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will removing metadata reduce the file size?
+            هل تقلل إزالة البيانات الوصفية حجم الملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A little, since the XMP block and info fields are dropped, usually
-            only a few kilobytes. For a real reduction, follow up with
+            قليلًا، لأن كتلة XMP وحقول المعلومات تُحذف، وعادةً لا يتجاوز ذلك
+            بضعة كيلوبايتات. لتقليل الحجم فعليًا، تابع بـ
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it remove comments, annotations, or hidden text?
+            هل تزيل التعليقات أو التعليقات التوضيحية أو النص المخفي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No, it only targets metadata. Comments and markup are annotations,
-            which stay;
+            لا، فهي تستهدف البيانات الوصفية فقط. التعليقات والتمييز هي تعليقات
+            توضيحية وتبقى، وتتولاها أداة
             <a
               href="/remove-annotations"
               class="text-indigo-300 hover:text-indigo-400"
-              >Remove Annotations</a
-            >
-            handles those. Hidden or white text remains part of the page
-            content, so review the document itself if it went through several
-            revisions.
+              >إزالة التعليقات التوضيحية</a
+            >. يبقى النص المخفي أو الأبيض جزءًا من محتوى الصفحة، فراجع المستند
+            نفسه إذا مرّ بعدة مراجعات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded while the metadata is removed?
+            هل يُرفع ملف PDF أثناء إزالة البيانات الوصفية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The file is opened and rewritten by a PDF library in your
-            browser, which is the point when the goal is anonymity: the document
-            never touches a server, and no server log records what you cleaned.
+            لا. تفتح مكتبة PDF الملف وتعيد كتابته داخل متصفحك، وهذا هو المطلوب
+            عندما يكون الهدف إخفاء الهوية: لا يلمس المستند أي خادم، ولا يسجّل أي
+            خادم ما نظّفته.
           </p>
         </details>
       </div>
@@ -477,26 +476,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to remove metadata online",
+        "name": "كيفية إزالة البيانات الوصفية عبر الإنترنت",
         "description": "Learn how to remove metadata using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

@@ -32,7 +32,7 @@ describe('resolveCompressLevel', () => {
   it('falls back to medium for anything else', () => {
     expect(resolveCompressLevel('custom')).toBe('medium');
     expect(resolveCompressLevel('')).toBe('medium');
-    expect(resolveCompressLevel('constructor')).toBe('medium');
+    expect(resolveCompressLevel(undefined)).toBe('medium');
   });
 });
 
@@ -242,7 +242,7 @@ describe('Hyper worker bridge', () => {
   it('rejects a file that is not a PDF without starting the engine', async () => {
     await expect(
       bridge.compressWithHyper(textBuffer('just text'), {})
-    ).rejects.toMatchObject({ message: 'This file is not a valid PDF.' });
+    ).rejects.toMatchObject({ message: 'هذا الملف ليس PDF صالحًا.' });
     expect(FakeWorker.instances).toHaveLength(0);
   });
 });

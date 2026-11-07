@@ -79,14 +79,14 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
 
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
 
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -96,7 +96,7 @@ async function handleFiles(files: FileList) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -120,7 +120,7 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{getPageCount}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{getPageCount}} صفحة", {
     size: formatBytes(pageState.file.size),
     getPageCount: pageState.pdfDoc.getPageCount(),
   });
@@ -149,11 +149,11 @@ function resetState() {
 
 async function addPageNumbers() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Adding page numbers...');
+  showLoader("جارٍ إضافة أرقام الصفحات...");
   try {
     const position = (document.getElementById('position') as HTMLSelectElement)
       .value as PageNumberPosition;
@@ -184,12 +184,12 @@ async function addPageNumbers() {
       }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Page numbers added successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تمت إضافة أرقام الصفحات بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not add page numbers.');
+    showAlert("خطأ", "تعذرت إضافة أرقام الصفحات.");
   } finally {
     hideLoader();
   }

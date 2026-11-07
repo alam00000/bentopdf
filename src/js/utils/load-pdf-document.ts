@@ -57,7 +57,7 @@ export async function removeUnreferencedObjects(
     []
   );
   if (!cleaned) {
-    throw new Error(trText('Could not remove leftover data from the PDF.'));
+    throw new Error(trText("تعذرت إزالة البيانات المتبقية من PDF."));
   }
   return cleaned;
 }

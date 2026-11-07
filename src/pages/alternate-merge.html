@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Alternate Merge Online Free - Alternate Merge Tool | Pixel PDF"
+      content="الدمج بالتناوب مجانًا عبر الإنترنت - أداة الدمج بالتناوب | Pixel PDF"
     />
     <meta
       name="description"
-      content="Merge PDFs by alternating pages from each PDF. Preserves Bookmarks. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج ملفات PDF بالتناوب بين صفحات كل ملف. يحافظ على الإشارات المرجعية. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="alternate merge, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Alternate Merge Online Free - Alternate Merge Tool | Pixel PDF"
+      content="الدمج بالتناوب مجانًا عبر الإنترنت - أداة الدمج بالتناوب | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Merge PDFs by alternating pages from each PDF. Preserves Bookmarks. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج ملفات PDF بالتناوب بين صفحات كل ملف. يحافظ على الإشارات المرجعية. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/alternate-merge"
     />
-    <meta name="twitter:title" content="Alternate Merge Free" />
+    <meta name="twitter:title" content="الدمج بالتناوب مجانًا" />
     <meta
       name="twitter:description"
-      content="Merge PDFs by alternating pages from each PDF. Preserves Bookmarks. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج ملفات PDF بالتناوب بين صفحات كل ملف. يحافظ على الإشارات المرجعية. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Alternate Merge" />
+    <meta name="apple-mobile-web-app-title" content="الدمج بالتناوب" />
 
-    <title>Alternate & Mix PDF Pages - Pixel PDF</title>
+    <title>تناوب ومزج صفحات PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:alternateMerge.name"
         >
-          Alternate & Mix Pages
+          تبديل ومزج الصفحات
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:alternateMerge.subtitle">
-          Merge PDFs by alternating pages from each PDF. Preserves Bookmarks.
+          دمج ملفات PDF بتبديل الصفحات من كل ملف. يحافظ على الإشارات المرجعية.
         </p>
 
         <div
@@ -135,18 +135,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.multiplePdfs2"
             >
-              Multiple PDF files (at least 2)
+              عدة ملفات PDF (اثنان على الأقل)
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -154,16 +154,16 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="tool-options" class="hidden mt-6">
-          <h2 class="text-lg font-semibold text-white mb-4">Files Order</h2>
+          <h2 class="text-lg font-semibold text-white mb-4">ترتيب الملفات</h2>
           <p class="text-sm text-gray-400 mb-3">
-            Drag to reorder. Pages will be interleaved in this order.
+            اسحب لإعادة الترتيب. ستتداخل الصفحات بهذا الترتيب.
           </p>
 
           <ul id="file-list" class="space-y-2 mb-4"></ul>
@@ -180,22 +180,20 @@
               <span
                 class="font-medium"
                 data-i18n="tools:alternateMerge.retainPageLabels"
+                >الاحتفاظ بتسميات الصفحات الأصلية لكل ملف</span
               >
-                Keep original page labels from each file
-              </span>
               <span
                 class="block text-xs text-gray-400 mt-0.5"
                 data-i18n="tools:alternateMerge.retainPageLabelsHint"
+                >غير مفعّل (افتراضي): يستخدم ملف PDF المدمج ترقيمًا طبيعيًا من 1
+                إلى N. مفعّل: يتم الاحتفاظ بتسميات الصفحات الأصلية لكل ملف (قد
+                ينتج عن ذلك تسميات مكررة).</span
               >
-                Off (default): the merged PDF uses natural page numbering 1 to
-                N. On: each file's original page labels are preserved (may
-                produce duplicate labels).
-              </span>
             </span>
           </label>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Mix Pages
+            مزج الصفحات
           </button>
         </div>
       </div>
@@ -214,9 +212,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -233,16 +230,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -253,7 +249,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -263,9 +259,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -276,9 +272,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -289,9 +285,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -304,43 +300,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -351,121 +353,116 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does alternate merge do that a normal merge doesn't?
+            ما الذي يفعله الدمج بالتناوب ولا يفعله الدمج العادي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A normal merge appends whole files one after another. Alternate
-            merge takes page 1 from each file in turn, then page 2 from each,
-            and so on, so the pages of two or more PDFs are interleaved into a
-            single document. If you only need files back to back, use
+            يلحق الدمج العادي الملفات كاملة واحدًا بعد الآخر. أما الدمج بالتناوب
+            فيأخذ الصفحة 1 من كل ملف بالتناوب، ثم الصفحة 2 من كل ملف، وهكذا،
+            فتتداخل صفحات ملفي PDF أو أكثر في مستند واحد. إذا كنت تريد الملفات
+            متتالية فقط، فاستخدم
             <a href="/merge-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Merge PDF</a
+              >دمج PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I fix a double-sided scan where the fronts and backs are in
-            separate PDFs?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            كيف أصلح مسحًا ضوئيًا على الوجهين تكون فيه الأوجه الأمامية والخلفية
+            في ملفي PDF منفصلين؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the fronts PDF first and the backs PDF second, then click Mix
-            Pages. The output alternates front 1, back 1, front 2, back 2 and so
-            on. If the backs were scanned last page first, flip that file with
+            ارفع PDF الأوجه الأمامية أولاً ثم PDF الأوجه الخلفية، ثم انقر على
+            مزج الصفحات. يتناوب الناتج: أمامي 1، خلفي 1، أمامي 2، خلفي 2 وهكذا.
+            إذا كانت الأوجه الخلفية ممسوحة بدءًا من الصفحة الأخيرة، فاعكس ذلك
+            الملف باستخدام
             <a
               href="/reverse-pages"
               class="text-indigo-300 hover:text-indigo-400"
-              >Reverse Pages</a
+              >عكس الصفحات</a
             >
-            before mixing.
+            قبل المزج.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            The fronts and backs are in the same PDF, not separate files. Which
-            tool do I need?
+            الأوجه الأمامية والخلفية في ملف PDF واحد وليست في ملفين منفصلين. ما
+            الأداة التي أحتاج إليها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            This tool interleaves separate files. If one PDF holds all the
-            fronts followed by all the backs,
+            تدمج هذه الأداة ملفات منفصلة بالتناوب. إذا كان ملف PDF واحد يحتوي
+            على كل الأوجه الأمامية ثم كل الأوجه الخلفية، فإن
             <a
               href="/duplex-collate"
               class="text-indigo-300 hover:text-indigo-400"
-              >Duplex Collate</a
+              >الدمج المزدوج الوجه</a
             >
-            splits that single file at the midpoint and interleaves the two
-            halves, with an option to reverse the back block.
+            يقسم هذا الملف الواحد عند منتصفه ويدمج النصفين بالتناوب، مع خيار
+            لعكس كتلة الأوجه الخلفية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if the PDFs have different page counts?
+            ماذا يحدث إذا اختلف عدد صفحات ملفات PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Interleaving continues until the shorter file runs out, and the
-            remaining pages from the longer file are appended in order at the
-            end. No pages are dropped.
+            يستمر التداخل حتى ينتهي الملف الأقصر، وتُلحق الصفحات المتبقية من
+            الملف الأطول بالترتيب في النهاية. لا تُحذف أي صفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I interleave more than two PDFs?
+            هل يمكنني دمج أكثر من ملفي PDF بالتناوب؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Any number of files from two upward. With three files the output
-            goes A1, B1, C1, A2, B2, C2 and so on, following the order shown in
-            the file list, which you can change by dragging the grip handles.
+            أي عدد من الملفات ابتداءً من اثنين. مع ثلاثة ملفات يكون الناتج A1
+            وB1 وC1 وA2 وB2 وC2 وهكذا، وفق الترتيب المعروض في قائمة الملفات،
+            ويمكنك تغييره بسحب مقابض الإمساك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the output keep bookmarks and page numbers from the original
-            files?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يحتفظ الناتج بالإشارات المرجعية وأرقام الصفحات من الملفات
+            الأصلية؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Bookmarks from each source file are carried into the mixed PDF. Page
-            labels are reset to a plain 1 to N sequence by default; turn on the
-            option to keep original page labels if you want each file's own
-            labels, which can produce duplicates such as two pages both labeled
-            1.
+            تنتقل الإشارات المرجعية من كل ملف مصدر إلى PDF الممزوج. تُعاد تسميات
+            الصفحات افتراضيًا إلى تسلسل عادي من 1 إلى N؛ فعّل الخيار للاحتفاظ
+            بتسميات الصفحات الأصلية إذا أردت تسميات كل ملف، وقد ينتج عن ذلك
+            تكرارات مثل صفحتين تحملان التسمية 1 كلتاهما.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I alternate pages from password-protected PDFs?
+            هل يمكنني تناوب الصفحات من ملفات PDF محمية بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            If a file is encrypted you're asked for its password when it loads,
-            and the decrypted copy is used for mixing. The output isn't
-            encrypted, so use
+            إذا كان الملف مشفرًا فستُطلب منك كلمة مروره عند تحميله، وتُستخدم
+            النسخة غير المشفرة في المزج. لا يكون الناتج مشفرًا، لذا استخدم
             <a href="/protect-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Protect PDF</a
+              >حماية PDF</a
             >
-            afterward if it needs a password again.
+            بعد ذلك إذا احتاج إلى كلمة مرور من جديد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the PDFs uploaded to a server while they're being interleaved?
+            هل تُرفع ملفات PDF إلى خادم أثناء دمجها بالتناوب؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The files are read in your browser and interleaved by a
-            WebAssembly build of cpdf running in a background worker on your
-            device, and the finished alternated-mixed.pdf is saved straight from
-            the browser.
+            لا. تُقرأ الملفات في متصفحك ويتم دمجها بالتناوب بواسطة نسخة
+            WebAssembly من cpdf تعمل في عامل خلفي على جهازك، ويُحفظ الملف
+            النهائي alternated-mixed.pdf مباشرة من المتصفح.
           </p>
         </details>
       </div>
@@ -499,26 +496,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to alternate merge online",
+        "name": "كيفية الدمج بالتناوب عبر الإنترنت",
         "description": "Learn how to alternate merge using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

@@ -21,14 +21,14 @@ export async function convertXmlToPdf(
 ): Promise<Blob> {
   const { onProgress } = options || {};
 
-  onProgress?.(10, trText('Reading XML file...'));
+  onProgress?.(10, trText("جارٍ قراءة ملف XML..."));
   const rawXmlText = await file.text();
   const xmlText = String(rawXmlText)
     .replace(/<!DOCTYPE[\s\S]*?>/gi, '')
     .replace(/<!ENTITY[\s\S]*?>/gi, '')
     .replace(/<\?xml-stylesheet[\s\S]*?\?>/gi, '');
 
-  onProgress?.(30, trText('Parsing XML structure...'));
+  onProgress?.(30, trText("جارٍ تحليل بنية XML..."));
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: ATTR_PREFIX,
@@ -52,12 +52,12 @@ export async function convertXmlToPdf(
 
   const rootKeys = Object.keys(parsed);
   if (rootKeys.length === 0) {
-    throw new Error(trText('Invalid XML: no root element'));
+    throw new Error(trText("XML غير صالح: لا يوجد عنصر جذر"));
   }
   const rootName = rootKeys[0];
   const rootValue = parsed[rootName];
 
-  onProgress?.(50, trText('Analyzing data structure...'));
+  onProgress?.(50, trText("جارٍ تحليل بنية البيانات..."));
 
   const doc: jsPDFWithAutoTable = new jsPDF({
     orientation: 'landscape',
@@ -75,7 +75,7 @@ export async function convertXmlToPdf(
   });
   yPosition += 15;
 
-  onProgress?.(60, trText('Generating formatted content...'));
+  onProgress?.(60, trText("جارٍ إنشاء المحتوى المنسّق..."));
 
   if (isPlainObject(rootValue)) {
     const rootObj = rootValue;
@@ -157,7 +157,7 @@ export async function convertXmlToPdf(
     }
   }
 
-  onProgress?.(90, trText('Finalizing PDF...'));
+  onProgress?.(90, trText("جارٍ إنهاء PDF..."));
 
   const pdfBlob = doc.output('blob');
 

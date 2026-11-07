@@ -102,7 +102,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function decryptPdf() {
   if (pageState.files.length === 0) {
-    showAlert('No File', 'Please upload at least one PDF file.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF واحد على الأقل.");
     return;
   }
 
@@ -111,7 +111,7 @@ async function decryptPdf() {
   )?.value;
 
   if (!password) {
-    showAlert('Input Required', 'Please enter the PDF password.');
+    showAlert("إدخال مطلوب", "يرجى إدخال كلمة مرور PDF.");
     return;
   }
 
@@ -121,23 +121,23 @@ async function decryptPdf() {
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
     if (loaderText)
-      loaderText.textContent = trText('Initializing decryption...');
+      loaderText.textContent = trText("جارٍ تهيئة فك التشفير...");
 
     if (pageState.files.length === 1) {
       // Single file: decrypt and download directly
       const file = pageState.files[0];
       if (loaderText)
-        loaderText.textContent = trText('Reading encrypted PDF...');
+        loaderText.textContent = trText("جارٍ قراءة PDF المشفّر...");
       const fileBuffer = await readFileAsArrayBuffer(file);
       const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
-      if (loaderText) loaderText.textContent = trText('Decrypting PDF...');
+      if (loaderText) loaderText.textContent = trText("جارٍ فك تشفير PDF...");
       const { bytes: decryptedBytes } = await decryptPdfBytes(
         uint8Array,
         password
       );
 
-      if (loaderText) loaderText.textContent = trText('Preparing download...');
+      if (loaderText) loaderText.textContent = trText("جارٍ تجهيز التنزيل...");
       const blob = new Blob([decryptedBytes.slice().buffer], {
         type: 'application/pdf',
       });
@@ -145,8 +145,8 @@ async function decryptPdf() {
 
       if (loaderModal) loaderModal.classList.add('hidden');
       showAlert(
-        'Success',
-        'PDF decrypted successfully! Your download has started.',
+        "تم بنجاح",
+        "تم فك تشفير PDF بنجاح! بدأ التنزيل.",
         'success',
         () => {
           resetState();
@@ -163,7 +163,7 @@ async function decryptPdf() {
 
         if (loaderText)
           loaderText.textContent = trText(
-            'Decrypting {{name}} ({{n}}/{{length}})...',
+            "جارٍ فك تشفير {{name}} ({{n}}/{{length}})...",
             { name: file.name, n: i + 1, length: pageState.files.length }
           );
 
@@ -186,25 +186,25 @@ async function decryptPdf() {
       if (successCount === 0) {
         const error = new Error(
           trText(
-            'No PDF files could be decrypted. The password may be incorrect.'
+            "تعذر فك تشفير أي ملف PDF. قد تكون كلمة المرور غير صحيحة."
           )
         );
         error.name = 'PasswordError';
         throw error;
       }
 
-      if (loaderText) loaderText.textContent = trText('Generating ZIP file...');
+      if (loaderText) loaderText.textContent = trText("جارٍ إنشاء ملف ZIP...");
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, 'decrypted-pdfs.zip');
 
       let alertMessage = trText(
-        '{{successCount}} PDF(s) decrypted successfully.',
+        "تم فك تشفير {{successCount}} من ملفات PDF بنجاح.",
         { successCount }
       );
       if (errorCount > 0) {
-        alertMessage += ` ${trText('Files that failed: {{errorCount}}.', { errorCount })}`;
+        alertMessage += ` ${trText("الملفات التي فشلت: {{errorCount}}.", { errorCount })}`;
       }
-      showAlert('Processing Complete', alertMessage, 'success', () => {
+      showAlert("اكتملت المعالجة", alertMessage, 'success', () => {
         resetState();
       });
     }
@@ -214,25 +214,25 @@ async function decryptPdf() {
     const errorMessage = error instanceof Error ? error.message : '';
     if (errorMessage === 'INVALID_PASSWORD') {
       showAlert(
-        'Incorrect Password',
-        'The password you entered is incorrect. Please try again.'
+        "كلمة مرور غير صحيحة",
+        "كلمة المرور التي أدخلتها غير صحيحة. يرجى المحاولة مرة أخرى."
       );
     } else if (
       error instanceof Error &&
       (error.name === 'PasswordError' || /password/i.test(errorMessage))
     ) {
       showAlert(
-        'Password Error',
-        'Unable to decrypt the PDF with the provided password.'
+        "خطأ في كلمة المرور",
+        "تعذر فك تشفير PDF بكلمة المرور المقدمة."
       );
     } else {
       showAlert(
-        'Decryption Failed',
-        trText('An error occurred: {{error}}', {
+        "فشل فك التشفير",
+        trText("حدث خطأ: {{error}}", {
           error:
             errorMessage ||
             trText(
-              'The password you entered is wrong or the file is corrupted.'
+              "كلمة المرور التي أدخلتها خاطئة أو أن الملف تالف."
             ),
         })
       );

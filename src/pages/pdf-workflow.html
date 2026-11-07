@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>PDF Workflow Builder - Visual Pipeline | Pixel PDF</title>
+    <title>منشئ مسارات عمل PDF - مسار مرئي | Pixel PDF</title>
     <meta
       name="title"
-      content="PDF Workflow Builder - Visual Pipeline | Pixel PDF"
+      content="منشئ مسارات عمل PDF - مسار مرئي | Pixel PDF"
     />
     <meta
       name="description"
-      content="Build custom PDF processing pipelines visually. Drag, connect, and execute PDF tools in sequence. Free, secure, runs entirely in your browser."
+      content="ابنِ مسارات معالجة PDF مخصصة بصريًا. اسحب أدوات PDF واربطها ونفّذها بالتسلسل. مجاني وآمن ويعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -29,11 +29,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pdf-workflow" />
     <meta
       property="og:title"
-      content="PDF Workflow Builder - Visual Pipeline | Pixel PDF"
+      content="منشئ مسارات عمل PDF - مسار مرئي | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Build custom PDF processing pipelines visually. Drag, connect, and execute PDF tools in sequence."
+      content="ابنِ مسارات معالجة PDF مخصصة بصريًا. اسحب أدوات PDF واربطها ونفّذها بالتسلسل."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/pdf-workflow" />
-    <meta name="twitter:title" content="PDF Workflow Builder" />
+    <meta name="twitter:title" content="منشئ سير عمل PDF" />
     <meta
       name="twitter:description"
-      content="Build custom PDF processing pipelines visually."
+      content="ابنِ مسارات معالجة PDF مخصصة بصريًا."
     />
     <meta
       name="twitter:image"
@@ -279,7 +279,7 @@
     {{> navbar }}
 
     <h1 class="sr-only">
-      PDF Workflow Builder Free Online - Chain PDF Tools Into One Run
+      منشئ مسارات عمل PDF مجانًا أونلاين - اربط أدوات PDF في تشغيل واحد
     </h1>
 
     <!-- Main Workflow Layout -->
@@ -290,11 +290,11 @@
         class="w-60 bg-gray-800 border-r border-gray-700 flex-col overflow-y-auto flex-shrink-0 hidden md:flex max-md:fixed max-md:inset-y-0 max-md:left-0 max-md:z-40 max-md:shadow-2xl"
       >
         <div class="p-3 border-b border-gray-700">
-          <h2 class="text-white font-bold text-sm mb-2">Nodes</h2>
+          <h2 class="text-white font-bold text-sm mb-2">العقد</h2>
           <input
             id="node-search"
             type="text"
-            placeholder="Search nodes..."
+            placeholder="ابحث في العقد..."
             class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-2 py-1.5 text-xs focus:border-indigo-500 focus:outline-none"
           />
         </div>
@@ -324,14 +324,14 @@
             class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-3 md:px-4 py-1.5 rounded-lg flex items-center gap-1.5 text-sm transition-colors"
           >
             <i class="ph ph-play text-base"></i>
-            <span class="hidden md:inline">Run</span>
+            <span class="hidden md:inline">تشغيل</span>
           </button>
           <button
             id="clear-btn"
             class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
           >
             <i class="ph ph-trash text-base md:hidden"></i>
-            <span class="hidden md:inline">Clear</span>
+            <span class="hidden md:inline">مسح</span>
           </button>
           <div class="flex-1"></div>
           <button
@@ -339,7 +339,7 @@
             class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
           >
             <i class="ph ph-floppy-disk text-sm"></i>
-            <span class="hidden md:inline">Save</span>
+            <span class="hidden md:inline">حفظ</span>
           </button>
           <button
             id="faq-open-btn"
@@ -350,28 +350,28 @@
             aria-expanded="false"
           >
             <i class="ph ph-question text-sm"></i>
-            <span class="hidden md:inline">FAQ</span>
+            <span class="hidden md:inline">الأسئلة الشائعة</span>
           </button>
           <button
             id="load-btn"
             class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
           >
             <i class="ph ph-folder-open text-sm"></i>
-            <span class="hidden md:inline">Load</span>
+            <span class="hidden md:inline">تحميل</span>
           </button>
           <button
             id="export-btn"
             class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
           >
             <i class="ph ph-export text-sm"></i>
-            <span class="hidden md:inline">Export</span>
+            <span class="hidden md:inline">تصدير</span>
           </button>
           <button
             id="import-btn"
             class="bg-gray-700 hover:bg-gray-600 text-white px-2.5 md:px-3 py-1.5 rounded-lg text-sm flex items-center gap-1 transition-colors"
           >
             <i class="ph ph-download-simple text-sm"></i>
-            <span class="hidden md:inline">Import</span>
+            <span class="hidden md:inline">استيراد</span>
           </button>
         </div>
 
@@ -383,9 +383,9 @@
           id="status-bar"
           class="h-7 bg-gray-800 border-t border-gray-700 hidden md:flex items-center px-4 text-xs text-gray-400"
         >
-          <span id="status-text">Ready</span>
+          <span id="status-text">جاهز</span>
           <div class="flex-1"></div>
-          <span id="node-count">0 nodes</span>
+          <span id="node-count">0 عقدة</span>
         </div>
       </main>
 
@@ -398,7 +398,7 @@
           class="p-3 border-b border-gray-700 flex items-center justify-between"
         >
           <h2 id="settings-title" class="text-white font-bold text-sm">
-            Settings
+            الإعدادات
           </h2>
           <button
             id="close-settings"
@@ -423,7 +423,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -442,15 +442,15 @@
           >
             <i class="ph ph-floppy-disk text-lg text-indigo-400"></i>
           </div>
-          <h3 class="text-base font-semibold text-white">Save Template</h3>
+          <h3 class="text-base font-semibold text-white">حفظ قالب</h3>
         </div>
         <label class="block text-xs font-medium text-gray-400 mb-1.5"
-          >Template Name</label
+          >اسم القالب</label
         >
         <input
           id="save-template-name"
           type="text"
-          placeholder="e.g. Invoice Workflow"
+          placeholder="مثال: سير عمل الفواتير"
           class="w-full bg-gray-900/80 border border-gray-600/60 text-white rounded-lg px-3 py-2.5 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 focus:outline-none placeholder-gray-500 mb-1"
         />
         <p
@@ -462,13 +462,13 @@
             id="save-template-cancel"
             class="flex-1 bg-gray-700/80 hover:bg-gray-600 text-gray-300 font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
           >
-            Cancel
+            إلغاء
           </button>
           <button
             id="save-template-confirm"
             class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
           >
-            Save
+            حفظ
           </button>
         </div>
       </div>
@@ -488,7 +488,7 @@
           >
             <i class="ph ph-folder-open text-lg text-indigo-400"></i>
           </div>
-          <h3 class="text-base font-semibold text-white">Load Template</h3>
+          <h3 class="text-base font-semibold text-white">تحميل قالب</h3>
         </div>
         <div
           id="load-template-list"
@@ -498,13 +498,13 @@
           id="load-template-empty"
           class="text-gray-500 text-sm text-center py-6 hidden"
         >
-          No saved templates yet.
+          لا توجد قوالب محفوظة بعد.
         </p>
         <button
           id="load-template-cancel"
           class="w-full bg-gray-700/80 hover:bg-gray-600 text-gray-300 font-medium py-2.5 px-4 rounded-lg transition-colors text-sm mt-2"
         >
-          Cancel
+          إلغاء
         </button>
       </div>
     </div>
@@ -518,14 +518,14 @@
         class="bg-gray-800/95 rounded-2xl shadow-2xl p-6 max-w-sm w-full mx-4 border border-gray-600/50"
       >
         <h3 id="alert-title" class="text-lg font-semibold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 text-sm mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 px-4 rounded-lg transition-colors text-sm"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -539,7 +539,7 @@
         class="bg-gray-800/95 rounded-2xl shadow-2xl border border-gray-600/50 p-5 w-80 mx-4"
       >
         <h3 class="text-white font-semibold text-sm mb-1">
-          <i class="ph ph-lock text-sm"></i> Protected PDF
+          <i class="ph ph-lock text-sm"></i> PDF محمي
         </h3>
         <p
           id="pdf-password-filename"
@@ -548,24 +548,24 @@
         <input
           type="password"
           id="pdf-password-input"
-          placeholder="Enter password"
+          placeholder="أدخل كلمة المرور"
           class="w-full bg-gray-900 border border-gray-600 text-white rounded-md px-3 py-2 text-xs focus:border-indigo-500 focus:outline-none mb-1"
         />
         <p id="pdf-password-error" class="text-red-400 text-xs mb-3 hidden">
-          Incorrect password
+          كلمة المرور غير صحيحة
         </p>
         <div class="flex gap-2">
           <button
             id="pdf-password-skip"
             class="flex-1 bg-gray-700/80 hover:bg-gray-600 text-gray-300 text-xs py-2 rounded-lg transition-colors"
           >
-            Skip
+            تخطي
           </button>
           <button
             id="pdf-password-unlock"
             class="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-xs py-2 rounded-lg transition-colors"
           >
-            Unlock
+            فتح القفل
           </button>
         </div>
       </div>
@@ -590,7 +590,7 @@
           id="faq-close-btn"
           type="button"
           class="absolute top-3 right-3 z-10 flex items-center justify-center w-9 h-9 rounded-lg bg-gray-700 hover:bg-gray-600 text-white"
-          aria-label="Close FAQ"
+          aria-label="إغلاق الأسئلة الشائعة"
         >
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
@@ -600,109 +600,103 @@
             class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
             data-i18n="faq.sectionTitle"
           >
-            Frequently Asked Questions
+            الأسئلة الشائعة
           </h2>
           <div class="faq-list">
             <details class="faq-d">
               <summary class="faq-d-q">
-                What is the PDF Workflow Builder for?
+                ما فائدة منشئ مسارات عمل PDF؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                It chains several PDF operations into one run. Instead of
-                opening a tool, downloading, and feeding the result into the
-                next tool for each step, you connect nodes on a canvas, such as
-                PDF Input, Compress, Watermark, and Download, set each node's
-                options, and click Run to process everything in sequence.
+                يربط عدة عمليات على PDF في تشغيل واحد. بدلًا من فتح أداة
+                والتنزيل ثم تغذية النتيجة إلى الأداة التالية في كل خطوة، تربط
+                عقدًا على لوحة، مثل إدخال PDF والضغط والعلامة المائية والتنزيل،
+                وتضبط خيارات كل عقدة، وتنقر على تشغيل لمعالجة كل شيء بالتسلسل.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Can I run the same workflow on many PDFs at once?
+                هل يمكنني تشغيل سير العمل نفسه على عدة ملفات PDF دفعة واحدة؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                Yes. The PDF Input node accepts multiple files; a Merge node
-                combines them into one document, while other nodes process each
-                PDF separately. When more than one file comes out the end, the
-                Download node bundles them into a ZIP automatically.
+                نعم. تقبل عقدة إدخال PDF عدة ملفات، وتجمعها عقدة الدمج في مستند
+                واحد، بينما تعالج العقد الأخرى كل PDF على حدة. وعندما يخرج أكثر
+                من ملف في النهاية، تُجمّعها عقدة التنزيل في ملف ZIP تلقائيًا.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Why won't it let me connect two nodes?
+                لماذا لا يسمح لي بربط عقدتين؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                Sockets are typed: PDF (a single document), MultiPDF (several
-                documents), and Image. A node that expects a single PDF won't
-                accept a MultiPDF output, so put a Merge node in between, and
-                image outputs only feed nodes that take images. Connections
-                always run from the bottom of one node to the top of the next.
+                المقابس لها أنواع: PDF (مستند واحد) وMultiPDF (عدة مستندات)
+                وصورة. لا تقبل العقدة التي تتوقع PDF واحدًا مخرجات MultiPDF،
+                لذلك ضع عقدة دمج بينهما، ولا تغذّي مخرجات الصور إلا العقد التي
+                تأخذ صورًا. تمتد الوصلات دائمًا من أسفل عقدة إلى أعلى العقدة
+                التالية.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Why does it complain that Encrypt must be the last step?
+                لماذا يشتكي من أن التشفير يجب أن يكون الخطوة الأخيرة؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                Once a PDF is encrypted, later nodes can't read it, so the
-                engine rejects a workflow where anything other than the output
-                sits after Encrypt. Move Encrypt to just before Download.
-                Password-protected inputs are the opposite case: the run pauses
-                and asks for the password.
+                بعد تشفير PDF لا تستطيع العقد اللاحقة قراءته، لذلك يرفض المحرك
+                سير عمل يوجد فيه أي شيء غير المخرجات بعد التشفير. انقل التشفير
+                إلى ما قبل التنزيل مباشرة. أما المدخلات المحمية بكلمة مرور فهي
+                الحالة المعاكسة: يتوقف التشغيل ويطلب كلمة المرور.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                What happens if one step fails?
+                ماذا يحدث إذا فشلت إحدى الخطوات؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                The run stops at that node, which turns red with an error
-                message, and nothing downstream is produced. Fix the setting or
-                the input and run again; it's easiest to build a two-node
-                version first and add steps once that works.
+                يتوقف التشغيل عند تلك العقدة التي تتحول إلى اللون الأحمر مع
+                رسالة خطأ، ولا يُنتج شيء بعدها. أصلح الإعداد أو المدخل وشغّل مرة
+                أخرى، والأسهل أن تبني نسخة من عقدتين أولًا وتضيف الخطوات بعد أن
+                تعمل.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Can I save a workflow and reuse it later?
+                هل يمكنني حفظ سير عمل وإعادة استخدامه لاحقًا؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                Yes. Save stores it as a named template in your browser's local
-                storage, and Load brings it back in a later session on the same
-                browser. Export writes the layout to a workflow.json file you
-                can back up or send to a colleague, and Import restores nodes,
-                positions, connections, and settings from that file.
+                نعم. يحفظه زر حفظ كقالب مسمى في التخزين المحلي لمتصفحك، ويعيده
+                تحميل في جلسة لاحقة على المتصفح نفسه. يكتب تصدير التخطيط إلى ملف
+                workflow.json يمكنك نسخه احتياطيًا أو إرساله إلى زميل، ويستعيد
+                استيراد العقد والمواضع والوصلات والإعدادات من ذلك الملف.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Does a saved workflow contain my documents?
+                هل يحتوي سير العمل المحفوظ على مستنداتي؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                No. Templates and exported JSON files hold only the node types,
-                their settings, positions, and connections; the PDFs are chosen
-                fresh each time you run. Settings are saved as typed, so avoid
-                exporting a workflow with a password entered in an Encrypt node
-                if you plan to share it.
+                لا. تحتفظ القوالب وملفات JSON المصدّرة بأنواع العقد وإعداداتها
+                ومواضعها ووصلاتها فقط، وتُختار ملفات PDF من جديد في كل تشغيل.
+                تُحفظ الإعدادات كما كُتبت، لذا تجنب تصدير سير عمل أدخلت فيه كلمة
+                مرور في عقدة التشفير إذا كنت تنوي مشاركته.
               </p>
             </details>
             <details class="faq-d">
               <summary class="faq-d-q">
-                Are the files processed on a server?
+                هل تُعالج الملفات على خادم؟
                 <i data-lucide="plus" class="faq-d-icon"></i>
               </summary>
               <p class="faq-d-a">
-                No. Every node runs in your browser with the same engines as the
-                individual tools, and the only network activity is fetching a
-                processing module such as Ghostscript the first time a node
-                needs one. Your PDFs never leave the machine, even in a long
-                multi-step run.
+                لا. تعمل كل عقدة في متصفحك بنفس محركات الأدوات المفردة، ونشاط
+                الشبكة الوحيد هو جلب وحدة معالجة مثل Ghostscript عندما تحتاج
+                إليها عقدة لأول مرة. لا تغادر ملفات PDF جهازك، حتى في تشغيل طويل
+                متعدد الخطوات.
               </p>
             </details>
           </div>

@@ -78,7 +78,7 @@ export function createPlaceholder(
 
   const loadingText = document.createElement('span');
   loadingText.className = 'text-gray-500 text-xs';
-  loadingText.textContent = trText('Loading...');
+  loadingText.textContent = trText("جارٍ التحميل...");
 
   skeletonContainer.appendChild(loadingText);
   placeholder.appendChild(skeletonContainer);
@@ -104,7 +104,7 @@ export async function renderPageToCanvas(
   const context = canvas.getContext('2d');
   if (!context) {
     throw new Error(
-      trText('Failed to get 2D context for page {{pageNumber}}', { pageNumber })
+      trText("تعذر الحصول على سياق ثنائي الأبعاد للصفحة {{pageNumber}}", { pageNumber })
     );
   }
 

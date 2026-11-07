@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="PDF to PDF/A Online Free - PDF to PDF/A Tool | Pixel PDF"
+      content="PDF إلى PDF/A أونلاين مجانًا - أداة PDF إلى PDF/A | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert PDF to PDF/A for long-term archiving. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى PDF/A للأرشفة طويلة الأمد. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="pdf to pdfa, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pdf-to-pdfa" />
     <meta
       property="og:title"
-      content="PDF to PDF/A Online Free - PDF to PDF/A Tool | Pixel PDF"
+      content="PDF إلى PDF/A أونلاين مجانًا - أداة PDF إلى PDF/A | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert PDF to PDF/A for long-term archiving. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى PDF/A للأرشفة طويلة الأمد. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/pdf-to-pdfa" />
-    <meta name="twitter:title" content="PDF to PDF/A Free" />
+    <meta name="twitter:title" content="PDF إلى PDF/A مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert PDF to PDF/A for long-term archiving. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى PDF/A للأرشفة طويلة الأمد. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,11 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF to PDF/A" />
+    <meta name="apple-mobile-web-app-title" content="PDF إلى PDF/A" />
 
-    <title>PDF to PDF/A - Convert PDF for Long-term Archiving - Pixel PDF</title>
+    <title>
+      PDF إلى PDF/A - حوّل PDF للأرشفة طويلة الأمد - Pixel PDF
+    </title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +108,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfToPdfa.name"
         >
-          PDF to PDF/A
+          PDF إلى PDF/A
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfToPdfa.subtitle">
-          Convert PDF to PDF/A for long-term archiving.
+          تحويل PDF إلى PDF/A للأرشفة طويلة المدى.
         </p>
 
         <div
@@ -129,18 +131,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -148,7 +150,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -158,14 +160,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -174,21 +176,17 @@
         <div id="options-container" class="hidden mt-6 space-y-6">
           <div>
             <label class="block mb-2 text-sm font-medium text-gray-300"
-              >PDF/A Version</label
+              >إصدار PDF/A</label
             >
             <select
               id="pdfa-level"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="PDF/A-1b">
-                PDF/A-1b (Strict, no transparency)
+              <option value="PDF/A-1b">PDF/A-1b (صارم، بدون شفافية)</option>
+              <option value="PDF/A-2b" selected="">
+                PDF/A-2b (موصى به، يسمح بالشفافية)
               </option>
-              <option value="PDF/A-2b" selected>
-                PDF/A-2b (Recommended, allows transparency)
-              </option>
-              <option value="PDF/A-3b">
-                PDF/A-3b (Modern, allows attachments)
-              </option>
+              <option value="PDF/A-3b">PDF/A-3b (حديث، يسمح بالمرفقات)</option>
             </select>
           </div>
 
@@ -204,19 +202,17 @@
               <label
                 for="pre-flatten"
                 class="text-sm font-medium text-gray-200 cursor-pointer"
+                >تسطيح PDF مسبقًا (موصى به للملفات المعقدة)</label
               >
-                Pre-flatten PDF (recommended for complex files)
-              </label>
               <p class="text-xs text-gray-400 mt-1">
-                Converts the PDF to images first, ensuring better PDF/A
-                compliance. Recommended if validation fails on the normal
-                conversion.
+                يحوّل PDF إلى صور أولًا لضمان توافق أفضل مع PDF/A. موصى به إذا
+                فشل التحقق في التحويل العادي.
               </p>
             </div>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Convert to PDF/A
+            تحويل إلى PDF/A
           </button>
         </div>
       </div>
@@ -232,7 +228,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Converting...
+          جارٍ التحويل...
         </p>
       </div>
     </div>
@@ -249,16 +245,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -269,7 +264,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -279,9 +274,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -292,9 +287,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -305,9 +300,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -320,43 +315,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -367,110 +368,105 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which PDF/A version should I choose?
+            أي إصدار من PDF/A يجب أن أختار؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            PDF/A-2b, the default, suits most archiving and accepts transparency
-            and JPEG 2000 images. Pick PDF/A-1b only when a recipient demands
-            it, since it's the strictest level and forbids transparency and
-            layers, and PDF/A-3b when the archive needs to carry embedded files,
-            such as the XML data used by e-invoicing formats.
+            PDF/A-2b، وهو الافتراضي، يناسب معظم حالات الأرشفة ويقبل الشفافية
+            وصور JPEG 2000. اختر PDF/A-1b فقط عندما يطلبه المستلم، فهو أصرم
+            مستوى ويمنع الشفافية والطبقات، واختر PDF/A-3b عندما يحتاج الأرشيف
+            إلى حمل ملفات مضمّنة مثل بيانات XML المستخدمة في صيغ الفوترة
+            الإلكترونية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the conversion actually change in my file?
+            ماذا يغيّر التحويل فعلًا في ملفي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Ghostscript rewrites the PDF so it meets the standard: every font is
-            embedded as a subset, colors are converted to device-independent
-            color with an sRGB output intent, and features the chosen level
-            forbids are dropped rather than failing the whole run. Page content
-            stays intact and text remains selectable.
+            يعيد Ghostscript كتابة PDF ليستوفي المعيار: يُضمَّن كل خط كمجموعة
+            فرعية، وتُحوَّل الألوان إلى ألوان مستقلة عن الجهاز مع هدف إخراج
+            sRGB، وتُحذف الميزات التي يمنعها المستوى المختار بدلًا من فشل
+            العملية كلها. يبقى محتوى الصفحة سليمًا ويظل النص قابلًا للتحديد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF/A file bigger than the original?
+            لماذا ملف PDF/A أكبر من الأصلي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            PDF/A requires all fonts to be embedded, so any font the original
-            referenced but didn't include is now stored inside the file, and the
-            sRGB color profile is added too.
+            يتطلب PDF/A تضمين جميع الخطوط، لذلك أي خط أشار إليه الأصل دون تضمينه
+            يُخزَّن الآن داخل الملف، ويُضاف ملف تعريف الألوان sRGB أيضًا. يمكن
+            لـ
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            can reduce the size; re-validate afterward if strict compliance
-            matters.
+            تقليل الحجم، وأعد التحقق بعد ذلك إذا كان الامتثال الصارم مهمًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            When should I turn on Pre-flatten?
+            متى يجب تفعيل التسطيح المسبق؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only if the normal conversion fails. Pre-flatten renders every page
-            to a 300 DPI image before Ghostscript runs, which gets around broken
-            fonts or unusual transparency but leaves you with no selectable
-            text, so try without it first. It also needs the PyMuPDF module,
-            which loads on first use.
+            فقط إذا فشل التحويل العادي. يعرض التسطيح المسبق كل صفحة كصورة بدقة
+            300 DPI قبل تشغيل Ghostscript، مما يتجاوز الخطوط التالفة أو الشفافية
+            غير المعتادة لكنه يتركك بلا نص قابل للتحديد، لذا جرّب بدونه أولًا.
+            ويحتاج أيضًا إلى وحدة PyMuPDF التي تُحمَّل عند أول استخدام.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the output guaranteed to pass a PDF/A validator?
+            هل الناتج مضمون أن يجتاز مدقق PDF/A؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not guaranteed. Ghostscript produces conformant output for the vast
-            majority of files, but it isn't a validator, so if a court,
-            repository, or auditor requires proof, check the result with a
-            dedicated PDF/A validator such as veraPDF.
+            غير مضمون. ينتج Ghostscript مخرجات مطابقة لغالبية الملفات، لكنه ليس
+            مدققًا، لذلك إذا طلبت محكمة أو مستودع أو مدقق إثباتًا، فتحقق من
+            النتيجة بمدقق PDF/A متخصص مثل veraPDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert multiple PDFs to PDF/A at once?
+            هل يمكنني تحويل عدة ملفات PDF إلى PDF/A دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Add multiple files and they're converted one after another with
-            the same settings; a single file downloads directly and several
-            download together as pdfa-converted.zip.
+            نعم. أضف عدة ملفات فتُحوَّل واحدًا تلو الآخر بنفس الإعدادات،
+            ويُنزَّل الملف الواحد مباشرة وتُنزَّل عدة ملفات معًا باسم
+            pdfa-converted.zip.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my records uploaded to a server for PDF/A conversion?
+            هل تُرفع سجلاتي إلى خادم لتحويلها إلى PDF/A؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Ghostscript runs as a WebAssembly module inside your browser, so
-            the conversion happens on your machine and the files never leave it.
-            The module itself is fetched from a CDN the first time you use the
-            tool, which is why the first run takes a little longer.
+            لا. يعمل Ghostscript كوحدة WebAssembly داخل متصفحك، فيتم التحويل على
+            جهازك ولا تغادره الملفات. تُجلب الوحدة نفسها من CDN عند أول استخدام
+            للأداة، ولهذا يستغرق أول تشغيل وقتًا أطول قليلًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a password-protected PDF to PDF/A?
+            هل يمكنني تحويل PDF محمي بكلمة مرور إلى PDF/A؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The tool asks for the open password first, then converts the
-            decrypted file. PDF/A itself forbids encryption, so the output is
-            always unprotected; a password-protected PDF/A isn't possible.
+            تطلب الأداة كلمة مرور الفتح أولًا، ثم تحوّل الملف المفكوك التشفير.
+            يمنع PDF/A نفسه التشفير، لذلك يكون الناتج غير محمي دائمًا، ولا يمكن
+            إنشاء PDF/A محمي بكلمة مرور.
           </p>
         </details>
       </div>
@@ -503,26 +499,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to pdf to pdfa online",
+        "name": "كيفية تحويل PDF إلى PDF/A أونلاين",
         "description": "Learn how to pdf to pdfa using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

@@ -6,6 +6,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const TOOLS_CONFIG = path.resolve(__dirname, '../src/js/config/tools.ts');
+const arabicTools = JSON.parse(
+  fs.readFileSync(
+    path.resolve(__dirname, '../public/locales/ar/tools.json'),
+    'utf8'
+  )
+);
 const PAGES_DIR = path.resolve(__dirname, '../src/pages');
 const PARTIAL_PATH = path.resolve(
   __dirname,
@@ -58,6 +64,18 @@ function parseCategories(source) {
 }
 
 function generate() {
+  const main = fs.readFileSync(
+    path.resolve(__dirname, '../src/js/main.ts'),
+    'utf8'
+  );
+  const keyMap = new Map(
+    [...main.matchAll(/'([^']+)': 'tools:([^']+)'/g)].map((m) => [m[1], m[2]])
+  );
+  const translateTool = (tool) => {
+    const copy = arabicTools[keyMap.get(tool.name)];
+    return copy ? { ...tool, name: copy.name, subtitle: copy.subtitle } : tool;
+  };
+
   const source = fs.readFileSync(TOOLS_CONFIG, 'utf-8');
   const categories = parseCategories(source);
   const existingPages = new Set(
@@ -77,9 +95,10 @@ function generate() {
     if (tools.length === 0) continue;
     for (const t of tools) seen.add(t.slug);
     lines.push(
-      `<div class="col-span-full mt-6 first:mt-0"><h2 class="text-lg font-semibold text-white">${escapeHtml(category.name)}</h2></div>`
+      `<div class="col-span-full mt-6 first:mt-0"><h2 class="text-lg font-semibold text-white">${escapeHtml(arabicTools.categories[keyMap.get(category.name)?.split('.')[1]] || category.name)}</h2></div>`
     );
-    for (const tool of tools) {
+    for (const rawTool of tools) {
+      const tool = translateTool(rawTool);
       toolCount++;
       lines.push(
         `<a href="/${tool.slug}" class="block bg-gray-800 p-4 rounded-lg border border-gray-700 hover:bg-gray-700 transition-colors">` +

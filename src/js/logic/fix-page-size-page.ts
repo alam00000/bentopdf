@@ -85,7 +85,7 @@ async function handleFileSelect(files: FileList | null) {
 
 async function fixPageSize() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -107,7 +107,7 @@ async function fixPageSize() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = trText('Standardizing pages...');
+  if (loaderText) loaderText.textContent = trText("جارٍ توحيد الصفحات...");
 
   try {
     const customWidth =
@@ -140,8 +140,8 @@ async function fixPageSize() {
       pageState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Page sizes standardized successfully!',
+      "تم بنجاح",
+      "تم توحيد أحجام الصفحات بنجاح!",
       'success',
       () => {
         resetState();
@@ -149,7 +149,7 @@ async function fixPageSize() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while standardizing pages.');
+    showAlert("خطأ", "حدث خطأ أثناء توحيد الصفحات.");
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }

@@ -129,7 +129,7 @@ function getHyperWorker(): Worker {
       worker,
       new HyperError(
         'engine_error',
-        e.message || trText('The compression engine stopped unexpectedly.')
+        e.message || trText("توقف محرك الضغط بشكل غير متوقع.")
       )
     );
   };
@@ -138,7 +138,7 @@ function getHyperWorker(): Worker {
       worker,
       new HyperError(
         'engine_error',
-        trText('The compression engine returned an unreadable result.')
+        trText("أعاد محرك الضغط نتيجة غير قابلة للقراءة.")
       )
     );
   };
@@ -165,7 +165,7 @@ export async function compressWithHyper(
   if (!hasPdfHeader(pdf)) {
     throw new HyperError(
       'engine_error',
-      trText('This file is not a valid PDF.')
+      trText("هذا الملف ليس PDF صالحًا.")
     );
   }
   const message = await postToHyper(
@@ -175,7 +175,7 @@ export async function compressWithHyper(
   if (message.type !== 'result') {
     throw new HyperError(
       'engine_error',
-      trText('Unexpected reply from the engine.')
+      trText("رد غير متوقع من المحرك.")
     );
   }
   return message.result;
@@ -192,7 +192,7 @@ export async function verifyHyperPassword(
   if (message.type !== 'verified') {
     throw new HyperError(
       'engine_error',
-      trText('Unexpected reply from the engine.')
+      trText("رد غير متوقع من المحرك.")
     );
   }
   return message.valid;

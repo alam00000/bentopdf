@@ -115,7 +115,7 @@ export async function getFontForLanguage(lang: string): Promise<ArrayBuffer> {
 
     if (!fontResponse.ok) {
       throw new Error(
-        trText('Failed to fetch font file: {{statusText}}', {
+        trText("تعذر جلب ملف الخط: {{statusText}}", {
           statusText: fontResponse.statusText,
         })
       );
@@ -173,7 +173,7 @@ export async function loadFallbackFonts(
         load = getFontForLanguage(lang)
           .then((buffer) => {
             if (!fontCache.has(family)) {
-              throw new Error(trText('Only a substitute font was available'));
+              throw new Error(trText("كان متاحًا خط بديل فقط"));
             }
             into.set(family, new Uint8Array(buffer));
             return true;

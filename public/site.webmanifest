@@ -1,41 +1,43 @@
 {
-    "id": "/",
-    "name": "Pixel PDF",
-    "short_name": "Pixel PDF",
-    "description": "Pixel PDF - free online PDF tools. A privacy-first PDF toolkit that works 100% in your browser.",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#f5f7fb",
-    "theme_color": "#0e8bf5",
-    "orientation": "portrait-primary",
-    "icons": [
-        {
-            "src": "/images/favicon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable any"
-        },
-        {
-            "src": "/images/favicon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable any"
-        },
-        {
-            "src": "/images/apple-touch-icon.png",
-            "sizes": "180x180",
-            "type": "image/png",
-            "purpose": "any"
-        }
-    ],
-    "categories": [
-        "productivity",
-        "utilities",
-        "privacy",
-        "pdf",
-        "security",
-        "offline",
-        "tools"
-    ],
-    "screenshots": []
+  "id": "/",
+  "name": "بيكسل PDF",
+  "short_name": "بيكسل PDF",
+  "description": "مساحة عمل عربية لأدوات PDF، تعمل محليًا في متصفحك وتحافظ على خصوصية ملفاتك.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f9f6",
+  "theme_color": "#087f70",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities",
+    "privacy",
+    "pdf",
+    "security",
+    "offline",
+    "tools"
+  ],
+  "screenshots": [],
+  "lang": "ar",
+  "dir": "rtl"
 }

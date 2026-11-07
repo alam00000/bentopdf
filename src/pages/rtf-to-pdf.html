@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="RTF to PDF Online Free - RTF to PDF Tool | Pixel PDF"
+      content="RTF إلى PDF عبر الإنترنت مجانًا - أداة RTF إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert Rich Text Format documents to PDF. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Rich Text Format إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="rtf to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/rtf-to-pdf" />
     <meta
       property="og:title"
-      content="RTF to PDF Online Free - RTF to PDF Tool | Pixel PDF"
+      content="RTF إلى PDF عبر الإنترنت مجانًا - أداة RTF إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert Rich Text Format documents to PDF. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Rich Text Format إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/rtf-to-pdf" />
-    <meta name="twitter:title" content="RTF to PDF Free" />
+    <meta name="twitter:title" content="RTF إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert Rich Text Format documents to PDF. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Rich Text Format إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="RTF to PDF" />
+    <meta name="apple-mobile-web-app-title" content="RTF إلى PDF" />
 
-    <title>RTF to PDF - Convert Rich Text Format to PDF - Pixel PDF</title>
+    <title>RTF إلى PDF - تحويل Rich Text Format إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:rtfToPdf.name"
         >
-          RTF to PDF
+          RTF إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:rtfToPdf.subtitle">
-          Convert Rich Text Format documents to PDF. Supports multiple files.
+          تحويل مستندات Rich Text إلى PDF. يدعم عدة ملفات.
         </p>
 
         <div
@@ -129,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMoreRtf"
             >
-              One or more RTF files
+              ملف RTF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -148,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".rtf,text/rtf,application/rtf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -158,14 +158,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -173,7 +173,7 @@
 
         <div id="convert-options" class="hidden mt-6">
           <button id="process-btn" class="btn-gradient w-full">
-            Convert to PDF
+            التحويل إلى PDF
           </button>
         </div>
       </div>
@@ -188,7 +188,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -204,16 +204,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -224,7 +223,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -234,9 +233,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -247,9 +246,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -260,9 +259,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -275,43 +274,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -322,104 +327,98 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first RTF file take longer to convert?
+            لماذا يستغرق أول ملف RTF وقتًا أطول في التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The converter is LibreOffice compiled to WebAssembly, and the engine
-            is about 77 MB compressed. It's downloaded and started the first
-            time you convert in a session; after that, each file takes only a
-            few seconds.
+            المحوّل هو LibreOffice مترجَم إلى WebAssembly، ويبلغ حجم المحرك نحو
+            77 MB مضغوطًا. يُنزَّل ويبدأ عند أول تحويل في الجلسة، وبعد ذلك
+            يستغرق كل ملف بضع ثوانٍ فقط.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What RTF formatting is preserved in the PDF?
+            ما تنسيقات RTF التي تُحفظ في PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Font styles such as bold and italic, paragraph alignment, lists,
-            tables, and embedded images come through as they would if you
-            exported the file from LibreOffice Writer. Embedded OLE objects,
-            such as inserted spreadsheets, may not render fully.
+            تنتقل أنماط الخطوط مثل الغامق والمائل، ومحاذاة الفقرات، والقوائم،
+            والجداول، والصور المضمّنة كما لو صدّرت الملف من LibreOffice Writer.
+            قد لا تُعرض كائنات OLE المضمّنة، مثل الجداول المدرجة، كاملة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will my fonts look the same?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل ستبدو خطوطي كما هي؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only fonts bundled with the engine are available, which covers
-            common Latin, Arabic, and Hebrew faces. Fonts that aren't bundled
-            are replaced with the closest substitute, so line breaks and spacing
-            can shift slightly.
+            تتوفر فقط الخطوط المضمّنة مع المحرك، وهي تغطي الخطوط اللاتينية
+            والعربية والعبرية الشائعة. تُستبدل الخطوط غير المضمّنة بأقرب بديل،
+            لذا قد تتغير فواصل الأسطر والمسافات قليلًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert many RTF files at once?
+            هل يمكنني تحويل عدة ملفات RTF دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. One file downloads as a PDF with the same base name; several
-            files download together as rtf-converted.zip with one PDF per file,
-            and duplicate names are numbered automatically.
+            نعم. يُنزَّل الملف الواحد بصيغة PDF بالاسم الأساسي نفسه، وتُنزَّل
+            الملفات المتعددة معًا في rtf-converted.zip مع PDF لكل ملف، وتُرقَّم
+            الأسماء المكررة تلقائيًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between this and Word to PDF?
+            ما الفرق بين هذه الأداة وأداة Word إلى PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Both use the same LibreOffice engine and produce the same result for
-            RTF.
+            كلتاهما تستخدم محرك LibreOffice نفسه وتعطيان النتيجة نفسها لملفات
+            RTF. أداة
             <a href="/word-to-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Word to PDF</a
+              >Word إلى PDF</a
             >
-            also accepts .doc, .docx, and .odt, so use it when you have a mix of
-            formats in one batch.
+            تقبل أيضًا .doc و.docx و.odt، فاستخدمها عندما تكون لديك صيغ مختلطة
+            في دفعة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle RTF from WordPad, TextEdit, or legal and medical
-            software?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يتعامل مع RTF من WordPad أو TextEdit أو البرامج القانونية
+            والطبية؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            RTF written by any standard word processor converts, including files
-            from WordPad, TextEdit, and exports from records systems.
-            Proprietary extensions inside such files may be dropped, but the
-            text and standard formatting still convert.
+            يُحوَّل RTF المكتوب بأي معالج نصوص قياسي، ومنه ملفات WordPad
+            وTextEdit والملفات المصدَّرة من أنظمة السجلات. قد تُحذف الامتدادات
+            الخاصة داخل هذه الملفات، لكن النص والتنسيق القياسي يُحوَّلان.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What about text in Chinese, Japanese, Korean, or Indic scripts?
+            ماذا عن النص بالصينية أو اليابانية أو الكورية أو أبجديات الهند؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Those fonts aren't bundled with the browser engine, so text in these
-            scripts may render with a fallback font or as boxes. Latin, Arabic,
-            and Hebrew scripts are covered.
+            هذه الخطوط غير مضمّنة مع محرك المتصفح، لذا قد يُعرض النص بهذه
+            الأبجديات بخط بديل أو كمربعات. الأبجديات اللاتينية والعربية والعبرية
+            مغطاة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document sent to a LibreOffice server?
+            هل يُرسل مستندي إلى خادم LibreOffice؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The whole LibreOffice engine runs inside your browser tab as
-            WebAssembly. Your file is converted locally, and the only thing
-            downloaded is the engine itself.
+            لا. يعمل محرك LibreOffice بأكمله داخل تبويب متصفحك بتقنية
+            WebAssembly. يُحوَّل ملفك محليًا، والشيء الوحيد الذي يُنزَّل هو
+            المحرك نفسه.
           </p>
         </details>
       </div>
@@ -452,26 +451,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to rtf to pdf online",
+        "name": "كيفية تحويل RTF إلى PDF عبر الإنترنت",
         "description": "Learn how to rtf to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

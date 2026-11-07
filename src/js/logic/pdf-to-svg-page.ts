@@ -72,7 +72,7 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please upload at least one PDF file.');
+    showAlert("لا توجد ملفات", "يرجى رفع ملف PDF واحد على الأقل.");
     return;
   }
 
@@ -82,7 +82,7 @@ async function convert() {
     return;
   }
 
-  showLoader('Loading Engine...');
+  showLoader("جارٍ تحميل المحرك...");
 
   try {
     // Load PyMuPDF dynamically if not already loaded
@@ -92,7 +92,7 @@ async function convert() {
 
     hideLoader();
     files = await batchDecryptIfNeeded(files);
-    showLoader('Converting to SVG...');
+    showLoader("جارٍ التحويل إلى SVG...");
 
     const isSingleFile = files.length === 1;
 
@@ -102,14 +102,14 @@ async function convert() {
       const baseName = files[0].name.replace(/\.[^/.]+$/, '');
 
       if (pageCount === 1) {
-        showLoader('Converting to SVG...');
+        showLoader("جارٍ التحويل إلى SVG...");
         const page = doc.getPage(0);
         const svgContent = page.toSvg();
         const svgBlob = new Blob([svgContent], { type: 'image/svg+xml' });
         downloadFile(svgBlob, `${baseName}.svg`);
         showAlert(
-          'Success',
-          'PDF converted to SVG successfully!',
+          "تم بنجاح",
+          "تم تحويل PDF إلى SVG بنجاح!",
           'success',
           () => resetState()
         );
@@ -117,7 +117,7 @@ async function convert() {
         const zip = new JSZip();
         for (let i = 0; i < pageCount; i++) {
           showLoader(
-            trText('Converting page {{n}} of {{pageCount}}...', {
+            trText("جارٍ تحويل الصفحة {{n}} من {{pageCount}}...", {
               n: i + 1,
               pageCount,
             })
@@ -126,12 +126,12 @@ async function convert() {
           const svgContent = page.toSvg();
           zip.file(`page_${i + 1}.svg`, svgContent);
         }
-        showLoader('Creating ZIP file...');
+        showLoader("جارٍ إنشاء ملف ZIP...");
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         downloadFile(zipBlob, `${baseName}_svg.zip`);
         showAlert(
-          'Success',
-          trText('Converted {{pageCount}} pages to SVG!', { pageCount }),
+          "تم بنجاح",
+          trText("تم تحويل {{pageCount}} صفحة إلى SVG!", { pageCount }),
           'success',
           () => resetState()
         );
@@ -143,7 +143,7 @@ async function convert() {
       for (let f = 0; f < files.length; f++) {
         const file = files[f];
         showLoader(
-          trText('Processing file {{n}} of {{length}}...', {
+          trText("جارٍ معالجة الملف {{n}} من {{length}}...", {
             n: f + 1,
             length: files.length,
           })
@@ -154,7 +154,7 @@ async function convert() {
 
         for (let i = 0; i < pageCount; i++) {
           showLoader(
-            trText('File {{n}}/{{length}}: Page {{n2}}/{{pageCount}}', {
+            trText("الملف {{n}}/{{length}}: الصفحة {{n2}}/{{pageCount}}", {
               n: f + 1,
               length: files.length,
               n2: i + 1,
@@ -172,12 +172,12 @@ async function convert() {
         }
       }
 
-      showLoader('Creating ZIP file...');
+      showLoader("جارٍ إنشاء ملف ZIP...");
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, 'pdf_to_svg.zip');
       showAlert(
-        'Success',
-        trText('Converted {{length}} files ({{totalPages}} pages) to SVG!', {
+        "تم بنجاح",
+        trText("تم تحويل {{length}} ملفات ({{totalPages}} صفحة) إلى SVG!", {
           length: files.length,
           totalPages,
         }),
@@ -187,10 +187,10 @@ async function convert() {
     }
   } catch (e) {
     console.error(e);
-    const message = e instanceof Error ? e.message : trText('Unknown error');
+    const message = e instanceof Error ? e.message : trText("خطأ غير معروف");
     showAlert(
-      'Error',
-      trText('Failed to convert PDF to SVG. {{message}}', { message })
+      "خطأ",
+      trText("تعذر تحويل PDF إلى SVG. {{message}}", { message })
     );
   } finally {
     hideLoader();
@@ -218,7 +218,7 @@ onPageReady(() => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid Files', 'Please upload PDF files.');
+      showAlert("ملفات غير صالحة", "يرجى رفع ملفات PDF.");
       return;
     }
 

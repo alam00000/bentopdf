@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Password Protect PDF Free - Encrypt a PDF Online | Pixel PDF"
+      content="حماية PDF بكلمة مرور مجانًا - تشفير PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="description"
-      content="Lock your PDF by adding a password. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أغلق ملف PDF بإضافة كلمة مرور. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/protect-pdf" />
     <meta
       property="og:title"
-      content="Password Protect PDF Free - Encrypt a PDF Online | Pixel PDF"
+      content="حماية PDF بكلمة مرور مجانًا - تشفير PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Lock your PDF by adding a password. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أغلق ملف PDF بإضافة كلمة مرور. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -50,11 +50,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/protect-pdf" />
     <meta
       name="twitter:title"
-      content="Password Protect PDF Free - Encrypt a PDF Online | Pixel PDF"
+      content="حماية PDF بكلمة مرور مجانًا - تشفير PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Lock your PDF by adding a password. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أغلق ملف PDF بإضافة كلمة مرور. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Encrypt PDF" />
+    <meta name="apple-mobile-web-app-title" content="تشفير PDF" />
 
-    <title>Password Protect PDF Free - Encrypt a PDF Online | Pixel PDF</title>
+    <title>حماية PDF بكلمة مرور مجانًا - تشفير PDF عبر الإنترنت | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:protectPdf.name"
         >
-          Protect PDF
+          حماية PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:protectPdf.subtitle">
-          Password protect a PDF with strong AES encryption.
+          قفل PDF بإضافة كلمة مرور.
         </p>
 
         <div
@@ -135,12 +135,12 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -158,16 +158,16 @@
             <label
               for="user-password-input"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >User Password (Required)</label
+              >كلمة مرور المستخدم (مطلوبة)</label
             >
             <input
               type="password"
               id="user-password-input"
-              placeholder="Enter password to open PDF"
+              placeholder="أدخل كلمة المرور لفتح PDF"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
             <p class="text-xs text-gray-500 mt-1">
-              This password will be required to open the PDF.
+              ستكون كلمة المرور هذه مطلوبة لفتح ملف PDF.
             </p>
           </div>
 
@@ -175,34 +175,33 @@
             <label
               for="owner-password-input"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Owner Password (Optional)</label
+              >كلمة مرور المالك (اختيارية)</label
             >
             <input
               type="password"
               id="owner-password-input"
-              placeholder="Enter password for permissions (optional)"
+              placeholder="أدخل كلمة المرور الخاصة بالأذونات (اختياري)"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
             <p class="text-xs text-gray-500 mt-1">
-              If provided, usage restrictions will be applied. Leave empty for
-              no restrictions.
+              إذا أدخلتها فستُطبَّق قيود الاستخدام. اتركها فارغة لعدم وضع قيود.
             </p>
           </div>
 
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
             <h3 class="text-sm font-semibold text-white mb-2">
-              Encryption Details:
+              تفاصيل التشفير:
             </h3>
             <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
-              <li>256-bit AES encryption (highest security)</li>
-              <li>User password required to open PDF</li>
-              <li>Owner password enables usage restrictions</li>
-              <li>Without owner password: no restrictions applied</li>
+              <li>تشفير AES بطول 256 بت (أعلى مستوى من الأمان)</li>
+              <li>كلمة مرور المستخدم مطلوبة لفتح PDF</li>
+              <li>كلمة مرور المالك تفعّل قيود الاستخدام</li>
+              <li>بدون كلمة مرور المالك: لا تُطبَّق أي قيود</li>
             </ul>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full">
-            Encrypt PDF
+            تشفير PDF
           </button>
         </div>
       </div>
@@ -221,9 +220,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -240,16 +238,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -260,7 +257,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -270,9 +267,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -283,9 +280,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -296,9 +293,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -311,43 +308,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -358,110 +361,102 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between the user password and the owner
-            password?
+            ما الفرق بين كلمة مرور المستخدم وكلمة مرور المالك؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The user password is required and is what anyone must type to open
-            the file. The owner password is optional; when you set a different
-            one, the PDF also gets usage restrictions, so someone who opens it
-            with only the user password can't print, copy, edit, annotate, fill
-            forms, or rearrange pages.
+            كلمة مرور المستخدم مطلوبة، وهي ما يجب على أي شخص كتابته لفتح الملف.
+            أما كلمة مرور المالك فاختيارية، وعند تعيين كلمة مختلفة يحصل ملف PDF
+            أيضًا على قيود استخدام، فلا يستطيع من يفتحه بكلمة مرور المستخدم فقط
+            الطباعة أو النسخ أو التعديل أو إضافة التعليقات التوضيحية أو ملء
+            النماذج أو إعادة ترتيب الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What encryption does Protect PDF use?
+            ما التشفير الذي تستخدمه أداة حماية PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            256-bit AES, applied with QPDF's implementation of the PDF 2.0
-            encryption standard. There is no option to pick a weaker cipher, so
-            the strength of the protection comes down to how strong your
-            password is.
+            AES بطول 256 بت، مطبّق عبر تنفيذ QPDF لمعيار التشفير في PDF 2.0. لا
+            يوجد خيار لاختيار تشفير أضعف، لذا تعتمد قوة الحماية على قوة كلمة
+            المرور التي تختارها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if I forget the password?
+            ماذا يحدث إذا نسيت كلمة المرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            There is no recovery. AES-256 can't be brute-forced in any practical
-            time, and Pixel PDF keeps no copy of the file or the password. Store
-            the password somewhere safe and keep an unprotected original for
-            yourself.
+            لا توجد طريقة للاسترداد. لا يمكن كسر AES-256 بالتخمين في أي وقت عملي، ولا يحتفظ Pixel PDF بنسخة من الملف أو كلمة المرور. احفظ كلمة المرور في مكان آمن واحتفظ بنسخة أصلية غير محمية لنفسك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I still get restrictions if I only enter a user password?
+            هل تُطبَّق القيود إذا أدخلت كلمة مرور المستخدم فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. With only a user password the file needs the password to open,
-            but once opened there are no limits on printing, copying, or
-            editing. Add a separate owner password if you want those
-            restrictions.
+            لا. مع كلمة مرور المستخدم فقط يحتاج الملف إلى كلمة المرور لفتحه، لكن
+            بعد فتحه لا توجد حدود على الطباعة أو النسخ أو التعديل. أضف كلمة مرور
+            مالك منفصلة إذا أردت هذه القيود.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I restrict printing or copying without requiring a password to
-            open the file?
+            هل يمكنني تقييد الطباعة أو النسخ دون اشتراط كلمة مرور لفتح الملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not with this tool, because the user password is mandatory here. Use
+            ليس بهذه الأداة، لأن كلمة مرور المستخدم إلزامية هنا. استخدم
             <a
               href="/change-permissions"
               class="text-indigo-300 hover:text-indigo-400"
-              >Change Permissions</a
+              >تغيير الأذونات</a
             >
-            instead, which applies restrictions while leaving the file openable
-            without a password.
+            بدلًا منها، فهي تطبّق القيود مع بقاء الملف قابلًا للفتح دون كلمة
+            مرور.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I remove the password later?
+            كيف أزيل كلمة المرور لاحقًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Open the protected file in the
+            افتح الملف المحمي في
             <a href="/unlock-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >password removal tool</a
-            >, enter the password, and download a copy with the encryption
-            removed. You need the password to do this; there is no bypass.
+              >أداة إزالة كلمة المرور</a
+            >، وأدخل كلمة المرور، ونزّل نسخة بدون تشفير. تحتاج إلى كلمة المرور
+            لذلك، ولا توجد طريقة لتجاوزها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the protected PDF open in any reader?
+            هل سيُفتح ملف PDF المحمي في أي قارئ؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Any current PDF reader, including Adobe Reader, Preview, Chrome,
-            Firefox, and Edge, opens AES-256 encrypted files. Very old readers
-            released before AES-256 support was added may refuse the file.
+            يفتح أي قارئ PDF حديث الملفات المشفرة بـ AES-256، ومنها Adobe Reader
+            وPreview وChrome وFirefox وEdge. قد ترفض القارئات القديمة جدًا،
+            الصادرة قبل إضافة دعم AES-256، فتح الملف.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF or my password sent anywhere?
+            هل يُرسل ملف PDF أو كلمة المرور إلى أي مكان؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. QPDF runs as WebAssembly in your browser, so the file is
-            encrypted on your device and neither the document nor the passwords
-            are transmitted. Share the password with your recipient through a
-            different channel than the file itself.
+            لا. يعمل QPDF بتقنية WebAssembly داخل متصفحك، فيُشفَّر الملف على
+            جهازك ولا يُرسل المستند ولا كلمات المرور. شارك كلمة المرور مع
+            المستلم عبر قناة مختلفة عن الملف نفسه.
           </p>
         </details>
       </div>
@@ -495,26 +490,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to encrypt online",
+        "name": "كيفية التشفير عبر الإنترنت",
         "description": "Learn how to encrypt using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

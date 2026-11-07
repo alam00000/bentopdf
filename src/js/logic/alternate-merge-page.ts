@@ -52,7 +52,7 @@ async function updateUI() {
 
     const infoSpan = document.createElement('span');
     infoSpan.className = 'text-gray-200';
-    infoSpan.textContent = trText('{{length}} PDF files selected', {
+    infoSpan.textContent = trText("تم تحديد {{length}} من ملفات PDF", {
       length: pageState.files.length,
     });
 
@@ -70,7 +70,7 @@ async function updateUI() {
     // Load PDFs and populate list
     hideLoader();
     pageState.files = await batchDecryptIfNeeded(pageState.files);
-    showLoader('Loading PDF files...');
+    showLoader("جارٍ تحميل ملفات PDF...");
     fileList.innerHTML = '';
 
     try {
@@ -98,7 +98,7 @@ async function updateUI() {
 
         const metaSpan = document.createElement('span');
         metaSpan.className = 'text-sm text-gray-400 flex-shrink-0';
-        metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+        metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
           size: formatBytes(file.size),
           pageCount,
         });
@@ -127,7 +127,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDFs:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load one or more PDF files.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF واحد أو أكثر.");
       resetState();
     }
   } else {
@@ -138,8 +138,8 @@ async function updateUI() {
 async function mixPages() {
   if (pageState.pdfBytes.size < 2) {
     showAlert(
-      'Not Enough Files',
-      'Please upload at least two PDF files to alternate and mix.'
+      "عدد الملفات غير كافٍ",
+      "يرجى رفع ملفي PDF على الأقل للتبديل والدمج."
     );
     return;
   }
@@ -150,11 +150,11 @@ async function mixPages() {
     return;
   }
 
-  showLoader('Alternating and mixing pages...');
+  showLoader("جارٍ تبديل الصفحات ودمجها...");
 
   try {
     const fileList = document.getElementById('file-list');
-    if (!fileList) throw new Error(trText('File list not found'));
+    if (!fileList) throw new Error(trText("قائمة الملفات غير موجودة"));
 
     const sortedFileNames = Array.from(fileList.children)
       .map(function (li) {
@@ -176,7 +176,7 @@ async function mixPages() {
     }
 
     if (filesToMerge.length < 2) {
-      showAlert('Error', 'At least two valid PDFs are required.');
+      showAlert("خطأ", "مطلوب ملفا PDF صالحان على الأقل.");
       hideLoader();
       return;
     }
@@ -193,8 +193,8 @@ async function mixPages() {
     });
     downloadFile(blob, 'alternated-mixed.pdf');
     showAlert(
-      'Success',
-      'PDFs have been mixed successfully!',
+      "تم بنجاح",
+      "تم دمج ملفات PDF بالتناوب بنجاح!",
       'success',
       function () {
         resetState();
@@ -206,8 +206,8 @@ async function mixPages() {
     const message =
       e instanceof Error
         ? e.message
-        : trText('An error occurred while mixing the PDFs.');
-    showAlert('Error', message);
+        : trText("حدث خطأ أثناء دمج ملفات PDF بالتناوب.");
+    showAlert("خطأ", message);
   }
 }
 

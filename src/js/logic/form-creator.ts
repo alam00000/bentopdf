@@ -250,7 +250,7 @@ if (gotoPageBtn && gotoPageInput) {
       updatePageNavigation();
     } else {
       alert(
-        trText('Please enter a valid page number between 1 and {{total}}', {
+        trText("يرجى إدخال رقم صفحة صالح بين 1 و{{total}}", {
           total: pages.length,
         })
       );
@@ -443,7 +443,7 @@ function createField(type: FormField['type'], x: number, y: number): void {
         ? 'Button'
         : type === 'image'
           ? standardFontText(
-              trText('Click to Upload Image'),
+              trText("انقر لرفع صورة"),
               'Click to Upload Image'
             )
           : undefined,
@@ -699,7 +699,7 @@ function renderField(field: FormField): void {
       // Empty state
       const optEl = document.createElement('div');
       optEl.className = 'px-1 w-full text-black italic';
-      optEl.textContent = trText('Item 1');
+      optEl.textContent = trText("العنصر 1");
       contentEl.appendChild(optEl);
     }
   } else if (field.type === 'button') {
@@ -710,7 +710,7 @@ function renderField(field: FormField): void {
       '#e5e7eb'
     );
     contentEl.style.color = field.textColor || '#000000';
-    contentEl.textContent = field.label || trText('Button');
+    contentEl.textContent = field.label || trText("زر");
   } else if (field.type === 'signature') {
     contentEl.className =
       'w-full h-full flex items-center justify-center text-gray-400';
@@ -718,7 +718,7 @@ function renderField(field: FormField): void {
       field,
       '#f9fafb'
     );
-    contentEl.innerHTML = `<div class="flex flex-col items-center"><i data-lucide="pen-tool" class="w-6 h-6 mb-1"></i><span class="text-[10px]">${trHtml('Sign Here')}</span></div>`;
+    contentEl.innerHTML = `<div class="flex flex-col items-center"><i data-lucide="pen-tool" class="w-6 h-6 mb-1"></i><span class="text-[10px]">${trHtml("وقّع هنا")}</span></div>`;
     setTimeout(() => (window as LucideWindow).lucide?.createIcons(), 0);
   } else if (field.type === 'date') {
     contentEl.className =
@@ -765,11 +765,11 @@ function renderField(field: FormField): void {
           String(field.name).replace(/[\r\n]+/g, ' '),
           error
         );
-        contentEl.innerHTML = `<div class="flex flex-col items-center text-center p-1 text-gray-400"><i data-lucide="qr-code" class="w-6 h-6 mb-1"></i><span class="text-[10px] leading-tight">${trHtml('Invalid data')}</span></div>`;
+        contentEl.innerHTML = `<div class="flex flex-col items-center text-center p-1 text-gray-400"><i data-lucide="qr-code" class="w-6 h-6 mb-1"></i><span class="text-[10px] leading-tight">${trHtml("بيانات غير صالحة")}</span></div>`;
         setTimeout(() => (window as LucideWindow).lucide?.createIcons(), 0);
       }
     } else {
-      contentEl.innerHTML = `<div class="flex flex-col items-center text-center p-1 text-gray-400"><i data-lucide="qr-code" class="w-6 h-6 mb-1"></i><span class="text-[10px] leading-tight">${trHtml('Barcode')}</span></div>`;
+      contentEl.innerHTML = `<div class="flex flex-col items-center text-center p-1 text-gray-400"><i data-lucide="qr-code" class="w-6 h-6 mb-1"></i><span class="text-[10px] leading-tight">${trHtml("باركود")}</span></div>`;
       setTimeout(() => (window as LucideWindow).lucide?.createIcons(), 0);
     }
   }
@@ -1105,35 +1105,35 @@ function showProperties(field: FormField): void {
   if (field.type === 'text') {
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Value')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("القيمة")}</label>
             <input type="text" id="propValue" value="${escapeHtml(field.defaultValue)}" ${field.combCells > 0 ? `maxlength="${field.combCells}"` : field.maxLength > 0 ? `maxlength="${field.maxLength}"` : ''} class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Max Length (0 for unlimited)')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الحد الأقصى للطول (0 لغير محدود)")}</label>
             <input type="number" id="propMaxLength" value="${field.maxLength}" min="0" ${field.combCells > 0 ? 'disabled' : ''} class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500 disabled:opacity-50">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Divide into boxes (0 to disable)')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("التقسيم إلى مربعات (0 للتعطيل)")}</label>
             <input type="number" id="propComb" value="${field.combCells}" min="0" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Font Size')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("حجم الخط")}</label>
             <input type="number" id="propFontSize" value="${field.fontSize}" min="8" max="72" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Text Color')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("لون النص")}</label>
             <input type="color" id="propTextColor" value="${field.textColor}">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Alignment')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("المحاذاة")}</label>
             <select id="propAlignment" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-            <option value="left" ${field.alignment === 'left' ? 'selected' : ''}>${trHtml('Left')}</option>
-            <option value="center" ${field.alignment === 'center' ? 'selected' : ''}>${trHtml('Center')}</option>
-            <option value="right" ${field.alignment === 'right' ? 'selected' : ''}>${trHtml('Right')}</option>
+            <option value="left" ${field.alignment === 'left' ? 'selected' : ''}>${trHtml("يسار")}</option>
+            <option value="center" ${field.alignment === 'center' ? 'selected' : ''}>${trHtml("وسط")}</option>
+            <option value="right" ${field.alignment === 'right' ? 'selected' : ''}>${trHtml("يمين")}</option>
             </select>
         </div>
         <div class="flex items-center justify-between bg-gray-600 p-2 rounded mt-2">
-            <label for="propMultiline" class="text-xs font-semibold text-gray-300">${trHtml('Multi-line')}</label>
+            <label for="propMultiline" class="text-xs font-semibold text-gray-300">${trHtml("متعدد الأسطر")}</label>
             <button id="propMultilineBtn" class="w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none ${field.multiline ? 'bg-indigo-600' : 'bg-gray-500'} relative">
                 <span class="absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${field.multiline ? 'translate-x-6' : 'translate-x-0'}"></span>
             </button>
@@ -1142,7 +1142,7 @@ function showProperties(field: FormField): void {
   } else if (field.type === 'checkbox') {
     specificProps = `
         <div class="flex items-center justify-between bg-gray-600 p-2 rounded">
-            <label for="propChecked" class="text-xs font-semibold text-gray-300">${trHtml('Checked State')}</label>
+            <label for="propChecked" class="text-xs font-semibold text-gray-300">${trHtml("حالة التحديد")}</label>
             <button id="propCheckedBtn" class="w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none ${field.checked ? 'bg-indigo-600' : 'bg-gray-500'} relative">
                 <span class="absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${field.checked ? 'translate-x-6' : 'translate-x-0'}"></span>
             </button>
@@ -1151,15 +1151,15 @@ function showProperties(field: FormField): void {
   } else if (field.type === 'radio') {
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Group Name (Must be same for group)')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("اسم المجموعة (يجب أن يكون متطابقًا لأفراد المجموعة)")}</label>
             <input type="text" id="propGroupName" value="${escapeHtml(field.groupName)}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Export Value')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("قيمة التصدير")}</label>
             <input type="text" id="propExportValue" value="${escapeHtml(field.exportValue)}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div class="flex items-center justify-between bg-gray-600 p-2 rounded mt-2">
-            <label for="propChecked" class="text-xs font-semibold text-gray-300">${trHtml('Checked State')}</label>
+            <label for="propChecked" class="text-xs font-semibold text-gray-300">${trHtml("حالة التحديد")}</label>
             <button id="propCheckedBtn" class="w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none ${field.checked ? 'bg-indigo-600' : 'bg-gray-500'} relative">
                 <span class="absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-200 ${field.checked ? 'translate-x-6' : 'translate-x-0'}"></span>
             </button>
@@ -1168,50 +1168,50 @@ function showProperties(field: FormField): void {
   } else if (field.type === 'dropdown' || field.type === 'optionlist') {
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Options (One per line or comma separated)')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الخيارات (واحد في كل سطر أو مفصولة بفواصل)")}</label>
             <textarea id="propOptions" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500 h-24">${escapeHtml(field.options?.join('\n') ?? '')}</textarea>
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Selected Option')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الخيار المحدد")}</label>
             <select id="propSelectedOption" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="">${trHtml('None')}</option>
+                <option value="">${trHtml("بدون")}</option>
                 ${field.options?.map((opt) => `<option value="${escapeHtml(opt)}" ${field.defaultValue === opt ? 'selected' : ''}>${escapeHtml(opt)}</option>`).join('')}
             </select>
         </div>
         <div class="text-xs text-gray-400 italic mt-2">
-            ${trHtml('To actually fill or change the options, use our PDF Form Filler tool.')}
+            ${trHtml("لملء الخيارات أو تغييرها فعليًا، استخدم أداة تعبئة نماذج PDF لدينا.")}
         </div>
         `;
   } else if (field.type === 'button') {
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Label')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("التسمية")}</label>
             <input type="text" id="propLabel" value="${escapeHtml(field.label)}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Action')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الإجراء")}</label>
             <select id="propAction" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="none" ${field.action === 'none' ? 'selected' : ''}>${trHtml('None')}</option>
-                <option value="reset" ${field.action === 'reset' ? 'selected' : ''}>${trHtml('Reset Form')}</option>
-                <option value="print" ${field.action === 'print' ? 'selected' : ''}>${trHtml('Print Form')}</option>
-                <option value="url" ${field.action === 'url' ? 'selected' : ''}>${trHtml('Open URL')}</option>
-                <option value="js" ${field.action === 'js' ? 'selected' : ''}>${trHtml('Run Javascript')}</option>
-                <option value="showHide" ${field.action === 'showHide' ? 'selected' : ''}>${trHtml('Show/Hide Field')}</option>
+                <option value="none" ${field.action === 'none' ? 'selected' : ''}>${trHtml("بدون")}</option>
+                <option value="reset" ${field.action === 'reset' ? 'selected' : ''}>${trHtml("إعادة تعيين النموذج")}</option>
+                <option value="print" ${field.action === 'print' ? 'selected' : ''}>${trHtml("طباعة النموذج")}</option>
+                <option value="url" ${field.action === 'url' ? 'selected' : ''}>${trHtml("فتح الرابط")}</option>
+                <option value="js" ${field.action === 'js' ? 'selected' : ''}>${trHtml("تشغيل Javascript")}</option>
+                <option value="showHide" ${field.action === 'showHide' ? 'selected' : ''}>${trHtml("إظهار/إخفاء الحقل")}</option>
             </select>
         </div>
         <div id="propUrlContainer" class="${field.action === 'url' ? '' : 'hidden'}">
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('URL')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الرابط")}</label>
             <input type="text" id="propActionUrl" value="${escapeHtml(field.actionUrl || '')}" placeholder="${trHtml('https://example.com')}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div id="propJsContainer" class="${field.action === 'js' ? '' : 'hidden'}">
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Javascript Code')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("كود Javascript")}</label>
             <textarea id="propJsScript" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500 h-24 font-mono">${escapeHtml(field.jsScript || '')}</textarea>
         </div>
         <div id="propShowHideContainer" class="${field.action === 'showHide' ? '' : 'hidden'}">
             <div class="mb-2">
-                <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Target Field')}</label>
+                <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الحقل المستهدف")}</label>
                 <select id="propTargetField" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                    <option value="">${trHtml('Select a field...')}</option>
+                    <option value="">${trHtml("اختر حقلًا...")}</option>
                     ${fields
                       .filter((f) => f.id !== field.id)
                       .map(
@@ -1222,11 +1222,11 @@ function showProperties(field: FormField): void {
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Visibility')}</label>
+                <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("الظهور")}</label>
                 <select id="propVisibilityAction" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                    <option value="show" ${field.visibilityAction === 'show' ? 'selected' : ''}>${trHtml('Show')}</option>
-                    <option value="hide" ${field.visibilityAction === 'hide' ? 'selected' : ''}>${trHtml('Hide')}</option>
-                    <option value="toggle" ${field.visibilityAction === 'toggle' ? 'selected' : ''}>${trHtml('Toggle')}</option>
+                    <option value="show" ${field.visibilityAction === 'show' ? 'selected' : ''}>${trHtml("إظهار")}</option>
+                    <option value="hide" ${field.visibilityAction === 'hide' ? 'selected' : ''}>${trHtml("إخفاء")}</option>
+                    <option value="toggle" ${field.visibilityAction === 'toggle' ? 'selected' : ''}>${trHtml("تبديل")}</option>
                 </select>
             </div>
         </div>
@@ -1234,7 +1234,7 @@ function showProperties(field: FormField): void {
   } else if (field.type === 'signature') {
     specificProps = `
         <div class="text-xs text-gray-400 italic mb-2">
-            ${trHtml('Signature fields are AcroForm signature fields and would only be visible in an advanced PDF viewer.')}
+            ${trHtml("حقول التوقيع هي حقول توقيع AcroForm ولن تكون مرئية إلا في عارض PDF متقدم.")}
         </div>
         `;
   } else if (field.type === 'date') {
@@ -1274,43 +1274,43 @@ function showProperties(field: FormField): void {
     const isCustom = !formats.includes(field.dateFormat || 'mm/dd/yyyy');
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Date Format')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("صيغة التاريخ")}</label>
             <select id="propDateFormat" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
                 ${formats.map((f) => `<option value="${f}" ${field.dateFormat === f ? 'selected' : ''}>${f}</option>`).join('')}
-                <option value="custom" ${isCustom ? 'selected' : ''}>${trHtml('Custom')}</option>
+                <option value="custom" ${isCustom ? 'selected' : ''}>${trHtml("مخصص")}</option>
             </select>
         </div>
         <div id="customFormatContainer" class="${isCustom ? '' : 'hidden'} mt-2">
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Custom Format')}</label>
-            <input type="text" id="propCustomFormat" value="${isCustom ? escapeHtml(field.dateFormat ?? '') : ''}" placeholder="${trHtml('e.g. dd/mm/yyyy HH:MM:ss')}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("صيغة مخصصة")}</label>
+            <input type="text" id="propCustomFormat" value="${isCustom ? escapeHtml(field.dateFormat ?? '') : ''}" placeholder="${trHtml("مثال: dd/mm/yyyy HH:MM:ss")}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div class="mt-3 p-2 bg-gray-700 rounded">
-            <span class="text-xs text-gray-400">${trHtml('Example of current format:')}</span>
+            <span class="text-xs text-gray-400">${trHtml("مثال على الصيغة الحالية:")}</span>
             <span id="dateFormatExample" class="text-sm text-white font-medium ml-2"></span>
         </div>
         <div class="bg-blue-900/30 border border-blue-700/50 rounded p-2 mt-2">
             <p class="text-xs text-blue-200">
                 <i data-lucide="info" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                <span><strong>${trHtml('Browser Note:')}</strong> ${trHtml('Firefox and Chrome may show their native date picker format during selection. The correct format will apply when you finish entering the date.')}</span>
+                <span><strong>${trHtml("ملاحظة المتصفح:")}</strong> ${trHtml("قد يعرض Firefox وChrome صيغة منتقي التاريخ الأصلية أثناء الاختيار. ستُطبَّق الصيغة الصحيحة عند الانتهاء من إدخال التاريخ.")}</span>
             </p>
         </div>
         `;
   } else if (field.type === 'image') {
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Label / Prompt')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("التسمية / النص التوضيحي")}</label>
             <input type="text" id="propLabel" value="${escapeHtml(field.label)}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div class="text-xs text-gray-400 italic mt-2">
-            ${trHtml('Clicking this field in the PDF will open a file picker to upload an image.')}
+            ${trHtml("النقر على هذا الحقل في PDF سيفتح نافذة اختيار ملف لرفع صورة.")}
         </div>
         `;
   } else if (field.type === 'barcode') {
     specificProps = `
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Barcode Format')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("صيغة الباركود")}</label>
             <select id="propBarcodeFormat" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-                <option value="qrcode" ${field.barcodeFormat === 'qrcode' ? 'selected' : ''}>${trHtml('QR Code')}</option>
+                <option value="qrcode" ${field.barcodeFormat === 'qrcode' ? 'selected' : ''}>${trHtml("رمز QR")}</option>
                 <option value="code128" ${field.barcodeFormat === 'code128' ? 'selected' : ''}>${trHtml('Code 128')}</option>
                 <option value="code39" ${field.barcodeFormat === 'code39' ? 'selected' : ''}>${trHtml('Code 39')}</option>
                 <option value="ean13" ${field.barcodeFormat === 'ean13' ? 'selected' : ''}>${trHtml('EAN-13')}</option>
@@ -1320,7 +1320,7 @@ function showProperties(field: FormField): void {
             </select>
         </div>
         <div>
-            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Barcode Value')}</label>
+            <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("قيمة الباركود")}</label>
             <input type="text" id="propBarcodeValue" value="${escapeHtml(field.barcodeValue || '')}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         </div>
         <div id="barcodeFormatHint" class="text-xs text-gray-400 italic"></div>
@@ -1330,7 +1330,7 @@ function showProperties(field: FormField): void {
   const propertiesHtml = `
     <div class="space-y-3">
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1">${field.type === 'radio' ? trHtml('Field Name (Group Name)') : trHtml('Field Name')}</label>
+        <label class="block text-xs font-semibold text-gray-300 mb-1">${field.type === 'radio' ? trHtml("اسم الحقل (اسم المجموعة)") : trHtml("اسم الحقل")}</label>
         <input type="text" id="propName" value="${escapeHtml(field.name)}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
         <div id="nameError" class="hidden text-red-400 text-xs mt-1"></div>
       </div>
@@ -1340,9 +1340,9 @@ function showProperties(field: FormField): void {
           fields.some((f) => f.type === 'radio' && f.id !== field.id))
           ? `
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Existing Radio Groups')}</label>
+        <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("مجموعات الأزرار الاختيارية الموجودة")}</label>
         <select id="existingGroups" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
-          <option value="">${trHtml('-- Select existing group --')}</option>
+          <option value="">${trHtml("-- اختر مجموعة موجودة --")}</option>
           ${Array.from(existingRadioGroups)
             .map(
               (name) =>
@@ -1363,38 +1363,38 @@ function showProperties(field: FormField): void {
             )
             .join('')}
         </select>
-        <p class="text-xs text-gray-400 mt-1">${trHtml('Select to add this button to an existing group')}</p>
+        <p class="text-xs text-gray-400 mt-1">${trHtml("حدّد لإضافة هذا الزر إلى مجموعة موجودة")}</p>
       </div>
       `
           : ''
       }
       ${specificProps}
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Tooltip / Help Text')}</label>
-        <input type="text" id="propTooltip" value="${escapeHtml(field.tooltip)}" placeholder="${trHtml('Description for screen readers')}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
+        <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("التلميح / نص المساعدة")}</label>
+        <input type="text" id="propTooltip" value="${escapeHtml(field.tooltip)}" placeholder="${trHtml("وصف لقارئات الشاشة")}" class="w-full bg-gray-600 border border-gray-500 text-white rounded px-2 py-1 text-sm focus:ring-indigo-500 focus:border-indigo-500">
       </div>
       <div class="flex items-center">
         <input type="checkbox" id="propRequired" ${field.required ? 'checked' : ''} class="mr-2">
-        <label for="propRequired" class="text-xs font-semibold text-gray-300">${trHtml('Required')}</label>
+        <label for="propRequired" class="text-xs font-semibold text-gray-300">${trHtml("مطلوب")}</label>
       </div>
       <div class="flex items-center">
         <input type="checkbox" id="propReadOnly" ${field.readOnly ? 'checked' : ''} class="mr-2">
-        <label for="propReadOnly" class="text-xs font-semibold text-gray-300">${trHtml('Read Only')}</label>
+        <label for="propReadOnly" class="text-xs font-semibold text-gray-300">${trHtml("للقراءة فقط")}</label>
       </div>
       <div>
-        <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml('Border Color')}</label>
+        <label class="block text-xs font-semibold text-gray-300 mb-1">${trHtml("لون الحدود")}</label>
         <input type="color" id="propBorderColor" value="${field.borderColor || '#000000'}">
       </div>
       <div class="flex items-center">
         <input type="checkbox" id="propHideBorder" ${field.hideBorder ? 'checked' : ''} class="mr-2">
-        <label for="propHideBorder" class="text-xs font-semibold text-gray-300">${trHtml('Hide Border')}</label>
+        <label for="propHideBorder" class="text-xs font-semibold text-gray-300">${trHtml("إخفاء الحدود")}</label>
       </div>
       <div class="flex items-center">
         <input type="checkbox" id="propTransparentBackground" ${field.transparentBackground ? 'checked' : ''} class="mr-2">
-        <label for="propTransparentBackground" class="text-xs font-semibold text-gray-300">${trHtml('Transparent Background')}</label>
+        <label for="propTransparentBackground" class="text-xs font-semibold text-gray-300">${trHtml("خلفية شفافة")}</label>
       </div>
       <button id="deleteBtn" class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition text-sm font-semibold">
-        ${trHtml('Delete Field')}
+        ${trHtml("حذف الحقل")}
       </button>
     </div>
   `;
@@ -1419,7 +1419,7 @@ function showProperties(field: FormField): void {
 
   const validateName = (newName: string): boolean => {
     if (!newName) {
-      nameError.textContent = trText('Field name cannot be empty');
+      nameError.textContent = trText("لا يمكن أن يكون اسم الحقل فارغًا");
       nameError.classList.remove('hidden');
       propName.classList.add('border-red-500');
       return false;
@@ -1438,8 +1438,8 @@ function showProperties(field: FormField): void {
 
     if (isDuplicateInFields || isDuplicateInPdf) {
       nameError.textContent = trText(
-        'Field name "{{newName}}" already exists in this {{value}}. Please try using a unique name.',
-        { newName, value: isDuplicateInPdf ? trText('PDF') : trText('form') }
+        "اسم الحقل \"{{newName}}\" موجود بالفعل في هذا {{value}}. يرجى استخدام اسم فريد.",
+        { newName, value: isDuplicateInPdf ? trText('PDF') : trText("نموذج") }
       );
       nameError.classList.remove('hidden');
       propName.classList.add('border-red-500');
@@ -1791,7 +1791,7 @@ function showProperties(field: FormField): void {
       if (propSelectedOption) {
         const currentVal = field.defaultValue;
         propSelectedOption.innerHTML =
-          `<option value="">${trHtml('None')}</option>` +
+          `<option value="">${trHtml("بدون")}</option>` +
           field.options
             ?.map(
               (opt) =>
@@ -1830,7 +1830,7 @@ function showProperties(field: FormField): void {
         const contentEl = fieldWrapper.querySelector(
           '.field-content'
         ) as HTMLElement;
-        if (contentEl) contentEl.textContent = field.label || trText('Button');
+        if (contentEl) contentEl.textContent = field.label || trText("زر");
       }
     });
 
@@ -2051,13 +2051,13 @@ function showProperties(field: FormField): void {
     };
 
     const barcodeFormatHints: Record<string, string> = {
-      qrcode: trText('Any text, URL, or data'),
-      code128: trText('ASCII characters (letters, numbers, symbols)'),
-      code39: trText('Uppercase A-Z, digits 0-9, and - . $ / + % SPACE'),
-      ean13: trText('Exactly 12 or 13 digits'),
-      upca: trText('Exactly 11 or 12 digits'),
-      datamatrix: trText('Any text, URL, or data'),
-      pdf417: trText('Any text, URL, or data'),
+      qrcode: trText("أي نص أو رابط أو بيانات"),
+      code128: trText("أحرف ASCII (حروف وأرقام ورموز)"),
+      code39: trText("الأحرف الكبيرة A-Z والأرقام 0-9 والرموز - . $ / + % والمسافة"),
+      ean13: trText("12 أو 13 رقمًا بالضبط"),
+      upca: trText("11 أو 12 رقمًا بالضبط"),
+      datamatrix: trText("أي نص أو رابط أو بيانات"),
+      pdf417: trText("أي نص أو رابط أو بيانات"),
     };
 
     const hintEl = document.getElementById('barcodeFormatHint');
@@ -2087,7 +2087,7 @@ function showProperties(field: FormField): void {
 
 // Hide properties panel
 function hideProperties(): void {
-  propertiesPanel.innerHTML = `<p class="text-gray-500 text-sm">${trHtml('Select a field to edit properties')}</p>`;
+  propertiesPanel.innerHTML = `<p class="text-gray-500 text-sm">${trHtml("اختر حقلًا لتعديل خصائصه")}</p>`;
 }
 
 // Delete field
@@ -2154,9 +2154,9 @@ downloadBtn.addEventListener('click', async () => {
       .map((name) => `"${name}"`)
       .join(', ');
     showModal(
-      trText('Field Name Conflict'),
+      trText("تعارض في اسم الحقل"),
       trText(
-        'The following field names already exist in the uploaded PDF: {{conflictList}}. Please rename these fields before downloading.',
+        "أسماء الحقول التالية موجودة بالفعل في PDF المرفوع: {{conflictList}}. يرجى تغيير أسماء هذه الحقول قبل التنزيل.",
         { conflictList }
       ),
       'error'
@@ -2167,9 +2167,9 @@ downloadBtn.addEventListener('click', async () => {
   if (duplicates.length > 0) {
     const duplicateList = duplicates.map((name) => `"${name}"`).join(', ');
     showModal(
-      trText('Duplicate Field Names'),
+      trText("أسماء حقول مكررة"),
       trText(
-        'The following field names are used more than once: {{duplicateList}}. Please rename these fields to use unique names before downloading.',
+        "أسماء الحقول التالية مستخدمة أكثر من مرة: {{duplicateList}}. يرجى تغيير أسماء هذه الحقول لتكون فريدة قبل التنزيل.",
         { duplicateList }
       ),
       'error'
@@ -2178,12 +2178,12 @@ downloadBtn.addEventListener('click', async () => {
   }
 
   if (fields.length === 0) {
-    alert(trText('Please add at least one field before downloading.'));
+    alert(trText("يرجى إضافة حقل واحد على الأقل قبل التنزيل."));
     return;
   }
 
   if (pages.length === 0) {
-    alert(trText('No pages found. Please create a blank PDF or upload one.'));
+    alert(trText("لم يتم العثور على صفحات. يرجى إنشاء PDF فارغ أو رفع ملف."));
     return;
   }
 
@@ -2728,7 +2728,7 @@ downloadBtn.addEventListener('click', async () => {
     downloadFile(blob, uploadedFileName || 'document.pdf');
     showModal(
       'Success',
-      trText('Your PDF has been downloaded successfully.'),
+      trText("تم تنزيل PDF بنجاح."),
       'info',
       () => {
         resetToInitial();
@@ -2753,9 +2753,9 @@ downloadBtn.addEventListener('click', async () => {
         console.log(`Adding to existing radio group: ${fieldName}`);
       } else {
         showModal(
-          trText('Duplicate Field Name'),
+          trText("اسم حقل مكرر"),
           trText(
-            'A field named "{{fieldName}}" already exists. Please rename this field to use a unique name before downloading.',
+            "يوجد حقل باسم \"{{fieldName}}\" بالفعل. يرجى تغيير اسم هذا الحقل إلى اسم فريد قبل التنزيل.",
             { fieldName }
           ),
           'error'
@@ -2764,7 +2764,7 @@ downloadBtn.addEventListener('click', async () => {
     } else {
       showModal(
         'Error',
-        trText('Error generating PDF: {{error}}', { error: errorMessage }),
+        trText("خطأ في إنشاء PDF: {{error}}", { error: errorMessage }),
         'error'
       );
     }
@@ -2825,7 +2825,7 @@ function resetToInitial(): void {
 
   canvas.innerHTML = '';
 
-  propertiesPanel.innerHTML = `<p class="text-gray-500 text-sm">${trHtml('Select a field to edit properties')}</p>`;
+  propertiesPanel.innerHTML = `<p class="text-gray-500 text-sm">${trHtml("اختر حقلًا لتعديل خصائصه")}</p>`;
 
   updateFieldCount();
 
@@ -2935,7 +2935,7 @@ async function renderCanvas(): Promise<void> {
 }
 
 function updatePageNavigation(): void {
-  pageIndicator.textContent = trText('Page {{n}} of {{length}}', {
+  pageIndicator.textContent = trText("الصفحة {{n}} من {{length}}", {
     n: currentPageIndex + 1,
     length: pages.length,
   });
@@ -3099,7 +3099,7 @@ async function handlePdfUpload(file: File) {
     console.error('Error loading PDF:', error);
     showModal(
       'Error',
-      trText('Error loading PDF file. Please try again with a valid PDF.'),
+      trText("خطأ في تحميل ملف PDF. يرجى المحاولة مرة أخرى بملف PDF صالح."),
       'error'
     );
   }
@@ -3127,7 +3127,7 @@ resetBtn.addEventListener('click', () => {
   if (fields.length > 0 || pages.length > 0) {
     if (
       confirm(
-        trText('Are you sure you want to reset? All your work will be lost.')
+        trText("هل أنت متأكد من أنك تريد إعادة التعيين؟ ستفقد كل عملك.")
       )
     ) {
       resetToInitial();

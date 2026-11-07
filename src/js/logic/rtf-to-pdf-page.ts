@@ -89,7 +89,7 @@ onPageReady(() => {
   const convertToPdf = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one RTF file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف RTF واحد على الأقل.");
         hideLoader();
         return;
       }
@@ -104,7 +104,7 @@ onPageReady(() => {
       if (state.files.length === 1) {
         const originalFile = state.files[0];
 
-        showLoader('Processing...');
+        showLoader("جارٍ المعالجة...");
 
         const pdfBlob = await converter.convertToPdf(originalFile);
 
@@ -115,15 +115,15 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: originalFile.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple RTF files to PDF...');
+        showLoader("جارٍ تحويل عدة ملفات RTF إلى PDF...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -131,7 +131,7 @@ onPageReady(() => {
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -156,8 +156,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} RTF file(s) to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من ملفات RTF إلى PDF بنجاح.", {
             length: state.files.length,
           }),
           'success',
@@ -167,8 +167,8 @@ onPageReady(() => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

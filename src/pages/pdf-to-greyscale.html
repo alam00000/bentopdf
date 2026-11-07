@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="PDF to Greyscale Online Free - PDF to Greyscale Tool | Pixel PDF"
+      content="PDF إلى تدرج رمادي أونلاين مجانًا - أداة PDF إلى تدرج رمادي | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert all colors to black and white. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل جميع الألوان إلى أبيض وأسود. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="pdf to greyscale, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="PDF to Greyscale Online Free - PDF to Greyscale Tool | Pixel PDF"
+      content="PDF إلى تدرج رمادي أونلاين مجانًا - أداة PDF إلى تدرج رمادي | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert all colors to black and white. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل جميع الألوان إلى أبيض وأسود. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/pdf-to-greyscale"
     />
-    <meta name="twitter:title" content="PDF to Greyscale Free" />
+    <meta name="twitter:title" content="PDF إلى تدرج رمادي مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert all colors to black and white. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل جميع الألوان إلى أبيض وأسود. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF to Greyscale" />
+    <meta name="apple-mobile-web-app-title" content="PDF إلى تدرج الرمادي" />
 
-    <title>PDF to Greyscale - Pixel PDF</title>
+    <title>PDF إلى تدرج الرمادي - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfToGreyscale.name"
         >
-          PDF to Greyscale
+          PDF إلى تدرج الرمادي
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfToGreyscale.subtitle">
-          Convert all colors to black and white.
+          تحويل جميع الألوان إلى أبيض وأسود.
         </p>
 
         <div
@@ -135,15 +135,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -158,7 +158,7 @@
 
         <div id="options-panel" class="hidden mt-6">
           <button id="process-btn" class="btn-gradient w-full">
-            Convert to Greyscale
+            تحويل إلى تدرج رمادي
           </button>
         </div>
       </div>
@@ -173,7 +173,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -189,16 +189,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -209,7 +208,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -219,9 +218,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -232,9 +231,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -245,9 +244,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -260,43 +259,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -307,113 +312,107 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does converting a PDF to grayscale make it smaller?
+            هل يجعل تحويل PDF إلى تدرج رمادي حجمه أصغر؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Often, yes. Each page is stored as a grayscale JPEG at 90% quality,
-            which is smaller than a color image, so color-heavy files usually
-            shrink. A text-only PDF can grow instead, because its compact vector
-            text becomes a full-page image.
+            غالبًا نعم. تُخزَّن كل صفحة كصورة JPEG بتدرج رمادي بجودة 90%، وهي
+            أصغر من الصورة الملونة، لذلك تصغر الملفات كثيفة الألوان عادةً. قد
+            يكبر PDF النصي فقط، لأن نصه المتجهي المضغوط يتحول إلى صورة بحجم
+            الصفحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the text still be selectable after conversion?
+            هل سيبقى النص قابلًا للتحديد بعد التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Every page is rendered at 2x scale, desaturated, and re-embedded
-            as a JPEG image, so the output is image-based and text can't be
-            selected or searched. If you need searchable text again, run the
-            result through
+            لا. تُعرض كل صفحة بمقياس 2x وتُزال ألوانها وتُضمَّن من جديد كصورة
+            JPEG، لذلك يعتمد الناتج على الصور ولا يمكن تحديد النص أو البحث فيه.
+            إذا احتجت إلى نص قابل للبحث مرة أخرى، فمرّر الناتج عبر
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
+              >التعرف الضوئي على PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I adjust brightness or contrast, or keep some pages in color?
+            هل يمكنني ضبط السطوع أو التباين أو إبقاء بعض الصفحات بالألوان؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not here. This tool has no options and converts every page using a
-            standard luminance formula. For brightness, contrast, or saturation
-            controls use
+            ليس هنا. لا تحتوي هذه الأداة على خيارات وتحوّل كل صفحة بصيغة سطوع
+            قياسية. للتحكم في السطوع أو التباين أو التشبع استخدم
             <a
               href="/adjust-colors"
               class="text-indigo-300 hover:text-indigo-400"
-              >Adjust Colors</a
-            >, and to convert only some pages, split those out first and merge
-            the results afterward.
+              >ضبط الألوان</a
+            >، ولتحويل بعض الصفحات فقط، افصلها أولًا ثم ادمج النتائج بعد ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is grayscale the same as black and white?
+            هل التدرج الرمادي هو نفسه الأبيض والأسود؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Grayscale keeps shades of gray, so photos, shaded charts, and
-            highlights stay readable, while true black and white drops
-            everything to two tones; this tool produces grayscale. If you need
-            1-bit output,
+            لا. يحتفظ التدرج الرمادي بدرجات الرمادي، فتبقى الصور والمخططات
+            المظللة والتمييز مقروءة، بينما يختزل الأبيض والأسود الحقيقي كل شيء
+            إلى لونين. تنتج هذه الأداة تدرجًا رماديًا. إذا كنت تحتاج مخرجات 1
+            بت، ففي
             <a href="/pdf-to-tiff" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to TIFF</a
+              >PDF إلى TIFF</a
             >
-            has a Black &amp; White mode.
+            وضع أبيض وأسود.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the page size or print quality change?
+            هل يتغير حجم الصفحة أو جودة الطباعة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The page dimensions are preserved. Pages are rendered at 2x scale,
-            about 144 dpi, which looks fine on screen and is acceptable for
-            office printing, but fine detail won't be as crisp as the vector
-            original.
+            تُحفظ أبعاد الصفحة. تُعرض الصفحات بمقياس 2x، نحو 144 dpi، وهو يبدو
+            جيدًا على الشاشة ومقبول للطباعة المكتبية، لكن التفاصيل الدقيقة لن
+            تكون بحدة الأصل المتجهي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why convert a PDF to grayscale before printing?
+            لماذا أحوّل PDF إلى تدرج رمادي قبل الطباعة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A grayscale file prints the same on any printer and avoids color
-            charges, and some print shops, courts, and government portals
-            require grayscale submissions. Converting first also shows how
-            colored charts and highlights will look in gray before you print.
+            يُطبع ملف التدرج الرمادي بنفس الشكل على أي طابعة ويتجنب رسوم
+            الألوان، وتشترط بعض المطابع والمحاكم والبوابات الحكومية تقديمات
+            بالتدرج الرمادي. كما أن التحويل أولًا يُظهر كيف ستبدو المخططات
+            الملونة والتمييز بالرمادي قبل الطباعة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens to annotations, form fields, and links?
+            ماذا يحدث للتعليقات التوضيحية وحقول النماذج والروابط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            They're flattened into the page image. Form fields stop being
-            fillable, comments become part of the picture, and clickable links
-            no longer work.
+            تُسطَّح داخل صورة الصفحة. تتوقف حقول النماذج عن كونها قابلة للتعبئة،
+            وتصبح التعليقات جزءًا من الصورة، ولا تعمل الروابط القابلة للنقر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded to convert it?
+            هل يُرفع ملف PDF الخاص بي لتحويله؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering and the grayscale filter run on a canvas in your
-            browser tab, and the new PDF is assembled there too. Nothing is sent
-            to a server.
+            لا. يعمل العرض ومرشح التدرج الرمادي على لوحة (canvas) في تبويب
+            متصفحك، ويُجمَّع PDF الجديد هناك أيضًا. لا يُرسل شيء إلى خادم.
           </p>
         </details>
       </div>
@@ -446,26 +445,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to pdf to greyscale online",
+        "name": "كيفية تحويل PDF إلى تدرج رمادي أونلاين",
         "description": "Learn how to pdf to greyscale using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

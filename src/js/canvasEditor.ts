@@ -63,7 +63,7 @@ function calculateFitScale(page: PDFPageProxy) {
  */
 async function renderPage(num: number) {
   editorState.pageRendering = true;
-  showLoader(trText('Loading page {{num}}...', { num }));
+  showLoader(trText("جارٍ تحميل الصفحة {{num}}...", { num }));
 
   try {
     const page = await editorState.pdf!.getPage(num);
@@ -93,7 +93,7 @@ async function renderPage(num: number) {
     redrawShapes();
   } catch (error) {
     console.error('Error rendering page:', error);
-    showAlert('Render Error', 'Could not display the page.');
+    showAlert("خطأ في العرض", "تعذر عرض الصفحة.");
   } finally {
     editorState.pageRendering = false;
     hideLoader();
@@ -312,8 +312,8 @@ export async function setupCanvasEditor(toolId: string) {
       async () => {
         if (Object.keys(editorState.cropBoxes).length === 0) {
           showAlert(
-            'No Area Selected',
-            'Please draw a rectangle on at least one page to select the crop area.'
+            "لم يتم تحديد منطقة",
+            "يرجى رسم مستطيل على صفحة واحدة على الأقل لتحديد منطقة القص."
           );
           return;
         }
@@ -324,8 +324,8 @@ export async function setupCanvasEditor(toolId: string) {
             : false;
         if (success) {
           showAlert(
-            'Success!',
-            'Your PDF has been cropped and the download has started.'
+            "تم بنجاح!",
+            "تم قص PDF وبدأ التنزيل."
           );
         }
       };

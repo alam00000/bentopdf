@@ -24,36 +24,6 @@ function engineVersion(): string {
   }
 }
 
-const SUPPORTED_LANGUAGES = [
-  'en',
-  'ar',
-  'be',
-  'da',
-  'ru',
-  'de',
-  'es',
-  'fr',
-  'id',
-  'it',
-  'nl',
-  'pt',
-  'pl',
-  'sv',
-  'tr',
-  'vi',
-  'zh',
-  'zh-TW',
-  'ko',
-  'ja',
-  'uk',
-  'sk',
-  'ca',
-  'fa',
-] as const;
-const LANG_REGEX = new RegExp(
-  `^/(${SUPPORTED_LANGUAGES.join('|')})(?:/(.*))?$`
-);
-
 function loadPages(): Set<string> {
   const pagesDir = resolve(__dirname, 'src/pages');
   const pages = new Set<string>();
@@ -94,138 +64,39 @@ function getBasePath(): string {
   return (process.env.BASE_URL || '/').replace(/\/$/, '');
 }
 
+// Canonical Arabic routes work identically with extensionless links and .html URLs.
 function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
-  return (
-    req: IncomingMessage,
-    res: ServerResponse,
-    next: Connect.NextFunction
-  ): void => {
+  return (req, res, next) => {
     if (!req.url) return next();
-
+    const [rawPath, queryString] = req.url.split('?');
     const basePath = getBasePath();
-    const [fullPathname, queryString] = req.url.split('?');
-
-    let pathname = fullPathname;
-    if (basePath && basePath !== '/' && pathname.startsWith(basePath)) {
-      pathname = pathname.slice(basePath.length) || '/';
+    const pathname =
+      basePath && rawPath.startsWith(basePath)
+        ? rawPath.slice(basePath.length) || '/'
+        : rawPath;
+    const suffix = queryString ? `?${queryString}` : '';
+    // Preserve old Arabic bookmarks without maintaining a separate locale tree.
+    if (/^\/ar(?:\/|$)/.test(pathname)) {
+      res.statusCode = 301;
+      res.setHeader('Location', basePath + (pathname.slice(3) || '/') + suffix);
+      res.end();
+      return;
     }
-
-    if (!pathname.startsWith('/')) {
-      pathname = '/' + pathname;
-    }
-
-    const match = pathname.match(LANG_REGEX);
-
-    if (match) {
-      const lang = match[1];
-      const rest = match[2] ?? '';
-
-      if (rest === '' && !pathname.endsWith('/')) {
-        const redirectUrl = basePath ? `${basePath}/${lang}/` : `/${lang}/`;
-        res.statusCode = 302;
-        res.setHeader(
-          'Location',
-          redirectUrl + (queryString ? `?${queryString}` : '')
-        );
-        res.end();
-        return;
-      }
-
-      if (rest === '' || rest === '/') {
-        if (isDev) {
-          req.url = '/index.html' + (queryString ? `?${queryString}` : '');
-        } else {
-          const langIndexPath = resolve(__dirname, 'dist', lang, 'index.html');
-          if (fs.existsSync(langIndexPath)) {
-            req.url =
-              `/${lang}/index.html` + (queryString ? `?${queryString}` : '');
-          } else {
-            req.url = '/index.html' + (queryString ? `?${queryString}` : '');
-          }
-        }
-        return next();
-      }
-
-      const cleanPath = rest.replace(/\/$/, '').replace(/\.html$/, '');
-      const pageName = cleanPath.split('/')[0];
-
-      if (pageName && PAGES.has(pageName)) {
-        if (isDev) {
-          const srcPath = resolve(__dirname, 'src/pages', `${pageName}.html`);
-          if (fs.existsSync(srcPath)) {
-            req.url =
-              `/src/pages/${pageName}.html` +
-              (queryString ? `?${queryString}` : '');
-          } else {
-            req.url =
-              `/${pageName}.html` + (queryString ? `?${queryString}` : '');
-          }
-        } else {
-          const langPagePath = resolve(
-            __dirname,
-            'dist',
-            lang,
-            `${pageName}.html`
-          );
-          if (fs.existsSync(langPagePath)) {
-            req.url =
-              `/${lang}/${pageName}.html` +
-              (queryString ? `?${queryString}` : '');
-          } else {
-            req.url =
-              `/${pageName}.html` + (queryString ? `?${queryString}` : '');
-          }
-        }
-      } else if (!cleanPath.includes('.')) {
-        if (isDev) {
-          req.url =
-            `/${cleanPath}.html` + (queryString ? `?${queryString}` : '');
-        } else {
-          const langPagePath = resolve(
-            __dirname,
-            'dist',
-            lang,
-            `${cleanPath}.html`
-          );
-          if (fs.existsSync(langPagePath)) {
-            req.url =
-              `/${lang}/${cleanPath}.html` +
-              (queryString ? `?${queryString}` : '');
-          } else {
-            req.url =
-              `/${cleanPath}.html` + (queryString ? `?${queryString}` : '');
-          }
-        }
-      }
-
-      return next();
-    }
-
-    if (isDev && pathname.endsWith('.html') && !pathname.startsWith('/src/')) {
-      const pageName = pathname.slice(1).replace('.html', '');
-      if (PAGES.has(pageName)) {
-        const srcPath = resolve(__dirname, 'src/pages', `${pageName}.html`);
-        if (fs.existsSync(srcPath)) {
-          req.url =
-            `/src/pages/${pageName}.html` +
-            (queryString ? `?${queryString}` : '');
-          return next();
-        }
-      }
-    }
-
-    if (pathname === '/blog' || pathname === '/blog/') {
-      req.url = '/blog/index.html' + (queryString ? `?${queryString}` : '');
-      return next();
-    }
-
-    const blogMatch = pathname.match(/^\/blog\/([a-z0-9-]+)\/?$/);
-    if (blogMatch) {
+    const pageName = pathname
+      .slice(1)
+      .replace(/\/$/, '')
+      .replace(/\.html$/, '');
+    if (PAGES.has(pageName)) {
       req.url =
-        `/blog/${blogMatch[1]}.html` + (queryString ? `?${queryString}` : '');
-      return next();
+        (isDev &&
+        fs.existsSync(resolve(__dirname, 'src/pages', `${pageName}.html`))
+          ? `/src/pages/${pageName}.html`
+          : `/${pageName}.html`) + suffix;
+    } else if (pathname === '/blog' || pathname === '/blog/') {
+      req.url = '/blog/index.html' + suffix;
+    } else if (/^\/blog\/[a-z0-9-]+\/?$/.test(pathname)) {
+      req.url = pathname.replace(/\/$/, '') + '.html' + suffix;
     }
-
     next();
   };
 }
@@ -390,58 +261,6 @@ function languageRouterPlugin(): Plugin {
   };
 }
 
-function languageRedirectPlugin(): Plugin {
-  const sourcePath = resolve(__dirname, 'src/js/language-redirect.js');
-  let isBuild = false;
-  let fileName = '';
-  return {
-    name: 'language-redirect',
-    configResolved(config) {
-      isBuild = config.command === 'build';
-    },
-    buildStart() {
-      if (!isBuild) return;
-      const hash = createHash('sha256')
-        .update(fs.readFileSync(sourcePath))
-        .digest('hex')
-        .slice(0, 10);
-      fileName = `assets/language-redirect-${hash}.js`;
-    },
-    generateBundle() {
-      if (!isBuild) return;
-      this.emitFile({
-        type: 'asset',
-        fileName,
-        source: fs.readFileSync(sourcePath, 'utf-8'),
-      });
-    },
-    transformIndexHtml: {
-      order: 'post',
-      handler() {
-        const base = `${getBasePath()}/`;
-        return [
-          {
-            tag: 'script',
-            attrs: {
-              src: isBuild
-                ? `${base}${fileName}`
-                : `${base}src/js/language-redirect.js`,
-              'data-language-redirect': '',
-              'data-base': base,
-              'data-languages': SUPPORTED_LANGUAGES.filter(
-                (lang) => lang !== 'en'
-              ).join(','),
-              'data-default-language':
-                process.env.VITE_DEFAULT_LANGUAGE || 'en',
-            },
-            injectTo: 'head-prepend',
-          },
-        ];
-      },
-    },
-  };
-}
-
 type JsonRecord = Record<string, unknown>;
 
 function devPageTranslationsPlugin(): Plugin {
@@ -458,21 +277,14 @@ function devPageTranslationsPlugin(): Plugin {
 
   return {
     name: 'dev-page-translations',
-    apply: 'serve',
     enforce: 'post',
     async transformIndexHtml(html, ctx) {
       const basePath = getBasePath();
-      let pathname = (ctx.originalUrl ?? ctx.path).split('?')[0];
-      if (basePath && pathname.startsWith(basePath)) {
-        pathname = pathname.slice(basePath.length) || '/';
-      }
-      const lang = pathname.match(LANG_REGEX)?.[1];
-      if (!lang) return html;
+      const lang = 'ar';
       const rootRelative = html.replace(
         /(\s(?:src|href)=["'])(?=src\/)/g,
         `$1${basePath}/`
       );
-      if (lang === 'en') return rootRelative;
       const content = loadJson(
         resolve(__dirname, 'translations', lang, 'content.json')
       );
@@ -719,7 +531,6 @@ export default defineConfig(({ command }) => {
       }),
       languageRouterPlugin(),
       devPageTranslationsPlugin(),
-      languageRedirectPlugin(),
       flattenPagesPlugin(),
       rewriteHtmlPathsPlugin(),
       swPrecachePlugin(),
@@ -765,7 +576,7 @@ export default defineConfig(({ command }) => {
       ],
     },
     server: {
-      host: process.env.VITE_DEV_HOST || 'localhost',
+      host: process.env.VITE_DEV_HOST || '0.0.0.0',
       // Allow the sandbox / tunnelled preview hosts (e.g. *.e2b.app) during dev.
       allowedHosts: process.env.VITE_DEV_ALLOWED_HOSTS
         ? process.env.VITE_DEV_ALLOWED_HOSTS.split(',')

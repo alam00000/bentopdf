@@ -100,13 +100,13 @@ async function reverseSingleFile(file: File): Promise<Uint8Array> {
 
 async function reversePages() {
   if (reverseState.files.length === 0) {
-    showAlert('No Files', 'Please select one or more PDF files.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد أو أكثر.");
     return;
   }
 
   try {
     const decryptedFiles = await batchDecryptIfNeeded(reverseState.files);
-    showLoader('Reversing page order...');
+    showLoader("جارٍ عكس ترتيب الصفحات...");
     reverseState.files = decryptedFiles;
 
     const validFiles = reverseState.files.filter(function (f) {
@@ -124,7 +124,7 @@ async function reversePages() {
     for (let j = 0; j < validFiles.length; j++) {
       const file = validFiles[j];
       showLoader(
-        trText('Reversing {{name}} ({{n}}/{{length}})...', {
+        trText("جارٍ عكس ترتيب {{name}} ({{n}}/{{length}})...", {
           name: file.name,
           n: j + 1,
           length: validFiles.length,
@@ -149,8 +149,8 @@ async function reversePages() {
     }
 
     showAlert(
-      'Success',
-      'Pages have been reversed successfully!',
+      "تم بنجاح",
+      "تم عكس ترتيب الصفحات بنجاح!",
       'success',
       function () {
         resetState();
@@ -159,8 +159,8 @@ async function reversePages() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Could not reverse the PDF pages. Please check that your files are valid PDFs.'
+      "خطأ",
+      "تعذر عكس ترتيب صفحات PDF. يرجى التأكد من أن ملفاتك صالحة."
     );
   } finally {
     hideLoader();

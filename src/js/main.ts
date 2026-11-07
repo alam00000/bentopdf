@@ -16,7 +16,6 @@ import {
   initI18n,
   applyTranslations,
   rewriteLinks,
-  injectLanguageSwitcher,
   t,
   trText,
 } from './i18n/index.js';
@@ -48,20 +47,19 @@ declare const __BRAND_NAME__: string;
 const init = async () => {
   await initI18n();
   await loadRuntimeConfig();
-  injectLanguageSwitcher();
   applyTranslations();
 
   if (isCurrentPageDisabled()) {
-    document.title = t('disabledTool.title') || trText('Tool Unavailable');
+    document.title = t('disabledTool.title') || trText("الأداة غير متاحة");
     const main = document.querySelector('main') || document.body;
     const heading =
-      t('disabledTool.heading') || trText('This tool has been disabled');
+      t('disabledTool.heading') || trText("تم تعطيل هذه الأداة");
     const message =
       t('disabledTool.message') ||
       trText(
-        'This tool is not available in your deployment. Contact your administrator for more information.'
+        "هذه الأداة غير متاحة في نشرك. تواصل مع المسؤول لمزيد من المعلومات."
       );
-    const backHome = t('disabledTool.backHome') || trText('Back to Home');
+    const backHome = t('disabledTool.backHome') || trText("العودة إلى الرئيسية");
     main.innerHTML = `
       <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <i class="ph ph-prohibit text-6xl text-gray-500 mb-4"></i>
@@ -1156,51 +1154,51 @@ const init = async () => {
   // Reserved shortcuts that commonly conflict with browser/OS functions
   const RESERVED_SHORTCUTS: Record<string, { mac?: string; windows?: string }> =
     {
-      'mod+w': { mac: trText('Closes tab'), windows: trText('Closes tab') },
+      'mod+w': { mac: trText("يغلق التبويب"), windows: trText("يغلق التبويب") },
       'mod+t': {
-        mac: trText('Opens new tab'),
-        windows: trText('Opens new tab'),
+        mac: trText("يفتح تبويبًا جديدًا"),
+        windows: trText("يفتح تبويبًا جديدًا"),
       },
       'mod+n': {
-        mac: trText('Opens new window'),
-        windows: trText('Opens new window'),
+        mac: trText("يفتح نافذة جديدة"),
+        windows: trText("يفتح نافذة جديدة"),
       },
       'mod+shift+n': {
-        mac: trText('Opens incognito window'),
-        windows: trText('Opens incognito window'),
+        mac: trText("يفتح نافذة التصفح المتخفي"),
+        windows: trText("يفتح نافذة التصفح المتخفي"),
       },
-      'mod+q': { mac: trText('Quits application (cannot be overridden)') },
-      'mod+m': { mac: trText('Minimizes window') },
-      'mod+h': { mac: trText('Hides window') },
-      'mod+r': { mac: trText('Reloads page'), windows: trText('Reloads page') },
+      'mod+q': { mac: trText("يغلق التطبيق (لا يمكن تجاوزه)") },
+      'mod+m': { mac: trText("يصغّر النافذة") },
+      'mod+h': { mac: trText("يخفي النافذة") },
+      'mod+r': { mac: trText("يعيد تحميل الصفحة"), windows: trText("يعيد تحميل الصفحة") },
       'mod+shift+r': {
-        mac: trText('Hard reloads page'),
-        windows: trText('Hard reloads page'),
+        mac: trText("يعيد تحميل الصفحة بالكامل"),
+        windows: trText("يعيد تحميل الصفحة بالكامل"),
       },
       'mod+l': {
-        mac: trText('Focuses address bar'),
-        windows: trText('Focuses address bar'),
+        mac: trText("يركّز على شريط العنوان"),
+        windows: trText("يركّز على شريط العنوان"),
       },
       'mod+d': {
-        mac: trText('Bookmarks page'),
-        windows: trText('Bookmarks page'),
+        mac: trText("صفحة الإشارات المرجعية"),
+        windows: trText("صفحة الإشارات المرجعية"),
       },
       'mod+shift+t': {
-        mac: trText('Reopens closed tab'),
-        windows: trText('Reopens closed tab'),
+        mac: trText("يعيد فتح التبويب المغلق"),
+        windows: trText("يعيد فتح التبويب المغلق"),
       },
       'mod+shift+w': {
-        mac: trText('Closes window'),
-        windows: trText('Closes window'),
+        mac: trText("يغلق النافذة"),
+        windows: trText("يغلق النافذة"),
       },
       'mod+tab': {
-        mac: trText('Switches tabs'),
-        windows: trText('Switches apps'),
+        mac: trText("يبدّل بين التبويبات"),
+        windows: trText("يبدّل بين التطبيقات"),
       },
-      'alt+f4': { windows: trText('Closes window') },
+      'alt+f4': { windows: trText("يغلق النافذة") },
       'ctrl+tab': {
-        mac: trText('Switches tabs'),
-        windows: trText('Switches tabs'),
+        mac: trText("يبدّل بين التبويبات"),
+        windows: trText("يبدّل بين التبويبات"),
       },
     };
 

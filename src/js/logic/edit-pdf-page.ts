@@ -142,7 +142,7 @@ function confirmChoice(
     cancelBtn.type = 'button';
     cancelBtn.className =
       'flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200';
-    cancelBtn.textContent = trText('Cancel');
+    cancelBtn.textContent = trText("إلغاء");
 
     const confirmBtn = document.createElement('button');
     confirmBtn.type = 'button';
@@ -297,11 +297,11 @@ async function handleFiles(files: FileList) {
     (f) => f.type === 'application/pdf'
   );
   if (pdfFiles.length === 0) {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
 
-  showLoader('Loading PDF Editor...');
+  showLoader("جارٍ تحميل محرر PDF...");
 
   try {
     const pdfWrapper = document.getElementById('embed-pdf-wrapper');
@@ -312,7 +312,7 @@ async function handleFiles(files: FileList) {
 
     hideLoader();
     const decryptedFiles = await batchDecryptIfNeeded(pdfFiles);
-    showLoader('Loading PDF Editor...');
+    showLoader("جارٍ تحميل محرر PDF...");
 
     if (decryptedFiles.length === 0) {
       hideLoader();
@@ -417,7 +417,7 @@ async function handleFiles(files: FileList) {
         downloadBtn = document.createElement('button');
         downloadBtn.id = 'download-edited-pdf';
         downloadBtn.className = 'btn-gradient w-full mt-6';
-        downloadBtn.textContent = trText('Download Edited PDF');
+        downloadBtn.textContent = trText("تنزيل PDF المعدّل");
         pdfWrapper.appendChild(downloadBtn);
       }
       downloadBtn.classList.remove('hidden');
@@ -428,16 +428,16 @@ async function handleFiles(files: FileList) {
           const pendingCount = redactionPlugin?.getState().pendingCount ?? 0;
           if (redactionPlugin && pendingCount > 0) {
             const shouldApply = await confirmChoice(
-              trText('Apply redactions?'),
+              trText("هل تريد تطبيق التنقيحات؟"),
               pendingCount === 1
                 ? trText(
-                    "This document has 1 redaction mark that hasn't been applied. Until a mark is applied, the content under it is still in the file. Apply all marks and download?"
+                    "يحتوي هذا المستند على علامة تنقيح واحدة لم تُطبَّق بعد. إلى أن تُطبَّق العلامة، يبقى المحتوى الذي تحتها في الملف. هل تريد تطبيق كل العلامات والتنزيل؟"
                   )
                 : trText(
-                    "This document has {{count}} redaction marks that haven't been applied. Until a mark is applied, the content under it is still in the file. Apply all marks and download?",
+                    "يحتوي هذا المستند على علامات تنقيح لم تُطبَّق بعد (العدد: {{count}}). إلى أن تُطبَّق العلامة، يبقى المحتوى الذي تحتها في الملف. هل تريد تطبيق كل العلامات والتنزيل؟",
                     { count: pendingCount }
                   ),
-              trText('Apply and download')
+              trText("تطبيق وتنزيل")
             );
             if (!shouldApply) return;
             try {
@@ -447,8 +447,8 @@ async function handleFiles(files: FileList) {
             }
             if (redactionPlugin.getState().pendingCount > 0) {
               showAlert(
-                'Redaction Failed',
-                'Some redaction marks could not be applied, so the file was not downloaded. Apply or remove them in the editor and try again.'
+                "فشل التنقيح",
+                "تعذر تطبيق بعض علامات التنقيح، لذلك لم يتم تنزيل الملف. طبّقها أو أزلها في المحرر ثم حاول مرة أخرى."
               );
               return;
             }
@@ -508,15 +508,15 @@ async function handleFiles(files: FileList) {
             });
             if (exported.isEncrypted) {
               const shouldDownload = await confirmChoice(
-                trText('Encrypted file'),
+                trText("ملف مشفّر"),
                 trText(
-                  "Your redactions are applied to the pages, but this file is encrypted, so Pixel PDF can't also remove copies of the redacted text from its properties, bookmarks, and attachments. For a full cleanup, redact an unencrypted copy and add a password afterwards with Protect PDF. Download anyway?"
+                  "تم تطبيق التنقيحات على الصفحات، لكن هذا الملف مشفّر، لذلك لا يستطيع Pixel PDF إزالة نسخ النص المنقّح من خصائصه وإشاراته المرجعية ومرفقاته. للحصول على تنظيف كامل، نقّح نسخة غير مشفّرة ثم أضف كلمة مرور لاحقًا باستخدام حماية PDF. هل تريد التنزيل على أي حال؟"
                 ),
-                trText('Download anyway')
+                trText("التنزيل على أي حال")
               );
               if (!shouldDownload) return;
             } else {
-              showLoader('Removing redacted text from document data...');
+              showLoader("جارٍ إزالة النص المنقّح من بيانات المستند...");
               try {
                 outBytes = await scrubRedactedText(
                   outBytes,
@@ -525,8 +525,8 @@ async function handleFiles(files: FileList) {
               } catch (err) {
                 console.error('Redaction cleanup failed:', err);
                 showAlert(
-                  'Error',
-                  'Could not remove the redacted text from the document data, so the file was not downloaded.'
+                  "خطأ",
+                  "تعذرت إزالة النص المنقّح من بيانات المستند، لذلك لم يتم تنزيل الملف."
                 );
                 return;
               } finally {
@@ -540,7 +540,7 @@ async function handleFiles(files: FileList) {
           downloadFile(blob, currentFileName);
         } catch (err) {
           console.error('Error downloading PDF:', err);
-          showAlert('Error', 'Failed to download the edited PDF.');
+          showAlert("خطأ", "تعذر تنزيل PDF المعدّل.");
         }
       };
       downloadBtn.onclick = downloadEditedPdf;
@@ -580,7 +580,7 @@ async function handleFiles(files: FileList) {
     }
   } catch (error) {
     console.error('Error loading PDF Editor:', error);
-    showAlert('Error', 'Failed to load the PDF Editor.');
+    showAlert("خطأ", "تعذر تحميل محرر PDF.");
   } finally {
     hideLoader();
   }

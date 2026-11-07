@@ -159,7 +159,7 @@ function recognizeWithTimeout(
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
       const error = new Error(
-        trText('OCR recognize timed out after {{timeoutMs}}ms', { timeoutMs })
+        trText("انتهت مهلة التعرف في OCR بعد {{timeoutMs}} مللي ثانية", { timeoutMs })
       );
       error.name = 'OcrTimeoutError';
       reject(error);
@@ -223,7 +223,7 @@ export async function performOcr(
 
     newPdfDoc.registerFontkit(fontkit);
 
-    progress(trText('Loading fonts...'), 0);
+    progress(trText("جارٍ تحميل الخطوط..."), 0);
 
     const selectedLangs = language.split('+');
     const cjkLangs = ['jpn', 'chi_sim', 'chi_tra', 'kor'];
@@ -289,7 +289,7 @@ export async function performOcr(
 
     for (let i = 1; i <= pdf.numPages; i++) {
       progress(
-        trText('Processing page {{i}} of {{numPages}}', {
+        trText("جارٍ معالجة الصفحة {{i}} من {{numPages}}", {
           i,
           numPages: pdf.numPages,
         }),
@@ -305,7 +305,7 @@ export async function performOcr(
         canvas.height = viewport.height;
         const context = canvas.getContext('2d');
         if (!context)
-          throw new Error(trText('Failed to create canvas context'));
+          throw new Error(trText("تعذر إنشاء سياق Canvas"));
 
         await pdfJsPage.render({ canvasContext: context, viewport, canvas })
           .promise;
@@ -380,7 +380,7 @@ export async function performOcr(
   }
 
   if (!newPdfDoc) {
-    throw new Error(trText('OCR aborted before any page was processed'));
+    throw new Error(trText("تم إيقاف OCR قبل معالجة أي صفحة"));
   }
 
   const savedBytes = await newPdfDoc.save();

@@ -53,7 +53,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -76,14 +76,14 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
@@ -92,7 +92,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -102,7 +102,7 @@ async function updateUI() {
 
 async function nUpTool() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -124,7 +124,7 @@ async function nUpTool() {
     (document.getElementById('border-color') as HTMLInputElement).value
   );
 
-  showLoader('Creating N-Up PDF...');
+  showLoader("جارٍ إنشاء PDF بتخطيط N-Up...");
 
   try {
     const sourceDoc = pageState.pdfDoc;
@@ -160,7 +160,7 @@ async function nUpTool() {
 
     for (let i = 0; i < sourcePages.length; i += n) {
       showLoader(
-        trText('Processing sheet {{n}}...', { n: Math.floor(i / n) + 1 })
+        trText("جارٍ معالجة الورقة {{n}}...", { n: Math.floor(i / n) + 1 })
       );
       const chunk = sourcePages.slice(i, i + n);
       const outputPage = newDoc.addPage([pageWidth, pageHeight]);
@@ -215,8 +215,8 @@ async function nUpTool() {
     );
 
     showAlert(
-      'Success',
-      'N-Up PDF created successfully!',
+      "تم بنجاح",
+      "تم إنشاء PDF بتخطيط N-Up بنجاح!",
       'success',
       function () {
         resetState();
@@ -224,7 +224,7 @@ async function nUpTool() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while creating the N-Up PDF.');
+    showAlert("خطأ", "حدث خطأ أثناء إنشاء ملف PDF بتخطيط N-Up.");
   } finally {
     hideLoader();
   }

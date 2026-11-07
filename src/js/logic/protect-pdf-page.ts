@@ -95,7 +95,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function encryptPdf() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -107,7 +107,7 @@ async function encryptPdf() {
       ?.value || '';
 
   if (!userPassword) {
-    showAlert('Input Required', 'Please enter a user password.');
+    showAlert("إدخال مطلوب", "يرجى إدخال كلمة مرور المستخدم.");
     return;
   }
 
@@ -124,18 +124,18 @@ async function encryptPdf() {
   try {
     if (loaderModal) loaderModal.classList.remove('hidden');
     if (loaderText)
-      loaderText.textContent = trText('Initializing encryption...');
+      loaderText.textContent = trText("جارٍ تهيئة التشفير...");
 
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = trText('Reading PDF...');
+    if (loaderText) loaderText.textContent = trText("جارٍ قراءة PDF...");
     const fileBuffer = await readFileAsArrayBuffer(pageState.file);
     const uint8Array = new Uint8Array(fileBuffer as ArrayBuffer);
 
     qpdf.FS.writeFile(inputPath, uint8Array);
 
     if (loaderText)
-      loaderText.textContent = trText('Encrypting PDF with 256-bit AES...');
+      loaderText.textContent = trText("جارٍ تشفير PDF باستخدام AES بطول 256 بت...");
 
     const args = [inputPath, '--encrypt', userPassword, ownerPassword, '256'];
 
@@ -161,16 +161,16 @@ async function encryptPdf() {
       console.error('qpdf execution error:', qpdfError);
       throw new Error(
         'Encryption failed: ' +
-          (qpdfError instanceof Error ? qpdfError.message : 'Unknown error'),
+          (qpdfError instanceof Error ? qpdfError.message : "خطأ غير معروف"),
         { cause: qpdfError }
       );
     }
 
-    if (loaderText) loaderText.textContent = trText('Preparing download...');
+    if (loaderText) loaderText.textContent = trText("جارٍ تجهيز التنزيل...");
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
 
     if (!outputFile || outputFile.length === 0) {
-      throw new Error(trText('Encryption resulted in an empty file.'));
+      throw new Error(trText("أدى التشفير إلى ملف فارغ."));
     }
 
     const blob = new Blob([new Uint8Array(outputFile)], {
@@ -180,26 +180,26 @@ async function encryptPdf() {
 
     if (loaderModal) loaderModal.classList.add('hidden');
 
-    let successMessage = trText('PDF encrypted successfully with 256-bit AES!');
+    let successMessage = trText("تم تشفير PDF بنجاح باستخدام AES بطول 256 بت!");
     if (!hasDistinctOwnerPassword) {
       successMessage += ` ${trText(
-        'Note: Without a separate owner password, the PDF has no usage restrictions.'
+        "ملاحظة: بدون كلمة مرور مالك منفصلة، لا تكون لملف PDF أي قيود استخدام."
       )}`;
     }
 
-    showAlert('Success', successMessage, 'success', () => {
+    showAlert("تم بنجاح", successMessage, 'success', () => {
       resetState();
     });
   } catch (error: unknown) {
     console.error('Error during PDF encryption:', error);
     if (loaderModal) loaderModal.classList.add('hidden');
     showAlert(
-      'Encryption Failed',
-      trText('An error occurred: {{error}}', {
+      "فشل التشفير",
+      trText("حدث خطأ: {{error}}", {
         error:
           error instanceof Error
             ? error.message
-            : trText('The PDF might be corrupted.'),
+            : trText("قد يكون PDF تالفًا."),
       })
     );
   } finally {

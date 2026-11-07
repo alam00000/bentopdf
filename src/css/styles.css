@@ -1,4 +1,9 @@
 @import './pixel-theme.css';
+@import './arabic-premium.css';
+@import '@fontsource/tajawal/arabic-400.css';
+@import '@fontsource/tajawal/arabic-500.css';
+@import '@fontsource/tajawal/arabic-700.css';
+@import '@fontsource/tajawal/arabic-800.css';
 @import '@fontsource/dm-sans/400.css';
 @import '@fontsource/dm-sans/500.css';
 @import '@fontsource/dm-sans/600.css';
@@ -19,7 +24,7 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
   --font-dancing: 'Dancing Script', cursive;
   --font-vibes: 'Great Vibes', cursive;
   --font-kalam: 'Kalam', cursive;
@@ -82,7 +87,7 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Tajawal', sans-serif;
   background-color: #f5f7fb;
   color: #3c4a63;
 }

@@ -111,17 +111,8 @@ RewriteRule ^ - [L]
 # ============================================
 # 5.1. LANGUAGE ROUTES (MUST BE BEFORE .html extension rule)
 # ============================================
-# English prefix redirects to root
-RewriteRule ^en/?$ / [R=301,L]
-RewriteRule ^en/(.+)$ /$1 [R=301,L]
-
-# Language prefix root (e.g., /de/ -> /de/index.html)
-RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
-RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/?$ /$1/index.html [L]
-
-# Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
-RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
-RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW)/([^/]+)/?$ /$1/$2.html [L]
+# المسارات القديمة تعود إلى الصفحة العربية الأصلية، دون نسخ لغات إضافية.
+RewriteRule ^(?:en|ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)(?:/(.*))?$ /$1 [R=301,L]
 
 # ============================================
 # 5.5. DOCS ROUTING (VitePress)

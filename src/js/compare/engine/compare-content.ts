@@ -133,7 +133,7 @@ export function diffImages(
           type: 'modified',
           category: 'image',
           description: trText(
-            'Image resized from {{width}}×{{height}} to {{width2}}×{{height2}}',
+            "تم تغيير حجم الصورة من {{width}}×{{height}} إلى {{width2}}×{{height2}}",
             {
               width: bImg.width,
               height: bImg.height,
@@ -152,7 +152,7 @@ export function diffImages(
         id: `image-removed-${idx++}`,
         type: 'removed',
         category: 'image',
-        description: trText('Removed image ({{width}}×{{height}})', {
+        description: trText("تمت إزالة صورة ({{width}}×{{height}})", {
           width: bImg.width,
           height: bImg.height,
         }),
@@ -170,7 +170,7 @@ export function diffImages(
         id: `image-added-${idx++}`,
         type: 'added',
         category: 'image',
-        description: trText('Added image ({{width}}×{{height}})', {
+        description: trText("تمت إضافة صورة ({{width}}×{{height}})", {
           width: aImg.width,
           height: aImg.height,
         }),
@@ -223,7 +223,7 @@ export function detectBackgroundChanges(
         id: `background-changed-${baseId}`,
         type: 'modified',
         category: 'background',
-        description: trText('Page background or layout changed'),
+        description: trText("تغيّرت خلفية الصفحة أو تخطيطها"),
         beforeText: '',
         afterText: '',
         beforeRects: [

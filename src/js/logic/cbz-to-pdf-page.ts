@@ -101,7 +101,7 @@ async function convertImageToPng(
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        reject(new Error(trText('Failed to get canvas context')));
+        reject(new Error(trText("تعذر الحصول على سياق Canvas")));
         return;
       }
       ctx.drawImage(img, 0, 0);
@@ -112,7 +112,7 @@ async function convertImageToPng(
         } else {
           reject(
             new Error(
-              trText('Failed to convert {{filename}} to PNG', { filename })
+              trText("تعذر تحويل {{filename}} إلى PNG", { filename })
             )
           );
         }
@@ -121,7 +121,7 @@ async function convertImageToPng(
     img.onerror = () => {
       URL.revokeObjectURL(url);
       reject(
-        new Error(trText('Failed to load image: {{filename}}', { filename }))
+        new Error(trText("تعذر تحميل الصورة: {{filename}}", { filename }))
       );
     };
     img.src = url;
@@ -147,7 +147,7 @@ async function convertCbzToPdf(file: File): Promise<Blob> {
   const MAX_TOTAL_BYTES = 500 * 1024 * 1024;
   if (imageFiles.length > MAX_CBZ_PAGES) {
     throw new Error(
-      trText('Archive has too many images (max {{MAX_CBZ_PAGES}}).', {
+      trText("يحتوي الأرشيف على صور كثيرة جدًا (الحد الأقصى {{MAX_CBZ_PAGES}}).", {
         MAX_CBZ_PAGES,
       })
     );
@@ -160,12 +160,12 @@ async function convertCbzToPdf(file: File): Promise<Blob> {
       zipEntry as unknown as { _data?: { uncompressedSize?: number } }
     )._data?.uncompressedSize;
     if (typeof declared === 'number' && declared > MAX_ENTRY_BYTES) {
-      throw new Error(trText('Archive contains an oversized image entry.'));
+      throw new Error(trText("يحتوي الأرشيف على صورة كبيرة جدًا."));
     }
     const imageData = await zipEntry.async('arraybuffer');
     totalBytes += imageData.byteLength;
     if (totalBytes > MAX_TOTAL_BYTES) {
-      throw new Error(trText('Archive is too large when decompressed.'));
+      throw new Error(trText("الأرشيف كبير جدًا بعد فك الضغط."));
     }
     const dataArray = new Uint8Array(imageData);
     const actualFormat = detectImageFormat(dataArray);
@@ -285,8 +285,8 @@ onPageReady(() => {
     try {
       if (state.files.length === 0) {
         showAlert(
-          'No Files',
-          trText('Please select at least one {{TOOL_NAME}} file.', {
+          "لا توجد ملفات",
+          trText("يرجى اختيار ملف {{TOOL_NAME}} واحد على الأقل.", {
             TOOL_NAME,
           })
         );
@@ -296,7 +296,7 @@ onPageReady(() => {
       if (state.files.length === 1) {
         const originalFile = state.files[0];
         showLoader(
-          trText('Converting {{name}}...', { name: originalFile.name })
+          trText("جارٍ تحويل {{name}}...", { name: originalFile.name })
         );
 
         let pdfBlob: Blob;
@@ -311,21 +311,21 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: originalFile.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting files...');
+        showLoader("جارٍ تحويل الملفات...");
         const outputZip = new JSZip();
 
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -350,9 +350,9 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          "اكتمل التحويل",
           trText(
-            'Successfully converted {{length}} {{TOOL_NAME}} file(s) to PDF.',
+            "تم تحويل {{length}} من ملفات {{TOOL_NAME}} إلى PDF بنجاح.",
             { length: state.files.length, TOOL_NAME }
           ),
           'success',
@@ -363,8 +363,8 @@ onPageReady(() => {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

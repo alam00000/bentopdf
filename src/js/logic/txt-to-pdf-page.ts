@@ -104,7 +104,7 @@ async function convert() {
     '#000000';
 
   if (currentMode === 'upload' && files.length === 0) {
-    showAlert('No Files', 'Please select at least one text file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف نصي واحد على الأقل.");
     return;
   }
 
@@ -113,12 +113,12 @@ async function convert() {
       'text-input'
     ) as HTMLTextAreaElement;
     if (!textInput.value.trim()) {
-      showAlert('No Text', 'Please enter some text to convert.');
+      showAlert("لا يوجد نص", "يرجى إدخال نص لتحويله.");
       return;
     }
   }
 
-  showLoader('Loading engine...');
+  showLoader("جارٍ تحميل المحرك...");
 
   try {
     const pymupdf = await loadPyMuPDF();
@@ -137,7 +137,7 @@ async function convert() {
       textContent = textInput.value;
     }
 
-    showLoader('Creating PDF...');
+    showLoader("جارٍ إنشاء PDF...");
 
     const pdfBlob = await pymupdf.textToPdf(textContent, {
       fontSize,
@@ -150,8 +150,8 @@ async function convert() {
     downloadFile(pdfBlob, 'text_to_pdf.pdf');
 
     showAlert(
-      'Success',
-      'Text converted to PDF successfully!',
+      "تم بنجاح",
+      "تم تحويل النص إلى PDF بنجاح!",
       'success',
       () => {
         resetState();
@@ -160,8 +160,8 @@ async function convert() {
   } catch (e: unknown) {
     console.error('[TxtToPDF] Error:', e);
     showAlert(
-      'Error',
-      trText('Failed to convert text to PDF. {{error}}', {
+      "خطأ",
+      trText("تعذر تحويل النص إلى PDF. {{error}}", {
         error: e instanceof Error ? e.message : '',
       })
     );
@@ -244,8 +244,8 @@ onPageReady(() => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only text files are allowed.'
+        "ملفات غير صالحة",
+        "تم تخطي بعض الملفات. يُسمح بالملفات النصية فقط."
       );
     }
 

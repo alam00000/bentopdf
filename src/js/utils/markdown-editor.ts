@@ -452,7 +452,7 @@ export class MarkdownEditor {
                 <div class="theme-toggle-slider active" id="themeToggle"></div>
                 <i data-lucide="sun" width="16" height="16"></i>
               </div>
-              <button class="md-editor-btn md-editor-btn-secondary" id="mdSyncScroll" title="${trHtml('Toggle sync scroll')}">
+              <button class="md-editor-btn md-editor-btn-secondary" id="mdSyncScroll" title="${trHtml("تبديل التمرير المتزامن")}">
                 <i data-lucide="git-compare"></i>
                 <span data-i18n="tools:markdownToPdf.btnSyncScroll">Sync Scroll</span>
               </button>
@@ -808,7 +808,7 @@ export class MarkdownEditor {
           console.error('Mermaid rendering error:', error);
           const errorDiv = document.createElement('div');
           errorDiv.className = 'mermaid-error';
-          errorDiv.textContent = trText('Mermaid Error: {{error}}', {
+          errorDiv.textContent = trText("خطأ Mermaid: {{error}}", {
             error: (error as Error).message,
           });
           pre.replaceWith(errorDiv);

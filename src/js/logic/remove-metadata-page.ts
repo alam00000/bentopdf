@@ -137,14 +137,14 @@ function handleFileSelect(files: FileList | null) {
 
 async function removeMetadata() {
   if (!pageState.file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = trText('Removing all metadata...');
+  if (loaderText) loaderText.textContent = trText("جارٍ إزالة جميع البيانات الوصفية...");
 
   try {
     if (loaderModal) loaderModal.classList.add('hidden');
@@ -154,7 +154,7 @@ async function removeMetadata() {
       return;
     }
     if (loaderModal) loaderModal.classList.remove('hidden');
-    if (loaderText) loaderText.textContent = trText('Removing all metadata...');
+    if (loaderText) loaderText.textContent = trText("جارٍ إزالة جميع البيانات الوصفية...");
     result.pdf.destroy();
     const pdfDoc = await loadPdfDocument(result.bytes);
 
@@ -165,12 +165,12 @@ async function removeMetadata() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Metadata removed successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تمت إزالة البيانات الوصفية بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while trying to remove metadata.');
+    showAlert("خطأ", "حدث خطأ أثناء محاولة إزالة البيانات الوصفية.");
   } finally {
     if (loaderModal) loaderModal.classList.add('hidden');
   }

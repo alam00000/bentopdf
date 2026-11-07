@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta
       name="title"
-      content="Adjust Colors Online Free - PDF Color Adjustment Tool | Pixel PDF"
+      content="ضبط الألوان مجانًا عبر الإنترنت - أداة ضبط ألوان PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Fine-tune brightness, contrast, saturation and more in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اضبط السطوع والتباين والتشبع وغيرها بدقة في ملف PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/adjust-colors" />
     <meta
       property="og:title"
-      content="Adjust Colors Online Free - PDF Color Adjustment Tool | Pixel PDF"
+      content="ضبط الألوان مجانًا عبر الإنترنت - أداة ضبط ألوان PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Fine-tune brightness, contrast, saturation and more in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اضبط السطوع والتباين والتشبع وغيرها بدقة في ملف PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -44,10 +44,10 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/adjust-colors" />
-    <meta name="twitter:title" content="Adjust Colors Free" />
+    <meta name="twitter:title" content="ضبط الألوان مجانًا" />
     <meta
       name="twitter:description"
-      content="Fine-tune brightness, contrast, saturation and more in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اضبط السطوع والتباين والتشبع وغيرها بدقة في ملف PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -57,9 +57,9 @@
 
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Adjust Colors" />
+    <meta name="apple-mobile-web-app-title" content="ضبط الألوان" />
 
-    <title>Adjust Colors - Pixel PDF</title>
+    <title>ضبط الألوان - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -102,19 +102,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:adjustColors.name"
         >
-          Adjust Colors
+          ضبط الألوان
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:adjustColors.subtitle">
-          Fine-tune brightness, contrast, saturation and more in your PDF.
+          ضبط دقيق للسطوع والتباين والتشبع والمزيد في PDF.
         </p>
 
         <div
@@ -125,15 +125,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -163,14 +163,14 @@
                 >
                   <i data-lucide="palette" class="w-5 h-5"></i>
                   <span data-i18n="tools:adjustColors.colorSettings"
-                    >Color Settings</span
+                    >إعدادات الألوان</span
                   >
                 </h3>
                 <button
                   id="reset-settings-btn"
                   class="text-xs text-gray-300 hover:text-white border border-gray-600 hover:border-gray-500 px-3 py-1 rounded-lg transition-colors"
                 >
-                  Reset
+                  إعادة ضبط
                 </button>
               </div>
 
@@ -179,7 +179,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.brightness"
-                    >Brightness</span
+                    >السطوع</span
                   >
                   <span id="brightness-value" class="text-gray-400">0</span>
                 </div>
@@ -198,7 +198,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.contrast"
-                    >Contrast</span
+                    >التباين</span
                   >
                   <span id="contrast-value" class="text-gray-400">0</span>
                 </div>
@@ -217,7 +217,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.saturation"
-                    >Saturation</span
+                    >التشبع</span
                   >
                   <span id="saturation-value" class="text-gray-400">0</span>
                 </div>
@@ -236,7 +236,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.hueShift"
-                    >Hue Shift</span
+                    >تحويل درجة اللون</span
                   >
                   <span id="hue-shift-value" class="text-gray-400">0°</span>
                 </div>
@@ -255,7 +255,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.temperature"
-                    >Temperature</span
+                    >درجة الحرارة</span
                   >
                   <span id="temperature-value" class="text-gray-400">0</span>
                 </div>
@@ -274,7 +274,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.tint"
-                    >Tint</span
+                    >صبغة</span
                   >
                   <span id="tint-value" class="text-gray-400">0</span>
                 </div>
@@ -293,7 +293,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.gamma"
-                    >Gamma</span
+                    >جاما</span
                   >
                   <span id="gamma-value" class="text-gray-400">1.0</span>
                 </div>
@@ -313,7 +313,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:adjustColors.sepia"
-                    >Sepia</span
+                    >بني داكن</span
                   >
                   <span id="sepia-value" class="text-gray-400">0</span>
                 </div>
@@ -334,7 +334,7 @@
             class="btn-gradient w-full mt-6"
             data-i18n="tools:adjustColors.processButton"
           >
-            Apply Color Adjustments
+            تطبيق تعديلات الألوان
           </button>
         </div>
       </div>
@@ -349,7 +349,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -366,14 +366,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -383,7 +383,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -393,10 +393,8 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
-            <p class="text-gray-400">
-              Click or drag and drop your PDF file to begin
-            </p>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
+            <p class="text-gray-400">انقر أو اسحب ملف PDF وأفلته للبدء</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
@@ -406,9 +404,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Adjust Colors</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">ضبط الألوان</h3>
             <p class="text-gray-400">
-              Fine-tune color settings with real-time preview
+              اضبط إعدادات الألوان بدقة مع معاينة فورية
             </p>
           </div>
         </div>
@@ -419,8 +417,8 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
-            <p class="text-gray-400">Save your color-adjusted PDF instantly</p>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
+            <p class="text-gray-400">احفظ ملف PDF بعد ضبط الألوان فورًا</p>
           </div>
         </div>
       </div>
@@ -431,43 +429,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="pdf-to-greyscale.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PDF to Greyscale</h3>
-          <p class="text-gray-400 text-sm">Free online greyscale tool</p>
+          <h3 class="text-white font-semibold mb-1">PDF إلى تدرج الرمادي</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت للتدرج الرمادي
+          </p>
         </a>
         <a
           href="invert-colors.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Invert Colors</h3>
-          <p class="text-gray-400 text-sm">Free online invert colors tool</p>
+          <h3 class="text-white font-semibold mb-1">عكس الألوان</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لعكس الألوان
+          </p>
         </a>
         <a
           href="scanner-effect.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Scanner Effect</h3>
-          <p class="text-gray-400 text-sm">Make PDFs look scanned</p>
+          <h3 class="text-white font-semibold mb-1">تأثير الماسح الضوئي</h3>
+          <p class="text-gray-400 text-sm">
+            اجعل ملفات PDF تبدو كأنها ممسوحة ضوئيًا
+          </p>
         </a>
         <a
           href="background-color.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Background Color</h3>
-          <p class="text-gray-400 text-sm">Change PDF background</p>
+          <h3 class="text-white font-semibold mb-1">لون الخلفية</h3>
+          <p class="text-gray-400 text-sm">تغيير خلفية PDF</p>
         </a>
         <a
           href="text-color.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Text Color</h3>
-          <p class="text-gray-400 text-sm">Change PDF text color</p>
+          <h3 class="text-white font-semibold mb-1">لون النص</h3>
+          <p class="text-gray-400 text-sm">تغيير لون نص PDF</p>
         </a>
       </div>
     </section>
@@ -477,120 +481,115 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I brighten a dark scanned PDF?
+            كيف أجعل ملف PDF ممسوحًا ضوئيًا وداكنًا أكثر إشراقًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Move the Brightness slider (range -100 to +100) up to lighten the
-            page, and raise Contrast if the text still looks washed out. When
-            only the midtones are too dark, the Gamma slider (0.2 to 5.0) lifts
-            them without blowing out the white background. The preview updates
-            as you drag, so you can check the first page before applying the
-            settings to all of them.
+            ارفع شريط السطوع (من -100 إلى +100) لتفتيح الصفحة، وزد التباين إذا
+            ظل النص باهتًا. وعندما تكون الألوان المتوسطة وحدها داكنة جدًا،
+            يرفعها شريط جاما (من 0.2 إلى 5.0) دون إفراط في تفتيح الخلفية
+            البيضاء. تتحدث المعاينة أثناء السحب، لذا يمكنك فحص الصفحة الأولى قبل
+            تطبيق الإعدادات على جميع الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert a color PDF to grayscale with this tool?
+            هل يمكنني تحويل PDF ملون إلى تدرج رمادي بهذه الأداة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Drag the Saturation slider all the way to -100 and every page
-            becomes grayscale, which also cuts ink use when printing. If you
-            don't need any of the other adjustments, the
+            اسحب شريط التشبع إلى -100 تمامًا فتتحول كل صفحة إلى تدرج رمادي، وهذا
+            يقلل أيضًا من استهلاك الحبر عند الطباعة. إذا لم تحتج إلى أي تعديلات
+            أخرى، فإن
             <a
               href="/pdf-to-greyscale"
               class="text-indigo-300 hover:text-indigo-400"
-              >grayscale conversion tool</a
+              >أداة التحويل إلى تدرج الرمادي</a
             >
-            does the same thing in one step.
+            تفعل الشيء نفسه بخطوة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the hue, temperature, and tint sliders do?
+            ماذا تفعل أشرطة تدرج اللون ودرجة الحرارة والصبغة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Hue Shift rotates every color around the color wheel by 0 to 360
-            degrees while leaving whites, grays, and blacks untouched.
-            Temperature (-50 to +50) shifts the page toward blue on the cool end
-            or yellow-orange on the warm end, and Tint (-50 to +50) shifts
-            between green and magenta, which is useful for photos scanned with a
-            color cast.
+            يدوّر تدرج اللون كل لون حول عجلة الألوان بمقدار من 0 إلى 360 درجة مع
+            ترك الأبيض والرمادي والأسود دون تغيير. تحوّل درجة الحرارة (من -50
+            إلى +50) الصفحة نحو الأزرق في الطرف البارد أو الأصفر البرتقالي في
+            الطرف الدافئ، وتحوّل الصبغة (من -50 إلى +50) بين الأخضر والأرجواني،
+            وهذا مفيد للصور الممسوحة ضوئيًا التي تعاني من غلبة لونية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the text still be selectable after adjusting colors?
+            هل سيظل النص قابلاً للتحديد بعد ضبط الألوان؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. To apply the changes, each page is rendered to an image at 2x
-            resolution and saved into a new PDF, so the output is image-based
-            and text can't be selected or searched. Keep your original for
-            editing, or run the result through
+            لا. لتطبيق التغييرات، تُعرض كل صفحة كصورة بدقة 2x وتُحفظ في PDF
+            جديد، لذا يكون الناتج قائمًا على الصور ولا يمكن تحديد النص أو البحث
+            فيه. احتفظ بنسختك الأصلية للتحرير، أو مرّر النتيجة عبر
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
               >OCR</a
             >
-            to add a searchable text layer.
+            لإضافة طبقة نصية قابلة للبحث.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is my PDF larger after adjusting the colors?
+            لماذا أصبح حجم PDF أكبر بعد ضبط الألوان؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Every page is stored as a full-page PNG image instead of text and
-            vector drawing commands, so the file usually grows, especially for
-            text-heavy documents. Running the result through
+            تُخزَّن كل صفحة كصورة PNG كاملة الصفحة بدلاً من النص وأوامر الرسم
+            المتجهي، لذا يكبر الملف عادةً، خاصة في المستندات الكثيرة النصوص.
+            يؤدي تمريرها بعد ذلك عبر
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            afterward brings the size back down.
+            إلى خفض الحجم من جديد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I give a PDF a sepia or vintage look?
+            هل يمكنني إعطاء PDF مظهر السيبيا أو المظهر العتيق؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Raise the Sepia slider (0 to 100) to add a brown tone; higher values
-            give a stronger antique look. Combine it with a small drop in
-            Contrast or Saturation to soften the result, and click Reset at any
-            point to return every slider to its default.
+            ارفع شريط السيبيا (من 0 إلى 100) لإضافة درجة بنية، وكلما زادت القيمة
+            ازداد المظهر العتيق وضوحًا. اجمعه مع خفض بسيط في التباين أو التشبع
+            لتخفيف النتيجة، وانقر على إعادة الضبط في أي وقت لإرجاع كل الأشرطة
+            إلى قيمها الافتراضية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the preview show every page or only the first one?
+            هل تعرض المعاينة كل الصفحات أم الصفحة الأولى فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The live preview renders the first page only, so you can test
-            settings quickly. When you click Apply, the same settings are
-            processed on every page of the document and the adjusted PDF
-            downloads.
+            تعرض المعاينة الحية الصفحة الأولى فقط، لتتمكن من تجربة الإعدادات
+            بسرعة. عند النقر على تطبيق، تُعالج الإعدادات نفسها على كل صفحات
+            المستند ويُنزَّل PDF المعدَّل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded anywhere when I adjust its colors?
+            هل يُرفع ملف PDF الخاص بي إلى أي مكان عند ضبط ألوانه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The page rendering and the color math run in your browser, and
-            the adjusted PDF is assembled on your device, so the file never
-            leaves your computer.
+            لا. يعمل عرض الصفحات وحساب الألوان في متصفحك، ويُجمَّع ملف PDF
+            المعدَّل على جهازك، لذا لا يغادر الملف حاسوبك.
           </p>
         </details>
       </div>
@@ -622,26 +621,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to adjust PDF colors online",
+        "name": "كيفية ضبط ألوان PDF عبر الإنترنت",
         "description": "Learn how to adjust PDF colors using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your PDF file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب ملف PDF وأفلته"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Adjust Colors",
-            "text": "Fine-tune brightness, contrast, saturation, hue and more with live preview"
+            "name": "ضبط الألوان",
+            "text": "اضبط السطوع والتباين والتشبع وتدرج اللون وغيرها بدقة مع معاينة حية"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your color-adjusted PDF"
+            "name": "تنزيل",
+            "text": "نزّل ملف PDF بعد ضبط ألوانه"
           }
         ]
       }

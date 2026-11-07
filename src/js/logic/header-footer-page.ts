@@ -59,13 +59,13 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
 
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -78,7 +78,7 @@ async function handleFiles(files: FileList) {
       totalPagesSpan.textContent = String(pageState.pdfDoc.getPageCount());
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -98,7 +98,7 @@ function updateFileDisplay() {
   nameSpan.textContent = pageState.file.name;
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{getPageCount}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{getPageCount}} صفحة", {
     size: formatBytes(pageState.file.size),
     getPageCount: pageState.pdfDoc.getPageCount(),
   });
@@ -124,10 +124,10 @@ function resetState() {
 
 async function addHeaderFooter() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
-  showLoader('Adding header & footer...');
+  showLoader("جارٍ إضافة الرأس والتذييل...");
   try {
     const helveticaFont = await pageState.pdfDoc.embedFont(
       StandardFonts.Helvetica
@@ -168,7 +168,7 @@ async function addHeaderFooter() {
     };
     const indicesToProcess = parsePageRanges(pageRangeInput, totalPages);
     if (indicesToProcess.length === 0)
-      throw new Error(trText('Invalid page range specified.'));
+      throw new Error(trText("تم تحديد نطاق صفحات غير صالح."));
     const drawOptions = {
       font: helveticaFont,
       size: fontSize,
@@ -246,8 +246,8 @@ async function addHeaderFooter() {
       pageState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Header & Footer added successfully!',
+      "تم بنجاح",
+      "تمت إضافة الرأس والتذييل بنجاح!",
       'success',
       () => {
         resetState();
@@ -256,8 +256,8 @@ async function addHeaderFooter() {
   } catch (e: unknown) {
     console.error(e);
     showAlert(
-      'Error',
-      e instanceof Error ? e.message : 'Could not add header or footer.'
+      "خطأ",
+      e instanceof Error ? e.message : "تعذرت إضافة الرأس أو التذييل."
     );
   } finally {
     hideLoader();

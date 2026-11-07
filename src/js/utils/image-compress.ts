@@ -55,7 +55,7 @@ export async function compressImageFile(
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        reject(new Error(trText('Canvas context failed')));
+        reject(new Error(trText("فشل سياق Canvas")));
         return;
       }
 
@@ -65,7 +65,7 @@ export async function compressImageFile(
       canvas.toBlob(
         (blob) => {
           if (!blob) {
-            reject(new Error(trText('Canvas toBlob failed')));
+            reject(new Error(trText("فشل Canvas toBlob")));
             return;
           }
           const newName = file.name.replace(/\.[^.]+$/, '.jpg');
@@ -125,7 +125,7 @@ export async function compressImageBytes(
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        reject(new Error(trText('Canvas context failed')));
+        reject(new Error(trText("فشل سياق Canvas")));
         return;
       }
 
@@ -135,7 +135,7 @@ export async function compressImageBytes(
       canvas.toBlob(
         async (jpegBlob) => {
           if (!jpegBlob) {
-            reject(new Error(trText('Canvas toBlob failed')));
+            reject(new Error(trText("فشل Canvas toBlob")));
             return;
           }
           const arrayBuffer = await jpegBlob.arrayBuffer();

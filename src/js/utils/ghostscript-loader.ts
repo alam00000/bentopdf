@@ -40,7 +40,7 @@ export async function loadGsModule(): Promise<GhostscriptModule> {
   const response = await fetch(gsJsUrl);
   if (!response.ok) {
     throw new Error(
-      trText('Failed to fetch gs.js: HTTP {{status}}', {
+      trText("تعذر جلب gs.js: HTTP {{status}}", {
         status: response.status,
       })
     );
@@ -76,12 +76,12 @@ export async function convertToPdfA(
   if (!isWasmAvailable('ghostscript')) {
     throw new Error(
       trText(
-        'Ghostscript is not configured. Please configure it in WASM Settings.'
+        "Ghostscript غير مهيأ. يرجى تهيئته في إعدادات WASM."
       )
     );
   }
 
-  onProgress?.(trText('Loading Ghostscript...'));
+  onProgress?.(trText("جارٍ تحميل Ghostscript..."));
 
   let gs: GhostscriptModule;
 
@@ -106,7 +106,7 @@ export async function convertToPdfA(
   gs.FS.writeFile(inputPath, pdfData);
   console.log('[Ghostscript] Input file size:', pdfData.length);
 
-  onProgress?.(trText('Converting to {{level}}...', { level }));
+  onProgress?.(trText("جارٍ التحويل إلى {{level}}...", { level }));
 
   try {
     const iccFileName = 'sRGB_IEC61966-2-1_no_black_scaling.icc';
@@ -115,7 +115,7 @@ export async function convertToPdfA(
 
     if (!response.ok) {
       throw new Error(
-        trText('Failed to fetch ICC profile from {{iccUrl}}: HTTP {{status}}', {
+        trText("تعذر جلب ملف ICC من {{iccUrl}}: HTTP {{status}}", {
           iccUrl,
           status: response.status,
         })
@@ -169,7 +169,7 @@ export async function convertToPdfA(
   } catch (e) {
     console.error('[Ghostscript] Failed to setup PDF/A assets:', e);
     throw new Error(
-      trText('Conversion failed: could not create PDF/A definition'),
+      trText("فشل التحويل: تعذر إنشاء تعريف PDF/A"),
       {
         cause: e,
       }
@@ -213,7 +213,7 @@ export async function convertToPdfA(
     exitCode = gs.callMain(args);
   } catch (e) {
     console.error('[Ghostscript] Exception:', e);
-    throw new Error(trText('Ghostscript threw an exception: {{e}}', { e }), {
+    throw new Error(trText("أطلق Ghostscript استثناءً: {{e}}", { e }), {
       cause: e,
     });
   }
@@ -242,7 +242,7 @@ export async function convertToPdfA(
       console.warn('[Ghostscript] Failed to clean up temp file:', e);
     }
     throw new Error(
-      trText('Ghostscript conversion failed with exit code {{exitCode}}', {
+      trText("فشل تحويل Ghostscript برمز الخروج {{exitCode}}", {
         exitCode,
       })
     );
@@ -256,7 +256,7 @@ export async function convertToPdfA(
     output = gs.FS.readFile(outputPath);
   } catch (e) {
     console.error('[Ghostscript] Failed to read output:', e);
-    throw new Error(trText('Ghostscript did not produce output file'), {
+    throw new Error(trText("لم ينتج Ghostscript ملف إخراج"), {
       cause: e,
     });
   }
@@ -284,7 +284,7 @@ export async function convertToPdfA(
   }
 
   if (level !== 'PDF/A-1b') {
-    onProgress?.(trText('Post-processing for transparency compliance...'));
+    onProgress?.(trText("معالجة لاحقة للتوافق مع الشفافية..."));
     console.log(
       '[Ghostscript] Adding Group dictionaries to pages for transparency compliance...'
     );
@@ -418,12 +418,12 @@ export async function convertFontsToOutlines(
   if (!isWasmAvailable('ghostscript')) {
     throw new Error(
       trText(
-        'Ghostscript is not configured. Please configure it in WASM Settings.'
+        "Ghostscript غير مهيأ. يرجى تهيئته في إعدادات WASM."
       )
     );
   }
 
-  onProgress?.(trText('Loading Ghostscript...'));
+  onProgress?.(trText("جارٍ تحميل Ghostscript..."));
 
   let gs: GhostscriptModule;
 
@@ -439,7 +439,7 @@ export async function convertFontsToOutlines(
 
   gs.FS.writeFile(inputPath, pdfData);
 
-  onProgress?.(trText('Converting fonts to outlines...'));
+  onProgress?.(trText("جارٍ تحويل الخطوط إلى مخططات..."));
 
   const args = [
     '-dSAFER',
@@ -462,7 +462,7 @@ export async function convertFontsToOutlines(
     } catch (e2) {
       console.warn('[Ghostscript] Failed to clean up temp file:', e2);
     }
-    throw new Error(trText('Ghostscript threw an exception: {{e}}', { e }), {
+    throw new Error(trText("أطلق Ghostscript استثناءً: {{e}}", { e }), {
       cause: e,
     });
   }
@@ -479,7 +479,7 @@ export async function convertFontsToOutlines(
       console.warn('[Ghostscript] Failed to clean up temp file:', e);
     }
     throw new Error(
-      trText('Ghostscript conversion failed with exit code {{exitCode}}', {
+      trText("فشل تحويل Ghostscript برمز الخروج {{exitCode}}", {
         exitCode,
       })
     );
@@ -489,7 +489,7 @@ export async function convertFontsToOutlines(
   try {
     output = gs.FS.readFile(outputPath);
   } catch (e) {
-    throw new Error(trText('Ghostscript did not produce output file'), {
+    throw new Error(trText("لم ينتج Ghostscript ملف إخراج"), {
       cause: e,
     });
   }
@@ -568,7 +568,7 @@ export async function convertPdfToRgb(
     if (exitCode !== 0) {
       throw new Error(
         trText(
-          'Ghostscript RGB conversion failed with exit code {{exitCode}}',
+          "فشل تحويل Ghostscript RGB برمز الخروج {{exitCode}}",
           { exitCode }
         )
       );

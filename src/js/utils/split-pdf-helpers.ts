@@ -134,14 +134,14 @@ export function extractPagesWithQpdf(
   try {
     if (exitCode !== 0 && exitCode !== 3) {
       throw new Error(
-        trText('Failed to extract pages (qpdf exit code {{exitCode}}).', {
+        trText("تعذر استخراج الصفحات (رمز خروج qpdf {{exitCode}}).", {
           exitCode,
         })
       );
     }
     const bytes = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
     if (!bytes || bytes.length === 0) {
-      throw new Error(trText('Page extraction produced an empty PDF.'));
+      throw new Error(trText("أنتج استخراج الصفحات ملف PDF فارغًا."));
     }
     return bytes;
   } finally {

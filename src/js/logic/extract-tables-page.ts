@@ -79,7 +79,7 @@ function tableToCsv(rows: (string | null)[][]): string {
 
 async function extract() {
   if (!file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
@@ -92,7 +92,7 @@ async function extract() {
   });
 
   try {
-    showLoader('Loading Engine...');
+    showLoader("جارٍ تحميل المحرك...");
     const pymupdf = await loadPyMuPDF();
 
     hideLoader();
@@ -101,7 +101,7 @@ async function extract() {
     pwResult.pdf.destroy();
     file = pwResult.file;
 
-    showLoader('Extracting tables...');
+    showLoader("جارٍ استخراج الجداول...");
 
     const doc = await pymupdf.open(file);
     const pageCount = doc.pageCount;
@@ -120,7 +120,7 @@ async function extract() {
 
     for (let i = 0; i < pageCount; i++) {
       showLoader(
-        trText('Scanning page {{n}} of {{pageCount}}...', {
+        trText("جارٍ فحص الصفحة {{n}} من {{pageCount}}...", {
           n: i + 1,
           pageCount,
         })
@@ -141,7 +141,7 @@ async function extract() {
     }
 
     if (allTables.length === 0) {
-      showAlert('No Tables Found', 'No tables were detected in this PDF.');
+      showAlert("لم يتم العثور على جداول", "لم يتم اكتشاف جداول في ملف PDF هذا.");
       return;
     }
 
@@ -168,13 +168,13 @@ async function extract() {
       const blob = new Blob([content], { type: mimeType });
       downloadFile(blob, `${baseName}_table.${ext}`);
       showAlert(
-        'Success',
-        `Extracted 1 table successfully!`,
+        "تم بنجاح",
+        "تم استخراج جدول واحد بنجاح!",
         'success',
         resetState
       );
     } else {
-      showLoader('Creating ZIP file...');
+      showLoader("جارٍ إنشاء ملف ZIP...");
       const zip = new JSZip();
 
       allTables.forEach((table, idx) => {
@@ -199,8 +199,8 @@ async function extract() {
       const zipBlob = await zip.generateAsync({ type: 'blob' });
       downloadFile(zipBlob, `${baseName}_tables.zip`);
       showAlert(
-        'Success',
-        trText('Extracted {{length}} tables successfully!', {
+        "تم بنجاح",
+        trText("تم استخراج {{length}} من الجداول بنجاح!", {
           length: allTables.length,
         }),
         'success',
@@ -209,10 +209,10 @@ async function extract() {
     }
   } catch (e) {
     console.error(e);
-    const message = e instanceof Error ? e.message : trText('Unknown error');
+    const message = e instanceof Error ? e.message : trText("خطأ غير معروف");
     showAlert(
-      'Error',
-      trText('Failed to extract tables. {{message}}', { message })
+      "خطأ",
+      trText("تعذر استخراج الجداول. {{message}}", { message })
     );
   } finally {
     hideLoader();
@@ -238,7 +238,7 @@ onPageReady(() => {
     );
 
     if (!validFile) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert("ملف غير صالح", "يرجى رفع ملف PDF.");
       return;
     }
 

@@ -108,7 +108,7 @@ function updateFileList() {
   const deleteBtn = document.createElement('button');
   deleteBtn.className =
     'text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2';
-  deleteBtn.title = trText('Remove file');
+  deleteBtn.title = trText("إزالة الملف");
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   deleteBtn.onclick = (e) => {
     e.stopPropagation();
@@ -305,7 +305,7 @@ if (saveStampedBtn) {
     if (!viewerIframe) {
       alert(
         trText(
-          'Viewer not ready. Please upload a PDF and wait for it to finish loading.'
+          "العارض غير جاهز. يرجى رفع ملف PDF والانتظار حتى ينتهي تحميله."
         )
       );
       return;
@@ -344,14 +344,14 @@ if (saveStampedBtn) {
 
       alert(
         trText(
-          'Could not access the stamped-PDF exporter. Please use the Export → PDF button in the viewer toolbar as a fallback.'
+          "تعذر الوصول إلى مصدّر ملفات PDF المختومة. يرجى استخدام زر تصدير ← PDF في شريط أدوات العارض كبديل."
         )
       );
     } catch (e) {
       console.error('Failed to trigger stamped PDF export:', e);
       alert(
         trText(
-          'Could not export the stamped PDF. Please use the Export → PDF button in the viewer toolbar as a fallback.'
+          "تعذر تصدير PDF المختوم. يرجى استخدام زر تصدير ← PDF في شريط أدوات العارض كبديل."
         )
       );
     }

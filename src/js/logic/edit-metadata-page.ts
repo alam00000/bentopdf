@@ -72,14 +72,14 @@ function addCustomFieldRow(key: string = '', value: string = '') {
 
   const keyInput = document.createElement('input');
   keyInput.type = 'text';
-  keyInput.placeholder = trText('Key (e.g., Department)');
+  keyInput.placeholder = trText("المفتاح (مثل: القسم)");
   keyInput.value = key;
   keyInput.className =
     'custom-meta-key w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5';
 
   const valueInput = document.createElement('input');
   valueInput.type = 'text';
-  valueInput.placeholder = trText('Value (e.g., Marketing)');
+  valueInput.placeholder = trText("القيمة (مثل: التسويق)");
   valueInput.value = value;
   valueInput.className =
     'custom-meta-value w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 p-2.5';
@@ -207,7 +207,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -230,14 +230,14 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
       result.pdf.destroy();
       pageState.file = result.file;
       pageState.pdfDoc = await loadPdfDocument(result.bytes);
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
@@ -248,7 +248,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -258,11 +258,11 @@ async function updateUI() {
 
 async function saveMetadata() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Updating metadata...');
+  showLoader("جارٍ تحديث البيانات الوصفية...");
 
   try {
     const titleInput = document.getElementById(
@@ -364,8 +364,8 @@ async function saveMetadata() {
     );
 
     showAlert(
-      'Success',
-      'Metadata updated successfully!',
+      "تم بنجاح",
+      "تم تحديث البيانات الوصفية بنجاح!",
       'success',
       function () {
         resetState();
@@ -374,8 +374,8 @@ async function saveMetadata() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Could not update metadata. Please check that date formats are correct.'
+      "خطأ",
+      "تعذر تحديث البيانات الوصفية. يرجى التأكد من صحة صيغ التواريخ."
     );
   } finally {
     hideLoader();

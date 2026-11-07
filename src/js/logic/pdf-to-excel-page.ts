@@ -59,11 +59,11 @@ const resetState = () => {
 
 async function convert() {
   if (!file) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Loading Engine...');
+  showLoader("جارٍ تحميل المحرك...");
 
   try {
     const pymupdf = await loadPyMuPDF();
@@ -74,7 +74,7 @@ async function convert() {
     pwResult.pdf.destroy();
     file = pwResult.file;
 
-    showLoader('Extracting tables...');
+    showLoader("جارٍ استخراج الجداول...");
 
     const doc = await pymupdf.open(file);
     const pageCount = doc.pageCount;
@@ -89,7 +89,7 @@ async function convert() {
 
     for (let i = 0; i < pageCount; i++) {
       showLoader(
-        trText('Scanning page {{n}} of {{pageCount}}...', {
+        trText("جارٍ فحص الصفحة {{n}} من {{pageCount}}...", {
           n: i + 1,
           pageCount,
         })
@@ -106,11 +106,11 @@ async function convert() {
     }
 
     if (allTables.length === 0) {
-      showAlert('No Tables Found', 'No tables were detected in this PDF.');
+      showAlert("لم يتم العثور على جداول", "لم يتم اكتشاف جداول في ملف PDF هذا.");
       return;
     }
 
-    showLoader('Creating Excel file...');
+    showLoader("جارٍ إنشاء ملف Excel...");
 
     const workbook = XLSX.utils.book_new();
 
@@ -119,7 +119,7 @@ async function convert() {
       XLSX.utils.book_append_sheet(workbook, worksheet, 'Table');
     } else {
       allTables.forEach((table, idx) => {
-        const sheetName = trText('Table {{n}} (Page {{page}})', {
+        const sheetName = trText("الجدول {{n}} (الصفحة {{page}})", {
           n: idx + 1,
           page: table.page,
         }).substring(0, 31);
@@ -134,8 +134,8 @@ async function convert() {
     });
     downloadFile(blob, `${baseName}.xlsx`);
     showAlert(
-      'Success',
-      trText('Extracted {{length}} table(s) to Excel!', {
+      "تم بنجاح",
+      trText("تم استخراج {{length}} من الجداول إلى Excel!", {
         length: allTables.length,
       }),
       'success',
@@ -143,10 +143,10 @@ async function convert() {
     );
   } catch (e) {
     console.error(e);
-    const message = e instanceof Error ? e.message : trText('Unknown error');
+    const message = e instanceof Error ? e.message : trText("خطأ غير معروف");
     showAlert(
-      'Error',
-      trText('Failed to convert PDF to Excel. {{message}}', { message })
+      "خطأ",
+      trText("تعذر تحويل PDF إلى Excel. {{message}}", { message })
     );
   } finally {
     hideLoader();
@@ -172,7 +172,7 @@ onPageReady(() => {
     );
 
     if (!validFile) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert("ملف غير صالح", "يرجى رفع ملف PDF.");
       return;
     }
 

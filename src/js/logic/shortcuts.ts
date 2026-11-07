@@ -124,7 +124,7 @@ export class ShortcutsManager {
       const parsed = JSON.parse(jsonString);
       for (const key in parsed) {
         if (typeof parsed[key] !== 'string') {
-          throw new Error(trText('Invalid shortcut format'));
+          throw new Error(trText("صيغة الاختصار غير صالحة"));
         }
       }
       this.shortcuts = new Map(Object.entries(parsed));

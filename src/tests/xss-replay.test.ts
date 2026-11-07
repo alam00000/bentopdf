@@ -394,9 +394,7 @@ describe('XSS replay — PDF signature cryptographic verification', () => {
     const result = await validateSignature(sig, tampered);
     expect(result.cryptoVerified).toBe(false);
     expect(result.isValid).toBe(false);
-    expect(result.errorMessage).toMatch(
-      /hash does not match|does not verify|PDF was modified/i
-    );
+    expect(result.errorMessage).toMatch(/لا تطابق|لم يتم التحقق|تم تعديل PDF/i);
   });
 
   it('refuses MD5 as the digest algorithm even when bytes match', async () => {

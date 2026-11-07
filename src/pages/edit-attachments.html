@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Edit Attachments Online Free - Edit Attachments Tool | Pixel PDF"
+      content="تحرير المرفقات مجانًا عبر الإنترنت - أداة تحرير المرفقات | Pixel PDF"
     />
     <meta
       name="description"
-      content="View or remove attachments in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اعرض المرفقات في PDF أو أزلها. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="edit attachments, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Edit Attachments Online Free - Edit Attachments Tool | Pixel PDF"
+      content="تحرير المرفقات مجانًا عبر الإنترنت - أداة تحرير المرفقات | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="View or remove attachments in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اعرض المرفقات في PDF أو أزلها. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/edit-attachments"
     />
-    <meta name="twitter:title" content="Edit Attachments Free" />
+    <meta name="twitter:title" content="تحرير المرفقات مجانًا" />
     <meta
       name="twitter:description"
-      content="View or remove attachments in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اعرض المرفقات في PDF أو أزلها. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Edit Attachments" />
+    <meta name="apple-mobile-web-app-title" content="تعديل المرفقات" />
 
-    <title>Edit Attachments - Pixel PDF</title>
+    <title>تعديل المرفقات - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,22 +112,22 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:editAttachments.name"
         >
-          Edit Attachments
+          تعديل المرفقات
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:editAttachments.subtitle"
         >
-          View or remove attachments in your PDF.
+          عرض أو إزالة المرفقات في PDF الخاص بك.
         </p>
 
         <div
@@ -138,12 +138,12 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -157,10 +157,10 @@
         <div id="file-display-area" class="mt-4 space-y-2"></div>
 
         <div id="tool-options" class="hidden mt-6">
-          <h2 class="text-lg font-semibold text-white mb-3">Attachments</h2>
+          <h2 class="text-lg font-semibold text-white mb-3">المرفقات</h2>
           <div id="attachments-list" class="space-y-2"></div>
           <button id="process-btn" class="hidden btn-gradient w-full mt-4">
-            Save Changes
+            حفظ التغييرات
           </button>
         </div>
       </div>
@@ -179,9 +179,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -198,16 +197,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -218,7 +216,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -228,9 +226,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -241,9 +239,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -254,9 +252,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -269,43 +267,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -316,113 +320,106 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I see what files are attached to a PDF?
+            كيف أرى الملفات المرفقة بـ PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the PDF and the tool scans it and lists every embedded file
-            by name, marking each one as a document-level attachment or as a
-            page attachment with its page number. If nothing is embedded, it
-            tells you so instead of showing an empty list.
+            ارفع PDF فتفحصه الأداة وتسرد كل ملف مضمَّن بالاسم، مع وضع علامة على
+            كل منها كمرفق على مستوى المستند أو كمرفق صفحة مع رقم صفحته. وإذا لم
+            يكن هناك شيء مضمَّن، تخبرك بذلك بدلاً من عرض قائمة فارغة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I remove just one attachment instead of all of them?
+            هل يمكنني إزالة مرفق واحد فقط بدلاً من كلها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Click the trash icon next to any attachment to mark it, and click
-            again to unmark it before saving. Remove All Attachments selects
-            everything at once, and the new PDF is written with only the marked
-            files taken out.
+            انقر على أيقونة سلة المهملات بجوار أي مرفق لتحديده، وانقر مرة أخرى
+            لإلغاء تحديده قبل الحفظ. تحدد إزالة كل المرفقات كل شيء دفعة واحدة،
+            ويُكتب PDF الجديد مع إزالة الملفات المحددة فقط.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does removing attachments change the rest of the PDF?
+            هل تغيّر إزالة المرفقات بقية PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The pages, text, and images are untouched. The attachments you keep
-            are re-embedded under their original names and, for page
-            attachments, on their original pages, but any description text
-            stored with them isn't carried over.
+            تبقى الصفحات والنصوص والصور دون مساس. تُضمَّن المرفقات التي تحتفظ
+            بها من جديد بأسمائها الأصلية، ومرفقات الصفحات في صفحاتها الأصلية،
+            لكن أي نص وصف مخزَّن معها لا ينتقل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will deleting attachments make my PDF smaller?
+            هل سيصغر حجم PDF بحذف المرفقات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Usually, and often by a lot, because embedded files are stored in
-            full inside the PDF. A document carrying a large spreadsheet or
-            image attachment can drop to a fraction of its size once that file
-            is removed.
+            عادةً نعم، وغالبًا بشكل كبير، لأن الملفات المضمَّنة تُخزَّن كاملة
+            داخل PDF. قد ينخفض حجم مستند يحمل جدول بيانات كبيرًا أو صورة مرفقة
+            إلى جزء صغير من حجمه بعد إزالة ذلك الملف.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between a document-level and a page-level
-            attachment?
+            ما الفرق بين مرفق على مستوى المستند ومرفق على مستوى الصفحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Document-level attachments live in the PDF's embedded files list and
-            show up in a viewer's attachments panel. Page-level attachments are
-            file attachment annotations pinned to a spot on one page, usually
-            shown as a paperclip or pushpin icon. The tool lists and removes
-            both kinds.
+            المرفقات على مستوى المستند موجودة في قائمة الملفات المضمَّنة في PDF
+            وتظهر في لوحة المرفقات بالعارض. أما المرفقات على مستوى الصفحة فهي
+            تعليقات توضيحية لمرفقات ملفات مثبتة في موضع على صفحة واحدة، وتظهر
+            عادةً بأيقونة مشبك ورق أو دبوس. تسرد الأداة النوعين وتزيلهما.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I download the attachments before deleting them?
+            هل يمكنني تنزيل المرفقات قبل حذفها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            This tool only lists and removes them. To save the embedded files to
-            your computer first, run the PDF through
+            تعرض هذه الأداة المرفقات وتزيلها فقط. لحفظ الملفات المضمّنة على
+            حاسوبك أولاً، مرّر PDF عبر
             <a
               href="/extract-attachments"
               class="text-indigo-300 hover:text-indigo-400"
-              >Extract Attachments</a
-            >, then come back here to strip them.
+              >استخراج المرفقات</a
+            >، ثم عد إلى هنا لإزالتها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add or replace an attachment here?
+            هل يمكنني إضافة مرفق أو استبداله هنا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No, this tool only removes attachments. Use
+            لا، هذه الأداة تزيل المرفقات فقط. استخدم
             <a
               href="/add-attachments"
               class="text-indigo-300 hover:text-indigo-400"
-              >Add Attachments</a
+              >إضافة مرفقات</a
             >
-            to embed new files, and combine the two steps when you want to swap
-            an outdated attachment for a newer version.
+            لتضمين ملفات جديدة، واجمع الخطوتين عندما تريد استبدال مرفق قديم
+            بنسخة أحدث.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the attachments uploaded anywhere when I edit them?
+            هل تُرفع المرفقات إلى أي مكان عند تحريرها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDF is parsed by a cpdf engine running as WebAssembly in
-            your browser, the attachment list is built locally, and the cleaned
-            file is saved straight from your browser. Neither the document nor
-            its attachments is sent to a server, which matters when the
-            attachments are the sensitive part.
+            لا. يُحلَّل PDF بمحرك cpdf يعمل كـ WebAssembly في متصفحك، وتُبنى
+            قائمة المرفقات محليًا، ويُحفظ الملف المنظَّف مباشرة من متصفحك. لا
+            يُرسل المستند ولا مرفقاته إلى خادم، وهذا مهم عندما تكون المرفقات هي
+            الجزء الحساس.
           </p>
         </details>
       </div>
@@ -456,26 +453,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to edit attachments online",
+        "name": "كيفية تحرير المرفقات عبر الإنترنت",
         "description": "Learn how to edit attachments using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

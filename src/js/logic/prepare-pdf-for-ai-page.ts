@@ -74,14 +74,14 @@ onPageReady(() => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+          metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
             size: formatBytes(file.size),
             numPages: pdfDoc.numPages,
           });
         } catch (error) {
           console.error('Error loading PDF:', error);
           metaSpan.textContent = trText(
-            '{{size}} • Could not load page count',
+            "{{size}} • تعذر تحميل عدد الصفحات",
             { size: formatBytes(file.size) }
           );
         }
@@ -108,16 +108,16 @@ onPageReady(() => {
   const extractForAI = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
         return;
       }
 
-      showLoader('Loading engine...');
+      showLoader("جارٍ تحميل المحرك...");
       const pymupdf = await loadPyMuPDF();
 
       hideLoader();
       state.files = await batchDecryptIfNeeded(state.files);
-      showLoader('Extracting...');
+      showLoader("جارٍ الاستخراج...");
 
       const total = state.files.length;
       let completed = 0;
@@ -126,7 +126,7 @@ onPageReady(() => {
       if (total === 1) {
         const file = state.files[0];
         showLoader(
-          trText('Extracting {{name}} for AI...', { name: file.name })
+          trText("جارٍ استخراج {{name}} للذكاء الاصطناعي...", { name: file.name })
         );
 
         const llamaDocs = await (pymupdf as PyMuPDFInstance).pdfToLlamaIndex(
@@ -141,8 +141,8 @@ onPageReady(() => {
 
         hideLoader();
         showAlert(
-          'Extraction Complete',
-          `Successfully extracted PDF for AI/LLM use.`,
+          "اكتمل الاستخراج",
+          "تم استخراج PDF لاستخدام الذكاء الاصطناعي/النماذج اللغوية بنجاح.",
           'success',
           () => resetState()
         );
@@ -155,7 +155,7 @@ onPageReady(() => {
           try {
             const file = state.files[fi];
             showLoader(
-              trText('Extracting {{name}} for AI ({{n}}/{{total}})...', {
+              trText("جارٍ استخراج {{name}} للذكاء الاصطناعي ({{n}}/{{total}})...", {
                 name: file.name,
                 n: completed + 1,
                 total,
@@ -177,7 +177,7 @@ onPageReady(() => {
           }
         }
 
-        showLoader('Creating ZIP archive...');
+        showLoader("جارٍ إنشاء أرشيف ZIP...");
         const zipBlob = await zip.generateAsync({ type: 'blob' });
 
         downloadFile(zipBlob, 'pdf-for-ai.zip');
@@ -186,9 +186,9 @@ onPageReady(() => {
 
         if (failed === 0) {
           showAlert(
-            'Extraction Complete',
+            "اكتمل الاستخراج",
             trText(
-              'Successfully extracted {{completed}} PDF(s) for AI/LLM use.',
+              "تم استخراج {{completed}} من ملفات PDF لاستخدام الذكاء الاصطناعي/النماذج اللغوية بنجاح.",
               { completed }
             ),
             'success',
@@ -196,8 +196,8 @@ onPageReady(() => {
           );
         } else {
           showAlert(
-            'Extraction Partial',
-            trText('Extracted {{completed}} PDF(s), failed {{failed}}.', {
+            "استخراج جزئي",
+            trText("تم استخراج {{completed}} من ملفات PDF، وفشل {{failed}}.", {
               completed,
               failed,
             }),
@@ -209,8 +209,8 @@ onPageReady(() => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during extraction. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء الاستخراج. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

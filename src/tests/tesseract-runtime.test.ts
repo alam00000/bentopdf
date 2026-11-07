@@ -67,7 +67,7 @@ describe('tesseract-runtime', () => {
       getIncompleteTesseractOverrideKeys(resolveTesseractAssetConfig(env))
     ).toEqual(['VITE_TESSERACT_LANG_URL']);
     expect(() => buildTesseractWorkerOptions(undefined, env)).toThrow(
-      'Self-hosted OCR assets are partially configured'
+      'موارد OCR المستضافة ذاتيًا مهيأة جزئيًا'
     );
   });
 
@@ -121,7 +121,7 @@ describe('tesseract-runtime', () => {
       createConfiguredTesseractWorker('fra', 1, undefined, {
         VITE_TESSERACT_AVAILABLE_LANGUAGES: 'eng,deu',
       })
-    ).rejects.toThrow('This Pixel PDF build only bundles OCR data for');
+    ).rejects.toThrow('يتضمن هذا الإصدار من Pixel PDF بيانات OCR للغات');
 
     expect(createWorker).not.toHaveBeenCalled();
   });

@@ -101,7 +101,7 @@ async function linearizePdf() {
     (file: File) => file.type === 'application/pdf'
   );
   if (!pdfFiles || pdfFiles.length === 0) {
-    showAlert('No PDF Files', 'Please upload at least one PDF file.');
+    showAlert("لا توجد ملفات PDF", "يرجى رفع ملف PDF واحد على الأقل.");
     return;
   }
 
@@ -110,7 +110,7 @@ async function linearizePdf() {
   if (loaderModal) loaderModal.classList.remove('hidden');
   if (loaderText)
     loaderText.textContent = trText(
-      'Optimizing PDFs for web view (linearizing)...'
+      "جارٍ تحسين ملفات PDF للعرض على الويب (التحسين للعرض السريع)..."
     );
 
   const zip = new JSZip();
@@ -129,7 +129,7 @@ async function linearizePdf() {
 
       if (loaderText)
         loaderText.textContent = trText(
-          'Optimizing {{name}} ({{n}}/{{length}})...',
+          "جارٍ تحسين {{name}} ({{n}}/{{length}})...",
           { name: file.name, n: i + 1, length: pdfFiles.length }
         );
 
@@ -149,7 +149,7 @@ async function linearizePdf() {
             `Linearization resulted in an empty file for ${file.name}.`
           );
           throw new Error(
-            trText('Processing failed for {{name}}.', { name: file.name })
+            trText("فشلت معالجة {{name}}.", { name: file.name })
           );
         }
 
@@ -182,29 +182,29 @@ async function linearizePdf() {
     }
 
     if (successCount === 0) {
-      throw new Error(trText('No PDF files could be linearized.'));
+      throw new Error(trText("تعذر تحسين أي ملف PDF للعرض السريع."));
     }
 
-    if (loaderText) loaderText.textContent = trText('Generating ZIP file...');
+    if (loaderText) loaderText.textContent = trText("جارٍ إنشاء ملف ZIP...");
     const zipBlob = await zip.generateAsync({ type: 'blob' });
     downloadFile(zipBlob, 'linearized-pdfs.zip');
 
     let alertMessage = trText(
-      '{{successCount}} PDF(s) linearized successfully.',
+      "تم تحسين {{successCount}} من ملفات PDF للعرض السريع بنجاح.",
       { successCount }
     );
     if (errorCount > 0) {
-      alertMessage += ` ${trText('Files that failed: {{errorCount}}.', { errorCount })}`;
+      alertMessage += ` ${trText("الملفات التي فشلت: {{errorCount}}.", { errorCount })}`;
     }
-    showAlert('Processing Complete', alertMessage, 'success', () => {
+    showAlert("اكتملت المعالجة", alertMessage, 'success', () => {
       resetState();
     });
   } catch (error: unknown) {
     console.error('Linearization process error:', error);
     showAlert(
-      'Linearization Failed',
-      trText('An error occurred: {{error}}.', {
-        error: error instanceof Error ? error.message : trText('Unknown error'),
+      "فشل التحسين للعرض السريع",
+      trText("حدث خطأ: {{error}}.", {
+        error: error instanceof Error ? error.message : trText("خطأ غير معروف"),
       })
     );
   } finally {

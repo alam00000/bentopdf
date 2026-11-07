@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Rasterize PDF Online Free - Rasterize PDF Tool | Pixel PDF"
+      content="تحويل PDF إلى صور نقطية عبر الإنترنت مجانًا - أداة Rasterize PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert PDF to image-based PDF. Flatten layers and remove selectable text. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى PDF قائم على الصور. سطّح الطبقات وأزل النص القابل للتحديد. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="rasterize pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/rasterize-pdf" />
     <meta
       property="og:title"
-      content="Rasterize PDF Online Free - Rasterize PDF Tool | Pixel PDF"
+      content="تحويل PDF إلى صور نقطية عبر الإنترنت مجانًا - أداة Rasterize PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert PDF to image-based PDF. Flatten layers and remove selectable text. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى PDF قائم على الصور. سطّح الطبقات وأزل النص القابل للتحديد. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/rasterize-pdf" />
-    <meta name="twitter:title" content="Rasterize PDF Free" />
+    <meta name="twitter:title" content="تحويل PDF إلى صور نقطية مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert PDF to image-based PDF. Flatten layers and remove selectable text. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل PDF إلى PDF قائم على الصور. سطّح الطبقات وأزل النص القابل للتحديد. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Rasterize PDF" />
+    <meta name="apple-mobile-web-app-title" content="تحويل PDF إلى صور نقطية" />
 
-    <title>Rasterize PDF - Convert to Image-Based PDF - Pixel PDF</title>
+    <title>تحويل PDF إلى صور نقطية - تحويل إلى PDF قائم على الصور - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -107,7 +107,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -115,11 +115,11 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:rasterizePdf.name"
         >
-          Rasterize PDF
+          تحويل PDF إلى صور نقطية
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:rasterizePdf.subtitle">
-          Convert PDF to image-based PDF. Flatten layers and remove selectable
-          text.
+          تحويل PDF إلى PDF قائم على الصور. تسطيح الطبقات وإزالة النص القابل
+          للتحديد.
         </p>
 
         <div
@@ -130,18 +130,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -149,7 +149,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -158,13 +158,13 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i> <span>إضافة ملفات أخرى</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i> <span>مسح الكل</span>
           </button>
         </div>
 
@@ -175,17 +175,17 @@
             <label
               for="rasterize-dpi"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >DPI (Resolution)</label
+              >DPI (الدقة)</label
             >
             <select
               id="rasterize-dpi"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="72">72 (Screen)</option>
-              <option value="150" selected>150 (Default)</option>
-              <option value="200">200 (Good)</option>
-              <option value="300">300 (Print)</option>
-              <option value="600">600 (High Quality)</option>
+              <option value="72">72 (للشاشة)</option>
+              <option value="150" selected="">150 (افتراضي)</option>
+              <option value="200">200 (جيدة)</option>
+              <option value="300">300 (للطباعة)</option>
+              <option value="600">600 (جودة عالية)</option>
             </select>
           </div>
 
@@ -193,14 +193,14 @@
             <label
               for="rasterize-format"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Image Format</label
+              >صيغة الصورة</label
             >
             <select
               id="rasterize-format"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="png" selected>PNG (Lossless)</option>
-              <option value="jpeg">JPEG (Smaller file size)</option>
+              <option value="png" selected="">PNG (بدون فقدان)</option>
+              <option value="jpeg">JPEG (حجم ملف أصغر)</option>
             </select>
           </div>
 
@@ -213,12 +213,12 @@
             <label
               for="rasterize-grayscale"
               class="ml-2 text-sm font-medium text-gray-300"
-              >Convert to Grayscale</label
+              >تحويل إلى تدرج الرمادي</label
             >
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Rasterize PDF
+            تحويل PDF إلى صور نقطية
           </button>
         </div>
       </div>
@@ -233,7 +233,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -246,14 +246,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -264,7 +264,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -274,9 +274,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -287,9 +287,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -300,9 +300,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -315,43 +315,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -362,113 +368,110 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does rasterizing a PDF actually do?
+            ماذا يفعل تحويل PDF إلى صور نقطية فعليًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Every page is rendered to a bitmap and the bitmaps are reassembled
-            into a new PDF. The result looks the same but contains no text
-            objects, fonts, layers, form fields, or hidden content, only a
-            picture of each page, much like a photocopy.
+            تُحوَّل كل صفحة إلى صورة نقطية، ثم تُجمع الصور في ملف PDF جديد. تبدو
+            النتيجة مطابقة لكنها لا تحتوي على كائنات نصية أو خطوط أو طبقات أو
+            حقول نماذج أو محتوى مخفي، بل صورة لكل صفحة فقط، أشبه بالتصوير
+            الضوئي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which DPI should I choose when rasterizing?
+            أي DPI أختار عند التحويل إلى صور نقطية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            150, the default, is fine for reading on screen and ordinary office
-            printing. Use 300 for print-quality output or when someone will zoom
-            in on fine print, 600 only for archival or professional printing,
-            and 72 when the smallest possible file matters more than sharpness.
+            القيمة 150، وهي الافتراضية، مناسبة للقراءة على الشاشة والطباعة
+            المكتبية العادية. استخدم 300 للمخرجات بجودة الطباعة أو عندما سيكبّر
+            أحدهم الخط الصغير، و600 فقط للأرشفة أو الطباعة الاحترافية، و72 عندما
+            يكون أصغر حجم للملف أهم من الحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            PNG or JPEG?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            PNG أم JPEG؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            PNG is lossless, so text edges stay crisp, but files are bigger.
-            JPEG (saved at quality 95) is noticeably smaller and works well for
-            scanned or photographic pages, but can leave faint artifacts around
-            sharp text. Grayscale is available with either and shrinks files
-            further for black-and-white documents.
+            PNG بدون فقدان، فتبقى حواف النص واضحة لكن الملفات أكبر. أما JPEG
+            (بجودة 95) فأصغر بوضوح ويناسب الصفحات الممسوحة ضوئيًا أو
+            الفوتوغرافية، لكنه قد يترك شوائب خفيفة حول النص الحاد. يتوفر تدرج
+            الرمادي مع كليهما ويقلل الحجم أكثر للمستندات بالأبيض والأسود.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the rasterized file bigger than the original?
+            لماذا الملف المحوّل أكبر من الأصلي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A text PDF stores a few kilobytes of font and glyph data per page,
-            whereas a 300 DPI image of a Letter page is 2550 x 3300 pixels.
-            Lower the DPI, switch to JPEG, or run the result through
+            يخزّن ملف PDF النصي بضعة كيلوبايتات من بيانات الخطوط والحروف لكل
+            صفحة، بينما تبلغ صورة صفحة Letter بدقة 300 DPI ما قدره 2550 × 3300
+            بكسل. خفّض الدقة أو انتقل إلى JPEG أو مرّر الناتج عبر
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            if size matters.
+            إذا كان الحجم مهمًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I make the text selectable again afterward?
+            هل يمكنني جعل النص قابلًا للتحديد مرة أخرى بعد ذلك؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not from the rasterized file itself; the operation is one-way, so
-            keep the original. You can add a searchable text layer back with
+            ليس من الملف المحوّل نفسه، فالعملية باتجاه واحد، لذا احتفظ بالأصل.
+            يمكنك إعادة إضافة طبقة نصية قابلة للبحث باستخدام
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
-            >, though recognized text is never as exact as the original.
+              >التعرف الضوئي على PDF</a
+            >، لكن النص المتعرَّف عليه لا يكون دقيقًا مثل الأصل أبدًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How is this different from flattening a PDF?
+            ما الفرق بين هذا وتسطيح ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Flattening merges form fields and annotations into the page but
-            keeps text as text. Rasterizing goes further and turns everything,
-            text included, into pixels. If you only need to lock form fields or
-            comments,
+            يدمج التسطيح حقول النماذج والتعليقات التوضيحية في الصفحة لكنه يُبقي
+            النص نصًا. أما التحويل إلى صور نقطية فيذهب أبعد ويحوّل كل شيء، بما
+            في ذلك النص، إلى بكسلات. إذا أردت فقط تثبيت حقول النماذج أو
+            التعليقات، فإن
             <a href="/flatten-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Flatten PDF</a
+              >تسطيح PDF</a
             >
-            keeps the file searchable and much smaller.
+            يُبقي الملف قابلًا للبحث وأصغر بكثير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my confidential documents uploaded to be rasterized?
+            هل تُرفع مستنداتي السرية لتحويلها إلى صور نقطية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering is done by the PyMuPDF WebAssembly module running in
-            your browser, so the pages are drawn and repacked on your own
-            machine. That's what makes the tool a safe way to strip hidden text
-            and layers from a sensitive file before sharing it.
+            لا. يتم العرض بواسطة وحدة PyMuPDF WebAssembly العاملة في متصفحك،
+            فتُرسم الصفحات وتُعاد تعبئتها على جهازك. لهذا تُعد الأداة طريقة آمنة
+            لإزالة النص المخفي والطبقات من ملف حساس قبل مشاركته.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I rasterize several PDFs at once?
+            هل يمكنني تحويل عدة ملفات PDF إلى صور نقطية دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Add as many as you like; each is processed with the same DPI,
-            format, and grayscale settings, and the results download together as
-            rasterized-pdfs.zip. A single file downloads on its own.
+            نعم. أضف ما شئت من الملفات، وتُعالج كلها بإعدادات DPI والصيغة وتدرج
+            الرمادي نفسها، وتُنزَّل النتائج معًا في rasterized-pdfs.zip. أما
+            الملف الواحد فيُنزَّل وحده.
           </p>
         </details>
       </div>
@@ -501,26 +504,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to rasterize pdf online",
+        "name": "كيفية تحويل PDF إلى صور نقطية عبر الإنترنت",
         "description": "Learn how to rasterize pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

@@ -24,7 +24,7 @@ async function convertImageToPngBytes(file: File): Promise<ArrayBuffer> {
         canvas.height = img.height;
         const ctx = canvas.getContext('2d');
         if (!ctx) {
-          reject(new Error(trText('Failed to get canvas context')));
+          reject(new Error(trText("تعذر الحصول على سياق Canvas")));
           return;
         }
         ctx.drawImage(img, 0, 0);
@@ -32,16 +32,16 @@ async function convertImageToPngBytes(file: File): Promise<ArrayBuffer> {
           canvas.toBlob(res, 'image/png')
         );
         if (!pngBlob) {
-          reject(new Error(trText('Failed to create PNG blob')));
+          reject(new Error(trText("تعذر إنشاء كائن PNG blob")));
           return;
         }
         const pngBytes = await pngBlob.arrayBuffer();
         resolve(pngBytes);
       };
-      img.onerror = () => reject(new Error(trText('Failed to load image.')));
+      img.onerror = () => reject(new Error(trText("تعذر تحميل الصورة.")));
       img.src = e.target?.result as string;
     };
-    reader.onerror = () => reject(new Error(trText('Failed to read file.')));
+    reader.onerror = () => reject(new Error(trText("تعذرت قراءة الملف.")));
     reader.readAsDataURL(file);
   });
 }
@@ -109,10 +109,10 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one BMP file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف BMP واحد على الأقل.");
     return;
   }
-  showLoader('Converting BMP to PDF...');
+  showLoader("جارٍ تحويل BMP إلى PDF...");
   try {
     const pdfDoc = await PDFLibDocument.create();
     for (const file of files) {
@@ -131,14 +131,14 @@ async function convert() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_bmps.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert BMP to PDF. One of the files may be invalid.'
+      "خطأ",
+      "تعذر تحويل BMP إلى PDF. قد يكون أحد الملفات غير صالح."
     );
   } finally {
     hideLoader();
@@ -168,8 +168,8 @@ onPageReady(() => {
 
     if (validFiles.length < newFiles.length) {
       showAlert(
-        'Invalid Files',
-        'Some files were skipped. Only BMP files are allowed.'
+        "ملفات غير صالحة",
+        "تم تخطي بعض الملفات. يُسمح بملفات BMP فقط."
       );
     }
 

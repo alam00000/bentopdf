@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="ODG to PDF Online Free - ODG to PDF Tool | Pixel PDF"
+      content="تحويل ODG إلى PDF مجانًا عبر الإنترنت - أداة ODG إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات OpenDocument Graphics (ODG) إلى تنسيق PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="odg to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/odg-to-pdf" />
     <meta
       property="og:title"
-      content="ODG to PDF Online Free - ODG to PDF Tool | Pixel PDF"
+      content="تحويل ODG إلى PDF مجانًا عبر الإنترنت - أداة ODG إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات OpenDocument Graphics (ODG) إلى تنسيق PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/odg-to-pdf" />
-    <meta name="twitter:title" content="ODG to PDF Free" />
+    <meta name="twitter:title" content="ODG إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Convert OpenDocument Graphics (ODG) files to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل ملفات OpenDocument Graphics (ODG) إلى تنسيق PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="ODG to PDF" />
+    <meta name="apple-mobile-web-app-title" content="ODG إلى PDF" />
 
-    <title>ODG to PDF - Convert OpenDocument Graphics to PDF - Pixel PDF</title>
+    <title>ODG إلى PDF - تحويل OpenDocument Graphics إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,20 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:odgToPdf.name"
         >
-          ODG to PDF
+          ODG إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:odgToPdf.subtitle">
-          Convert OpenDocument Graphics (ODG) files to PDF format. Supports
-          multiple files.
+          تحويل ملفات OpenDocument Graphics (ODG) إلى تنسيق PDF. يدعم عدة ملفات.
         </p>
 
         <div
@@ -130,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="tools:odgToPdf.acceptedFormats"
             >
-              ODG files
+              ملفات ODG
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -149,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".odg"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -159,14 +158,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearFiles">Clear Files</span>
+            <span data-i18n="upload.clearFiles">مسح الملفات</span>
           </button>
         </div>
 
@@ -174,15 +173,15 @@
 
         <div id="convert-options" class="hidden mt-6">
           <button id="process-btn" class="btn-gradient w-full">
-            <span data-i18n="tools:odgToPdf.convertButton">Convert to PDF</span>
+            <span data-i18n="tools:odgToPdf.convertButton">تحويل إلى PDF</span>
           </button>
         </div>
 
         <div class="flex items-center gap-2 text-gray-500 text-xs mt-6">
           <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
           <p data-i18n="tools.firstLoadNotice">
-            First load takes a moment as we download our conversion engine.
-            After that, all loads will be instant.
+            يستغرق التحميل الأول لحظة أثناء تنزيل محرك التحويل. بعد ذلك، ستكون
+            جميع التحميلات فورية.
           </p>
         </div>
       </div>
@@ -197,7 +196,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -214,14 +213,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -232,7 +231,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -242,9 +241,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -255,9 +254,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -268,9 +267,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -283,43 +282,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -330,95 +335,92 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need LibreOffice installed to convert an ODG file?
+            هل أحتاج إلى تثبيت LibreOffice لتحويل ملف ODG؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. A LibreOffice engine compiled to WebAssembly runs inside your
-            browser, so you don't need LibreOffice, OpenOffice, or a plugin on
-            your computer, and it works on any operating system.
+            لا. يعمل محرك LibreOffice المُجمَّع إلى WebAssembly داخل متصفحك، لذا
+            لا تحتاج إلى LibreOffice أو OpenOffice أو أي إضافة على جهازك، ويعمل
+            على أي نظام تشغيل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the drawings kept as vectors or turned into images?
+            هل تبقى الرسومات متجهية أم تتحول إلى صور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Shapes, connectors, lines, and text boxes stay as vectors in the
-            PDF, so the drawing scales cleanly to any print size and the text
-            remains selectable.
+            تبقى الأشكال والموصلات والخطوط ومربعات النص عناصر متجهية في PDF، لذا
+            يتغير حجم الرسم بوضوح إلى أي حجم طباعة ويبقى النص قابلًا للتحديد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the PDF keep the original page size?
+            هل يحتفظ PDF بحجم الصفحة الأصلي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. The page dimensions from the ODG file are preserved, including
-            landscape and custom sizes, so a diagram laid out for A3 or Tabloid
-            prints at that size.
+            نعم. تُحفظ أبعاد الصفحة من ملف ODG، بما في ذلك الاتجاه الأفقي
+            والأحجام المخصصة، لذا يُطبع المخطط المصمم بحجم A3 أو Tabloid بالحجم
+            نفسه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several ODG files at once?
+            هل يمكنني تحويل عدة ملفات ODG دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Add multiple files and the results download as odg-to-pdf.zip,
-            one PDF per drawing. A single file downloads directly with the same
-            base name and a .pdf extension.
+            نعم. أضف عدة ملفات وستُنزَّل النتائج باسم odg-to-pdf.zip، بواقع ملف
+            PDF لكل رسم. ويُنزَّل الملف الواحد مباشرة بالاسم الأساسي نفسه
+            وبامتداد .pdf.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the first ODG conversion take longer than the next ones?
+            لماذا يستغرق أول تحويل ODG وقتًا أطول من التحويلات التالية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            On first use the browser downloads the LibreOffice engine, around 75
-            MB compressed, and starts it. Conversions later in the same session
-            skip that step and finish much faster.
+            عند أول استخدام، ينزّل المتصفح محرك LibreOffice، بحجم نحو 75 MB
+            مضغوطًا، ويشغّله. تتخطى التحويلات اللاحقة في الجلسة نفسها هذه الخطوة
+            وتنتهي أسرع بكثير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will fonts look the same as in LibreOffice Draw?
+            هل ستظهر الخطوط كما في LibreOffice Draw؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The engine renders with the fonts bundled inside it rather than the
-            fonts installed on your computer, so an unusual font may be replaced
-            by a similar one. Check the output if the drawing depends on a
-            specific typeface.
+            يعرض المحرك المستند بالخطوط المضمّنة داخله بدلًا من الخطوط المثبتة
+            على جهازك، لذا قد يُستبدل خط غير شائع بخط مشابه. تحقق من الناتج إذا
+            كان الرسم يعتمد على نوع خط محدد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work with files from Apache OpenOffice Draw?
+            هل يعمل مع ملفات Apache OpenOffice Draw؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Any .odg file works, including ones saved by OpenOffice Draw,
-            since both programs use the same OpenDocument Graphics format.
+            نعم. يعمل أي ملف .odg، بما في ذلك الملفات المحفوظة من OpenOffice
+            Draw، لأن البرنامجين يستخدمان تنسيق OpenDocument Graphics نفسه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my drawing uploaded anywhere?
+            هل يُرفع رسمي إلى أي مكان؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The conversion runs entirely in your browser tab; the only
-            download is the engine itself, and the ODG file never leaves your
-            device.
+            لا. يعمل التحويل بالكامل داخل تبويب المتصفح؛ التنزيل الوحيد هو
+            المحرك نفسه، ولا يغادر ملف ODG جهازك أبدًا.
           </p>
         </details>
       </div>
@@ -451,26 +453,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to odg to pdf online",
+        "name": "كيفية تحويل ODG إلى PDF عبر الإنترنت",
         "description": "Learn how to odg to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

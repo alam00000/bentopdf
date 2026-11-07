@@ -487,7 +487,7 @@ function removeHiddenContent(
         ? properties.get(PDFName.of(property.value))
         : undefined;
     if (value === undefined) {
-      throw new Error(trText('Unresolved optional content reference'));
+      throw new Error(trText("مرجع محتوى اختياري غير محلول"));
     }
     return !isVisible(value);
   };

@@ -75,14 +75,14 @@ onPageReady(() => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+          metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
             size: formatBytes(file.size),
             numPages: pdfDoc.numPages,
           });
         } catch (error) {
           console.error('Error loading PDF:', error);
           metaSpan.textContent = trText(
-            '{{size}} • Could not load page count',
+            "{{size}} • تعذر تحميل عدد الصفحات",
             { size: formatBytes(file.size) }
           );
         }
@@ -109,7 +109,7 @@ onPageReady(() => {
   const rasterize = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
         return;
       }
 
@@ -118,7 +118,7 @@ onPageReady(() => {
         return;
       }
 
-      showLoader('Loading engine...');
+      showLoader("جارٍ تحميل المحرك...");
       const pymupdf = await loadPyMuPDF();
 
       // Get options from UI
@@ -135,7 +135,7 @@ onPageReady(() => {
 
       hideLoader();
       state.files = await batchDecryptIfNeeded(state.files);
-      showLoader('Rasterizing...');
+      showLoader("جارٍ التحويل إلى صور نقطية...");
 
       const total = state.files.length;
       let completed = 0;
@@ -143,7 +143,7 @@ onPageReady(() => {
 
       if (total === 1) {
         const file = state.files[0];
-        showLoader(trText('Rasterizing {{name}}...', { name: file.name }));
+        showLoader(trText("جارٍ تحويل {{name}} إلى صور نقطية...", { name: file.name }));
 
         const rasterizedBlob = await (pymupdf as PyMuPDFInstance).rasterizePdf(
           file,
@@ -159,8 +159,8 @@ onPageReady(() => {
 
         hideLoader();
         showAlert(
-          'Rasterization Complete',
-          trText('Successfully rasterized PDF at {{dpi}} DPI.', { dpi }),
+          "اكتمل التحويل إلى صور نقطية",
+          trText("تم تحويل PDF إلى صور نقطية بدقة {{dpi}} DPI بنجاح.", { dpi }),
           'success',
           () => resetState()
         );
@@ -173,7 +173,7 @@ onPageReady(() => {
           try {
             const file = state.files[fi];
             showLoader(
-              trText('Rasterizing {{name}} ({{n}}/{{total}})...', {
+              trText("جارٍ تحويل {{name}} إلى صور نقطية ({{n}}/{{total}})...", {
                 name: file.name,
                 n: completed + 1,
                 total,
@@ -202,7 +202,7 @@ onPageReady(() => {
           }
         }
 
-        showLoader('Creating ZIP archive...');
+        showLoader("جارٍ إنشاء أرشيف ZIP...");
         const zipBlob = await zip.generateAsync({ type: 'blob' });
 
         downloadFile(zipBlob, 'rasterized-pdfs.zip');
@@ -211,9 +211,9 @@ onPageReady(() => {
 
         if (failed === 0) {
           showAlert(
-            'Rasterization Complete',
+            "اكتمل التحويل إلى صور نقطية",
             trText(
-              'Successfully rasterized {{completed}} PDF(s) at {{dpi}} DPI.',
+              "تم تحويل {{completed}} من ملفات PDF إلى صور نقطية بدقة {{dpi}} DPI بنجاح.",
               { completed, dpi }
             ),
             'success',
@@ -221,8 +221,8 @@ onPageReady(() => {
           );
         } else {
           showAlert(
-            'Rasterization Partial',
-            trText('Rasterized {{completed}} PDF(s), failed {{failed}}.', {
+            "تحويل جزئي إلى صور نقطية",
+            trText("تم تحويل {{completed}} من ملفات PDF إلى صور نقطية، وفشل {{failed}}.", {
               completed,
               failed,
             }),
@@ -234,8 +234,8 @@ onPageReady(() => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during rasterization. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل إلى صور نقطية. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

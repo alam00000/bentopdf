@@ -174,21 +174,21 @@ function initSortable() {
 }
 
 async function handleFiles(fileList: FileList) {
-  showLoader('Loading PDFs...');
+  showLoader("جارٍ تحميل ملفات PDF...");
   try {
     for (const file of Array.from(fileList)) {
       if (file.type !== 'application/pdf') continue;
       hideLoader();
       const result = await loadPdfWithPasswordPrompt(file);
       if (!result) continue;
-      showLoader('Loading PDFs...');
+      showLoader("جارٍ تحميل ملفات PDF...");
       result.pdf.destroy();
       const pdfDoc = await loadPdfDocument(result.bytes);
       files.push({ file: result.file, pageCount: pdfDoc.getPageCount() });
     }
 
     if (files.length === 0) {
-      showAlert('Invalid File', 'Please upload valid PDF files.');
+      showAlert("ملف غير صالح", "يرجى رفع ملفات PDF صالحة.");
       return;
     }
 
@@ -198,7 +198,7 @@ async function handleFiles(fileList: FileList) {
     updatePreview();
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load one or more PDF files.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF واحد أو أكثر.");
   } finally {
     hideLoader();
   }
@@ -235,7 +235,7 @@ function renderFileList() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+    metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
       size: formatBytes(entry.file.size),
       pageCount: entry.pageCount,
     });
@@ -263,11 +263,11 @@ function renderFileList() {
   summary.className = 'text-xs text-gray-400 mt-1';
   summary.textContent =
     files.length !== 1
-      ? trText('{{length}} files • {{totalPages}} total pages', {
+      ? trText("{{length}} من الملفات • {{totalPages}} صفحة إجمالًا", {
           length: files.length,
           totalPages,
         })
-      : trText('{{length}} file • {{totalPages}} total pages', {
+      : trText("ملف {{length}} • {{totalPages}} صفحة إجمالًا", {
           length: files.length,
           totalPages,
         });
@@ -446,11 +446,11 @@ function resetState() {
 
 async function applyBatesNumbers() {
   if (files.length === 0) {
-    showAlert('Error', 'Please upload at least one PDF file.');
+    showAlert("خطأ", "يرجى رفع ملف PDF واحد على الأقل.");
     return;
   }
 
-  showLoader('Applying Bates numbers...');
+  showLoader("جارٍ تطبيق أرقام Bates...");
   try {
     const template = (
       document.getElementById('bates-template') as HTMLInputElement
@@ -548,9 +548,9 @@ async function applyBatesNumbers() {
     }
 
     showAlert(
-      'Success',
+      "تم بنجاح",
       trText(
-        'Bates numbers applied successfully! ({{batesStart}} through {{n}})',
+        "تم تطبيق أرقام Bates بنجاح! ({{batesStart}} إلى {{n}})",
         { batesStart, n: batesCounter - 1 }
       ),
       'success',
@@ -560,7 +560,7 @@ async function applyBatesNumbers() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to apply Bates numbers.');
+    showAlert("خطأ", "تعذر تطبيق أرقام Bates.");
   } finally {
     hideLoader();
   }

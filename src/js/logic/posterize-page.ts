@@ -50,7 +50,7 @@ async function renderPosterizePreview(pageNum: number) {
   if (!pageState.pdfJsDoc) return;
 
   pageState.currentPage = pageNum;
-  showLoader(trText('Rendering preview for page {{pageNum}}...', { pageNum }));
+  showLoader(trText("جارٍ عرض معاينة الصفحة {{pageNum}}...", { pageNum }));
 
   const canvas = document.getElementById(
     'posterize-preview-canvas'
@@ -161,11 +161,11 @@ function updatePreviewNav() {
 
 async function posterize() {
   if (!pageState.pdfJsDoc || !pageState.pdfBytes) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Posterizing PDF...');
+  showLoader("جارٍ تقليل ألوان PDF...");
 
   try {
     const rows =
@@ -207,14 +207,14 @@ async function posterize() {
     const pageIndicesToProcess = parsePageRanges(pageRangeInput, totalPages);
 
     if (pageIndicesToProcess.length === 0) {
-      throw new Error(trText('Invalid page range specified.'));
+      throw new Error(trText("تم تحديد نطاق صفحات غير صالح."));
     }
 
     const tempCanvas = document.createElement('canvas');
     const tempCtx = tempCanvas.getContext('2d');
 
     if (!tempCtx) {
-      throw new Error(trText('Could not create canvas context.'));
+      throw new Error(trText("تعذر إنشاء سياق Canvas."));
     }
 
     for (const pageIndex of pageIndicesToProcess) {
@@ -311,10 +311,10 @@ async function posterize() {
       pageState.file?.name || 'document.pdf'
     );
 
-    showAlert('Success', 'Your PDF has been posterized.');
+    showAlert("تم بنجاح", "تم تقليل ألوان PDF.");
   } catch (e) {
     console.error(e);
-    showAlert('Error', (e as Error).message || 'Could not posterize the PDF.');
+    showAlert("خطأ", (e as Error).message || "تعذر تقليل ألوان ملف PDF (Posterize).");
   } finally {
     hideLoader();
   }

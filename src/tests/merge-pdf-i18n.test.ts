@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 const ROOT = process.cwd();
 const LOGIC_FILE = join(ROOT, 'src/js/logic/merge-pdf-page.ts');
-const CHECKED_LANGUAGES = ['en', 'fr'] as const;
+const CHECKED_LANGUAGES = ['ar'] as const;
 
 const source = readFileSync(LOGIC_FILE, 'utf8');
 

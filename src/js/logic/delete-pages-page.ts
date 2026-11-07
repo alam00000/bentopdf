@@ -74,7 +74,7 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -86,7 +86,7 @@ async function handleFile(file: File) {
       deleteState.file = null;
       return;
     }
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     deleteState.file = result.file;
     deleteState.pdfDoc = await loadPdfDocument(result.bytes);
     deleteState.pdfJsDoc = result.pdf;
@@ -100,7 +100,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   }
 }
 
@@ -122,7 +122,7 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{totalPages}} صفحة", {
     size: formatBytes(deleteState.file.size),
     totalPages: deleteState.totalPages,
   });
@@ -247,16 +247,16 @@ function updatePreview() {
 
 async function deletePages() {
   if (deleteState.pagesToDelete.size === 0) {
-    showAlert('No Pages', 'Please select pages to delete.');
+    showAlert("لا توجد صفحات", "يرجى اختيار الصفحات المراد حذفها.");
     return;
   }
 
   if (deleteState.pagesToDelete.size >= deleteState.totalPages) {
-    showAlert('Error', 'Cannot delete all pages.');
+    showAlert("خطأ", "لا يمكن حذف جميع الصفحات.");
     return;
   }
 
-  showLoader('Deleting pages...');
+  showLoader("جارٍ حذف الصفحات...");
 
   try {
     const srcBytes = await deleteState.pdfDoc.save();
@@ -273,8 +273,8 @@ async function deletePages() {
 
     hideLoader();
     showAlert(
-      'Success',
-      trText('Deleted {{size}} page(s) successfully!', {
+      "تم بنجاح",
+      trText("تم حذف {{size}} من الصفحات بنجاح!", {
         size: deleteState.pagesToDelete.size,
       }),
       'success',
@@ -283,7 +283,7 @@ async function deletePages() {
   } catch (error) {
     console.error('Error deleting pages:', error);
     hideLoader();
-    showAlert('Error', 'Failed to delete pages.');
+    showAlert("خطأ", "تعذر حذف الصفحات.");
   }
 }
 

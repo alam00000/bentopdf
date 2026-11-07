@@ -133,7 +133,7 @@ async function handlePdfFile(file: File): Promise<void> {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -200,8 +200,8 @@ async function handleCertFile(file: File): Promise<void> {
 
   if (!hasValidExtension) {
     showAlert(
-      'Invalid Certificate',
-      'Please select a .pem, .crt, .cer, or .der certificate file.'
+      "شهادة غير صالحة",
+      "يرجى اختيار ملف شهادة بصيغة .pem أو .crt أو .cer أو .der."
     );
     return;
   }
@@ -230,7 +230,7 @@ async function handleCertFile(file: File): Promise<void> {
     }
   } catch (error) {
     console.error('Error parsing certificate:', error);
-    showAlert('Invalid Certificate', 'Failed to parse the certificate file.');
+    showAlert("شهادة غير صالحة", "تعذر تحليل ملف الشهادة.");
     resetCertState();
   }
 }
@@ -256,7 +256,7 @@ function updateCertDisplay(): void {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-green-400';
-  metaSpan.innerHTML = `<i data-lucide="check-circle" class="inline w-3 h-3 mr-1"></i>${trHtml('Trusted certificate loaded')}`;
+  metaSpan.innerHTML = `<i data-lucide="check-circle" class="inline w-3 h-3 mr-1"></i>${trHtml("تم تحميل الشهادة الموثوقة")}`;
 
   infoContainer.append(nameSpan, metaSpan);
 
@@ -278,7 +278,7 @@ function updateCertDisplay(): void {
 async function validateSignatures(): Promise<void> {
   if (!state.pdfBytes) return;
 
-  showLoader('Analyzing signatures...');
+  showLoader("جارٍ تحليل التوقيعات...");
 
   try {
     state.results = await validatePdfSignatures(
@@ -289,8 +289,8 @@ async function validateSignatures(): Promise<void> {
   } catch (error) {
     console.error('Validation error:', error);
     showAlert(
-      'Error',
-      'Failed to validate signatures. The file may be corrupted.'
+      "خطأ",
+      "تعذر التحقق من التوقيعات. قد يكون الملف تالفًا."
     );
   } finally {
     hideLoader();
@@ -310,8 +310,8 @@ function displayResults(): void {
     resultsContainer.innerHTML = `
             <div class="bg-gray-700 rounded-lg p-6 text-center border border-gray-600">
                 <i data-lucide="file-x" class="w-12 h-12 mx-auto mb-4 text-gray-400"></i>
-                <h3 class="text-lg font-semibold text-white mb-2">${trHtml('No Signatures Found')}</h3>
-                <p class="text-gray-400">${trHtml('This PDF does not contain any digital signatures.')}</p>
+                <h3 class="text-lg font-semibold text-white mb-2">${trHtml("لم يتم العثور على توقيعات")}</h3>
+                <p class="text-gray-400">${trHtml("لا يحتوي ملف PDF هذا على أي توقيعات رقمية.")}</p>
             </div>
         `;
     createIcons({ icons });
@@ -332,9 +332,9 @@ function displayResults(): void {
   let summaryHtml = `
         <p class="text-gray-300">
             <span class="font-semibold text-white">${state.results.length}</span> 
-            ${state.results.length > 1 ? trHtml('signatures found') : trHtml('signature found')}
+            ${state.results.length > 1 ? trHtml("توقيعات تم العثور عليها") : trHtml("توقيع تم العثور عليه")}
             <span class="text-gray-500">•</span>
-            <span class="${validCount === state.results.length ? 'text-green-400' : 'text-yellow-400'}">${trHtml('{{validCount}} valid', { validCount })}</span>
+            <span class="${validCount === state.results.length ? 'text-green-400' : 'text-yellow-400'}">${trHtml("{{validCount}} صالح", { validCount })}</span>
         </p>
     `;
 
@@ -342,7 +342,7 @@ function displayResults(): void {
     summaryHtml += `
             <p class="text-xs text-gray-400 mt-1">
                 <i data-lucide="shield-check" class="inline w-3 h-3 mr-1"></i>
-                ${trHtml('Trust verification: {{trustVerified}}/{{length}} signatures verified against custom certificate', { trustVerified, length: state.results.length })}
+                ${trHtml("التحقق من الثقة: تم التحقق من {{trustVerified}}/{{length}} من التوقيعات مقابل الشهادة المخصصة", { trustVerified, length: state.results.length })}
             </p>
         `;
   }
@@ -367,46 +367,46 @@ function createSignatureCard(
 
   let statusColor = 'text-green-400';
   let statusIcon = 'check-circle';
-  let statusText = trText('Valid Signature');
+  let statusText = trText("توقيع صالح");
 
   if (!result.isValid) {
     if (result.cryptoVerificationStatus === 'unsupported') {
       statusColor = 'text-yellow-400';
       statusIcon = 'alert-triangle';
-      statusText = trText('Unverified: Unsupported Signature Algorithm');
+      statusText = trText("لم يتم التحقق: خوارزمية توقيع غير مدعومة");
     } else if (
       result.cryptoVerified === true &&
       result.coverageStatus === 'partial'
     ) {
       statusColor = 'text-yellow-400';
       statusIcon = 'alert-triangle';
-      statusText = trText('Modified After Signing (signed part intact)');
+      statusText = trText("تم التعديل بعد التوقيع (الجزء الموقّع سليم)");
     } else {
       statusColor = 'text-red-400';
       statusIcon = 'x-circle';
       statusText =
         result.cryptoVerified === false
-          ? trText('Invalid: Cryptographic Verification Failed')
-          : trText('Invalid Signature');
+          ? trText("غير صالح: فشل التحقق التشفيري")
+          : trText("توقيع غير صالح");
     }
   } else if (result.usesInsecureDigest) {
     statusColor = 'text-red-400';
     statusIcon = 'x-circle';
-    statusText = trText('Insecure Digest (MD5 / SHA-1)');
+    statusText = trText("تجزئة غير آمنة (MD5 / SHA-1)");
   } else if (result.isExpired) {
     statusColor = 'text-yellow-400';
     statusIcon = 'alert-triangle';
-    statusText = trText('Certificate Expired');
+    statusText = trText("الشهادة منتهية الصلاحية");
   } else if (!result.isTrusted) {
     statusColor = 'text-yellow-400';
     statusIcon = 'alert-triangle';
     statusText = result.isSelfSigned
-      ? trText('Self-Signed: Signer Identity Not Verified')
-      : trText('Signature Intact: Signer Identity Not Verified');
+      ? trText("موقّع ذاتيًا: لم يتم التحقق من هوية الموقّع")
+      : trText("التوقيع سليم: لم يتم التحقق من هوية الموقّع");
   }
 
   const formatDate = (date: Date) => {
-    if (!date || date.getTime() === 0) return trText('Unknown');
+    if (!date || date.getTime() === 0) return trText("غير معروف");
     return date.toLocaleDateString(undefined, {
       year: 'numeric',
       month: 'short',
@@ -419,9 +419,9 @@ function createSignatureCard(
   let trustBadge = '';
   if (state.trustedCert) {
     if (result.isTrusted) {
-      trustBadge = `<span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded ml-2"><i data-lucide="shield-check" class="inline w-3 h-3 mr-1"></i>${trHtml('Trusted')}</span>`;
+      trustBadge = `<span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded ml-2"><i data-lucide="shield-check" class="inline w-3 h-3 mr-1"></i>${trHtml("موثوق")}</span>`;
     } else {
-      trustBadge = `<span class="text-xs bg-gray-600 text-gray-300 px-2 py-1 rounded ml-2"><i data-lucide="shield-x" class="inline w-3 h-3 mr-1"></i>${trHtml('Not in trust chain')}</span>`;
+      trustBadge = `<span class="text-xs bg-gray-600 text-gray-300 px-2 py-1 rounded ml-2"><i data-lucide="shield-x" class="inline w-3 h-3 mr-1"></i>${trHtml("ليس ضمن سلسلة الثقة")}</span>`;
     }
   }
 
@@ -430,16 +430,16 @@ function createSignatureCard(
             <div class="flex items-center gap-3">
                 <i data-lucide="${statusIcon}" class="w-6 h-6 ${statusColor}"></i>
                 <div>
-                    <h3 class="font-semibold text-white">${trHtml('Signature {{n}}', { n: index + 1 })}</h3>
+                    <h3 class="font-semibold text-white">${trHtml("التوقيع {{n}}", { n: index + 1 })}</h3>
                     <p class="text-sm ${statusColor}">${statusText}</p>
                 </div>
             </div>
             <div class="flex items-center">
                 ${
                   result.coverageStatus === 'full'
-                    ? `<span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">${trHtml('Full Coverage')}</span>`
+                    ? `<span class="text-xs bg-green-900 text-green-300 px-2 py-1 rounded">${trHtml("تغطية كاملة")}</span>`
                     : result.coverageStatus === 'partial'
-                      ? `<span class="text-xs bg-yellow-900 text-yellow-300 px-2 py-1 rounded">${trHtml('Partial Coverage')}</span>`
+                      ? `<span class="text-xs bg-yellow-900 text-yellow-300 px-2 py-1 rounded">${trHtml("تغطية جزئية")}</span>`
                       : ''
                 }${trustBadge}
             </div>
@@ -448,13 +448,13 @@ function createSignatureCard(
         <div class="space-y-3 text-sm">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <p class="text-gray-400">${trHtml('Signed By')}</p>
+                    <p class="text-gray-400">${trHtml("وقّعه")}</p>
                     <p class="text-white font-medium">${escapeHtml(result.signerName)}</p>
                     ${result.signerOrg ? `<p class="text-gray-400 text-xs">${escapeHtml(result.signerOrg)}</p>` : ''}
                     ${result.signerEmail ? `<p class="text-gray-400 text-xs">${escapeHtml(result.signerEmail)}</p>` : ''}
                 </div>
                 <div>
-                    <p class="text-gray-400">${trHtml('Issuer')}</p>
+                    <p class="text-gray-400">${trHtml("الجهة المصدِرة")}</p>
                     <p class="text-white font-medium">${escapeHtml(result.issuer)}</p>
                     ${result.issuerOrg ? `<p class="text-gray-400 text-xs">${escapeHtml(result.issuerOrg)}</p>` : ''}
                 </div>
@@ -464,7 +464,7 @@ function createSignatureCard(
               result.signatureDate
                 ? `
                 <div>
-                    <p class="text-gray-400">${trHtml('Signed On')}</p>
+                    <p class="text-gray-400">${trHtml("تاريخ التوقيع")}</p>
                     <p class="text-white">${formatDate(result.signatureDate)}</p>
                 </div>
             `
@@ -473,11 +473,11 @@ function createSignatureCard(
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <p class="text-gray-400">${trHtml('Valid From')}</p>
+                    <p class="text-gray-400">${trHtml("صالحة من")}</p>
                     <p class="text-white">${formatDate(result.validFrom)}</p>
                 </div>
                 <div>
-                    <p class="text-gray-400">${trHtml('Valid Until')}</p>
+                    <p class="text-gray-400">${trHtml("صالحة حتى")}</p>
                     <p class="${result.isExpired ? 'text-red-400' : 'text-white'}">${formatDate(result.validTo)}</p>
                 </div>
             </div>
@@ -486,7 +486,7 @@ function createSignatureCard(
               result.reason
                 ? `
                 <div>
-                    <p class="text-gray-400">${trHtml('Reason')}</p>
+                    <p class="text-gray-400">${trHtml("السبب")}</p>
                     <p class="text-white">${escapeHtml(result.reason)}</p>
                 </div>
             `
@@ -497,7 +497,7 @@ function createSignatureCard(
               result.location
                 ? `
                 <div>
-                    <p class="text-gray-400">${trHtml('Location')}</p>
+                    <p class="text-gray-400">${trHtml("الموقع")}</p>
                     <p class="text-white">${escapeHtml(result.location)}</p>
                 </div>
             `
@@ -506,13 +506,13 @@ function createSignatureCard(
 
             <details class="mt-2">
                 <summary class="cursor-pointer text-indigo-400 hover:text-indigo-300 text-sm">
-                    ${trHtml('Technical Details')}
+                    ${trHtml("تفاصيل تقنية")}
                 </summary>
                 <div class="mt-2 p-3 bg-gray-800 rounded text-xs space-y-1">
-                    <p><span class="text-gray-400">${trHtml('Serial Number:')}</span> <span class="text-gray-300 font-mono">${escapeHtml(result.serialNumber)}</span></p>
-                    <p><span class="text-gray-400">${trHtml('Digest Algorithm:')}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.digest)}</span></p>
-                    <p><span class="text-gray-400">${trHtml('Signature Algorithm:')}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.signature)}</span></p>
-                    ${result.errorMessage ? `<p class="text-red-400">${trHtml('Error: {{error}}', { error: result.errorMessage })}</p>` : ''}
+                    <p><span class="text-gray-400">${trHtml("الرقم التسلسلي:")}</span> <span class="text-gray-300 font-mono">${escapeHtml(result.serialNumber)}</span></p>
+                    <p><span class="text-gray-400">${trHtml("خوارزمية التجزئة:")}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.digest)}</span></p>
+                    <p><span class="text-gray-400">${trHtml("خوارزمية التوقيع:")}</span> <span class="text-gray-300">${escapeHtml(result.algorithms.signature)}</span></p>
+                    ${result.errorMessage ? `<p class="text-red-400">${trHtml("خطأ: {{error}}", { error: result.errorMessage })}</p>` : ''}
                     ${result.unsupportedAlgorithmReason ? `<p class="text-yellow-300">${escapeHtml(result.unsupportedAlgorithmReason)}</p>` : ''}
                 </div>
             </details>

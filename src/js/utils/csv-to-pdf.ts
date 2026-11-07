@@ -18,12 +18,12 @@ export async function convertCsvToPdf(
   const { onProgress } = options || {};
 
   return new Promise((resolve, reject) => {
-    onProgress?.(10, trText('Reading CSV file...'));
+    onProgress?.(10, trText("جارٍ قراءة ملف CSV..."));
 
     Papa.parse(file, {
       complete: (results) => {
         try {
-          onProgress?.(50, trText('Generating PDF...'));
+          onProgress?.(50, trText("جارٍ إنشاء PDF..."));
 
           const data = results.data as string[][];
 
@@ -33,7 +33,7 @@ export async function convertCsvToPdf(
           );
 
           if (filteredData.length === 0) {
-            reject(new Error(trText('CSV file is empty')));
+            reject(new Error(trText("ملف CSV فارغ")));
             return;
           }
 
@@ -48,7 +48,7 @@ export async function convertCsvToPdf(
           const headers = filteredData[0];
           const rows = filteredData.slice(1);
 
-          onProgress?.(70, trText('Creating table...'));
+          onProgress?.(70, trText("جارٍ إنشاء الجدول..."));
 
           // Generate table
           autoTable(doc, {
@@ -73,12 +73,12 @@ export async function convertCsvToPdf(
             theme: 'striped',
           });
 
-          onProgress?.(90, trText('Finalizing PDF...'));
+          onProgress?.(90, trText("جارٍ إنهاء PDF..."));
 
           // Get PDF as blob
           const pdfBlob = doc.output('blob');
 
-          onProgress?.(100, trText('Complete!'));
+          onProgress?.(100, trText("اكتمل!"));
           resolve(pdfBlob);
         } catch (error) {
           reject(error);
@@ -87,7 +87,7 @@ export async function convertCsvToPdf(
       error: (error) => {
         reject(
           new Error(
-            trText('Failed to parse CSV: {{error}}', { error: error.message })
+            trText("تعذر تحليل CSV: {{error}}", { error: error.message })
           )
         );
       },
