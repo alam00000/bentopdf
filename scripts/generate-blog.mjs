@@ -15,7 +15,7 @@ const SITE_URL = (process.env.SITE_URL || 'https://www.pixelpdf.com').replace(
   ''
 );
 const AUTHOR = {
-  name: 'Alam',
+  name: 'علام',
   url: `${SITE_URL}/blog/author-alam`,
   image: `${SITE_URL}/images/author-alam.jpg`,
   profiles: [
@@ -194,7 +194,7 @@ function renderPost({ slug, meta, body }) {
     meta.faqs && meta.faqs.length > 0 ? meta.faqs : questionSections(body);
 
   return `<!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -221,9 +221,9 @@ function renderPost({ slug, meta, body }) {
     <article class="max-w-3xl mx-auto px-4 py-12">
       <nav
         class="flex items-center gap-2 text-sm text-gray-400 mb-6"
-        aria-label="Breadcrumb"
+        aria-label="مسار التنقل"
       >
-        <a href="/blog" class="hover:text-indigo-300">Blog</a>
+        <a href="/blog" class="hover:text-indigo-300">المدونة</a>
         <i class="ph ph-caret-right text-xs" aria-hidden="true"></i>
         <span class="text-gray-300">${escapeHtml(meta.breadcrumb)}</span>
       </nav>
@@ -242,7 +242,7 @@ function renderPost({ slug, meta, body }) {
         />
         <div>
           <a href="/blog/author-alam" class="text-gray-200 font-semibold hover:text-indigo-300">${AUTHOR.name}</a>,
-          builds Pixel PDF ·
+          مطوّر بيكسل PDF ·
           <time datetime="${meta.date}">${formatDate(meta.date)}</time>
         </div>
       </div>
@@ -326,23 +326,23 @@ function renderIndex(posts) {
     .join('\n\n');
 
   return `<!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Pixel PDF Blog | Privacy-First PDF Guides</title>
+    <title>مدونة بيكسل PDF | أدلة PDF والخصوصية</title>
     <meta
       name="description"
-      content="Guides and honest comparisons from the maintainer of Pixel PDF: how PDF tools handle your files, and how to get things done without uploading them."
+      content="أدلة ومقارنات من مطوّر بيكسل PDF: كيف تعالج الأدوات ملفاتك، وكيف تنجز عملك دون رفع المستندات."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="${SITE_URL}/blog" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${SITE_URL}/blog" />
-    <meta property="og:title" content="The Pixel PDF Blog" />
+    <meta property="og:title" content="مدونة بيكسل PDF" />
     <meta
       property="og:description"
-      content="Guides and honest comparisons from the maintainer of Pixel PDF."
+      content="أدلة ومقارنات من مطوّر بيكسل PDF."
     />
     <meta property="og:image" content="${SITE_URL}/images/og-tools.png" />
     <meta property="og:site_name" content="Pixel PDF" />
@@ -357,11 +357,9 @@ function renderIndex(posts) {
     {{> navbar }}
 
     <section class="max-w-3xl mx-auto px-4 py-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">The Pixel PDF Blog</h1>
+      <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">مدونة بيكسل PDF</h1>
       <p class="text-gray-300 leading-relaxed mb-2">
-        I'm <a href="/blog/author-alam" class="${LINK_CLASS}">Alam</a>. I build
-        Pixel PDF and write about PDFs, how they work, and the weird things I
-        run into along the way.
+        أنا <a href="/blog/author-alam" class="${LINK_CLASS}">علام</a>، أطوّر بيكسل PDF وأكتب عن ملفات PDF وآلية عملها والتحديات التي أواجهها أثناء التطوير.
       </p>
     </section>
 
@@ -379,10 +377,10 @@ ${cards}
       ${serializeJsonLd({
         '@context': 'https://schema.org',
         '@type': 'Blog',
-        name: 'The Pixel PDF Blog',
+        name: 'مدونة بيكسل PDF',
         url: `${SITE_URL}/blog`,
         description:
-          'Guides and honest comparisons from the maintainer of Pixel PDF.',
+          'أدلة ومقارنات من مطوّر بيكسل PDF.',
         publisher: {
           '@type': 'Organization',
           name: 'Pixel PDF',

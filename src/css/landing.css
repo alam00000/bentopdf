@@ -2376,3 +2376,4 @@ body.lp ::selection {
   height: auto;
   margin: 0 auto clamp(24px, 4vw, 44px);
 }
+@import './arabic-premium.css';

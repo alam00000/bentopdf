@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="JPG to PDF Converter Free - Turn Images into a PDF | Pixel PDF"
+      content="محوّل JPG إلى PDF مجانًا - حوّل الصور إلى ملف PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صور JPG وJPEG وJPEG2000 (JP2/JPX). مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/jpg-to-pdf" />
     <meta
       property="og:title"
-      content="JPG to PDF Converter Free - Turn Images into a PDF | Pixel PDF"
+      content="محوّل JPG إلى PDF مجانًا - حوّل الصور إلى ملف PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صور JPG وJPEG وJPEG2000 (JP2/JPX). مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -50,11 +50,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/jpg-to-pdf" />
     <meta
       name="twitter:title"
-      content="JPG to PDF Converter Free - Turn Images into a PDF | Pixel PDF"
+      content="محوّل JPG إلى PDF مجانًا - حوّل الصور إلى ملف PDF | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صور JPG وJPEG وJPEG2000 (JP2/JPX). مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,11 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="JPG to PDF" />
+    <meta name="apple-mobile-web-app-title" content="JPG إلى PDF" />
 
-    <title>JPG to PDF Converter Free - Turn Images into a PDF | Pixel PDF</title>
+    <title>
+      محوّل JPG إلى PDF مجانًا - حوّل الصور إلى ملف PDF | Pixel PDF
+    </title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +114,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:jpgToPdf.name"
         >
-          JPG to PDF
+          JPG إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:jpgToPdf.subtitle">
-          Create a PDF from JPG, JPEG, and JPEG2000 (JP2/JPX) images.
+          إنشاء PDF من صور JPG وJPEG وJPEG2000 (JP2/JPX).
         </p>
 
         <!-- Drop Zone -->
@@ -136,22 +138,22 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.jpgImages">
-              JPG, JPEG, JP2, JPX Images
+              صور JPG، JPEG، JP2، JPX
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
             id="file-input"
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            multiple
+            multiple=""
             accept="image/jpeg, image/jpg, image/jp2, .jp2, .jpx, .jpeg, .jpg"
           />
         </div>
@@ -163,14 +165,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -183,24 +185,23 @@
             <label
               for="jpg-pdf-quality"
               class="block mb-2 text-sm font-medium text-gray-300"
+              >جودة PDF</label
             >
-              PDF Quality
-            </label>
             <select
               id="jpg-pdf-quality"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             >
-              <option value="high">High Quality (Larger file)</option>
-              <option value="medium" selected>Medium Quality (Balanced)</option>
-              <option value="low">Low Quality (Smaller file)</option>
+              <option value="high">جودة عالية (ملف أكبر)</option>
+              <option value="medium" selected="">جودة متوسطة (متوازنة)</option>
+              <option value="low">جودة منخفضة (ملف أصغر)</option>
             </select>
             <p class="mt-1 text-xs text-gray-400">
-              Controls image compression when embedding into PDF
+              يتحكم في ضغط الصور عند تضمينها في PDF
             </p>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
-            Convert to PDF
+            التحويل إلى PDF
           </button>
         </div>
       </div>
@@ -216,7 +217,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -233,16 +234,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -253,7 +253,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -263,9 +263,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -276,9 +276,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -289,9 +289,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -304,43 +304,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -351,109 +357,103 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I combine multiple JPG files into one PDF?
+            هل يمكنني دمج عدة ملفات JPG في ملف PDF واحد؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Select or drag in as many JPGs as you need and each image
-            becomes its own full-size page in a single file named from_jpgs.pdf.
-            Pages follow the order of the file list, so remove and re-add a file
-            if you want it in a different spot.
+            نعم. اختر أو اسحب أي عدد تحتاجه من صور JPG فتصبح كل صورة صفحة كاملة
+            الحجم في ملف واحد باسم from_jpgs.pdf. تتبع الصفحات ترتيب قائمة
+            الملفات، لذا احذف الملف وأضفه مجددًا إذا أردته في موضع مختلف.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the JPG quality setting actually change?
+            ماذا يغيّر إعداد جودة JPG فعليًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            High Quality passes your original JPEG data through unchanged.
-            Medium (the default) re-encodes each image at 75% JPEG quality and
-            scales the longest side down to 2500 pixels if it's larger; Low uses
-            50% quality and a 1500 pixel limit. For phone photos, Medium is
-            usually 40 to 60% smaller than High with no visible difference on
-            screen.
+            تمرّر الجودة العالية بيانات JPEG الأصلية دون تغيير. وتعيد المتوسطة
+            (الافتراضية) ترميز كل صورة بجودة JPEG 75% وتصغّر أطول ضلع إلى 2500
+            بكسل إن كان أكبر؛ وتستخدم المنخفضة جودة 50% وحدًّا قدره 1500 بكسل.
+            وفي صور الهاتف تكون المتوسطة عادةً أصغر بنسبة 40 إلى 60% من العالية
+            دون فرق مرئي على الشاشة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it support JPEG 2000 (.jp2 and .jpx) files?
+            هل يدعم ملفات JPEG 2000 (.jp2 و.jpx)؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. JPEG 2000 files are accepted alongside .jpg and .jpeg, which is
-            useful for medical imaging and geospatial data. If your browser
-            can't decode a JPEG 2000 file for recompression, the original file
-            is embedded as is, whichever quality you chose.
+            نعم. تُقبل ملفات JPEG 2000 إلى جانب .jpg و.jpeg، وهو مفيد للتصوير
+            الطبي والبيانات الجغرافية المكانية. وإذا لم يستطع متصفحك فك ترميز
+            ملف JPEG 2000 لإعادة ضغطه، يُضمَّن الملف الأصلي كما هو، أيًّا كانت
+            الجودة التي اخترتها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size will my JPGs get in the PDF?
+            ما حجم الصفحة الذي ستحصل عليه صور JPG في ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each image is placed as a full-size page with the image's own
-            proportions, so portrait photos give portrait pages and landscape
-            scans give landscape pages. There's no fixed A4 or Letter option in
-            this tool.
+            توضع كل صورة كصفحة كاملة الحجم بنسب الصورة نفسها، فتعطي الصور
+            الرأسية صفحات رأسية والمسوحات الأفقية صفحات أفقية. ولا يوجد خيار A4
+            أو Letter ثابت في هذه الأداة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which quality setting is best for scanned documents?
+            أي إعداد جودة هو الأفضل للمستندات الممسوحة ضوئيًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Medium works for most scans that will be read on screen or printed
-            at normal size, since 2500 pixels on the long side keeps text crisp.
-            Choose High if the scans must stay at full resolution for OCR or
-            archiving, and Low for quick sharing where size matters more than
-            detail.
+            تناسب المتوسطة معظم المسوحات التي ستُقرأ على الشاشة أو تُطبع بالحجم
+            العادي، إذ يُبقي 2500 بكسل على الضلع الطويل النص حادًا. اختر العالية
+            إذا كان لا بد أن تبقى المسوحات بدقتها الكاملة لـ OCR أو الأرشفة،
+            والمنخفضة للمشاركة السريعة حيث يهم الحجم أكثر من التفاصيل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why were some of my files skipped?
+            لماذا تم تخطي بعض ملفاتي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only .jpg, .jpeg, .jp2, and .jpx files are accepted, so PNG, HEIC,
-            WebP, and other formats are left out with a notice. Use the matching
-            converter for those, or
+            تُقبل ملفات .jpg و.jpeg و.jp2 و.jpx فقط، لذا تُستبعد صيغ PNG وHEIC
+            وWebP وغيرها مع إشعار. استخدم المحوّل المناسب لها، أو
             <a
               href="/image-to-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Image to PDF</a
+              >الصور إلى PDF</a
             >
-            for a mixed set of formats.
+            لمجموعة بصيغ مختلطة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I make the PDF on my phone?
+            هل يمكنني إنشاء ملف PDF على هاتفي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. The tool runs in a mobile browser; tap the upload area to pick
-            photos from your camera roll. Medium quality keeps the resulting PDF
-            a reasonable size for a large set of photos.
+            نعم. تعمل الأداة في متصفح الجوال؛ اضغط على منطقة الرفع لاختيار الصور
+            من ألبوم الكاميرا. تُبقي الجودة المتوسطة حجم ملف PDF الناتج معقولًا
+            لمجموعة كبيرة من الصور.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my photos uploaded to create the PDF?
+            هل تُرفع صوري لإنشاء ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Recompression happens on a canvas in your browser and the PDF is
-            assembled by the PyMuPDF engine running as WebAssembly, so the
-            photos never leave your device.
+            لا. تتم إعادة الضغط على canvas في متصفحك ويُجمَّع ملف PDF بواسطة
+            محرك PyMuPDF العامل بتقنية WebAssembly، لذا لا تغادر الصور جهازك.
           </p>
         </details>
       </div>
@@ -486,26 +486,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to convert JPG to PDF online",
+        "name": "كيفية تحويل JPG إلى PDF عبر الإنترنت",
         "description": "Learn how to convert JPG to PDF using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

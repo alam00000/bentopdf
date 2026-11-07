@@ -7,7 +7,7 @@ import {
 import { state } from '../state.js';
 
 export async function pdfToMarkdown() {
-  showLoader('Converting to Markdown...');
+  showLoader("جارٍ التحويل إلى Markdown...");
   try {
     const file = state.files[0];
     const arrayBuffer = await readFileAsArrayBuffer(file);
@@ -29,8 +29,8 @@ export async function pdfToMarkdown() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Conversion Error',
-      'Failed to convert PDF. It may be image-based or corrupted.'
+      "خطأ في التحويل",
+      "تعذر تحويل PDF. قد يكون قائمًا على الصور أو تالفًا."
     );
   } finally {
     hideLoader();

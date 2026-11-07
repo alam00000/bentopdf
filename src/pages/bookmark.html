@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Bookmark Online Free - Bookmark Tool | Pixel PDF"
+      content="الإشارات المرجعية مجانًا عبر الإنترنت - أداة الإشارات المرجعية | Pixel PDF"
     />
     <meta
       name="description"
-      content="Bookmark online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أضف إشارات مرجعية عبر الإنترنت. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="bookmark, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/bookmark" />
     <meta
       property="og:title"
-      content="Bookmark Online Free - Bookmark Tool | Pixel PDF"
+      content="الإشارات المرجعية مجانًا عبر الإنترنت - أداة الإشارات المرجعية | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Bookmark online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أضف إشارات مرجعية عبر الإنترنت. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/bookmark" />
-    <meta name="twitter:title" content="Bookmark Free" />
+    <meta name="twitter:title" content="الإشارات المرجعية مجانًا" />
     <meta
       name="twitter:description"
-      content="Bookmark online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أضف إشارات مرجعية عبر الإنترنت. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -61,7 +61,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Bookmark" />
 
-    <title>Advanced PDF Bookmark Tool - Pixel PDF</title>
+    <title>أداة إشارات PDF المرجعية المتقدمة - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
     <link href="../../src/css/bookmark.css" rel="stylesheet" />
@@ -106,18 +106,18 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:editBookmarks.name"
         >
-          Edit Bookmarks
+          تعديل الإشارات المرجعية
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:editBookmarks.subtitle">
-          Add, edit, import, delete and extract PDF bookmarks.
+          إضافة وتعديل واستيراد وحذف واستخراج الإشارات المرجعية في PDF.
         </p>
 
         <!-- Drop Zone for Main PDF Upload -->
@@ -129,15 +129,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-300">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -160,7 +160,7 @@
               class="w-4 h-4 accent-blue-500"
             />
             <span data-i18n="tools:editBookmarks.autoExtractExisting"
-              >Auto-extract existing bookmarks</span
+              >استخراج الإشارات المرجعية الموجودة تلقائيًا</span
             >
           </label>
         </div>
@@ -171,7 +171,7 @@
             class="text-sm font-semibold text-gray-300 mb-4"
             data-i18n="tools:editBookmarks.importSectionTitle"
           >
-            Or Import Bookmarks
+            أو استيراد الإشارات المرجعية
           </h3>
 
           <!-- CSV Upload -->
@@ -179,7 +179,7 @@
             <span
               class="text-xs text-gray-500"
               data-i18n="tools:editBookmarks.csvFormat"
-              >CSV format: title,page,level</span
+              >تنسيق CSV: العنوان,الصفحة,المستوى</span
             >
             <div
               class="relative flex flex-col items-center justify-center w-full h-32 mt-2 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
@@ -190,10 +190,10 @@
                   <span
                     class="font-semibold"
                     data-i18n="tools:editBookmarks.uploadCsvAction"
-                    >Click to upload CSV</span
+                    >انقر لتحميل CSV</span
                   >
                   <span data-i18n="tools:editBookmarks.orDragHere"
-                    >or drag here</span
+                    >أو اسحب إلى هنا</span
                   >
                 </p>
               </div>
@@ -211,7 +211,7 @@
             <span
               class="text-xs text-gray-500"
               data-i18n="tools:editBookmarks.jsonFormat"
-              >JSON format</span
+              >تنسيق JSON</span
             >
             <div
               class="relative flex flex-col items-center justify-center w-full h-32 mt-2 border-2 border-dashed border-gray-600 rounded-xl cursor-pointer bg-gray-800 hover:bg-gray-700 transition-colors duration-300"
@@ -222,10 +222,10 @@
                   <span
                     class="font-semibold"
                     data-i18n="tools:editBookmarks.uploadJsonAction"
-                    >Click to upload JSON</span
+                    >انقر لتحميل JSON</span
                   >
                   <span data-i18n="tools:editBookmarks.orDragHere"
-                    >or drag here</span
+                    >أو اسحب إلى هنا</span
                   >
                 </p>
               </div>
@@ -248,41 +248,42 @@
         <div class="max-w-7xl mx-auto px-4 py-3">
           <div class="flex items-center justify-between flex-wrap gap-2">
             <div class="text-xl font-bold text-white" id="filename-display">
-              PDF Bookmark Editor
+              محرر إشارات PDF المرجعية
             </div>
             <div class="flex gap-2 flex-wrap">
               <button
                 id="undo-btn"
                 class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-                disabled
+                disabled=""
               >
-                <i data-lucide="undo-2" class="w-4 h-4"></i> Undo
+                <i data-lucide="undo-2" class="w-4 h-4"></i> تراجع
               </button>
               <button
                 id="redo-btn"
                 class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
-                disabled
+                disabled=""
               >
-                <i data-lucide="redo-2" class="w-4 h-4"></i> Redo
+                <i data-lucide="redo-2" class="w-4 h-4"></i> إعادة
               </button>
               <button
                 id="delete-all-btn"
                 class="px-3 py-2 text-sm bg-red-600 hover:bg-red-700 text-white rounded flex items-center gap-1"
               >
-                <i data-lucide="trash-2" class="w-4 h-4"></i> Delete All
+                <i data-lucide="trash-2" class="w-4 h-4"></i> حذف الكل
               </button>
               <button
                 id="reset-btn"
                 class="px-3 py-2 text-sm bg-orange-600 hover:bg-orange-700 text-white rounded flex items-center gap-1"
               >
-                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i> إعادة ضبط
               </button>
 
               <button
                 id="back-btn"
                 class="px-3 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white rounded flex items-center gap-1"
               >
-                <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Tools
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> العودة إلى
+                الأدوات
               </button>
             </div>
           </div>
@@ -295,13 +296,13 @@
             id="show-viewer-btn"
             class="flex-1 py-3 text-sm font-medium bg-indigo-600 text-white"
           >
-            PDF Viewer
+            عارض PDF
           </button>
           <button
             id="show-bookmarks-btn"
             class="flex-1 py-3 text-sm font-medium text-gray-300 hover:text-white"
           >
-            Bookmarks
+            الإشارات المرجعية
           </button>
         </div>
       </div>
@@ -326,7 +327,7 @@
                   <span
                     id="page-indicator"
                     class="text-sm font-medium text-gray-700 whitespace-nowrap"
-                    >Page 1 / 1</span
+                    >الصفحة 1 / 1</span
                   >
                   <button
                     id="next-page"
@@ -339,25 +340,24 @@
                   </button>
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-sm text-gray-600">Go to:</span>
+                  <span class="text-sm text-gray-600">الانتقال إلى:</span>
                   <input
                     type="number"
                     id="goto-page"
                     min="1"
                     class="w-16 px-2 py-1 border border-gray-300 rounded text-sm"
-                  />
-                  <button
+                  /><button
                     id="goto-btn"
                     class="px-3 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm"
                   >
-                    Go
+                    انتقال
                   </button>
                 </div>
                 <div class="flex items-center gap-2">
                   <button
                     id="zoom-out-btn"
                     class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded text-sm"
-                    title="Zoom Out"
+                    title="تصغير"
                   >
                     <i data-lucide="minus" class="w-5 h-5 text-blue-600"></i>
                   </button>
@@ -369,16 +369,16 @@
                   <button
                     id="zoom-in-btn"
                     class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded text-sm"
-                    title="Zoom In"
+                    title="تكبير"
                   >
                     <i data-lucide="plus" class="w-5 h-5 text-blue-600"></i>
                   </button>
                   <button
                     id="zoom-fit-btn"
                     class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded text-sm"
-                    title="Fit to Width"
+                    title="ملاءمة العرض"
                   >
-                    Fit
+                    ملاءمة
                   </button>
                 </div>
               </div>
@@ -394,14 +394,14 @@
                       class="w-5 h-5 text-blue-600"
                     ></i>
                     <span class="text-sm font-medium text-blue-800"
-                      >Click on the PDF to set bookmark destination</span
+                      >انقر على PDF لتحديد وجهة الإشارة المرجعية</span
                     >
                   </div>
                   <button
                     id="cancel-picking-btn"
                     class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-xs"
                   >
-                    Cancel
+                    إلغاء
                   </button>
                 </div>
               </div>
@@ -425,7 +425,9 @@
             class="hidden lg:block w-full lg:w-[50%] flex-shrink-0"
           >
             <div class="bg-white rounded-lg shadow-lg p-4">
-              <h3 class="text-lg font-bold text-gray-800 mb-4">Bookmarks</h3>
+              <h3 class="text-lg font-bold text-gray-800 mb-4">
+                الإشارات المرجعية
+              </h3>
 
               <div class="mb-4">
                 <div class="relative">
@@ -436,7 +438,7 @@
                   <input
                     type="text"
                     id="search-bookmarks"
-                    placeholder="Search bookmarks..."
+                    placeholder="البحث في الإشارات المرجعية..."
                     class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700"
                   />
                 </div>
@@ -446,7 +448,7 @@
                 <input
                   type="text"
                   id="bookmark-title"
-                  placeholder="Bookmark title..."
+                  placeholder="عنوان الإشارة المرجعية..."
                   class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm text-gray-700"
                 />
                 <button
@@ -455,7 +457,8 @@
                 >
                   <i data-lucide="plus" class="w-4 h-4"></i>
                   <span
-                    >Add to Page <span id="current-page-display">1</span></span
+                    >إضافة إلى الصفحة
+                    <span id="current-page-display">1</span></span
                   >
                 </button>
               </div>
@@ -463,24 +466,23 @@
               <div class="mb-4">
                 <label
                   class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2"
-                >
-                  <input
+                  ><input
                     type="checkbox"
                     id="batch-mode-checkbox"
                     class="w-4 h-4"
                   />
                   <span
-                    >Batch Mode (<span id="selected-count">0</span>
-                    selected)</span
-                  >
-                </label>
+                    >الوضع الدفعي (<span id="selected-count">0</span>
+                    محدد)</span
+                  ></label
+                >
 
                 <div
                   id="batch-operations"
                   class="hidden p-3 bg-blue-50 rounded-lg border border-blue-200"
                 >
                   <div class="text-xs font-semibold text-gray-700 mb-2">
-                    Batch Operations
+                    عمليات دفعية
                   </div>
                   <div class="flex flex-col gap-2">
                     <div class="flex gap-2">
@@ -488,15 +490,15 @@
                         id="select-all-btn"
                         class="flex-1 px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded text-xs flex items-center justify-center gap-1"
                       >
-                        <i data-lucide="check-square" class="w-3 h-3"></i>
-                        Select All
+                        <i data-lucide="check-square" class="w-3 h-3"></i> تحديد
+                        الكل
                       </button>
                       <button
                         id="deselect-all-btn"
                         class="flex-1 px-3 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded text-xs flex items-center justify-center gap-1"
                       >
-                        <i data-lucide="square" class="w-3 h-3"></i> Deselect
-                        All
+                        <i data-lucide="square" class="w-3 h-3"></i> إلغاء تحديد
+                        الكل
                       </button>
                     </div>
 
@@ -504,32 +506,31 @@
                       id="batch-color-select"
                       class="text-xs p-2 border rounded"
                     >
-                      <option value="">Set Color...</option>
-                      <option value="null">None</option>
-                      <option value="red">Red</option>
-                      <option value="blue">Blue</option>
-                      <option value="green">Green</option>
-                      <option value="yellow">Yellow</option>
-                      <option value="purple">Purple</option>
+                      <option value="">ضبط اللون...</option>
+                      <option value="null">بدون</option>
+                      <option value="red">أحمر</option>
+                      <option value="blue">أزرق</option>
+                      <option value="green">أخضر</option>
+                      <option value="yellow">أصفر</option>
+                      <option value="purple">أرجواني</option>
                     </select>
 
                     <select
                       id="batch-style-select"
                       class="text-xs p-2 border rounded"
                     >
-                      <option value="">Set Style...</option>
-                      <option value="null">Normal</option>
-                      <option value="bold">Bold</option>
-                      <option value="italic">Italic</option>
-                      <option value="bold-italic">Bold & Italic</option>
+                      <option value="">ضبط النمط...</option>
+                      <option value="null">عادي</option>
+                      <option value="bold">غامق</option>
+                      <option value="italic">مائل</option>
+                      <option value="bold-italic">غامق ومائل</option>
                     </select>
 
                     <button
                       id="batch-delete-btn"
                       class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded text-xs flex items-center justify-center gap-1"
                     >
-                      <i data-lucide="trash-2" class="w-3 h-3"></i> Delete
-                      Selected
+                      <i data-lucide="trash-2" class="w-3 h-3"></i> حذف المحدد
                     </button>
                   </div>
                 </div>
@@ -540,13 +541,13 @@
                   id="expand-all-btn"
                   class="flex-1 px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                 >
-                  <i data-lucide="chevrons-down" class="w-4 h-4"></i> Expand All
+                  <i data-lucide="chevrons-down" class="w-4 h-4"></i> توسيع الكل
                 </button>
                 <button
                   id="collapse-all-btn"
                   class="flex-1 px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                 >
-                  <i data-lucide="chevrons-up" class="w-4 h-4"></i> Collapse All
+                  <i data-lucide="chevrons-up" class="w-4 h-4"></i> طي الكل
                 </button>
               </div>
 
@@ -556,7 +557,7 @@
                     id="import-dropdown-btn"
                     class="w-full px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                   >
-                    <i data-lucide="upload" class="w-4 h-4"></i> Import
+                    <i data-lucide="upload" class="w-4 h-4"></i> استيراد
                     <i data-lucide="chevron-down" class="w-3 h-3"></i>
                   </button>
                   <div
@@ -571,14 +572,14 @@
                         data-lucide="file-text"
                         class="w-4 h-4 text-gray-600"
                       ></i>
-                      Import CSV
+                      استيراد CSV
                     </button>
                     <button
                       id="import-json-btn"
                       class="w-full px-3 py-2 text-sm text-left flex items-center gap-2 rounded-b-lg bg-gradient-to-b from-gray-50 to-gray-100 hover:shadow-sm hover:from-gray-100 hover:to-gray-200 transition duration-150"
                     >
                       <i data-lucide="braces" class="w-4 h-4 text-gray-600"></i>
-                      Import JSON
+                      استيراد JSON
                     </button>
                   </div>
                 </div>
@@ -588,7 +589,7 @@
                     id="export-dropdown-btn"
                     class="w-full px-3 py-2 bg-gradient-to-b from-gray-100 to-gray-200 hover:shadow-md text-gray-700 rounded text-sm font-medium flex items-center justify-center gap-1 focus:ring-2 focus:ring-gray-300 transition duration-200"
                   >
-                    <i data-lucide="download" class="w-4 h-4"></i> Export
+                    <i data-lucide="download" class="w-4 h-4"></i> تصدير
                     <i data-lucide="chevron-down" class="w-3 h-3"></i>
                   </button>
                   <div
@@ -599,13 +600,13 @@
                       id="export-csv-btn"
                       class="w-full px-3 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 rounded-t-lg"
                     >
-                      <i data-lucide="file-text" class="w-4 h-4"></i> Export CSV
+                      <i data-lucide="file-text" class="w-4 h-4"></i> تصدير CSV
                     </button>
                     <button
                       id="export-json-btn"
                       class="w-full px-3 py-2 text-sm text-left hover:bg-gray-50 flex items-center gap-2 rounded-b-lg"
                     >
-                      <i data-lucide="braces" class="w-4 h-4"></i> Export JSON
+                      <i data-lucide="braces" class="w-4 h-4"></i> تصدير JSON
                     </button>
                   </div>
                 </div>
@@ -619,7 +620,7 @@
                   id="no-bookmarks"
                   class="text-center py-8 text-gray-400 text-sm"
                 >
-                  No bookmarks yet. Add one above!
+                  لا توجد إشارات مرجعية بعد. أضف واحدة أعلاه!
                 </div>
               </div>
 
@@ -628,13 +629,13 @@
                   id="download-btn"
                   class="w-full px-4 py-2 btn-gradient hover:shadow-xl text-white rounded font-medium !flex items-center justify-center gap-2 focus:ring-2 focus:ring-blue-400 transition duration-200"
                 >
-                  Save PDF with Bookmarks
+                  حفظ PDF مع الإشارات المرجعية
                 </button>
                 <button
                   id="extract-existing-btn"
                   class="w-full px-4 py-2 bg-gray-50 text-gray-800 border border-gray-200 rounded-xl font-medium flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition duration-200"
                 >
-                  Extract Existing Bookmarks
+                  استخراج الإشارات المرجعية الحالية
                 </button>
               </div>
             </div>
@@ -656,7 +657,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Loading PDF...
+          جارٍ تحميل PDF...
         </p>
       </div>
     </div>
@@ -669,7 +670,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -683,10 +684,10 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="howItWorks.step1Title"
             >
-              Upload File
+              تحميل الملف
             </h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -701,10 +702,10 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="howItWorks.step2Title"
             >
-              Process
+              معالجة
             </h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -719,10 +720,10 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="howItWorks.step3Title"
             >
-              Download
+              تنزيل
             </h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -735,43 +736,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -782,108 +789,105 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I add bookmarks to a PDF that doesn't have any?
+            كيف أضيف إشارات مرجعية إلى PDF لا يحتوي على أي منها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the PDF, go to a page, type a title, and click Add to Page;
-            drag entries to nest or reorder them. Click Save PDF with Bookmarks
-            to download the result. For a printed contents page inside the
-            document rather than sidebar navigation, use
+            ارفع PDF، وانتقل إلى صفحة، واكتب عنوانًا، ثم انقر على إضافة إلى
+            الصفحة؛ واسحب العناصر لتداخلها أو لإعادة ترتيبها. انقر على حفظ PDF
+            مع الإشارات المرجعية لتنزيل النتيجة. أما لصفحة فهرس مطبوعة داخل
+            المستند بدلاً من التنقل في الشريط الجانبي، فاستخدم
             <a
               href="/table-of-contents"
               class="text-indigo-300 hover:text-indigo-400"
-              >Table of Contents</a
-            >
-            instead.
+              >جدول المحتويات</a
+            >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will my existing bookmarks be kept?
+            هل ستبقى إشاراتي المرجعية الحالية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only if you check Auto-extract existing bookmarks before uploading,
-            or use the extract button afterward, so they load into the panel.
-            When you save, the panel's contents replace the PDF's bookmark tree
-            entirely, so anything not loaded into the editor is dropped.
+            فقط إذا حددت الاستخراج التلقائي للإشارات المرجعية الحالية قبل الرفع،
+            أو استخدمت زر الاستخراج بعد ذلك، لتُحمَّل في اللوحة. عند الحفظ، يحل
+            محتوى اللوحة محل شجرة الإشارات المرجعية في PDF بالكامل، لذا يُحذف كل
+            ما لم يُحمَّل في المحرر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the CSV format for importing bookmarks?
+            ما صيغة CSV لاستيراد الإشارات المرجعية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A header row followed by one line per bookmark with three columns:
-            title,page,level. Titles containing commas go in double quotes, page
-            is the 1-based page number, and level controls nesting, with the
-            lowest number for top-level entries and each deeper child adding
-            one.
+            صف للعناوين يليه سطر واحد لكل إشارة مرجعية بثلاثة أعمدة:
+            title,page,level. توضع العناوين التي تحتوي على فواصل بين علامتي
+            اقتباس مزدوجتين، وpage هو رقم الصفحة بدءًا من 1، ويتحكم level في
+            التداخل، بأقل رقم للعناصر العليا ويزيد بواحد مع كل مستوى فرعي أعمق.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can a bookmark jump to a specific spot on a page instead of the top?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يمكن لإشارة مرجعية أن تنتقل إلى موضع محدد في الصفحة بدلاً من
+            أعلاها؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Open the bookmark's edit dialog, turn on Set custom destination, and
-            either type X and Y coordinates plus a zoom percentage or click the
-            pick button and then click the exact spot on the page preview. The
-            bookmark is saved as an XYZ destination, which most readers honor.
+            افتح مربع حوار تحرير الإشارة المرجعية، وفعّل تعيين وجهة مخصصة، ثم
+            اكتب إحداثيي X وY ونسبة التكبير، أو انقر على زر الالتقاط ثم انقر على
+            الموضع المطلوب في معاينة الصفحة. تُحفظ الإشارة المرجعية بوجهة XYZ،
+            وتحترمها معظم برامج القراءة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I color or bold bookmarks?
+            هل يمكنني تلوين الإشارات المرجعية أو جعلها غامقة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each bookmark can be red, blue, green, yellow, purple, or a custom
-            hex color, and styled bold, italic, or bold italic. Turn on Batch
-            Mode to select several bookmarks and apply a color or style to all
-            of them at once.
+            يمكن أن يكون لكل إشارة مرجعية اللون الأحمر أو الأزرق أو الأخضر أو
+            الأصفر أو الأرجواني أو لون سداسي مخصص، ونمط غامق أو مائل أو غامق
+            مائل. فعّل الوضع الدفعي لتحديد عدة إشارات مرجعية وتطبيق لون أو نمط
+            على جميعها دفعة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I get bookmarks out of a PDF for editing in a spreadsheet?
+            كيف أستخرج الإشارات المرجعية من PDF لتحريرها في جدول بيانات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Load them with Auto-extract, then use Export to CSV or Export to
-            JSON; the file is named after your PDF with a -bookmarks suffix. The
-            CSV opens in Excel or Google Sheets, and once you've edited it you
-            can import it back and save a new PDF.
+            حمّلها بالاستخراج التلقائي، ثم استخدم تصدير إلى CSV أو تصدير إلى
+            JSON؛ ويُسمى الملف باسم PDF مع اللاحقة -bookmarks. يُفتح ملف CSV في
+            Excel أو Google Sheets، وبعد تعديله يمكنك استيراده من جديد وحفظ PDF
+            جديد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the editor work on password-protected PDFs?
+            هل يعمل المحرر مع ملفات PDF المحمية بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            You'll be asked for the password when you upload the file, and the
-            editor opens once it's entered. The saved PDF is written without the
-            password, so protect it again afterward if you need to.
+            ستُطلب منك كلمة المرور عند رفع الملف، ويُفتح المحرر بمجرد إدخالها.
+            يُكتب PDF المحفوظ بدون كلمة المرور، لذا احمِه من جديد بعد ذلك إذا
+            احتجت إلى ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded while I edit bookmarks?
+            هل يُرفع ملف PDF الخاص بي أثناء تحرير الإشارات المرجعية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The page preview, the bookmark tree, and the final save are all
-            handled in your browser with PDF.js and pdf-lib, so the file never
-            leaves your computer.
+            لا. تُعالَج معاينة الصفحة وشجرة الإشارات المرجعية والحفظ النهائي
+            كلها في متصفحك باستخدام PDF.js وpdf-lib، لذا لا يغادر الملف حاسوبك.
           </p>
         </details>
       </div>
@@ -916,26 +920,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to bookmark online",
+        "name": "كيفية إضافة إشارات مرجعية عبر الإنترنت",
         "description": "Learn how to bookmark using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

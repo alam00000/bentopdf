@@ -79,11 +79,11 @@ function updateUI() {
 
 async function createZipArchive() {
   if (pageState.files.length === 0) {
-    showAlert('No Files', 'Please select PDF files to create a ZIP archive.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملفات PDF لإنشاء أرشيف ZIP.");
     return;
   }
 
-  showLoader('Creating ZIP archive...');
+  showLoader("جارٍ إنشاء أرشيف ZIP...");
 
   try {
     const zip = new JSZip();
@@ -92,7 +92,7 @@ async function createZipArchive() {
     for (let i = 0; i < pageState.files.length; i++) {
       const file = pageState.files[i];
       showLoader(
-        trText('Adding {{name}} ({{n}}/{{length}})...', {
+        trText("جارٍ إضافة {{name}} ({{n}}/{{length}})...", {
           name: file.name,
           n: i + 1,
           length: pageState.files.length,
@@ -103,14 +103,14 @@ async function createZipArchive() {
       zip.file(zipEntryName, arrayBuffer);
     }
 
-    showLoader('Generating ZIP file...');
+    showLoader("جارٍ إنشاء ملف ZIP...");
     const zipBlob = await zip.generateAsync({ type: 'blob' });
 
     downloadFile(zipBlob, 'pdfs_archive.zip');
 
     showAlert(
-      'Success',
-      'ZIP archive created successfully!',
+      "تم بنجاح",
+      "تم إنشاء أرشيف ZIP بنجاح!",
       'success',
       function () {
         resetState();
@@ -118,7 +118,7 @@ async function createZipArchive() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not create ZIP archive.');
+    showAlert("خطأ", "تعذر إنشاء أرشيف ZIP.");
   } finally {
     hideLoader();
   }

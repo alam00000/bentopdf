@@ -102,11 +102,11 @@ export async function exportComparePdf(
 ) {
   if (!pdfDoc1 && !pdfDoc2) {
     throw new Error(
-      trText('At least one PDF document is required for export.')
+      trText("مطلوب مستند PDF واحد على الأقل للتصدير.")
     );
   }
   if (!pairs || pairs.length === 0) {
-    throw new Error(trText('No page pairs to export.'));
+    throw new Error(trText("لا توجد أزواج صفحات للتصدير."));
   }
 
   const outDoc = await PDFDocument.create();
@@ -143,7 +143,7 @@ export async function exportComparePdf(
   for (let i = 0; i < pairs.length; i++) {
     const pair = pairs[i];
     onProgress?.(
-      trText('Rendering page {{n}} of {{length}}...', {
+      trText("جارٍ عرض الصفحة {{n}} من {{length}}...", {
         n: i + 1,
         length: pairs.length,
       }),

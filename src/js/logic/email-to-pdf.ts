@@ -335,6 +335,6 @@ export async function parseEmailFile(file: File): Promise<ParsedEmail> {
   } else if (ext === 'msg') {
     return parseMsgFile(file);
   } else {
-    throw new Error(trText('Unsupported file type: .{{ext}}', { ext }));
+    throw new Error(trText("نوع الملف غير مدعوم: .{{ext}}", { ext }));
   }
 }

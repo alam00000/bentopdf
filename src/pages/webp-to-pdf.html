@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="WebP to PDF Online Free - WebP to PDF Tool | Pixel PDF"
+      content="WebP إلى PDF عبر الإنترنت مجانًا - أداة WebP إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Create a PDF from one or more WebP images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة WebP واحدة أو أكثر. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="webp to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/webp-to-pdf" />
     <meta
       property="og:title"
-      content="WebP to PDF Online Free - WebP to PDF Tool | Pixel PDF"
+      content="WebP إلى PDF عبر الإنترنت مجانًا - أداة WebP إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Create a PDF from one or more WebP images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة WebP واحدة أو أكثر. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/webp-to-pdf" />
-    <meta name="twitter:title" content="WebP to PDF Free" />
+    <meta name="twitter:title" content="WebP إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Create a PDF from one or more WebP images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة WebP واحدة أو أكثر. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="WebP to PDF" />
+    <meta name="apple-mobile-web-app-title" content="WebP إلى PDF" />
 
-    <title>WebP to PDF - Pixel PDF</title>
+    <title>WebP إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:webpToPdf.name"
         >
-          WebP to PDF
+          WebP إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:webpToPdf.subtitle">
-          Create a PDF from one or more WebP images.
+          إنشاء PDF من صورة WebP واحدة أو أكثر.
         </p>
 
         <!-- Drop Zone -->
@@ -130,25 +130,25 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.webpImages"
             >
-              WebP Images
+              صور WebP
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
             id="file-input"
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            multiple
+            multiple=""
             accept="image/webp"
           />
         </div>
@@ -160,14 +160,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -180,24 +180,23 @@
             <label
               for="jpg-pdf-quality"
               class="block mb-2 text-sm font-medium text-gray-300"
+              >جودة PDF</label
             >
-              PDF Quality
-            </label>
             <select
               id="jpg-pdf-quality"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             >
-              <option value="high">High Quality (Larger file)</option>
-              <option value="medium" selected>Medium Quality (Balanced)</option>
-              <option value="low">Low Quality (Smaller file)</option>
+              <option value="high">جودة عالية (ملف أكبر)</option>
+              <option value="medium" selected="">جودة متوسطة (متوازنة)</option>
+              <option value="low">جودة منخفضة (ملف أصغر)</option>
             </select>
             <p class="mt-1 text-xs text-gray-400">
-              Controls image compression when embedding into PDF
+              يتحكم في ضغط الصور عند تضمينها في PDF
             </p>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
-            Convert to PDF
+            التحويل إلى PDF
           </button>
         </div>
       </div>
@@ -213,7 +212,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -230,16 +229,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -250,7 +248,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -260,9 +258,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -273,9 +271,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -286,9 +284,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -301,43 +299,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -348,109 +352,103 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does each WebP image become its own page?
+            هل تصبح كل صورة WebP صفحة مستقلة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Every image is placed on a separate page sized to the image
-            itself, in the order the files appear in the list, and the whole set
-            downloads as one file named from_webps.pdf.
+            نعم. توضع كل صورة على صفحة منفصلة بحجم الصورة نفسها، بترتيب ظهور
+            الملفات في القائمة، وتُنزَّل المجموعة كلها كملف واحد باسم
+            from_webps.pdf.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size will my WebP images get in the PDF?
+            ما حجم الصفحة الذي ستحصل عليه صور WebP في PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The page matches the image's pixel dimensions at one point per
-            pixel, so a 1600 x 1200 image produces a 1600 x 1200 point page,
-            roughly 22 x 17 inches. To get standard A4 or Letter pages, run the
-            result through
+            تطابق الصفحة أبعاد الصورة بالبكسل بنقطة واحدة لكل بكسل، فصورة 1600 ×
+            1200 تنتج صفحة 1600 × 1200 نقطة، أي نحو 22 × 17 بوصة. للحصول على
+            صفحات A4 أو Letter قياسية، مرّر الناتج عبر
             <a
               href="/fix-page-size"
               class="text-indigo-300 hover:text-indigo-400"
-              >Fix Page Size</a
+              >ضبط حجم الصفحة</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the quality settings change for WebP images?
+            ماذا تغيّر إعدادات الجودة في صور WebP؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            High keeps the full pixel dimensions with the lightest compression.
-            Medium, the default, re-encodes as JPEG at about 75 percent and
-            scales images down so the longest side is at most 2500 pixels; Low
-            uses about 50 percent and a 1500 pixel cap, which gives the smallest
-            files.
+            تُبقي الجودة العالية أبعاد البكسل كاملة بأخف ضغط. أما المتوسطة، وهي
+            الافتراضية، فتعيد الترميز كـ JPEG بنحو 75 بالمئة وتصغّر الصور بحيث
+            لا يتجاوز أطول ضلع 2500 بكسل، والمنخفضة تستخدم نحو 50 بالمئة وحدًا
+            أقصى 1500 بكسل، وتعطي أصغر الملفات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will transparent areas stay transparent?
+            هل تبقى المناطق الشفافة شفافة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Images are re-encoded through the browser's canvas as JPEG when
-            they're embedded, and JPEG has no alpha channel, so see-through
-            regions come out as a solid background. Flatten the image onto a
-            white background in an image editor first if that matters.
+            لا. تُعاد ترميز الصور عبر لوحة المتصفح كـ JPEG عند تضمينها، وJPEG لا
+            يدعم قناة ألفا، فتظهر المناطق الشفافة بخلفية صلبة. سطّح الصورة على
+            خلفية بيضاء في محرر صور أولًا إذا كان ذلك مهمًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert an animated WebP?
+            هل يمكنني تحويل WebP متحرك؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only the first frame is used, since the browser decodes the file as
-            a still image before it's placed on the page. Each animation becomes
-            a single static page.
+            يُستخدم الإطار الأول فقط، لأن المتصفح يفك ترميز الملف كصورة ثابتة
+            قبل وضعه على الصفحة. يصبح كل رسم متحرك صفحة ثابتة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I mix WebP with JPG or PNG files in the same PDF?
+            هل يمكنني خلط WebP مع ملفات JPG أو PNG في ملف PDF واحد؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not on this page; the file picker accepts .webp only. Use
+            ليس في هذه الصفحة، فمنتقي الملفات يقبل .webp فقط. استخدم
             <a
               href="/image-to-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Images to PDF</a
-            >, which takes WebP, JPG, PNG, and other formats together in a
-            single conversion.
+              >الصور إلى PDF</a
+            >
+            التي تقبل WebP وJPG وPNG وصيغًا أخرى معًا في تحويل واحد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my images uploaded to make the PDF?
+            هل تُرفع صوري لإنشاء PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Each WebP is decoded by your browser's own image engine and
-            written into the PDF locally, so the pictures never leave your
-            device.
+            لا. يفك محرك الصور في متصفحك ترميز كل WebP وتُكتب في PDF محليًا، فلا
+            تغادر الصور جهازك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I reorder or remove images before converting?
+            هل يمكنني إعادة ترتيب الصور أو حذفها قبل التحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            You can remove any file from the list with its delete icon, but
-            there's no drag reordering on this page, so pages follow the order
-            in which you selected the files. Pick them in the order you want
-            them to appear.
+            يمكنك حذف أي ملف من القائمة بأيقونة الحذف، لكن لا يوجد سحب لإعادة
+            الترتيب في هذه الصفحة، فتتبع الصفحات ترتيب اختيارك للملفات. اخترها
+            بالترتيب الذي تريد ظهورها به.
           </p>
         </details>
       </div>
@@ -483,26 +481,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to webp to pdf online",
+        "name": "كيفية تحويل WebP إلى PDF عبر الإنترنت",
         "description": "Learn how to webp to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

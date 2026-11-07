@@ -115,13 +115,13 @@ onPageReady(() => {
           result.pdf.destroy();
           state.files[0] = result.file;
           state.pdfDoc = await loadPdfDocument(result.bytes);
-          metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+          metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
             size: formatBytes(file.size),
             pageCount,
           });
         } catch (error) {
           console.error('Error loading PDF:', error);
-          showAlert('Error', 'Failed to load PDF file.');
+          showAlert("خطأ", "تعذر تحميل ملف PDF.");
           state.files = [];
           updateUI();
           return;
@@ -148,7 +148,7 @@ onPageReady(() => {
     // Cleanup any previous lazy loading observers
     cleanupLazyRendering();
 
-    showLoader('Rendering page previews...');
+    showLoader("جارٍ عرض معاينات الصفحات...");
 
     try {
       if (!state.pdfDoc) {
@@ -158,15 +158,15 @@ onPageReady(() => {
           hideLoader();
           const result = await loadPdfWithPasswordPrompt(file);
           if (!result) {
-            showLoader('Rendering page previews...');
-            throw new Error(trText('No PDF document loaded'));
+            showLoader("جارٍ عرض معاينات الصفحات...");
+            throw new Error(trText("لم يتم تحميل مستند PDF"));
           }
           result.pdf.destroy();
           state.files[0] = result.file;
           state.pdfDoc = await loadPdfDocument(result.bytes);
-          showLoader('Rendering page previews...');
+          showLoader("جارٍ عرض معاينات الصفحات...");
         } else {
-          throw new Error(trText('No PDF document loaded'));
+          throw new Error(trText("لم يتم تحميل مستند PDF"));
         }
       }
 
@@ -228,7 +228,7 @@ onPageReady(() => {
         lazyLoadMargin: '400px',
         onProgress: (current, total) => {
           showLoader(
-            trText('Rendering page previews: {{current}}/{{total}}', {
+            trText("جارٍ عرض معاينات الصفحات: {{current}}/{{total}}", {
               current,
               total,
             })
@@ -242,7 +242,7 @@ onPageReady(() => {
       initPagePreview(container, pdf);
     } catch (error) {
       console.error('Error rendering visual selector:', error);
-      showAlert('Error', 'Failed to render page previews.');
+      showAlert("خطأ", "تعذر عرض معاينات الصفحات.");
       // Reset the flag on error so the user can try again.
       visualSelectorRendered = false;
     } finally {
@@ -312,13 +312,13 @@ onPageReady(() => {
         ) as HTMLInputElement | null
       )?.value === 'separate';
 
-    showLoader('Splitting PDF...');
+    showLoader("جارٍ تقسيم PDF...");
 
     let qpdf: QpdfInstanceExtended | null = null;
     const inputPath = '/split-input.pdf';
 
     try {
-      if (!state.pdfDoc) throw new Error(trText('No PDF document loaded.'));
+      if (!state.pdfDoc) throw new Error(trText("لم يتم تحميل مستند PDF."));
       const srcDoc = state.pdfDoc;
 
       const totalPages = srcDoc.getPageCount();
@@ -351,7 +351,7 @@ onPageReady(() => {
             document.getElementById('page-range') as HTMLInputElement
           ).value;
           if (!pageRangeInput)
-            throw new Error(trText('Choose a valid page range.'));
+            throw new Error(trText("اختر نطاق صفحات صالحًا."));
 
           const { groups: rangeGroups, indices: rangeIndices } =
             parseRangeGroups(pageRangeInput, totalPages);
@@ -366,7 +366,7 @@ onPageReady(() => {
             'input[name="even-odd-choice"]:checked'
           ) as HTMLInputElement;
           if (!choiceElement)
-            throw new Error(trText('Please select even or odd pages.'));
+            throw new Error(trText("يرجى اختيار الصفحات الزوجية أو الفردية."));
           const choice = choiceElement.value === 'even' ? 'even' : 'odd';
           indicesToExtract = evenOddIndices(choice, totalPages);
           break;
@@ -417,7 +417,7 @@ onPageReady(() => {
 
           if (splitPages.length === 0) {
             throw new Error(
-              trText('No bookmarks found at the selected level.')
+              trText("لم يتم العثور على إشارات مرجعية في المستوى المحدد.")
             );
           }
 
@@ -432,7 +432,7 @@ onPageReady(() => {
           const zipBlob = await zip.generateAsync({ type: 'blob' });
           downloadFile(zipBlob, 'split-by-bookmarks.zip');
           hideLoader();
-          showAlert('Success', 'PDF split successfully!', 'success', () => {
+          showAlert("تم بنجاح", "تم تقسيم PDF بنجاح!", 'success', () => {
             resetState();
           });
           return;
@@ -443,7 +443,7 @@ onPageReady(() => {
             (document.getElementById('split-n-value') as HTMLInputElement)
               ?.value || '5'
           );
-          if (nValue < 1) throw new Error(trText('N must be at least 1.'));
+          if (nValue < 1) throw new Error(trText("يجب ألا تقل N عن 1."));
 
           const zip2 = new JSZip();
           const chunks = nTimesGroups(nValue, totalPages);
@@ -456,7 +456,7 @@ onPageReady(() => {
           const zipBlob2 = await zip2.generateAsync({ type: 'blob' });
           downloadFile(zipBlob2, 'split-n-times.zip');
           hideLoader();
-          showAlert('Success', 'PDF split successfully!', 'success', () => {
+          showAlert("تم بنجاح", "تم تقسيم PDF بنجاح!", 'success', () => {
             resetState();
           });
           return;
@@ -469,7 +469,7 @@ onPageReady(() => {
         splitMode !== 'bookmarks' &&
         splitMode !== 'n-times'
       ) {
-        throw new Error(trText('No pages were selected for splitting.'));
+        throw new Error(trText("لم يتم تحديد صفحات للتقسيم."));
       }
 
       if (outputGroups && outputGroups.length > 0) {
@@ -480,7 +480,7 @@ onPageReady(() => {
             groupFilename(outputGroups[0])
           );
         } else {
-          showLoader('Creating ZIP file...');
+          showLoader("جارٍ إنشاء ملف ZIP...");
           const zip = new JSZip();
           const usedNames = new Map<string, number>();
           for (const group of outputGroups) {
@@ -502,16 +502,16 @@ onPageReady(() => {
         visualSelectorRendered = false;
       }
 
-      showAlert('Success', 'PDF split successfully!', 'success', () => {
+      showAlert("تم بنجاح", "تم تقسيم PDF بنجاح!", 'success', () => {
         resetState();
       });
     } catch (e: unknown) {
       console.error(e);
       showAlert(
-        'Error',
+        "خطأ",
         e instanceof Error
           ? e.message
-          : 'Failed to split PDF. Please check your selection.'
+          : "تعذر تقسيم PDF. يرجى التحقق من تحديدك."
       );
     } finally {
       if (qpdf) {
@@ -598,12 +598,12 @@ onPageReady(() => {
         rangePanel?.classList.remove('hidden');
         outputModeWrapper?.classList.remove('hidden');
         if (outputSeparateLabel)
-          outputSeparateLabel.textContent = trText('One PDF per range');
+          outputSeparateLabel.textContent = trText("ملف PDF لكل نطاق");
       } else if (mode === 'visual') {
         visualPanel?.classList.remove('hidden');
         outputModeWrapper?.classList.remove('hidden');
         if (outputSeparateLabel)
-          outputSeparateLabel.textContent = trText('One PDF per page');
+          outputSeparateLabel.textContent = trText("ملف PDF لكل صفحة");
         renderVisualSelector();
       } else if (mode === 'even-odd') {
         evenOddPanel?.classList.remove('hidden');
@@ -627,7 +627,7 @@ onPageReady(() => {
             const warningText = document.getElementById('n-times-warning-text');
             if (warningText) {
               warningText.textContent = trText(
-                'The PDF has {{totalPages}} pages, which is not evenly divisible by {{nValue}}. The last PDF will contain {{remainder}} page(s).',
+                "يحتوي PDF على {{totalPages}} صفحة، ولا يقبل القسمة بالتساوي على {{nValue}}. سيحتوي ملف PDF الأخير على {{remainder}} من الصفحات.",
                 { totalPages, nValue, remainder }
               );
             }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Extract Attachments Online Free - Extract Attachments Tool | Pixel PDF"
+      content="استخراج المرفقات عبر الإنترنت مجانًا - أداة استخراج المرفقات | Pixel PDF"
     />
     <meta
       name="description"
-      content="Extract all embedded files from PDF(s) as a ZIP. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج جميع الملفات المضمّنة من ملفات PDF كملف ZIP. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="extract attachments, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Extract Attachments Online Free - Extract Attachments Tool | Pixel PDF"
+      content="استخراج المرفقات عبر الإنترنت مجانًا - أداة استخراج المرفقات | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Extract all embedded files from PDF(s) as a ZIP. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج جميع الملفات المضمّنة من ملفات PDF كملف ZIP. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/extract-attachments"
     />
-    <meta name="twitter:title" content="Extract Attachments Free" />
+    <meta name="twitter:title" content="استخراج المرفقات مجانًا" />
     <meta
       name="twitter:description"
-      content="Extract all embedded files from PDF(s) as a ZIP. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج جميع الملفات المضمّنة من ملفات PDF كملف ZIP. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Extract Attachments" />
+    <meta name="apple-mobile-web-app-title" content="استخراج المرفقات" />
 
-    <title>Extract Attachments from PDF - Pixel PDF</title>
+    <title>استخراج المرفقات من PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,22 +112,22 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:extractAttachments.name"
         >
-          Extract Attachments
+          استخراج المرفقات
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:extractAttachments.subtitle"
         >
-          Extract all embedded files from PDF(s) as a ZIP.
+          استخراج جميع الملفات المضمنة من PDF كملف ZIP.
         </p>
 
         <div
@@ -138,18 +138,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDFs</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.multiplePdfsSupported"
             >
-              Multiple PDF files supported
+              يدعم عدة ملفات PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -157,7 +157,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -169,7 +169,7 @@
             class="hidden mt-4 p-3 rounded-lg text-sm"
           ></div>
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Extract Attachments
+            استخراج المرفقات
           </button>
         </div>
       </div>
@@ -188,9 +188,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -207,16 +206,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -227,7 +225,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -237,9 +235,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -250,9 +248,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -263,9 +261,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -278,43 +276,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -325,110 +329,108 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What counts as an attachment in a PDF?
+            ما الذي يُعدّ مرفقًا في ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Files embedded inside the PDF, either at the document level (the
-            paperclip panel in Acrobat) or attached to a specific page as a file
-            attachment annotation. Images drawn on the page, fonts, and form
-            data are not attachments; for pictures use
+            الملفات المضمّنة داخل ملف PDF، إما على مستوى المستند (لوحة مشبك
+            الورق في Acrobat) أو المرتبطة بصفحة محددة كتعليق مرفق ملف. أما الصور
+            المرسومة في الصفحة والخطوط وبيانات النماذج فليست مرفقات؛ وللصور
+            استخدم
             <a
               href="/extract-images"
               class="text-indigo-300 hover:text-indigo-400"
-              >Extract Images</a
+              >استخراج الصور</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it say the PDF has no attachments?
+            لماذا يظهر أن ملف PDF لا يحتوي على مرفقات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It means cpdf found no embedded files at either the document or page
-            level. Pictures on the page, hyperlinks to external files, and form
-            field data can look like attachments in a viewer but aren't stored
-            as embedded files, so there is nothing to extract.
+            يعني ذلك أن cpdf لم يعثر على ملفات مضمّنة لا على مستوى المستند ولا
+            على مستوى الصفحة. قد تبدو الصور في الصفحة والروابط إلى ملفات خارجية
+            وبيانات حقول النماذج كمرفقات في العارض، لكنها لا تُخزَّن كملفات
+            مضمّنة، فلا يوجد ما يُستخرج.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are the extracted files named?
+            كيف تُسمّى الملفات المستخرجة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each file keeps the name it was embedded with. Attachments tied to a
-            specific page get the PDF's name and page number added as a prefix,
-            and if two attachments share a name the second gets a _1 suffix so
-            nothing is overwritten inside the ZIP.
+            يحتفظ كل ملف بالاسم الذي ضُمِّن به. أما المرفقات المرتبطة بصفحة
+            محددة فيُضاف إليها اسم ملف PDF ورقم الصفحة كبادئة، وإذا اشترك مرفقان
+            في الاسم نفسه يحصل الثاني على اللاحقة _1 حتى لا يُستبدل شيء داخل ملف
+            ZIP.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract attachments from several PDFs at once?
+            هل يمكنني استخراج المرفقات من عدة ملفات PDF دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload as many PDFs as you like and click Extract Attachments once.
-            Everything found across all of them is placed in one
-            extracted-attachments.zip, and the status message reports the total
-            count and combined size.
+            ارفع أي عدد من ملفات PDF وانقر على استخراج المرفقات مرة واحدة. يوضع
+            كل ما يُعثر عليه في جميعها داخل extracted-attachments.zip واحد،
+            وتعرض رسالة الحالة العدد الإجمالي والحجم الكلي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What file types can be extracted?
+            ما أنواع الملفات التي يمكن استخراجها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Anything that was embedded: spreadsheets, XML data files, images,
-            ZIP archives, other PDFs, and so on. The tool copies the bytes out
-            exactly as they were stored and doesn't convert or open them.
+            أي شيء كان مضمّنًا: جداول بيانات وملفات بيانات XML وصور وأرشيفات ZIP
+            وملفات PDF أخرى وغيرها. تنسخ الأداة البايتات كما خُزّنت تمامًا ولا
+            تحوّلها ولا تفتحها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract attachments from a password-protected PDF?
+            هل يمكنني استخراج المرفقات من ملف PDF محمي بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Encrypted PDFs prompt for their password when loaded, and extraction
-            then runs on the decrypted copy held in memory. Without the correct
-            password the embedded files can't be read.
+            تطلب ملفات PDF المشفّرة كلمة مرورها عند التحميل، ثم يجري الاستخراج
+            على النسخة المفكوكة التشفير المحفوظة في الذاكرة. ولا يمكن قراءة
+            الملفات المضمّنة دون كلمة المرور الصحيحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I view or delete individual attachments instead of extracting
-            all of them?
+            هل يمكنني عرض المرفقات الفردية أو حذفها بدلًا من استخراجها كلها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            This tool extracts everything in one pass. To inspect, remove, or
-            replace individual attachments inside the PDF use
+            تستخرج هذه الأداة كل شيء دفعة واحدة. لفحص المرفقات الفردية داخل ملف
+            PDF أو إزالتها أو استبدالها استخدم
             <a
               href="/edit-attachments"
               class="text-indigo-300 hover:text-indigo-400"
-              >Edit Attachments</a
-            >, and to embed new ones use Add Attachments.
+              >تعديل المرفقات</a
+            >، ولتضمين مرفقات جديدة استخدم إضافة المرفقات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the embedded files uploaded during extraction?
+            هل تُرفع الملفات المضمّنة أثناء الاستخراج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDFs are parsed by a WebAssembly build of cpdf in a
-            background worker in your browser, the ZIP is assembled locally, and
-            the download comes straight from your device. Attachments often
-            contain source data, so this keeps them off any server.
+            لا. تُحلَّل ملفات PDF بواسطة نسخة WebAssembly من cpdf في عامل خلفي
+            داخل متصفحك، ويُجمَّع ملف ZIP محليًا، ويأتي التنزيل مباشرةً من
+            جهازك. غالبًا ما تحتوي المرفقات على بيانات مصدرية، وبذلك تبقى بعيدة
+            عن أي خادم.
           </p>
         </details>
       </div>
@@ -465,26 +467,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to extract attachments online",
+        "name": "كيفية استخراج المرفقات عبر الإنترنت",
         "description": "Learn how to extract attachments using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

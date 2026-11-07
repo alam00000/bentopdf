@@ -263,21 +263,21 @@ placeholder="${escapeHTML(field.placeholder || '')}" />
         <div class="flex items-center gap-2">
           <label class="flex items-center gap-1 text-xs">
             <input type="checkbox" id="modal-use-destination" class="w-4 h-4" ${hasDestination ? 'checked' : ''}>
-              <span class="text-gray-700">${trHtml('Set custom destination')}</span>
+              <span class="text-gray-700">${trHtml("تعيين وجهة مخصصة")}</span>
                 </label>
                 </div>
                 <div id="destination-controls" class="${hasDestination ? '' : 'hidden'} space-y-2">
                   <div class="grid grid-cols-2 gap-2">
                     <div>
-                    <label class="text-xs text-gray-600">${trHtml('Page')}</label>
+                    <label class="text-xs text-gray-600">${trHtml("الصفحة")}</label>
                       <input type="number" id="modal-dest-page" min="1" max="${escapeHTML(String(field.maxPages || 1))}" value="${escapeHTML(String(defaultValues.destPage || field.page || 1))}"
 class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" step="1" />
   </div>
   <div>
-  <label class="text-xs text-gray-600">${trHtml('Zoom(%)')}</label>
+  <label class="text-xs text-gray-600">${trHtml("التكبير (%)")}</label>
     <select id="modal-dest-zoom" class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900">
-      <option value="">${trHtml('Inherit')}</option>
-        <option value="0">${trHtml('Fit Page')}</option>
+      <option value="">${trHtml("وراثة")}</option>
+        <option value="0">${trHtml("ملاءمة الصفحة")}</option>
           <option value="50">50%</option>
             <option value="75">75%</option>
               <option value="100">100%</option>
@@ -289,20 +289,20 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" st
                       </div>
                       <div class="grid grid-cols-2 gap-2">
                         <div>
-                        <label class="text-xs text-gray-600">${trHtml('X Position')}</label>
+                        <label class="text-xs text-gray-600">${trHtml("الموضع الأفقي (X)")}</label>
                           <input type="number" id="modal-dest-x" value="0" step="10"
 class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
   </div>
   <div>
-  <label class="text-xs text-gray-600">${trHtml('Y Position')}</label>
+  <label class="text-xs text-gray-600">${trHtml("الموضع الرأسي (Y)")}</label>
     <input type="number" id="modal-dest-y" value="0" step="10"
 class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
   </div>
   </div>
   <button id="modal-pick-destination" class="w-full px-3 py-2 btn-gradient text-white rounded text-xs !flex items-center justify-center gap-1">
-    <i data-lucide="crosshair" class="w-3 h-3"></i> ${trHtml('Click on PDF to Pick Location')}
+    <i data-lucide="crosshair" class="w-3 h-3"></i> ${trHtml("انقر على PDF لاختيار الموضع")}
       </button>
-      <p class="text-xs text-gray-500 italic">${trHtml('Click the button above, then click on the PDF where you want the bookmark to jump to')}</p>
+      <p class="text-xs text-gray-500 italic">${trHtml("انقر على الزر أعلاه، ثم انقر على المكان في PDF الذي تريد أن تنتقل إليه الإشارة المرجعية")}</p>
         </div>
         </div>
         </div>
@@ -312,7 +312,7 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
         <div class="mb-4">
           <label class="block text-sm font-medium text-gray-700 mb-2">${escapeHTML(field.label)}</label>
             <div id="modal-preview" class="style-preview bg-gray-50">
-              <span id="preview-text" style="font-size: 16px;">${trHtml('Preview Text')}</span>
+              <span id="preview-text" style="font-size: 16px;">${trHtml("معاينة النص")}</span>
                 </div>
                 </div>
                   `;
@@ -328,8 +328,8 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
                       ${fieldsHTML}
 </div>
   <div class="flex gap-2 justify-end">
-    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${trHtml('Cancel')}</button>
-      <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">${trHtml('Confirm')}</button>
+    <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${trHtml("إلغاء")}</button>
+      <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">${trHtml("تأكيد")}</button>
         </div>
         </div>
           `;
@@ -357,11 +357,11 @@ class="w-full px-2 py-1 border border-gray-300 rounded text-sm text-gray-900" />
 
         const titleVal = titleInputEl
           ? titleInputEl.value
-          : trText('Preview Text');
+          : trText("معاينة النص");
         const color = colorSelectEl ? colorSelectEl.value : '';
         const style = styleSelectEl ? styleSelectEl.value : '';
 
-        previewText.textContent = titleVal || trText('Preview Text');
+        previewText.textContent = titleVal || trText("معاينة النص");
 
         if (color === 'custom' && colorPickerEl) {
           previewText.style.color = colorPickerEl.value;
@@ -803,7 +803,7 @@ onPageReady(() => {
       canvasX + canvasRect.left - wrapperRect.left + 20 + 'px';
     coordDisplay.style.top =
       canvasY + canvasRect.top - wrapperRect.top - 30 + 'px';
-    coordDisplay.textContent = trText('X: {{pdfX}}, Y: {{pdfY}} ', {
+    coordDisplay.textContent = trText("X: {{pdfX}}، Y: {{pdfY}} ", {
       pdfX: Math.round(pdfX),
       pdfY: Math.round(pdfY),
     });
@@ -834,11 +834,11 @@ function showConfirmModal(message: string): Promise<boolean> {
 
     modal.innerHTML = `
   <div class="p-6">
-    <h3 class="text-xl font-bold text-gray-800 mb-4">${trHtml('Confirm Action')}</h3>
+    <h3 class="text-xl font-bold text-gray-800 mb-4">${trHtml("تأكيد الإجراء")}</h3>
       <p class="text-gray-600 mb-6">${escapeHTML(trText(message))}</p>
         <div class="flex gap-2 justify-end">
-          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${trHtml('Cancel')}</button>
-            <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">${trHtml('Confirm')}</button>
+          <button id="modal-cancel" class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 text-gray-700">${trHtml("إلغاء")}</button>
+            <button id="modal-confirm" class="px-4 py-2 rounded btn-gradient text-white">${trHtml("تأكيد")}</button>
               </div>
               </div>
                 `;
@@ -890,7 +890,7 @@ function showAlertModal(title: string, message: string): Promise<boolean> {
                 <h3 class="text-xl font-bold text-gray-800 mb-4">${escapeHTML(title)}</h3>
                   <p class="text-gray-600 mb-6">${escapeHTML(message)}</p>
                     <div class="flex justify-end">
-                      <button id="modal-ok" class="px-4 py-2 rounded btn-gradient text-white">${trHtml('OK')}</button>
+                      <button id="modal-ok" class="px-4 py-2 rounded btn-gradient text-white">${trHtml("موافق")}</button>
                         </div>
                         </div>
                           `;
@@ -1015,7 +1015,7 @@ redoBtn?.addEventListener('click', redo);
 resetBtn?.addEventListener('click', async () => {
   const confirmed = await showConfirmModal(
     trText(
-      'Reset and go back to file uploader? All unsaved changes will be lost.'
+      "هل تريد إعادة التعيين والعودة إلى رفع الملفات؟ ستفقد جميع التغييرات غير المحفوظة."
     )
   );
   if (confirmed) {
@@ -1025,12 +1025,12 @@ resetBtn?.addEventListener('click', async () => {
 
 deleteAllBtn?.addEventListener('click', async () => {
   if (bookmarkTree.length === 0) {
-    await showAlertModal('Info', trText('No bookmarks to delete.'));
+    await showAlertModal('Info', trText("لا توجد إشارات مرجعية للحذف."));
     return;
   }
 
   const confirmed = await showConfirmModal(
-    trText('Delete all {{length}} bookmark(s) ? ', {
+    trText("هل تريد حذف جميع الإشارات المرجعية ({{length}})؟ ", {
       length: bookmarkTree.length,
     })
   );
@@ -1159,7 +1159,7 @@ batchDeleteBtn?.addEventListener('click', async () => {
   if (selectedBookmarks.size === 0) return;
 
   const confirmed = await showConfirmModal(
-    trText('Delete {{size}} bookmark(s) ? ', { size: selectedBookmarks.size })
+    trText("هل تريد حذف الإشارات المرجعية ({{size}})؟ ", { size: selectedBookmarks.size })
   );
   if (!confirmed) return;
 
@@ -1305,8 +1305,8 @@ csvInput?.addEventListener('change', async (e: Event) => {
   csvBookmarks = parseCSV(text);
 
   await showAlertModal(
-    trText('CSV Loaded'),
-    trText('Loaded {{length}} bookmarks from CSV. Now upload your PDF.', {
+    trText("تم تحميل CSV"),
+    trText("تم تحميل {{length}} من الإشارات المرجعية من CSV. ارفع ملف PDF الآن.", {
       length: csvBookmarks.length,
     })
   );
@@ -1321,11 +1321,11 @@ jsonInput?.addEventListener('change', async (e: Event) => {
   try {
     jsonBookmarks = JSON.parse(text);
     await showAlertModal(
-      trText('JSON Loaded'),
-      trText('Loaded bookmarks from JSON. Now upload your PDF.')
+      trText("تم تحميل JSON"),
+      trText("تم تحميل الإشارات المرجعية من JSON. ارفع ملف PDF الآن.")
     );
   } catch {
-    await showAlertModal('Error', trText('Invalid JSON format'));
+    await showAlertModal('Error', trText("صيغة JSON غير صالحة"));
   }
 });
 
@@ -1403,7 +1403,7 @@ async function renderPage(
     ctx.restore();
   }
 
-  pageIndicator!.textContent = trText('Page {{num}} / {{numPages}}', {
+  pageIndicator!.textContent = trText("الصفحة {{num}} / {{numPages}}", {
     num,
     numPages: pdfJsDoc.numPages,
   });
@@ -1719,7 +1719,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   titleDiv.innerHTML = `
                 <span class="text-sm block ${styleClass} ${textColorClass}" ${customColorStyle}>${escapeHTML(node.title)}${destinationIcon}</span>
-                <span class="text-xs text-gray-500">${trHtml('Page {{page}}', { page: escapeHTML(String(node.page)) })}</span>
+                <span class="text-xs text-gray-500">${trHtml("الصفحة {{page}}", { page: escapeHTML(String(node.page)) })}</span>
             `;
 
   titleDiv.addEventListener('click', async () => {
@@ -1754,16 +1754,16 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const addChildBtn = document.createElement('button');
   addChildBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
-  addChildBtn.title = trText('Add child');
+  addChildBtn.title = trText("إضافة عنصر فرعي");
   addChildBtn.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';
   addChildBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
-    const result = await showInputModal(trText('Add Child Bookmark'), [
+    const result = await showInputModal(trText("إضافة إشارة مرجعية فرعية"), [
       {
         type: 'text',
         name: 'title',
-        label: trText('Title'),
-        placeholder: trText('Enter bookmark title'),
+        label: trText("العنوان"),
+        placeholder: trText("أدخل عنوان الإشارة المرجعية"),
       },
     ]);
     if (result && result.title) {
@@ -1787,52 +1787,52 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const editBtn = document.createElement('button');
   editBtn.className = 'p-1 hover:bg-gray-200 rounded text-gray-700';
-  editBtn.title = trText('Edit');
+  editBtn.title = trText("تعديل");
   editBtn.innerHTML = '<i data-lucide="edit-2" class="w-4 h-4"></i>';
   editBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const result = await showInputModal(
-      trText('Edit Bookmark'),
+      trText("تعديل الإشارة المرجعية"),
       [
         {
           type: 'text',
           name: 'title',
-          label: trText('Title'),
-          placeholder: trText('Enter bookmark title'),
+          label: trText("العنوان"),
+          placeholder: trText("أدخل عنوان الإشارة المرجعية"),
         },
         {
           type: 'select',
           name: 'color',
-          label: trText('Color'),
+          label: trText("اللون"),
           options: [
-            { value: '', label: trText('None') },
-            { value: 'red', label: trText('Red') },
-            { value: 'blue', label: trText('Blue') },
-            { value: 'green', label: trText('Green') },
-            { value: 'yellow', label: trText('Yellow') },
-            { value: 'purple', label: trText('Purple') },
-            { value: 'custom', label: trText('Custom...') },
+            { value: '', label: trText("بدون") },
+            { value: 'red', label: trText("أحمر") },
+            { value: 'blue', label: trText("أزرق") },
+            { value: 'green', label: trText("أخضر") },
+            { value: 'yellow', label: trText("أصفر") },
+            { value: 'purple', label: trText("بنفسجي") },
+            { value: 'custom', label: trText("مخصص...") },
           ],
         },
         {
           type: 'select',
           name: 'style',
-          label: trText('Style'),
+          label: trText("النمط"),
           options: [
-            { value: '', label: trText('Normal') },
-            { value: 'bold', label: trText('Bold') },
-            { value: 'italic', label: trText('Italic') },
-            { value: 'bold-italic', label: trText('Bold & Italic') },
+            { value: '', label: trText("عادي") },
+            { value: 'bold', label: trText("غامق") },
+            { value: 'italic', label: trText("مائل") },
+            { value: 'bold-italic', label: trText("غامق ومائل") },
           ],
         },
         {
           type: 'destination',
           name: 'destination',
-          label: trText('Destination'),
+          label: trText("الوجهة"),
           page: node.page,
           maxPages: pdfJsDoc ? pdfJsDoc.numPages : 1,
         },
-        { type: 'preview', label: trText('Preview') },
+        { type: 'preview', label: trText("معاينة") },
       ],
       {
         title: node.title,
@@ -1865,12 +1865,12 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 
   const deleteBtn = document.createElement('button');
   deleteBtn.className = 'p-1 hover:bg-gray-200 rounded text-red-600';
-  deleteBtn.title = trText('Delete');
+  deleteBtn.title = trText("حذف");
   deleteBtn.innerHTML = '<i data-lucide="trash-2" class="w-4 h-4"></i>';
   deleteBtn.addEventListener('click', async (e: MouseEvent) => {
     e.stopPropagation();
     const confirmed = await showConfirmModal(
-      trText('Delete "{{title}}"?', { title: node.title })
+      trText("هل تريد حذف \"{{title}}\"؟", { title: node.title })
     );
     if (confirmed) {
       removeNodeById(bookmarkTree, node.id);
@@ -1905,7 +1905,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
 addTopLevelBtn?.addEventListener('click', async () => {
   const title = titleInput?.value.trim();
   if (!title) {
-    await showAlertModal('Error', trText('Please enter a title.'));
+    await showAlertModal('Error', trText("يرجى إدخال عنوان."));
     return;
   }
 
@@ -1953,7 +1953,7 @@ csvImportHidden?.addEventListener('change', async (e: Event) => {
     renderBookmarkTree();
     await showAlertModal(
       'Success',
-      trText('Imported {{length}} bookmarks!', { length: imported.length })
+      trText("تم استيراد {{length}} من الإشارات المرجعية!", { length: imported.length })
     );
   }
 
@@ -1964,7 +1964,7 @@ exportCsvBtn?.addEventListener('click', () => {
   exportDropdown?.classList.add('hidden');
 
   if (bookmarkTree.length === 0) {
-    showAlertModal('Error', trText('No bookmarks to export!'));
+    showAlertModal('Error', trText("لا توجد إشارات مرجعية للتصدير!"));
     return;
   }
 
@@ -2070,9 +2070,9 @@ jsonImportHidden?.addEventListener('change', async (e: Event) => {
     bookmarkTree = imported;
     saveState();
     renderBookmarkTree();
-    await showAlertModal('Success', trText('Bookmarks imported from JSON!'));
+    await showAlertModal('Success', trText("تم استيراد الإشارات المرجعية من JSON!"));
   } catch {
-    await showAlertModal('Error', trText('Invalid JSON format'));
+    await showAlertModal('Error', trText("صيغة JSON غير صالحة"));
   }
 
   if (jsonImportHidden) jsonImportHidden.value = '';
@@ -2082,7 +2082,7 @@ exportJsonBtn?.addEventListener('click', () => {
   exportDropdown?.classList.add('hidden');
 
   if (bookmarkTree.length === 0) {
-    showAlertModal('Error', trText('No bookmarks to export!'));
+    showAlertModal('Error', trText("لا توجد إشارات مرجعية للتصدير!"));
     return;
   }
 
@@ -2098,7 +2098,7 @@ extractExistingBtn?.addEventListener('click', async () => {
   if (extracted.length > 0) {
     const confirmed = await showConfirmModal(
       trText(
-        'Found {{length}} existing bookmarks. Replace current bookmarks?',
+        "تم العثور على {{length}} من الإشارات المرجعية الموجودة. هل تريد استبدال الإشارات المرجعية الحالية؟",
         { length: extracted.length }
       )
     );
@@ -2110,7 +2110,7 @@ extractExistingBtn?.addEventListener('click', async () => {
   } else {
     await showAlertModal(
       'Info',
-      trText('No existing bookmarks found in this PDF.')
+      trText("لم يتم العثور على إشارات مرجعية موجودة في ملف PDF هذا.")
     );
   }
 });
@@ -2371,7 +2371,7 @@ downloadBtn?.addEventListener('click', async () => {
     });
     downloadFile(blob, `${originalFileName}.pdf`);
 
-    await showAlertModal('Success', trText('PDF saved successfully!'));
+    await showAlertModal('Success', trText("تم حفظ PDF بنجاح!"));
 
     setTimeout(() => {
       resetToUploader();
@@ -2380,7 +2380,7 @@ downloadBtn?.addEventListener('click', async () => {
     console.error(err);
     await showAlertModal(
       'Error',
-      trText('Error saving PDF. Check console for details.')
+      trText("خطأ في حفظ PDF. راجع وحدة التحكم للتفاصيل.")
     );
   }
 });

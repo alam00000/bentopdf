@@ -57,13 +57,13 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -71,7 +71,7 @@ async function handleFiles(files: FileList) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -91,7 +91,7 @@ function updateFileDisplay() {
   nameSpan.textContent = pageState.file.name;
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{getPageCount}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{getPageCount}} صفحة", {
     size: formatBytes(pageState.file.size),
     getPageCount: pageState.pdfDoc.getPageCount(),
   });
@@ -117,10 +117,10 @@ function resetState() {
 
 async function invertColors() {
   if (!pageState.pdfDoc || !pageState.file) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
-  showLoader('Inverting PDF colors...');
+  showLoader("جارٍ عكس ألوان PDF...");
   try {
     const newPdfDoc = await PDFLibDocument.create();
     const pdfBytes = await pageState.pdfDoc.save();
@@ -128,7 +128,7 @@ async function invertColors() {
 
     for (let i = 1; i <= pdfjsDoc.numPages; i++) {
       showLoader(
-        trText('Processing page {{i}} of {{numPages}}...', {
+        trText("جارٍ معالجة الصفحة {{i}} من {{numPages}}...", {
           i,
           numPages: pdfjsDoc.numPages,
         })
@@ -168,12 +168,12 @@ async function invertColors() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Colors inverted successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم عكس الألوان بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not invert PDF colors.');
+    showAlert("خطأ", "تعذر عكس ألوان PDF.");
   } finally {
     hideLoader();
   }

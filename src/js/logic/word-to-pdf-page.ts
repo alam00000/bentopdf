@@ -92,7 +92,7 @@ onPageReady(() => {
       console.log('[Word2PDF] Number of files:', state.files.length);
 
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one Word document.');
+        showAlert("لا توجد ملفات", "يرجى اختيار مستند Word واحد على الأقل.");
         hideLoader();
         return;
       }
@@ -116,7 +116,7 @@ onPageReady(() => {
         const originalFile = state.files[0];
         console.log('[Word2PDF] Converting single file:', originalFile.name);
 
-        showLoader('Processing...');
+        showLoader("جارٍ المعالجة...");
 
         const pdfBlob = await converter.convertToPdf(originalFile);
         console.log('[Word2PDF] Conversion complete! PDF size:', pdfBlob.size);
@@ -130,8 +130,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: originalFile.name,
           }),
           'success',
@@ -142,7 +142,7 @@ onPageReady(() => {
           '[Word2PDF] Converting multiple files:',
           state.files.length
         );
-        showLoader('Processing...');
+        showLoader("جارٍ المعالجة...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -154,7 +154,7 @@ onPageReady(() => {
             file.name
           );
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -185,8 +185,8 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} Word document(s) to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من مستندات Word إلى PDF بنجاح.", {
             length: state.files.length,
           }),
           'success',
@@ -201,8 +201,8 @@ onPageReady(() => {
       );
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

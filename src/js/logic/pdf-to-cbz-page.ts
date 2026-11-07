@@ -187,7 +187,7 @@ async function renderPage(
   const viewport = page.getViewport({ scale: options.scale });
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
-  if (!context) throw new Error(trText('Failed to acquire 2D canvas context'));
+  if (!context) throw new Error(trText("تعذر الحصول على سياق Canvas ثنائي الأبعاد"));
   canvas.height = viewport.height;
   canvas.width = viewport.width;
 
@@ -240,7 +240,7 @@ async function convert() {
     const { pdf } = result;
 
     if (pdf.numPages === 0) {
-      throw new Error(trText('PDF has no pages'));
+      throw new Error(trText("لا يحتوي PDF على صفحات"));
     }
 
     const zip = new JSZip();
@@ -409,7 +409,7 @@ onPageReady(() => {
       setInputValidity(
         yearInput,
         !isNaN(year) && year >= 1900 && year <= 2100,
-        trText('Year must be between 1900 and 2100')
+        trText("يجب أن تكون السنة بين 1900 و2100")
       );
     });
   }
@@ -425,7 +425,7 @@ onPageReady(() => {
       setInputValidity(
         ratingInput,
         !isNaN(rating) && rating >= 0 && rating <= 5,
-        trText('Rating must be between 0 and 5')
+        trText("يجب أن يكون التقييم بين 0 و5")
       );
     });
   }
@@ -440,7 +440,7 @@ onPageReady(() => {
       setInputValidity(
         numberInput,
         !isNaN(parseFloat(val)) && parseFloat(val) >= 0,
-        trText('Must be a positive number')
+        trText("يجب أن يكون رقمًا موجبًا")
       );
     });
   }
@@ -456,7 +456,7 @@ onPageReady(() => {
       setInputValidity(
         volumeInput,
         !isNaN(vol) && vol >= 1,
-        trText('Must be a positive integer')
+        trText("يجب أن يكون عددًا صحيحًا موجبًا")
       );
     });
   }

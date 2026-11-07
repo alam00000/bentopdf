@@ -381,16 +381,8 @@ function auditSitemap() {
     }
   }
 
-  const expectedLocales = fs
-    .readdirSync(LOCALES_DIR)
-    .filter((d) => fs.statSync(path.join(LOCALES_DIR, d)).isDirectory());
-  for (const lang of expectedLocales) {
-    if (lang === 'en') continue;
-    const hreflangPattern = new RegExp(`hreflang="${lang}"`);
-    if (!hreflangPattern.test(xml)) {
-      warn('sitemap', `sitemap has no hreflang entry for locale "${lang}"`);
-    }
-  }
+  // One Arabic canonical URL per page; no language alternates are generated.
+
 }
 
 function main() {

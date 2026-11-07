@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Bates Numbering Online Free - Add Bates Stamps | Pixel PDF</title>
+    <title>ترقيم Bates مجانًا عبر الإنترنت - إضافة أختام Bates | Pixel PDF</title>
     <meta
       name="description"
-      content="Add sequential Bates numbers to PDF documents. Supports multi-file processing, custom templates, and configurable formatting. Free, secure, browser-based."
+      content="أضف أرقام Bates تسلسلية إلى مستندات PDF. يدعم معالجة عدة ملفات وقوالب مخصصة وتنسيقًا قابلاً للضبط. مجاني وآمن ويعمل في المتصفح."
     />
     <meta
       name="keywords"
@@ -25,16 +25,16 @@
     />
     <meta
       property="og:title"
-      content="Bates Numbering Online Free | Pixel PDF"
+      content="ترقيم Bates مجانًا عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Add sequential Bates numbers to PDF documents. Multi-file support, custom templates. Free and private."
+      content="أضف أرقام Bates تسلسلية إلى مستندات PDF. يدعم عدة ملفات وقوالب مخصصة. مجاني وخاص."
     />
     <meta property="og:site_name" content="Pixel PDF" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bates Numbering Free" />
+    <meta name="twitter:title" content="ترقيم Bates مجانًا" />
     <meta name="twitter:site" content="@PixelPDF" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
@@ -77,7 +77,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -85,10 +85,10 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:batesNumbering.name"
         >
-          Bates Numbering
+          ترقيم بيتس
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:batesNumbering.subtitle">
-          Add sequential Bates numbers across one or more PDF files.
+          إضافة أرقام بيتس التسلسلية عبر ملف PDF واحد أو أكثر.
         </p>
 
         <div
@@ -99,20 +99,20 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
-            <p class="text-xs text-gray-500">PDF files (multiple supported)</p>
+            <p class="text-xs text-gray-500">ملفات PDF (يمكن رفع عدة ملفات)</p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
             id="file-input"
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            multiple
+            multiple=""
             accept="application/pdf"
           />
         </div>
@@ -122,15 +122,13 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i>
-            <span>Add More Files</span>
+            <i data-lucide="plus"></i> <span>إضافة ملفات أخرى</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i>
-            <span>Clear All</span>
+            <i data-lucide="trash-2"></i> <span>مسح الكل</span>
           </button>
         </div>
 
@@ -141,41 +139,43 @@
             <label
               for="style-preset"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Select Style</label
+              >اختر النمط</label
             >
             <select
               id="style-preset"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <optgroup data-no-i18n label="Exhibit + Case + Bates + Page">
-                <option value="full-6">Exhibit 1 Case XYZ 000001 Page 1</option>
-                <option value="full-5">Exhibit 1 Case XYZ 00001 Page 1</option>
-                <option value="full-4">Exhibit 1 Case XYZ 0001 Page 1</option>
-                <option value="full-3">Exhibit 1 Case XYZ 001 Page 1</option>
-                <option value="full-0">Exhibit 1 Case XYZ 1 Page 1</option>
+              <optgroup data-no-i18n="" label="Exhibit + Case + Bates + Page">
+                <option value="full-6">المرفق ١ القضية س ص ع 000001 الصفحة ١</option>
+                <option value="full-5">المرفق ١ القضية س ص ع 00001 الصفحة ١</option>
+                <option value="full-4">المرفق ١ القضية س ص ع 0001 الصفحة ١</option>
+                <option value="full-3">المرفق ١ القضية س ص ع 001 الصفحة ١</option>
+                <option value="full-0">المرفق ١ القضية س ص ع 1 الصفحة ١</option>
               </optgroup>
-              <optgroup data-no-i18n label="Exhibit + Case + Bates">
-                <option value="no-page-6">Exhibit 1 Case XYZ 000001</option>
-                <option value="no-page-5">Exhibit 1 Case XYZ 00001</option>
-                <option value="no-page-4">Exhibit 1 Case XYZ 0001</option>
-                <option value="no-page-3">Exhibit 1 Case XYZ 001</option>
-                <option value="no-page-0">Exhibit 1 Case XYZ 1</option>
+              <optgroup data-no-i18n="" label="Exhibit + Case + Bates">
+                <option value="no-page-6">المرفق ١ القضية س ص ع 000001</option>
+                <option value="no-page-5">المرفق ١ القضية س ص ع 00001</option>
+                <option value="no-page-4">المرفق ١ القضية س ص ع 0001</option>
+                <option value="no-page-3">المرفق ١ القضية س ص ع 001</option>
+                <option value="no-page-0">المرفق ١ القضية س ص ع 1</option>
               </optgroup>
-              <optgroup data-no-i18n label="Case + Bates">
-                <option value="case-6">Case XYZ 000001</option>
-                <option value="case-5">Case XYZ 00001</option>
-                <option value="case-4">Case XYZ 0001</option>
-                <option value="case-3">Case XYZ 001</option>
-                <option value="case-0">Case XYZ 1</option>
+              <optgroup data-no-i18n="" label="Case + Bates">
+                <option value="case-6">القضية س ص ع 000001</option>
+                <option value="case-5">القضية س ص ع 00001</option>
+                <option value="case-4">القضية س ص ع 0001</option>
+                <option value="case-3">القضية س ص ع 001</option>
+                <option value="case-0">القضية س ص ع 1</option>
               </optgroup>
-              <optgroup data-no-i18n label="Bates Number Only">
-                <option value="bates-6" selected>000001, 000002, 000003</option>
+              <optgroup data-no-i18n="" label="Bates Number Only">
+                <option value="bates-6" selected="">
+                  000001, 000002, 000003
+                </option>
                 <option value="bates-5">00001, 00002, 00003</option>
                 <option value="bates-4">0001, 0002, 0003</option>
                 <option value="bates-3">001, 002, 003</option>
                 <option value="bates-0">1, 2, 3</option>
               </optgroup>
-              <option value="custom">Custom style (other)</option>
+              <option value="custom">نمط مخصص (آخر)</option>
             </select>
           </div>
 
@@ -183,7 +183,7 @@
             <label
               for="bates-template"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Customize Style</label
+              >تخصيص النمط</label
             >
             <input
               type="text"
@@ -192,7 +192,7 @@
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500 font-mono"
             />
             <p class="text-xs text-gray-500 mt-1">
-              Placeholders: [BATES] [PAGE] [FILE] [FILENAME]
+              العناصر النائبة: [BATES] [PAGE] [FILE] [FILENAME]
             </p>
           </div>
 
@@ -200,7 +200,7 @@
             id="preview-box"
             class="bg-gray-900 border border-gray-700 rounded-lg p-4 text-sm text-gray-300 font-mono"
           >
-            <div class="text-xs text-gray-500 mb-1">Preview:</div>
+            <div class="text-xs text-gray-500 mb-1">معاينة:</div>
             <div id="preview-content"></div>
           </div>
 
@@ -209,17 +209,17 @@
               <label
                 for="bates-padding"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Bates Padding</label
+                >الأصفار البادئة لـ Bates</label
               >
               <select
                 id="bates-padding"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="6" selected>6 digits (000001)</option>
-                <option value="5">5 digits (00001)</option>
-                <option value="4">4 digits (0001)</option>
-                <option value="3">3 digits (001)</option>
-                <option value="0">No padding (1)</option>
+                <option value="6" selected="">6 أرقام (000001)</option>
+                <option value="5">5 أرقام (00001)</option>
+                <option value="4">4 أرقام (0001)</option>
+                <option value="3">3 أرقام (001)</option>
+                <option value="0">بدون أصفار بادئة (1)</option>
               </select>
             </div>
 
@@ -227,18 +227,18 @@
               <label
                 for="position"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Position</label
+                >الموضع</label
               >
               <select
                 id="position"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
               >
-                <option value="top-center">Header Center</option>
-                <option value="top-left">Header Left</option>
-                <option value="top-right">Header Right</option>
-                <option value="bottom-center" selected>Footer Center</option>
-                <option value="bottom-left">Footer Left</option>
-                <option value="bottom-right">Footer Right</option>
+                <option value="top-center">منتصف الرأس</option>
+                <option value="top-left">يسار الرأس</option>
+                <option value="top-right">يمين الرأس</option>
+                <option value="bottom-center" selected="">منتصف التذييل</option>
+                <option value="bottom-left">يسار التذييل</option>
+                <option value="bottom-right">يمين التذييل</option>
               </select>
             </div>
           </div>
@@ -248,7 +248,7 @@
               <label
                 for="bates-start"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Bates Starts From</label
+                >يبدأ ترقيم Bates من</label
               >
               <input
                 type="number"
@@ -263,7 +263,7 @@
               <label
                 for="file-start"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >File Counter Starts From</label
+                >يبدأ عداد الملفات من</label
               >
               <input
                 type="number"
@@ -280,7 +280,7 @@
               <label
                 for="font-family"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Font</label
+                >الخط</label
               >
               <select
                 id="font-family"
@@ -296,7 +296,7 @@
               <label
                 for="font-size"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Font Size</label
+                >حجم الخط</label
               >
               <input
                 type="number"
@@ -312,14 +312,14 @@
               <label
                 for="text-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Color</label
+                >اللون</label
               >
               <input type="color" id="text-color" value="#000000" />
             </div>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Apply Bates Numbers
+            تطبيق أرقام Bates
           </button>
         </div>
       </div>
@@ -338,7 +338,7 @@
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -351,14 +351,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -368,7 +368,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -378,10 +378,10 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload Files</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع الملفات</h3>
             <p class="text-gray-400">
-              Upload one or more PDF files. Drag to reorder for multi-file
-              sequencing.
+              ارفع ملف PDF واحدًا أو أكثر. اسحب لإعادة الترتيب عند ترقيم عدة
+              ملفات بتسلسل واحد.
             </p>
           </div>
         </div>
@@ -392,12 +392,10 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Configure Style
-            </h3>
+            <h3 class="text-lg font-semibold text-white mb-1">إعداد النمط</h3>
             <p class="text-gray-400">
-              Choose a preset or create a custom template with placeholders like
-              [BATES], [PAGE], [FILE].
+              اختر إعدادًا مسبقًا أو أنشئ قالبًا مخصصًا بعناصر نائبة مثل [BATES]
+              و[PAGE] و[FILE].
             </p>
           </div>
         </div>
@@ -408,10 +406,10 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400">
-              Get your bates-stamped PDFs instantly. Multiple files are
-              delivered as a ZIP.
+              احصل على ملفات PDF المرقّمة بنظام Bates فورًا. تُسلَّم الملفات
+              المتعددة بصيغة ZIP.
             </p>
           </div>
         </div>
@@ -423,45 +421,45 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="page-numbers.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Page Numbers</h3>
-          <p class="text-gray-400 text-sm">Add page numbers to PDFs</p>
+          <h3 class="text-white font-semibold mb-1">أرقام الصفحات</h3>
+          <p class="text-gray-400 text-sm">إضافة أرقام الصفحات إلى ملفات PDF</p>
         </a>
         <a
           href="header-footer.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Header & Footer</h3>
+          <h3 class="text-white font-semibold mb-1">الرأس والتذييل</h3>
           <p class="text-gray-400 text-sm">
-            Add text to page headers and footers
+            إضافة نص إلى رؤوس الصفحات وتذييلاتها
           </p>
         </a>
         <a
           href="add-watermark.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Add Watermark</h3>
-          <p class="text-gray-400 text-sm">Watermark your PDF documents</p>
+          <h3 class="text-white font-semibold mb-1">إضافة علامة مائية</h3>
+          <p class="text-gray-400 text-sm">أضف علامة مائية إلى مستندات PDF</p>
         </a>
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Combine multiple PDFs</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">دمج عدة ملفات PDF</p>
         </a>
         <a
           href="organize-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Organize PDF</h3>
-          <p class="text-gray-400 text-sm">Reorder and organize pages</p>
+          <h3 class="text-white font-semibold mb-1">تنظيم PDF</h3>
+          <p class="text-gray-400 text-sm">إعادة ترتيب الصفحات وتنظيمها</p>
         </a>
       </div>
     </section>
@@ -471,109 +469,103 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the Bates number look like on the page?
+            كيف يبدو رقم Bates على الصفحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            By default it's a six-digit zero-padded number such as 000001 placed
-            at the footer center in 10 pt Helvetica. Presets can add an exhibit
-            number, a case label, and a page number, for example Exhibit 1 Case
-            XYZ 000001 Page 1, and the preview box shows the exact text before
-            you process anything.
+            افتراضيًا هو رقم من ست خانات بأصفار بادئة مثل 000001 يوضع في منتصف
+            التذييل بخط Helvetica حجم 10 نقاط. يمكن للإعدادات المسبقة إضافة رقم
+            مستند مرفق وتسمية قضية ورقم صفحة، مثل Exhibit 1 Case XYZ 000001 Page
+            1، ويعرض مربع المعاينة النص بالضبط قبل أن تعالج أي شيء.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I use my own prefix or case number instead of the presets?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يمكنني استخدام بادئتي أو رقم القضية الخاص بي بدلاً من الإعدادات
+            المسبقة؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Pick Custom style and write a template with placeholders:
-            [BATES] for the sequential number, [PAGE] for the page number within
-            the file, [FILE] for the file counter, and [FILENAME] for the source
-            file name. A template like SMITH-[BATES] produces SMITH-000001,
-            SMITH-000002, and so on.
+            نعم. اختر النمط المخصص واكتب قالبًا بعناصر نائبة: [BATES] للرقم
+            التسلسلي، و[PAGE] لرقم الصفحة داخل الملف، و[FILE] لعداد الملفات،
+            و[FILENAME] لاسم الملف المصدر. قالب مثل SMITH-[BATES] ينتج
+            SMITH-000001 وSMITH-000002 وهكذا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the numbering continue across multiple PDFs or restart for each
-            file?
+            هل يستمر الترقيم عبر عدة ملفات PDF أم يبدأ من جديد لكل ملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It continues. If the first file has 30 pages and numbering starts at
-            1, the second file begins at 000031, following the order of the file
-            list, which you can rearrange by dragging. There's no option to
-            restart the count per file; process the files separately if you need
-            that.
+            يستمر. إذا كان الملف الأول يحتوي على 30 صفحة ويبدأ الترقيم من 1، فإن
+            الملف الثاني يبدأ من 000031 وفق ترتيب قائمة الملفات، ويمكنك إعادة
+            ترتيبه بالسحب. لا يوجد خيار لإعادة العد لكل ملف؛ عالج الملفات كل على
+            حدة إذا احتجت إلى ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How many digits can the number have?
+            كم عدد الأرقام التي يمكن أن يحتويها الرقم؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Zero padding can be 3, 4, 5, or 6 digits, or turned off so 1, 2, 3
-            print without leading zeros. The count itself isn't capped; if it
-            grows past the padding width, the extra digits are still printed.
+            يمكن أن تكون الأصفار البادئة 3 أو 4 أو 5 أو 6 أرقام، أو تُعطَّل
+            ليُطبع 1 و2 و3 بدون أصفار بادئة. العدد نفسه ليس له حد أقصى؛ وإذا
+            تجاوز عرض الأصفار البادئة، فتُطبع الأرقام الزائدة كما هي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Where does the stamp go, and will it cover my content?
+            أين يوضع الختم، وهل سيغطي محتواي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            You choose one of six spots: header or footer, at the left, center,
-            or right. The margin scales with the page, roughly 4 percent of the
-            width or height with a floor of 8 points and a cap of 40, so the
-            stamp sits in the same relative place on Letter, A4, and oversized
-            exhibits. Existing content isn't shifted, so on pages printed edge
-            to edge the stamp can overlap it.
+            تختار واحدًا من ستة مواضع: الرأس أو التذييل، عند اليسار أو الوسط أو
+            اليمين. يتناسب الهامش مع الصفحة، بنحو 4 بالمئة من العرض أو الارتفاع
+            بحد أدنى 8 نقاط وحد أقصى 40، لذا يقع الختم في الموضع النسبي نفسه على
+            صفحات Letter وA4 والمستندات المرفقة كبيرة الحجم. لا يُزاح المحتوى
+            الموجود، لذا قد يتداخل الختم معه في الصفحات المطبوعة من حافة إلى
+            حافة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are Bates numbers searchable text or an image?
+            هل أرقام Bates نص قابل للبحث أم صورة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            They're real text drawn in Helvetica, Times New Roman, or Courier,
-            so they can be selected, searched, and read by review software
-            without OCR. These are the built-in PDF standard fonts, which cover
-            Latin characters only, so a template containing other scripts will
-            fail.
+            هي نص حقيقي مرسوم بخط Helvetica أو Times New Roman أو Courier، لذا
+            يمكن تحديدها والبحث فيها وقراءتها بواسطة برامج المراجعة دون OCR. هذه
+            خطوط PDF القياسية المدمجة، وهي تغطي الأحرف اللاتينية فقط، لذا سيفشل
+            قالب يحتوي على أبجديات أخرى.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my discovery documents uploaded to a server for stamping?
+            هل تُرفع مستندات الإفصاح الخاصة بي إلى خادم لختمها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Stamping happens inside your browser and the numbered files are
-            written straight to your downloads folder. Nothing about the
-            documents, the case name, or the numbering leaves the machine, which
-            matters for privileged material.
+            لا. يتم الختم داخل متصفحك وتُكتب الملفات المرقّمة مباشرة في مجلد
+            التنزيلات. لا شيء عن المستندات أو اسم القضية أو الترقيم يغادر
+            الجهاز، وهذا مهم للمواد السرية المحمية قانونيًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do I get when I stamp several files at once?
+            ماذا أحصل عليه عند ختم عدة ملفات دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each PDF is numbered as its own file and keeps its original name; a
-            single file downloads directly, and two or more download together as
-            bates_numbered.zip. The files aren't merged, so the page counts and
-            order inside each document stay as they were.
+            يُرقَّم كل ملف PDF بصفته ملفًا مستقلاً ويحتفظ باسمه الأصلي؛ يُنزَّل
+            الملف الواحد مباشرة، ويُنزَّل ملفان أو أكثر معًا باسم
+            bates_numbered.zip. لا تُدمج الملفات، لذا يبقى عدد الصفحات وترتيبها
+            داخل كل مستند كما كانا.
           </p>
         </details>
       </div>

@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="PNG to PDF Converter Free Online | Pixel PDF" />
+    <meta name="title" content="محوّل PNG إلى PDF مجانًا أونلاين | Pixel PDF" />
     <meta
       name="description"
-      content="Create a PDF from one or more PNG images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ PDF من صورة PNG واحدة أو أكثر. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="png to pdf, image to pdf, convert png" />
     <meta name="author" content="Pixel PDF" />
@@ -25,11 +25,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/png-to-pdf" />
     <meta
       property="og:title"
-      content="PNG to PDF Converter Free Online | Pixel PDF"
+      content="محوّل PNG إلى PDF مجانًا أونلاين | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Create a PDF from one or more PNG images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ PDF من صورة PNG واحدة أو أكثر. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -44,11 +44,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/png-to-pdf" />
     <meta
       name="twitter:title"
-      content="PNG to PDF Converter Free Online | Pixel PDF"
+      content="محوّل PNG إلى PDF مجانًا أونلاين | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Create a PDF from one or more PNG images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ PDF من صورة PNG واحدة أو أكثر. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PNG to PDF" />
+    <meta name="apple-mobile-web-app-title" content="PNG إلى PDF" />
 
-    <title>PNG to PDF Converter Free Online | Pixel PDF</title>
+    <title>محوّل PNG إلى PDF مجانًا أونلاين | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pngToPdf.name"
         >
-          PNG to PDF
+          PNG إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pngToPdf.subtitle">
-          Create a PDF from one or more PNG images.
+          إنشاء PDF من صورة PNG واحدة أو أكثر.
         </p>
 
         <!-- Drop Zone -->
@@ -130,22 +130,22 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.pngImages">
-              PNG Images
+              صور PNG
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
             id="file-input"
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            multiple
+            multiple=""
             accept="image/png"
           />
         </div>
@@ -157,14 +157,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -177,24 +177,23 @@
             <label
               for="jpg-pdf-quality"
               class="block mb-2 text-sm font-medium text-gray-300"
+              >جودة PDF</label
             >
-              PDF Quality
-            </label>
             <select
               id="jpg-pdf-quality"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             >
-              <option value="high">High Quality (Larger file)</option>
-              <option value="medium" selected>Medium Quality (Balanced)</option>
-              <option value="low">Low Quality (Smaller file)</option>
+              <option value="high">جودة عالية (ملف أكبر)</option>
+              <option value="medium" selected="">جودة متوسطة (متوازنة)</option>
+              <option value="low">جودة منخفضة (ملف أصغر)</option>
             </select>
             <p class="mt-1 text-xs text-gray-400">
-              Controls image compression when embedding into PDF
+              يتحكم في ضغط الصور عند تضمينها في PDF
             </p>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
-            Convert to PDF
+            التحويل إلى PDF
           </button>
         </div>
       </div>
@@ -210,7 +209,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -227,16 +226,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -247,7 +245,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -257,9 +255,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -270,9 +268,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -283,9 +281,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -298,43 +296,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -345,110 +349,106 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the quality setting do for PNG images?
+            ماذا يفعل إعداد الجودة لصور PNG؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            High embeds each PNG as-is, losslessly and at full size. Medium
-            re-encodes the image as JPEG at 75% quality and shrinks anything
-            larger than 2500 pixels on its longest side; Low uses JPEG at 50%
-            with a 1500 pixel limit.
+            تضمّن العالية كل PNG كما هو، دون فقدان وبالحجم الكامل. تعيد المتوسطة
+            ترميز الصورة بصيغة JPEG بجودة 75% وتصغّر أي شيء يتجاوز 2500 بكسل في
+            أطول أضلاعه، وتستخدم المنخفضة JPEG بجودة 50% مع حد 1500 بكسل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which setting should I use for screenshots?
+            أي إعداد أستخدم للقطات الشاشة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            High. Screenshots and diagrams have sharp edges and small text, and
-            the JPEG compression at Medium or Low adds visible blur and
-            artifacts around them. Medium or Low make sense mainly for photos
-            where file size matters more.
+            عالية. لقطات الشاشة والرسوم التوضيحية لها حواف حادة ونص صغير، وضغط
+            JPEG عند المتوسطة أو المنخفضة يضيف ضبابية وتشوهات ظاهرة حولها. تكون
+            المتوسطة أو المنخفضة منطقية أساسًا للصور الفوتوغرافية حيث يهم حجم
+            الملف أكثر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens to transparent areas?
+            ماذا يحدث للمناطق الشفافة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            At High the PNG keeps its alpha channel and transparent regions show
-            the page behind them, which viewers display as white. Medium and Low
-            convert to JPEG, which has no transparency, so use High for images
-            with transparent backgrounds.
+            عند الجودة العالية يحتفظ PNG بقناة ألفا وتُظهر المناطق الشفافة
+            الصفحة خلفها، وتعرضها العارضات بيضاء. تحوّل المتوسطة والمنخفضة إلى
+            JPEG الذي لا يدعم الشفافية، لذا استخدم العالية للصور ذات الخلفيات
+            الشفافة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size will each page be?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            ما حجم كل صفحة؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The page matches the image's pixel dimensions at one point per
-            pixel, so a 1920 by 1080 screenshot gives a page about 26.7 by 15
-            inches; at Medium or Low a downscaled image gives a proportionally
-            smaller page. Use
+            تطابق الصفحة أبعاد الصورة بالبكسل بنقطة واحدة لكل بكسل، فتعطي لقطة
+            شاشة 1920 × 1080 صفحة بنحو 26.7 × 15 بوصة. وعند المتوسطة أو المنخفضة
+            تعطي الصورة المصغّرة صفحة أصغر بالتناسب. استخدم
             <a
               href="/fix-page-size"
               class="text-indigo-300 hover:text-indigo-400"
-              >Fix Page Size</a
+              >إصلاح حجم الصفحة</a
             >
-            afterward if you need A4 or Letter.
+            بعد ذلك إذا كنت تحتاج A4 أو Letter.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I put several PNGs into one PDF and control the order?
+            هل يمكنني وضع عدة صور PNG في ملف PDF واحد والتحكم في الترتيب؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Every file you add becomes one page in the order shown in the
-            list; remove and re-add files to change the order. The output is
-            always a single PDF, not one file per image.
+            نعم. كل ملف تضيفه يصبح صفحة بالترتيب الظاهر في القائمة، ولتغيير
+            الترتيب احذف الملفات وأضفها مرة أخرى. الناتج دائمًا ملف PDF واحد،
+            وليس ملفًا لكل صورة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the PDF about the same size as my PNGs?
+            لماذا حجم PDF قريب من حجم صور PNG؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            At High the PNG data is stored unchanged, so the PDF is roughly the
-            sum of the image sizes plus a little overhead. If that's too large,
-            choose Medium or Low, or run the PDF through
+            عند الجودة العالية تُخزَّن بيانات PNG دون تغيير، فيكون حجم PDF مجموع
+            أحجام الصور تقريبًا مع زيادة طفيفة. إذا كان ذلك كبيرًا، فاختر
+            المتوسطة أو المنخفضة، أو مرّر PDF عبر
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What if a PNG can't be embedded?
+            ماذا لو تعذّر تضمين صورة PNG؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            PNGs with unusual color profiles or bit depths that the PDF library
-            rejects are redrawn and stored as JPEG at 90% quality instead, so
-            the conversion still completes with a small quality trade-off.
+            صور PNG ذات ملفات تعريف الألوان أو أعماق البت غير المعتادة التي
+            ترفضها مكتبة PDF تُعاد رسمها وتُخزَّن بصيغة JPEG بجودة 90% بدلًا من
+            ذلك، فيكتمل التحويل مع مقايضة بسيطة في الجودة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the images uploaded?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل تُرفع الصور؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Each PNG is read, optionally recompressed, and embedded with
-            pdf-lib inside your browser, so screenshots of internal tools or
-            private conversations never leave your device.
+            لا. تُقرأ كل صورة PNG ويُعاد ضغطها اختياريًا وتُضمَّن بواسطة pdf-lib
+            داخل متصفحك، لذلك لا تغادر لقطات شاشة الأدوات الداخلية أو المحادثات
+            الخاصة جهازك.
           </p>
         </details>
       </div>
@@ -481,26 +481,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to convert PNG to PDF online",
+        "name": "كيفية تحويل PNG إلى PDF أونلاين",
         "description": "Learn how to convert PNG to PDF using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

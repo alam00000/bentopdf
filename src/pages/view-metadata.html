@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="View Metadata Online Free - View Metadata Tool | Pixel PDF"
+      content="عرض البيانات الوصفية عبر الإنترنت مجانًا - أداة عرض البيانات الوصفية | Pixel PDF"
     />
     <meta
       name="description"
-      content="Inspect the hidden properties of your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="افحص الخصائص المخفية في ملف PDF. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="view metadata, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/view-metadata" />
     <meta
       property="og:title"
-      content="View Metadata Online Free - View Metadata Tool | Pixel PDF"
+      content="عرض البيانات الوصفية عبر الإنترنت مجانًا - أداة عرض البيانات الوصفية | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Inspect the hidden properties of your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="افحص الخصائص المخفية في ملف PDF. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/view-metadata" />
-    <meta name="twitter:title" content="View Metadata Free" />
+    <meta name="twitter:title" content="عرض البيانات الوصفية مجانًا" />
     <meta
       name="twitter:description"
-      content="Inspect the hidden properties of your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="افحص الخصائص المخفية في ملف PDF. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="View Metadata" />
+    <meta name="apple-mobile-web-app-title" content="عرض البيانات الوصفية" />
 
-    <title>View PDF Metadata - Pixel PDF</title>
+    <title>عرض البيانات الوصفية لـ PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:viewMetadata.name"
         >
-          View Metadata
+          عرض البيانات الوصفية
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:viewMetadata.subtitle">
-          Inspect the hidden properties of your PDF.
+          فحص الخصائص المخفية لملف PDF الخاص بك.
         </p>
 
         <div
@@ -129,15 +129,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -152,13 +152,13 @@
 
         <div id="tool-options" class="hidden mt-6">
           <h2 class="text-lg font-semibold text-white mb-4">
-            Document Metadata
+            البيانات الوصفية للمستند
           </h2>
           <div id="metadata-display" class="space-y-3"></div>
 
           <button id="copy-metadata" class="btn-gradient w-full mt-6">
-            <i data-lucide="copy" class="w-4 h-4 inline mr-2"></i> Copy Metadata
-            as JSON
+            <i data-lucide="copy" class="w-4 h-4 inline mr-2"></i> نسخ البيانات
+            الوصفية كـ JSON
           </button>
         </div>
       </div>
@@ -177,9 +177,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -196,16 +195,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -216,7 +214,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -226,9 +224,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -239,9 +237,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -252,9 +250,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -267,43 +265,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -314,114 +318,109 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What information can a PDF reveal about me?
+            ما المعلومات التي قد يكشفها PDF عني؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The Info dictionary often holds the author's name (usually the
-            operating system or Office username), the software used, and
-            creation and modification timestamps. XMP metadata can add document
-            IDs, revision history, and application details, and filled form
-            field values are shown too. If you're about to publish or share the
-            file, run
+            يحتوي قاموس Info غالبًا على اسم المؤلف (عادةً اسم مستخدم نظام
+            التشغيل أو Office) والبرنامج المستخدم وطوابع وقت الإنشاء والتعديل.
+            قد تضيف بيانات XMP معرّفات المستند وسجل المراجعات وتفاصيل التطبيق،
+            وتُعرض أيضًا قيم حقول النماذج المملوءة. إذا كنت على وشك نشر الملف أو
+            مشاركته، فشغّل
             <a
               href="/remove-metadata"
               class="text-indigo-300 hover:text-indigo-400"
-              >Remove Metadata</a
+              >إزالة البيانات الوصفية</a
             >
-            afterward.
+            بعد ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between the Info dictionary and XMP metadata?
+            ما الفرق بين قاموس Info وبيانات XMP الوصفية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The Info dictionary is the older set of fixed fields: Title, Author,
-            Subject, Keywords, Creator, Producer, and dates. XMP is an XML block
-            with namespaces such as Dublin Core, xmp, and pdf, and it can hold
-            far more. The two are meant to agree but often don't, which is why
-            the tool shows both.
+            قاموس Info هو المجموعة الأقدم من الحقول الثابتة: العنوان والمؤلف
+            والموضوع والكلمات المفتاحية والمنشئ والمنتج والتواريخ. أما XMP فكتلة
+            XML بمساحات أسماء مثل Dublin Core وxmp وpdf، ويمكنها حمل أكثر بكثير.
+            يُفترض أن يتفقا لكنهما يختلفان غالبًا، ولهذا تعرضهما الأداة معًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why are the dates shown differently from what Acrobat displays?
+            لماذا تظهر التواريخ بشكل مختلف عمّا يعرضه Acrobat؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            PDF dates are stored as strings like D:20240101120000Z. The tool
-            converts them to a readable date in your local time zone, so the
-            hour can differ from a viewer that shows the raw value or uses a
-            different zone.
+            تُخزَّن تواريخ PDF كسلاسل مثل D:20240101120000Z. تحوّلها الأداة إلى
+            تاريخ مقروء بتوقيتك المحلي، لذا قد تختلف الساعة عن عارض يعرض القيمة
+            الخام أو يستخدم منطقة زمنية أخرى.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How can I tell which program created the PDF?
+            كيف أعرف أي برنامج أنشأ PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Look at the Creator field (the application that made the original
-            document, such as Word or InDesign) and the Producer field (the
-            library that wrote the PDF, such as Acrobat Distiller or a PDF
-            engine). The XMP section usually repeats them as xmp:CreatorTool and
-            pdf:Producer.
+            انظر إلى حقل المنشئ (Creator، التطبيق الذي أنشأ المستند الأصلي مثل
+            Word أو InDesign) وحقل المنتج (Producer، المكتبة التي كتبت PDF مثل
+            Acrobat Distiller أو محرك PDF). يكرر قسم XMP عادةً هذين الحقلين
+            باسمي xmp:CreatorTool وpdf:Producer.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it show the values filled into form fields?
+            هل تعرض القيم المدخلة في حقول النماذج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The Interactive Form Fields section lists each field name with its
-            current value, or Not Set when empty, which is a quick way to check
-            what data a filled form contains before sending it.
+            يسرد قسم حقول النموذج التفاعلية اسم كل حقل وقيمته الحالية، أو غير
+            محدد عندما يكون فارغًا، وهذه طريقة سريعة لمعرفة البيانات التي
+            يحتويها نموذج مملوء قبل إرساله.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I copy or export the metadata?
+            هل يمكنني نسخ البيانات الوصفية أو تصديرها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The Copy Metadata as JSON button puts the Info dictionary fields on
-            your clipboard as a JSON object. The XMP tree and form field values
-            are displayed on the page but aren't included in the copied JSON.
+            يضع زر نسخ البيانات الوصفية كـ JSON حقول قاموس Info في الحافظة ككائن
+            JSON. تُعرض شجرة XMP وقيم حقول النماذج في الصفحة لكنها لا تُضمَّن في
+            JSON المنسوخ.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I change what I see here?
+            هل يمكنني تغيير ما أراه هنا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            This tool is read-only. Use
+            هذه الأداة للقراءة فقط. استخدم
             <a
               href="/edit-metadata"
               class="text-indigo-300 hover:text-indigo-400"
-              >Edit Metadata</a
+              >تعديل البيانات الوصفية</a
             >
-            to change the title, author, keywords, and dates, or Remove Metadata
-            to strip everything before publishing.
+            لتغيير العنوان والمؤلف والكلمات المفتاحية والتواريخ، أو إزالة
+            البيانات الوصفية لإزالة كل شيء قبل النشر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF uploaded to read its metadata?
+            هل يُرفع PDF لقراءة بياناته الوصفية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The file is parsed by pdf.js in your browser as soon as you
-            select it, and nothing is transmitted, so you can inspect a
-            sensitive document before deciding where it goes.
+            لا. يحلل pdf.js الملف داخل متصفحك بمجرد اختياره، ولا يُرسل أي شيء،
+            فيمكنك فحص مستند حساس قبل أن تقرر وجهته.
           </p>
         </details>
       </div>
@@ -454,26 +453,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to view metadata online",
+        "name": "كيفية عرض البيانات الوصفية عبر الإنترنت",
         "description": "Learn how to view metadata using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

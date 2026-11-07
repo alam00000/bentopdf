@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
     <title>
-      Advanced Features Settings - Configure WASM Modules | Pixel PDF
+      إعدادات الميزات المتقدمة - ضبط وحدات WASM | Pixel PDF
     </title>
     <meta
       name="title"
-      content="Advanced Features Settings - Configure WASM Modules | Pixel PDF"
+      content="إعدادات الميزات المتقدمة - ضبط وحدات WASM | Pixel PDF"
     />
     <meta
       name="description"
-      content="Configure advanced PDF processing modules for Pixel PDF. Enable features like PDF/A conversion, document extraction, and more."
+      content="اضبط وحدات معالجة PDF المتقدمة في Pixel PDF. فعّل ميزات مثل تحويل PDF/A واستخراج المستندات وغيرها."
     />
     <meta
       name="keywords"
@@ -74,23 +74,23 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:wasmSettings.title"
         >
-          Advanced Features Settings
+          إعدادات الميزات المتقدمة
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:wasmSettings.description"
         >
-          Configure external processing modules to enable advanced PDF features.
-          These modules are optional and licensed separately.
+          قم بتكوين وحدات المعالجة الخارجية لتمكين ميزات PDF المتقدمة. هذه
+          الوحدات اختيارية ومرخصة بشكل منفصل.
         </p>
 
         <!-- Info Banner -->
@@ -105,13 +105,13 @@
             <div>
               <p class="text-green-200 text-sm">
                 <strong data-i18n="tools:wasmSettings.preconfiguredTitle"
-                  >Pre-configured and ready to use.</strong
+                  >مهيأ مسبقًا وجاهز للاستخدام.</strong
                 >
                 <span data-i18n="tools:wasmSettings.preconfiguredDescription"
-                  >Advanced processing modules are loaded automatically from
-                  CDN. You can override the URLs below if you need to use a
-                  custom source (e.g., for air-gapped or self-hosted
-                  deployments).</span
+                  >يتم تحميل وحدات المعالجة المتقدمة تلقائيًا من CDN. يمكنك
+                  تجاوز عناوين URL أدناه إذا كنت بحاجة إلى استخدام مصدر مخصص
+                  (على سبيل المثال، لعمليات النشر المعزولة عن الإنترنت أو
+                  المستضافة ذاتيًا).</span
                 >
               </p>
             </div>
@@ -128,23 +128,22 @@
                   class="text-xs text-gray-400"
                   data-i18n="tools:wasmSettings.pymupdfSubtitle"
                 >
-                  Document Processing Engine
+                  محرك معالجة المستندات
                 </p>
               </div>
               <span
                 id="pymupdf-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
                 data-i18n="tools:wasmSettings.status.notConfigured"
+                >غير مهيأ</span
               >
-                Not Configured
-              </span>
             </div>
             <p
               class="text-sm text-gray-400 mb-3"
               data-i18n="tools:wasmSettings.pymupdfFeatures"
             >
-              Enables: PDF to Text, Markdown, SVG, DOCX, Excel • Extract
-              Images/Tables • Format Conversion
+              يفعّل: PDF إلى نص، Markdown، SVG، DOCX، Excel • استخراج
+              الصور/الجداول • تحويل التنسيق
             </p>
             <div class="flex gap-2">
               <input
@@ -158,14 +157,14 @@
                 class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors"
                 data-i18n="tools:wasmSettings.testButton"
               >
-                Test
+                اختبار
               </button>
             </div>
             <div class="flex items-center gap-2 mt-2">
               <span
                 class="text-xs text-gray-500"
                 data-i18n="tools:wasmSettings.recommendedLabel"
-                >Recommended:</span
+                >موصى به:</span
               >
               <code
                 class="text-xs text-indigo-400 bg-gray-800 px-2 py-1 rounded flex-1 truncate"
@@ -174,7 +173,7 @@
               <button
                 data-copy="https://cdn.jsdelivr.net/npm/@bentopdf/pymupdf-wasm@0.11.16/"
                 class="copy-btn p-1.5 bg-gray-600 hover:bg-gray-500 rounded text-gray-300 hover:text-white transition-colors"
-                title="Copy to clipboard"
+                title="نسخ إلى الحافظة"
                 data-i18n-title="tools:wasmSettings.copyTitle"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
@@ -191,22 +190,21 @@
                   class="text-xs text-gray-400"
                   data-i18n="tools:wasmSettings.ghostscriptSubtitle"
                 >
-                  PDF/A Conversion Engine
+                  محرك تحويل PDF/A
                 </p>
               </div>
               <span
                 id="ghostscript-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
                 data-i18n="tools:wasmSettings.status.notConfigured"
+                >غير مهيأ</span
               >
-                Not Configured
-              </span>
             </div>
             <p
               class="text-sm text-gray-400 mb-3"
               data-i18n="tools:wasmSettings.ghostscriptFeatures"
             >
-              Enables: PDF/A-1b, PDF/A-2b, PDF/A-3b Conversion • Font to Outline
+              يفعّل: تحويل PDF/A-1b، PDF/A-2b، PDF/A-3b • الخط إلى مخطط
             </p>
             <div class="flex gap-2">
               <input
@@ -220,14 +218,14 @@
                 class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors"
                 data-i18n="tools:wasmSettings.testButton"
               >
-                Test
+                اختبار
               </button>
             </div>
             <div class="flex items-center gap-2 mt-2">
               <span
                 class="text-xs text-gray-500"
                 data-i18n="tools:wasmSettings.recommendedLabel"
-                >Recommended:</span
+                >موصى به:</span
               >
               <code
                 class="text-xs text-indigo-400 bg-gray-800 px-2 py-1 rounded flex-1 truncate"
@@ -236,7 +234,7 @@
               <button
                 data-copy="https://cdn.jsdelivr.net/npm/@bentopdf/gs-wasm@0.1.1/assets/"
                 class="copy-btn p-1.5 bg-gray-600 hover:bg-gray-500 rounded text-gray-300 hover:text-white transition-colors"
-                title="Copy to clipboard"
+                title="نسخ إلى الحافظة"
                 data-i18n-title="tools:wasmSettings.copyTitle"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
@@ -253,22 +251,22 @@
                   class="text-xs text-gray-400"
                   data-i18n="tools:wasmSettings.cpdfSubtitle"
                 >
-                  Bookmarks & Metadata Engine
+                  محرك الإشارات المرجعية والبيانات الوصفية
                 </p>
               </div>
               <span
                 id="cpdf-status"
                 class="text-xs px-2 py-1 rounded-full bg-gray-600 text-gray-300"
                 data-i18n="tools:wasmSettings.status.notConfigured"
+                >غير مهيأ</span
               >
-                Not Configured
-              </span>
             </div>
             <p
               class="text-sm text-gray-400 mb-3"
               data-i18n="tools:wasmSettings.cpdfFeatures"
             >
-              Enables: Split by Bookmarks • Edit Bookmarks • PDF Metadata
+              يفعّل: التقسيم حسب الإشارات المرجعية • تحرير الإشارات المرجعية •
+              بيانات تعريف PDF
             </p>
             <div class="flex gap-2">
               <input
@@ -282,14 +280,14 @@
                 class="px-4 py-2 bg-gray-600 hover:bg-gray-500 text-white rounded-lg text-sm font-medium transition-colors"
                 data-i18n="tools:wasmSettings.testButton"
               >
-                Test
+                اختبار
               </button>
             </div>
             <div class="flex items-center gap-2 mt-2">
               <span
                 class="text-xs text-gray-500"
                 data-i18n="tools:wasmSettings.recommendedLabel"
-                >Recommended:</span
+                >موصى به:</span
               >
               <code
                 class="text-xs text-indigo-400 bg-gray-800 px-2 py-1 rounded flex-1 truncate"
@@ -298,7 +296,7 @@
               <button
                 data-copy="https://cdn.jsdelivr.net/npm/coherentpdf@2.5.5/dist/"
                 class="copy-btn p-1.5 bg-gray-600 hover:bg-gray-500 rounded text-gray-300 hover:text-white transition-colors"
-                title="Copy to clipboard"
+                title="نسخ إلى الحافظة"
                 data-i18n-title="tools:wasmSettings.copyTitle"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
@@ -314,14 +312,14 @@
             class="btn-gradient flex-1"
             data-i18n="tools:wasmSettings.saveConfiguration"
           >
-            Save Configuration
+            حفظ التكوين
           </button>
           <button
             id="clear-btn"
             class="px-6 py-2.5 bg-red-600/20 hover:bg-red-600/30 text-red-400 rounded-lg font-medium transition-colors border border-red-600/50"
             data-i18n="tools:wasmSettings.resetDefaults"
           >
-            Reset to Defaults
+            إعادة التعيين إلى الافتراضي
           </button>
         </div>
 
@@ -333,15 +331,14 @@
             <strong
               class="text-gray-400"
               data-i18n="tools:wasmSettings.licenseTitle"
-              >License Notice:</strong
+              >إشعار الترخيص:</strong
             >
             <span data-i18n="tools:wasmSettings.licenseDescription"
-              >The external modules (PyMuPDF, Ghostscript, CoherentPDF) are
-              licensed under AGPL-3.0 or similar copyleft licenses. By
-              configuring and using these modules, you agree to their respective
-              license terms. Pixel PDF is compatible with any Ghostscript WASM
-              and PyMuPDF WASM implementation that follows the expected
-              interface.</span
+              >الوحدات الخارجية (PyMuPDF، Ghostscript، CoherentPDF) مرخصة بموجب
+              AGPL-3.0 أو تراخيص copyleft مماثلة. بتكوين واستخدام هذه الوحدات،
+              فإنك توافق على شروط الترخيص الخاصة بكل منها. Pixel PDF متوافق مع
+              أي تنفيذ Ghostscript WASM وPyMuPDF WASM يتبع الواجهة
+              المتوقعة.</span
             >
           </p>
         </div>
@@ -362,7 +359,7 @@
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -380,7 +377,7 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
@@ -388,7 +385,7 @@
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
           data-i18n="common.ok"
         >
-          OK
+          موافق
         </button>
       </div>
     </div>

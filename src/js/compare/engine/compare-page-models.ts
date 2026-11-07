@@ -57,7 +57,7 @@ function comparePageModelsCore(
           type: 'page-removed',
           category: 'text',
           description: trText(
-            'Page {{pageNumber}} exists only in the first PDF.',
+            "الصفحة {{pageNumber}} موجودة في ملف PDF الأول فقط.",
             { pageNumber: leftPage.pageNumber }
           ),
           beforeText: leftPage.plainText.slice(0, 200),
@@ -84,7 +84,7 @@ function comparePageModelsCore(
           type: 'page-added',
           category: 'text',
           description: trText(
-            'Page {{pageNumber}} exists only in the second PDF.',
+            "الصفحة {{pageNumber}} موجودة في ملف PDF الثاني فقط.",
             { pageNumber: rightPage.pageNumber }
           ),
           beforeText: '',

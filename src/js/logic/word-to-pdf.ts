@@ -9,11 +9,11 @@ import { trText } from '../i18n/i18n.js';
 export async function wordToPdf() {
   const file = state.files[0];
   if (!file) {
-    showAlert('No File', 'Please upload a .docx file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف .docx أولًا.");
     return;
   }
 
-  showLoader('Preparing preview...');
+  showLoader("جارٍ تجهيز المعاينة...");
 
   try {
     const mammothOptions = {
@@ -77,7 +77,7 @@ export async function wordToPdf() {
     hideLoader();
 
     const downloadHandler = async () => {
-      showLoader('Generating High-Quality PDF...');
+      showLoader("جارٍ إنشاء PDF عالي الجودة...");
 
       // @ts-expect-error TS(2339) FIXME: Property 'jspdf' does not exist on type 'Window & ... Remove this comment to see the full error message
       const { jsPDF } = window.jspdf;
@@ -155,9 +155,9 @@ export async function wordToPdf() {
     console.error(e);
     hideLoader();
     showAlert(
-      'Preview Error',
+      "خطأ في المعاينة",
       trText(
-        'Could not generate a preview. The file may be corrupt or contain unsupported features. Error: {{message}}',
+        "تعذر إنشاء معاينة. قد يكون الملف تالفًا أو يحتوي على ميزات غير مدعومة. الخطأ: {{message}}",
         { message: e.message }
       )
     );

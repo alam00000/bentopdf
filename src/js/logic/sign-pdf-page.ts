@@ -86,7 +86,7 @@ function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -146,7 +146,7 @@ async function updateFileDisplay() {
   }
   signState.file = result.file;
   nameSpan.textContent = result.file.name;
-  metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
     size: formatBytes(result.file.size),
     numPages: result.pdf.numPages,
   });
@@ -159,7 +159,7 @@ async function setupSignTool() {
     signatureEditor.classList.remove('hidden');
   }
 
-  showLoader('Loading PDF viewer...');
+  showLoader("جارٍ تحميل عارض PDF...");
 
   const container = document.getElementById('canvas-container-sign');
   if (!container) {
@@ -267,7 +267,7 @@ async function setupSignTool() {
 
 async function applyAndSaveSignatures() {
   if (!signState.viewerReady || !signState.viewerIframe) {
-    showAlert('Viewer not ready', 'Please wait for the PDF viewer to load.');
+    showAlert("العارض غير جاهز", "يرجى الانتظار حتى يتم تحميل عارض PDF.");
     return;
   }
 
@@ -275,7 +275,7 @@ async function applyAndSaveSignatures() {
     const viewerWindow = signState.viewerIframe
       .contentWindow as PDFViewerWindow | null;
     if (!viewerWindow || !viewerWindow.PDFViewerApplication) {
-      showAlert('Viewer not ready', 'The PDF viewer is still initializing.');
+      showAlert("العارض غير جاهز", "عارض PDF لا يزال قيد التهيئة.");
       return;
     }
 
@@ -286,7 +286,7 @@ async function applyAndSaveSignatures() {
     const shouldFlatten = flattenCheckbox?.checked;
 
     if (shouldFlatten) {
-      showLoader('Flattening and saving PDF...');
+      showLoader("جارٍ تسطيح PDF وحفظه...");
 
       const rawPdfBytes = await app.pdfDocument.saveDocument(
         app.pdfDocument.annotationStorage
@@ -317,14 +317,14 @@ async function applyAndSaveSignatures() {
       downloadFile(blob, signState.file?.name || 'document.pdf');
 
       hideLoader();
-      showAlert('Success', 'Signed PDF saved successfully!', 'success', () => {
+      showAlert("تم بنجاح", "تم حفظ PDF الموقّع بنجاح!", 'success', () => {
         resetState();
       });
     } else {
       app.eventBus?.dispatch('download', { source: app });
       showAlert(
-        'Success',
-        'Signed PDF downloaded successfully!',
+        "تم بنجاح",
+        "تم تنزيل PDF الموقّع بنجاح!",
         'success',
         () => {
           resetState();
@@ -335,8 +335,8 @@ async function applyAndSaveSignatures() {
     console.error('Failed to export the signed PDF:', error);
     hideLoader();
     showAlert(
-      'Export failed',
-      'Could not export the signed PDF. Please try again.'
+      "فشل التصدير",
+      "تعذر تصدير PDF الموقّع. يرجى المحاولة مرة أخرى."
     );
   }
 }

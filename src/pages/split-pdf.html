@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Split PDF Online Free - Extract Pages from a PDF | Pixel PDF"
+      content="تقسيم PDF عبر الإنترنت مجانًا - استخراج صفحات من PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Extract a range of pages into a new PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج نطاقًا من الصفحات إلى ملف PDF جديد. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/split-pdf" />
     <meta
       property="og:title"
-      content="Split PDF Online Free - Extract Pages from a PDF | Pixel PDF"
+      content="تقسيم PDF عبر الإنترنت مجانًا - استخراج صفحات من PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Extract a range of pages into a new PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج نطاقًا من الصفحات إلى ملف PDF جديد. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -50,11 +50,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/split-pdf" />
     <meta
       name="twitter:title"
-      content="Split PDF Online Free - Extract Pages from a PDF | Pixel PDF"
+      content="تقسيم PDF عبر الإنترنت مجانًا - استخراج صفحات من PDF | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Extract a range of pages into a new PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج نطاقًا من الصفحات إلى ملف PDF جديد. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Split PDF" />
+    <meta name="apple-mobile-web-app-title" content="تقسيم PDF" />
 
-    <title>Split PDF Online Free - Extract Pages from a PDF | Pixel PDF</title>
+    <title>تقسيم PDF عبر الإنترنت مجانًا - استخراج صفحات من PDF | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:splitPdf.name"
         >
-          Split PDF
+          تقسيم PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:splitPdf.subtitle">
-          Extract a range of pages into a new PDF.
+          استخراج نطاق من الصفحات في ملف PDF جديد.
         </p>
 
         <!-- Drop Zone for Main PDF Upload -->
@@ -136,15 +136,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -161,41 +161,39 @@
           <label
             for="split-mode"
             class="block mb-2 text-sm font-medium text-gray-300"
-            >Split Mode</label
+            >وضع التقسيم</label
           >
           <select
             id="split-mode"
             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4"
           >
-            <option value="range">Extract by Page Range (Default)</option>
-            <option value="even-odd">Split by Even/Odd Pages</option>
-            <option value="all">Split All Pages into Separate Files</option>
-            <option value="visual">Select Pages Visually</option>
-            <option value="bookmarks">Split by Bookmarks</option>
-            <option value="n-times">Split N Times</option>
+            <option value="range">الاستخراج حسب نطاق الصفحات (افتراضي)</option>
+            <option value="even-odd">
+              التقسيم حسب الصفحات الزوجية/الفردية
+            </option>
+            <option value="all">تقسيم كل الصفحات إلى ملفات منفصلة</option>
+            <option value="visual">تحديد الصفحات بصريًا</option>
+            <option value="bookmarks">التقسيم حسب الإشارات المرجعية</option>
+            <option value="n-times">التقسيم N من المرات</option>
           </select>
 
           <div id="range-panel">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
-                <li>
-                  Enter page numbers separated by commas (e.g., 2, 8, 14).
-                </li>
-                <li>Enter page ranges using a hyphen (e.g., 5-10).</li>
-                <li>
-                  Combine them for complex selections (e.g., 1-3, 7, 12-15).
-                </li>
+                <li>أدخل أرقام الصفحات مفصولة بفواصل (مثل 2, 8, 14).</li>
+                <li>أدخل نطاقات الصفحات باستخدام الشرطة (مثل 5-10).</li>
+                <li>اجمعها للتحديدات المعقدة (مثل 1-3, 7, 12-15).</li>
               </ul>
             </div>
             <label
               for="page-range"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Page Range</label
+              >نطاق الصفحات</label
             >
             <input
               type="text"
@@ -208,14 +206,14 @@
           <div id="even-odd-panel" class="hidden">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
                 <li>
-                  Extract all even pages (2, 4, 6...) or all odd pages (1, 3,
-                  5...) into a new PDF.
+                  استخرج كل الصفحات الزوجية (2 و4 و6...) أو كل الصفحات الفردية
+                  (1 و3 و5...) إلى ملف PDF جديد.
                 </li>
               </ul>
             </div>
@@ -230,7 +228,7 @@
               <label
                 for="split-even"
                 class="ml-2 text-sm font-medium text-gray-300"
-                >Even Pages</label
+                >الصفحات الزوجية</label
               >
             </div>
             <div class="flex items-center">
@@ -244,7 +242,7 @@
               <label
                 for="split-odd"
                 class="ml-2 text-sm font-medium text-gray-300"
-                >Odd Pages</label
+                >الصفحات الفردية</label
               >
             </div>
           </div>
@@ -252,19 +250,13 @@
           <div id="all-pages-panel" class="hidden">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
-                <li>
-                  Every single page of the PDF will be saved as a separate PDF
-                  file.
-                </li>
-                <li>
-                  The result will be downloaded as a ZIP file containing all the
-                  pages.
-                </li>
+                <li>ستُحفظ كل صفحة من PDF كملف PDF منفصل.</li>
+                <li>ستُنزَّل النتيجة كملف ZIP يحتوي على كل الصفحات.</li>
               </ul>
             </div>
           </div>
@@ -272,16 +264,16 @@
           <div id="visual-select-panel" class="hidden">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
                 <li>
-                  Click on the page thumbnails below to select the pages you
-                  want to extract.
+                  انقر على الصور المصغرة للصفحات أدناه لتحديد الصفحات التي تريد
+                  استخراجها.
                 </li>
-                <li>Selected pages will be highlighted.</li>
+                <li>ستُميَّز الصفحات المحددة.</li>
               </ul>
             </div>
             <div
@@ -295,49 +287,47 @@
           <div id="bookmarks-panel" class="hidden">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
-                <li>Split the PDF based on its bookmarks (outline).</li>
-                <li>Select the bookmark level to split at.</li>
+                <li>قسّم PDF حسب إشاراته المرجعية (الفهرس).</li>
+                <li>اختر مستوى الإشارة المرجعية الذي يُقسَّم عنده.</li>
               </ul>
             </div>
             <label
               for="bookmark-level"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Bookmark Level</label
+              >مستوى الإشارة المرجعية</label
             >
             <select
               id="bookmark-level"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 mb-4"
             >
-              <option value="all" selected>All Levels</option>
-              <option value="0">Level 0 (Top Level Only)</option>
-              <option value="1">Level 1</option>
-              <option value="2">Level 2</option>
-              <option value="3">Level 3</option>
+              <option value="all" selected="">جميع المستويات</option>
+              <option value="0">المستوى 0 (المستوى الأعلى فقط)</option>
+              <option value="1">المستوى 1</option>
+              <option value="2">المستوى 2</option>
+              <option value="3">المستوى 3</option>
             </select>
           </div>
 
           <div id="n-times-panel" class="hidden">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
-                <li>
-                  Split the PDF into multiple files, each containing N pages.
-                </li>
+                <li>قسّم PDF إلى عدة ملفات، يحتوي كل منها على N من الصفحات.</li>
               </ul>
             </div>
             <label
               for="split-n-value"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Pages per file (N)</label
+              >عدد الصفحات في كل ملف (N)</label
             >
             <input
               type="number"
@@ -356,20 +346,20 @@
           </div>
 
           <div id="output-mode-wrapper" class="mt-4">
-            <p class="block mb-2 text-sm font-medium text-gray-300">Output</p>
+            <p class="block mb-2 text-sm font-medium text-gray-300">المخرجات</p>
             <div class="flex items-center mb-2">
               <input
                 id="output-combine"
                 type="radio"
                 value="combine"
                 name="split-output-mode"
-                checked
+                checked=""
                 class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-600 ring-offset-gray-800 focus:ring-2"
               />
               <label
                 for="output-combine"
                 class="ml-2 text-sm font-medium text-gray-300"
-                >Single combined PDF</label
+                >ملف PDF واحد مدمج</label
               >
             </div>
             <div class="flex items-center">
@@ -384,16 +374,16 @@
                 for="output-separate"
                 id="output-separate-label"
                 class="ml-2 text-sm font-medium text-gray-300"
-                >One PDF per range</label
+                >ملف PDF لكل نطاق</label
               >
             </div>
             <p class="mt-2 text-xs text-gray-400">
-              Multiple files are downloaded together as a ZIP.
+              تُنزَّل الملفات المتعددة معًا في ملف ZIP.
             </p>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
-            Split PDF
+            تقسيم PDF
           </button>
         </div>
       </div>
@@ -409,7 +399,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -426,16 +416,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -446,7 +435,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -456,9 +445,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload PDF</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع PDF</h3>
             <p class="text-gray-400">
-              Select the PDF file you want to split or extract pages from
+              اختر ملف PDF الذي تريد تقسيمه أو استخراج صفحات منه
             </p>
           </div>
         </div>
@@ -470,10 +459,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Choose Split Method
+              اختر طريقة التقسيم
             </h3>
             <p class="text-gray-400">
-              Select specific pages, page ranges, or split into individual pages
+              اختر صفحات محددة أو نطاقات صفحات أو قسّم إلى صفحات فردية
             </p>
           </div>
         </div>
@@ -484,11 +473,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Preview & Select
-            </h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معاينة وتحديد</h3>
             <p class="text-gray-400">
-              View page thumbnails and select exactly which pages you want
+              اعرض الصور المصغرة للصفحات واختر بالضبط الصفحات التي تريدها
             </p>
           </div>
         </div>
@@ -499,11 +486,9 @@
             4
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Split & Download
-            </h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تقسيم وتنزيل</h3>
             <p class="text-gray-400">
-              Download extracted pages as separate PDFs or as a ZIP file
+              نزّل الصفحات المستخرجة كملفات PDF منفصلة أو كملف ZIP
             </p>
           </div>
         </div>
@@ -516,43 +501,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="extract-pages.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Extract Pages</h3>
-          <p class="text-gray-400 text-sm">Free online extract pages tool</p>
+          <h3 class="text-white font-semibold mb-1">استخراج الصفحات</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لاستخراج الصفحات
+          </p>
         </a>
         <a
           href="organize-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Organize PDF</h3>
-          <p class="text-gray-400 text-sm">Free online organize PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تنظيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتنظيم PDF
+          </p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="delete-pages.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Delete Pages</h3>
-          <p class="text-gray-400 text-sm">Free online delete pages tool</p>
+          <h3 class="text-white font-semibold mb-1">حذف الصفحات</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لحذف الصفحات
+          </p>
         </a>
       </div>
     </section>
@@ -563,99 +554,96 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I extract a range of pages from a PDF?
+            كيف أستخرج نطاقًا من الصفحات من PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Choose Extract by Page Range and type the pages you want, such as
-            1-5, 8, 11-13. By default the selected pages are combined into one
-            PDF; switch the output to One PDF per range and each comma-separated
-            range becomes its own file inside split-pages.zip.
+            اختر الاستخراج حسب نطاق الصفحات واكتب الصفحات التي تريدها، مثل 1-5,
+            8, 11-13. افتراضيًا تُدمج الصفحات المحددة في ملف PDF واحد، وبتبديل
+            الإخراج إلى ملف PDF لكل نطاق يصبح كل نطاق مفصول بفاصلة ملفًا مستقلًا
+            داخل split-pages.zip.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I split a PDF into one file per page?
+            هل يمكنني تقسيم PDF إلى ملف لكل صفحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Pick Split All Pages into Separate Files and every page is
-            written to its own PDF, named page-1.pdf, page-2.pdf, and so on,
-            bundled in split-pages.zip.
+            نعم. اختر تقسيم كل الصفحات إلى ملفات منفصلة فتُكتب كل صفحة في ملف
+            PDF خاص بها باسم page-1.pdf وpage-2.pdf وهكذا، مجمّعة في
+            split-pages.zip.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I split a PDF every N pages?
+            كيف أقسّم PDF كل N من الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Choose Split N Times and enter the chunk size. A 23-page file split
-            every 5 pages produces five PDFs, and the tool warns you beforehand
-            that the last one will hold only 3 pages. The files download as
-            split-n-times.zip.
+            اختر التقسيم كل N من المرات وأدخل حجم الجزء. ملف من 23 صفحة يُقسَّم
+            كل 5 صفحات ينتج خمسة ملفات PDF، وتحذرك الأداة مسبقًا أن الأخير
+            سيحتوي على 3 صفحات فقط. تُنزَّل الملفات في split-n-times.zip.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I split a PDF by chapters or bookmarks?
+            هل يمكنني تقسيم PDF حسب الفصول أو الإشارات المرجعية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, if the PDF has bookmarks. Choose Split by Bookmarks and a level
-            (All, or level 0 through 3), and a new file starts at each
-            bookmark's page, giving you split-1.pdf, split-2.pdf, and so on in
-            split-by-bookmarks.zip. A PDF with no bookmarks at the chosen level
-            shows an error instead.
+            نعم، إذا كان PDF يحتوي على إشارات مرجعية. اختر التقسيم حسب الإشارات
+            المرجعية ومستوى (الكل، أو المستوى 0 إلى 3)، فيبدأ ملف جديد عند صفحة
+            كل إشارة مرجعية، لتحصل على split-1.pdf وsplit-2.pdf وهكذا في
+            split-by-bookmarks.zip. يظهر خطأ إذا لم يكن في PDF إشارات مرجعية عند
+            المستوى المختار.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I separate odd and even pages?
+            كيف أفصل الصفحات الفردية عن الزوجية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Select Split by Even/Odd Pages and pick even or odd; the matching
-            pages are extracted into one PDF in their original order. This is a
-            common step for double-sided printing on a single-sided printer.
+            اختر التقسيم حسب الصفحات الزوجية/الفردية وحدد زوجية أو فردية،
+            وتُستخرج الصفحات المطابقة في ملف PDF واحد بترتيبها الأصلي. هذه خطوة
+            شائعة للطباعة على الوجهين بطابعة تطبع على وجه واحد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I pick pages visually instead of typing numbers?
+            هل يمكنني اختيار الصفحات بصريًا بدل كتابة الأرقام؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Select Pages Visually shows a thumbnail of every page; click
-            the ones you want and they're extracted in page order. Combined
-            output gives one PDF, and the separate option gives one file per
-            page in a ZIP.
+            نعم. يعرض تحديد الصفحات بصريًا صورة مصغرة لكل صفحة، فانقر على التي
+            تريدها وتُستخرج بترتيب الصفحات. الإخراج المدمج يعطي ملف PDF واحدًا،
+            والخيار المنفصل يعطي ملفًا لكل صفحة في ZIP.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does splitting reduce the quality of the pages?
+            هل يقلل التقسيم جودة الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Pages are copied by QPDF without re-rendering, so text, images,
-            fonts, and vector graphics stay exactly as they were in the
-            original.
+            لا. ينسخ QPDF الصفحات دون إعادة عرضها، فيبقى النص والصور والخطوط
+            والرسومات المتجهة تمامًا كما كانت في الأصل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded when I split it?
+            هل يُرفع PDF عند تقسيمه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The page extraction and ZIP packaging run in your browser, and
-            the resulting files are saved directly from your device.
+            لا. يتم استخراج الصفحات وتجميع ZIP داخل متصفحك، وتُحفظ الملفات
+            الناتجة مباشرة من جهازك.
           </p>
         </details>
       </div>
@@ -688,26 +676,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to split online",
+        "name": "كيفية التقسيم عبر الإنترنت",
         "description": "Learn how to split using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

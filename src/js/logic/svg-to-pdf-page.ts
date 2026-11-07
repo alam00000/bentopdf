@@ -93,8 +93,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only SVG graphics are allowed.'
+      "ملفات غير صالحة",
+      "تم تخطي بعض الملفات. يُسمح برسومات SVG فقط."
     );
   }
 
@@ -187,7 +187,7 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
       const ctx = canvas.getContext('2d');
       if (!ctx) {
         URL.revokeObjectURL(url);
-        return reject(new Error(trText('Could not get canvas context')));
+        return reject(new Error(trText("تعذر الحصول على سياق Canvas")));
       }
 
       // Fill with white background for transparency
@@ -198,7 +198,7 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
       canvas.toBlob(async (pngBlob) => {
         URL.revokeObjectURL(url);
         if (!pngBlob) {
-          return reject(new Error(trText('Canvas toBlob conversion failed.')));
+          return reject(new Error(trText("فشل تحويل Canvas toBlob.")));
         }
         const arrayBuffer = await pngBlob.arrayBuffer();
         resolve(new Uint8Array(arrayBuffer));
@@ -207,7 +207,7 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
 
     img.onerror = () => {
       URL.revokeObjectURL(url);
-      reject(new Error(trText('Failed to load SVG image')));
+      reject(new Error(trText("تعذر تحميل صورة SVG")));
     };
 
     img.src = url;
@@ -216,11 +216,11 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one SVG file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف SVG واحد على الأقل.");
     return;
   }
 
-  showLoader('Creating PDF from SVG files...');
+  showLoader("جارٍ إنشاء PDF من ملفات SVG...");
 
   try {
     const pdfDoc = await PDFLibDocument.create();
@@ -252,7 +252,7 @@ async function convertToPdf() {
       } catch (error) {
         console.error(`Failed to process ${file.name}:`, error);
         throw new Error(
-          trText('Could not process "{{name}}". The file may be corrupted.', {
+          trText("تعذرت معالجة \"{{name}}\". قد يكون الملف تالفًا.", {
             name: file.name,
           }),
           { cause: error }
@@ -265,12 +265,12 @@ async function convertToPdf() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_svgs.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e: unknown) {
     console.error(e);
-    showAlert('Conversion Error', e instanceof Error ? e.message : String(e));
+    showAlert("خطأ في التحويل", e instanceof Error ? e.message : String(e));
   } finally {
     hideLoader();
   }

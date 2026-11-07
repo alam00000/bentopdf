@@ -29,7 +29,7 @@ export function createDragHandle(): HTMLElement {
   const handle = document.createElement('div');
   handle.className =
     'drag-handle cursor-move text-gray-400 hover:text-white p-1 rounded transition-colors flex-shrink-0';
-  const label = trText('Drag to reorder');
+  const label = trText("اسحب لإعادة الترتيب");
   handle.title = label;
   handle.setAttribute('aria-label', label);
   const icon = document.createElement('i');

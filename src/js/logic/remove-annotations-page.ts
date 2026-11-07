@@ -77,9 +77,9 @@ function updateFileDisplay() {
             <div class="flex items-center justify-between">
                 <div class="flex-1 min-w-0">
                     <p class="truncate font-medium text-white">${escapeHtml(pageState.file.name)}</p>
-                    <p class="text-gray-400 text-sm">${pageCount === 1 ? trHtml('{{fileSize}} • 1 page', { fileSize }) : trHtml('{{fileSize}} • {{pageCount}} pages', { fileSize, pageCount })}</p>
+                    <p class="text-gray-400 text-sm">${pageCount === 1 ? trHtml("{{fileSize}} • صفحة واحدة", { fileSize }) : trHtml("{{fileSize}} • عدد الصفحات: {{pageCount}}", { fileSize, pageCount })}</p>
                 </div>
-                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="${trHtml('Remove file')}">
+                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="${trHtml("إزالة الملف")}">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -106,14 +106,14 @@ function resetState() {
 // File handling
 async function handleFileUpload(file: File) {
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Error', 'Please upload a valid PDF file.');
+    showAlert("خطأ", "يرجى رفع ملف PDF صالح.");
     return;
   }
 
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -121,7 +121,7 @@ async function handleFileUpload(file: File) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -130,11 +130,11 @@ async function handleFileUpload(file: File) {
 // Process function
 async function processRemoveAnnotations() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Removing annotations...');
+  showLoader("جارٍ إزالة التعليقات التوضيحية...");
   try {
     const pages = pageState.pdfDoc.getPages();
 
@@ -154,12 +154,12 @@ async function processRemoveAnnotations() {
       new Blob([new Uint8Array(newPdfBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Annotations removed successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تمت إزالة التعليقات التوضيحية بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not remove annotations.');
+    showAlert("خطأ", "تعذرت إزالة التعليقات التوضيحية.");
   } finally {
     hideLoader();
   }

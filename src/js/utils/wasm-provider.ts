@@ -156,7 +156,7 @@ class WasmProviderManager {
     const normalizedUrl = withTrailingSlash(url);
     const host = hostnameOf(normalizedUrl);
     if (!host) {
-      throw new Error(trText('Invalid URL'));
+      throw new Error(trText("رابط غير صالح"));
     }
     const envDefault = this.getEnvDefault(packageName);
     if (envDefault && normalizedUrl === withTrailingSlash(envDefault)) {
@@ -200,7 +200,7 @@ class WasmProviderManager {
   ): Promise<{ valid: boolean; error?: string }> {
     const testUrl = url || this.config[packageName];
     if (!testUrl) {
-      return { valid: false, error: trText('No URL configured') };
+      return { valid: false, error: trText("لم يتم تكوين رابط") };
     }
 
     try {
@@ -208,14 +208,14 @@ class WasmProviderManager {
       if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
         return {
           valid: false,
-          error: trText('URL must start with http:// or https://'),
+          error: trText("يجب أن يبدأ الرابط بـ http:// أو https://"),
         };
       }
     } catch {
       return {
         valid: false,
         error: trText(
-          'Invalid URL format. Please enter a valid URL (e.g., https://example.com/wasm/)'
+          "صيغة الرابط غير صالحة. يرجى إدخال رابط صالح (مثل https://example.com/wasm/)"
         ),
       };
     }
@@ -247,7 +247,7 @@ class WasmProviderManager {
         return {
           valid: false,
           error: trText(
-            'Could not find {{testFile}} at the specified URL (HTTP {{status}}). Make sure the file exists.',
+            "تعذر العثور على {{testFile}} في الرابط المحدد (HTTP {{status}}). تأكد من وجود الملف.",
             { testFile, status: response.status }
           ),
         };
@@ -262,7 +262,7 @@ class WasmProviderManager {
           return {
             valid: false,
             error: trText(
-              'File exists but could not be read. Check CORS configuration.'
+              "الملف موجود لكن تعذرت قراءته. تحقق من إعدادات CORS."
             ),
           };
         }
@@ -278,7 +278,7 @@ class WasmProviderManager {
         return {
           valid: false,
           error: trText(
-            'The URL returned unexpected content type: {{contentType}}. Expected a JavaScript file.',
+            "أعاد الرابط نوع محتوى غير متوقع: {{contentType}}. المتوقع ملف JavaScript.",
             { contentType }
           ),
         };
@@ -291,7 +291,7 @@ class WasmProviderManager {
       return { valid: true };
     } catch (e: unknown) {
       const errorMessage =
-        e instanceof Error ? e.message : trText('Unknown error');
+        e instanceof Error ? e.message : trText("خطأ غير معروف");
 
       if (
         errorMessage.includes('Failed to fetch') ||
@@ -300,14 +300,14 @@ class WasmProviderManager {
         return {
           valid: false,
           error: trText(
-            'Network error: Could not connect to the URL. Check that the URL is correct and the server allows CORS requests.'
+            "خطأ في الشبكة: تعذر الاتصال بالرابط. تحقق من صحة الرابط وأن الخادم يسمح بطلبات CORS."
           ),
         };
       }
 
       return {
         valid: false,
-        error: trText('Network error: {{error}}', { error: errorMessage }),
+        error: trText("خطأ في الشبكة: {{error}}", { error: errorMessage }),
       };
     }
   }
@@ -337,9 +337,9 @@ class WasmProviderManager {
 
   getPackageDisplayName(packageName: WasmPackage): string {
     const names: Record<WasmPackage, string> = {
-      pymupdf: trText('PyMuPDF (Document Processing)'),
-      ghostscript: trText('Ghostscript (PDF/A Conversion)'),
-      cpdf: trText('CoherentPDF (Bookmarks & Metadata)'),
+      pymupdf: trText("PyMuPDF (معالجة المستندات)"),
+      ghostscript: trText("Ghostscript (تحويل PDF/A)"),
+      cpdf: trText("CoherentPDF (الإشارات المرجعية والبيانات الوصفية)"),
     };
     return names[packageName];
   }
@@ -347,29 +347,29 @@ class WasmProviderManager {
   getPackageFeatures(packageName: WasmPackage): string[] {
     const features: Record<WasmPackage, string[]> = {
       pymupdf: [
-        trText('PDF to Text'),
-        trText('PDF to Markdown'),
-        trText('PDF to SVG'),
-        trText('PDF to Images (High Quality)'),
-        trText('PDF to DOCX'),
-        trText('PDF to Excel/CSV'),
-        trText('Extract Images'),
-        trText('Extract Tables'),
-        trText('EPUB/MOBI/FB2/XPS/CBZ to PDF'),
-        trText('Deskew PDF'),
-        trText('PDF Layers'),
+        trText("PDF إلى نص"),
+        trText("PDF إلى Markdown"),
+        trText("PDF إلى SVG"),
+        trText("PDF إلى صور (جودة عالية)"),
+        trText("PDF إلى DOCX"),
+        trText("PDF إلى Excel/CSV"),
+        trText("استخراج الصور"),
+        trText("استخراج الجداول"),
+        trText("EPUB/MOBI/FB2/XPS/CBZ إلى PDF"),
+        trText("تقويم ميل PDF"),
+        trText("طبقات PDF"),
       ],
-      ghostscript: [trText('PDF/A Conversion'), trText('Font to Outline')],
+      ghostscript: [trText("تحويل PDF/A"), trText("تحويل الخط إلى مخطط")],
       cpdf: [
-        trText('Merge PDF'),
-        trText('Alternate Merge'),
-        trText('Split by Bookmarks'),
-        trText('Table of Contents'),
-        trText('PDF to JSON'),
-        trText('JSON to PDF'),
-        trText('Add/Edit/Extract Attachments'),
-        trText('Edit Bookmarks'),
-        trText('PDF Metadata'),
+        trText("دمج PDF"),
+        trText("دمج بالتناوب"),
+        trText("التقسيم حسب الإشارات المرجعية"),
+        trText("جدول المحتويات"),
+        trText("PDF إلى JSON"),
+        trText("JSON إلى PDF"),
+        trText("إضافة/تعديل/استخراج المرفقات"),
+        trText("تعديل الإشارات المرجعية"),
+        trText("البيانات الوصفية لـ PDF"),
       ],
     };
     return features[packageName];
@@ -404,17 +404,17 @@ export function showWasmRequiredDialog(
           </svg>
         </div>
         <div>
-          <h3 class="text-lg font-semibold text-white">${trHtml('Advanced Feature Required')}</h3>
-          <p class="text-sm text-gray-400">${trHtml('External processing module needed')}</p>
+          <h3 class="text-lg font-semibold text-white">${trHtml("ميزة متقدمة مطلوبة")}</h3>
+          <p class="text-sm text-gray-400">${trHtml("مطلوب وحدة معالجة خارجية")}</p>
         </div>
       </div>
 
       <p class="text-gray-300 mb-4">
-        ${trHtml('This feature requires {{name}} to be configured.', { name: '\u0000' }).replace('\u0000', `<strong class="text-white">${displayName}</strong>`)}
+        ${trHtml("تتطلب هذه الميزة تهيئة {{name}}.", { name: '\u0000' }).replace('\u0000', `<strong class="text-white">${displayName}</strong>`)}
       </p>
 
       <div class="bg-gray-700/50 rounded-lg p-4 mb-4">
-        <p class="text-sm text-gray-400 mb-2">${trHtml('Features enabled by this module:')}</p>
+        <p class="text-sm text-gray-400 mb-2">${trHtml("الميزات التي تفعّلها هذه الوحدة:")}</p>
         <ul class="text-sm text-gray-300 space-y-1">
           ${features
             .slice(0, 4)
@@ -423,21 +423,21 @@ export function showWasmRequiredDialog(
                 `<li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${f}</li>`
             )
             .join('')}
-          ${features.length > 4 ? `<li class="text-gray-500">${trHtml('+ {{n}} more...', { n: features.length - 4 })}</li>` : ''}
+          ${features.length > 4 ? `<li class="text-gray-500">${trHtml("+ {{n}} أخرى...", { n: features.length - 4 })}</li>` : ''}
         </ul>
       </div>
 
       <p class="text-xs text-gray-500 mb-4">
-        ${trHtml('This module is licensed under AGPL-3.0. By configuring it, you agree to its license terms.')}
+        ${trHtml("هذه الوحدة مرخّصة بموجب AGPL-3.0. بتهيئتها فإنك توافق على شروط ترخيصها.")}
       </p>
     </div>
 
     <div class="border-t border-gray-700 p-4 flex gap-3">
       <button id="wasm-modal-cancel" class="flex-1 px-4 py-2.5 rounded-lg bg-gray-700 text-gray-300 hover:bg-gray-600 transition-colors font-medium">
-        ${trHtml('Cancel')}
+        ${trHtml("إلغاء")}
       </button>
       <button id="wasm-modal-configure" class="flex-1 px-4 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 text-white hover:from-blue-500 hover:to-blue-400 transition-all font-medium">
-        ${trHtml('Configure')}
+        ${trHtml("ضبط")}
       </button>
     </div>
   `;

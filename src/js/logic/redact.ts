@@ -8,7 +8,7 @@ import type { RedactionRect } from '@/types';
 const { rgb } = window.PDFLib;
 
 export async function redact(redactions: RedactionRect[], canvasScale: number) {
-  showLoader('Applying redactions...');
+  showLoader("جارٍ تطبيق التنقيحات...");
   try {
     const pdfPages = state.pdfDoc.getPages();
     const conversionScale = 1 / canvasScale;
@@ -39,7 +39,7 @@ export async function redact(redactions: RedactionRect[], canvasScale: number) {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to apply redactions.');
+    showAlert("خطأ", "تعذر تطبيق التنقيحات.");
   } finally {
     hideLoader();
   }

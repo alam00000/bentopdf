@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Crop PDF Online Free - Trim Margins and Resize Pages | Pixel PDF"
+      content="قص PDF مجانًا عبر الإنترنت - قص الهوامش وتغيير حجم الصفحات | Pixel PDF"
     />
     <meta
       name="description"
-      content="Trim the margins of every page in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قص هوامش كل صفحة في PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="crop pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/crop-pdf" />
     <meta
       property="og:title"
-      content="Crop PDF Online Free - Trim Margins and Resize Pages | Pixel PDF"
+      content="قص PDF مجانًا عبر الإنترنت - قص الهوامش وتغيير حجم الصفحات | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Trim the margins of every page in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قص هوامش كل صفحة في PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -47,11 +47,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/crop-pdf" />
     <meta
       name="twitter:title"
-      content="Crop PDF Online Free - Trim Margins and Resize Pages | Pixel PDF"
+      content="قص PDF مجانًا عبر الإنترنت - قص الهوامش وتغيير حجم الصفحات | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Trim the margins of every page in your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قص هوامش كل صفحة في PDF. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -62,10 +62,10 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Crop PDF" />
+    <meta name="apple-mobile-web-app-title" content="قص PDF" />
 
     <title>
-      Crop PDF Online Free - Trim Margins and Resize Pages | Pixel PDF
+      قص PDF مجانًا عبر الإنترنت - قص الهوامش وتغيير حجم الصفحات | Pixel PDF
     </title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
@@ -116,19 +116,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:cropPdf.name"
         >
-          Crop PDF
+          قص PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:cropPdf.subtitle">
-          Trim the margins of every page in your PDF.
+          قص هوامش كل صفحة في ملف PDF الخاص بك.
         </p>
 
         <!-- Drop Zone -->
@@ -140,18 +140,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.pdfDocuments"
             >
-              PDF Documents
+              مستندات PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -176,19 +176,19 @@
             <button
               id="prev-page"
               class="btn p-2 rounded-full bg-gray-700 hover:bg-gray-600"
-              title="Previous Page"
-              disabled
+              title="الصفحة السابقة"
+              disabled=""
             >
               <i data-lucide="chevron-left" class="w-5 h-5"></i>
             </button>
             <span id="page-info" class="text-white font-medium px-2"
-              >Page 1 of 1</span
+              >الصفحة 1 من 1</span
             >
             <button
               id="next-page"
               class="btn p-2 rounded-full bg-gray-700 hover:bg-gray-600"
-              title="Next Page"
-              disabled
+              title="الصفحة التالية"
+              disabled=""
             >
               <i data-lucide="chevron-right" class="w-5 h-5"></i>
             </button>
@@ -197,24 +197,22 @@
           <div class="flex flex-col md:flex-row gap-4">
             <label
               class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer"
-            >
-              <input
+              ><input
                 type="checkbox"
                 id="destructive-crop-toggle"
                 class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500"
               />
-              Flattening Crop (converts pages to images)
-            </label>
+              القص بالتسطيح (يحوّل الصفحات إلى صور)</label
+            >
             <label
               class="flex items-center gap-2 text-sm font-medium text-gray-300 cursor-pointer"
-            >
-              <input
+              ><input
                 type="checkbox"
                 id="apply-to-all-toggle"
                 class="w-4 h-4 rounded text-indigo-600 bg-gray-700 border-gray-600 focus:ring-indigo-500"
               />
-              Apply to all pages
-            </label>
+              تطبيق على كل الصفحات</label
+            >
           </div>
         </div>
 
@@ -226,8 +224,8 @@
 
         <!-- Options -->
 
-        <button id="crop-button" class="btn-gradient w-full mt-6" disabled>
-          Crop & Download
+        <button id="crop-button" class="btn-gradient w-full mt-6" disabled="">
+          قص وتنزيل
         </button>
       </div>
     </div>
@@ -242,7 +240,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -259,16 +257,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -279,7 +276,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -289,9 +286,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -302,9 +299,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -315,9 +312,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -330,43 +327,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -377,114 +380,108 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does cropping permanently delete the part of the page outside the
-            box?
+            هل يحذف القص نهائيًا الجزء من الصفحة الواقع خارج المربع؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not in the default mode. The tool sets each page's crop box, so
-            viewers and printers show only the selected area while the full page
-            content stays in the file and can be restored by resetting the crop
-            box in a PDF editor. Turn on Flattening Crop if the trimmed area has
-            to be gone for good, for example before sharing an excerpt.
+            ليس في الوضع الافتراضي. تضبط الأداة مربع القص لكل صفحة، لذا تعرض
+            برامج العرض والطابعات المنطقة المحددة فقط بينما يبقى محتوى الصفحة
+            كاملاً في الملف ويمكن استعادته بإعادة ضبط مربع القص في محرر PDF.
+            فعّل القص بالتسطيح إذا كان يجب أن تزول المنطقة المقصوصة نهائيًا،
+            مثلاً قبل مشاركة مقتطف.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will my text still be selectable after cropping?
+            هل سيظل النص قابلاً للتحديد بعد القص؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            In the default mode, yes: nothing is re-rendered, so text, links,
-            and vector graphics stay exactly as they were. Flattening Crop
-            renders each cropped page as an image, which removes selectable text
-            and usually makes the file larger.
+            في الوضع الافتراضي، نعم: لا يُعاد عرض أي شيء، لذا تبقى النصوص
+            والروابط والرسومات المتجهية كما كانت تمامًا. أما القص بالتسطيح فيعرض
+            كل صفحة مقصوصة كصورة، مما يزيل النص القابل للتحديد ويجعل الملف أكبر
+            عادةً.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I crop different pages by different amounts?
+            هل يمكنني قص صفحات مختلفة بمقادير مختلفة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Use the page navigation to move through the document and draw a
-            separate box on each page; the tool remembers every box you set, and
-            pages you never drew on keep their original size. To use one box
-            everywhere, check Apply to all pages and the box on the current page
-            is copied to every page.
+            نعم. استخدم التنقل بين الصفحات للتحرك في المستند وارسم مربعًا
+            منفصلاً على كل صفحة؛ تتذكر الأداة كل مربع ضبطته، وتحتفظ الصفحات التي
+            لم ترسم عليها بحجمها الأصلي. لاستخدام مربع واحد في كل مكان، حدد
+            تطبيق على كل الصفحات فيُنسخ المربع الموجود في الصفحة الحالية إلى كل
+            صفحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What page size will the cropped PDF have?
+            ما حجم صفحة PDF المقصوص؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each cropped page takes on the size of its box, so trimming a 1-inch
-            margin from every side of a Letter page leaves a 6.5 x 9 inch page.
-            If you need a standard size like A4 or Letter afterward, run the
-            result through
+            تأخذ كل صفحة مقصوصة حجم مربعها، لذا فإن قص هامش بوصة واحدة من كل
+            جانب في صفحة Letter يترك صفحة بحجم 6.5 × 9 بوصة. إذا احتجت إلى حجم
+            قياسي مثل A4 أو Letter بعد ذلك، فمرّر الناتج عبر
             <a
               href="/fix-page-size"
               class="text-indigo-300 hover:text-indigo-400"
-              >Fix Page Size</a
+              >إصلاح حجم الصفحة</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is there a way to type exact crop measurements?
+            هل هناك طريقة لكتابة قياسات القص بدقة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Cropping is done by dragging the corners or edges of the overlay
-            on the page preview; there's no numeric input for margins or
-            dimensions in this tool. Zooming the browser in helps when a margin
-            is only a few millimeters wide.
+            لا. يتم القص بسحب زوايا الطبقة أو حوافها على معاينة الصفحة؛ ولا يوجد
+            إدخال رقمي للهوامش أو الأبعاد في هذه الأداة. يساعد تكبير المتصفح
+            عندما لا يتجاوز عرض الهامش بضعة مليمترات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does cropping reduce image quality or file size?
+            هل يقلل القص جودة الصور أو حجم الملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The default mode changes neither: the content is untouched, so
-            quality is identical, and the file stays about the same size because
-            the hidden margin data is still inside. Flattening Crop replaces
-            cropped pages with images, which typically makes the file bigger
-            rather than smaller.
+            الوضع الافتراضي لا يغيّر أيًا منهما: المحتوى لم يُمس، فالجودة
+            متطابقة، ويبقى حجم الملف تقريبًا كما هو لأن بيانات الهامش المخفي لا
+            تزال بداخله. أما القص بالتسطيح فيستبدل الصفحات المقصوصة بصور، مما
+            يجعل الملف أكبر عادةً لا أصغر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded while I crop it?
+            هل يُرفع مستندي أثناء قصه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The page previews are rendered in your browser and the crop is
-            applied locally, so the file never leaves your computer; the cropped
-            copy is saved under the original file name.
+            لا. تُعرض معاينات الصفحات في متصفحك ويُطبَّق القص محليًا، لذا لا
+            يغادر الملف حاسوبك؛ وتُحفظ النسخة المقصوصة باسم الملف الأصلي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I crop a scanned PDF to remove black edges?
+            هل يمكنني قص PDF ممسوح ضوئيًا لإزالة الحواف السوداء؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Draw the box inside the dark border on each page, or set it
-            once and use Apply to all pages if every scan has the same border.
-            Because the default crop only hides the edges, use Flattening Crop
-            if the border must be physically removed, and straighten tilted
-            scans first with
+            نعم. ارسم المربع داخل الحد الداكن في كل صفحة، أو اضبطه مرة واحدة
+            واستخدم تطبيق على كل الصفحات إذا كانت لكل المسوحات الحد نفسه. ولأن
+            القص الافتراضي يخفي الحواف فقط، فاستخدم القص بالتسطيح إذا كان يجب
+            إزالة الحد فعليًا، وقم بتعديل ميل المسوحات المائلة أولاً باستخدام
             <a href="/deskew-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Deskew PDF</a
+              >تقويم ميل PDF</a
             >.
           </p>
         </details>
@@ -518,26 +515,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to crop pdf online",
+        "name": "كيفية قص PDF عبر الإنترنت",
         "description": "Learn how to crop pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

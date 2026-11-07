@@ -96,13 +96,13 @@ onPageReady(() => {
       try {
         const arrayBuffer = await readFileAsArrayBuffer(currentFile);
         const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-        metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+        metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
           size: formatBytes(currentFile.size),
           numPages: pdfDoc.numPages,
         });
       } catch (error) {
         console.error('Error loading PDF:', error);
-        metaSpan.textContent = trText('{{size}} • Could not load page count', {
+        metaSpan.textContent = trText("{{size}} • تعذر تحميل عدد الصفحات", {
           size: formatBytes(currentFile.size),
         });
       }
@@ -199,8 +199,8 @@ onPageReady(() => {
     if (layersArray.length === 0) {
       layersList.innerHTML = `
                 <div class="layers-empty">
-                    <p>${trHtml('This PDF has no layers (OCG).')}</p>
-                    <p>${trHtml('Add a new layer to get started!')}</p>
+                    <p>${trHtml("لا يحتوي ملف PDF هذا على طبقات (OCG).")}</p>
+                    <p>${trHtml("أضف طبقة جديدة للبدء!")}</p>
                 </div>
             `;
       return;
@@ -217,12 +217,12 @@ onPageReady(() => {
             <div class="layer-item" data-number="${layer.number}" style="padding-left: ${layer.depth * 24 + 8}px;">
                 <label class="layer-toggle">
                     <input type="checkbox" ${layer.on ? 'checked' : ''} ${layer.locked ? 'disabled' : ''} data-xref="${layer.xref}" />
-                    <span class="layer-name">${layer.depth > 0 ? '└ ' : ''}${escapeHtml(layer.text || trText('Layer {{number}}', { number: layer.number }))}</span>
+                    <span class="layer-name">${layer.depth > 0 ? '└ ' : ''}${escapeHtml(layer.text || trText("الطبقة {{number}}", { number: layer.number }))}</span>
                     ${layer.locked ? '<span class="layer-locked">🔒</span>' : ''}
                 </label>
                 <div class="layer-actions">
-                    ${!layer.locked ? `<button class="layer-add-child" data-xref="${layer.xref}" title="${trHtml('Add child layer')}">+</button>` : ''}
-                    ${!layer.locked ? `<button class="layer-delete" data-xref="${layer.xref}" title="${trHtml('Delete layer')}">✕</button>` : ''}
+                    ${!layer.locked ? `<button class="layer-add-child" data-xref="${layer.xref}" title="${trHtml("إضافة طبقة فرعية")}">+</button>` : ''}
+                    ${!layer.locked ? `<button class="layer-delete" data-xref="${layer.xref}" title="${trHtml("حذف الطبقة")}">✕</button>` : ''}
                 </div>
             </div>
         `
@@ -249,7 +249,7 @@ onPageReady(() => {
           } catch (err) {
             console.error('Failed to set layer visibility:', err);
             target.checked = !isOn;
-            showAlert('Error', 'Failed to toggle layer visibility');
+            showAlert("خطأ", "تعذر تبديل ظهور الطبقة");
           }
         });
       });
@@ -264,7 +264,7 @@ onPageReady(() => {
         );
 
         if (!layer) {
-          showAlert('Error', 'Layer not found');
+          showAlert("خطأ", "الطبقة غير موجودة");
           return;
         }
 
@@ -274,7 +274,7 @@ onPageReady(() => {
           renderLayers();
         } catch (err) {
           console.error('Failed to delete layer:', err);
-          showAlert('Error', 'Failed to delete layer');
+          showAlert("خطأ", "تعذر حذف الطبقة");
         }
       });
     });
@@ -288,8 +288,8 @@ onPageReady(() => {
         );
 
         const childName = await promptForInput(
-          trText('Add Child Layer'),
-          trText('Enter name for child layer under "{{Layer}}":', {
+          trText("إضافة طبقة فرعية"),
+          trText("أدخل اسم الطبقة الفرعية تحت \"{{Layer}}\":", {
             Layer: parentLayer?.text || 'Layer',
           })
         );
@@ -322,7 +322,7 @@ onPageReady(() => {
           renderLayers();
         } catch (err) {
           console.error('Failed to add child layer:', err);
-          showAlert('Error', 'Failed to add child layer');
+          showAlert("خطأ", "تعذرت إضافة الطبقة الفرعية");
         }
       });
     });
@@ -330,22 +330,22 @@ onPageReady(() => {
 
   const loadLayers = async () => {
     if (!currentFile) {
-      showAlert('No File', 'Please select a PDF file.');
+      showAlert("لا يوجد ملف", "يرجى اختيار ملف PDF.");
       return;
     }
 
     try {
-      showLoader('Loading engine...');
+      showLoader("جارٍ تحميل المحرك...");
       const pymupdf = await loadPyMuPDF();
 
       showLoader(
-        trText('Loading layers from {{name}}...', { name: currentFile.name })
+        trText("جارٍ تحميل الطبقات من {{name}}...", { name: currentFile.name })
       );
       currentDoc = await (
         pymupdf as { open: (file: File) => Promise<PyMuPDFDocument> }
       ).open(currentFile);
 
-      showLoader('Reading layer configuration...');
+      showLoader("جارٍ قراءة إعدادات الطبقات...");
       const existingLayers = currentDoc.getLayerConfig();
 
       layersMap.clear();
@@ -379,8 +379,8 @@ onPageReady(() => {
     } catch (error: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        error instanceof Error ? error.message : 'Failed to load PDF layers'
+        "خطأ",
+        error instanceof Error ? error.message : "تعذر تحميل طبقات PDF"
       );
       console.error('Layers error:', error);
     }
@@ -397,7 +397,7 @@ onPageReady(() => {
       addLayerBtn.onclick = () => {
         const name = newLayerInput.value.trim();
         if (!name) {
-          showAlert('Invalid Name', 'Please enter a layer name');
+          showAlert("اسم غير صالح", "يرجى إدخال اسم الطبقة");
           return;
         }
 
@@ -420,7 +420,7 @@ onPageReady(() => {
           renderLayers();
         } catch (err: unknown) {
           showAlert(
-            'Error',
+            "خطأ",
             'Failed to add layer: ' +
               (err instanceof Error ? err.message : String(err))
           );
@@ -431,7 +431,7 @@ onPageReady(() => {
     if (saveLayersBtn) {
       saveLayersBtn.onclick = () => {
         try {
-          showLoader('Saving PDF with layer changes...');
+          showLoader("جارٍ حفظ PDF مع تغييرات الطبقات...");
           const pdfBytes = currentDoc.save();
           const blob = new Blob([new Uint8Array(pdfBytes)], {
             type: 'application/pdf',
@@ -439,11 +439,11 @@ onPageReady(() => {
           downloadFile(blob, currentFile!.name);
           hideLoader();
           resetState();
-          showAlert('Success', 'PDF with layer changes saved!', 'success');
+          showAlert("تم بنجاح", "تم حفظ PDF مع تغييرات الطبقات!", 'success');
         } catch (err: unknown) {
           hideLoader();
           showAlert(
-            'Error',
+            "خطأ",
             'Failed to save PDF: ' +
               (err instanceof Error ? err.message : String(err))
           );
@@ -465,7 +465,7 @@ onPageReady(() => {
         currentFile = result.file;
         updateUI();
       } else {
-        showAlert('Invalid File', 'Please select a PDF file.');
+        showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
       }
     }
   };

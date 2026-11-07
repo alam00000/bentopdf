@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="PDF to Excel Converter Free - PDF to XLSX Online | Pixel PDF"
+      content="محوّل PDF إلى Excel مجانًا - PDF إلى XLSX أونلاين | Pixel PDF"
     />
     <meta
       name="description"
-      content="Extract tables from PDF and convert to Excel (XLSX) format. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج الجداول من PDF وحوّلها إلى صيغة Excel (XLSX). مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/pdf-to-excel" />
     <meta
       property="og:title"
-      content="PDF to Excel Converter Free - PDF to XLSX Online | Pixel PDF"
+      content="محوّل PDF إلى Excel مجانًا - PDF إلى XLSX أونلاين | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Extract tables from PDF and convert to Excel (XLSX) format. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج الجداول من PDF وحوّلها إلى صيغة Excel (XLSX). مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -50,11 +50,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/pdf-to-excel" />
     <meta
       name="twitter:title"
-      content="PDF to Excel Converter Free - PDF to XLSX Online | Pixel PDF"
+      content="محوّل PDF إلى Excel مجانًا - PDF إلى XLSX أونلاين | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Extract tables from PDF and convert to Excel (XLSX) format. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج الجداول من PDF وحوّلها إلى صيغة Excel (XLSX). مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF to Excel" />
+    <meta name="apple-mobile-web-app-title" content="PDF إلى Excel" />
 
-    <title>PDF to Excel Converter Free - PDF to XLSX Online | Pixel PDF</title>
+    <title>محوّل PDF إلى Excel مجانًا - PDF إلى XLSX أونلاين | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -111,18 +111,18 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfToExcel.name"
         >
-          PDF to Excel
+          PDF إلى Excel
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfToExcel.subtitle">
-          Extract tables from PDF and convert to Excel (XLSX) format.
+          استخراج الجداول من PDF وتحويلها إلى تنسيق Excel (XLSX).
         </p>
         <div
           id="drop-zone"
@@ -132,15 +132,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.pdfFile">
-              PDF file
+              ملف PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -153,7 +153,7 @@
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="options-panel" class="hidden mt-6">
           <button id="process-btn" class="btn-gradient w-full">
-            Convert to Excel
+            تحويل إلى Excel
           </button>
         </div>
       </div>
@@ -167,7 +167,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -179,14 +179,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -197,7 +197,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -207,9 +207,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -220,9 +220,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -233,9 +233,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -248,43 +248,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -295,103 +301,100 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does PDF to Excel say no tables were found?
+            لماذا تقول أداة PDF إلى Excel إنه لم يُعثر على جداول؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The detector looks for table structure such as ruling lines and
-            aligned cells. Text arranged in columns with spaces, or a table that
-            exists only as part of a scanned image, doesn't register. For scans,
-            run
+            يبحث الكاشف عن بنية الجدول مثل الخطوط الفاصلة والخلايا المحاذية. لا
+            يُعتد بالنص المرتب في أعمدة بالمسافات، ولا بجدول موجود فقط كجزء من
+            صورة ممسوحة ضوئيًا. بالنسبة للمسح الضوئي، شغّل
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
+              >التعرف الضوئي على PDF</a
             >
-            first; for loosely formatted text, PDF to Text gets you the raw
-            content to tidy up by hand.
+            أولًا، وللنص غير المنسق بإحكام تعطيك PDF إلى نص المحتوى الخام
+            لتنظيمه يدويًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How are multiple tables organized in the spreadsheet?
+            كيف تُنظَّم الجداول المتعددة في جدول البيانات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each detected table gets its own worksheet, named Table 1 (Page 3),
-            Table 2 (Page 5), and so on, so you can see which page it came from.
-            A PDF with a single table produces one sheet called Table. Sheet
-            names are cut at 31 characters because Excel allows no more.
+            يحصل كل جدول مكتشف على ورقة عمل خاصة به باسم Table 1 (Page 3) وTable
+            2 (Page 5) وهكذا، لتعرف الصفحة التي جاء منها. ينتج PDF بجدول واحد
+            ورقة واحدة اسمها Table. تُقتطع أسماء الأوراق عند 31 حرفًا لأن Excel
+            لا يسمح بأكثر من ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are formatting, colors, and merged cells preserved?
+            هل يُحافظ على التنسيق والألوان والخلايا المدمجة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Only the cell text is transferred; fonts, fills, borders, column
-            widths, and merged cells aren't reproduced. Numbers may arrive as
-            text cells, so if a column won't sum, select it and use Excel's
-            Convert to Number prompt.
+            لا. يُنقل نص الخلايا فقط، ولا تُستنسخ الخطوط والتعبئة والحدود وعروض
+            الأعمدة والخلايا المدمجة. قد تصل الأرقام كخلايا نصية، فإذا تعذّر جمع
+            عمود، فحدده واستخدم مطالبة التحويل إلى رقم في Excel.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert only certain pages to Excel?
+            هل يمكنني تحويل صفحات معينة فقط إلى Excel؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            There are no page options; every page is scanned and all tables
-            found are exported. If you only need one table, pull those pages
-            into a separate PDF first, or use
+            لا توجد خيارات للصفحات، إذ تُفحص كل الصفحات وتُصدَّر كل الجداول
+            المكتشفة. إذا كنت تحتاج جدولًا واحدًا فقط، فاسحب تلك الصفحات إلى ملف
+            PDF منفصل أولًا، أو استخدم
             <a
               href="/extract-tables"
               class="text-indigo-300 hover:text-indigo-400"
-              >Extract Tables</a
-            >, which previews each table and lets you download them one at a
-            time.
-          </p>
-        </details>
-        <details class="faq-d">
-          <summary class="faq-d-q">
-            What's the difference between PDF to Excel, PDF to CSV, and Extract
-            Tables?
-            <i data-lucide="plus" class="faq-d-icon"></i>
-          </summary>
-          <p class="faq-d-a">
-            PDF to Excel packs every table into one .xlsx workbook with a sheet
-            per table.
-            <a href="/pdf-to-csv" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to CSV</a
+              >استخراج الجداول</a
             >
-            produces flat comma-separated files, and Extract Tables previews
-            each table and offers per-table downloads in several formats. Pick
-            Excel when you want everything in one workbook with page references.
+            التي تعرض معاينة لكل جدول وتتيح تنزيلها واحدًا تلو الآخر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it handle password-protected PDFs?
+            ما الفرق بين PDF إلى Excel وPDF إلى CSV واستخراج الجداول؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            If the file needs a password to open, the tool asks for it before
-            extraction starts. The output .xlsx is not password-protected.
+            تحزّم PDF إلى Excel كل الجداول في مصنف .xlsx واحد بورقة لكل جدول.
+            وينتج
+            <a href="/pdf-to-csv" class="text-indigo-300 hover:text-indigo-400"
+              >PDF إلى CSV</a
+            >
+            ملفات مسطحة مفصولة بفواصل، وتعرض أداة استخراج الجداول معاينة لكل
+            جدول وتتيح تنزيلات لكل جدول بعدة صيغ. اختر Excel عندما تريد كل شيء
+            في مصنف واحد مع مراجع الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my financial data uploaded during conversion?
+            هل تتعامل مع ملفات PDF المحمية بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Table detection runs in a PDF engine loaded into your browser as
-            WebAssembly, and the spreadsheet is built locally by a JavaScript
-            library. Bank statements and invoices never leave your machine.
+            إذا كان الملف يحتاج إلى كلمة مرور لفتحه، تطلبها الأداة قبل بدء
+            الاستخراج. ملف .xlsx الناتج غير محمي بكلمة مرور.
+          </p>
+        </details>
+        <details class="faq-d">
+          <summary class="faq-d-q">
+            هل تُرفع بياناتي المالية أثناء التحويل؟
+            <i data-lucide="plus" class="faq-d-icon"></i>
+          </summary>
+          <p class="faq-d-a">
+            لا. يعمل اكتشاف الجداول في محرك PDF يُحمَّل في متصفحك كـ
+            WebAssembly، ويُبنى جدول البيانات محليًا بواسطة مكتبة JavaScript.
+            كشوف الحسابات المصرفية والفواتير لا تغادر جهازك أبدًا.
           </p>
         </details>
       </div>
@@ -424,26 +427,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to convert PDF to Excel online",
+        "name": "كيفية تحويل PDF إلى Excel أونلاين",
         "description": "Learn how to convert PDF to Excel using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="SVG to PDF Online Free - SVG to PDF Tool | Pixel PDF"
+      content="SVG إلى PDF عبر الإنترنت مجانًا - أداة SVG إلى PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Create a PDF from one or more SVG images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة SVG واحدة أو أكثر. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="svg to pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/svg-to-pdf" />
     <meta
       property="og:title"
-      content="SVG to PDF Online Free - SVG to PDF Tool | Pixel PDF"
+      content="SVG إلى PDF عبر الإنترنت مجانًا - أداة SVG إلى PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Create a PDF from one or more SVG images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة SVG واحدة أو أكثر. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/svg-to-pdf" />
-    <meta name="twitter:title" content="SVG to PDF Free" />
+    <meta name="twitter:title" content="SVG إلى PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Create a PDF from one or more SVG images. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أنشئ ملف PDF من صورة SVG واحدة أو أكثر. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="SVG to PDF" />
+    <meta name="apple-mobile-web-app-title" content="SVG إلى PDF" />
 
-    <title>SVG to PDF - Pixel PDF</title>
+    <title>SVG إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:svgToPdf.name"
         >
-          SVG to PDF
+          SVG إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:svgToPdf.subtitle">
-          Create a PDF from one or more SVG images.
+          إنشاء PDF من صورة SVG واحدة أو أكثر.
         </p>
 
         <!-- Drop Zone -->
@@ -130,25 +130,25 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.svgGraphics"
             >
-              SVG Graphics
+              رسومات SVG
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
             id="file-input"
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            multiple
+            multiple=""
             accept="image/svg+xml,.svg"
           />
         </div>
@@ -160,14 +160,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -180,24 +180,23 @@
             <label
               for="jpg-pdf-quality"
               class="block mb-2 text-sm font-medium text-gray-300"
+              >جودة PDF</label
             >
-              PDF Quality
-            </label>
             <select
               id="jpg-pdf-quality"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             >
-              <option value="high">High Quality (Larger file)</option>
-              <option value="medium" selected>Medium Quality (Balanced)</option>
-              <option value="low">Low Quality (Smaller file)</option>
+              <option value="high">جودة عالية (ملف أكبر)</option>
+              <option value="medium" selected="">جودة متوسطة (متوازنة)</option>
+              <option value="low">جودة منخفضة (ملف أصغر)</option>
             </select>
             <p class="mt-1 text-xs text-gray-400">
-              Controls image compression when embedding into PDF
+              يتحكم في ضغط الصور عند تضمينها في PDF
             </p>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
-            Convert to PDF
+            التحويل إلى PDF
           </button>
         </div>
       </div>
@@ -213,7 +212,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -230,16 +229,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -250,7 +248,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -260,9 +258,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -273,9 +271,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -286,9 +284,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -301,43 +299,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -348,98 +352,93 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the PDF vector or an image?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل PDF متجهي أم صورة؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            An image. Each SVG is rendered by your browser onto a canvas and the
-            bitmap is placed on a PDF page, so the result won't scale without
-            loss and the text isn't selectable. If you need true vector output,
-            export the PDF from a vector editor such as Inkscape instead.
+            صورة. يعرض متصفحك كل SVG على لوحة وتوضع الصورة النقطية على صفحة PDF،
+            لذا لن تتحمل النتيجة التكبير دون فقدان والنص غير قابل للتحديد. إذا
+            احتجت إلى مخرجات متجهية حقيقية، فصدّر PDF من محرر متجهات مثل
+            Inkscape.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What size will the page be?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            ما حجم الصفحة؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The page matches the SVG's width and height attributes in pixels,
-            one pixel per PDF point. An SVG with no width and height (only a
-            viewBox) renders at 800 by 600, so set explicit dimensions in the
-            file for predictable results.
+            تطابق الصفحة سمتي width وheight في SVG بالبكسل، بكسل واحد لكل نقطة
+            PDF. يُعرض SVG بلا width وheight (مع viewBox فقط) بحجم 800 في 600،
+            لذا حدّد أبعادًا صريحة في الملف للحصول على نتائج متوقعة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do the quality settings change for SVG conversion?
+            ماذا تغيّر إعدادات الجودة في تحويل SVG؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            High keeps the lossless PNG at full size. Medium re-encodes it as
-            JPEG at 75 percent quality and limits the longest side to 2500
-            pixels; Low uses 50 percent and 1500 pixels, which also shrinks the
-            page. For line art and text, High avoids JPEG artifacts.
+            تُبقي الجودة العالية PNG بدون فقدان بالحجم الكامل. أما المتوسطة
+            فتعيد ترميزه كـ JPEG بجودة 75 بالمئة وتحدّ أطول ضلع بـ 2500 بكسل،
+            والمنخفضة تستخدم 50 بالمئة و1500 بكسل، وهذا يقلل حجم الصفحة أيضًا.
+            للرسوم الخطية والنصوص، تتجنب الجودة العالية شوائب JPEG.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I control the output resolution, for example 300 DPI?
+            هل يمكنني التحكم في دقة المخرجات، مثل 300 DPI؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            There is no DPI setting; the render uses the SVG's own pixel
-            dimensions. To get more pixels, increase the width and height
-            attributes in the SVG source while keeping the viewBox, then
-            convert.
+            لا يوجد إعداد DPI، فالعرض يستخدم أبعاد SVG بالبكسل. للحصول على
+            بكسلات أكثر، زِد سمتي width وheight في شيفرة SVG مع الإبقاء على
+            viewBox ثم حوّل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did my SVG come out with missing text, fonts, or images?
+            لماذا ظهر SVG بنص أو خطوط أو صور مفقودة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The SVG is rendered from its own markup, so references to external
-            files (linked images, imported fonts, external CSS) can't be loaded
-            in that context and fall back or disappear. Embed images as data
-            URIs and convert text to paths before converting.
+            يُعرض SVG من شيفرته نفسها، لذا لا يمكن تحميل المراجع إلى ملفات
+            خارجية (الصور المرتبطة والخطوط المستوردة وCSS الخارجي) في هذا السياق
+            فتُستبدل أو تختفي. ضمّن الصور كـ data URI وحوّل النص إلى مسارات قبل
+            التحويل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is transparency kept?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل تُحفظ الشفافية؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The canvas is filled with white before the SVG is drawn, so
-            transparent areas become white in the PDF.
+            لا. تُملأ اللوحة بالأبيض قبل رسم SVG، لذا تصبح المناطق الشفافة بيضاء
+            في PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I put several SVGs into one PDF?
+            هل يمكنني وضع عدة ملفات SVG في ملف PDF واحد؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload multiple files and they become consecutive pages of a single
-            from_svgs.pdf, in the order shown in the file list. Each page takes
-            the size of its own SVG.
+            ارفع عدة ملفات فتصبح صفحات متتالية في ملف from_svgs.pdf واحد
+            بالترتيب الظاهر في قائمة الملفات. تأخذ كل صفحة حجم ملف SVG الخاص
+            بها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the SVG uploaded to be converted?
+            هل يُرفع SVG ليتم تحويله؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering happens on a canvas in your browser and the PDF is
-            built with pdf-lib on your device; nothing is sent anywhere.
+            لا. يتم العرض على لوحة داخل متصفحك ويُبنى PDF بواسطة pdf-lib على
+            جهازك، ولا يُرسل أي شيء إلى أي مكان.
           </p>
         </details>
       </div>
@@ -472,26 +471,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to svg to pdf online",
+        "name": "كيفية تحويل SVG إلى PDF عبر الإنترنت",
         "description": "Learn how to svg to pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

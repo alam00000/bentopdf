@@ -114,7 +114,7 @@ async function handlePdfFile(file: File): Promise<void> {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -148,7 +148,7 @@ async function updatePdfDisplay(): Promise<void> {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • Loading pages...', {
+  metaSpan.textContent = trText("{{size}} • جارٍ تحميل الصفحات...", {
     size: formatBytes(state.pdfFile.size),
   });
 
@@ -174,7 +174,7 @@ async function updatePdfDisplay(): Promise<void> {
       const pdfDoc = await getPDFDocument({
         data: state.pdfBytes.slice(),
       }).promise;
-      metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
         size: formatBytes(state.pdfFile.size),
         numPages: pdfDoc.numPages,
       });
@@ -217,14 +217,14 @@ function getTsaUrl(): string | null {
 
 async function processTimestamp(): Promise<void> {
   if (!state.pdfBytes || !state.pdfFile) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
   const tsaUrl = getTsaUrl();
   if (!tsaUrl) return;
 
-  showLoader('Applying timestamp...');
+  showLoader("جارٍ تطبيق الختم الزمني...");
 
   try {
     const timestampedBytes = await timestampPdf(state.pdfBytes, tsaUrl);
@@ -244,11 +244,11 @@ async function processTimestamp(): Promise<void> {
   } catch (error) {
     console.error('Timestamp error:', error);
     const message =
-      error instanceof Error ? error.message : trText('Unknown error');
+      error instanceof Error ? error.message : trText("خطأ غير معروف");
     showAlert(
-      'Timestamp Failed',
+      "فشل الختم الزمني",
       trText(
-        'Failed to timestamp PDF: {{message}}\n\nPlease try a different TSA server or check your internet connection.',
+        "تعذر ختم PDF زمنيًا: {{message}}\n\nجرّب خادم TSA آخر أو تحقق من اتصالك بالإنترنت.",
         { message }
       )
     );

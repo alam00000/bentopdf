@@ -119,13 +119,13 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     const pdfBytes = new Uint8Array(result.bytes);
     pageState.pdfDoc = await loadPdfDocument(pdfBytes);
     pageState.file = result.file;
@@ -144,7 +144,7 @@ async function handleFiles(files: FileList) {
     const editorFileInfo = document.getElementById('editor-file-info');
     if (editorFileInfo) {
       editorFileInfo.textContent = trText(
-        '{{name}} ({{size}}, {{totalPageCount}} pages)',
+        "{{name}} ({{size}}، {{totalPageCount}} صفحة)",
         { name: file.name, size: formatBytes(file.size), totalPageCount }
       );
     }
@@ -154,7 +154,7 @@ async function handleFiles(files: FileList) {
     updateWatermarkOverlay();
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -174,7 +174,7 @@ function updateFileDisplay() {
   nameSpan.textContent = pageState.file.name;
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{getPageCount}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{getPageCount}} صفحة", {
     size: formatBytes(pageState.file.size),
     getPageCount: pageState.pdfDoc.getPageCount(),
   });
@@ -1045,11 +1045,11 @@ function setupDragHandlers(container: HTMLElement) {
 
 async function applyWatermark() {
   if (!pageState.pdfDoc || !pageState.pdfBytes) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Adding watermark...');
+  showLoader("جارٍ إضافة العلامة المائية...");
 
   try {
     saveCurrentPageConfig();
@@ -1072,7 +1072,7 @@ async function applyWatermark() {
       if (config.type === 'text') {
         const text = config.text;
         if (!text.trim())
-          throw new Error(trText('Please enter text for the watermark.'));
+          throw new Error(trText("يرجى إدخال نص العلامة المائية."));
         const textColor = hexToRgb(config.color);
 
         resultBytes = new Uint8Array(
@@ -1094,7 +1094,7 @@ async function applyWatermark() {
         const imageFile = config.imageFile;
         if (!imageFile)
           throw new Error(
-            trText('Please select an image file for the watermark.')
+            trText("يرجى اختيار ملف صورة للعلامة المائية.")
           );
         const imageBytes = await readFileAsArrayBuffer(imageFile);
 
@@ -1106,7 +1106,7 @@ async function applyWatermark() {
         } else {
           throw new Error(
             trText(
-              'Unsupported Image. Please use a PNG or JPG for the watermark.'
+              "صورة غير مدعومة. يرجى استخدام PNG أو JPG للعلامة المائية."
             )
           );
         }
@@ -1232,7 +1232,7 @@ async function applyWatermark() {
 
       for (let i = 1; i <= totalPages; i++) {
         showLoader(
-          trText('Flattening page {{i}} of {{totalPages}}...', {
+          trText("جارٍ تسطيح الصفحة {{i}} من {{totalPages}}...", {
             i,
             totalPages,
           })
@@ -1275,12 +1275,12 @@ async function applyWatermark() {
       new Blob([new Uint8Array(resultBytes)], { type: 'application/pdf' }),
       pageState.file?.name || 'document.pdf'
     );
-    showAlert('Success', 'Watermark added successfully!', 'success');
+    showAlert("تم بنجاح", "تمت إضافة العلامة المائية بنجاح!", 'success');
   } catch (e: unknown) {
     console.error(e);
     showAlert(
-      'Error',
-      e instanceof Error ? e.message : 'Could not add the watermark.'
+      "خطأ",
+      e instanceof Error ? e.message : "تعذرت إضافة العلامة المائية."
     );
   } finally {
     hideLoader();

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Delete Pages from a PDF Free Online | Pixel PDF"
+      content="حذف صفحات من PDF مجانًا عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="description"
-      content="Remove specific pages from your document. Free, no uploads, no signup. Runs entirely in your browser."
+      content="احذف صفحات معينة من مستندك. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="delete pages, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/delete-pages" />
     <meta
       property="og:title"
-      content="Delete Pages from a PDF Free Online | Pixel PDF"
+      content="حذف صفحات من PDF مجانًا عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Remove specific pages from your document. Free, no uploads, no signup. Runs entirely in your browser."
+      content="احذف صفحات معينة من مستندك. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -47,11 +47,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/delete-pages" />
     <meta
       name="twitter:title"
-      content="Delete Pages from a PDF Free Online | Pixel PDF"
+      content="حذف صفحات من PDF مجانًا عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Remove specific pages from your document. Free, no uploads, no signup. Runs entirely in your browser."
+      content="احذف صفحات معينة من مستندك. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -62,9 +62,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Delete Pages" />
+    <meta name="apple-mobile-web-app-title" content="حذف الصفحات" />
 
-    <title>Delete Pages from a PDF Free Online | Pixel PDF</title>
+    <title>حذف صفحات من PDF مجانًا عبر الإنترنت | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -110,17 +110,17 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:deletePages.name"
         >
-          Delete Pages
+          حذف الصفحات
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:deletePages.subtitle">
-          Remove specific pages from your document.
+          إزالة صفحات محددة من مستندك.
         </p>
         <div
           id="drop-zone"
@@ -130,15 +130,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.pdfDocuments"
             >
-              PDF Documents
+              مستندات PDF
             </p>
           </div>
           <input
@@ -151,12 +151,12 @@
         <div id="file-display-area" class="mt-4 space-y-2"></div>
         <div id="delete-options" class="hidden mt-6">
           <p class="mb-2 font-medium text-white">
-            Total Pages: <span id="total-pages"></span>
+            إجمالي الصفحات: <span id="total-pages"></span>
           </p>
           <label
             for="pages-to-delete"
             class="block mb-2 text-sm font-medium text-gray-300"
-            >Enter pages to delete (e.g., 2, 4-6, 9):</label
+            >أدخل الصفحات المراد حذفها (مثل 2, 4-6, 9):</label
           >
           <input
             type="text"
@@ -169,7 +169,7 @@
             class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 my-6"
           ></div>
           <button id="process-btn" class="btn-gradient w-full">
-            Delete Pages & Download
+            حذف الصفحات وتنزيل
           </button>
         </div>
       </div>
@@ -186,9 +186,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -203,18 +202,16 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg"
           data-i18n="alert.ok"
-          data-i18n="alert.ok"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -225,7 +222,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -235,9 +232,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -248,9 +245,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -261,9 +258,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -276,43 +273,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -323,107 +326,104 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I delete specific pages from a PDF?
+            كيف أحذف صفحات معينة من PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the file, then either type the pages in the box using ranges
-            like 2, 4-6, 9 or click the page thumbnails to mark them. Marked
-            pages are highlighted so you can double-check before clicking the
-            button, and the result downloads as a new PDF with those pages gone.
+            ارفع الملف، ثم اكتب الصفحات في المربع باستخدام نطاقات مثل 2, 4-6, 9
+            أو انقر على الصور المصغرة للصفحات لتحديدها. تُميَّز الصفحات المحددة
+            لتتمكن من التحقق مرة أخرى قبل النقر على الزر، وتُنزَّل النتيجة كملف
+            PDF جديد دون تلك الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I delete every page in the file?
+            هل يمكنني حذف كل صفحات الملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. At least one page has to remain, and the tool refuses with an
-            error if your selection covers the whole document.
+            لا. يجب أن تبقى صفحة واحدة على الأقل، وترفض الأداة العملية مع رسالة
+            خطأ إذا شمل تحديدك المستند كله.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do the remaining pages lose quality or formatting?
+            هل تفقد الصفحات المتبقية جودتها أو تنسيقها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The kept pages are copied over unchanged, including their text,
-            images, fonts, and order, so nothing is re-rendered or recompressed.
+            لا. تُنسخ الصفحات المحتفَظ بها دون تغيير، بما في ذلك نصوصها وصورها
+            وخطوطها وترتيبها، لذا لا يُعاد عرض أي شيء ولا يُعاد ضغطه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are bookmarks and links kept after deleting pages?
+            هل تبقى الإشارات المرجعية والروابط بعد حذف الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Links and annotations that live on the kept pages come along, but
-            the document's bookmark tree isn't carried over because the pages
-            are copied into a fresh PDF. If you need bookmarks afterward,
-            rebuild them with
+            تنتقل الروابط والتعليقات التوضيحية الموجودة في الصفحات المحتفَظ بها،
+            لكن شجرة الإشارات المرجعية للمستند لا تنتقل لأن الصفحات تُنسخ إلى
+            PDF جديد. إذا احتجت إلى إشارات مرجعية بعد ذلك، فأعد بناءها باستخدام
             <a href="/bookmark" class="text-indigo-300 hover:text-indigo-400"
-              >Edit Bookmarks</a
+              >تحرير الإشارات المرجعية</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I delete pages from a password-protected PDF?
+            هل يمكنني حذف صفحات من PDF محمي بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            You'll be prompted for the password when you upload the file. The
-            downloaded PDF is saved without the password, so add protection
-            again with
+            ستُطلب منك كلمة المرور عند رفع الملف. يُحفظ PDF الذي تنزّله بدون
+            كلمة المرور، لذا أضف الحماية من جديد باستخدام
             <a href="/protect-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Protect PDF</a
+              >حماية PDF</a
             >
-            if the document still needs it.
+            إذا كان المستند لا يزال يحتاج إليها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the PDF get smaller after removing pages?
+            هل سيصغر حجم PDF بعد إزالة الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Usually, if the removed pages carried their own images or fonts,
-            since only the resources the kept pages reference are written to the
-            new file. Pages that share resources with the rest of the document
-            free up less space.
+            عادةً نعم، إذا كانت الصفحات المحذوفة تحمل صورًا أو خطوطًا خاصة بها،
+            لأن الموارد التي تشير إليها الصفحات المحتفَظ بها فقط هي التي تُكتب
+            في الملف الجديد. أما الصفحات التي تشارك مواردها مع بقية المستند
+            فتوفر مساحة أقل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF uploaded to a server to delete the pages?
+            هل يُرفع PDF الخاص بي إلى خادم لحذف الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The thumbnails are rendered and the new file is assembled in
-            your browser, so the document stays on your device from upload to
-            download.
+            لا. تُعرض الصور المصغرة ويُجمَّع الملف الجديد في متصفحك، لذا يبقى
+            المستند على جهازك من الرفع إلى التنزيل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What if I want to keep only a few pages instead of deleting many?
+            ماذا لو أردت الاحتفاظ بصفحات قليلة فقط بدلاً من حذف الكثير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Use
+            استخدم
             <a
               href="/extract-pages"
               class="text-indigo-300 hover:text-indigo-400"
-              >Extract Pages</a
-            >, which does the reverse: you list the pages to keep and everything
-            else is left out. The output is the same kind of clean copy.
+              >استخراج الصفحات</a
+            >، الذي يفعل العكس: تسرد الصفحات التي تريد الاحتفاظ بها ويُترك كل ما
+            عداها. الناتج هو النوع نفسه من النسخ النظيفة.
           </p>
         </details>
       </div>
@@ -456,26 +456,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to delete pages online",
+        "name": "كيفية حذف الصفحات عبر الإنترنت",
         "description": "Learn how to delete pages using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

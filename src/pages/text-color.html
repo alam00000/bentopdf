@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Text Color Online Free - Text Color Tool | Pixel PDF"
+      content="لون النص عبر الإنترنت مجانًا - أداة لون النص | Pixel PDF"
     />
     <meta
       name="description"
-      content="Text Color online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="لون النص عبر الإنترنت. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="text color, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/text-color" />
     <meta
       property="og:title"
-      content="Text Color Online Free - Text Color Tool | Pixel PDF"
+      content="لون النص عبر الإنترنت مجانًا - أداة لون النص | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Text Color online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="لون النص عبر الإنترنت. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/text-color" />
-    <meta name="twitter:title" content="Text Color Free" />
+    <meta name="twitter:title" content="لون النص مجانًا" />
     <meta
       name="twitter:description"
-      content="Text Color online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="لون النص عبر الإنترنت. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Text Color" />
+    <meta name="apple-mobile-web-app-title" content="لون النص" />
 
-    <title>Change Text Color - Pixel PDF</title>
+    <title>تغيير لون النص - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,22 +106,22 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:changeTextColor.name"
         >
-          Change Text Color
+          تغيير لون النص
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:changeTextColor.subtitle"
         >
-          Change the color of text in your PDF.
+          تغيير لون النص في PDF الخاص بك.
         </p>
 
         <div
@@ -132,15 +132,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.pdfFile">
-              PDF file
+              ملف PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -158,12 +158,12 @@
             <label
               for="text-color-input"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >New Text Color</label
+              >لون النص الجديد</label
             >
             <input type="color" id="text-color-input" value="#0000FF" />
           </div>
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Change Text Color
+            تغيير لون النص
           </button>
         </div>
       </div>
@@ -181,9 +181,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -199,16 +198,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -219,7 +217,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -229,9 +227,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -242,9 +240,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -255,9 +253,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -270,43 +268,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -317,113 +321,109 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does it know which pixels are text?
+            كيف تعرف الأداة أي البكسلات هي نص؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It doesn't read the text; each page is rendered to an image and
-            every dark pixel (red, green, and blue all below 120 on a 0 to 255
-            scale) is repainted in your chosen color. Black and dark gray type
-            is caught, while light gray text, colored text, and photos are left
-            alone.
+            لا تقرأ النص، بل تُعرض كل صفحة كصورة ويُعاد طلاء كل بكسل داكن
+            (الأحمر والأخضر والأزرق جميعها أقل من 120 على مقياس 0 إلى 255)
+            باللون الذي تختاره. يُلتقط النص الأسود والرمادي الداكن، ويُترك النص
+            الرمادي الفاتح والنص الملون والصور كما هي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did lines, borders, and my logo change color too?
+            لماذا تغيّر لون الخطوط والحدود وشعاري أيضًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Because the tool works on dark pixels rather than text objects, any
-            dark element, including table rules, underlines, and black artwork,
-            is recolored along with the text. There's no way to exclude regions
-            in this tool.
+            لأن الأداة تعمل على البكسلات الداكنة لا على كائنات النص، فإن أي عنصر
+            داكن، بما في ذلك خطوط الجداول والخطوط السفلية والرسومات السوداء،
+            يُعاد تلوينه مع النص. لا توجد طريقة لاستبعاد مناطق في هذه الأداة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I recolor only certain words or paragraphs?
+            هل يمكنني إعادة تلوين كلمات أو فقرات معينة فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. One color is applied to all dark content on every page. To
-            change individual words or headings while leaving the rest alone,
-            edit the text directly in the
+            لا. يُطبَّق لون واحد على كل المحتوى الداكن في كل صفحة. لتغيير كلمات
+            أو عناوين فردية مع ترك الباقي، عدّل النص مباشرة في
             <a href="/edit-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >PDF Editor</a
+              >محرر PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the text still be selectable and searchable?
+            هل سيبقى النص قابلًا للتحديد والبحث؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The output is image-based: each page is rendered at 2x and
-            embedded as a PNG, so text can no longer be selected, searched, or
-            copied. Keep the original if you need an editable version, or run
+            لا. الناتج قائم على الصور: تُعرض كل صفحة بدقة 2x وتُضمَّن كصورة PNG،
+            فلا يمكن بعد ذلك تحديد النص أو البحث فيه أو نسخه. احتفظ بالأصل إذا
+            احتجت إلى نسخة قابلة للتعديل، أو شغّل
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
+              >التعرف الضوئي على PDF</a
             >
-            on the result to add a text layer back.
+            على الناتج لإعادة إضافة طبقة نصية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why did the file get much bigger?
+            لماذا أصبح الملف أكبر بكثير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A page of text weighs a few kilobytes as text but becomes a
-            full-page PNG image when recolored, so multi-page documents can grow
-            many times over.
+            تزن صفحة النص بضعة كيلوبايتات كنص لكنها تصبح صورة PNG بحجم الصفحة
+            كاملة عند إعادة التلوين، لذا قد تتضاعف المستندات متعددة الصفحات
+            أضعافًا كثيرة. يمكن لـ
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >
-            can shrink the result at the cost of some sharpness.
+            تصغير الناتج على حساب بعض الحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I turn black text white for a dark background?
+            هل يمكنني تحويل النص الأسود إلى أبيض لخلفية داكنة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, any color works, including white, but the page background isn't
-            changed, so white text on the original white page disappears. Choose
-            a color that contrasts with the background the page already has.
+            نعم، أي لون مناسب، بما فيه الأبيض، لكن خلفية الصفحة لا تتغير، لذا
+            يختفي النص الأبيض على الصفحة البيضاء الأصلية. اختر لونًا يتباين مع
+            الخلفية الموجودة في الصفحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded to change the text color?
+            هل يُرفع مستندي لتغيير لون النص؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Each page is rendered and recolored on a canvas in your browser,
-            and the new PDF is assembled there too, so the file never leaves
-            your device. A progress indicator shows which page is being
-            processed.
+            لا. تُعرض كل صفحة ويُعاد تلوينها على لوحة داخل متصفحك، ويُجمَّع PDF
+            الجديد هناك أيضًا، فلا يغادر الملف جهازك. يوضح مؤشر التقدم أي صفحة
+            تجري معالجتها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is colored or light gray text unchanged?
+            لماذا لا يتغير النص الملون أو الرمادي الفاتح؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only pixels dark enough to pass the threshold are repainted. Red
-            headings, blue links, mid-gray captions, and anti-aliased edges
-            lighter than the cutoff keep their original color, which can leave a
-            faint halo around recolored letters.
+            تُعاد طلاء البكسلات الداكنة بما يكفي لتجاوز العتبة فقط. تحتفظ
+            العناوين الحمراء والروابط الزرقاء والتعليقات الرمادية المتوسطة
+            والحواف الناعمة الأفتح من الحد بلونها الأصلي، وقد يترك ذلك هالة
+            خفيفة حول الأحرف المعاد تلوينها.
           </p>
         </details>
       </div>
@@ -456,26 +456,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to text color online",
+        "name": "كيفية تغيير لون النص عبر الإنترنت",
         "description": "Learn how to text color using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

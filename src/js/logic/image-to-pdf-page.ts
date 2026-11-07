@@ -103,8 +103,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only supported image formats are allowed.'
+      "ملفات غير صالحة",
+      "تم تخطي بعض الملفات. يُسمح بصيغ الصور المدعومة فقط."
     );
   }
 
@@ -184,11 +184,11 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one image file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف صورة واحد على الأقل.");
     return;
   }
 
-  showLoader('Processing images...');
+  showLoader("جارٍ معالجة الصور...");
 
   try {
     const quality = getSelectedQuality();
@@ -204,22 +204,22 @@ async function convertToPdf() {
       }
     }
 
-    showLoader('Loading engine...');
+    showLoader("جارٍ تحميل المحرك...");
     const mupdf = await ensurePyMuPDF();
 
-    showLoader('Converting images to PDF...');
+    showLoader("جارٍ تحويل الصور إلى PDF...");
     const pdfBlob = await mupdf.imagesToPdf(processedFiles);
 
     downloadFile(pdfBlob, 'images_to_pdf.pdf');
 
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e: unknown) {
     console.error('[ImageToPDF]', e);
     showAlert(
-      'Conversion Error',
-      e instanceof Error ? e.message : 'Failed to convert images to PDF.'
+      "خطأ في التحويل",
+      e instanceof Error ? e.message : "تعذر تحويل الصور إلى PDF."
     );
   } finally {
     hideLoader();

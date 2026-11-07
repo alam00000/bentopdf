@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>Compress PDF to 1MB Free Online | Pixel PDF</title>
-    <meta name="title" content="Compress PDF to 1MB Free Online | Pixel PDF" />
+    <title>ضغط PDF إلى 1MB مجانًا عبر الإنترنت | Pixel PDF</title>
+    <meta name="title" content="ضغط PDF إلى 1MB مجانًا عبر الإنترنت | Pixel PDF" />
     <meta
       name="description"
-      content="Reduce any PDF below 1MB for uploads and sharing. Free, and nothing is uploaded to any server. Runs entirely in your browser."
+      content="قلّص أي PDF إلى أقل من 1MB للرفع والمشاركة. مجانًا، ولا يُرفع شيء إلى أي خادم. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -32,11 +32,11 @@
     />
     <meta
       property="og:title"
-      content="Compress PDF to 1MB Free Online | Pixel PDF"
+      content="ضغط PDF إلى 1MB مجانًا عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Reduce any PDF below 1MB for uploads and sharing. Free, and nothing is uploaded to any server. Runs entirely in your browser."
+      content="قلّص أي PDF إلى أقل من 1MB للرفع والمشاركة. مجانًا، ولا يُرفع شيء إلى أي خادم. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -52,10 +52,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/compress-pdf-to-1mb"
     />
-    <meta name="twitter:title" content="Compress PDF to 1MB Free - Pixel PDF" />
+    <meta name="twitter:title" content="ضغط PDF إلى 1MB مجانًا - Pixel PDF" />
     <meta
       name="twitter:description"
-      content="Reduce any PDF below 1MB for uploads and sharing. Free, and nothing is uploaded to any server. Runs entirely in your browser."
+      content="قلّص أي PDF إلى أقل من 1MB للرفع والمشاركة. مجانًا، ولا يُرفع شيء إلى أي خادم. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -66,7 +66,7 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Compress PDF to 1MB" />
+    <meta name="apple-mobile-web-app-title" content="ضغط PDF إلى 1MB" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -111,14 +111,14 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
-        <h1 class="text-2xl font-bold text-white mb-2">Compress PDF to 1MB</h1>
+        <h1 class="text-2xl font-bold text-white mb-2">ضغط PDF إلى 1MB</h1>
         <p class="text-gray-400 mb-6">
-          Reduce large PDFs below the most common 1MB upload limit.
+          قلّل حجم ملفات PDF الكبيرة إلى أقل من حد الرفع الأكثر شيوعًا وهو 1MB.
         </p>
 
         <div
@@ -129,18 +129,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -148,7 +148,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -158,14 +158,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -184,7 +184,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -200,49 +200,45 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
 
     <section class="max-w-4xl mx-auto px-4 pt-12">
       <p id="direct-answer" class="text-gray-300 text-lg leading-relaxed">
-        To compress a PDF to 1MB, add the file below and click Compress PDF. The
-        target size is already set to 1 MB. One megabyte is the most common
-        upload ceiling on the web, nearly every document reaches it without
-        visible quality loss, and everything is processed privately in your
-        browser.
+        لضغط PDF إلى 1MB، أضف الملف أدناه وانقر على ضغط PDF. الحجم المستهدف
+        مضبوط أصلاً على 1 MB. ميغابايت واحد هو أكثر حدود الرفع شيوعًا على الويب،
+        ويصل إليه كل مستند تقريبًا دون فقدان ظاهر في الجودة، وتتم المعالجة كلها
+        بخصوصية في متصفحك.
       </p>
     </section>
     <section class="max-w-4xl mx-auto px-4 pt-8">
-      <h2 class="text-2xl font-bold text-white mb-3">
-        The most common upload limit
-      </h2>
+      <h2 class="text-2xl font-bold text-white mb-3">حد الرفع الأكثر شيوعًا</h2>
       <p class="text-gray-400 leading-relaxed">
-        Countless web forms cap attachments at 1MB: HR systems, insurance claim
-        uploads, property portals, CRM attachments. Even large reports with
-        photos usually compress below 1MB at the Medium level, because most PDF
-        weight is unoptimized images and duplicate embedded fonts that
-        compression removes losslessly first.
+        كثير من نماذج الويب تحدد المرفقات بـ 1MB: أنظمة الموارد البشرية ورفع
+        مطالبات التأمين وبوابات العقارات ومرفقات إدارة علاقات العملاء. حتى
+        التقارير الكبيرة المليئة بالصور تُضغط عادةً إلى أقل من 1MB في المستوى
+        المتوسط، لأن معظم وزن PDF هو صور غير محسَّنة وخطوط مضمّنة مكررة يزيلها
+        الضغط دون فقدان أولاً.
       </p>
     </section>
     <section class="max-w-4xl mx-auto px-4 pt-8">
-      <h2 class="text-2xl font-bold text-white mb-3">Very large files</h2>
+      <h2 class="text-2xl font-bold text-white mb-3">الملفات الكبيرة جدًا</h2>
       <p class="text-gray-400 leading-relaxed">
-        A 50 to 100MB scanned book or brochure needs much stronger image
-        compression to get under 1MB, which the target size handles by lowering
-        quality step by step, and extremely long documents may not fit at any
-        quality. In that case, split the PDF into logical parts, such as
-        chapters or sections, and compress each part under 1MB.
+        كتاب أو نشرة ممسوحة ضوئيًا بحجم 50 إلى 100MB تحتاج إلى ضغط أقوى بكثير
+        للصور لتصل إلى أقل من 1MB، وهذا ما يتولاه الحجم المستهدف بخفض الجودة
+        خطوة بخطوة، وقد لا تناسب المستندات الطويلة جدًا الحد مهما كانت الجودة.
+        في هذه الحالة قسّم PDF إلى أجزاء منطقية، مثل فصول أو أقسام، واضغط كل جزء
+        إلى أقل من 1MB.
       </p>
     </section>
 
@@ -252,7 +248,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -262,9 +258,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload PDFs</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملفات PDF</h3>
             <p class="text-gray-400">
-              Click or drag and drop one or more PDF files
+              انقر أو اسحب وأفلت ملف PDF واحدًا أو أكثر
             </p>
           </div>
         </div>
@@ -276,10 +272,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Select Compression Level
+              اختر مستوى الضغط
             </h3>
             <p class="text-gray-400">
-              Pick Low, Medium, High, or Lossless compression
+              اختر ضغطًا منخفضًا أو متوسطًا أو عاليًا أو بدون فقدان
             </p>
           </div>
         </div>
@@ -291,11 +287,11 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Customize & Compress
+              التخصيص والضغط
             </h3>
             <p class="text-gray-400">
-              Optionally set a target size or adjust custom settings such as
-              grayscale, then compress
+              يمكنك اختياريًا تحديد حجم مستهدف أو ضبط إعدادات مخصصة مثل تدرج
+              الرمادي، ثم اضغط
             </p>
           </div>
         </div>
@@ -306,9 +302,9 @@
             4
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400">
-              Save your compressed PDFs - up to 90% smaller
+              احفظ ملفات PDF المضغوطة، أصغر بنسبة تصل إلى 90%
             </p>
           </div>
         </div>
@@ -321,29 +317,33 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="pdf-to-jpg.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PDF to JPG</h3>
-          <p class="text-gray-400 text-sm">Free online PDF to JPG tool</p>
+          <h3 class="text-white font-semibold mb-1">PDF إلى JPG</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتحويل PDF إلى JPG
+          </p>
         </a>
       </div>
     </section>
@@ -354,48 +354,47 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How much can compression reduce my PDF?<i
+            كم يمكن أن يقلل الضغط من حجم PDF؟<i
               data-lucide="plus"
               class="faq-d-icon"
             ></i>
           </summary>
           <p class="faq-d-a">
-            Typical reductions are 50 to 90%. Image-heavy files shrink the most;
-            already-optimized PDFs shrink the least. You see the exact
-            before-and-after size instantly, and nothing counts against a quota.
+            التخفيضات المعتادة من 50 إلى 90%. تنكمش الملفات الكثيرة الصور أكثر
+            من غيرها، وتنكمش ملفات PDF المحسَّنة أصلاً أقل من غيرها. ترى الحجم
+            الدقيق قبل الضغط وبعده فورًا، ولا يُحتسب شيء من حصة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is there a file size limit for what I can compress?<i
+            هل هناك حد لحجم الملف الذي يمكنني ضغطه؟<i
               data-lucide="plus"
               class="faq-d-icon"
             ></i>
           </summary>
           <p class="faq-d-a">
-            No hard limit. processing happens on your own machine, so capacity
-            depends on your device rather than a server plan. Files of several
-            hundred megabytes work on a typical laptop.
+            لا يوجد حد صارم. تتم المعالجة على جهازك أنت، لذا تعتمد السعة على
+            جهازك لا على باقة خادم. تعمل ملفات بحجم عدة مئات من الميغابايت على
+            حاسوب محمول عادي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does compressing affect signatures or form fields?<i
+            هل يؤثر الضغط في التوقيعات أو حقول النماذج؟<i
               data-lucide="plus"
               class="faq-d-icon"
             ></i>
           </summary>
           <p class="faq-d-a">
-            Compression preserves form fields. A digitally signed PDF is left
-            exactly as it is, because any change would invalidate the signature,
-            so compress before signing, not after. If you need it smaller
-            anyway, turn on Override content protection under Custom Settings to
-            remove the signatures and compress it.
+            يحافظ الضغط على حقول النماذج. يُترك PDF الموقَّع رقميًا كما هو
+            تمامًا، لأن أي تغيير سيبطل التوقيع، لذا اضغط قبل التوقيع لا بعده.
+            وإذا احتجت إلى تصغيره على أي حال، ففعّل تجاوز حماية المحتوى ضمن
+            الإعدادات المخصصة لإزالة التوقيعات وضغطه.
           </p>
         </details>
       </div>
@@ -422,11 +421,11 @@
           "priceCurrency": "USD"
         },
         "featureList": [
-          "Reduce PDF file size",
-          "Batch processing",
-          "No file size limits",
-          "Hyper Compress engine built in",
-          "Compress to a target file size"
+          "تقليل حجم ملف PDF",
+          "المعالجة الدفعية",
+          "بدون حدود لحجم الملف",
+          "محرك Hyper Compress مدمج",
+          "الضغط إلى حجم ملف مستهدف"
         ]
       }
     </script>
@@ -435,26 +434,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to Compress PDF Files Online Free",
-        "description": "Learn how to compress PDF files to reduce size while maintaining quality",
+        "name": "كيفية ضغط ملفات PDF مجانًا عبر الإنترنت",
+        "description": "تعرّف على كيفية ضغط ملفات PDF لتقليل الحجم مع الحفاظ على الجودة",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload Your PDF",
-            "text": "Click or drag and drop your PDF file into the upload area"
+            "name": "ارفع ملف PDF",
+            "text": "انقر أو اسحب وأفلت ملف PDF في منطقة الرفع"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Choose Compression Level",
-            "text": "Select your desired compression level: Low, Medium, High, or Lossless"
+            "name": "اختر مستوى الضغط",
+            "text": "اختر مستوى الضغط المطلوب: منخفض أو متوسط أو عالٍ أو بدون فقدان"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Compress and Download",
-            "text": "Click 'Compress PDF' and download your optimized file"
+            "name": "الضغط والتنزيل",
+            "text": "انقر على \"ضغط PDF\" ونزّل ملفك المحسَّن"
           }
         ]
       }

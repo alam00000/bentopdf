@@ -54,13 +54,13 @@ function handleFileUpload(e: Event) {
 async function handleFiles(files: FileList) {
   const file = files[0];
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Invalid File', 'Please upload a valid PDF file.');
+    showAlert("ملف غير صالح", "يرجى رفع ملف PDF صالح.");
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -68,7 +68,7 @@ async function handleFiles(files: FileList) {
     document.getElementById('options-panel')?.classList.remove('hidden');
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -88,7 +88,7 @@ function updateFileDisplay() {
   nameSpan.textContent = pageState.file.name;
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{getPageCount}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{getPageCount}} صفحة", {
     size: formatBytes(pageState.file.size),
     getPageCount: pageState.pdfDoc.getPageCount(),
   });
@@ -114,14 +114,14 @@ function resetState() {
 
 async function changeBackgroundColor() {
   if (!pageState.pdfDoc) {
-    showAlert('Error', 'Please upload a PDF file first.');
+    showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
     return;
   }
   const colorHex = (
     document.getElementById('background-color') as HTMLInputElement
   ).value;
   const color = hexToRgb(colorHex);
-  showLoader('Changing background color...');
+  showLoader("جارٍ تغيير لون الخلفية...");
   try {
     const newPdfDoc = await PDFLibDocument.create();
     for (let i = 0; i < pageState.pdfDoc.getPageCount(); i++) {
@@ -144,8 +144,8 @@ async function changeBackgroundColor() {
       pageState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Background color changed successfully!',
+      "تم بنجاح",
+      "تم تغيير لون الخلفية بنجاح!",
       'success',
       () => {
         resetState();
@@ -153,7 +153,7 @@ async function changeBackgroundColor() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not change the background color.');
+    showAlert("خطأ", "تعذر تغيير لون الخلفية.");
   } finally {
     hideLoader();
   }

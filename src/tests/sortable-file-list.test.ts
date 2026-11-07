@@ -46,7 +46,7 @@ describe('createDragHandle', () => {
   it('should create an element Sortable can use as a handle', () => {
     const handle = createDragHandle();
     expect(handle.classList.contains('drag-handle')).toBe(true);
-    expect(handle.getAttribute('aria-label')).toBe('Drag to reorder');
+    expect(handle.getAttribute('aria-label')).toBe('اسحب لإعادة الترتيب');
     expect(handle.querySelector('i.ph.ph-dots-six-vertical')).not.toBeNull();
   });
 });

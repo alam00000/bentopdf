@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Prepare PDF for AI Online Free - Prepare PDF for AI Tool | Pixel PDF"
+      content="تجهيز PDF للذكاء الاصطناعي أونلاين مجانًا - أداة تجهيز PDF للذكاء الاصطناعي | Pixel PDF"
     />
     <meta
       name="description"
-      content="Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج محتوى PDF بصيغة LlamaIndex JSON لمسارات RAG/LLM. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="prepare pdf for ai, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Prepare PDF for AI Online Free - Prepare PDF for AI Tool | Pixel PDF"
+      content="تجهيز PDF للذكاء الاصطناعي أونلاين مجانًا - أداة تجهيز PDF للذكاء الاصطناعي | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج محتوى PDF بصيغة LlamaIndex JSON لمسارات RAG/LLM. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/prepare-pdf-for-ai"
     />
-    <meta name="twitter:title" content="Prepare PDF for AI Free" />
+    <meta name="twitter:title" content="تجهيز PDF للذكاء الاصطناعي مجانًا" />
     <meta
       name="twitter:description"
-      content="Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج محتوى PDF بصيغة LlamaIndex JSON لمسارات RAG/LLM. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Prepare PDF for AI" />
+    <meta name="apple-mobile-web-app-title" content="تحضير PDF للذكاء الاصطناعي" />
 
-    <title>Prepare PDF for AI - Extract for LLM/RAG - Pixel PDF</title>
+    <title>تجهيز PDF للذكاء الاصطناعي - استخراج لـ LLM/RAG - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -113,7 +113,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -121,13 +121,13 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:preparePdfForAi.name"
         >
-          Prepare PDF for AI
+          تحضير PDF للذكاء الاصطناعي
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:preparePdfForAi.subtitle"
         >
-          Extract PDF content as LlamaIndex JSON for RAG/LLM pipelines.
+          استخراج محتوى PDF كـ JSON بتنسيق LlamaIndex لخطوط RAG/LLM.
         </p>
 
         <div
@@ -138,18 +138,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -157,7 +157,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -166,13 +166,13 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i> <span>إضافة ملفات أخرى</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i> <span>مسح الكل</span>
           </button>
         </div>
 
@@ -180,29 +180,29 @@
 
         <div id="extract-options" class="hidden mt-6 space-y-6">
           <div class="bg-gray-700 rounded-lg p-4 text-sm text-gray-300">
-            <p class="font-medium text-white mb-2">Output Format:</p>
+            <p class="font-medium text-white mb-2">تنسيق المخرجات:</p>
             <p>
-              Each PDF will be extracted as a JSON file containing an array of
-              LlamaIndex Document objects with:
+              سيُستخرج كل ملف PDF كملف JSON يحتوي على مصفوفة من كائنات
+              LlamaIndex Document تتضمن:
             </p>
             <ul class="list-disc list-inside mt-2 space-y-1 text-gray-400">
               <li>
-                <code class="text-indigo-400">text</code> - Extracted text
-                content per page
+                <code class="text-indigo-400">text</code> - محتوى النص المستخرج
+                لكل صفحة
               </li>
               <li>
-                <code class="text-indigo-400">metadata</code> - Page number,
-                headings, and document info
+                <code class="text-indigo-400">metadata</code> - رقم الصفحة
+                والعناوين ومعلومات المستند
               </li>
               <li>
-                <code class="text-indigo-400">extra_info</code> - Additional
-                context for RAG systems
+                <code class="text-indigo-400">extra_info</code> - سياق إضافي
+                لأنظمة RAG
               </li>
             </ul>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Extract for AI
+            استخراج للذكاء الاصطناعي
           </button>
         </div>
       </div>
@@ -217,7 +217,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -230,14 +230,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -248,7 +248,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -258,9 +258,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -271,9 +271,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -284,9 +284,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -299,43 +299,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -346,105 +352,105 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the JSON output contain?
+            ماذا يحتوي ملف JSON الناتج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It follows the LlamaIndex document schema: one document per page
-            with that page's text and metadata fields. It's produced by
-            PyMuPDF's LlamaIndex integration, so it can be loaded directly into
-            LlamaIndex or any pipeline that accepts per-page text with metadata.
+            يتبع مخطط مستندات LlamaIndex: مستند واحد لكل صفحة مع نص الصفحة وحقول
+            البيانات الوصفية. ينتجه تكامل LlamaIndex في PyMuPDF، لذا يمكن تحميله
+            مباشرة في LlamaIndex أو أي خط معالجة يقبل نصًا لكل صفحة مع بيانات
+            وصفية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How is this different from PDF to Text or PDF to Markdown?
+            كيف تختلف عن PDF إلى نص أو PDF إلى Markdown؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
+            تعطيك أداة
             <a href="/pdf-to-text" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to Text</a
+              >PDF إلى نص</a
             >
-            gives one plain text stream, and PDF to Markdown keeps headings and
-            structure for reading. This tool splits the content page by page and
-            wraps it in structured JSON with metadata, which is what retrieval
-            pipelines need for chunking and citing sources.
+            تدفقًا واحدًا من النص العادي، وتحافظ أداة PDF إلى Markdown على
+            العناوين والبنية للقراءة. أما هذه الأداة فتقسّم المحتوى صفحة بصفحة
+            وتضعه في JSON منظّم مع بيانات وصفية، وهو ما تحتاجه خطوط الاسترجاع
+            لتقسيم النص إلى أجزاء وذكر المصادر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on scanned PDFs?
+            هل تعمل على ملفات PDF الممسوحة ضوئيًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only if they already have a text layer. Scanned images produce empty
-            or near-empty output, so run them through
+            فقط إذا كانت تحتوي على طبقة نصية. الصور الممسوحة ضوئيًا تنتج مخرجات
+            فارغة أو شبه فارغة، لذا مرّرها أولًا عبر
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
+              >التعرف الضوئي على PDF</a
             >
-            first and then extract.
+            ثم استخرج النص.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I process a whole batch of PDFs?
+            هل يمكنني معالجة دفعة كاملة من ملفات PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Upload multiple files and you get pdf-for-ai.zip containing one
-            yourfile_llm.json per PDF; a single file downloads as
-            yourfile_llm.json directly. If one file in the batch fails, the rest
-            still complete and the summary tells you how many failed.
+            نعم. ارفع عدة ملفات لتحصل على pdf-for-ai.zip الذي يحتوي على ملف
+            yourfile_llm.json واحد لكل PDF، أما الملف الواحد فيُنزَّل مباشرة
+            باسم yourfile_llm.json. إذا فشل ملف في الدفعة، يكتمل الباقي ويخبرك
+            الملخص بعدد الملفات التي فشلت.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I choose which pages to extract or control the chunk size?
+            هل يمكنني اختيار الصفحات المراد استخراجها أو التحكم في حجم الأجزاء؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. There are no options; every page is extracted with its full text
-            and metadata. Do chunking in your own pipeline, where you can pick
-            sizes that fit your embedding model, and drop pages you don't need
-            there.
+            لا. لا توجد خيارات، وتُستخرج كل صفحة بنصها الكامل وبياناتها الوصفية.
+            قم بتقسيم النص في مسارك الخاص، حيث يمكنك اختيار أحجام تناسب نموذج
+            التضمين لديك، واحذف الصفحات التي لا تحتاج إليها هناك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I prepare a password-protected PDF for AI tools?
+            هل يمكنني تجهيز PDF محمي بكلمة مرور لأدوات الذكاء الاصطناعي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. If a file is encrypted, you're prompted for its password before
-            extraction starts, and the text is pulled from the decrypted copy.
+            نعم. إذا كان الملف مشفّرًا، تُطلب منك كلمة مروره قبل بدء الاستخراج،
+            ويُسحب النص من النسخة المفكوكة التشفير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document sent to an AI service?
+            هل يُرسل مستندي إلى خدمة ذكاء اصطناعي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Despite the name, nothing is sent to an AI provider or any
-            server; the extraction runs with PyMuPDF compiled to WebAssembly
-            inside your browser. You decide afterward where the JSON goes.
+            لا. رغم الاسم، لا يُرسل شيء إلى أي مزوّد ذكاء اصطناعي أو خادم، ويعمل
+            الاستخراج بواسطة PyMuPDF المُجمَّعة إلى WebAssembly داخل متصفحك. أنت
+            تقرر بعد ذلك أين يذهب ملف JSON.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What can I do with the JSON file?
+            ماذا يمكنني أن أفعل بملف JSON؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Feed it to a RAG pipeline, build a knowledge base for a chatbot, run
-            LLM analysis over reports, or turn a PDF collection into training
-            data. Because the content is split per page with metadata, answers
-            can point back to the page they came from.
+            أدخله في خط RAG، أو ابنِ قاعدة معرفة لروبوت محادثة، أو شغّل تحليل
+            LLM على التقارير، أو حوّل مجموعة ملفات PDF إلى بيانات تدريب. ولأن
+            المحتوى مقسّم حسب الصفحة مع بيانات وصفية، يمكن للإجابات الإشارة إلى
+            الصفحة التي جاءت منها.
           </p>
         </details>
       </div>
@@ -480,26 +486,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to prepare pdf for ai online",
+        "name": "كيفية تجهيز PDF للذكاء الاصطناعي أونلاين",
         "description": "Learn how to prepare pdf for ai using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

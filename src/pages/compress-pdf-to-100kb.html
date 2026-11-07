@@ -1,15 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>Compress PDF to 100KB Free Online | Pixel PDF</title>
-    <meta name="title" content="Compress PDF to 100KB Free Online | Pixel PDF" />
+    <title>ضغط PDF إلى 100KB مجانًا عبر الإنترنت | Pixel PDF</title>
+    <meta
+      name="title"
+      content="ضغط PDF إلى 100KB مجانًا عبر الإنترنت | Pixel PDF"
+    />
     <meta
       name="description"
-      content="Shrink a PDF below 100KB for job portals and government forms. Free, no uploads. Compression runs entirely in your browser."
+      content="قلّص PDF إلى أقل من 100KB لبوابات التوظيف والنماذج الحكومية. مجانًا، بدون رفع ملفات. يعمل الضغط بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -35,11 +38,11 @@
     />
     <meta
       property="og:title"
-      content="Compress PDF to 100KB Free Online | Pixel PDF"
+      content="ضغط PDF إلى 100KB مجانًا عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Shrink a PDF below 100KB for job portals and government forms. Free, no uploads. Compression runs entirely in your browser."
+      content="قلّص PDF إلى أقل من 100KB لبوابات التوظيف والنماذج الحكومية. مجانًا، بدون رفع ملفات. يعمل الضغط بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -57,11 +60,11 @@
     />
     <meta
       name="twitter:title"
-      content="Compress PDF to 100KB Free - Pixel PDF"
+      content="ضغط PDF إلى 100KB مجانًا - Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Shrink a PDF below 100KB for job portals and government forms. Free, no uploads. Compression runs entirely in your browser."
+      content="قلّص PDF إلى أقل من 100KB لبوابات التوظيف والنماذج الحكومية. مجانًا، بدون رفع ملفات. يعمل الضغط بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -72,7 +75,7 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Compress PDF to 100KB" />
+    <meta name="apple-mobile-web-app-title" content="ضغط PDF إلى 100KB" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -117,16 +120,14 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
-        <h1 class="text-2xl font-bold text-white mb-2">
-          Compress PDF to 100KB
-        </h1>
+        <h1 class="text-2xl font-bold text-white mb-2">ضغط PDF إلى 100KB</h1>
         <p class="text-gray-400 mb-6">
-          Get your PDF under 100KB for portals with strict upload limits.
+          اجعل PDF أقل من 100KB للبوابات ذات حدود الرفع الصارمة.
         </p>
 
         <div
@@ -137,18 +138,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -156,7 +157,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -166,14 +167,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -192,7 +193,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -208,65 +209,59 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
 
     <section class="max-w-4xl mx-auto px-4 pt-12">
       <p id="direct-answer" class="text-gray-300 text-lg leading-relaxed">
-        To compress a PDF to 100KB, add your file below and click Compress PDF.
-        The target size is already set to 100 KB, so Hyper Compress picks the
-        best image quality that still fits. Everything runs inside your browser
-        and the PDF is never uploaded to a server, so even sensitive documents
-        like ID scans and application forms stay on your device.
+        لضغط PDF إلى 100KB، أضف ملفك أدناه وانقر على ضغط PDF. الحجم المستهدف
+        مضبوط أصلاً على 100 KB، لذا يختار Hyper Compress أفضل جودة صور تناسبه.
+        يعمل كل شيء داخل متصفحك ولا يُرفع PDF إلى خادم أبدًا، لذا تبقى حتى
+        المستندات الحساسة مثل مسوحات الهويات ونماذج التقديم على جهازك.
       </p>
     </section>
     <section class="max-w-4xl mx-auto px-4 pt-8">
       <h2 class="text-2xl font-bold text-white mb-3">
-        When you need a PDF under 100KB
+        متى تحتاج إلى PDF أقل من 100KB
       </h2>
       <p class="text-gray-400 leading-relaxed">
-        A 100KB cap is common on job application portals, government e-filing
-        systems, university admission forms, and visa or immigration websites.
-        These systems usually reject larger files outright, often without a
-        helpful error message, so compressing before you upload saves a failed
-        submission.
+        حد 100KB شائع في بوابات التقديم على الوظائف وأنظمة التقديم الحكومي
+        الإلكتروني ونماذج القبول الجامعي ومواقع التأشيرات والهجرة. غالبًا ما
+        ترفض هذه الأنظمة الملفات الأكبر مباشرة، وغالبًا دون رسالة خطأ مفيدة، لذا
+        فإن الضغط قبل الرفع يجنبك فشل التقديم.
       </p>
     </section>
     <section class="max-w-4xl mx-auto px-4 pt-8">
-      <h2 class="text-2xl font-bold text-white mb-3">
-        What to expect at 100KB
-      </h2>
+      <h2 class="text-2xl font-bold text-white mb-3">ماذا تتوقع عند 100KB</h2>
       <p class="text-gray-400 leading-relaxed">
-        A text-based PDF of a few pages. a resume, cover letter, or typed form.
-        compresses below 100KB easily with no visible change. Scanned documents
-        and photo-heavy files are harder: to hit 100KB they need stronger image
-        downscaling, so expect visibly softer images. If your scan still will
-        not reach 100KB, the result tells you the smallest size it could make.
-        If the scan has no text layer, turn on Rasterize pages under Custom
-        Settings to rebuild each page as one optimized image, or split the
-        document and compress the pages you actually need to submit.
+        ملف PDF نصي من بضع صفحات، مثل سيرة ذاتية أو خطاب تقديم أو نموذج مطبوع،
+        يُضغط إلى أقل من 100KB بسهولة دون تغيير ظاهر. أما المستندات الممسوحة
+        ضوئيًا والملفات الكثيرة الصور فهي أصعب: فللوصول إلى 100KB تحتاج إلى
+        تقليل أقوى لدقة الصور، فتوقع صورًا أكثر نعومة بشكل ملحوظ. وإذا لم يصل
+        المسح الضوئي إلى 100KB، تخبرك النتيجة بأصغر حجم أمكن إنشاؤه. وإذا لم تكن
+        للمسح طبقة نصية، فعّل تحويل الصفحات إلى صور ضمن الإعدادات المخصصة لإعادة
+        بناء كل صفحة كصورة واحدة محسَّنة، أو قسّم المستند واضغط الصفحات التي
+        تحتاج فعلاً إلى تقديمها.
       </p>
     </section>
     <section class="max-w-4xl mx-auto px-4 pt-8">
-      <h2 class="text-2xl font-bold text-white mb-3">
-        Tips for the smallest possible file
-      </h2>
+      <h2 class="text-2xl font-bold text-white mb-3">نصائح لأصغر ملف ممكن</h2>
       <p class="text-gray-400 leading-relaxed">
-        Remove pages you do not need before compressing. Prefer documents
-        exported straight from an editor over scans. a re-typed one-page form is
-        often 20KB while the same page scanned is 500KB. If you control the
-        scanner, scan at 150 DPI in grayscale instead of 300 DPI color.
+        احذف الصفحات التي لا تحتاجها قبل الضغط. فضّل المستندات المصدَّرة مباشرة
+        من محرر على المسوحات الضوئية: فنموذج من صفحة واحدة معاد كتابته غالبًا ما
+        يكون 20KB بينما الصفحة نفسها الممسوحة ضوئيًا 500KB. وإذا كان الماسح
+        الضوئي بين يديك، فامسح بدقة 150 DPI بتدرج الرمادي بدلاً من 300 DPI
+        بالألوان.
       </p>
     </section>
 
@@ -276,7 +271,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -286,9 +281,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload PDFs</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملفات PDF</h3>
             <p class="text-gray-400">
-              Click or drag and drop one or more PDF files
+              انقر أو اسحب وأفلت ملف PDF واحدًا أو أكثر
             </p>
           </div>
         </div>
@@ -300,10 +295,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Select Compression Level
+              اختر مستوى الضغط
             </h3>
             <p class="text-gray-400">
-              Pick Low, Medium, High, or Lossless compression
+              اختر ضغطًا منخفضًا أو متوسطًا أو عاليًا أو بدون فقدان
             </p>
           </div>
         </div>
@@ -315,11 +310,11 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Customize & Compress
+              التخصيص والضغط
             </h3>
             <p class="text-gray-400">
-              Optionally set a target size or adjust custom settings such as
-              grayscale, then compress
+              يمكنك اختياريًا تحديد حجم مستهدف أو ضبط إعدادات مخصصة مثل تدرج
+              الرمادي، ثم اضغط
             </p>
           </div>
         </div>
@@ -330,9 +325,9 @@
             4
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400">
-              Save your compressed PDFs - up to 90% smaller
+              احفظ ملفات PDF المضغوطة، أصغر بنسبة تصل إلى 90%
             </p>
           </div>
         </div>
@@ -345,29 +340,33 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="pdf-to-jpg.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PDF to JPG</h3>
-          <p class="text-gray-400 text-sm">Free online PDF to JPG tool</p>
+          <h3 class="text-white font-semibold mb-1">PDF إلى JPG</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتحويل PDF إلى JPG
+          </p>
         </a>
       </div>
     </section>
@@ -378,60 +377,59 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can every PDF be compressed to 100KB?<i
+            هل يمكن ضغط أي PDF إلى 100KB؟<i
               data-lucide="plus"
               class="faq-d-icon"
             ></i>
           </summary>
           <p class="faq-d-a">
-            Not always. Short text-based PDFs almost always can. Long or heavily
-            scanned documents may bottom out above 100KB, and the result message
-            tells you when that happens. In that case split the file or rescan
-            at a lower DPI and compress again.
+            ليس دائمًا. ملفات PDF النصية القصيرة تستطيع ذلك دائمًا تقريبًا. أما
+            المستندات الطويلة أو الممسوحة ضوئيًا بكثافة فقد تتوقف عند حجم أعلى
+            من 100KB، وتخبرك رسالة النتيجة بذلك. في هذه الحالة قسّم الملف أو أعد
+            المسح بدقة DPI أقل واضغط مرة أخرى.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which compression level should I pick for 100KB?<i
+            أي مستوى ضغط أختار لحجم 100KB؟<i
               data-lucide="plus"
               class="faq-d-icon"
             ></i>
           </summary>
           <p class="faq-d-a">
-            You can leave it on Medium. The 100 KB target is already filled in,
-            so Hyper Compress steps image quality down only as far as it needs
-            to. Pick Low instead if you want it to start from higher quality,
-            and for image-only scans that still won't fit, turn on Rasterize
-            pages. Nothing is uploaded, so retries are instant.
+            يمكنك تركه على المتوسط. الهدف 100 KB مُدخَل أصلاً، لذا يخفض Hyper
+            Compress جودة الصور بالقدر الذي يحتاجه فقط. اختر المنخفض بدلاً من
+            ذلك إذا أردت أن يبدأ من جودة أعلى، وللمسوحات المكونة من صور فقط التي
+            لا تزال لا تناسب الحجم، فعّل تحويل الصفحات إلى صور. لا يُرفع شيء،
+            لذا تكون إعادة المحاولة فورية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will my text stay selectable?<i
+            هل سيبقى النص قابلاً للتحديد؟<i
               data-lucide="plus"
               class="faq-d-icon"
             ></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Text, links, and form fields are preserved. Rasterize pages
-            only applies to scans with no text layer, so it never turns
-            selectable text into an image unless you turn on Override content
-            protection.
+            نعم. تبقى النصوص والروابط وحقول النماذج. لا ينطبق تحويل الصفحات إلى
+            صور إلا على المسوحات التي لا تحتوي على طبقة نصية، لذا لا يحوّل النص
+            القابل للتحديد إلى صورة أبدًا إلا إذا فعّلت تجاوز حماية المحتوى.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document private?<i data-lucide="plus" class="faq-d-icon"></i>
+            هل مستندي خاص؟<i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Compression runs entirely in your browser using WebAssembly.
-            The file never leaves your device, which matters for the ID
-            documents and applications that 100KB limits usually involve.
+            نعم. يعمل الضغط بالكامل في متصفحك باستخدام WebAssembly. لا يغادر
+            الملف جهازك، وهذا مهم لوثائق الهوية والطلبات التي تتعلق بها حدود
+            100KB عادةً.
           </p>
         </details>
       </div>
@@ -458,11 +456,11 @@
           "priceCurrency": "USD"
         },
         "featureList": [
-          "Reduce PDF file size",
-          "Batch processing",
-          "No file size limits",
-          "Hyper Compress engine built in",
-          "Compress to a target file size"
+          "تقليل حجم ملف PDF",
+          "المعالجة الدفعية",
+          "بدون حدود لحجم الملف",
+          "محرك Hyper Compress مدمج",
+          "الضغط إلى حجم ملف مستهدف"
         ]
       }
     </script>
@@ -471,26 +469,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to Compress PDF Files Online Free",
-        "description": "Learn how to compress PDF files to reduce size while maintaining quality",
+        "name": "كيفية ضغط ملفات PDF مجانًا عبر الإنترنت",
+        "description": "تعرّف على كيفية ضغط ملفات PDF لتقليل الحجم مع الحفاظ على الجودة",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload Your PDF",
-            "text": "Click or drag and drop your PDF file into the upload area"
+            "name": "ارفع ملف PDF",
+            "text": "انقر أو اسحب وأفلت ملف PDF في منطقة الرفع"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Choose Compression Level",
-            "text": "Select your desired compression level: Low, Medium, High, or Lossless"
+            "name": "اختر مستوى الضغط",
+            "text": "اختر مستوى الضغط المطلوب: منخفض أو متوسط أو عالٍ أو بدون فقدان"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Compress and Download",
-            "text": "Click 'Compress PDF' and download your optimized file"
+            "name": "الضغط والتنزيل",
+            "text": "انقر على \"ضغط PDF\" ونزّل ملفك المحسَّن"
           }
         ]
       }

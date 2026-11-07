@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Header Footer Online Free - Header Footer Tool | Pixel PDF"
+      content="إضافة الترويسة والتذييل عبر الإنترنت مجانًا - أداة الترويسة والتذييل | Pixel PDF"
     />
     <meta
       name="description"
-      content="Add text to the top and bottom of pages. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أضف نصًا في أعلى الصفحات وأسفلها. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="header footer, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/header-footer" />
     <meta
       property="og:title"
-      content="Header Footer Online Free - Header Footer Tool | Pixel PDF"
+      content="إضافة الترويسة والتذييل عبر الإنترنت مجانًا - أداة الترويسة والتذييل | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Add text to the top and bottom of pages. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أضف نصًا في أعلى الصفحات وأسفلها. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/header-footer" />
-    <meta name="twitter:title" content="Header Footer Free" />
+    <meta name="twitter:title" content="الترويسة والتذييل مجانًا" />
     <meta
       name="twitter:description"
-      content="Add text to the top and bottom of pages. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أضف نصًا في أعلى الصفحات وأسفلها. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -61,7 +61,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Header Footer" />
 
-    <title>Add Header & Footer - Pixel PDF</title>
+    <title>إضافة ترويسة وتذييل - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:headerFooter.name"
         >
-          Header & Footer
+          رأس وتذييل
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:headerFooter.subtitle">
-          Add text to the top and bottom of pages.
+          إضافة نص في أعلى وأسفل الصفحات.
         </p>
 
         <div
@@ -129,15 +129,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.pdfFile">
-              PDF file
+              ملف PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -153,14 +153,14 @@
         <div id="options-panel" class="hidden mt-6 space-y-6">
           <div class="bg-gray-900/50 border border-gray-700 rounded-lg p-4">
             <h3 class="text-sm font-semibold text-gray-300 mb-4">
-              Formatting Options
+              خيارات التنسيق
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
               <div>
                 <label
                   for="page-range"
                   class="block mb-2 text-sm font-medium text-gray-300"
-                  >Page Range (optional)</label
+                  >نطاق الصفحات (اختياري)</label
                 >
                 <input
                   type="text"
@@ -169,14 +169,14 @@
                   class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
                 />
                 <p class="text-xs text-gray-400 mt-1">
-                  Total pages: <span id="total-pages">0</span>
+                  إجمالي الصفحات: <span id="total-pages">0</span>
                 </p>
               </div>
               <div>
                 <label
                   for="font-size"
                   class="block mb-2 text-sm font-medium text-gray-300"
-                  >Font Size</label
+                  >حجم الخط</label
                 >
                 <input
                   type="number"
@@ -191,7 +191,7 @@
                 <label
                   for="font-color"
                   class="block mb-2 text-sm font-medium text-gray-300"
-                  >Font Color</label
+                  >لون الخط</label
                 >
                 <input type="color" id="font-color" value="#000000" class="" />
               </div>
@@ -203,7 +203,7 @@
               <label
                 for="header-left"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Header Left</label
+                >يسار الرأس</label
               >
               <input
                 type="text"
@@ -216,7 +216,7 @@
               <label
                 for="header-center"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Header Center</label
+                >منتصف الرأس</label
               >
               <input
                 type="text"
@@ -229,7 +229,7 @@
               <label
                 for="header-right"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Header Right</label
+                >يمين الرأس</label
               >
               <input
                 type="text"
@@ -245,7 +245,7 @@
               <label
                 for="footer-left"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Footer Left</label
+                >يسار التذييل</label
               >
               <input
                 type="text"
@@ -258,7 +258,7 @@
               <label
                 for="footer-center"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Footer Center</label
+                >منتصف التذييل</label
               >
               <input
                 type="text"
@@ -271,7 +271,7 @@
               <label
                 for="footer-right"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Footer Right</label
+                >يمين التذييل</label
               >
               <input
                 type="text"
@@ -283,7 +283,7 @@
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Add Header & Footer
+            إضافة ترويسة وتذييل
           </button>
         </div>
       </div>
@@ -301,9 +301,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -319,16 +318,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -339,7 +337,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -349,9 +347,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -362,9 +360,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -375,9 +373,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -390,43 +388,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -437,107 +441,102 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I add Page X of Y to every page?
+            كيف أضيف "صفحة X من Y" إلى كل صفحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Type Page {page} of {total} in any of the six fields, usually Footer
-            Center. {page} is replaced with that page's number and {total} with
-            the page count, so a 12-page file gets Page 1 of 12 through Page 12
-            of 12.
+            اكتب Page {page} of {total} في أي من الحقول الستة، وعادةً تذييل
+            الوسط. يُستبدل {page} برقم تلك الصفحة و{total} بعدد الصفحات، فيحصل
+            ملف من 12 صفحة على Page 1 of 12 حتى Page 12 of 12.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I put different text on the left, center, and right?
+            هل يمكنني وضع نص مختلف على اليسار والوسط واليمين؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. There are six independent fields: header left, center, and
-            right, plus footer left, center, and right. Fill only the ones you
-            need, for example a company name at header left, the date at header
-            right, and a confidentiality notice at footer center; empty fields
-            are skipped.
+            نعم. توجد ستة حقول مستقلة: ترويسة يسار ووسط ويمين، وتذييل يسار ووسط
+            ويمين. املأ ما تحتاجه فقط، مثل اسم الشركة في ترويسة اليسار والتاريخ
+            في ترويسة اليمين وإشعار السرية في تذييل الوسط؛ وتُتخطى الحقول
+            الفارغة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I apply the header only to certain pages?
+            هل يمكنني تطبيق الترويسة على صفحات معينة فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Enter a range like 1-3, 5 in the Page Range field and only
-            those pages get the text; leave it empty to cover every page. The
-            {page} value still reflects the real page number, so page 5 reads 5
-            even when pages 1 through 4 were skipped.
+            نعم. أدخل نطاقًا مثل 1-3, 5 في حقل نطاق الصفحات فتحصل تلك الصفحات
+            فقط على النص؛ واتركه فارغًا لتغطية كل الصفحات. وتبقى القيمة {page}
+            تعكس رقم الصفحة الحقيقي، فالصفحة 5 تظهر 5 حتى لو تُخطيت الصفحات من 1
+            إلى 4.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What font and size does it use?
+            ما الخط والحجم اللذان يستخدمهما؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Helvetica, at any size from 6 to 24 points (10 by default), in the
-            color you pick. Because it uses the built-in PDF Helvetica, the text
-            is limited to Latin characters; accented letters work, but scripts
-            such as Cyrillic, Arabic, or Chinese don't.
+            Helvetica بأي حجم من 6 إلى 24 نقطة (10 افتراضيًا)، وباللون الذي
+            تختاره. ولأنه يستخدم خط Helvetica المضمّن في PDF، فالنص مقصور على
+            الأحرف اللاتينية؛ تعمل الأحرف ذات علامات التشكيل، لكن الأبجديات مثل
+            السيريلية والعربية والصينية لا تعمل.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will it replace the header my document already has?
+            هل ستحل محل الترويسة الموجودة في مستندي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The text is drawn on top of the existing page content about 40
-            points (a bit over half an inch) from the edge, so if a page already
-            has a running header in that spot the two will overlap. Check the
-            result and pick a different position if they collide.
+            لا. يُرسم النص فوق محتوى الصفحة الموجود على بعد نحو 40 نقطة (أكثر من
+            نصف بوصة بقليل) من الحافة، فإذا كان في الصفحة ترويسة جارية في ذلك
+            الموضع فسيتداخل الاثنان. راجع النتيجة واختر موضعًا مختلفًا إذا
+            تصادما.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the header text selectable and searchable afterward?
+            هل يمكن تحديد نص الترويسة والبحث فيه بعد ذلك؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. It's added as real text rather than an image, so it can be
-            selected, searched, and copied, and it stays sharp when printed at
-            any size.
+            نعم. يُضاف كنص حقيقي وليس كصورة، لذا يمكن تحديده والبحث فيه ونسخه،
+            ويبقى حادًا عند الطباعة بأي حجم.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded to add a header and footer?
+            هل يُرفع مستندي لإضافة ترويسة وتذييل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The text is written into the PDF by your browser and the
-            finished file is saved under its original name; the document never
-            leaves your device.
+            لا. يكتب متصفحك النص في ملف PDF ويُحفظ الملف النهائي باسمه الأصلي؛
+            ولا يغادر المستند جهازك أبدًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add page numbers without any other text?
+            هل يمكنني إضافة أرقام الصفحات دون أي نص آخر؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, put {page} alone in a field.
+            نعم، ضع {page} وحده في حقل. تؤدي
             <a
               href="/page-numbers"
               class="text-indigo-300 hover:text-indigo-400"
-              >Page Numbers</a
+              >أرقام الصفحات</a
             >
-            does the same job with a dedicated layout and font sizes up to 72
-            points, and Add Page Labels handles Roman numerals in the viewer's
-            page display.
+            المهمة نفسها بتخطيط مخصص وأحجام خط تصل إلى 72 نقطة، وتتولى إضافة
+            تسميات الصفحات الأرقام الرومانية في عرض الصفحات داخل العارض.
           </p>
         </details>
       </div>
@@ -570,26 +569,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to header footer online",
+        "name": "كيفية إضافة الترويسة والتذييل عبر الإنترنت",
         "description": "Learn how to header footer using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

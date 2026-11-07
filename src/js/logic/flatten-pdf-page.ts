@@ -102,7 +102,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function flattenPdf() {
   if (pageState.files.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
     return;
   }
 
@@ -114,7 +114,7 @@ async function flattenPdf() {
   try {
     if (pageState.files.length === 1) {
       if (loaderModal) loaderModal.classList.remove('hidden');
-      if (loaderText) loaderText.textContent = trText('Flattening PDF...');
+      if (loaderText) loaderText.textContent = trText("جارٍ تسطيح PDF...");
 
       const file = pageState.files[0];
       const arrayBuffer = await file.arrayBuffer();
@@ -145,7 +145,7 @@ async function flattenPdf() {
     } else {
       if (loaderModal) loaderModal.classList.remove('hidden');
       if (loaderText)
-        loaderText.textContent = trText('Flattening multiple PDFs...');
+        loaderText.textContent = trText("جارٍ تسطيح عدة ملفات PDF...");
 
       const zip = new JSZip();
       const usedNames = new Set<string>();
@@ -155,7 +155,7 @@ async function flattenPdf() {
         const file = pageState.files[i];
         if (loaderText)
           loaderText.textContent = trText(
-            'Flattening {{n}}/{{length}}: {{name}}...',
+            "جارٍ تسطيح {{n}}/{{length}}: {{name}}...",
             { n: i + 1, length: pageState.files.length, name: file.name }
           );
 
@@ -194,15 +194,15 @@ async function flattenPdf() {
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         downloadFile(zipBlob, 'flattened_pdfs.zip');
         showAlert(
-          'Success',
-          trText('Processed {{processedCount}} PDFs.', { processedCount }),
+          "تم بنجاح",
+          trText("تمت معالجة {{processedCount}} من ملفات PDF.", { processedCount }),
           'success',
           () => {
             resetState();
           }
         );
       } else {
-        showAlert('Error', 'No PDFs could be processed.');
+        showAlert("خطأ", "تعذرت معالجة أي ملف PDF.");
       }
       if (loaderModal) loaderModal.classList.add('hidden');
     }
@@ -210,8 +210,8 @@ async function flattenPdf() {
     console.error(e);
     if (loaderModal) loaderModal.classList.add('hidden');
     const errorMessage =
-      e instanceof Error ? e.message : trText('An unexpected error occurred.');
-    showAlert('Error', errorMessage);
+      e instanceof Error ? e.message : trText("حدث خطأ غير متوقع.");
+    showAlert("خطأ", errorMessage);
   }
 }
 

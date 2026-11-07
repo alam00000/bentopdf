@@ -75,7 +75,7 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -88,7 +88,7 @@ async function handleFile(file: File) {
       cropperState.file = null;
       return;
     }
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     cropperState.file = result.file;
     cropperState.originalPdfBytes = result.bytes;
     cropperState.pdfDoc = result.pdf;
@@ -100,7 +100,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   }
 }
 
@@ -122,7 +122,7 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{value}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{value}} صفحة", {
     size: formatBytes(cropperState.file.size),
     value: cropperState.pdfDoc?.numPages || 0,
   });
@@ -154,7 +154,7 @@ function saveCurrentCrop() {
 }
 
 async function displayPageAsImage(num: number) {
-  showLoader(trText('Rendering Page {{num}}...', { num }));
+  showLoader(trText("جارٍ عرض الصفحة {{num}}...", { num }));
 
   try {
     const page = await cropperState.pdfDoc.getPage(num);
@@ -210,7 +210,7 @@ async function displayPageAsImage(num: number) {
     };
   } catch (error) {
     console.error('Error rendering page:', error);
-    showAlert('Error', 'Failed to render page.');
+    showAlert("خطأ", "تعذر عرض الصفحة.");
     hideLoader();
   }
 }
@@ -227,7 +227,7 @@ async function changePage(offset: number) {
 function updatePageInfo() {
   const pageInfo = document.getElementById('page-info');
   if (pageInfo)
-    pageInfo.textContent = trText('Page {{currentPageNum}} of {{numPages}}', {
+    pageInfo.textContent = trText("الصفحة {{currentPageNum}} من {{numPages}}", {
       currentPageNum: cropperState.currentPageNum,
       numPages: cropperState.pdfDoc.numPages,
     });
@@ -260,7 +260,7 @@ async function performCrop() {
   if (isApplyToAll) {
     const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
     if (!currentCrop) {
-      showAlert('No Crop Area', 'Please select an area to crop first.');
+      showAlert("لا توجد منطقة قص", "يرجى تحديد منطقة للقص أولًا.");
       return;
     }
     for (let i = 1; i <= cropperState.pdfDoc.numPages; i++) {
@@ -272,13 +272,13 @@ async function performCrop() {
 
   if (Object.keys(finalCropData).length === 0) {
     showAlert(
-      'No Crop Area',
-      'Please select an area on at least one page to crop.'
+      "لا توجد منطقة قص",
+      "يرجى تحديد منطقة على صفحة واحدة على الأقل للقص."
     );
     return;
   }
 
-  showLoader('Applying crop...');
+  showLoader("جارٍ تطبيق القص...");
 
   try {
     let finalPdfBytes;
@@ -293,14 +293,14 @@ async function performCrop() {
       cropperState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'Crop complete! Your download has started.',
+      "تم بنجاح",
+      "اكتمل القص! بدأ التنزيل.",
       'success',
       () => resetState()
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred during cropping.');
+    showAlert("خطأ", "حدث خطأ أثناء القص.");
   } finally {
     hideLoader();
   }
@@ -358,7 +358,7 @@ async function performFlatteningCrop(
   for (let i = 0; i < totalPages; i++) {
     const pageNum = i + 1;
     showLoader(
-      trText('Processing page {{pageNum}} of {{totalPages}}...', {
+      trText("جارٍ معالجة الصفحة {{pageNum}} من {{totalPages}}...", {
         pageNum,
         totalPages,
       })

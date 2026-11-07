@@ -16,20 +16,20 @@ export function diffStrings(): Record<string, string> {
   };
   add(
     'Replaced "{{beforeText}}" with "{{afterText}}"',
-    trText('Replaced "{{beforeText}}" with "{{afterText}}"')
+    trText("تم استبدال \"{{beforeText}}\" بـ \"{{afterText}}\"")
   );
-  add('Removed "{{beforeText}}"', trText('Removed "{{beforeText}}"'));
-  add('Added "{{afterText}}"', trText('Added "{{afterText}}"'));
+  add('Removed "{{beforeText}}"', trText("تمت إزالة \"{{beforeText}}\""));
+  add('Added "{{afterText}}"', trText("تمت إضافة \"{{afterText}}\""));
   add(
     'Style changed ({{length}} regions)',
-    trText('Style changed ({{length}} regions)')
+    trText("تم تغيير النمط ({{length}} من المناطق)")
   );
-  add('Font: {{bFont}} → {{aFont}}', trText('Font: {{bFont}} → {{aFont}}'));
+  add('Font: {{bFont}} → {{aFont}}', trText("الخط: {{bFont}} ← {{aFont}}"));
   add(
     'Font size: {{bSize}} → {{aSize}}',
-    trText('Font size: {{bSize}} → {{aSize}}')
+    trText("حجم الخط: {{bSize}} ← {{aSize}}")
   );
-  add('Moved "{{value}}"', trText('Moved "{{value}}"'));
+  add('Moved "{{value}}"', trText("تم نقل \"{{value}}\""));
   return strings;
 }
 
@@ -62,7 +62,7 @@ function getWorker(): Worker | null {
       worker?.terminate();
       worker = null;
       for (const [, p] of pending) {
-        p.reject(new Error(trText('Worker crashed')));
+        p.reject(new Error(trText("تعطل العامل")));
       }
       pending.clear();
     };
@@ -74,7 +74,7 @@ function getWorker(): Worker | null {
 
 function postToWorker(msg: Record<string, unknown>): Promise<unknown> {
   const w = getWorker();
-  if (!w) return Promise.reject(new Error(trText('No worker')));
+  if (!w) return Promise.reject(new Error(trText("لا يوجد عامل معالجة")));
   const id = ++messageId;
   return new Promise((resolve, reject) => {
     pending.set(id, { resolve, reject });

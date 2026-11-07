@@ -78,7 +78,7 @@ function applyCustomOrder() {
 
   const orderString = orderInput.value;
   if (!orderString) {
-    showAlert('Invalid Order', 'Please enter a page order.');
+    showAlert("ترتيب غير صالح", "يرجى إدخال ترتيب الصفحات.");
     return;
   }
 
@@ -88,15 +88,15 @@ function applyCustomOrder() {
   const currentGridCount = grid.children.length;
   const validNumbers = newOrder.every((n) => !isNaN(n) && n > 0); // Basic check, will validate against available thumbnails
   if (!validNumbers) {
-    showAlert('Invalid Page Numbers', `Please enter positive numbers.`);
+    showAlert("أرقام صفحات غير صالحة", "يرجى إدخال أرقام موجبة.");
     return;
   }
 
   if (newOrder.length !== currentGridCount) {
     showAlert(
-      'Incorrect Page Count',
+      "عدد الصفحات غير صحيح",
       trText(
-        'The number of pages specified ({{length}}) does not match the current number of pages in the document ({{currentGridCount}}). Please provide a complete ordering for all pages.',
+        "عدد الصفحات المحدد ({{length}}) لا يطابق العدد الحالي للصفحات في المستند ({{currentGridCount}}). يرجى تقديم ترتيب كامل لجميع الصفحات.",
         { length: newOrder.length, currentGridCount }
       )
     );
@@ -106,8 +106,8 @@ function applyCustomOrder() {
   const uniqueNumbers = new Set(newOrder);
   if (uniqueNumbers.size !== newOrder.length) {
     showAlert(
-      'Duplicate Page Numbers',
-      'Please ensure all page numbers in the order are unique.'
+      "أرقام صفحات مكررة",
+      "يرجى التأكد من أن جميع أرقام الصفحات في الترتيب فريدة."
     );
     return;
   }
@@ -138,8 +138,8 @@ function applyCustomOrder() {
     !allOriginalIndicesPresent
   ) {
     showAlert(
-      'Invalid Page Order',
-      'The specified page order is incomplete or contains invalid page numbers. Please ensure you provide a new position for every original page.'
+      "ترتيب صفحات غير صالح",
+      "ترتيب الصفحات المحدد ناقص أو يحتوي على أرقام صفحات غير صالحة. يرجى التأكد من تقديم موضع جديد لكل صفحة أصلية."
     );
     return;
   }
@@ -150,7 +150,7 @@ function applyCustomOrder() {
 
   initializeSortable(); // Re-initialize sortable on the new order
 
-  showAlert('Success', 'Pages have been reordered.', 'success');
+  showAlert("تم بنجاح", "تمت إعادة ترتيب الصفحات.", 'success');
 }
 
 function handleFileUpload(e: Event) {
@@ -163,7 +163,7 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -172,7 +172,7 @@ async function handleFile(file: File) {
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
 
     organizeState.pdfDoc = await loadPdfDocument(result.bytes);
     organizeState.pdfJsDoc = result.pdf;
@@ -185,7 +185,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   }
 }
 
@@ -207,7 +207,7 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{totalPages}} صفحة", {
     size: formatBytes(organizeState.file.size),
     totalPages: organizeState.totalPages,
   });
@@ -256,8 +256,8 @@ function attachEventListeners(element: HTMLElement) {
       initializeSortable();
     } else {
       showAlert(
-        'Cannot Delete',
-        'You cannot delete the last page of the document.'
+        "لا يمكن الحذف",
+        "لا يمكنك حذف آخر صفحة في المستند."
       );
     }
   });
@@ -310,13 +310,13 @@ async function renderThumbnails() {
     const duplicateBtn = document.createElement('button');
     duplicateBtn.className =
       'duplicate-btn bg-green-600 hover:bg-green-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    duplicateBtn.title = trText('Duplicate Page');
+    duplicateBtn.title = trText("تكرار الصفحة");
     duplicateBtn.innerHTML = '<i data-lucide="copy-plus" class="w-5 h-5"></i>';
 
     const deleteBtn = document.createElement('button');
     deleteBtn.className =
       'delete-btn bg-red-600 hover:bg-red-700 text-white rounded-full w-8 h-8 flex items-center justify-center';
-    deleteBtn.title = trText('Delete Page');
+    deleteBtn.title = trText("حذف الصفحة");
     deleteBtn.innerHTML = '<i data-lucide="x-circle" class="w-5 h-5"></i>';
 
     controlsDiv.append(duplicateBtn, deleteBtn);
@@ -354,7 +354,7 @@ function initializeSortable() {
 }
 
 async function saveChanges() {
-  showLoader('Building new PDF...');
+  showLoader("جارٍ إنشاء ملف PDF جديد...");
 
   try {
     const grid = document.getElementById('page-grid');
@@ -368,7 +368,7 @@ async function saveChanges() {
       .filter((index) => !isNaN(index) && index >= 0);
 
     if (finalIndices.length === 0) {
-      showAlert('Error', 'No valid pages to save.');
+      showAlert("خطأ", "لا توجد صفحات صالحة للحفظ.");
       return;
     }
 
@@ -386,13 +386,13 @@ async function saveChanges() {
     );
 
     hideLoader();
-    showAlert('Success', 'PDF organized successfully!', 'success', () =>
+    showAlert("تم بنجاح", "تم تنظيم PDF بنجاح!", 'success', () =>
       resetState()
     );
   } catch (error) {
     console.error('Error saving changes:', error);
     hideLoader();
-    showAlert('Error', 'Failed to save changes.');
+    showAlert("خطأ", "تعذر حفظ التغييرات.");
   }
 }
 

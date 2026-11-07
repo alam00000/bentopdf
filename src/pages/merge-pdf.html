@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
     <title>
-      Merge PDF Files Free Online - Combine Multiple PDFs | Pixel PDF
+      دمج ملفات PDF مجانًا عبر الإنترنت - ضم عدة ملفات PDF | Pixel PDF
     </title>
     <meta
       name="title"
-      content="Merge PDF Files Free Online - Combine Multiple PDFs | Pixel PDF"
+      content="دمج ملفات PDF مجانًا عبر الإنترنت - ضم عدة ملفات PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Combine multiple PDFs into one file. Preserves Bookmarks. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج عدة ملفات PDF في ملف واحد. يحافظ على الإشارات المرجعية. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -34,11 +34,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/merge-pdf" />
     <meta
       property="og:title"
-      content="Merge PDF Free - Combine Multiple PDF Files | Pixel PDF"
+      content="دمج PDF مجانًا - ضم عدة ملفات PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Free PDF merger. Combine multiple PDFs into one document. No signup, unlimited files, privacy-first."
+      content="أداة دمج PDF مجانية. ادمج عدة ملفات PDF في مستند واحد. بلا تسجيل، وملفات غير محدودة، والخصوصية أولًا."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/merge-pdf" />
-    <meta name="twitter:title" content="Merge PDF Free - Combine PDFs" />
+    <meta name="twitter:title" content="دمج PDF مجانًا - ضم ملفات PDF" />
     <meta
       name="twitter:description"
-      content="Free PDF merger. Combine multiple PDFs, no signup, privacy-first."
+      content="أداة دمج PDF مجانية. ادمج عدة ملفات PDF، بلا تسجيل، والخصوصية أولًا."
     />
     <meta
       name="twitter:image"
@@ -65,7 +65,7 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Merge PDF" />
+    <meta name="apple-mobile-web-app-title" content="دمج PDF" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -110,20 +110,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:mergePdf.name"
         >
-          Merge PDF
+          دمج PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:mergePdf.subtitle">
-          Combine whole files, or select specific pages to merge into a new
-          document.
+          دمج عدة ملفات PDF في ملف واحد. يحافظ على الإشارات المرجعية.
         </p>
 
         <!-- Drop Zone for Main PDF Upload -->
@@ -135,22 +134,22 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.pdfOrImages">
-              PDFs or Images
+              ملفات PDF أو صور
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
             id="file-input"
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-            multiple
+            multiple=""
             accept="application/pdf"
           />
         </div>
@@ -162,14 +161,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -181,40 +180,37 @@
               id="file-mode-btn"
               class="flex-1 btn bg-indigo-600 text-white font-semibold py-2 rounded-md"
             >
-              File Mode
+              وضع الملفات
             </button>
             <button
               id="page-mode-btn"
               class="flex-1 btn text-gray-300 font-semibold py-2 rounded-md"
             >
-              Page Mode
+              وضع الصفحات
             </button>
           </div>
 
           <div id="file-mode-panel">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
                 <li>
-                  Click and drag the
+                  انقر على الأيقونة
                   <i
                     data-lucide="grip-vertical"
                     class="inline-block w-3 h-3"
                   ></i>
-                  icon to change the order of the files.
+                  واسحبها لتغيير ترتيب الملفات.
                 </li>
                 <li>
-                  In the "Pages" box for each file, you can specify ranges
-                  (e.g., "1-3, 5") to merge only those pages.
+                  في مربع "الصفحات" لكل ملف، يمكنك تحديد نطاقات (مثل "1-3, 5")
+                  لدمج تلك الصفحات فقط.
                 </li>
-                <li>
-                  Leave the "Pages" box blank to include all pages from that
-                  file.
-                </li>
+                <li>اترك مربع "الصفحات" فارغًا لتضمين كل صفحات ذلك الملف.</li>
               </ul>
             </div>
             <ul id="file-list" class="space-y-2"></ul>
@@ -223,15 +219,15 @@
           <div id="page-mode-panel" class="hidden">
             <div class="p-3 bg-gray-900 rounded-lg border border-gray-700 mb-3">
               <p class="text-sm text-gray-300">
-                <strong class="text-white">How it works:</strong>
+                <strong class="text-white">كيف تعمل:</strong>
               </p>
               <ul
                 class="list-disc list-inside text-xs text-gray-400 mt-1 space-y-1"
               >
-                <li>All pages from your uploaded PDFs are shown below.</li>
+                <li>تُعرض كل صفحات ملفات PDF التي رفعتها أدناه.</li>
                 <li>
-                  Simply drag and drop the individual page thumbnails to create
-                  the exact order you want for your new file.
+                  ما عليك سوى سحب وإفلات الصور المصغّرة للصفحات الفردية لإنشاء
+                  الترتيب الذي تريده تمامًا لملفك الجديد.
                 </li>
               </ul>
             </div>
@@ -253,17 +249,15 @@
               <span
                 class="font-medium"
                 data-i18n="tools:mergePdf.retainPageLabels"
+                >الاحتفاظ بتسميات الصفحات الأصلية لكل ملف</span
               >
-                Keep original page labels from each file
-              </span>
               <span
                 class="block text-xs text-gray-400 mt-0.5"
                 data-i18n="tools:mergePdf.retainPageLabelsHint"
+                >غير مفعّل (افتراضي): يستخدم ملف PDF المدمج ترقيمًا طبيعيًا من 1
+                إلى N. مفعّل: يتم الاحتفاظ بتسميات الصفحات الأصلية لكل ملف (قد
+                ينتج عن ذلك تسميات مكررة).</span
               >
-                Off (default): the merged PDF uses natural page numbering 1 to
-                N. On: each file's original page labels are preserved (may
-                produce duplicate labels).
-              </span>
             </span>
           </label>
 
@@ -278,13 +272,12 @@
             <span
               class="font-medium"
               data-i18n="tools:mergePdf.removeDuplicateFonts"
+              >إزالة الخطوط المكررة</span
             >
-              Remove duplicate fonts
-            </span>
           </label>
 
           <button id="process-btn" class="btn-gradient w-full mt-6">
-            Merge PDFs
+            دمج ملفات PDF
           </button>
         </div>
       </div>
@@ -300,7 +293,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -317,16 +310,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -337,7 +329,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -347,9 +339,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload PDFs</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملفات PDF</h3>
             <p class="text-gray-400">
-              Select or drag and drop multiple PDF files you want to merge
+              اختر ملفات PDF المتعددة التي تريد دمجها أو اسحبها وأفلتها
             </p>
           </div>
         </div>
@@ -360,9 +352,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Arrange Order</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">ترتيب الملفات</h3>
             <p class="text-gray-400">
-              Drag files up or down to reorder them in your preferred sequence
+              اسحب الملفات لأعلى أو لأسفل لإعادة ترتيبها بالتسلسل الذي تفضّله
             </p>
           </div>
         </div>
@@ -373,9 +365,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Merge Files</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">دمج الملفات</h3>
             <p class="text-gray-400">
-              Click the merge button to combine all PDFs into a single document
+              انقر على زر الدمج لضم كل ملفات PDF في مستند واحد
             </p>
           </div>
         </div>
@@ -386,9 +378,9 @@
             4
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400">
-              Save your merged PDF - all pages combined in the order you chose
+              احفظ ملف PDF المدموج - كل الصفحات مجمّعة بالترتيب الذي اخترته
             </p>
           </div>
         </div>
@@ -401,43 +393,51 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="organize-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Organize PDF</h3>
-          <p class="text-gray-400 text-sm">Free online organize PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تنظيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتنظيم PDF
+          </p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="delete-pages.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Delete Pages</h3>
-          <p class="text-gray-400 text-sm">Free online delete pages tool</p>
+          <h3 class="text-white font-semibold mb-1">حذف الصفحات</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لحذف الصفحات
+          </p>
         </a>
       </div>
     </section>
@@ -448,121 +448,118 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does merging keep bookmarks?
+            هل يحافظ الدمج على الإشارات المرجعية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. The merge is done with the CoherentPDF engine, which carries
-            each file's bookmarks into the combined document so the outline
-            stays navigable. Page content and annotations are copied as they
-            are.
+            نعم. يتم الدمج بمحرك CoherentPDF الذي ينقل الإشارات المرجعية لكل ملف
+            إلى المستند المجمّع فيبقى المخطط التفصيلي قابلًا للتنقل. ويُنسخ
+            محتوى الصفحات والتعليقات التوضيحية كما هي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I merge only some pages from each file?
+            هل يمكنني دمج بعض الصفحات فقط من كل ملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. In File Mode, type a range such as 1-3, 5 in the Pages box next
-            to a file to include just those pages, or leave it blank for the
-            whole file. In Page Mode every page from every file appears as a
-            thumbnail you can drag into any sequence, including interleaving
-            pages from different documents.
+            نعم. في وضع الملفات، اكتب نطاقًا مثل 1-3, 5 في مربع الصفحات بجانب
+            الملف لتضمين تلك الصفحات فقط، أو اتركه فارغًا للملف كاملًا. وفي وضع
+            الصفحات تظهر كل صفحة من كل ملف كصورة مصغّرة يمكنك سحبها إلى أي
+            تسلسل، بما في ذلك تداخل صفحات من مستندات مختلفة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What order will the files be in?
+            بأي ترتيب ستكون الملفات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The order shown in the list, top to bottom. Drag entries to
-            rearrange them before merging, and use Add More Files to append
-            documents without losing the arrangement you already have.
+            الترتيب الظاهر في القائمة من الأعلى إلى الأسفل. اسحب العناصر لإعادة
+            ترتيبها قبل الدمج، واستخدم إضافة المزيد من الملفات لإلحاق مستندات
+            دون فقدان الترتيب الذي ضبطته.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why do page numbers look wrong in the merged PDF?
+            لماذا تبدو أرقام الصفحات خاطئة في ملف PDF المدموج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            By default the merged file uses plain numbering from 1 to N. If the
-            originals used page labels such as i, ii, iii or A-1, turn on Keep
-            original page labels to preserve them, keeping in mind that two
-            files with the same labels will produce duplicates. To print visible
-            numbers on the pages themselves, use
+            افتراضيًا يستخدم الملف المدموج ترقيمًا عاديًا من 1 إلى N. وإذا كانت
+            الأصول تستخدم تسميات صفحات مثل i وii وiii أو A-1، فعّل الاحتفاظ
+            بتسميات الصفحات الأصلية للحفاظ عليها، مع مراعاة أن ملفين بالتسميات
+            نفسها سينتجان تسميات مكررة. ولطباعة أرقام مرئية على الصفحات نفسها،
+            استخدم
             <a
               href="/page-numbers"
               class="text-indigo-300 hover:text-indigo-400"
-              >Page Numbers</a
+              >أرقام الصفحات</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the merged file so large?
+            لماذا الملف المدموج كبير جدًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each file's fonts and images are copied as they are, so the result
-            is roughly the combined size of the inputs, and when several files
-            embed the same font each copy is kept. Check Remove duplicate fonts
-            to fold identical fonts into one; for more savings, run the result
-            through
+            تُنسخ خطوط كل ملف وصوره كما هي، لذا يقارب الناتج مجموع أحجام
+            المدخلات، وعندما تضمّن عدة ملفات الخط نفسه يُحتفظ بكل نسخة. فعّل
+            إزالة الخطوط المكررة لدمج الخطوط المتطابقة في خط واحد؛ ولمزيد من
+            التوفير، مرّر الناتج على
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I merge PDFs that have different page sizes or orientations?
+            هل يمكنني دمج ملفات PDF بأحجام أو اتجاهات صفحات مختلفة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Pages keep their own size and rotation, so a landscape A3
-            drawing can follow a portrait Letter page without being scaled. For
-            a uniform size afterward, run the merged file through
+            نعم. تحتفظ الصفحات بحجمها وتدويرها، فيمكن لرسم A3 أفقي أن يلي صفحة
+            Letter رأسية دون تحجيم. وللحصول على حجم موحّد بعد ذلك، مرّر الملف
+            المدموج على
             <a
               href="/fix-page-size"
               class="text-indigo-300 hover:text-indigo-400"
-              >Fix Page Size</a
+              >إصلاح حجم الصفحة</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the PDFs uploaded to a server to be merged?
+            هل تُرفع ملفات PDF إلى خادم لدمجها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The files are combined inside your browser by the CoherentPDF
-            WebAssembly module and the merged PDF is written to your downloads
-            folder, so contracts and statements never leave your machine.
+            لا. تُدمج الملفات داخل متصفحك بواسطة وحدة CoherentPDF WebAssembly
+            ويُكتب ملف PDF المدموج في مجلد التنزيلات لديك، لذا لا تغادر العقود
+            وكشوف الحساب جهازك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I merge password-protected PDFs?
+            هل يمكنني دمج ملفات PDF محمية بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            If a file needs a password to open, the tool asks for it when you
-            add the file and then merges the decrypted pages. The merged output
-            has no password; add one afterward with
+            إذا كان ملف يحتاج إلى كلمة مرور لفتحه، تطلبها الأداة عند إضافة الملف
+            ثم تدمج الصفحات بعد فك تشفيرها. ولا يحمل الناتج المدموج كلمة مرور؛
+            أضف واحدة بعد ذلك باستخدام
             <a href="/protect-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Protect PDF</a
+              >حماية PDF</a
             >
-            if needed.
+            إذا لزم.
           </p>
         </details>
       </div>
@@ -589,12 +586,12 @@
           "priceCurrency": "USD"
         },
         "featureList": [
-          "Merge multiple PDFs into one",
-          "Drag and drop to reorder files",
-          "Select specific pages to merge",
-          "Page-level merging",
-          "Batch PDF combining",
-          "No file limits"
+          "ادمج عدة ملفات PDF في ملف واحد",
+          "اسحب وأفلت لإعادة ترتيب الملفات",
+          "حدّد صفحات معينة لدمجها",
+          "دمج على مستوى الصفحات",
+          "دمج دفعي لملفات PDF",
+          "بلا حدود للملفات"
         ]
       }
     </script>
@@ -603,32 +600,32 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to Merge PDF Files Online",
-        "description": "Learn how to combine multiple PDF files into a single document",
+        "name": "كيفية دمج ملفات PDF عبر الإنترنت",
+        "description": "تعرّف على كيفية دمج عدة ملفات PDF في مستند واحد",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload PDF Files",
-            "text": "Click or drag and drop multiple PDF files"
+            "name": "رفع ملفات PDF",
+            "text": "انقر أو اسحب وأفلت عدة ملفات PDF"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Arrange Files",
-            "text": "Drag files to reorder them or select specific pages to include"
+            "name": "ترتيب الملفات",
+            "text": "اسحب الملفات لإعادة ترتيبها أو حدّد صفحات معينة لتضمينها"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Merge PDFs",
-            "text": "Click 'Merge PDFs' to combine all files into one document"
+            "name": "دمج ملفات PDF",
+            "text": "انقر على \"دمج ملفات PDF\" لضم كل الملفات في مستند واحد"
           },
           {
             "@type": "HowToStep",
             "position": 4,
-            "name": "Download",
-            "text": "Download your merged PDF file"
+            "name": "تنزيل",
+            "text": "نزّل ملف PDF المدموج"
           }
         ]
       }

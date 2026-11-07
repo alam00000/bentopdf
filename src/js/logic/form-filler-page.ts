@@ -83,7 +83,7 @@ function updateFileDisplay() {
   removeBtn.id = 'remove-file';
   removeBtn.className =
     'text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2';
-  removeBtn.title = trText('Remove file');
+  removeBtn.title = trText("إزالة الملف");
 
   const removeIcon = document.createElement('i');
   removeIcon.setAttribute('data-lucide', 'trash-2');
@@ -130,7 +130,7 @@ function resetState() {
 // File handling
 async function handleFileUpload(file: File) {
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Error', 'Please upload a valid PDF file.');
+    showAlert("خطأ", "يرجى رفع ملف PDF صالح.");
     return;
   }
 
@@ -143,7 +143,7 @@ async function handleFileUpload(file: File) {
     await setupFormViewer();
   } catch (error) {
     console.error(error);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
     hideLoader();
   }
 }
@@ -173,7 +173,7 @@ async function adjustViewerHeight(file: File) {
 async function setupFormViewer() {
   if (!currentFile) return;
 
-  showLoader('Loading PDF form...');
+  showLoader("جارٍ تحميل نموذج PDF...");
   const pdfViewerContainer = document.getElementById('pdf-viewer-container');
 
   if (!pdfViewerContainer) {
@@ -217,7 +217,7 @@ async function setupFormViewer() {
     if (formFillerOptions) formFillerOptions.classList.remove('hidden');
   } catch (e) {
     console.error('Critical error setting up form filler:', e);
-    showAlert('Error', 'Failed to load PDF form viewer.');
+    showAlert("خطأ", "تعذر تحميل عارض نماذج PDF.");
     hideLoader();
   }
 }
@@ -225,8 +225,8 @@ async function setupFormViewer() {
 async function processAndDownloadForm() {
   if (!viewerIframe || !viewerReady) {
     showAlert(
-      'Viewer not ready',
-      'Please wait for the form to finish loading.'
+      "العارض غير جاهز",
+      "يرجى الانتظار حتى ينتهي تحميل النموذج."
     );
     return;
   }
@@ -236,8 +236,8 @@ async function processAndDownloadForm() {
     if (!viewerWindow) {
       console.error('Cannot access iframe window');
       showAlert(
-        'Download',
-        'Please use the Download button in the PDF viewer toolbar above.'
+        "تنزيل",
+        "يرجى استخدام زر التنزيل في شريط أدوات عارض PDF أعلاه."
       );
       return;
     }
@@ -246,8 +246,8 @@ async function processAndDownloadForm() {
     if (!viewerDoc) {
       console.error('Cannot access iframe document');
       showAlert(
-        'Download',
-        'Please use the Download button in the PDF viewer toolbar above.'
+        "تنزيل",
+        "يرجى استخدام زر التنزيل في شريط أدوات عارض PDF أعلاه."
       );
       return;
     }
@@ -269,16 +269,16 @@ async function processAndDownloadForm() {
         secondaryDownload.click();
       } else {
         showAlert(
-          'Download',
-          'Please use the Download button in the PDF viewer toolbar above.'
+          "تنزيل",
+          "يرجى استخدام زر التنزيل في شريط أدوات عارض PDF أعلاه."
         );
       }
     }
   } catch (e) {
     console.error('Failed to trigger download:', e);
     showAlert(
-      'Download',
-      'Cannot access viewer controls. Please use the Download button in the PDF viewer toolbar above.'
+      "تنزيل",
+      "لا يمكن الوصول إلى عناصر التحكم في العارض. يرجى استخدام زر التنزيل في شريط أدوات عارض PDF أعلاه."
     );
   }
 }

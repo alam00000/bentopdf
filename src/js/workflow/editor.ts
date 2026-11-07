@@ -37,14 +37,14 @@ const categoryColors: Record<string, string> = {
 
 function getStatusInfo(status: string, connected: boolean) {
   if (status === 'running')
-    return { color: '#eab308', label: trText('Running...'), animate: true };
+    return { color: '#eab308', label: trText("قيد التشغيل..."), animate: true };
   if (status === 'completed')
-    return { color: '#22c55e', label: trText('Complete'), animate: false };
+    return { color: '#22c55e', label: trText("اكتمل"), animate: false };
   if (status === 'error')
-    return { color: '#ef4444', label: trText('Failed'), animate: false };
+    return { color: '#ef4444', label: trText("فشل"), animate: false };
   return {
     color: connected ? '#22c55e' : '#6b7280',
-    label: connected ? trText('Connected') : trText('Not connected'),
+    label: connected ? trText("متصل") : trText("غير متصل"),
     animate: false,
   };
 }
@@ -134,7 +134,7 @@ class WorkflowNodeElement extends LitElement {
             <span
               data-wf="label"
               style="font-size: 10px; color: #6b7280; font-weight: 500; flex: 1;"
-              >${trText('Not connected')}</span
+              >${trText("غير متصل")}</span
             >
             <span
               data-wf-delete="${node.id}"

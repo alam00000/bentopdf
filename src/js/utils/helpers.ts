@@ -170,7 +170,7 @@ let qpdfInstance: QpdfInstanceExtended | null = null;
 export async function initializeQpdf(): Promise<QpdfInstanceExtended> {
   if (qpdfInstance) return qpdfInstance;
 
-  showLoader('Initializing PDF engine...');
+  showLoader("جارٍ تهيئة محرك PDF...");
   try {
     qpdfInstance = (await createModule({
       locateFile: () => import.meta.env.BASE_URL + 'qpdf.wasm',
@@ -178,8 +178,8 @@ export async function initializeQpdf(): Promise<QpdfInstanceExtended> {
   } catch (error) {
     console.error('Failed to initialize qpdf-wasm:', error);
     showAlert(
-      'Initialization Error',
-      'Could not load the PDF engine. Please refresh the page and try again.'
+      "خطأ في التهيئة",
+      "تعذر تحميل محرك PDF. يرجى تحديث الصفحة والمحاولة مرة أخرى."
     );
     throw error;
   } finally {

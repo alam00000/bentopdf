@@ -112,8 +112,8 @@ function isPdf(file: File): boolean {
 async function processOverlay() {
   if (!pageState.baseFile || !pageState.overlayFile) {
     showAlert(
-      'Missing Files',
-      'Please upload both a base PDF and an overlay/underlay PDF.'
+      "ملفات مفقودة",
+      "يرجى رفع ملف PDF أساسي وملف PDF للطبقة العلوية/السفلية."
     );
     return;
   }
@@ -121,7 +121,7 @@ async function processOverlay() {
   const loaderModal = document.getElementById('loader-modal');
   const loaderText = document.getElementById('loader-text');
   if (loaderModal) loaderModal.classList.remove('hidden');
-  if (loaderText) loaderText.textContent = trText('Initializing PDF engine...');
+  if (loaderText) loaderText.textContent = trText("جارٍ تهيئة محرك PDF...");
 
   const inputPath = '/input_base.pdf';
   const overlayPath = '/input_overlay.pdf';
@@ -131,7 +131,7 @@ async function processOverlay() {
   try {
     qpdf = await initializeQpdf();
 
-    if (loaderText) loaderText.textContent = trText('Reading files...');
+    if (loaderText) loaderText.textContent = trText("جارٍ قراءة الملفات...");
 
     const baseBuffer = await readFileAsArrayBuffer(pageState.baseFile);
     const overlayBuffer = await readFileAsArrayBuffer(pageState.overlayFile);
@@ -157,7 +157,7 @@ async function processOverlay() {
     const shouldRepeat = repeatCheckbox?.checked;
 
     if (loaderText)
-      loaderText.textContent = trText('Applying {{replace}}...', {
+      loaderText.textContent = trText("جارٍ تطبيق {{replace}}...", {
         replace: mode.replace('--', ''),
       });
 
@@ -177,7 +177,7 @@ async function processOverlay() {
 
     const outputFile = qpdf.FS.readFile(outputPath, { encoding: 'binary' });
     if (!outputFile || outputFile.length === 0) {
-      throw new Error(trText('Processing produced an empty file.'));
+      throw new Error(trText("أنتجت المعالجة ملفًا فارغًا."));
     }
 
     const modeLabel = mode.replace('--', '');
@@ -187,8 +187,8 @@ async function processOverlay() {
     );
 
     showAlert(
-      'Success',
-      trText('PDF {{modeLabel}} applied successfully.', { modeLabel }),
+      "تم بنجاح",
+      trText("تم تطبيق {{modeLabel}} على PDF بنجاح.", { modeLabel }),
       'success',
       () => {
         resetState();
@@ -197,9 +197,9 @@ async function processOverlay() {
   } catch (error: unknown) {
     console.error('Overlay/underlay error:', error);
     showAlert(
-      'Processing Failed',
-      trText('An error occurred: {{error}}.', {
-        error: error instanceof Error ? error.message : trText('Unknown error'),
+      "فشلت المعالجة",
+      trText("حدث خطأ: {{error}}.", {
+        error: error instanceof Error ? error.message : trText("خطأ غير معروف"),
       })
     );
   } finally {

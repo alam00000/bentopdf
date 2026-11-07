@@ -6,23 +6,25 @@
           <img
             id="footer-logo"
             src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/pixelpdf-icon.png{{/if}}"
-            alt="{{#if brandName}}{{brandName}}{{else}}Pixel PDF{{/if}} Logo"
+            alt="{{#if brandName}}{{brandName}}{{else}}بيكسل  PDF{{/if}} - الشعار"
             class="h-8 w-8 mr-2"
           />
           <span id="footer-brand" class="px-brand text-lg"
-            >{{#if brandName}}{{brandName}}{{else}}Pixel<span class="px-brand-accent">PDF</span>{{/if}}</span
+            >{{#if brandName}}{{brandName}}{{else}}بيكسل <span
+              class="px-brand-accent"
+              >PDF</span
+            >{{/if}}</span
           >
         </div>
         <p id="footer-copyright" class="text-gray-400 text-sm">
-          {{#if footerText}}{{footerText}}{{else}}&copy; 2026 Pixel PDF. All
-          rights reserved.{{/if}}
+          {{#if footerText}}{{footerText}}{{else}}© 2026 Pixel PDF. جميع الحقوق
+          محفوظة.{{/if}}
         </p>
         <p class="text-gray-500 text-xs mt-2">
-          <span data-i18n="footer.version">Version</span>
+          <span data-i18n="footer.version">الإصدار</span>
           <span id="app-version">{{appVersion}}</span>
         </p>
       </div>
-      <div id="simple-mode-lang-switcher" class="flex-shrink-0"></div>
     </div>
   </div>
 </footer>

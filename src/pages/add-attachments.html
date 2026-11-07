@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Add Attachments Online Free - Add Attachments Tool | Pixel PDF"
+      content="إضافة مرفقات إلى PDF مجانًا عبر الإنترنت - أداة إضافة المرفقات | Pixel PDF"
     />
     <meta
       name="description"
-      content="Embed one or more files into your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضمّن ملفًا واحدًا أو أكثر في PDF. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="add attachments, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Add Attachments Online Free - Add Attachments Tool | Pixel PDF"
+      content="إضافة مرفقات إلى PDF مجانًا عبر الإنترنت - أداة إضافة المرفقات | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Embed one or more files into your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضمّن ملفًا واحدًا أو أكثر في PDF. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/add-attachments"
     />
-    <meta name="twitter:title" content="Add Attachments Free" />
+    <meta name="twitter:title" content="إضافة مرفقات مجانًا" />
     <meta
       name="twitter:description"
-      content="Embed one or more files into your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضمّن ملفًا واحدًا أو أكثر في PDF. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Add Attachments" />
+    <meta name="apple-mobile-web-app-title" content="إضافة مرفقات" />
 
-    <title>Add Attachments to PDF - Pixel PDF</title>
+    <title>إضافة مرفقات إلى PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,19 +112,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:addAttachments.name"
         >
-          Add Attachments
+          إضافة مرفقات
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:addAttachments.subtitle">
-          Embed one or more files into your PDF.
+          تضمين ملف واحد أو أكثر في PDF الخاص بك.
         </p>
 
         <!-- PDF Upload -->
@@ -136,12 +136,12 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -157,7 +157,7 @@
         <!-- Attachment Options (hidden until PDF loaded) -->
         <div id="tool-options" class="hidden mt-6">
           <h2 class="text-lg font-semibold text-white mb-3">
-            Select Files to Attach
+            اختر الملفات المراد إرفاقها
           </h2>
 
           <div
@@ -166,14 +166,14 @@
           >
             <div class="flex flex-col items-center justify-center">
               <i data-lucide="paperclip" class="w-8 h-8 mb-2 text-gray-400"></i>
-              <p class="text-sm text-gray-400">Click or drop files to attach</p>
-              <p class="text-xs text-gray-500">Any file type</p>
+              <p class="text-sm text-gray-400">انقر أو أفلت الملفات لإرفاقها</p>
+              <p class="text-xs text-gray-500">أي نوع من الملفات</p>
             </div>
             <input
               id="attachment-files-input"
               type="file"
               class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
-              multiple
+              multiple=""
             />
           </div>
 
@@ -182,38 +182,37 @@
           <!-- Attachment Level Options (hidden until attachments added) -->
           <div id="attachment-level-options" class="hidden mt-4">
             <h3 class="text-md font-medium text-white mb-2">
-              Attachment Level
+              على مستوى المرفق
             </h3>
             <div class="flex gap-4 mb-3">
-              <label class="flex items-center gap-2 text-gray-300">
-                <input
+              <label class="flex items-center gap-2 text-gray-300"
+                ><input
                   type="radio"
                   name="attachment-level"
                   value="document"
-                  checked
+                  checked=""
                   class="accent-indigo-500"
                 />
-                <span>Document Level</span>
-              </label>
-              <label class="flex items-center gap-2 text-gray-300">
-                <input
+                <span>على مستوى المستند</span></label
+              >
+              <label class="flex items-center gap-2 text-gray-300"
+                ><input
                   type="radio"
                   name="attachment-level"
                   value="page"
                   class="accent-indigo-500"
                 />
-                <span>Page Level</span>
-              </label>
+                <span>مستوى الصفحة</span></label
+              >
             </div>
 
             <div id="page-range-wrapper" class="hidden mb-4">
               <label
                 for="attachment-page-range"
                 class="text-sm text-gray-400 block mb-1"
+                >نطاق الصفحات (مثلاً، 1,3,5-7) - الإجمالي:
+                <span id="attachment-total-pages">0</span> صفحة</label
               >
-                Page Range (e.g., 1,3,5-7) - Total:
-                <span id="attachment-total-pages">0</span> pages
-              </label>
               <input
                 type="text"
                 id="attachment-page-range"
@@ -224,7 +223,7 @@
           </div>
 
           <button id="process-btn" class="hidden btn-gradient w-full mt-4">
-            Add Attachments
+            إضافة مرفقات
           </button>
         </div>
       </div>
@@ -243,9 +242,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -262,16 +260,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -282,7 +279,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -292,9 +289,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -305,9 +302,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -318,9 +315,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -333,43 +330,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -380,119 +383,110 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What kinds of files can I embed in a PDF?
+            ما أنواع الملفات التي يمكنني تضمينها في PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Any file type: spreadsheets, images, ZIP archives, CAD drawings,
-            even executables. The tool doesn't inspect or convert the file; it
-            stores the bytes inside the PDF under the original file name, and
-            you can embed several files in one pass.
+            أي نوع من الملفات: جداول بيانات، صور، أرشيفات ZIP، رسومات CAD، وحتى
+            الملفات التنفيذية. لا تفحص الأداة الملف ولا تحوّله؛ بل تخزّن بياناته
+            داخل PDF تحت اسمه الأصلي، ويمكنك تضمين عدة ملفات في خطوة واحدة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What's the difference between document-level and page-level
-            attachments?
+            ما الفرق بين المرفقات على مستوى المستند والمرفقات على مستوى الصفحة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Document-level attachments belong to the PDF as a whole and appear
-            in the reader's attachments panel. Page-level attachments are tied
-            to the pages you list in the page range field (for example 1,3,5-7),
-            and the same file is attached to every page in that range. Document
-            level is the safer choice, since some viewers never show page-level
-            attachments.
+            تنتمي المرفقات على مستوى المستند إلى ملف PDF ككل وتظهر في لوحة
+            المرفقات في برنامج القراءة. أما المرفقات على مستوى الصفحة فترتبط
+            بالصفحات التي تحددها في حقل نطاق الصفحات (مثل 1,3,5-7)، ويُرفق الملف
+            نفسه بكل صفحة في هذا النطاق. مستوى المستند هو الخيار الأكثر أمانًا،
+            لأن بعض برامج العرض لا تُظهر مرفقات مستوى الصفحة أبدًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Where do the attached files show up when someone opens the PDF?
+            أين تظهر الملفات المرفقة عندما يفتح شخص ما ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            In readers that have an attachments panel, such as Adobe Acrobat
-            Reader or Firefox's built-in viewer, they're listed by file name and
-            can be opened or saved from there. Viewers without that panel won't
-            show them at all, although the files are still inside the PDF.
+            في برامج القراءة التي تحتوي على لوحة مرفقات، مثل Adobe Acrobat
+            Reader أو عارض Firefox المدمج، تظهر المرفقات بأسماء ملفاتها ويمكن
+            فتحها أو حفظها من هناك. أما البرامج التي لا تحتوي على هذه اللوحة فلن
+            تعرضها إطلاقًا، رغم أن الملفات لا تزال داخل PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does embedding files make the PDF bigger?
+            هل يؤدي تضمين الملفات إلى زيادة حجم PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, by roughly the size of each attachment, since the file's bytes
-            are stored inside the PDF. A 40 MB spreadsheet attached to a 1 MB
-            report yields a PDF of about 41 MB, so keep attachment size in mind
-            before emailing the result.
+            نعم، بما يقارب حجم كل مرفق، لأن بايتات الملف تُخزَّن داخل PDF. جدول
+            بيانات بحجم 40 MB مرفق بتقرير حجمه 1 MB ينتج ملف PDF بحجم نحو 41 MB،
+            لذا ضع حجم المرفقات في اعتبارك قبل إرسال الناتج بالبريد الإلكتروني.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the file I attach uploaded anywhere when I embed it?
+            هل يُرفع الملف الذي أرفقه إلى أي مكان عند تضمينه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDF and the attachments are read and combined in your
-            browser by the CoherentPDF WebAssembly module, and the result is
-            downloaded straight from the page. Nothing is sent to a server.
+            لا. تُقرأ ملفات PDF والمرفقات وتُدمج في متصفحك بواسطة وحدة
+            WebAssembly الخاصة بـ CoherentPDF، ويُنزَّل الناتج مباشرة من الصفحة.
+            لا يُرسل أي شيء إلى خادم.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool say an advanced processing module is required?
+            لماذا تذكر الأداة أن وحدة معالجة متقدمة مطلوبة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Embedding uses the CoherentPDF (cpdf) module, which loads on demand
-            from a CDN the first time you use it rather than shipping with the
-            main site. If you self-host Pixel PDF or work in an air-gapped setup,
-            you can point the tool at your own copy of the module on the
+            يستخدم التضمين وحدة CoherentPDF التي تُحمّل عند الطلب من شبكة توصيل المحتوى في أول استخدام، بدلًا من تضمينها في الموقع. عند استضافة بيكسل PDF ذاتيًا أو العمل في بيئة معزولة، يمكنك توجيه الأداة إلى نسختك من الوحدة في
             <a
               href="/wasm-settings"
               class="text-indigo-300 hover:text-indigo-400"
-              >Advanced Features settings</a
+              >إعدادات الميزات المتقدمة</a
             >
-            page.
+            .
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I remove an attachment later?
+            هل يمكنني إزالة مرفق لاحقًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes.
+            نعم. تعرض
             <a
               href="/edit-attachments"
               class="text-indigo-300 hover:text-indigo-400"
-              >Edit Attachments</a
+              >تعديل المرفقات</a
             >
-            lists every embedded file and lets you remove individual ones or all
-            of them, and Extract Attachments saves them back out as separate
-            downloads.
+            كل ملف مضمَّن وتتيح لك إزالة ملفات فردية أو جميعها، بينما تحفظها
+            أداة استخراج المرفقات مجددًا كتنزيلات منفصلة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will attaching files break a digital signature on the PDF?
+            هل يؤدي إرفاق الملفات إلى إبطال التوقيع الرقمي في ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Adding attachments rewrites the file, which invalidates any
-            existing digital signature. Attach the files first, then sign the
-            finished PDF with
+            نعم. إضافة المرفقات تعيد كتابة الملف، مما يُبطل أي توقيع رقمي موجود.
+            أرفق الملفات أولًا، ثم وقّع ملف PDF النهائي باستخدام
             <a
               href="/digital-sign-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Digital Sign PDF</a
+              >توقيع رقمي لـ PDF</a
             >.
           </p>
         </details>
@@ -527,26 +521,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to add attachments online",
+        "name": "كيفية إضافة المرفقات عبر الإنترنت",
         "description": "Learn how to add attachments using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

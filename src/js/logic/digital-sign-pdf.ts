@@ -21,17 +21,17 @@ export function parsePfxFile(
   const keyBagArray = keyBags[forge.pki.oids.pkcs8ShroudedKeyBag];
 
   if (!certBagArray || certBagArray.length === 0) {
-    throw new Error(trText('No certificate found in PFX file'));
+    throw new Error(trText("لم يتم العثور على شهادة في ملف PFX"));
   }
 
   if (!keyBagArray || keyBagArray.length === 0) {
-    throw new Error(trText('No private key found in PFX file'));
+    throw new Error(trText("لم يتم العثور على مفتاح خاص في ملف PFX"));
   }
 
   const certificate = certBagArray[0].cert;
 
   if (!certificate) {
-    throw new Error(trText('Failed to extract certificate from PFX file'));
+    throw new Error(trText("تعذر استخراج الشهادة من ملف PFX"));
   }
 
   return { p12Buffer: pfxBytes, password, certificate };
@@ -48,14 +48,14 @@ export function parsePemFiles(
   if (keyPem.includes('ENCRYPTED')) {
     if (!keyPassword) {
       const error = new Error(
-        trText('Password required for encrypted private key')
+        trText("كلمة المرور مطلوبة للمفتاح الخاص المشفّر")
       );
       error.name = 'PasswordError';
       throw error;
     }
     privateKey = forge.pki.decryptRsaPrivateKey(keyPem, keyPassword);
     if (!privateKey) {
-      const error = new Error(trText('Failed to decrypt private key'));
+      const error = new Error(trText("تعذر فك تشفير المفتاح الخاص"));
       error.name = 'PasswordError';
       throw error;
     }
@@ -91,11 +91,11 @@ export function parseCombinedPem(
   );
 
   if (!certMatch) {
-    throw new Error(trText('No certificate found in PEM file'));
+    throw new Error(trText("لم يتم العثور على شهادة في ملف PEM"));
   }
 
   if (!keyMatch) {
-    throw new Error(trText('No private key found in PEM file'));
+    throw new Error(trText("لم يتم العثور على مفتاح خاص في ملف PEM"));
   }
 
   return parsePemFiles(certMatch[0], keyMatch[0], password);
@@ -387,7 +387,7 @@ export async function timestampPdf(
   if (!isValidTsaRequestUrl(tsaUrl)) {
     throw new Error(
       trText(
-        'Invalid TSA URL. The timestamp authority must be a valid http:// or https:// URL.'
+        "رابط TSA غير صالح. يجب أن تكون سلطة الختم الزمني رابطًا صالحًا يبدأ بـ http:// أو https://."
       )
     );
   }
@@ -446,8 +446,8 @@ export function getCertificateInfo(certificate: forge.pki.Certificate): {
   const issuerCN = certificate.issuer.getField('CN');
 
   return {
-    subject: (subjectCN?.value as string) ?? trText('Unknown'),
-    issuer: (issuerCN?.value as string) ?? trText('Unknown'),
+    subject: (subjectCN?.value as string) ?? trText("غير معروف"),
+    issuer: (issuerCN?.value as string) ?? trText("غير معروف"),
     validFrom: certificate.validity.notBefore,
     validTo: certificate.validity.notAfter,
     serialNumber: certificate.serialNumber,

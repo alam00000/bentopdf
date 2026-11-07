@@ -1,19 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>
-      Validate PDF Signature Online Free - Verify Digital Signatures | Pixel PDF
+      التحقق من توقيع PDF عبر الإنترنت مجانًا - التحقق من التوقيعات الرقمية | Pixel PDF
     </title>
     <meta
       name="title"
-      content="Validate PDF Signature Online Free - Verify Digital Signatures | Pixel PDF"
+      content="التحقق من توقيع PDF عبر الإنترنت مجانًا - التحقق من التوقيعات الرقمية | Pixel PDF"
     />
     <meta
       name="description"
-      content="Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity.. Free. Runs entirely in your browser."
+      content="تحقق من التوقيعات الرقمية في ملفات PDF. افحص صلاحية الشهادة واعرض تفاصيل الموقّع وتأكد من سلامة المستند. مجاني. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="keywords"
@@ -37,11 +37,11 @@
     />
     <meta
       property="og:title"
-      content="Validate PDF Signature Online Free - Verify Digital Signatures | Pixel PDF"
+      content="التحقق من توقيع PDF عبر الإنترنت مجانًا - التحقق من التوقيعات الرقمية | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity.. Free. Runs entirely in your browser."
+      content="تحقق من التوقيعات الرقمية في ملفات PDF. افحص صلاحية الشهادة واعرض تفاصيل الموقّع وتأكد من سلامة المستند. مجاني. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -56,10 +56,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/validate-signature-pdf"
     />
-    <meta name="twitter:title" content="Validate PDF Signature Free" />
+    <meta name="twitter:title" content="التحقق من توقيع PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Verify digital signatures in your PDF files. Check certificate validity, view signer details, and confirm document integrity.. Free. Runs entirely in your browser."
+      content="تحقق من التوقيعات الرقمية في ملفات PDF. افحص صلاحية الشهادة واعرض تفاصيل الموقّع وتأكد من سلامة المستند. مجاني. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -69,7 +69,7 @@
 
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Validate Signature" />
+    <meta name="apple-mobile-web-app-title" content="التحقق من التوقيع" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,24 +112,24 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:validateSignaturePdf.name"
         >
-          Validate PDF Signature
+          التحقق من توقيع PDF
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:validateSignaturePdf.subtitle"
         >
-          Verify digital signatures in your PDF files. Check certificate
-          validity, view signer details, and confirm document integrity. All
-          processing happens in your browser.
+          التحقق من التوقيعات الرقمية في ملفات PDF. تحقق من صلاحية الشهادة،
+          واعرض تفاصيل الموقّع، وتأكد من سلامة المستند. تتم جميع المعالجة في
+          متصفحك.
         </p>
 
         <div
@@ -140,18 +140,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.pdfDocuments"
             >
-              PDF Documents
+              مستندات PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -167,12 +167,11 @@
         <div id="custom-cert-section" class="hidden mt-6 space-y-3">
           <div class="flex items-center justify-between">
             <h2 class="text-sm font-semibold text-gray-300">
-              Custom Certificate File X.509 (Optional)
+              ملف شهادة مخصص X.509 (اختياري)
             </h2>
           </div>
           <p class="text-xs text-gray-500">
-            Upload a trusted X.509 certificate to validate against a custom
-            trust source.
+            ارفع شهادة X.509 موثوقة للتحقق مقابل مصدر ثقة مخصص.
           </p>
           <div
             id="cert-drop-zone"
@@ -180,9 +179,7 @@
           >
             <div class="flex flex-col items-center justify-center py-2">
               <i data-lucide="shield" class="w-6 h-6 mb-1 text-gray-400"></i>
-              <p class="text-xs text-gray-400">
-                Upload certificate (.pem, .crt, .cer)
-              </p>
+              <p class="text-xs text-gray-400">رفع شهادة (.pem, .crt, .cer)</p>
             </div>
             <input
               id="cert-input"
@@ -196,7 +193,7 @@
 
         <div id="results-section" class="hidden mt-6">
           <h2 class="text-lg font-semibold text-white mb-4">
-            Signature Validation Results
+            نتائج التحقق من التوقيع
           </h2>
           <div id="results-container"></div>
         </div>
@@ -212,7 +209,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -229,14 +226,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -247,7 +244,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -257,12 +254,8 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Upload Your PDF
-            </h3>
-            <p class="text-gray-400">
-              Select a digitally signed PDF file from your device
-            </p>
+            <h3 class="text-lg font-semibold text-white mb-1">ارفع ملف PDF</h3>
+            <p class="text-gray-400">اختر ملف PDF موقّعًا رقميًا من جهازك</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
@@ -272,12 +265,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Automatic Analysis
-            </h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تحليل تلقائي</h3>
             <p class="text-gray-400">
-              The tool extracts and parses all digital signatures in the
-              document
+              تستخرج الأداة جميع التوقيعات الرقمية في المستند وتحلّلها
             </p>
           </div>
         </div>
@@ -288,9 +278,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">View Results</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">عرض النتائج</h3>
             <p class="text-gray-400">
-              See signer information, certificate validity, and signature status
+              اطّلع على معلومات الموقّع وصلاحية الشهادة وحالة التوقيع
             </p>
           </div>
         </div>
@@ -303,29 +293,29 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="digital-sign-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Digital Signature</h3>
-          <p class="text-gray-400 text-sm">Add cryptographic signature</p>
+          <h3 class="text-white font-semibold mb-1">التوقيع الرقمي</h3>
+          <p class="text-gray-400 text-sm">أضف توقيعًا تشفيريًا</p>
         </a>
         <a
           href="protect-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Encrypt PDF</h3>
-          <p class="text-gray-400 text-sm">Password protect PDF</p>
+          <h3 class="text-white font-semibold mb-1">تشفير PDF</h3>
+          <p class="text-gray-400 text-sm">حماية PDF بكلمة مرور</p>
         </a>
         <a
           href="view-metadata.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">View Metadata</h3>
-          <p class="text-gray-400 text-sm">Inspect PDF properties</p>
+          <h3 class="text-white font-semibold mb-1">عرض البيانات الوصفية</h3>
+          <p class="text-gray-400 text-sm">افحص خصائص PDF</p>
         </a>
       </div>
     </section>
@@ -336,117 +326,106 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I check whether a signed PDF was changed after it was signed?
+            كيف أتحقق مما إذا تغيّر PDF موقّع بعد توقيعه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the PDF and validation starts on its own. For each signature
-            the tool hashes the bytes the signature covers, compares that hash
-            with the digest stored inside the signature, and then verifies the
-            signature against the signer's public key; any change to the covered
-            bytes makes the status Invalid with the reason shown on the card.
-            Every signature in the file gets its own card, and the summary at
-            the top counts how many were found.
+            ارفع PDF فيبدأ التحقق تلقائيًا. تحسب الأداة لكل توقيع بصمة البايتات
+            التي يغطيها التوقيع وتقارنها بالبصمة المخزنة داخله، ثم تتحقق من
+            التوقيع بالمفتاح العام للموقّع. أي تغيير في البايتات المغطاة يجعل
+            الحالة غير صالح مع عرض السبب على البطاقة. يحصل كل توقيع في الملف على
+            بطاقته الخاصة، ويعدّ الملخص في الأعلى عدد ما وُجد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What do Valid, Invalid, and Unverified mean?
+            ماذا تعني صالح وغير صالح وغير موثق؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Valid means the signature was cryptographically verified, covers the
-            whole file, and uses a secure digest. Invalid means verification ran
-            and failed, for example because the bytes changed or the key doesn't
-            match. Unverified means the signature uses an algorithm the tool
-            can't check, such as Ed25519 or SM2, so confirm it in Adobe Acrobat
-            or with openssl before relying on it.
+            صالح يعني أن التوقيع جرى التحقق منه تشفيريًا، ويغطي الملف كله،
+            ويستخدم بصمة آمنة. غير صالح يعني أن التحقق جرى وفشل، مثلًا لأن
+            البايتات تغيّرت أو المفتاح لا يطابق. غير موثق يعني أن التوقيع يستخدم
+            خوارزمية لا تستطيع الأداة فحصها مثل Ed25519 أو SM2، فتأكد منه في
+            Adobe Acrobat أو بـ openssl قبل الاعتماد عليه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which signature algorithms are supported?
+            ما خوارزميات التوقيع المدعومة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            RSA with PKCS#1 v1.5 padding, RSA-PSS, and ECDSA on the P-256,
-            P-384, and P-521 curves, with SHA-224, SHA-256, SHA-384, or SHA-512
-            digests. Signatures hashed with MD5 or SHA-1 are flagged with an
-            Insecure Digest status and never reported as valid, because both
-            algorithms have published collision attacks.
+            RSA مع حشو PKCS#1 v1.5 وRSA-PSS وECDSA على المنحنيات P-256 وP-384
+            وP-521، مع بصمات SHA-224 أو SHA-256 أو SHA-384 أو SHA-512. التوقيعات
+            المجزأة بـ MD5 أو SHA-1 تُوسم بحالة بصمة غير آمنة ولا تُعد صالحة
+            أبدًا، لأن لكلتا الخوارزميتين هجمات تصادم منشورة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the card say Signer Identity Not Verified?
+            لماذا تقول البطاقة إن هوية الموقّع غير موثقة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The tool has no built-in list of certificate authorities, so on its
-            own it can confirm the signature is intact but not who is behind the
-            certificate. Upload your organization's root or intermediate
-            certificate as a .pem, .crt, .cer, or .der file and validation
-            reruns: signatures whose certificate matches it or chains back to it
-            get a Trusted badge, and the summary counts those as valid.
+            ليس في الأداة قائمة مدمجة بسلطات الشهادات، لذا تستطيع بمفردها التأكد
+            من سلامة التوقيع لكن لا من هوية صاحب الشهادة. ارفع شهادة الجذر أو
+            الشهادة الوسيطة لمؤسستك كملف .pem أو .crt أو .cer أو .der فيُعاد
+            التحقق: التوقيعات التي تطابق شهادتها هذه الشهادة أو تتسلسل إليها
+            تحصل على شارة موثوق، ويحسبها الملخص صالحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does partial coverage mean the document was tampered with?
+            هل تعني التغطية الجزئية أن المستند تم التلاعب به؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It means bytes were appended after this signature was applied. The
-            part that was signed is still intact, so the tool shows a Modified
-            After Signing warning instead of marking the signature invalid. That
-            is not proof of tampering by itself: a second signature or an
-            incremental save produces the same result, and only the last
-            signature added can cover the entire file. Treat it as a reason to
-            look at what was added.
+            يعني أن بايتات أُضيفت بعد تطبيق هذا التوقيع. الجزء الموقّع ما زال
+            سليمًا، لذا تعرض الأداة تحذير معدَّل بعد التوقيع بدل وسم التوقيع غير
+            صالح. هذا ليس دليلًا على التلاعب بحد ذاته: التوقيع الثاني أو الحفظ
+            التراكمي يعطيان النتيجة نفسها، ولا يمكن إلا للتوقيع الأخير المضاف
+            تغطية الملف بأكمله. اعتبره سببًا للنظر فيما أُضيف.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it check whether the signing certificate was revoked?
+            هل تتحقق من إلغاء شهادة التوقيع؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The tool checks the certificate's validity dates, the trust
-            chain against a certificate you provide, and the cryptographic
-            integrity of the signature, but it doesn't query OCSP responders or
-            certificate revocation lists. For a revocation check, verify the
-            file in a desktop tool with network access.
+            لا. تفحص الأداة تواريخ صلاحية الشهادة وسلسلة الثقة مقابل شهادة
+            تقدمها أنت والسلامة التشفيرية للتوقيع، لكنها لا تستعلم من مجيبي OCSP
+            أو قوائم إلغاء الشهادات. للتحقق من الإلغاء، افحص الملف في أداة سطح
+            مكتب لها وصول إلى الشبكة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens if the certificate has expired since the document was
-            signed?
+            ماذا يحدث إذا انتهت صلاحية الشهادة بعد توقيع المستند؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Expiry is judged against today's date, so a certificate that is now
-            past its Valid Until date shows a Certificate Expired status and
-            isn't counted as valid in the summary, even if the signature itself
-            checks out. Compare the Signed On time with the Valid From and Valid
-            Until dates on the card to see whether the certificate was current
-            at signing.
+            يُحكم على الانتهاء مقابل تاريخ اليوم، فالشهادة التي تجاوزت تاريخ
+            صلاحيتها تظهر بحالة شهادة منتهية ولا تُحسب صالحة في الملخص، حتى لو
+            كان التوقيع نفسه سليمًا. قارن وقت التوقيع بتاريخي بداية الصلاحية
+            ونهايتها على البطاقة لتعرف إن كانت الشهادة سارية وقت التوقيع.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is the signed PDF or my trusted certificate uploaded anywhere?
+            هل يُرفع PDF الموقّع أو شهادتي الموثوقة إلى أي مكان؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Signature parsing and the cryptographic checks run in your
-            browser using node-forge and the Web Crypto API, so the document and
-            any certificate you add stay on your device.
+            لا. يعمل تحليل التوقيعات والفحوص التشفيرية داخل متصفحك باستخدام
+            node-forge وWeb Crypto API، فيبقى المستند وأي شهادة تضيفها على
+            جهازك.
           </p>
         </details>
       </div>
@@ -478,11 +457,11 @@
           "priceCurrency": "USD"
         },
         "featureList": [
-          "Verify PDF digital signatures",
-          "View certificate details",
-          "Check signature validity",
-          "Extract signer information",
-          "Client-side processing"
+          "تحقق من التوقيعات الرقمية في PDF",
+          "اعرض تفاصيل الشهادة",
+          "تحقق من صلاحية التوقيع",
+          "استخرج معلومات الموقّع",
+          "المعالجة على جهاز العميل"
         ]
       }
     </script>

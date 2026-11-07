@@ -90,7 +90,7 @@ function addFiles(...files: File[]) {
 function cards(): HTMLElement[] {
   return Array.from(
     document.querySelectorAll<HTMLElement>('#file-display-area > div')
-  ).filter((card) => card.querySelector('button[aria-label^="Remove "]'));
+  ).filter((card) => card.querySelector('button[aria-label^="إزالة "]'));
 }
 
 function cardText(name: string): string {
@@ -123,13 +123,13 @@ function alertTitles(): unknown[] {
 async function addLockedFile(name: string) {
   addFiles(pdfFile(name, LOCKED_BODY));
   await vi.waitFor(() =>
-    expect(passwordInput(`Password for ${name}`)).not.toBeNull()
+    expect(passwordInput(`كلمة مرور ${name}`)).not.toBeNull()
   );
 }
 
 async function unlock(name: string) {
-  type(passwordInput(`Password for ${name}`), PASSWORD);
-  await vi.waitFor(() => expect(cardText(name)).toContain('Unlocked'));
+  type(passwordInput(`كلمة مرور ${name}`), PASSWORD);
+  await vi.waitFor(() => expect(cardText(name)).toContain('تم فتح القفل'));
 }
 
 beforeEach(async () => {
@@ -146,18 +146,18 @@ describe('Compress PDF page', () => {
   it('asks for a password only on locked PDFs', async () => {
     addFiles(pdfFile('open.pdf'), pdfFile('locked.pdf', LOCKED_BODY));
     await vi.waitFor(() =>
-      expect(passwordInput('Password for locked.pdf')).not.toBeNull()
+      expect(passwordInput('كلمة مرور locked.pdf')).not.toBeNull()
     );
-    expect(passwordInput('Password for open.pdf')).toBeNull();
-    expect(passwordInput('Password for all locked files')).toBeNull();
-    expect(cardText('locked.pdf')).toContain('Password protected');
+    expect(passwordInput('كلمة مرور open.pdf')).toBeNull();
+    expect(passwordInput('كلمة مرور لجميع الملفات المقفلة')).toBeNull();
+    expect(cardText('locked.pdf')).toContain('محمي بكلمة مرور');
   });
 
   it('shows a wrong password, then unlocks with the right one', async () => {
     await addLockedFile('locked.pdf');
-    type(passwordInput('Password for locked.pdf'), 'nope');
+    type(passwordInput('كلمة مرور locked.pdf'), 'nope');
     await vi.waitFor(() =>
-      expect(cardText('locked.pdf')).toContain('Wrong password')
+      expect(cardText('locked.pdf')).toContain('كلمة مرور خاطئة')
     );
     await unlock('locked.pdf');
   });
@@ -165,7 +165,9 @@ describe('Compress PDF page', () => {
   it('will not compress a locked file without its password', async () => {
     await addLockedFile('locked.pdf');
     clickCompress();
-    await vi.waitFor(() => expect(alertTitles()).toContain('Password Needed'));
+    await vi.waitFor(() =>
+      expect(alertTitles()).toContain('كلمة المرور مطلوبة')
+    );
     expect(mocks.compressWithHyper).not.toHaveBeenCalled();
   });
 
@@ -179,7 +181,7 @@ describe('Compress PDF page', () => {
       expect.objectContaining({ password: PASSWORD })
     );
     expect(mocks.showAlert.mock.calls.at(-1)?.[1]).toContain(
-      'the compressed copy has no password'
+      'لا تحتوي النسخة المضغوطة على كلمة مرور'
     );
   });
 
@@ -191,14 +193,16 @@ describe('Compress PDF page', () => {
       new HyperError('decrypt_failed', 'wrong or missing password')
     );
     clickCompress();
-    await vi.waitFor(() => expect(alertTitles()).toContain('Password Needed'));
-    expect(cardText('locked.pdf')).toContain('Wrong password');
+    await vi.waitFor(() =>
+      expect(alertTitles()).toContain('كلمة المرور مطلوبة')
+    );
+    expect(cardText('locked.pdf')).toContain('كلمة مرور خاطئة');
     expect(mocks.downloadFile).not.toHaveBeenCalled();
   });
 
   it('refuses files that are not PDFs', async () => {
     addFiles(pdfFile('notes.pdf', 'just some text'), pdfFile('empty.pdf', ''));
-    await vi.waitFor(() => expect(alertTitles()).toContain('Not a PDF'));
+    await vi.waitFor(() => expect(alertTitles()).toContain('ليس ملف PDF'));
     expect(mocks.showAlert.mock.calls[0][1]).toContain('notes.pdf, empty.pdf');
     expect(cards()).toHaveLength(0);
   });
@@ -228,7 +232,7 @@ describe('Compress PDF page', () => {
     );
     clickCompress();
     await vi.waitFor(() =>
-      expect(alertTitles()).toContain('Signed PDF Not Changed')
+      expect(alertTitles()).toContain('لم يتغير PDF الموقّع')
     );
     expect(mocks.downloadFile).not.toHaveBeenCalled();
   });
@@ -240,15 +244,15 @@ describe('Compress PDF page', () => {
       pdfFile('c.pdf')
     );
     await vi.waitFor(() =>
-      expect(passwordInput('Password for all locked files')).not.toBeNull()
+      expect(passwordInput('كلمة مرور لجميع الملفات المقفلة')).not.toBeNull()
     );
-    type(passwordInput('Password for all locked files'), PASSWORD);
+    type(passwordInput('كلمة مرور لجميع الملفات المقفلة'), PASSWORD);
     await vi.waitFor(() => {
-      expect(cardText('a.pdf')).toContain('Unlocked');
-      expect(cardText('b.pdf')).toContain('Unlocked');
+      expect(cardText('a.pdf')).toContain('تم فتح القفل');
+      expect(cardText('b.pdf')).toContain('تم فتح القفل');
     });
     expect(document.getElementById('file-display-area')?.textContent).toContain(
-      'Unlocked 2 of 2 files.'
+      'تم فتح قفل 2 من 2 من الملفات.'
     );
   });
 
@@ -271,7 +275,7 @@ describe('Compress PDF page', () => {
     addFiles(pdfFile('a.pdf'), pdfFile('b.pdf'));
     await vi.waitFor(() => expect(cards()).toHaveLength(2));
     document
-      .querySelector<HTMLButtonElement>('button[aria-label="Remove b.pdf"]')
+      .querySelector<HTMLButtonElement>('button[aria-label="إزالة b.pdf"]')
       ?.click();
     expect(cards()).toHaveLength(1);
     expect(cardText('a.pdf')).toContain('a.pdf');

@@ -90,8 +90,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only PDF files are allowed.'
+      "ملفات غير صالحة",
+      "تم تخطي بعض الملفات. يُسمح بملفات PDF فقط."
     );
   }
 
@@ -167,23 +167,23 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 
 async function extractText() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
     return;
   }
 
-  showLoader('Loading engine...');
+  showLoader("جارٍ تحميل المحرك...");
 
   try {
     const mupdf = await ensurePyMuPDF();
 
     hideLoader();
     files = await batchDecryptIfNeeded(files);
-    showLoader('Extracting text...');
+    showLoader("جارٍ استخراج النص...");
 
     if (files.length === 1) {
       const file = files[0];
       showLoader(
-        trText('Extracting text from {{name}}...', { name: file.name })
+        trText("جارٍ استخراج النص من {{name}}...", { name: file.name })
       );
 
       const fullText = await mupdf.pdfToText(file);
@@ -195,11 +195,11 @@ async function extractText() {
       downloadFile(textBlob, `${baseName}.txt`);
 
       hideLoader();
-      showAlert('Success', 'Text extracted successfully!', 'success', () => {
+      showAlert("تم بنجاح", "تم استخراج النص بنجاح!", 'success', () => {
         resetState();
       });
     } else {
-      showLoader('Extracting text from multiple files...');
+      showLoader("جارٍ استخراج النص من عدة ملفات...");
 
       const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
@@ -208,7 +208,7 @@ async function extractText() {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         showLoader(
-          trText('Extracting text from file {{n}}/{{length}}: {{name}}...', {
+          trText("جارٍ استخراج النص من الملف {{n}}/{{length}}: {{name}}...", {
             n: i + 1,
             length: files.length,
             name: file.name,
@@ -227,8 +227,8 @@ async function extractText() {
 
       hideLoader();
       showAlert(
-        'Success',
-        trText('Extracted text from {{length}} PDF files!', {
+        "تم بنجاح",
+        trText("تم استخراج النص من {{length}} من ملفات PDF!", {
           length: files.length,
         }),
         'success',
@@ -241,8 +241,8 @@ async function extractText() {
     console.error('[PDFToText]', e);
     hideLoader();
     showAlert(
-      'Extraction Error',
-      e instanceof Error ? e.message : 'Failed to extract text from PDF.'
+      "خطأ في الاستخراج",
+      e instanceof Error ? e.message : "تعذر استخراج النص من PDF."
     );
   }
 }

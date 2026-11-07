@@ -3,31 +3,31 @@ type SectionSpec = { id: string; title: string; icon: string };
 type RangeLink = { range: HTMLInputElement; num: HTMLInputElement };
 
 const getTextSections = (): SectionSpec[] => [
-  { id: 'font', title: trText('Font'), icon: 'ph-text-aa' },
-  { id: 'size', title: trText('Font Size'), icon: 'ph-text-t' },
-  { id: 'color', title: trText('Text Color'), icon: 'ph-palette' },
-  { id: 'align', title: trText('Alignment'), icon: 'ph-text-align-left' },
+  { id: 'font', title: trText("الخط"), icon: 'ph-text-aa' },
+  { id: 'size', title: trText("حجم الخط"), icon: 'ph-text-t' },
+  { id: 'color', title: trText("لون النص"), icon: 'ph-palette' },
+  { id: 'align', title: trText("المحاذاة"), icon: 'ph-text-align-left' },
   {
     id: 'spacing',
-    title: trText('Spacing'),
+    title: trText("التباعد"),
     icon: 'ph-arrows-out-line-vertical',
   },
-  { id: 'lists', title: trText('Lists'), icon: 'ph-list-bullets' },
-  { id: 'more', title: trText('More'), icon: 'ph-dots-three' },
+  { id: 'lists', title: trText("القوائم"), icon: 'ph-list-bullets' },
+  { id: 'more', title: trText("المزيد"), icon: 'ph-dots-three' },
 ];
 const getScopeSection = (): SectionSpec => ({
   id: 'scope',
-  title: trText('Edit Scope'),
+  title: trText("نطاق التعديل"),
   icon: 'ph-pencil-simple',
 });
 const getStrokeSection = (): SectionSpec => ({
   id: 'stroke',
-  title: trText('Path Stroke'),
+  title: trText("حد المسار"),
   icon: 'ph-path',
 });
 const getMultiSection = (): SectionSpec => ({
   id: 'alignMulti',
-  title: trText('Align Objects'),
+  title: trText("محاذاة العناصر"),
   icon: 'ph-align-left',
 });
 
@@ -45,15 +45,15 @@ const OBJ_BTN_IDS = [
 ];
 
 const getSliderFields = (): [string, string][] => [
-  ['fLine', trText('Line')],
-  ['fPara', trText('Paragraph')],
-  ['fChar', trText('Character')],
+  ['fLine', trText("خط")],
+  ['fPara', trText("الفقرة")],
+  ['fChar', trText("الحرف")],
   ['fWordSp', trText('Word')],
 ];
 const getMoreFields = (): [string, string][] => [
-  ['fHScale', trText('H-Scale %')],
-  ['fFirstInd', trText('First Indent')],
-  ['fHangInd', trText('Hanging Indent')],
+  ['fHScale', trText("التحجيم الأفقي %")],
+  ['fFirstInd', trText("إزاحة السطر الأول")],
+  ['fHangInd', trText("إزاحة معلّقة")],
 ];
 
 const q = (id: string): HTMLElement | null => document.getElementById(id);
@@ -100,7 +100,7 @@ function setupPagePill(): void {
   const pageLabel = q('pageLabel');
   const app = q('text-editor-app');
   if (!save || !pageLabel || !app || !save.parentElement) return;
-  const pill = mkBtn('dpagepill', trText('Go to page'));
+  const pill = mkBtn('dpagepill', trText("الانتقال إلى صفحة"));
   pill.textContent = '– / –';
   save.parentElement.insertBefore(pill, save);
   const syncPill = () => {
@@ -135,10 +135,10 @@ function setupPagePill(): void {
     menu.style.right = '8px';
     menu.addEventListener('click', (e) => e.stopPropagation());
     const nav = div('dpagenav');
-    const prevB = mkBtn('dnavbtn', trText('Previous page'));
+    const prevB = mkBtn('dnavbtn', trText("الصفحة السابقة"));
     prevB.appendChild(ph('ph-caret-left'));
     prevB.addEventListener('click', () => q('prev')?.click());
-    const nextB = mkBtn('dnavbtn', trText('Next page'));
+    const nextB = mkBtn('dnavbtn', trText("الصفحة التالية"));
     nextB.appendChild(ph('ph-caret-right'));
     nextB.addEventListener('click', () => q('next')?.click());
     const inp = document.createElement('input');
@@ -146,7 +146,7 @@ function setupPagePill(): void {
     inp.min = '1';
     inp.step = '1';
     inp.className = 'dpageinp';
-    inp.setAttribute('aria-label', trText('Page number'));
+    inp.setAttribute('aria-label', trText("رقم الصفحة"));
     const st = parse();
     if (Number.isFinite(st.current)) inp.value = String(st.current);
     if (Number.isFinite(st.total)) inp.max = String(st.total);
@@ -170,15 +170,15 @@ function setupPagePill(): void {
       e.preventDefault();
       go();
     });
-    const goBtn = mkBtn('dnavbtn dgo', trText('Go to page'));
-    goBtn.textContent = trText('Go');
+    const goBtn = mkBtn('dnavbtn dgo', trText("الانتقال إلى صفحة"));
+    goBtn.textContent = trText("انتقال");
     goBtn.addEventListener('click', go);
     nav.append(prevB, inp, goBtn, nextB);
     menu.appendChild(nav);
     menu.appendChild(document.createElement('hr'));
-    const props = mkBtn('ecmenu-item', trText('Document properties'));
+    const props = mkBtn('ecmenu-item', trText("خصائص المستند"));
     const propLabel = document.createElement('span');
-    propLabel.textContent = trText('Document properties');
+    propLabel.textContent = trText("خصائص المستند");
     props.append(ph('ph-info'), propLabel);
     props.addEventListener('click', () => {
       closeMenu();
@@ -226,7 +226,7 @@ export function setupFormatDock(): void {
   const dticon = document.createElement('span');
   const dtext = document.createElement('span');
   dtitle.append(dticon, dtext);
-  const dclose = mkBtn('dclose', trText('Close panel'));
+  const dclose = mkBtn('dclose', trText("إغلاق اللوحة"));
   dclose.appendChild(ph('ph-x'));
   head.append(dtitle, dclose);
   const slotsWrap = div('dockslots');
@@ -237,7 +237,7 @@ export function setupFormatDock(): void {
   const rail = div('dockrail');
   const chipsWrap = div('dockchips');
   const acts = div('dockacts');
-  const delChip = mkBtn('dchip ddel', trText('Delete'));
+  const delChip = mkBtn('dchip ddel', trText("حذف"));
   delChip.appendChild(ph('ph-trash'));
   delChip.addEventListener('click', () => q('del')?.click());
   acts.appendChild(delChip);
@@ -301,8 +301,8 @@ export function setupFormatDock(): void {
       });
       return b;
     };
-    const minus = step(-1, 'ph-minus', trText('Decrease size'));
-    const plus = step(1, 'ph-plus', trText('Increase size'));
+    const minus = step(-1, 'ph-minus', trText("تصغير الحجم"));
+    const plus = step(1, 'ph-plus', trText("تكبير الحجم"));
     const host = stepperOf(fSize) ?? fSize;
     sizer.append(minus, host, plus);
     sizeSlot.appendChild(sizer);
@@ -316,7 +316,7 @@ export function setupFormatDock(): void {
   const alignRow = rowOf(q('fAlign'));
   if (alignRow) alignSlot.appendChild(alignRow);
   const dirLab = div('dlab dsublab');
-  dirLab.textContent = trText('Direction');
+  dirLab.textContent = trText("الاتجاه");
   alignSlot.appendChild(dirLab);
   const dirRow = rowOf(q('fDir'));
   if (dirRow) alignSlot.appendChild(dirRow);
@@ -333,7 +333,7 @@ export function setupFormatDock(): void {
 
   const moreSlot = mkSlot('more');
   const outLab = div('dlab dsublab');
-  outLab.textContent = trText('Outline');
+  outLab.textContent = trText("المخطط");
   moreSlot.appendChild(outLab);
   const outlineRow = rowOf(q('fStrokeColor'));
   if (outlineRow) moreSlot.appendChild(outlineRow);
@@ -353,10 +353,10 @@ export function setupFormatDock(): void {
   scopeSlot.appendChild(scopeWrap);
   let picked = new Set<string>(['all']);
   const scopeDefs: [string, string][] = [
-    ['all', trText('All')],
-    ['text', trText('Text')],
-    ['image', trText('Images')],
-    ['shape', trText('Shapes')],
+    ['all', trText("الكل")],
+    ['text', trText("النص")],
+    ['image', trText("الصور")],
+    ['shape', trText("الأشكال")],
   ];
   const renderScope = () => {
     scopeWrap.replaceChildren();
@@ -466,7 +466,7 @@ export function setupFormatDock(): void {
   const shead = div('dsheethead');
   shead.append(
     ph('ph-text-aa'),
-    document.createTextNode(` ${trText('Select Font')}`)
+    document.createTextNode(` ${trText("اختر الخط")}`)
   );
   const fontListEl = div('dfontlist');
   sheet.append(grab, shead, fontListEl);
@@ -496,9 +496,9 @@ export function setupFormatDock(): void {
     }
     if ('queryLocalFonts' in window) {
       fontListEl.appendChild(div('ddivider'));
-      const sys = mkBtn('dfrow dfsys', trText('Load system fonts'));
+      const sys = mkBtn('dfrow dfsys', trText("تحميل خطوط النظام"));
       const label = document.createElement('span');
-      label.textContent = trText('Load system fonts…');
+      label.textContent = trText("تحميل خطوط النظام…");
       sys.appendChild(label);
       sys.addEventListener('click', () => q('sysFonts')?.click());
       fontListEl.appendChild(sys);
@@ -580,7 +580,7 @@ export function setupFormatDock(): void {
   };
 
   const proxyChip = (src: HTMLButtonElement): HTMLButtonElement => {
-    const b = mkBtn('dchip', src.title || trText('Action'));
+    const b = mkBtn('dchip', src.title || trText("الإجراء"));
     b.dataset.proxy = src.id;
     const icon = src.querySelector('i');
     b.appendChild(
@@ -607,7 +607,7 @@ export function setupFormatDock(): void {
 
   const togglesRow = q('fToggles');
   const toggleChip = (src: HTMLButtonElement): HTMLButtonElement => {
-    const b = mkBtn('dchip', src.title || trText('Toggle style'));
+    const b = mkBtn('dchip', src.title || trText("تبديل النمط"));
     b.dataset.tog = src.dataset.t ?? '';
     const icon = src.querySelector('i');
     b.appendChild(
@@ -622,7 +622,7 @@ export function setupFormatDock(): void {
     chipsWrap.replaceChildren();
     if (mode !== 'idle') {
       chipsWrap.appendChild(
-        toolChip('done', 'ph-check', trText('Done: back to tools'), () => {
+        toolChip('done', 'ph-check', trText("تم، العودة إلى الأدوات"), () => {
           closePanel();
           closeSheet();
           editBtn.click();
@@ -641,7 +641,7 @@ export function setupFormatDock(): void {
       }
     } else if (mode === 'idle') {
       chipsWrap.appendChild(
-        toolChip('edit', 'ph-pencil-simple', trText('Edit tool'), () => {
+        toolChip('edit', 'ph-pencil-simple', trText("أداة التعديل"), () => {
           if (editBtn.classList.contains('on')) openSec(getScopeSection());
           else {
             closePanel();
@@ -650,7 +650,7 @@ export function setupFormatDock(): void {
         })
       );
       chipsWrap.appendChild(
-        toolChip('addText', 'ph-textbox', trText('Add a text box'), () => {
+        toolChip('addText', 'ph-textbox', trText("إضافة مربع نص"), () => {
           closePanel();
           document
             .querySelector<HTMLButtonElement>('[data-tool="addText"]')
@@ -658,7 +658,7 @@ export function setupFormatDock(): void {
         })
       );
       chipsWrap.appendChild(
-        toolChip('addImage', 'ph-image', trText('Add an image'), () => {
+        toolChip('addImage', 'ph-image', trText("إضافة صورة"), () => {
           closePanel();
           q('addImage')?.click();
         })
@@ -667,7 +667,7 @@ export function setupFormatDock(): void {
         toolChip(
           'find',
           'ph-magnifying-glass',
-          trText('Find & replace'),
+          trText("بحث واستبدال"),
           () => {
             closePanel();
             q('find')?.click();

@@ -135,7 +135,7 @@ export async function deletePdfPages(
   }
 
   if (pagesToKeep.length === 0)
-    throw new Error(trText('Cannot delete all pages'));
+    throw new Error(trText("لا يمكن حذف جميع الصفحات"));
 
   const newPdf = await PDFDocument.create();
   const copiedPages = await newPdf.copyPages(srcDoc, pagesToKeep);
@@ -283,7 +283,7 @@ export async function addTextWatermark(
 
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  if (!ctx) throw new Error(trText('Failed to create canvas context'));
+  if (!ctx) throw new Error(trText("تعذر إنشاء سياق Canvas"));
 
   const dpr = 2;
   const colorR = Math.round(options.color.r * 255);
@@ -305,7 +305,7 @@ export async function addTextWatermark(
   const blob = await new Promise<Blob>((resolve, reject) => {
     canvas.toBlob(
       (b) =>
-        b ? resolve(b) : reject(new Error(trText('Canvas toBlob failed'))),
+        b ? resolve(b) : reject(new Error(trText("فشل Canvas toBlob"))),
       'image/png'
     );
   });

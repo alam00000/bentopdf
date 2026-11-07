@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Extract Images Online Free - Extract Images Tool | Pixel PDF"
+      content="استخراج الصور عبر الإنترنت مجانًا - أداة استخراج الصور | Pixel PDF"
     />
     <meta
       name="description"
-      content="Extract all embedded images from your PDF files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج جميع الصور المضمّنة من ملفات PDF. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="extract images, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/extract-images" />
     <meta
       property="og:title"
-      content="Extract Images Online Free - Extract Images Tool | Pixel PDF"
+      content="استخراج الصور عبر الإنترنت مجانًا - أداة استخراج الصور | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Extract all embedded images from your PDF files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج جميع الصور المضمّنة من ملفات PDF. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -48,10 +48,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/extract-images"
     />
-    <meta name="twitter:title" content="Extract Images Free" />
+    <meta name="twitter:title" content="استخراج الصور مجانًا" />
     <meta
       name="twitter:description"
-      content="Extract all embedded images from your PDF files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="استخرج جميع الصور المضمّنة من ملفات PDF. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -62,9 +62,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Extract Images" />
+    <meta name="apple-mobile-web-app-title" content="استخراج الصور" />
 
-    <title>Extract Images from PDF - Pixel PDF</title>
+    <title>استخراج الصور من PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -110,7 +110,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -118,10 +118,10 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:extractImages.name"
         >
-          Extract Images
+          استخراج الصور
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:extractImages.subtitle">
-          Extract all embedded images from your PDF files.
+          استخراج جميع الصور المضمنة من ملفات PDF.
         </p>
 
         <div
@@ -132,18 +132,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -151,7 +151,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -160,13 +160,13 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i> <span>إضافة ملفات أخرى</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i> <span>مسح الكل</span>
           </button>
         </div>
 
@@ -174,18 +174,18 @@
 
         <div id="extract-options" class="hidden mt-6 space-y-6">
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Extract Images
+            استخراج الصور
           </button>
         </div>
 
         <div id="images-container" class="hidden mt-8">
           <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-bold text-white">Extracted Images</h2>
+            <h2 class="text-xl font-bold text-white">الصور المستخرجة</h2>
             <button
               id="download-all-btn"
               class="btn bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
             >
-              <i data-lucide="download"></i> <span>Download All (ZIP)</span>
+              <i data-lucide="download"></i> <span>تنزيل الكل (ZIP)</span>
             </button>
           </div>
           <div
@@ -205,7 +205,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -218,14 +218,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -236,7 +236,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -246,9 +246,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -259,9 +259,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -272,9 +272,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -287,43 +287,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -334,103 +340,100 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What format are the extracted images saved in?
+            بأي صيغة تُحفظ الصور المستخرجة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each image comes out in the format it's stored in inside the PDF,
-            most often JPEG or PNG, with no re-encoding. Files are numbered in
-            the order they're found, for example image_1.jpg and image_2.png,
-            and Download All packs them into extracted-images.zip.
+            تخرج كل صورة بالصيغة المخزّنة بها داخل ملف PDF، غالبًا JPEG أو PNG،
+            دون إعادة ترميز. تُرقَّم الملفات بحسب ترتيب العثور عليها، مثل
+            image_1.jpg وimage_2.png، ويجمعها تنزيل الكل في
+            extracted-images.zip.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool say no images were found?
+            لماذا تقول الأداة إنه لم يُعثر على صور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It only pulls out embedded raster images. If the graphics are vector
-            drawings, charts, or text drawn as paths, there's nothing to
-            extract, and you'd need to render the page as a picture with
+            تستخرج الأداة الصور النقطية المضمّنة فقط. أما إذا كانت الرسومات
+            متجهية أو مخططات أو نصوصًا مرسومة كمسارات فلا يوجد ما يُستخرج،
+            وستحتاج إلى عرض الصفحة كصورة باستخدام
             <a href="/pdf-to-png" class="text-indigo-300 hover:text-indigo-400"
-              >PDF to PNG</a
+              >PDF إلى PNG</a
             >
-            instead.
+            بدلًا من ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will I get the original full-resolution images?
+            هل سأحصل على الصور الأصلية بدقتها الكاملة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            You get the image data exactly as it's embedded, at its stored
-            resolution rather than the size it appears on the page. If whoever
-            made the PDF downsampled the images before embedding them, that
-            lower resolution is all that exists in the file.
+            تحصل على بيانات الصورة تمامًا كما هي مضمّنة، بدقتها المخزّنة وليس
+            بالحجم الذي تظهر به في الصفحة. وإذا كان من أنشأ ملف PDF قد خفّض دقة
+            الصور قبل تضمينها، فهذه الدقة المنخفضة هي كل ما يوجد في الملف.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract images from a scanned PDF?
+            هل يمكنني استخراج الصور من ملف PDF ممسوح ضوئيًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A scanned PDF stores each page as one large image, so you'll get one
-            full-page picture per page rather than the individual photos or
-            figures on it. Crop what you need from those page images afterward.
+            يخزّن ملف PDF الممسوح ضوئيًا كل صفحة كصورة كبيرة واحدة، لذا ستحصل
+            على صورة بحجم الصفحة لكل صفحة بدلًا من الصور أو الأشكال الفردية
+            فيها. اقتصّ ما تحتاجه من صور الصفحات بعد ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why do I get duplicate images?
+            لماذا أحصل على صور مكررة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Images are collected page by page, so a logo or header graphic
-            that's reused on many pages is extracted once for every page it
-            appears on. Keep the first copy and discard the rest.
+            تُجمع الصور صفحة تلو الأخرى، لذا يُستخرج الشعار أو رسم الترويسة
+            المتكرر في صفحات كثيرة مرة لكل صفحة يظهر فيها. احتفظ بالنسخة الأولى
+            واحذف الباقي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I extract images from several PDFs at once?
+            هل يمكنني استخراج الصور من عدة ملفات PDF دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload as many PDFs as you want and click Extract once. Images from
-            all the files are numbered continuously and shown in a single grid,
-            and Download All puts everything into one ZIP.
+            ارفع أي عدد تريده من ملفات PDF وانقر على استخراج مرة واحدة. تُرقَّم
+            الصور من كل الملفات ترقيمًا متواصلًا وتُعرض في شبكة واحدة، ويضع
+            تنزيل الكل كل شيء في ملف ZIP واحد.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I choose which images or pages to extract?
+            هل يمكنني اختيار الصور أو الصفحات المراد استخراجها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            There are no page or selection options; every embedded image on
-            every page is extracted. You can still save only the ones you want
-            from the preview grid, since each thumbnail has its own download
-            button.
+            لا توجد خيارات للصفحات أو التحديد؛ تُستخرج كل صورة مضمّنة في كل
+            صفحة. ومع ذلك يمكنك حفظ الصور التي تريدها فقط من شبكة المعاينة، إذ
+            لكل صورة مصغّرة زر تنزيل خاص بها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my PDF's images uploaded during extraction?
+            هل تُرفع صور ملف PDF الخاص بي أثناء الاستخراج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDF is opened by a PyMuPDF engine running as WebAssembly
-            inside your browser, and the images are pulled out of the file in
-            memory on your device. The preview grid, the individual downloads,
-            and the ZIP are all generated locally.
+            لا. يُفتح ملف PDF بواسطة محرك PyMuPDF يعمل بتقنية WebAssembly داخل
+            متصفحك، وتُستخرج الصور من الملف في ذاكرة جهازك. وتُنشأ شبكة المعاينة
+            والتنزيلات الفردية وملف ZIP كلها محليًا.
           </p>
         </details>
       </div>
@@ -463,26 +466,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to extract images online",
+        "name": "كيفية استخراج الصور عبر الإنترنت",
         "description": "Learn how to extract images using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

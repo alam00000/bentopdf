@@ -168,7 +168,7 @@ async function displayMetadata() {
   try {
     const result = await loadPdfWithPasswordPrompt(pageState.file);
     if (!result) return;
-    showLoader('Analyzing full PDF metadata...');
+    showLoader("جارٍ تحليل البيانات الوصفية الكاملة لملف PDF...");
     const { pdf: pdfjsDoc, file: currentFile } = result;
     pageState.file = currentFile;
 
@@ -181,7 +181,7 @@ async function displayMetadata() {
     const rawXmpString = metadata ? metadata.getRaw() : null;
 
     // Info Dictionary Section
-    const infoSection = createSection(trText('Info Dictionary'));
+    const infoSection = createSection(trText("قاموس المعلومات"));
     if (info && Object.keys(info).length > 0) {
       for (const key in info) {
         const value = (info as Record<string, unknown>)[key];
@@ -214,12 +214,12 @@ async function displayMetadata() {
         infoSection.ul.appendChild(createListItem(key, displayValue));
       }
     } else {
-      infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No Info Dictionary data found -')}</span></li>`;
+      infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على بيانات قاموس المعلومات -")}</span></li>`;
     }
     metadataDisplay.appendChild(infoSection.wrapper);
 
     // Interactive Form Fields Section
-    const fieldsSection = createSection(trText('Interactive Form Fields'));
+    const fieldsSection = createSection(trText("حقول النماذج التفاعلية"));
     if (fieldObjects && Object.keys(fieldObjects).length > 0) {
       for (const fieldName in fieldObjects) {
         const field = (
@@ -229,12 +229,12 @@ async function displayMetadata() {
         fieldsSection.ul.appendChild(createListItem(fieldName, String(value)));
       }
     } else {
-      fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No interactive form fields found -')}</span></li>`;
+      fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على حقول نموذج تفاعلية -")}</span></li>`;
     }
     metadataDisplay.appendChild(fieldsSection.wrapper);
 
     // XMP Metadata Section
-    const xmpSection = createSection(trText('XMP Metadata'));
+    const xmpSection = createSection(trText("بيانات XMP الوصفية"));
     if (rawXmpString) {
       try {
         const parser = new DOMParser();
@@ -250,18 +250,18 @@ async function displayMetadata() {
         }
 
         if (xmpSection.ul.children.length === 0) {
-          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No parseable XMP properties found -')}</span></li>`;
+          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على خصائص XMP قابلة للتحليل -")}</span></li>`;
         }
       } catch (xmlError) {
         console.error('Failed to parse XMP XML:', xmlError);
-        xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">${trHtml('- Error parsing XMP XML. Displaying raw. -')}</span></li>`;
+        xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">${trHtml("- خطأ في تحليل XMP XML. يتم عرض النص الخام. -")}</span></li>`;
         const pre = document.createElement('pre');
         pre.className = 'text-xs text-gray-300 whitespace-pre-wrap break-all';
         pre.textContent = rawXmpString;
         xmpSection.ul.appendChild(pre);
       }
     } else {
-      xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No XMP metadata found -')}</span></li>`;
+      xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على بيانات XMP الوصفية -")}</span></li>`;
     }
     metadataDisplay.appendChild(xmpSection.wrapper);
 
@@ -270,8 +270,8 @@ async function displayMetadata() {
   } catch (e) {
     console.error('Failed to view metadata or fields:', e);
     showAlert(
-      'Error',
-      'Could not fully analyze the PDF. It may be corrupted or have an unusual structure.'
+      "خطأ",
+      "تعذر تحليل PDF بالكامل. قد يكون تالفًا أو ذا بنية غير معتادة."
     );
   } finally {
     hideLoader();
@@ -330,11 +330,11 @@ function copyMetadataAsJson() {
   navigator.clipboard
     .writeText(jsonString)
     .then(function () {
-      showAlert('Copied', 'Metadata copied to clipboard as JSON.');
+      showAlert("تم النسخ", "تم نسخ البيانات الوصفية إلى الحافظة بصيغة JSON.");
     })
     .catch(function (err) {
       console.error('Failed to copy:', err);
-      showAlert('Error', 'Failed to copy metadata to clipboard.');
+      showAlert("خطأ", "تعذر نسخ البيانات الوصفية إلى الحافظة.");
     });
 }
 

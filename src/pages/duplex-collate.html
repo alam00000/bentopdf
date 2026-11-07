@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Duplex Collate - Reorder Front/Back Scan Blocks | Pixel PDF</title>
+    <title>الدمج المزدوج الوجه - إعادة ترتيب كتل مسح الأوجه الأمامية والخلفية | Pixel PDF</title>
     <meta
       name="title"
-      content="Duplex Collate - Reorder Front/Back Scan Blocks | Pixel PDF"
+      content="الدمج المزدوج الوجه - إعادة ترتيب كتل مسح الأوجه الأمامية والخلفية | Pixel PDF"
     />
     <meta
       name="description"
-      content="Reorder duplex scan PDFs that contain front pages and back pages in separate blocks. Create one collated PDF or grouped output files, directly in your browser."
+      content="أعد ترتيب ملفات PDF الممسوحة ضوئيًا على الوجهين التي تحتوي على صفحات أمامية وخلفية في كتل منفصلة. أنشئ PDF مدموجًا واحدًا أو ملفات ناتجة مجمَّعة، مباشرة في متصفحك."
     />
     <meta
       name="keywords"
@@ -29,11 +29,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/duplex-collate" />
     <meta
       property="og:title"
-      content="Duplex Collate - Reorder Front/Back Scan Blocks"
+      content="الدمج المزدوج الوجه - إعادة ترتيب كتل مسح الأوجه الأمامية والخلفية"
     />
     <meta
       property="og:description"
-      content="Turn front-block/back-block scan output into a correctly collated PDF."
+      content="حوّل ناتج مسح كتلة الأوجه الأمامية وكتلة الأوجه الخلفية إلى PDF مدموج بالترتيب الصحيح."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/duplex-collate"
     />
-    <meta name="twitter:title" content="Duplex Collate" />
+    <meta name="twitter:title" content="ترتيب المسح على الوجهين" />
     <meta
       name="twitter:description"
-      content="Reorder front/back scan blocks into collated page order."
+      content="أعد ترتيب كتل مسح الأوجه الأمامية والخلفية إلى ترتيب صفحات مدموج."
     />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
@@ -93,7 +93,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -101,11 +101,11 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:duplexCollate.name"
         >
-          Duplex Collate
+          ترتيب المسح على الوجهين
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:duplexCollate.subtitle">
-          Reorder a PDF scanned as two blocks (all fronts, then all backs) into
-          proper front/back order.
+          أعد ترتيب ملف PDF ممسوح في كتلتين (كل الوجوه الأمامية أولًا، ثم كل
+          الوجوه الخلفية) إلى ترتيب أمامي/خلفي صحيح.
         </p>
 
         <div
@@ -119,15 +119,15 @@
             ></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -149,7 +149,7 @@
           <div class="p-3 bg-gray-900 rounded-lg border border-gray-700">
             <p class="text-sm text-gray-300">
               <span data-i18n="tools:duplexCollate.totalPagesLabel"
-                >Total pages:</span
+                >إجمالي الصفحات:</span
               >
               <span id="total-pages" class="text-white">0</span>
             </p>
@@ -161,14 +161,14 @@
                 for="split-page"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 data-i18n="tools:duplexCollate.splitAfterPageLabel"
-                >Split after page</label
+                >التقسيم بعد الصفحة</label
               >
               <input
                 id="split-page"
                 type="number"
                 min="1"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
-                placeholder="e.g. 50"
+                placeholder="مثال: 50"
                 data-i18n-placeholder="tools:duplexCollate.splitAfterPagePlaceholder"
               />
             </div>
@@ -178,7 +178,7 @@
                 for="back-order"
                 class="block mb-2 text-sm font-medium text-gray-300"
                 data-i18n="tools:duplexCollate.backBlockOrderLabel"
-                >Back block order</label
+                >ترتيب كتلة الوجه الخلفي</label
               >
               <select
                 id="back-order"
@@ -186,16 +186,16 @@
               >
                 <option
                   value="reverse"
-                  selected
+                  selected=""
                   data-i18n="tools:duplexCollate.backBlockReverseOption"
                 >
-                  Reverse back block (common for flipped stacks)
+                  عكس كتلة الوجه الخلفي (شائع عند قلب الرزمة)
                 </option>
                 <option
                   value="keep"
                   data-i18n="tools:duplexCollate.backBlockKeepOption"
                 >
-                  Keep back block as-is
+                  إبقاء كتلة الوجه الخلفي كما هي
                 </option>
               </select>
             </div>
@@ -206,7 +206,7 @@
             class="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
             data-i18n="tools:duplexCollate.autoSplitButton"
           >
-            Auto-detect split (half)
+            اكتشاف نقطة التقسيم تلقائيًا (المنتصف)
           </button>
 
           <div class="p-3 bg-gray-900 rounded-lg border border-gray-700">
@@ -226,7 +226,7 @@
               class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded"
             />
             <span data-i18n="tools:duplexCollate.exportGroupedLabel"
-              >Export grouped files by original document length</span
+              >تصدير ملفات مجمّعة حسب طول المستند الأصلي</span
             >
           </label>
 
@@ -235,7 +235,7 @@
               for="pages-per-document"
               class="block mb-2 text-sm font-medium text-gray-300"
               data-i18n="tools:duplexCollate.pagesPerDocumentLabel"
-              >Pages per original document</label
+              >عدد الصفحات لكل مستند أصلي</label
             >
             <input
               id="pages-per-document"
@@ -248,8 +248,8 @@
               class="text-xs text-gray-400 mt-2"
               data-i18n="tools:duplexCollate.groupedHelp"
             >
-              If enabled, output is a ZIP containing one PDF per grouped
-              document.
+              عند التفعيل، يكون الناتج ملف ZIP يحتوي على ملف PDF لكل مستند
+              مجمّع.
             </p>
           </div>
 
@@ -258,7 +258,7 @@
             class="btn-gradient w-full mt-2"
             data-i18n="tools:duplexCollate.collateButton"
           >
-            Collate PDF
+            ترتيب ملف PDF
           </button>
         </div>
       </div>
@@ -273,7 +273,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -286,14 +286,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -310,7 +310,7 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="tools:duplexCollate.unevenConfirmTitle"
         >
-          Uneven Blocks
+          كتل غير متساوية
         </h3>
         <p
           id="confirm-message"
@@ -322,14 +322,14 @@
             class="flex-1 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
             data-i18n="common.cancel"
           >
-            Cancel
+            إلغاء
           </button>
           <button
             id="confirm-proceed"
             class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
             data-i18n="warning.proceed"
           >
-            Proceed
+            متابعة
           </button>
         </div>
       </div>
@@ -341,7 +341,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -355,14 +355,14 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="tools:duplexCollate.howItWorksStep1Title"
             >
-              Upload the scan
+              ارفع الملف الممسوح
             </h3>
             <p
               class="text-gray-400"
               data-i18n="tools:duplexCollate.howItWorksStep1"
             >
-              Drop in the single PDF that holds all the front sides followed by
-              all the back sides.
+              أفلت ملف PDF واحدًا يحتوي على جميع الوجوه الأمامية يليها جميع
+              الوجوه الخلفية.
             </p>
           </div>
         </div>
@@ -377,14 +377,14 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="tools:duplexCollate.howItWorksStep2Title"
             >
-              Set the split point
+              حدّد نقطة التقسيم
             </h3>
             <p
               class="text-gray-400"
               data-i18n="tools:duplexCollate.howItWorksStep2"
             >
-              Mark where the front block ends, then choose whether the back
-              block needs reversing.
+              حدّد أين تنتهي كتلة الوجوه الأمامية، ثم اختر ما إذا كانت كتلة
+              الوجوه الخلفية بحاجة إلى عكس.
             </p>
           </div>
         </div>
@@ -399,14 +399,14 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="tools:duplexCollate.howItWorksStep3Title"
             >
-              Collate and download
+              رتّب ونزّل
             </h3>
             <p
               class="text-gray-400"
               data-i18n="tools:duplexCollate.howItWorksStep3"
             >
-              Get one interleaved PDF, or a ZIP with a separate file per
-              original document.
+              احصل على ملف PDF واحد بترتيب متعاقب، أو ملف ZIP يحتوي على ملف
+              منفصل لكل مستند أصلي.
             </p>
           </div>
         </div>
@@ -419,50 +419,60 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="alternate-merge.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Alternate Merge</h3>
-          <p class="text-gray-400 text-sm">Free online alternate merge tool</p>
+          <h3 class="text-white font-semibold mb-1">الدمج بالتناوب</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت للدمج بالتناوب
+          </p>
         </a>
         <a
           href="organize-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Organize PDF</h3>
-          <p class="text-gray-400 text-sm">Free online organize PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تنظيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتنظيم PDF
+          </p>
         </a>
         <a
           href="reverse-pages.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Reverse Pages</h3>
-          <p class="text-gray-400 text-sm">Free online reverse pages tool</p>
+          <h3 class="text-white font-semibold mb-1">عكس الصفحات</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لعكس الصفحات
+          </p>
         </a>
         <a
           href="extract-pages.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Extract Pages</h3>
-          <p class="text-gray-400 text-sm">Free online extract pages tool</p>
+          <h3 class="text-white font-semibold mb-1">استخراج الصفحات</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لاستخراج الصفحات
+          </p>
         </a>
       </div>
     </section>
@@ -473,101 +483,100 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What kind of scan is this tool for?
+            لأي نوع من المسح الضوئي هذه الأداة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A PDF produced by feeding a stack through a single-sided scanner
-            twice, once for the fronts and once for the backs, which gives one
-            file with all front pages first and all back pages after. The tool
-            interleaves the two blocks into front 1, back 1, front 2, back 2
-            order. If the fronts and backs are in two separate PDFs, use
+            هو PDF ناتج عن تمرير رزمة عبر ماسح ضوئي أحادي الوجه مرتين، مرة
+            للأوجه الأمامية ومرة للأوجه الخلفية، مما ينتج ملفًا واحدًا فيه كل
+            الصفحات الأمامية أولاً ثم كل الصفحات الخلفية. تدمج الأداة الكتلتين
+            بترتيب أمامي 1، خلفي 1، أمامي 2، خلفي 2. إذا كانت الأوجه الأمامية
+            والخلفية في ملفي PDF منفصلين، فاستخدم
             <a
               href="/alternate-merge"
               class="text-indigo-300 hover:text-indigo-400"
-              >Alternate &amp; Mix Pages</a
+              >تناوب ومزج الصفحات</a
             >
-            instead.
+            بدلاً من ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I know where to set the split point?
+            كيف أعرف أين أضبط نقطة التقسيم؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The split is the last page of the front block, which for a normal
-            two-pass scan is exactly half the total. Click Auto-detect split
-            (half) to fill that in, then read the preview summary, which shows
-            the size of each block and the resulting page count before you
-            commit.
+            نقطة التقسيم هي الصفحة الأخيرة من كتلة الأوجه الأمامية، وهي في المسح
+            العادي بمرورين نصف العدد الإجمالي بالضبط. انقر على الكشف التلقائي
+            لنقطة التقسيم (النصف) لملء ذلك، ثم اقرأ ملخص المعاينة الذي يعرض حجم
+            كل كتلة وعدد الصفحات الناتج قبل أن تُنفّذ.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the grouped export option do?
+            ماذا يفعل خيار التصدير المجمَّع؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            If the stack held several short documents, such as two-page forms,
-            enter the pages per document and the collated output is cut into
-            chunks of that length. Multiple chunks download as a ZIP with one
-            PDF per document; a single chunk downloads as a plain PDF.
+            إذا كانت الرزمة تحتوي على عدة مستندات قصيرة، مثل نماذج من صفحتين،
+            فأدخل عدد الصفحات لكل مستند ويُقطَّع الناتج المدموج إلى أجزاء بهذا
+            الطول. تُنزَّل الأجزاء المتعددة كملف ZIP مع PDF واحد لكل مستند؛
+            ويُنزَّل الجزء الواحد كملف PDF عادي.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What filename does the collated PDF get?
+            ما اسم الملف الذي يحصل عليه PDF المدموج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            A single collated file downloads under your original name with
-            _collated added, for example scan_collated.pdf. Grouped output is a
-            ZIP named scan_collated_grouped.zip containing the separate PDFs.
+            يُنزَّل الملف المدموج الواحد باسمك الأصلي مع إضافة _collated، مثل
+            scan_collated.pdf. أما الناتج المجمَّع فهو ZIP باسم
+            scan_collated_grouped.zip يحتوي على ملفات PDF المنفصلة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I preview the result before downloading?
+            هل يمكنني معاينة النتيجة قبل التنزيل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The page shows a summary line as you change the split point and back
-            order, including the front and back block sizes and the output page
-            count, and it warns when the blocks are uneven. There is no
-            thumbnail preview, so check the first few pages of the download and
-            switch the back block order if the backs come out reversed.
+            تعرض الصفحة سطر ملخص أثناء تغيير نقطة التقسيم وترتيب الأوجه الخلفية،
+            بما في ذلك أحجام كتلتي الأوجه الأمامية والخلفية وعدد صفحات الناتج،
+            وتحذر عندما تكون الكتلتان غير متساويتين. لا توجد معاينة بالصور
+            المصغرة، لذا افحص الصفحات الأولى من الملف المنزَّل وبدّل ترتيب كتلة
+            الأوجه الخلفية إذا ظهرت الأوجه الخلفية معكوسة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it keep bookmarks from the scanned PDF?
+            هل تحتفظ بالإشارات المرجعية من PDF الممسوح ضوئيًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The output is rebuilt page by page, so page content and rotation are
-            preserved but document-level bookmarks aren't carried across.
-            Scanner output rarely has any, but if yours does you can add them
-            again with
+            يُعاد بناء الناتج صفحة بصفحة، لذا يبقى محتوى الصفحات ودورانها
+            محفوظًا لكن الإشارات المرجعية على مستوى المستند لا تنتقل. نادرًا ما
+            يحتوي ناتج الماسح الضوئي على أي منها، لكن إذا كان ملفك يحتوي عليها
+            فيمكنك إضافتها من جديد باستخدام
             <a href="/bookmark" class="text-indigo-300 hover:text-indigo-400"
-              >Edit Bookmarks</a
+              >تحرير الإشارات المرجعية</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my scanned document uploaded to be reordered?
+            هل يُرفع مستندي الممسوح ضوئيًا لإعادة ترتيبه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDF is opened in your browser, the pages are copied into a
-            new document on your device, and the result is downloaded directly,
-            so scans of forms and records never leave your computer.
+            لا. يُفتح PDF في متصفحك وتُنسخ الصفحات إلى مستند جديد على جهازك
+            وتُنزَّل النتيجة مباشرة، لذا لا تغادر مسوحات النماذج والسجلات
+            حاسوبك.
           </p>
         </details>
       </div>
@@ -604,26 +613,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to collate a duplex scan online",
+        "name": "كيفية دمج مسح ضوئي مزدوج الوجه عبر الإنترنت",
         "description": "Learn how to reorder a two-block duplex scan using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload the scan",
-            "text": "Drop in the single PDF that holds all the front sides followed by all the back sides."
+            "name": "ارفع المسح الضوئي",
+            "text": "أفلت ملف PDF الواحد الذي يحتوي على كل الأوجه الأمامية يليها كل الأوجه الخلفية."
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Set the split point",
-            "text": "Mark where the front block ends, then choose whether the back block needs reversing."
+            "name": "اضبط نقطة التقسيم",
+            "text": "حدد أين تنتهي كتلة الأوجه الأمامية، ثم اختر ما إذا كانت كتلة الأوجه الخلفية تحتاج إلى عكس."
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Collate and download",
-            "text": "Get one interleaved PDF, or a ZIP with a separate file per original document."
+            "name": "دمج وتنزيل",
+            "text": "احصل على PDF واحد متداخل، أو ZIP يحتوي على ملف منفصل لكل مستند أصلي."
           }
         ]
       }

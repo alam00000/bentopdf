@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Sanitize PDF Online Free - Sanitize PDF Tool | Pixel PDF"
+      content="تعقيم PDF عبر الإنترنت مجانًا - أداة تعقيم PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Remove metadata, annotations, scripts, and more. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أزل البيانات الوصفية والتعليقات التوضيحية والبرامج النصية وغيرها. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta name="keywords" content="sanitize pdf, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/sanitize-pdf" />
     <meta
       property="og:title"
-      content="Sanitize PDF Online Free - Sanitize PDF Tool | Pixel PDF"
+      content="تعقيم PDF عبر الإنترنت مجانًا - أداة تعقيم PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Remove metadata, annotations, scripts, and more. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أزل البيانات الوصفية والتعليقات التوضيحية والبرامج النصية وغيرها. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/sanitize-pdf" />
-    <meta name="twitter:title" content="Sanitize PDF Free" />
+    <meta name="twitter:title" content="تعقيم PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Remove metadata, annotations, scripts, and more. Free, no uploads, no signup. Runs entirely in your browser."
+      content="أزل البيانات الوصفية والتعليقات التوضيحية والبرامج النصية وغيرها. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Sanitize PDF" />
+    <meta name="apple-mobile-web-app-title" content="تنظيف PDF" />
 
-    <title>Sanitize PDF - Remove Sensitive Content - Pixel PDF</title>
+    <title>تعقيم PDF - إزالة المحتوى الحساس - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:sanitizePdf.name"
         >
-          Sanitize PDF
+          تنظيف PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:sanitizePdf.subtitle">
-          Remove metadata, annotations, scripts, and more.
+          إزالة البيانات الوصفية والتعليقات والبرامج النصية والمزيد.
         </p>
 
         <div
@@ -129,12 +129,12 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -150,98 +150,112 @@
         <div id="tool-options" class="hidden mt-6 space-y-4">
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
             <h3 class="text-sm font-semibold text-white mb-3">
-              Sanitization Options:
+              خيارات التعقيم:
             </h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="flatten-forms"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Flatten Forms</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300">تسطيح النماذج</span></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-metadata"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Metadata</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300"
+                  >إزالة البيانات الوصفية</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-annotations"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Annotations</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300"
+                  >إزالة التعليقات التوضيحية</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-javascript"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove JavaScript</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300"
+                  >إزالة JavaScript</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-embedded-files"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Embedded Files</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300"
+                  >إزالة الملفات المضمّنة</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-layers"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Layers (OCG)</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300"
+                  >إزالة الطبقات (OCG)</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-links"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Links</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300">إزالة الروابط</span></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-structure-tree"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Structure Tree</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300"
+                  >إزالة شجرة البنية</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-markinfo"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove MarkInfo</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                <span class="text-sm text-gray-300">إزالة MarkInfo</span></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="remove-fonts"
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Remove Embedded Fonts</span>
-              </label>
+                <span class="text-sm text-gray-300"
+                  >إزالة الخطوط المضمّنة</span
+                ></label
+              >
             </div>
           </div>
 
@@ -254,14 +268,14 @@
                 class="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0"
               ></i>
               <p class="text-xs text-gray-300">
-                Sanitization removes sensitive content permanently. Some options
-                may affect PDF rendering.
+                يزيل التعقيم المحتوى الحساس نهائيًا. قد تؤثر بعض الخيارات على
+                عرض PDF.
               </p>
             </div>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full">
-            Sanitize PDF
+            تنظيف PDF
           </button>
         </div>
       </div>
@@ -280,9 +294,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -299,16 +312,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -319,7 +331,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -329,9 +341,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -342,9 +354,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -355,9 +367,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -370,43 +382,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -417,117 +435,112 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does Sanitize PDF actually remove?
+            ماذا تزيل أداة تعقيم PDF فعليًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Ten things, each with its own checkbox: form fields are flattened,
-            and metadata, annotations, JavaScript, embedded files, layers,
-            links, the structure tree, MarkInfo, and optionally embedded fonts
-            are stripped. Everything except font removal is checked by default.
+            عشرة أشياء، لكل منها مربع اختيار: تُسطَّح حقول النماذج، وتُزال
+            البيانات الوصفية والتعليقات التوضيحية وJavaScript والملفات المضمّنة
+            والطبقات والروابط وشجرة البنية وMarkInfo، والخطوط المضمّنة
+            اختياريًا. كل شيء ما عدا إزالة الخطوط محدد افتراضيًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the sanitized PDF look different?
+            هل سيبدو PDF المعقَّم مختلفًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The page content itself is untouched, but some interactive parts
-            become static. Form fields turn into plain text, hyperlinks stop
-            being clickable, and comments, highlights, and sticky notes
-            disappear, so check the result before sending it.
+            محتوى الصفحة نفسه لا يُمس، لكن بعض الأجزاء التفاعلية تصبح ثابتة.
+            تتحول حقول النماذج إلى نص عادي، وتتوقف الروابط عن كونها قابلة للنقر،
+            وتختفي التعليقات والتمييز والملاحظات اللاصقة، لذا راجع النتيجة قبل
+            إرسالها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Should I check Remove Embedded Fonts?
+            هل أحدد خيار إزالة الخطوط المضمّنة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Usually not. It deletes the font programs the PDF relies on, and if
-            the reader can't substitute a matching font the text can render
-            incorrectly or not at all. Leave it unchecked unless you have a
-            specific reason and have tested the result.
+            عادةً لا. فهي تحذف برامج الخطوط التي يعتمد عليها PDF، وإذا لم يستطع
+            القارئ استبدالها بخط مطابق فقد يُعرض النص بشكل خاطئ أو لا يُعرض
+            أبدًا. اتركها غير محددة ما لم يكن لديك سبب محدد وقد اختبرت النتيجة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it remove the author name, creation date, and editing software?
+            هل يزيل اسم المؤلف وتاريخ الإنشاء وبرنامج التحرير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Remove Metadata clears the Info dictionary, the XMP metadata stream,
-            the document ID, and application-specific PieceInfo, so the author,
-            title, dates, and producing software are gone. If that's all you
-            need,
+            تمسح إزالة البيانات الوصفية قاموس Info وتدفق XMP ومعرّف المستند
+            وبيانات PieceInfo الخاصة بالتطبيق، فيختفي المؤلف والعنوان والتواريخ
+            والبرنامج المنتج. إذا كان هذا كل ما تحتاجه، فإن
             <a
               href="/remove-metadata"
               class="text-indigo-300 hover:text-indigo-400"
-              >Remove Metadata</a
+              >إزالة البيانات الوصفية</a
             >
-            does only this step.
+            تنفذ هذه الخطوة وحدها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it stop scripts that run when the PDF is opened?
+            هل يمنع البرامج النصية التي تعمل عند فتح PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Remove JavaScript deletes the document's script tree, its open
-            action, and the automatic actions attached to the document, pages,
-            annotations, and form fields. That covers the usual places a PDF can
-            hide code that runs on open, print, or field changes.
+            تحذف إزالة JavaScript شجرة البرامج النصية في المستند وإجراء الفتح
+            والإجراءات التلقائية المرتبطة بالمستند والصفحات والتعليقات التوضيحية
+            وحقول النماذج. يغطي ذلك الأماكن المعتادة التي قد يخفي فيها PDF شيفرة
+            تعمل عند الفتح أو الطباعة أو تغيير الحقول.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does sanitizing redact sensitive text on the pages?
+            هل يحجب التعقيم النصوص الحساسة في الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. It strips hidden and interactive data around the content, not
-            the visible words or images, so anything you can read on the page is
-            still there. If you need the page content reduced to a flat picture
-            with no selectable text underneath, use
+            لا. تزيل الأداة البيانات المخفية والتفاعلية حول المحتوى، لا الكلمات
+            أو الصور المرئية، فكل ما تقرؤه في الصفحة يبقى. إذا أردت اختزال محتوى
+            الصفحة إلى صورة مسطحة بلا نص قابل للتحديد تحتها، فاستخدم
             <a
               href="/rasterize-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Rasterize PDF</a
+              >تحويل PDF إلى صور نقطية</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I sanitize a password-protected PDF?
+            هل يمكنني تعقيم ملف PDF محمي بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            You'll be asked for the password after upload. The sanitized copy is
-            written without encryption, so if the document should stay
-            protected, run it through
+            ستُطلب منك كلمة المرور بعد الرفع. تُكتب النسخة المعقَّمة بدون تشفير،
+            فإذا كان يجب أن يبقى المستند محميًا، فمرّره عبر
             <a href="/protect-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Protect PDF</a
+              >حماية PDF</a
             >
-            afterward.
+            بعد ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is it safe to sanitize a PDF I don't trust here?
+            هل من الآمن تعقيم ملف PDF لا أثق به هنا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The file is parsed as data in your browser and never uploaded, and
-            the tool doesn't execute any script inside it. Keep the original in
-            case a stripped element turns out to be needed, since sanitizing
-            can't be undone from the output.
+            يُحلَّل الملف كبيانات داخل متصفحك ولا يُرفع أبدًا، ولا تنفّذ الأداة
+            أي برنامج نصي بداخله. احتفظ بالأصل تحسبًا لاحتياج عنصر أُزيل، لأن
+            التعقيم لا يمكن التراجع عنه من الناتج.
           </p>
         </details>
       </div>
@@ -561,26 +574,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to sanitize pdf online",
+        "name": "كيفية تعقيم PDF عبر الإنترنت",
         "description": "Learn how to sanitize pdf using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

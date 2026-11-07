@@ -40,7 +40,7 @@ function resetState() {
 
   const previewArea = document.getElementById('booklet-preview');
   if (previewArea)
-    previewArea.innerHTML = `<p class="text-gray-400 text-center py-8">${trHtml('Upload a PDF and click "Generate Preview" to see the booklet layout')}</p>`;
+    previewArea.innerHTML = `<p class="text-gray-400 text-center py-8">${trHtml("ارفع ملف PDF وانقر على \"إنشاء المعاينة\" لرؤية تخطيط الكتيّب")}</p>`;
 
   const downloadBtn = document.getElementById(
     'download-btn'
@@ -70,7 +70,7 @@ async function updateUI() {
 
     const metaSpan = document.createElement('div');
     metaSpan.className = 'text-xs text-gray-400';
-    metaSpan.textContent = trText('{{size}} • Loading...', {
+    metaSpan.textContent = trText("{{size}} • جارٍ التحميل...", {
       size: formatBytes(pageState.file.size),
     });
 
@@ -93,7 +93,7 @@ async function updateUI() {
         resetState();
         return;
       }
-      showLoader('Loading PDF...');
+      showLoader("جارٍ تحميل PDF...");
       pageState.file = result.file;
       pageState.pdfBytes = new Uint8Array(result.bytes);
       pageState.pdfjsDoc = result.pdf;
@@ -103,7 +103,7 @@ async function updateUI() {
       hideLoader();
 
       const pageCount = pageState.pdfDoc.getPageCount();
-      metaSpan.textContent = trText('{{size}} • {{pageCount}} pages', {
+      metaSpan.textContent = trText("{{size}} • {{pageCount}} صفحة", {
         size: formatBytes(pageState.file.size),
         pageCount,
       });
@@ -117,7 +117,7 @@ async function updateUI() {
     } catch (error) {
       console.error('Error loading PDF:', error);
       hideLoader();
-      showAlert('Error', 'Failed to load PDF file.');
+      showAlert("خطأ", "تعذر تحميل ملف PDF.");
       resetState();
     }
   } else {
@@ -175,7 +175,7 @@ function getSheetDimensions(isBookletMode: boolean): {
 
 async function generatePreview() {
   if (!pageState.pdfDoc || !pageState.pdfjsDoc) {
-    showAlert('Error', 'Please load a PDF first.');
+    showAlert("خطأ", "يرجى تحميل ملف PDF أولًا.");
     return;
   }
 
@@ -203,7 +203,7 @@ async function generatePreview() {
   const canvasWidth = containerWidth;
   const canvasHeight = containerWidth / aspectRatio;
 
-  previewArea.innerHTML = `<p class="text-gray-400 text-center py-4">${trHtml('Generating preview...')}</p>`;
+  previewArea.innerHTML = `<p class="text-gray-400 text-center py-4">${trHtml("جارٍ إنشاء المعاينة...")}</p>`;
 
   const totalRounded = isBookletMode
     ? Math.ceil(totalPages / 4) * 4
@@ -239,7 +239,7 @@ async function generatePreview() {
     }
   }
 
-  previewArea.innerHTML = `<p class="text-indigo-400 text-sm mb-4 text-center">${trHtml('{{totalPages}} pages → {{numSheets}} output sheets', { totalPages, numSheets })}</p>`;
+  previewArea.innerHTML = `<p class="text-indigo-400 text-sm mb-4 text-center">${trHtml("{{totalPages}} صفحة ← {{numSheets}} ورقة إخراج", { totalPages, numSheets })}</p>`;
 
   for (let sheetIndex = 0; sheetIndex < numSheets; sheetIndex++) {
     const canvas = document.createElement('canvas');
@@ -382,11 +382,11 @@ async function generatePreview() {
     ctx.textBaseline = 'top';
     const sideLabel = isBookletMode
       ? isFront
-        ? trText('Front')
-        : trText('Back')
+        ? trText("الوجه الأمامي")
+        : trText("الوجه الخلفي")
       : '';
     ctx.fillText(
-      trText('Sheet {{n}} {{sideLabel}}', {
+      trText("الورقة {{n}} {{sideLabel}}", {
         n: Math.floor(sheetIndex / (isBookletMode ? 2 : 1)) + 1,
         sideLabel,
       }),
@@ -430,11 +430,11 @@ function applyRotation(doc: PDFLibDocument, mode: string) {
 
 async function createBooklet() {
   if (!pageState.pdfBytes) {
-    showAlert('Error', 'Please load a PDF first.');
+    showAlert("خطأ", "يرجى تحميل ملف PDF أولًا.");
     return;
   }
 
-  showLoader('Creating Booklet...');
+  showLoader("جارٍ إنشاء الكتيّب...");
 
   try {
     const sourceDoc = await loadPdfDocument(pageState.pdfBytes.slice());
@@ -538,8 +538,8 @@ async function createBooklet() {
     );
 
     showAlert(
-      'Success',
-      trText('Booklet created with {{numSheets}} sheets!', { numSheets }),
+      "تم بنجاح",
+      trText("تم إنشاء الكتيّب بـ {{numSheets}} ورقة!", { numSheets }),
       'success',
       function () {
         resetState();
@@ -547,7 +547,7 @@ async function createBooklet() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'An error occurred while creating the booklet.');
+    showAlert("خطأ", "حدث خطأ أثناء إنشاء الكتيّب.");
   } finally {
     hideLoader();
   }

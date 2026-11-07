@@ -81,15 +81,15 @@ async function initializePage() {
   document.getElementById('run-btn')?.addEventListener('click', async () => {
     const allNodes = editor.getNodes() as BaseWorkflowNode[];
     if (allNodes.length === 0) {
-      showAlert('Error', 'Add at least one node to run the workflow.');
+      showAlert("خطأ", "أضف عقدة واحدة على الأقل لتشغيل سير العمل.");
       return;
     }
     const hasInput = allNodes.some((n) => n.category === 'Input');
     const hasOutput = allNodes.some((n) => n.category === 'Output');
     if (!hasInput || !hasOutput) {
       showAlert(
-        'Error',
-        'Your workflow needs at least one input node and one output node to run.'
+        "خطأ",
+        "يحتاج سير العمل إلى عقدة إدخال واحدة وعقدة إخراج واحدة على الأقل ليعمل."
       );
       return;
     }
@@ -103,13 +103,13 @@ async function initializePage() {
       await executeWorkflow(editor, engine, area, (progress) => {
         const msg =
           progress.message ||
-          trText('Processing {{nodeName}}...', { nodeName: progress.nodeName });
+          trText("جارٍ معالجة {{nodeName}}...", { nodeName: progress.nodeName });
         if (statusText) statusText.textContent = msg;
       });
-      if (statusText) statusText.textContent = trText('Workflow completed');
+      if (statusText) statusText.textContent = trText("اكتمل سير العمل");
     } catch (err) {
-      if (statusText) statusText.textContent = trText('Error during execution');
-      showAlert('Error', (err as Error).message);
+      if (statusText) statusText.textContent = trText("حدث خطأ أثناء التنفيذ");
+      showAlert("خطأ", (err as Error).message);
     } finally {
       runBtn.disabled = false;
       runBtn.classList.remove('opacity-50', 'pointer-events-none');
@@ -120,7 +120,7 @@ async function initializePage() {
     await editor.clear();
     updateNodeCount();
     const statusText = document.getElementById('status-text');
-    if (statusText) statusText.textContent = trText('Ready');
+    if (statusText) statusText.textContent = trText("جاهز");
     document.getElementById('settings-sidebar')?.classList.add('hidden');
   });
 
@@ -292,8 +292,8 @@ function updateNodeCount() {
   if (el)
     el.textContent =
       count !== 1
-        ? trText('{{count}} nodes', { count })
-        : trText('{{count}} node', { count });
+        ? trText("{{count}} من العقد", { count })
+        : trText("{{count}} عقدة", { count });
 }
 
 function showSaveTemplateModal(
@@ -323,20 +323,20 @@ function showSaveTemplateModal(
   const doSave = () => {
     const name = nameInput.value.trim();
     if (!name) {
-      errorEl.textContent = trText('Please enter a name.');
+      errorEl.textContent = trText("يرجى إدخال اسم.");
       errorEl.classList.remove('hidden');
       return;
     }
     if (templateNameExists(name)) {
-      errorEl.textContent = trText('A template with this name already exists.');
+      errorEl.textContent = trText("يوجد قالب بهذا الاسم بالفعل.");
       errorEl.classList.remove('hidden');
       return;
     }
     saveWorkflow(editor, area, name);
     cleanup();
     showAlert(
-      'Saved',
-      trText('Template "{{name}}" saved.', { name }),
+      "تم الحفظ",
+      trText("تم حفظ القالب \"{{name}}\".", { name }),
       'success'
     );
   };
@@ -388,19 +388,19 @@ function showLoadTemplateModal(
       const loadBtn = document.createElement('button');
       loadBtn.className =
         'bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors flex-shrink-0';
-      loadBtn.textContent = trText('Load');
+      loadBtn.textContent = trText("تحميل");
       loadBtn.addEventListener('click', async () => {
         const loaded = await loadWorkflow(editor, area, name);
         cleanup();
         if (loaded) {
           updateNodeCount();
           showAlert(
-            'Loaded',
-            trText('Template "{{name}}" loaded.', { name }),
+            "تم التحميل",
+            trText("تم تحميل القالب \"{{name}}\".", { name }),
             'success'
           );
         } else {
-          showAlert('Error', 'Failed to load template.');
+          showAlert("خطأ", "تعذر تحميل القالب.");
         }
       });
       row.appendChild(loadBtn);
@@ -686,7 +686,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
     const label = document.createElement('label');
     label.className = 'block text-xs text-gray-400 mb-1';
-    label.textContent = trText('PDF Files');
+    label.textContent = trText("ملفات PDF");
     fileSection.appendChild(label);
 
     if (node.hasFile()) {
@@ -700,8 +700,8 @@ function showNodeSettings(node: BaseWorkflowNode) {
     uploadBtn.className =
       'w-full bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-2 rounded-lg transition-colors';
     uploadBtn.textContent = node.hasFile()
-      ? trText('Add More Files')
-      : trText('Upload PDFs');
+      ? trText("إضافة ملفات أخرى")
+      : trText("رفع ملفات PDF");
 
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -722,15 +722,15 @@ function showNodeSettings(node: BaseWorkflowNode) {
                 await node.addDecryptedFile(file, password);
               } catch {
                 showAlert(
-                  'Error',
-                  trText('Wrong password or failed to decrypt "{{name}}".', {
+                  "خطأ",
+                  trText("كلمة المرور خاطئة أو تعذر فك تشفير \"{{name}}\".", {
                     name: file.name,
                   })
                 );
               }
             }
           } else {
-            showAlert('Error', 'Failed to load PDF: ' + (err as Error).message);
+            showAlert("خطأ", 'Failed to load PDF: ' + (err as Error).message);
           }
         }
       }
@@ -749,13 +749,13 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
     const label = document.createElement('label');
     label.className = 'block text-xs text-gray-400 mb-1';
-    label.textContent = trText('Images');
+    label.textContent = trText("الصور");
     fileSection.appendChild(label);
 
     const formatHint = document.createElement('p');
     formatHint.className = 'text-[10px] text-gray-500 mb-2';
     formatHint.textContent = trText(
-      'Supported: JPG, PNG, BMP, GIF, TIFF, WebP, HEIC, PSD, SVG, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2'
+      "المدعوم: JPG, PNG, BMP, GIF, TIFF, WebP, HEIC, PSD, SVG, PNM, PGM, PBM, PPM, PAM, JXR, JPX, JP2"
     );
     fileSection.appendChild(formatHint);
 
@@ -770,8 +770,8 @@ function showNodeSettings(node: BaseWorkflowNode) {
     uploadBtn.className =
       'w-full bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-2 rounded-lg transition-colors';
     uploadBtn.textContent = node.hasFile()
-      ? trText('Add More Images')
-      : trText('Upload Images');
+      ? trText("إضافة صور أخرى")
+      : trText("رفع الصور");
 
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -785,7 +785,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
         await node.addFiles(files);
         showNodeSettings(node);
       } catch (err) {
-        showAlert('Error', 'Failed to load images: ' + (err as Error).message);
+        showAlert("خطأ", 'Failed to load images: ' + (err as Error).message);
       }
     });
 
@@ -801,7 +801,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
     const certLabel = document.createElement('label');
     certLabel.className = 'block text-xs text-gray-400 mb-1';
-    certLabel.textContent = trText('Certificate (.pfx, .p12, .pem)');
+    certLabel.textContent = trText("الشهادة (.pfx, .p12, .pem)");
     certSection.appendChild(certLabel);
 
     if (node.hasCertFile()) {
@@ -819,7 +819,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
       const removeBtn = document.createElement('button');
       removeBtn.className =
         'text-red-400 hover:text-red-300 text-xs flex-shrink-0';
-      removeBtn.textContent = trText('Remove');
+      removeBtn.textContent = trText("إزالة");
       removeBtn.addEventListener('click', () => {
         node.removeCert();
         showNodeSettings(node);
@@ -834,7 +834,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
         const pwLabel = document.createElement('label');
         pwLabel.className = 'block text-xs text-gray-400 mb-1';
-        pwLabel.textContent = trText('Certificate Password');
+        pwLabel.textContent = trText("كلمة مرور الشهادة");
         pwSection.appendChild(pwLabel);
 
         const pwRow = document.createElement('div');
@@ -842,14 +842,14 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
         const pwInput = document.createElement('input');
         pwInput.type = 'password';
-        pwInput.placeholder = trText('Enter password...');
+        pwInput.placeholder = trText("أدخل كلمة المرور...");
         pwInput.className =
           'flex-1 bg-gray-700 border border-gray-600 text-white text-xs px-3 py-2 rounded-lg focus:outline-none focus:border-indigo-500';
 
         const unlockBtn = document.createElement('button');
         unlockBtn.className =
           'bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-3 py-2 rounded-lg transition-colors flex-shrink-0';
-        unlockBtn.textContent = trText('Unlock');
+        unlockBtn.textContent = trText("فتح القفل");
 
         const statusMsg = document.createElement('div');
         statusMsg.className = 'text-xs mt-1 hidden';
@@ -857,15 +857,15 @@ function showNodeSettings(node: BaseWorkflowNode) {
         const doUnlock = async () => {
           const pw = pwInput.value;
           if (!pw) return;
-          unlockBtn.textContent = trText('Unlocking...');
+          unlockBtn.textContent = trText("جارٍ فتح القفل...");
           unlockBtn.disabled = true;
           const success = await node.unlockCert(pw);
           if (success) {
             showNodeSettings(node);
           } else {
-            unlockBtn.textContent = trText('Unlock');
+            unlockBtn.textContent = trText("فتح القفل");
             unlockBtn.disabled = false;
-            statusMsg.textContent = trText('Incorrect password');
+            statusMsg.textContent = trText("كلمة مرور غير صحيحة");
             statusMsg.className = 'text-xs mt-1 text-red-400';
             statusMsg.classList.remove('hidden');
           }
@@ -882,7 +882,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
       } else if (node.hasCert()) {
         const okMsg = document.createElement('div');
         okMsg.className = 'text-xs text-green-400 mb-2';
-        okMsg.textContent = trText('Certificate unlocked');
+        okMsg.textContent = trText("تم فتح قفل الشهادة");
         certSection.appendChild(okMsg);
       }
     }
@@ -891,8 +891,8 @@ function showNodeSettings(node: BaseWorkflowNode) {
     uploadBtn.className =
       'w-full bg-gray-700 hover:bg-gray-600 text-white text-xs px-3 py-2 rounded-lg transition-colors';
     uploadBtn.textContent = node.hasCertFile()
-      ? trText('Change Certificate')
-      : trText('Upload Certificate');
+      ? trText("تغيير الشهادة")
+      : trText("رفع الشهادة");
 
     const certInput = document.createElement('input');
     certInput.type = 'file';
@@ -943,150 +943,150 @@ function showNodeSettings(node: BaseWorkflowNode) {
   }[] = [
     {
       cls: WordToPdfNode,
-      label: trText('Word Documents'),
+      label: trText("مستندات Word"),
       accept: '.doc,.docx,.odt,.rtf',
-      uploadLabel: trText('Upload Documents'),
-      addMoreLabel: trText('Add More Documents'),
-      hint: trText('Supported: DOC, DOCX, ODT, RTF'),
+      uploadLabel: trText("رفع المستندات"),
+      addMoreLabel: trText("إضافة مستندات أخرى"),
+      hint: trText("المدعوم: DOC, DOCX, ODT, RTF"),
     },
     {
       cls: ExcelToPdfNode,
-      label: trText('Spreadsheets'),
+      label: trText("جداول البيانات"),
       accept: '.xlsx,.xls,.ods,.csv',
-      uploadLabel: trText('Upload Spreadsheets'),
-      addMoreLabel: trText('Add More Spreadsheets'),
-      hint: trText('Supported: XLSX, XLS, ODS, CSV'),
+      uploadLabel: trText("رفع جداول البيانات"),
+      addMoreLabel: trText("إضافة جداول بيانات أخرى"),
+      hint: trText("المدعوم: XLSX, XLS, ODS, CSV"),
     },
     {
       cls: PowerPointToPdfNode,
-      label: trText('Presentations'),
+      label: trText("العروض التقديمية"),
       accept: '.ppt,.pptx,.odp',
-      uploadLabel: trText('Upload Presentations'),
-      addMoreLabel: trText('Add More Presentations'),
-      hint: trText('Supported: PPT, PPTX, ODP'),
+      uploadLabel: trText("رفع العروض التقديمية"),
+      addMoreLabel: trText("إضافة عروض تقديمية أخرى"),
+      hint: trText("المدعوم: PPT, PPTX, ODP"),
     },
     {
       cls: TextToPdfNode,
-      label: trText('Text Files'),
+      label: trText("ملفات نصية"),
       accept: '.txt',
-      uploadLabel: trText('Upload Text Files'),
-      addMoreLabel: trText('Add More Text Files'),
+      uploadLabel: trText("رفع ملفات نصية"),
+      addMoreLabel: trText("إضافة ملفات نصية أخرى"),
     },
     {
       cls: SvgToPdfNode,
-      label: trText('SVG Files'),
+      label: trText("ملفات SVG"),
       accept: '.svg',
-      uploadLabel: trText('Upload SVG Files'),
-      addMoreLabel: trText('Add More SVG Files'),
+      uploadLabel: trText("رفع ملفات SVG"),
+      addMoreLabel: trText("إضافة ملفات SVG أخرى"),
     },
     {
       cls: EpubToPdfNode,
-      label: trText('EPUB Files'),
+      label: trText("ملفات EPUB"),
       accept: '.epub',
-      uploadLabel: trText('Upload EPUB Files'),
-      addMoreLabel: trText('Add More EPUB Files'),
+      uploadLabel: trText("رفع ملفات EPUB"),
+      addMoreLabel: trText("إضافة ملفات EPUB أخرى"),
     },
     {
       cls: EmailToPdfNode,
-      label: trText('Email Files'),
+      label: trText("ملفات البريد الإلكتروني"),
       accept: '.eml,.msg',
-      uploadLabel: trText('Upload Email Files'),
-      addMoreLabel: trText('Add More Email Files'),
-      hint: trText('Supported: EML, MSG'),
+      uploadLabel: trText("رفع ملفات البريد الإلكتروني"),
+      addMoreLabel: trText("إضافة ملفات بريد إلكتروني أخرى"),
+      hint: trText("المدعوم: EML, MSG"),
     },
     {
       cls: XpsToPdfNode,
-      label: trText('XPS Files'),
+      label: trText("ملفات XPS"),
       accept: '.xps,.oxps',
-      uploadLabel: trText('Upload XPS Files'),
-      addMoreLabel: trText('Add More XPS Files'),
-      hint: trText('Supported: XPS, OXPS'),
+      uploadLabel: trText("رفع ملفات XPS"),
+      addMoreLabel: trText("إضافة ملفات XPS أخرى"),
+      hint: trText("المدعوم: XPS, OXPS"),
     },
     {
       cls: MobiToPdfNode,
-      label: trText('MOBI Files'),
+      label: trText("ملفات MOBI"),
       accept: '.mobi',
-      uploadLabel: trText('Upload MOBI Files'),
-      addMoreLabel: trText('Add More MOBI Files'),
+      uploadLabel: trText("رفع ملفات MOBI"),
+      addMoreLabel: trText("إضافة ملفات MOBI أخرى"),
     },
     {
       cls: Fb2ToPdfNode,
-      label: trText('FB2 Files'),
+      label: trText("ملفات FB2"),
       accept: '.fb2',
-      uploadLabel: trText('Upload FB2 Files'),
-      addMoreLabel: trText('Add More FB2 Files'),
+      uploadLabel: trText("رفع ملفات FB2"),
+      addMoreLabel: trText("إضافة ملفات FB2 أخرى"),
     },
     {
       cls: CbzToPdfNode,
-      label: trText('Comic Archives'),
+      label: trText("أرشيفات القصص المصورة"),
       accept: '.cbz,.cbr',
-      uploadLabel: trText('Upload Comics'),
-      addMoreLabel: trText('Add More Comics'),
-      hint: trText('Supported: CBZ, CBR'),
+      uploadLabel: trText("رفع القصص المصورة"),
+      addMoreLabel: trText("إضافة قصص مصورة أخرى"),
+      hint: trText("المدعوم: CBZ, CBR"),
     },
     {
       cls: MarkdownToPdfNode,
-      label: trText('Markdown Files'),
+      label: trText("ملفات Markdown"),
       accept: '.md,.markdown',
-      uploadLabel: trText('Upload Markdown Files'),
-      addMoreLabel: trText('Add More Markdown Files'),
+      uploadLabel: trText("رفع ملفات Markdown"),
+      addMoreLabel: trText("إضافة ملفات Markdown أخرى"),
     },
     {
       cls: JsonToPdfNode,
-      label: trText('JSON Files'),
+      label: trText("ملفات JSON"),
       accept: '.json',
-      uploadLabel: trText('Upload JSON Files'),
-      addMoreLabel: trText('Add More JSON Files'),
+      uploadLabel: trText("رفع ملفات JSON"),
+      addMoreLabel: trText("إضافة ملفات JSON أخرى"),
     },
     {
       cls: XmlToPdfNode,
-      label: trText('XML Files'),
+      label: trText("ملفات XML"),
       accept: '.xml',
-      uploadLabel: trText('Upload XML Files'),
-      addMoreLabel: trText('Add More XML Files'),
+      uploadLabel: trText("رفع ملفات XML"),
+      addMoreLabel: trText("إضافة ملفات XML أخرى"),
     },
     {
       cls: WpdToPdfNode,
-      label: trText('WordPerfect Files'),
+      label: trText("ملفات WordPerfect"),
       accept: '.wpd',
-      uploadLabel: trText('Upload WPD Files'),
-      addMoreLabel: trText('Add More WPD Files'),
+      uploadLabel: trText("رفع ملفات WPD"),
+      addMoreLabel: trText("إضافة ملفات WPD أخرى"),
     },
     {
       cls: WpsToPdfNode,
-      label: trText('WPS Files'),
+      label: trText("ملفات WPS"),
       accept: '.wps',
-      uploadLabel: trText('Upload WPS Files'),
-      addMoreLabel: trText('Add More WPS Files'),
+      uploadLabel: trText("رفع ملفات WPS"),
+      addMoreLabel: trText("إضافة ملفات WPS أخرى"),
     },
     {
       cls: PagesToPdfNode,
-      label: trText('Pages Files'),
+      label: trText("ملفات Pages"),
       accept: '.pages',
-      uploadLabel: trText('Upload Pages Files'),
-      addMoreLabel: trText('Add More Pages Files'),
+      uploadLabel: trText("رفع ملفات Pages"),
+      addMoreLabel: trText("إضافة ملفات Pages أخرى"),
     },
     {
       cls: OdgToPdfNode,
-      label: trText('ODG Files'),
+      label: trText("ملفات ODG"),
       accept: '.odg',
-      uploadLabel: trText('Upload ODG Files'),
-      addMoreLabel: trText('Add More ODG Files'),
+      uploadLabel: trText("رفع ملفات ODG"),
+      addMoreLabel: trText("إضافة ملفات ODG أخرى"),
     },
     {
       cls: PubToPdfNode,
-      label: trText('Publisher Files'),
+      label: trText("ملفات Publisher"),
       accept: '.pub',
-      uploadLabel: trText('Upload PUB Files'),
-      addMoreLabel: trText('Add More PUB Files'),
+      uploadLabel: trText("رفع ملفات PUB"),
+      addMoreLabel: trText("إضافة ملفات PUB أخرى"),
     },
     {
       cls: VsdToPdfNode,
-      label: trText('Visio Files'),
+      label: trText("ملفات Visio"),
       accept: '.vsd,.vsdx',
-      uploadLabel: trText('Upload Visio Files'),
-      addMoreLabel: trText('Add More Visio Files'),
-      hint: trText('Supported: VSD, VSDX'),
+      uploadLabel: trText("رفع ملفات Visio"),
+      addMoreLabel: trText("إضافة ملفات Visio أخرى"),
+      hint: trText("المدعوم: VSD, VSDX"),
     },
   ];
 
@@ -1134,8 +1134,8 @@ function showNodeSettings(node: BaseWorkflowNode) {
         showNodeSettings(node);
       } catch (err) {
         showAlert(
-          'Error',
-          trText('Failed to load files: {{error}}', {
+          "خطأ",
+          trText("تعذر تحميل الملفات: {{error}}", {
             error: (err as Error).message,
           })
         );
@@ -1161,7 +1161,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
   if (controlEntries.length === 0) {
     const empty = document.createElement('p');
     empty.className = 'text-xs text-gray-500';
-    empty.textContent = trText('No configurable settings for this node.');
+    empty.textContent = trText("لا توجد إعدادات قابلة للضبط لهذه العقدة.");
     content.appendChild(empty);
     return;
   }
@@ -1170,17 +1170,17 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
   const controlHints: Record<string, string> = {
     pages: 'e.g. 1-3, 5, 7-9',
-    whitelist: trText('Limit recognized characters (leave empty for all)'),
-    afterPage: trText('Insert blank pages after this page number'),
-    x0: trText('Left edge in points (1 inch = 72 pts)'),
-    y0: trText('Top edge in points'),
-    x1: trText('Right edge in points'),
-    y1: trText('Bottom edge in points'),
+    whitelist: trText("تحديد الأحرف المعروفة (اتركه فارغًا لجميع الأحرف)"),
+    afterPage: trText("إدراج صفحات فارغة بعد رقم الصفحة هذا"),
+    x0: trText("الحافة اليسرى بالنقاط (1 بوصة = 72 نقطة)"),
+    y0: trText("الحافة العلوية بالنقاط"),
+    x1: trText("الحافة اليمنى بالنقاط"),
+    y1: trText("الحافة السفلية بالنقاط"),
     targetKilobytes: trText(
-      'Finds the best quality under this size. 0 means no target.'
+      "يبحث عن أفضل جودة ضمن هذا الحجم. القيمة 0 تعني بلا حجم مستهدف."
     ),
     retainPageLabels: trText(
-      "Off (default): natural 1–N numbering. On: each file's original page labels are preserved (may produce duplicate labels)."
+      "إيقاف (الافتراضي): ترقيم طبيعي من 1 إلى N. تشغيل: يتم الإبقاء على تسميات الصفحات الأصلية لكل ملف (قد تنتج تسميات مكررة)."
     ),
   };
 
@@ -1223,7 +1223,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
 
       const searchInput = document.createElement('input');
       searchInput.type = 'text';
-      searchInput.placeholder = trText('Search languages...');
+      searchInput.placeholder = trText("البحث عن لغات...");
       searchInput.className = inputClass;
       container.appendChild(searchInput);
 
@@ -1444,7 +1444,7 @@ function showNodeSettings(node: BaseWorkflowNode) {
     summary.className =
       'text-xs font-medium text-gray-400 cursor-pointer select-none flex items-center justify-between';
     const summaryText = document.createElement('span');
-    summaryText.textContent = trText('Advanced Settings');
+    summaryText.textContent = trText("إعدادات متقدمة");
     summary.appendChild(summaryText);
     const chevron = document.createElement('i');
     chevron.className =

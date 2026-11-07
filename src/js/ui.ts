@@ -358,7 +358,7 @@ export const renderPageThumbnails = async (
       const rotateBtn = document.createElement('button');
       rotateBtn.className =
         'rotate-btn btn bg-gray-700 hover:bg-gray-600 p-1.5 rounded-md text-gray-200 transition-colors flex-shrink-0';
-      rotateBtn.title = trText('Rotate +90°');
+      rotateBtn.title = trText("تدوير +90°");
       rotateBtn.innerHTML = '<i data-lucide="rotate-cw" class="w-4 h-4"></i>';
       rotateBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -418,7 +418,7 @@ export const renderPageThumbnails = async (
       lazyLoadMargin: '300px',
       onProgress: (current, total) => {
         showLoader(
-          trText('Rendering page previews: {{current}}/{{total}}', {
+          trText("جارٍ عرض معاينات الصفحات: {{current}}/{{total}}", {
             current,
             total,
           })
@@ -488,7 +488,7 @@ const createFileInputHTML = (options: FileInputOptions = {}) => {
             <div class="flex flex-col items-center justify-center pt-5 pb-6">
                 <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
                 <p class="mb-2 text-sm text-gray-400"><span class="font-semibold">${t('upload.clickToSelect')}</span> ${t('upload.orDragAndDrop')}</p>
-                <p class="text-xs text-gray-500">${multiple ? t('upload.pdfOrImages') : trText('A single PDF file')}</p>
+                <p class="text-xs text-gray-500">${multiple ? t('upload.pdfOrImages') : trText("ملف PDF واحد")}</p>
                 <p class="text-xs text-gray-500">${t('upload.filesNeverLeave')}</p>
             </div>
             <input id="file-input" type="file" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" ${multiple} accept="${acceptedFiles}">

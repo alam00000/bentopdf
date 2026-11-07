@@ -26,7 +26,7 @@ describe('i18n resilience on hardened browsers', () => {
     blockStorage();
     const { getLanguageFromUrl } = await import('../js/i18n/i18n');
     expect(() => getLanguageFromUrl()).not.toThrow();
-    expect(getLanguageFromUrl()).toBe('en');
+    expect(getLanguageFromUrl()).toBe('ar');
   });
 
   it('initI18n succeeds with blocked storage and failing locale fetches', async () => {
@@ -37,18 +37,12 @@ describe('i18n resilience on hardened browsers', () => {
     expect(t('simpleMode.title')).not.toBe('simpleMode.title');
   });
 
-  it('t() serves bundled English instead of raw keys when fetches fail', async () => {
+  it('t() serves bundled Arabic instead of raw keys when fetches fail', async () => {
     failLocaleFetches();
     const { initI18n, t } = await import('../js/i18n/i18n');
     await initI18n();
-    expect(t('simpleMode.title')).toBe('PDF Tools');
-    expect(t('tools:pdfToTiff.name')).toBe('PDF to TIFF');
+    expect(t('simpleMode.title')).toBe('أدوات PDF');
+    expect(t('tools:pdfToTiff.name')).toBe('PDF إلى TIFF');
     expect(t('common.error')).not.toBe('common.error');
-  });
-
-  it('changeLanguage does not throw when storage is blocked', async () => {
-    blockStorage();
-    const { changeLanguage } = await import('../js/i18n/i18n');
-    expect(() => changeLanguage('de')).not.toThrow();
   });
 });

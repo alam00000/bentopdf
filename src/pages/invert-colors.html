@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Invert Colors Online Free - Invert Colors Tool | Pixel PDF"
+      content="عكس الألوان عبر الإنترنت مجانًا - أداة عكس الألوان | Pixel PDF"
     />
     <meta
       name="description"
-      content="Create a 'dark mode' version of your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content='أنشئ نسخة "الوضع الداكن" من ملف PDF. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك.'
     />
     <meta name="keywords" content="invert colors, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/invert-colors" />
     <meta
       property="og:title"
-      content="Invert Colors Online Free - Invert Colors Tool | Pixel PDF"
+      content="عكس الألوان عبر الإنترنت مجانًا - أداة عكس الألوان | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Create a 'dark mode' version of your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content='أنشئ نسخة "الوضع الداكن" من ملف PDF. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك.'
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/invert-colors" />
-    <meta name="twitter:title" content="Invert Colors Free" />
+    <meta name="twitter:title" content="عكس الألوان مجانًا" />
     <meta
       name="twitter:description"
-      content="Create a 'dark mode' version of your PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content='أنشئ نسخة "الوضع الداكن" من ملف PDF. مجاني، بلا رفع ملفات، بلا تسجيل. يعمل بالكامل في متصفحك.'
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Invert Colors" />
+    <meta name="apple-mobile-web-app-title" content="عكس الألوان" />
 
-    <title>Invert PDF Colors - Pixel PDF</title>
+    <title>عكس ألوان PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -106,19 +106,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:invertColors.name"
         >
-          Invert Colors
+          عكس الألوان
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:invertColors.subtitle">
-          Create a 'dark mode' version of your PDF.
+          إنشاء نسخة "الوضع الداكن" من PDF الخاص بك.
         </p>
 
         <div
@@ -129,15 +129,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.pdfFile">
-              PDF file
+              ملف PDF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -152,10 +152,10 @@
 
         <div id="options-panel" class="hidden mt-6 space-y-4">
           <p class="text-gray-400 text-sm">
-            Click the button below to invert all colors in your PDF.
+            انقر على الزر أدناه لعكس كل الألوان في ملف PDF.
           </p>
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Invert Colors
+            عكس الألوان
           </button>
         </div>
       </div>
@@ -173,9 +173,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -191,16 +190,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -211,7 +209,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -221,9 +219,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -234,9 +232,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -247,9 +245,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -262,43 +260,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -309,113 +313,111 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens to photos and colored graphics when I invert a PDF?
+            ماذا يحدث للصور والرسومات الملونة عند عكس ملف PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Every pixel is flipped to its complementary value, so photos look
-            like film negatives and brand colors shift (blue turns orange, red
-            turns cyan). The tool suits text-heavy documents where you want
-            light text on a dark page; for brightness or contrast changes
-            without inverting images, use
+            يُقلب كل بكسل إلى قيمته المكمّلة، فتبدو الصور كسلبيات الأفلام وتتحول
+            ألوان العلامات التجارية (الأزرق يصبح برتقاليًا والأحمر سماويًا).
+            تناسب الأداة المستندات الكثيفة بالنص حيث تريد نصًا فاتحًا على صفحة
+            داكنة؛ ولتغيير السطوع أو التباين دون عكس الصور، استخدم
             <a
               href="/adjust-colors"
               class="text-indigo-300 hover:text-indigo-400"
-              >Adjust Colors</a
+              >ضبط الألوان</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will I still be able to select or search text after inverting?
+            هل سأتمكن من تحديد النص أو البحث فيه بعد العكس؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Each page is rendered as an image, inverted, and rebuilt as an
-            image-only PDF, so the text layer is gone. If you need searchable
-            text again, run the inverted file through
+            لا. تُعرض كل صفحة كصورة وتُعكس وتُعاد بناؤها كملف PDF من صور فقط،
+            فتختفي طبقة النص. وإذا احتجت إلى نص قابل للبحث مجددًا، فمرّر الملف
+            المعكوس على
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
+              >التعرف الضوئي على PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the inverted PDF look blurry?
+            هل يبدو ملف PDF المعكوس ضبابيًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Pages are rendered at 1.5x scale, roughly 108 dots per inch. That's
-            sharp on a screen at normal zoom, which is where dark-mode reading
-            happens, but it can look soft if you print the file or zoom in far.
+            تُعرض الصفحات بمقياس 1.5x، أي نحو 108 نقطة في البوصة. وهذا حاد على
+            الشاشة بالتكبير العادي، وهو المكان الذي تحدث فيه القراءة بالوضع
+            الداكن، لكنه قد يبدو ناعمًا إذا طبعت الملف أو كبّرته كثيرًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why is the output file larger than the original?
+            لماذا ملف الإخراج أكبر من الأصل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The inverted pages are stored as full-page PNG images instead of
-            text and vector drawings, which often takes more space. For a
-            smaller file, pass the result through
+            تُخزَّن الصفحات المعكوسة كصور PNG بحجم الصفحة بدلًا من النص
+            والرسومات المتجهة، مما يستهلك غالبًا مساحة أكبر. وللحصول على ملف
+            أصغر، مرّر النتيجة على
             <a
               href="/compress-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >Compress PDF</a
+              >ضغط PDF</a
             >.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are hyperlinks, bookmarks, and form fields kept?
+            هل تبقى الروابط التشعبية والإشارات المرجعية وحقول النماذج؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Because the output is a fresh image-based document, interactive
-            elements such as links, form fields, comments, and bookmarks are not
-            carried over. Keep the original if you need them.
+            لا. لأن الناتج مستند جديد قائم على الصور، لا تنتقل العناصر التفاعلية
+            مثل الروابط وحقول النماذج والتعليقات والإشارات المرجعية. احتفظ
+            بالأصل إذا كنت تحتاج إليها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I invert only some pages?
+            هل يمكنني عكس بعض الصفحات فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Not with this tool; it processes every page. If you only want a few
-            pages inverted, separate them first with
+            ليس بهذه الأداة؛ فهي تعالج كل صفحة. وإذا أردت عكس بضع صفحات فقط،
+            فافصلها أولًا باستخدام
             <a href="/split-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >Split PDF</a
-            >, invert that part, and merge the pieces back together.
+              >تقسيم PDF</a
+            >، واعكس ذلك الجزء، ثم ادمج الأجزاء معًا مجددًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on scanned documents?
+            هل يعمل على المستندات الممسوحة ضوئيًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. Scans are already images, so they invert cleanly, and it can
-            rescue a scan captured as a negative or with reversed exposure.
-            Grayscale scans keep their gray levels, just reversed.
+            نعم. الصور الممسوحة ضوئيًا هي صور أصلًا، لذا تنعكس بشكل نظيف،
+            ويمكنها إنقاذ مسح التُقط كسلبي أو بتعريض ضوئي معكوس. وتحتفظ المسوحات
+            بتدرج الرمادي بمستوياتها لكن معكوسة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded to be inverted?
+            هل يُرفع مستندي لعكس ألوانه؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering and pixel inversion happen on a canvas in your
-            browser, and the new PDF is assembled locally. Nothing leaves your
-            computer, and there's no server queue, so the speed depends only on
-            your device.
+            لا. يحدث العرض وعكس البكسلات على canvas في متصفحك، ويُجمَّع ملف PDF
+            الجديد محليًا. لا يغادر شيء حاسوبك، ولا توجد طابور خادم، لذا تعتمد
+            السرعة على جهازك فقط.
           </p>
         </details>
       </div>
@@ -448,26 +450,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to invert colors online",
+        "name": "كيفية عكس الألوان عبر الإنترنت",
         "description": "Learn how to invert colors using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

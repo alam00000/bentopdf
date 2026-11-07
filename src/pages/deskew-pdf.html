@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Deskew PDF Online Free - Straighten Scanned PDFs | Pixel PDF</title>
+    <title>تقويم ميل PDF مجانًا عبر الإنترنت - تعديل المسوحات الضوئية المائلة | Pixel PDF</title>
     <meta
       name="title"
-      content="Deskew PDF Online Free - Straighten Scanned PDFs | Pixel PDF"
+      content="تقويم ميل PDF مجانًا عبر الإنترنت - تعديل المسوحات الضوئية المائلة | Pixel PDF"
     />
     <meta
       name="description"
-      content="Automatically straighten tilted scanned pages using OpenCV. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قوّم الصفحات الممسوحة ضوئيًا المائلة تلقائيًا باستخدام OpenCV. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -29,11 +29,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/deskew-pdf" />
     <meta
       property="og:title"
-      content="Deskew PDF Online Free - Straighten Scanned PDFs | Pixel PDF"
+      content="تقويم ميل PDF مجانًا عبر الإنترنت - تعديل المسوحات الضوئية المائلة | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Automatically straighten tilted scanned pages using OpenCV. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قوّم الصفحات الممسوحة ضوئيًا المائلة تلقائيًا باستخدام OpenCV. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/deskew-pdf" />
-    <meta name="twitter:title" content="Deskew PDF Free" />
+    <meta name="twitter:title" content="تقويم ميل PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Automatically straighten tilted scanned pages using OpenCV. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قوّم الصفحات الممسوحة ضوئيًا المائلة تلقائيًا باستخدام OpenCV. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -58,7 +58,7 @@
 
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Deskew PDF" />
+    <meta name="apple-mobile-web-app-title" content="تصحيح انحراف PDF" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -100,7 +100,7 @@
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
           <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >Back to Tools</span
+            >العودة إلى الأدوات</span
           >
         </button>
 
@@ -108,10 +108,10 @@
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:deskewPdf.name"
         >
-          Deskew PDF
+          تصحيح انحراف PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:deskewPdf.subtitle">
-          Automatically straighten tilted scanned pages using OpenCV.
+          تقويم الصفحات الممسوحة ضوئيًا المائلة تلقائيًا باستخدام OpenCV.
         </p>
 
         <div
@@ -122,18 +122,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="upload.hints.oneOrMorePdfs"
             >
-              One or more PDF files
+              ملف PDF واحد أو أكثر
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -141,7 +141,7 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept="application/pdf"
-            multiple
+            multiple=""
           />
         </div>
 
@@ -150,13 +150,13 @@
             id="add-more-btn"
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="plus"></i> <span>Add More Files</span>
+            <i data-lucide="plus"></i> <span>إضافة ملفات أخرى</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
-            <i data-lucide="trash-2"></i> <span>Clear All</span>
+            <i data-lucide="trash-2"></i> <span>مسح الكل</span>
           </button>
         </div>
 
@@ -167,19 +167,19 @@
             <label
               for="deskew-threshold"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Skew Threshold (degrees)</label
+              >عتبة الميل (بالدرجات)</label
             >
             <select
               id="deskew-threshold"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="0.1">0.1° (Very Sensitive)</option>
-              <option value="0.5" selected>0.5° (Default)</option>
-              <option value="1.0">1.0° (Normal)</option>
-              <option value="2.0">2.0° (Less Sensitive)</option>
+              <option value="0.1">0.1° (حساسية عالية جدًا)</option>
+              <option value="0.5" selected="">0.5° (افتراضي)</option>
+              <option value="1.0">1.0° (عادي)</option>
+              <option value="2.0">2.0° (حساسية أقل)</option>
             </select>
             <p class="text-xs text-gray-500 mt-1">
-              Pages with skew below this threshold won't be corrected.
+              لن تُصحَّح الصفحات التي يقل ميلها عن هذه العتبة.
             </p>
           </div>
 
@@ -187,33 +187,35 @@
             <label
               for="deskew-dpi"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Processing Quality (DPI)</label
+              >جودة المعالجة (DPI)</label
             >
             <select
               id="deskew-dpi"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
             >
-              <option value="100">100 (Fast)</option>
-              <option value="150" selected>150 (Default)</option>
-              <option value="200">200 (Better)</option>
-              <option value="300">300 (Best Quality)</option>
+              <option value="100">100 (سريع)</option>
+              <option value="150" selected="">150 (افتراضي)</option>
+              <option value="200">200 (أفضل)</option>
+              <option value="300">300 (أفضل جودة)</option>
             </select>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Deskew PDF
+            تصحيح انحراف PDF
           </button>
         </div>
 
         <div id="results-area" class="hidden mt-6 p-4 bg-gray-700 rounded-lg">
-          <h3 class="text-lg font-semibold text-white mb-3">Deskew Results</h3>
+          <h3 class="text-lg font-semibold text-white mb-3">
+            نتائج تقويم الميل
+          </h3>
           <div class="grid grid-cols-2 gap-4 text-sm">
             <div>
-              <span class="text-gray-400">Total Pages:</span>
+              <span class="text-gray-400">إجمالي الصفحات:</span>
               <span id="result-total" class="text-white ml-2">-</span>
             </div>
             <div>
-              <span class="text-gray-400">Pages Corrected:</span>
+              <span class="text-gray-400">الصفحات المصحَّحة:</span>
               <span id="result-corrected" class="text-white ml-2">-</span>
             </div>
           </div>
@@ -231,7 +233,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -244,14 +246,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -261,7 +263,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -271,9 +273,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload PDF</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع PDF</h3>
             <p class="text-gray-400">
-              Select your scanned PDF with tilted pages
+              اختر ملف PDF الممسوح ضوئيًا الذي تحتوي صفحاته على ميل
             </p>
           </div>
         </div>
@@ -284,8 +286,10 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Auto-Detect</h3>
-            <p class="text-gray-400">OpenCV analyzes and detects skew angles</p>
+            <h3 class="text-lg font-semibold text-white mb-1">
+              الكشف التلقائي
+            </h3>
+            <p class="text-gray-400">يحلل OpenCV زوايا الميل ويكتشفها</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
@@ -295,8 +299,8 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
-            <p class="text-gray-400">Get your straightened PDF instantly</p>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
+            <p class="text-gray-400">احصل على PDF المقوَّم فورًا</p>
           </div>
         </div>
       </div>
@@ -307,43 +311,43 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="rasterize-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rasterize PDF</h3>
-          <p class="text-gray-400 text-sm">Convert to image-based PDF</p>
+          <h3 class="text-white font-semibold mb-1">تحويل PDF إلى صور نقطية</h3>
+          <p class="text-gray-400 text-sm">التحويل إلى PDF قائم على الصور</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Reduce PDF file size</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">تقليل حجم ملف PDF</p>
         </a>
         <a
           href="repair-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Repair PDF</h3>
-          <p class="text-gray-400 text-sm">Fix corrupted PDF files</p>
+          <h3 class="text-white font-semibold mb-1">إصلاح PDF</h3>
+          <p class="text-gray-400 text-sm">إصلاح ملفات PDF التالفة</p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Rotate PDF pages</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">تدوير صفحات PDF</p>
         </a>
         <a
           href="ocr-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">OCR PDF</h3>
-          <p class="text-gray-400 text-sm">Make PDF searchable</p>
+          <h3 class="text-white font-semibold mb-1">التعرف الضوئي على PDF</h3>
+          <p class="text-gray-400 text-sm">اجعل PDF قابلاً للبحث</p>
         </a>
       </div>
     </section>
@@ -353,110 +357,106 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the tool detect that a page is tilted?
+            كيف تكتشف الأداة أن الصفحة مائلة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Each page is rendered to an image at the DPI you choose, then OpenCV
-            analyzes it: it fits a minimum-area rectangle around the dark pixels
-            and, as a fallback, measures the angle of dominant text lines with a
-            Hough transform. The resulting angle is what the results panel
-            reports for that page.
+            تُعرض كل صفحة كصورة بدقة DPI التي تختارها، ثم يحللها OpenCV: فيلائم
+            مستطيلاً بأصغر مساحة حول البكسلات الداكنة، وكخيار احتياطي يقيس زاوية
+            الأسطر النصية السائدة بتحويل هوف. الزاوية الناتجة هي ما تعرضه لوحة
+            النتائج لتلك الصفحة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does the Skew Threshold setting do?
+            ماذا يفعل إعداد عتبة الميل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Pages whose detected tilt is below the threshold are left alone. The
-            default of 0.5 degrees catches visible tilt without touching pages
-            that are already straight; drop it to 0.1 degrees when you want the
-            tightest alignment before OCR, or raise it to 1 or 2 degrees to
-            correct only clearly crooked pages.
+            تُترك الصفحات التي يقل ميلها المكتشف عن العتبة كما هي. تلتقط القيمة
+            الافتراضية 0.5 درجة الميل الظاهر دون المساس بالصفحات المستقيمة
+            أصلاً؛ اخفضها إلى 0.1 درجة عندما تريد أدق محاذاة قبل OCR، أو ارفعها
+            إلى 1 أو 2 درجة لتصحيح الصفحات المائلة بوضوح فقط.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does deskewing keep the text selectable?
+            هل يبقي تقويم الميل النص قابلاً للتحديد؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Every page in the output, including pages that didn't need
-            correction, is written as an image at the processing DPI, so any
-            existing text layer is lost. Run the result through
+            لا. تُكتب كل صفحة في الناتج، بما فيها الصفحات التي لم تحتج إلى
+            تصحيح، كصورة بدقة DPI المعالجة، لذا تُفقد أي طبقة نصية موجودة. مرّر
+            النتيجة عبر
             <a href="/ocr-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >OCR PDF</a
+              >التعرف الضوئي على PDF</a
             >
-            afterward if you need searchable text; OCR works better on
-            straightened pages anyway.
+            بعد ذلك إذا احتجت إلى نص قابل للبحث؛ فـ OCR يعمل بشكل أفضل على
+            الصفحات المقوَّمة على أي حال.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which DPI should I use when deskewing a scan?
+            أي DPI أستخدم عند تقويم ميل مسح ضوئي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            150 DPI is fast and accurate for ordinary letter-sized scans. Use
-            200 or 300 DPI for small print or fine detail, and 100 DPI when
-            speed matters more than precision. The setting also controls the
-            resolution of the output pages, so higher values produce larger
-            files.
+            150 DPI سريع ودقيق للمسوحات العادية بحجم Letter. استخدم 200 أو 300
+            DPI للخط الصغير أو التفاصيل الدقيقة، و100 DPI عندما تكون السرعة أهم
+            من الدقة. يتحكم الإعداد أيضًا في دقة صفحات الناتج، لذا تنتج القيم
+            الأعلى ملفات أكبر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the page size change after rotation?
+            هل سيتغير حجم الصفحة بعد التدوير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Output pages keep the original page dimensions. The rotated image is
-            padded with white in the corners exposed by the rotation and then
-            fitted onto the page, so content may shrink by a hair but nothing is
-            pushed off the sheet.
+            تحتفظ صفحات الناتج بأبعاد الصفحة الأصلية. تُحشى الصورة المدارة
+            بالأبيض في الزوايا التي ينكشف فيها الخلفية بسبب الدوران ثم تُلائم
+            الصفحة، لذا قد يصغر المحتوى قليلاً جدًا لكن لا شيء يُدفع خارج
+            الورقة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it work on every kind of scan?
+            هل يعمل مع كل أنواع المسوحات الضوئية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It works best on pages with clear horizontal lines of text. Pages
-            that are mostly photos, drawings, or diagonal design elements give
-            the detector little to measure, so the angle can be off; check the
-            results panel and keep your original for those.
+            يعمل بأفضل شكل على الصفحات ذات الأسطر النصية الأفقية الواضحة. أما
+            الصفحات التي أغلبها صور أو رسومات أو عناصر تصميم قطرية فتعطي الكاشف
+            القليل ليقيسه، فقد تكون الزاوية غير دقيقة؛ تحقق من لوحة النتائج
+            واحتفظ بنسختك الأصلية لتلك الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I know which pages were corrected?
+            كيف أعرف الصفحات التي جرى تصحيحها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            After processing, a results panel lists every page with its detected
-            angle and marks the ones that were rotated; pages under the
-            threshold show their angle but are labeled as untouched. If you
-            queued several PDFs, each downloads under its original name and the
-            panel shows the last file processed.
+            بعد المعالجة، تسرد لوحة النتائج كل صفحة مع زاويتها المكتشفة وتضع
+            علامة على الصفحات التي أُديرت؛ وتُظهر الصفحات الأقل من العتبة
+            زاويتها لكنها توسَم بأنها لم تُمس. إذا وضعت عدة ملفات PDF في
+            الطابور، يُنزَّل كل منها باسمه الأصلي وتعرض اللوحة آخر ملف جرت
+            معالجته.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are my scans uploaded for processing?
+            هل تُرفع مسوحاتي الضوئية للمعالجة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The PDF rendering and the OpenCV analysis both run in your
-            browser through WebAssembly. The engine is downloaded the first time
-            you use it, but your documents never leave your computer.
+            لا. يعمل عرض PDF وتحليل OpenCV كلاهما في متصفحك عبر WebAssembly.
+            يُنزَّل المحرك عند أول استخدام، لكن مستنداتك لا تغادر حاسوبك أبدًا.
           </p>
         </details>
       </div>
@@ -489,26 +489,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to deskew PDF online",
-        "description": "Learn how to straighten tilted pages in scanned PDFs",
+        "name": "كيفية تقويم ميل PDF عبر الإنترنت",
+        "description": "تعرّف على كيفية تقويم الصفحات المائلة في ملفات PDF الممسوحة ضوئيًا",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload PDF",
-            "text": "Select your scanned PDF with tilted pages"
+            "name": "رفع PDF",
+            "text": "اختر ملف PDF الممسوح ضوئيًا الذي تحتوي صفحاته على ميل"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Auto-Detect",
-            "text": "OpenCV analyzes and detects skew angles"
+            "name": "الكشف التلقائي",
+            "text": "يحلل OpenCV زوايا الميل ويكتشفها"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Get your straightened PDF instantly"
+            "name": "تنزيل",
+            "text": "احصل على PDF المقوَّم فورًا"
           }
         ]
       }

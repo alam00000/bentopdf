@@ -1,17 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>PDF Overlay & Underlay Online Free | Pixel PDF</title>
+    <title>طبقة علوية وسفلية لـ PDF أونلاين مجانًا | Pixel PDF</title>
     <meta
       name="title"
-      content="PDF Overlay & Underlay Online Free | Pixel PDF"
+      content="طبقة علوية وسفلية لـ PDF أونلاين مجانًا | Pixel PDF"
     />
     <meta
       name="description"
-      content="Overlay Pdf online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضع طبقة علوية على PDF أونلاين. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="keywords"
@@ -29,11 +29,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/overlay-pdf" />
     <meta
       property="og:title"
-      content="PDF Overlay & Underlay Online Free | Pixel PDF"
+      content="طبقة علوية وسفلية لـ PDF أونلاين مجانًا | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Overlay Pdf online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضع طبقة علوية على PDF أونلاين. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/overlay-pdf" />
-    <meta name="twitter:title" content="PDF Overlay & Underlay Free" />
+    <meta name="twitter:title" content="طبقة علوية وسفلية لـ PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Overlay Pdf online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ضع طبقة علوية على PDF أونلاين. مجاني، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -58,7 +58,7 @@
 
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="PDF Overlay" />
+    <meta name="apple-mobile-web-app-title" content="تراكب PDF" />
 
     <link href="/src/css/styles.css" rel="stylesheet" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -99,19 +99,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:pdfOverlay.name"
         >
-          PDF Overlay
+          تراكب PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:pdfOverlay.subtitle">
-          Overlay or underlay pages from one PDF onto another.
+          وضع صفحات من ملف PDF فوق أو تحت صفحات ملف PDF آخر.
         </p>
 
         <div class="space-y-4">
@@ -119,7 +119,7 @@
             <label
               class="block text-sm font-medium text-gray-300 mb-2"
               data-i18n="tools:pdfOverlay.basePdfLabel"
-              >Base PDF</label
+              >ملف PDF الأساسي</label
             >
             <div
               id="base-drop-zone"
@@ -134,7 +134,7 @@
                   <span
                     class="font-semibold"
                     data-i18n="tools:pdfOverlay.uploadBasePdf"
-                    >Upload base PDF</span
+                    >رفع ملف PDF الأساسي</span
                   >
                 </p>
               </div>
@@ -152,7 +152,7 @@
             <label
               class="block text-sm font-medium text-gray-300 mb-2"
               data-i18n="tools:pdfOverlay.overlayPdfLabel"
-              >Overlay / Underlay PDF</label
+              >ملف PDF للتراكب / التبطين</label
             >
             <div
               id="overlay-drop-zone"
@@ -164,7 +164,7 @@
                   <span
                     class="font-semibold"
                     data-i18n="tools:pdfOverlay.uploadOverlayPdf"
-                    >Upload overlay/underlay PDF</span
+                    >رفع ملف PDF للتراكب/التبطين</span
                   >
                 </p>
               </div>
@@ -183,7 +183,7 @@
           class="text-xs text-gray-500 mt-3"
           data-i18n="upload.filesNeverLeave"
         >
-          Your files never leave your device.
+          ملفاتك لا تغادر جهازك أبدًا.
         </p>
 
         <div id="tool-options" class="hidden mt-6 space-y-4">
@@ -195,7 +195,7 @@
                 for="mode-select"
                 class="block text-sm font-medium text-gray-300 mb-1"
                 data-i18n="tools:pdfOverlay.modeLabel"
-                >Mode</label
+                >الوضع</label
               >
               <select
                 id="mode-select"
@@ -205,13 +205,13 @@
                   value="overlay"
                   data-i18n="tools:pdfOverlay.overlayOption"
                 >
-                  Overlay (on top of pages)
+                  تراكب (فوق الصفحات)
                 </option>
                 <option
                   value="underlay"
                   data-i18n="tools:pdfOverlay.underlayOption"
                 >
-                  Underlay (behind pages)
+                  تبطين (خلف الصفحات)
                 </option>
               </select>
             </div>
@@ -221,19 +221,20 @@
                 for="page-range"
                 class="block text-sm font-medium text-gray-300 mb-1"
                 data-i18n="tools:pdfOverlay.pageRangeLabel"
-                >Apply to pages (optional)</label
+                >تطبيق على الصفحات (اختياري)</label
               >
               <input
                 id="page-range"
                 type="text"
-                placeholder="e.g. 1-5, 8, 10-z (leave empty for all)"
+                placeholder="مثال: 1-5, 8, 10-z (اتركه فارغًا لكل الصفحات)"
                 class="w-full bg-gray-800 border border-gray-600 text-white rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
               <p
                 class="text-xs text-gray-500 mt-1"
                 data-i18n="tools:pdfOverlay.pageRangeHint"
               >
-                Use "z" for the last page. Leave empty to apply to all pages.
+                استخدم "z" للصفحة الأخيرة. اتركه فارغاً للتطبيق على جميع
+                الصفحات.
               </p>
             </div>
 
@@ -241,14 +242,14 @@
               <input
                 id="repeat-toggle"
                 type="checkbox"
-                checked
+                checked=""
                 class="w-4 h-4 rounded border-gray-600 bg-gray-800 text-indigo-600 focus:ring-indigo-500"
               />
               <label
                 for="repeat-toggle"
                 class="text-sm text-gray-300"
                 data-i18n="tools:pdfOverlay.repeatLabel"
-                >Loop overlay/underlay pages if base is longer</label
+                >تكرار صفحات التراكب/التبطين إذا كان الملف الأساسي أطول</label
               >
             </div>
           </div>
@@ -258,7 +259,7 @@
             class="btn-gradient w-full"
             data-i18n="tools:pdfOverlay.processButton"
           >
-            Apply Overlay / Underlay
+            تطبيق التراكب / التبطين
           </button>
         </div>
       </div>
@@ -277,7 +278,7 @@
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -290,14 +291,14 @@
         class="bg-gray-800 rounded-lg shadow-xl p-6 max-w-sm w-full border border-gray-700"
       >
         <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -307,7 +308,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -321,13 +322,13 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="tools:pdfOverlay.howItWorksUploadTitle"
             >
-              Upload Two PDFs
+              رفع ملفي PDF
             </h3>
             <p
               class="text-gray-400"
               data-i18n="tools:pdfOverlay.howItWorksUploadDescription"
             >
-              Upload your base PDF and the PDF you want to overlay or underlay.
+              ارفع ملف PDF الأساسي والملف الذي تريد تراكبه أو تبطينه.
             </p>
           </div>
         </div>
@@ -342,14 +343,14 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="tools:pdfOverlay.howItWorksModeTitle"
             >
-              Choose Mode
+              اختر الوضع
             </h3>
             <p
               class="text-gray-400"
               data-i18n="tools:pdfOverlay.howItWorksModeDescription"
             >
-              Select overlay (on top) or underlay (behind). Optionally set a
-              page range and repeat.
+              اختر التراكب (فوق) أو التبطين (خلف). يمكنك تحديد نطاق صفحات
+              والتكرار اختيارياً.
             </p>
           </div>
         </div>
@@ -364,13 +365,13 @@
               class="text-lg font-semibold text-white mb-1"
               data-i18n="tools:pdfOverlay.howItWorksDownloadTitle"
             >
-              Download
+              تنزيل
             </h3>
             <p
               class="text-gray-400"
               data-i18n="tools:pdfOverlay.howItWorksDownloadDescription"
             >
-              Download your PDF with the overlay or underlay applied.
+              قم بتنزيل ملف PDF مع التراكب أو التبطين المطبق.
             </p>
           </div>
         </div>
@@ -382,107 +383,105 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I apply the overlay to only some pages?
+            كيف أطبّق الطبقة على بعض الصفحات فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Type a range in the Apply to pages field using the base document's
-            page numbers, for example 1-5, 8, 10-z, where z stands for the last
-            page. Leave it empty to cover every page.
+            اكتب نطاقًا في حقل تطبيق على الصفحات باستخدام أرقام صفحات المستند
+            الأساسي، مثل 1-5, 8, 10-z حيث يرمز z إلى الصفحة الأخيرة. اتركه
+            فارغًا لتغطية كل الصفحات.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens when the two PDFs have different page counts?
+            ماذا يحدث عندما يختلف عدد صفحات الملفين؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            With the loop option on, the overlay's pages repeat in order until
-            every base page is covered, so a 2-page overlay on a 5-page document
-            is applied as 1, 2, 1, 2, 1. With it off, pages are matched one to
-            one and base pages beyond the overlay's length are left unchanged.
+            مع تفعيل خيار التكرار، تتكرر صفحات الطبقة بالترتيب حتى تُغطى كل
+            صفحات الأساس، لذلك تُطبَّق طبقة من صفحتين على مستند من 5 صفحات
+            بالترتيب 1, 2, 1, 2, 1. وعند إيقافه، تُطابَق الصفحات واحدة بواحدة
+            وتبقى صفحات الأساس التي تتجاوز طول الطبقة دون تغيير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do the page sizes need to match?
+            هل يجب أن تتطابق أحجام الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. An overlay page larger than the base page is scaled down to fit
-            and a smaller one is centered without being enlarged. There are no
-            controls for position, scale, or opacity, so build the overlay PDF
-            at the size and transparency you want before combining.
+            لا. تُصغَّر صفحة الطبقة العلوية الأكبر من صفحة الأساس لتناسبها،
+            وتُوضع الأصغر في المنتصف دون تكبير. لا توجد عناصر تحكم في الموضع أو
+            المقياس أو الشفافية، لذا أنشئ PDF الطبقة بالحجم والشفافية المطلوبين
+            قبل الدمج.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the base PDF stay searchable and editable?
+            هل يبقى PDF الأساسي قابلًا للبحث والتحرير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. The base document's text, links, form fields, and bookmarks are
-            untouched; the overlay is added to each page as an extra drawing
-            layer, and any text in it remains selectable too.
+            نعم. تبقى نصوص المستند الأساسي وروابطه وحقول النماذج والإشارات
+            المرجعية دون تغيير، وتُضاف الطبقة العلوية إلى كل صفحة كطبقة رسم
+            إضافية، ويظل أي نص فيها قابلًا للتحديد أيضًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are links, form fields, or comments from the overlay PDF copied
-            over?
+            هل تُنسخ الروابط أو حقول النماذج أو التعليقات من PDF الطبقة العلوية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Only the visible page content of the overlay is used.
-            Annotations on the overlay pages, including links, form fields, and
-            comments, don't transfer to the result.
+            لا. يُستخدم فقط محتوى الصفحة المرئي للطبقة. التعليقات التوضيحية في
+            صفحات الطبقة، بما فيها الروابط وحقول النماذج والتعليقات، لا تنتقل
+            إلى النتيجة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which mode should I use for a letterhead?
+            ما الوضع الذي أستخدمه للترويسة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Underlay, so the letterhead sits behind the page content, with the
-            loop option on if the letterhead is a single page. For text or image
-            watermarks with adjustable opacity, rotation, and placement,
+            الطبقة السفلية (Underlay)، ليظهر الترويسة خلف محتوى الصفحة، مع تفعيل
+            خيار التكرار إذا كانت الترويسة صفحة واحدة. للعلامات المائية النصية
+            أو الصورية مع التحكم في الشفافية والتدوير والموضع، تمنحك
             <a
               href="/add-watermark"
               class="text-indigo-300 hover:text-indigo-400"
-              >Add Watermark</a
+              >إضافة علامة مائية</a
             >
-            gives more control.
+            تحكمًا أكبر.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does it fail on a password-protected PDF?
+            لماذا يفشل مع ملف PDF محمي بكلمة مرور؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The tool doesn't ask for passwords. If either file needs a password
-            to open, remove it first with the
+            لا تطلب الأداة كلمات مرور. إذا كان أي من الملفين يحتاج كلمة مرور
+            لفتحه، فأزلها أولًا بأداة
             <a href="/unlock-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >password removal tool</a
-            >, then apply the overlay to the copy without the password.
+              >إزالة كلمة المرور</a
+            >، ثم طبّق الطبقة على النسخة التي بلا كلمة مرور.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do both PDFs get uploaded?
+            هل يُرفع ملفا PDF كلاهما؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The overlay is applied by qpdf compiled to WebAssembly, which
-            runs entirely in your browser, so neither the base document nor the
-            overlay file leaves your device. The combined PDF downloads under
-            the base document's filename.
+            لا. تُطبَّق الطبقة بواسطة qpdf المُجمَّعة إلى WebAssembly، والتي
+            تعمل بالكامل في متصفحك، لذلك لا يغادر المستند الأساسي ولا ملف الطبقة
+            جهازك. يُنزَّل ملف PDF المدمج باسم ملف المستند الأساسي.
           </p>
         </details>
       </div>
@@ -515,26 +514,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to overlay or underlay PDF pages",
+        "name": "كيفية وضع صفحات PDF فوق بعضها أو تحتها",
         "description": "Learn how to overlay or underlay pages from one PDF onto another using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload Two PDFs",
-            "text": "Upload your base PDF and the overlay/underlay PDF"
+            "name": "ارفع ملفي PDF",
+            "text": "ارفع ملف PDF الأساسي وملف PDF الطبقة العلوية أو السفلية"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Choose Mode",
-            "text": "Select overlay or underlay mode and configure options"
+            "name": "اختر الوضع",
+            "text": "اختر وضع الطبقة العلوية أو السفلية واضبط الخيارات"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed PDF"
+            "name": "تنزيل",
+            "text": "نزّل ملف PDF المعالج"
           }
         ]
       }

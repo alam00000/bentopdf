@@ -100,7 +100,7 @@ function handleFileSelect(files: FileList | null) {
 
 async function processFiles() {
   if (pageState.files.length === 0) {
-    showAlert('No Files', 'Please select at least one PDF file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
     return;
   }
 
@@ -119,7 +119,7 @@ async function processFiles() {
     if (pageState.files.length === 1) {
       if (loaderModal) loaderModal.classList.remove('hidden');
       if (loaderText)
-        loaderText.textContent = trText('Converting fonts to outlines...');
+        loaderText.textContent = trText("جارٍ تحويل الخطوط إلى مخططات...");
 
       const file = pageState.files[0];
       const resultBlob = await convertFileToOutlines(file, (msg) => {
@@ -131,7 +131,7 @@ async function processFiles() {
     } else {
       if (loaderModal) loaderModal.classList.remove('hidden');
       if (loaderText)
-        loaderText.textContent = trText('Processing multiple PDFs...');
+        loaderText.textContent = trText("جارٍ معالجة عدة ملفات PDF...");
 
       const zip = new JSZip();
       const usedNames = new Set<string>();
@@ -141,7 +141,7 @@ async function processFiles() {
         const file = pageState.files[i];
         if (loaderText)
           loaderText.textContent = trText(
-            'Processing {{n}}/{{length}}: {{name}}...',
+            "جارٍ معالجة {{n}}/{{length}}: {{name}}...",
             { n: i + 1, length: pageState.files.length, name: file.name }
           );
 
@@ -160,15 +160,15 @@ async function processFiles() {
         const zipBlob = await zip.generateAsync({ type: 'blob' });
         downloadFile(zipBlob, 'outlined_pdfs.zip');
         showAlert(
-          'Success',
-          trText('Processed {{processedCount}} PDFs.', { processedCount }),
+          "تم بنجاح",
+          trText("تمت معالجة {{processedCount}} من ملفات PDF.", { processedCount }),
           'success',
           () => {
             resetState();
           }
         );
       } else {
-        showAlert('Error', 'No PDFs could be processed.');
+        showAlert("خطأ", "تعذرت معالجة أي ملف PDF.");
       }
       if (loaderModal) loaderModal.classList.add('hidden');
     }
@@ -176,8 +176,8 @@ async function processFiles() {
     console.error(e);
     if (loaderModal) loaderModal.classList.add('hidden');
     const errorMessage =
-      e instanceof Error ? e.message : trText('An unexpected error occurred.');
-    showAlert('Error', errorMessage);
+      e instanceof Error ? e.message : trText("حدث خطأ غير متوقع.");
+    showAlert("خطأ", errorMessage);
   }
 }
 

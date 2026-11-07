@@ -106,8 +106,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only JPG, JPEG, JP2, and JPX files are allowed.'
+      "ملفات غير صالحة",
+      "تم تخطي بعض الملفات. يُسمح بملفات JPG وJPEG وJP2 وJPX فقط."
     );
   }
 
@@ -187,16 +187,16 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one JPG or JPEG2000 image.');
+    showAlert("لا توجد ملفات", "يرجى اختيار صورة JPG أو JPEG2000 واحدة على الأقل.");
     return;
   }
 
-  showLoader('Loading engine...');
+  showLoader("جارٍ تحميل المحرك...");
 
   try {
     const mupdf = await ensurePyMuPDF();
 
-    showLoader('Converting images to PDF...');
+    showLoader("جارٍ تحويل الصور إلى PDF...");
     const quality = getSelectedQuality();
     const compressedFiles: File[] = [];
     for (const file of files) {
@@ -207,14 +207,14 @@ async function convertToPdf() {
 
     downloadFile(pdfBlob, 'from_jpgs.pdf');
 
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e: unknown) {
     console.error('[JpgToPdf]', e);
     showAlert(
-      'Conversion Error',
-      e instanceof Error ? e.message : 'Failed to convert images to PDF.'
+      "خطأ في التحويل",
+      e instanceof Error ? e.message : "تعذر تحويل الصور إلى PDF."
     );
   } finally {
     hideLoader();

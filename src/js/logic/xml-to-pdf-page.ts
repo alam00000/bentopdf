@@ -82,8 +82,8 @@ onPageReady(() => {
   const convert = async () => {
     if (state.files.length === 0) {
       showAlert(
-        'No Files',
-        trText('Please select at least one {{FILETYPE_NAME}} file.', {
+        "لا توجد ملفات",
+        trText("يرجى اختيار ملف {{FILETYPE_NAME}} واحد على الأقل.", {
           FILETYPE_NAME,
         })
       );
@@ -104,15 +104,15 @@ onPageReady(() => {
 
         hideLoader();
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: file.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting multiple files...');
+        showLoader("جارٍ تحويل عدة ملفات...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
         const usedNames = new Set<string>();
@@ -122,7 +122,7 @@ onPageReady(() => {
           const pdfBlob = await convertXmlToPdf(file, {
             onProgress: (percent, message) => {
               showLoader(
-                trText('File {{n}}/{{length}}: {{message}}', {
+                trText("الملف {{n}}/{{length}}: {{message}}", {
                   n: i + 1,
                   length: state.files.length,
                   message,
@@ -145,8 +145,8 @@ onPageReady(() => {
 
         hideLoader();
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{length}} files to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{length}} من الملفات إلى PDF بنجاح.", {
             length: state.files.length,
           }),
           'success',
@@ -156,11 +156,11 @@ onPageReady(() => {
     } catch (err) {
       hideLoader();
       const message =
-        err instanceof Error ? err.message : trText('Unknown error');
+        err instanceof Error ? err.message : trText("خطأ غير معروف");
       console.error(`[${FILETYPE_NAME}ToPDF] Error:`, err);
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{message}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{message}}", {
           message,
         })
       );

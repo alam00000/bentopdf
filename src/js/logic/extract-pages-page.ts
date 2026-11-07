@@ -83,7 +83,7 @@ async function handleFile(file: File) {
     file.type !== 'application/pdf' &&
     !file.name.toLowerCase().endsWith('.pdf')
   ) {
-    showAlert('Invalid File', 'Please select a PDF file.');
+    showAlert("ملف غير صالح", "يرجى اختيار ملف PDF.");
     return;
   }
 
@@ -95,7 +95,7 @@ async function handleFile(file: File) {
       extractState.file = null;
       return;
     }
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     extractState.file = result.file;
     result.pdf.destroy();
     extractState.pdfDoc = await loadPdfDocument(result.bytes);
@@ -107,7 +107,7 @@ async function handleFile(file: File) {
   } catch (error) {
     console.error('Error loading PDF:', error);
     hideLoader();
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   }
 }
 
@@ -129,7 +129,7 @@ function updateFileDisplay() {
 
   const metaSpan = document.createElement('div');
   metaSpan.className = 'text-xs text-gray-400';
-  metaSpan.textContent = trText('{{size}} • {{totalPages}} pages', {
+  metaSpan.textContent = trText("{{size}} • {{totalPages}} صفحة", {
     size: formatBytes(extractState.file.size),
     totalPages: extractState.totalPages,
   });
@@ -163,7 +163,7 @@ async function extractPages() {
     'pages-to-extract'
   ) as HTMLInputElement;
   if (!pagesInput || !pagesInput.value.trim()) {
-    showAlert('No Pages', 'Please enter page numbers to extract.');
+    showAlert("لا توجد صفحات", "يرجى إدخال أرقام الصفحات المراد استخراجها.");
     return;
   }
 
@@ -172,11 +172,11 @@ async function extractPages() {
     extractState.totalPages
   ).map((i) => i + 1);
   if (pagesToExtract.length === 0) {
-    showAlert('Invalid Pages', 'No valid page numbers found.');
+    showAlert("صفحات غير صالحة", "لم يتم العثور على أرقام صفحات صالحة.");
     return;
   }
 
-  showLoader('Extracting pages...');
+  showLoader("جارٍ استخراج الصفحات...");
 
   try {
     const zip = new JSZip();
@@ -197,8 +197,8 @@ async function extractPages() {
 
     hideLoader();
     showAlert(
-      'Success',
-      trText('Extracted {{length}} page(s) successfully!', {
+      "تم بنجاح",
+      trText("تم استخراج {{length}} من الصفحات بنجاح!", {
         length: pagesToExtract.length,
       }),
       'success',
@@ -209,7 +209,7 @@ async function extractPages() {
   } catch (error) {
     console.error('Error extracting pages:', error);
     hideLoader();
-    showAlert('Error', 'Failed to extract pages.');
+    showAlert("خطأ", "تعذر استخراج الصفحات.");
   }
 }
 

@@ -28,7 +28,7 @@ export async function loadGhostscript(): Promise<GhostscriptInterface> {
     if (!baseUrl) {
       throw new Error(
         trText(
-          'Ghostscript is not configured. Please configure it in Advanced Settings.'
+          "Ghostscript غير مهيأ. يرجى تهيئته في الإعدادات المتقدمة."
         )
       );
     }
@@ -57,7 +57,7 @@ export async function loadGhostscript(): Promise<GhostscriptInterface> {
       } else {
         throw new Error(
           trText(
-            'Ghostscript wrapper did not expose expected interface. Expected loadGS() or GhostscriptWASM class.'
+            "لم تُظهر حزمة Ghostscript الواجهة المتوقعة. المتوقع هو loadGS() أو الصنف GhostscriptWASM."
           )
         );
       }
@@ -67,7 +67,7 @@ export async function loadGhostscript(): Promise<GhostscriptInterface> {
       loadPromise = null;
       const msg = error instanceof Error ? error.message : String(error);
       throw new Error(
-        trText('Failed to load Ghostscript from {{normalizedUrl}}: {{msg}}', {
+        trText("تعذر تحميل Ghostscript من {{normalizedUrl}}: {{msg}}", {
           normalizedUrl,
           msg,
         }),
@@ -93,7 +93,7 @@ function loadScript(url: string): Promise<void> {
 
     script.onload = () => resolve();
     script.onerror = () =>
-      reject(new Error(trText('Failed to load script: {{url}}', { url })));
+      reject(new Error(trText("تعذر تحميل السكربت: {{url}}", { url })));
 
     document.head.appendChild(script);
   });

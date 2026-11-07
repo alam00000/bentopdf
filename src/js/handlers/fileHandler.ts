@@ -45,7 +45,7 @@ let imageSortableInstance: Sortable | null = null;
 const activeImageUrls = new Map<File, string>();
 
 async function handleSinglePdfUpload(toolId: string, file: File) {
-  showLoader('Loading PDF...');
+  showLoader("جارٍ تحميل PDF...");
   try {
     if (toolId === 'form-filler') {
       hideLoader();
@@ -220,7 +220,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
 
     if (toolId === 'view-metadata') {
       const resultsDiv = document.getElementById('metadata-results');
-      showLoader('Analyzing full PDF metadata...');
+      showLoader("جارٍ تحليل البيانات الوصفية الكاملة لملف PDF...");
 
       try {
         const pdfBytes = await readFileAsArrayBuffer(state.files[0]);
@@ -280,7 +280,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
           }
         };
 
-        const infoSection = createSection(trText('Info Dictionary'));
+        const infoSection = createSection(trText("قاموس المعلومات"));
         if (info && Object.keys(info).length > 0) {
           for (const key in info) {
             const value = (info as Record<string, unknown>)[key];
@@ -312,11 +312,11 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             infoSection.ul.appendChild(createListItem(key, displayValue));
           }
         } else {
-          infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No Info Dictionary data found -')}</span></li>`;
+          infoSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على بيانات قاموس المعلومات -")}</span></li>`;
         }
         resultsDiv.appendChild(infoSection.wrapper);
 
-        const fieldsSection = createSection(trText('Interactive Form Fields'));
+        const fieldsSection = createSection(trText("حقول النماذج التفاعلية"));
         if (fieldObjects && Object.keys(fieldObjects).length > 0) {
           for (const fieldName in fieldObjects) {
             const field = fieldObjects[fieldName][0] as Record<string, unknown>;
@@ -326,7 +326,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             );
           }
         } else {
-          fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No interactive form fields found -')}</span></li>`;
+          fieldsSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على حقول نموذج تفاعلية -")}</span></li>`;
         }
         resultsDiv.appendChild(fieldsSection.wrapper);
 
@@ -414,7 +414,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
           }
         };
 
-        const xmpSection = createSection(trText('XMP Metadata'));
+        const xmpSection = createSection(trText("بيانات XMP الوصفية"));
         if (rawXmpString) {
           try {
             const parser = new DOMParser();
@@ -433,11 +433,11 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             }
 
             if (xmpSection.ul.children.length === 0) {
-              xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No parseable XMP properties found -')}</span></li>`;
+              xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على خصائص XMP قابلة للتحليل -")}</span></li>`;
             }
           } catch (xmlError) {
             console.error('Failed to parse XMP XML:', xmlError);
-            xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">${trHtml('- Error parsing XMP XML. Displaying raw. -')}</span></li>`;
+            xmpSection.ul.innerHTML = `<li><span class="text-red-500 italic">${trHtml("- خطأ في تحليل XMP XML. يتم عرض النص الخام. -")}</span></li>`;
             const pre = document.createElement('pre');
             pre.className =
               'text-xs text-gray-300 whitespace-pre-wrap break-all';
@@ -445,7 +445,7 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
             xmpSection.ul.appendChild(pre);
           }
         } else {
-          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml('- No XMP metadata found -')}</span></li>`;
+          xmpSection.ul.innerHTML = `<li><span class="text-gray-500 italic">${trHtml("- لم يتم العثور على بيانات XMP الوصفية -")}</span></li>`;
         }
         resultsDiv.appendChild(xmpSection.wrapper);
 
@@ -453,8 +453,8 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
       } catch (e) {
         console.error('Failed to view metadata or fields:', e);
         showAlert(
-          'Error',
-          'Could not fully analyze the PDF. It may be corrupted or have an unusual structure.'
+          "خطأ",
+          "تعذر تحليل PDF بالكامل. قد يكون تالفًا أو ذا بنية غير معتادة."
         );
       } finally {
         hideLoader();
@@ -497,13 +497,13 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
 
         const keyInput = document.createElement('input');
         keyInput.type = 'text';
-        keyInput.placeholder = trText('Key (e.g., Department)');
+        keyInput.placeholder = trText("المفتاح (مثل: القسم)");
         keyInput.className =
           'custom-meta-key w-full sm:w-1/3 bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
         const valueInput = document.createElement('input');
         valueInput.type = 'text';
-        valueInput.placeholder = trText('Value (e.g., Marketing)');
+        valueInput.placeholder = trText("القيمة (مثل: التسويق)");
         valueInput.className =
           'custom-meta-value w-full sm:flex-grow bg-gray-800 border border-gray-600 text-white rounded-lg p-2';
 
@@ -593,8 +593,8 @@ async function handleSinglePdfUpload(toolId: string, file: File) {
   } catch (e) {
     hideLoader();
     showAlert(
-      'Error',
-      'Could not load PDF. The file may be invalid, corrupted, or password-protected.'
+      "خطأ",
+      "تعذر تحميل PDF. قد يكون الملف غير صالح أو تالفًا أو محميًا بكلمة مرور."
     );
     console.error(e);
   }
@@ -606,7 +606,7 @@ async function handleMultiFileUpload(toolId: string) {
     toolId === 'alternate-merge' ||
     toolId === 'reverse-pages'
   ) {
-    showLoader('Loading PDF documents...');
+    showLoader("جارٍ تحميل مستندات PDF...");
 
     const pdfFilesUnloaded: File[] = [];
 
@@ -665,7 +665,7 @@ async function handleMultiFileUpload(toolId: string) {
         return;
       }
 
-      showLoader('Loading PDF documents...');
+      showLoader("جارٍ تحميل مستندات PDF...");
     }
   }
 
@@ -864,8 +864,8 @@ export function setupFileInputHandler(toolId: string) {
 
       if (validFiles.length < newFiles.length) {
         showAlert(
-          'Invalid Files',
-          'Some files were skipped because they are not supported images.'
+          "ملفات غير صالحة",
+          "تم تخطي بعض الملفات لأنها ليست صورًا مدعومة."
         );
       }
 

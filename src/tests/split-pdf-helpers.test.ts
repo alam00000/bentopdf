@@ -211,14 +211,14 @@ describe('extractPagesWithQpdf (error handling, stubbed)', () => {
   it('throws on a hard qpdf error (exit code 2)', () => {
     const qpdf = stubQpdf(2, new Uint8Array([1, 2, 3]));
     expect(() => extractPagesWithQpdf(qpdf, '/in.pdf', [0])).toThrow(
-      /exit code 2/
+      /رمز خروج qpdf 2/
     );
   });
 
   it('throws when qpdf produces an empty file', () => {
     const qpdf = stubQpdf(0, new Uint8Array());
     expect(() => extractPagesWithQpdf(qpdf, '/in.pdf', [0])).toThrow(
-      /empty PDF/
+      /ملف PDF فارغ/
     );
   });
 

@@ -97,8 +97,8 @@ function handleFiles(newFiles: FileList) {
 
   if (validFiles.length < newFiles.length) {
     showAlert(
-      'Invalid Files',
-      'Some files were skipped. Only WebP images are allowed.'
+      "ملفات غير صالحة",
+      "تم تخطي بعض الملفات. يُسمح بصور WebP فقط."
     );
   }
 
@@ -190,7 +190,7 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
         async (jpegBlob) => {
           if (!jpegBlob) {
             return reject(
-              new Error(trText('Canvas toBlob conversion failed.'))
+              new Error(trText("فشل تحويل Canvas toBlob."))
             );
           }
           const arrayBuffer = await jpegBlob.arrayBuffer();
@@ -207,7 +207,7 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
       reject(
         new Error(
           trText(
-            'The provided file could not be loaded as an image. It may be corrupted.'
+            "تعذر تحميل الملف المقدَّم كصورة. قد يكون تالفًا."
           )
         )
       );
@@ -219,11 +219,11 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
 
 async function convertToPdf() {
   if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one JPG file.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف JPG واحد على الأقل.");
     return;
   }
 
-  showLoader('Creating PDF from JPGs...');
+  showLoader("جارٍ إنشاء PDF من صور JPG...");
 
   try {
     const pdfDoc = await PDFLibDocument.create();
@@ -262,12 +262,12 @@ async function convertToPdf() {
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_webps.pdf'
     );
-    showAlert('Success', 'PDF created successfully!', 'success', () => {
+    showAlert("تم بنجاح", "تم إنشاء PDF بنجاح!", 'success', () => {
       resetState();
     });
   } catch (e: unknown) {
     console.error(e);
-    showAlert('Conversion Error', e instanceof Error ? e.message : String(e));
+    showAlert("خطأ في التحويل", e instanceof Error ? e.message : String(e));
   } finally {
     hideLoader();
   }

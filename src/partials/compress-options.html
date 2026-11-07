@@ -3,23 +3,23 @@
     <label
       for="compression-level"
       class="block mb-2 text-sm font-medium text-gray-300"
-      >Compression Level</label
+      >مستوى الضغط</label
     >
     <select
       id="compression-level"
       autocomplete="off"
       class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
     >
-      <option value="low">Low (Best Quality)</option>
-      <option value="medium" selected>Medium (Recommended)</option>
-      <option value="high">High (Smallest Files)</option>
-      <option value="lossless">Lossless (No Quality Loss)</option>
-      <option value="custom">Custom</option>
+      <option value="low">منخفض (أفضل جودة)</option>
+      <option value="medium" selected="">متوسط (موصى به)</option>
+      <option value="high">عالٍ (أصغر الملفات)</option>
+      <option value="lossless">بدون فقدان (بلا خسارة في الجودة)</option>
+      <option value="custom">مخصص</option>
     </select>
     <p class="mt-2 text-xs text-gray-400">
-      Powered by Hyper Compress: it recompresses images, subsets and merges
-      fonts, and strips dead weight while text, links, and forms keep working.
-      For image-only scans, turn on Rasterize pages under Custom Settings.
+      مدعوم بـ Hyper Compress: يعيد ضغط الصور ويقتطع الخطوط ويدمجها ويزيل
+      الأوزان الزائدة بينما تظل النصوص والروابط والنماذج تعمل. للمسوحات المكونة
+      من صور فقط، فعّل تحويل الصفحات إلى صور ضمن الإعدادات المخصصة.
     </p>
   </div>
 
@@ -27,7 +27,7 @@
     <label
       for="target-size"
       class="block mb-2 text-sm font-medium text-gray-300"
-      >Target File Size (Optional)</label
+      >حجم الملف المستهدف (اختياري)</label
     >
     <div class="flex gap-2">
       <input
@@ -36,24 +36,24 @@
         min="0.01"
         step="0.01"
         value="{{targetSize}}"
-        placeholder="No target"
+        placeholder="بدون هدف"
         autocomplete="off"
         class="flex-1 min-w-0 bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
       />
       <select
         id="target-size-unit"
         data-default-unit="{{targetUnit}}"
-        aria-label="Target file size unit"
+        aria-label="وحدة حجم الملف المستهدف"
         autocomplete="off"
         class="bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5 focus:ring-indigo-500 focus:border-indigo-500"
       >
         <option value="kb">KB</option>
-        <option value="mb" selected>MB</option>
+        <option value="mb" selected="">MB</option>
       </select>
     </div>
     <p class="text-xs text-gray-500 mt-1">
-      Hyper Compress finds the best quality that fits. Leave it empty to use the
-      level as is.
+      يجد Hyper Compress أفضل جودة تناسب الحجم. اتركه فارغًا لاستخدام المستوى
+      كما هو.
     </p>
   </div>
 
@@ -64,7 +64,7 @@
       class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 text-sm font-medium"
     >
       <i data-lucide="settings" class="w-4 h-4"></i>
-      <span>Custom Settings</span>
+      <span>الإعدادات المخصصة</span>
       <i
         data-lucide="chevron-down"
         id="custom-settings-chevron"
@@ -77,34 +77,30 @@
       class="hidden mt-4 p-4 bg-gray-900 rounded-lg border border-gray-700 space-y-3"
     >
       <p class="text-sm text-gray-400">
-        Fine-tune Hyper Compress. Picking a compression level resets these,
-        except Override content protection, Convert to grayscale, Preserve
-        PDF/A, and Brotli.
+        اضبط Hyper Compress بدقة. اختيار مستوى ضغط يعيد ضبط هذه الإعدادات،
+        باستثناء تجاوز حماية المحتوى والتحويل إلى تدرج الرمادي والحفاظ على PDF/A
+        وBrotli.
       </p>
-      <label class="flex items-start gap-2 cursor-pointer">
-        <input
+      <label class="flex items-start gap-2 cursor-pointer"
+        ><input
           type="checkbox"
           id="override-protection"
           autocomplete="off"
           class="w-4 h-4 mt-0.5 rounded flex-shrink-0"
         />
         <span>
-          <span class="block text-sm text-gray-300"
-            >Override content protection</span
-          >
+          <span class="block text-sm text-gray-300">تجاوز حماية المحتوى</span>
           <span class="block text-xs text-gray-500 mt-0.5"
-            >By default, Hyper Compress preserves content: it leaves digitally
-            signed PDFs untouched and won't rasterize pages that have text. Turn
-            this on to bypass both. Signed PDFs lose their signatures, and
-            Rasterize pages also turns text into images.</span
+            >افتراضيًا يحافظ Hyper Compress على المحتوى: فهو يترك ملفات PDF
+            الموقّعة رقميًا دون مساس ولا يحوّل الصفحات التي تحتوي على نص إلى
+            صور. فعّل هذا الخيار لتجاوز الأمرين. تفقد ملفات PDF الموقّعة
+            توقيعاتها، ويحوّل تحويل الصفحات إلى صور النص إلى صور أيضًا.</span
           >
-        </span>
-      </label>
+        </span></label
+      >
       <div id="hyper-options" class="space-y-3"></div>
     </div>
   </div>
 
-  <button id="process-btn" class="btn-gradient w-full mt-4">
-    Compress PDF
-  </button>
+  <button id="process-btn" class="btn-gradient w-full mt-4">ضغط PDF</button>
 </div>

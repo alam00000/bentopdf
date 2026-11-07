@@ -63,7 +63,7 @@ export async function repairPdfFile(file: File): Promise<Uint8Array | null> {
 
 export async function repairPdf() {
   if (state.files.length === 0) {
-    showAlert('No Files', 'Please select one or more PDF files.');
+    showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد أو أكثر.");
     return;
   }
 
@@ -72,13 +72,13 @@ export async function repairPdf() {
 
   try {
     const decryptedFiles = await batchDecryptIfNeeded(state.files);
-    showLoader('Initializing repair engine...');
+    showLoader("جارٍ تهيئة محرك الإصلاح...");
     state.files = decryptedFiles;
 
     for (let i = 0; i < state.files.length; i++) {
       const file = state.files[i];
       showLoader(
-        trText('Repairing {{name}} ({{n}}/{{length}})...', {
+        trText("جارٍ إصلاح {{name}} ({{n}}/{{length}})...", {
           name: file.name,
           n: i + 1,
           length: state.files.length,
@@ -101,8 +101,8 @@ export async function repairPdf() {
 
     if (successfulRepairs.length === 0) {
       showAlert(
-        'Repair Failed',
-        'Unable to repair any of the uploaded PDF files.'
+        "فشل الإصلاح",
+        "تعذر إصلاح أي من ملفات PDF المرفوعة."
       );
       return;
     }
@@ -110,9 +110,9 @@ export async function repairPdf() {
     if (failedRepairs.length > 0) {
       const failedList = failedRepairs.join(', ');
       showAlert(
-        'Partial Success',
+        "نجاح جزئي",
         trText(
-          'Repaired {{length}} file(s). Failed to repair: {{failedList}}',
+          "تم إصلاح {{length}} من الملفات. تعذر إصلاح: {{failedList}}",
           { length: successfulRepairs.length, failedList }
         )
       );
@@ -125,7 +125,7 @@ export async function repairPdf() {
       });
       downloadFile(blob, file.name);
     } else {
-      showLoader('Creating ZIP archive...');
+      showLoader("جارٍ إنشاء أرشيف ZIP...");
       const zip = new JSZip();
       const usedNames = new Set<string>();
       successfulRepairs.forEach((file) => {
@@ -139,14 +139,14 @@ export async function repairPdf() {
     }
 
     if (failedRepairs.length === 0) {
-      showAlert('Success', 'All files repaired successfully!');
+      showAlert("تم بنجاح", "تم إصلاح جميع الملفات بنجاح!");
     }
   } catch (error: unknown) {
     console.error('Critical error during repair:', error);
     hideLoader();
     showAlert(
-      'Error',
-      'An unexpected error occurred during the repair process.'
+      "خطأ",
+      "حدث خطأ غير متوقع أثناء عملية الإصلاح."
     );
   }
 }

@@ -95,13 +95,13 @@ const resetState = () => {
 
 async function convert() {
   if (files.length === 0) {
-    showAlert('No File', 'Please upload a PDF file first.');
+    showAlert("لا يوجد ملف", "يرجى رفع ملف PDF أولًا.");
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(files[0], files, 0);
     if (!result) return;
-    showLoader('Converting to greyscale...');
+    showLoader("جارٍ التحويل إلى تدرج الرمادي...");
     const { pdf: pdfjsDoc } = result;
     const newPdfDoc = await PDFDocument.create();
 
@@ -148,8 +148,8 @@ async function convert() {
       files[0]?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      'PDF converted to greyscale successfully!',
+      "تم بنجاح",
+      "تم تحويل PDF إلى تدرج الرمادي بنجاح!",
       'success',
       () => {
         resetState();
@@ -158,8 +158,8 @@ async function convert() {
   } catch (e) {
     console.error(e);
     showAlert(
-      'Error',
-      'Failed to convert PDF to greyscale. The file might be corrupted.'
+      "خطأ",
+      "تعذر تحويل PDF إلى تدرج الرمادي. قد يكون الملف تالفًا."
     );
   } finally {
     hideLoader();
@@ -185,7 +185,7 @@ onPageReady(() => {
     );
 
     if (validFiles.length === 0) {
-      showAlert('Invalid File', 'Please upload a PDF file.');
+      showAlert("ملف غير صالح", "يرجى رفع ملف PDF.");
       return;
     }
 

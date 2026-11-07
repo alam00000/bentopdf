@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Combine Single Page Online Free - Combine Single Page Tool | Pixel PDF"
+      content="الدمج في صفحة واحدة مجانًا عبر الإنترنت - أداة الدمج في صفحة واحدة | Pixel PDF"
     />
     <meta
       name="description"
-      content="Combine Single Page online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج في صفحة واحدة عبر الإنترنت. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="combine single page, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Combine Single Page Online Free - Combine Single Page Tool | Pixel PDF"
+      content="الدمج في صفحة واحدة مجانًا عبر الإنترنت - أداة الدمج في صفحة واحدة | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Combine Single Page online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج في صفحة واحدة عبر الإنترنت. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/combine-single-page"
     />
-    <meta name="twitter:title" content="Combine Single Page Free" />
+    <meta name="twitter:title" content="الدمج في صفحة واحدة مجانًا" />
     <meta
       name="twitter:description"
-      content="Combine Single Page online. Free, no uploads, no signup. Runs entirely in your browser."
+      content="ادمج في صفحة واحدة عبر الإنترنت. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -67,7 +67,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Combine Single Page" />
 
-    <title>Combine to Single Page - Pixel PDF</title>
+    <title>دمج في صفحة واحدة - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,22 +112,22 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:combineToSinglePage.name"
         >
-          Combine to Single Page
+          دمج في صفحة واحدة
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:combineToSinglePage.subtitle"
         >
-          Stitch all pages into one continuous scroll.
+          دمج جميع الصفحات في تمرير مستمر واحد.
         </p>
 
         <div
@@ -138,15 +138,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -165,23 +165,23 @@
               <label
                 for="combine-orientation"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Layout Direction</label
+                >اتجاه التخطيط</label
               >
               <select
                 id="combine-orientation"
                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
               >
-                <option value="vertical" selected>
-                  Vertical (Top to Bottom)
+                <option value="vertical" selected="">
+                  عمودي (من الأعلى إلى الأسفل)
                 </option>
-                <option value="horizontal">Horizontal (Left to Right)</option>
+                <option value="horizontal">أفقي (من اليسار إلى اليمين)</option>
               </select>
             </div>
             <div>
               <label
                 for="page-spacing"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Spacing (pixels)</label
+                >التباعد (بكسل)</label
               >
               <input
                 type="number"
@@ -198,19 +198,21 @@
               <label
                 for="background-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Background Color</label
+                >لون الخلفية</label
               >
               <input type="color" id="background-color" value="#FFFFFF" />
             </div>
             <div class="flex items-end">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="add-separator"
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-600"
                 />
-                <span class="text-sm text-gray-300">Add Separator Lines</span>
-              </label>
+                <span class="text-sm text-gray-300"
+                  >إضافة خطوط فاصلة</span
+                ></label
+              >
             </div>
           </div>
 
@@ -222,7 +224,7 @@
               <label
                 for="separator-thickness"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Separator Thickness</label
+                >سماكة الفاصل</label
               >
               <input
                 type="number"
@@ -237,14 +239,14 @@
               <label
                 for="separator-color"
                 class="block mb-2 text-sm font-medium text-gray-300"
-                >Separator Color</label
+                >لون الفاصل</label
               >
               <input type="color" id="separator-color" value="#000000" />
             </div>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full mt-4">
-            Combine Pages
+            دمج الصفحات
           </button>
         </div>
       </div>
@@ -263,9 +265,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -282,16 +283,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -302,7 +302,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -312,9 +312,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -325,9 +325,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -338,9 +338,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -353,43 +353,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -400,105 +406,100 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I merge all pages of a PDF into one long page?
+            كيف أدمج كل صفحات PDF في صفحة واحدة طويلة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the PDF, keep Layout Direction set to Vertical, and click the
-            process button. Every page is placed top to bottom on one continuous
-            page, with the output width matching the widest source page and
-            narrower pages centered.
+            ارفع PDF، وأبقِ اتجاه التخطيط على عمودي، وانقر على زر المعالجة. توضع
+            كل صفحة من الأعلى إلى الأسفل على صفحة واحدة متصلة، بعرض ناتج يطابق
+            أعرض صفحة مصدر وتتوسط الصفحات الأضيق.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I put the pages side by side instead of stacked?
+            هل يمكنني وضع الصفحات جنبًا إلى جنب بدلاً من تكديسها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Choose Horizontal (Left to Right) in Layout Direction. Pages are
-            laid out in order from left to right on a single wide page, and
-            pages shorter than the tallest one are centered vertically.
+            اختر أفقي (من اليسار إلى اليمين) في اتجاه التخطيط. تُرتَّب الصفحات
+            بالتسلسل من اليسار إلى اليمين على صفحة واحدة عريضة، وتتوسط عموديًا
+            الصفحات الأقصر من أطولها.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I add a gap or a line between the pages?
+            هل يمكنني إضافة فجوة أو خط بين الصفحات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Spacing (0 by default) adds a gap between pages, measured in the
-            PDF's own units where 72 equals one inch, and Background Color fills
-            that gap. Turn on Add Separator Lines to draw a line through the
-            middle of each gap, with its own thickness (0.5 units and up, in
-            steps of 0.5) and color.
+            التباعد (0 افتراضيًا) يضيف فجوة بين الصفحات، تُقاس بوحدات PDF نفسها
+            حيث يساوي 72 بوصة واحدة، ويملأ لون الخلفية تلك الفجوة. فعّل إضافة
+            خطوط فاصلة لرسم خط في منتصف كل فجوة، بسماكته الخاصة (0.5 وحدة فأكثر،
+            بخطوات 0.5) ولونه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the background color apply to the whole page or only the gaps?
+            هل يُطبَّق لون الخلفية على الصفحة كاملة أم على الفجوات فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It fills the whole output page underneath the source pages, so it
-            shows in the spacing between pages and in any margin where a
-            narrower page is centered. With white selected, the default, no fill
-            is drawn at all.
+            يملأ صفحة الناتج كلها تحت صفحات المصدر، فيظهر في التباعد بين الصفحات
+            وفي أي هامش تتوسط فيه صفحة أضيق. مع اختيار الأبيض، وهو الافتراضي، لا
+            يُرسم أي تعبئة إطلاقًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will the text in the combined page still be selectable?
+            هل سيظل النص في الصفحة المدمجة قابلاً للتحديد؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Each source page is rendered to an image at 2x resolution and
-            drawn onto the new page, so the result is a picture of your pages
-            rather than live text. Keep the original PDF if you need to copy or
-            search text later.
+            لا. تُعرض كل صفحة مصدر كصورة بدقة 2x وتُرسم على الصفحة الجديدة، لذا
+            تكون النتيجة صورة لصفحاتك لا نصًا حيًا. احتفظ بملف PDF الأصلي إذا
+            احتجت إلى نسخ النص أو البحث فيه لاحقًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is there a limit to how many pages I can stitch together?
+            هل هناك حد لعدد الصفحات التي يمكنني ضمها معًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The tool doesn't set one, but the output grows with every page you
-            add: a 100-page document becomes a page roughly 100 pages tall. Some
-            readers struggle with very large pages; Adobe Reader, for example,
-            doesn't display pages larger than 200 inches on a side.
+            لا تضع الأداة حدًا، لكن الناتج يكبر مع كل صفحة تضيفها: مستند من 100
+            صفحة يصبح صفحة بطول 100 صفحة تقريبًا. تواجه بعض برامج القراءة صعوبة
+            مع الصفحات الكبيرة جدًا؛ فمثلاً لا يعرض Adobe Reader صفحات يزيد أحد
+            جوانبها على 200 بوصة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is a single long-page PDF useful for?
+            ما فائدة PDF بصفحة واحدة طويلة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It suits scrolling previews for the web, design mockups, comic
-            strips, and storyboards where the reader scrolls instead of flipping
-            pages. If you want several pages printed on one sheet in a grid,
+            تناسب المعاينات القابلة للتمرير على الويب والنماذج التصميمية والقصص
+            المصورة المتسلسلة ولوحات القصة التي يمرر فيها القارئ بدلاً من تقليب
+            الصفحات. إذا أردت طباعة عدة صفحات على ورقة واحدة في شبكة، فإن
             <a href="/n-up-pdf" class="text-indigo-300 hover:text-indigo-400"
-              >N-Up PDF</a
+              >PDF متعدد الصفحات في الورقة</a
             >
-            is the better fit.
+            هو الأنسب.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does the combined PDF get uploaded to a server?
+            هل يُرفع PDF المدمج إلى خادم؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering the pages and building the new single-page PDF both
-            happen in your browser, and the file stays on your device the whole
-            time.
+            لا. عرض الصفحات وبناء PDF الجديد ذي الصفحة الواحدة يتمان في متصفحك،
+            ويبقى الملف على جهازك طوال الوقت.
           </p>
         </details>
       </div>
@@ -534,26 +535,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to combine single page online",
+        "name": "كيفية الدمج في صفحة واحدة عبر الإنترنت",
         "description": "Learn how to combine single page using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

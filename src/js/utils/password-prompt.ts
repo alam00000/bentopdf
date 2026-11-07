@@ -37,7 +37,7 @@ function ensureSingleModal(): HTMLDivElement {
             <i data-lucide="lock" class="w-6 h-6 text-indigo-400"></i>
           </div>
           <div class="flex-1">
-            <h3 id="password-modal-title" class="text-xl font-bold text-white mb-1">${trHtml('Password Required')}</h3>
+            <h3 id="password-modal-title" class="text-xl font-bold text-white mb-1">${trHtml("كلمة المرور مطلوبة")}</h3>
             <p id="password-modal-subtitle" class="text-gray-400 text-sm truncate"></p>
           </div>
         </div>
@@ -45,7 +45,7 @@ function ensureSingleModal(): HTMLDivElement {
           <div class="relative">
             <input type="password" id="password-modal-input"
               class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              placeholder="${trHtml('Enter password')}" autocomplete="off" />
+              placeholder="${trHtml("أدخل كلمة المرور")}" autocomplete="off" />
             <button id="password-modal-toggle" type="button"
               class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200">
               <i data-lucide="eye" class="w-4 h-4"></i>
@@ -58,11 +58,11 @@ function ensureSingleModal(): HTMLDivElement {
       <div class="flex gap-3 p-4 border-t border-gray-700">
         <button id="password-modal-cancel"
           class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors">
-          ${trHtml('Skip')}
+          ${trHtml("تخطي")}
         </button>
         <button id="password-modal-submit"
           class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
-          ${trHtml('Unlock')}
+          ${trHtml("فتح القفل")}
         </button>
       </div>
     </div>`;
@@ -87,19 +87,19 @@ function ensureBatchModal(): HTMLDivElement {
           </div>
           <div class="flex-1">
             <h3 id="batch-modal-title" class="text-xl font-bold text-white mb-1"></h3>
-            <p class="text-gray-400 text-sm">${trHtml('Enter passwords for each encrypted file')}</p>
+            <p class="text-gray-400 text-sm">${trHtml("أدخل كلمات المرور لكل ملف مشفّر")}</p>
           </div>
         </div>
         <div class="flex items-center gap-2 mt-3 mb-3">
           <input type="checkbox" id="batch-modal-same-pw" checked
             class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-indigo-500 focus:ring-indigo-500 focus:ring-offset-0 cursor-pointer" />
-          <label for="batch-modal-same-pw" class="text-sm text-gray-300 cursor-pointer select-none">${trHtml('Use same password for all files')}</label>
+          <label for="batch-modal-same-pw" class="text-sm text-gray-300 cursor-pointer select-none">${trHtml("استخدام نفس كلمة المرور لجميع الملفات")}</label>
         </div>
         <div id="batch-modal-shared" class="mb-3">
           <div class="relative">
             <input type="password" id="batch-modal-shared-input"
               class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-              placeholder="${trHtml('Password for all files')}" autocomplete="off" />
+              placeholder="${trHtml("كلمة مرور لجميع الملفات")}" autocomplete="off" />
             <button id="batch-modal-shared-toggle" type="button"
               class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200">
               <i data-lucide="eye" class="w-4 h-4"></i>
@@ -113,11 +113,11 @@ function ensureBatchModal(): HTMLDivElement {
       <div class="flex gap-3 p-4 border-t border-gray-700 flex-shrink-0">
         <button id="batch-modal-cancel"
           class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors">
-          ${trHtml('Skip All')}
+          ${trHtml("تخطي الكل")}
         </button>
         <button id="batch-modal-submit"
           class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
-          ${trHtml('Unlock All')}
+          ${trHtml("فتح قفل الكل")}
         </button>
       </div>
     </div>`;
@@ -239,7 +239,7 @@ export async function promptAndDecryptFile(file: File): Promise<File | null> {
 
   if (!input || !submitBtn || !cancelBtn) return null;
 
-  if (titleEl) titleEl.textContent = trText('Password Required');
+  if (titleEl) titleEl.textContent = trText("كلمة المرور مطلوبة");
   if (subtitleEl) subtitleEl.textContent = file.name;
   if (errorEl) {
     errorEl.textContent = '';
@@ -252,10 +252,10 @@ export async function promptAndDecryptFile(file: File): Promise<File | null> {
   input.value = '';
   input.type = 'password';
   submitBtn.disabled = false;
-  submitBtn.textContent = trText('Unlock');
-  submitBtn.dataset.originalText = trText('Unlock');
+  submitBtn.textContent = trText("فتح القفل");
+  submitBtn.dataset.originalText = trText("فتح القفل");
   cancelBtn.disabled = false;
-  cancelBtn.textContent = trText('Skip');
+  cancelBtn.textContent = trText("تخطي");
 
   modal.classList.remove('hidden');
   modal.classList.add('flex');
@@ -287,7 +287,7 @@ export async function promptAndDecryptFile(file: File): Promise<File | null> {
       const password = input.value;
       if (!password) {
         if (errorEl) {
-          errorEl.textContent = trText('Please enter a password');
+          errorEl.textContent = trText("يرجى إدخال كلمة مرور");
           errorEl.classList.remove('hidden');
         }
         return;
@@ -298,7 +298,7 @@ export async function promptAndDecryptFile(file: File): Promise<File | null> {
       submitBtn.disabled = true;
       cancelBtn.disabled = true;
       if (progressEl) {
-        progressEl.textContent = trText('Validating...');
+        progressEl.textContent = trText("جارٍ التحقق...");
         progressEl.classList.remove('hidden');
       }
 
@@ -312,13 +312,13 @@ export async function promptAndDecryptFile(file: File): Promise<File | null> {
         input.value = '';
         input.focus();
         if (errorEl) {
-          errorEl.textContent = trText('Incorrect password. Please try again.');
+          errorEl.textContent = trText("كلمة المرور غير صحيحة. يرجى المحاولة مرة أخرى.");
           errorEl.classList.remove('hidden');
         }
         return;
       }
 
-      if (progressEl) progressEl.textContent = trText('Decrypting...');
+      if (progressEl) progressEl.textContent = trText("جارٍ فك التشفير...");
 
       try {
         const decrypted = await decryptFileWithPassword(file, password);
@@ -332,7 +332,7 @@ export async function promptAndDecryptFile(file: File): Promise<File | null> {
         if (progressEl) progressEl.classList.add('hidden');
         if (errorEl) {
           errorEl.textContent = trText(
-            'Failed to decrypt. Try the Decrypt tool instead.'
+            "تعذر فك التشفير. جرّب أداة فك التشفير بدلًا من ذلك."
           );
           errorEl.classList.remove('hidden');
         }
@@ -453,7 +453,7 @@ export async function promptAndDecryptBatch(
   }
 
   if (titleEl)
-    titleEl.textContent = trText('{{length}} Files Need a Password', {
+    titleEl.textContent = trText("{{length}} من الملفات تحتاج إلى كلمة مرور", {
       length: fileNames.length,
     });
 
@@ -470,9 +470,9 @@ export async function promptAndDecryptBatch(
           <i data-lucide="file-lock" class="w-4 h-4 text-indigo-400 flex-shrink-0" data-icon-idx="${i}"></i>
           <span class="text-sm text-gray-300 truncate flex-1" title="${esc(name)}">${esc(name)}</span>
           <div class="flex items-center gap-1.5 flex-shrink-0">
-            <input type="password" data-pw-idx="${i}" placeholder="${trHtml('Password')}"
+            <input type="password" data-pw-idx="${i}" placeholder="${trHtml("كلمة المرور")}"
               class="w-32 bg-gray-600 border border-gray-500 text-gray-200 rounded px-2 py-1 text-xs focus:ring-1 focus:ring-indigo-500 focus:border-transparent" autocomplete="off" />
-            <button type="button" data-skip-idx="${i}" title="${trHtml('Skip this file')}"
+            <button type="button" data-skip-idx="${i}" title="${trHtml("تخطي هذا الملف")}"
               class="p-1 rounded text-gray-400 hover:text-red-400 hover:bg-gray-600 transition-colors">
               <i data-lucide="x" class="w-3.5 h-3.5"></i>
             </button>
@@ -490,8 +490,8 @@ export async function promptAndDecryptBatch(
     progressEl.classList.add('hidden');
   }
   submitBtn.disabled = false;
-  submitBtn.textContent = trText('Unlock All');
-  submitBtn.dataset.originalText = trText('Unlock All');
+  submitBtn.textContent = trText("فتح قفل الكل");
+  submitBtn.dataset.originalText = trText("فتح قفل الكل");
   cancelBtn.disabled = false;
 
   modal.classList.remove('hidden');
@@ -516,8 +516,8 @@ export async function promptAndDecryptBatch(
     function updateButtons(autoClose = false) {
       const hasSucceeded = succeededSet.size > 0;
       cancelBtn.textContent = hasSucceeded
-        ? trText('Skip Remaining')
-        : trText('Skip All');
+        ? trText("تخطي المتبقي")
+        : trText("تخطي الكل");
 
       const remaining = getRemainingCount();
       if (autoClose && remaining === 0) {
@@ -526,7 +526,7 @@ export async function promptAndDecryptBatch(
       }
 
       if (hasSucceeded) {
-        submitBtn.textContent = trText('Unlock Remaining ({{remaining}})', {
+        submitBtn.textContent = trText("فتح قفل المتبقي ({{remaining}})", {
           remaining,
         });
         submitBtn.dataset.originalText = submitBtn.textContent;
@@ -605,7 +605,7 @@ export async function promptAndDecryptBatch(
         const pwInput =
           row.querySelector<HTMLInputElement>('input[data-pw-idx]');
         if (pwInput) pwInput.disabled = false;
-        btn.title = trText('Skip this file');
+        btn.title = trText("تخطي هذا الملف");
       } else {
         skippedSet.add(idx);
         row.classList.add('opacity-40');
@@ -613,7 +613,7 @@ export async function promptAndDecryptBatch(
         const pwInput =
           row.querySelector<HTMLInputElement>('input[data-pw-idx]');
         if (pwInput) pwInput.disabled = true;
-        btn.title = trText('Include this file');
+        btn.title = trText("تضمين هذا الملف");
       }
       updateButtons(true);
     }
@@ -659,8 +659,8 @@ export async function promptAndDecryptBatch(
         if (!password) {
           if (errorEl) {
             const msg = useSame
-              ? trText('Please enter a password')
-              : trText('Please enter a password for {{i}} or skip it', {
+              ? trText("يرجى إدخال كلمة مرور")
+              : trText("يرجى إدخال كلمة مرور لـ {{i}} أو تخطيه", {
                   i: fileNames[i],
                 });
             errorEl.textContent = msg;
@@ -690,7 +690,7 @@ export async function promptAndDecryptBatch(
 
         if (progressEl) {
           progressEl.textContent = trText(
-            'Validating {{n}} of {{length}}: {{name}}',
+            "جارٍ التحقق من {{n}} من {{length}}: {{name}}",
             { n: i + 1, length: toProcess.length, name: files[realIdx].name }
           );
           progressEl.classList.remove('hidden');
@@ -709,7 +709,7 @@ export async function promptAndDecryptBatch(
 
         if (progressEl) {
           progressEl.textContent = trText(
-            'Decrypting {{n}} of {{length}}: {{name}}',
+            "جارٍ فك تشفير {{n}} من {{length}}: {{name}}",
             { n: i + 1, length: toProcess.length, name: files[realIdx].name }
           );
         }
@@ -734,7 +734,7 @@ export async function promptAndDecryptBatch(
 
       if (failedNames.length > 0) {
         if (errorEl) {
-          errorEl.textContent = trText('Wrong password for: {{join}}', {
+          errorEl.textContent = trText("كلمة المرور خاطئة لـ: {{join}}", {
             join: failedNames.join(', '),
           });
           errorEl.classList.remove('hidden');
@@ -749,7 +749,7 @@ export async function promptAndDecryptBatch(
           sharedInput.focus();
         }
         updateButtons();
-        submitBtn.textContent = trText('Retry Failed');
+        submitBtn.textContent = trText("إعادة محاولة الفاشل");
         return;
       }
 

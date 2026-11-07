@@ -79,9 +79,9 @@ function updateFileDisplay() {
             <div class="flex items-center justify-between">
                 <div class="flex-1 min-w-0">
                     <p class="truncate font-medium text-white">${escapeHtml(pageState.file.name)}</p>
-                    <p class="text-gray-400 text-sm">${pageCount === 1 ? trHtml('{{fileSize}} • 1 page', { fileSize }) : trHtml('{{fileSize}} • {{pageCount}} pages', { fileSize, pageCount })}</p>
+                    <p class="text-gray-400 text-sm">${pageCount === 1 ? trHtml("{{fileSize}} • صفحة واحدة", { fileSize }) : trHtml("{{fileSize}} • عدد الصفحات: {{pageCount}}", { fileSize, pageCount })}</p>
                 </div>
-                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="${trHtml('Remove file')}">
+                <button id="remove-file" class="text-red-400 hover:text-red-300 p-2 flex-shrink-0 ml-2" title="${trHtml("إزالة الملف")}">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -114,13 +114,13 @@ function resetState() {
 
 async function handleFileUpload(file: File) {
   if (!file || file.type !== 'application/pdf') {
-    showAlert('Error', 'Please upload a valid PDF file.');
+    showAlert("خطأ", "يرجى رفع ملف PDF صالح.");
     return;
   }
   try {
     const result = await loadPdfWithPasswordPrompt(file);
     if (!result) return;
-    showLoader('Loading PDF...');
+    showLoader("جارٍ تحميل PDF...");
     result.pdf.destroy();
     pageState.pdfDoc = await loadPdfDocument(result.bytes);
     pageState.file = result.file;
@@ -130,7 +130,7 @@ async function handleFileUpload(file: File) {
     document.getElementById('preview-panel')?.classList.add('hidden');
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Failed to load PDF file.');
+    showAlert("خطأ", "تعذر تحميل ملف PDF.");
   } finally {
     hideLoader();
   }
@@ -179,7 +179,7 @@ async function generateThumbnail(page: pdfjsLib.PDFPageProxy): Promise<string> {
 
 async function detectBlankPages() {
   if (!pageState.pdfDoc || !pageState.file)
-    return showAlert('Error', 'Please upload a PDF first.');
+    return showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
 
   const sensitivitySlider = document.getElementById(
     'sensitivity-slider'
@@ -187,7 +187,7 @@ async function detectBlankPages() {
   const sensitivityPercent = parseInt(sensitivitySlider?.value || '80');
   const maxNonWhitePercent = 5 - (sensitivityPercent / 100) * 4.9;
 
-  showLoader('Detecting blank pages...');
+  showLoader("جارٍ اكتشاف الصفحات الفارغة...");
   try {
     const pdfData = await pageState.file.arrayBuffer();
     const pdfDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
@@ -207,7 +207,7 @@ async function detectBlankPages() {
     }
 
     if (pageState.detectedBlankPages.length === 0) {
-      showAlert('Info', 'No blank pages detected in this PDF.');
+      showAlert("معلومات", "لم يتم اكتشاف صفحات فارغة في ملف PDF هذا.");
       hideLoader();
       return;
     }
@@ -222,7 +222,7 @@ async function detectBlankPages() {
     hideLoader();
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not detect blank pages.');
+    showAlert("خطأ", "تعذر اكتشاف الصفحات الفارغة.");
     hideLoader();
   }
 }
@@ -234,7 +234,7 @@ function updatePreviewPanel() {
   if (!previewInfo || !previewContainer) return;
 
   previewInfo.textContent = trText(
-    'Found {{length}} blank page(s). Click on a page to deselect it.',
+    "تم العثور على {{length}} من الصفحات الفارغة. انقر على صفحة لإلغاء تحديدها.",
     { length: pageState.detectedBlankPages.length }
   );
   previewContainer.innerHTML = '';
@@ -249,7 +249,7 @@ function updatePreviewPanel() {
 
     div.innerHTML = `
             <div class="relative">
-                <img src="${thumbnail}" alt="${trHtml('Page {{pageNumber}}', { pageNumber: pageIndex + 1 })}" class="rounded-md shadow-md max-w-full h-auto">
+                <img src="${thumbnail}" alt="${trHtml("الصفحة {{pageNumber}}", { pageNumber: pageIndex + 1 })}" class="rounded-md shadow-md max-w-full h-auto">
                 <div class="absolute top-1 left-1 bg-indigo-600 text-white text-xs px-2 py-1 rounded-md font-semibold shadow-lg z-10 pointer-events-none">
                     ${pageIndex + 1}
                 </div>
@@ -285,7 +285,7 @@ function togglePageSelection(div: HTMLElement, pageIndex: number) {
 
 async function processRemoveBlankPages() {
   if (!pageState.pdfDoc || !pageState.file)
-    return showAlert('Error', 'Please upload a PDF first.');
+    return showAlert("خطأ", "يرجى رفع ملف PDF أولًا.");
 
   // Get selected pages to remove
   const previewContainer = document.getElementById('blank-pages-preview');
@@ -296,12 +296,12 @@ async function processRemoveBlankPages() {
   });
 
   if (selectedPages.length === 0) {
-    showAlert('Info', 'No pages selected for removal.');
+    showAlert("معلومات", "لم يتم تحديد صفحات للإزالة.");
     return;
   }
 
   showLoader(
-    trText('Removing {{length}} blank page(s)...', {
+    trText("جارٍ إزالة {{length}} من الصفحات الفارغة...", {
       length: selectedPages.length,
     })
   );
@@ -322,8 +322,8 @@ async function processRemoveBlankPages() {
       pageState.file?.name || 'document.pdf'
     );
     showAlert(
-      'Success',
-      trText('Removed {{length}} blank page(s) successfully!', {
+      "تم بنجاح",
+      trText("تمت إزالة {{length}} من الصفحات الفارغة بنجاح!", {
         length: selectedPages.length,
       }),
       'success',
@@ -331,7 +331,7 @@ async function processRemoveBlankPages() {
     );
   } catch (e) {
     console.error(e);
-    showAlert('Error', 'Could not remove blank pages.');
+    showAlert("خطأ", "تعذرت إزالة الصفحات الفارغة.");
   } finally {
     hideLoader();
   }

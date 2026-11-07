@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Change Permissions Online Free - Change Permissions Tool | Pixel PDF"
+      content="تغيير الأذونات مجانًا عبر الإنترنت - أداة تغيير الأذونات | Pixel PDF"
     />
     <meta
       name="description"
-      content="Set or change user permissions on a PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اضبط أذونات المستخدم في PDF أو غيّرها. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="change permissions, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:title"
-      content="Change Permissions Online Free - Change Permissions Tool | Pixel PDF"
+      content="تغيير الأذونات مجانًا عبر الإنترنت - أداة تغيير الأذونات | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Set or change user permissions on a PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اضبط أذونات المستخدم في PDF أو غيّرها. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -51,10 +51,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/change-permissions"
     />
-    <meta name="twitter:title" content="Change Permissions Free" />
+    <meta name="twitter:title" content="تغيير الأذونات مجانًا" />
     <meta
       name="twitter:description"
-      content="Set or change user permissions on a PDF. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اضبط أذونات المستخدم في PDF أو غيّرها. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Change Permissions" />
+    <meta name="apple-mobile-web-app-title" content="تغيير الأذونات" />
 
-    <title>Change PDF Permissions - Manage PDF Security - Pixel PDF</title>
+    <title>تغيير أذونات PDF - إدارة أمان PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,22 +112,22 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:changePermissions.name"
         >
-          Change Permissions
+          تغيير الأذونات
         </h1>
         <p
           class="text-gray-400 mb-6"
           data-i18n="tools:changePermissions.subtitle"
         >
-          Set or change user permissions on a PDF.
+          تعيين أو تغيير أذونات المستخدم على PDF.
         </p>
 
         <div
@@ -138,12 +138,12 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select PDF</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -161,12 +161,12 @@
             <label
               for="current-password"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >Current Password (if encrypted)</label
+              >كلمة المرور الحالية (إذا كان الملف مشفرًا)</label
             >
             <input
               type="password"
               id="current-password"
-              placeholder="Enter current password"
+              placeholder="أدخل كلمة المرور الحالية"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
           </div>
@@ -175,12 +175,12 @@
             <label
               for="new-user-password"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >New User Password</label
+              >كلمة مرور المستخدم الجديدة</label
             >
             <input
               type="password"
               id="new-user-password"
-              placeholder="Password to open PDF"
+              placeholder="كلمة المرور لفتح PDF"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
           </div>
@@ -189,98 +189,110 @@
             <label
               for="new-owner-password"
               class="block mb-2 text-sm font-medium text-gray-300"
-              >New Owner Password
+              >كلمة مرور المالك الجديدة
               <span class="text-red-400" aria-hidden="true">*</span></label
             >
             <input
               type="password"
               id="new-owner-password"
-              placeholder="Password for permissions"
-              required
+              placeholder="كلمة مرور الأذونات"
+              required=""
               aria-required="true"
               class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg p-2.5"
             />
             <p class="text-xs text-gray-500 mt-1">
-              Required when setting permissions or a user password. Leave all
-              fields empty to decrypt the PDF instead.
+              مطلوبة عند ضبط الأذونات أو كلمة مرور المستخدم. اترك كل الحقول
+              فارغة لفك تشفير PDF بدلاً من ذلك.
             </p>
           </div>
 
           <div class="p-4 bg-gray-900 rounded-lg border border-gray-700">
             <h3 class="text-sm font-semibold text-white mb-3">
-              Permissions (requires owner password)
+              الأذونات (تتطلب كلمة مرور المالك)
             </h3>
             <div class="space-y-2">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
                   id="allow-printing"
-                  checked
-                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
-                />
-                <span class="text-sm text-gray-300">Allow Printing</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="allow-copying"
-                  checked
-                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
-                />
-                <span class="text-sm text-gray-300">Allow Copying Text</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="allow-modifying"
-                  checked
-                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
-                />
-                <span class="text-sm text-gray-300">Allow Modifying</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="allow-annotating"
-                  checked
-                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
-                />
-                <span class="text-sm text-gray-300">Allow Annotating</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="allow-filling-forms"
-                  checked
-                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
-                />
-                <span class="text-sm text-gray-300">Allow Filling Forms</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="allow-document-assembly"
-                  checked
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
                 <span class="text-sm text-gray-300"
-                  >Allow Document Assembly</span
-                >
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input
+                  >السماح بالطباعة</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
                   type="checkbox"
-                  id="allow-page-extraction"
-                  checked
+                  id="allow-copying"
+                  checked=""
                   class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
                 />
-                <span class="text-sm text-gray-300">Allow Page Extraction</span>
-              </label>
+                <span class="text-sm text-gray-300"
+                  >السماح بنسخ النص</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
+                  type="checkbox"
+                  id="allow-modifying"
+                  checked=""
+                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
+                />
+                <span class="text-sm text-gray-300"
+                  >السماح بالتعديل</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
+                  type="checkbox"
+                  id="allow-annotating"
+                  checked=""
+                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
+                />
+                <span class="text-sm text-gray-300"
+                  >السماح بالتعليقات التوضيحية</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
+                  type="checkbox"
+                  id="allow-filling-forms"
+                  checked=""
+                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
+                />
+                <span class="text-sm text-gray-300"
+                  >السماح بتعبئة النماذج</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
+                  type="checkbox"
+                  id="allow-document-assembly"
+                  checked=""
+                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
+                />
+                <span class="text-sm text-gray-300"
+                  >السماح بتجميع المستند</span
+                ></label
+              >
+              <label class="flex items-center gap-2 cursor-pointer"
+                ><input
+                  type="checkbox"
+                  id="allow-page-extraction"
+                  checked=""
+                  class="w-4 h-4 text-indigo-600 bg-gray-700 border-gray-600 rounded focus:ring-indigo-500"
+                />
+                <span class="text-sm text-gray-300"
+                  >السماح باستخراج الصفحات</span
+                ></label
+              >
             </div>
           </div>
 
           <button id="process-btn" class="btn-gradient w-full">
-            Change Permissions
+            تغيير الأذونات
           </button>
         </div>
       </div>
@@ -299,9 +311,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -318,16 +329,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -338,7 +348,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -348,9 +358,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -361,9 +371,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -374,9 +384,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -389,43 +399,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -436,116 +452,109 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between a user password and an owner
-            password?
+            ما الفرق بين كلمة مرور المستخدم وكلمة مرور المالك؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The user password is required to open the PDF at all. The owner
-            password protects the permission settings and is what someone needs
-            to change or remove them later. Set only an owner password if anyone
-            should be able to open the file but with printing, copying, or
-            editing restricted.
+            كلمة مرور المستخدم مطلوبة لفتح PDF أصلاً. أما كلمة مرور المالك فتحمي
+            إعدادات الأذونات، وهي ما يحتاجه شخص ما لتغييرها أو إزالتها لاحقًا.
+            اضبط كلمة مرور المالك فقط إذا أردت أن يتمكن أي شخص من فتح الملف مع
+            تقييد الطباعة أو النسخ أو التحرير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the tool ask for an owner password when I set permissions?
+            لماذا تطلب الأداة كلمة مرور المالك عند ضبط الأذونات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Permission flags are only enforced when an owner password exists;
-            without one, PDF readers treat the file as unrestricted. The tool
-            therefore requires a New Owner Password whenever you set permissions
-            or a user password.
+            لا تُفرض أعلام الأذونات إلا عند وجود كلمة مرور المالك؛ ومن دونها
+            تعامل برامج قراءة PDF الملف كأنه بلا قيود. لذلك تتطلب الأداة كلمة
+            مرور مالك جديدة كلما ضبطت أذونات أو كلمة مرور مستخدم.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I stop people from copying text or printing my PDF?
+            كيف أمنع الآخرين من نسخ النص أو طباعة ملف PDF الخاص بي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Uncheck "Allow Copying Text" and "Allow Printing", enter a New Owner
-            Password, and click Change Permissions. Adobe Reader and other
-            compliant viewers will then block those actions. Some third-party
-            tools ignore permission flags, so for sensitive material consider
+            ألغِ تحديد "السماح بنسخ النص" و"السماح بالطباعة"، وأدخل كلمة مرور
+            مالك جديدة، وانقر على تغيير الأذونات. عندها سيمنع Adobe Reader
+            وبرامج العرض الملتزمة الأخرى هذه الإجراءات. بعض الأدوات الخارجية
+            تتجاهل أعلام الأذونات، لذا فكّر في
             <a
               href="/rasterize-pdf"
               class="text-indigo-300 hover:text-indigo-400"
-              >rasterizing the pages</a
+              >تحويل الصفحات إلى صور</a
             >
-            as well.
+            أيضًا للمواد الحساسة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which permissions can I control?
+            ما الأذونات التي يمكنني التحكم بها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Seven checkboxes: printing, copying text, modifying content,
-            annotating, filling forms, document assembly (inserting, deleting,
-            or rotating pages), and page extraction. An unchecked box means the
-            action is not allowed.
+            سبعة مربعات اختيار: الطباعة، ونسخ النص، وتعديل المحتوى، والتعليقات
+            التوضيحية، وتعبئة النماذج، وتجميع المستند (إدراج الصفحات أو حذفها أو
+            تدويرها)، واستخراج الصفحات. المربع غير المحدد يعني أن الإجراء غير
+            مسموح به.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What encryption does Change Permissions use?
+            ما التشفير الذي تستخدمه أداة تغيير الأذونات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The output is encrypted with 256-bit AES. That also makes this a
-            quick way to upgrade an old RC4-encrypted PDF: enter its current
-            password, set new passwords, and the file is rewritten with AES-256.
+            يُشفَّر الناتج بـ AES بطول 256 بت. وهذا يجعل الأداة أيضًا طريقة
+            سريعة لترقية ملف PDF قديم مشفر بـ RC4: أدخل كلمة مروره الحالية،
+            واضبط كلمات مرور جديدة، فيُعاد كتابة الملف بـ AES-256.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I change permissions on a PDF that is already password
-            protected?
+            هل يمكنني تغيير الأذونات في PDF محمي بكلمة مرور أصلاً؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, enter the existing password in the Current Password field. The
-            tool opens the file with it, then re-encrypts it with your new
-            passwords and permission settings; a wrong current password produces
-            an error and nothing is changed.
+            نعم، أدخل كلمة المرور الحالية في حقل كلمة المرور الحالية. تفتح
+            الأداة الملف بها، ثم تعيد تشفيره بكلمات مرورك الجديدة وإعدادات
+            الأذونات؛ وكلمة المرور الحالية الخاطئة تسبب خطأ ولا يتغير أي شيء.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I remove all restrictions instead of changing them?
+            كيف أزيل كل القيود بدلاً من تغييرها؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Leave both new password fields empty and click Change Permissions.
-            The output is fully decrypted with no passwords and no permission
-            flags. If you don't have the current password, use
+            اترك حقلي كلمة المرور الجديدة فارغين وانقر على تغيير الأذونات. يكون
+            الناتج غير مشفر بالكامل، بلا كلمات مرور ولا أعلام أذونات. إذا لم تكن
+            لديك كلمة المرور الحالية، فاستخدم
             <a
               href="/remove-restrictions"
               class="text-indigo-300 hover:text-indigo-400"
-              >Remove Restrictions</a
+              >إزالة القيود</a
             >
-            instead, which works without one when the PDF opens freely.
+            بدلاً من ذلك، وهي تعمل دونها عندما يُفتح PDF بحرية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my PDF or its owner password sent anywhere when I change
-            permissions?
+            هل يُرسل ملف PDF أو كلمة مرور المالك إلى أي مكان عند تغيير الأذونات؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The encryption is done by QPDF compiled to WebAssembly inside
-            your browser tab, so the file and every password you type stay on
-            your device.
+            لا. يتم التشفير بواسطة QPDF المترجم إلى WebAssembly داخل علامة تبويب
+            متصفحك، لذا يبقى الملف وكل كلمة مرور تكتبها على جهازك.
           </p>
         </details>
       </div>
@@ -582,26 +591,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to change permissions online",
+        "name": "كيفية تغيير الأذونات عبر الإنترنت",
         "description": "Learn how to change permissions using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

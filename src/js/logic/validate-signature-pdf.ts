@@ -123,7 +123,7 @@ function readSignatureDictionary(
     : null;
   if (!rangeMatch) {
     signature.extractionError = trText(
-      'Signature has a missing or malformed /ByteRange'
+      "التوقيع يفتقد /ByteRange أو أنه مشوّه"
     );
     return signature;
   }
@@ -143,7 +143,7 @@ function readSignatureDictionary(
   const gap = pdfString.slice(gapStart, gapEnd);
   if (gap.length % 2 !== 0 || !/^<[0-9A-Fa-f]+>$/.test(gap)) {
     signature.extractionError = trText(
-      'The bytes excluded by /ByteRange are not exactly a hex-encoded signature'
+      "البايتات المستثناة بواسطة /ByteRange ليست توقيعًا مشفّرًا بالنظام السداسي العشري بالضبط"
     );
     return signature;
   }
@@ -151,7 +151,7 @@ function readSignatureDictionary(
   const contentsSpan = entries.get('Contents');
   if (contentsSpan?.start !== gapStart || contentsSpan.end !== gapEnd) {
     signature.extractionError = trText(
-      'The bytes excluded by /ByteRange are not the /Contents of this signature'
+      "البايتات المستثناة بواسطة /ByteRange ليست /Contents لهذا التوقيع"
     );
     return signature;
   }
@@ -164,7 +164,7 @@ function readSignatureDictionary(
     contents.subarray(derObjectLength).some((byte) => byte !== 0)
   ) {
     signature.extractionError = trText(
-      'Signature /Contents is not a single DER object followed by zero padding'
+      "محتويات التوقيع /Contents ليست كائن DER واحدًا يتبعه حشو من الأصفار"
     );
     return signature;
   }
@@ -181,14 +181,14 @@ function getByteRangeError(
     byteRange.length !== 4 ||
     !byteRange.every((value) => Number.isSafeInteger(value) && value >= 0)
   ) {
-    return trText('Malformed ByteRange');
+    return trText("ByteRange مشوّه");
   }
   const [start1, len1, start2, len2] = byteRange;
   if (start1 !== 0) {
-    return trText('ByteRange does not start at the beginning of the file');
+    return trText("لا يبدأ ByteRange من بداية الملف");
   }
   if (start1 + len1 > start2 || start2 + len2 > fileLength) {
-    return trText('ByteRange out of bounds');
+    return trText("ByteRange خارج الحدود");
   }
   return null;
 }
@@ -328,14 +328,14 @@ export async function validateSignature(
   const result: SignatureValidationResult = {
     signatureIndex: signature.index,
     isValid: false,
-    signerName: trText('Unknown'),
-    issuer: trText('Unknown'),
+    signerName: trText("غير معروف"),
+    issuer: trText("غير معروف"),
     validFrom: new Date(0),
     validTo: new Date(0),
     isExpired: false,
     isSelfSigned: false,
     isTrusted: false,
-    algorithms: { digest: trText('Unknown'), signature: trText('Unknown') },
+    algorithms: { digest: trText("غير معروف"), signature: trText("غير معروف") },
     serialNumber: '',
     byteRange: signature.byteRange,
     coverageStatus: 'unknown',
@@ -371,7 +371,7 @@ export async function validateSignature(
     };
 
     if (!p7.certificates || p7.certificates.length === 0) {
-      result.errorMessage = trText('No certificates found in signature');
+      result.errorMessage = trText("لم يتم العثور على شهادات في التوقيع");
       return result;
     }
 
@@ -382,7 +382,7 @@ export async function validateSignature(
       p7.rawCapture?.serial
     );
     if (!signerCert) {
-      result.errorMessage = trText('Could not parse signer info');
+      result.errorMessage = trText("تعذر تحليل معلومات الموقّع");
       return result;
     }
 
@@ -394,10 +394,10 @@ export async function validateSignature(
     const issuerCN = signerCert.issuer.getField('CN');
     const issuerO = signerCert.issuer.getField('O');
 
-    result.signerName = (subjectCN?.value as string) ?? trText('Unknown');
+    result.signerName = (subjectCN?.value as string) ?? trText("غير معروف");
     result.signerOrg = subjectO?.value as string | undefined;
     result.signerEmail = subjectE?.value as string | undefined;
-    result.issuer = (issuerCN?.value as string) ?? trText('Unknown');
+    result.issuer = (issuerCN?.value as string) ?? trText("غير معروف");
     result.issuerOrg = issuerO?.value as string | undefined;
     result.validFrom = signerCert.validity.notBefore;
     result.validTo = signerCert.validity.notAfter;
@@ -499,7 +499,7 @@ export async function validateSignature(
       result.unsupportedAlgorithmReason = verification.reason;
     } else if (verification.status === 'failed') {
       result.errorMessage =
-        verification.reason || trText('Cryptographic verification failed');
+        verification.reason || trText("فشل التحقق التشفيري");
     }
 
     result.isValid =
@@ -508,7 +508,7 @@ export async function validateSignature(
       !result.usesInsecureDigest;
   } catch (e) {
     result.errorMessage =
-      e instanceof Error ? e.message : trText('Failed to parse signature');
+      e instanceof Error ? e.message : trText("تعذر تحليل التوقيع");
   }
 
   return result;
@@ -615,7 +615,7 @@ function getDigestAlgorithmName(oid: string): string {
     '2.16.840.1.101.3.4.2.3': 'SHA-512',
     '2.16.840.1.101.3.4.2.4': 'SHA-224',
   };
-  return digestAlgorithms[oid] || oid || trText('Unknown');
+  return digestAlgorithms[oid] || oid || trText("غير معروف");
 }
 
 function getSignatureAlgorithmName(oid: string): string {
@@ -631,7 +631,7 @@ function getSignatureAlgorithmName(oid: string): string {
     '1.2.840.10045.4.3.3': 'ECDSA with SHA-384',
     '1.2.840.10045.4.3.4': 'ECDSA with SHA-512',
   };
-  return signatureAlgorithms[oid] || oid || trText('Unknown');
+  return signatureAlgorithms[oid] || oid || trText("غير معروف");
 }
 
 interface SignerInfoFields {
@@ -726,11 +726,11 @@ function detectSigScheme(
   digestOid: string
 ): SigScheme | { unsupported: string } {
   if (!signatureAlgorithmArr || signatureAlgorithmArr.length === 0) {
-    return { unsupported: trText('Missing signatureAlgorithm') };
+    return { unsupported: trText("signatureAlgorithm مفقود") };
   }
   const oidNode = signatureAlgorithmArr[0];
   if (!oidNode || oidNode.type !== forge.asn1.Type.OID) {
-    return { unsupported: trText('Malformed signatureAlgorithm') };
+    return { unsupported: trText("signatureAlgorithm مشوّه") };
   }
   const oid = forge.asn1.derToOid(oidNode.value as string);
   const implicitHash = hashNameFromOid(digestOid);
@@ -740,7 +740,7 @@ function detectSigScheme(
       return implicitHash
         ? { kind: 'rsa-pkcs1', hashName: implicitHash }
         : {
-            unsupported: trText('Unsupported digest OID {{digestOid}}', {
+            unsupported: trText("معرّف تجزئة غير مدعوم {{digestOid}}", {
               digestOid,
             }),
           };
@@ -772,13 +772,13 @@ function detectSigScheme(
       return implicitHash
         ? { kind: 'ecdsa', hashName: implicitHash }
         : {
-            unsupported: trText('Unsupported digest OID {{digestOid}}', {
+            unsupported: trText("معرّف تجزئة غير مدعوم {{digestOid}}", {
               digestOid,
             }),
           };
     default:
       return {
-        unsupported: trText('Unsupported signature algorithm OID {{oid}}', {
+        unsupported: trText("معرّف خوارزمية توقيع غير مدعوم {{oid}}", {
           oid,
         }),
       };
@@ -903,7 +903,7 @@ async function verifyViaWebCrypto(
   if (!subtle) {
     return {
       status: 'unsupported',
-      reason: trText('Web Crypto API not available in this context'),
+      reason: trText("واجهة Web Crypto API غير متاحة في هذا السياق"),
     };
   }
 
@@ -931,7 +931,7 @@ async function verifyViaWebCrypto(
         : {
             status: 'failed',
             reason: trText(
-              'RSA-PSS signature does not verify against signer public key'
+              "توقيع RSA-PSS لا يطابق المفتاح العام للموقّع"
             ),
           };
     }
@@ -941,14 +941,14 @@ async function verifyViaWebCrypto(
       if (!curve) {
         return {
           status: 'unsupported',
-          reason: trText('Unsupported ECDSA curve in signer certificate'),
+          reason: trText("منحنى ECDSA غير مدعوم في شهادة الموقّع"),
         };
       }
       const p1363 = ecdsaDerToP1363(sig, curve.coordBytes);
       if (!p1363) {
         return {
           status: 'failed',
-          reason: trText('Malformed ECDSA signature (could not parse r,s)'),
+          reason: trText("توقيع ECDSA مشوّه (تعذر تحليل r,s)"),
         };
       }
       const key = await subtle.importKey(
@@ -969,7 +969,7 @@ async function verifyViaWebCrypto(
         : {
             status: 'failed',
             reason: trText(
-              'ECDSA signature does not verify against signer public key'
+              "توقيع ECDSA لا يطابق المفتاح العام للموقّع"
             ),
           };
     }
@@ -988,21 +988,21 @@ async function verifyViaWebCrypto(
         : {
             status: 'failed',
             reason: trText(
-              'RSA-PKCS1 signature does not verify against signer public key'
+              "توقيع RSA-PKCS1 لا يطابق المفتاح العام للموقّع"
             ),
           };
     }
 
     return {
       status: 'unsupported',
-      reason: trText('Signature scheme {{kind}} not implemented', {
+      reason: trText("مخطط التوقيع {{kind}} غير مدعوم", {
         kind: scheme.kind,
       }),
     };
   } catch (e) {
     return {
       status: 'unsupported',
-      reason: trText('Web Crypto import/verify failed: {{error}}', {
+      reason: trText("فشل استيراد/تحقق Web Crypto: {{error}}", {
         error: e instanceof Error ? e.message : String(e),
       }),
     };
@@ -1022,7 +1022,7 @@ async function performCryptoVerification(
   fields: SignerInfoFields | null
 ): Promise<CryptoVerificationResult> {
   if (!fields) {
-    return { status: 'failed', reason: trText('Could not parse signer info') };
+    return { status: 'failed', reason: trText("تعذر تحليل معلومات الموقّع") };
   }
   const byteRangeError = getByteRangeError(byteRange, pdfBytes.length);
   if (byteRangeError) {
@@ -1033,7 +1033,7 @@ async function performCryptoVerification(
   if (!md) {
     return {
       status: 'unsupported',
-      reason: trText('Unsupported digest OID {{digestOid}}', {
+      reason: trText("معرّف تجزئة غير مدعوم {{digestOid}}", {
         digestOid: fields.digestOid,
       }),
     };
@@ -1050,7 +1050,7 @@ async function performCryptoVerification(
   const authAttrs = fields.authAttrs;
   const signatureBytes = fields.signatureBytes;
   if (!signatureBytes) {
-    return { status: 'failed', reason: trText('Empty signature bytes') };
+    return { status: 'failed', reason: trText("بايتات التوقيع فارغة") };
   }
 
   const scheme = detectSigScheme(
@@ -1094,7 +1094,7 @@ async function performCryptoVerification(
       return {
         status: 'failed',
         reason: trText(
-          'Content hash does not match messageDigest attribute: PDF was modified after signing'
+          "تجزئة المحتوى لا تطابق سمة messageDigest: تم تعديل PDF بعد التوقيع"
         ),
       };
     }
@@ -1127,7 +1127,7 @@ async function performCryptoVerification(
   if (!spkiDer) {
     return {
       status: 'unsupported',
-      reason: trText('Could not extract signer public key'),
+      reason: trText("تعذر استخراج المفتاح العام للموقّع"),
     };
   }
   return verifyViaWebCrypto(

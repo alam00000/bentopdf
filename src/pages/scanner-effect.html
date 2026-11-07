@@ -1,16 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <meta
       name="title"
-      content="Scanner Effect Online Free - Scanner Effect Tool | Pixel PDF"
+      content="تأثير الماسح الضوئي عبر الإنترنت مجانًا - أداة تأثير الماسح الضوئي | Pixel PDF"
     />
     <meta
       name="description"
-      content="Make your PDF look like a scanned document. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اجعل ملف PDF يبدو كمستند ممسوح ضوئيًا. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="keywords"
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/scanner-effect" />
     <meta
       property="og:title"
-      content="Scanner Effect Online Free - Scanner Effect Tool | Pixel PDF"
+      content="تأثير الماسح الضوئي عبر الإنترنت مجانًا - أداة تأثير الماسح الضوئي | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Make your PDF look like a scanned document. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اجعل ملف PDF يبدو كمستند ممسوح ضوئيًا. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -47,10 +47,10 @@
       name="twitter:url"
       content="https://www.pixelpdf.com/scanner-effect"
     />
-    <meta name="twitter:title" content="Scanner Effect Free" />
+    <meta name="twitter:title" content="تأثير الماسح الضوئي مجانًا" />
     <meta
       name="twitter:description"
-      content="Make your PDF look like a scanned document. Free, no uploads, no signup. Runs entirely in your browser."
+      content="اجعل ملف PDF يبدو كمستند ممسوح ضوئيًا. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -60,9 +60,9 @@
 
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Scanner Effect" />
+    <meta name="apple-mobile-web-app-title" content="تأثير الماسح الضوئي" />
 
-    <title>Scanner Effect - Pixel PDF</title>
+    <title>تأثير الماسح الضوئي - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -105,19 +105,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:scannerEffect.name"
         >
-          Scanner Effect
+          تأثير الماسح الضوئي
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:scannerEffect.subtitle">
-          Make your PDF look like a scanned document.
+          اجعل PDF يبدو كمستند ممسوح ضوئيًا.
         </p>
 
         <div
@@ -128,15 +128,15 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select a file</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.hints.singlePdf">
-              A single PDF file
+              ملف PDF واحد
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -166,14 +166,14 @@
                 >
                   <i data-lucide="scan" class="w-5 h-5"></i>
                   <span data-i18n="tools:scannerEffect.scanSettings"
-                    >Scan Settings</span
+                    >إعدادات المسح</span
                   >
                 </h3>
                 <button
                   id="reset-settings-btn"
                   class="text-xs text-gray-300 hover:text-white border border-gray-600 hover:border-gray-500 px-3 py-1 rounded-lg transition-colors"
                 >
-                  Reset
+                  إعادة ضبط
                 </button>
               </div>
 
@@ -181,13 +181,13 @@
                 <span
                   class="text-sm text-gray-300"
                   data-i18n="tools:scannerEffect.colorspace"
-                  >Colorspace</span
+                  >فضاء الألوان</span
                 >
                 <label class="flex items-center gap-2 cursor-pointer">
                   <span
                     class="text-xs text-gray-400"
                     data-i18n="tools:scannerEffect.gray"
-                    >Gray</span
+                    >رمادي</span
                   >
                   <div class="relative">
                     <input
@@ -209,7 +209,7 @@
                 <span
                   class="text-sm text-gray-300"
                   data-i18n="tools:scannerEffect.border"
-                  >Border</span
+                  >حد</span
                 >
                 <label class="flex items-center gap-2 cursor-pointer">
                   <div class="relative">
@@ -233,7 +233,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.rotate"
-                    >Rotate</span
+                    >تدوير</span
                   >
                   <span id="rotate-value" class="text-gray-400">0°</span>
                 </div>
@@ -253,7 +253,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.rotateVariance"
-                    >Rotate Variance</span
+                    >تباين التدوير</span
                   >
                   <span id="rotate-variance-value" class="text-gray-400"
                     >0°</span
@@ -275,7 +275,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.brightness"
-                    >Brightness</span
+                    >السطوع</span
                   >
                   <span id="brightness-value" class="text-gray-400">0</span>
                 </div>
@@ -294,7 +294,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.contrast"
-                    >Contrast</span
+                    >التباين</span
                   >
                   <span id="contrast-value" class="text-gray-400">0</span>
                 </div>
@@ -313,7 +313,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.blur"
-                    >Blur</span
+                    >ضبابية</span
                   >
                   <span id="blur-value" class="text-gray-400">0px</span>
                 </div>
@@ -333,7 +333,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.noise"
-                    >Noise</span
+                    >تشويش</span
                   >
                   <span id="noise-value" class="text-gray-400">10</span>
                 </div>
@@ -352,7 +352,7 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.yellowish"
-                    >Yellowish</span
+                    >اصفرار</span
                   >
                   <span id="yellowish-value" class="text-gray-400">0</span>
                 </div>
@@ -371,10 +371,10 @@
                   <span
                     class="text-gray-300"
                     data-i18n="tools:scannerEffect.resolution"
-                    >Resolution</span
+                    >الدقة</span
                   >
                   <span id="resolution-value" class="text-gray-400"
-                    >150 DPI</span
+                    >١٥٠ نقطة في البوصة</span
                   >
                 </div>
                 <input
@@ -394,7 +394,7 @@
             class="btn-gradient w-full mt-6"
             data-i18n="tools:scannerEffect.processButton"
           >
-            Apply Scanner Effect
+            تطبيق تأثير الماسح الضوئي
           </button>
         </div>
       </div>
@@ -409,7 +409,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -426,14 +426,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -443,7 +443,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -453,10 +453,8 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
-            <p class="text-gray-400">
-              Click or drag and drop your PDF file to begin
-            </p>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
+            <p class="text-gray-400">انقر أو اسحب ملف PDF وأفلته للبدء</p>
           </div>
         </div>
         <div class="flex items-start gap-4">
@@ -466,11 +464,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">
-              Adjust Settings
-            </h3>
+            <h3 class="text-lg font-semibold text-white mb-1">ضبط الإعدادات</h3>
             <p class="text-gray-400">
-              Customize the scanner effect with real-time preview
+              خصّص تأثير الماسح الضوئي مع معاينة فورية
             </p>
           </div>
         </div>
@@ -481,8 +477,10 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
-            <p class="text-gray-400">Save your scanned-looking PDF instantly</p>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
+            <p class="text-gray-400">
+              احفظ ملف PDF الذي يبدو ممسوحًا ضوئيًا فورًا
+            </p>
           </div>
         </div>
       </div>
@@ -493,43 +491,51 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="pdf-to-greyscale.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PDF to Greyscale</h3>
-          <p class="text-gray-400 text-sm">Free online greyscale tool</p>
+          <h3 class="text-white font-semibold mb-1">PDF إلى تدرج الرمادي</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت للتدرج الرمادي
+          </p>
         </a>
         <a
           href="invert-colors.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Invert Colors</h3>
-          <p class="text-gray-400 text-sm">Free online invert colors tool</p>
+          <h3 class="text-white font-semibold mb-1">عكس الألوان</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لعكس الألوان
+          </p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -539,101 +545,97 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Which settings give the most realistic scan look?
+            ما الإعدادات التي تعطي أكثر مظهر مسح ضوئي واقعية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Subtle values work best: noise around 10 to 20, a rotation of about
-            0.5 degrees with a little Rotate Variance so each page tilts
-            differently, and a touch of blur. Turn on Grayscale for a
-            photocopier look, add Border for the dark edge a flatbed leaves, and
-            drop Resolution to 100 to 150 DPI for a fax-like result.
+            القيم الخفيفة أفضل: تشويش بين 10 و20 تقريبًا، وتدوير نحو 0.5 درجة مع
+            قليل من تباين التدوير ليميل كل صفحة بشكل مختلف، ولمسة تمويه. فعّل
+            تدرج الرمادي لمظهر آلة التصوير، وأضف الحد للحافة الداكنة التي يتركها
+            الماسح المسطح، وخفّض الدقة إلى 100 أو 150 DPI لنتيجة تشبه الفاكس.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What does Rotate Variance do?
+            ماذا يفعل تباين التدوير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It adds a random amount, up to the value you set (0 to 3 degrees),
-            to the base rotation on every page, so a ten-page document doesn't
-            have ten identically tilted pages. The preview shows only the base
-            rotation; the variation is applied when you click Apply.
+            تضيف مقدارًا عشوائيًا، حتى القيمة التي تضبطها (من 0 إلى 3 درجات)،
+            إلى التدوير الأساسي لكل صفحة، فلا تظهر صفحات مستند من عشر صفحات بميل
+            متطابق. تعرض المعاينة التدوير الأساسي فقط، ويُطبَّق التباين عند
+            النقر على تطبيق.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I still select or search the text afterward?
+            هل ما زلت أستطيع تحديد النص أو البحث فيه بعد ذلك؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Each page is rendered, processed as pixels, and saved as a JPEG
-            image, so the output is image-only. That's usually the point of a
-            scan effect, but keep the original if you need editable text later.
+            لا. تُعرض كل صفحة وتُعالج كبكسلات وتُحفظ كصورة JPEG، فالناتج صور
+            فقط. وهذا عادةً هو المقصود من تأثير المسح الضوئي، لكن احتفظ بالأصل
+            إذا احتجت إلى نص قابل للتعديل لاحقًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why does the preview look different from the final file?
+            لماذا تبدو المعاينة مختلفة عن الملف النهائي؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The preview renders the first page at screen resolution and ignores
-            the Resolution slider, so noise and blur can look slightly stronger
-            or weaker in the final output, and it can't show the per-page
-            rotation variance. The other settings match what you'll get.
+            تعرض المعاينة الصفحة الأولى بدقة الشاشة وتتجاهل شريط الدقة، لذا قد
+            يبدو التشويش والتمويه أقوى أو أضعف قليلًا في الناتج النهائي، ولا
+            تستطيع إظهار تباين التدوير لكل صفحة. أما الإعدادات الأخرى فتطابق ما
+            ستحصل عليه.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            How does the Resolution setting affect the file?
+            كيف يؤثر إعداد الدقة على الملف؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            It sets the DPI at which pages are rendered before the effects are
-            applied, from 72 to 300. Lower values make pages softer and more
-            pixelated, like a cheap scanner, and produce smaller files; 300 DPI
-            keeps text crisp but makes a much larger PDF.
+            تحدد قيمة DPI التي تُعرض بها الصفحات قبل تطبيق التأثيرات، من 72 إلى
+            300. القيم الأقل تجعل الصفحات أنعم وأكثر تبكسلًا، مثل ماسح ضوئي
+            رخيص، وتنتج ملفات أصغر، أما 300 DPI فيُبقي النص حادًا لكنه ينتج PDF
+            أكبر بكثير.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I make the paper look old or yellowed?
+            هل يمكنني جعل الورق يبدو قديمًا أو مصفرًّا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Raise the Yellowish slider to add a warm tint that mimics aged or
-            recycled paper. Combine it with Grayscale for a
-            photocopy-of-a-photocopy look, and nudge Brightness down and
-            Contrast up to imitate a tired toner cartridge.
+            ارفع شريط الاصفرار لإضافة لون دافئ يحاكي الورق القديم أو المعاد
+            تدويره. اجمعه مع تدرج الرمادي لمظهر نسخة من نسخة، وخفّض السطوع وارفع
+            التباين لتقليد خرطوشة حبر منهكة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it process more than one PDF at a time?
+            هل يعالج أكثر من ملف PDF في المرة الواحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. This tool works on a single PDF per run, applying your settings
-            to every page of that file. Load the next file after the first
-            download finishes.
+            لا. تعمل هذه الأداة على ملف PDF واحد في كل مرة، وتطبّق إعداداتك على
+            كل صفحات ذلك الملف. حمّل الملف التالي بعد انتهاء التنزيل الأول.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does my document get uploaded to apply the effect?
+            هل يُرفع مستندي لتطبيق التأثير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering, noise, blur, and rotation are all applied on a canvas
-            in your browser, and the output PDF is assembled locally, so the
-            file never leaves your computer.
+            لا. يُطبَّق العرض والتشويش والتمويه والتدوير كلها على لوحة (canvas)
+            داخل متصفحك، ويُجمَّع PDF الناتج محليًا، فلا يغادر الملف حاسوبك.
           </p>
         </details>
       </div>
@@ -665,26 +667,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to apply scanner effect online",
+        "name": "كيفية تطبيق تأثير الماسح الضوئي عبر الإنترنت",
         "description": "Learn how to make a PDF look scanned using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your PDF file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب ملف PDF وأفلته"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Adjust Settings",
-            "text": "Customize noise, brightness, contrast and more with live preview"
+            "name": "ضبط الإعدادات",
+            "text": "خصّص التشويش والسطوع والتباين وغيرها مع معاينة مباشرة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your scanned-looking PDF"
+            "name": "تنزيل",
+            "text": "نزّل ملف PDF الذي يبدو ممسوحًا ضوئيًا"
           }
         ]
       }

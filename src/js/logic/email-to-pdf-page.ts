@@ -88,9 +88,9 @@ onPageReady(() => {
     try {
       if (state.files.length === 0) {
         showAlert(
-          'No Files',
+          "لا توجد ملفات",
           trText(
-            'Please select at least one {{TOOL_NAME}} file (.eml or .msg).',
+            "يرجى اختيار ملف {{TOOL_NAME}} واحد على الأقل (.eml أو .msg).",
             { TOOL_NAME }
           )
         );
@@ -112,16 +112,16 @@ onPageReady(() => {
       const includeCcBcc = includeCcBccCheckbox?.checked ?? true;
       const includeAttachments = includeAttachmentsCheckbox?.checked ?? true;
 
-      showLoader('Loading PDF engine...');
+      showLoader("جارٍ تحميل محرك PDF...");
       const pymupdf = await loadPyMuPDF();
 
       if (state.files.length === 1) {
         const originalFile = state.files[0];
-        showLoader(trText('Parsing {{name}}...', { name: originalFile.name }));
+        showLoader(trText("جارٍ تحليل {{name}}...", { name: originalFile.name }));
 
         const email = await parseEmailFile(originalFile);
 
-        showLoader('Generating PDF...');
+        showLoader("جارٍ إنشاء PDF...");
         const htmlContent = renderEmailToHtml(email, {
           includeCcBcc,
           includeAttachments,
@@ -148,22 +148,22 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
-          trText('Successfully converted {{name}} to PDF.', {
+          "اكتمل التحويل",
+          trText("تم تحويل {{name}} إلى PDF بنجاح.", {
             name: originalFile.name,
           }),
           'success',
           () => resetState()
         );
       } else {
-        showLoader('Converting emails...');
+        showLoader("جارٍ تحويل رسائل البريد الإلكتروني...");
         const JSZip = (await import('jszip')).default;
         const zip = new JSZip();
 
         for (let i = 0; i < state.files.length; i++) {
           const file = state.files[i];
           showLoader(
-            trText('Converting {{n}}/{{length}}: {{name}}...', {
+            trText("جارٍ تحويل {{n}}/{{length}}: {{name}}...", {
               n: i + 1,
               length: state.files.length,
               name: file.name,
@@ -207,9 +207,9 @@ onPageReady(() => {
         hideLoader();
 
         showAlert(
-          'Conversion Complete',
+          "اكتمل التحويل",
           trText(
-            'Successfully converted {{length}} {{TOOL_NAME}} file(s) to PDF.',
+            "تم تحويل {{length}} من ملفات {{TOOL_NAME}} إلى PDF بنجاح.",
             { length: state.files.length, TOOL_NAME }
           ),
           'success',
@@ -220,8 +220,8 @@ onPageReady(() => {
       console.error(`[${TOOL_NAME}2PDF] ERROR:`, e);
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during conversion. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء التحويل. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );

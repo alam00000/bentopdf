@@ -43,14 +43,14 @@ export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
     if (!WasmProvider.isConfigured('pymupdf')) {
       throw new Error(
         trText(
-          'PyMuPDF is not configured. Please configure it in Advanced Settings.'
+          "PyMuPDF غير مهيأ. يرجى تهيئته في الإعدادات المتقدمة."
         )
       );
     }
     if (!WasmProvider.isConfigured('ghostscript')) {
       throw new Error(
         trText(
-          'Ghostscript is not configured. PyMuPDF requires Ghostscript for some operations. Please configure both in Advanced Settings.'
+          "Ghostscript غير مهيأ. يتطلب PyMuPDF وجود Ghostscript في بعض العمليات. يرجى تهيئة كليهما في الإعدادات المتقدمة."
         )
       );
     }
@@ -66,7 +66,7 @@ export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
 
       if (typeof module.PyMuPDF !== 'function') {
         throw new Error(
-          trText('PyMuPDF module did not export expected PyMuPDF class.')
+          trText("لم تصدّر وحدة PyMuPDF الصنف PyMuPDF المتوقع.")
         );
       }
 
@@ -82,7 +82,7 @@ export async function loadPyMuPDF(): Promise<PyMuPDFInstance> {
       loadPromise = null;
       const msg = error instanceof Error ? error.message : String(error);
       throw new Error(
-        trText('Failed to load PyMuPDF from CDN: {{msg}}', { msg }),
+        trText("تعذر تحميل PyMuPDF من CDN: {{msg}}", { msg }),
         {
           cause: error,
         }

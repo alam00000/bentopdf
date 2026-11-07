@@ -88,13 +88,13 @@ onPageReady(() => {
         try {
           const arrayBuffer = await readFileAsArrayBuffer(file);
           const pdfDoc = await getPDFDocument({ data: arrayBuffer }).promise;
-          metaSpan.textContent = trText('{{size}} • {{numPages}} pages', {
+          metaSpan.textContent = trText("{{size}} • {{numPages}} صفحة", {
             size: formatBytes(file.size),
             numPages: pdfDoc.numPages,
           });
         } catch {
           metaSpan.textContent = trText(
-            '{{size}} • Could not load page count',
+            "{{size}} • تعذر تحميل عدد الصفحات",
             { size: formatBytes(file.size) }
           );
         }
@@ -162,12 +162,12 @@ onPageReady(() => {
   const extract = async () => {
     try {
       if (state.files.length === 0) {
-        showAlert('No Files', 'Please select at least one PDF file.');
+        showAlert("لا توجد ملفات", "يرجى اختيار ملف PDF واحد على الأقل.");
         return;
       }
 
       const decryptedFiles = await batchDecryptIfNeeded(state.files);
-      showLoader('Loading PDF processor...');
+      showLoader("جارٍ تحميل معالج PDF...");
       state.files = decryptedFiles;
       const pymupdf = await loadPyMuPDF();
 
@@ -177,7 +177,7 @@ onPageReady(() => {
       for (let i = 0; i < state.files.length; i++) {
         const file = state.files[i];
         showLoader(
-          trText('Extracting images from {{name}}...', { name: file.name })
+          trText("جارٍ استخراج الصور من {{name}}...", { name: file.name })
         );
 
         const doc = await pymupdf.open(file);
@@ -210,14 +210,14 @@ onPageReady(() => {
 
       if (extractedImages.length === 0) {
         showAlert(
-          'No Images Found',
-          'No embedded images were found in the selected PDF(s).'
+          "لم يتم العثور على صور",
+          "لم يتم العثور على صور مضمّنة في ملفات PDF المحددة."
         );
       } else {
         displayImages();
         showAlert(
-          'Extraction Complete',
-          trText('Found {{length}} image(s) in {{length2}} PDF(s).', {
+          "اكتمل الاستخراج",
+          trText("تم العثور على {{length}} من الصور في {{length2}} من ملفات PDF.", {
             length: extractedImages.length,
             length2: state.files.length,
           }),
@@ -227,8 +227,8 @@ onPageReady(() => {
     } catch (e: unknown) {
       hideLoader();
       showAlert(
-        'Error',
-        trText('An error occurred during extraction. Error: {{error}}', {
+        "خطأ",
+        trText("حدث خطأ أثناء الاستخراج. الخطأ: {{error}}", {
           error: e instanceof Error ? e.message : String(e),
         })
       );
@@ -238,7 +238,7 @@ onPageReady(() => {
   const downloadAll = async () => {
     if (extractedImages.length === 0) return;
 
-    showLoader('Creating ZIP archive...');
+    showLoader("جارٍ إنشاء أرشيف ZIP...");
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();
 

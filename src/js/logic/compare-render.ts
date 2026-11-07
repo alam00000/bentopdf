@@ -230,7 +230,7 @@ export async function renderPage(
     renderMissingPage(
       canvas,
       placeholderId,
-      trText('Page {{pageNum}} does not exist in this PDF.', { pageNum })
+      trText("الصفحة {{pageNum}} غير موجودة في ملف PDF هذا.", { pageNum })
     );
     return { model: null, exists: false };
   }
@@ -282,7 +282,7 @@ export async function renderPage(
       );
       finalModel.pageNumber = pageNum;
     } else {
-      ctx.showLoader(trText('Running OCR on page {{pageNum}}...', { pageNum }));
+      ctx.showLoader(trText("جارٍ تشغيل OCR على الصفحة {{pageNum}}...", { pageNum }));
       const ocrModel = await recognizePageCanvas(
         canvas,
         ctx.ocrLanguage,
@@ -326,7 +326,7 @@ export async function loadComparisonPage(
       renderMissingPage(
         renderTarget.canvas,
         renderTarget.placeholderId,
-        trText('No paired page for this side.')
+        trText("لا توجد صفحة مقابلة لهذا الجانب.")
       );
     }
     return { model: null, exists: false };
@@ -360,7 +360,7 @@ export async function loadComparisonPage(
   const context = canvas.getContext('2d');
 
   if (!context) {
-    throw new Error(trText('Could not create offscreen comparison canvas.'));
+    throw new Error(trText("تعذر إنشاء Canvas خارج الشاشة للمقارنة."));
   }
 
   const extractedModel = await extractPageModel(page, viewport);

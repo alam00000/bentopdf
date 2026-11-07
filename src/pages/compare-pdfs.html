@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Compare PDFs Online Free - Compare PDFs Tool | Pixel PDF"
+      content="مقارنة ملفات PDF مجانًا عبر الإنترنت - أداة مقارنة PDF | Pixel PDF"
     />
     <meta
       name="description"
-      content="Compare two PDFs side by side. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قارن بين ملفي PDF جنبًا إلى جنب. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta name="keywords" content="compare pdfs, online pdf" />
     <meta name="author" content="Pixel PDF" />
@@ -28,11 +28,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/compare-pdfs" />
     <meta
       property="og:title"
-      content="Compare PDFs Online Free - Compare PDFs Tool | Pixel PDF"
+      content="مقارنة ملفات PDF مجانًا عبر الإنترنت - أداة مقارنة PDF | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Compare two PDFs side by side. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قارن بين ملفي PDF جنبًا إلى جنب. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       property="og:image"
@@ -45,10 +45,10 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.pixelpdf.com/compare-pdfs" />
-    <meta name="twitter:title" content="Compare PDFs Free" />
+    <meta name="twitter:title" content="مقارنة ملفات PDF مجانًا" />
     <meta
       name="twitter:description"
-      content="Compare two PDFs side by side. Free, no uploads, no signup. Runs entirely in your browser."
+      content="قارن بين ملفي PDF جنبًا إلى جنب. مجانًا، بدون رفع ملفات وبدون تسجيل. يعمل بالكامل في متصفحك."
     />
     <meta
       name="twitter:image"
@@ -59,9 +59,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Compare PDFs" />
+    <meta name="apple-mobile-web-app-title" content="مقارنة ملفات PDF" />
 
-    <title>Compare PDFs - Pixel PDF</title>
+    <title>مقارنة ملفات PDF - Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
     <style>
@@ -570,19 +570,19 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:comparePdfs.name"
         >
-          Compare PDFs
+          مقارنة ملفات PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:comparePdfs.subtitle">
-          Compare two PDFs side by side.
+          مقارنة ملفي PDF جنبًا إلى جنب.
         </p>
 
         <!-- File Upload Areas -->
@@ -600,13 +600,13 @@
                 class="text-sm text-gray-400"
                 data-i18n="tools:comparePdfs.firstPdf"
               >
-                First PDF
+                ملف PDF الأول
               </p>
               <p
                 class="text-xs text-gray-500"
                 data-i18n="tools:comparePdfs.clickOrDrop"
               >
-                Click or drop
+                انقر أو أفلت
               </p>
             </div>
             <input
@@ -629,13 +629,13 @@
                 class="text-sm text-gray-400"
                 data-i18n="tools:comparePdfs.secondPdf"
               >
-                Second PDF
+                ملف PDF الثاني
               </p>
               <p
                 class="text-xs text-gray-500"
                 data-i18n="tools:comparePdfs.clickOrDrop"
               >
-                Click or drop
+                انقر أو أفلت
               </p>
             </div>
             <input
@@ -656,20 +656,20 @@
             <button
               id="prev-page-compare"
               class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
-              disabled
-              title="Previous page"
+              disabled=""
+              title="الصفحة السابقة"
             >
               <i data-lucide="chevron-left" class="w-4 h-4"></i>
             </button>
-            <span class="text-sm text-white font-medium">
-              Page <span id="current-page-display-compare">1</span> /
-              <span id="total-pages-display-compare">1</span>
-            </span>
+            <span class="text-sm text-white font-medium"
+              >الصفحة <span id="current-page-display-compare">1</span> /
+              <span id="total-pages-display-compare">1</span></span
+            >
             <button
               id="next-page-compare"
               class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
-              disabled
-              title="Next page"
+              disabled=""
+              title="الصفحة التالية"
             >
               <i data-lucide="chevron-right" class="w-4 h-4"></i>
             </button>
@@ -681,13 +681,13 @@
                 id="view-mode-overlay"
                 class="btn bg-indigo-600 px-2.5 py-1 rounded text-xs font-semibold"
               >
-                Overlay
+                تراكب
               </button>
               <button
                 id="view-mode-side"
                 class="btn px-2.5 py-1 rounded text-xs font-semibold"
               >
-                Side-by-Side
+                جنبًا إلى جنب
               </button>
             </div>
 
@@ -696,16 +696,16 @@
             <button
               id="prev-change-btn"
               class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold disabled:opacity-50"
-              disabled
-              title="Previous change"
+              disabled=""
+              title="التغيير السابق"
             >
               <i data-lucide="chevron-up" class="w-3.5 h-3.5"></i>
             </button>
             <button
               id="next-change-btn"
               class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold disabled:opacity-50"
-              disabled
-              title="Next change"
+              disabled=""
+              title="التغيير التالي"
             >
               <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
             </button>
@@ -715,7 +715,7 @@
             <button
               id="zoom-out-btn"
               class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
-              title="Zoom out"
+              title="تصغير"
             >
               <i data-lucide="minus" class="w-3.5 h-3.5"></i>
             </button>
@@ -727,16 +727,16 @@
             <button
               id="zoom-in-btn"
               class="btn p-1.5 rounded bg-gray-700 hover:bg-gray-600 disabled:opacity-50"
-              title="Zoom in"
+              title="تكبير"
             >
               <i data-lucide="plus" class="w-3.5 h-3.5"></i>
             </button>
             <button
               id="zoom-reset-btn"
               class="btn px-2.5 py-1 rounded bg-gray-700 hover:bg-gray-600 text-xs font-semibold"
-              title="Reset zoom to fit"
+              title="إعادة ضبط التكبير للملاءمة"
             >
-              Fit
+              ملاءمة
             </button>
 
             <div class="flex-1"></div>
@@ -747,32 +747,31 @@
                   id="overlay-scope-all"
                   class="btn bg-indigo-600 px-2.5 py-1 rounded text-xs font-semibold"
                 >
-                  All changes
+                  كل التغييرات
                 </button>
                 <button
                   id="overlay-scope-content-only"
                   class="btn px-2.5 py-1 rounded text-xs font-semibold bg-gray-700"
                 >
-                  Content only
+                  المحتوى فقط
                 </button>
               </div>
               <button
                 id="flicker-btn"
                 class="btn bg-gray-700 hover:bg-gray-600 px-2.5 py-1 rounded text-xs font-semibold"
               >
-                Flicker
+                وميض
               </button>
               <label
                 class="flex items-center gap-1.5 text-xs text-gray-300 cursor-pointer"
-              >
-                <input
+                ><input
                   type="checkbox"
                   id="overlay-ocr-toggle"
-                  checked
+                  checked=""
                   class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-700 border-gray-600"
                 />
-                OCR
-              </label>
+                OCR</label
+              >
               <input
                 type="range"
                 id="opacity-slider"
@@ -787,36 +786,33 @@
             <div id="side-by-side-controls" class="flex items-center gap-2">
               <label
                 class="flex items-center gap-1.5 text-xs text-gray-300 cursor-pointer"
-              >
-                <input
+                ><input
                   type="checkbox"
                   id="sync-scroll-toggle"
-                  checked
+                  checked=""
                   class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-700 border-gray-600"
                 />
-                Sync scroll
-              </label>
+                تمرير متزامن</label
+              >
               <label
                 class="flex items-center gap-1.5 text-xs text-gray-300 cursor-pointer"
-              >
-                <input
+                ><input
                   type="checkbox"
                   id="ocr-toggle"
-                  checked
+                  checked=""
                   class="w-3.5 h-3.5 rounded text-indigo-600 bg-gray-700 border-gray-600"
                 />
-                OCR
-              </label>
+                OCR</label
+              >
             </div>
 
             <div class="relative" id="export-dropdown-wrapper">
               <button
                 id="export-dropdown-btn"
                 class="btn bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-xs font-semibold flex items-center gap-1.5 disabled:opacity-50"
-                disabled
+                disabled=""
               >
-                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                Export
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i> تصدير
                 <i data-lucide="chevron-down" class="w-3 h-3"></i>
               </button>
               <div
@@ -826,42 +822,42 @@
                 <div
                   class="px-3 py-1.5 text-[10px] font-semibold text-gray-400 uppercase tracking-wider"
                 >
-                  Export as PDF
+                  التصدير بصيغة PDF
                 </div>
                 <button
                   data-export-mode="overlay"
                   class="export-menu-item export-menu-item-overlay w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2 hidden"
                 >
-                  <i data-lucide="layers" class="w-4 h-4 text-gray-400"></i>
-                  Overlay view
+                  <i data-lucide="layers" class="w-4 h-4 text-gray-400"></i> عرض
+                  التراكب
                 </button>
                 <button
                   data-export-mode="split"
                   class="export-menu-item export-menu-item-side w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
                 >
                   <i data-lucide="columns-2" class="w-4 h-4 text-gray-400"></i>
-                  Split view
+                  عرض منقسم
                 </button>
                 <button
                   data-export-mode="alternating"
                   class="export-menu-item export-menu-item-side w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
                 >
                   <i data-lucide="layers" class="w-4 h-4 text-gray-400"></i>
-                  Alternating
+                  متناوب
                 </button>
                 <button
                   data-export-mode="left"
                   class="export-menu-item export-menu-item-side w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
                 >
                   <i data-lucide="columns-2" class="w-4 h-4 text-gray-400"></i>
-                  Left Document
+                  المستند الأيسر
                 </button>
                 <button
                   data-export-mode="right"
                   class="export-menu-item export-menu-item-side w-full px-3 py-2 text-sm text-left text-gray-200 hover:bg-gray-700 flex items-center gap-2"
                 >
                   <i data-lucide="columns-2" class="w-4 h-4 text-gray-400"></i>
-                  Right Document
+                  المستند الأيمن
                 </button>
               </div>
             </div>
@@ -874,7 +870,7 @@
             >
               <div id="panel-1" class="compare-panel overflow-auto">
                 <div class="compare-panel-label" id="compare-panel-label-1">
-                  Original
+                  الأصلي
                 </div>
                 <div class="compare-canvas-stage">
                   <canvas id="canvas-compare-1" class="block mx-auto"></canvas>
@@ -887,7 +883,7 @@
               </div>
               <div id="panel-2" class="compare-panel overflow-auto">
                 <div class="compare-panel-label" id="compare-panel-label-2">
-                  Modified
+                  معدَّل
                 </div>
                 <div class="compare-canvas-stage">
                   <canvas
@@ -915,7 +911,7 @@
                   <input
                     type="text"
                     id="compare-search-input"
-                    placeholder="Search changes..."
+                    placeholder="البحث في التغييرات..."
                     class="w-full pl-9 pr-3 py-2 bg-gray-700 text-white text-sm border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
@@ -923,75 +919,76 @@
 
               <div class="compare-sidebar-filters">
                 <div class="compare-filter-group">
-                  <div class="compare-filter-label">Change Type</div>
+                  <div class="compare-filter-label">نوع التغيير</div>
                   <button id="filter-removed" class="compare-pill removed">
                     <span class="compare-change-dot removed"></span>
-                    <span id="summary-removed-count">0</span> Deleted
+                    <span id="summary-removed-count">0</span> محذوف
                   </button>
                   <button id="filter-added" class="compare-pill added">
                     <span class="compare-change-dot added"></span>
-                    <span id="summary-added-count">0</span> Added
+                    <span id="summary-added-count">0</span> مضاف
                   </button>
                   <button id="filter-modified" class="compare-pill modified">
                     <span class="compare-change-dot modified"></span>
-                    <span id="summary-modified-count">0</span> Modified
+                    <span id="summary-modified-count">0</span> معدَّل
                   </button>
                   <button id="filter-moved" class="compare-pill moved">
                     <span class="compare-change-dot moved"></span>
-                    <span id="summary-moved-count">0</span> Moved
+                    <span id="summary-moved-count">0</span> منقول
                   </button>
                   <button
                     id="filter-style-changed"
                     class="compare-pill style-changed"
                   >
                     <span class="compare-change-dot style-changed"></span>
-                    <span id="summary-style-changed-count">0</span> Style
+                    <span id="summary-style-changed-count">0</span> النمط
                   </button>
                 </div>
                 <div class="compare-filter-group">
-                  <div class="compare-filter-label">Content</div>
+                  <div class="compare-filter-label">المحتوى</div>
                   <button
                     id="category-text"
                     class="compare-pill category active"
                   >
-                    <span id="category-count-text">0</span> Text
+                    <span id="category-count-text">0</span> النص
                   </button>
                   <button
                     id="category-image"
                     class="compare-pill category active"
                   >
-                    <span id="category-count-image">0</span> Images
+                    <span id="category-count-image">0</span> الصور
                   </button>
                   <button
                     id="category-header-footer"
                     class="compare-pill category active"
                   >
-                    <span id="category-count-header-footer">0</span> Headers
+                    <span id="category-count-header-footer">0</span> الرؤوس
                   </button>
                   <button
                     id="category-annotation"
                     class="compare-pill category active"
                   >
-                    <span id="category-count-annotation">0</span> Annotations
+                    <span id="category-count-annotation">0</span> التعليقات
+                    التوضيحية
                   </button>
                   <button
                     id="category-formatting"
                     class="compare-pill category active"
                   >
-                    <span id="category-count-formatting">0</span> Formatting
+                    <span id="category-count-formatting">0</span> التنسيق
                   </button>
                   <button
                     id="category-background"
                     class="compare-pill category active"
                   >
-                    <span id="category-count-background">0</span> Backgrounds
+                    <span id="category-count-background">0</span> الخلفيات
                   </button>
                 </div>
               </div>
 
               <div class="compare-change-list">
                 <div id="change-list-empty" class="compare-change-empty">
-                  Upload two PDFs to see differences.
+                  ارفع ملفي PDF لعرض الاختلافات.
                 </div>
                 <div id="compare-change-list" class="hidden"></div>
               </div>
@@ -1014,9 +1011,8 @@
           id="loader-text"
           class="text-white text-lg font-medium"
           data-i18n="loader.processing"
-          data-i18n="loader.processing"
         >
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -1033,16 +1029,15 @@
           id="alert-title"
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
-          data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -1053,7 +1048,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -1063,9 +1058,9 @@
             1
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Upload File</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">رفع ملف</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step1">
-              Click or drag and drop your file to begin
+              انقر أو اسحب وأفلت ملفك للبدء
             </p>
           </div>
         </div>
@@ -1076,9 +1071,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Process</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">معالجة</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step2">
-              Click the process button to start
+              انقر زر المعالجة للبدء
             </p>
           </div>
         </div>
@@ -1089,9 +1084,9 @@
             3
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تنزيل</h3>
             <p class="text-gray-400" data-i18n="howItWorks.step3">
-              Save your processed file instantly
+              احفظ ملفك المعالج فورًا
             </p>
           </div>
         </div>
@@ -1104,43 +1099,49 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="compress-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Compress PDF</h3>
-          <p class="text-gray-400 text-sm">Free online compress PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">ضغط PDF</h3>
+          <p class="text-gray-400 text-sm">أداة ضغط PDF مجانية عبر الإنترنت</p>
         </a>
         <a
           href="split-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Split PDF</h3>
-          <p class="text-gray-400 text-sm">Free online split PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تقسيم PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة مجانية عبر الإنترنت لتقسيم PDF
+          </p>
         </a>
         <a
           href="edit-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Edit PDF</h3>
-          <p class="text-gray-400 text-sm">Free online edit PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تحرير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تعديل PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="rotate-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Rotate PDF</h3>
-          <p class="text-gray-400 text-sm">Free online rotate PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">تدوير PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة تدوير PDF مجانية عبر الإنترنت
+          </p>
         </a>
       </div>
     </section>
@@ -1151,105 +1152,100 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            How do I see what changed between two versions of a PDF?
+            كيف أرى ما تغيّر بين نسختين من PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Upload the original as the first PDF and the revised version as the
-            second. The tool pairs matching pages, then highlights added,
-            deleted, modified, and moved content on each page pair, with
-            counters showing how many changes of each kind were found.
+            ارفع النسخة الأصلية بصفتها PDF الأول والنسخة المعدّلة بصفتها الثاني.
+            تقرن الأداة الصفحات المتطابقة، ثم تميّز المحتوى المضاف والمحذوف
+            والمعدَّل والمنقول في كل زوج من الصفحات، مع عدادات تبين عدد
+            التغييرات التي عُثر عليها من كل نوع.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What is the difference between side-by-side and overlay mode?
+            ما الفرق بين وضع جنبًا إلى جنب ووضع التراكب؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Side-by-side shows the two pages next to each other with
-            synchronized scrolling, which is easiest for reading text changes.
-            Overlay stacks the revised page on top of the original with an
-            opacity slider, so shifted or resized elements stand out, and the
-            Flicker button switches the top page on and off to make small moves
-            visible.
+            يعرض وضع جنبًا إلى جنب الصفحتين متجاورتين مع تمرير متزامن، وهو
+            الأسهل لقراءة تغييرات النص. أما التراكب فيضع الصفحة المعدّلة فوق
+            الأصلية مع شريط شفافية، فتبرز العناصر المنزاحة أو المتغيرة الحجم،
+            ويبدّل زر الوميض الصفحة العليا بين الظهور والإخفاء لإظهار التحركات
+            الصغيرة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can it compare scanned PDFs that have no text layer?
-            <i data-lucide="plus" class="faq-d-icon"></i>
+            هل يمكنه مقارنة ملفات PDF الممسوحة ضوئيًا التي لا تحتوي على طبقة
+            نصية؟ <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            With OCR turned on, page images are run through Tesseract in your
-            browser and the recognized text is compared, so scanned documents
-            can be checked. OCR currently uses the English language model, and
-            it's slower than comparing PDFs that already contain text.
+            عند تشغيل OCR، تُمرَّر صور الصفحات عبر Tesseract في متصفحك ويُقارَن
+            النص المتعرَّف عليه، لذا يمكن فحص المستندات الممسوحة ضوئيًا. يستخدم
+            OCR حاليًا نموذج اللغة الإنجليزية، وهو أبطأ من مقارنة ملفات PDF التي
+            تحتوي على نص أصلاً.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I filter out formatting changes and only see text differences?
+            هل يمكنني استبعاد تغييرات التنسيق وعرض اختلافات النص فقط؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Changes are grouped into text, image, header/footer, annotation,
-            formatting, and background categories, each with its own toggle.
-            Turn off the categories you don't care about, and use the text
-            search box to find a specific changed word or phrase.
+            تُجمَّع التغييرات في فئات النص والصور والرأس والتذييل والتعليقات
+            التوضيحية والتنسيق والخلفية، ولكل فئة مفتاح تبديل خاص بها. أوقف
+            الفئات التي لا تهمك، واستخدم مربع البحث النصي للعثور على كلمة أو
+            عبارة معينة تغيّرت.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What happens when pages were added, removed, or reordered between
-            versions?
+            ماذا يحدث عند إضافة صفحات أو إزالتها أو إعادة ترتيبها بين النسختين؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Pages are paired by content similarity rather than by page number,
-            so an inserted page doesn't throw off everything after it. A page
-            with no counterpart is reported as added or removed, and the page
-            navigation steps through the pairs the tool built.
+            تُقرن الصفحات بحسب تشابه المحتوى لا برقم الصفحة، لذا لا تُربك صفحة
+            مُدرجة كل ما يليها. تُبلَّغ الصفحة التي لا نظير لها بأنها مضافة أو
+            محذوفة، ويتنقل التنقل بين الصفحات عبر الأزواج التي بنتها الأداة.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Does it detect changes to comments and annotations?
+            هل يكتشف التغييرات في التعليقات والتعليقات التوضيحية؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Annotation changes are their own category, so added or removed
-            comments, highlights, and markup are flagged separately from body
-            text and can be shown or hidden with the annotation filter.
+            تغييرات التعليقات التوضيحية فئة مستقلة، لذا يُبلَّغ عن التعليقات
+            والتمييزات والتحديدات المضافة أو المحذوفة بشكل منفصل عن النص الأساسي
+            ويمكن إظهارها أو إخفاؤها بمرشح التعليقات التوضيحية.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I save the comparison as a report?
+            هل يمكنني حفظ المقارنة كتقرير؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The Export as PDF menu produces a PDF of the comparison. In
-            side-by-side mode you can choose a split view, alternating pages, or
-            only the left or right document with highlights; in overlay mode it
-            exports the overlay view.
+            تنتج قائمة التصدير بصيغة PDF ملف PDF للمقارنة. في وضع جنبًا إلى جنب
+            يمكنك اختيار عرض منقسم أو صفحات متناوبة أو المستند الأيسر أو الأيمن
+            فقط مع التمييز؛ وفي وضع التراكب يصدّر عرض التراكب.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Are the two PDFs sent anywhere to be compared?
+            هل يُرسل ملفا PDF إلى أي مكان للمقارنة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. Rendering, page pairing, OCR, and change detection all run in
-            your browser with WebAssembly and web workers, and nothing is
-            transmitted, so contracts and other confidential drafts stay on your
-            machine.
+            لا. العرض وإقران الصفحات وOCR واكتشاف التغييرات كلها تعمل في متصفحك
+            بواسطة WebAssembly وعمال الويب، ولا يُرسل شيء، لذا تبقى العقود
+            والمسودات السرية الأخرى على جهازك.
           </p>
         </details>
       </div>
@@ -1283,26 +1279,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to compare pdfs online",
+        "name": "كيفية مقارنة ملفات PDF عبر الإنترنت",
         "description": "Learn how to compare pdfs using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }

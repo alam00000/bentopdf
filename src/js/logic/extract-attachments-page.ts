@@ -77,8 +77,8 @@ worker.onmessage = function (e) {
 
     if (attachments.length === 0) {
       showAlert(
-        'No Attachments',
-        'The PDF file(s) do not contain any attachments to extract.'
+        "لا توجد مرفقات",
+        "لا تحتوي ملفات PDF على أي مرفقات لاستخراجها."
       );
       resetState();
       return;
@@ -115,15 +115,15 @@ worker.onmessage = function (e) {
       downloadFile(zipBlob, 'extracted-attachments.zip');
 
       showAlert(
-        'Success',
-        trText('{{length}} attachment(s) extracted successfully!', {
+        "تم بنجاح",
+        trText("تم استخراج {{length}} من المرفقات بنجاح!", {
           length: attachments.length,
         })
       );
 
       showStatus(
         trText(
-          'Extraction completed! {{length}} attachment(s) in zip file ({{totalSize}}). Download started.',
+          "اكتمل الاستخراج! {{length}} من المرفقات في ملف ZIP ({{totalSize}}). بدأ التنزيل.",
           { length: attachments.length, totalSize: formatBytes(totalSize) }
         ),
         'success'
@@ -133,13 +133,13 @@ worker.onmessage = function (e) {
     });
   } else if (e.data.status === 'error') {
     const errorMessage =
-      e.data.message || trText('Unknown error occurred in worker.');
+      e.data.message || trText("حدث خطأ غير معروف في العامل.");
     console.error('Worker Error:', errorMessage);
 
     if (errorMessage.includes('No attachments were found')) {
       showAlert(
-        'No Attachments',
-        'The PDF file(s) do not contain any attachments to extract.'
+        "لا توجد مرفقات",
+        "لا تحتوي ملفات PDF على أي مرفقات لاستخراجها."
       );
       resetState();
     } else {
@@ -151,7 +151,7 @@ worker.onmessage = function (e) {
 worker.onerror = function (error) {
   console.error('Worker error:', error);
   showStatus(
-    trText('Worker error occurred. Check console for details.'),
+    trText("حدث خطأ في العامل. راجع وحدة التحكم للتفاصيل."),
     'error'
   );
 
@@ -180,7 +180,7 @@ async function updateUI() {
 
     const countSpan = document.createElement('div');
     countSpan.className = 'font-medium text-gray-200 text-sm mb-1';
-    countSpan.textContent = trText('{{length}} PDF file(s) selected', {
+    countSpan.textContent = trText("تم تحديد {{length}} من ملفات PDF", {
       length: pageState.files.length,
     });
 
@@ -212,7 +212,7 @@ async function updateUI() {
 
 async function extractAttachments() {
   if (pageState.files.length === 0) {
-    showStatus(trText('No Files'), 'error');
+    showStatus(trText("لا توجد ملفات"), 'error');
     return;
   }
 
@@ -228,11 +228,11 @@ async function extractAttachments() {
     processBtn.setAttribute('disabled', 'true');
   }
 
-  showStatus(trText('Reading files...'), 'info');
+  showStatus(trText("جارٍ قراءة الملفات..."), 'info');
 
   try {
     pageState.files = await batchDecryptIfNeeded(pageState.files);
-    showLoader('Reading files...');
+    showLoader("جارٍ قراءة الملفات...");
 
     const fileBuffers: ArrayBuffer[] = [];
     const fileNames: string[] = [];
@@ -252,7 +252,7 @@ async function extractAttachments() {
     }
 
     showStatus(
-      trText('Extracting attachments from {{length}} file(s)...', {
+      trText("جارٍ استخراج المرفقات من {{length}} من الملفات...", {
         length: pageState.files.length,
       }),
       'info'
@@ -272,7 +272,7 @@ async function extractAttachments() {
   } catch (error) {
     console.error('Error reading files:', error);
     showStatus(
-      trText('Error reading files: {{error}}', {
+      trText("خطأ في قراءة الملفات: {{error}}", {
         error:
           error instanceof Error ? error.message : 'Unknown error occurred',
       }),

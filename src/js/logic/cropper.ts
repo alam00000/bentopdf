@@ -56,7 +56,7 @@ function saveCurrentCrop() {
  */
 
 async function displayPageAsImage(num: number) {
-  showLoader(trText('Rendering Page {{num}}...', { num }));
+  showLoader(trText("جارٍ عرض الصفحة {{num}}...", { num }));
 
   try {
     const page = await cropperState.pdfDoc.getPage(num);
@@ -107,11 +107,11 @@ async function displayPageAsImage(num: number) {
       updatePageInfo();
       enableControls();
       hideLoader();
-      showAlert('Ready', 'Please select an area to crop.');
+      showAlert("جاهز", "يرجى تحديد منطقة للقص.");
     };
   } catch (error) {
     console.error('Error rendering page:', error);
-    showAlert('Error', 'Failed to render page.');
+    showAlert("خطأ", "تعذر عرض الصفحة.");
     hideLoader();
   }
 }
@@ -133,7 +133,7 @@ async function changePage(offset: number) {
 
 function updatePageInfo() {
   document.getElementById('page-info').textContent = trText(
-    'Page {{currentPageNum}} of {{numPages}}',
+    "الصفحة {{currentPageNum}} من {{numPages}}",
     {
       currentPageNum: cropperState.currentPageNum,
       numPages: cropperState.pdfDoc.numPages,
@@ -224,7 +224,7 @@ async function performFlatteningCrop(
   for (let i = 0; i < totalPages; i++) {
     const pageNum = i + 1;
     showLoader(
-      trText('Processing page {{pageNum}} of {{totalPages}}...', {
+      trText("جارٍ معالجة الصفحة {{pageNum}} من {{totalPages}}...", {
         pageNum,
         totalPages,
       })
@@ -312,7 +312,7 @@ export async function setupCropperTool() {
     await displayPageAsImage(cropperState.currentPageNum);
   } catch (error) {
     console.error('Error setting up cropper tool:', error);
-    showAlert('Error', 'Failed to load PDF for cropping.');
+    showAlert("خطأ", "تعذر تحميل PDF للقص.");
   }
 
   document
@@ -337,7 +337,7 @@ export async function setupCropperTool() {
     if (isApplyToAll) {
       const currentCrop = cropperState.pageCrops[cropperState.currentPageNum];
       if (!currentCrop) {
-        showAlert('No Crop Area', 'Please select an area to crop first.');
+        showAlert("لا توجد منطقة قص", "يرجى تحديد منطقة للقص أولًا.");
         return;
       }
       // Apply the active page's crop to all pages
@@ -357,13 +357,13 @@ export async function setupCropperTool() {
 
     if (Object.keys(finalCropData).length === 0) {
       showAlert(
-        'No Crop Area',
-        'Please select an area on at least one page to crop.'
+        "لا توجد منطقة قص",
+        "يرجى تحديد منطقة على صفحة واحدة على الأقل للقص."
       );
       return;
     }
 
-    showLoader('Applying crop...');
+    showLoader("جارٍ تطبيق القص...");
 
     try {
       let finalPdfBytes;
@@ -385,10 +385,10 @@ export async function setupCropperTool() {
         new Blob([new Uint8Array(finalPdfBytes)], { type: 'application/pdf' }),
         fileName
       );
-      showAlert('Success', 'Crop complete! Your download has started.');
+      showAlert("تم بنجاح", "اكتمل القص! بدأ التنزيل.");
     } catch (e) {
       console.error(e);
-      showAlert('Error', 'An error occurred during cropping.');
+      showAlert("خطأ", "حدث خطأ أثناء القص.");
     } finally {
       hideLoader();
     }

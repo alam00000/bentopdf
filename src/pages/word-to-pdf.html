@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,11 @@
     <!-- Primary Meta Tags -->
     <meta
       name="title"
-      content="Word to PDF Converter Free - DOCX to PDF Online | Pixel PDF"
+      content="محوّل Word إلى PDF مجانًا - DOCX إلى PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="description"
-      content="Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Word (DOCX وDOC وODT وRTF) إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="keywords"
@@ -31,11 +31,11 @@
     <meta property="og:url" content="https://www.pixelpdf.com/word-to-pdf" />
     <meta
       property="og:title"
-      content="Word to PDF Converter Free - DOCX to PDF Online | Pixel PDF"
+      content="محوّل Word إلى PDF مجانًا - DOCX إلى PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       property="og:description"
-      content="Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Word (DOCX وDOC وODT وRTF) إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       property="og:image"
@@ -50,11 +50,11 @@
     <meta name="twitter:url" content="https://www.pixelpdf.com/word-to-pdf" />
     <meta
       name="twitter:title"
-      content="Word to PDF Converter Free - DOCX to PDF Online | Pixel PDF"
+      content="محوّل Word إلى PDF مجانًا - DOCX إلى PDF عبر الإنترنت | Pixel PDF"
     />
     <meta
       name="twitter:description"
-      content="Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser."
+      content="حوّل مستندات Word (DOCX وDOC وODT وRTF) إلى PDF. يدعم عدة ملفات. مجاني، بدون رفع ملفات، بدون تسجيل. يعمل بالكامل داخل متصفحك."
     />
     <meta
       name="twitter:image"
@@ -65,9 +65,9 @@
     <!-- Mobile Web App -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Word to PDF" />
+    <meta name="apple-mobile-web-app-title" content="Word إلى PDF" />
 
-    <title>Word to PDF Converter Free - DOCX to PDF Online | Pixel PDF</title>
+    <title>محوّل Word إلى PDF مجانًا - DOCX إلى PDF عبر الإنترنت | Pixel PDF</title>
 
     <link href="/src/css/styles.css" rel="stylesheet" />
 
@@ -112,20 +112,20 @@
           class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
         >
           <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools">
-            Back to Tools
-          </span>
+          <span class="cursor-pointer" data-i18n="tools.backToTools"
+            >العودة إلى الأدوات</span
+          >
         </button>
 
         <h1
           class="text-2xl font-bold text-white mb-2"
           data-i18n="tools:wordToPdf.name"
         >
-          Word to PDF
+          Word إلى PDF
         </h1>
         <p class="text-gray-400 mb-6" data-i18n="tools:wordToPdf.subtitle">
-          Convert Word documents (DOCX, DOC, ODT, RTF) to PDF format. Supports
-          multiple files.
+          تحويل مستندات Word (DOCX، DOC، ODT، RTF) إلى تنسيق PDF. يدعم عدة
+          ملفات.
         </p>
 
         <div
@@ -136,18 +136,18 @@
             <i class="ph ph-upload-simple text-4xl mb-3 text-gray-400"></i>
             <p class="mb-2 text-sm text-gray-400">
               <span class="font-semibold" data-i18n="upload.clickToSelect"
-                >Click to select files</span
+                >انقر لاختيار ملف</span
               >
-              <span data-i18n="upload.orDragAndDrop">or drag and drop</span>
+              <span data-i18n="upload.orDragAndDrop">أو اسحب وأفلت</span>
             </p>
             <p
               class="text-xs text-gray-500"
               data-i18n="tools:wordToPdf.acceptedFormats"
             >
-              DOCX, DOC, ODT, RTF files
+              ملفات DOCX، DOC، ODT، RTF
             </p>
             <p class="text-xs text-gray-500" data-i18n="upload.filesNeverLeave">
-              Your files never leave your device.
+              ملفاتك لا تغادر جهازك أبدًا.
             </p>
           </div>
           <input
@@ -155,15 +155,15 @@
             type="file"
             class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
             accept=".doc,.docx,.odt,.rtf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/rtf,application/rtf"
-            multiple
+            multiple=""
           />
         </div>
 
         <div class="flex items-center gap-2 text-gray-500 text-xs mt-4">
           <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
           <p data-i18n="tools.firstLoadNotice">
-            First load takes a moment as we download our conversion engine.
-            After that, all loads will be instant.
+            يستغرق التحميل الأول لحظة أثناء تنزيل محرك التحويل. بعد ذلك، ستكون
+            جميع التحميلات فورية.
           </p>
         </div>
 
@@ -173,14 +173,14 @@
             class="btn bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="plus"></i>
-            <span data-i18n="upload.addMore">Add More Files</span>
+            <span data-i18n="upload.addMore">إضافة المزيد من الملفات</span>
           </button>
           <button
             id="clear-files-btn"
             class="btn bg-gray-700 hover:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2"
           >
             <i data-lucide="trash-2"></i>
-            <span data-i18n="upload.clearAll">Clear All</span>
+            <span data-i18n="upload.clearAll">مسح الكل</span>
           </button>
         </div>
 
@@ -192,7 +192,7 @@
             class="btn-gradient w-full"
             data-i18n="tools:wordToPdf.convertButton"
           >
-            Convert to PDF
+            تحويل إلى PDF
           </button>
         </div>
       </div>
@@ -207,7 +207,7 @@
       >
         <div class="solid-spinner"></div>
         <p id="loader-text" class="text-white text-lg font-medium">
-          Processing...
+          جارٍ المعالجة...
         </p>
       </div>
     </div>
@@ -224,14 +224,14 @@
           class="text-xl font-bold text-white mb-2"
           data-i18n="alert.title"
         >
-          Alert
+          تنبيه
         </h3>
         <p id="alert-message" class="text-gray-300 mb-6"></p>
         <button
           id="alert-ok"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
         >
-          OK
+          حسنًا
         </button>
       </div>
     </div>
@@ -242,7 +242,7 @@
         class="text-2xl md:text-3xl font-bold text-white mb-8 text-center"
         data-i18n="howItWorks.title"
       >
-        How It Works
+        كيف يعمل
       </h2>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
@@ -253,10 +253,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Upload Word Files
+              رفع ملفات Word
             </h3>
             <p class="text-gray-400">
-              Select or drag DOCX or DOC files you want to convert
+              اختر أو اسحب ملفات DOCX أو DOC التي تريد تحويلها
             </p>
           </div>
         </div>
@@ -267,9 +267,9 @@
             2
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Auto Convert</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">تحويل تلقائي</h3>
             <p class="text-gray-400">
-              Conversion starts automatically, processing in your browser
+              يبدأ التحويل تلقائيًا، وتتم المعالجة داخل متصفحك
             </p>
           </div>
         </div>
@@ -281,10 +281,10 @@
           </div>
           <div class="flex-1">
             <h3 class="text-lg font-semibold text-white mb-1">
-              Preview Results
+              معاينة النتائج
             </h3>
             <p class="text-gray-400">
-              See your converted PDF with preserved formatting
+              شاهد ملف PDF المحوَّل مع الحفاظ على التنسيق
             </p>
           </div>
         </div>
@@ -295,9 +295,11 @@
             4
           </div>
           <div class="flex-1">
-            <h3 class="text-lg font-semibold text-white mb-1">Download PDFs</h3>
+            <h3 class="text-lg font-semibold text-white mb-1">
+              تنزيل ملفات PDF
+            </h3>
             <p class="text-gray-400">
-              Save your PDF files - formatting perfectly preserved
+              احفظ ملفات PDF الخاصة بك مع بقاء التنسيق كما هو تمامًا
             </p>
           </div>
         </div>
@@ -310,45 +312,51 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="relatedTools.title"
       >
-        Related PDF Tools
+        أدوات PDF ذات صلة
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <a
           href="pdf-to-word.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PDF to DOCX</h3>
-          <p class="text-gray-400 text-sm">Free online PDF to DOCX tool</p>
+          <h3 class="text-white font-semibold mb-1">PDF إلى DOCX</h3>
+          <p class="text-gray-400 text-sm">
+            أداة PDF إلى DOCX مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="excel-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Excel to PDF</h3>
-          <p class="text-gray-400 text-sm">Free online Excel to PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">Excel إلى PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة Excel إلى PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="powerpoint-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">PowerPoint to PDF</h3>
+          <h3 class="text-white font-semibold mb-1">PowerPoint إلى PDF</h3>
           <p class="text-gray-400 text-sm">
-            Free online PowerPoint to PDF tool
+            أداة PowerPoint إلى PDF مجانية عبر الإنترنت
           </p>
         </a>
         <a
           href="txt-to-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">TXT to PDF</h3>
-          <p class="text-gray-400 text-sm">Free online TXT to PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">TXT إلى PDF</h3>
+          <p class="text-gray-400 text-sm">
+            أداة TXT إلى PDF مجانية عبر الإنترنت
+          </p>
         </a>
         <a
           href="merge-pdf.html"
           class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors border border-gray-700"
         >
-          <h3 class="text-white font-semibold mb-1">Merge PDF</h3>
-          <p class="text-gray-400 text-sm">Free online merge PDF tool</p>
+          <h3 class="text-white font-semibold mb-1">دمج PDF</h3>
+          <p class="text-gray-400 text-sm">أداة دمج PDF مجانية عبر الإنترنت</p>
         </a>
       </div>
     </section>
@@ -359,101 +367,96 @@
         class="text-2xl md:text-3xl font-bold text-white mb-6 text-center"
         data-i18n="faq.sectionTitle"
       >
-        Frequently Asked Questions
+        الأسئلة الشائعة
       </h2>
       <div class="faq-list">
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do I need Microsoft Word installed to convert Word to PDF?
+            هل أحتاج إلى تثبيت Microsoft Word لتحويل Word إلى PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The conversion is done by LibreOffice compiled to WebAssembly
-            running inside your browser, so it works on any computer, tablet, or
-            phone with a modern browser and no Office license. The engine is
-            about 77 MB and downloads on first use, so the first conversion of a
-            session takes longer.
+            لا. يتم التحويل بواسطة LibreOffice المترجَم إلى WebAssembly العامل
+            داخل متصفحك، فيعمل على أي حاسوب أو جهاز لوحي أو هاتف فيه متصفح حديث
+            دون ترخيص Office. حجم المحرك نحو 77 MB ويُنزَّل عند أول استخدام، لذا
+            يستغرق أول تحويل في الجلسة وقتًا أطول.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert Google Docs or Apple Pages files?
+            هل يمكنني تحويل ملفات Google Docs أو Apple Pages؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            For Google Docs, download the document as .docx from File &gt;
-            Download and convert that. Pages files aren't supported; export them
-            as Word or PDF from Pages first. The tool accepts .doc, .docx, .odt,
-            and .rtf.
+            لمستندات Google Docs، نزّل المستند بصيغة .docx من ملف &gt; تنزيل
+            وحوّله. ملفات Pages غير مدعومة، فصدّرها من Pages بصيغة Word أو PDF
+            أولًا. تقبل الأداة .doc و.docx و.odt و.rtf.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Will headings become PDF bookmarks, and do links stay clickable?
+            هل تصبح العناوين إشارات مرجعية في PDF وهل تبقى الروابط قابلة للنقر؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes, as long as the headings use Word's heading styles;
-            LibreOffice's PDF export turns them into an outline, and hyperlinks
-            in the document remain clickable in the PDF.
+            نعم، ما دامت العناوين تستخدم أنماط العناوين في Word. يحوّلها تصدير
+            PDF في LibreOffice إلى فهرس، وتبقى الروابط في المستند قابلة للنقر في
+            PDF.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Why do fonts look different in the PDF?
+            لماذا تبدو الخطوط مختلفة في PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Only fonts bundled with the engine are available, so a document set
-            in a font that isn't embedded in the file is rendered with the
-            closest substitute. The layout stays close, but line breaks can
-            shift; embedding fonts in the .docx before converting avoids this.
+            تتوفر فقط الخطوط المضمّنة مع المحرك، لذا يُعرض المستند المكتوب بخط
+            غير مضمَّن في الملف بأقرب بديل. يبقى التخطيط قريبًا لكن فواصل الأسطر
+            قد تتحرك، وتضمين الخطوط في ملف .docx قبل التحويل يتجنب ذلك.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Do tracked changes and comments appear in the PDF?
+            هل تظهر التغييرات المتعقَّبة والتعليقات في PDF؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            The document is rendered the way LibreOffice Writer displays it, so
-            accept or reject tracked changes and delete comments in Word before
-            converting if you want a clean PDF.
+            يُعرض المستند بالطريقة التي يعرضها بها LibreOffice Writer، لذا اقبل
+            التغييرات المتعقَّبة أو ارفضها واحذف التعليقات في Word قبل التحويل
+            إذا أردت PDF نظيفًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Can I convert several documents at once?
+            هل يمكنني تحويل عدة مستندات دفعة واحدة؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Yes. A single file downloads as a PDF with the same base name;
-            multiple files are delivered as word-converted.zip with one PDF
-            each, and duplicate names are numbered automatically.
+            نعم. يُنزَّل الملف الواحد بصيغة PDF بالاسم الأساسي نفسه، وتُسلَّم
+            الملفات المتعددة في word-converted.zip مع PDF لكل ملف، وتُرقَّم
+            الأسماء المكررة تلقائيًا.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            What doesn't convert well?
+            ما الذي لا يُحوَّل جيدًا؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            Macros, ActiveX controls, and complex SmartArt may not render
-            correctly, and Chinese, Japanese, Korean, or Indic text may show
-            fallback fonts or boxes because those fonts aren't bundled. Standard
-            text, tables, images, headers, footers, and footnotes convert
-            reliably.
+            قد لا تُعرض وحدات الماكرو وعناصر ActiveX وSmartArt المعقد بشكل صحيح،
+            وقد يظهر النص الصيني أو الياباني أو الكوري أو الهندي بخطوط بديلة أو
+            مربعات لأن هذه الخطوط غير مضمّنة. يُحوَّل النص القياسي والجداول
+            والصور والترويسات والتذييلات والحواشي السفلية بشكل موثوق.
           </p>
         </details>
         <details class="faq-d">
           <summary class="faq-d-q">
-            Is my document uploaded to a server for conversion?
+            هل يُرفع مستندي إلى خادم للتحويل؟
             <i data-lucide="plus" class="faq-d-icon"></i>
           </summary>
           <p class="faq-d-a">
-            No. The LibreOffice engine runs entirely inside your browser tab, so
-            a resume, contract, or medical letter is converted on your own
-            device and never sent anywhere.
+            لا. يعمل محرك LibreOffice بالكامل داخل تبويب متصفحك، فتُحوَّل السيرة
+            الذاتية أو العقد أو الرسالة الطبية على جهازك ولا تُرسل إلى أي مكان.
           </p>
         </details>
       </div>
@@ -486,26 +489,26 @@
       {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": "How to convert Word to PDF online",
+        "name": "كيفية تحويل Word إلى PDF عبر الإنترنت",
         "description": "Learn how to convert Word to PDF using Pixel PDF",
         "step": [
           {
             "@type": "HowToStep",
             "position": 1,
-            "name": "Upload File",
-            "text": "Click or drag and drop your file"
+            "name": "رفع ملف",
+            "text": "انقر أو اسحب وأفلت ملفك"
           },
           {
             "@type": "HowToStep",
             "position": 2,
-            "name": "Process",
-            "text": "Click the process button"
+            "name": "معالجة",
+            "text": "انقر زر المعالجة"
           },
           {
             "@type": "HowToStep",
             "position": 3,
-            "name": "Download",
-            "text": "Download your processed file"
+            "name": "تنزيل",
+            "text": "نزّل ملفك المعالج"
           }
         ]
       }
