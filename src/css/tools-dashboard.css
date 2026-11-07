@@ -1,0 +1,231 @@
+/* Dashboard-only finish, loaded after the legacy landing/Arabic themes.
+   Keep tool markup, routing, favorites and accordion height logic unchanged. */
+.lp #tool-grid {
+  --dashboard-accent: #087f70;
+  --dashboard-ink: #193e38;
+  --dashboard-muted: #596f69;
+}
+
+.lp #tool-grid .category-group {
+  margin-block: 0 28px;
+}
+
+.lp #tool-grid .category-header {
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 12px;
+  padding: 20px 24px;
+  border: 1px solid rgba(35, 96, 76, 0.1);
+  border-radius: 16px;
+  background: linear-gradient(115deg, #ffffff, #f0f7f3);
+  box-shadow:
+    0 3px 6px rgba(25, 62, 56, 0.02),
+    0 10px 28px -18px rgba(25, 62, 56, 0.18);
+  font-family: 'Tajawal', sans-serif;
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-align: start;
+  color: var(--dashboard-ink);
+  transition: all 0.3s ease;
+}
+
+.lp #tool-grid .category-header > span {
+  margin: 0;
+}
+
+.lp #tool-grid .category-chevron {
+  flex-shrink: 0;
+  box-sizing: content-box;
+  padding: 8px;
+  border-radius: 10px;
+  color: var(--dashboard-accent);
+  background: rgba(8, 127, 112, 0.07);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.lp #tool-grid .category-header:hover {
+  border-color: rgba(8, 127, 112, 0.24);
+  box-shadow: 0 10px 30px -18px rgba(25, 62, 56, 0.28);
+  color: var(--dashboard-accent);
+}
+
+.lp #tool-grid .category-tools {
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 1;
+}
+
+.lp #tool-grid .category-group.collapsed .category-tools {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0s 0.3s;
+}
+
+.lp #tool-grid:not(.compact-mode) .category-tools,
+.lp #tool-grid:not(.compact-mode) #search-results {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  border: 0;
+  background: none;
+  /* No vertical padding: the existing accordion collapses to max-height: 0. */
+  padding: 0;
+}
+
+.lp #tool-grid:not(.compact-mode) .tool-card {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 220px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 28px;
+  border: 1px solid rgba(35, 96, 76, 0.12);
+  border-radius: 16px;
+  outline: none;
+  background-color: #fff;
+  background-image: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(238, 247, 242, 0.6)
+  );
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  box-shadow:
+    0 2px 4px rgba(25, 62, 56, 0.025),
+    0 10px 24px -12px rgba(25, 62, 56, 0.16),
+    inset 0 1px 0 #fff;
+  text-align: start;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.lp #tool-grid:not(.compact-mode) .tool-card:hover,
+.lp #tool-grid:not(.compact-mode) .tool-tile:hover .tool-card,
+.lp #tool-grid:not(.compact-mode) .tool-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(8, 127, 112, 0.28);
+  background-position: 100% 100%;
+  box-shadow:
+    0 4px 8px rgba(25, 62, 56, 0.035),
+    0 18px 34px -14px rgba(25, 62, 56, 0.24),
+    inset 0 1px 0 #fff;
+}
+
+.lp #tool-grid .category-header:focus-visible,
+.lp #tool-grid:not(.compact-mode) .tool-card:focus-visible {
+  outline: 3px solid rgba(8, 127, 112, 0.65);
+  outline-offset: 3px;
+}
+
+.lp #tool-grid:not(.compact-mode) .tool-card > svg,
+.lp #tool-grid:not(.compact-mode) .tool-card > i.ph {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 52px;
+  height: 52px;
+  margin: 0 0 22px;
+  padding: 12px;
+  border: 1px solid rgba(8, 127, 112, 0.08);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #eef8f2, #e1f1e9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 6px 12px -8px rgba(8, 127, 112, 0.3);
+  color: var(--dashboard-accent);
+  font-size: 26px;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.lp #tool-grid:not(.compact-mode) .tool-card h3 {
+  margin: 0;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.55;
+  letter-spacing: 0;
+  color: var(--dashboard-ink);
+  overflow-wrap: anywhere;
+}
+
+.lp #tool-grid:not(.compact-mode) .tool-card p {
+  display: block;
+  overflow: visible;
+  margin: 8px 0 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--dashboard-muted);
+}
+
+.lp #tool-grid .tool-fav-btn {
+  inset-inline-end: 10px;
+  inset-inline-start: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 1023px) {
+  .lp #tool-grid:not(.compact-mode) .category-tools,
+  .lp #tool-grid:not(.compact-mode) #search-results {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .lp #tool-grid .category-header {
+    padding: 16px 18px;
+  }
+  .lp #tool-grid:not(.compact-mode) .category-tools,
+  .lp #tool-grid:not(.compact-mode) #search-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .lp #tool-grid:not(.compact-mode) .tool-card {
+    padding: 22px 18px;
+    min-height: 210px;
+  }
+  .lp #tool-grid:not(.compact-mode) .tool-card h3 {
+    font-size: 16px;
+  }
+  .lp #tool-grid:not(.compact-mode) .tool-card p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .lp #tool-grid:not(.compact-mode) .category-tools,
+  .lp #tool-grid:not(.compact-mode) #search-results {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp #tool-grid .category-tools,
+  .lp #tool-grid .category-group.collapsed .category-tools,
+  .lp #tool-grid .category-header,
+  .lp #tool-grid .category-chevron,
+  .lp #tool-grid:not(.compact-mode) .tool-card,
+  .lp #tool-grid:not(.compact-mode) .tool-card > svg,
+  .lp #tool-grid:not(.compact-mode) .tool-card > i.ph {
+    /* Keep a transitionend event for the existing accordion cleanup handler. */
+    transition-duration: 0.01ms;
+    transition-delay: 0s;
+  }
+  .lp #tool-grid:not(.compact-mode) .tool-card:hover,
+  .lp #tool-grid:not(.compact-mode) .tool-tile:hover .tool-card,
+  .lp #tool-grid:not(.compact-mode) .tool-card:focus-visible {
+    transform: none;
+  }
+}
