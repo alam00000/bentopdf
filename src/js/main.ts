@@ -45,15 +45,6 @@ const FAVORITE_STAR_PATHS = [
 ] as const;
 declare const __BRAND_NAME__: string;
 
-const adsSection = document.getElementById('ads-section');
-if (
-  adsSection &&
-  (['pixelpdf.com', 'www.pixelpdf.com'].includes(window.location.hostname) ||
-    import.meta.env.DEV)
-) {
-  adsSection.hidden = false;
-}
-
 const init = async () => {
   await initI18n();
   await loadRuntimeConfig();
@@ -94,43 +85,6 @@ const init = async () => {
       );
       if (githubLink) {
         (githubLink as HTMLElement).style.display = 'none';
-      }
-
-      const featuresSection = document.getElementById('features-section');
-      if (featuresSection) {
-        featuresSection.style.display = 'none';
-      }
-
-      const securitySection = document.getElementById(
-        'security-compliance-section'
-      );
-      if (securitySection) {
-        securitySection.style.display = 'none';
-      }
-
-      const faqSection = document.getElementById('faq-accordion');
-      if (faqSection) {
-        faqSection.style.display = 'none';
-      }
-
-      const testimonialsSection = document.getElementById(
-        'testimonials-section'
-      );
-      if (testimonialsSection) {
-        testimonialsSection.style.display = 'none';
-      }
-
-      const supportSection = document.getElementById('support-section');
-      if (supportSection) {
-        supportSection.style.display = 'none';
-      }
-
-      // Hide "Used by companies" section
-      const usedBySection = document.querySelector(
-        '.hide-section'
-      ) as HTMLElement;
-      if (usedBySection) {
-        usedBySection.style.display = 'none';
       }
 
       const sectionDividers = document.querySelectorAll('.section-divider');
@@ -900,26 +854,6 @@ const init = async () => {
 
   if (dom.alertOkBtn) {
     dom.alertOkBtn.addEventListener('click', hideAlert);
-  }
-
-  const faqAccordion = document.getElementById('faq-accordion');
-  if (faqAccordion) {
-    faqAccordion.addEventListener('click', (e) => {
-      // @ts-expect-error TS(2339) FIXME: Property 'closest' does not exist on type 'EventTa... Remove this comment to see the full error message
-      const questionButton = e.target.closest('.faq-question');
-      if (!questionButton) return;
-
-      const faqItem = questionButton.parentElement;
-      const answer = faqItem.querySelector('.faq-answer');
-
-      faqItem.classList.toggle('open');
-
-      if (faqItem.classList.contains('open')) {
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      } else {
-        answer.style.maxHeight = '0px';
-      }
-    });
   }
 
   const faqDetails =

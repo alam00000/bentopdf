@@ -30,7 +30,6 @@ export const dom = {
   alertMessage: document.getElementById('alert-message'),
   alertOkBtn: document.getElementById('alert-ok'),
   heroSection: document.getElementById('hero-section'),
-  featuresSection: document.getElementById('features-section'),
   toolsHeader: document.getElementById('tools-header'),
   dividers: document.querySelectorAll('.section-divider'),
   hideSections: document.querySelectorAll('.hide-section'),
@@ -139,9 +138,8 @@ export const switchView = (view: string) => {
   if (view === 'grid') {
     dom.gridView.classList.remove('hidden');
     dom.toolInterface.classList.add('hidden');
-    // show hero and features and header
+    // show hero and tools header
     dom.heroSection.classList.remove('hidden');
-    dom.featuresSection.classList.remove('hidden');
     dom.toolsHeader.classList.remove('hidden');
     // show dividers
     dom.dividers.forEach((divider) => {
@@ -156,7 +154,6 @@ export const switchView = (view: string) => {
   } else {
     dom.gridView.classList.add('hidden');
     dom.toolInterface.classList.remove('hidden');
-    dom.featuresSection.classList.add('hidden');
     dom.heroSection.classList.add('hidden');
     dom.toolsHeader.classList.add('hidden');
     dom.dividers.forEach((divider) => {
