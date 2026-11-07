@@ -92,12 +92,9 @@
 
 ### رفع الملفات الكبيرة
 
-يدعم Cloudflare Pages ملفات حتى 25 MB. يفترض أن تعمل وحدات WASM بدون مشكلة، لكن إذا وصلت إلى الحدود، فجرّب:
+يفرض Cloudflare Pages وWorkers حدًا أقصى قدره 25 MiB لكل ملف. ملفات LibreOffice WASM في Pixel PDF أكبر من هذا الحد، لذلك يقوم بناء الإنتاج تلقائيًا بتقسيمها إلى ملفات أصغر وإنشاء ملف manifest للأجزاء. يعيد محمّل المتصفح تجميع الأجزاء قبل تهيئة LibreOffice.
 
-```bash
-# Split large files during build
-npm run build
-```
+استخدم أمر البناء المعتاد (`npm run build`) وانشر مجلد `dist` كاملًا. لا تحذف ملفات `*.parts.json` أو `*.part-*` الناتجة؛ فحذفها يعطّل التحويلات المعتمدة على LibreOffice. أثناء التطوير تُستخدم الملفات الأصلية في `public/libreoffice-wasm/`.
 
 ### حدود حجم Worker
 

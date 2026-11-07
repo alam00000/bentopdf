@@ -7,7 +7,7 @@
   "scripts": {
     "predev": "node scripts/generate-blog.mjs && node scripts/generate-static-tool-links.mjs",
     "dev": "vite",
-    "build": "node scripts/generate-blog.mjs && node scripts/generate-static-tool-links.mjs && tsc && vite build && node scripts/enhance-seo-pages.mjs && NODE_OPTIONS='--max-old-space-size=3072' node scripts/generate-i18n-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-security-headers.mjs && node scripts/apply-indexing-policy.mjs && node scripts/compress-static-assets.mjs && node scripts/seo-audit.mjs",
+    "build": "node scripts/generate-blog.mjs && node scripts/generate-static-tool-links.mjs && tsc && vite build && node scripts/split-large-static-assets.mjs && node scripts/enhance-seo-pages.mjs && NODE_OPTIONS='--max-old-space-size=3072' node scripts/generate-i18n-pages.mjs && node scripts/generate-sitemap.mjs && node scripts/generate-security-headers.mjs && node scripts/apply-indexing-policy.mjs && node scripts/compress-static-assets.mjs && node scripts/seo-audit.mjs",
     "seo-audit": "node scripts/seo-audit.mjs",
     "build:with-docs": "INCLUDE_DOCS=true npm run build && npm run docs:build && node scripts/include-docs-in-dist.js && node scripts/apply-indexing-policy.mjs && node scripts/compress-static-assets.mjs",
     "build:gzip": "COMPRESSION_MODE=g npm run build",
