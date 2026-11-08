@@ -5,7 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { applyColorAdjustments } from '../../utils/image-effects';
 import { PDFDocument } from 'pdf-lib';
-import * as pdfjsLib from 'pdfjs-dist';
+import { getPDFDocument } from '../../utils/helpers.js';
 import type { AdjustColorsSettings } from '../../types/adjust-colors-type';
 import { wfError } from '../errors';
 
@@ -78,8 +78,7 @@ export class AdjustColorsNode extends BaseWorkflowNode {
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
         const newPdfDoc = await PDFDocument.create();
-        const pdfjsDoc = await pdfjsLib.getDocument({ data: input.bytes })
-          .promise;
+        const pdfjsDoc = await getPDFDocument({ data: input.bytes }).promise;
 
         for (let i = 1; i <= pdfjsDoc.numPages; i++) {
           const page = await pdfjsDoc.getPage(i);

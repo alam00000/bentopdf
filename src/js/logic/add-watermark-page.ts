@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '../ui.js';
 import {
   downloadFile,
+  getPDFDocument,
   hexToRgb,
   formatBytes,
   readFileAsArrayBuffer,
@@ -1223,7 +1224,7 @@ async function applyWatermark() {
       'flatten-watermark'
     ) as HTMLInputElement;
     if (flattenCheckbox?.checked) {
-      const watermarkedPdf = await pdfjsLib.getDocument({
+      const watermarkedPdf = await getPDFDocument({
         data: resultBytes.slice(),
       }).promise;
       const flattenedDoc = await PDFLibDocument.create();

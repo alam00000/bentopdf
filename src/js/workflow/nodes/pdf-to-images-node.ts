@@ -3,8 +3,7 @@ import { BaseWorkflowNode } from './base-node';
 import { pdfSocket } from '../sockets';
 import type { SocketData, PDFData } from '../types';
 import { requirePdfInput, extractAllPdfs } from '../types';
-import { downloadFile } from '../../utils/helpers.js';
-import * as pdfjsLib from 'pdfjs-dist';
+import { downloadFile, getPDFDocument } from '../../utils/helpers.js';
 import type JSZip from 'jszip';
 import { loadPyMuPDF } from '../../utils/pymupdf-loader.js';
 
@@ -39,7 +38,7 @@ export class PdfToImagesNode extends BaseWorkflowNode {
     scale: number,
     prefix: string
   ): Promise<void> {
-    const pdfjsDoc = await pdfjsLib.getDocument({ data: pdf.bytes }).promise;
+    const pdfjsDoc = await getPDFDocument({ data: pdf.bytes }).promise;
     for (let i = 1; i <= pdfjsDoc.numPages; i++) {
       const page = await pdfjsDoc.getPage(i);
       const viewport = page.getViewport({ scale });

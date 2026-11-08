@@ -4,7 +4,7 @@ import { createIcons, icons } from 'lucide';
 import { initPagePreview } from '../utils/page-preview.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
-import { escapeHtml } from '../utils/helpers.js';
+import { escapeHtml, getPDFDocument } from '../utils/helpers.js';
 import '../utils/setup-pdf-worker.js';
 
 import { trText, trHtml, onPageReady } from '../i18n/i18n.js';
@@ -190,7 +190,7 @@ async function detectBlankPages() {
   showLoader('Detecting blank pages...');
   try {
     const pdfData = await pageState.file.arrayBuffer();
-    const pdfDoc = await pdfjsLib.getDocument({ data: pdfData }).promise;
+    const pdfDoc = await getPDFDocument({ data: pdfData }).promise;
     const totalPages = pdfDoc.numPages;
 
     pageState.detectedBlankPages = [];

@@ -1,5 +1,5 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
-import { downloadFile } from '../utils/helpers.js';
+import { downloadFile, getPDFDocument } from '../utils/helpers.js';
 import { state } from '../state.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import {
@@ -464,7 +464,7 @@ export async function refreshMergeUI() {
       const fileKey = `${i}_${file.name}`;
 
       const bytes = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: bytes.slice(0) }).promise;
+      const pdf = await getPDFDocument({ data: bytes.slice(0) }).promise;
       mergeState.pdfBytes[fileKey] = bytes;
       mergeState.pdfDocs[fileKey] = pdf;
     }

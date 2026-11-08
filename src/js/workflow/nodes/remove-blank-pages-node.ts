@@ -5,6 +5,7 @@ import type { SocketData } from '../types';
 import { requirePdfInput, processBatch } from '../types';
 import { PDFDocument } from 'pdf-lib';
 import * as pdfjsLib from 'pdfjs-dist';
+import { getPDFDocument } from '../../utils/helpers.js';
 import { loadPdfDocument } from '../../utils/load-pdf-document.js';
 import { wfError } from '../errors';
 
@@ -61,7 +62,7 @@ export class RemoveBlankPagesNode extends BaseWorkflowNode {
 
     return {
       pdf: await processBatch(pdfInputs, async (input) => {
-        const pdfjsDoc = await pdfjsLib.getDocument({ data: input.bytes })
+        const pdfjsDoc = await getPDFDocument({ data: input.bytes.slice() })
           .promise;
         const srcDoc = await loadPdfDocument(input.bytes);
         const nonBlankIndices: number[] = [];
