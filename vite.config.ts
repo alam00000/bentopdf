@@ -92,10 +92,6 @@ function createLanguageMiddleware(isDev: boolean): Connect.NextHandleFunction {
         fs.existsSync(resolve(__dirname, 'src/pages', `${pageName}.html`))
           ? `/src/pages/${pageName}.html`
           : `/${pageName}.html`) + suffix;
-    } else if (pathname === '/blog' || pathname === '/blog/') {
-      req.url = '/blog/index.html' + suffix;
-    } else if (/^\/blog\/[a-z0-9-]+\/?$/.test(pathname)) {
-      req.url = pathname.replace(/\/$/, '') + '.html' + suffix;
     }
     next();
   };
@@ -617,26 +613,13 @@ export default defineConfig(({ command }) => {
             process.env.SIMPLE_MODE === 'true'
               ? resolve(__dirname, 'simple-index.html')
               : resolve(__dirname, 'index.html'),
-          about: resolve(__dirname, 'about.html'),
-          contact: resolve(__dirname, 'contact.html'),
           faq: resolve(__dirname, 'faq.html'),
           privacy: resolve(__dirname, 'privacy.html'),
           terms: resolve(__dirname, 'terms.html'),
           licensing: resolve(__dirname, 'licensing.html'),
-          kura: resolve(__dirname, 'kura.html'),
-          'hyper-compress': resolve(__dirname, 'hyper-compress.html'),
           ...(showAds
             ? { advertise: resolve(__dirname, 'advertise.html') }
             : {}),
-          ...Object.fromEntries(
-            fs
-              .readdirSync(resolve(__dirname, 'blog'))
-              .filter((f) => f.endsWith('.html'))
-              .map((f) => [
-                `blog-${f.replace('.html', '')}`,
-                resolve(__dirname, 'blog', f),
-              ])
-          ),
           '404': resolve(__dirname, '404.html'),
           // Category Hub Pages
           'pdf-converter': resolve(__dirname, 'pdf-converter.html'),
