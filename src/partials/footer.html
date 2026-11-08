@@ -1,39 +1,56 @@
 {{#if simpleMode}} {{> footer-simple}} {{else}}
-<footer class="border-t border-white/10 py-12">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 text-center md:text-left">
-      <div class="mb-8 md:mb-0">
-        <div class="flex items-center justify-center md:justify-start mb-4">
-          <img id="footer-logo" src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/pixelpdf-icon.png{{/if}}" alt="{{#if brandName}}{{brandName}}{{else}}بيكسل  PDF{{/if}} - الشعار" class="h-10 w-10 mr-3">
-          <span id="footer-brand" class="px-brand text-xl">{{#if brandName}}{{brandName}}{{else}}بيكسل <span class="px-brand-accent">PDF</span>{{/if}}</span>
-        </div>
-        <p id="footer-copyright" class="text-gray-400 text-sm" pixelhb16tokendata-i18n="footer.copyright" pixelhb17token="">
-          {{#if footerText}}{{footerText}}{{else}}© 2026 Pixel PDF. جميع الحقوق محفوظة.{{/if}}
-        </p>
-        <p class="text-gray-400 text-xs mt-2">
-          <span data-i18n="footer.version">الإصدار</span>
-          <span id="app-version">{{appVersion}}</span>
-        </p>
-      </div>
-
-      <div>
-        <h3 class="font-bold text-white mb-4" data-i18n="footer.tools">الأدوات</h3>
-        <ul class="space-y-2 text-gray-400">
-          <li>
-            <a href="/#tools-header" class="hover:text-indigo-400" data-i18n="nav.allTools">جميع الأدوات</a>
-          </li>
-          <li>
-            <a href="/pdf-converter" class="hover:text-indigo-400" data-i18n="footer.pdfConverter">محول PDF</a>
-          </li>
-          <li>
-            <a href="/pdf-security" class="hover:text-indigo-400" data-i18n="footer.pdfSecurity">أمان PDF</a>
-          </li>
-          <li>
-            <a href="/pdf-merge-split" class="hover:text-indigo-400" data-i18n="footer.mergeSplit">دمج وتقسيم PDF</a>
-          </li>
-        </ul>
-      </div>
+<footer class="px-footer">
+  <div class="px-footer-inner">
+    <div class="px-footer-brand">
+      <a class="px-brand-link" href="{{baseUrl}}" aria-label="بيكسل PDF - الصفحة الرئيسية">
+        <span class="px-brand-mark" aria-hidden="true">
+          <img
+            id="footer-logo"
+            src="{{baseUrl}}{{#if brandLogo}}{{brandLogo}}{{else}}images/pixelpdf-icon.png{{/if}}"
+            alt=""
+            width="31"
+            height="31"
+          />
+        </span>
+        <span class="px-brand-copy">
+          <span id="footer-brand" class="px-brand-name"
+            >{{#if brandName}}{{brandName}}{{else}}بيكسل
+            <span class="px-brand-accent">PDF</span>{{/if}}</span
+          >
+          <span class="px-brand-tag">أدوات PDF تعمل محليًا في متصفحك</span>
+        </span>
+      </a>
+      <p id="footer-copyright">
+        {{#if footerText}}{{footerText}}{{else}}© 2026 Pixel PDF. جميع الحقوق
+        محفوظة.{{/if}}
+      </p>
+      <p>
+        <span data-i18n="footer.version">الإصدار</span>
+        <span id="app-version" class="px-number">{{appVersion}}</span>
+      </p>
     </div>
+
+    <nav aria-label="تصنيفات الأدوات في التذييل">
+      <h3>الأدوات</h3>
+      <ul>
+        <li><a href="{{baseUrl}}#tools-popular" data-home-category="popular">الشائعة</a></li>
+        <li><a href="{{baseUrl}}#tools-edit" data-home-category="edit">تعديل PDF</a></li>
+        <li><a href="{{baseUrl}}#tools-convert" data-home-category="convert">تحويل الملفات</a></li>
+        <li><a href="{{baseUrl}}#tools-organize" data-home-category="organize">تنظيم الصفحات</a></li>
+        <li><a href="{{baseUrl}}#tools-secure" data-home-category="secure">حماية PDF</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="روابط المساعدة">
+      <h3>مساعدة</h3>
+      <ul>
+        <li><a href="{{baseUrl}}faq">الأسئلة الشائعة</a></li>
+        <li><a href="{{baseUrl}}privacy">الخصوصية</a></li>
+        <li><a href="{{baseUrl}}terms">شروط الاستخدام</a></li>
+        <li><a href="{{baseUrl}}licensing">الترخيص</a></li>
+        <li><a href="{{baseUrl}}pdf-converter">محول PDF</a></li>
+      </ul>
+    </nav>
   </div>
 </footer>
 {{/if}}

@@ -9,6 +9,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import '../css/styles.css';
 import {
   escapeHtml,
+  formatBytes,
   formatShortcutDisplay,
   formatStars,
 } from './utils/helpers.js';
@@ -50,16 +51,16 @@ const init = async () => {
   applyTranslations();
 
   if (isCurrentPageDisabled()) {
-    document.title = t('disabledTool.title') || trText("الأداة غير متاحة");
+    document.title = t('disabledTool.title') || trText('الأداة غير متاحة');
     const main = document.querySelector('main') || document.body;
-    const heading =
-      t('disabledTool.heading') || trText("تم تعطيل هذه الأداة");
+    const heading = t('disabledTool.heading') || trText('تم تعطيل هذه الأداة');
     const message =
       t('disabledTool.message') ||
       trText(
-        "هذه الأداة غير متاحة في نشرك. تواصل مع المسؤول لمزيد من المعلومات."
+        'هذه الأداة غير متاحة في نشرك. تواصل مع المسؤول لمزيد من المعلومات.'
       );
-    const backHome = t('disabledTool.backHome') || trText("العودة إلى الرئيسية");
+    const backHome =
+      t('disabledTool.backHome') || trText('العودة إلى الرئيسية');
     main.innerHTML = `
       <div class="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
         <i class="ph ph-prohibit text-6xl text-gray-500 mb-4"></i>
@@ -70,6 +71,174 @@ const init = async () => {
     `;
     return;
   }
+
+  const HANDOFF_DB_NAME = 'pixel-pdf-workspace';
+  const HANDOFF_STORE_NAME = 'files';
+  const HANDOFF_KEY = 'home-pdf';
+
+  type StoredHomeFile = {
+    file: File;
+    savedAt: number;
+  };
+
+  const openHandoffDb = (): Promise<IDBDatabase | null> =>
+    new Promise((resolve) => {
+      if (!('indexedDB' in window)) {
+        resolve(null);
+        return;
+      }
+      const request = window.indexedDB.open(HANDOFF_DB_NAME, 1);
+      request.onupgradeneeded = () => {
+        if (!request.result.objectStoreNames.contains(HANDOFF_STORE_NAME)) {
+          request.result.createObjectStore(HANDOFF_STORE_NAME);
+        }
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => resolve(null);
+      request.onblocked = () => resolve(null);
+    });
+
+  const saveHomePdf = async (file: File): Promise<boolean> => {
+    const db = await openHandoffDb();
+    if (!db) return false;
+    return new Promise((resolve) => {
+      try {
+        const transaction = db.transaction(HANDOFF_STORE_NAME, 'readwrite');
+        transaction
+          .objectStore(HANDOFF_STORE_NAME)
+          .put(
+            { file, savedAt: Date.now() } satisfies StoredHomeFile,
+            HANDOFF_KEY
+          );
+        transaction.oncomplete = () => {
+          db.close();
+          resolve(true);
+        };
+        transaction.onerror = () => {
+          db.close();
+          resolve(false);
+        };
+      } catch {
+        db.close();
+        resolve(false);
+      }
+    });
+  };
+
+  const loadHomePdf = async (): Promise<File | null> => {
+    const db = await openHandoffDb();
+    if (!db) return null;
+    return new Promise((resolve) => {
+      try {
+        const transaction = db.transaction(HANDOFF_STORE_NAME, 'readonly');
+        const request = transaction
+          .objectStore(HANDOFF_STORE_NAME)
+          .get(HANDOFF_KEY);
+        request.onsuccess = () => {
+          db.close();
+          const stored = request.result as StoredHomeFile | undefined;
+          resolve(stored?.file instanceof File ? stored.file : null);
+        };
+        request.onerror = () => {
+          db.close();
+          resolve(null);
+        };
+      } catch {
+        db.close();
+        resolve(null);
+      }
+    });
+  };
+
+  const deleteHomePdf = async (): Promise<void> => {
+    const db = await openHandoffDb();
+    if (!db) return;
+    await new Promise<void>((resolve) => {
+      try {
+        const transaction = db.transaction(HANDOFF_STORE_NAME, 'readwrite');
+        transaction.objectStore(HANDOFF_STORE_NAME).delete(HANDOFF_KEY);
+        transaction.oncomplete = () => {
+          db.close();
+          resolve();
+        };
+        transaction.onerror = () => {
+          db.close();
+          resolve();
+        };
+      } catch {
+        db.close();
+        resolve();
+      }
+    });
+  };
+
+  const addWorkflowSteps = () => {
+    const uploader = document.getElementById('tool-uploader');
+    if (!uploader || uploader.querySelector('.px-workflow-steps')) return;
+    const steps = document.createElement('ol');
+    steps.className = 'px-workflow-steps';
+    steps.setAttribute('aria-label', trText('خطوات إنجاز المهمة'));
+    [
+      trText('اختر الملف'),
+      trText('اضبط الإعدادات'),
+      trText('نفّذ المعالجة'),
+      trText('نزّل النتيجة'),
+    ].forEach((label, index) => {
+      const item = document.createElement('li');
+      const number = document.createElement('span');
+      number.className = 'px-step-num';
+      number.textContent = String(index + 1);
+      item.append(number, document.createTextNode(label));
+      steps.appendChild(item);
+    });
+    uploader.prepend(steps);
+  };
+
+  const hydrateHomeFileHandoff = async () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('from') !== 'home') return;
+    const input = document.querySelector<HTMLInputElement>('#file-input');
+    if (!input) return;
+    const accept = (input.accept || '').toLowerCase();
+    if (accept && !accept.includes('pdf') && !accept.includes('*/*')) return;
+
+    const file = await loadHomePdf();
+    if (!file) return;
+
+    try {
+      const transfer = new DataTransfer();
+      transfer.items.add(file);
+      input.files = transfer.files;
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+
+      const host =
+        document.getElementById('tool-uploader') ||
+        input.closest('main') ||
+        input.parentElement;
+      if (host && !host.querySelector('.px-handoff-banner')) {
+        const banner = document.createElement('div');
+        banner.className = 'px-handoff-banner';
+        banner.setAttribute('role', 'status');
+        const icon = document.createElement('i');
+        icon.setAttribute('data-lucide', 'file-check');
+        icon.setAttribute('aria-hidden', 'true');
+        const text = document.createElement('span');
+        text.textContent = trText('تمت إضافة ملفك من الصفحة الرئيسية:');
+        const name = document.createElement('span');
+        name.className = 'px-ltr';
+        name.textContent = file.name;
+        banner.append(icon, text, name);
+        host.prepend(banner);
+        createIcons({ icons });
+      }
+    } catch {
+      // The tool remains fully usable with its normal file picker.
+    }
+  };
+
+  addWorkflowSteps();
+  void hydrateHomeFileHandoff();
 
   if (__SIMPLE_MODE__) {
     const hideBrandingSections = () => {
@@ -273,21 +442,9 @@ const init = async () => {
     'Rasterize PDF': 'tools:rasterizePdf',
   };
 
-  // Homepage-only tool grid rendering (not used on individual tool pages)
+  // Homepage-only workspace rendering (not used on individual tool pages)
   if (dom.toolGrid) {
     dom.toolGrid.textContent = '';
-
-    let collapsedCategories: string[] = [];
-    try {
-      const stored = getStoredItem('collapsedCategories');
-      if (stored) collapsedCategories = JSON.parse(stored);
-    } catch {
-      removeStoredItem('collapsedCategories');
-    }
-
-    function saveCollapsedCategories() {
-      setStoredItem('collapsedCategories', JSON.stringify(collapsedCategories));
-    }
 
     const filteredCategories = categories
       .map((category) => ({
@@ -302,6 +459,96 @@ const init = async () => {
         if (!availableTools.has(tool.id)) availableTools.set(tool.id, tool);
       })
     );
+
+    type HomeTool = ToolCategory['tools'][number];
+    type HomeCategoryId =
+      | 'popular'
+      | 'edit'
+      | 'convert'
+      | 'organize'
+      | 'optimize'
+      | 'secure'
+      | 'favorites'
+      | 'all';
+
+    const homeCategoryDefinitions: Array<{
+      id: HomeCategoryId;
+      label: string;
+      sourceNames: string[];
+    }> = [
+      {
+        id: 'popular',
+        label: 'الأدوات الشائعة',
+        sourceNames: ['Popular Tools'],
+      },
+      { id: 'edit', label: 'تعديل وتعليق', sourceNames: ['Edit & Annotate'] },
+      {
+        id: 'convert',
+        label: 'تحويل الملفات',
+        sourceNames: ['Convert to PDF', 'Convert from PDF'],
+      },
+      {
+        id: 'organize',
+        label: 'تنظيم وإدارة',
+        sourceNames: ['Organize & Manage'],
+      },
+      {
+        id: 'optimize',
+        label: 'تحسين وإصلاح',
+        sourceNames: ['Optimize & Repair'],
+      },
+      { id: 'secure', label: 'حماية وأمان', sourceNames: ['Secure PDF'] },
+      { id: 'favorites', label: 'المفضلة', sourceNames: [] },
+      { id: 'all', label: 'كل الأدوات', sourceNames: [] },
+    ];
+
+    const sourceCategoryToHomeId = new Map<string, HomeCategoryId>([
+      ['Popular Tools', 'popular'],
+      ['Edit & Annotate', 'edit'],
+      ['Convert to PDF', 'convert'],
+      ['Convert from PDF', 'convert'],
+      ['Organize & Manage', 'organize'],
+      ['Optimize & Repair', 'optimize'],
+      ['Secure PDF', 'secure'],
+    ]);
+
+    const homeCategoryByToolId = new Map<string, HomeCategoryId>();
+    filteredCategories.forEach((category) => {
+      const homeId = sourceCategoryToHomeId.get(category.name);
+      if (!homeId) return;
+      category.tools.forEach((tool) => {
+        if (!homeCategoryByToolId.has(tool.id)) {
+          homeCategoryByToolId.set(tool.id, homeId);
+        }
+      });
+    });
+
+    const uniqueCategoryTools = (sourceNames: string[]): HomeTool[] => {
+      const seen = new Set<string>();
+      const tools: HomeTool[] = [];
+      filteredCategories
+        .filter((category) => sourceNames.includes(category.name))
+        .forEach((category) =>
+          category.tools.forEach((tool) => {
+            if (seen.has(tool.id)) return;
+            seen.add(tool.id);
+            tools.push(tool);
+          })
+        );
+      return tools;
+    };
+
+    const toolsByHomeCategory = new Map<HomeCategoryId, HomeTool[]>();
+    homeCategoryDefinitions.forEach((definition) => {
+      if (definition.id === 'all') {
+        toolsByHomeCategory.set('all', [...availableTools.values()]);
+      } else if (definition.id !== 'favorites') {
+        toolsByHomeCategory.set(
+          definition.id,
+          uniqueCategoryTools(definition.sourceNames)
+        );
+      }
+    });
 
     let favoriteToolIds: string[] = [];
     let unavailableFavoriteIds: string[] = [];
@@ -381,18 +628,16 @@ const init = async () => {
 
     function updateFavoritesHint() {
       if (
+        currentSearchQuery ||
         favoriteToolIds.length > 0 ||
         getStoredItem('favoritesHintHidden') === 'true'
       ) {
         favoritesHint.remove();
         return;
       }
-      if (favoritesHint.isConnected) return;
-      const results = document.getElementById('search-results');
-      dom.toolGrid.insertBefore(
-        favoritesHint,
-        results ? results.nextSibling : dom.toolGrid.firstChild
-      );
+      if (!favoritesHint.isConnected) {
+        dom.toolGrid.insertBefore(favoritesHint, dom.toolGrid.firstChild);
+      }
     }
 
     const favoriteMenu = document.createElement('div');
@@ -441,23 +686,42 @@ const init = async () => {
       button.title = label;
     }
 
+    function getHomeCategoryTools(categoryId: HomeCategoryId): HomeTool[] {
+      if (categoryId === 'favorites') {
+        return favoriteToolIds.flatMap((id) => {
+          const tool = availableTools.get(id);
+          return tool ? [tool] : [];
+        });
+      }
+      return toolsByHomeCategory.get(categoryId) ?? [];
+    }
+
+    function updateCategoryCounts() {
+      document
+        .querySelectorAll<HTMLElement>('[data-category]')
+        .forEach((button) => {
+          const categoryId = button.dataset.category as HomeCategoryId;
+          const count = button.querySelector('[data-category-count]');
+          if (count) {
+            count.textContent = String(getHomeCategoryTools(categoryId).length);
+          }
+          if (categoryId === 'favorites') {
+            button.setAttribute(
+              'aria-label',
+              `${t('tools:categories.favorites')} (${favoriteToolIds.length})`
+            );
+          }
+        });
+    }
+
     function renderFavorites() {
-      const tools = favoriteToolIds.flatMap((id) => {
-        const tool = availableTools.get(id);
-        return tool ? [tool] : [];
-      });
-      if (tools.length === 0) return;
-      const group = createCategoryGroup({ name: 'Favorites', tools });
-      const searchBox = document.getElementById(
-        'search-bar'
-      ) as HTMLInputElement | null;
-      if (searchBox?.value.trim()) group.style.display = 'none';
-      const results = document.getElementById('search-results');
-      dom.toolGrid.insertBefore(
-        group,
-        results ? results.nextSibling : dom.toolGrid.firstChild
-      );
-      createIcons({ icons });
+      updateCategoryCounts();
+      document
+        .querySelectorAll<HTMLElement>('.tool-fav-btn')
+        .forEach(updateFavoriteButton);
+      if (activeCategory === 'favorites' && !currentSearchQuery) {
+        renderCurrentCollection();
+      }
     }
 
     function toggleFavorite(button: HTMLElement) {
@@ -473,38 +737,20 @@ const init = async () => {
         JSON.stringify([...favoriteToolIds, ...unavailableFavoriteIds])
       );
 
-      const anchorTop = button.getBoundingClientRect().top;
+      const wasInFavoritesView =
+        activeCategory === 'favorites' && !currentSearchQuery;
+      const tile = button.closest<HTMLElement>('.tool-tile');
+      const neighbor =
+        tile?.nextElementSibling?.querySelector<HTMLElement>(
+          '.tool-fav-btn, .tool-card'
+        ) ??
+        tile?.previousElementSibling?.querySelector<HTMLElement>(
+          '.tool-fav-btn, .tool-card'
+        ) ??
+        null;
       const keyboardFocus = button.matches(':focus-visible');
-      const group = dom.toolGrid.querySelector<HTMLElement>(
-        ':scope > .is-cat-favorites'
-      );
-      let nextFocus: HTMLElement | null = null;
 
-      if (adding && group) {
-        group
-          .querySelector('.category-tools')
-          ?.appendChild(createToolTile(tool));
-        createIcons({ icons });
-      } else if (adding) {
-        renderFavorites();
-      } else if (group) {
-        const tile = group
-          .querySelector(`.tool-fav-btn[data-fav-id="${CSS.escape(toolId)}"]`)
-          ?.closest('.tool-tile');
-        if (tile?.contains(button)) {
-          const neighbor =
-            tile.nextElementSibling ?? tile.previousElementSibling;
-          nextFocus =
-            neighbor?.querySelector<HTMLElement>('.tool-fav-btn') ??
-            group.nextElementSibling?.querySelector<HTMLElement>(
-              '.category-header'
-            ) ??
-            null;
-        }
-        tile?.remove();
-        if (favoriteToolIds.length === 0) group.remove();
-      }
-
+      updateCategoryCounts();
       dom.toolGrid
         .querySelectorAll<HTMLElement>('.tool-fav-btn')
         .forEach((other) => {
@@ -512,220 +758,672 @@ const init = async () => {
         });
       updateFavoritesHint();
 
-      if (button.isConnected) {
-        const shift = button.getBoundingClientRect().top - anchorTop;
-        if (shift) window.scrollBy({ top: shift, behavior: 'instant' });
-      } else if (keyboardFocus) {
-        nextFocus?.focus({ preventScroll: true });
+      if (wasInFavoritesView) {
+        renderCurrentCollection();
+        if (!adding && keyboardFocus) neighbor?.focus();
       }
     }
 
-    function createToolTile(tool: ToolCategory['tools'][number]) {
-      const tile = document.createElement('div');
-      tile.className = 'tool-tile';
-      let toolCard: HTMLDivElement | HTMLAnchorElement;
+    const lucideIconByPhosphor: Record<string, string> = {
+      archive: 'archive',
+      'arrow-clockwise': 'rotate-cw',
+      'arrows-clockwise': 'refresh-cw',
+      'arrows-out-line-vertical': 'move-vertical',
+      'arrows-vertical': 'move-vertical',
+      barcode: 'barcode',
+      'book-bookmark': 'book-marked',
+      'book-open': 'book-open',
+      'book-open-text': 'book-open',
+      bookmark: 'bookmark',
+      broom: 'brush',
+      browsers: 'layers',
+      certificate: 'badge-check',
+      'circle-half': 'contrast',
+      clock: 'clock',
+      columns: 'layout-grid',
+      crop: 'crop',
+      'cursor-text': 'type',
+      'device-mobile': 'smartphone',
+      download: 'download',
+      'download-simple': 'download',
+      drop: 'droplet',
+      envelope: 'mail',
+      eraser: 'eraser',
+      eyedropper: 'pipette',
+      file: 'file',
+      'file-code': 'file-code',
+      'file-csv': 'file-spreadsheet',
+      'file-image': 'file-image',
+      'file-jpg': 'file-image',
+      'file-minus': 'file-minus',
+      'file-plus': 'file-plus',
+      'file-png': 'file-image',
+      'file-svg': 'file-image',
+      'file-text': 'file-text',
+      'file-x': 'file-x',
+      'file-zip': 'file-archive',
+      files: 'files',
+      gauge: 'gauge',
+      'git-branch': 'git-branch',
+      'git-diff': 'arrow-left-right',
+      hash: 'hash',
+      image: 'image',
+      images: 'images',
+      info: 'info',
+      lightning: 'zap',
+      'link-break': 'unlink',
+      list: 'list',
+      'list-numbers': 'list-ordered',
+      lock: 'lock',
+      'lock-open': 'key-round',
+      'markdown-logo': 'file-code',
+      'microsoft-excel-logo': 'file-spreadsheet',
+      'microsoft-powerpoint-logo': 'presentation',
+      'microsoft-word-logo': 'file-text',
+      notepad: 'notebook',
+      palette: 'palette',
+      paperclip: 'paperclip',
+      'paperclip-horizontal': 'paperclip',
+      paragraph: 'pilcrow',
+      'pen-nib': 'pen-tool',
+      'pencil-line': 'pen-line',
+      'pencil-ruler': 'pencil-ruler',
+      'pencil-simple': 'pencil',
+      perspective: 'scan',
+      presentation: 'presentation',
+      ruler: 'ruler',
+      scan: 'scan',
+      scissors: 'scissors',
+      'seal-check': 'badge-check',
+      'shield-check': 'shield-check',
+      shuffle: 'shuffle',
+      'sliders-horizontal': 'sliders-horizontal',
+      'sort-descending': 'list-ordered',
+      sparkle: 'sparkles',
+      'squares-four': 'layout-grid',
+      stack: 'layers',
+      'stack-simple': 'layers',
+      stamp: 'stamp',
+      table: 'table',
+      'text-aa': 'type',
+      'text-outdent': 'type',
+      'text-t': 'type',
+      trash: 'trash-2',
+      'tree-structure': 'workflow',
+      wrench: 'wrench',
+    };
 
-      if (tool.href) {
-        toolCard = document.createElement('a');
-        toolCard.href = tool.href;
-        toolCard.className =
-          'tool-card block bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center no-underline hover:shadow-lg transition duration-200';
-      } else {
-        toolCard = document.createElement('div');
-        toolCard.className =
-          'tool-card bg-gray-800 rounded-xl p-4 cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-lg transition duration-200';
-        toolCard.dataset.toolId = getToolId(tool);
-      }
+    const homeCategoryAccent: Record<HomeCategoryId, string> = {
+      popular: 'teal',
+      edit: 'plum',
+      convert: 'blue',
+      organize: 'slate',
+      optimize: 'amber',
+      secure: 'rose',
+      favorites: 'amber',
+      all: 'teal',
+    };
 
-      const icon = document.createElement('i');
-      icon.className = 'w-10 h-10 mb-3 text-indigo-400';
+    const homeCategoryLabel = (categoryId: HomeCategoryId): string =>
+      homeCategoryDefinitions.find((definition) => definition.id === categoryId)
+        ?.label ?? 'الأدوات';
 
-      if (tool.icon.startsWith('ph-')) {
-        icon.className = `ph ${tool.icon} text-4xl mb-3 text-indigo-400`;
-      } else {
-        icon.setAttribute('data-lucide', tool.icon);
-      }
-
-      const toolName = document.createElement('h3');
-      toolName.className = 'font-semibold text-white';
+    function getToolDisplay(tool: HomeTool) {
       const toolKey = toolTranslationKeys[tool.name];
-      toolName.textContent = toolKey ? t(`${toolKey}.name`) : tool.name;
+      return {
+        name: toolKey ? t(`${toolKey}.name`) : tool.name,
+        subtitle: toolKey ? t(`${toolKey}.subtitle`) : tool.subtitle,
+      };
+    }
 
-      toolCard.append(icon, toolName);
+    function createToolTile(tool: HomeTool) {
+      const tile = document.createElement('div');
+      tile.className = 'tool-tile px-tool-tile';
+      const categoryId = homeCategoryByToolId.get(tool.id) ?? activeCategory;
+      tile.dataset.category = categoryId;
 
-      if (tool.subtitle) {
-        const toolSubtitle = document.createElement('p');
-        toolSubtitle.className = 'text-xs text-gray-400 mt-1 px-2';
-        toolSubtitle.textContent = toolKey
-          ? t(`${toolKey}.subtitle`)
-          : tool.subtitle;
-        toolCard.appendChild(toolSubtitle);
-      }
+      const toolCard = document.createElement('a');
+      toolCard.href = tool.href;
+      toolCard.className = 'tool-card px-tool-card';
+      toolCard.dataset.accent = homeCategoryAccent[categoryId];
+      toolCard.setAttribute(
+        'aria-label',
+        `${getToolDisplay(tool).name}: ${getToolDisplay(tool).subtitle}`
+      );
 
+      const top = document.createElement('div');
+      top.className = 'px-tool-top';
+      const iconWrap = document.createElement('span');
+      iconWrap.className = 'px-tool-icon';
+      iconWrap.setAttribute('aria-hidden', 'true');
+      const icon = document.createElement('i');
+      const phosphorName = tool.icon.replace(/^ph-/, '');
+      icon.setAttribute(
+        'data-lucide',
+        lucideIconByPhosphor[phosphorName] ?? 'file-text'
+      );
+      icon.dataset.phIcon = tool.icon;
+      iconWrap.appendChild(icon);
+      top.appendChild(iconWrap);
+
+      const display = getToolDisplay(tool);
+      const toolName = document.createElement('h3');
+      toolName.textContent = display.name;
+
+      const toolSubtitle = document.createElement('p');
+      toolSubtitle.textContent = display.subtitle;
+
+      const foot = document.createElement('div');
+      foot.className = 'px-tool-foot';
+      const categoryLabel = document.createElement('span');
+      categoryLabel.className = 'px-tool-category';
+      categoryLabel.textContent = homeCategoryLabel(categoryId);
+      const arrow = document.createElement('span');
+      arrow.className = 'px-tool-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      const arrowIcon = document.createElement('i');
+      arrowIcon.setAttribute('data-lucide', 'arrow-left');
+      arrow.appendChild(arrowIcon);
+      foot.append(categoryLabel, arrow);
+
+      toolCard.append(top, toolName, toolSubtitle, foot);
       tile.append(toolCard, createFavoriteButton(tool.id));
       return tile;
     }
 
-    function createCategoryGroup(category: ToolCategory): HTMLDivElement {
-      const categoryGroup = document.createElement('div');
-      const categorySlug = category.name
+    const normalizeSearchText = (value: string): string =>
+      value
         .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-      categoryGroup.className = `category-group col-span-full is-cat-${categorySlug}`;
+        .normalize('NFKD')
+        .replace(/[\u064B-\u065F\u0670]/g, '')
+        .replace(/[إأآ]/g, 'ا')
+        .replace(/ة/g, 'ه')
+        .replace(/ى/g, 'ي')
+        .replace(/[ؤئ]/g, 'ي')
+        .replace(/ـ/g, '')
+        .replace(/[^a-z0-9\u0600-\u06FF]+/g, ' ')
+        .trim();
 
-      const header = document.createElement('button');
-      header.className = 'category-header';
-      header.type = 'button';
+    const searchAliasesByToolId: Record<string, string[]> = {
+      'merge-pdf': ['دمج', 'ضم', 'جمع', 'combine', 'join'],
+      'split-pdf': ['تقسيم', 'فصل', 'استخراج صفحات', 'extract pages'],
+      'compress-pdf': ['ضغط', 'تصغير', 'حجم', 'تقليل الحجم', 'shrink'],
+      'edit-pdf': ['تحرير', 'تعديل', 'تعليق', 'annotate'],
+      'edit-pdf-text': ['تحرير النص', 'تعديل النص', 'نص', 'text'],
+      'organize-pdf': ['تنظيم', 'ترتيب', 'صفحات', 'organize'],
+      'pdf-multi-tool': ['تنظيم', 'دمج', 'تقسيم', 'حذف', 'تدوير'],
+      'pdf-workflow': ['سير عمل', 'أتمتة', 'workflow', 'pipeline'],
+      'protect-pdf': ['حماية', 'تشفير', 'قفل', 'كلمة مرور', 'password'],
+      'unlock-pdf': ['فتح', 'فك قفل', 'إزالة كلمة المرور', 'unlock'],
+      'encrypt-pdf': ['تشفير', 'حماية', 'encrypt'],
+      'decrypt-pdf': ['فك تشفير', 'فتح', 'decrypt'],
+      'rotate-pdf': ['تدوير', 'قلب', 'rotate'],
+      'crop-pdf': ['قص', 'هوامش', 'crop'],
+      'extract-pages': ['استخراج', 'صفحات', 'extract'],
+      'delete-pages': ['حذف', 'إزالة صفحات', 'delete'],
+      'sign-pdf': ['توقيع', 'إمضاء', 'sign'],
+      'add-watermark': ['علامة مائية', 'ختم', 'watermark'],
+      'ocr-pdf': ['تعرف ضوئي', 'نص قابل للبحث', 'ocr'],
+      'repair-pdf': ['إصلاح', 'تالف', 'repair'],
+      'remove-metadata': ['بيانات وصفية', 'خصوصية', 'metadata'],
+      'view-metadata': ['بيانات وصفية', 'خصائص', 'metadata'],
+      'edit-metadata': ['بيانات وصفية', 'عنوان', 'مؤلف', 'metadata'],
+    };
 
-      const title = document.createElement('span');
-      const categoryKey = categoryTranslationKeys[category.name];
-      title.textContent = categoryKey ? t(categoryKey) : category.name;
-
-      const chevron = document.createElement('i');
-      chevron.setAttribute('data-lucide', 'chevron-down');
-      chevron.className =
-        'category-chevron w-5 h-5 text-gray-400 transition-transform duration-300';
-
-      header.append(title, chevron);
-
-      const toolsContainer = document.createElement('div');
-      toolsContainer.className =
-        'category-tools grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6';
-
-      const isCollapsed = collapsedCategories.includes(category.name);
-      if (isCollapsed) {
-        categoryGroup.classList.add('collapsed');
-        toolsContainer.style.maxHeight = '0px';
-      }
-
-      toolsContainer.addEventListener('transitionend', (e) => {
-        if ((e as TransitionEvent).propertyName !== 'max-height') return;
-        if (!categoryGroup.classList.contains('collapsed')) {
-          toolsContainer.style.maxHeight = 'none';
-          toolsContainer.style.overflow = 'visible';
-        }
-      });
-
-      header.addEventListener('click', () => {
-        const collapsed = categoryGroup.classList.toggle('collapsed');
-        if (collapsed) {
-          toolsContainer.style.maxHeight = toolsContainer.scrollHeight + 'px';
-          toolsContainer.style.overflow = 'hidden';
-          requestAnimationFrame(() => {
-            toolsContainer.style.maxHeight = '0px';
-          });
-          if (!collapsedCategories.includes(category.name)) {
-            collapsedCategories.push(category.name);
-          }
-        } else {
-          toolsContainer.style.overflow = 'hidden';
-          toolsContainer.style.maxHeight = toolsContainer.scrollHeight + 'px';
-          collapsedCategories = collapsedCategories.filter(
-            (n) => n !== category.name
-          );
-        }
-        saveCollapsedCategories();
-      });
-
-      category.tools.forEach((tool) => {
-        toolsContainer.appendChild(createToolTile(tool));
-      });
-
-      categoryGroup.append(header, toolsContainer);
-
-      if (!isCollapsed) {
-        toolsContainer.style.maxHeight = 'none';
-        toolsContainer.style.overflow = 'visible';
-      }
-
-      return categoryGroup;
+    function getSearchAliases(tool: HomeTool): string[] {
+      const aliases = new Set(searchAliasesByToolId[tool.id] ?? []);
+      if (tool.id.includes('-to-pdf')) aliases.add('تحويل إلى PDF');
+      if (tool.id.startsWith('pdf-to-')) aliases.add('تحويل من PDF');
+      if (tool.id.includes('page')) aliases.add('صفحات');
+      if (tool.id.includes('image')) aliases.add('صور');
+      if (tool.id.includes('rotate')) aliases.add('تدوير');
+      if (tool.id.includes('sign')) aliases.add('توقيع');
+      if (tool.id.includes('metadata')) aliases.add('بيانات وصفية');
+      return [...aliases];
     }
 
-    filteredCategories.forEach((category) => {
-      dom.toolGrid.appendChild(createCategoryGroup(category));
-    });
+    type ToolSearchEntry = {
+      tool: HomeTool;
+      name: string;
+      subtitle: string;
+      combined: string;
+    };
 
-    const searchBar = document.getElementById('search-bar');
+    const toolSearchIndex: ToolSearchEntry[] = [...availableTools.values()].map(
+      (tool) => {
+        const display = getToolDisplay(tool);
+        const name = normalizeSearchText(
+          `${display.name} ${tool.name} ${tool.id.replace(/-/g, ' ')}`
+        );
+        const subtitle = normalizeSearchText(
+          `${display.subtitle} ${tool.subtitle}`
+        );
+        const aliases = normalizeSearchText(getSearchAliases(tool).join(' '));
+        return {
+          tool,
+          name,
+          subtitle,
+          combined: `${name} ${subtitle} ${aliases}`,
+        };
+      }
+    );
 
-    const searchResultsContainer = document.createElement('div');
-    searchResultsContainer.id = 'search-results';
-    searchResultsContainer.className =
-      'hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 col-span-full';
-    dom.toolGrid.insertBefore(searchResultsContainer, dom.toolGrid.firstChild);
-    renderFavorites();
-    updateFavoritesHint();
+    function searchTools(query: string): HomeTool[] {
+      const normalizedQuery = normalizeSearchText(query);
+      if (!normalizedQuery) return [];
+      const tokens = normalizedQuery.split(' ').filter(Boolean);
+      return toolSearchIndex
+        .map((entry) => {
+          if (!tokens.every((token) => entry.combined.includes(token))) {
+            return null;
+          }
+          let score = 1;
+          if (entry.name === normalizedQuery) score += 100;
+          if (entry.name.startsWith(normalizedQuery)) score += 45;
+          if (entry.name.includes(normalizedQuery)) score += 30;
+          if (entry.subtitle.includes(normalizedQuery)) score += 8;
+          return { tool: entry.tool, score };
+        })
+        .filter(
+          (result): result is { tool: HomeTool; score: number } =>
+            result !== null
+        )
+        .sort((a, b) => b.score - a.score)
+        .map((result) => result.tool);
+    }
 
-    searchBar.addEventListener('input', () => {
-      // @ts-expect-error TS(2339) FIXME: Property 'value' does not exist on type 'HTMLEleme... Remove this comment to see the full error message
-      const searchTerm = searchBar.value.toLowerCase().trim();
-      closeFavoriteMenu();
-      const categoryGroups = dom.toolGrid.querySelectorAll(
-        ':scope > .category-group'
-      );
+    const searchBar = document.getElementById(
+      'search-bar'
+    ) as HTMLInputElement | null;
+    const clearSearchButton = document.getElementById('clear-search-btn');
+    const searchStatus = document.getElementById('search-status');
+    const collectionTitle = document.getElementById('collection-title');
+    const collectionCount = document.getElementById('collection-count');
+    const toolEmpty = document.getElementById('tool-empty');
+    const toolEmptyTitle = document.getElementById('tool-empty-title');
+    const toolEmptyMessage = document.getElementById('tool-empty-message');
+    const categoryButtons = [
+      ...document.querySelectorAll<HTMLElement>('[data-category]'),
+    ].filter((button) => button.closest('#category-nav'));
 
-      if (!searchTerm) {
-        searchResultsContainer.classList.add('hidden');
-        searchResultsContainer.innerHTML = '';
-        categoryGroups.forEach((group) => {
-          (group as HTMLElement).style.display = '';
-          const toolCards = group.querySelectorAll('.tool-card');
-          toolCards.forEach((card) => {
-            (card as HTMLElement).style.display = '';
-          });
+    let currentSearchQuery = '';
+    const categoryFromHash = window.location.hash.match(
+      /tools-(popular|edit|convert|organize|optimize|secure|favorites|all)/
+    )?.[1] as HomeCategoryId | undefined;
+    let activeCategory: HomeCategoryId =
+      categoryFromHash ??
+      ((getStoredItem('pixelpdf-home-category') as HomeCategoryId | null) ||
+        'popular');
+    if (!homeCategoryDefinitions.some((item) => item.id === activeCategory)) {
+      activeCategory = 'popular';
+    }
+
+    function fixUnresolvedToolIcons() {
+      dom.toolGrid
+        .querySelectorAll<HTMLElement>('i[data-lucide][data-ph-icon]')
+        .forEach((icon) => {
+          icon.className = `ph ${icon.dataset.phIcon ?? 'ph-file'}`;
+          icon.removeAttribute('data-lucide');
         });
+    }
+
+    function renderToolTiles(tools: HomeTool[]) {
+      closeFavoriteMenu();
+      dom.toolGrid.textContent = '';
+      const fragment = document.createDocumentFragment();
+      tools.forEach((tool) => fragment.appendChild(createToolTile(tool)));
+      dom.toolGrid.appendChild(fragment);
+      createIcons({ icons });
+      fixUnresolvedToolIcons();
+      updateFavoritesHint();
+      if (toolEmpty) toolEmpty.hidden = tools.length > 0;
+    }
+
+    function updateCollectionHeader(title: string, count: number) {
+      if (collectionTitle) collectionTitle.textContent = title;
+      if (collectionCount) {
+        collectionCount.textContent =
+          count === 0
+            ? trText('لا توجد أدوات')
+            : count === 1
+              ? trText('أداة واحدة')
+              : trText('{{count}} أداة', { count });
+      }
+      if (searchStatus) {
+        searchStatus.textContent = currentSearchQuery
+          ? count > 0
+            ? trText('وجدنا {{count}} أداة مطابقة لبحثك.', { count })
+            : trText(
+                'لا توجد نتائج مطابقة. جرّب كلمة أبسط بالعربية أو الإنجليزية.'
+              )
+          : '';
+      }
+    }
+
+    function renderCurrentCollection() {
+      categoryButtons.forEach((button) => {
+        button.setAttribute(
+          'aria-pressed',
+          String(button.dataset.category === activeCategory)
+        );
+      });
+      updateCategoryCounts();
+
+      if (currentSearchQuery) {
+        const results = searchTools(currentSearchQuery);
+        renderToolTiles(results);
+        updateCollectionHeader(trText('نتائج البحث'), results.length);
+        if (toolEmptyTitle)
+          toolEmptyTitle.textContent = trText('لا توجد أدوات مطابقة');
+        if (toolEmptyMessage) {
+          toolEmptyMessage.textContent = trText(
+            'جرّب كلمة عربية أو إنجليزية أبسط، مثل: دمج، تقسيم، ضغط، تحويل، merge أو split.'
+          );
+        }
         return;
       }
 
-      categoryGroups.forEach((group) => {
-        (group as HTMLElement).style.display = 'none';
+      const tools = getHomeCategoryTools(activeCategory);
+      renderToolTiles(tools);
+      updateCollectionHeader(homeCategoryLabel(activeCategory), tools.length);
+      if (activeCategory === 'favorites' && tools.length === 0) {
+        if (toolEmptyTitle)
+          toolEmptyTitle.textContent = trText('لا توجد أدوات مفضلة بعد');
+        if (toolEmptyMessage) {
+          toolEmptyMessage.textContent = trText(
+            'اضغط على النجمة في أي بطاقة لإضافتها هنا والوصول إليها بسرعة.'
+          );
+        }
+      } else {
+        if (toolEmptyTitle)
+          toolEmptyTitle.textContent = trText('لا توجد أدوات مطابقة');
+        if (toolEmptyMessage) {
+          toolEmptyMessage.textContent = trText(
+            'جرّب تصنيفًا آخر أو استخدم البحث للعثور على الأداة.'
+          );
+        }
+      }
+    }
+
+    function setActiveCategory(
+      categoryId: HomeCategoryId,
+      options: { scroll?: boolean; replaceHash?: boolean } = {}
+    ) {
+      if (!homeCategoryDefinitions.some((item) => item.id === categoryId))
+        return;
+      activeCategory = categoryId;
+      setStoredItem('pixelpdf-home-category', categoryId);
+      if (currentSearchQuery) {
+        currentSearchQuery = '';
+        if (searchBar) searchBar.value = '';
+        clearSearchButton?.toggleAttribute('hidden', true);
+      }
+      renderCurrentCollection();
+      if (options.replaceHash !== false) {
+        window.history.replaceState(null, '', `#tools-${categoryId}`);
+      }
+      if (options.scroll) {
+        document
+          .getElementById('app')
+          ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setActiveCategory(button.dataset.category as HomeCategoryId);
       });
+    });
 
-      searchResultsContainer.innerHTML = '';
-      searchResultsContainer.classList.remove('hidden');
-
-      const seenToolIds = new Set<string>();
-      const allTools: HTMLElement[] = [];
-
-      categoryGroups.forEach((group) => {
-        const toolCards = Array.from(group.querySelectorAll('.tool-card'));
-
-        toolCards.forEach((card) => {
-          const toolName = (
-            card.querySelector('h3')?.textContent || ''
-          ).toLowerCase();
-          const toolSubtitle = (
-            card.querySelector('p')?.textContent || ''
-          ).toLowerCase();
-          const toolHref =
-            (card as HTMLAnchorElement).href ||
-            (card as HTMLElement).dataset.toolId ||
-            '';
-
-          const toolId =
-            toolHref.split('/').pop()?.replace('.html', '') || toolName;
-
-          const isMatch =
-            toolName.includes(searchTerm) || toolSubtitle.includes(searchTerm);
-          const isDuplicate = seenToolIds.has(toolId);
-
-          if (isMatch && !isDuplicate) {
-            seenToolIds.add(toolId);
-            allTools.push(
-              (card.closest('.tool-tile') ?? card).cloneNode(
-                true
-              ) as HTMLElement
-            );
-          }
+    document
+      .querySelectorAll<HTMLElement>('[data-home-category]')
+      .forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const categoryId = link.dataset.homeCategory as
+            | HomeCategoryId
+            | undefined;
+          if (!categoryId) return;
+          event.preventDefault();
+          setActiveCategory(categoryId, { scroll: true });
         });
       });
 
-      allTools.forEach((tool) => {
-        searchResultsContainer.appendChild(tool);
+    document.querySelectorAll<HTMLElement>('[data-tool-id]').forEach((card) => {
+      const tool = availableTools.get(card.dataset.toolId ?? '');
+      if (!tool) {
+        card.style.display = 'none';
+        return;
+      }
+      if (card instanceof HTMLAnchorElement) card.href = tool.href;
+    });
+
+    if (searchBar) {
+      searchBar.addEventListener('input', () => {
+        currentSearchQuery = searchBar.value.trim();
+        clearSearchButton?.toggleAttribute('hidden', !currentSearchQuery);
+        renderCurrentCollection();
+      });
+      searchBar.addEventListener('search', () => {
+        currentSearchQuery = searchBar.value.trim();
+        clearSearchButton?.toggleAttribute('hidden', !currentSearchQuery);
+        renderCurrentCollection();
+      });
+    }
+
+    clearSearchButton?.addEventListener('click', () => {
+      currentSearchQuery = '';
+      if (searchBar) {
+        searchBar.value = '';
+        searchBar.focus();
+      }
+      clearSearchButton.toggleAttribute('hidden', true);
+      renderCurrentCollection();
+    });
+
+    document
+      .getElementById('tool-empty-reset')
+      ?.addEventListener('click', () => {
+        currentSearchQuery = '';
+        if (searchBar) searchBar.value = '';
+        clearSearchButton?.toggleAttribute('hidden', true);
+        setActiveCategory('popular', { scroll: false });
       });
 
-      createIcons({ icons });
+    dom.toolGrid.addEventListener('click', (event) => {
+      const card = (event.target as Element).closest<HTMLAnchorElement>(
+        'a.px-tool-card'
+      );
+      if (!card || (event.target as Element).closest('.tool-fav-btn')) return;
+      card.classList.add('is-loading');
+      card.setAttribute('aria-busy', 'true');
     });
+
+    // Homepage PDF handoff: the file stays in IndexedDB on this device only.
+    const homeFileInput = document.getElementById(
+      'home-file-input'
+    ) as HTMLInputElement | null;
+    const homeDropZone = document.getElementById('home-drop-zone');
+    const homeFilePanel = document.getElementById('home-file-panel');
+    const homeFileName = document.getElementById('home-file-name');
+    const homeFileDetails = document.getElementById('home-file-details');
+    const homeFileActions = document.getElementById('home-file-actions');
+    const homeFileMessage = document.getElementById('home-file-message');
+    const homeFileStatus = document.getElementById('home-file-status');
+    const homeFileClear = document.getElementById('home-file-clear');
+
+    const homeActionDefinitions: Array<{
+      id: string;
+      label: string;
+      icon: string;
+    }> = [
+      { id: 'merge-pdf', label: 'دمج', icon: 'combine' },
+      { id: 'split-pdf', label: 'تقسيم', icon: 'scissors' },
+      { id: 'compress-pdf', label: 'ضغط', icon: 'minimize-2' },
+      { id: 'edit-pdf', label: 'تحرير', icon: 'pen-tool' },
+      { id: 'organize-pdf', label: 'تنظيم', icon: 'layout-grid' },
+      { id: 'protect-pdf', label: 'حماية', icon: 'lock' },
+    ];
+
+    const setHomeFileMessage = (
+      message: string,
+      tone: '' | 'error' | 'success'
+    ) => {
+      if (!homeFileMessage) return;
+      homeFileMessage.textContent = message;
+      homeFileMessage.className = `px-upload-message${tone ? ` is-${tone}` : ''}`;
+    };
+
+    const renderHomeFile = (
+      file: File,
+      pageCount: number | undefined,
+      stored: boolean
+    ) => {
+      if (homeFilePanel) homeFilePanel.hidden = false;
+      if (homeFileName) homeFileName.textContent = file.name;
+      if (homeFileDetails) {
+        const details = [
+          pageCount ? `${pageCount} صفحة` : 'ملف PDF جاهز',
+          formatBytes(file.size),
+          stored ? 'محفوظ مؤقتًا على جهازك' : 'جاهز للفتح داخل الأداة',
+        ];
+        homeFileDetails.textContent = details.join(' • ');
+      }
+      if (homeFileStatus) {
+        homeFileStatus.textContent = trText('جاهز');
+        homeFileStatus.className = 'px-upload-status is-ready';
+      }
+      if (homeFileActions) {
+        homeFileActions.textContent = '';
+        homeActionDefinitions.forEach((definition) => {
+          const tool = availableTools.get(definition.id);
+          if (!tool) return;
+          const link = document.createElement('a');
+          link.href = stored ? `${tool.href}?from=home` : tool.href;
+          link.setAttribute(
+            'aria-label',
+            `${definition.label}: ${getToolDisplay(tool).name}`
+          );
+          const icon = document.createElement('i');
+          icon.setAttribute('data-lucide', definition.icon);
+          icon.setAttribute('aria-hidden', 'true');
+          link.append(icon, document.createTextNode(definition.label));
+          homeFileActions.appendChild(link);
+        });
+        createIcons({ icons });
+      }
+    };
+
+    const resetHomeFile = () => {
+      if (homeFileInput) homeFileInput.value = '';
+      if (homeFilePanel) homeFilePanel.hidden = true;
+      if (homeFileStatus) {
+        homeFileStatus.textContent = trText('بانتظار ملف');
+        homeFileStatus.className = 'px-upload-status';
+      }
+    };
+
+    const handleHomeFile = async (file: File | undefined) => {
+      if (!file) return;
+      const isPdf =
+        file.type === 'application/pdf' ||
+        file.name.toLowerCase().endsWith('.pdf');
+      if (!isPdf || file.size === 0) {
+        resetHomeFile();
+        if (homeFileStatus) {
+          homeFileStatus.textContent = trText('ملف غير صالح');
+          homeFileStatus.className = 'px-upload-status is-error';
+        }
+        setHomeFileMessage(
+          trText('اختر ملف PDF صالحًا. لم يتم رفع أي ملف إلى خادم.'),
+          'error'
+        );
+        return;
+      }
+
+      if (homeFileStatus) {
+        homeFileStatus.textContent = trText('جارٍ فحص الملف');
+        homeFileStatus.className = 'px-upload-status';
+      }
+      setHomeFileMessage(trText('جارٍ قراءة الملف والتحقق من صفحاته...'), '');
+
+      try {
+        const data = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data }).promise;
+        const pageCount = pdf.numPages;
+        await pdf.destroy();
+        const stored = await saveHomePdf(file);
+        renderHomeFile(file, pageCount, stored);
+        setHomeFileMessage(
+          stored
+            ? trText(
+                'تم تجهيز الملف. اختر عملية، وسنضيفه تلقائيًا داخل الأداة.'
+              )
+            : trText(
+                'تم تجهيز الملف. قد تحتاج إلى اختياره مرة أخرى داخل الأداة لأن المتصفح منع الحفظ المؤقت.'
+              ),
+          'success'
+        );
+      } catch {
+        resetHomeFile();
+        if (homeFileStatus) {
+          homeFileStatus.textContent = trText('تعذر قراءة الملف');
+          homeFileStatus.className = 'px-upload-status is-error';
+        }
+        setHomeFileMessage(
+          trText(
+            'لم نتمكن من قراءة هذا الملف. تأكد أنه PDF غير تالف، أو جرّب أداة إصلاح PDF من قائمة الأدوات.'
+          ),
+          'error'
+        );
+      }
+    };
+
+    homeFileInput?.addEventListener('change', () => {
+      void handleHomeFile(homeFileInput.files?.[0]);
+    });
+
+    if (homeDropZone) {
+      ['dragenter', 'dragover'].forEach((eventName) => {
+        homeDropZone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          homeDropZone.classList.add('is-dragging');
+        });
+      });
+      ['dragleave', 'drop'].forEach((eventName) => {
+        homeDropZone.addEventListener(eventName, (event) => {
+          event.preventDefault();
+          homeDropZone.classList.remove('is-dragging');
+        });
+      });
+      homeDropZone.addEventListener('drop', (event) => {
+        const file = (event as DragEvent).dataTransfer?.files?.[0];
+        void handleHomeFile(file);
+      });
+    }
+
+    homeFileClear?.addEventListener('click', async () => {
+      await deleteHomePdf();
+      resetHomeFile();
+      setHomeFileMessage(
+        trText('تمت إزالة الملف المؤقت من هذا الجهاز.'),
+        'success'
+      );
+    });
+
+    void loadHomePdf().then((file) => {
+      if (file && homeFilePanel?.hidden) {
+        renderHomeFile(file, undefined, true);
+        setHomeFileMessage(
+          trText(
+            'استعدنا ملفك المؤقت من هذه الجلسة. يمكنك المتابعة أو إزالته.'
+          ),
+          'success'
+        );
+      }
+    });
+
+    renderCurrentCollection();
+    updateFavoritesHint();
 
     window.addEventListener('keydown', function (e) {
       const key = e.key.toLowerCase();
@@ -1030,11 +1728,6 @@ const init = async () => {
   function applyCompactMode(enabled: boolean) {
     if (dom.toolGrid) {
       dom.toolGrid.classList.toggle('compact-mode', enabled);
-      dom.toolGrid
-        .querySelectorAll('.category-group:not(.collapsed) .category-tools')
-        .forEach((container) => {
-          (container as HTMLElement).style.maxHeight = 'none';
-        });
     }
   }
 
@@ -1154,51 +1847,54 @@ const init = async () => {
   // Reserved shortcuts that commonly conflict with browser/OS functions
   const RESERVED_SHORTCUTS: Record<string, { mac?: string; windows?: string }> =
     {
-      'mod+w': { mac: trText("يغلق التبويب"), windows: trText("يغلق التبويب") },
+      'mod+w': { mac: trText('يغلق التبويب'), windows: trText('يغلق التبويب') },
       'mod+t': {
-        mac: trText("يفتح تبويبًا جديدًا"),
-        windows: trText("يفتح تبويبًا جديدًا"),
+        mac: trText('يفتح تبويبًا جديدًا'),
+        windows: trText('يفتح تبويبًا جديدًا'),
       },
       'mod+n': {
-        mac: trText("يفتح نافذة جديدة"),
-        windows: trText("يفتح نافذة جديدة"),
+        mac: trText('يفتح نافذة جديدة'),
+        windows: trText('يفتح نافذة جديدة'),
       },
       'mod+shift+n': {
-        mac: trText("يفتح نافذة التصفح المتخفي"),
-        windows: trText("يفتح نافذة التصفح المتخفي"),
+        mac: trText('يفتح نافذة التصفح المتخفي'),
+        windows: trText('يفتح نافذة التصفح المتخفي'),
       },
-      'mod+q': { mac: trText("يغلق التطبيق (لا يمكن تجاوزه)") },
-      'mod+m': { mac: trText("يصغّر النافذة") },
-      'mod+h': { mac: trText("يخفي النافذة") },
-      'mod+r': { mac: trText("يعيد تحميل الصفحة"), windows: trText("يعيد تحميل الصفحة") },
+      'mod+q': { mac: trText('يغلق التطبيق (لا يمكن تجاوزه)') },
+      'mod+m': { mac: trText('يصغّر النافذة') },
+      'mod+h': { mac: trText('يخفي النافذة') },
+      'mod+r': {
+        mac: trText('يعيد تحميل الصفحة'),
+        windows: trText('يعيد تحميل الصفحة'),
+      },
       'mod+shift+r': {
-        mac: trText("يعيد تحميل الصفحة بالكامل"),
-        windows: trText("يعيد تحميل الصفحة بالكامل"),
+        mac: trText('يعيد تحميل الصفحة بالكامل'),
+        windows: trText('يعيد تحميل الصفحة بالكامل'),
       },
       'mod+l': {
-        mac: trText("يركّز على شريط العنوان"),
-        windows: trText("يركّز على شريط العنوان"),
+        mac: trText('يركّز على شريط العنوان'),
+        windows: trText('يركّز على شريط العنوان'),
       },
       'mod+d': {
-        mac: trText("صفحة الإشارات المرجعية"),
-        windows: trText("صفحة الإشارات المرجعية"),
+        mac: trText('صفحة الإشارات المرجعية'),
+        windows: trText('صفحة الإشارات المرجعية'),
       },
       'mod+shift+t': {
-        mac: trText("يعيد فتح التبويب المغلق"),
-        windows: trText("يعيد فتح التبويب المغلق"),
+        mac: trText('يعيد فتح التبويب المغلق'),
+        windows: trText('يعيد فتح التبويب المغلق'),
       },
       'mod+shift+w': {
-        mac: trText("يغلق النافذة"),
-        windows: trText("يغلق النافذة"),
+        mac: trText('يغلق النافذة'),
+        windows: trText('يغلق النافذة'),
       },
       'mod+tab': {
-        mac: trText("يبدّل بين التبويبات"),
-        windows: trText("يبدّل بين التطبيقات"),
+        mac: trText('يبدّل بين التبويبات'),
+        windows: trText('يبدّل بين التطبيقات'),
       },
-      'alt+f4': { windows: trText("يغلق النافذة") },
+      'alt+f4': { windows: trText('يغلق النافذة') },
       'ctrl+tab': {
-        mac: trText("يبدّل بين التبويبات"),
-        windows: trText("يبدّل بين التبويبات"),
+        mac: trText('يبدّل بين التبويبات'),
+        windows: trText('يبدّل بين التبويبات'),
       },
     };
 
@@ -1554,4 +2250,8 @@ const init = async () => {
   rewriteLinks();
 };
 
-window.addEventListener('load', init);
+if (document.readyState === 'complete') {
+  void init();
+} else {
+  window.addEventListener('load', () => void init(), { once: true });
+}
