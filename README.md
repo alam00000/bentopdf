@@ -114,7 +114,9 @@ BentoPDF is **dual-licensed** to fit your needs:
   </a>
 </p>
 
-> **One-time purchase** · **One product, unlimited devices & users** · **Lifetime updates** · **No AGPL ob> **Building on BentoPDF? Hyper Compress is included.\*\* The commercial license covers [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress) as a bundled component in eligible products: companies under US$1 million in revenue and funding, general PDF toolkits, and only through BentoPDF's own tools on the end user's device. Using the engine on its own, on a server, through an API or in other software needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing) from $99/year, and [Kura](https://www.bentopdf.com/kura#pricing) is licensed separately from $99/year. See the [full license terms](COMMERCIAL-LICENSE.md).-components).
+> **One-time purchase** · **One product, unlimited devices & users** · **Lifetime updates** · **No AGPL obligations**
+
+> **Building on BentoPDF? Hyper Compress is included.** The commercial license covers [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress) as a bundled component in eligible products: companies under US$1 million in revenue and funding, general PDF toolkits, and only through BentoPDF's own tools on the end user's device. Using the engine on its own, on a server, through an API or in other software needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing), and [Kura](https://www.bentopdf.com/kura#pricing) is licensed separately. Both are annual subscriptions from $99/year, under the [Hyper Compress](https://github.com/alam00000/bentopdf-hyper-compress/blob/main/COMMERCIAL-LICENSE.md) and [Kura](https://github.com/alam00000/bentopdf-kura/blob/main/COMMERCIAL-LICENSE.md) commercial licenses. See the [full license terms](COMMERCIAL-LICENSE.md).
 
 📖 For more details, see our [Licensing Page](https://www.bentopdf.com/licensing)
 

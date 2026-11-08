@@ -362,18 +362,6 @@
     ],
     "pageCount": 1
   },
-  "02438bd53f5f": {
-    "text": "DigitalOcean Referral Badge",
-    "tags": [
-      "img"
-    ],
-    "pages": [
-      "404",
-      "about",
-      "add-attachments"
-    ],
-    "pageCount": 137
-  },
   "02482f5739fe": {
     "text": "CSV to PDF Online Free - CSV to PDF Tool | BentoPDF",
     "tags": [
@@ -588,17 +576,6 @@
       "hyper-compress"
     ],
     "pageCount": 1
-  },
-  "031965c8834c": {
-    "text": "Per product, billed annually. Every tier includes all updates and new releases while active.",
-    "tags": [
-      "p"
-    ],
-    "pages": [
-      "hyper-compress",
-      "kura"
-    ],
-    "pageCount": 2
   },
   "031bb873da88": {
     "text": "RTL",
@@ -7711,6 +7688,16 @@
     ],
     "pageCount": 1
   },
+  "2e5ac02cccc8": {
+    "text": "You have 30 days to renew. After that, you can no longer release new versions of your product with Kura, offer it to new users, or serve or host it, including web apps that load it in the browser. Copies your end users installed on their own devices before then keep working. Any other use falls under the AGPL, and renewing later includes the time since your license ended. The <1>full license terms</1> cover every condition in detail.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "kura"
+    ],
+    "pageCount": 1
+  },
   "2e5cc003583b": {
     "text": "Is my PDF uploaded when I split it? <1/>",
     "tags": [
@@ -14038,6 +14025,16 @@
     ],
     "pageCount": 1
   },
+  "5340f76f3d1b": {
+    "text": "You have 30 days to renew. After that, you can no longer release new versions of your product with Hyper Compress, offer it to new users, or serve or host it, including web apps that load it in the browser. Copies your end users installed on their own devices before then keep working. Any other use falls under the AGPL, and renewing later includes the time since your license ended. The <1>full license terms</1> cover every condition in detail.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "hyper-compress"
+    ],
+    "pageCount": 1
+  },
   "5344c8e3db93": {
     "text": "No. Rendering the pages and building the new single-page PDF both happen in your browser, and the file stays on your device the whole time.",
     "tags": [
@@ -14854,6 +14851,16 @@
     ],
     "pages": [
       "remove-blank-pages"
+    ],
+    "pageCount": 1
+  },
+  "576bfed36d9e": {
+    "text": "You get every release while your subscription is active. Your rights to use, ship and host Kura last as long as your subscription does.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "kura"
     ],
     "pageCount": 1
   },
@@ -16490,6 +16497,17 @@
       "remove-metadata"
     ],
     "pageCount": 1
+  },
+  "617f5de24c80": {
+    "text": "Annual subscription",
+    "tags": [
+      "h3"
+    ],
+    "pages": [
+      "hyper-compress",
+      "kura"
+    ],
+    "pageCount": 2
   },
   "617f7aafcd02": {
     "text": "C5 (162 × 229 mm)",
@@ -28260,6 +28278,16 @@
     ],
     "pageCount": 1
   },
+  "a40145eb9c31": {
+    "text": "You get every release while your subscription is active. Your rights to use, ship and host Hyper Compress last as long as your subscription does.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "hyper-compress"
+    ],
+    "pageCount": 1
+  },
   "a401a0372573": {
     "text": "Folio (8.5\" × 13\")",
     "tags": [
@@ -28868,6 +28896,17 @@
     "pages": [
       "index",
       "pdf-converter"
+    ],
+    "pageCount": 2
+  },
+  "a79d34e136a2": {
+    "text": "Per product, billed annually and renewed automatically. Your license and every update stay valid while your subscription is active.",
+    "tags": [
+      "p"
+    ],
+    "pages": [
+      "hyper-compress",
+      "kura"
     ],
     "pageCount": 2
   },
@@ -39253,17 +39292,6 @@
     ],
     "pageCount": 1
   },
-  "e62771656854": {
-    "text": "Every release published while your license is active is yours. If you let it lapse, you keep a perpetual right to the last version you received.",
-    "tags": [
-      "p"
-    ],
-    "pages": [
-      "hyper-compress",
-      "kura"
-    ],
-    "pageCount": 2
-  },
   "e632656732d4": {
     "text": "Convert WordPerfect documents (WPD) to PDF format. Supports multiple files. Free, no uploads, no signup. Runs entirely in your browser.",
     "tags": [
@@ -40060,6 +40088,17 @@
       "json-to-pdf"
     ],
     "pageCount": 1
+  },
+  "eab385f97621": {
+    "text": "<1>What happens if I stop renewing?</1> <2/>",
+    "tags": [
+      "button"
+    ],
+    "pages": [
+      "hyper-compress",
+      "kura"
+    ],
+    "pageCount": 2
   },
   "eab9dcc6b540": {
     "text": "Can I save a workflow and reuse it later? <1/>",
@@ -42129,17 +42168,6 @@
       "form-creator"
     ],
     "pageCount": 1
-  },
-  "f70d6756b241": {
-    "text": "Updates included",
-    "tags": [
-      "h3"
-    ],
-    "pages": [
-      "hyper-compress",
-      "kura"
-    ],
-    "pageCount": 2
   },
   "f728d128f89e": {
     "text": "More than one width and height combination was found in the document, and the summary breaks down how many pages use each. A rotated page counts as a separate size from its upright twin, so a landscape A4 page in a portrait A4 file triggers the warning. To make everything uniform, use <1>Fix Page Size</1>.",

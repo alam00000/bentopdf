@@ -77,13 +77,13 @@ You may not modify Hyper Compress's files, including its WebAssembly build and w
 
 ### Other uses
 
-Any use of Hyper Compress outside these conditions needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing), from $99/year, or OEM terms.
+Any use of Hyper Compress outside these conditions needs a separate [Hyper Compress license](https://www.bentopdf.com/hyper-compress#pricing), an annual subscription from $99/year, or OEM terms. The [Hyper Compress Commercial License](https://github.com/alam00000/bentopdf-hyper-compress/blob/main/COMMERCIAL-LICENSE.md) sets out its terms.
 
 Which components are bundled can change in future BentoPDF releases. A bundled component in a release you have received stays covered by these terms for that release.
 
 ## Kura
 
-Kura is not a bundled component and is always licensed separately, with [commercial licenses](https://www.bentopdf.com/kura#pricing) from $99/year. This applies even if a future BentoPDF release uses Kura, unless that release states otherwise.
+Kura is not a bundled component and is always licensed separately, with [commercial licenses](https://www.bentopdf.com/kura#pricing), annual subscriptions from $99/year, under the [Kura Commercial License](https://github.com/alam00000/bentopdf-kura/blob/main/COMMERCIAL-LICENSE.md). This applies even if a future BentoPDF release uses Kura, unless that release states otherwise.
 
 ## Third-party components
 
