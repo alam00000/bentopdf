@@ -38,14 +38,10 @@ function loadPages(): Set<string> {
 
   const rootPages = [
     'index',
-    'about',
-    'contact',
     'faq',
     'privacy',
     'terms',
     'licensing',
-    'kura',
-    'hyper-compress',
     'advertise',
     '404',
     'pdf-converter',
