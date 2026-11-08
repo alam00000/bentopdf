@@ -2317,6 +2317,12 @@
     ],
     "fileCount": 1
   },
+  "{{count}} أداة": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "{{count}} عقدة": {
     "files": [
       "logic/pdf-workflow-page.ts"
@@ -2578,6 +2584,12 @@
   "أداة التعديل": {
     "files": [
       "logic/edit-pdf-text-dock.ts"
+    ],
+    "fileCount": 1
+  },
+  "أداة واحدة": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -3164,6 +3176,12 @@
     ],
     "fileCount": 1
   },
+  "اختر الملف": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "اختر حقلًا لتعديل خصائصه": {
     "files": [
       "logic/form-creator.ts"
@@ -3173,6 +3191,12 @@
   "اختر حقلًا...": {
     "files": [
       "logic/form-creator.ts"
+    ],
+    "fileCount": 1
+  },
+  "اختر ملف PDF صالحًا. لم يتم رفع أي ملف إلى خادم.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -3209,6 +3233,12 @@
   "استخراج جزئي": {
     "files": [
       "logic/prepare-pdf-for-ai-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "استعدنا ملفك المؤقت من هذه الجلسة. يمكنك المتابعة أو إزالته.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -3251,6 +3281,18 @@
   "اسم غير صالح": {
     "files": [
       "logic/pdf-layers-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "اضبط الإعدادات": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
+  "اضغط على النجمة في أي بطاقة لإضافتها هنا والوصول إليها بسرعة.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -4088,6 +4130,12 @@
   "باركود": {
     "files": [
       "logic/form-creator.ts"
+    ],
+    "fileCount": 1
+  },
+  "بانتظار ملف": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -5055,6 +5103,12 @@
     ],
     "fileCount": 1
   },
+  "تعذر قراءة الملف": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "تعذر نسخ البيانات الوصفية إلى الحافظة.": {
     "files": [
       "logic/view-metadata-page.ts"
@@ -5442,6 +5496,18 @@
   "تم بنجاح!": {
     "files": [
       "canvasEditor.ts"
+    ],
+    "fileCount": 1
+  },
+  "تم تجهيز الملف. اختر عملية، وسنضيفه تلقائيًا داخل الأداة.": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
+  "تم تجهيز الملف. قد تحتاج إلى اختياره مرة أخرى داخل الأداة لأن المتصفح منع الحفظ المؤقت.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -6030,6 +6096,12 @@
     ],
     "fileCount": 1
   },
+  "تمت إزالة الملف المؤقت من هذا الجهاز.": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "تمت إزالة توقيعاته الرقمية لكي يمكن ضغطه. وقّعه مرة أخرى عند الحاجة.": {
     "files": [
       "logic/compress-pdf-page.ts"
@@ -6099,6 +6171,12 @@
   "تمت إضافة صورة ({{width}}×{{height}})": {
     "files": [
       "compare/engine/compare-content.ts"
+    ],
+    "fileCount": 1
+  },
+  "تمت إضافة ملفك من الصفحة الرئيسية:": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -7132,6 +7210,12 @@
     ],
     "fileCount": 3
   },
+  "جارٍ فحص الملف": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "جارٍ فك التشفير...": {
     "files": [
       "utils/password-prompt.ts"
@@ -7191,6 +7275,12 @@
   "جارٍ قراءة إعدادات الطبقات...": {
     "files": [
       "logic/pdf-layers-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "جارٍ قراءة الملف والتحقق من صفحاته...": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -7303,9 +7393,10 @@
   "جاهز": {
     "files": [
       "logic/cropper.ts",
-      "logic/pdf-workflow-page.ts"
+      "logic/pdf-workflow-page.ts",
+      "main.ts"
     ],
-    "fileCount": 2
+    "fileCount": 3
   },
   "جداول البيانات": {
     "files": [
@@ -7316,6 +7407,18 @@
   "جدول المحتويات": {
     "files": [
       "utils/wasm-provider.ts"
+    ],
+    "fileCount": 1
+  },
+  "جرّب تصنيفًا آخر أو استخدم البحث للعثور على الأداة.": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
+  "جرّب كلمة عربية أو إنجليزية أبسط، مثل: دمج، تقسيم، ضغط، تحويل، merge أو split.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -7688,6 +7791,12 @@
   "خطأ: {{error}}": {
     "files": [
       "logic/validate-signature-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "خطوات إنجاز المهمة": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -8481,6 +8590,24 @@
     ],
     "fileCount": 1
   },
+  "لا توجد أدوات": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
+  "لا توجد أدوات مطابقة": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
+  "لا توجد أدوات مفضلة بعد": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "لا توجد أزواج صفحات للتصدير.": {
     "files": [
       "compare/reporting/export-compare-pdf.ts"
@@ -8564,6 +8691,12 @@
       "logic/cropper.ts"
     ],
     "fileCount": 2
+  },
+  "لا توجد نتائج مطابقة. جرّب كلمة أبسط بالعربية أو الإنجليزية.": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
   },
   "لا يبدأ ByteRange من بداية الملف": {
     "files": [
@@ -8674,6 +8807,12 @@
   "لم تُظهر حزمة Ghostscript الواجهة المتوقعة. المتوقع هو loadGS() أو الصنف GhostscriptWASM.": {
     "files": [
       "utils/ghostscript-dynamic-loader.ts"
+    ],
+    "fileCount": 1
+  },
+  "لم نتمكن من قراءة هذا الملف. تأكد أنه PDF غير تالف، أو جرّب أداة إصلاح PDF من قائمة الأدوات.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -9166,7 +9305,7 @@
       "logic/adjust-colors-page.ts",
       "logic/background-color-page.ts"
     ],
-    "fileCount": 24
+    "fileCount": 25
   },
   "ملف مشفّر": {
     "files": [
@@ -9350,9 +9489,21 @@
     ],
     "fileCount": 1
   },
+  "نتائج البحث": {
+    "files": [
+      "main.ts"
+    ],
+    "fileCount": 1
+  },
   "نجاح جزئي": {
     "files": [
       "logic/repair-pdf.ts"
+    ],
+    "fileCount": 1
+  },
+  "نزّل النتيجة": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -9371,6 +9522,12 @@
   "نطاق غير صالح": {
     "files": [
       "logic/divide-pages-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "نفّذ المعالجة": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },
@@ -9461,6 +9618,12 @@
   "واجهة Web Crypto API غير متاحة في هذا السياق": {
     "files": [
       "logic/validate-signature-pdf.ts"
+    ],
+    "fileCount": 1
+  },
+  "وجدنا {{count}} أداة مطابقة لبحثك.": {
+    "files": [
+      "main.ts"
     ],
     "fileCount": 1
   },

@@ -93,298 +93,536 @@
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
 
     <link href="src/css/styles.css" rel="stylesheet" />
-    <link href="src/css/landing.css" rel="stylesheet" />
-    <link href="src/css/tools-dashboard.css" rel="stylesheet" />
   </head>
 
-  <body class="lp antialiased">
+  <body class="lp px-home antialiased">
     {{> navbar }}
 
-    <section id="hero-section" class="ar-hero" aria-labelledby="hero-title">
-      <div class="ar-hero-inner">
-        <div class="ar-hero-copy">
-          <span class="ar-eyebrow"
-            ><span></span> ملفاتك في أمان. أفكارك بلا حدود.</span
-          >
-          <h1 id="hero-title">
-            كل ما تحتاجه لملفاتك،<br /><em>ببساطة وإتقان.</em>
-          </h1>
-          <p>
-            حوّل، ادمج، وعدّل ملفات PDF في مساحة عمل واحدة.<br />أدوات احترافية
-            تعمل داخل متصفحك، وخصوصية لا تقبل المساومة.
-          </p>
-          <div class="ar-hero-actions">
-            <a class="ar-primary" href="#tools-header"
-              >استكشف الأدوات <i data-lucide="arrow-left"></i
-            ></a>
-          </div>
-          <div class="ar-assurances">
-            <span><i data-lucide="check"></i> دون تسجيل</span
-            ><span><i data-lucide="check"></i> معالجة على جهازك</span
-            ><span><i data-lucide="check"></i> استخدام مجاني</span>
-          </div>
-        </div>
-        <div class="ar-workspace" aria-label="أدوات مختارة لبدء العمل">
-          <div class="ar-workspace-top">
-            <span><i data-lucide="layers"></i> مساحة إنجازك</span
-            ><span class="ar-status">محلية وآمنة</span>
-          </div>
-          <div class="ar-document">
-            <span class="ar-file-icon"><i data-lucide="file-text"></i></span>
-            <div>
-              <strong>من الفكرة إلى مستند متكامل</strong
-              ><small>خطوات أقل. نتائج أفضل.</small>
-            </div>
-            <i data-lucide="circle-check"></i>
-          </div>
-          <div class="ar-quick-tools">
-            <a href="/merge-pdf"
-              ><i data-lucide="combine"></i><strong>دمج الملفات</strong
-              ><small>اجمعها في مستند واحد</small></a
-            >
-            <a href="/compress-pdf"
-              ><i data-lucide="minimize-2"></i><strong>ضغط الملفات</strong
-              ><small>حجم أصغر، جودة عالية</small></a
-            >
-            <a href="/edit-pdf"
-              ><i data-lucide="pen-tool"></i><strong>تعديل المستندات</strong
-              ><small>أضف لمستك بكل سهولة</small></a
-            >
-          </div>
-          <div class="ar-workspace-bottom">
-            <i data-lucide="shield-check"></i> ملفاتك لا تغادر جهازك أبدًا
-            <span>PDF</span>
-          </div>
-        </div>
-      </div>
-      <div class="ar-value-strip">
-        <span><i data-lucide="sparkles"></i> أكثر من ١٠٠ أداة بين يديك</span
-        ><span><i data-lucide="shield-check"></i> خصوصيتك أولويتنا</span
-        ><span><i data-lucide="zap"></i> بلا تحميل برامج</span
-        ><span><i data-lucide="monitor-smartphone"></i> على جميع أجهزتك</span>
-      </div>
-    </section>
-
-    <div id="app" class="min-h-screen container mx-auto p-4 md:p-8">
-      <div id="tools-header" class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
-          <span data-i18n="tools.title">ابدأ مع</span>
-          <span class="marker-slanted ml-2" data-i18n="tools.toolsLabel"
-            >الأدوات</span
-          >
-        </h2>
-        <p class="text-gray-400" data-i18n="tools.subtitle">
-          انقر على أداة لفتح رافع الملفات
-        </p>
-      </div>
-
-      <div id="grid-view">
-        <div class="mb-8 max-w-lg mx-auto">
-          <div class="relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-              <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
-            </span>
-            <input
-              type="text"
-              id="search-bar"
-              class="w-full pl-10 pr-4 py-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="ابحث عن أداة (مثلاً، 'تقسيم'، 'ترتيب'...)"
-              data-i18n-placeholder="tools.searchPlaceholder"
-            />
-            <span
-              class="absolute inset-y-0 right-0 flex items-center rounded-lg pr-2 gap-2"
-            >
-              <kbd
-                id="shortcut"
-                class="bg-gray-800 px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 border border-gray-700 shadow-sm"
-              ></kbd>
-              <button
-                id="open-shortcuts-btn"
-                class="p-1 hover:bg-gray-600 rounded-md text-gray-400 hover:text-white transition-colors"
-                title="اختصارات لوحة المفاتيح"
-              >
-                <i data-lucide="settings" class="w-4 h-4"></i>
-              </button>
-            </span>
-          </div>
-        </div>
-
-        <div
-          id="tool-grid"
-          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
-        >
-          {{> tool-links-static }}
-        </div>
-      </div>
-
-      <div
-        id="tool-interface"
-        class="hidden w-full max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-6 md:p-8 border border-gray-700"
-      >
-        <button
-          id="back-to-grid"
-          class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
-        >
-          <i data-lucide="arrow-left" class="cursor-pointer"></i>
-          <span class="cursor-pointer" data-i18n="tools.backToTools"
-            >العودة إلى الأدوات</span
-          >
-        </button>
-        <div id="tool-content"></div>
-      </div>
-
-      <div
-        id="loader-modal"
-        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-      >
-        <div
-          class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
-        >
-          <div class="solid-spinner"></div>
-          <p
-            id="loader-text"
-            class="text-white text-lg font-medium"
-            data-i18n="loader.processing"
-          >
-            جارٍ المعالجة...
-          </p>
-        </div>
-      </div>
-
-      <div
-        id="alert-modal"
-        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
-      >
-        <div
-          class="bg-gray-800 max-w-sm w-full p-6 rounded-lg border border-gray-700 shadow-xl text-center"
-        >
-          <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
-            تنبيه
-          </h3>
-          <p id="alert-message" class="text-gray-300 mb-6 whitespace-pre-line">
-            هذه رسالة تنبيه.
-          </p>
-          <button
-            id="alert-ok"
-            class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
-          >
-            حسنًا
-          </button>
-        </div>
-      </div>
-
-      <div
-        id="preview-modal"
-        class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40 p-4"
-      >
-        <div
-          class="bg-white text-black rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col"
-        >
-          <div class="p-4 border-b flex justify-between items-center">
-            <h3 class="text-xl font-bold">معاينة المستند</h3>
-            <div class="flex gap-4">
-              <button
-                id="preview-download-btn"
-                class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
-              >
-                تنزيل كملف PDF
-              </button>
-              <button
-                id="preview-close-btn"
-                class="btn bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700"
-              >
-                إغلاق
-              </button>
+    <main>
+      <section id="hero-section" class="px-hero" aria-labelledby="hero-title">
+        <div class="px-hero-grid">
+          <div class="px-hero-copy">
+            <span class="px-eyebrow">مساحة PDF عربية تعمل داخل متصفحك</span>
+            <h1 id="hero-title">
+              أنجز ملفات PDF<br /><em>بخطوات أقل، وبثقة أكبر.</em>
+            </h1>
+            <p class="px-hero-lead">
+              ارفع ملفك، اختر العملية المناسبة، ثم نزّل النتيجة. دمج وتقسيم وضغط
+              وتحرير وتحويل وحماية، دون إرسال ملفاتك إلى خادم.
+            </p>
+            <ol class="px-hero-steps" aria-label="خطوات العمل">
+              <li><span class="px-step-num">1</span> اختر ملف PDF</li>
+              <li><span class="px-step-num">2</span> اختر الأداة المناسبة</li>
+              <li><span class="px-step-num">3</span> عالِج ونزّل النتيجة</li>
+            </ol>
+            <div class="px-assurances" aria-label="مزايا الخصوصية والاستخدام">
+              <span><i data-lucide="shield-check"></i> معالجة محلية</span>
+              <span><i data-lucide="lock"></i> لا تُرفع ملفاتك</span>
+              <span><i data-lucide="check"></i> دون تسجيل</span>
+              <span><i data-lucide="smartphone"></i> مصمم للجوال أولًا</span>
             </div>
           </div>
-          <div id="preview-content" class="p-8 overflow-y-auto flex-grow"></div>
-        </div>
-      </div>
 
-      <!-- Shortcuts Modal -->
-      {{> settings-modal }}
-
-      <!-- Warning Modal -->
-      {{> warning-modal }}
-
-      <div
-        id="password-modal"
-        class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
-      >
-        <div
-          class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl max-w-md w-full overflow-hidden"
-        >
-          <div class="p-6">
-            <div class="flex items-start gap-4 mb-4">
-              <div
-                class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-500/10 flex-shrink-0"
+          <div class="px-upload-card" id="home-upload-card">
+            <div class="px-upload-head">
+              <span class="px-upload-title">
+                <i data-lucide="file-up"></i>
+                ابدأ من ملفك
+              </span>
+              <span class="px-upload-status" id="home-file-status"
+                >بانتظار ملف</span
               >
-                <i data-lucide="lock" class="w-6 h-6 text-indigo-400"></i>
-              </div>
-              <div class="flex-1">
-                <h3
-                  id="password-modal-title"
-                  class="text-xl font-bold text-white mb-1"
+            </div>
+
+            <label
+              class="px-drop-zone"
+              id="home-drop-zone"
+              for="home-file-input"
+              aria-describedby="home-upload-help home-file-message"
+            >
+              <span class="px-drop-icon"
+                ><i data-lucide="upload-cloud"></i
+              ></span>
+              <strong>اسحب ملف PDF هنا</strong>
+              <span>أو اضغط لاختيار ملف من جهازك</span>
+              <small id="home-upload-help"
+                >PDF واحد للبدء. يمكنك إضافة المزيد داخل أدوات الدمج
+                والتجميع.</small
+              >
+              <input
+                class="px-file-input"
+                id="home-file-input"
+                type="file"
+                accept="application/pdf,.pdf"
+              />
+            </label>
+
+            <div class="px-file-panel" id="home-file-panel" hidden>
+              <div class="px-file-row">
+                <span class="px-file-badge"
+                  ><i data-lucide="file-text"></i
+                ></span>
+                <div class="px-file-meta">
+                  <span class="px-file-name px-ltr" id="home-file-name"
+                    >document.pdf</span
+                  >
+                  <span class="px-file-details" id="home-file-details"
+                    >جاهز للاستخدام</span
+                  >
+                </div>
+                <button
+                  class="px-file-remove"
+                  id="home-file-clear"
+                  type="button"
                 >
-                  كلمة المرور مطلوبة
-                </h3>
+                  <i data-lucide="trash-2"></i>
+                  إزالة
+                </button>
+              </div>
+              <p class="px-next-label" id="home-next-label">
+                ماذا تريد أن تفعل بهذا الملف؟
+              </p>
+              <div
+                class="px-file-actions"
+                id="home-file-actions"
+                aria-describedby="home-next-label"
+              ></div>
+            </div>
+
+            <p
+              class="px-upload-message"
+              id="home-file-message"
+              aria-live="polite"
+            ></p>
+            <div class="px-privacy-row">
+              <i data-lucide="shield-check"></i>
+              <span
+                >يُحفظ الملف مؤقتًا على جهازك فقط لنقله بين الأدوات، ويمكنك
+                إزالته في أي وقت.</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-quick" aria-labelledby="quick-actions-title">
+        <div class="px-section-head">
+          <div>
+            <h2 id="quick-actions-title">إجراءات سريعة</h2>
+            <p>أكثر العمليات استخدامًا، على بعد نقرة واحدة.</p>
+          </div>
+        </div>
+        <div class="px-quick-grid">
+          <a
+            class="px-quick-card"
+            href="/merge-pdf"
+            data-tool-id="merge-pdf"
+            style="--tool-accent: #087f70; --tool-soft: #e7f4ef"
+          >
+            <span class="px-tool-icon"><i data-lucide="combine"></i></span>
+            <strong>دمج PDF</strong><small>اجمع عدة ملفات في مستند واحد</small>
+            <span class="px-quick-arrow"><i data-lucide="arrow-left"></i></span>
+          </a>
+          <a
+            class="px-quick-card"
+            href="/split-pdf"
+            data-tool-id="split-pdf"
+            style="--tool-accent: #2f6fed; --tool-soft: #eaf1ff"
+          >
+            <span class="px-tool-icon"><i data-lucide="scissors"></i></span>
+            <strong>تقسيم PDF</strong
+            ><small>استخرج صفحات أو نطاقات محددة</small>
+            <span class="px-quick-arrow"><i data-lucide="arrow-left"></i></span>
+          </a>
+          <a
+            class="px-quick-card"
+            href="/compress-pdf"
+            data-tool-id="compress-pdf"
+            style="--tool-accent: #b7791f; --tool-soft: #fff4dc"
+          >
+            <span class="px-tool-icon"><i data-lucide="minimize-2"></i></span>
+            <strong>ضغط PDF</strong
+            ><small>قلّل الحجم مع الحفاظ على الجودة</small>
+            <span class="px-quick-arrow"><i data-lucide="arrow-left"></i></span>
+          </a>
+          <a
+            class="px-quick-card"
+            href="/edit-pdf"
+            data-tool-id="edit-pdf"
+            style="--tool-accent: #7c5cbf; --tool-soft: #f0ebff"
+          >
+            <span class="px-tool-icon"><i data-lucide="pen-tool"></i></span>
+            <strong>تحرير PDF</strong><small>علّق وحرّر وأضف محتوى</small>
+            <span class="px-quick-arrow"><i data-lucide="arrow-left"></i></span>
+          </a>
+          <a
+            class="px-quick-card"
+            href="/organize-pdf"
+            data-tool-id="organize-pdf"
+            style="--tool-accent: #5b7285; --tool-soft: #edf3f7"
+          >
+            <span class="px-tool-icon"><i data-lucide="layout-grid"></i></span>
+            <strong>تنظيم الصفحات</strong
+            ><small>أعد ترتيب الصفحات وكرّرها</small>
+            <span class="px-quick-arrow"><i data-lucide="arrow-left"></i></span>
+          </a>
+          <a
+            class="px-quick-card"
+            href="/protect-pdf"
+            data-tool-id="protect-pdf"
+            style="--tool-accent: #c4526a; --tool-soft: #ffeef2"
+          >
+            <span class="px-tool-icon"><i data-lucide="lock"></i></span>
+            <strong>حماية PDF</strong><small>أضف كلمة مرور وتشفيرًا</small>
+            <span class="px-quick-arrow"><i data-lucide="arrow-left"></i></span>
+          </a>
+        </div>
+      </section>
+
+      <div id="app" class="px-app">
+        <div id="tools-header" class="px-tools-head">
+          <div>
+            <span class="px-tools-kicker">مكتبة الأدوات</span>
+            <h2>
+              <span data-i18n="tools.title">مساحة عمل واحدة،</span>
+              <span data-i18n="tools.toolsLabel">كل أدواتك</span>
+            </h2>
+            <p data-i18n="tools.subtitle">
+              ابحث بالعربية أو الإنجليزية، أو اختر تصنيفًا للعثور على الأداة
+              فورًا.
+            </p>
+          </div>
+        </div>
+
+        <div id="grid-view">
+          <div class="px-search-wrap" id="tool-search">
+            <div class="px-search-box">
+              <span class="px-search-icon"><i data-lucide="search"></i></span>
+              <label class="sr-only" for="search-bar">البحث في أدوات PDF</label>
+              <input
+                type="search"
+                id="search-bar"
+                class="px-search-input"
+                placeholder="ابحث: دمج، ضغط، merge، convert..."
+                data-i18n-placeholder="tools.searchPlaceholder"
+                autocomplete="off"
+                aria-describedby="search-status"
+              />
+              <span class="px-search-actions">
+                <button
+                  id="clear-search-btn"
+                  type="button"
+                  aria-label="مسح البحث"
+                  title="مسح البحث"
+                  hidden
+                >
+                  <i data-lucide="x"></i>
+                </button>
+                <kbd id="shortcut"></kbd>
+                <button
+                  id="open-shortcuts-btn"
+                  type="button"
+                  title="اختصارات لوحة المفاتيح والإعدادات"
+                  aria-label="فتح الإعدادات واختصارات لوحة المفاتيح"
+                >
+                  <i data-lucide="settings"></i>
+                </button>
+              </span>
+            </div>
+            <p
+              class="px-search-status"
+              id="search-status"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <nav
+            class="px-category-nav"
+            id="category-nav"
+            aria-label="تصنيفات الأدوات"
+          >
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="popular"
+              aria-pressed="true"
+              style="--cat-accent: #087f70"
+            >
+              <i data-lucide="sparkles"></i> الشائعة
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="edit"
+              aria-pressed="false"
+              style="--cat-accent: #7c5cbf"
+            >
+              <i data-lucide="pen-tool"></i> تعديل
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="convert"
+              aria-pressed="false"
+              style="--cat-accent: #2f6fed"
+            >
+              <i data-lucide="arrow-left-right"></i> تحويل
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="organize"
+              aria-pressed="false"
+              style="--cat-accent: #5b7285"
+            >
+              <i data-lucide="layout-grid"></i> تنظيم
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="optimize"
+              aria-pressed="false"
+              style="--cat-accent: #b7791f"
+            >
+              <i data-lucide="gauge"></i> تحسين
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="secure"
+              aria-pressed="false"
+              style="--cat-accent: #c4526a"
+            >
+              <i data-lucide="shield-check"></i> حماية
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="favorites"
+              aria-pressed="false"
+              style="--cat-accent: #b7791f"
+            >
+              <i data-lucide="star"></i> المفضلة
+              <span class="px-category-count" data-category-count></span>
+            </button>
+            <button
+              class="px-category-btn"
+              type="button"
+              data-category="all"
+              aria-pressed="false"
+              style="--cat-accent: #14282b"
+            >
+              <i data-lucide="layout-dashboard"></i> الكل
+              <span class="px-category-count" data-category-count></span>
+            </button>
+          </nav>
+
+          <div class="px-collection-head">
+            <h3 id="collection-title">الأدوات الشائعة</h3>
+            <p
+              class="px-collection-count"
+              id="collection-count"
+              aria-live="polite"
+            ></p>
+          </div>
+
+          <div id="tool-grid" class="px-tool-collection">
+            {{> tool-links-static }}
+          </div>
+
+          <div class="px-tool-empty" id="tool-empty" hidden>
+            <i data-lucide="search-x"></i>
+            <strong id="tool-empty-title">لا توجد أدوات مطابقة</strong>
+            <p id="tool-empty-message">
+              جرّب كلمة عربية أو إنجليزية أبسط، مثل: دمج، تقسيم، ضغط، تحويل.
+            </p>
+            <button id="tool-empty-reset" type="button">
+              عرض الأدوات الشائعة
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="tool-interface"
+          class="hidden w-full max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-2xl p-6 md:p-8 border border-gray-700"
+        >
+          <button
+            id="back-to-grid"
+            class="flex items-center gap-2 text-indigo-300 hover:text-indigo-400 mb-6 font-semibold"
+          >
+            <i data-lucide="arrow-left" class="cursor-pointer"></i>
+            <span class="cursor-pointer" data-i18n="tools.backToTools"
+              >العودة إلى الأدوات</span
+            >
+          </button>
+          <div id="tool-content"></div>
+        </div>
+
+        <div
+          id="loader-modal"
+          class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+        >
+          <div
+            class="bg-gray-800 p-8 rounded-lg flex flex-col items-center gap-4 border border-gray-700 shadow-xl"
+          >
+            <div class="solid-spinner"></div>
+            <p
+              id="loader-text"
+              class="text-white text-lg font-medium"
+              data-i18n="loader.processing"
+            >
+              جارٍ المعالجة...
+            </p>
+          </div>
+        </div>
+
+        <div
+          id="alert-modal"
+          class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+        >
+          <div
+            class="bg-gray-800 max-w-sm w-full p-6 rounded-lg border border-gray-700 shadow-xl text-center"
+          >
+            <h3 id="alert-title" class="text-xl font-bold text-white mb-2">
+              تنبيه
+            </h3>
+            <p
+              id="alert-message"
+              class="text-gray-300 mb-6 whitespace-pre-line"
+            >
+              هذه رسالة تنبيه.
+            </p>
+            <button
+              id="alert-ok"
+              class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
+            >
+              حسنًا
+            </button>
+          </div>
+        </div>
+
+        <div
+          id="preview-modal"
+          class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-40 p-4"
+        >
+          <div
+            class="bg-white text-black rounded-lg shadow-xl w-full max-w-4xl h-[90vh] flex flex-col"
+          >
+            <div class="p-4 border-b flex justify-between items-center">
+              <h3 class="text-xl font-bold">معاينة المستند</h3>
+              <div class="flex gap-4">
+                <button
+                  id="preview-download-btn"
+                  class="btn bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-indigo-700"
+                >
+                  تنزيل كملف PDF
+                </button>
+                <button
+                  id="preview-close-btn"
+                  class="btn bg-gray-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700"
+                >
+                  إغلاق
+                </button>
+              </div>
+            </div>
+            <div
+              id="preview-content"
+              class="p-8 overflow-y-auto flex-grow"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Shortcuts Modal -->
+        {{> settings-modal }}
+
+        <!-- Warning Modal -->
+        {{> warning-modal }}
+
+        <div
+          id="password-modal"
+          class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
+        >
+          <div
+            class="bg-gray-800 rounded-xl border border-gray-700 shadow-2xl max-w-md w-full overflow-hidden"
+          >
+            <div class="p-6">
+              <div class="flex items-start gap-4 mb-4">
+                <div
+                  class="w-12 h-12 flex items-center justify-center rounded-full bg-indigo-500/10 flex-shrink-0"
+                >
+                  <i data-lucide="lock" class="w-6 h-6 text-indigo-400"></i>
+                </div>
+                <div class="flex-1">
+                  <h3
+                    id="password-modal-title"
+                    class="text-xl font-bold text-white mb-1"
+                  >
+                    كلمة المرور مطلوبة
+                  </h3>
+                  <p
+                    id="password-modal-filename"
+                    class="text-gray-400 text-sm truncate"
+                  ></p>
+                </div>
+              </div>
+              <div class="mt-4">
+                <div class="relative">
+                  <input
+                    type="password"
+                    id="password-modal-input"
+                    class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                    placeholder="أدخل كلمة المرور"
+                    autocomplete="off"
+                  />
+                  <button
+                    id="password-modal-toggle"
+                    type="button"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
+                  >
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
                 <p
-                  id="password-modal-filename"
-                  class="text-gray-400 text-sm truncate"
+                  id="password-modal-error"
+                  class="text-xs text-red-400 mt-2 hidden"
                 ></p>
               </div>
             </div>
-            <div class="mt-4">
-              <div class="relative">
-                <input
-                  type="password"
-                  id="password-modal-input"
-                  class="w-full bg-gray-700 border border-gray-600 text-gray-200 rounded-lg px-4 py-2.5 pr-10 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                  placeholder="أدخل كلمة المرور"
-                  autocomplete="off"
-                />
-                <button
-                  id="password-modal-toggle"
-                  type="button"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
-                >
-                  <i data-lucide="eye" class="w-4 h-4"></i>
-                </button>
-              </div>
-              <p
-                id="password-modal-error"
-                class="text-xs text-red-400 mt-2 hidden"
-              ></p>
+            <div class="flex gap-3 p-4 border-t border-gray-700">
+              <button
+                id="password-modal-cancel"
+                class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+              >
+                تخطي
+              </button>
+              <button
+                id="password-modal-submit"
+                class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
+              >
+                فتح القفل
+              </button>
             </div>
           </div>
-          <div class="flex gap-3 p-4 border-t border-gray-700">
-            <button
-              id="password-modal-cancel"
-              class="flex-1 px-4 py-2.5 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
-            >
-              تخطي
-            </button>
-            <button
-              id="password-modal-submit"
-              class="flex-1 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors"
-            >
-              فتح القفل
-            </button>
-          </div>
         </div>
+
+        <div id="signature-ghost" class="hidden"></div>
+
+        <!-- Scroll to Top Button -->
+        <button
+          id="scroll-to-top-btn"
+          class="fixed bottom-12 right-8 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 invisible z-40"
+          aria-label="التمرير إلى الأعلى"
+        >
+          <i data-lucide="arrow-up" class="w-6 h-6"></i>
+        </button>
       </div>
-
-      <div id="signature-ghost" class="hidden"></div>
-
-      <!-- Scroll to Top Button -->
-      <button
-        id="scroll-to-top-btn"
-        class="fixed bottom-12 right-8 bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-10 invisible z-40"
-        aria-label="التمرير إلى الأعلى"
-      >
-        <i data-lucide="arrow-up" class="w-6 h-6"></i>
-      </button>
-    </div>
+    </main>
 
     {{> footer }}
 

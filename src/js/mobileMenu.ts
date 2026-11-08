@@ -1,52 +1,93 @@
-document.addEventListener('DOMContentLoaded', () => {
+const THEME_STORAGE_KEY = 'pixelpdf-theme';
+
+function applyTheme(theme: 'light' | 'dark') {
+  document.documentElement.dataset.theme = theme;
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // Theme is optional; storage may be unavailable in private contexts.
+  }
+  document
+    .getElementById('theme-toggle')
+    ?.setAttribute('aria-pressed', String(theme === 'dark'));
+}
+
+function initializeTheme() {
+  let initialTheme: 'light' | 'dark' = 'light';
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    if (stored === 'dark' || stored === 'light') {
+      initialTheme = stored;
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      initialTheme = 'dark';
+    }
+  } catch {
+    // Keep the light default if storage is unavailable.
+  }
+  document.documentElement.dataset.theme = initialTheme;
+  document
+    .getElementById('theme-toggle')
+    ?.setAttribute('aria-pressed', String(initialTheme === 'dark'));
+}
+
+function initializeMenusAndTheme() {
+  initializeTheme();
+
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle?.addEventListener('click', () => {
+    applyTheme(
+      document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'
+    );
+  });
+
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   const menuIcon = document.getElementById('menu-icon');
   const closeIcon = document.getElementById('close-icon');
 
-  if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
-    // Toggle menu on button click
-    mobileMenuButton.addEventListener('click', () => {
+  if (mobileMenuButton && mobileMenu) {
+    const closeMenu = (restoreFocus = false) => {
+      mobileMenu.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      if (restoreFocus) mobileMenuButton.focus();
+    };
+
+    const openMenu = () => {
+      mobileMenu.classList.remove('hidden');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      mobileMenuButton.setAttribute('aria-expanded', 'true');
+      mobileMenu.querySelector<HTMLElement>('a, button')?.focus();
+    };
+
+    mobileMenuButton.addEventListener('click', (event) => {
+      event.stopPropagation();
       const isExpanded =
         mobileMenuButton.getAttribute('aria-expanded') === 'true';
-
-      // Toggle menu visibility
-      mobileMenu.classList.toggle('hidden');
-
-      // Toggle icons
-      menuIcon.classList.toggle('hidden');
-      closeIcon.classList.toggle('hidden');
-
-      // Update aria-expanded for accessibility
-      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      if (isExpanded) closeMenu();
+      else openMenu();
     });
 
-    // Close menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach((link) => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
-      });
+    mobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => closeMenu());
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (event) => {
       const target = event.target as Node;
-      const isClickInsideMenu = mobileMenu.contains(target);
-      const isClickOnButton = mobileMenuButton.contains(target);
-
       if (
-        !isClickInsideMenu &&
-        !isClickOnButton &&
+        !mobileMenu.contains(target) &&
+        !mobileMenuButton.contains(target) &&
         !mobileMenu.classList.contains('hidden')
       ) {
-        mobileMenu.classList.add('hidden');
-        menuIcon.classList.remove('hidden');
-        closeIcon.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        closeMenu(true);
       }
     });
   }
@@ -96,4 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeMenusAndTheme, {
+    once: true,
+  });
+} else {
+  initializeMenusAndTheme();
+}
