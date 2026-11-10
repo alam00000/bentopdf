@@ -3,6 +3,8 @@ import {
   changeLanguage,
   getLanguageFromUrl,
   LANGUAGE_CHOICE_KEY,
+  rewriteLinks,
+  supportedLanguages,
 } from '@/js/i18n/i18n';
 
 describe('getLanguageFromUrl', () => {
@@ -75,6 +77,22 @@ describe('getLanguageFromUrl', () => {
     window.location.pathname = '/zh-TW/merge-pdf';
     expect(getLanguageFromUrl()).toBe('zh-TW');
   });
+
+  it('should match every supported language from the URL', () => {
+    supportedLanguages.forEach((lang) => {
+      window.location.pathname = `/${lang}/`;
+      expect(getLanguageFromUrl()).toBe(lang);
+      window.location.pathname = `/${lang}/merge-pdf`;
+      expect(getLanguageFromUrl()).toBe(lang);
+    });
+  });
+
+  it('should match Polish from the URL', () => {
+    window.location.pathname = '/pl/';
+    expect(getLanguageFromUrl()).toBe('pl');
+    window.location.pathname = '/pl/merge-pdf';
+    expect(getLanguageFromUrl()).toBe('pl');
+  });
 });
 
 describe('changeLanguage', () => {
@@ -142,5 +160,53 @@ describe('changeLanguage', () => {
     at('/pdf/de/merge-pdf');
     changeLanguage('ja');
     expect(target).toBe('/pdf/ja/merge-pdf');
+  });
+
+  it('swaps the Polish prefix instead of nesting it', () => {
+    at('/pl/merge-pdf');
+    changeLanguage('de');
+    expect(target).toBe('/de/merge-pdf');
+    at('/pl/');
+    changeLanguage('en');
+    expect(target).toBe('/');
+  });
+});
+
+describe('rewriteLinks', () => {
+  const originalLocation = window.location;
+
+  function at(pathname: string) {
+    Object.defineProperty(window, 'location', {
+      value: { ...originalLocation, pathname },
+      writable: true,
+      configurable: true,
+    });
+  }
+
+  beforeEach(() => {
+    document.body.innerHTML = '';
+    vi.stubEnv('BASE_URL', '/');
+  });
+
+  afterEach(() => {
+    Object.defineProperty(window, 'location', {
+      value: originalLocation,
+      writable: true,
+      configurable: true,
+    });
+    document.body.innerHTML = '';
+    vi.unstubAllEnvs();
+  });
+
+  it('prefixes links on Polish pages and leaves language links alone', () => {
+    at('/pl/merge-pdf');
+    document.body.innerHTML =
+      '<a href="/tools">tools</a><a href="/de/merge-pdf">de</a>';
+
+    rewriteLinks();
+
+    const links = document.querySelectorAll('a');
+    expect(links[0].getAttribute('href')).toBe('/pl/tools');
+    expect(links[1].getAttribute('href')).toBe('/de/merge-pdf');
   });
 });

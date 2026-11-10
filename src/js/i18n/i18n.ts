@@ -61,6 +61,14 @@ export const languageNames: Record<SupportedLanguage, string> = {
   fa: 'فارسی',
 };
 
+// Longest codes first so multi-part tags like zh-TW win over their prefix (zh).
+const LANGUAGE_PATTERN = [...supportedLanguages]
+  .sort((a, b) => b.length - a.length)
+  .join('|');
+
+const URL_LANGUAGE_REGEX = new RegExp(`^/(${LANGUAGE_PATTERN})(?:/|$)`);
+const LANGUAGE_PREFIX_REGEX = new RegExp(`^/(${LANGUAGE_PATTERN})(/.*)?$`);
+
 export const getLanguageFromUrl = (): SupportedLanguage => {
   const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
   let path = window.location.pathname;
@@ -73,9 +81,7 @@ export const getLanguageFromUrl = (): SupportedLanguage => {
     path = '/' + path;
   }
 
-  const langMatch = path.match(
-    /^\/(en|ar|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be|da|ko|sv|ru|ja|uk|sk|ca|fa)(?:\/|$)/
-  );
+  const langMatch = path.match(URL_LANGUAGE_REGEX);
   if (
     langMatch &&
     supportedLanguages.includes(langMatch[1] as SupportedLanguage)
@@ -211,9 +217,7 @@ export const changeLanguage = (lang: SupportedLanguage): void => {
   }
 
   let pagePathWithoutLang = relativePath;
-  const langPrefixMatch = relativePath.match(
-    /^\/(en|ar|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be|da|ko|sv|ru|ja|uk|sk|ca|fa)(\/.*)?$/
-  );
+  const langPrefixMatch = relativePath.match(LANGUAGE_PREFIX_REGEX);
   if (langPrefixMatch) {
     pagePathWithoutLang = langPrefixMatch[2] || '/';
   }
@@ -320,7 +324,7 @@ export const rewriteLinks = (): void => {
     }
 
     const langPrefixRegex = new RegExp(
-      `^(${basePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})?/?(en|ar|fr|es|de|zh|zh-TW|vi|tr|id|it|pt|nl|be|da|ko|sv|ru|ja|uk|sk|ca|fa)(/|$|[?#])`
+      `^(${basePath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})?/?(${LANGUAGE_PATTERN})(/|$|[?#])`
     );
     if (langPrefixRegex.test(href)) {
       return;
