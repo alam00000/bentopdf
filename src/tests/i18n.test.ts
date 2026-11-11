@@ -201,12 +201,15 @@ describe('rewriteLinks', () => {
   it('prefixes links on Polish pages and leaves language links alone', () => {
     at('/pl/merge-pdf');
     document.body.innerHTML =
-      '<a href="/tools">tools</a><a href="/de/merge-pdf">de</a>';
+      '<a href="/tools">tools</a>' +
+      '<a href="/de/merge-pdf">de</a>' +
+      '<a href="/pl/merge-pdf">pl</a>';
 
     rewriteLinks();
 
     const links = document.querySelectorAll('a');
     expect(links[0].getAttribute('href')).toBe('/pl/tools');
     expect(links[1].getAttribute('href')).toBe('/de/merge-pdf');
+    expect(links[2].getAttribute('href')).toBe('/pl/merge-pdf');
   });
 });
