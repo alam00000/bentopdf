@@ -17,6 +17,7 @@ import {
 } from '../utils/flatten-annotations.js';
 import type { SignState, PDFViewerWindow } from '@/types';
 import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
+import { fixRtlForSave, installRtlSaveHook } from '../utils/rtl-save-hook.js';
 
 const signState: SignState = {
   file: null,
@@ -214,6 +215,7 @@ async function setupSignTool() {
   iframe.onload = () => {
     hideLoader();
     signState.viewerReady = true;
+    void installRtlSaveHook(iframe);
     try {
       const viewerWindow = iframe.contentWindow as PDFViewerWindow | null;
       if (viewerWindow && viewerWindow.PDFViewerApplication) {
@@ -291,7 +293,9 @@ async function applyAndSaveSignatures() {
       const rawPdfBytes = await app.pdfDocument.saveDocument(
         app.pdfDocument.annotationStorage
       );
-      const pdfBytes = new Uint8Array(rawPdfBytes);
+      // Draw Hebrew text/fields first: flattening drops annotations that have
+      // no appearance, which is how PDF.js saves Hebrew "Add text" boxes.
+      const pdfBytes = await fixRtlForSave(new Uint8Array(rawPdfBytes));
       const pdfDoc = await loadPdfDocument(pdfBytes);
       try {
         flattenFormsInDoc(pdfDoc);

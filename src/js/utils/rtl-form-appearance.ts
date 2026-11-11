@@ -1,5 +1,6 @@
 /**
- * Regenerates appearance streams for form text fields that contain Hebrew.
+ * Regenerates appearance streams for Hebrew text in form text fields and in
+ * FreeText ("Add text") annotations.
  *
  * Why: when PDF.js saves a filled form and the field's font (usually
  * Helvetica) cannot encode the value, it drops the widget's /AP entirely and
@@ -7,7 +8,9 @@
  * that do regenerate it use Helvetica (no Hebrew glyphs) and often lay the
  * text out left-to-right. This module draws the value itself with an
  * embedded Hebrew font (plus a Latin font for digits and English), in correct
- * bidi visual order, so the filled PDF looks the same everywhere.
+ * bidi visual order, so the filled PDF looks the same everywhere. FreeText
+ * annotations hit the same problem: PDF.js saves them without /AP when
+ * Helvetica can't encode the text.
  */
 import {
   PDFDocument,
@@ -21,6 +24,7 @@ import {
   PDFHexString,
   PDFDropdown,
   PDFOptionList,
+  PDFStream,
   PDFFont,
   TextAlignment,
 } from 'pdf-lib';
@@ -379,9 +383,169 @@ function buildAppearance(
   return ops.join('\n');
 }
 
+// Same layout constants PDF.js uses for FreeText appearances.
+const FT_LINE_FACTOR = 1.35;
+const FT_LINE_DESCENT_FACTOR = 0.35;
+
+function decodePdfText(v: unknown): string | undefined {
+  return v instanceof PDFString || v instanceof PDFHexString
+    ? v.decodeText()
+    : undefined;
+}
+
+/** True if any font used by the stream is not embedded (or can't be checked). */
+function usesNonEmbeddedFont(stream: unknown): boolean {
+  if (!(stream instanceof PDFStream)) return true;
+  const res = stream.dict.lookup(PDFName.of('Resources'));
+  const fonts = res instanceof PDFDict ? res.lookup(PDFName.of('Font')) : null;
+  if (!(fonts instanceof PDFDict)) return true;
+  for (const key of fonts.keys()) {
+    let font = fonts.lookup(key);
+    if (!(font instanceof PDFDict)) return true;
+    const kids = font.lookup(PDFName.of('DescendantFonts'));
+    if (kids instanceof PDFArray) font = kids.lookup(0);
+    if (!(font instanceof PDFDict)) return true;
+    const desc = font.lookup(PDFName.of('FontDescriptor'));
+    if (!(desc instanceof PDFDict)) return true;
+    const embedded = ['FontFile', 'FontFile2', 'FontFile3'].some((k) =>
+      desc.has(PDFName.of(k))
+    );
+    if (!embedded) return true;
+  }
+  return false;
+}
+
+interface FreeTextTarget {
+  annot: PDFDict;
+  text: string;
+}
+
 /**
- * Returns the PDF with correct appearances for Hebrew text fields, or the
- * input bytes unchanged if nothing needs fixing or anything goes wrong.
+ * FreeText annotations ("Add text" in the PDF.js viewer) with Hebrew content
+ * whose appearance is missing or relies on a non-embedded font. PDF.js writes
+ * no /AP for these when Helvetica can't encode the text.
+ */
+function collectFreeTextTargets(doc: PDFDocument): FreeTextTarget[] {
+  const out: FreeTextTarget[] = [];
+  for (const page of doc.getPages()) {
+    const annots = page.node.lookupMaybe(PDFName.of('Annots'), PDFArray);
+    if (!annots) continue;
+    for (let i = 0; i < annots.size(); i++) {
+      const annot = annots.lookup(i);
+      if (!(annot instanceof PDFDict)) continue;
+      if (annot.lookup(PDFName.of('Subtype')) !== PDFName.of('FreeText'))
+        continue;
+      const text = decodePdfText(annot.lookup(PDFName.of('Contents')));
+      if (!textNeedsRtlFix(text)) continue;
+      const ap = annot.lookup(PDFName.of('AP'));
+      const n = ap instanceof PDFDict ? ap.lookup(PDFName.of('N')) : undefined;
+      if (n && !usesNonEmbeddedFont(n)) continue;
+      out.push({ annot, text: text! });
+    }
+  }
+  return out;
+}
+
+function numbersOf(arr: unknown, count: number): number[] | null {
+  if (!(arr instanceof PDFArray) || arr.size() < count) return null;
+  const nums: number[] = [];
+  for (let i = 0; i < count; i++) {
+    const v = arr.lookup(i);
+    if (!(v instanceof PDFNumber)) return null;
+    nums.push(v.asNumber());
+  }
+  return nums;
+}
+
+/**
+ * Appearance for a FreeText annotation, laid out like PDF.js does (same line
+ * height, shrink-to-fit and rotation handling) but with bidi ordering and the
+ * embedded fonts. RTL lines are right-aligned inside the box.
+ */
+function buildFreeTextAppearance(
+  annot: PDFDict,
+  text: string,
+  rect: number[],
+  f: FontPair
+): string {
+  const da = parseDA(decodePdfText(annot.lookup(PDFName.of('DA'))));
+  const fontSize = da.size > 0 ? da.size : 10;
+  const rotObj = annot.lookup(PDFName.of('Rotate'));
+  const rotation = ((((rotObj instanceof PDFNumber ? rotObj.asNumber() : 0) %
+    360) +
+    360) %
+    360) as 0 | 90 | 180 | 270;
+
+  const [x1, y1, x2, y2] = rect;
+  let w = x2 - x1;
+  let h = y2 - y1;
+  if (rotation % 180 !== 0) [w, h] = [h, w];
+
+  const lines = text.split(/\r\n?|\n/).map((logical) => {
+    const { visual, rtl } = toVisualOrder(logical, paragraphDirection(logical));
+    return { runs: splitRuns(visual, f), rtl };
+  });
+
+  const widestAt1 = Math.max(0, ...lines.map((l) => widthOf(l.runs, 1, f)));
+  const hscale = widestAt1 * fontSize > w ? w / (widestAt1 * fontSize) : 1;
+  const totalH = FT_LINE_FACTOR * fontSize * lines.length;
+  const vscale = totalH > h ? h / totalH : 1;
+  const size = fontSize * Math.min(hscale, vscale);
+  const lineHeight = FT_LINE_FACTOR * size;
+  const lineAscent = (FT_LINE_FACTOR - FT_LINE_DESCENT_FACTOR) * size;
+
+  let matrix: number[];
+  let origin: [number, number];
+  switch (rotation) {
+    case 90:
+      matrix = [0, 1, -1, 0];
+      origin = [y1, -x2];
+      break;
+    case 180:
+      matrix = [-1, 0, 0, -1];
+      origin = [-x2, -y2];
+      break;
+    case 270:
+      matrix = [0, -1, 1, 0];
+      origin = [-y2, x1];
+      break;
+    default:
+      matrix = [1, 0, 0, 1];
+      origin = [x1, y1];
+  }
+
+  const ops = [
+    'q',
+    `${matrix.join(' ')} 0 0 cm`,
+    `${fmt(origin[0])} ${fmt(origin[1])} ${fmt(w)} ${fmt(h)} re W n`,
+    'BT',
+    da.color,
+  ];
+  let curFont: string | null = null;
+  let y = origin[1] + h - lineAscent;
+  for (const line of lines) {
+    const lw = widthOf(line.runs, size, f);
+    const x = line.rtl ? origin[0] + w - lw : origin[0];
+    ops.push(`1 0 0 1 ${fmt(x)} ${fmt(y)} Tm`);
+    for (const run of line.runs) {
+      if (curFont !== run.font) {
+        ops.push(`/${run.font === 'heb' ? 'FHeb' : 'FLat'} ${fmt(size)} Tf`);
+        curFont = run.font;
+      }
+      ops.push(
+        `<${encodeChars(run.font === 'heb' ? f.heb : f.lat, run.text)}> Tj`
+      );
+    }
+    y -= lineHeight;
+  }
+  ops.push('ET', 'Q');
+  return ops.join('\n');
+}
+
+/**
+ * Returns the PDF with correct appearances for Hebrew text in form fields and
+ * in FreeText ("Add text") annotations, or the input bytes unchanged if
+ * nothing needs fixing or anything goes wrong.
  */
 export async function fixRtlFormAppearances(
   pdfBytes: Uint8Array,
@@ -399,15 +563,20 @@ export async function fixRtlFormAppearances(
   const acroDict = doc.catalog.lookupMaybe(PDFName.of('AcroForm'), PDFDict);
   if (acroDict?.has(PDFName.of('XFA'))) return pdfBytes;
 
-  const form = doc.getForm();
-  const targets = form.getFields().filter(
-    (fld): fld is PDFTextField =>
-      fld instanceof PDFTextField &&
-      // Never write a password value into a visible appearance stream.
-      !fld.isPassword() &&
-      textNeedsRtlFix(safeText(fld))
-  );
-  if (targets.length === 0) return pdfBytes;
+  // Only touch the form if the PDF has one: getForm() would create an
+  // empty AcroForm otherwise.
+  const form = acroDict ? doc.getForm() : null;
+  const targets = form
+    ? form.getFields().filter(
+        (fld): fld is PDFTextField =>
+          fld instanceof PDFTextField &&
+          // Never write a password value into a visible appearance stream.
+          !fld.isPassword() &&
+          textNeedsRtlFix(safeText(fld))
+      )
+    : [];
+  const freeTexts = collectFreeTextTargets(doc);
+  if (targets.length === 0 && freeTexts.length === 0) return pdfBytes;
 
   try {
     doc.registerFontkit(fontkit);
@@ -423,8 +592,12 @@ export async function fixRtlFormAppearances(
 
     // Refuse to draw if the Hebrew font lacks glyphs for the values (would
     // render missing-glyph boxes); the catch below returns the original PDF.
-    for (const field of targets) {
-      for (const ch of field.getText() ?? '') {
+    const allText = [
+      ...targets.map((t) => t.getText() ?? ''),
+      ...freeTexts.map((t) => t.text),
+    ];
+    for (const value of allText) {
+      for (const ch of value) {
         if (
           HEBREW_RE.test(ch) &&
           !f.hebRaw.hasGlyphForCodePoint(ch.codePointAt(0)!)
@@ -436,53 +609,86 @@ export async function fixRtlFormAppearances(
       }
     }
 
-    const acroForm = form.acroForm.dict;
-    const formDAObj = acroForm.lookup(PDFName.of('DA'));
-    const formDA = formDAObj
-      ? formDAObj.toString().replace(/^\(|\)$/g, '')
-      : undefined;
+    const fontResources = { Font: { FHeb: f.heb.ref, FLat: f.lat.ref } };
 
-    for (const field of targets) {
-      for (const widget of field.acroField.getWidgets()) {
-        const rect = widget.getRectangle();
-        const content = buildAppearance(
-          field,
-          widget.dict,
-          rect.width,
-          rect.height,
-          formDA,
-          f
-        );
-        const stream = doc.context.flateStream(content, {
+    for (const { annot, text } of freeTexts) {
+      const r = numbersOf(annot.lookup(PDFName.of('Rect')), 4);
+      if (!r) continue;
+      const rect = [
+        Math.min(r[0], r[2]),
+        Math.min(r[1], r[3]),
+        Math.max(r[0], r[2]),
+        Math.max(r[1], r[3]),
+      ];
+      if (rect[2] - rect[0] < 0.001 || rect[3] - rect[1] < 0.001) continue;
+      const stream = doc.context.flateStream(
+        buildFreeTextAppearance(annot, text, rect, f),
+        {
           Type: 'XObject',
           Subtype: 'Form',
-          BBox: [0, 0, rect.width, rect.height],
-          Resources: { Font: { FHeb: f.heb.ref, FLat: f.lat.ref } },
-        });
-        widget.setNormalAppearance(doc.context.register(stream));
-      }
+          FormType: 1,
+          BBox: rect,
+          Matrix: [1, 0, 0, 1, -rect[0], -rect[1]],
+          Resources: fontResources,
+        }
+      );
+      annot.set(
+        PDFName.of('AP'),
+        doc.context.obj({ N: doc.context.register(stream) })
+      );
     }
 
-    // PDF.js sets NeedAppearances when it couldn't draw a field. If every text
-    // field now has an appearance, clear it so viewers don't redraw ours with
-    // a font that can't show Hebrew.
-    // A field whose value cannot be read is never counted as up to date.
-    const stillMissing = form
-      .getFields()
-      .some(
-        (fld) =>
-          (fld instanceof PDFTextField && isUnreadable(fld)) ||
-          ((fld instanceof PDFTextField ||
-            fld instanceof PDFDropdown ||
-            fld instanceof PDFOptionList) &&
-            fld.acroField.getWidgets().some((w) => !w.getAppearances()?.normal))
-      );
-    if (!stillMissing)
-      acroForm.set(PDFName.of('NeedAppearances'), PDFBool.False);
+    if (form && targets.length > 0) {
+      const acroForm = form.acroForm.dict;
+      const formDAObj = acroForm.lookup(PDFName.of('DA'));
+      const formDA = formDAObj
+        ? formDAObj.toString().replace(/^\(|\)$/g, '')
+        : undefined;
+
+      for (const field of targets) {
+        for (const widget of field.acroField.getWidgets()) {
+          const rect = widget.getRectangle();
+          const content = buildAppearance(
+            field,
+            widget.dict,
+            rect.width,
+            rect.height,
+            formDA,
+            f
+          );
+          const stream = doc.context.flateStream(content, {
+            Type: 'XObject',
+            Subtype: 'Form',
+            BBox: [0, 0, rect.width, rect.height],
+            Resources: fontResources,
+          });
+          widget.setNormalAppearance(doc.context.register(stream));
+        }
+      }
+
+      // PDF.js sets NeedAppearances when it couldn't draw a field. If every
+      // text field now has an appearance, clear it so viewers don't redraw
+      // ours with a font that can't show Hebrew. A field whose value cannot
+      // be read is never counted as up to date.
+      const stillMissing = form
+        .getFields()
+        .some(
+          (fld) =>
+            (fld instanceof PDFTextField && isUnreadable(fld)) ||
+            ((fld instanceof PDFTextField ||
+              fld instanceof PDFDropdown ||
+              fld instanceof PDFOptionList) &&
+              fld.acroField
+                .getWidgets()
+                .some((w) => !w.getAppearances()?.normal))
+        );
+      if (!stillMissing)
+        acroForm.set(PDFName.of('NeedAppearances'), PDFBool.False);
+    }
 
     return await doc.save({ updateFieldAppearances: false });
   } catch (e) {
-    console.warn('[rtl-form] failed to rebuild Hebrew field appearances', e);
+    console.warn('[rtl-form] failed to rebuild Hebrew appearances', e);
     return pdfBytes;
   }
 }

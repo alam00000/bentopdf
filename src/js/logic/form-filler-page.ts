@@ -5,8 +5,7 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 import { getStoredItem } from '../utils/safe-storage.js';
-import { fixRtlFormAppearances } from '../utils/rtl-form-appearance.js';
-import { getFontForLanguage } from '../utils/font-loader.js';
+import { installRtlSaveHook } from '../utils/rtl-save-hook.js';
 
 let viewerIframe: HTMLIFrameElement | null = null;
 let viewerReady = false;
@@ -126,47 +125,6 @@ function resetState() {
   if (toolUploader && !isFullWidth) {
     toolUploader.classList.remove('max-w-6xl');
     toolUploader.classList.add('max-w-2xl');
-  }
-}
-
-// Hebrew/RTL fix: PDF.js can't draw values its field font can't encode, so
-// rebuild those appearances with an embedded Hebrew font before download.
-// Hooking downloadManager covers both the toolbar button and our own button.
-async function installRtlSaveHook(iframe: HTMLIFrameElement) {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const app = (iframe.contentWindow as any)?.PDFViewerApplication;
-    if (!app) return;
-    await app.initializedPromise;
-    const dm = app.downloadManager;
-    if (!dm || dm.__rtlHooked) return;
-    const original = dm.download.bind(dm);
-    dm.download = async (
-      data: Uint8Array | undefined,
-      url: string,
-      filename: string
-    ) => {
-      let out = data;
-      if (data && data.length) {
-        try {
-          // The viewer runs in an iframe, so its Uint8Array is from another
-          // realm; pdf-lib's instanceof checks need a parent-realm copy.
-          out = await fixRtlFormAppearances(new Uint8Array(data), async () => {
-            const [hebrew, latin] = await Promise.all([
-              getFontForLanguage('heb'),
-              getFontForLanguage('eng'),
-            ]);
-            return { hebrew, latin };
-          });
-        } catch (e) {
-          console.warn('RTL form fix skipped:', e);
-        }
-      }
-      return original(out, url, filename);
-    };
-    dm.__rtlHooked = true;
-  } catch (e) {
-    console.warn('Could not install RTL save hook:', e);
   }
 }
 
