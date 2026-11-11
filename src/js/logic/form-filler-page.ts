@@ -149,7 +149,9 @@ async function installRtlSaveHook(iframe: HTMLIFrameElement) {
       let out = data;
       if (data && data.length) {
         try {
-          out = await fixRtlFormAppearances(data, async () => {
+          // The viewer runs in an iframe, so its Uint8Array is from another
+          // realm; pdf-lib's instanceof checks need a parent-realm copy.
+          out = await fixRtlFormAppearances(new Uint8Array(data), async () => {
             const [hebrew, latin] = await Promise.all([
               getFontForLanguage('heb'),
               getFontForLanguage('eng'),

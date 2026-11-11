@@ -32,4 +32,10 @@ describe('rtl-form-appearance', () => {
     expect(rtl).toBe(false);
     expect(visual).toBe('Name: יש');
   });
+
+  it('keeps the paragraph direction when a wrapped line starts with Latin', () => {
+    const { rtl } = toVisualOrder('abc שלום', 'rtl');
+    expect(rtl).toBe(true);
+    expect(toVisualOrder('abc שלום').rtl).toBe(false);
+  });
 });

@@ -17,6 +17,10 @@ import {
   PDFArray,
   PDFNumber,
   PDFBool,
+  PDFString,
+  PDFHexString,
+  PDFDropdown,
+  PDFOptionList,
   PDFFont,
   TextAlignment,
 } from 'pdf-lib';
@@ -58,9 +62,12 @@ export function textNeedsRtlFix(text: string | undefined): boolean {
 }
 
 /** Visual (left-to-right display) order of one line, with bracket mirroring. */
-export function toVisualOrder(line: string): { visual: string; rtl: boolean } {
+export function toVisualOrder(
+  line: string,
+  direction?: 'ltr' | 'rtl'
+): { visual: string; rtl: boolean } {
   const b = getBidi();
-  const levels = b.getEmbeddingLevels(line);
+  const levels = b.getEmbeddingLevels(line, direction);
   const rtl = levels.paragraphs[0]?.level === 1;
   return { visual: b.getReorderedString(line, levels), rtl };
 }
@@ -123,17 +130,58 @@ function wrapLogical(
   const words = paragraph.split(/(\s+)/);
   const lines: string[] = [];
   let cur = '';
+  const fits = (s: string) => logicalWidth(s.trimEnd(), size, f) <= maxWidth;
   for (const w of words) {
     const next = cur + w;
-    if (cur && logicalWidth(next.trimEnd(), size, f) > maxWidth) {
-      lines.push(cur.trimEnd());
-      cur = w.trimStart();
-    } else {
+    if (fits(next)) {
       cur = next;
+      continue;
+    }
+    if (cur.trim()) lines.push(cur.trimEnd());
+    cur = w.trimStart();
+    // A single token wider than the line: split it by character.
+    if (!fits(cur)) {
+      let piece = '';
+      for (const ch of cur) {
+        if (piece && !fits(piece + ch)) {
+          lines.push(piece);
+          piece = '';
+        }
+        piece += ch;
+      }
+      cur = piece;
     }
   }
   lines.push(cur.trimEnd());
   return lines;
+}
+
+/** Paragraph direction from its first strong character (UAX #9, P2/P3). */
+function paragraphDirection(paragraph: string): 'ltr' | 'rtl' {
+  return toVisualOrder(paragraph).rtl ? 'rtl' : 'ltr';
+}
+
+/** Resolve /DA from the widget, then the field and its ancestors, then the form. */
+function resolveDA(
+  widgetDict: PDFDict,
+  field: PDFTextField,
+  formDA: string | undefined
+): string | undefined {
+  const seen = new Set<PDFDict>();
+  const dicts: (PDFDict | undefined)[] = [widgetDict, field.acroField.dict];
+  for (let d: unknown = field.acroField.dict.lookup(PDFName.of('Parent')); ; ) {
+    if (!(d instanceof PDFDict) || seen.has(d)) break;
+    seen.add(d);
+    dicts.push(d);
+    d = d.lookup(PDFName.of('Parent'));
+  }
+  for (const d of dicts) {
+    const da = d?.lookup(PDFName.of('DA'));
+    if (da instanceof PDFString || da instanceof PDFHexString) {
+      return da.decodeText();
+    }
+  }
+  return formDA;
 }
 
 function parseDA(da: string | undefined) {
@@ -186,7 +234,7 @@ function buildAppearance(
   f: FontPair
 ): string {
   const value = field.getText() ?? '';
-  const da = parseDA(field.acroField.getDefaultAppearance() ?? formDA);
+  const da = parseDA(resolveDA(widgetDict, field, formDA));
   const multiline = field.isMultiline();
   const alignment = field.getAlignment();
   const maxLen = field.getMaxLength();
@@ -220,9 +268,20 @@ function buildAppearance(
   let size = da.size;
   const paragraphs = value.split(/\r\n|\r|\n/);
 
+  const wrapAll = (s: number) =>
+    paragraphs.flatMap((p) => {
+      const dir = paragraphDirection(p);
+      return wrapLogical(p, innerW, s, f).map((l) => ({ l, dir }));
+    });
+
   if (size <= 0) {
-    if (multiline) size = 12;
-    else {
+    if (multiline) {
+      // Start at 12pt and shrink until the wrapped text fits the height.
+      size = 12;
+      while (size > 4 && wrapAll(size).length * size * 1.15 > innerH) {
+        size -= 0.5;
+      }
+    } else {
       size = Math.min(innerH / 1.15, 12 * 2);
       const w = logicalWidth(value, size, f);
       if (w > innerW) size = (size * innerW) / w;
@@ -232,13 +291,13 @@ function buildAppearance(
 
   type Line = { runs: Run[]; rtl: boolean };
   const lines: Line[] = [];
-  const pushLine = (logical: string) => {
-    const { visual, rtl } = toVisualOrder(logical);
+  const pushLine = (logical: string, dir?: 'ltr' | 'rtl') => {
+    const { visual, rtl } = toVisualOrder(logical, dir);
     lines.push({ runs: splitRuns(visual, f), rtl });
   };
   if (multiline) {
-    for (const p of paragraphs)
-      for (const l of wrapLogical(p, innerW, size, f)) pushLine(l);
+    // Direction is resolved per paragraph, not per wrapped line.
+    for (const { l, dir } of wrapAll(size)) pushLine(l, dir);
   } else {
     pushLine(paragraphs.join(' '));
   }
@@ -319,12 +378,13 @@ export async function fixRtlFormAppearances(
   }
 
   const form = doc.getForm();
-  const targets = form
-    .getFields()
-    .filter(
-      (fld): fld is PDFTextField =>
-        fld instanceof PDFTextField && textNeedsRtlFix(fld.getText())
-    );
+  const targets = form.getFields().filter(
+    (fld): fld is PDFTextField =>
+      fld instanceof PDFTextField &&
+      // Never write a password value into a visible appearance stream.
+      !fld.isPassword() &&
+      textNeedsRtlFix(fld.getText())
+  );
   if (targets.length === 0) return pdfBytes;
 
   try {
@@ -338,6 +398,21 @@ export async function fixRtlFormAppearances(
       hebRaw: fontkit.create(hebU8) as unknown as Glyphs,
       latRaw: fontkit.create(latU8) as unknown as Glyphs,
     };
+
+    // Refuse to draw if the Hebrew font lacks glyphs for the values (would
+    // render missing-glyph boxes); the catch below returns the original PDF.
+    for (const field of targets) {
+      for (const ch of field.getText() ?? '') {
+        if (
+          HEBREW_RE.test(ch) &&
+          !f.hebRaw.hasGlyphForCodePoint(ch.codePointAt(0)!)
+        ) {
+          throw new Error(
+            `Hebrew font has no glyph for U+${ch.codePointAt(0)!.toString(16)}`
+          );
+        }
+      }
+    }
 
     const acroForm = form.acroForm.dict;
     const formDAObj = acroForm.lookup(PDFName.of('DA'));
@@ -373,7 +448,9 @@ export async function fixRtlFormAppearances(
       .getFields()
       .some(
         (fld) =>
-          fld instanceof PDFTextField &&
+          (fld instanceof PDFTextField ||
+            fld instanceof PDFDropdown ||
+            fld instanceof PDFOptionList) &&
           fld.acroField.getWidgets().some((w) => !w.getAppearances()?.normal)
       );
     if (!stillMissing)
