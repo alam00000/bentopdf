@@ -57,6 +57,15 @@ function getBidi() {
   return bidi;
 }
 
+/** getText() throws for some fields (e.g. empty rich-text); treat as unreadable. */
+function safeText(field: PDFTextField): string | undefined {
+  try {
+    return field.getText();
+  } catch {
+    return undefined;
+  }
+}
+
 export function textNeedsRtlFix(text: string | undefined): boolean {
   return !!text && HEBREW_RE.test(text);
 }
@@ -383,7 +392,7 @@ export async function fixRtlFormAppearances(
       fld instanceof PDFTextField &&
       // Never write a password value into a visible appearance stream.
       !fld.isPassword() &&
-      textNeedsRtlFix(fld.getText())
+      textNeedsRtlFix(safeText(fld))
   );
   if (targets.length === 0) return pdfBytes;
 
