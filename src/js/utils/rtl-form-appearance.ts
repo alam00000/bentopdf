@@ -66,6 +66,15 @@ function safeText(field: PDFTextField): string | undefined {
   }
 }
 
+function isUnreadable(field: PDFTextField): boolean {
+  try {
+    field.getText();
+    return false;
+  } catch {
+    return true;
+  }
+}
+
 export function textNeedsRtlFix(text: string | undefined): boolean {
   return !!text && HEBREW_RE.test(text);
 }
@@ -386,6 +395,10 @@ export async function fixRtlFormAppearances(
     return pdfBytes;
   }
 
+  // pdf-lib drops /XFA when the form is accessed; leave such PDFs untouched.
+  const acroDict = doc.catalog.lookupMaybe(PDFName.of('AcroForm'), PDFDict);
+  if (acroDict?.has(PDFName.of('XFA'))) return pdfBytes;
+
   const form = doc.getForm();
   const targets = form.getFields().filter(
     (fld): fld is PDFTextField =>
@@ -453,14 +466,16 @@ export async function fixRtlFormAppearances(
     // PDF.js sets NeedAppearances when it couldn't draw a field. If every text
     // field now has an appearance, clear it so viewers don't redraw ours with
     // a font that can't show Hebrew.
+    // A field whose value cannot be read is never counted as up to date.
     const stillMissing = form
       .getFields()
       .some(
         (fld) =>
-          (fld instanceof PDFTextField ||
+          (fld instanceof PDFTextField && isUnreadable(fld)) ||
+          ((fld instanceof PDFTextField ||
             fld instanceof PDFDropdown ||
             fld instanceof PDFOptionList) &&
-          fld.acroField.getWidgets().some((w) => !w.getAppearances()?.normal)
+            fld.acroField.getWidgets().some((w) => !w.getAppearances()?.normal))
       );
     if (!stillMissing)
       acroForm.set(PDFName.of('NeedAppearances'), PDFBool.False);
