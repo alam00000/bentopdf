@@ -1,5 +1,10 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
+import {
+  createDragHandle,
+  enableFileListReorder,
+  moveItem,
+} from '../utils/sortable-file-list.js';
 import { state } from '../state.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
@@ -44,6 +49,8 @@ onPageReady(() => {
         const fileDiv = document.createElement('div');
         fileDiv.className =
           'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+        const infoGroup = document.createElement('div');
+        infoGroup.className = 'flex items-center gap-2 overflow-hidden';
         const infoContainer = document.createElement('div');
         infoContainer.className = 'flex flex-col overflow-hidden';
         const nameSpan = document.createElement('div');
@@ -53,6 +60,7 @@ onPageReady(() => {
         metaSpan.className = 'text-xs text-gray-400';
         metaSpan.textContent = formatBytes(file.size);
         infoContainer.append(nameSpan, metaSpan);
+        infoGroup.append(createDragHandle(), infoContainer);
         const removeBtn = document.createElement('button');
         removeBtn.className =
           'ml-4 text-red-400 hover:text-red-300 flex-shrink-0';
@@ -61,9 +69,13 @@ onPageReady(() => {
           state.files = state.files.filter((_, i) => i !== index);
           updateUI();
         };
-        fileDiv.append(infoContainer, removeBtn);
+        fileDiv.append(infoGroup, removeBtn);
         fileDisplayArea.appendChild(fileDiv);
       }
+      enableFileListReorder(fileDisplayArea, (oldIndex, newIndex) => {
+        state.files = moveItem(state.files, oldIndex, newIndex);
+        updateUI();
+      });
       createIcons({ icons });
       fileControls.classList.remove('hidden');
       processBtn.classList.remove('hidden');
