@@ -17,6 +17,11 @@ import {
 } from '../utils/flatten-annotations.js';
 import type { SignState, PDFViewerWindow } from '@/types';
 import { getStoredItem, setStoredItem } from '../utils/safe-storage.js';
+import {
+  fixRtlForSave,
+  installRtlSaveHook,
+  originalLengthOf,
+} from '../utils/rtl-save-hook.js';
 
 const signState: SignState = {
   file: null,
@@ -214,6 +219,7 @@ async function setupSignTool() {
   iframe.onload = () => {
     hideLoader();
     signState.viewerReady = true;
+    void installRtlSaveHook(iframe);
     try {
       const viewerWindow = iframe.contentWindow as PDFViewerWindow | null;
       if (viewerWindow && viewerWindow.PDFViewerApplication) {
@@ -285,13 +291,31 @@ async function applyAndSaveSignatures() {
     ) as HTMLInputElement | null;
     const shouldFlatten = flattenCheckbox?.checked;
 
+    // Save like the viewer's own save() does (WillSave script, save, DidSave
+    // script), then draw Hebrew text/fields before anything else: flattening
+    // drops annotations that have no appearance, which is how PDF.js saves
+    // Hebrew "Add text" boxes.
+    const saveWithRtlFix = async () => {
+      const scripting = app.pdfScriptingManager;
+      await scripting?.dispatchWillSave?.();
+      try {
+        return await fixRtlForSave(
+          new Uint8Array(
+            await app.pdfDocument.saveDocument(
+              app.pdfDocument.annotationStorage
+            )
+          ),
+          await originalLengthOf(app.pdfDocument)
+        );
+      } finally {
+        await scripting?.dispatchDidSave?.();
+      }
+    };
+
     if (shouldFlatten) {
       showLoader('Flattening and saving PDF...');
 
-      const rawPdfBytes = await app.pdfDocument.saveDocument(
-        app.pdfDocument.annotationStorage
-      );
-      const pdfBytes = new Uint8Array(rawPdfBytes);
+      const pdfBytes = await saveWithRtlFix();
       const pdfDoc = await loadPdfDocument(pdfBytes);
       try {
         flattenFormsInDoc(pdfDoc);
@@ -321,7 +345,16 @@ async function applyAndSaveSignatures() {
         resetState();
       });
     } else {
-      app.eventBus?.dispatch('download', { source: app });
+      // Save and download from this page rather than through the viewer, so
+      // the success dialog (whose OK removes the viewer) only appears once
+      // the file has actually been handed to the browser.
+      showLoader('Preparing download...');
+      const pdfBytes = await saveWithRtlFix();
+      downloadFile(
+        new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
+        signState.file?.name || 'document.pdf'
+      );
+      hideLoader();
       showAlert(
         'Success',
         'Signed PDF downloaded successfully!',
