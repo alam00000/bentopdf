@@ -37,10 +37,20 @@ describe('Timestamp TSA Presets', () => {
     }
   });
 
-  it('should include well-known TSA providers', () => {
-    const labels = TIMESTAMP_TSA_PRESETS.map((p) => p.label);
-    expect(labels).toContain('DigiCert');
-    expect(labels).toContain('Sectigo');
+  it('should default to an allowed HTTPS authority for unproxied deployments', () => {
+    const defaultUrl = TIMESTAMP_TSA_PRESETS[0].url;
+    expect(new URL(defaultUrl).protocol).toBe('https:');
+    expect(isAllowedTsaUrl(defaultUrl)).toBe(true);
+  });
+
+  it('should retain every provider URL and the remaining relative order', () => {
+    expect(TIMESTAMP_TSA_PRESETS).toEqual([
+      { label: 'FreeTSA', url: 'https://freetsa.org/tsr' },
+      { label: 'DigiCert', url: 'http://timestamp.digicert.com' },
+      { label: 'Sectigo', url: 'http://timestamp.sectigo.com' },
+      { label: 'SSL.com', url: 'http://ts.ssl.com' },
+      { label: 'MeSign', url: 'http://tsa.mesign.com' },
+    ]);
   });
 
   it('should satisfy the TimestampTsaPreset interface', () => {
