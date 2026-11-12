@@ -108,7 +108,7 @@
     "cropperjs": "^1.6.2",
     "diff": "^8.0.3",
     "dompurify": "^3.4.17",
-    "fast-xml-parser": "^5.7.1",
+    "fast-xml-parser": "^5.12.0",
     "heic2any": "^0.0.4",
     "highlight.js": "^11.12.0",
     "html2canvas": "^1.4.1",
