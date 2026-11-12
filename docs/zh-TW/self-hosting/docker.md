@@ -149,7 +149,7 @@ CSP 在 `script-src` 中包含 `'unsafe-eval'`，因為 LibreOffice WASM 執行�
 
 OCR 方面，將 `VITE_TESSERACT_*` 變數留空即使用預設的線上資源，或三個一起設定以使用自行架設/離線 OCR。部分覆寫 OCR 設定會被拒絕，因為 worker、核心執行環境與 traineddata 目錄必須相符。若要完全離線產生可搜尋的 PDF，也請設定 `VITE_OCR_FONT_BASE_URL`，讓 OCR 文字層字型從您的內部伺服器載入，而不是公開的 Noto 字型 URL。
 
-`VITE_DEFAULT_LANGUAGE` 設定首次造訪者的介面語言。支援的值：`en`、`ar`、`be`、`fr`、`de`、`es`、`zh`、`zh-TW`、`vi`、`tr`、`id`、`it`、`pt`、`nl`、`da`。使用者仍可切換語言，此設定只會變更預設值。
+`VITE_DEFAULT_LANGUAGE` 設定首次造訪者的介面語言。支援的值：`en`、`ar`、`be`、`fr`、`de`、`es`、`zh`、`zh-TW`、`vi`、`tr`、`id`、`it`、`pt`、`nl`、`da`、`ko`、`sv`、`ru`、`pl`、`ja`、`uk`、`sk`、`ca`、`fa`。使用者仍可切換語言，此設定只會變更預設值。
 
 範例：
 

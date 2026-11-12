@@ -149,7 +149,7 @@ CSP menyertakan `'unsafe-eval'` di `script-src` karena runtime LibreOffice WASM 
 
 Untuk OCR, biarkan variabel `VITE_TESSERACT_*` kosong untuk memakai aset online default, atau atur ketiganya sekaligus untuk OCR hosting mandiri/offline. Penimpaan OCR sebagian ditolak karena worker, runtime inti, dan direktori traineddata harus cocok. Untuk keluaran PDF yang dapat dicari secara offline penuh, atur juga `VITE_OCR_FONT_BASE_URL` agar font lapisan teks OCR dimuat dari server internal Anda, bukan dari URL font Noto publik.
 
-`VITE_DEFAULT_LANGUAGE` menentukan bahasa UI untuk pengunjung pertama kali. Nilai yang didukung: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Pengguna tetap dapat berganti bahasa, ini hanya mengubah default.
+`VITE_DEFAULT_LANGUAGE` menentukan bahasa UI untuk pengunjung pertama kali. Nilai yang didukung: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Pengguna tetap dapat berganti bahasa, ini hanya mengubah default.
 
 Contoh:
 

@@ -149,7 +149,7 @@ La CSP inclut `'unsafe-eval'` dans `script-src`, car le runtime LibreOffice WASM
 
 Pour l'OCR, laissez les variables `VITE_TESSERACT_*` vides afin d'utiliser les ressources en ligne par défaut, ou définissez les trois ensemble pour un OCR auto-hébergé/hors ligne. Les remplacements OCR partiels sont refusés, car le worker, le runtime principal et le dossier traineddata doivent correspondre. Pour une production de PDF avec texte recherchable entièrement hors ligne, définissez aussi `VITE_OCR_FONT_BASE_URL` afin que les polices de la couche de texte OCR soient chargées depuis votre serveur interne plutôt que depuis les URL publiques des polices Noto.
 
-`VITE_DEFAULT_LANGUAGE` définit la langue de l'interface pour les nouveaux visiteurs. Valeurs prises en charge : `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Les utilisateurs peuvent toujours changer de langue : cela ne modifie que la valeur par défaut.
+`VITE_DEFAULT_LANGUAGE` définit la langue de l'interface pour les nouveaux visiteurs. Valeurs prises en charge : `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Les utilisateurs peuvent toujours changer de langue : cela ne modifie que la valeur par défaut.
 
 Exemple :
 

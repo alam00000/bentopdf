@@ -151,7 +151,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Remove trailing slash (except for language root directories)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !^/(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/$
+RewriteCond %{REQUEST_URI} !^/(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/$
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [R=301,L]
 
@@ -163,7 +163,7 @@ RewriteRule ^ - [L]
 # ============================================
 # 5.1. LANGUAGE ROUTES
 # ============================================
-# Supported languages: de, es, zh, zh-TW, vi, it, id, tr, fr, pt
+# Supported languages: ar, be, da, de, es, fr, id, it, ja, ko, nl, pl, pt, ru, sk, sv, tr, uk, vi, zh, zh-TW, ca, fa
 # English has no prefix - served from root
 
 # English prefix redirects to root (for SEO consistency)
@@ -172,11 +172,11 @@ RewriteRule ^en/(.+)$ /$1 [R=301,L]
 
 # Language prefix root (e.g., /de/ -> /de/index.html)
 RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /$1/index.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/?$ /$1/index.html [L]
 
 # Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
 RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/([^/]+)/?$ /$1/$2.html [L]
 
 # ============================================
 # 5.5. DOCS ROUTING (VitePress)
@@ -211,11 +211,11 @@ RewriteBase /pdf-tools/
 
 # Language prefix root
 RewriteCond %{DOCUMENT_ROOT}/pdf-tools/$1/index.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /pdf-tools/$1/index.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/?$ /pdf-tools/$1/index.html [L]
 
 # Language prefix with path
 RewriteCond %{DOCUMENT_ROOT}/pdf-tools/$1/$2.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /pdf-tools/$1/$2.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/([^/]+)/?$ /pdf-tools/$1/$2.html [L]
 
 # Root level .html extension
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -254,7 +254,7 @@ Assurez-vous que la règle d'extension `.html` et les routes de langue sont corr
 ```apache
 # Language routes serve actual files from language directories
 RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/([^/]+)/?$ /$1/$2.html [L]
 
 # Root level pages
 RewriteCond %{REQUEST_FILENAME}.html -f

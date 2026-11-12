@@ -149,7 +149,7 @@ CSP obsahuje `'unsafe-eval'` v `script-src`, pretože runtime LibreOffice WASM (
 
 Pre OCR nechajte premenné `VITE_TESSERACT_*` prázdne, ak chcete použiť predvolené online zdroje, alebo nastavte všetky tri naraz pre vlastné či offline OCR. Čiastočné prepísanie OCR sa odmietne, pretože worker, základný runtime a priečinok traineddata musia zodpovedať. Pre úplne offline prehľadávateľné PDF nastavte aj `VITE_OCR_FONT_BASE_URL`, aby sa písma textovej vrstvy OCR načítali z vášho interného servera namiesto verejných URL písiem Noto.
 
-`VITE_DEFAULT_LANGUAGE` nastavuje jazyk rozhrania pre nových návštevníkov. Podporované hodnoty: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Používatelia môžu jazyk stále prepnúť, mení sa len predvolená hodnota.
+`VITE_DEFAULT_LANGUAGE` nastavuje jazyk rozhrania pre nových návštevníkov. Podporované hodnoty: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Používatelia môžu jazyk stále prepnúť, mení sa len predvolená hodnota.
 
 Príklad:
 

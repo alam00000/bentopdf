@@ -149,7 +149,7 @@ The CSP includes `'unsafe-eval'` in `script-src` because the LibreOffice WASM ru
 
 For OCR, leave the `VITE_TESSERACT_*` variables empty to use the default online assets, or set all three together for self-hosted/offline OCR. Partial OCR overrides are rejected because the worker, core runtime, and traineddata directory must match. For fully offline searchable PDF output, also set `VITE_OCR_FONT_BASE_URL` so the OCR text-layer fonts are loaded from your internal server instead of the public Noto font URLs.
 
-`VITE_DEFAULT_LANGUAGE` sets the UI language for first-time visitors. Supported values: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Users can still switch languages — this only changes the default.
+`VITE_DEFAULT_LANGUAGE` sets the UI language for first-time visitors. Supported values: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Users can still switch languages — this only changes the default.
 
 Example:
 

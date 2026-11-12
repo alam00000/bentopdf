@@ -149,7 +149,7 @@ CSP, `script-src` içinde `'unsafe-eval'` içerir, çünkü LibreOffice WASM ça
 
 OCR için, varsayılan çevrimiçi varlıkları kullanmak üzere `VITE_TESSERACT_*` değişkenlerini boş bırakın veya kendi sunucunuzdaki/çevrimdışı OCR için üçünü birlikte ayarlayın. Kısmi OCR geçersiz kılmaları reddedilir, çünkü worker, çekirdek çalışma zamanı ve traineddata dizini birbiriyle eşleşmelidir. Tamamen çevrimdışı aranabilir PDF çıktısı için ayrıca `VITE_OCR_FONT_BASE_URL` değerini ayarlayın, böylece OCR metin katmanı yazı tipleri herkese açık Noto yazı tipi URL'leri yerine dahili sunucunuzdan yüklenir.
 
-`VITE_DEFAULT_LANGUAGE`, ilk kez gelen ziyaretçiler için arayüz dilini belirler. Desteklenen değerler: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Kullanıcılar dili yine değiştirebilir, bu yalnızca varsayılanı değiştirir.
+`VITE_DEFAULT_LANGUAGE`, ilk kez gelen ziyaretçiler için arayüz dilini belirler. Desteklenen değerler: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Kullanıcılar dili yine değiştirebilir, bu yalnızca varsayılanı değiştirir.
 
 Örnek:
 

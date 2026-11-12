@@ -149,7 +149,7 @@ Die CSP enthält `'unsafe-eval'` in `script-src`, weil die LibreOffice-WASM-Runt
 
 Lassen Sie für OCR die `VITE_TESSERACT_*`-Variablen leer, um die Standard-Online-Ressourcen zu nutzen, oder setzen Sie alle drei zusammen für selbst gehostetes/Offline-OCR. Teilweise Überschreibungen werden abgelehnt, weil Worker, Core-Runtime und traineddata-Verzeichnis zusammenpassen müssen. Für eine vollständig offline erzeugte durchsuchbare PDF setzen Sie zusätzlich `VITE_OCR_FONT_BASE_URL`, damit die OCR-Textebenen-Schriften von Ihrem internen Server statt von den öffentlichen Noto-Schrift-URLs geladen werden.
 
-`VITE_DEFAULT_LANGUAGE` legt die Oberflächensprache für Erstbesucher fest. Unterstützte Werte: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Nutzer können die Sprache weiterhin wechseln, das ändert nur den Standard.
+`VITE_DEFAULT_LANGUAGE` legt die Oberflächensprache für Erstbesucher fest. Unterstützte Werte: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Nutzer können die Sprache weiterhin wechseln, das ändert nur den Standard.
 
 Beispiel:
 

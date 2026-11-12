@@ -149,7 +149,7 @@ CSPの `script-src` に `'unsafe-eval'` が含まれているのは、LibreOffic
 
 OCRでは、`VITE_TESSERACT_*` 変数を空のままにするとデフォルトのオンラインアセットを使い、セルフホスト／オフラインのOCRでは3つすべてを一緒に設定します。ワーカー、コアランタイム、traineddataディレクトリは対応している必要があるため、一部だけの上書きは拒否されます。完全オフラインで検索可能なPDFを出力するには、`VITE_OCR_FONT_BASE_URL` も設定して、OCRテキストレイヤー用フォントを公開のNotoフォントURLではなく社内サーバーから読み込むようにします。
 
-`VITE_DEFAULT_LANGUAGE` は、初めて訪れたユーザーのUI言語を設定します。サポートされる値：`en`、`ar`、`be`、`fr`、`de`、`es`、`zh`、`zh-TW`、`vi`、`tr`、`id`、`it`、`pt`、`nl`、`da`。ユーザーは引き続き言語を切り替えられ、これは既定値を変えるだけです。
+`VITE_DEFAULT_LANGUAGE` は、初めて訪れたユーザーのUI言語を設定します。サポートされる値：`en`、`ar`、`be`、`fr`、`de`、`es`、`zh`、`zh-TW`、`vi`、`tr`、`id`、`it`、`pt`、`nl`、`da`、`ko`、`sv`、`ru`、`pl`、`ja`、`uk`、`sk`、`ca`、`fa`。ユーザーは引き続き言語を切り替えられ、これは既定値を変えるだけです。
 
 例：
 

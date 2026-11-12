@@ -149,7 +149,7 @@ CSP có `'unsafe-eval'` trong `script-src` vì runtime LibreOffice WASM (dùng c
 
 Với OCR, hãy để trống các biến `VITE_TESSERACT_*` để dùng tài nguyên trực tuyến mặc định, hoặc đặt cả ba cùng lúc cho OCR tự lưu trữ/ngoại tuyến. Ghi đè OCR một phần sẽ bị từ chối vì worker, runtime lõi và thư mục traineddata phải khớp nhau. Để có đầu ra PDF có thể tìm kiếm hoàn toàn ngoại tuyến, hãy đặt thêm `VITE_OCR_FONT_BASE_URL` để phông chữ lớp văn bản OCR được tải từ máy chủ nội bộ của bạn thay vì URL phông Noto công khai.
 
-`VITE_DEFAULT_LANGUAGE` đặt ngôn ngữ giao diện cho khách truy cập lần đầu. Giá trị được hỗ trợ: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Người dùng vẫn có thể đổi ngôn ngữ, giá trị này chỉ đổi mặc định.
+`VITE_DEFAULT_LANGUAGE` đặt ngôn ngữ giao diện cho khách truy cập lần đầu. Giá trị được hỗ trợ: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Người dùng vẫn có thể đổi ngôn ngữ, giá trị này chỉ đổi mặc định.
 
 Ví dụ:
 

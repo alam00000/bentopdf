@@ -149,7 +149,7 @@ CSP의 `script-src`에는 `'unsafe-eval'`이 포함되어 있습니다. LibreOff
 
 OCR의 경우 `VITE_TESSERACT_*` 변수를 비워 두면 기본 온라인 에셋을 사용하고, 직접 호스팅하거나 오프라인 OCR을 쓰려면 세 가지를 함께 설정하세요. 워커, 코어 런타임, traineddata 디렉터리가 서로 일치해야 하므로 일부만 덮어쓰는 것은 거부됩니다. 완전히 오프라인으로 검색 가능한 PDF를 만들려면 `VITE_OCR_FONT_BASE_URL`도 설정하여 OCR 텍스트 레이어 글꼴을 공개 Noto 글꼴 URL 대신 내부 서버에서 불러오도록 하세요.
 
-`VITE_DEFAULT_LANGUAGE`는 처음 방문하는 사용자의 UI 언어를 설정합니다. 지원되는 값: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. 사용자는 언제든 언어를 바꿀 수 있으며, 이 값은 기본값만 바꿉니다.
+`VITE_DEFAULT_LANGUAGE`는 처음 방문하는 사용자의 UI 언어를 설정합니다. 지원되는 값: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. 사용자는 언제든 언어를 바꿀 수 있으며, 이 값은 기본값만 바꿉니다.
 
 예시:
 

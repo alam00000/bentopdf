@@ -149,7 +149,7 @@ CSP zawiera `'unsafe-eval'` w `script-src`, ponieważ środowisko LibreOffice WA
 
 W przypadku OCR zostaw zmienne `VITE_TESSERACT_*` puste, aby używać domyślnych zasobów online, albo ustaw wszystkie trzy razem dla OCR hostowanego samodzielnie lub offline. Częściowe nadpisania OCR są odrzucane, ponieważ worker, środowisko uruchomieniowe i katalog traineddata muszą do siebie pasować. Aby uzyskać w pełni offline przeszukiwalny plik PDF, ustaw też `VITE_OCR_FONT_BASE_URL`, aby czcionki warstwy tekstowej OCR były ładowane z Twojego wewnętrznego serwera, a nie z publicznych adresów czcionek Noto.
 
-`VITE_DEFAULT_LANGUAGE` ustawia język interfejsu dla nowych odwiedzających. Obsługiwane wartości: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Użytkownicy nadal mogą zmienić język: to zmienia tylko wartość domyślną.
+`VITE_DEFAULT_LANGUAGE` ustawia język interfejsu dla nowych odwiedzających. Obsługiwane wartości: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Użytkownicy nadal mogą zmienić język: to zmienia tylko wartość domyślną.
 
 Przykład:
 

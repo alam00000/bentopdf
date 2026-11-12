@@ -149,7 +149,7 @@ La CSP incluye `'unsafe-eval'` en `script-src` porque el runtime WASM de LibreOf
 
 Para el OCR, deja vacías las variables `VITE_TESSERACT_*` para usar los recursos en línea predeterminados, o define las tres juntas para un OCR autoalojado o sin conexión. Las sobrescrituras parciales de OCR se rechazan porque el worker, el runtime principal y el directorio de traineddata deben coincidir. Para una salida de PDF con texto buscable totalmente sin conexión, define también `VITE_OCR_FONT_BASE_URL` para que las fuentes de la capa de texto del OCR se carguen desde tu servidor interno en lugar de las URL públicas de las fuentes Noto.
 
-`VITE_DEFAULT_LANGUAGE` define el idioma de la interfaz para quienes visitan por primera vez. Valores admitidos: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Los usuarios pueden seguir cambiando de idioma: esto solo cambia el valor predeterminado.
+`VITE_DEFAULT_LANGUAGE` define el idioma de la interfaz para quienes visitan por primera vez. Valores admitidos: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Los usuarios pueden seguir cambiando de idioma: esto solo cambia el valor predeterminado.
 
 Ejemplo:
 

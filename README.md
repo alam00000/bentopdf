@@ -735,7 +735,7 @@ docker run -p 3000:8080 bentopdf
 
 **Default Language:**
 
-Set the default UI language at build time. Users can still switch languages — this only changes the initial default. Supported: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`.
+Set the default UI language at build time. Users can still switch languages — this only changes the initial default. Supported: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`.
 
 ```bash
 docker build --build-arg VITE_DEFAULT_LANGUAGE=fr -t bentopdf .

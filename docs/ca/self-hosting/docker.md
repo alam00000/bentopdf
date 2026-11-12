@@ -149,7 +149,7 @@ La CSP inclou `'unsafe-eval'` a `script-src` perquè el runtime de LibreOffice W
 
 Per a l'OCR, deixa buides les variables `VITE_TESSERACT_*` per utilitzar els recursos en línia per defecte, o defineix-les totes tres alhora per a l'OCR autoallotjat o sense connexió. Les substitucions parcials d'OCR es rebutgen perquè el worker, el runtime principal i el directori de traineddata han de coincidir. Per generar PDF cercables totalment sense connexió, defineix també `VITE_OCR_FONT_BASE_URL` perquè les fonts de la capa de text d'OCR es carreguin des del teu servidor intern i no des de les URL públiques de fonts Noto.
 
-`VITE_DEFAULT_LANGUAGE` defineix l'idioma de la interfície per als visitants que hi entren per primera vegada. Valors admesos: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`. Els usuaris poden canviar d'idioma igualment: això només canvia el valor per defecte.
+`VITE_DEFAULT_LANGUAGE` defineix l'idioma de la interfície per als visitants que hi entren per primera vegada. Valors admesos: `en`, `ar`, `be`, `fr`, `de`, `es`, `zh`, `zh-TW`, `vi`, `tr`, `id`, `it`, `pt`, `nl`, `da`, `ko`, `sv`, `ru`, `pl`, `ja`, `uk`, `sk`, `ca`, `fa`. Els usuaris poden canviar d'idioma igualment: això només canvia el valor per defecte.
 
 Exemple:
 

@@ -113,7 +113,7 @@ RewriteRule ^ - [L]
 # ============================================
 # LANGUAGE ROUTES
 # ============================================
-# Supported languages: de, es, zh, zh-TW, vi, it, id, tr, fr, pt
+# Supported languages: ar, be, da, de, es, fr, id, it, ja, ko, nl, pl, pt, ru, sk, sv, tr, uk, vi, zh, zh-TW, ca, fa
 # English has no prefix - served from root
 
 # English prefix redirects to root
@@ -122,11 +122,11 @@ RewriteRule ^en/(.+)$ /$1 [R=301,L]
 
 # Language prefix root (e.g., /de/ -> /de/index.html)
 RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /$1/index.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/?$ /$1/index.html [L]
 
 # Language prefix with path (e.g., /de/merge-pdf -> /de/merge-pdf.html)
 RewriteCond %{DOCUMENT_ROOT}/$1/$2.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /$1/$2.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/([^/]+)/?$ /$1/$2.html [L]
 
 # ============================================
 # ADD .HTML EXTENSION (ROOT LEVEL)
@@ -183,10 +183,10 @@ RewriteRule ^en/?$ /pdf/ [R=301,L]
 RewriteRule ^en/(.+)$ /pdf/$1 [R=301,L]
 
 RewriteCond %{DOCUMENT_ROOT}/pdf/$1/index.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/?$ /pdf/$1/index.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/?$ /pdf/$1/index.html [L]
 
 RewriteCond %{DOCUMENT_ROOT}/pdf/$1/$2.html -f
-RewriteRule ^(de|es|zh|zh-TW|vi|it|id|tr|fr|pt)/([^/]+)/?$ /pdf/$1/$2.html [L]
+RewriteRule ^(ar|be|da|de|es|fr|id|it|ja|ko|nl|pl|pt|ru|sk|sv|tr|uk|vi|zh|zh-TW|ca|fa)/([^/]+)/?$ /pdf/$1/$2.html [L]
 
 # Root level .html extension
 RewriteCond %{REQUEST_FILENAME} !-f
