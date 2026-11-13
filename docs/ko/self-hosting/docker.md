@@ -338,8 +338,14 @@ docker load -i bentopdf.tar
 # Extract WASM packages to your internal web server
 mkdir -p /var/www/wasm/pymupdf /var/www/wasm/gs /var/www/wasm/cpdf /var/www/wasm/ocr/core /var/www/wasm/ocr/lang-data /var/www/wasm/ocr/fonts
 tar xzf bentopdf-pymupdf-wasm-0.11.14.tgz -C /var/www/wasm/pymupdf --strip-components=1
-tar xzf bentopdf-gs-wasm-*.tgz -C /var/www/wasm/gs --strip-components=1
-tar xzf coherentpdf-*.tgz -C /var/www/wasm/cpdf --strip-components=1
+TEMP_GS=$(mktemp -d)
+tar xzf bentopdf-gs-wasm-*.tgz -C "$TEMP_GS"
+cp -r "$TEMP_GS"/package/assets/* /var/www/wasm/gs/
+rm -rf "$TEMP_GS"
+TEMP_CPDF=$(mktemp -d)
+tar xzf coherentpdf-*.tgz -C "$TEMP_CPDF"
+cp -r "$TEMP_CPDF"/package/dist/* /var/www/wasm/cpdf/
+rm -rf "$TEMP_CPDF"
 TEMP_TESS=$(mktemp -d)
 tar xzf tesseract.js-7.0.0.tgz -C "$TEMP_TESS"
 cp "$TEMP_TESS/package/dist/worker.min.js" /var/www/wasm/ocr/worker.min.js
