@@ -2143,6 +2143,12 @@
     ],
     "fileCount": 1
   },
+  "Could not plan a size-based split for this PDF.": {
+    "files": [
+      "logic/split-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
   "Could not posterize the PDF.": {
     "files": [
       "logic/posterize-page.ts"
@@ -2867,6 +2873,12 @@
   "Enter 0 to insert at the beginning, or {{pageCount}} to insert at the end.": {
     "files": [
       "logic/add-blank-page-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Enter a maximum file size greater than zero.": {
+    "files": [
+      "logic/split-pdf-page.ts"
     ],
     "fileCount": 1
   },
@@ -6261,6 +6273,12 @@
   "Page {{page}} attachment": {
     "files": [
       "logic/edit-attachments-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Page {{page}} is larger than the maximum file size on its own.": {
+    "files": [
+      "logic/split-pdf-page.ts"
     ],
     "fileCount": 1
   },

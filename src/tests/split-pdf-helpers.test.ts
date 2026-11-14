@@ -14,6 +14,7 @@ import {
   uniqueZipName,
   pagesToSpec,
   extractPagesWithQpdf,
+  planSizeBasedSplit,
 } from '@/js/utils/split-pdf-helpers';
 
 import { sharedResourcesPdf, bookmarkedPdf } from './helpers/split-fixtures';
@@ -189,6 +190,124 @@ describe('split-pdf-helpers (pure planning)', () => {
   });
 });
 
+describe('planSizeBasedSplit (pure planning)', () => {
+  function fakeExtract(
+    pageSizes: number[],
+    failOn?: (indices: number[]) => boolean
+  ): (indices: number[]) => Promise<Uint8Array | null> {
+    return async (indices) => {
+      if (failOn?.(indices)) return null;
+      const total = indices.reduce((sum, index) => sum + pageSizes[index], 0);
+      return new Uint8Array(total);
+    };
+  }
+
+  it('keeps the whole document together when the limit is larger than it', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 3,
+      maxBytes: 1000,
+      extract: fakeExtract([10, 20, 30]),
+    });
+
+    expect(plan).toEqual({ groups: [[0, 1, 2]], sizes: [60] });
+  });
+
+  it('fails when a single page exceeds the limit', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 1,
+      maxBytes: 5,
+      extract: fakeExtract([10]),
+    });
+
+    expect(plan).toEqual({ error: 'page-too-large', page: 1 });
+  });
+
+  it('reports the page number when a later page exceeds the limit', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 2,
+      maxBytes: 10,
+      extract: fakeExtract([5, 20]),
+    });
+
+    expect(plan).toEqual({ error: 'page-too-large', page: 2 });
+  });
+
+  it('breaks between pages when the natural break falls mid-document', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 4,
+      maxBytes: 7,
+      extract: fakeExtract([3, 3, 3, 3]),
+    });
+
+    expect(plan).toEqual({
+      groups: [
+        [0, 1],
+        [2, 3],
+      ],
+      sizes: [6, 6],
+    });
+  });
+
+  it('treats an exact fit as fitting', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 2,
+      maxBytes: 10,
+      extract: fakeExtract([5, 5]),
+    });
+
+    expect(plan).toEqual({ groups: [[0, 1]], sizes: [10] });
+  });
+
+  it('splits after an exact fit when the next page would overflow', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 3,
+      maxBytes: 10,
+      extract: fakeExtract([5, 5, 5]),
+    });
+
+    expect(plan).toEqual({
+      groups: [[0, 1], [2]],
+      sizes: [10, 5],
+    });
+  });
+
+  it('finds the largest fitting range with binary search', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 8,
+      maxBytes: 8,
+      extract: fakeExtract([1, 5, 1, 1, 1, 1, 1, 1]),
+    });
+
+    expect(plan).toEqual({
+      groups: [
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+      ],
+      sizes: [8, 4],
+    });
+  });
+
+  it('returns extract-failed when an extraction fails', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 3,
+      maxBytes: 100,
+      extract: fakeExtract([1, 1, 1], (indices) => indices.includes(1)),
+    });
+
+    expect(plan).toEqual({ error: 'extract-failed', page: 2 });
+  });
+
+  it('returns an empty plan for an empty document', async () => {
+    const plan = await planSizeBasedSplit({
+      pageCount: 0,
+      maxBytes: 100,
+      extract: fakeExtract([]),
+    });
+
+    expect(plan).toEqual({ groups: [], sizes: [] });
+  });
+});
+
 describe('extractPagesWithQpdf (error handling, stubbed)', () => {
   function stubQpdf(
     exitCode: number,
@@ -310,6 +429,39 @@ describe('split modes end-to-end with real qpdf', () => {
     const outputs = groups.map((g) => extract(src, g));
     const ids = await Promise.all(outputs.map((o) => originalIndices(o)));
     expect(ids).toEqual([[0, 1], [2, 3], [4]]);
+  });
+
+  it('max-size: every group fits the limit and no output equals the original', async () => {
+    const src = sharedResourcesPdf();
+    const pageCount = (await PDFDocument.load(src)).getPageCount();
+    // qpdf's cleaned output does not scale with the fixture's source size, so
+    // pick a limit between one page and the whole document instead.
+    const singleSize = extract(src, [0]).length;
+    const fullSize = extract(
+      src,
+      Array.from({ length: pageCount }, (_, index) => index)
+    ).length;
+    const maxBytes = Math.floor((singleSize + fullSize) / 2);
+
+    const plan = await planSizeBasedSplit({
+      pageCount,
+      maxBytes,
+      extract: async (indices) => extract(src, indices),
+    });
+
+    expect('groups' in plan).toBe(true);
+    if (!('groups' in plan)) return;
+
+    expect(plan.groups.length).toBeGreaterThan(1);
+    expect(plan.groups.flat()).toEqual(
+      Array.from({ length: pageCount }, (_, index) => index)
+    );
+
+    for (const group of plan.groups) {
+      const out = extract(src, group);
+      expect(out.length).toBeLessThanOrEqual(maxBytes);
+      expect(out.length).toBeLessThan(src.length);
+    }
   });
 
   it('bookmarks: boundary pages -> consecutive section PDFs', async () => {
