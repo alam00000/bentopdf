@@ -123,6 +123,34 @@ describe('CSP script-src', () => {
   });
 });
 
+describe('annotation viewer script loading', () => {
+  const viewer = read('public/pdfjs-annotation-viewer/web/viewer.html');
+  const scripts = () =>
+    [...viewer.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)].map(
+      ([, attrs, body]) => ({ attrs, body })
+    );
+
+  it('loads the HASH_PARAMS shim from a same-origin external script', () => {
+    expect(viewer).toMatch(
+      /<script\b[^>]*\bsrc=["']hash-params\.js["'][^>]*>/i
+    );
+    expect(viewer.indexOf('hash-params.js')).toBeLessThan(
+      viewer.indexOf('pdfjs-annotation-extension/pdfjs-annotation-extension.js')
+    );
+
+    const inline = scripts().filter(({ attrs }) => !/\bsrc\s*=/.test(attrs));
+    for (const { body } of inline) {
+      expect(body).not.toContain('HASH_PARAMS');
+    }
+  });
+
+  it('defines window.HASH_PARAMS in hash-params.js', () => {
+    expect(read('public/pdfjs-annotation-viewer/web/hash-params.js')).toContain(
+      'window.HASH_PARAMS'
+    );
+  });
+});
+
 describe('deployment configs match the generator', () => {
   it('vercel.json', () => {
     expect(headerRuleCsp('vercel.json', '/(.*)')).toBe(defaults.csp);
