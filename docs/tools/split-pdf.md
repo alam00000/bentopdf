@@ -50,7 +50,7 @@ Break a PDF into smaller documents using one of seven splitting modes. From simp
 
 - Multiple page ranges separated by commas (e.g., `1-5, 10-15, 20-25`) produce separate PDFs, one per range, bundled in a ZIP.
 - The bookmark split mode requires the PDF to actually contain bookmarks. If none are found, you will get an error message.
-- The "Download as ZIP" checkbox in Range and Visual modes lets you get individual PDFs per page instead of a combined file.
+- In Range and Visual modes, the **Output** option lets you choose **Single combined PDF** or **One PDF per range**.
 - The maximum file size limit is 1024-based (1 MB = 1,024 × 1,024 bytes), matching the PDF Multi Tool.
 
 ## Related Tools
