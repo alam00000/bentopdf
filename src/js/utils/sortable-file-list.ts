@@ -5,6 +5,29 @@ type ReorderHandler = (oldIndex: number, newIndex: number) => void;
 
 const sortables = new WeakMap<HTMLElement, Sortable>();
 
+const nameCollator = new Intl.Collator(undefined, {
+  numeric: true,
+  sensitivity: 'base',
+});
+
+export function sortByName<T extends { name: string }>(
+  items: readonly T[]
+): T[] {
+  return [...items].sort((a, b) => nameCollator.compare(a.name, b.name));
+}
+
+export function addFilesSorted<T extends { name: string }>(
+  existing: readonly T[],
+  added: readonly T[]
+): T[] {
+  const isSorted = sortByName(existing).every(
+    (item, index) => item === existing[index]
+  );
+  return isSorted
+    ? sortByName([...existing, ...added])
+    : [...existing, ...sortByName(added)];
+}
+
 export function moveItem<T>(
   items: readonly T[],
   oldIndex: number,
@@ -74,4 +97,18 @@ export function enableFileListReorder(
       onEnd,
     })
   );
+}
+
+export function itemsInListOrder<T>(
+  container: HTMLElement | null,
+  items: readonly T[]
+): T[] {
+  const order = Array.from(container?.children ?? []).map((row) =>
+    parseInt((row as HTMLElement).dataset.fileName ?? '', 10)
+  );
+  const matchesItems =
+    order.length === items.length &&
+    new Set(order).size === order.length &&
+    order.every((index) => items[index] !== undefined);
+  return matchesItems ? order.map((index) => items[index]) : [...items];
 }

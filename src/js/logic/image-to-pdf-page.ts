@@ -2,6 +2,7 @@ import { createIcons, icons } from 'lucide';
 import { showAlert, showLoader, hideLoader } from '@/js/ui.js';
 import { downloadFile, formatBytes } from '@/js/utils/helpers.js';
 import {
+  addFilesSorted,
   createDragHandle,
   enableFileListReorder,
   moveItem,
@@ -109,7 +110,7 @@ function handleFiles(newFiles: FileList) {
   }
 
   if (validFiles.length > 0) {
-    files = [...files, ...validFiles];
+    files = addFilesSorted(files, validFiles);
     updateUI();
   }
 }

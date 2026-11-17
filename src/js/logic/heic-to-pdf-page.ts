@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import {
+  addFilesSorted,
   createDragHandle,
   enableFileListReorder,
   moveItem,
@@ -150,7 +151,7 @@ onPageReady(() => {
     }
 
     if (validFiles.length > 0) {
-      files = [...files, ...validFiles];
+      files = addFilesSorted(files, validFiles);
       updateUI();
     }
   };

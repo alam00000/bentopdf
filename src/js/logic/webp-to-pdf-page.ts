@@ -6,6 +6,7 @@ import {
   formatBytes,
 } from '../utils/helpers.js';
 import {
+  addFilesSorted,
   createDragHandle,
   enableFileListReorder,
   moveItem,
@@ -103,7 +104,7 @@ function handleFiles(newFiles: FileList) {
   }
 
   if (validFiles.length > 0) {
-    files = [...files, ...validFiles];
+    files = addFilesSorted(files, validFiles);
     updateUI();
   }
 }

@@ -8,6 +8,7 @@ import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { interleavePdfs } from '../utils/alternate-merge.js';
+import { sortByName } from '../utils/sortable-file-list.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -219,7 +220,7 @@ function handleFileSelect(files: FileList | null) {
       );
     });
     if (pdfFiles.length > 0) {
-      pageState.files = pdfFiles;
+      pageState.files = sortByName(pdfFiles);
       updateUI();
     }
   }

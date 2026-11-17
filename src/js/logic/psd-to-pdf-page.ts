@@ -1,6 +1,7 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import { state } from '../state.js';
+import { sortByName } from '../utils/sortable-file-list.js';
 import { createIcons, icons } from 'lucide';
 import { loadPyMuPDF } from '../utils/pymupdf-loader.js';
 import type { PyMuPDFInstance } from '@/types';
@@ -144,7 +145,7 @@ onPageReady(() => {
         return ACCEPTED_EXTENSIONS.includes(ext);
       });
       if (validFiles.length > 0) {
-        state.files = [...state.files, ...validFiles];
+        state.files = sortByName([...state.files, ...validFiles]);
         updateUI();
       }
     }
