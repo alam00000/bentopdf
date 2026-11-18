@@ -172,7 +172,8 @@
     "tipNextPage": "次のページ",
     "tipDocumentProperties": "ドキュメントのプロパティ",
     "tipHideBar": "バーを隠す",
-    "tipShowBar": "バーを表示"
+    "tipShowBar": "バーを表示",
+    "tipSnapToggle": "ガイドとオブジェクトにスナップ（ドラッグ中に Ctrl/⌘ を押し続けると無効）"
   },
   "jpgToPdf": {
     "name": "JPGからPDF",

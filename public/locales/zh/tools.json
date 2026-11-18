@@ -172,7 +172,8 @@
     "tipNextPage": "下一页",
     "tipDocumentProperties": "文档属性",
     "tipHideBar": "隐藏工具栏",
-    "tipShowBar": "显示工具栏"
+    "tipShowBar": "显示工具栏",
+    "tipSnapToggle": "吸附到参考线和对象（拖动时按住 Ctrl/⌘ 可临时取消）"
   },
   "jpgToPdf": {
     "name": "JPG 转 PDF",

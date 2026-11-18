@@ -172,7 +172,8 @@
     "tipNextPage": "Nästa sida",
     "tipDocumentProperties": "Dokumentegenskaper",
     "tipHideBar": "Dölj fältet",
-    "tipShowBar": "Visa fältet"
+    "tipShowBar": "Visa fältet",
+    "tipSnapToggle": "Fäst mot stödlinjer och objekt (håll ned Ctrl/⌘ medan du drar för att kringgå)"
   },
   "jpgToPdf": {
     "name": "JPG till PDF",

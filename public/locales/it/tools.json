@@ -172,7 +172,8 @@
     "tipNextPage": "Pagina successiva",
     "tipDocumentProperties": "Proprietà del documento",
     "tipHideBar": "Nascondi barra",
-    "tipShowBar": "Mostra barra"
+    "tipShowBar": "Mostra barra",
+    "tipSnapToggle": "Aggancia a guide e oggetti (tieni premuto Ctrl/⌘ durante il trascinamento per ignorarlo)"
   },
   "jpgToPdf": {
     "name": "JPG in PDF",

@@ -172,7 +172,8 @@
     "tipNextPage": "صفحهٔ بعدی",
     "tipDocumentProperties": "ویژگی‌های سند",
     "tipHideBar": "پنهان کردن نوار",
-    "tipShowBar": "نمایش نوار"
+    "tipShowBar": "نمایش نوار",
+    "tipSnapToggle": "چسبیدن به راهنماها و اشیا (برای نادیده گرفتن، هنگام کشیدن Ctrl/⌘ را نگه دارید)"
   },
   "jpgToPdf": {
     "name": "JPG به PDF",

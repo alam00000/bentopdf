@@ -23,6 +23,14 @@ import {
 } from './type3surgery.js';
 
 const $ = (id) => document.getElementById(id);
+const SNAP_PREF_KEY = 'ec.snap';
+function loadSnapPref() {
+  try {
+    return localStorage.getItem(SNAP_PREF_KEY) !== '0';
+  } catch {
+    return true;
+  }
+}
 const state = {
   engine: null,
   docEpoch: 0,
@@ -34,6 +42,7 @@ const state = {
   docInfo: null,
   pdfa: false,
   guides: { v: [], h: [] },
+  snap: loadSnapPref(),
   paragraphs: [],
   selection: null,
   editing: null,
@@ -7447,6 +7456,8 @@ function stagePointHandlers() {
     }
     const { px, py } = toPage(e);
     drag.moved = true;
+    // Snapping is skipped when turned off, or while Ctrl/Cmd is held.
+    const noSnap = !state.snap || e.ctrlKey || e.metaKey;
     if (drag.mode === 'move') {
       drag.lastDx = px - drag.startPx;
       drag.lastDy = py - drag.startPy;
@@ -7456,7 +7467,8 @@ function stagePointHandlers() {
           state.selection.bounds,
           drag.lastDx,
           drag.lastDy,
-          drag.smartT
+          drag.smartT,
+          noSnap
         );
         drag.lastDx = s2.dx;
         drag.lastDy = s2.dy;
@@ -7486,7 +7498,8 @@ function stagePointHandlers() {
           { x: pc.x, y: pc.y - b.h, w: b.w, h: b.h },
           drag.lastDx,
           drag.lastDy,
-          drag.smartT
+          drag.smartT,
+          noSnap
         );
         drag.lastDx = s2.dx;
         drag.lastDy = s2.dy;
@@ -7549,7 +7562,8 @@ function stagePointHandlers() {
             { x: b.x, y: b.top - b.h, w: b.w, h: b.h },
             drag.lastDx,
             drag.lastDy,
-            drag.smartT
+            drag.smartT,
+            noSnap
           );
           drag.lastDx = s2.dx;
           drag.lastDy = s2.dy;
@@ -7630,7 +7644,8 @@ function stagePointHandlers() {
             drag.smartEnv,
             drag.lastDx,
             drag.lastDy,
-            drag.smartT
+            drag.smartT,
+            noSnap
           );
           drag.lastDx = s2.dx;
           drag.lastDy = s2.dy;
@@ -8746,8 +8761,8 @@ function collectSmartTargets(opts = {}) {
   return t;
 }
 
-function smartSnap(env, dx, dy, targets) {
-  if (!env) return { dx, dy, gv: null, gh: null };
+function smartSnap(env, dx, dy, targets, bypass = false) {
+  if (!env || bypass) return { dx, dy, gv: null, gh: null };
   const edgesOf = (r) => ({
     xs: [r.x, r.x + r.w / 2, r.x + r.w],
     ys: [r.y, r.y + r.h / 2, r.y + r.h],
@@ -8852,6 +8867,23 @@ function showSmartGuides(gv, gh) {
         `height:1px;width:${((gh.hi - gh.lo) * z + PAD * 2).toFixed(1)}px;`
     );
 }
+function setupSnapToggle() {
+  const btn = $('snapToggle');
+  if (!btn) return;
+  const sync = () => {
+    btn.classList.toggle('on', state.snap);
+    btn.setAttribute('aria-pressed', String(state.snap));
+  };
+  sync();
+  btn.addEventListener('click', () => {
+    state.snap = !state.snap;
+    try {
+      localStorage.setItem(SNAP_PREF_KEY, state.snap ? '1' : '0');
+    } catch {}
+    sync();
+  });
+}
+
 function clearSmartGuides() {
   for (const el of $('pageWrap').querySelectorAll('.smart-guide')) el.remove();
 }
@@ -9823,6 +9855,7 @@ function wireUI() {
     setListMarkerStyle(e.target.value)
   );
   $('rulersChk').addEventListener('change', drawRulers);
+  setupSnapToggle();
   wireBlockClipboard();
   $('spellLang').addEventListener('change', () => {
     const ed = state.editing?.editable;

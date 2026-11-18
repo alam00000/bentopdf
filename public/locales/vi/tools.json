@@ -172,7 +172,8 @@
     "tipNextPage": "Trang sau",
     "tipDocumentProperties": "Thuộc tính tài liệu",
     "tipHideBar": "Ẩn thanh",
-    "tipShowBar": "Hiện thanh"
+    "tipShowBar": "Hiện thanh",
+    "tipSnapToggle": "Bắt dính vào đường gióng và đối tượng (giữ Ctrl/⌘ khi kéo để bỏ qua)"
   },
   "jpgToPdf": {
     "name": "JPG sang PDF",

@@ -172,7 +172,8 @@
     "tipNextPage": "Ďalšia strana",
     "tipDocumentProperties": "Vlastnosti dokumentu",
     "tipHideBar": "Skryť panel",
-    "tipShowBar": "Zobraziť panel"
+    "tipShowBar": "Zobraziť panel",
+    "tipSnapToggle": "Prichytávať k vodidlám a objektom (podržaním Ctrl/⌘ počas ťahania ho obídete)"
   },
   "jpgToPdf": {
     "name": "JPG do PDF",

@@ -172,7 +172,8 @@
     "tipNextPage": "Next page",
     "tipDocumentProperties": "Document properties",
     "tipHideBar": "Hide bar",
-    "tipShowBar": "Show bar"
+    "tipShowBar": "Show bar",
+    "tipSnapToggle": "Snap to guides and objects (hold Ctrl/⌘ while dragging to bypass)"
   },
   "jpgToPdf": {
     "name": "JPG to PDF",

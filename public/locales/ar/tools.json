@@ -172,7 +172,8 @@
     "tipNextPage": "الصفحة التالية",
     "tipDocumentProperties": "خصائص المستند",
     "tipHideBar": "إخفاء الشريط",
-    "tipShowBar": "إظهار الشريط"
+    "tipShowBar": "إظهار الشريط",
+    "tipSnapToggle": "المحاذاة مع الأدلة والعناصر (اضغط مع الاستمرار على Ctrl/⌘ أثناء السحب لتجاوزها)"
   },
   "jpgToPdf": {
     "name": "JPG إلى PDF",

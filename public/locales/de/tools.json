@@ -172,7 +172,8 @@
     "tipNextPage": "Nächste Seite",
     "tipDocumentProperties": "Dokumenteigenschaften",
     "tipHideBar": "Leiste ausblenden",
-    "tipShowBar": "Leiste einblenden"
+    "tipShowBar": "Leiste einblenden",
+    "tipSnapToggle": "An Hilfslinien und Objekten ausrichten (beim Ziehen Strg/⌘ gedrückt halten, um es zu umgehen)"
   },
   "jpgToPdf": {
     "name": "JPG zu PDF",
