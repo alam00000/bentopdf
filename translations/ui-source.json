@@ -7042,6 +7042,14 @@
     ],
     "fileCount": 1
   },
+  "Processing image": {
+    "files": [
+      "logic/bmp-to-pdf-page.ts",
+      "logic/heic-to-pdf-page.ts",
+      "logic/image-to-pdf-page.ts"
+    ],
+    "fileCount": 8
+  },
   "Processing images...": {
     "files": [
       "logic/image-to-pdf-page.ts"
