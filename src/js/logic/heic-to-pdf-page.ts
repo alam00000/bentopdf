@@ -9,6 +9,7 @@ import {
 import { createIcons, icons } from 'lucide';
 import heic2any from 'heic2any';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -87,7 +88,9 @@ async function convert() {
   showLoader('Converting HEIC to PDF...');
   try {
     const pdfDoc = await PDFLibDocument.create();
-    for (const file of files) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      showFileProgress('Processing image', i + 1, files.length);
       const conversionResult = await heic2any({
         blob: file,
         toType: 'image/png',
@@ -106,6 +109,7 @@ async function convert() {
         height: pngImage.height,
       });
     }
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),

@@ -12,6 +12,7 @@ import {
   getSelectedQuality,
   compressImageBytes,
 } from '../utils/image-compress.js';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -230,7 +231,9 @@ async function convertToPdf() {
   try {
     const pdfDoc = await PDFLibDocument.create();
 
-    for (const file of files) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      showFileProgress('Processing image', i + 1, files.length);
       try {
         // Read SVG as text (not binary)
         const svgText = await file.text();
@@ -265,6 +268,7 @@ async function convertToPdf() {
       }
     }
 
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),

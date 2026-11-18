@@ -13,6 +13,7 @@ import {
   getSelectedQuality,
   compressImageFile,
 } from '../utils/image-compress.js';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -204,10 +205,12 @@ async function convertToPdf() {
     showLoader('Converting images to PDF...');
     const quality = getSelectedQuality();
     const compressedFiles: File[] = [];
-    for (const file of files) {
-      compressedFiles.push(await compressImageFile(file, quality));
+    for (let i = 0; i < files.length; i++) {
+      showFileProgress('Processing image', i + 1, files.length);
+      compressedFiles.push(await compressImageFile(files[i], quality));
     }
 
+    showLoader('Creating PDF...', 100);
     const pdfBlob = await mupdf.imagesToPdf(compressedFiles);
 
     downloadFile(pdfBlob, 'from_jpgs.pdf');

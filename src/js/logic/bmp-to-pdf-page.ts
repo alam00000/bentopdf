@@ -8,6 +8,7 @@ import {
 } from '../utils/sortable-file-list.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -120,8 +121,9 @@ async function convert() {
   showLoader('Converting BMP to PDF...');
   try {
     const pdfDoc = await PDFLibDocument.create();
-    for (const file of files) {
-      const pngBytes = await convertImageToPngBytes(file);
+    for (let i = 0; i < files.length; i++) {
+      showFileProgress('Processing image', i + 1, files.length);
+      const pngBytes = await convertImageToPngBytes(files[i]);
       const pngImage = await pdfDoc.embedPng(pngBytes);
       const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
       page.drawImage(pngImage, {
@@ -131,6 +133,7 @@ async function convert() {
         height: pngImage.height,
       });
     }
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),

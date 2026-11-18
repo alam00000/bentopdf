@@ -19,6 +19,7 @@ import {
   isValidImageFile,
   preprocessImageFile,
 } from '@/js/utils/image-input-utils.js';
+import { showFileProgress } from '@/js/utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -198,7 +199,9 @@ async function convertToPdf() {
   try {
     const quality = getSelectedQuality();
     const processedFiles: File[] = [];
-    for (const file of files) {
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      showFileProgress('Processing image', i + 1, files.length);
       try {
         const processed = await preprocessImageFile(file);
         const compressed = await compressImageFile(processed, quality);
@@ -212,7 +215,7 @@ async function convertToPdf() {
     showLoader('Loading engine...');
     const mupdf = await ensurePyMuPDF();
 
-    showLoader('Converting images to PDF...');
+    showLoader('Converting images to PDF...', 100);
     const pdfBlob = await mupdf.imagesToPdf(processedFiles);
 
     downloadFile(pdfBlob, 'images_to_pdf.pdf');
