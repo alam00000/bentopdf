@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1페이지",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}}페이지"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}}페이지",
+  "Sort by": "정렬 기준",
+  "Name": "이름",
+  "Modified date": "수정한 날짜",
+  "Size": "크기",
+  "Ascending": "오름차순",
+  "Descending": "내림차순"
 }

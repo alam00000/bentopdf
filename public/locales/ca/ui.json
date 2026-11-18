@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 pàgina",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} pàgines"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} pàgines",
+  "Sort by": "Ordena per",
+  "Name": "Nom",
+  "Modified date": "Data de modificació",
+  "Size": "Mida",
+  "Ascending": "Ascendent",
+  "Descending": "Descendent"
 }

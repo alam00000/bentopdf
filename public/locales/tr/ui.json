@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 sayfa",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} sayfa"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} sayfa",
+  "Sort by": "Sırala",
+  "Name": "Ad",
+  "Modified date": "Değiştirilme tarihi",
+  "Size": "Boyut",
+  "Ascending": "Artan",
+  "Descending": "Azalan"
 }

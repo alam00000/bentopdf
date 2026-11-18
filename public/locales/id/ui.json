@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 halaman",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} halaman"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} halaman",
+  "Sort by": "Urutkan menurut",
+  "Name": "Nama",
+  "Modified date": "Tanggal diubah",
+  "Size": "Ukuran",
+  "Ascending": "Naik",
+  "Descending": "Turun"
 }

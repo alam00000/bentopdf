@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: ۱ صفحه",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} صفحه"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} صفحه",
+  "Sort by": "مرتب‌سازی بر اساس",
+  "Name": "نام",
+  "Modified date": "تاریخ تغییر",
+  "Size": "اندازه",
+  "Ascending": "صعودی",
+  "Descending": "نزولی"
 }

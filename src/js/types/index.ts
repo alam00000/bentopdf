@@ -72,3 +72,4 @@ export * from './validate-signature-extraction-type.ts';
 export * from './pdf-content-tokens-type.ts';
 export * from './compress-pdf-type.ts';
 export * from './tool-category-type.ts';
+export * from './file-sort-type.ts';

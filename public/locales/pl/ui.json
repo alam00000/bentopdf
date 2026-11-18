@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 strona",
-  "• {{label}}: {{count}} pages": "• {{label}}: stron: {{count}}"
+  "• {{label}}: {{count}} pages": "• {{label}}: stron: {{count}}",
+  "Sort by": "Sortuj według",
+  "Name": "Nazwa",
+  "Modified date": "Data modyfikacji",
+  "Size": "Rozmiar",
+  "Ascending": "Rosnąco",
+  "Descending": "Malejąco"
 }

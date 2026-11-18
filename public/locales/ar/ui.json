@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: صفحة واحدة",
-  "• {{label}}: {{count}} pages": "• {{label}}: عدد الصفحات: {{count}}"
+  "• {{label}}: {{count}} pages": "• {{label}}: عدد الصفحات: {{count}}",
+  "Sort by": "ترتيب حسب",
+  "Name": "الاسم",
+  "Modified date": "تاريخ التعديل",
+  "Size": "الحجم",
+  "Ascending": "تصاعدي",
+  "Descending": "تنازلي"
 }

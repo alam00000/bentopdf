@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 pagina",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} pagina's"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} pagina's",
+  "Sort by": "Sorteren op",
+  "Name": "Naam",
+  "Modified date": "Wijzigingsdatum",
+  "Size": "Grootte",
+  "Ascending": "Oplopend",
+  "Descending": "Aflopend"
 }

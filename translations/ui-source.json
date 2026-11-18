@@ -894,6 +894,12 @@
     ],
     "fileCount": 1
   },
+  "Ascending": {
+    "files": [
+      "utils/sortable-file-list.ts"
+    ],
+    "fileCount": 1
+  },
   "Aspect Ratio": {
     "files": [
       "logic/page-dimensions-page.ts"
@@ -2492,6 +2498,12 @@
   "Deleting pages...": {
     "files": [
       "logic/delete-pages-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Descending": {
+    "files": [
+      "utils/sortable-file-list.ts"
     ],
     "fileCount": 1
   },
@@ -5246,6 +5258,12 @@
     ],
     "fileCount": 1
   },
+  "Modified date": {
+    "files": [
+      "utils/sortable-file-list.ts"
+    ],
+    "fileCount": 1
+  },
   "More": {
     "files": [
       "logic/edit-pdf-text-dock.ts"
@@ -5297,6 +5315,12 @@
   "N-Up PDF created successfully!": {
     "files": [
       "logic/n-up-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Name": {
+    "files": [
+      "utils/sortable-file-list.ts"
     ],
     "fileCount": 1
   },
@@ -5615,7 +5639,7 @@
       "logic/compress-pdf-page.ts",
       "logic/form-creator.ts"
     ],
-    "fileCount": 3
+    "fileCount": 4
   },
   "None of the files could be compressed: {{join}}.": {
     "files": [
@@ -8096,6 +8120,12 @@
     ],
     "fileCount": 1
   },
+  "Size": {
+    "files": [
+      "utils/sortable-file-list.ts"
+    ],
+    "fileCount": 1
+  },
   "Skew Threshold": {
     "files": [
       "workflow/nodes/deskew-node.ts"
@@ -8213,6 +8243,12 @@
   "Some redaction marks could not be applied, so the file was not downloaded. Apply or remove them in the editor and try again.": {
     "files": [
       "logic/edit-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Sort by": {
+    "files": [
+      "utils/sortable-file-list.ts"
     ],
     "fileCount": 1
   },

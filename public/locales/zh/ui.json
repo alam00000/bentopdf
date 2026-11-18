@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}：1 页",
-  "• {{label}}: {{count}} pages": "• {{label}}：{{count}} 页"
+  "• {{label}}: {{count}} pages": "• {{label}}：{{count}} 页",
+  "Sort by": "排序方式",
+  "Name": "名称",
+  "Modified date": "修改日期",
+  "Size": "大小",
+  "Ascending": "升序",
+  "Descending": "降序"
 }

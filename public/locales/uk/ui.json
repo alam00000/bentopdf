@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 сторінка",
-  "• {{label}}: {{count}} pages": "• {{label}}: сторінок: {{count}}"
+  "• {{label}}: {{count}} pages": "• {{label}}: сторінок: {{count}}",
+  "Sort by": "Сортування",
+  "Name": "Назва",
+  "Modified date": "Дата зміни",
+  "Size": "Розмір",
+  "Ascending": "За зростанням",
+  "Descending": "За спаданням"
 }

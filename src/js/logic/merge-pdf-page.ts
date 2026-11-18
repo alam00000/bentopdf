@@ -8,7 +8,7 @@ import {
 } from '../utils/render-utils.js';
 import { initPagePreview } from '../utils/page-preview.js';
 import {
-  addFilesSorted,
+  enableFileListSort,
   itemsInListOrder,
 } from '../utils/sortable-file-list.js';
 import { isCpdfAvailable } from '../utils/cpdf-helper.js';
@@ -564,6 +564,14 @@ export async function refreshMergeUI() {
 
   createIcons({ icons });
   initializeFileListSortable();
+  enableFileListSort(
+    document.getElementById('file-controls'),
+    state.files,
+    (sorted) => {
+      state.files = sorted;
+      updateUI();
+    }
+  );
 
   const newFileModeBtn = fileModeBtn.cloneNode(true) as HTMLElement;
   const newPageModeBtn = pageModeBtn.cloneNode(true) as HTMLElement;
@@ -636,10 +644,13 @@ onPageReady(() => {
     fileInput.addEventListener('change', async (e) => {
       const files = (e.target as HTMLInputElement).files;
       if (files && files.length > 0) {
-        state.files = addFilesSorted(
-          itemsInListOrder(document.getElementById('file-list'), state.files),
-          Array.from(files)
-        );
+        state.files = [
+          ...itemsInListOrder(
+            document.getElementById('file-list'),
+            state.files
+          ),
+          ...Array.from(files),
+        ];
         await updateUI();
       }
     });
@@ -665,10 +676,13 @@ onPageReady(() => {
             f.name.toLowerCase().endsWith('.pdf')
         );
         if (pdfFiles.length > 0) {
-          state.files = addFilesSorted(
-            itemsInListOrder(document.getElementById('file-list'), state.files),
-            pdfFiles
-          );
+          state.files = [
+            ...itemsInListOrder(
+              document.getElementById('file-list'),
+              state.files
+            ),
+            ...pdfFiles,
+          ];
           await updateUI();
         }
       }

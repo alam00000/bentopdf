@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 sida",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} sidor"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} sidor",
+  "Sort by": "Sortera efter",
+  "Name": "Namn",
+  "Modified date": "Ändringsdatum",
+  "Size": "Storlek",
+  "Ascending": "Stigande",
+  "Descending": "Fallande"
 }

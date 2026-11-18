@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 страница",
-  "• {{label}}: {{count}} pages": "• {{label}}: страниц: {{count}}"
+  "• {{label}}: {{count}} pages": "• {{label}}: страниц: {{count}}",
+  "Sort by": "Сортировка",
+  "Name": "Имя",
+  "Modified date": "Дата изменения",
+  "Size": "Размер",
+  "Ascending": "По возрастанию",
+  "Descending": "По убыванию"
 }

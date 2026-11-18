@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 strana",
-  "• {{label}}: {{count}} pages": "• {{label}}: počet strán: {{count}}"
+  "• {{label}}: {{count}} pages": "• {{label}}: počet strán: {{count}}",
+  "Sort by": "Zoradiť podľa",
+  "Name": "Názov",
+  "Modified date": "Dátum úpravy",
+  "Size": "Veľkosť",
+  "Ascending": "Vzostupne",
+  "Descending": "Zostupne"
 }

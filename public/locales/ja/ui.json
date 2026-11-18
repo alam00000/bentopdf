@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 ページ",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} ページ"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} ページ",
+  "Sort by": "並べ替え",
+  "Name": "名前",
+  "Modified date": "更新日時",
+  "Size": "サイズ",
+  "Ascending": "昇順",
+  "Descending": "降順"
 }

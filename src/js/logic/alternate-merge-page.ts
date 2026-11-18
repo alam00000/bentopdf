@@ -8,7 +8,7 @@ import { makeUniqueFileKey } from '../utils/deduplicate-filename.js';
 import { showWasmRequiredDialog } from '../utils/wasm-provider.js';
 import { batchDecryptIfNeeded } from '../utils/password-prompt.js';
 import { interleavePdfs } from '../utils/alternate-merge.js';
-import { sortByName } from '../utils/sortable-file-list.js';
+import { enableFileListSort } from '../utils/sortable-file-list.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -49,7 +49,7 @@ async function updateUI() {
     // Show file count summary
     const summaryDiv = document.createElement('div');
     summaryDiv.className =
-      'flex items-center justify-between bg-gray-700 p-3 rounded-lg text-sm';
+      'flex items-center justify-between gap-3 bg-gray-700 p-3 rounded-lg text-sm';
 
     const infoSpan = document.createElement('span');
     infoSpan.className = 'text-gray-200';
@@ -119,6 +119,16 @@ async function updateUI() {
         handle: '.drag-handle',
         animation: 150,
       });
+      enableFileListSort(
+        summaryDiv,
+        pageState.files,
+        (sorted) => {
+          pageState.files = sorted;
+          updateUI();
+        },
+        fileList
+      );
+      summaryDiv.appendChild(clearBtn);
 
       hideLoader();
 
@@ -220,7 +230,7 @@ function handleFileSelect(files: FileList | null) {
       );
     });
     if (pdfFiles.length > 0) {
-      pageState.files = sortByName(pdfFiles);
+      pageState.files = pdfFiles;
       updateUI();
     }
   }

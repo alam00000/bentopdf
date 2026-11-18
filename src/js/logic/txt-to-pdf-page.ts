@@ -1,9 +1,9 @@
 import { showLoader, hideLoader, showAlert } from '../ui.js';
 import { downloadFile, formatBytes } from '../utils/helpers.js';
 import {
-  addFilesSorted,
   createDragHandle,
   enableFileListReorder,
+  enableFileListSort,
   moveItem,
 } from '../utils/sortable-file-list.js';
 import { createIcons, icons } from 'lucide';
@@ -69,6 +69,10 @@ const updateUI = () => {
     });
     enableFileListReorder(fileDisplayArea, (oldIndex, newIndex) => {
       files = moveItem(files, oldIndex, newIndex);
+      updateUI();
+    });
+    enableFileListSort(fileControls, files, (sorted) => {
+      files = sorted;
       updateUI();
     });
     createIcons({ icons });
@@ -251,7 +255,7 @@ onPageReady(() => {
     }
 
     if (validFiles.length > 0) {
-      files = addFilesSorted(files, validFiles);
+      files = [...files, ...validFiles];
       updateUI();
     }
   };

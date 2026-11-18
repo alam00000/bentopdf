@@ -1641,5 +1641,11 @@
   "{{value}}x": "{{value}}x",
   "{{width}} x {{height}} {{unit}}": "{{width}} x {{height}} {{unit}}",
   "• {{label}}: 1 page": "• {{label}}: 1 trang",
-  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} trang"
+  "• {{label}}: {{count}} pages": "• {{label}}: {{count}} trang",
+  "Sort by": "Sắp xếp theo",
+  "Name": "Tên",
+  "Modified date": "Ngày sửa đổi",
+  "Size": "Kích thước",
+  "Ascending": "Tăng dần",
+  "Descending": "Giảm dần"
 }
