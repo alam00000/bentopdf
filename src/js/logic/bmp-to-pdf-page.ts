@@ -114,16 +114,17 @@ const resetState = () => {
 };
 
 async function convert() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one BMP file.');
     return;
   }
   showLoader('Converting BMP to PDF...');
   try {
     const pdfDoc = await PDFLibDocument.create();
-    for (let i = 0; i < files.length; i++) {
-      showFileProgress('Processing image', i + 1, files.length);
-      const pngBytes = await convertImageToPngBytes(files[i]);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
+      const pngBytes = await convertImageToPngBytes(selectedFiles[i]);
       const pngImage = await pdfDoc.embedPng(pngBytes);
       const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
       page.drawImage(pngImage, {

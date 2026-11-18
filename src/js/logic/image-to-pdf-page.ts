@@ -189,7 +189,8 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 }
 
 async function convertToPdf() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one image file.');
     return;
   }
@@ -199,9 +200,9 @@ async function convertToPdf() {
   try {
     const quality = getSelectedQuality();
     const processedFiles: File[] = [];
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      showFileProgress('Processing image', i + 1, files.length);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
       try {
         const processed = await preprocessImageFile(file);
         const compressed = await compressImageFile(processed, quality);

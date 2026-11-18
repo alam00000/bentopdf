@@ -2,7 +2,7 @@ import { showLoader } from '../ui.js';
 import { trText } from '../i18n/i18n.js';
 
 const clampPercent = (value: number): number =>
-  Math.min(100, Math.max(0, Math.round(value)));
+  Math.min(99, Math.max(0, Math.round(value)));
 
 /**
  * Reports per-file progress in the shared loader, e.g. "Processing image 3/10...".

@@ -56,6 +56,15 @@ describe('showFileProgress', () => {
     );
   });
 
+  it('stays below 100% for large batches', () => {
+    showFileProgress('Processing image', 200, 200);
+
+    expect(mocks.showLoader).toHaveBeenCalledWith(
+      'Processing image 200/200...',
+      99
+    );
+  });
+
   it('clamps the current index to the total', () => {
     showFileProgress('Processing image', 12, 10);
 

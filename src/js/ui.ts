@@ -117,14 +117,12 @@ export const showLoader = (text = t('common.loading'), progress?: number) => {
     }
 
     loaderModal.classList.remove('hidden');
-    loaderModal.setAttribute('aria-busy', 'true');
   }
 };
 
 export const hideLoader = () => {
   if (dom.loaderModal) {
     dom.loaderModal.classList.add('hidden');
-    dom.loaderModal.setAttribute('aria-busy', 'false');
   }
 };
 

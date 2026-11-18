@@ -221,7 +221,8 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
 }
 
 async function convertToPdf() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one SVG file.');
     return;
   }
@@ -231,9 +232,9 @@ async function convertToPdf() {
   try {
     const pdfDoc = await PDFLibDocument.create();
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      showFileProgress('Processing image', i + 1, files.length);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
       try {
         // Read SVG as text (not binary)
         const svgText = await file.text();
