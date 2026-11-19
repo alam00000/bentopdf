@@ -16,6 +16,7 @@ import {
   getSelectedQuality,
   compressImageBytes,
 } from '../utils/image-compress.js';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -108,11 +109,6 @@ function handleFiles(newFiles: FileList) {
     updateUI();
   }
 }
-
-const resetState = () => {
-  files = [];
-  updateUI();
-};
 
 function updateUI() {
   const fileDisplayArea = document.getElementById('file-display-area');
@@ -223,18 +219,21 @@ function sanitizeImageAsJpeg(imageBytes: Uint8Array | ArrayBuffer) {
 }
 
 async function convertToPdf() {
-  if (files.length === 0) {
-    showAlert('No Files', 'Please select at least one JPG file.');
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
+    showAlert('No Files', 'Please select at least one WebP file.');
     return;
   }
 
-  showLoader('Creating PDF from JPGs...');
+  showLoader('Creating PDF from WebPs...');
 
   try {
     const pdfDoc = await PDFLibDocument.create();
     const quality = getSelectedQuality();
 
-    for (const file of files) {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
       const originalBytes = await readFileAsArrayBuffer(file);
       const compressed = await compressImageBytes(
         new Uint8Array(originalBytes as ArrayBuffer),
@@ -262,13 +261,16 @@ async function convertToPdf() {
       });
     }
 
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_webps.pdf'
     );
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e: unknown) {
     console.error(e);

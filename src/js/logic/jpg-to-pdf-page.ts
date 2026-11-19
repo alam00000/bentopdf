@@ -13,6 +13,7 @@ import {
   getSelectedQuality,
   compressImageFile,
 } from '../utils/image-compress.js';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -118,11 +119,6 @@ function handleFiles(newFiles: FileList) {
   }
 }
 
-const resetState = () => {
-  files = [];
-  updateUI();
-};
-
 function updateUI() {
   const fileDisplayArea = document.getElementById('file-display-area');
   const fileControls = document.getElementById('file-controls');
@@ -191,7 +187,8 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 }
 
 async function convertToPdf() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one JPG or JPEG2000 image.');
     return;
   }
@@ -204,16 +201,20 @@ async function convertToPdf() {
     showLoader('Converting images to PDF...');
     const quality = getSelectedQuality();
     const compressedFiles: File[] = [];
-    for (const file of files) {
-      compressedFiles.push(await compressImageFile(file, quality));
+    for (let i = 0; i < selectedFiles.length; i++) {
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
+      compressedFiles.push(await compressImageFile(selectedFiles[i], quality));
     }
 
+    showLoader('Creating PDF...', 100);
     const pdfBlob = await mupdf.imagesToPdf(compressedFiles);
 
     downloadFile(pdfBlob, 'from_jpgs.pdf');
 
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e: unknown) {
     console.error('[JpgToPdf]', e);

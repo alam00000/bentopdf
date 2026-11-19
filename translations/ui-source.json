@@ -2263,12 +2263,11 @@
     ],
     "fileCount": 1
   },
-  "Creating PDF from JPGs...": {
+  "Creating PDF from PNGs...": {
     "files": [
-      "logic/png-to-pdf-page.ts",
-      "logic/webp-to-pdf-page.ts"
+      "logic/png-to-pdf-page.ts"
     ],
-    "fileCount": 2
+    "fileCount": 1
   },
   "Creating PDF from SVG files...": {
     "files": [
@@ -2276,11 +2275,18 @@
     ],
     "fileCount": 1
   },
-  "Creating PDF...": {
+  "Creating PDF from WebPs...": {
     "files": [
-      "logic/txt-to-pdf-page.ts"
+      "logic/webp-to-pdf-page.ts"
     ],
     "fileCount": 1
+  },
+  "Creating PDF...": {
+    "files": [
+      "logic/jpg-to-pdf-page.ts",
+      "logic/txt-to-pdf-page.ts"
+    ],
+    "fileCount": 2
   },
   "Creating ZIP archive...": {
     "files": [
@@ -6638,13 +6644,6 @@
     ],
     "fileCount": 1
   },
-  "Please select at least one JPG file.": {
-    "files": [
-      "logic/png-to-pdf-page.ts",
-      "logic/webp-to-pdf-page.ts"
-    ],
-    "fileCount": 2
-  },
   "Please select at least one JPG or JPEG2000 image.": {
     "files": [
       "logic/jpg-to-pdf-page.ts"
@@ -6664,6 +6663,12 @@
       "logic/extract-images-page.ts"
     ],
     "fileCount": 11
+  },
+  "Please select at least one PNG file.": {
+    "files": [
+      "logic/png-to-pdf-page.ts"
+    ],
+    "fileCount": 1
   },
   "Please select at least one PowerPoint file.": {
     "files": [
@@ -6686,6 +6691,12 @@
   "Please select at least one TIFF file.": {
     "files": [
       "logic/tiff-to-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Please select at least one WebP file.": {
+    "files": [
+      "logic/webp-to-pdf-page.ts"
     ],
     "fileCount": 1
   },
@@ -7030,6 +7041,14 @@
       "logic/pdf-to-svg-page.ts"
     ],
     "fileCount": 1
+  },
+  "Processing image": {
+    "files": [
+      "logic/bmp-to-pdf-page.ts",
+      "logic/heic-to-pdf-page.ts",
+      "logic/image-to-pdf-page.ts"
+    ],
+    "fileCount": 8
   },
   "Processing images...": {
     "files": [
@@ -7876,6 +7895,14 @@
       "logic/pdf-layers-page.ts"
     ],
     "fileCount": 1
+  },
+  "Saving PDF...": {
+    "files": [
+      "logic/bmp-to-pdf-page.ts",
+      "logic/heic-to-pdf-page.ts",
+      "logic/png-to-pdf-page.ts"
+    ],
+    "fileCount": 6
   },
   "Scaling Mode": {
     "files": [
@@ -9891,6 +9918,12 @@
       "logic/remove-blank-pages-page.ts"
     ],
     "fileCount": 2
+  },
+  "{{label}} {{current}}/{{total}}...": {
+    "files": [
+      "utils/progress.ts"
+    ],
+    "fileCount": 1
   },
   "{{length}} Files Need a Password": {
     "files": [

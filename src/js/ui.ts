@@ -50,7 +50,10 @@ export const dom = {
 };
 
 export const showLoader = (text = t('common.loading'), progress?: number) => {
-  if (dom.loaderText) dom.loaderText.textContent = trText(text);
+  if (dom.loaderText) {
+    dom.loaderText.textContent = trText(text);
+    dom.loaderText.setAttribute('aria-live', 'polite');
+  }
 
   // Add or update progress bar if progress is provided
   const loaderModal = dom.loaderModal;
@@ -62,20 +65,27 @@ export const showLoader = (text = t('common.loading'), progress?: number) => {
       '.loader-progress-container'
     ) as HTMLElement;
 
-    if (progress !== undefined && progress >= 0) {
+    if (progress !== undefined && Number.isFinite(progress) && progress >= 0) {
+      const percent = Math.min(100, Math.max(0, Math.round(progress)));
+
       // Create progress container if it doesn't exist
       if (!progressContainer) {
         progressContainer = document.createElement('div');
         progressContainer.className = 'loader-progress-container w-64 mt-4';
+        progressContainer.setAttribute('role', 'progressbar');
+        progressContainer.setAttribute('aria-valuemin', '0');
+        progressContainer.setAttribute('aria-valuemax', '100');
         progressContainer.innerHTML = `
                     <div class="bg-gray-700 rounded-full h-2 overflow-hidden">
                         <div class="loader-progress-bar bg-indigo-500 h-full transition-all duration-300" style="width: 0%"></div>
                     </div>
                     <p class="loader-progress-text text-xs text-gray-400 mt-1 text-center">0%</p>
                 `;
-        loaderModal
-          .querySelector('.bg-gray-800')
-          ?.appendChild(progressContainer);
+        // Attach to the loader text's container so the bar shows up regardless
+        // of the modal's inner markup (pages are not consistent about it).
+        (dom.loaderText?.parentElement ?? loaderModal).appendChild(
+          progressContainer
+        );
         progressBar = progressContainer.querySelector(
           '.loader-progress-bar'
         ) as HTMLElement;
@@ -83,16 +93,21 @@ export const showLoader = (text = t('common.loading'), progress?: number) => {
 
       // Update progress
       if (progressBar) {
-        progressBar.style.width = `${progress}%`;
+        progressBar.style.width = `${percent}%`;
       }
       const progressText = progressContainer.querySelector(
         '.loader-progress-text'
       );
       if (progressText) {
         progressText.textContent = trText('{{progress}}%', {
-          progress: Math.round(progress),
+          progress: percent,
         });
       }
+      progressContainer.setAttribute('aria-valuenow', String(percent));
+      progressContainer.setAttribute(
+        'aria-valuetext',
+        dom.loaderText?.textContent ?? `${percent}%`
+      );
       progressContainer.classList.remove('hidden');
     } else {
       // Hide progress bar if no progress provided
@@ -106,7 +121,9 @@ export const showLoader = (text = t('common.loading'), progress?: number) => {
 };
 
 export const hideLoader = () => {
-  if (dom.loaderModal) dom.loaderModal.classList.add('hidden');
+  if (dom.loaderModal) {
+    dom.loaderModal.classList.add('hidden');
+  }
 };
 
 export const showAlert = (

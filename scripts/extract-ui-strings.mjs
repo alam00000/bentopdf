@@ -12,6 +12,7 @@ const HELPER_ARGUMENTS = {
   showLoader: 1,
   showAlertModal: 2,
   showModal: 2,
+  showFileProgress: 1,
 };
 const LETTERS = /\p{L}{2}/u;
 

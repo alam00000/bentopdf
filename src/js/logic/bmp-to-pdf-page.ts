@@ -8,6 +8,7 @@ import {
 } from '../utils/sortable-file-list.js';
 import { createIcons, icons } from 'lucide';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -113,15 +114,17 @@ const resetState = () => {
 };
 
 async function convert() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one BMP file.');
     return;
   }
   showLoader('Converting BMP to PDF...');
   try {
     const pdfDoc = await PDFLibDocument.create();
-    for (const file of files) {
-      const pngBytes = await convertImageToPngBytes(file);
+    for (let i = 0; i < selectedFiles.length; i++) {
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
+      const pngBytes = await convertImageToPngBytes(selectedFiles[i]);
       const pngImage = await pdfDoc.embedPng(pngBytes);
       const page = pdfDoc.addPage([pngImage.width, pngImage.height]);
       page.drawImage(pngImage, {
@@ -131,13 +134,16 @@ async function convert() {
         height: pngImage.height,
       });
     }
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_bmps.pdf'
     );
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e) {
     console.error(e);

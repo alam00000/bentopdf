@@ -9,6 +9,7 @@ import {
 import { createIcons, icons } from 'lucide';
 import heic2any from 'heic2any';
 import { PDFDocument as PDFLibDocument } from 'pdf-lib';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -80,14 +81,17 @@ const resetState = () => {
 };
 
 async function convert() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one HEIC file.');
     return;
   }
   showLoader('Converting HEIC to PDF...');
   try {
     const pdfDoc = await PDFLibDocument.create();
-    for (const file of files) {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
       const conversionResult = await heic2any({
         blob: file,
         toType: 'image/png',
@@ -106,13 +110,16 @@ async function convert() {
         height: pngImage.height,
       });
     }
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_heic.pdf'
     );
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e) {
     console.error(e);

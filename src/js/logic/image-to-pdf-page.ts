@@ -19,6 +19,7 @@ import {
   isValidImageFile,
   preprocessImageFile,
 } from '@/js/utils/image-input-utils.js';
+import { showFileProgress } from '@/js/utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -115,11 +116,6 @@ function handleFiles(newFiles: FileList) {
   }
 }
 
-const resetState = () => {
-  files = [];
-  updateUI();
-};
-
 function updateUI() {
   const fileDisplayArea = document.getElementById('file-display-area');
   const fileControls = document.getElementById('file-controls');
@@ -188,7 +184,8 @@ async function ensurePyMuPDF(): Promise<PyMuPDFInstance> {
 }
 
 async function convertToPdf() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one image file.');
     return;
   }
@@ -198,7 +195,9 @@ async function convertToPdf() {
   try {
     const quality = getSelectedQuality();
     const processedFiles: File[] = [];
-    for (const file of files) {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
       try {
         const processed = await preprocessImageFile(file);
         const compressed = await compressImageFile(processed, quality);
@@ -212,13 +211,15 @@ async function convertToPdf() {
     showLoader('Loading engine...');
     const mupdf = await ensurePyMuPDF();
 
-    showLoader('Converting images to PDF...');
+    showLoader('Converting images to PDF...', 100);
     const pdfBlob = await mupdf.imagesToPdf(processedFiles);
 
     downloadFile(pdfBlob, 'images_to_pdf.pdf');
 
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e: unknown) {
     console.error('[ImageToPDF]', e);

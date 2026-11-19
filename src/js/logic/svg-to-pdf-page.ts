@@ -12,6 +12,7 @@ import {
   getSelectedQuality,
   compressImageBytes,
 } from '../utils/image-compress.js';
+import { showFileProgress } from '../utils/progress.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 
@@ -104,11 +105,6 @@ function handleFiles(newFiles: FileList) {
     updateUI();
   }
 }
-
-const resetState = () => {
-  files = [];
-  updateUI();
-};
 
 function updateUI() {
   const fileDisplayArea = document.getElementById('file-display-area');
@@ -220,7 +216,8 @@ function svgToPng(svgText: string): Promise<Uint8Array> {
 }
 
 async function convertToPdf() {
-  if (files.length === 0) {
+  const selectedFiles = [...files];
+  if (selectedFiles.length === 0) {
     showAlert('No Files', 'Please select at least one SVG file.');
     return;
   }
@@ -230,7 +227,9 @@ async function convertToPdf() {
   try {
     const pdfDoc = await PDFLibDocument.create();
 
-    for (const file of files) {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      showFileProgress('Processing image', i + 1, selectedFiles.length);
       try {
         // Read SVG as text (not binary)
         const svgText = await file.text();
@@ -265,13 +264,16 @@ async function convertToPdf() {
       }
     }
 
+    showLoader('Saving PDF...', 100);
     const pdfBytes = await pdfDoc.save();
     downloadFile(
       new Blob([new Uint8Array(pdfBytes)], { type: 'application/pdf' }),
       'from_svgs.pdf'
     );
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e: unknown) {
     console.error(e);
