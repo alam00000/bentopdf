@@ -119,11 +119,6 @@ function handleFiles(newFiles: FileList) {
   }
 }
 
-const resetState = () => {
-  files = [];
-  updateUI();
-};
-
 function updateUI() {
   const fileDisplayArea = document.getElementById('file-display-area');
   const fileControls = document.getElementById('file-controls');
@@ -217,7 +212,9 @@ async function convertToPdf() {
     downloadFile(pdfBlob, 'from_jpgs.pdf');
 
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e: unknown) {
     console.error('[JpgToPdf]', e);

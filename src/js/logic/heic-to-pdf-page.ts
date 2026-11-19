@@ -117,7 +117,9 @@ async function convert() {
       'from_heic.pdf'
     );
     showAlert('Success', 'PDF created successfully!', 'success', () => {
-      resetState();
+      const converted = new Set(selectedFiles);
+      files = files.filter((file) => !converted.has(file));
+      updateUI();
     });
   } catch (e) {
     console.error(e);
