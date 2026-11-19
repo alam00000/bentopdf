@@ -1,3 +1,7 @@
+# Reporting a Vulnerability
+
+Report them privately at https://github.com/alam00000/bentopdf/security/advisories/new (Security tab, "Report a vulnerability"). Include the affected version, steps to reproduce, and the impact.
+
 # Security Configuration
 
 ## Non-Root User Support
