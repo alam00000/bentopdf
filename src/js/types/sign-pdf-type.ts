@@ -13,6 +13,10 @@ export interface PDFViewerEventBus {
 
 export interface PDFViewerApplication {
   eventBus?: PDFViewerEventBus;
+  pdfScriptingManager?: {
+    dispatchWillSave?: () => Promise<unknown>;
+    dispatchDidSave?: () => Promise<unknown>;
+  };
   pdfDocument?: {
     saveDocument: (storage: unknown) => Promise<ArrayBuffer>;
     annotationStorage: unknown;

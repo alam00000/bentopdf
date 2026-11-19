@@ -5,6 +5,7 @@ import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 
 import { trText, onPageReady } from '../i18n/i18n.js';
 import { getStoredItem } from '../utils/safe-storage.js';
+import { installRtlSaveHook } from '../utils/rtl-save-hook.js';
 
 let viewerIframe: HTMLIFrameElement | null = null;
 let viewerReady = false;
@@ -209,6 +210,7 @@ async function setupFormViewer() {
     viewerIframe.onload = () => {
       viewerReady = true;
       hideLoader();
+      if (viewerIframe) void installRtlSaveHook(viewerIframe);
     };
 
     pdfViewerContainer.appendChild(viewerIframe);
