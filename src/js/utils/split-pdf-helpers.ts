@@ -116,6 +116,95 @@ export function pagesToSpec(indices: number[]): string {
   return indices.map((index) => index + 1).join(',');
 }
 
+export type SizeSplitPlanResult =
+  | { groups: number[][]; sizes: number[] }
+  | { error: 'page-too-large'; page: number }
+  | { error: 'extract-failed'; page: number };
+
+export interface SizeSplitPlanInput {
+  pageCount: number;
+  maxBytes: number;
+  extract: (indices: number[]) => Promise<Uint8Array | null>;
+}
+
+function pageRange(start: number, end: number): number[] {
+  return Array.from({ length: end - start + 1 }, (_, offset) => start + offset);
+}
+
+/**
+ * Plan a split where every output PDF stays within `maxBytes`.
+ *
+ * Pages are never split, so each group is a contiguous page range. The end
+ * page grows exponentially while the extraction fits, then a binary search
+ * finds the largest fitting end page. A page that exceeds the limit on its own
+ * aborts the plan so no partial output is produced.
+ *
+ * The PDF Multi Tool has an equivalent planner, but it is bundled inside the
+ * vendored `bentopdf-viewer` package and is not exported, so the standalone
+ * tool keeps its own copy here.
+ */
+export async function planSizeBasedSplit({
+  pageCount,
+  maxBytes,
+  extract,
+}: SizeSplitPlanInput): Promise<SizeSplitPlanResult> {
+  const groups: number[][] = [];
+  const sizes: number[] = [];
+  let start = 0;
+
+  while (start < pageCount) {
+    const singlePage = await extract([start]);
+    if (!singlePage) return { error: 'extract-failed', page: start + 1 };
+    if (singlePage.length > maxBytes) {
+      return { error: 'page-too-large', page: start + 1 };
+    }
+
+    let end = start;
+    let bestBytes = singlePage.length;
+    let step = 1;
+    let failedEnd: number | null = null;
+
+    // Grow the range exponentially until it no longer fits.
+    while (end + 1 < pageCount) {
+      const candidateEnd = Math.min(end + step, pageCount - 1);
+      const candidate = await extract(pageRange(start, candidateEnd));
+      if (!candidate) {
+        return { error: 'extract-failed', page: candidateEnd + 1 };
+      }
+      if (candidate.length > maxBytes) {
+        failedEnd = candidateEnd;
+        break;
+      }
+      end = candidateEnd;
+      bestBytes = candidate.length;
+      step *= 2;
+    }
+
+    // Binary-search the largest fitting end page between the last known fit
+    // and the first known overflow (or the end of the document).
+    let low = end + 1;
+    let high = failedEnd === null ? pageCount - 1 : failedEnd - 1;
+    while (low <= high) {
+      const mid = (low + high) >> 1;
+      const candidate = await extract(pageRange(start, mid));
+      if (!candidate) return { error: 'extract-failed', page: mid + 1 };
+      if (candidate.length <= maxBytes) {
+        end = mid;
+        bestBytes = candidate.length;
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+
+    groups.push(pageRange(start, end));
+    sizes.push(bestBytes);
+    start = end + 1;
+  }
+
+  return { groups, sizes };
+}
+
 export function extractPagesWithQpdf(
   qpdf: QpdfInstanceExtended,
   inputPath: string,

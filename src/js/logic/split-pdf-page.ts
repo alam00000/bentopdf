@@ -30,6 +30,7 @@ import {
   groupFilename,
   uniqueZipName,
   extractPagesWithQpdf,
+  planSizeBasedSplit,
 } from '../utils/split-pdf-helpers.js';
 
 onPageReady(() => {
@@ -56,6 +57,7 @@ onPageReady(() => {
   const bookmarksPanel = document.getElementById('bookmarks-panel');
   const nTimesPanel = document.getElementById('n-times-panel');
   const nTimesWarning = document.getElementById('n-times-warning');
+  const maxSizePanel = document.getElementById('max-size-panel');
 
   if (backBtn) {
     backBtn.addEventListener('click', () => {
@@ -276,6 +278,11 @@ onPageReady(() => {
     ) as HTMLInputElement;
     if (nValueInput) nValueInput.value = '5';
 
+    const maxSizeInput = document.getElementById(
+      'max-size-mb'
+    ) as HTMLInputElement;
+    if (maxSizeInput) maxSizeInput.value = '5';
+
     const combineRadio = document.getElementById(
       'output-combine'
     ) as HTMLInputElement;
@@ -461,6 +468,43 @@ onPageReady(() => {
           });
           return;
         }
+
+        case 'max-size': {
+          const maxSizeMb = parseFloat(
+            (document.getElementById('max-size-mb') as HTMLInputElement)
+              ?.value || ''
+          );
+          if (!Number.isFinite(maxSizeMb) || maxSizeMb <= 0) {
+            throw new Error(
+              trText('Enter a maximum file size greater than zero.')
+            );
+          }
+
+          const plan = await planSizeBasedSplit({
+            pageCount: totalPages,
+            // 1024-based MB, matching the Multi Tool's sizeUnit conversion.
+            maxBytes: Math.floor(maxSizeMb * 1024 * 1024),
+            extract: extractPages,
+          });
+
+          if ('error' in plan) {
+            if (plan.error === 'page-too-large') {
+              throw new Error(
+                trText(
+                  'Page {{page}} is larger than the maximum file size on its own.',
+                  { page: plan.page }
+                )
+              );
+            }
+            throw new Error(
+              trText('Could not plan a size-based split for this PDF.')
+            );
+          }
+
+          indicesToExtract = plan.groups.flat();
+          outputGroups = plan.groups;
+          break;
+        }
       }
 
       const uniqueIndices = [...new Set(indicesToExtract)];
@@ -591,6 +635,7 @@ onPageReady(() => {
       allPagesPanel?.classList.add('hidden');
       bookmarksPanel?.classList.add('hidden');
       nTimesPanel?.classList.add('hidden');
+      maxSizePanel?.classList.add('hidden');
       outputModeWrapper?.classList.add('hidden');
       if (nTimesWarning) nTimesWarning.classList.add('hidden');
 
@@ -611,6 +656,8 @@ onPageReady(() => {
         allPagesPanel?.classList.remove('hidden');
       } else if (mode === 'bookmarks') {
         bookmarksPanel?.classList.remove('hidden');
+      } else if (mode === 'max-size') {
+        maxSizePanel?.classList.remove('hidden');
       } else if (mode === 'n-times') {
         nTimesPanel?.classList.remove('hidden');
 
