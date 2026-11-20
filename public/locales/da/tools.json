@@ -172,7 +172,8 @@
     "tipNextPage": "Næste side",
     "tipDocumentProperties": "Dokumentegenskaber",
     "tipHideBar": "Skjul bjælke",
-    "tipShowBar": "Vis bjælke"
+    "tipShowBar": "Vis bjælke",
+    "tipSnapToggle": "Fastgør til hjælpelinjer og objekter (hold Ctrl/⌘ nede under træk for at omgå)"
   },
   "jpgToPdf": {
     "name": "JPG til PDF",

@@ -172,7 +172,8 @@
     "tipNextPage": "下一頁",
     "tipDocumentProperties": "文件屬性",
     "tipHideBar": "隱藏工具列",
-    "tipShowBar": "顯示工具列"
+    "tipShowBar": "顯示工具列",
+    "tipSnapToggle": "貼齊參考線與物件（拖曳時按住 Ctrl/⌘ 可暫時略過）"
   },
   "jpgToPdf": {
     "name": "JPG 轉 PDF",

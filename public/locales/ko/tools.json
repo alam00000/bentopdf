@@ -172,7 +172,8 @@
     "tipNextPage": "다음 페이지",
     "tipDocumentProperties": "문서 속성",
     "tipHideBar": "막대 숨기기",
-    "tipShowBar": "막대 표시"
+    "tipShowBar": "막대 표시",
+    "tipSnapToggle": "안내선 및 개체에 맞추기 (드래그하는 동안 Ctrl/⌘ 키를 누르고 있으면 해제)"
   },
   "jpgToPdf": {
     "name": "JPG를 PDF로",

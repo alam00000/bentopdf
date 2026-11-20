@@ -1269,7 +1269,8 @@
     "tipNextPage": "Następna strona",
     "tipDocumentProperties": "Właściwości dokumentu",
     "tipHideBar": "Ukryj pasek",
-    "tipShowBar": "Pokaż pasek"
+    "tipShowBar": "Pokaż pasek",
+    "tipSnapToggle": "Przyciągaj do prowadnic i obiektów (przytrzymaj Ctrl/⌘ podczas przeciągania, aby pominąć)"
   },
   "duplexCollate": {
     "name": "Sortowanie skanu dwustronnego",

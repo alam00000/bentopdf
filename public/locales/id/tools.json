@@ -172,7 +172,8 @@
     "tipNextPage": "Halaman berikutnya",
     "tipDocumentProperties": "Properti dokumen",
     "tipHideBar": "Sembunyikan bilah",
-    "tipShowBar": "Tampilkan bilah"
+    "tipShowBar": "Tampilkan bilah",
+    "tipSnapToggle": "Jepret ke garis panduan dan objek (tahan Ctrl/⌘ saat menyeret untuk melewati)"
   },
   "jpgToPdf": {
     "name": "JPG ke PDF",

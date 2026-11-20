@@ -172,7 +172,8 @@
     "tipNextPage": "Sonraki sayfa",
     "tipDocumentProperties": "Belge özellikleri",
     "tipHideBar": "Çubuğu gizle",
-    "tipShowBar": "Çubuğu göster"
+    "tipShowBar": "Çubuğu göster",
+    "tipSnapToggle": "Kılavuzlara ve nesnelere yasla (atlamak için sürüklerken Ctrl/⌘ tuşunu basılı tutun)"
   },
   "jpgToPdf": {
     "name": "JPG'den PDF'ye",

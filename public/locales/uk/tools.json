@@ -172,7 +172,8 @@
     "tipNextPage": "Наступна сторінка",
     "tipDocumentProperties": "Властивості документа",
     "tipHideBar": "Сховати панель",
-    "tipShowBar": "Показати панель"
+    "tipShowBar": "Показати панель",
+    "tipSnapToggle": "Прив'язка до напрямних та об'єктів (утримуйте Ctrl/⌘ під час перетягування, щоб вимкнути)"
   },
   "jpgToPdf": {
     "name": "JPG у PDF",

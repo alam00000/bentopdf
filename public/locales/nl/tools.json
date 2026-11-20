@@ -172,7 +172,8 @@
     "tipNextPage": "Volgende pagina",
     "tipDocumentProperties": "Documenteigenschappen",
     "tipHideBar": "Balk verbergen",
-    "tipShowBar": "Balk tonen"
+    "tipShowBar": "Balk tonen",
+    "tipSnapToggle": "Uitlijnen op hulplijnen en objecten (houd Ctrl/⌘ ingedrukt tijdens het slepen om te omzeilen)"
   },
   "jpgToPdf": {
     "name": "JPG naar PDF",
