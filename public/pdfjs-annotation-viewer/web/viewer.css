@@ -4256,6 +4256,11 @@ dialog :link{
   body[data-pdfjsprinting] #printContainer{
     display:block;
   }
+  .CustomPopbar,
+  .CustomAnnotationMenu,
+  .CustomComment {
+  display: none !important;
+  }
   #printContainer{
     height:100%;
   }
