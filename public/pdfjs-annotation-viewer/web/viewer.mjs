@@ -6654,15 +6654,95 @@ function renderPage(activeServiceOnEntry, pdfDocument, pageNumber, size, printRe
       optionalContentConfigPromise,
       printAnnotationStorage
     };
-    const renderTask = pdfPage.render(renderContext);
-    return renderTask.promise.catch(reason => {
+
+  async function drawStampsOnPrintCanvas({
+    stamps,
+    ctx,
+    printResolution
+  }) {
+    const scale = printResolution / 72;
+
+    for (const stamp of stamps) {
+      const rect = stamp.konvaClientRect;
+      const imageSource = stamp.contentsObj?.image;
+
+      if (!rect || !imageSource) {
+        continue;
+      }
+
+      if (
+        ![rect.x, rect.y, rect.width, rect.height].every(Number.isFinite) ||
+        rect.width <= 0 ||
+        rect.height <= 0
+      ) {
+        continue;
+      }
+
+      try {
+        const image = new Image();
+
+        image.src = imageSource;
+        await image.decode();
+
+        ctx.save();
+
+        // Prevent drawing outside the printed page.
+        ctx.beginPath();
+        ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.clip();
+
+        ctx.drawImage(
+          image,
+          rect.x * scale,
+          rect.y * scale,
+          rect.width * scale,
+          rect.height * scale
+        );
+
+        ctx.restore();
+      } catch (error) {
+        console.error("Failed to render stamp for printing:", error);
+      }
+    }
+  }
+
+  const renderTask = pdfPage.render(renderContext);
+
+  return renderTask.promise
+    .then(async () => {
+      const extension = window.pdfjsAnnotationExtensionInstance;
+
+      if (!extension?.painter) {
+        return;
+      }
+
+      // Retrieve annotations from Konva's store.
+      const annotations = extension.painter.getData();
+
+      // Select stamps belonging to the page being printed.
+      const stamps = annotations.filter(
+        annotation =>
+          annotation.subtype === "Stamp" &&
+          annotation.pageNumber === pageNumber
+      );
+
+      // Draw the stamps onto the print canvas.
+      await drawStampsOnPrintCanvas({
+        stamps,
+        ctx,
+        viewport: renderContext.viewport,
+        printResolution
+      });
+    })
+    .catch(reason => {
       if (!(reason instanceof RenderingCancelledException)) {
         console.error(reason);
       }
       throw reason;
     });
-  });
-}
+
+    });
+  }
 class PDFPrintService {
   constructor({
     pdfDocument,
