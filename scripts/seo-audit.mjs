@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { canonicalBasePath, isIndexingBlocked } from './indexing-policy.mjs';
 import { createTranslationChecker } from './page-translation.mjs';
+import { hasForbiddenDash } from './house-style.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,10 @@ const SITE_URL = (process.env.SITE_URL || OFFICIAL_SITE_URL).replace(
 const BASE_PATH = (process.env.BASE_URL || '/').replace(/\/$/, '');
 const HOST = new URL(SITE_URL).hostname;
 const OFFICIAL_HOST = new URL(OFFICIAL_SITE_URL).hostname;
+const CUSTOM_TEXTS = [
+  process.env.VITE_BRAND_NAME,
+  process.env.VITE_FOOTER_TEXT,
+];
 
 const NOINDEX_ALLOWLIST = new Set(['404.html', 'wasm-settings.html']);
 const SKIP_DIRS = new Set([
@@ -130,7 +135,7 @@ function auditHtml(file, knownSlugs) {
   const html = fs.readFileSync(file.full, 'utf-8');
   const isLocalized = file.rel.split('/').some((seg) => LOCALE_DIRS.has(seg));
 
-  if (!isLocalized && /[—–]/.test(html)) {
+  if (!isLocalized && hasForbiddenDash(html, CUSTOM_TEXTS)) {
     fail(
       'em-dash',
       `${file.rel}: contains an em or en dash (house style forbids them)`
