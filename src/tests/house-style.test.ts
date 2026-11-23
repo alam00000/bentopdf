@@ -17,6 +17,13 @@ describe('hasForbiddenDash', () => {
     expect(hasForbiddenDash(html, ['Acme — PDF', footer])).toBe(false);
   });
 
+  it('ignores a custom footer that contains the brand name', () => {
+    const footer = '© 2026 Acme – Internal tools';
+    const html = `<span>Acme</span><p>${footer}</p>`;
+
+    expect(hasForbiddenDash(html, ['Acme', footer])).toBe(false);
+  });
+
   it('ignores the HTML-escaped form of the custom text', () => {
     const footer = 'R&D – "Internal"';
     const html = '<p>R&amp;D – &quot;Internal&quot;</p>';
