@@ -1178,6 +1178,12 @@
     ],
     "fileCount": 1
   },
+  "CSV header must be {{header}}.": {
+    "files": [
+      "logic/bookmark-pdf.ts"
+    ],
+    "fileCount": 1
+  },
   "Cancel": {
     "files": [
       "logic/bookmark-pdf.ts",
@@ -2158,6 +2164,12 @@
   "Could not process \"{{name}}\". The file may be corrupted.": {
     "files": [
       "logic/svg-to-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "Could not read the CSV file.": {
+    "files": [
+      "logic/bookmark-pdf.ts"
     ],
     "fileCount": 1
   },
@@ -4489,6 +4501,12 @@
   "Interleave pages from multiple PDFs (e.g. odd + reversed even from a single-sided scan)": {
     "files": [
       "workflow/nodes/registry.ts"
+    ],
+    "fileCount": 1
+  },
+  "Invalid CSV rows skipped: {{count}}.": {
+    "files": [
+      "logic/bookmark-pdf.ts"
     ],
     "fileCount": 1
   },
@@ -8689,6 +8707,12 @@
   "That password did not open any of the remaining files.": {
     "files": [
       "logic/compress-pdf-page.ts"
+    ],
+    "fileCount": 1
+  },
+  "The CSV contains no valid bookmarks.": {
+    "files": [
+      "logic/bookmark-pdf.ts"
     ],
     "fileCount": 1
   },
