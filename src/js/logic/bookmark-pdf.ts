@@ -15,6 +15,11 @@ import {
 import { trText, trHtml, onPageReady } from '../i18n/i18n.js';
 import { loadPdfWithPasswordPrompt } from '../utils/password-prompt.js';
 import { loadPdfDocument } from '../utils/load-pdf-document.js';
+import {
+  BOOKMARK_CSV_HEADER,
+  cleanBookmarkTitle,
+  parseBookmarkCsv,
+} from '../utils/bookmarks.js';
 import '../utils/setup-pdf-worker.js';
 import {
   BookmarkNode,
@@ -32,7 +37,7 @@ import {
   TEXT_COLOR_CLASSES,
   HEX_COLOR_MAP,
   PDF_COLOR_MAP,
-} from '@/types';
+} from '../types/bookmark-pdf-type.js';
 
 const modalContainer = document.getElementById(
   'modal-container'
@@ -1296,20 +1301,63 @@ async function loadPDF(e?: Event): Promise<void> {
   loaderModal?.classList.add('hidden');
 }
 
-csvInput?.addEventListener('change', async (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  const file = target.files?.[0];
+async function importBookmarkCsv(input: HTMLInputElement, beforePdf: boolean) {
+  const file = input.files?.[0];
   if (!file) return;
+  input.value = '';
 
-  const text = await file.text();
-  csvBookmarks = parseCSV(text);
+  let result: ReturnType<typeof parseBookmarkCsv>;
+  try {
+    result = parseBookmarkCsv(await file.text());
+  } catch {
+    await showAlertModal(
+      trText('Error'),
+      trText('Could not read the CSV file.')
+    );
+    return;
+  }
 
+  if (result.kind === 'invalid-header') {
+    await showAlertModal(
+      trText('Error'),
+      trText('CSV header must be {{header}}.', { header: BOOKMARK_CSV_HEADER })
+    );
+    return;
+  }
+
+  const { bookmarks, importedRows, skippedRows } = result;
+  if (importedRows === 0) {
+    await showAlertModal(
+      trText('Error'),
+      trText('The CSV contains no valid bookmarks.')
+    );
+    return;
+  }
+
+  if (beforePdf) {
+    csvBookmarks = bookmarks;
+  } else {
+    bookmarkTree = bookmarks;
+    saveState();
+    renderBookmarkTree();
+  }
+
+  const summary = beforePdf
+    ? trText('Loaded {{length}} bookmarks from CSV. Now upload your PDF.', {
+        length: importedRows,
+      })
+    : trText('Imported {{length}} bookmarks!', { length: importedRows });
+  const skippedMessage = skippedRows
+    ? ` ${trText('Invalid CSV rows skipped: {{count}}.', { count: skippedRows })}`
+    : '';
   await showAlertModal(
-    trText('CSV Loaded'),
-    trText('Loaded {{length}} bookmarks from CSV. Now upload your PDF.', {
-      length: csvBookmarks.length,
-    })
+    trText(beforePdf ? 'CSV Loaded' : 'Success'),
+    summary + skippedMessage
   );
+}
+
+csvInput?.addEventListener('change', () => {
+  void importBookmarkCsv(csvInput, true);
 });
 
 jsonInput?.addEventListener('change', async (e: Event) => {
@@ -1769,7 +1817,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
     if (result && result.title) {
       node.children.push({
         id: Date.now() + Math.random(),
-        title: cleanTitle(String(result.title)),
+        title: cleanBookmarkTitle(String(result.title)),
         page: currentPage,
         children: [],
         color: null,
@@ -1846,7 +1894,7 @@ function createNodeElement(node: BookmarkNode, level = 0): HTMLLIElement {
     );
 
     if (result) {
-      node.title = cleanTitle(String(result.title || ''));
+      node.title = cleanBookmarkTitle(String(result.title || ''));
       node.color = result.color || null;
       node.style = (result.style as BookmarkStyle) || null;
 
@@ -1939,25 +1987,8 @@ importCsvBtn?.addEventListener('click', () => {
   importDropdown?.classList.add('hidden');
 });
 
-csvImportHidden?.addEventListener('change', async (e: Event) => {
-  const target = e.target as HTMLInputElement;
-  const file = target.files?.[0];
-  if (!file) return;
-
-  const text = await file.text();
-  const imported = parseCSV(text);
-
-  if (imported.length > 0) {
-    bookmarkTree = imported;
-    saveState();
-    renderBookmarkTree();
-    await showAlertModal(
-      'Success',
-      trText('Imported {{length}} bookmarks!', { length: imported.length })
-    );
-  }
-
-  if (csvImportHidden) csvImportHidden.value = '';
+csvImportHidden?.addEventListener('change', () => {
+  void importBookmarkCsv(csvImportHidden, false);
 });
 
 exportCsvBtn?.addEventListener('click', () => {
@@ -1970,7 +2001,7 @@ exportCsvBtn?.addEventListener('click', () => {
 
   const flat = flattenBookmarks(bookmarkTree);
   const csv =
-    'title,page,level\n' +
+    `${BOOKMARK_CSV_HEADER}\n` +
     flat
       .map((b) => {
         const first = b.title.charAt(0);
@@ -1985,40 +2016,6 @@ exportCsvBtn?.addEventListener('click', () => {
   const blob = new Blob([csv], { type: 'text/csv' });
   downloadFile(blob, `${originalFileName}-bookmarks.csv`);
 });
-
-function parseCSV(text: string): BookmarkTree {
-  const lines = text.trim().split('\n').slice(1);
-  const bookmarks: BookmarkTree = [];
-  const stack: Array<{ children: BookmarkNode[]; level: number }> = [
-    { children: bookmarks, level: -1 },
-  ];
-
-  for (const line of lines) {
-    const match =
-      line.match(/^"(.+)",(\d+),(\d+)$/) || line.match(/^([^,]+),(\d+),(\d+)$/);
-    if (!match) continue;
-
-    const [, title, page, level] = match;
-    const bookmark: BookmarkNode = {
-      id: Date.now() + Math.random(),
-      title: cleanTitle(title.replace(/""/g, '"')),
-      page: parseInt(page),
-      children: [],
-      color: null,
-      style: null,
-      destX: null,
-      destY: null,
-      zoom: null,
-    };
-
-    const lvl = parseInt(level);
-    while (stack[stack.length - 1].level >= lvl) stack.pop();
-    stack[stack.length - 1].children.push(bookmark);
-    stack.push({ children: bookmark.children, level: lvl });
-  }
-
-  return bookmarks;
-}
 
 importJsonBtn?.addEventListener('click', () => {
   jsonImportHidden?.click();
@@ -2037,7 +2034,7 @@ jsonImportHidden?.addEventListener('change', async (e: Event) => {
       if (!nodes) return;
       const validStyles = ['bold', 'italic', 'bold-italic'];
       for (const node of nodes) {
-        if (node.title) node.title = cleanTitle(node.title);
+        if (node.title) node.title = cleanBookmarkTitle(node.title);
         node.page = Number.isFinite(Number(node.page))
           ? Math.max(1, Math.trunc(Number(node.page)))
           : 1;
@@ -2115,24 +2112,6 @@ extractExistingBtn?.addEventListener('click', async () => {
   }
 });
 
-// function cleanTitle(title) {
-//   // @TODO@ALAM: visit this for encoding issues later
-//   if (typeof title === 'string') {
-//     if (title.includes('€') && !title.includes(' ')) {
-//       return title.replace(/€/g, ' ');
-//     }
-//     return title.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
-//   }
-//   return title;
-// }
-
-function cleanTitle(title: string): string {
-  if (typeof title === 'string') {
-    return title.replace(/[\x00-\x1F\x7F-\x9F]/g, '').trim();
-  }
-  return title;
-}
-
 async function extractExistingBookmarks(): Promise<BookmarkTree> {
   try {
     if (!pdfJsDoc) return [];
@@ -2192,7 +2171,7 @@ async function extractExistingBookmarks(): Promise<BookmarkTree> {
 
       const bookmark: BookmarkNode = {
         id: Date.now() + Math.random(),
-        title: cleanTitle(item.title),
+        title: cleanBookmarkTitle(item.title),
         page: pageIndex + 1,
         children: [],
         color,
